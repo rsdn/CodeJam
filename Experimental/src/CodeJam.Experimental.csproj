@@ -61,6 +61,8 @@
     <Compile Include="CmdLine\Parser\QuotedOrNonquotedValueNode.cs" />
     <Compile Include="CmdLine\PrintUsageSettings.cs" />
     <Compile Include="CmdLine\UsagePrinter.cs" />
+    <Compile Include="Csv\CsvParser.cs" />
+    <Compile Include="Csv\CsvPrinter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
