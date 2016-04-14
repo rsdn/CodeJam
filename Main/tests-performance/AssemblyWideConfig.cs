@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.NUnit;
@@ -22,18 +24,26 @@ namespace CodeJam
 		/// to enable auto-annotation of benchmark methods
 		/// </summary>
 		[UsedImplicitly]
-		public static readonly bool AnnotateOnRun = TryGetSwitch(
-			nameof(AssemblyWideConfig),
-			// ReSharper disable once StaticMemberInitializerReferesToMemberBelow
-			nameof(AnnotateOnRun));
+		public static readonly bool AnnotateOnRun = GetAssemblySwitch(() => AnnotateOnRun);
 
-		private static bool TryGetSwitch(string scope, string switchName)
+
+		private static bool GetAssemblySwitch(Expression<Func<bool>> appSwitchGetter)
 		{
-			var codeBase = Assembly.GetExecutingAssembly().GetAssemblyPath();
+			var memberExp = (MemberExpression)appSwitchGetter.Body;
+			Code.AssertArgument(
+				memberExp.Expression == null,
+				nameof(appSwitchGetter),
+				"The expression should be simple field (or property) accessor");
+
+			var memberName = memberExp.Member.Name;
+			var type = memberExp.Member.DeclaringType;
+
+			// ReSharper disable once PossibleNullReferenceException
+			var codeBase = type.Assembly.GetAssemblyPath();
 			var config = ConfigurationManager.OpenExeConfiguration(codeBase);
 
-			var name = scope + "." + switchName;
-			var value = config.AppSettings.Settings[name]?.Value;
+			var path = type.Name + "." + memberName;
+			var value = config.AppSettings.Settings[path]?.Value;
 			bool result;
 			bool.TryParse(value, out result);
 			return result;
