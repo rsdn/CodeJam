@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Configuration;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.NUnit;
@@ -25,7 +23,6 @@ namespace CodeJam
 		/// </summary>
 		[UsedImplicitly]
 		public static readonly bool AnnotateOnRun = GetAssemblySwitch(() => AnnotateOnRun);
-
 
 		private static bool GetAssemblySwitch(Expression<Func<bool>> appSwitchGetter)
 		{

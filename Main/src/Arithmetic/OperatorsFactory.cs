@@ -24,6 +24,7 @@ new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorT
 			Expression body;
 			try
 			{
+				// ReSharper disable once AssignNullToNotNullAttribute
 				body = Expression.MakeUnary(comparisonType, arg, null);
 			}
 			catch (InvalidOperationException ex)

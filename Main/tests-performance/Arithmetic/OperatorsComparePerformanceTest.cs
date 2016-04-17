@@ -134,7 +134,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkComparisonNullableDateTime() => 
+		public void BenchmarkComparisonNullableDateTime() =>
 			CompetitionBenchmarkRunner.Run<NullableDateTimeCase>(RunConfig);
 
 		[PublicAPI]
@@ -192,7 +192,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkComparisonString() => 
+		public void BenchmarkComparisonString() =>
 			CompetitionBenchmarkRunner.Run<StringCase>(RunConfig);
 
 		[PublicAPI]

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Linq.Expressions;
 using System.Threading;
 
 using JetBrains.Annotations;
-
-using static CodeJam.Arithmetic.OperatorsFactory;
 
 namespace CodeJam.Arithmetic
 {
@@ -19,7 +16,7 @@ namespace CodeJam.Arithmetic
 		private const LazyThreadSafetyMode LazyMode = LazyThreadSafetyMode.PublicationOnly;
 
 		private static readonly Lazy<Func<T, T, int>> _compare =
-			new Lazy<Func<T, T, int>>(() => Comparison<T>(), LazyMode);
+			new Lazy<Func<T, T, int>>(OperatorsFactory.Comparison<T>, LazyMode);
 
 		/// <summary>
 		/// Comparison callback

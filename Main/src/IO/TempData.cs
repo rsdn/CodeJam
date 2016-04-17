@@ -104,9 +104,7 @@ namespace CodeJam.IO
 			/// <summary>
 			/// Initialize instance.
 			/// </summary>
-			public TempDirectory(string path) : base(path)
-			{
-			}
+			public TempDirectory(string path) : base(path) { }
 
 			/// <summary>
 			/// DirectoryInfo object
@@ -149,9 +147,7 @@ namespace CodeJam.IO
 			/// <summary>
 			/// Initialize instance.
 			/// </summary>
-			public TempFile(string path) : base(path)
-			{
-			}
+			public TempFile(string path) : base(path) { }
 
 			/// <summary>
 			/// DirectoryInfo object
