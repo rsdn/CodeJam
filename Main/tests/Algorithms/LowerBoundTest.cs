@@ -49,12 +49,12 @@ namespace CodeJam
 			var to = list.Count + 1;
 			// comparer version
 			Assert.That(() => list.LowerBound(10.0, 0, to, Comparer<double>.Default.Compare)
-				, Throws.InstanceOf(typeof(ArgumentOutOfRangeException)));
+				, Throws.InstanceOf(typeof(ArgumentException)));
 			// IComparable version
 			var list2 = list.Cast<IComparable<double>>().ToList();
-			Assert.That(() => list2.LowerBound(10.0, 0, to), Throws.InstanceOf(typeof(ArgumentOutOfRangeException)));
+			Assert.That(() => list2.LowerBound(10.0, 0, to), Throws.InstanceOf(typeof(ArgumentException)));
 			// specific version
-			Assert.That(() => list.LowerBound(10.0, 0, to), Throws.InstanceOf(typeof(ArgumentOutOfRangeException)));
+			Assert.That(() => list.LowerBound(10.0, 0, to), Throws.InstanceOf(typeof(ArgumentException)));
 		}
 
 		[Test]

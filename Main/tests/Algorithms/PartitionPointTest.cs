@@ -33,7 +33,7 @@ namespace CodeJam
 			var list = new List<int> { 0 };
 			var to = list.Count + 1;
 			Assert.That(() => list.PartitionPoint(0, to, _ => _ > 0)
-				, Throws.InstanceOf(typeof(ArgumentOutOfRangeException)));
+				, Throws.InstanceOf(typeof(ArgumentException)));
 		}
 
 		[Test]
