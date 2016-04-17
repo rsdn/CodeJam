@@ -14,7 +14,7 @@ namespace CodeJam
 		public const string BenchmarkCategory = "Performance";
 
 		/// <summary>
-		/// Please, mark all benchmark classes with [Explicit(BenchmarkConstatnts.ExplicitExcludeReason)]
+		/// Please, mark all benchmark classes with [Explicit(BenchmarkConstants.ExplicitExcludeReason)]
 		/// Explanation: read the constant' value;)
 		/// </summary>
 		public const string ExplicitExcludeReason = @"Autorun disabled as it takes too long to run.
