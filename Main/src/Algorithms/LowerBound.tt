@@ -1,0 +1,78 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".generated.cs" #>
+using System;
+using System.Collections.Generic;
+
+namespace CodeJam
+{
+	partial class Algorithms
+	{
+<#
+	foreach (var type in new[] { "float", "double", "TimeSpan", "DateTime", "DateTimeOffset" })
+	{
+#>
+
+		#region <#= type #>
+<#
+		GenerateMethods(type);
+#>
+		#endregion
+<#
+	}
+#>
+	}
+}
+<#+
+public void GenerateMethods(string type)
+{
+#>
+		/// <summary>
+		/// Returns the minimum index i in the range [0, list.Count - 1] such that list[i] >= value
+		/// or list.Count if no such i exists
+		/// </summary>
+		/// <param name="list">The sorted list</param>
+		/// <param name="value">The value to compare</param>
+		/// <returns>The lower bound for the value</returns>
+		public static int LowerBound(this IList<<#= type #>> list, <#= type #> value)
+			=> list.LowerBound(value, 0);
+
+		/// <summary>
+		/// Returns the minimum index i in the range [from, list.Count - 1] such that list[i] >= value
+		/// or list.Count if no such i exists
+		/// </summary>
+		/// <param name="list">The sorted list</param>
+		/// <param name="value">The value to compare</param>
+		/// <param name="from">The minimum index</param>
+		/// <returns>The lower bound for the value</returns>
+		public static int LowerBound(this IList<<#= type #>> list, <#= type #> value, int from)
+			=> list.LowerBound(value, from, list.Count);
+
+		/// <summary>
+		/// Returns the minimum index i in the range [from, to - 1] such that list[i] >= value
+		/// or "to" if no such i exists
+		/// </summary>
+		/// <param name="list">The sorted list</param>
+		/// <param name="value">The value to compare</param>
+		/// <param name="from">The minimum index</param>
+		/// <param name="to">The upper bound for the index (not included)</param>
+		/// <returns>The lower bound for the value</returns>
+		public static int LowerBound(this IList<<#= type #>> list, <#= type #> value, int from, int to)
+		{
+			ValidateIndicesRange(from, to, list.Count);
+			while (from < to)
+			{
+				var median = from + (to - from) / 2;
+				if (list[median] >= value)
+				{
+					to = median;
+				}
+				else
+				{
+					from = median + 1;
+				}
+			}
+			return from;
+		}
+<#+
+}
+#>
