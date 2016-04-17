@@ -51,13 +51,16 @@
     <Compile Include="..\..\Jetbrains.Annotations.cs">
       <Link>Jetbrains.Annotations.cs</Link>
     </Compile>
-    <Compile Include="Algorithms\EqualRange.cs" />
+    <Compile Include="Algorithms\EqualRange.IComparable.cs" />
+    <Compile Include="Algorithms\EqualRange.Comparer.cs" />
     <Compile Include="Algorithms\HashCode.cs" />
+    <Compile Include="Algorithms\LowerBound.IComparable.cs" />
     <Compile Include="Algorithms\PartitionPoint.cs" />
-    <Compile Include="Algorithms\LowerBound.cs" />
+    <Compile Include="Algorithms\LowerBound.Comparer.cs" />
     <Compile Include="Algorithms\Memoize.cs" />
     <Compile Include="Algorithms\Swap.cs" />
-    <Compile Include="Algorithms\UpperBound.cs" />
+    <Compile Include="Algorithms\UpperBound.IComparable.cs" />
+    <Compile Include="Algorithms\UpperBound.Comparer.cs" />
     <Compile Include="Arithmetic\Operators.Numeric.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
