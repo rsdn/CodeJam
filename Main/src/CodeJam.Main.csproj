@@ -51,13 +51,31 @@
     <Compile Include="..\..\Jetbrains.Annotations.cs">
       <Link>Jetbrains.Annotations.cs</Link>
     </Compile>
-    <Compile Include="Algorithms\EqualRange.cs" />
+    <Compile Include="Algorithms\EqualRange.IComparable.cs" />
+    <Compile Include="Algorithms\EqualRange.Comparer.cs" />
     <Compile Include="Algorithms\HashCode.cs" />
+    <Compile Include="Algorithms\EqualRange.generated.cs">
+      <DependentUpon>EqualRange.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Algorithms\UpperBound.generated.cs">
+      <DependentUpon>UpperBound.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Algorithms\LowerBound.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LowerBound.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Algorithms\LowerBound.IComparable.cs" />
     <Compile Include="Algorithms\PartitionPoint.cs" />
-    <Compile Include="Algorithms\LowerBound.cs" />
+    <Compile Include="Algorithms\LowerBound.Comparer.cs" />
     <Compile Include="Algorithms\Memoize.cs" />
     <Compile Include="Algorithms\Swap.cs" />
-    <Compile Include="Algorithms\UpperBound.cs" />
+    <Compile Include="Algorithms\UpperBound.IComparable.cs" />
+    <Compile Include="Algorithms\UpperBound.Comparer.cs" />
     <Compile Include="Arithmetic\Operators.Numeric.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -169,6 +187,18 @@
     <Compile Include="Reflection\ReflectionExtension.CreateInstance.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Algorithms\EqualRange.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EqualRange.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Algorithms\UpperBound.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UpperBound.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Algorithms\LowerBound.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LowerBound.generated.cs</LastGenOutput>
+    </Content>
     <Content Include="Arithmetic\Operators.Numeric.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Operators.Numeric.generated.cs</LastGenOutput>
