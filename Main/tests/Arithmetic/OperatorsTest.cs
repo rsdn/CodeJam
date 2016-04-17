@@ -78,29 +78,35 @@ namespace CodeJam.Arithmetic
 		}
 		#endregion
 
+		private static void AssertOperator<T>(Func<T> opGetter) =>
+			Assert.DoesNotThrow(() => opGetter());
+
+		private static void AssertNoOperator<T>(Func<T> opGetter) =>
+			Assert.Throws<NotSupportedException>(() => opGetter());
+
 		[Test]
 		public void Test00OperatorsSupported()
 		{
-			Assert.IsNull(Operators<ClassNoComparable>.Compare);
-			Assert.IsNull(Operators<ClassNoComparable>.GreaterThanOrEqual);
-			Assert.IsNotNull(Operators<ClassComparable>.Compare);
-			Assert.IsNotNull(Operators<ClassComparable>.GreaterThanOrEqual);
-			Assert.IsNotNull(Operators<ClassGenericComparable>.Compare);
-			Assert.IsNotNull(Operators<ClassGenericComparable>.GreaterThanOrEqual);
-			Assert.IsNotNull(Operators<ClassComparable2>.Compare);
-			Assert.IsNotNull(Operators<ClassComparable2>.GreaterThanOrEqual);
+			AssertNoOperator(() => Operators<ClassNoComparable>.Compare);
+			AssertNoOperator(() => Operators<ClassNoComparable>.GreaterThanOrEqual);
+			AssertOperator(() => Operators<ClassComparable>.Compare);
+			AssertOperator(() => Operators<ClassComparable>.GreaterThanOrEqual);
+			AssertOperator(() => Operators<ClassGenericComparable>.Compare);
+			AssertOperator(() => Operators<ClassGenericComparable>.GreaterThanOrEqual);
+			AssertOperator(() => Operators<ClassComparable2>.Compare);
+			AssertOperator(() => Operators<ClassComparable2>.GreaterThanOrEqual);
 
-			Assert.IsNotNull(Operators<ClassGenericComparable>.Compare);
-			Assert.IsNotNull(Operators<ClassGenericComparable>.GreaterThanOrEqual);
+			AssertOperator(() => Operators<ClassGenericComparable>.Compare);
+			AssertOperator(() => Operators<ClassGenericComparable>.GreaterThanOrEqual);
 
-			Assert.IsNotNull(Operators<ClassOperatorsComparable>.Compare);
-			Assert.IsNotNull(Operators<ClassOperatorsComparable>.GreaterThanOrEqual);
+			AssertOperator(() => Operators<ClassOperatorsComparable>.Compare);
+			AssertOperator(() => Operators<ClassOperatorsComparable>.GreaterThanOrEqual);
 
-			Assert.IsNull(Operators<ClassOperatorsComparable2>.Compare);
-			Assert.IsNotNull(Operators<ClassOperatorsComparable2>.GreaterThanOrEqual);
+			AssertNoOperator(() => Operators<ClassOperatorsComparable2>.Compare);
+			AssertOperator(() => Operators<ClassOperatorsComparable2>.GreaterThanOrEqual);
 
-			Assert.IsNull(Operators<int[]>.Compare);
-			Assert.IsNull(Operators<int[]>.GreaterThanOrEqual);
+			AssertNoOperator(() => Operators<int[]>.Compare);
+			AssertNoOperator(() => Operators<int[]>.GreaterThanOrEqual);
 		}
 
 		[Test]

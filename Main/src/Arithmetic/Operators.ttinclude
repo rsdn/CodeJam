@@ -1,47 +1,82 @@
-﻿<#@ template debug="false" hostspecific="false" language="C#" #>
-<#@ assembly name="System.Core" #>
+﻿<#@ assembly name="System.Core" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Linq.Expressions" #>
-<#@ import namespace="System.Text" #>
-<#
-var ops =
-	new []
-	{
-		new OpInfo(true, "UnaryMinus", "-", ExpressionType.Negate, false),
-		new OpInfo(true, "OnesComplement", "~", ExpressionType.OnesComplement, true),
+<#@ import namespace="System.Text" #><#
+	var ops =
+		new []
+		{
+			new OpInfo("UnaryMinus", "-", ExpressionType.Negate, false),
+			new OpInfo("OnesComplement", "~", ExpressionType.OnesComplement, true),
 
-		new OpInfo(false, "Plus", "+", ExpressionType.Add, false),
-		new OpInfo(false, "Minus", "-", ExpressionType.Subtract, false),
-		new OpInfo(false, "Mul", "*", ExpressionType.Multiply, false),
-		new OpInfo(false, "Div", "/", ExpressionType.Divide, false),
-		new OpInfo(false, "Modulo", "%", ExpressionType.Modulo, true),
-		new OpInfo(false, "Xor", "^", ExpressionType.ExclusiveOr, true),
-		new OpInfo(false, "BitwiseAnd", "&", ExpressionType.And, true),
-		new OpInfo(false, "BitwiseOr", "|", ExpressionType.Or, true),
-		new OpInfo(false, "LeftShift", "<<", ExpressionType.LeftShift, true),
-		new OpInfo(false, "RightShift", ">>", ExpressionType.RightShift, true),
-	};
-#>
-<#+
-private class OpInfo
-{
-	public bool Unary { get; private set; }
-	public string Name { get; private set; }
-	public string Sign { get; private set; }
-	public ExpressionType Type { get; private set; }
-	public bool IntOnly { get; private set; }
-	public OpInfo(bool unary, string name, string sign, ExpressionType type, bool intOnly)
+			new OpInfo("AreEqual", "==", ExpressionType.Equal, false),
+			new OpInfo("AreNotEqual", "!=", ExpressionType.NotEqual, false),
+			new OpInfo("GreaterThan", ">", ExpressionType.GreaterThan, false),
+			new OpInfo("GreaterThanOrEqual", ">=", ExpressionType.GreaterThanOrEqual, false),
+			new OpInfo("LessThan", "<", ExpressionType.LessThan, false),
+			new OpInfo("LessThanOrEqual", "<=", ExpressionType.LessThanOrEqual, false),
+
+			new OpInfo("Plus", "+", ExpressionType.Add, false),
+			new OpInfo("Minus", "-", ExpressionType.Subtract, false),
+			new OpInfo("Mul", "*", ExpressionType.Multiply, false),
+			new OpInfo("Div", "/", ExpressionType.Divide, false),
+			new OpInfo("Modulo", "%", ExpressionType.Modulo, true),
+			new OpInfo("Xor", "^", ExpressionType.ExclusiveOr, true),
+			new OpInfo("BitwiseAnd", "&", ExpressionType.And, true),
+			new OpInfo("BitwiseOr", "|", ExpressionType.Or, true),
+			new OpInfo("LeftShift", "<<", ExpressionType.LeftShift, true),
+			new OpInfo("RightShift", ">>", ExpressionType.RightShift, true),
+		};
+#><#+
+	protected enum OpType
 	{
-		Unary = unary;
-		Name = name;
-		Type = type;
-		Sign = sign;
-		IntOnly = intOnly;
+		Binary = 0,
+		Comparison = 1,
+		Unary = 2
 	}
-	public string LowerName
+
+	protected class OpInfo
 	{
-		get { return Name.Substring(0, 1).ToLower() + Name.Substring(1); }
+		public string Name { get; private set; }
+		public string Sign { get; private set; }
+		public ExpressionType Type { get; private set; }
+
+		public bool IntOnly { get; private set; }
+
+		public OpInfo(string name, string sign, ExpressionType type, bool intOnly)
+		{
+			Name = name;
+			Type = type;
+			Sign = sign;
+			IntOnly = intOnly;
+		}
+
+		public OpType OpType
+		{
+			get
+			{
+				switch (Type)
+				{
+					case ExpressionType.Negate:
+					case ExpressionType.OnesComplement:
+					case ExpressionType.UnaryPlus:
+						return OpType.Unary;
+					case ExpressionType.Equal:
+					case ExpressionType.NotEqual:
+					case ExpressionType.GreaterThan:
+					case ExpressionType.GreaterThanOrEqual:
+					case ExpressionType.LessThan:
+					case ExpressionType.LessThanOrEqual:
+						return OpType.Comparison;
+					default:
+						return OpType.Binary;
+				}
+			}
+		}
+
+		public string LowerName
+		{
+			get { return Name.Substring(0, 1).ToLower() + Name.Substring(1); }
+		}
 	}
-}
 #>

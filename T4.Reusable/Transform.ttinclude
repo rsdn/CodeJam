@@ -1,20 +1,25 @@
 ﻿<#@ import namespace="System.IO" #>
 <#@ import namespace="System.Text.RegularExpressions" #><#+
-void Transform(string source, params ReplaceInfo[] info)
+protected void Transform(string source, params ReplaceInfo[] info)
 {
 	var sourceText = File.ReadAllText(source);
 
-	foreach (var item in info)
+	foreach (var replaceInfo in info)
 	{
-		sourceText = Regex.Replace(sourceText, item.Pattern, item.Replacement);
+		var newText = Regex.Replace(sourceText, replaceInfo.Pattern, replaceInfo.Replacement);
+		if (replaceInfo.ThrowOnFail && newText == sourceText)
+			throw new InvalidOperationException("The match for " + replaceInfo.Pattern + " not found");
+
+		sourceText = newText;
 	}
 
 	Write(sourceText);
 }
 
-class ReplaceInfo
+protected class ReplaceInfo
 {
-	public string Pattern;
-	public string Replacement;
+	public string Pattern { get; set; }
+	public string Replacement { get; set; }
+	public bool ThrowOnFail { get; set; }
 }
 #>

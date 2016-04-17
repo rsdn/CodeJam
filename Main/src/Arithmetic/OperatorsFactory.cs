@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 
 using JetBrains.Annotations;
+using CodeJam.Reflection;
 
 namespace CodeJam.Arithmetic
 {
@@ -11,8 +12,77 @@ namespace CodeJam.Arithmetic
 	/// </summary>
 	internal static class OperatorsFactory
 	{
-		[CanBeNull]
-		public static Func<T, T, int> GetComparisonCallback<T>()
+		#region Helpers
+		private static NotSupportedException NotSupported<T>(ExpressionType operatorType, Exception ex) =>
+new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);
+
+
+		[NotNull]
+		private static Func<T, TResult> GetUnaryOperatorCore<T, TResult>(ExpressionType comparisonType)
+		{
+			var arg = Expression.Parameter(typeof(T), "arg1");
+			Expression body;
+			try
+			{
+				body = Expression.MakeUnary(comparisonType, arg, null);
+			}
+			catch (InvalidOperationException ex)
+			{
+				throw NotSupported<T>(comparisonType, ex);
+			}
+
+			var result = Expression.Lambda<Func<T, TResult>>(
+				body, comparisonType.ToString(), new[] { arg });
+
+			try
+			{
+				return result.Compile();
+			}
+			catch (Exception ex)
+			{
+				throw NotSupported<T>(comparisonType, ex);
+			}
+		}
+
+
+		[NotNull]
+		private static Func<T, T, TResult> GetBinaryOperatorCore<T, TResult>(ExpressionType comparisonType)
+		{
+			var arg1 = Expression.Parameter(typeof(T), "arg1");
+			var arg2 = Expression.Parameter(typeof(T), "arg2");
+			Expression body;
+			try
+			{
+				body = Expression.MakeBinary(comparisonType, arg1, arg2);
+			}
+			catch (InvalidOperationException ex)
+			{
+				throw NotSupported<T>(comparisonType, ex);
+			}
+
+			var result = Expression.Lambda<Func<T, T, TResult>>(
+				body, comparisonType.ToString(), new[] { arg1, arg2 });
+
+			try
+			{
+				return result.Compile();
+			}
+			catch (Exception ex)
+			{
+				throw NotSupported<T>(comparisonType, ex);
+			}
+		}
+		#endregion
+
+		public static Func<T, T> UnaryOperator<T>(ExpressionType operatorType) =>
+			GetUnaryOperatorCore<T, T>(operatorType);
+
+		public static Func<T, T, T> BinaryOperator<T>(ExpressionType operatorType) =>
+			GetBinaryOperatorCore<T, T>(operatorType);
+
+		#region Comparison
+		[NotNull]
+		public static Func<T, T, int> Comparison<T>()
 		{
 			var t = typeof(T);
 
@@ -21,23 +91,18 @@ namespace CodeJam.Arithmetic
 			if (t == typeof(string))
 				return (Func<T, T, int>)(object)(Func<string, string, int>)string.CompareOrdinal;
 
-			if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>))
+			if (t.IsNullable())
 				t = t.GetGenericArguments()[0];
 
 			if (!typeof(IComparable<T>).IsAssignableFrom(t) &&
 				!typeof(IComparable).IsAssignableFrom(t))
-				return null;
+				throw new NotSupportedException("Type does not implement IComparable nor IComparable<T> interface");
 
 			return Comparer<T>.Default.Compare;
 		}
 
-		[CanBeNull]
-		public static Func<T, T, bool> GetComparisonCallback<T>(ExpressionType comparisonType) =>
-			CompareUsingOperators<T>(comparisonType)
-				?? CompareUsingComparer<T>(comparisonType);
-
-		[CanBeNull]
-		private static Func<T, T, bool> CompareUsingOperators<T>(ExpressionType comparisonType)
+		[NotNull]
+		public static Func<T, T, bool> ComparisonOperator<T>(ExpressionType comparisonType)
 		{
 			switch (comparisonType)
 			{
@@ -50,38 +115,21 @@ namespace CodeJam.Arithmetic
 					// OK
 					break;
 				default:
-					throw CodeExceptions.UnexpectedArgumentValue(
-						nameof(comparisonType), comparisonType);
+					throw CodeExceptions.UnexpectedArgumentValue(nameof(comparisonType), comparisonType);
 			}
-
-			var parameter1 = Expression.Parameter(typeof(T), "arg1");
-			var parameter2 = Expression.Parameter(typeof(T), "arg2");
-
-			Expression body;
-			try
-			{
-				body = Expression.MakeBinary(comparisonType, parameter1, parameter2);
-			}
-			catch (InvalidOperationException)
-			{
-				return null;
-			}
-
-			var result = Expression.Lambda<Func<T, T, bool>>(
-				body, comparisonType.ToString(), new[] { parameter1, parameter2 });
 
 			try
 			{
-				return result.Compile();
+				return GetBinaryOperatorCore<T, bool>(comparisonType);
 			}
-			catch (Exception)
+			catch (NotSupportedException)
 			{
-				return null;
+				return GetComparerComparison<T>(comparisonType);
 			}
 		}
 
-		[CanBeNull]
-		private static Func<T, T, bool> CompareUsingComparer<T>(ExpressionType comparisonType)
+		[NotNull]
+		private static Func<T, T, bool> GetComparerComparison<T>(ExpressionType comparisonType)
 		{
 			switch (comparisonType)
 			{
@@ -93,10 +141,7 @@ namespace CodeJam.Arithmetic
 					return (a, b) => !equalityComparer.Equals(a, b);
 			}
 
-			var comparison = GetComparisonCallback<T>();
-			if (comparison == null)
-				return null;
-
+			var comparison = Comparison<T>();
 			switch (comparisonType)
 			{
 				case ExpressionType.GreaterThan:
@@ -108,31 +153,9 @@ namespace CodeJam.Arithmetic
 				case ExpressionType.LessThanOrEqual:
 					return (a, b) => comparison(a, b) <= 0;
 				default:
-					throw CodeExceptions.UnexpectedArgumentValue(
-						nameof(comparisonType), comparisonType);
+					throw CodeExceptions.UnexpectedArgumentValue(nameof(comparisonType), comparisonType);
 			}
 		}
-
-		public static Func<T, T, T> CreateNumBinOperFunc<T>(ExpressionType operatorType)
-		{
-			var arg1 = Expression.Parameter(typeof(T));
-			var arg2 = Expression.Parameter(typeof(T));
-			var expr = Expression.MakeBinary(operatorType, arg1, arg2);
-			return
-				Expression
-					.Lambda<Func<T, T, T>>(expr, operatorType.ToString(), new[] { arg1, arg2 })
-					.Compile();
-		}
-
-		public static Func<T, T> CreateNumUnOperFunc<T>(ExpressionType operatorType)
-		{
-			var arg = Expression.Parameter(typeof(T));
-			// ReSharper disable once AssignNullToNotNullAttribute
-			var expr = Expression.MakeUnary(operatorType, arg, null);
-			return
-				Expression
-					.Lambda<Func<T, T>>(expr, operatorType.ToString(), new[] { arg })
-					.Compile();
-		}
+		#endregion
 	}
 }

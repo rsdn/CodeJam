@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 
@@ -8,9 +7,11 @@ using NUnit.Framework;
 namespace CodeJam.IO
 {
 	[TestFixture(Category = "Temp data")]
-	[SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
 	public class TempDataTests
 	{
+		private static void AssertDisposed<T>(Func<T> memberCallback) =>
+			Assert.Throws<ObjectDisposedException>(() => memberCallback());
+
 		[Test]
 		public void Test01Directory()
 		{
@@ -26,7 +27,7 @@ namespace CodeJam.IO
 				Assert.AreNotEqual(dir.Path, dir2.Path, "Path should not match");
 				Assert.IsTrue(dir2.Info.Exists, "Directory should exist");
 				dir2.Dispose();
-				Assert.Throws<ObjectDisposedException>(() => dir2.Info.ToString());
+				AssertDisposed(() => dir2.Info);
 			}
 			Assert.IsFalse(Directory.Exists(dirPath), "Directory should NOT exist");
 
@@ -87,7 +88,7 @@ namespace CodeJam.IO
 				Assert.AreNotEqual(file.Path, file2.Path, "Path should not match");
 				Assert.IsTrue(file2.Info.Exists, "File should exist");
 				file2.Dispose();
-				Assert.Throws<ObjectDisposedException>(() => file2.Info.ToString());
+				AssertDisposed(() => file2.Info);
 			}
 			Assert.IsFalse(File.Exists(filePath), "File should NOT exist");
 
@@ -159,7 +160,7 @@ namespace CodeJam.IO
 				Assert.AreNotEqual(file.Name, file2.Name, "Path should not match");
 				Assert.IsTrue(File.Exists(file2.Name), "File should exist");
 				file2.Dispose();
-				Assert.Throws<ObjectDisposedException>(() => file2.Length.ToString());
+				AssertDisposed(() => file2.Length);
 			}
 			Assert.IsFalse(File.Exists(filePath), "FileStream should NOT exist");
 

@@ -1,6 +1,4 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ output extension=".generated.cs" #>
-<#@ import namespace="System.Text.RegularExpressions" #>
 <#@ include file="$(SolutionDir)T4.Reusable\DebugCodeGenerator.ttinclude" #>
 <#
 	Run();
