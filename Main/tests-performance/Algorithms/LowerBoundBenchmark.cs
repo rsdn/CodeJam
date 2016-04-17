@@ -44,7 +44,7 @@ namespace CodeJam.Algorithms
 		[Test]
 		public void TestLowerBound() => CompetitionBenchmarkRunner.Run(this, AssemblyWideConfig.RunConfig);
 
-		[CompetitionBenchmark(1.3, 1.5)]
+		[CompetitionBenchmark(1.25, 1.5)]
 		public void Test00Comparer()
 		{
 			for (var i = 0; i < Steps; ++i)

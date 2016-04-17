@@ -21,6 +21,9 @@ namespace CodeJam
 			var list2 = list.Cast<IComparable<double>>().ToList();
 			Assert.That(() => list2.UpperBound(10.0, from, list.Count)
 				, Throws.InstanceOf(typeof(ArgumentOutOfRangeException)));
+			// specific version
+			Assert.That(() => list.UpperBound(10.0, from, list.Count)
+				, Throws.InstanceOf(typeof(ArgumentOutOfRangeException)));
 		}
 
 		[Test]
@@ -34,6 +37,8 @@ namespace CodeJam
 			// IComparable version
 			var list2 = list.Cast<IComparable<double>>().ToList();
 			Assert.That(() => list2.UpperBound(10.0, 0, to), Throws.InstanceOf(typeof(ArgumentOutOfRangeException)));
+			// specific version
+			Assert.That(() => list.UpperBound(10.0, 0, to), Throws.InstanceOf(typeof(ArgumentOutOfRangeException)));
 		}
 
 		[Test]
@@ -47,6 +52,8 @@ namespace CodeJam
 			// IComparable version
 			var list2 = list.Cast<IComparable<double>>().ToList();
 			Assert.That(() => list2.UpperBound(10.0, 0, to), Throws.InstanceOf(typeof(ArgumentOutOfRangeException)));
+			// specific version
+			Assert.That(() => list.UpperBound(10.0, 0, to), Throws.InstanceOf(typeof(ArgumentOutOfRangeException)));
 		}
 
 		[Test]
@@ -61,6 +68,8 @@ namespace CodeJam
 			// IComparable version
 			var list2 = list.Cast<IComparable<double>>().ToList();
 			Assert.That(() => list2.UpperBound(10.0, from, to), Throws.ArgumentException);
+			// specific version
+			Assert.That(() => list.UpperBound(10.0, from, to), Throws.ArgumentException);
 		}
 
 		[Test]
@@ -79,6 +88,8 @@ namespace CodeJam
 			// IComparable version
 			var list2 = list.Cast<IComparable<double>>().ToList();
 			Assert.That(list2.UpperBound(value, from, to), Is.EqualTo(expected));
+			// specific version
+			Assert.That(list.UpperBound(value, from, to), Is.EqualTo(expected));
 		}
 
 		[Test]
@@ -108,6 +119,8 @@ namespace CodeJam
 			// IComparable version
 			var list2 = list.Cast<IComparable<double>>().ToList();
 			Assert.That(list2.UpperBound(value, from), Is.EqualTo(expected));
+			// specific version
+			Assert.That(list.UpperBound(value, from), Is.EqualTo(expected));
 		}
 
 		[Test]
@@ -129,6 +142,8 @@ namespace CodeJam
 			// IComparable version
 			var list2 = list.Cast<IComparable<double>>().ToList();
 			Assert.That(list2.UpperBound(value), Is.EqualTo(expected));
+			// specific version
+			Assert.That(list.UpperBound(value), Is.EqualTo(expected));
 		}
 	}
 }
