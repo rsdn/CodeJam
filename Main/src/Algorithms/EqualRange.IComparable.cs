@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using JetBrains.Annotations;
+
 namespace CodeJam
 {
 	partial class Algorithms
@@ -18,8 +20,12 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		public static TupleStruct<int, int> EqualRange<TElement, TValue>(this IList<TElement> list, TValue value) where TElement : IComparable<TValue>
-			=> list.EqualRange(value, 0);
+		[Pure]
+		public static TupleStruct<int, int> EqualRange<TElement, TValue>(
+				[NotNull, InstantHandle] this IList<TElement> list,
+				TValue value)
+			where TElement : IComparable<TValue> =>
+			list.EqualRange(value, 0);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -35,8 +41,13 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="from">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		public static TupleStruct<int, int> EqualRange<TElement, TValue>(this IList<TElement> list, TValue value, int from) where TElement : IComparable<TValue>
-			=> list.EqualRange(value, from, list.Count);
+		[Pure]
+		public static TupleStruct<int, int> EqualRange<TElement, TValue>(
+				[NotNull, InstantHandle] this IList<TElement> list,
+				TValue value,
+				int from)
+			where TElement : IComparable<TValue> =>
+			list.EqualRange(value, from, list.Count);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -53,9 +64,15 @@ namespace CodeJam
 		/// <param name="from">The minimum index</param>
 		/// <param name="to">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		public static TupleStruct<int, int> EqualRange<TElement, TValue>(this IList<TElement> list, TValue value, int from, int to)
+		[Pure]
+		public static TupleStruct<int, int> EqualRange<TElement, TValue>(
+				[NotNull, InstantHandle] this IList<TElement> list,
+				TValue value,
+				int from,
+				int to)
 			where TElement : IComparable<TValue>
 		{
+			Code.NotNull(list, nameof(list));
 			ValidateIndicesRange(from, to, list.Count);
 			var upperBoundFrom = from;
 			var upperBoundTo = to;

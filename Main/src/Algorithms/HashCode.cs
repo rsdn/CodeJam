@@ -96,7 +96,8 @@ namespace CodeJam
 		/// <param name="h8">Hash code 8</param>
 		/// <returns>Combined hash code</returns>
 		[Pure]
-		public static int Combine(int h1, int h2, int h3, int h4, int h5, int h6, int h7, int h8) => Combine(Combine(h1, h2, h3, h4), Combine(h5, h6, h7, h8));
+		public static int Combine(int h1, int h2, int h3, int h4, int h5, int h6, int h7, int h8) =>
+			Combine(Combine(h1, h2, h3, h4), Combine(h5, h6, h7, h8));
 
 		/// <summary>
 		/// Combines hash codes.
@@ -106,7 +107,7 @@ namespace CodeJam
 		/// Combined hash code.
 		/// </returns>
 		[Pure]
-		public static int CombineValues<T>([CanBeNull] T[] values)
+		public static int CombineValues<T>([CanBeNull] params T[] values)
 		{
 			if (values.IsNullOrEmpty())
 				return 0;

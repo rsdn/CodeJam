@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using JetBrains.Annotations;
+
 namespace CodeJam
 {
 	partial class Algorithms
@@ -17,8 +19,12 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The lower bound for the value</returns>
-		public static int LowerBound<TElement, TValue>(this IList<TElement> list, TValue value) where TElement : IComparable<TValue>
-			=> list.LowerBound(value, 0);
+		[Pure]
+		public static int LowerBound<TElement, TValue>(
+				[NotNull, InstantHandle] this IList<TElement> list,
+				TValue value)
+			where TElement : IComparable<TValue> =>
+			list.LowerBound(value, 0);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [from, list.Count - 1] such that list[i] >= value
@@ -32,8 +38,13 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="from">The minimum index</param>
 		/// <returns>The lower bound for the value</returns>
-		public static int LowerBound<TElement, TValue>(this IList<TElement> list, TValue value, int from) where TElement : IComparable<TValue>
-			=> list.LowerBound(value, from, list.Count);
+		[Pure]
+		public static int LowerBound<TElement, TValue>(
+				[NotNull, InstantHandle] this IList<TElement> list,
+				TValue value,
+				int from)
+			where TElement : IComparable<TValue> =>
+			list.LowerBound(value, from, list.Count);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [from, to - 1] such that list[i] >= value
@@ -49,9 +60,15 @@ namespace CodeJam
 		/// <param name="from">The minimum index</param>
 		/// <param name="to">The upper bound for the index (not included)</param>
 		/// <returns>The lower bound for the value</returns>
-		public static int LowerBound<TElement, TValue>(this IList<TElement> list, TValue value, int from, int to)
+		[Pure]
+		public static int LowerBound<TElement, TValue>(
+				[NotNull, InstantHandle] this IList<TElement> list,
+				TValue value,
+				int from,
+				int to)
 			where TElement : IComparable<TValue>
 		{
+			Code.NotNull(list, nameof(list));
 			ValidateIndicesRange(from, to, list.Count);
 			while (from < to)
 			{

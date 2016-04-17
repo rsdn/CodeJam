@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using JetBrains.Annotations;
+
 namespace CodeJam
 {
 	partial class Algorithms
@@ -17,8 +19,10 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The upper bound for the value</returns>
-		public static int UpperBound<TElement, TValue>(this IList<TElement> list, TValue value) where TElement : IComparable<TValue>
-			=> list.UpperBound(value, 0);
+		[Pure]
+		public static int UpperBound<TElement, TValue>([NotNull, InstantHandle] this IList<TElement> list, TValue value)
+			where TElement : IComparable<TValue> =>
+			list.UpperBound(value, 0);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [from, list.Count - 1] such that list[i] > value
@@ -33,8 +37,13 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="from">The minimum index</param>
 		/// <returns>The upper bound for the value</returns>
-		public static int UpperBound<TElement, TValue>(this IList<TElement> list, TValue value, int from) where TElement : IComparable<TValue>
-			=> list.UpperBound(value, from, list.Count);
+		[Pure]
+		public static int UpperBound<TElement, TValue>(
+				[NotNull, InstantHandle] this IList<TElement> list,
+				TValue value,
+				int from)
+			where TElement : IComparable<TValue> =>
+			list.UpperBound(value, from, list.Count);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [from, to - 1] such that list[i] > value
@@ -50,7 +59,12 @@ namespace CodeJam
 		/// <param name="from">The minimum index</param>
 		/// <param name="to">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
-		public static int UpperBound<TElement, TValue>(this IList<TElement> list, TValue value, int from, int to)
+		[Pure]
+		public static int UpperBound<TElement, TValue>(
+				[NotNull, InstantHandle] this IList<TElement> list,
+				TValue value,
+				int from,
+				int to)
 			 where TElement : IComparable<TValue>
 		{
 			ValidateIndicesRange(from, to, list.Count);
@@ -71,9 +85,14 @@ namespace CodeJam
 		/// <param name="from">The minimum index</param>
 		/// <param name="to">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
-		private static int UpperBoundCore<TElement, TValue>(IList<TElement> list, TValue value, int from, int to)
+		private static int UpperBoundCore<TElement, TValue>(
+				IList<TElement> list,
+				TValue value,
+				int from,
+				int to)
 			where TElement : IComparable<TValue>
 		{
+			Code.NotNull(list, nameof(list));
 			while (from < to)
 			{
 				var median = from + (to - from) / 2;

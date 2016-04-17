@@ -108,9 +108,39 @@ namespace CodeJam
 		public static void InRange(
 			int value,
 			[NotNull, InvokerParameterName] string argName,
-			int fromValue, int toValue)
+			int fromValue,
+			int toValue)
 		{
 			if (value < fromValue || value > toValue)
+				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue, toValue);
+		}
+
+		/// <summary>
+		/// Assertion for the argument in range
+		/// </summary>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void InRange(
+			int value,
+			[NotNull, InvokerParameterName] string argName,
+			int fromValue)
+		{
+			if (value < fromValue)
+				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue);
+		}
+
+		/// <summary>
+		/// Assertion for the argument in range
+		/// </summary>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void InRange<T>(
+			T value,
+			[NotNull, InvokerParameterName] string argName,
+			T fromValue,
+			T toValue)
+		{
+			if (Operators<T>.LessThan(value, fromValue) || Operators<T>.GreaterThan(value, toValue))
 				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue, toValue);
 		}
 
@@ -122,10 +152,10 @@ namespace CodeJam
 		public static void InRange<T>(
 			T value,
 			[NotNull, InvokerParameterName] string argName,
-			T fromValue, T toValue)
+			T fromValue)
 		{
-			if (Operators<T>.LessThan(value, fromValue) || Operators<T>.GreaterThan(value, toValue))
-				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue, toValue);
+			if (Operators<T>.LessThan(value, fromValue))
+				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue);
 		}
 		#endregion
 
