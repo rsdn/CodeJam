@@ -89,13 +89,18 @@ namespace CodeJam
 		/// <param name="count">The number of elements in the list</param>
 		private static void ValidateIndicesRange(int from, int to, int count)
 		{
-			Code.InRange(from, nameof(from), 0);
-			Code.InRange(to, nameof(to), 0);
-			Code.AssertArgument(to <= count, nameof(to), $"The {nameof(to)} index should not exceed the {nameof(count)}");
-			Code.AssertArgument(
-				to >= from,
-				nameof(from),
-				$"The {nameof(to)} index should be not less than the {nameof(from)} index");
+			if (to < 0)
+			{
+				throw new ArgumentOutOfRangeException(nameof(to), $"The {nameof(to)} index should be non-negative");
+			}
+			if (to > count)
+			{
+				throw new ArgumentOutOfRangeException(nameof(to), $"The {nameof(to)} index should not exceed the {nameof(count)}");
+			}
+			if (to < from)
+			{
+				throw new ArgumentException(nameof(to), $"The {nameof(to)} index should be not less than the {nameof(from)} index");
+			}
 		}
 	}
 }
