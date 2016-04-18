@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 using JetBrains.Annotations;
 
@@ -17,7 +18,7 @@ namespace CodeJam
 		public static readonly EmptyDisposable Empty;
 
 		/// <summary>
-		/// Creates <see cref="IDisposable"/> instanse that calls <paramref name="disposeAction"/> on disposing.
+		/// Creates <see cref="IDisposable"/> instance that calls <paramref name="disposeAction"/> on disposing.
 		/// </summary>
 		[Pure]
 		public static AnonymousDisposable Create([NotNull] Action disposeAction) => new AnonymousDisposable(disposeAction);
@@ -43,8 +44,7 @@ namespace CodeJam
 			/// <summary>
 			/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
 			/// </summary>
-			public void Dispose()
-			{}
+			public void Dispose() { }
 		}
 
 		/// <summary>
@@ -52,7 +52,7 @@ namespace CodeJam
 		/// </summary>
 		public struct AnonymousDisposable : IDisposable
 		{
-			private readonly Action _disposeAction;
+			private Action _disposeAction;
 
 			/// <summary>
 			/// Initialize instance.
@@ -66,7 +66,22 @@ namespace CodeJam
 			/// <summary>
 			/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
 			/// </summary>
-			public void Dispose() => _disposeAction();
+			public void Dispose()
+			{
+				var disposeAction = Interlocked.Exchange(ref _disposeAction, null);
+				if (disposeAction != null)
+				{
+					try
+					{
+						disposeAction.Invoke();
+					}
+					catch (Exception)
+					{
+						Interlocked.Exchange(ref _disposeAction, disposeAction);
+						throw;
+					}
+				}
+			}
 		}
 	}
 }
