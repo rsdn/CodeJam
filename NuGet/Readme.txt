@@ -10,6 +10,7 @@ What's new in 1.0.0-beta10
 * Thread safety for disposables
 * Memoize extended up to 8 arguments
 * Enumerable.Index renamed to WithIndex. IndexItem implements equality stuff
+* XNodeExtensions.OptionalXxxValue renamed to XxxValueOrDefault
 * Performance optimization
 * Refactoring
 * Fixes and code cleanup

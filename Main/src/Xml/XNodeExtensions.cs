@@ -99,7 +99,7 @@ namespace CodeJam.Xml
 		/// <param name="parser">Value parser</param>
 		/// <param name="defaultValue">Default value.</param>
 		/// <returns>Parsed value or <paramref name="defaultValue"/> if attribute not exists.</returns>
-		public static T OptionalAttributeValue<T>(
+		public static T AttributeValueOrDefault<T>(
 			[NotNull] this XElement element,
 			[NotNull] XName attrName,
 			[NotNull] Func<string, T> parser,
@@ -119,7 +119,7 @@ namespace CodeJam.Xml
 		/// <param name="attrName">Attribute name.</param>
 		/// <param name="defaultValue">Default value.</param>
 		/// <returns>Parsed value or <paramref name="defaultValue"/> if attribute does not exist.</returns>
-		public static string OptionalAttributeValue(
+		public static string AttributeValueOrDefault(
 			[NotNull] this XElement element,
 			[NotNull] XName attrName,
 			string defaultValue)
@@ -138,7 +138,7 @@ namespace CodeJam.Xml
 		/// <param name="defaultValue">Default value.</param>
 		/// <param name="names">Array of possible element names.</param>
 		/// <returns>Selected element value or <paramref name="defaultValue"/> if element does not exist</returns>
-		public static T OptionalElementAltValue<T>(
+		public static T ElementAltValueOrDefault<T>(
 			[NotNull] this XElement parent,
 			[NotNull] Func<XElement, T> valueSelector,
 			T defaultValue,
@@ -160,14 +160,14 @@ namespace CodeJam.Xml
 		/// <param name="defaultValue">Default value.</param>
 		/// <param name="name">Element name.</param>
 		/// <returns>Selected element value or <paramref name="defaultValue"/> if element does not exist</returns>
-		public static T OptionalElementValue<T>(
+		public static T ElementValueOrDefault<T>(
 			[NotNull] this XElement parent,
 			[NotNull] XName name,
 			[NotNull] Func<XElement, T> valueSelector,
 			T defaultValue)
 		{
 			if (name == null) throw new ArgumentNullException(nameof(name));
-			return OptionalElementAltValue(parent, valueSelector, defaultValue, name);
+			return ElementAltValueOrDefault(parent, valueSelector, defaultValue, name);
 		}
 
 		/// <summary>
@@ -178,14 +178,14 @@ namespace CodeJam.Xml
 		/// <param name="defaultValue">Default value.</param>
 		/// <param name="name">Element name.</param>
 		/// <returns>Selected element value or <paramref name="defaultValue"/> if element does not exist</returns>
-		public static T OptionalElementValue<T>(
+		public static T ElementValueOrDefault<T>(
 			[NotNull] this XElement parent,
 			[NotNull] XName name,
 			[NotNull] Func<string, T> valueSelector,
 			T defaultValue)
 		{
 			if (name == null) throw new ArgumentNullException(nameof(name));
-			return OptionalElementAltValue(parent, elem => valueSelector(elem.Value), defaultValue, name);
+			return ElementAltValueOrDefault(parent, elem => valueSelector(elem.Value), defaultValue, name);
 		}
 
 		/// <summary>
@@ -195,13 +195,13 @@ namespace CodeJam.Xml
 		/// <param name="defaultValue">Default value.</param>
 		/// <param name="name">Element name.</param>
 		/// <returns>Selected element value or <paramref name="defaultValue"/> if element does not exist</returns>
-		public static string OptionalElementValue(
+		public static string ElementValueOrDefault(
 			[NotNull] this XElement parent,
 			[NotNull] XName name,
 			string defaultValue)
 		{
 			if (name == null) throw new ArgumentNullException(nameof(name));
-			return OptionalElementAltValue(parent, e => e.Value, defaultValue, name);
+			return ElementAltValueOrDefault(parent, e => e.Value, defaultValue, name);
 		}
 	}
 }
