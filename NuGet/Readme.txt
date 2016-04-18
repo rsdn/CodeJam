@@ -9,6 +9,7 @@ What's new in 1.0.0-beta10
 * Additional overloads for Algorithms.EqualRange/UpperBound/LowerBound
 * Thread safety for disposables
 * Memoize extended up to 8 arguments
+* Enumerable.Index renamed to WithIndex. IndexItem implements equality stuff
 * Performance optimization
 * Refactoring
 * Fixes and code cleanup

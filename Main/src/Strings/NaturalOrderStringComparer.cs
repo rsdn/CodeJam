@@ -1,4 +1,4 @@
-﻿// Based on the C version by Martin Pool.
+﻿// BASEDON: the C version by Martin Pool.
 
 using System;
 using System.Collections.Generic;

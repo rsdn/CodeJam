@@ -1,4 +1,5 @@
-﻿#if FW40
+﻿// BASEDON: https://github.com/dotnet/coreclr/blob/775003a4c72f0acc37eab84628fcef541533ba4e/src/mscorlib/src/System/Reflection/CustomAttributeExtensions.cs
+#if FW40
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
@@ -14,7 +15,7 @@ namespace System.Reflection
 	[PublicAPI]
 	public static class CustomAttributeExtensions
 	{
-		#region APIs that return a single attribute
+#region APIs that return a single attribute
 		/// <summary>
 		/// Retrieves a custom attribute of a specified type that is applied to a specified assembly.
 		/// </summary>
@@ -150,9 +151,9 @@ namespace System.Reflection
 		/// </returns>
 		public static T GetCustomAttribute<T>(this ParameterInfo element, bool inherit) where T : Attribute =>
 			(T)GetCustomAttribute(element, typeof(T), inherit);
-		#endregion
+#endregion
 
-		#region APIs that return all attributes
+#region APIs that return all attributes
 		/// <summary>
 		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
 		/// ancestors of that member.
@@ -226,9 +227,9 @@ namespace System.Reflection
 		/// </returns>
 		public static IEnumerable<Attribute> GetCustomAttributes(this ParameterInfo element, bool inherit) =>
 			Attribute.GetCustomAttributes(element, inherit);
-		#endregion
+#endregion
 
-		#region APIs that return all attributes of a particular type
+#region APIs that return all attributes of a particular type
 		/// <summary>
 		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
 		/// ancestors of that member.
@@ -394,9 +395,9 @@ namespace System.Reflection
 		/// </returns>
 		public static IEnumerable<T> GetCustomAttributes<T>(this ParameterInfo element, bool inherit) where T : Attribute =>
 			(IEnumerable<T>)GetCustomAttributes(element, typeof(T), inherit);
-		#endregion
+#endregion
 
-		#region IsDefined
+#region IsDefined
 		/// <summary>
 		/// Indicates whether custom attributes of a specified type are applied to a specified member, and, optionally,
 		/// applied to its ancestors.
@@ -457,7 +458,7 @@ namespace System.Reflection
 		/// <returns>true if an attribute of the specified type is applied to element; otherwise, false.</returns>
 		public static bool IsDefined(this ParameterInfo element, Type attributeType, bool inherit) =>
 			Attribute.IsDefined(element, attributeType, inherit);
-		#endregion
+#endregion
 	}
 }
 #endif
