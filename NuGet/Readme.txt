@@ -6,6 +6,10 @@ What's new in 1.0.0-beta10
 * Add defaultValue parameter to all Min/MaxByOrDefault overloads
 * AssemblyExtensions.GetAssemblyDir/Path improvements
 * Move all string related functions to separate namespace CodeJam.Strings
+* Additional overloads for Algorithms.EqualRange/UpperBound/LowerBound
+* Thread safety for disposables
+* Memoize extended up to 8 arguments
+* Performance optimization
 * Refactoring
 * Fixes and code cleanup
 
