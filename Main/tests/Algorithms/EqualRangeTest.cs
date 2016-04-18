@@ -6,6 +6,7 @@ using NUnit.Framework;
 
 namespace CodeJam
 {
+	// ReSharper disable ImplicitlyCapturedClosure
 	[TestFixture]
 	public class EqualRangeTest
 	{

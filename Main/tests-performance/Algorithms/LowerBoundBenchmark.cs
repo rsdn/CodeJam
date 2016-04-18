@@ -50,6 +50,7 @@ namespace CodeJam.Algorithms
 			for (var i = 0; i < Steps; ++i)
 			{
 				var target = testData_[increment_ * i];
+				// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
 				testData_.LowerBound(target, 0, testData_.Length, Comparer<double>.Default.Compare);
 			}
 		}
@@ -70,6 +71,7 @@ namespace CodeJam.Algorithms
 			for (var i = 0; i < Steps; ++i)
 			{
 				var target = testData_[increment_ * i];
+				// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
 				testData_.LowerBound(target, 0, testData_.Length);
 			}
 		}

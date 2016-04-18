@@ -59,6 +59,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Algorithms\Memoize.cs" />
+    <Compile Include="Algorithms\Memoize.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Memoize.tt</DependentUpon>
+    </Compile>
     <Compile Include="Algorithms\UpperBound.generated.cs">
       <DependentUpon>UpperBound.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -72,7 +78,6 @@
     <Compile Include="Algorithms\LowerBound.IComparable.cs" />
     <Compile Include="Algorithms\PartitionPoint.cs" />
     <Compile Include="Algorithms\LowerBound.Comparer.cs" />
-    <Compile Include="Algorithms\Memoize.cs" />
     <Compile Include="Algorithms\Swap.cs" />
     <Compile Include="Algorithms\UpperBound.IComparable.cs" />
     <Compile Include="Algorithms\UpperBound.Comparer.cs" />
@@ -190,6 +195,10 @@
     <Content Include="Algorithms\EqualRange.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EqualRange.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Algorithms\Memoize.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Memoize.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Algorithms\UpperBound.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
