@@ -19,8 +19,8 @@ namespace CodeJam.Collections
 		[Pure]
 		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, TKey key)
 		{
-			if (dictionary == null)
-				throw new ArgumentNullException(nameof(dictionary));
+			Code.NotNull(dictionary, nameof(dictionary));
+
 			TValue result;
 			return
 				dictionary.TryGetValue(key, out result)
@@ -35,7 +35,7 @@ namespace CodeJam.Collections
 		// Resolve ambiguity between IDictionary and IReadOnlyDictionary in System.Dictionary class.
 		[Pure]
 		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this Dictionary<TKey, TValue> dictionary, TKey key) =>
-			GetValueOrDefault((IDictionary<TKey, TValue>) dictionary, key);
+			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key);
 
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
@@ -46,8 +46,8 @@ namespace CodeJam.Collections
 			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
 			TKey key)
 		{
-			if (dictionary == null)
-				throw new ArgumentNullException(nameof(dictionary));
+			Code.NotNull(dictionary, nameof(dictionary));
+
 			TValue result;
 			return
 				dictionary.TryGetValue(key, out result)
@@ -65,8 +65,8 @@ namespace CodeJam.Collections
 			TKey key,
 			TValue defaultValue)
 		{
-			if (dictionary == null)
-				throw new ArgumentNullException(nameof(dictionary));
+			Code.NotNull(dictionary, nameof(dictionary));
+
 			TValue result;
 			return
 				dictionary.TryGetValue(key, out result)
@@ -82,10 +82,11 @@ namespace CodeJam.Collections
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
 			TKey key,
-			Func<TKey, TValue> defaultValueFactory)
+			[NotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory)
 		{
-			if (dictionary == null)
-				throw new ArgumentNullException(nameof(dictionary));
+			Code.NotNull(dictionary, nameof(dictionary));
+			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
+
 			TValue result;
 			return
 				dictionary.TryGetValue(key, out result)
@@ -95,6 +96,29 @@ namespace CodeJam.Collections
 		#endregion
 
 		#region GetOrAdd, AddOrUpdate
+		/// <summary>
+		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist.
+		/// </summary>
+		/// <param name="dictionary"></param>
+		/// <param name="key">The key of the element to add.</param>
+		/// <returns>
+		///   The value for the key. This will be either the existing value for the key if the key is already in the
+		///   dictionary, or the new value if the key was not in the dictionary.
+		/// </returns>
+		public static TValue GetOrAdd<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, TKey key)
+			where TValue : new()
+		{
+			Code.NotNull(dictionary, nameof(dictionary));
+
+			TValue result;
+			if (!dictionary.TryGetValue(key, out result))
+			{
+				result = new TValue();
+				dictionary.Add(key, result);
+			}
+			return result;
+		}
+
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist.
 		/// </summary>
@@ -110,12 +134,15 @@ namespace CodeJam.Collections
 			TKey key,
 			TValue value)
 		{
-			if (dictionary == null) throw new ArgumentNullException(nameof(dictionary));
+			Code.NotNull(dictionary, nameof(dictionary));
+
 			TValue result;
-			if (dictionary.TryGetValue(key, out result))
-				return result;
-			dictionary.Add(key, value);
-			return value;
+			if (!dictionary.TryGetValue(key, out result))
+			{
+				result = value;
+				dictionary.Add(key, result);
+			}
+			return result;
 		}
 
 		/// <summary>
@@ -133,13 +160,16 @@ namespace CodeJam.Collections
 			TKey key,
 			[NotNull, InstantHandle] Func<TKey, TValue> valueFactory)
 		{
-			if (dictionary == null) throw new ArgumentNullException(nameof(dictionary));
+			Code.NotNull(dictionary, nameof(dictionary));
+			Code.NotNull(valueFactory, nameof(valueFactory));
+
 			TValue result;
-			if (dictionary.TryGetValue(key, out result))
-				return result;
-			var value = valueFactory(key);
-			dictionary.Add(key, value);
-			return value;
+			if (!dictionary.TryGetValue(key, out result))
+			{
+				result = valueFactory(key);
+				dictionary.Add(key, result);
+			}
+			return result;
 		}
 
 		/// <summary>
@@ -161,7 +191,9 @@ namespace CodeJam.Collections
 			TValue addValue,
 			[NotNull, InstantHandle] Func<TKey, TValue, TValue> updateValueFactory)
 		{
-			if (dictionary == null) throw new ArgumentNullException(nameof(dictionary));
+			Code.NotNull(dictionary, nameof(dictionary));
+			Code.NotNull(updateValueFactory, nameof(updateValueFactory));
+
 			TValue result;
 			if (dictionary.TryGetValue(key, out result))
 			{
@@ -192,7 +224,10 @@ namespace CodeJam.Collections
 			[NotNull, InstantHandle] Func<TKey, TValue> addValueFactory,
 			[NotNull, InstantHandle] Func<TKey, TValue, TValue> updateValueFactory)
 		{
-			if (dictionary == null) throw new ArgumentNullException(nameof(dictionary));
+			Code.NotNull(dictionary, nameof(dictionary));
+			Code.NotNull(addValueFactory, nameof(addValueFactory));
+			Code.NotNull(updateValueFactory, nameof(updateValueFactory));
+
 			TValue result;
 			if (dictionary.TryGetValue(key, out result))
 			{
@@ -204,6 +239,6 @@ namespace CodeJam.Collections
 			dictionary.Add(key, newAddValue);
 			return newAddValue;
 		}
-#endregion
+		#endregion
 	}
 }
