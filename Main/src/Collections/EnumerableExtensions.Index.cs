@@ -15,7 +15,7 @@ namespace CodeJam.Collections
 		/// A sequence of elements paired with their index in the sequence.
 		/// </returns>
 		[NotNull, Pure]
-		public static IEnumerable<IndexedItem<T>> Index<T>([NotNull] this IEnumerable<T> source)
+		public static IEnumerable<IndexedItem<T>> WithIndex<T>([NotNull] this IEnumerable<T> source)
 		{
 			Code.NotNull(source, nameof(source));
 			return IndexImpl(source);

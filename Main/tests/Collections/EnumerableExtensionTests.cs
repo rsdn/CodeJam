@@ -17,7 +17,7 @@ namespace CodeJam
 		{
 			for (var n = 1; n < 10; n++)
 			{
-				var list = Enumerable.Range(0, n).Index().ToArray();
+				var list = Enumerable.Range(0, n).WithIndex().ToArray();
 				foreach (var value in list)
 					Assert.AreEqual(value.Item, value.Index, "#Index");
 
