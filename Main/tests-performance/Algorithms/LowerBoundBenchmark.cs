@@ -76,7 +76,6 @@ namespace CodeJam.Algorithms
 			}
 		}
 
-
 		private static int LowerBoundIComparable<T>(IList<T> list, T value, int from, int to) where T : IComparable<T>
 		{
 			ValidateIndicesRange(from, to, list.Count);
