@@ -50,7 +50,7 @@ namespace CodeJam.Algorithms
 			}
 		}
 
-		[CompetitionBenchmark(1.25, 1.5)]
+		[CompetitionBenchmark(1.2, 1.4)]
 		public void Test01Comparer()
 		{
 			for (var i = 0; i < Steps; ++i)
@@ -61,7 +61,7 @@ namespace CodeJam.Algorithms
 			}
 		}
 
-		[CompetitionBenchmark(0.65, 0.75)]
+		[CompetitionBenchmark(0.6, 0.7)]
 		public void Test02DirectTypeCompare()
 		{
 			for (var i = 0; i < Steps; ++i)
