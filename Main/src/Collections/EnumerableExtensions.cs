@@ -107,7 +107,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[NotNull, Pure]
 		public static IOrderedEnumerable<TSource> OrderBy<TSource>([NotNull] this IEnumerable<TSource> source) =>
-			source.OrderBy(Fn<TSource>.Identity);
+			source.OrderBy(Fn<TSource>.Self);
 
 		/// <summary>
 		/// Sorts the elements of a sequence in descending order.
@@ -119,7 +119,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[NotNull, Pure]
 		public static IOrderedEnumerable<TSource> OrderByDescending<TSource>([NotNull] this IEnumerable<TSource> source) =>
-			source.OrderByDescending(Fn<TSource>.Identity);
+			source.OrderByDescending(Fn<TSource>.Self);
 
 		/// <summary>
 		/// Returns a sequence with distinct elements from the input sequence based on the specified key.

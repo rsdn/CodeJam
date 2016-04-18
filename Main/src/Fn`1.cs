@@ -34,12 +34,12 @@ namespace CodeJam
 		/// <summary>
 		/// The function that returns the same object which was passed as parameter.
 		/// </summary>
-		public static readonly Func<T, T> Identity = o => o;
+		public static readonly Func<T, T> Self = o => o;
 
 		/// <summary>
 		/// The function that returns the same object which was passed as parameter.
 		/// </summary>
-		public static readonly Converter<T, T> IdentityConverter = o => o;
+		public static readonly Converter<T, T> SelfConverter = o => o;
 
 		/// <summary>
 		/// The function that returns true if an object is null.

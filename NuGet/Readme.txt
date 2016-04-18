@@ -11,6 +11,7 @@ What's new in 1.0.0-beta10
 * Memoize extended up to 8 arguments
 * Enumerable.Index renamed to WithIndex. IndexItem implements equality stuff
 * XNodeExtensions.OptionalXxxValue renamed to XxxValueOrDefault
+* Fn<T>.Identity/IdentityConverter renamed to Self/SelfConverter
 * Performance optimization
 * Refactoring
 * Fixes and code cleanup
