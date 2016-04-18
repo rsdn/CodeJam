@@ -21,10 +21,6 @@ namespace CodeJam.Algorithms
 		private const int Steps = 10;
 		private static int increment_;
 
-		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkSensitivity() => CompetitionBenchmarkRunner.Run(this, AssemblyWideConfig.RunConfig);
-
 		[Params(1000, 10 * 1000, 100 * 1000, 1000 * 1000)]
 		public int Count { get; set; }
 
@@ -44,24 +40,24 @@ namespace CodeJam.Algorithms
 		[Test]
 		public void TestLowerBound() => CompetitionBenchmarkRunner.Run(this, AssemblyWideConfig.RunConfig);
 
+		[CompetitionBaseline]
+		public void Test00IComparable()
+		{
+			for (var i = 0; i < Steps; ++i)
+			{
+				var target = testData_[increment_ * i];
+				LowerBoundIComparable(testData_, target, 0, testData_.Length);
+			}
+		}
+
 		[CompetitionBenchmark(1.25, 1.5)]
-		public void Test00Comparer()
+		public void Test01Comparer()
 		{
 			for (var i = 0; i < Steps; ++i)
 			{
 				var target = testData_[increment_ * i];
 				// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
 				testData_.LowerBound(target, 0, testData_.Length, Comparer<double>.Default.Compare);
-			}
-		}
-
-		[CompetitionBaseline]
-		public void Test01IComparable()
-		{
-			for (var i = 0; i < Steps; ++i)
-			{
-				var target = testData_[increment_ * i];
-				LowerBoundIComparable(testData_, target, 0, testData_.Length);
 			}
 		}
 
