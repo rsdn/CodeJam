@@ -20,7 +20,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[NotNull, Pure]
 		public static IOrderedQueryable<T> OrderBy<T>([NotNull] this IQueryable<T> source, [NotNull] string property) =>
-			ApplyOrder(source, property, "OrderBy");
+			ApplyOrder(source, property, nameof(OrderBy));
 
 		/// <summary>
 		/// Sorts the elements of a sequence in descending order according to a key.
@@ -32,7 +32,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[NotNull, Pure]
 		public static IOrderedQueryable<T> OrderByDescending<T>([NotNull] this IQueryable<T> source, [NotNull] string property) =>
-			ApplyOrder(source, property, "OrderByDescending");
+			ApplyOrder(source, property, nameof(OrderByDescending));
 
 		/// <summary>
 		/// Performs a subsequent ordering of the elements in a sequence in ascending order according to a key.
@@ -44,7 +44,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[NotNull, Pure]
 		public static IOrderedQueryable<T> ThenBy<T>([NotNull] this IOrderedQueryable<T> source, [NotNull] string property) =>
-			ApplyOrder(source, property, "ThenBy");
+			ApplyOrder(source, property, nameof(ThenBy));
 
 		/// <summary>
 		/// Performs a subsequent ordering of the elements in a sequence in descending order according to a key.
@@ -55,8 +55,10 @@ namespace CodeJam.Collections
 		/// An <see cref="IOrderedQueryable{TElement}"/> whose elements are sorted according to a key.
 		/// </returns>
 		[NotNull, Pure]
-		public static IOrderedQueryable<T> ThenByDescending<T>([NotNull] this IOrderedQueryable<T> source, [NotNull] string property) =>
-			ApplyOrder(source, property, "ThenByDescending");
+		public static IOrderedQueryable<T> ThenByDescending<T>(
+			[NotNull] this IOrderedQueryable<T> source,
+			[NotNull] string property)
+			=> ApplyOrder(source, property, nameof(ThenByDescending));
 
 		private static IOrderedQueryable<T> ApplyOrder<T>(this IQueryable<T> source, string property, string method)
 		{
