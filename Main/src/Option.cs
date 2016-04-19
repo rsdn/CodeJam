@@ -1,38 +1,76 @@
-﻿using System;
+using System;
 
 using JetBrains.Annotations;
 
 namespace CodeJam
 {
 	/// <summary>
-	/// Represents a value type that can be assigned null.
+	/// Methods to work with <see cref="Option{T}"/>
 	/// </summary>
-	/// <typeparam name="T"></typeparam>
 	[PublicAPI]
-	public struct Option<T>
+	public static class Option
 	{
 		/// <summary>
-		/// Initializes a new instance to the specified value.
+		/// Create instance of <see cref="Option{T}"/>
 		/// </summary>
-		public Option(T value)
+		/// <typeparam name="T">Type of value</typeparam>
+		/// <param name="value">Value</param>
+		/// <returns>New instance of <see cref="Option{T}"/>.</returns>
+		public static Option<T> Create<T>(T value) => new Option<T>(value);
+
+		/// <summary>
+		/// Calls <paramref name="someAction"/> if <paramref name="option"/> has value,
+		/// and <paramref name="noneAction"/> otherwise.
+		/// </summary>
+		public static void Match<T>(
+			this Option<T> option,
+			[NotNull, InstantHandle]Action<Option<T>> someAction,
+			[NotNull, InstantHandle]Action noneAction)
 		{
-			HasValue = true;
-			Value = value;
+			Code.NotNull(someAction, nameof(someAction));
+			Code.NotNull(noneAction, nameof(noneAction));
+
+			if (option.HasValue)
+				someAction(option);
+			else
+				noneAction();
 		}
 
 		/// <summary>
-		/// Gets a value indicating whether the current object has a value.
+		/// Calls <paramref name="someFunc"/> if <paramref name="option"/> has value,
+		/// and <paramref name="noneFunc"/> otherwise.
 		/// </summary>
-		public bool HasValue { get; }
+		[Pure]
+		public static TResult Match<T, TResult>(
+			this Option<T> option,
+			[NotNull, InstantHandle] Func<Option<T>, TResult> someFunc,
+			[NotNull, InstantHandle] Func<TResult> noneFunc)
+		{
+			Code.NotNull(someFunc, nameof(someFunc));
+			Code.NotNull(noneFunc, nameof(noneFunc));
+
+			return option.HasValue ? someFunc(option) : noneFunc();
+		}
 
 		/// <summary>
-		/// Gets the value of the current object.
+		/// Returns value of <paramref name="option"/>, or <paramref name="defaultValue"/> if <paramref name="option"/>
+		/// hasn't it.
 		/// </summary>
-		public T Value { get; }
+		[Pure]
+		public static T GetValueOrDefault<T>(this Option<T> option, T defaultValue = default(T)) =>
+			option.HasValue ? option.Value : defaultValue;
 
 		/// <summary>
-		/// Creates a new object initialized to a specified value. 
+		/// Converts <paramref name="option"/> value to another option with <paramref name="selectFunc"/>.
 		/// </summary>
-		public static implicit operator Option<T>(T value) => new Option<T>(value);
+		[Pure]
+		public static Option<TResult> Map<T, TResult>(
+			this Option<T> option,
+			[InstantHandle] Func<T, TResult> selectFunc)
+		{
+			Code.NotNull(selectFunc, nameof(selectFunc));
+
+			return option.HasValue ? new Option<TResult>(selectFunc(option.Value)) : new Option<TResult>();
+		}
 	}
 }
