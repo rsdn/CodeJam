@@ -50,7 +50,7 @@ namespace CodeJam
 <#	}#>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<<#=typeList#>> : ITuple, IStructuralEquatable, IStructuralComparable, IComparable
+	public struct TupleStruct<<#=typeList#>> : ITupleStruct, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 <#	for (var j = 1; j <= i; j++) {#>
 		/// <summary>
@@ -135,10 +135,10 @@ namespace CodeJam
 			return sb.ToString();
 		}
 
-		#region Implementation of ITuple
-		int ITuple.Rank => <#=i#>;
+		#region Implementation of ITupleStruct
+		int ITupleStruct.Rank => <#=i#>;
 
-		object ITuple.this[int index]
+		object ITupleStruct.this[int index]
 		{
 			get
 			{

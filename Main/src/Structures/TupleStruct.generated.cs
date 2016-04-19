@@ -141,7 +141,7 @@ namespace CodeJam
 	/// <typeparam name="T2">The type of the component 2 of the tuple.</typeparam>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<T1, T2> : ITuple, IStructuralEquatable, IStructuralComparable, IComparable
+	public struct TupleStruct<T1, T2> : ITupleStruct, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 		/// <summary>
 		/// The value of the component 1 of the tuple.
@@ -223,10 +223,10 @@ namespace CodeJam
 			return sb.ToString();
 		}
 
-		#region Implementation of ITuple
-		int ITuple.Rank => 2;
+		#region Implementation of ITupleStruct
+		int ITupleStruct.Rank => 2;
 
-		object ITuple.this[int index]
+		object ITupleStruct.this[int index]
 		{
 			get
 			{
@@ -249,7 +249,7 @@ namespace CodeJam
 	/// <typeparam name="T3">The type of the component 3 of the tuple.</typeparam>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<T1, T2, T3> : ITuple, IStructuralEquatable, IStructuralComparable, IComparable
+	public struct TupleStruct<T1, T2, T3> : ITupleStruct, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 		/// <summary>
 		/// The value of the component 1 of the tuple.
@@ -341,10 +341,10 @@ namespace CodeJam
 			return sb.ToString();
 		}
 
-		#region Implementation of ITuple
-		int ITuple.Rank => 3;
+		#region Implementation of ITupleStruct
+		int ITupleStruct.Rank => 3;
 
-		object ITuple.this[int index]
+		object ITupleStruct.this[int index]
 		{
 			get
 			{
@@ -369,7 +369,7 @@ namespace CodeJam
 	/// <typeparam name="T4">The type of the component 4 of the tuple.</typeparam>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<T1, T2, T3, T4> : ITuple, IStructuralEquatable, IStructuralComparable, IComparable
+	public struct TupleStruct<T1, T2, T3, T4> : ITupleStruct, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 		/// <summary>
 		/// The value of the component 1 of the tuple.
@@ -471,10 +471,10 @@ namespace CodeJam
 			return sb.ToString();
 		}
 
-		#region Implementation of ITuple
-		int ITuple.Rank => 4;
+		#region Implementation of ITupleStruct
+		int ITupleStruct.Rank => 4;
 
-		object ITuple.this[int index]
+		object ITupleStruct.this[int index]
 		{
 			get
 			{
@@ -501,7 +501,7 @@ namespace CodeJam
 	/// <typeparam name="T5">The type of the component 5 of the tuple.</typeparam>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<T1, T2, T3, T4, T5> : ITuple, IStructuralEquatable, IStructuralComparable, IComparable
+	public struct TupleStruct<T1, T2, T3, T4, T5> : ITupleStruct, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 		/// <summary>
 		/// The value of the component 1 of the tuple.
@@ -613,10 +613,10 @@ namespace CodeJam
 			return sb.ToString();
 		}
 
-		#region Implementation of ITuple
-		int ITuple.Rank => 5;
+		#region Implementation of ITupleStruct
+		int ITupleStruct.Rank => 5;
 
-		object ITuple.this[int index]
+		object ITupleStruct.this[int index]
 		{
 			get
 			{
@@ -645,7 +645,7 @@ namespace CodeJam
 	/// <typeparam name="T6">The type of the component 6 of the tuple.</typeparam>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<T1, T2, T3, T4, T5, T6> : ITuple, IStructuralEquatable, IStructuralComparable, IComparable
+	public struct TupleStruct<T1, T2, T3, T4, T5, T6> : ITupleStruct, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 		/// <summary>
 		/// The value of the component 1 of the tuple.
@@ -767,10 +767,10 @@ namespace CodeJam
 			return sb.ToString();
 		}
 
-		#region Implementation of ITuple
-		int ITuple.Rank => 6;
+		#region Implementation of ITupleStruct
+		int ITupleStruct.Rank => 6;
 
-		object ITuple.this[int index]
+		object ITupleStruct.this[int index]
 		{
 			get
 			{
@@ -801,7 +801,7 @@ namespace CodeJam
 	/// <typeparam name="T7">The type of the component 7 of the tuple.</typeparam>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<T1, T2, T3, T4, T5, T6, T7> : ITuple, IStructuralEquatable, IStructuralComparable, IComparable
+	public struct TupleStruct<T1, T2, T3, T4, T5, T6, T7> : ITupleStruct, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 		/// <summary>
 		/// The value of the component 1 of the tuple.
@@ -933,10 +933,10 @@ namespace CodeJam
 			return sb.ToString();
 		}
 
-		#region Implementation of ITuple
-		int ITuple.Rank => 7;
+		#region Implementation of ITupleStruct
+		int ITupleStruct.Rank => 7;
 
-		object ITuple.this[int index]
+		object ITupleStruct.this[int index]
 		{
 			get
 			{
@@ -969,7 +969,7 @@ namespace CodeJam
 	/// <typeparam name="T8">The type of the component 8 of the tuple.</typeparam>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<T1, T2, T3, T4, T5, T6, T7, T8> : ITuple, IStructuralEquatable, IStructuralComparable, IComparable
+	public struct TupleStruct<T1, T2, T3, T4, T5, T6, T7, T8> : ITupleStruct, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 		/// <summary>
 		/// The value of the component 1 of the tuple.
@@ -1111,10 +1111,10 @@ namespace CodeJam
 			return sb.ToString();
 		}
 
-		#region Implementation of ITuple
-		int ITuple.Rank => 8;
+		#region Implementation of ITupleStruct
+		int ITupleStruct.Rank => 8;
 
-		object ITuple.this[int index]
+		object ITupleStruct.this[int index]
 		{
 			get
 			{
