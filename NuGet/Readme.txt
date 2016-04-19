@@ -3,12 +3,13 @@ CodeJam 1.0.0-beta10 Release Notes
 
 What's new in 1.0.0-beta10
 ------------------------
+* InterlockedOperations.Initialize and Update methods
 * Add defaultValue parameter to all Min/MaxByOrDefault overloads
+* Additional overloads for Algorithms.EqualRange/UpperBound/LowerBound
+* Memoize extended up to 8 arguments
+* Thread safety for disposables
 * AssemblyExtensions.GetAssemblyDir/Path improvements
 * Move all string related functions to separate namespace CodeJam.Strings
-* Additional overloads for Algorithms.EqualRange/UpperBound/LowerBound
-* Thread safety for disposables
-* Memoize extended up to 8 arguments
 * Enumerable.Index renamed to WithIndex. IndexItem implements equality stuff
 * XNodeExtensions.OptionalXxxValue renamed to XxxValueOrDefault
 * Fn<T>.Identity/IdentityConverter renamed to Self/SelfConverter

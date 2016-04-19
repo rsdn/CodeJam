@@ -14,18 +14,18 @@ namespace CodeJam.Threading
 	public static class InterlockedOperations
 	{
 <#
-		OverladsFor("double", false);
+		OverloadsFor("double", false);
 		WriteLine("");
-		OverladsFor("float", false);
+		OverloadsFor("float", false);
 		WriteLine("");
-		OverladsFor("int", false);
+		OverloadsFor("int", false);
 		WriteLine("");
-		OverladsFor("long", false);
+		OverloadsFor("long", false);
 		WriteLine("");
-		OverladsFor("T", true);#>
+		OverloadsFor("T", true);#>
 	}
 }<#+
-		private void OverladsFor(string typeName, bool forRefTypes)
+		private void OverloadsFor(string typeName, bool forRefTypes)
 		{
 			var t = typeName;
 			var tXmlDoc = forRefTypes? 
