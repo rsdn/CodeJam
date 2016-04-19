@@ -11,6 +11,7 @@ namespace CodeJam.ObjectPools
 	/// <summary>
 	/// The <see cref="ObjectPool{T}"/> extension.
 	/// </summary>
+	// BASEDON: https://github.com/dotnet/roslyn/blob/56f605c41915317ccdb925f66974ee52282609e7/src/Workspaces/Core/Portable/Utilities/ObjectPools/Extensions.cs
 	[PublicAPI]
 	public static class SharedPoolExtensions
 	{

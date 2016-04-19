@@ -16,9 +16,12 @@ namespace CodeJam
 		/// </summary>
 		public static void Match<T>(
 			this Option<T> option,
-			[InstantHandle]Action<Option<T>> someAction,
-			[InstantHandle]Action noneAction)
+			[NotNull, InstantHandle]Action<Option<T>> someAction,
+			[NotNull, InstantHandle]Action noneAction)
 		{
+			Code.NotNull(someAction, nameof(someAction));
+			Code.NotNull(noneAction, nameof(noneAction));
+
 			if (option.HasValue)
 				someAction(option);
 			else
@@ -32,9 +35,14 @@ namespace CodeJam
 		[Pure]
 		public static TResult Match<T, TResult>(
 			this Option<T> option,
-			[InstantHandle] Func<Option<T>, TResult> someFunc,
-			[InstantHandle] Func<TResult> noneFunc) =>
-				option.HasValue ? someFunc(option) : noneFunc();
+			[NotNull, InstantHandle] Func<Option<T>, TResult> someFunc,
+			[NotNull, InstantHandle] Func<TResult> noneFunc)
+		{
+			Code.NotNull(someFunc, nameof(someFunc));
+			Code.NotNull(noneFunc, nameof(noneFunc));
+
+			return option.HasValue ? someFunc(option) : noneFunc();
+		}
 
 		/// <summary>
 		/// Returns value of <paramref name="option"/>, or <paramref name="defaultValue"/> if <paramref name="option"/>
@@ -50,7 +58,11 @@ namespace CodeJam
 		[Pure]
 		public static Option<TResult> Map<T, TResult>(
 			this Option<T> option,
-			[InstantHandle] Func<T, TResult> selectFunc) =>
-				option.HasValue ? new Option<TResult>(selectFunc(option.Value)) : new Option<TResult>();
+			[InstantHandle] Func<T, TResult> selectFunc)
+		{
+			Code.NotNull(selectFunc, nameof(selectFunc));
+
+			return option.HasValue ? new Option<TResult>(selectFunc(option.Value)) : new Option<TResult>();
+		}
 	}
 }

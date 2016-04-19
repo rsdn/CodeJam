@@ -15,6 +15,7 @@ namespace CodeJam.ObjectPools
 	/// For example, if you want to create a million of small objects within a second, 
 	/// use the ObjectPool directly. it should have much less overhead than using this.
 	/// </summary>
+	// BASEDON: https://github.com/dotnet/roslyn/blob/56f605c41915317ccdb925f66974ee52282609e7/src/Workspaces/Core/Portable/Utilities/ObjectPools/SharedPools.cs
 	[PublicAPI]
 	public static class SharedPools
 	{
