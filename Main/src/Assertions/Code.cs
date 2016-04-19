@@ -87,6 +87,23 @@ namespace CodeJam
 		/// Assertion for the argument value
 		/// </summary>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void AssertArgument(
+			bool condition,
+			[NotNull, InvokerParameterName] string argName,
+			[NotNull, InstantHandle] Func<string> messageFactory)
+		{
+			if (!condition)
+			{
+				NotNull(messageFactory, nameof(messageFactory));
+				throw CodeExceptions.Argument(argName, messageFactory());
+			}
+		}
+
+		/// <summary>
+		/// Assertion for the argument value
+		/// </summary>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		public static void AssertArgument(
 			bool condition,
