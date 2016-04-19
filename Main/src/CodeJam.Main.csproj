@@ -175,7 +175,11 @@
     <Compile Include="Strings\StringExtensions.cs" />
     <Compile Include="Strings\StringExtensions.Infix.cs" />
     <Compile Include="Strings\StringOrigin.cs" />
-    <Compile Include="Threading\InterlockedOperations.cs" />
+    <Compile Include="Threading\InterlockedOperations.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InterlockedOperations.tt</DependentUpon>
+    </Compile>
     <Compile Include="Threading\ParallelExtensions.cs" />
     <Compile Include="Threading\ParallelQueue.cs" />
     <Compile Include="Threading\ReaderWriterLockSlimExtensions.cs" />
@@ -211,6 +215,10 @@
     <Content Include="Arithmetic\Operators.Numeric.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Operators.Numeric.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Threading\InterlockedOperations.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>InterlockedOperations.generated.cs</LastGenOutput>
     </Content>
     <None Include="Arithmetic\Operators.ttinclude" />
     <Content Include="Assertions\DebugCode.tt">

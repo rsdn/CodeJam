@@ -67,7 +67,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the items that the collection contains.</typeparam>
 		/// <param name="source">The collection to add the elements to.</param>
 		/// <param name="items">The items to add to the collection.</param>
-		public static void AddRange<T>([NotNull] this ICollection<T> source, [NotNull] T[] items)
+		public static void AddRange<T>([NotNull] this ICollection<T> source, [NotNull] params T[] items)
 		{
 			foreach (var item in items)
 				source.Add(item);
