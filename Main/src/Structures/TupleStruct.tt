@@ -32,7 +32,8 @@ namespace CodeJam
 		/// <typeparam name="T<#=j#>">The type of the component <#=j#> of the tuple.</typeparam>
 <#	}#>
 		/// <returns>A <#=i#>-tuple whose value is (item1, item2).</returns>
-		public static TupleStruct<<#=typeList#>> Create<<#=typeList#>>(<#=string.Join(", ", range.Select(j => "T" + j + " item" + j))#>) => new TupleStruct<<#=typeList#>>(<#=string.Join(", ", range.Select(j => "item" + j))#>);
+		public static TupleStruct<<#=typeList#>> Create<<#=typeList#>>(<#=string.Join(", ", range.Select(j => "T" + j + " item" + j))#>) =>
+			new TupleStruct<<#=typeList#>>(<#=string.Join(", ", range.Select(j => "item" + j))#>);
 
 <#}#>
 	}
@@ -49,7 +50,7 @@ namespace CodeJam
 <#	}#>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<<#=typeList#>> : IStructuralEquatable, IStructuralComparable, IComparable
+	public struct TupleStruct<<#=typeList#>> : ITuple, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 <#	for (var j = 1; j <= i; j++) {#>
 		/// <summary>
@@ -93,8 +94,7 @@ namespace CodeJam
 		{
 			if (other == null) return 1;
 
-			if (!(other is TupleStruct<<#=typeList#>>))
-				throw new ArgumentException("Incorrect tuple", nameof(other));
+			Code.AssertArgument(other is TupleStruct<<#=typeList#>>, nameof (other), "Incorrect tuple");
 
 			var objTuple = (TupleStruct<<#=typeList#>>)other;
 			int c = 0;
@@ -134,6 +134,24 @@ namespace CodeJam
 <#	}#>
 			return sb.ToString();
 		}
+
+		#region Implementation of ITuple
+		int ITuple.Rank => <#=i#>;
+
+		object ITuple.this[int index]
+		{
+			get
+			{
+				switch (index)
+				{
+<#	for (var j = 0; j < i; j++) {#>
+					case <#=j#>: return Item<#=j+1#>;
+<#	}#>
+					default: throw new ArgumentOutOfRangeException(nameof(index));
+				}
+			}
+		}
+		#endregion
 	}
 
 <#}#>
