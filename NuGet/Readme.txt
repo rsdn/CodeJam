@@ -4,6 +4,7 @@ CodeJam 1.0.0-beta10 Release Notes
 What's new in 1.0.0-beta10
 ------------------------
 * InterlockedOperations.Initialize and Update methods
+* StringExtensions.Unquote methods
 * Add defaultValue parameter to all Min/MaxByOrDefault overloads
 * Additional overloads for Algorithms.EqualRange/UpperBound/LowerBound
 * Memoize extended up to 8 arguments

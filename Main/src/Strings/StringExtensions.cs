@@ -268,5 +268,33 @@ namespace CodeJam.Strings
 
 			return result;
 		}
+
+		/// <summary>
+		/// Remove one set of leading and trailing double quote characters, if both are present.
+		/// </summary>
+		public static string Unquote(this string arg)
+		{
+			bool quoted;
+			return Unquote(arg, out quoted);
+		}
+
+		/// <summary>
+		/// Remove one set of leading and trailing double quote characters, if both are present.
+		/// </summary>
+		public static string Unquote(this string arg, out bool quoted) => Unquote(arg, '"', out quoted);
+
+		/// <summary>
+		/// Remove one set of leading and trailing d<paramref name="quotationChar"/>, if both are present.
+		/// </summary>
+		public static string Unquote(this string arg, char quotationChar, out bool quoted)
+		{
+			if (arg.Length > 1 && arg[0] == quotationChar && arg[arg.Length - 1] == quotationChar)
+			{
+				quoted = true;
+				return arg.Substring(1, arg.Length - 2);
+			}
+			quoted = false;
+			return arg;
+		}
 	}
 }
