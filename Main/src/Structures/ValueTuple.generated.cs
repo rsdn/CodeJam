@@ -11,7 +11,7 @@ namespace CodeJam
 	/// Provides static methods for creating tuple structs.
 	/// </summary>
 	[PublicAPI]
-	public static class TupleStruct
+	public static class ValueTuple
 	{
 		/// <summary>
 		/// Creates a new 2-tuple.
@@ -21,8 +21,8 @@ namespace CodeJam
 		/// <param name="item2">The value of the component 2 of the tuple.</param>
 		/// <typeparam name="T2">The type of the component 2 of the tuple.</typeparam>
 		/// <returns>A 2-tuple whose value is (item1, item2).</returns>
-		public static TupleStruct<T1, T2> Create<T1, T2>(T1 item1, T2 item2) =>
-			new TupleStruct<T1, T2>(item1, item2);
+		public static ValueTuple<T1, T2> Create<T1, T2>(T1 item1, T2 item2) =>
+			new ValueTuple<T1, T2>(item1, item2);
 
 		/// <summary>
 		/// Creates a new 3-tuple.
@@ -34,8 +34,8 @@ namespace CodeJam
 		/// <param name="item3">The value of the component 3 of the tuple.</param>
 		/// <typeparam name="T3">The type of the component 3 of the tuple.</typeparam>
 		/// <returns>A 3-tuple whose value is (item1, item2).</returns>
-		public static TupleStruct<T1, T2, T3> Create<T1, T2, T3>(T1 item1, T2 item2, T3 item3) =>
-			new TupleStruct<T1, T2, T3>(item1, item2, item3);
+		public static ValueTuple<T1, T2, T3> Create<T1, T2, T3>(T1 item1, T2 item2, T3 item3) =>
+			new ValueTuple<T1, T2, T3>(item1, item2, item3);
 
 		/// <summary>
 		/// Creates a new 4-tuple.
@@ -49,8 +49,8 @@ namespace CodeJam
 		/// <param name="item4">The value of the component 4 of the tuple.</param>
 		/// <typeparam name="T4">The type of the component 4 of the tuple.</typeparam>
 		/// <returns>A 4-tuple whose value is (item1, item2).</returns>
-		public static TupleStruct<T1, T2, T3, T4> Create<T1, T2, T3, T4>(T1 item1, T2 item2, T3 item3, T4 item4) =>
-			new TupleStruct<T1, T2, T3, T4>(item1, item2, item3, item4);
+		public static ValueTuple<T1, T2, T3, T4> Create<T1, T2, T3, T4>(T1 item1, T2 item2, T3 item3, T4 item4) =>
+			new ValueTuple<T1, T2, T3, T4>(item1, item2, item3, item4);
 
 		/// <summary>
 		/// Creates a new 5-tuple.
@@ -66,8 +66,8 @@ namespace CodeJam
 		/// <param name="item5">The value of the component 5 of the tuple.</param>
 		/// <typeparam name="T5">The type of the component 5 of the tuple.</typeparam>
 		/// <returns>A 5-tuple whose value is (item1, item2).</returns>
-		public static TupleStruct<T1, T2, T3, T4, T5> Create<T1, T2, T3, T4, T5>(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5) =>
-			new TupleStruct<T1, T2, T3, T4, T5>(item1, item2, item3, item4, item5);
+		public static ValueTuple<T1, T2, T3, T4, T5> Create<T1, T2, T3, T4, T5>(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5) =>
+			new ValueTuple<T1, T2, T3, T4, T5>(item1, item2, item3, item4, item5);
 
 		/// <summary>
 		/// Creates a new 6-tuple.
@@ -85,8 +85,8 @@ namespace CodeJam
 		/// <param name="item6">The value of the component 6 of the tuple.</param>
 		/// <typeparam name="T6">The type of the component 6 of the tuple.</typeparam>
 		/// <returns>A 6-tuple whose value is (item1, item2).</returns>
-		public static TupleStruct<T1, T2, T3, T4, T5, T6> Create<T1, T2, T3, T4, T5, T6>(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6) =>
-			new TupleStruct<T1, T2, T3, T4, T5, T6>(item1, item2, item3, item4, item5, item6);
+		public static ValueTuple<T1, T2, T3, T4, T5, T6> Create<T1, T2, T3, T4, T5, T6>(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6) =>
+			new ValueTuple<T1, T2, T3, T4, T5, T6>(item1, item2, item3, item4, item5, item6);
 
 		/// <summary>
 		/// Creates a new 7-tuple.
@@ -106,8 +106,8 @@ namespace CodeJam
 		/// <param name="item7">The value of the component 7 of the tuple.</param>
 		/// <typeparam name="T7">The type of the component 7 of the tuple.</typeparam>
 		/// <returns>A 7-tuple whose value is (item1, item2).</returns>
-		public static TupleStruct<T1, T2, T3, T4, T5, T6, T7> Create<T1, T2, T3, T4, T5, T6, T7>(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7) =>
-			new TupleStruct<T1, T2, T3, T4, T5, T6, T7>(item1, item2, item3, item4, item5, item6, item7);
+		public static ValueTuple<T1, T2, T3, T4, T5, T6, T7> Create<T1, T2, T3, T4, T5, T6, T7>(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7) =>
+			new ValueTuple<T1, T2, T3, T4, T5, T6, T7>(item1, item2, item3, item4, item5, item6, item7);
 
 		/// <summary>
 		/// Creates a new 8-tuple.
@@ -129,8 +129,8 @@ namespace CodeJam
 		/// <param name="item8">The value of the component 8 of the tuple.</param>
 		/// <typeparam name="T8">The type of the component 8 of the tuple.</typeparam>
 		/// <returns>A 8-tuple whose value is (item1, item2).</returns>
-		public static TupleStruct<T1, T2, T3, T4, T5, T6, T7, T8> Create<T1, T2, T3, T4, T5, T6, T7, T8>(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7, T8 item8) =>
-			new TupleStruct<T1, T2, T3, T4, T5, T6, T7, T8>(item1, item2, item3, item4, item5, item6, item7, item8);
+		public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, T8> Create<T1, T2, T3, T4, T5, T6, T7, T8>(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7, T8 item8) =>
+			new ValueTuple<T1, T2, T3, T4, T5, T6, T7, T8>(item1, item2, item3, item4, item5, item6, item7, item8);
 
 	}
 
@@ -141,7 +141,7 @@ namespace CodeJam
 	/// <typeparam name="T2">The type of the component 2 of the tuple.</typeparam>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<T1, T2> : ITupleStruct, IStructuralEquatable, IStructuralComparable, IComparable
+	public struct ValueTuple<T1, T2> : IValueTuple, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 		/// <summary>
 		/// The value of the component 1 of the tuple.
@@ -156,7 +156,7 @@ namespace CodeJam
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
-		public TupleStruct(T1 item1, T2 item2)
+		public ValueTuple(T1 item1, T2 item2)
 		{
 			Item1 = item1;
 			Item2 = item2;
@@ -174,10 +174,10 @@ namespace CodeJam
 
 		bool IStructuralEquatable.Equals(object other, IEqualityComparer comparer)
 		{
-			if (!(other is TupleStruct<T1, T2>))
+			if (!(other is ValueTuple<T1, T2>))
 				return false;
 
-			var objTuple = (TupleStruct<T1, T2>)other;
+			var objTuple = (ValueTuple<T1, T2>)other;
 			return comparer.Equals(Item1, objTuple.Item1) && comparer.Equals(Item2, objTuple.Item2);
 		}
 
@@ -187,9 +187,9 @@ namespace CodeJam
 		{
 			if (other == null) return 1;
 
-			Code.AssertArgument(other is TupleStruct<T1, T2>, nameof (other), "Incorrect tuple");
+			Code.AssertArgument(other is ValueTuple<T1, T2>, nameof (other), "Incorrect tuple");
 
-			var objTuple = (TupleStruct<T1, T2>)other;
+			var objTuple = (ValueTuple<T1, T2>)other;
 			int c = 0;
 			c = comparer.Compare(Item1, objTuple.Item1);
 			if (c != 0) return c;
@@ -223,10 +223,10 @@ namespace CodeJam
 			return sb.ToString();
 		}
 
-		#region Implementation of ITupleStruct
-		int ITupleStruct.Rank => 2;
+		#region Implementation of IValueTuple
+		int IValueTuple.Rank => 2;
 
-		object ITupleStruct.this[int index]
+		object IValueTuple.this[int index]
 		{
 			get
 			{
@@ -249,7 +249,7 @@ namespace CodeJam
 	/// <typeparam name="T3">The type of the component 3 of the tuple.</typeparam>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<T1, T2, T3> : ITupleStruct, IStructuralEquatable, IStructuralComparable, IComparable
+	public struct ValueTuple<T1, T2, T3> : IValueTuple, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 		/// <summary>
 		/// The value of the component 1 of the tuple.
@@ -269,7 +269,7 @@ namespace CodeJam
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
-		public TupleStruct(T1 item1, T2 item2, T3 item3)
+		public ValueTuple(T1 item1, T2 item2, T3 item3)
 		{
 			Item1 = item1;
 			Item2 = item2;
@@ -288,10 +288,10 @@ namespace CodeJam
 
 		bool IStructuralEquatable.Equals(object other, IEqualityComparer comparer)
 		{
-			if (!(other is TupleStruct<T1, T2, T3>))
+			if (!(other is ValueTuple<T1, T2, T3>))
 				return false;
 
-			var objTuple = (TupleStruct<T1, T2, T3>)other;
+			var objTuple = (ValueTuple<T1, T2, T3>)other;
 			return comparer.Equals(Item1, objTuple.Item1) && comparer.Equals(Item2, objTuple.Item2) && comparer.Equals(Item3, objTuple.Item3);
 		}
 
@@ -301,9 +301,9 @@ namespace CodeJam
 		{
 			if (other == null) return 1;
 
-			Code.AssertArgument(other is TupleStruct<T1, T2, T3>, nameof (other), "Incorrect tuple");
+			Code.AssertArgument(other is ValueTuple<T1, T2, T3>, nameof (other), "Incorrect tuple");
 
-			var objTuple = (TupleStruct<T1, T2, T3>)other;
+			var objTuple = (ValueTuple<T1, T2, T3>)other;
 			int c = 0;
 			c = comparer.Compare(Item1, objTuple.Item1);
 			if (c != 0) return c;
@@ -341,10 +341,10 @@ namespace CodeJam
 			return sb.ToString();
 		}
 
-		#region Implementation of ITupleStruct
-		int ITupleStruct.Rank => 3;
+		#region Implementation of IValueTuple
+		int IValueTuple.Rank => 3;
 
-		object ITupleStruct.this[int index]
+		object IValueTuple.this[int index]
 		{
 			get
 			{
@@ -369,7 +369,7 @@ namespace CodeJam
 	/// <typeparam name="T4">The type of the component 4 of the tuple.</typeparam>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<T1, T2, T3, T4> : ITupleStruct, IStructuralEquatable, IStructuralComparable, IComparable
+	public struct ValueTuple<T1, T2, T3, T4> : IValueTuple, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 		/// <summary>
 		/// The value of the component 1 of the tuple.
@@ -394,7 +394,7 @@ namespace CodeJam
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
-		public TupleStruct(T1 item1, T2 item2, T3 item3, T4 item4)
+		public ValueTuple(T1 item1, T2 item2, T3 item3, T4 item4)
 		{
 			Item1 = item1;
 			Item2 = item2;
@@ -414,10 +414,10 @@ namespace CodeJam
 
 		bool IStructuralEquatable.Equals(object other, IEqualityComparer comparer)
 		{
-			if (!(other is TupleStruct<T1, T2, T3, T4>))
+			if (!(other is ValueTuple<T1, T2, T3, T4>))
 				return false;
 
-			var objTuple = (TupleStruct<T1, T2, T3, T4>)other;
+			var objTuple = (ValueTuple<T1, T2, T3, T4>)other;
 			return comparer.Equals(Item1, objTuple.Item1) && comparer.Equals(Item2, objTuple.Item2) && comparer.Equals(Item3, objTuple.Item3) && comparer.Equals(Item4, objTuple.Item4);
 		}
 
@@ -427,9 +427,9 @@ namespace CodeJam
 		{
 			if (other == null) return 1;
 
-			Code.AssertArgument(other is TupleStruct<T1, T2, T3, T4>, nameof (other), "Incorrect tuple");
+			Code.AssertArgument(other is ValueTuple<T1, T2, T3, T4>, nameof (other), "Incorrect tuple");
 
-			var objTuple = (TupleStruct<T1, T2, T3, T4>)other;
+			var objTuple = (ValueTuple<T1, T2, T3, T4>)other;
 			int c = 0;
 			c = comparer.Compare(Item1, objTuple.Item1);
 			if (c != 0) return c;
@@ -471,10 +471,10 @@ namespace CodeJam
 			return sb.ToString();
 		}
 
-		#region Implementation of ITupleStruct
-		int ITupleStruct.Rank => 4;
+		#region Implementation of IValueTuple
+		int IValueTuple.Rank => 4;
 
-		object ITupleStruct.this[int index]
+		object IValueTuple.this[int index]
 		{
 			get
 			{
@@ -501,7 +501,7 @@ namespace CodeJam
 	/// <typeparam name="T5">The type of the component 5 of the tuple.</typeparam>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<T1, T2, T3, T4, T5> : ITupleStruct, IStructuralEquatable, IStructuralComparable, IComparable
+	public struct ValueTuple<T1, T2, T3, T4, T5> : IValueTuple, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 		/// <summary>
 		/// The value of the component 1 of the tuple.
@@ -531,7 +531,7 @@ namespace CodeJam
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
-		public TupleStruct(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5)
+		public ValueTuple(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5)
 		{
 			Item1 = item1;
 			Item2 = item2;
@@ -552,10 +552,10 @@ namespace CodeJam
 
 		bool IStructuralEquatable.Equals(object other, IEqualityComparer comparer)
 		{
-			if (!(other is TupleStruct<T1, T2, T3, T4, T5>))
+			if (!(other is ValueTuple<T1, T2, T3, T4, T5>))
 				return false;
 
-			var objTuple = (TupleStruct<T1, T2, T3, T4, T5>)other;
+			var objTuple = (ValueTuple<T1, T2, T3, T4, T5>)other;
 			return comparer.Equals(Item1, objTuple.Item1) && comparer.Equals(Item2, objTuple.Item2) && comparer.Equals(Item3, objTuple.Item3) && comparer.Equals(Item4, objTuple.Item4) && comparer.Equals(Item5, objTuple.Item5);
 		}
 
@@ -565,9 +565,9 @@ namespace CodeJam
 		{
 			if (other == null) return 1;
 
-			Code.AssertArgument(other is TupleStruct<T1, T2, T3, T4, T5>, nameof (other), "Incorrect tuple");
+			Code.AssertArgument(other is ValueTuple<T1, T2, T3, T4, T5>, nameof (other), "Incorrect tuple");
 
-			var objTuple = (TupleStruct<T1, T2, T3, T4, T5>)other;
+			var objTuple = (ValueTuple<T1, T2, T3, T4, T5>)other;
 			int c = 0;
 			c = comparer.Compare(Item1, objTuple.Item1);
 			if (c != 0) return c;
@@ -613,10 +613,10 @@ namespace CodeJam
 			return sb.ToString();
 		}
 
-		#region Implementation of ITupleStruct
-		int ITupleStruct.Rank => 5;
+		#region Implementation of IValueTuple
+		int IValueTuple.Rank => 5;
 
-		object ITupleStruct.this[int index]
+		object IValueTuple.this[int index]
 		{
 			get
 			{
@@ -645,7 +645,7 @@ namespace CodeJam
 	/// <typeparam name="T6">The type of the component 6 of the tuple.</typeparam>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<T1, T2, T3, T4, T5, T6> : ITupleStruct, IStructuralEquatable, IStructuralComparable, IComparable
+	public struct ValueTuple<T1, T2, T3, T4, T5, T6> : IValueTuple, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 		/// <summary>
 		/// The value of the component 1 of the tuple.
@@ -680,7 +680,7 @@ namespace CodeJam
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
-		public TupleStruct(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6)
+		public ValueTuple(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6)
 		{
 			Item1 = item1;
 			Item2 = item2;
@@ -702,10 +702,10 @@ namespace CodeJam
 
 		bool IStructuralEquatable.Equals(object other, IEqualityComparer comparer)
 		{
-			if (!(other is TupleStruct<T1, T2, T3, T4, T5, T6>))
+			if (!(other is ValueTuple<T1, T2, T3, T4, T5, T6>))
 				return false;
 
-			var objTuple = (TupleStruct<T1, T2, T3, T4, T5, T6>)other;
+			var objTuple = (ValueTuple<T1, T2, T3, T4, T5, T6>)other;
 			return comparer.Equals(Item1, objTuple.Item1) && comparer.Equals(Item2, objTuple.Item2) && comparer.Equals(Item3, objTuple.Item3) && comparer.Equals(Item4, objTuple.Item4) && comparer.Equals(Item5, objTuple.Item5) && comparer.Equals(Item6, objTuple.Item6);
 		}
 
@@ -715,9 +715,9 @@ namespace CodeJam
 		{
 			if (other == null) return 1;
 
-			Code.AssertArgument(other is TupleStruct<T1, T2, T3, T4, T5, T6>, nameof (other), "Incorrect tuple");
+			Code.AssertArgument(other is ValueTuple<T1, T2, T3, T4, T5, T6>, nameof (other), "Incorrect tuple");
 
-			var objTuple = (TupleStruct<T1, T2, T3, T4, T5, T6>)other;
+			var objTuple = (ValueTuple<T1, T2, T3, T4, T5, T6>)other;
 			int c = 0;
 			c = comparer.Compare(Item1, objTuple.Item1);
 			if (c != 0) return c;
@@ -767,10 +767,10 @@ namespace CodeJam
 			return sb.ToString();
 		}
 
-		#region Implementation of ITupleStruct
-		int ITupleStruct.Rank => 6;
+		#region Implementation of IValueTuple
+		int IValueTuple.Rank => 6;
 
-		object ITupleStruct.this[int index]
+		object IValueTuple.this[int index]
 		{
 			get
 			{
@@ -801,7 +801,7 @@ namespace CodeJam
 	/// <typeparam name="T7">The type of the component 7 of the tuple.</typeparam>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<T1, T2, T3, T4, T5, T6, T7> : ITupleStruct, IStructuralEquatable, IStructuralComparable, IComparable
+	public struct ValueTuple<T1, T2, T3, T4, T5, T6, T7> : IValueTuple, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 		/// <summary>
 		/// The value of the component 1 of the tuple.
@@ -841,7 +841,7 @@ namespace CodeJam
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
-		public TupleStruct(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7)
+		public ValueTuple(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7)
 		{
 			Item1 = item1;
 			Item2 = item2;
@@ -864,10 +864,10 @@ namespace CodeJam
 
 		bool IStructuralEquatable.Equals(object other, IEqualityComparer comparer)
 		{
-			if (!(other is TupleStruct<T1, T2, T3, T4, T5, T6, T7>))
+			if (!(other is ValueTuple<T1, T2, T3, T4, T5, T6, T7>))
 				return false;
 
-			var objTuple = (TupleStruct<T1, T2, T3, T4, T5, T6, T7>)other;
+			var objTuple = (ValueTuple<T1, T2, T3, T4, T5, T6, T7>)other;
 			return comparer.Equals(Item1, objTuple.Item1) && comparer.Equals(Item2, objTuple.Item2) && comparer.Equals(Item3, objTuple.Item3) && comparer.Equals(Item4, objTuple.Item4) && comparer.Equals(Item5, objTuple.Item5) && comparer.Equals(Item6, objTuple.Item6) && comparer.Equals(Item7, objTuple.Item7);
 		}
 
@@ -877,9 +877,9 @@ namespace CodeJam
 		{
 			if (other == null) return 1;
 
-			Code.AssertArgument(other is TupleStruct<T1, T2, T3, T4, T5, T6, T7>, nameof (other), "Incorrect tuple");
+			Code.AssertArgument(other is ValueTuple<T1, T2, T3, T4, T5, T6, T7>, nameof (other), "Incorrect tuple");
 
-			var objTuple = (TupleStruct<T1, T2, T3, T4, T5, T6, T7>)other;
+			var objTuple = (ValueTuple<T1, T2, T3, T4, T5, T6, T7>)other;
 			int c = 0;
 			c = comparer.Compare(Item1, objTuple.Item1);
 			if (c != 0) return c;
@@ -933,10 +933,10 @@ namespace CodeJam
 			return sb.ToString();
 		}
 
-		#region Implementation of ITupleStruct
-		int ITupleStruct.Rank => 7;
+		#region Implementation of IValueTuple
+		int IValueTuple.Rank => 7;
 
-		object ITupleStruct.this[int index]
+		object IValueTuple.this[int index]
 		{
 			get
 			{
@@ -969,7 +969,7 @@ namespace CodeJam
 	/// <typeparam name="T8">The type of the component 8 of the tuple.</typeparam>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<T1, T2, T3, T4, T5, T6, T7, T8> : ITupleStruct, IStructuralEquatable, IStructuralComparable, IComparable
+	public struct ValueTuple<T1, T2, T3, T4, T5, T6, T7, T8> : IValueTuple, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 		/// <summary>
 		/// The value of the component 1 of the tuple.
@@ -1014,7 +1014,7 @@ namespace CodeJam
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
-		public TupleStruct(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7, T8 item8)
+		public ValueTuple(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7, T8 item8)
 		{
 			Item1 = item1;
 			Item2 = item2;
@@ -1038,10 +1038,10 @@ namespace CodeJam
 
 		bool IStructuralEquatable.Equals(object other, IEqualityComparer comparer)
 		{
-			if (!(other is TupleStruct<T1, T2, T3, T4, T5, T6, T7, T8>))
+			if (!(other is ValueTuple<T1, T2, T3, T4, T5, T6, T7, T8>))
 				return false;
 
-			var objTuple = (TupleStruct<T1, T2, T3, T4, T5, T6, T7, T8>)other;
+			var objTuple = (ValueTuple<T1, T2, T3, T4, T5, T6, T7, T8>)other;
 			return comparer.Equals(Item1, objTuple.Item1) && comparer.Equals(Item2, objTuple.Item2) && comparer.Equals(Item3, objTuple.Item3) && comparer.Equals(Item4, objTuple.Item4) && comparer.Equals(Item5, objTuple.Item5) && comparer.Equals(Item6, objTuple.Item6) && comparer.Equals(Item7, objTuple.Item7) && comparer.Equals(Item8, objTuple.Item8);
 		}
 
@@ -1051,9 +1051,9 @@ namespace CodeJam
 		{
 			if (other == null) return 1;
 
-			Code.AssertArgument(other is TupleStruct<T1, T2, T3, T4, T5, T6, T7, T8>, nameof (other), "Incorrect tuple");
+			Code.AssertArgument(other is ValueTuple<T1, T2, T3, T4, T5, T6, T7, T8>, nameof (other), "Incorrect tuple");
 
-			var objTuple = (TupleStruct<T1, T2, T3, T4, T5, T6, T7, T8>)other;
+			var objTuple = (ValueTuple<T1, T2, T3, T4, T5, T6, T7, T8>)other;
 			int c = 0;
 			c = comparer.Compare(Item1, objTuple.Item1);
 			if (c != 0) return c;
@@ -1111,10 +1111,10 @@ namespace CodeJam
 			return sb.ToString();
 		}
 
-		#region Implementation of ITupleStruct
-		int ITupleStruct.Rank => 8;
+		#region Implementation of IValueTuple
+		int IValueTuple.Rank => 8;
 
-		object ITupleStruct.this[int index]
+		object IValueTuple.this[int index]
 		{
 			get
 			{

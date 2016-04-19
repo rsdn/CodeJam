@@ -13,6 +13,7 @@ What's new in 1.0.0-beta10
 * Enumerable.Index renamed to WithIndex. IndexItem implements equality stuff
 * XNodeExtensions.OptionalXxxValue renamed to XxxValueOrDefault
 * Fn<T>.Identity/IdentityConverter renamed to Self/SelfConverter
+* TupleStruct renamed to ValueTuple
 * Performance optimization
 * Refactoring
 * Fixes and code cleanup

@@ -6,7 +6,7 @@ namespace CodeJam
 	/// Common interface for all tuples.
 	/// </summary>
 	[PublicAPI]
-	public interface ITupleStruct
+	public interface IValueTuple
 	{
 		/// <summary>
 		/// Tuple rank (count of values).

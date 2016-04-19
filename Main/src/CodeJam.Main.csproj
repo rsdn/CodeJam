@@ -111,7 +111,7 @@
     <Compile Include="Services\IServicePublisher.cs" />
     <Compile Include="Services\ServiceContainer.cs" />
     <Compile Include="Services\ServiceProviderHelper.cs" />
-    <Compile Include="Structures\ITupleStruct.cs" />
+    <Compile Include="Structures\IValueTuple.cs" />
     <Compile Include="TableData\CsvFormat.cs" />
     <Compile Include="TableData\DataLine.cs" />
     <Compile Include="TableData\FixedWidthFormat.cs" />
@@ -142,10 +142,10 @@
     <Compile Include="Targeting\IReadOnlyDictionary.cs" />
     <Compile Include="IO\TempData.cs" />
     <Compile Include="Reflection\AssemblyExtensions.cs" />
-    <Compile Include="Structures\TupleStruct.generated.cs">
+    <Compile Include="Structures\ValueTuple.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TupleStruct.tt</DependentUpon>
+      <DependentUpon>ValueTuple.tt</DependentUpon>
     </Compile>
     <Compile Include="Threading\AsyncOperationHelper.cs" />
     <Compile Include="Threading\ConcurrentLazyDictionary.cs" />
@@ -238,9 +238,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Compile.cmd</LastGenOutput>
     </Content>
-    <Content Include="Structures\TupleStruct.tt">
+    <Content Include="Structures\ValueTuple.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TupleStruct.generated.cs</LastGenOutput>
+      <LastGenOutput>ValueTuple.generated.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

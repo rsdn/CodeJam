@@ -19,7 +19,7 @@ namespace CodeJam
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static TupleStruct<int, int> EqualRange<TElement, TValue>(
+		public static ValueTuple<int, int> EqualRange<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
 				[NotNull, InstantHandle] Func<TElement, TValue, int> comparer) =>
@@ -38,7 +38,7 @@ namespace CodeJam
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static TupleStruct<int, int> EqualRange<TElement, TValue>(
+		public static ValueTuple<int, int> EqualRange<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
 				int from,
@@ -59,7 +59,7 @@ namespace CodeJam
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static TupleStruct<int, int> EqualRange<TElement, TValue>(
+		public static ValueTuple<int, int> EqualRange<TElement, TValue>(
 			[NotNull, InstantHandle] this IList<TElement> list,
 			TValue value,
 			int from,
@@ -94,7 +94,7 @@ namespace CodeJam
 					upperBoundTo = to;
 				}
 			}
-			return TupleStruct.Create(from, UpperBoundCore(list, value, upperBoundFrom, upperBoundTo, comparer));
+			return ValueTuple.Create(from, UpperBoundCore(list, value, upperBoundFrom, upperBoundTo, comparer));
 		}
 	}
 }

@@ -18,7 +18,7 @@ namespace CodeJam
 	/// Provides static methods for creating tuple structs.
 	/// </summary>
 	[PublicAPI]
-	public static class TupleStruct
+	public static class ValueTuple
 	{
 <#for (var i = 2; i <= count; i++) {#>
 		/// <summary>
@@ -32,8 +32,8 @@ namespace CodeJam
 		/// <typeparam name="T<#=j#>">The type of the component <#=j#> of the tuple.</typeparam>
 <#	}#>
 		/// <returns>A <#=i#>-tuple whose value is (item1, item2).</returns>
-		public static TupleStruct<<#=typeList#>> Create<<#=typeList#>>(<#=string.Join(", ", range.Select(j => "T" + j + " item" + j))#>) =>
-			new TupleStruct<<#=typeList#>>(<#=string.Join(", ", range.Select(j => "item" + j))#>);
+		public static ValueTuple<<#=typeList#>> Create<<#=typeList#>>(<#=string.Join(", ", range.Select(j => "T" + j + " item" + j))#>) =>
+			new ValueTuple<<#=typeList#>>(<#=string.Join(", ", range.Select(j => "item" + j))#>);
 
 <#}#>
 	}
@@ -50,7 +50,7 @@ namespace CodeJam
 <#	}#>
 	[Serializable]
 	[PublicAPI]
-	public struct TupleStruct<<#=typeList#>> : ITupleStruct, IStructuralEquatable, IStructuralComparable, IComparable
+	public struct ValueTuple<<#=typeList#>> : IValueTuple, IStructuralEquatable, IStructuralComparable, IComparable
 	{
 <#	for (var j = 1; j <= i; j++) {#>
 		/// <summary>
@@ -62,7 +62,7 @@ namespace CodeJam
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
-		public TupleStruct(<#=string.Join(", ", range.Select(j => "T" + j + " item" + j))#>)
+		public ValueTuple(<#=string.Join(", ", range.Select(j => "T" + j + " item" + j))#>)
 		{
 <#	for (var j = 1; j <= i; j++) {#>
 			Item<#=j#> = item<#=j#>;
@@ -81,10 +81,10 @@ namespace CodeJam
 
 		bool IStructuralEquatable.Equals(object other, IEqualityComparer comparer)
 		{
-			if (!(other is TupleStruct<<#=typeList#>>))
+			if (!(other is ValueTuple<<#=typeList#>>))
 				return false;
 
-			var objTuple = (TupleStruct<<#=typeList#>>)other;
+			var objTuple = (ValueTuple<<#=typeList#>>)other;
 			return <#=string.Join(" && ", range.Select(j => "comparer.Equals(Item" + j + ", objTuple.Item" + j + ")"))#>;
 		}
 
@@ -94,9 +94,9 @@ namespace CodeJam
 		{
 			if (other == null) return 1;
 
-			Code.AssertArgument(other is TupleStruct<<#=typeList#>>, nameof (other), "Incorrect tuple");
+			Code.AssertArgument(other is ValueTuple<<#=typeList#>>, nameof (other), "Incorrect tuple");
 
-			var objTuple = (TupleStruct<<#=typeList#>>)other;
+			var objTuple = (ValueTuple<<#=typeList#>>)other;
 			int c = 0;
 <#	for (var j = 1; j < i; j++) {#>
 			c = comparer.Compare(Item<#=j#>, objTuple.Item<#=j#>);
@@ -135,10 +135,10 @@ namespace CodeJam
 			return sb.ToString();
 		}
 
-		#region Implementation of ITupleStruct
-		int ITupleStruct.Rank => <#=i#>;
+		#region Implementation of IValueTuple
+		int IValueTuple.Rank => <#=i#>;
 
-		object ITupleStruct.this[int index]
+		object IValueTuple.this[int index]
 		{
 			get
 			{
