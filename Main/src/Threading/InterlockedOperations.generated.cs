@@ -75,6 +75,8 @@ namespace CodeJam.Threading
 			{
 				oldState = value;
 				newState = updateCallback(oldState);
+				if (newState == oldState)
+					return newState;
 			}
 			while (Interlocked.CompareExchange(ref value, newState, oldState) != oldState);
 			return newState;
@@ -94,6 +96,8 @@ namespace CodeJam.Threading
 			{
 				oldState = value;
 				newState = updateCallback(oldState, newValue);
+				if (newState == oldState)
+					return newState;
 			}
 			while (Interlocked.CompareExchange(ref value, newState, oldState) != oldState);
 			return newState;
@@ -155,6 +159,8 @@ namespace CodeJam.Threading
 			{
 				oldState = value;
 				newState = updateCallback(oldState);
+				if (newState == oldState)
+					return newState;
 			}
 			while (Interlocked.CompareExchange(ref value, newState, oldState) != oldState);
 			return newState;
@@ -174,6 +180,8 @@ namespace CodeJam.Threading
 			{
 				oldState = value;
 				newState = updateCallback(oldState, newValue);
+				if (newState == oldState)
+					return newState;
 			}
 			while (Interlocked.CompareExchange(ref value, newState, oldState) != oldState);
 			return newState;
@@ -235,6 +243,8 @@ namespace CodeJam.Threading
 			{
 				oldState = value;
 				newState = updateCallback(oldState);
+				if (newState == oldState)
+					return newState;
 			}
 			while (Interlocked.CompareExchange(ref value, newState, oldState) != oldState);
 			return newState;
@@ -254,6 +264,8 @@ namespace CodeJam.Threading
 			{
 				oldState = value;
 				newState = updateCallback(oldState, newValue);
+				if (newState == oldState)
+					return newState;
 			}
 			while (Interlocked.CompareExchange(ref value, newState, oldState) != oldState);
 			return newState;
@@ -315,6 +327,8 @@ namespace CodeJam.Threading
 			{
 				oldState = value;
 				newState = updateCallback(oldState);
+				if (newState == oldState)
+					return newState;
 			}
 			while (Interlocked.CompareExchange(ref value, newState, oldState) != oldState);
 			return newState;
@@ -334,6 +348,8 @@ namespace CodeJam.Threading
 			{
 				oldState = value;
 				newState = updateCallback(oldState, newValue);
+				if (newState == oldState)
+					return newState;
 			}
 			while (Interlocked.CompareExchange(ref value, newState, oldState) != oldState);
 			return newState;
@@ -400,6 +416,8 @@ namespace CodeJam.Threading
 			{
 				oldState = value;
 				newState = updateCallback(oldState);
+				if (newState == oldState)
+					return newState;
 			}
 			while (Interlocked.CompareExchange(ref value, newState, oldState) != oldState);
 			return newState;
@@ -420,6 +438,8 @@ namespace CodeJam.Threading
 			{
 				oldState = value;
 				newState = updateCallback(oldState, newValue);
+				if (newState == oldState)
+					return newState;
 			}
 			while (Interlocked.CompareExchange(ref value, newState, oldState) != oldState);
 			return newState;
