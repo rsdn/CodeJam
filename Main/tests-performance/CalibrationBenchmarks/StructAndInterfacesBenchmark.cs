@@ -103,6 +103,7 @@ namespace CodeJam
 
 		private struct Struct : IStruct
 		{
+			// ReSharper disable once MemberCanBeMadeStatic.Local
 			public int Call(int a) => a + 1;
 
 			public int CallInterface(int a) => a + 1;

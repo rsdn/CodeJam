@@ -1,5 +1,9 @@
-CodeJam 1.0.0-beta10 Release Notes
+CodeJam 1.0.0-rc1 Release Notes
 ---------------------------------
+
+What's new in 1.0.0-rc1
+----------------------
+* Cleanup
 
 What's new in 1.0.0-beta10
 ------------------------
