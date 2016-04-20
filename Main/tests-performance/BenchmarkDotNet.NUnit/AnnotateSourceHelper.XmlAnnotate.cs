@@ -10,9 +10,9 @@ using JetBrains.Annotations;
 namespace BenchmarkDotNet.NUnit
 {
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
-	public partial class AnnotateSourceAnalyser
+	internal static partial class AnnotateSourceHelper
 	{
-		private bool TryFixBenchmarkResource(
+		private static bool TryFixBenchmarkResource(
 			AnnotateContext annotateContext, string xmlFileName,
 			CompetitionTarget competitionTarget)
 		{
@@ -35,7 +35,7 @@ namespace BenchmarkDotNet.NUnit
 			return true;
 		}
 
-		private XElement GetOrAdd(XElement element, XName name, string targetName)
+		private static XElement GetOrAdd(XElement element, XName name, string targetName)
 		{
 			if (targetName == null)
 				throw new ArgumentNullException(nameof(targetName));
@@ -55,7 +55,7 @@ namespace BenchmarkDotNet.NUnit
 		}
 
 		[CanBeNull]
-		private XAttribute SetAttribute(XElement element, XName attributeName, string attributeValue)
+		private static XAttribute SetAttribute(XElement element, XName attributeName, string attributeValue)
 		{
 			if (attributeValue == null)
 			{

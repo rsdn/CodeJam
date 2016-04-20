@@ -4,8 +4,6 @@ using System.Runtime.CompilerServices;
 
 using BenchmarkDotNet.NUnit;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 using static CodeJam.AssemblyWideConfig;
@@ -18,7 +16,6 @@ namespace CodeJam
 	/// to see what I'm talking about: https://blogs.msdn.microsoft.com/alexj/2009/07/31/another-c-trick-fluents-inheritance-and-extension-methods/
 	/// </summary>
 	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Self-testing")]
-	[PublicAPI]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_SimpleTypes")]
 	public class StructAndInterfacesBenchmark
@@ -28,7 +25,7 @@ namespace CodeJam
 		public void BenchmarkStructAndInterfaces() =>
 			CompetitionBenchmarkRunner.Run(this, RunConfig);
 
-		public const int Count = 10 * 1000 * 1000;
+		private const int Count = 10 * 1000 * 1000;
 
 		[CompetitionBaseline]
 		public int Test00Baseline()

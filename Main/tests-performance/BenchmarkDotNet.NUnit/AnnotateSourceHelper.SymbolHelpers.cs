@@ -10,7 +10,7 @@ using JetBrains.Annotations;
 
 namespace BenchmarkDotNet.NUnit
 {
-	public partial class AnnotateSourceAnalyser
+	internal static partial class AnnotateSourceHelper
 	{
 		/// <summary>
 		/// BASEDON:

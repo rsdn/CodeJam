@@ -2,16 +2,36 @@
 
 using BenchmarkDotNet.Attributes;
 
+using CodeJam.Arithmetic;
+using CodeJam.Reflection;
+
 using JetBrains.Annotations;
 
-namespace CodeJam.Arithmetic
+namespace CodeJam.Ranges.v2
 {
 	/// <summary>
 	/// Base class for all operator test cases;
 	/// </summary>
 	[PublicAPI]
-	public abstract class OperatorsBenchmarkBase<T>
+	public abstract class BoundaryBenchmarkBase<T>
 	{
+		// ReSharper disable once StaticMemberInGenericType
+		private static readonly RangeBoundaryKind[] _boundaries = EnumHelper.GetValues<RangeBoundaryKind>();
+
+		private static RangeBoundary<T> CreateBoundary(T value, int i)
+		{
+			var boundaryKind = _boundaries[i % _boundaries.Length];
+			switch (boundaryKind)
+			{
+				case RangeBoundaryKind.Empty:
+				case RangeBoundaryKind.NegativeInfinity:
+				case RangeBoundaryKind.PositiveInfinity:
+					return new RangeBoundary<T>(default(T), boundaryKind);
+				default:
+					return new RangeBoundary<T>(value, boundaryKind);
+			}
+		}
+
 		/// <summary> Count of items </summary>
 		protected int Count { get; set; } = 1000 * 1000;
 		/// <summary> Repeat value A each </summary>
@@ -25,6 +45,8 @@ namespace CodeJam.Arithmetic
 
 		protected T[] ValuesA;
 		protected T[] ValuesB;
+		protected RangeBoundary<T>[] BoundariesA;
+		protected RangeBoundary<T>[] BoundariesB;
 
 		/// <summary> Get value A from index </summary>
 		protected abstract T GetValueA(int i);
@@ -42,23 +64,29 @@ namespace CodeJam.Arithmetic
 			var count = Count;
 			ValuesA = new T[count];
 			ValuesB = new T[count];
+			BoundariesA = new RangeBoundary<T>[count];
+			BoundariesB = new RangeBoundary<T>[count];
 			for (var i = 0; i < count; i++)
 			{
-				ValuesA[i] = GetValueA(i % ValueARepeats + ValueAOffset);
-				ValuesB[i] = GetValueB(i % ValueBRepeats + ValueBOffset);
+				var iA = i % ValueARepeats + ValueAOffset;
+				var iB = i % ValueBRepeats + ValueBOffset;
+				ValuesA[i] = GetValueA(iA);
+				ValuesB[i] = GetValueB(iB);
+				BoundariesA[i] = CreateBoundary(ValuesA[i], iA);
+				BoundariesB[i] = CreateBoundary(ValuesB[i], iB);
 			}
 		}
 	}
 
 	/// <summary> Base class for int perf tests </summary>
-	public abstract class IntOperatorsBenchmark : OperatorsBenchmarkBase<int>
+	public abstract class IntBoundaryBenchmark : BoundaryBenchmarkBase<int>
 	{
 		protected override int GetValueA(int i) => i;
 		protected override int GetValueB(int i) => i;
 	}
 
 	/// <summary> Base class for int? perf tests </summary>
-	public abstract class NullableIntOperatorsBenchmark : OperatorsBenchmarkBase<int?>
+	public abstract class NullableIntBoundaryBenchmark : BoundaryBenchmarkBase<int?>
 	{
 		protected override int? GetValueA(int i) => i == 0 ? null : (int?)i;
 
@@ -66,7 +94,7 @@ namespace CodeJam.Arithmetic
 	}
 
 	/// <summary> Base class for double? perf tests </summary>
-	public abstract class NullableDoubleOperatorsBenchmark : OperatorsBenchmarkBase<double?>
+	public abstract class NullableDoubleBoundaryBenchmark : BoundaryBenchmarkBase<double?>
 	{
 		protected override double? GetValueA(int i) => i == 0 ? null : (int?)i;
 
@@ -74,7 +102,7 @@ namespace CodeJam.Arithmetic
 	}
 
 	/// <summary> Base class for DateTime? perf tests </summary>
-	public abstract class NullableDateTimeOperatorsBenchmark : OperatorsBenchmarkBase<DateTime?>
+	public abstract class NullableDateTimeBoundaryBenchmark : BoundaryBenchmarkBase<DateTime?>
 	{
 		protected override DateTime? GetValueA(int i) =>
 			i == 0 ? (DateTime?)null : DateTime.UtcNow.AddDays(i);
@@ -83,10 +111,10 @@ namespace CodeJam.Arithmetic
 	}
 
 	/// <summary> Base class for string perf tests </summary>
-	public abstract class StringOperatorsBenchmark : OperatorsBenchmarkBase<string>
+	public abstract class StringBoundaryBenchmark : BoundaryBenchmarkBase<string>
 	{
 		/// <summary> Constructor </summary>
-		protected StringOperatorsBenchmark()
+		protected StringBoundaryBenchmark()
 		{
 			Count /= 5;
 		}

@@ -76,11 +76,12 @@
     <Compile Include="BenchmarkDotNet.Core\BenchmarkColumns.cs" />
     <Compile Include="BenchmarkDotNet.Core\BenchmarkHelpers.cs" />
     <Compile Include="BenchmarkDotNet.NUnit.Tests\BenchmarkHelpersTests.cs" />
-    <Compile Include="BenchmarkDotNet.NUnit\AnnotateSourceAnalyser.cs" />
-    <Compile Include="BenchmarkDotNet.NUnit\AnnotateSourceAnalyser.SourceAnnotate.cs" />
-    <Compile Include="BenchmarkDotNet.NUnit\AnnotateSourceAnalyser.SymbolHelpers.cs" />
-    <Compile Include="BenchmarkDotNet.NUnit\AnnotateSourceAnalyser.XmlAnnotate.cs" />
-    <Compile Include="BenchmarkDotNet.NUnit\CompetitionAnalyser.cs" />
+    <Compile Include="BenchmarkDotNet.NUnit\AnnotateSourceHelper.cs" />
+    <Compile Include="BenchmarkDotNet.NUnit\AnnotateSourceHelper.SourceAnnotate.cs" />
+    <Compile Include="BenchmarkDotNet.NUnit\AnnotateSourceHelper.SymbolHelpers.cs" />
+    <Compile Include="BenchmarkDotNet.NUnit\AnnotateSourceHelper.XmlAnnotate.cs" />
+    <Compile Include="BenchmarkDotNet.NUnit\CompetitionParametersAnalyser.cs" />
+    <Compile Include="BenchmarkDotNet.NUnit\CompetitionStateAnalyser.cs" />
     <Compile Include="BenchmarkDotNet.NUnit\CompetitionBenchmarkRunner.cs" />
     <Compile Include="BenchmarkDotNet.NUnit\CompetitionTarget.cs" />
     <Compile Include="BenchmarkDotNet.NUnit\CompetitionTargetHelpers.cs" />
@@ -110,7 +111,9 @@
     <EmbeddedResource Include="Arithmetic\NumOperatorsPerfTest.generated.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="CodeJam-Tests.Performance.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
