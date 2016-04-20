@@ -42,6 +42,7 @@
     <Compile Include="CmdLine\CheckerTest.cs" />
     <Compile Include="CmdLine\ParserTest.cs" />
     <Compile Include="CmdLine\PrintUsageTest.cs" />
+    <Compile Include="Ranges.v2\RangeBoundaryTests.cs" />
     <Compile Include="Ranges\ImmutableRangeListTests.cs" />
     <Compile Include="Ranges\RangeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
