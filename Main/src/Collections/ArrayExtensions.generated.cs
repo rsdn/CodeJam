@@ -1,5 +1,7 @@
 ﻿using System;
 
+using CodeJam.Utilities;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Collections
