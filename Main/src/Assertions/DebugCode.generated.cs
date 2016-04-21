@@ -131,20 +131,6 @@ namespace CodeJam
 		/// </summary>
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void InRange(
-			int value,
-			[NotNull, InvokerParameterName] string argName,
-			int fromValue)
-		{
-			if (value < fromValue)
-				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue);
-		}
-
-		/// <summary>
-		/// Assertion for the argument in range
-		/// </summary>
-		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
-		[AssertionMethod]
 		public static void InRange<T>(
 			T value,
 			[NotNull, InvokerParameterName] string argName,
@@ -153,20 +139,6 @@ namespace CodeJam
 		{
 			if (Operators<T>.LessThan(value, fromValue) || Operators<T>.GreaterThan(value, toValue))
 				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue, toValue);
-		}
-
-		/// <summary>
-		/// Assertion for the argument in range
-		/// </summary>
-		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
-		[AssertionMethod]
-		public static void InRange<T>(
-			T value,
-			[NotNull, InvokerParameterName] string argName,
-			T fromValue)
-		{
-			if (Operators<T>.LessThan(value, fromValue))
-				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue);
 		}
 		#endregion
 

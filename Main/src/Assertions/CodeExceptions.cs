@@ -101,22 +101,6 @@ namespace CodeJam
 		/// </summary>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
-		public static ArgumentOutOfRangeException ArgumentOutOfRange(
-			[NotNull, InvokerParameterName] string argumentName,
-			int value, int fromValue)
-		{
-			BreakIfAttached();
-			return new ArgumentOutOfRangeException(
-				argumentName,
-				value,
-				$"The value of '{argumentName}' ({value}) should be greater than {fromValue}");
-		}
-
-		/// <summary>
-		/// Creates <seealso cref="ArgumentOutOfRangeException"/>
-		/// </summary>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
 		public static ArgumentOutOfRangeException ArgumentOutOfRange<T>(
 			[NotNull, InvokerParameterName] string argumentName,
 			T value, T fromValue, T toValue)
@@ -126,23 +110,6 @@ namespace CodeJam
 				argumentName,
 				value,
 				$"The value of '{argumentName}' ('{value}') should be between '{fromValue}' and '{toValue}'");
-		}
-
-		/// <summary>
-		/// Creates <seealso cref="ArgumentOutOfRangeException"/>
-		/// </summary>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
-		public static ArgumentOutOfRangeException ArgumentOutOfRange<T>(
-			[NotNull, InvokerParameterName] string argumentName,
-			T value,
-			T fromValue)
-		{
-			BreakIfAttached();
-			return new ArgumentOutOfRangeException(
-				argumentName,
-				value,
-				$"The value of '{argumentName}' ('{value}') should be greater than '{fromValue}'.");
 		}
 
 		/// <summary>
