@@ -92,9 +92,9 @@ namespace CodeJam
 			Code.InRange(from, nameof(from), 0);
 			Code.InRange(to, nameof(to), 0);
 			if (to > count)
-				CodeExceptions.Argument(nameof(to), $"The {nameof(to)} index should not exceed the {nameof(count)}");
+				throw CodeExceptions.Argument(nameof(to), $"The {nameof(to)} index should not exceed the {nameof(count)}");
 			if (to < from)
-				CodeExceptions.Argument(
+				throw CodeExceptions.Argument(
 					nameof(from),
 					$"The {nameof(to)} index should be not less than the {nameof(from)} index");
 		}
