@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 using JetBrains.Annotations;
 
-using static CodeJam.RangesV2.RangeBoundary;
+using static CodeJam.RangesV2.RangeConstants;
 
 namespace CodeJam.RangesV2
 {
@@ -91,6 +91,7 @@ namespace CodeJam.RangesV2
 		/// <summary>
 		///The kind of the boundary.
 		/// </summary>
+		// ReSharper disable once ConvertToAutoPropertyWithPrivateSetter
 		public RangeBoundaryKind Kind => _kind;
 
 		/// <summary>

@@ -22,6 +22,6 @@ namespace CodeJam.RangesV2
 		/// <summary>Greater than value,       '(a,??',   x > a.</summary>
 		FromExclusive = 0x10,
 		/// <summary>PositiveInfinity,         '??,+∞)',  no To limit.</summary>
-		PositiveInfinity = 0x20,
+		PositiveInfinity = 0x20
 	}
 }

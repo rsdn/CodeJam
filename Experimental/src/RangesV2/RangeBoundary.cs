@@ -26,18 +26,6 @@ namespace CodeJam.RangesV2
 		}
 		#endregion
 
-		#region Constants
-		internal const string EmptyString = "∅";
-
-		internal const string NegativeInfinityBoundaryString = "(-∞";
-		internal const string PositiveInfinityBoundaryString = "+∞)";
-
-		internal const char FromExclusiveChar = '(';
-		internal const char FromInclusiveChar = '[';
-		internal const char ToExclusiveChar = ')';
-		internal const char ToInclusiveChar = ']';
-		#endregion
-
 		/// <summary>
 		/// Checks that boundary1 is complementation for boundary1 .
 		/// </summary>
@@ -90,9 +78,10 @@ namespace CodeJam.RangesV2
 		/// If the boundary has on value the value will not update.
 		/// </summary>
 		/// <typeparam name="T"> The type of the boundary value </typeparam>
-		/// <param name="boundary">Граница диапазона.</param>
-		/// <param name="updateCallback">Callback для нового значения границы.</param>
-		/// <returns>Граница с тем же типом, но обновлённым значением.</returns>
+		/// <param name="boundary">The range boundary</param>
+		/// <returns>Complementation for the boundary</returns>
+		/// <param name="updateCallback">Callback returning new value of the boundary.</param>
+		/// <returns>Range boundary with the same kind but with a new value.</returns>
 		public static RangeBoundary<T> UpdateValue<T>(
 			this RangeBoundary<T> boundary,
 			[NotNull, InstantHandle] Func<T, T> updateCallback)

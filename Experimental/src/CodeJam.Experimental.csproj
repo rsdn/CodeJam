@@ -69,10 +69,15 @@
     <Compile Include="CmdLine\Parser\QuotedOrNonquotedValueNode.cs" />
     <Compile Include="CmdLine\PrintUsageSettings.cs" />
     <Compile Include="CmdLine\UsagePrinter.cs" />
+    <Compile Include="RangesV2\IRange`1.cs" />
+    <Compile Include="RangesV2\RangeConstants.cs" />
+    <Compile Include="RangesV2\RangeExtesions.Core.cs" />
     <Compile Include="RangesV2\RangeBoundary.cs" />
     <Compile Include="RangesV2\RangeBoundaryKind.cs" />
     <Compile Include="RangesV2\RangeBoundary`1.Comparisons.cs" />
     <Compile Include="RangesV2\RangeBoundary`1.cs" />
+    <Compile Include="RangesV2\Range`1.Comparison.cs" />
+    <Compile Include="RangesV2\Range`1.cs" />
     <Compile Include="Ranges\ImmutableRangeList.cs" />
     <Compile Include="Ranges\ImmutableRangeListExtensions.cs" />
     <Compile Include="Ranges\Range%271.cs" />

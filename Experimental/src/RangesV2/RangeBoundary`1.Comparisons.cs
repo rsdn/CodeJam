@@ -298,7 +298,7 @@ namespace CodeJam.RangesV2
 		}
 		#endregion
 
-		#region IComparable<RangeBoundary>
+		#region IComparable<RangeBoundary<T>>
 		/// <summary>
 		/// Compares the current boundary with another one. Following order is used:
 		/// '∅' &lt; '-∞' &lt; 'a)' &lt; '[a' == 'a]' &lt; '(a' &lt; '+∞'.

@@ -8,17 +8,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.RangesV2Alternatives
 {
-	[PublicAPI]
-	public interface IRange<T>
-	{
-		RangeBoundary<T> From { get; }
-		RangeBoundary<T> To { get; }
-	}
-	[PublicAPI]
-	public interface IRangeFactory<T, out TRange> : IRange<T> where TRange : IRange<T>
-	{
-		TRange CreateRange(RangeBoundary<T> from, RangeBoundary<T> to);
-	}
+
 
 	[PublicAPI]
 	public struct RangeStub<T> : IRangeFactory<T, RangeStub<T>>
