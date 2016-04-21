@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace CodeJam
 {
 	[TestFixture]
-	partial class MinMaxItemTests
+	partial class MinMaxByTests
 	{
 		#region MinBy
 

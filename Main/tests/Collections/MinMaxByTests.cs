@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace CodeJam
 {
 	[TestFixture]
-	public partial class MinMaxItemTests
+	public partial class MinMaxByTests
 	{
 		#region Min
 		[TestCase(new[] {3, 1, 0, 4, 6}, ExpectedResult = "0")]

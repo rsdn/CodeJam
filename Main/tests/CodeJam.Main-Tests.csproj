@@ -57,13 +57,13 @@
       <DependentUpon>OperatorsTest.Numeric.tt</DependentUpon>
     </Compile>
     <Compile Include="Assertions\CodeAssertionsTest.cs" />
-    <Compile Include="Collections\MinMaxItemTests.cs" />
+    <Compile Include="Collections\MinMaxByTests.cs" />
     <Compile Include="Collections\ArrayExtensionsTest.cs" />
     <Compile Include="Collections\DisjointSetsTest.cs" />
     <Compile Include="Collections\QueryableExtensionsTests.ApplyOrder.cs" />
     <Compile Include="Collections\DictionaryExtensionsTest.cs" />
-    <Compile Include="Collections\MinMaxItemTests.generated.cs">
-      <DependentUpon>MinMaxItemTests.tt</DependentUpon>
+    <Compile Include="Collections\MinMaxByTests.generated.cs">
+      <DependentUpon>MinMaxByTests.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -105,9 +105,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>OperatorsTest.Numeric.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Collections\MinMaxItemTests.tt">
+    <Content Include="Collections\MinMaxByTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MinMaxItemTests.generated.cs</LastGenOutput>
+      <LastGenOutput>MinMaxByTests.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Threading\InterlockedOperationsTest.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
