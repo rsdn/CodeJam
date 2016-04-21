@@ -46,29 +46,27 @@ namespace CodeJam.RangesV2
 		/// <summary>Indicates whether the current range is equal to another.</summary>
 		/// <param name="other">An range to compare with this.</param>
 		/// <returns>
-		/// <c>True</c> if the current range is equal to the <paramref name="other" /> parameter;
+		/// <c>True</c> if the current range is equal to the <paramref name="other"/> parameter;
 		/// otherwise, false.
 		/// </returns>
 		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 		public bool Equals(Range<T> other) =>
-			IsEmpty ?
-				other.IsEmpty :
-				(From == other.From && To == other.To);
+			IsEmpty
+				? other.IsEmpty
+				: (From == other.From && To == other.To);
 
 		/// <summary>Indicates whether the current range and a specified object are equal.</summary>
 		/// <param name="obj">The object to compare with this. </param>
 		/// <returns>
-		/// <c>True</c> if <paramref name="obj" /> and the current range are the same type
+		/// <c>True</c> if <paramref name="obj"/> and the current range are the same type
 		/// and represent the same value; otherwise, false.
 		/// </returns>
-		public override bool Equals(object obj) => 
+		public override bool Equals(object obj) =>
 			obj is Range<T> && Equals((Range<T>)obj);
 
-		/// <summary>
-		/// Возвращает хеш-код диапазона.
-		/// </summary>
-		/// <returns>Хеш-код диапазона.</returns>
-		public override int GetHashCode() => 
+		/// <summary>Returns the hash code for the current boundary.</summary>
+		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+		public override int GetHashCode() =>
 			HashCode.Combine(From.GetHashCode(), To.GetHashCode());
 		#endregion
 	}

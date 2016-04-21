@@ -268,18 +268,18 @@ namespace CodeJam.RangesV2
 		/// <summary>Indicates whether the current boundary is equal to another.</summary>
 		/// <param name="other">An boundary to compare with this.</param>
 		/// <returns>
-		/// <c>True</c> if the current boundary is equal to the <paramref name="other" /> parameter;
+		/// <c>True</c> if the current boundary is equal to the <paramref name="other"/> parameter;
 		/// otherwise, false.
 		/// </returns>
 		[MethodImpl(AggressiveInlining)]
 		public bool Equals(RangeBoundary<T> other) =>
 			_kind == other._kind &&
-			_equalsFunc(_value, other._value);
+				_equalsFunc(_value, other._value);
 
 		/// <summary>Indicates whether the current boundary and a specified object are equal.</summary>
 		/// <param name="obj">The object to compare with this. </param>
 		/// <returns>
-		/// <c>True</c> if <paramref name="obj" /> and the current boundary are the same type
+		/// <c>True</c> if <paramref name="obj"/> and the current boundary are the same type
 		/// and represent the same value; otherwise, false.
 		/// </returns>
 		public override bool Equals(object obj) =>
@@ -307,9 +307,9 @@ namespace CodeJam.RangesV2
 		/// <returns>
 		/// A value that indicates the relative order of the objects being compared.
 		/// The return value has the following meanings:
-		/// * Less than zero This object is less than the <paramref name="other" /> parameter.
-		/// * Zero This object is equal to <paramref name="other" />.
-		/// * Greater than zero This object is greater than <paramref name="other" />.
+		/// * Less than zero This object is less than the <paramref name="other"/> parameter.
+		/// * Zero This object is equal to <paramref name="other"/>.
+		/// * Greater than zero This object is greater than <paramref name="other"/>.
 		/// </returns>
 		[MethodImpl(AggressiveInlining)]
 		public int CompareTo(RangeBoundary<T> other) =>
@@ -324,16 +324,16 @@ namespace CodeJam.RangesV2
 		/// <returns>
 		/// A value that indicates the relative order of the objects being compared.
 		/// The return value has the following meanings:
-		/// * Less than zero This object is less than the <paramref name="other" /> parameter.
-		/// * Zero This object is equal to <paramref name="other" />.
-		/// * Greater than zero This object is greater than <paramref name="other" />.
+		/// * Less than zero This object is less than the <paramref name="other"/> parameter.
+		/// * Zero This object is equal to <paramref name="other"/>.
+		/// * Greater than zero This object is greater than <paramref name="other"/>.
 		/// </returns>
 		[MethodImpl(AggressiveInlining)]
 		public int CompareTo(T other)
 		{
-			var otherBoundaryKind = other == null ?
-				RangeBoundaryKind.NegativeInfinity :
-				(IsToBoundary ? RangeBoundaryKind.ToInclusive : RangeBoundaryKind.FromInclusive);
+			var otherBoundaryKind = other == null
+				? RangeBoundaryKind.NegativeInfinity
+				: (IsToBoundary ? RangeBoundaryKind.ToInclusive : RangeBoundaryKind.FromInclusive);
 
 			return CompareCore(_value, _kind, other, otherBoundaryKind);
 		}
@@ -348,9 +348,9 @@ namespace CodeJam.RangesV2
 		/// <returns>
 		/// A value that indicates the relative order of the objects being compared.
 		/// The return value has the following meanings:
-		/// * Less than zero This object is less than the <paramref name="obj" /> parameter.
-		/// * Zero This object is equal to <paramref name="obj" />.
-		/// * Greater than zero This object is greater than <paramref name="obj" />.
+		/// * Less than zero This object is less than the <paramref name="obj"/> parameter.
+		/// * Zero This object is equal to <paramref name="obj"/>.
+		/// * Greater than zero This object is greater than <paramref name="obj"/>.
 		/// </returns>
 		int IComparable.CompareTo(object obj)
 		{
@@ -360,6 +360,7 @@ namespace CodeJam.RangesV2
 				: CompareTo(other.Value);
 		}
 		#endregion
+
 		#endregion
 	}
 }

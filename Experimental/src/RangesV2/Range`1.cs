@@ -20,14 +20,10 @@ namespace CodeJam.RangesV2
 		#region Static members
 
 		#region Predefined values
-		/// <summary>
-		/// Empty range, ∅.
-		/// </summary>
+		/// <summary> Empty range, ∅ </summary>
 		public static readonly Range<T> Empty = new Range<T>(RangeBoundary<T>.Empty, RangeBoundary<T>.Empty);
 
-		/// <summary>
-		/// Infinite range, (-∞..+∞).
-		/// </summary>
+		/// <summary> Infinite range, (-∞..+∞) </summary>
 		public static readonly Range<T> Infinity = new Range<T>(
 			RangeBoundary<T>.NegativeInfinity, RangeBoundary<T>.PositiveInfinity);
 		#endregion
@@ -35,9 +31,7 @@ namespace CodeJam.RangesV2
 		#endregion
 
 		#region Fields & .ctor()
-		/// <summary>
-		/// Creates instance of <seealso cref="Range{T}"/>
-		/// </summary>
+		/// <summary> Creates instance of <seealso cref="Range{T}"/> </summary>
 		/// <param name="from">Boundary from</param>
 		/// <param name="to">Boundary to</param>
 		public Range(RangeBoundary<T> from, RangeBoundary<T> to)
@@ -91,12 +85,8 @@ namespace CodeJam.RangesV2
 		#endregion
 
 		#region ToString
-		/// <summary>
-		/// Returns string representation of the range.
-		/// </summary>
-		/// <returns>
-		/// The string representation of the range
-		/// </returns>
+		/// <summary> Returns string representation of the range </summary>
+		/// <returns> The string representation of the range </returns>
 		public override string ToString() =>
 			IsEmpty ? EmptyString : From + SeparatorString + To;
 
@@ -115,15 +105,15 @@ namespace CodeJam.RangesV2
 		/// Returns string representation of the range using the specified format string.
 		/// If <typeparamref name="T"/> does not implement <seealso cref="IFormattable"/> the format string is ignored
 		/// </summary>
-		/// <param name="format">The format string</param>
-		/// <param name="formatProvider">The format provider</param>
+		/// <param name="format"> The format string </param>
+		/// <param name="formatProvider"> The format provider </param>
 		/// <returns>
 		/// The string representation of the range
 		/// </returns>
 		public string ToString(string format, IFormatProvider formatProvider) =>
-			IsEmpty ?
-				EmptyString : 
-				From.ToString(format, formatProvider) + SeparatorString + To.ToString(format, formatProvider);
+			IsEmpty
+				? EmptyString
+				: (From.ToString(format, formatProvider) + SeparatorString + To.ToString(format, formatProvider));
 		#endregion
 	}
 }

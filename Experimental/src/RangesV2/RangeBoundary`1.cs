@@ -23,6 +23,7 @@ namespace CodeJam.RangesV2
 	public partial struct RangeBoundary<T> : IFormattable
 	{
 		#region Static members
+
 		#region Formattable logic
 		private static Func<T, string, IFormatProvider, string> GetFormattableCallback()
 		{
@@ -32,6 +33,7 @@ namespace CodeJam.RangesV2
 			}
 			return (value, format, formatProvider) => value.ToString();
 		}
+
 		private static readonly Func<T, string, IFormatProvider, string> _formattableCallback = GetFormattableCallback();
 		#endregion
 
@@ -41,17 +43,22 @@ namespace CodeJam.RangesV2
 		/// </summary>
 		// ReSharper disable RedundantDefaultFieldInitializer
 		public static readonly RangeBoundary<T> Empty = new RangeBoundary<T>();
+
 		// ReSharper restore RedundantDefaultFieldInitializer
 
 		/// <summary>
 		/// Negative infinity, -∞.
 		/// </summary>
-		public static readonly RangeBoundary<T> NegativeInfinity = new RangeBoundary<T>(default(T), RangeBoundaryKind.NegativeInfinity);
+		public static readonly RangeBoundary<T> NegativeInfinity = new RangeBoundary<T>(
+			default(T), RangeBoundaryKind.NegativeInfinity);
+
 		/// <summary>
 		/// Positive infinity, +∞.
-		/// </summary>	
-		public static readonly RangeBoundary<T> PositiveInfinity = new RangeBoundary<T>(default(T), RangeBoundaryKind.PositiveInfinity);
+		/// </summary>
+		public static readonly RangeBoundary<T> PositiveInfinity = new RangeBoundary<T>(
+			default(T), RangeBoundaryKind.PositiveInfinity);
 		#endregion
+
 		#endregion
 
 		#region Fields & .ctor
@@ -61,7 +68,9 @@ namespace CodeJam.RangesV2
 		/// <summary>
 		/// Creates a new range boundary.
 		/// </summary>
-		/// <param name="value">The value of the boundary. Infinite (or empty) boundaries should use default(T) as the value.</param>
+		/// <param name="value">
+		/// The value of the boundary. Infinite (or empty) boundaries should use default(T) as the value.
+		/// </param>
 		/// <param name="boundaryKind"> The kind of the boundary. </param>
 		public RangeBoundary(T value, RangeBoundaryKind boundaryKind)
 		{
@@ -89,7 +98,7 @@ namespace CodeJam.RangesV2
 
 		#region Properties
 		/// <summary>
-		///The kind of the boundary.
+		/// The kind of the boundary.
 		/// </summary>
 		// ReSharper disable once ConvertToAutoPropertyWithPrivateSetter
 		public RangeBoundaryKind Kind => _kind;
@@ -159,7 +168,7 @@ namespace CodeJam.RangesV2
 				{
 					throw CodeExceptions.InvalidOperation(
 						"Boundary has no value. Check for HasValue property before obtaining the Value " +
-						"or use GetValueOrDefault() instead.");
+							"or use GetValueOrDefault() instead.");
 				}
 				return _value;
 			}
@@ -221,6 +230,7 @@ namespace CodeJam.RangesV2
 
 			return result;
 		}
+
 		/// <summary>
 		/// Returns string representation of the boundary using the specified format string.
 		/// If <typeparamref name="T"/> does not implement <seealso cref="IFormattable"/> the format string is ignored

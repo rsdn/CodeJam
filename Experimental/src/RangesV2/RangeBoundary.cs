@@ -13,9 +13,9 @@ namespace CodeJam.RangesV2
 	{
 		#region Helper types
 		/// <summary>
-		/// Implementation of order-by-descending comparer.
+		/// Implementation of order-by-descending comparer
 		/// </summary>
-		public sealed class DescendingComparer<T>: IComparer<RangeBoundary<T>>
+		public sealed class DescendingComparer<T> : IComparer<RangeBoundary<T>>
 		{
 			#region IComparer<Range<T>>
 			/// <summary>
@@ -27,13 +27,13 @@ namespace CodeJam.RangesV2
 		#endregion
 
 		/// <summary>
-		/// Checks that boundary1 is complementation for boundary1 .
+		/// Checks that boundary1 is complementation for boundary1
 		/// </summary>
-		/// <typeparam name="T"> The type of the boundary value </typeparam>
+		/// <typeparam name="T">The type of the boundary value</typeparam>
 		/// <param name="boundary">The range boundary</param>
 		/// <param name="other">Another boundary</param>
 		/// <returns><c>True</c>, if boundary1 is complementation for boundary1.</returns>
-		public static bool IsComplementationFor<T>(this RangeBoundary<T> boundary, RangeBoundary<T> other) => 
+		public static bool IsComplementationFor<T>(this RangeBoundary<T> boundary, RangeBoundary<T> other) =>
 			boundary.HasValue && boundary.GetComplementation() == other;
 
 		/// <summary>
@@ -41,11 +41,11 @@ namespace CodeJam.RangesV2
 		/// * 'a]' -> '(a'
 		/// * '[a' -> 'a)'
 		/// * 'a)' -> '[a'
-		/// * '(a' -> 'a]' 
+		/// * '(a' -> 'a]'
 		/// Empty or infinite boundaries will throw. Check <see cref="RangeBoundary{T}.HasValue"/>
 		/// before calling the method.
 		/// </summary>
-		/// <typeparam name="T"> The type of the boundary value </typeparam>
+		/// <typeparam name="T">The type of the boundary value</typeparam>
 		/// <param name="boundary">The range boundary</param>
 		/// <returns>Complementation for the boundary</returns>
 		public static RangeBoundary<T> GetComplementation<T>(this RangeBoundary<T> boundary)
@@ -77,11 +77,11 @@ namespace CodeJam.RangesV2
 		/// Creates a new boundary with a new value.
 		/// If the boundary has on value the value will not update.
 		/// </summary>
-		/// <typeparam name="T"> The type of the boundary value </typeparam>
+		/// <typeparam name="T">The type of the boundary value</typeparam>
 		/// <param name="boundary">The range boundary</param>
 		/// <returns>Complementation for the boundary</returns>
-		/// <param name="updateCallback">Callback returning new value of the boundary.</param>
-		/// <returns>Range boundary with the same kind but with a new value.</returns>
+		/// <param name="updateCallback">Callback returning new value of the boundary</param>
+		/// <returns>Range boundary with the same kind but with a new value</returns>
 		public static RangeBoundary<T> UpdateValue<T>(
 			this RangeBoundary<T> boundary,
 			[NotNull, InstantHandle] Func<T, T> updateCallback)
@@ -92,9 +92,9 @@ namespace CodeJam.RangesV2
 
 				if (newValue == null)
 				{
-					boundary = boundary.IsFromBoundary ?
-						RangeBoundary<T>.NegativeInfinity :
-						RangeBoundary<T>.PositiveInfinity;
+					boundary = boundary.IsFromBoundary
+						? RangeBoundary<T>.NegativeInfinity
+						: RangeBoundary<T>.PositiveInfinity;
 				}
 				else
 				{

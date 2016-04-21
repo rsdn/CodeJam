@@ -11,16 +11,22 @@ namespace CodeJam.RangesV2
 	{
 		/// <summary>Empty,                    '∅'.</summary>
 		Empty = 0x0,
+
 		/// <summary>Negative infinity,        '(-∞,??',  no From limit.</summary>
 		NegativeInfinity = 0x1,
+
 		/// <summary>Less than value,          '??,b)',   x &lt; b.</summary>
 		ToExclusive = 0x2,
+
 		/// <summary>Greater than or equal to, '[a,??',   x >= a.</summary>
 		FromInclusive = 0x4,
+
 		/// <summary>Less than or equal to,    '??,b]',   x &lt;= b.</summary>
 		ToInclusive = 0x8,
+
 		/// <summary>Greater than value,       '(a,??',   x > a.</summary>
 		FromExclusive = 0x10,
+
 		/// <summary>PositiveInfinity,         '??,+∞)',  no To limit.</summary>
 		PositiveInfinity = 0x20
 	}
