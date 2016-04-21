@@ -16,8 +16,6 @@ namespace CodeJam
 	}
 }
 <#+
-
-
 void GenerateMethod(int argCount)
 {
 	var typeArgs = List(argCount, i => "TArg" + i);
