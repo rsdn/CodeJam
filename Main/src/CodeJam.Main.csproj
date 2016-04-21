@@ -106,6 +106,8 @@
     <Compile Include="Collections\EnumerableExtensions.Slice.cs" />
     <Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
     <Compile Include="Collections\QueryableExtensions.cs" />
+    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="Strings\NamespaceDoc.cs" />
     <Compile Include="Structures\Option.cs" />
     <Compile Include="Reflection\InfoOf`1.cs" />
     <Compile Include="Reflection\ParamInfo.cs" />
