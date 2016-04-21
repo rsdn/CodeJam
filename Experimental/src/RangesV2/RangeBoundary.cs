@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.Ranges.v2
+namespace CodeJam.RangesV2
 {
 	/// <summary>
 	/// RangeBoundary helpers and extension methods

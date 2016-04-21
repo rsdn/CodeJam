@@ -5,7 +5,7 @@ using CodeJam.Arithmetic;
 
 using static CodeJam.PlatformDependent;
 
-namespace CodeJam.Ranges.v2
+namespace CodeJam.RangesV2
 {
 	/// <summary>
 	/// The boundary of the range.

@@ -7,7 +7,7 @@ using CodeJam.Reflection;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.Ranges.v2
+namespace CodeJam.RangesV2
 {
 	/// <summary>
 	/// Base class for all operator test cases;

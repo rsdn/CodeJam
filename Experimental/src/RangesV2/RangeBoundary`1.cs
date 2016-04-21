@@ -3,9 +3,9 @@ using System.Diagnostics;
 
 using JetBrains.Annotations;
 
-using static CodeJam.Ranges.v2.RangeBoundary;
+using static CodeJam.RangesV2.RangeBoundary;
 
-namespace CodeJam.Ranges.v2
+namespace CodeJam.RangesV2
 {
 	/// <summary>
 	/// The boundary of the range.

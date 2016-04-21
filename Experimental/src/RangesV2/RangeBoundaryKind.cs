@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeJam.Ranges.v2
+namespace CodeJam.RangesV2
 {
 	/// <summary>
 	/// The kind of range boundary.

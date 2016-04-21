@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
 
-namespace CodeJam.Ranges.v2
+namespace CodeJam.RangesV2
 {
 	using IntBoundary = RangeBoundary<int?>;
 
@@ -187,7 +187,6 @@ namespace CodeJam.Ranges.v2
 			var toEx = new IntBoundary(value1, RangeBoundaryKind.ToExclusive);
 			var toInc2 = new IntBoundary(value1, RangeBoundaryKind.ToInclusive);
 
-			// Proofs that same value but different boundary kind are not equal
 			AreNotEqual(fromInc, fromEx);
 			AreNotEqual(fromInc, toInc);
 			AreNotEqual(toInc, toEx);
@@ -268,6 +267,7 @@ namespace CodeJam.Ranges.v2
 		{
 			var value1 = 1;
 			var value2 = 2;
+			var empty = default(int?);
 
 			var e = IntBoundary.Empty;
 			var nInf = IntBoundary.NegativeInfinity;
@@ -283,8 +283,15 @@ namespace CodeJam.Ranges.v2
 			var toInc2 = new IntBoundary(value2, RangeBoundaryKind.ToInclusive);
 			var toEx2 = new IntBoundary(value2, RangeBoundaryKind.ToExclusive);
 
-			IsTrue(value1 < value2);
+			IsTrue(e < empty);
+			IsTrue(nInf <= empty);
+			IsTrue(nInf >= empty);
+			IsTrue(pInf > empty);
 
+			IsTrue(toEx1 > empty);
+			IsTrue(empty < toEx2);
+
+			IsTrue(nInf < value1);
 			IsTrue(toEx1 < value1);
 			IsTrue(fromEx1 > value1);
 			IsTrue(toInc1 <= value1);
@@ -295,6 +302,7 @@ namespace CodeJam.Ranges.v2
 			IsTrue(toInc1 < value2);
 			IsTrue(fromInc1 < value2);
 
+			IsTrue(value2 < pInf);
 			IsTrue(value2 > toEx2);
 			IsTrue(value2 < fromEx2);
 			IsTrue(value2 >= toInc2);
