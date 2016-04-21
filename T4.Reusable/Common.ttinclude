@@ -1,0 +1,6 @@
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#+
+string List(int count, Func<int, string> elem, string separator = ", ") =>
+	string.Join(separator, Enumerable.Range(1, count).Select(elem));
+#>
