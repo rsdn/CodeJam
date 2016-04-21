@@ -156,6 +156,8 @@ namespace CodeJam
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
+		/// <param name="item1">Item 1 value.</param>
+		/// <param name="item2">Item 2 value.</param>
 		public ValueTuple(T1 item1, T2 item2)
 		{
 			Item1 = item1;
@@ -269,6 +271,9 @@ namespace CodeJam
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
+		/// <param name="item1">Item 1 value.</param>
+		/// <param name="item2">Item 2 value.</param>
+		/// <param name="item3">Item 3 value.</param>
 		public ValueTuple(T1 item1, T2 item2, T3 item3)
 		{
 			Item1 = item1;
@@ -394,6 +399,10 @@ namespace CodeJam
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
+		/// <param name="item1">Item 1 value.</param>
+		/// <param name="item2">Item 2 value.</param>
+		/// <param name="item3">Item 3 value.</param>
+		/// <param name="item4">Item 4 value.</param>
 		public ValueTuple(T1 item1, T2 item2, T3 item3, T4 item4)
 		{
 			Item1 = item1;
@@ -531,6 +540,11 @@ namespace CodeJam
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
+		/// <param name="item1">Item 1 value.</param>
+		/// <param name="item2">Item 2 value.</param>
+		/// <param name="item3">Item 3 value.</param>
+		/// <param name="item4">Item 4 value.</param>
+		/// <param name="item5">Item 5 value.</param>
 		public ValueTuple(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5)
 		{
 			Item1 = item1;
@@ -680,6 +694,12 @@ namespace CodeJam
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
+		/// <param name="item1">Item 1 value.</param>
+		/// <param name="item2">Item 2 value.</param>
+		/// <param name="item3">Item 3 value.</param>
+		/// <param name="item4">Item 4 value.</param>
+		/// <param name="item5">Item 5 value.</param>
+		/// <param name="item6">Item 6 value.</param>
 		public ValueTuple(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6)
 		{
 			Item1 = item1;
@@ -841,6 +861,13 @@ namespace CodeJam
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
+		/// <param name="item1">Item 1 value.</param>
+		/// <param name="item2">Item 2 value.</param>
+		/// <param name="item3">Item 3 value.</param>
+		/// <param name="item4">Item 4 value.</param>
+		/// <param name="item5">Item 5 value.</param>
+		/// <param name="item6">Item 6 value.</param>
+		/// <param name="item7">Item 7 value.</param>
 		public ValueTuple(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7)
 		{
 			Item1 = item1;
@@ -1014,6 +1041,14 @@ namespace CodeJam
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
+		/// <param name="item1">Item 1 value.</param>
+		/// <param name="item2">Item 2 value.</param>
+		/// <param name="item3">Item 3 value.</param>
+		/// <param name="item4">Item 4 value.</param>
+		/// <param name="item5">Item 5 value.</param>
+		/// <param name="item6">Item 6 value.</param>
+		/// <param name="item7">Item 7 value.</param>
+		/// <param name="item8">Item 8 value.</param>
 		public ValueTuple(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7, T8 item8)
 		{
 			Item1 = item1;

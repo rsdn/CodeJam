@@ -64,6 +64,9 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Implements lock-free update pattern implementation based on compare-and-swap loop
 		/// </summary>
+		/// <param name="value">Value to change.</param>
+		/// <param name="updateCallback">Function to calculate new value.</param>
+		/// <returns>New value.</returns>
 		/// <remarks>
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
@@ -85,6 +88,10 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Implements lock-free update pattern implementation based on compare-and-swap loop
 		/// </summary>
+		/// <param name="value">Value to change.</param>
+		/// <param name="newValue">Precalculated new value.</param>
+		/// <param name="updateCallback">Function to calculate new value.</param>
+		/// <returns>New value.</returns>
 		/// <remarks>
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
@@ -148,6 +155,9 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Implements lock-free update pattern implementation based on compare-and-swap loop
 		/// </summary>
+		/// <param name="value">Value to change.</param>
+		/// <param name="updateCallback">Function to calculate new value.</param>
+		/// <returns>New value.</returns>
 		/// <remarks>
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
@@ -169,6 +179,10 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Implements lock-free update pattern implementation based on compare-and-swap loop
 		/// </summary>
+		/// <param name="value">Value to change.</param>
+		/// <param name="newValue">Precalculated new value.</param>
+		/// <param name="updateCallback">Function to calculate new value.</param>
+		/// <returns>New value.</returns>
 		/// <remarks>
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
@@ -232,6 +246,9 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Implements lock-free update pattern implementation based on compare-and-swap loop
 		/// </summary>
+		/// <param name="value">Value to change.</param>
+		/// <param name="updateCallback">Function to calculate new value.</param>
+		/// <returns>New value.</returns>
 		/// <remarks>
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
@@ -253,6 +270,10 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Implements lock-free update pattern implementation based on compare-and-swap loop
 		/// </summary>
+		/// <param name="value">Value to change.</param>
+		/// <param name="newValue">Precalculated new value.</param>
+		/// <param name="updateCallback">Function to calculate new value.</param>
+		/// <returns>New value.</returns>
 		/// <remarks>
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
@@ -316,6 +337,9 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Implements lock-free update pattern implementation based on compare-and-swap loop
 		/// </summary>
+		/// <param name="value">Value to change.</param>
+		/// <param name="updateCallback">Function to calculate new value.</param>
+		/// <returns>New value.</returns>
 		/// <remarks>
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
@@ -337,6 +361,10 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Implements lock-free update pattern implementation based on compare-and-swap loop
 		/// </summary>
+		/// <param name="value">Value to change.</param>
+		/// <param name="newValue">Precalculated new value.</param>
+		/// <param name="updateCallback">Function to calculate new value.</param>
+		/// <returns>New value.</returns>
 		/// <remarks>
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
@@ -404,6 +432,9 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Implements lock-free update pattern implementation based on compare-and-swap loop
 		/// </summary>
+		/// <param name="value">Value to change.</param>
+		/// <param name="updateCallback">Function to calculate new value.</param>
+		/// <returns>New value.</returns>
 		/// <remarks>
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
@@ -426,6 +457,10 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Implements lock-free update pattern implementation based on compare-and-swap loop
 		/// </summary>
+		/// <param name="value">Value to change.</param>
+		/// <param name="newValue">Precalculated new value.</param>
+		/// <param name="updateCallback">Function to calculate new value.</param>
+		/// <returns>New value.</returns>
 		/// <remarks>
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>

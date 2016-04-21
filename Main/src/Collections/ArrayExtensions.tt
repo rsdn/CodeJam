@@ -45,10 +45,11 @@ public void GenerateMethod(string type)
 {
 #>
 		/// <summary>
-		/// Returns true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
+		/// Compares length and content of <paramref name="a"/> and <paramref name="b"/>.
 		/// </summary>
 		/// <param name="a">The first array to compare.</param>
 		/// <param name="b">The second array to compare.</param>
+		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
 		public static bool EqualsTo([CanBeNull] this <#= type #>[] a, [CanBeNull] <#= type #>[] b)
 		{
@@ -76,10 +77,11 @@ public void GenerateNullableMethod(string type)
 #>
 
 		/// <summary>
-		/// Returns true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
+		/// Compares length and content of <paramref name="a"/> and <paramref name="b"/>.
 		/// </summary>
 		/// <param name="a">The first array to compare.</param>
 		/// <param name="b">The second array to compare.</param>
+		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
 		public static bool EqualsTo([CanBeNull] this <#= type #>?[] a, [CanBeNull] <#= type #>?[] b)
 		{

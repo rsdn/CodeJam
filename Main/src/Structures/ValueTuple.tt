@@ -62,6 +62,9 @@ namespace CodeJam
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
+<#	for (var j = 1; j <= i; j++) {#>
+		/// <param name="item<#=j#>">Item <#=j#> value.</param>
+<#	}#>
 		public ValueTuple(<#=string.Join(", ", range.Select(j => "T" + j + " item" + j))#>)
 		{
 <#	for (var j = 1; j <= i; j++) {#>
