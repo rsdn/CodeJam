@@ -2,14 +2,10 @@
 
 namespace CodeJam
 {
-	/// <summary>
-	/// Debug-time assertions class. Common constants
-	/// </summary>
+	/// <summary>Debug-time assertions class. Common constants</summary>
 	static partial class DebugCode
 	{
-		/// <summary>
-		/// Conditional symbol for debug builds.
-		/// </summary>
+		/// <summary>Conditional symbol for debug builds.</summary>
 		public const string DebugCondition = "DEBUG";
 	}
 }

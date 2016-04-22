@@ -10,16 +10,15 @@ using static CodeJam.PlatformDependent;
 
 namespace CodeJam
 {
-	/// <summary>
-	/// Assertions class.
-	/// </summary>
+	/// <summary>Assertions class.</summary>
 	[PublicAPI]
 	public static partial class Code
 	{
 		#region Argument validation
-		/// <summary>
-		/// Ensures that <paramref name="arg" /> != <c>null</c>
-		/// </summary>
+		/// <summary>Ensures that <paramref name="arg" /> != <c>null</c></summary>
+		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
+		/// <param name="arg">The argument.</param>
+		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNull<T>(
@@ -30,9 +29,10 @@ namespace CodeJam
 				throw CodeExceptions.ArgumentNull(argName);
 		}
 
-		/// <summary>
-		/// Ensures that <paramref name="arg" /> != <c>null</c>
-		/// </summary>
+		/// <summary>Ensures that <paramref name="arg" /> != <c>null</c></summary>
+		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
+		/// <param name="arg">The argument.</param>
+		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNull<T>(
@@ -43,9 +43,9 @@ namespace CodeJam
 				throw CodeExceptions.ArgumentNull(argName);
 		}
 
-		/// <summary>
-		/// Ensures that <paramref name="arg" /> is not null nor empty
-		/// </summary>
+		/// <summary>Ensures that <paramref name="arg" /> is not null nor empty</summary>
+		/// <param name="arg">The argument.</param>
+		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty(
@@ -56,9 +56,9 @@ namespace CodeJam
 				throw CodeExceptions.ArgumentNullOrEmpty(argName);
 		}
 
-		/// <summary>
-		/// Ensures that <paramref name="arg" /> is not null nor white space
-		/// </summary>
+		/// <summary>Ensures that <paramref name="arg" /> is not null nor white space</summary>
+		/// <param name="arg">The argument.</param>
+		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorWhiteSpace(
@@ -69,9 +69,10 @@ namespace CodeJam
 				throw CodeExceptions.ArgumentNullOrWhiteSpace(argName);
 		}
 
-		/// <summary>
-		/// Assertion for the argument value
-		/// </summary>
+		/// <summary>Assertion for the argument value</summary>
+		/// <param name="condition">The condition to check</param>
+		/// <param name="argName">Name of the argument.</param>
+		/// <param name="message">The message.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void AssertArgument(
@@ -83,9 +84,11 @@ namespace CodeJam
 				throw CodeExceptions.Argument(argName, message);
 		}
 
-		/// <summary>
-		/// Assertion for the argument value
-		/// </summary>
+		/// <summary>Assertion for the argument value</summary>
+		/// <param name="condition">The condition to check</param>
+		/// <param name="argName">Name of the argument.</param>
+		/// <param name="messageFormat">The message format.</param>
+		/// <param name="args">The arguments.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		public static void AssertArgument(
@@ -100,9 +103,11 @@ namespace CodeJam
 		#endregion
 
 		#region Argument validation - in range
-		/// <summary>
-		/// Assertion for the argument in range
-		/// </summary>
+		/// <summary>Assertion for the argument in range</summary>
+		/// <param name="value">The value.</param>
+		/// <param name="argName">Name of the argument.</param>
+		/// <param name="fromValue">From value.</param>
+		/// <param name="toValue">To value.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void InRange(
@@ -115,9 +120,12 @@ namespace CodeJam
 				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue, toValue);
 		}
 
-		/// <summary>
-		/// Assertion for the argument in range
-		/// </summary>
+		/// <summary>Assertion for the argument in range</summary>
+		/// <typeparam name="T">Type of the value</typeparam>
+		/// <param name="value">The value.</param>
+		/// <param name="argName">Name of the argument.</param>
+		/// <param name="fromValue">From value.</param>
+		/// <param name="toValue">To value.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void InRange<T>(
@@ -132,9 +140,9 @@ namespace CodeJam
 		#endregion
 
 		#region Argument validation - valid index
-		/// <summary>
-		/// Assertion for index in range
-		/// </summary>
+		/// <summary>Assertion for index in range</summary>
+		/// <param name="index">The index.</param>
+		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ValidIndex(
@@ -145,9 +153,10 @@ namespace CodeJam
 				throw CodeExceptions.IndexOutOfRange(argName, index, 0, int.MaxValue);
 		}
 
-		/// <summary>
-		/// Assertion for index in range
-		/// </summary>
+		/// <summary>Assertion for index in range</summary>
+		/// <param name="index">The index.</param>
+		/// <param name="argName">Name of the argument.</param>
+		/// <param name="length">The length.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ValidIndex(
@@ -159,9 +168,12 @@ namespace CodeJam
 				throw CodeExceptions.IndexOutOfRange(argName, index, 0, length);
 		}
 
-		/// <summary>
-		/// Assertion for from-to index pair
-		/// </summary>
+		/// <summary>Assertion for from-to index pair</summary>
+		/// <param name="fromIndex">From index.</param>
+		/// <param name="fromIndexName">Name of from index.</param>
+		/// <param name="toIndex">To index.</param>
+		/// <param name="toIndexName">Name of to index.</param>
+		/// <param name="length">The length.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ValidIndexPair(
@@ -177,9 +189,12 @@ namespace CodeJam
 				throw CodeExceptions.IndexOutOfRange(toIndexName, toIndex, fromIndex, length);
 		}
 
-		/// <summary>
-		/// Assertion for startIndex-count pair
-		/// </summary>
+		/// <summary>Assertion for startIndex-count pair</summary>
+		/// <param name="startIndex">The start index.</param>
+		/// <param name="startIndexName">Start name of the index.</param>
+		/// <param name="count">The count.</param>
+		/// <param name="countName">Name of the count.</param>
+		/// <param name="length">The length.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ValidIndexAndCount(
@@ -196,9 +211,9 @@ namespace CodeJam
 		#endregion
 
 		#region State validation
-		/// <summary>
-		/// State assertion
-		/// </summary>
+		/// <summary>State assertion</summary>
+		/// <param name="condition">The condition to check</param>
+		/// <param name="message">The message.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void AssertState(
@@ -209,9 +224,10 @@ namespace CodeJam
 				throw CodeExceptions.InvalidOperation(message);
 		}
 
-		/// <summary>
-		/// State assertion
-		/// </summary>
+		/// <summary>State assertion</summary>
+		/// <param name="condition">The condition to check</param>
+		/// <param name="messageFormat">The message format.</param>
+		/// <param name="args">The arguments.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		public static void AssertState(

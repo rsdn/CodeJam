@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 
 using JetBrains.Annotations;
+
 using CodeJam.Reflection;
 
 namespace CodeJam.Arithmetic
 {
-	/// <summary>
-	/// Helper class to emit operators logic
-	/// </summary>
+	/// <summary>Helper class to emit operators logic</summary>
 	internal static class OperatorsFactory
 	{
 		#region Helpers
 		private static NotSupportedException NotSupported<T>(ExpressionType operatorType, Exception ex) =>
-new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);
-
+			new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);
 
 		[NotNull]
 		private static Func<T, TResult> GetUnaryOperatorCore<T, TResult>(ExpressionType comparisonType)
@@ -44,7 +42,6 @@ new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorT
 				throw NotSupported<T>(comparisonType, ex);
 			}
 		}
-
 
 		[NotNull]
 		private static Func<T, T, TResult> GetBinaryOperatorCore<T, TResult>(ExpressionType comparisonType)
@@ -75,13 +72,25 @@ new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorT
 		}
 		#endregion
 
+		/// <summary>Unary operator factory method.</summary>
+		/// <typeparam name="T">The type of the operand</typeparam>
+		/// <param name="operatorType">Type of the operator.</param>
+		/// <returns>Callback for the operator</returns>
 		public static Func<T, T> UnaryOperator<T>(ExpressionType operatorType) =>
 			GetUnaryOperatorCore<T, T>(operatorType);
 
+		/// <summary>Binary operator factory method..</summary>
+		/// <typeparam name="T">The type of the operands</typeparam>
+		/// <param name="operatorType">Type of the operator.</param>
+		/// <returns>Callback for the operator</returns>
 		public static Func<T, T, T> BinaryOperator<T>(ExpressionType operatorType) =>
 			GetBinaryOperatorCore<T, T>(operatorType);
 
 		#region Comparison
+		/// <summary>Comparison factory method..</summary>
+		/// <typeparam name="T">The type of the operands</typeparam>
+		/// <returns>Callback for the comparison</returns>
+		/// <exception cref="System.NotSupportedException">Type does not implement IComparable nor IComparable{T} interface</exception>
 		[NotNull]
 		public static Func<T, T, int> Comparison<T>()
 		{
@@ -102,6 +111,10 @@ new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorT
 			return Comparer<T>.Default.Compare;
 		}
 
+		/// <summary>Compare operator factory method..</summary>
+		/// <typeparam name="T">The type of the operands</typeparam>
+		/// <param name="comparisonType">Type of the comparison operator.</param>
+		/// <returns>Callback for the compare operator</returns>
 		[NotNull]
 		public static Func<T, T, bool> ComparisonOperator<T>(ExpressionType comparisonType)
 		{
