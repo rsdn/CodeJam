@@ -76,5 +76,12 @@ namespace CodeJam.Strings
 		[TestCase(new byte[] { 0xAB, 0x9F }, ExpectedResult = "AB9F")]
 		[TestCase(new byte[] { 0xAB, 0x9F, 0xA }, ExpectedResult = "AB9F0A")]
 		public string ToHexString(byte[] data) => data.ToHexString();
+
+		[TestCase("quoted", ExpectedResult = "quoted")]
+		[TestCase("\"quoted", ExpectedResult = "\"quoted")]
+		[TestCase("quoted\"", ExpectedResult = "quoted\"")]
+		[TestCase("quo\"ted", ExpectedResult = "quo\"ted")]
+		[TestCase("\"quoted\"", ExpectedResult = "quoted")]
+		public string Unquote(string str) => str.Unquote();
 	}
 }

@@ -1,5 +1,12 @@
-CodeJam 1.0.0-rc1 Release Notes
+CodeJam 1.0.0-rc2 Release Notes
 ---------------------------------
+
+What's new in 1.0.0-rc2
+----------------------
+* AssertArgument with message factory overload removed
+* Performance optimization
+* Refactoring
+* Fixes, code cleanup, doccomments
 
 What's new in 1.0.0-rc1
 ----------------------
