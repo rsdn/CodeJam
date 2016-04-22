@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Linq;
 
 using NUnit.Framework;
 
 namespace CodeJam
 {
-	[TestFixture(Category="Disposable")]
+	[TestFixture(Category = "Disposable")]
 	public static class DisposableTests
 	{
 		[Test]
@@ -12,13 +13,14 @@ namespace CodeJam
 		{
 			var value = 0;
 			var disposable = Disposable.Create(() => value++);
-
 			// Fails if  Disposable.Create returns struct
 			var disposable2 = disposable;
 
 			Assert.That(value, Is.EqualTo(0));
+
 			disposable.Dispose();
 			Assert.That(value, Is.EqualTo(1));
+
 			disposable.Dispose();
 			Assert.That(value, Is.EqualTo(1));
 
@@ -37,14 +39,17 @@ namespace CodeJam
 					if (value != 3)
 						throw new InvalidOperationException();
 				});
-
 			Assert.That(value, Is.EqualTo(0));
+
 			Assert.Throws<InvalidOperationException>(() => disposable.Dispose());
 			Assert.That(value, Is.EqualTo(1));
+
 			Assert.Throws<InvalidOperationException>(() => disposable.Dispose());
 			Assert.That(value, Is.EqualTo(2));
+
 			Assert.DoesNotThrow(() => disposable.Dispose());
 			Assert.That(value, Is.EqualTo(3));
+
 			Assert.DoesNotThrow(() => disposable.Dispose());
 			Assert.That(value, Is.EqualTo(3));
 		}
@@ -68,26 +73,33 @@ namespace CodeJam
 				{
 					value3++;
 					if (value3 != 3)
-						throw new InvalidOperationException();
+						throw new InvalidOperationException("Test message");
 				});
 
 			var disposable = Disposable.Merge(disposable1, disposable2, disposable3);
-
 			Assert.That(value1, Is.EqualTo(0));
 			Assert.That(value2, Is.EqualTo(0));
 			Assert.That(value3, Is.EqualTo(0));
-			Assert.Throws<AggregateException>(() => disposable.Dispose());
+
+			var ex = Assert.Throws<AggregateException>(() => disposable.Dispose());
+			Assert.That(ex.InnerExceptions.Count, Is.EqualTo(1));
+			Assert.That(
+				ex.InnerExceptions.Cast<InvalidOperationException>().Single().Message,
+				Is.EqualTo("Test message"));
 			Assert.That(value1, Is.EqualTo(2));
 			Assert.That(value2, Is.EqualTo(1));
 			Assert.That(value3, Is.EqualTo(1));
+
 			Assert.Throws<AggregateException>(() => disposable.Dispose());
 			Assert.That(value1, Is.EqualTo(2));
 			Assert.That(value2, Is.EqualTo(1));
 			Assert.That(value3, Is.EqualTo(2));
+
 			Assert.DoesNotThrow(() => disposable.Dispose());
 			Assert.That(value1, Is.EqualTo(2));
 			Assert.That(value2, Is.EqualTo(1));
 			Assert.That(value3, Is.EqualTo(3));
+
 			Assert.DoesNotThrow(() => disposable.Dispose());
 			Assert.That(value1, Is.EqualTo(2));
 			Assert.That(value2, Is.EqualTo(1));
