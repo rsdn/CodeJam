@@ -23,6 +23,15 @@ namespace CodeJam
 		}
 
 		[Test]
+		public void Test00ToDiscuss()
+		{
+			Assert.IsTrue(2.Includes(0));
+			Assert.IsFalse(2.Excludes(0));
+			Assert.IsTrue(2.IncludesAny(0));
+			Assert.IsFalse(2.ExcludesAny(0));
+		}
+
+		[Test]
 		public void Test00UseCase()
 		{
 			var abc = F.A | F.B | F.C;
