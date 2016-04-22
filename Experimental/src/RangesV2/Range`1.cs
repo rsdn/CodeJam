@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 using JetBrains.Annotations;
 
@@ -110,6 +111,7 @@ namespace CodeJam.RangesV2
 		/// <returns>
 		/// The string representation of the range
 		/// </returns>
+		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 		public string ToString(string format, IFormatProvider formatProvider) =>
 			IsEmpty
 				? EmptyString

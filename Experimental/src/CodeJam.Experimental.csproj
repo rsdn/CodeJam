@@ -74,9 +74,9 @@
     <Compile Include="RangesV2\RangeExtesions.Core.cs" />
     <Compile Include="RangesV2\RangeBoundary.cs" />
     <Compile Include="RangesV2\RangeBoundaryKind.cs" />
-    <Compile Include="RangesV2\RangeBoundary`1.Comparisons.cs" />
+    <Compile Include="RangesV2\RangeBoundary`1.Operators.cs" />
     <Compile Include="RangesV2\RangeBoundary`1.cs" />
-    <Compile Include="RangesV2\Range`1.Comparison.cs" />
+    <Compile Include="RangesV2\Range`1.Operators.cs" />
     <Compile Include="RangesV2\Range`1.cs" />
     <Compile Include="Ranges\ImmutableRangeList.cs" />
     <Compile Include="Ranges\ImmutableRangeListExtensions.cs" />
