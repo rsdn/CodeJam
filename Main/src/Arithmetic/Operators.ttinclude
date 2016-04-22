@@ -6,26 +6,26 @@
 	var ops =
 		new []
 		{
-			new OpInfo("UnaryMinus", "-", ExpressionType.Negate, false),
-			new OpInfo("OnesComplement", "~", ExpressionType.OnesComplement, true),
+			new OpInfo("UnaryMinus", "-", ExpressionType.Negate),
+			new OpInfo("OnesComplement", "~", ExpressionType.OnesComplement),
 
-			new OpInfo("AreEqual", "==", ExpressionType.Equal, false),
-			new OpInfo("AreNotEqual", "!=", ExpressionType.NotEqual, false),
-			new OpInfo("GreaterThan", ">", ExpressionType.GreaterThan, false),
-			new OpInfo("GreaterThanOrEqual", ">=", ExpressionType.GreaterThanOrEqual, false),
-			new OpInfo("LessThan", "<", ExpressionType.LessThan, false),
-			new OpInfo("LessThanOrEqual", "<=", ExpressionType.LessThanOrEqual, false),
+			new OpInfo("AreEqual", "==", ExpressionType.Equal),
+			new OpInfo("AreNotEqual", "!=", ExpressionType.NotEqual),
+			new OpInfo("GreaterThan", ">", ExpressionType.GreaterThan),
+			new OpInfo("GreaterThanOrEqual", ">=", ExpressionType.GreaterThanOrEqual),
+			new OpInfo("LessThan", "<", ExpressionType.LessThan),
+			new OpInfo("LessThanOrEqual", "<=", ExpressionType.LessThanOrEqual),
 
-			new OpInfo("Plus", "+", ExpressionType.Add, false),
-			new OpInfo("Minus", "-", ExpressionType.Subtract, false),
-			new OpInfo("Mul", "*", ExpressionType.Multiply, false),
-			new OpInfo("Div", "/", ExpressionType.Divide, false),
-			new OpInfo("Modulo", "%", ExpressionType.Modulo, true),
-			new OpInfo("Xor", "^", ExpressionType.ExclusiveOr, true),
-			new OpInfo("BitwiseAnd", "&", ExpressionType.And, true),
-			new OpInfo("BitwiseOr", "|", ExpressionType.Or, true),
-			new OpInfo("LeftShift", "<<", ExpressionType.LeftShift, true),
-			new OpInfo("RightShift", ">>", ExpressionType.RightShift, true),
+			new OpInfo("Plus", "+", ExpressionType.Add),
+			new OpInfo("Minus", "-", ExpressionType.Subtract),
+			new OpInfo("Mul", "*", ExpressionType.Multiply),
+			new OpInfo("Div", "/", ExpressionType.Divide),
+			new OpInfo("Modulo", "%", ExpressionType.Modulo),
+			new OpInfo("Xor", "^", ExpressionType.ExclusiveOr),
+			new OpInfo("BitwiseAnd", "&", ExpressionType.And),
+			new OpInfo("BitwiseOr", "|", ExpressionType.Or),
+			new OpInfo("LeftShift", "<<", ExpressionType.LeftShift),
+			new OpInfo("RightShift", ">>", ExpressionType.RightShift),
 		};
 #><#+
 	protected enum OpType
@@ -41,14 +41,48 @@
 		public string Sign { get; private set; }
 		public ExpressionType Type { get; private set; }
 
-		public bool IntOnly { get; private set; }
-
-		public OpInfo(string name, string sign, ExpressionType type, bool intOnly)
+		public OpInfo(string name, string sign, ExpressionType type)
 		{
 			Name = name;
 			Type = type;
 			Sign = sign;
-			IntOnly = intOnly;
+		}
+		
+		public bool IntOnly
+		{
+			get
+			{
+				switch (Type)
+				{
+					case ExpressionType.OnesComplement:
+					case ExpressionType.Modulo:
+					case ExpressionType.ExclusiveOr:
+					case ExpressionType.And:
+					case ExpressionType.Or:
+					case ExpressionType.LeftShift:
+					case ExpressionType.RightShift:
+						return true;
+					default:
+						return false;
+				}
+			}
+		}
+
+		public bool ForEnums
+		{
+			get
+			{
+				switch (Type)
+				{
+					case ExpressionType.OnesComplement:
+					case ExpressionType.ExclusiveOr:
+					case ExpressionType.And:
+					case ExpressionType.Or:
+						return true;
+					default:
+						return false;
+				}
+			}
 		}
 
 		public OpType OpType

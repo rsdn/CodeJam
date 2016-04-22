@@ -7,15 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+
 using NUnit.Framework;
 
 using IntOp = CodeJam.Arithmetic.Operators<int>;
 using NullableDoubleOp = CodeJam.Arithmetic.Operators<double?>;
+using EnumOp = CodeJam.Arithmetic.Operators<System.AttributeTargets>;
+using NullableEnumOp = CodeJam.Arithmetic.Operators<System.AttributeTargets?>;
 
 namespace CodeJam.Arithmetic
 {
 	partial class OperatorsTest
 	{
+		private static AttributeTargets? EnumValueA = AttributeTargets.Method;
+		private static AttributeTargets? EnumValueB = AttributeTargets.Class;
+		private static AttributeTargets? EnumValueC = null;
+
 		[Test]
 		public void IntUnaryMinus() => Assert.AreEqual(-42, IntOp.UnaryMinus(42));
 
@@ -24,6 +32,17 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void IntOnesComplement() => Assert.AreEqual(~42, IntOp.OnesComplement(42));
+
+		[Test]
+		public void EnumOnesComplement() =>
+			Assert.AreEqual(~EnumValueA.Value, EnumOp.OnesComplement(EnumValueA.Value));
+
+		[Test]
+		public void NullableEnumOnesComplement()
+		{
+			Assert.AreEqual(~EnumValueA, NullableEnumOp.OnesComplement(EnumValueA));
+			Assert.AreEqual(~EnumValueC, NullableEnumOp.OnesComplement(EnumValueC));
+		}
 
 		[Test]
 		public void IntPlus() => Assert.AreEqual(1 + 2, IntOp.Plus(1, 2));
@@ -56,10 +75,49 @@ namespace CodeJam.Arithmetic
 		public void IntXor() => Assert.AreEqual(1 ^ 2, IntOp.Xor(1, 2));
 
 		[Test]
+		public void EnumXor() =>
+			Assert.AreEqual(
+				EnumValueA.Value ^ EnumValueB.Value,
+				EnumOp.Xor(EnumValueA.Value, EnumValueB.Value));
+
+		[Test]
+		public void NullableEnumXor()
+		{
+			Assert.AreEqual(EnumValueA ^ EnumValueB, NullableEnumOp.Xor(EnumValueA, EnumValueB));
+			Assert.AreEqual(EnumValueA ^ EnumValueC, NullableEnumOp.Xor(EnumValueA, EnumValueC));
+		}
+
+		[Test]
 		public void IntBitwiseAnd() => Assert.AreEqual(1 & 2, IntOp.BitwiseAnd(1, 2));
 
 		[Test]
+		public void EnumBitwiseAnd() =>
+			Assert.AreEqual(
+				EnumValueA.Value & EnumValueB.Value,
+				EnumOp.BitwiseAnd(EnumValueA.Value, EnumValueB.Value));
+
+		[Test]
+		public void NullableEnumBitwiseAnd()
+		{
+			Assert.AreEqual(EnumValueA & EnumValueB, NullableEnumOp.BitwiseAnd(EnumValueA, EnumValueB));
+			Assert.AreEqual(EnumValueA & EnumValueC, NullableEnumOp.BitwiseAnd(EnumValueA, EnumValueC));
+		}
+
+		[Test]
 		public void IntBitwiseOr() => Assert.AreEqual(1 | 2, IntOp.BitwiseOr(1, 2));
+
+		[Test]
+		public void EnumBitwiseOr() =>
+			Assert.AreEqual(
+				EnumValueA.Value | EnumValueB.Value,
+				EnumOp.BitwiseOr(EnumValueA.Value, EnumValueB.Value));
+
+		[Test]
+		public void NullableEnumBitwiseOr()
+		{
+			Assert.AreEqual(EnumValueA | EnumValueB, NullableEnumOp.BitwiseOr(EnumValueA, EnumValueB));
+			Assert.AreEqual(EnumValueA | EnumValueC, NullableEnumOp.BitwiseOr(EnumValueA, EnumValueC));
+		}
 
 		[Test]
 		public void IntLeftShift() => Assert.AreEqual(1 << 2, IntOp.LeftShift(1, 2));

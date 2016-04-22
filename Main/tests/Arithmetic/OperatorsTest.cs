@@ -9,8 +9,7 @@ using StringOp = CodeJam.Arithmetic.Operators<string>;
 
 namespace CodeJam.Arithmetic
 {
-	[TestFixture(Category = "Arithmetic")]
-	[TestFixture]
+	[TestFixture(Category = "Operators")]
 	[SuppressMessage("ReSharper", "ClassNeverInstantiated.Local")]
 	[SuppressMessage("ReSharper", "UnusedParameter.Local")]
 	public partial class OperatorsTest
