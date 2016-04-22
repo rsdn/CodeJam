@@ -30,7 +30,7 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Formats message or returns <paramref name="messageFormat" /> as it is if <paramref name="args" /> are null or empty
+		/// Formats message or returns <paramref name="messageFormat"/> as it is if <paramref name="args"/> are null or empty
 		/// </summary>
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
@@ -54,7 +54,7 @@ namespace CodeJam
 			return new ArgumentNullException(argumentName);
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentException" /> for empty string</summary>
+		/// <summary>Creates <seealso cref="ArgumentException"/> for empty string</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <seealso cref="ArgumentException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
@@ -67,7 +67,7 @@ namespace CodeJam
 				argumentName);
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentException" /> for empty (or whitespace) string</summary>
+		/// <summary>Creates <seealso cref="ArgumentException"/> for empty (or whitespace) string</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <seealso cref="ArgumentException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
@@ -80,7 +80,7 @@ namespace CodeJam
 				argumentName);
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentOutOfRangeException" /></summary>
+		/// <summary>Creates <seealso cref="ArgumentOutOfRangeException"/></summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
 		/// <param name="fromValue">From value.</param>
@@ -99,7 +99,7 @@ namespace CodeJam
 				$"The value of '{argumentName}' ({value}) should be between {fromValue} and {toValue}");
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentOutOfRangeException" /></summary>
+		/// <summary>Creates <seealso cref="ArgumentOutOfRangeException"/></summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
@@ -119,7 +119,7 @@ namespace CodeJam
 				$"The value of '{argumentName}' ('{value}') should be between '{fromValue}' and '{toValue}'");
 		}
 
-		/// <summary>Creates <seealso cref="IndexOutOfRangeException" /></summary>
+		/// <summary>Creates <seealso cref="IndexOutOfRangeException"/></summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
 		/// <param name="startIndex">The start index.</param>
@@ -138,7 +138,7 @@ namespace CodeJam
 		#endregion
 
 		#region General purpose exceptions
-		/// <summary>Creates <seealso cref="ArgumentException" /></summary>
+		/// <summary>Creates <seealso cref="ArgumentException"/></summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
@@ -155,7 +155,7 @@ namespace CodeJam
 			return new ArgumentException(FormatMessage(messageFormat, args), argumentName);
 		}
 
-		/// <summary>Creates <seealso cref="InvalidOperationException" /></summary>
+		/// <summary>Creates <seealso cref="InvalidOperationException"/></summary>
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <seealso cref="InvalidOperationException"/></returns>
@@ -173,7 +173,7 @@ namespace CodeJam
 
 		#region Exceptions for specific scenarios
 		/// <summary>
-		/// Creates <seealso cref="ArgumentOutOfRangeException" />.
+		/// Creates <seealso cref="ArgumentOutOfRangeException"/>.
 		/// Used to be thrown from the default: switch clause
 		/// </summary>
 		/// <typeparam name="T">The type of the value. Auto-inferred.</typeparam>
@@ -193,7 +193,7 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Creates <seealso cref="ArgumentOutOfRangeException" />.
+		/// Creates <seealso cref="ArgumentOutOfRangeException"/>.
 		/// Used to be thrown from default: switch clause
 		/// </summary>
 		/// <typeparam name="T">The type of the value. Auto-inferred.</typeparam>
@@ -217,7 +217,7 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Creates <seealso cref="InvalidOperationException" />.
+		/// Creates <seealso cref="InvalidOperationException"/>.
 		/// Used to be thrown from the default: switch clause
 		/// </summary>
 		/// <typeparam name="T">The type of the value. Auto-inferred.</typeparam>
@@ -233,7 +233,7 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Creates <seealso cref="InvalidOperationException" />.
+		/// Creates <seealso cref="InvalidOperationException"/>.
 		/// Used to be thrown from default: switch clause
 		/// </summary>
 		/// <param name="messageFormat">The message format.</param>

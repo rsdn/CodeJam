@@ -5,12 +5,12 @@ using JetBrains.Annotations;
 
 namespace CodeJam
 {
-	/// <summary>The <see cref="IDisposable" /> extensions.</summary>
+	/// <summary>The <see cref="IDisposable"/> extensions.</summary>
 	[PublicAPI]
 	public static class DisposableExtensions
 	{
-		/// <summary>Invokes the dispose for each item in the <paramref name="disposables" />.</summary>
-		/// <param name="disposables">The multiple <see cref="IDisposable" /> instances.</param>
+		/// <summary>Invokes the dispose for each item in the <paramref name="disposables"/>.</summary>
+		/// <param name="disposables">The multiple <see cref="IDisposable"/> instances.</param>
 		/// <exception cref="AggregateException"></exception>
 		public static void DisposeAll([NotNull, InstantHandle] this IEnumerable<IDisposable> disposables)
 		{
@@ -35,8 +35,8 @@ namespace CodeJam
 				throw new AggregateException(exceptions);
 		}
 
-		/// <summary>Invokes the dispose for each item in the <paramref name="disposables" />.</summary>
-		/// <param name="disposables">The multiple <see cref="IDisposable" /> instances.</param>
+		/// <summary>Invokes the dispose for each item in the <paramref name="disposables"/>.</summary>
+		/// <param name="disposables">The multiple <see cref="IDisposable"/> instances.</param>
 		/// <param name="exceptionHandler">The exception handler.</param>
 		public static void DisposeAll(
 			[NotNull, InstantHandle] this IEnumerable<IDisposable> disposables,
