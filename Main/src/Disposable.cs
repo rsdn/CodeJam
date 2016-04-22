@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam
 {
-	/// <summary>Helper methods for <see cref="IDisposable" /></summary>
+	/// <summary>Helper methods for <see cref="IDisposable"/></summary>
 	[PublicAPI]
 	public static class Disposable
 	{
@@ -22,7 +22,9 @@ namespace CodeJam
 			public void Dispose() { }
 		}
 
-		/// <summary>The <see cref="IDisposable" /> implementation that calls supplied action on <see cref="Dispose" />.</summary>
+		/// <summary>
+		/// The <see cref="IDisposable"/> implementation that calls supplied action on <see cref="Dispose"/>.
+		/// </summary>
 		/// DONTTOUCH: DO NOT make it a struct, passing the structure by value will result in multiple Dispose() calls.
 		/// SEALSO: https://blogs.msdn.microsoft.com/ericlippert/2011/03/14/to-box-or-not-to-box-that-is-the-question/
 		private class AnonymousDisposable : IDisposable
@@ -58,26 +60,28 @@ namespace CodeJam
 		}
 		#endregion
 
-		/// <summary><see cref="IDisposable" /> instance without any code in <see cref="IDisposable.Dispose" />.</summary>
+		/// <summary><see cref="IDisposable"/> instance without any code in <see cref="IDisposable.Dispose"/>.</summary>
 		public static readonly EmptyDisposable Empty;
 
 		/// <summary>
-		/// Creates <see cref="IDisposable" /> instance that calls <paramref name="disposeAction" /> on disposing.
+		/// Creates <see cref="IDisposable"/> instance that calls <paramref name="disposeAction"/> on disposing.
 		/// </summary>
 		/// <param name="disposeAction">The dispose action.</param>
-		/// <returns>Instance of <see cref="IDisposable" /> that calls <paramref name="disposeAction" /> on disposing.</returns>
+		/// <returns>
+		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposeAction"/> on disposing.
+		/// </returns>
 		[Pure]
 		public static IDisposable Create([NotNull] Action disposeAction) => new AnonymousDisposable(disposeAction);
 
 		/// <summary>Combine multiple <see cref="IDisposable"/> instances into single one.</summary>
 		/// <param name="disposables">The disposables.</param>
-		/// <returns>Instance of <see cref="IDisposable" /> that will dispose the specified disposables.</returns>
+		/// <returns>Instance of <see cref="IDisposable"/> that will dispose the specified disposables.</returns>
 		[NotNull, Pure]
 		public static IDisposable Merge(params IDisposable[] disposables) => Merge((IEnumerable<IDisposable>)disposables);
 
 		/// <summary>Combine multiple <see cref="IDisposable"/> instances into single one.</summary>
 		/// <param name="disposables">The disposables.</param>
-		/// <returns>Instance of <see cref="IDisposable" /> that will dispose the specified disposables.</returns>
+		/// <returns>Instance of <see cref="IDisposable"/> that will dispose the specified disposables.</returns>
 		[NotNull, Pure]
 		public static IDisposable Merge([NotNull] this IEnumerable<IDisposable> disposables) =>
 			Create(disposables.DisposeAll);

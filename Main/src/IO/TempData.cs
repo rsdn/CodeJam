@@ -64,7 +64,9 @@ namespace CodeJam.IO
 			}
 
 			/// <summary>Dispose pattern implementation - overridable part</summary>
-			/// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+			/// <param name="disposing">
+			/// <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.
+			/// </param>
 			protected void Dispose(bool disposing)
 			{
 #pragma warning disable 420
@@ -78,7 +80,9 @@ namespace CodeJam.IO
 
 			/// <summary>Temp path disposal</summary>
 			/// <param name="path">The path.</param>
-			/// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+			/// <param name="disposing">
+			/// <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.
+			/// </param>
 			protected abstract void DisposePath(string path, bool disposing);
 		}
 
@@ -106,7 +110,9 @@ namespace CodeJam.IO
 
 			/// <summary>Temp path disposal</summary>
 			/// <param name="path">The path.</param>
-			/// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+			/// <param name="disposing">
+			/// <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.
+			/// </param>
 			protected override void DisposePath(string path, bool disposing)
 			{
 				_info = null;
@@ -122,7 +128,7 @@ namespace CodeJam.IO
 		}
 
 		/// <summary>Wraps reference on a temp file meant to be deleted on dispose</summary>
-		/// <seealso cref="CodeJam.IO.TempData.TempBase" />
+		/// <seealso cref="CodeJam.IO.TempData.TempBase"/>
 		[PublicAPI]
 		public sealed class TempFile : TempBase
 		{
@@ -146,7 +152,9 @@ namespace CodeJam.IO
 
 			/// <summary>Temp path disposal</summary>
 			/// <param name="path">The path.</param>
-			/// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+			/// <param name="disposing">
+			/// <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.
+			/// </param>
 			protected override void DisposePath(string path, bool disposing)
 			{
 				_info = null;
