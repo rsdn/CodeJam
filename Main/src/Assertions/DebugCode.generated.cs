@@ -26,7 +26,7 @@ namespace CodeJam
 	public static partial class DebugCode
 	{
 		#region Argument validation
-		/// <summary>Ensures that <paramref name="arg"/> != <c>null</c></summary>
+		/// <summary>Ensures that <paramref name="arg" /> != <c>null</c></summary>
 		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
 		/// <param name="arg">The argument.</param>
 		/// <param name="argName">Name of the argument.</param>
@@ -40,7 +40,7 @@ namespace CodeJam
 				throw CodeExceptions.ArgumentNull(argName);
 		}
 
-		/// <summary>Ensures that <paramref name="arg"/> != <c>null</c></summary>
+		/// <summary>Ensures that <paramref name="arg" /> != <c>null</c></summary>
 		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
 		/// <param name="arg">The argument.</param>
 		/// <param name="argName">Name of the argument.</param>
@@ -54,7 +54,7 @@ namespace CodeJam
 				throw CodeExceptions.ArgumentNull(argName);
 		}
 
-		/// <summary>Ensures that <paramref name="arg"/> is not null nor empty</summary>
+		/// <summary>Ensures that <paramref name="arg" /> is not null nor empty</summary>
 		/// <param name="arg">The argument.</param>
 		/// <param name="argName">Name of the argument.</param>
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
@@ -67,7 +67,7 @@ namespace CodeJam
 				throw CodeExceptions.ArgumentNullOrEmpty(argName);
 		}
 
-		/// <summary>Ensures that <paramref name="arg"/> is not null nor white space</summary>
+		/// <summary>Ensures that <paramref name="arg" /> is not null nor white space</summary>
 		/// <param name="arg">The argument.</param>
 		/// <param name="argName">Name of the argument.</param>
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]

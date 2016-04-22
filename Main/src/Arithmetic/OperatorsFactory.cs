@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-using CodeJam.Reflection;
-
 using JetBrains.Annotations;
+
+using CodeJam.Reflection;
 
 namespace CodeJam.Arithmetic
 {
