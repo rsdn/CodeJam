@@ -26,9 +26,9 @@ namespace CodeJam
 		public void Test00ToDiscuss()
 		{
 			Assert.IsTrue(2.Includes(0));
-			Assert.IsFalse(2.Excludes(0));
+			Assert.IsFalse(2.DoesNotInclude(0));
 			Assert.IsTrue(2.IncludesAny(0));
-			Assert.IsFalse(2.ExcludesAny(0));
+			Assert.IsFalse(2.DoesNotIncludeAny(0));
 		}
 
 		[Test]
@@ -48,12 +48,12 @@ namespace CodeJam
 			Assert.IsFalse(abc.Includes(bd));
 			Assert.IsFalse(abc.Includes(d));
 
-			Assert.IsFalse(abc.Excludes(zero));
-			Assert.IsFalse(abc.Excludes(bc));
-			Assert.IsFalse(abc.Excludes(abc));
-			Assert.IsTrue(abc.Excludes(abcd));
-			Assert.IsTrue(abc.Excludes(bd));
-			Assert.IsTrue(abc.Excludes(d));
+			Assert.IsFalse(abc.DoesNotInclude(zero));
+			Assert.IsFalse(abc.DoesNotInclude(bc));
+			Assert.IsFalse(abc.DoesNotInclude(abc));
+			Assert.IsTrue(abc.DoesNotInclude(abcd));
+			Assert.IsTrue(abc.DoesNotInclude(bd));
+			Assert.IsTrue(abc.DoesNotInclude(d));
 
 			Assert.IsTrue(abc.IncludesAny(zero));
 			Assert.IsTrue(abc.IncludesAny(bc));
@@ -62,12 +62,12 @@ namespace CodeJam
 			Assert.IsTrue(abc.IncludesAny(bd));
 			Assert.IsFalse(abc.IncludesAny(d));
 
-			Assert.IsFalse(abc.ExcludesAny(zero));
-			Assert.IsTrue(abc.ExcludesAny(bc));
-			Assert.IsTrue(abc.ExcludesAny(abc));
-			Assert.IsTrue(abc.ExcludesAny(abcd));
-			Assert.IsTrue(abc.ExcludesAny(bd));
-			Assert.IsFalse(abc.ExcludesAny(d));
+			Assert.IsFalse(abc.DoesNotIncludeAny(zero));
+			Assert.IsFalse(abc.DoesNotIncludeAny(bc));
+			Assert.IsFalse(abc.DoesNotIncludeAny(abc));
+			Assert.IsFalse(abc.DoesNotIncludeAny(abcd));
+			Assert.IsFalse(abc.DoesNotIncludeAny(bd));
+			Assert.IsTrue(abc.DoesNotIncludeAny(d));
 		}
 
 		[Test]
@@ -87,12 +87,12 @@ namespace CodeJam
 			Assert.IsFalse(abc.Includes(bd));
 			Assert.IsFalse(abc.Includes(d));
 
-			Assert.IsFalse(abc.Excludes(zero));
-			Assert.IsFalse(abc.Excludes(bc));
-			Assert.IsFalse(abc.Excludes(abc));
-			Assert.IsTrue(abc.Excludes(abcd));
-			Assert.IsTrue(abc.Excludes(bd));
-			Assert.IsTrue(abc.Excludes(d));
+			Assert.IsFalse(abc.DoesNotInclude(zero));
+			Assert.IsFalse(abc.DoesNotInclude(bc));
+			Assert.IsFalse(abc.DoesNotInclude(abc));
+			Assert.IsTrue(abc.DoesNotInclude(abcd));
+			Assert.IsTrue(abc.DoesNotInclude(bd));
+			Assert.IsTrue(abc.DoesNotInclude(d));
 
 			Assert.IsTrue(abc.IncludesAny(zero));
 			Assert.IsTrue(abc.IncludesAny(bc));
@@ -101,12 +101,12 @@ namespace CodeJam
 			Assert.IsTrue(abc.IncludesAny(bd));
 			Assert.IsFalse(abc.IncludesAny(d));
 
-			Assert.IsFalse(abc.ExcludesAny(zero));
-			Assert.IsTrue(abc.ExcludesAny(bc));
-			Assert.IsTrue(abc.ExcludesAny(abc));
-			Assert.IsTrue(abc.ExcludesAny(abcd));
-			Assert.IsTrue(abc.ExcludesAny(bd));
-			Assert.IsFalse(abc.ExcludesAny(d));
+			Assert.IsFalse(abc.DoesNotIncludeAny(zero));
+			Assert.IsFalse(abc.DoesNotIncludeAny(bc));
+			Assert.IsFalse(abc.DoesNotIncludeAny(abc));
+			Assert.IsFalse(abc.DoesNotIncludeAny(abcd));
+			Assert.IsFalse(abc.DoesNotIncludeAny(bd));
+			Assert.IsTrue(abc.DoesNotIncludeAny(d));
 		}
 	}
 
@@ -126,14 +126,14 @@ namespace CodeJam
 		public static bool Includes(this int value, int flag) =>
 			(value & flag) == flag;
 
-		public static bool Excludes(this int value, int flag) =>
+		public static bool DoesNotInclude(this int value, int flag) =>
 			(flag != 0) && ((value & flag) != flag);
 
 		public static bool IncludesAny(this int value, int flag) =>
 			(flag == 0) || ((value & flag) != 0);
 
-		public static bool ExcludesAny(this int value, int flag) =>
-			(flag != 0) && ((value & ~flag) != value);
+		public static bool DoesNotIncludeAny(this int value, int flag) =>
+			(flag != 0) && ((value & flag) == 0);
 
 		public static bool Includes<T>(this T value, T flag)
 			where T : struct =>
@@ -141,7 +141,7 @@ namespace CodeJam
 					Ops<T>.And(value, flag),
 					flag);
 
-		public static bool Excludes<T>(this T value, T flag)
+		public static bool DoesNotInclude<T>(this T value, T flag)
 			where T : struct, IComparable, IFormattable, IConvertible =>
 				Ops<T>.NotEq(flag, default(T)) &&
 				Ops<T>.NotEq(
@@ -155,11 +155,11 @@ namespace CodeJam
 					Ops<T>.And(value, flag),
 					default(T));
 
-		public static bool ExcludesAny<T>(this T value, T flag)
+		public static bool DoesNotIncludeAny<T>(this T value, T flag)
 			where T : struct, IComparable, IFormattable, IConvertible =>
 				Ops<T>.NotEq(flag, default(T)) &&
-				Ops<T>.NotEq(
-					Ops<T>.And(value, Ops<T>.Tilda(flag)),
-					value);
+				Ops<T>.Eq(
+					Ops<T>.And(value, flag),
+					default(T));
 	}
 }
