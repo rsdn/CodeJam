@@ -119,6 +119,7 @@
     <Compile Include="TableData\DataLine.cs" />
     <Compile Include="TableData\FixedWidthFormat.cs" />
     <Compile Include="TableData\ITableDataFormatter.cs" />
+    <Compile Include="TableData\NamespaceDoc.cs" />
     <Compile Include="TableData\TableDataParser.cs" />
     <Compile Include="TableData\TableDataPrinter.cs" />
     <Compile Include="Targeting\CustomAttributeExtensions.cs" />

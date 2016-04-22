@@ -231,7 +231,7 @@ namespace CodeJam.TableData
 #endregion
 #endregion
 
-#region Formatter
+		#region Formatter
 		/// <summary>
 		/// Creates formatter for CSV.
 		/// </summary>
