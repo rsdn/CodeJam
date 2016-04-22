@@ -8,7 +8,7 @@ namespace CodeJam
 	public static class BenchmarkConstants
 	{
 		/// <summary>
-		/// Please, mark all benchmark classes with [TestFixture(Category = BenchmarkConstatnts.BenchmarkCategory)].
+		/// Please, mark all benchmark classes with [TestFixture(Category = BenchmarkConstants.BenchmarkCategory)].
 		/// That way it's easier to sort out them in a Test Explorer window
 		/// </summary>
 		public const string BenchmarkCategory = "Performance";

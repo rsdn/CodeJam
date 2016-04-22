@@ -11,7 +11,7 @@ namespace CodeJam.Reflection
 	public class InfoOfTest
 	{
 		[Test]
-		public void ExtarctingPropertyInfo1()
+		public void ExtractingPropertyInfo1()
 		{
 			var expected = typeof(User).GetProperty(nameof(User.Name));
 
@@ -27,7 +27,7 @@ namespace CodeJam.Reflection
 		}
 
 		[Test]
-		public void ExtarctingPropertyInfo2()
+		public void ExtractingPropertyInfo2()
 		{
 			var expected = typeof(User).GetProperty(nameof(User.Age));
 
@@ -59,7 +59,7 @@ namespace CodeJam.Reflection
 		}
 
 		[Test]
-		public void ExtarctingCtor()
+		public void ExtractingCtor()
 		{
 			var expected = typeof(User).GetConstructors().First(c => c.GetParameters().Length != 0);
 			var ctor1 = InfoOf.Constructor(() => new User("", ""));
@@ -70,7 +70,7 @@ namespace CodeJam.Reflection
 		}
 
 		[Test]
-		public void ExtarctingMethod1()
+		public void ExtractingMethod1()
 		{
 			var expected = typeof(User).GetMethod(nameof(User.Debug));
 			var method1 = InfoOf.Method(() => new User().Debug());
@@ -83,7 +83,7 @@ namespace CodeJam.Reflection
 		}
 
 		[Test]
-		public void ExtarctingMethod2()
+		public void ExtractingMethod2()
 		{
 			var expected = typeof(User).GetMethod(nameof(User.GetAge));
 			var method1 = InfoOf.Method(() => new User().GetAge());
@@ -98,7 +98,7 @@ namespace CodeJam.Reflection
 		}
 
 		[Test]
-		public void ExtarctingPropertyGetMethod()
+		public void ExtractingPropertyGetMethod()
 		{
 			var expected = typeof(User).GetProperty("Name").GetMethod;
 			var method1 = InfoOf.Method(() => new User().Name);

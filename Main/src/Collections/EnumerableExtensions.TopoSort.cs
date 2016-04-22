@@ -42,7 +42,7 @@ namespace CodeJam.Collections
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="keySelector">Function that returns an item key, wich is used to compare.</param>
-		/// <param name="keyComparer">Equality comparer for item comparision</param>
+		/// <param name="keyComparer">Equality comparer for item comparison</param>
 		/// <returns>Topologicaly sorted list of items in <paramref name="source"/>.</returns>
 		[NotNull]
 		[Pure]
@@ -58,7 +58,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
-		/// <param name="equalityComparer">Equality comparer for item comparision</param>
+		/// <param name="equalityComparer">Equality comparer for item comparison</param>
 		/// <returns>Topologicaly sorted list of items in <paramref name="source"/>.</returns>
 		[NotNull]
 		[Pure]
@@ -86,13 +86,13 @@ namespace CodeJam.Collections
 			HashSet<T> cycleDetector,
 			List<T> result)
 		{
-			// TODO: replace recursive algorythm by linear
+			// TODO: replace recursive algorithm by linear
 			Code.AssertArgument(!cycleDetector.Contains(item), nameof(item), "There is a cycle in supplied source.");
 			cycleDetector.Add(item);
 			if (visited.Contains(item))
 				return;
-			foreach (var depItem in dependsOnGetter(item).Where(dt => !visited.Contains(dt)))
-				SortLevel(depItem, dependsOnGetter, visited, cycleDetector, result);
+			foreach (var dependentItem in dependsOnGetter(item).Where(dt => !visited.Contains(dt)))
+				SortLevel(dependentItem, dependsOnGetter, visited, cycleDetector, result);
 			visited.Add(item);
 			result.Add(item);
 		}

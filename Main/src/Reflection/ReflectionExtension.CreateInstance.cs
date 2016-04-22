@@ -56,8 +56,8 @@ namespace CodeJam.Reflection
 		public static object CreateInstance([NotNull] this Type type, params ParamInfo[] parameters)
 		{
 			if (type == null) throw new ArgumentNullException(nameof(type));
-			var ctors = type.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-			var ctor = ctors.FirstOrDefault(c => IsCtorSuitable(c, parameters));
+			var constructors = type.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+			var ctor = constructors.FirstOrDefault(c => IsCtorSuitable(c, parameters));
 			if (ctor == null)
 				throw new ArgumentException("No suitable constructors found", nameof(type));
 			var prmsMap = parameters.ToDictionary(p => p.Name, p => p.Value);

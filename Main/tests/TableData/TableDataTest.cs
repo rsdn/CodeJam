@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 namespace CodeJam.TableData
 {
-	// TODO: replace to dump comparision
+	// TODO: replace to dump comparison
 	[TestFixture]
 	public class TableDataTest
 	{

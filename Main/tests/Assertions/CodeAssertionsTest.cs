@@ -17,14 +17,14 @@ namespace CodeJam.Assertions
 	public class CodeAssertionsTest
 	{
 		private bool? _breakOnException;
-		private CultureInfo _prevCulture;
+		private CultureInfo _previousCulture;
 
 		[OneTimeSetUp]
 		[UsedImplicitly]
 		public void SetUp()
 		{
 			_breakOnException = CodeExceptions.BreakOnException;
-			_prevCulture = Thread.CurrentThread.CurrentUICulture;
+			_previousCulture = Thread.CurrentThread.CurrentUICulture;
 			CodeExceptions.BreakOnException = false;
 			Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
 		}
@@ -34,9 +34,9 @@ namespace CodeJam.Assertions
 		public void TearDown()
 		{
 			Code.NotNull(_breakOnException, nameof(_breakOnException));
-			Code.NotNull(_prevCulture, nameof(_prevCulture));
+			Code.NotNull(_previousCulture, nameof(_previousCulture));
 			CodeExceptions.BreakOnException = _breakOnException.GetValueOrDefault();
-			Thread.CurrentThread.CurrentUICulture = _prevCulture;
+			Thread.CurrentThread.CurrentUICulture = _previousCulture;
 		}
 
 		[Test]

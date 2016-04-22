@@ -76,7 +76,7 @@ namespace CodeJam.Xml
 		}
 
 		/// <summary>
-		/// Returns attribute with name <paramref name="name"/>, or thows an exception if attribute does not exists.
+		/// Returns attribute with name <paramref name="name"/>, or throws an exception if attribute does not exists.
 		/// </summary>
 		[NotNull]
 		[Pure]

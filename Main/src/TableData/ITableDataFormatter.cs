@@ -20,7 +20,7 @@ namespace CodeJam.TableData
 		/// </summary>
 		/// <param name="values">Line values.</param>
 		/// <param name="columnWidths">Array of column widths.</param>
-		/// <returns>String representatiopn of values</returns>
+		/// <returns>String representation of values</returns>
 		[NotNull]
 		string FormatLine([NotNull] string[] values, [NotNull] int[] columnWidths);
 	}

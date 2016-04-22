@@ -83,7 +83,7 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(AttributeTargets), ExpectedResult = typeof(int))]
 		[TestCase(typeof(int?), ExpectedResult = typeof(int))]
 		[TestCase(typeof(string), ExpectedResult = typeof(string))]
-		public Type ToUndelying(Type type) => type.ToUnderlying();
+		public Type ToUnderlying(Type type) => type.ToUnderlying();
 
 		[CompilerGenerated]
 		private class NotAnonymousType<T> : List<T>

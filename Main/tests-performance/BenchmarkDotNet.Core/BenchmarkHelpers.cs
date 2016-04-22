@@ -51,7 +51,7 @@ namespace BenchmarkDotNet.Helpers
 				return 0;
 
 			// DONTTOUCH: the following code was taken from http://stackoverflow.com/a/8137526 and it is proven
-			// to work in the same way the excel's counterpart does.
+			// to work in the same way the excel counterpart does.
 			// So it's better to leave it as it is unless you do not want to reimplement it from scratch:)
 			// ReSharper disable SuggestVarOrType_BuiltInTypes
 			Array.Sort(elements);

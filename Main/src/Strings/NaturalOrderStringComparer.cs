@@ -42,7 +42,7 @@ namespace CodeJam.Strings
 		/// A <see cref="Comparison{T}"/> delegate that performs a string comparison using a "natural order" algorithm.
 		/// </returns>
 		[NotNull]
-		public static readonly Comparison<string> Comparision = (a, b) => Compare(a, b, false);
+		public static readonly Comparison<string> Comparison = (a, b) => Compare(a, b, false);
 
 		/// <summary>
 		/// Gets a <see cref="Comparison{T}"/> delegate that performs a case-insensitive
@@ -53,7 +53,7 @@ namespace CodeJam.Strings
 		/// string comparison using a "natural order" algorithm.
 		/// </returns>
 		[NotNull]
-		public static readonly Comparison<string> IgnoreCaseComparision = (a, b) => Compare(a, b, true);
+		public static readonly Comparison<string> IgnoreCaseComparison = (a, b) => Compare(a, b, true);
 
 		/// <summary>
 		/// true to ignore case during the comparison; otherwise, false.

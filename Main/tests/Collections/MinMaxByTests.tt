@@ -34,7 +34,7 @@ namespace CodeJam
 			=> source.Select(v => new Item<<#= type #>>((<#= type #>)v)).<#= info.Method #>(i => i.Value)?.Value;
 
 		[TestCase(arg: new int[0])]
-		public void <#= info.Method #><#= type #>NoElems(int[] source)
+		public void <#= info.Method #><#= type #>NoElements(int[] source)
 			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<<#= type #>>((<#= type #>)v)).<#= info.Method #>(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "<#= info.Method #> <#= type #> Array",  ExpectedResult = <#= info.Result #>)]
@@ -50,7 +50,7 @@ namespace CodeJam
 
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
-		public void <#= info.Method #><#= type #>NullableNoElems(string[] source)
+		public void <#= info.Method #><#= type #>NullableNoElements(string[] source)
 			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<<#= type #>?>((<#= type #>?)(v.ToInt()))).<#= info.Method #>(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "<#= info.Method #> <#= type #> Nullable Array",  ExpectedResult = <#= info.Result #>)]

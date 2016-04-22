@@ -300,7 +300,7 @@ namespace CodeJam.TableData
 			/// </summary>
 			/// <param name="values">Line values.</param>
 			/// <param name="columnWidths">Array of column widths. If null - value is ignored.</param>
-			/// <returns>String representatiopn of values</returns>
+			/// <returns>String representation of values</returns>
 			public string FormatLine(string[] values, int[] columnWidths) =>
 				values
 					.Zip(columnWidths, (s, w) => s.PadLeft(w))
