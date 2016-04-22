@@ -21,7 +21,7 @@ namespace CodeJam.CmdLine
 			var rules =
 				new CmdLineRules(
 					CommandQuantifier.ZeroOrOne,
-					new []
+					new[]
 					{
 						new CommandRule("cmd1", "Command 1."),
 						new CommandRule("cmd2", "Command 2."),
@@ -84,7 +84,7 @@ Usage: program.exe <cmd1|cmd2> [/opt1...]
                          - OPTIONS -
  /opt1 - 
 ",
-			res);
+				res);
 		}
 	}
 }
