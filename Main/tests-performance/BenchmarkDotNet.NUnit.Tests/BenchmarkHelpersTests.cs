@@ -35,7 +35,7 @@ namespace BenchmarkDotNet.NUnit.Tests
 		private static readonly double[] _data = { 1, 2, 3, 4, 1, 2, 3, 1, 3, 45, 12, 43, 11 };
 
 		/// <summary>
-		/// Output from Excel's PERCENTILE()
+		/// Output from Excel PERCENTILE()
 		/// </summary>
 		private static readonly Dictionary<double, double> _expectedPercentiles = new Dictionary<double, double>
 		{

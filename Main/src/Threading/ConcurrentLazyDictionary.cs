@@ -36,7 +36,7 @@ namespace CodeJam.Threading
 		}
 
 		/// <summary>
-		/// Initiailze instance.
+		/// Initialize instance.
 		/// </summary>
 		/// <param name="valueFactory">Function to create value on demand.</param>
 		public ConcurrentLazyDictionary([NotNull] Func<TKey, TValue> valueFactory)

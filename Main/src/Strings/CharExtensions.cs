@@ -50,7 +50,7 @@ namespace CodeJam.Strings
 		/// Infix form of <see cref="char.IsHighSurrogate(char)"/>.
 		/// </summary>
 		[Pure]
-		public static bool IsHightSurrogate(this char chr) => char.IsHighSurrogate(chr);
+		public static bool IsHighSurrogate(this char chr) => char.IsHighSurrogate(chr);
 
 		/// <summary>
 		/// Infix form of <see cref="char.IsLowSurrogate(char)"/>.

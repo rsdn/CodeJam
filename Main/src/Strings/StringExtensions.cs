@@ -50,7 +50,7 @@ namespace CodeJam.Strings
 		}
 
 		/// <summary>
-		/// Retireves prefix of length <paramref name="length"/>.
+		/// Retrieves prefix of length <paramref name="length"/>.
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="length">The number of characters in the substring.</param>
@@ -59,7 +59,7 @@ namespace CodeJam.Strings
 		public static string Prefix([NotNull] this string str, int length) => str.Substring(StringOrigin.Begin, length);
 
 		/// <summary>
-		/// Retireves prefix of length <paramref name="length"/>.
+		/// Retrieves prefix of length <paramref name="length"/>.
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="length">The number of characters in the substring.</param>

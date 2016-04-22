@@ -46,7 +46,7 @@ namespace CodeJam.Reflection
 			ExpressionHelper.GetField(expression);
 
 		/// <summary>
-		/// Returns the contsructor.
+		/// Returns the constructor.
 		/// </summary>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>

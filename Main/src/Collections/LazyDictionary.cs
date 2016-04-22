@@ -20,7 +20,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="TValue">Type of value</typeparam>
 		/// <param name="valueFactory">Function to create value on demand.</param>
 		/// <param name="comparer">Key comparer.</param>
-		/// <param name="threadSafe">If true, creates a thread safe impementation</param>
+		/// <param name="threadSafe">If true, creates a thread safe implementation</param>
 		/// <returns><see cref="ILazyDictionary{TKey,TValue}"/> implementation.</returns>
 		[NotNull]
 		[Pure]
@@ -38,7 +38,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="TKey">Type of key</typeparam>
 		/// <typeparam name="TValue">Type of value</typeparam>
 		/// <param name="valueFactory">Function to create value on demand.</param>
-		/// <param name="threadSafe">If true, creates a thread safe impementation</param>
+		/// <param name="threadSafe">If true, creates a thread safe implementation</param>
 		/// <returns><see cref="ILazyDictionary{TKey,TValue}"/> implementation.</returns>
 		[NotNull]
 		[Pure]

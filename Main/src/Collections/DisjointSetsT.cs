@@ -25,7 +25,7 @@ namespace CodeJam.Collections
 		}
 
 		/// <summary>Gets an element by its index</summary>
-		/// <param name="index">Elmement's index</param>
+		/// <param name="index">Element's index</param>
 		public T this[int index] => Nodes[index].Value;
 
 		/// <summary>Appends a list of values</summary>

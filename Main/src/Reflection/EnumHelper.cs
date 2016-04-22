@@ -66,7 +66,7 @@ namespace CodeJam.Reflection
 			(T)Enum.Parse(typeof (T), value, ignoreCase);
 
 		/// <summary>
-		/// Retrievies an array of name/value pairs in a specified enumeration.
+		/// Retrieves an array of name/value pairs in a specified enumeration.
 		/// </summary>
 		/// <typeparam name="T">An enumeration type.</typeparam>
 		/// <returns>
