@@ -53,9 +53,9 @@ namespace CodeJam
 				, Throws.InstanceOf(typeof(ArgumentException)));
 			// IComparable version
 			var list2 = list.Cast<IComparable<double>>().ToList();
-			Assert.That(() => list2.LowerBound(10.0, 0, to), Throws.InstanceOf(typeof(ArgumentException)));
+			Assert.That(() => list2.LowerBound(10.0, 0, to), Throws.InstanceOf(typeof(ArgumentOutOfRangeException)));
 			// specific version
-			Assert.That(() => list.LowerBound(10.0, 0, to), Throws.InstanceOf(typeof(ArgumentException)));
+			Assert.That(() => list.LowerBound(10.0, 0, to), Throws.InstanceOf(typeof(ArgumentOutOfRangeException)));
 		}
 
 		[Test]
@@ -65,13 +65,14 @@ namespace CodeJam
 			const int from = 2;
 			const int to = 0;
 			// comparer version
-			Assert.That(() => list.LowerBound(10.0, from, to, Comparer<double>.Default.Compare)
-				, Throws.ArgumentException);
+			Assert.That(
+				() => list.LowerBound(10.0, from, to, Comparer<double>.Default.Compare),
+				Throws.InstanceOf(typeof(ArgumentOutOfRangeException)));
 			// IComparable version
 			var list2 = list.Cast<IComparable<double>>().ToList();
-			Assert.That(() => list2.LowerBound(10.0, from, to), Throws.ArgumentException);
+			Assert.That(() => list2.LowerBound(10.0, from, to), Throws.InstanceOf(typeof(ArgumentOutOfRangeException)));
 			// specific version
-			Assert.That(() => list.LowerBound(10.0, from, to), Throws.ArgumentException);
+			Assert.That(() => list.LowerBound(10.0, from, to), Throws.InstanceOf(typeof(ArgumentOutOfRangeException)));
 		}
 
 		[Test]
