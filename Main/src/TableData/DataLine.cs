@@ -12,7 +12,11 @@ namespace CodeJam.TableData
 	[PublicAPI]
 	public struct DataLine
 	{
-		/// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:System.Object" /> class.
+		/// </summary>
+		/// <param name="lineNum">The line number.</param>
+		/// <param name="values">Line values.</param>
 		public DataLine(int lineNum, string[] values)
 		{
 			LineNum = lineNum;

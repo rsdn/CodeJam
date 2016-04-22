@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 namespace CodeJam.TableData
 {
 	/// <summary>
-	/// 
+	/// Contains methods for table data parsing.
 	/// </summary>
 	[PublicAPI]
 	public static class TableDataParser
