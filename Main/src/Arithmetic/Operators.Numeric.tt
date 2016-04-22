@@ -10,6 +10,10 @@ using static CodeJam.Arithmetic.OperatorsFactory;
 
 namespace CodeJam.Arithmetic
 {
+	/// <summary>
+	/// Callbacks for common arithmetic actions.
+	/// Look at OperatorsPerformanceTest to see why.
+	/// </summary>
 	static partial class Operators<T>
 	{
 <#
@@ -35,10 +39,9 @@ namespace CodeJam.Arithmetic
 		{#>
 		private static readonly Lazy<Func<T, T, bool>> _<#=op.LowerName#> =
 			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.<#=op.Type#>), LazyMode);
-
-		/// <summary>
-		/// <#=op.Name#> operator.
-		/// </summary>
+		
+		/// <summary><#=op.Name#> operator.</summary>
+		/// <value>The <#=op.Name#> operator.</value>
 		[NotNull]
 		public static Func<T, T, bool> <#=op.Name#> => _<#=op.LowerName#>.Value;
 <#		}
@@ -47,9 +50,8 @@ namespace CodeJam.Arithmetic
 		private static readonly Lazy<Func<T, T>> _<#=op.LowerName#> =
 			new Lazy<Func<T, T>>(() => UnaryOperator<T>(ExpressionType.<#=op.Type#>), LazyMode);
 
-		/// <summary>
-		/// <#=op.Name#> operator.
-		/// </summary>
+		/// <summary><#=op.Name#> operator.</summary>
+		/// <value>The <#=op.Name#> operator.</value>
 		[NotNull]
 		public static Func<T, T> <#=op.Name#> => _<#=op.LowerName#>.Value;
 <#		}
@@ -58,9 +60,8 @@ namespace CodeJam.Arithmetic
 		private static readonly Lazy<Func<T, T, T>> _<#=op.LowerName#> =
 			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.<#=op.Type#>), LazyMode);
 
-		/// <summary>
-		/// <#=op.Name#> operator.
-		/// </summary>
+		/// <summary><#=op.Name#> operator.</summary>
+		/// <value>The <#=op.Name#> operator.</value>
 		[NotNull]
 		public static Func<T, T, T> <#=op.Name#> => _<#=op.LowerName#>.Value;
 <#		}

@@ -9,22 +9,19 @@ using static CodeJam.PlatformDependent;
 
 namespace CodeJam
 {
-	/// <summary>
-	/// Exception factory class
-	/// </summary>
+	/// <summary>Exception factory class</summary>
 	[PublicAPI]
 	public static class CodeExceptions
 	{
 		#region Behavior setup and implementation helpers
 		/// <summary>
-		/// If true, breaks execution on assertion failure.
+		/// If true, breaks execution if debugger is attached and assertion is failed.
 		/// Enabled by default.
 		/// </summary>
+		/// <value><c>true</c> if the execution will break on exception creation, otherwise, <c>false</c>.</value>
 		public static bool BreakOnException { get; set; } = true;
 
-		/// <summary>
-		/// BreaksExecution if debugger attached
-		/// </summary>
+		/// <summary>BreaksExecution if debugger attached</summary>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		public static void BreakIfAttached()
 		{
@@ -33,8 +30,11 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Formats message or returns <paramref name="messageFormat"/> as it is if <paramref name="args"/> are null or empty
+		/// Formats message or returns <paramref name="messageFormat" /> as it is if <paramref name="args" /> are null or empty
 		/// </summary>
+		/// <param name="messageFormat">The message format.</param>
+		/// <param name="args">The arguments.</param>
+		/// <returns>Formatted string.</returns>
 		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[StringFormatMethod("messageFormat")]
@@ -43,9 +43,9 @@ namespace CodeJam
 		#endregion
 
 		#region Argument validation
-		/// <summary>
-		/// Creates <seealso cref="ArgumentNullException"/>
-		/// </summary>
+		/// <summary>Creates <seealso cref="ArgumentNullException"/>.</summary>
+		/// <param name="argumentName">Name of the argument.</param>
+		/// <returns>Initialized instance of <seealso cref="ArgumentNullException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static ArgumentNullException ArgumentNull([NotNull, InvokerParameterName] string argumentName)
@@ -54,9 +54,9 @@ namespace CodeJam
 			return new ArgumentNullException(argumentName);
 		}
 
-		/// <summary>
-		/// Creates <seealso cref="ArgumentException"/> for empty string
-		/// </summary>
+		/// <summary>Creates <seealso cref="ArgumentException" /> for empty string</summary>
+		/// <param name="argumentName">Name of the argument.</param>
+		/// <returns>Initialized instance of <seealso cref="ArgumentException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static ArgumentException ArgumentNullOrEmpty([NotNull, InvokerParameterName] string argumentName)
@@ -67,9 +67,9 @@ namespace CodeJam
 				argumentName);
 		}
 
-		/// <summary>
-		/// Creates <seealso cref="ArgumentException"/> for empty (or whitespace) string
-		/// </summary>
+		/// <summary>Creates <seealso cref="ArgumentException" /> for empty (or whitespace) string</summary>
+		/// <param name="argumentName">Name of the argument.</param>
+		/// <returns>Initialized instance of <seealso cref="ArgumentException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static ArgumentException ArgumentNullOrWhiteSpace([NotNull, InvokerParameterName] string argumentName)
@@ -80,9 +80,12 @@ namespace CodeJam
 				argumentName);
 		}
 
-		/// <summary>
-		/// Creates <seealso cref="ArgumentOutOfRangeException"/>
-		/// </summary>
+		/// <summary>Creates <seealso cref="ArgumentOutOfRangeException" /></summary>
+		/// <param name="argumentName">Name of the argument.</param>
+		/// <param name="value">The value.</param>
+		/// <param name="fromValue">From value.</param>
+		/// <param name="toValue">To value.</param>
+		/// <returns>Initialized instance of <seealso cref="ArgumentOutOfRangeException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static ArgumentOutOfRangeException ArgumentOutOfRange(
@@ -96,9 +99,13 @@ namespace CodeJam
 				$"The value of '{argumentName}' ({value}) should be between {fromValue} and {toValue}");
 		}
 
-		/// <summary>
-		/// Creates <seealso cref="ArgumentOutOfRangeException"/>
-		/// </summary>
+		/// <summary>Creates <seealso cref="ArgumentOutOfRangeException" /></summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="argumentName">Name of the argument.</param>
+		/// <param name="value">The value.</param>
+		/// <param name="fromValue">From value.</param>
+		/// <param name="toValue">To value.</param>
+		/// <returns>Initialized instance of <seealso cref="ArgumentOutOfRangeException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static ArgumentOutOfRangeException ArgumentOutOfRange<T>(
@@ -112,9 +119,12 @@ namespace CodeJam
 				$"The value of '{argumentName}' ('{value}') should be between '{fromValue}' and '{toValue}'");
 		}
 
-		/// <summary>
-		/// Creates <seealso cref="IndexOutOfRangeException"/>
-		/// </summary>
+		/// <summary>Creates <seealso cref="IndexOutOfRangeException" /></summary>
+		/// <param name="argumentName">Name of the argument.</param>
+		/// <param name="value">The value.</param>
+		/// <param name="startIndex">The start index.</param>
+		/// <param name="length">The length.</param>
+		/// <returns>Initialized instance of <seealso cref="IndexOutOfRangeException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static IndexOutOfRangeException IndexOutOfRange(
@@ -128,9 +138,11 @@ namespace CodeJam
 		#endregion
 
 		#region General purpose exceptions
-		/// <summary>
-		/// Creates <seealso cref="ArgumentException"/>
-		/// </summary>
+		/// <summary>Creates <seealso cref="ArgumentException" /></summary>
+		/// <param name="argumentName">Name of the argument.</param>
+		/// <param name="messageFormat">The message format.</param>
+		/// <param name="args">The arguments.</param>
+		/// <returns>Initialized instance of <seealso cref="ArgumentException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[StringFormatMethod("messageFormat")]
 		[MustUseReturnValue]
@@ -143,9 +155,10 @@ namespace CodeJam
 			return new ArgumentException(FormatMessage(messageFormat, args), argumentName);
 		}
 
-		/// <summary>
-		/// Creates <seealso cref="InvalidOperationException"/>
-		/// </summary>
+		/// <summary>Creates <seealso cref="InvalidOperationException" /></summary>
+		/// <param name="messageFormat">The message format.</param>
+		/// <param name="args">The arguments.</param>
+		/// <returns>Initialized instance of <seealso cref="InvalidOperationException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[StringFormatMethod("messageFormat")]
 		[MustUseReturnValue]
@@ -160,9 +173,13 @@ namespace CodeJam
 
 		#region Exceptions for specific scenarios
 		/// <summary>
-		/// Creates <seealso cref="ArgumentOutOfRangeException"/>.
+		/// Creates <seealso cref="ArgumentOutOfRangeException" />.
 		/// Used to be thrown from the default: switch clause
 		/// </summary>
+		/// <typeparam name="T">The type of the value. Auto-inferred.</typeparam>
+		/// <param name="argumentName">Name of the argument.</param>
+		/// <param name="value">The value.</param>
+		/// <returns>Initialized instance of <seealso cref="ArgumentOutOfRangeException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static ArgumentOutOfRangeException UnexpectedArgumentValue<T>(
@@ -176,9 +193,15 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Creates <seealso cref="ArgumentOutOfRangeException"/>.
+		/// Creates <seealso cref="ArgumentOutOfRangeException" />.
 		/// Used to be thrown from default: switch clause
 		/// </summary>
+		/// <typeparam name="T">The type of the value. Auto-inferred.</typeparam>
+		/// <param name="argumentName">Name of the argument.</param>
+		/// <param name="value">The value.</param>
+		/// <param name="messageFormat">The message format.</param>
+		/// <param name="args">The arguments.</param>
+		/// <returns>Initialized instance of <seealso cref="ArgumentOutOfRangeException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[StringFormatMethod("messageFormat")]
 		[MustUseReturnValue]
@@ -194,9 +217,12 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Creates <seealso cref="InvalidOperationException"/>.
+		/// Creates <seealso cref="InvalidOperationException" />.
 		/// Used to be thrown from the default: switch clause
 		/// </summary>
+		/// <typeparam name="T">The type of the value. Auto-inferred.</typeparam>
+		/// <param name="value">The value.</param>
+		/// <returns>Initialized instance of <seealso cref="InvalidOperationException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static InvalidOperationException UnexpectedValue<T>([CanBeNull] T value)
@@ -207,9 +233,12 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Creates <seealso cref="InvalidOperationException"/>.
+		/// Creates <seealso cref="InvalidOperationException" />.
 		/// Used to be thrown from default: switch clause
 		/// </summary>
+		/// <param name="messageFormat">The message format.</param>
+		/// <param name="args">The arguments.</param>
+		/// <returns>Initialized instance of <seealso cref="InvalidOperationException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[StringFormatMethod("messageFormat")]
 		[MustUseReturnValue]
@@ -220,9 +249,9 @@ namespace CodeJam
 			return new InvalidOperationException(FormatMessage(messageFormat, args));
 		}
 
-		/// <summary>
-		/// Throw this if the object is disposed.
-		/// </summary>
+		/// <summary>Throw this if the object is disposed.</summary>
+		/// <param name="typeofDisposedObject">The typeof disposed object.</param>
+		/// <returns>Initialized instance of <seealso cref="ObjectDisposedException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[StringFormatMethod("messageFormat")]
 		[MustUseReturnValue]
@@ -232,9 +261,11 @@ namespace CodeJam
 			return new ObjectDisposedException(typeofDisposedObject?.FullName);
 		}
 
-		/// <summary>
-		/// Throw this if the object is disposed.
-		/// </summary>
+		/// <summary>Throw this if the object is disposed.</summary>
+		/// <param name="typeofDisposedObject">The typeof disposed object.</param>
+		/// <param name="messageFormat">The message format.</param>
+		/// <param name="args">The arguments.</param>
+		/// <returns>Initialized instance of <seealso cref="ObjectDisposedException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[StringFormatMethod("messageFormat")]
 		[MustUseReturnValue]
@@ -245,9 +276,10 @@ namespace CodeJam
 			return new ObjectDisposedException(typeofDisposedObject?.FullName, FormatMessage(messageFormat, args));
 		}
 
-		/// <summary>
-		/// Used to be thrown in places expected to be unreachable.
-		/// </summary>
+		/// <summary>Used to be thrown in places expected to be unreachable.</summary>
+		/// <param name="messageFormat">The message format.</param>
+		/// <param name="args">The arguments.</param>
+		/// <returns>Initialized instance of <seealso cref="ObjectDisposedException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[StringFormatMethod("messageFormat")]
 		[MustUseReturnValue]
