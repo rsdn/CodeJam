@@ -7,9 +7,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.IO
 {
-	/// <summary>
-	/// Methods to work with temporary data.
-	/// </summary>
+	/// <summary>Methods to work with temporary data.</summary>
 	[PublicAPI]
 	public static class TempData
 	{
@@ -23,14 +21,11 @@ namespace CodeJam.IO
 		{
 			private volatile string _path;
 
-			/// <summary>
-			/// Assertion on object dispose
-			/// </summary>
+			/// <summary>Assertion on object dispose</summary>
 			protected void AssertNotDisposed() => Code.DisposedIfNull(_path, this);
 
-			/// <summary>
-			/// Initialize instance.
-			/// </summary>
+			/// <summary>Initializes a new instance of the <see cref="TempBase"/> class.</summary>
+			/// <param name="path">The path.</param>
 			protected TempBase(string path)
 			{
 				Code.NotNullNorEmpty(path, nameof(path));
@@ -38,9 +33,8 @@ namespace CodeJam.IO
 				_path = path;
 			}
 
-			/// <summary>
-			/// Temp path.
-			/// </summary>
+			/// <summary>Temp path.</summary>
+			/// <value>The path.</value>
 			[NotNull]
 			public string Path
 			{
@@ -51,17 +45,13 @@ namespace CodeJam.IO
 				}
 			}
 
-			/// <summary>
-			/// Finalize instance
-			/// </summary>
+			/// <summary>Finalize instance</summary>
 			~TempBase()
 			{
 				Dispose(false);
 			}
 
-			/// <summary>
-			/// Delete the temp file|directory
-			/// </summary>
+			/// <summary>Delete the temp file|directory</summary>
 			public void Dispose()
 			{
 				if (_path != null) // Fast check
@@ -73,9 +63,8 @@ namespace CodeJam.IO
 				}
 			}
 
-			/// <summary>
-			/// Dispose pattern implementation - overridable part
-			/// </summary>
+			/// <summary>Dispose pattern implementation - overridable part</summary>
+			/// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
 			protected void Dispose(bool disposing)
 			{
 #pragma warning disable 420
@@ -87,28 +76,24 @@ namespace CodeJam.IO
 				DisposePath(path, disposing);
 			}
 
-			/// <summary>
-			/// Temp path disposal
-			/// </summary>
+			/// <summary>Temp path disposal</summary>
+			/// <param name="path">The path.</param>
+			/// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
 			protected abstract void DisposePath(string path, bool disposing);
 		}
 
-		/// <summary>
-		/// Wraps reference on a temp directory meant to be deleted on dispose
-		/// </summary>
+		/// <summary>Wraps reference on a temp directory meant to be deleted on dispose</summary>
 		[PublicAPI]
 		public sealed class TempDirectory : TempBase
 		{
 			private DirectoryInfo _info;
 
-			/// <summary>
-			/// Initialize instance.
-			/// </summary>
+			/// <summary>Initializes a new instance of the <see cref="TempDirectory"/> class.</summary>
+			/// <param name="path">The path.</param>
 			public TempDirectory(string path) : base(path) { }
 
-			/// <summary>
-			/// DirectoryInfo object
-			/// </summary>
+			/// <summary>DirectoryInfo object</summary>
+			/// <value>The DirectoryInfo object.</value>
 			[NotNull]
 			public DirectoryInfo Info
 			{
@@ -119,9 +104,9 @@ namespace CodeJam.IO
 				}
 			}
 
-			/// <summary>
-			/// Temp path disposal
-			/// </summary>
+			/// <summary>Temp path disposal</summary>
+			/// <param name="path">The path.</param>
+			/// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
 			protected override void DisposePath(string path, bool disposing)
 			{
 				_info = null;
@@ -136,22 +121,19 @@ namespace CodeJam.IO
 			}
 		}
 
-		/// <summary>
-		/// Wraps reference on a temp file meant to be deleted on dispose
-		/// </summary>
+		/// <summary>Wraps reference on a temp file meant to be deleted on dispose</summary>
+		/// <seealso cref="CodeJam.IO.TempData.TempBase" />
 		[PublicAPI]
 		public sealed class TempFile : TempBase
 		{
 			private FileInfo _info;
 
-			/// <summary>
-			/// Initialize instance.
-			/// </summary>
+			/// <summary>Initialize instance.</summary>
+			/// <param name="path">The path.</param>
 			public TempFile(string path) : base(path) { }
 
-			/// <summary>
-			/// DirectoryInfo object
-			/// </summary>
+			/// <summary>FileInfo object</summary>
+			/// <value>The FileInfo object.</value>
 			[NotNull]
 			public FileInfo Info
 			{
@@ -162,9 +144,9 @@ namespace CodeJam.IO
 				}
 			}
 
-			/// <summary>
-			/// Temp path disposal
-			/// </summary>
+			/// <summary>Temp path disposal</summary>
+			/// <param name="path">The path.</param>
+			/// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
 			protected override void DisposePath(string path, bool disposing)
 			{
 				_info = null;
@@ -183,9 +165,8 @@ namespace CodeJam.IO
 		#region Factory methods
 		private static string GetTempName() => Guid.NewGuid() + ".tmp";
 
-		/// <summary>
-		/// Creates temp directory and returns <see cref="IDisposable"/> to free it.
-		/// </summary>
+		/// <summary>Creates temp directory and returns <see cref="IDisposable"/> to free it.</summary>
+		/// <returns>Temp directory to be freed on dispose.</returns>
 		public static TempDirectory CreateDirectory()
 		{
 			var directoryPath = Path.Combine(Path.GetTempPath(), GetTempName());
@@ -193,14 +174,14 @@ namespace CodeJam.IO
 			return new TempDirectory(directoryPath);
 		}
 
-		/// <summary>
-		/// Creates temp file and return disposable handle.
-		/// </summary>
+		/// <summary>Creates temp file and return disposable handle.</summary>
+		/// <returns>Temp file to be freed on dispose.</returns>
 		public static TempFile CreateFile() => CreateFile(Path.GetTempPath());
 
-		/// <summary>
-		/// Creates temp file and return disposable handle.
-		/// </summary>
+		/// <summary>Creates temp file and return disposable handle.</summary>
+		/// <param name="dirPath">The dir path.</param>
+		/// <param name="fileName">Name of the temp file.</param>
+		/// <returns>Temp file to be freed on dispose.</returns>
 		/// <exception cref="ArgumentNullException"><paramref name="dirPath"/> is null.</exception>
 		public static TempFile CreateFile([NotNull] string dirPath, [CanBeNull] string fileName = null)
 		{
@@ -214,15 +195,17 @@ namespace CodeJam.IO
 			return new TempFile(filePath);
 		}
 
-		/// <summary>
-		/// Creates stream and returns disposable handler.
-		/// </summary>
+		/// <summary>Creates stream and returns disposable handler.</summary>
+		/// <param name="fileAccess">The file access.</param>
+		/// <returns>Temp stream to be freed on dispose.</returns>
 		public static FileStream CreateFileStream(FileAccess fileAccess = FileAccess.ReadWrite) =>
 			CreateFileStream(Path.GetTempPath(), null, fileAccess);
 
-		/// <summary>
-		/// Creates stream and returns disposable handler.
-		/// </summary>
+		/// <summary> Creates stream and returns disposable handler.</summary>
+		/// <param name="dirPath">The dir path.</param>
+		/// <param name="fileName">Name of the temp file.</param>
+		/// <param name="fileAccess">The file access.</param>
+		/// <returns>Temp stream to be freed on dispose.</returns>
 		public static FileStream CreateFileStream(
 			[NotNull] string dirPath, [CanBeNull] string fileName = null, FileAccess fileAccess = FileAccess.ReadWrite)
 		{
