@@ -4,6 +4,7 @@ CodeJam 1.0.0-rc2 Release Notes
 What's new in 1.0.0-rc2
 ----------------------
 * AssertArgument with message factory overload removed
+* DisjointSets postponed to next release
 * Performance optimization
 * Refactoring
 * Fixes, code cleanup, doccomments
