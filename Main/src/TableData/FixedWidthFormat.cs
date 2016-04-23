@@ -19,9 +19,10 @@ namespace CodeJam.TableData
 		/// Creates fixed width format parser.
 		/// </summary>
 		/// <param name="widths">Array of column widths</param>
-		/// <returns>Parser to use with <see cref="TableDataParser.Parse(TableDataParser.Parser,string)"/></returns>
+		/// <returns>Parser to use with <see cref="TableDataParser.Parse(Parser,string)"/></returns>
 		[NotNull]
-		public static TableDataParser.Parser CreateParser([NotNull] int[] widths)
+		[Pure]
+		public static Parser CreateParser([NotNull] int[] widths)
 		{
 			Code.NotNull(widths, nameof(widths));
 			Code.AssertArgument(widths.Length > 0, nameof(widths), "At least one column must be specified");
