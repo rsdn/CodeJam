@@ -49,7 +49,7 @@ namespace CodeJam
 				new KeyValuePair<int, int>(3, 8),
 				new KeyValuePair<int, int>(8, 7),
 				new KeyValuePair<int, int>(2, 12),
-				new KeyValuePair<int, int>(9, 4),
+				new KeyValuePair<int, int>(9, 4)
 			};
 
 			// Calculate the sum of all values in the range [5, 8]
