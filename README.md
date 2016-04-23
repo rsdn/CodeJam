@@ -47,4 +47,7 @@ To get the latest "preview" drop, add the `-pre` switch to the nuget commands
  - [Forum (russian)](http://rsdn.ru/forum/prj.codejam/)
 
 ### Project Build Status
+#### CodeJam
 [![Build status](https://ci.appveyor.com/api/projects/status/oxdyxkgwotiv64r1/branch/master?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam)
+#### CodeJam documentation
+[![Build status](https://ci.appveyor.com/api/projects/status/bucrjn2eceptbqwl?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam-jlvna)
