@@ -166,7 +166,7 @@ namespace CodeJam.Ranges
 			}
 			else
 			{
-				result = string.Join(", ", Values.Select(v => v.DisplayValue()));
+				result = string.Join(", ", Values.Select(v => v.GetDisplayValue()));
 			}
 
 			return "[" + result + "]";
@@ -226,7 +226,7 @@ namespace CodeJam.Ranges
 				do
 				{
 					var current = sourceList[i];
-					if (current.IntersectsWith(toRemove))
+					if (current.IsIntersectsWith(toRemove))
 					{
 						var rangesAfterExclusion = current.Exclude(toRemove);
 						if (copyValues == null)

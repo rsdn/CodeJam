@@ -47,22 +47,22 @@ namespace CodeJam.Ranges
 		{
 			var range1 = Range.Create(0, 3);
 
-			Assert.IsTrue(range1.IntersectsWith(Range.Create(1, 5)));
-			Assert.IsTrue(range1.IntersectsWith(Range.Create(1, 3)));
-			Assert.IsTrue(range1.IntersectsWith(Range.Create(3, 5)));
-			Assert.IsTrue(range1.IntersectsWith(Range.Create(0, 0)));
-			Assert.IsFalse(range1.IntersectsWith(Range.Create(-2, -1)));
+			Assert.IsTrue(range1.IsIntersectsWith(Range.Create(1, 5)));
+			Assert.IsTrue(range1.IsIntersectsWith(Range.Create(1, 3)));
+			Assert.IsTrue(range1.IsIntersectsWith(Range.Create(3, 5)));
+			Assert.IsTrue(range1.IsIntersectsWith(Range.Create(0, 0)));
+			Assert.IsFalse(range1.IsIntersectsWith(Range.Create(-2, -1)));
 
 			range1 = Range.Create(0, 3, false);
 
-			Assert.IsTrue(range1.IntersectsWith(Range.Create(1, 5, false)));
-			Assert.IsTrue(range1.IntersectsWith(Range.Create(1, 3, false)));
-			Assert.IsFalse(range1.IntersectsWith(Range.Create(3, 5, false)));
-			Assert.IsFalse(range1.IntersectsWith(Range.Create(0, 0, false)));
-			Assert.IsFalse(range1.IntersectsWith(Range.Create(-2, -1, false)));
+			Assert.IsTrue(range1.IsIntersectsWith(Range.Create(1, 5, false)));
+			Assert.IsTrue(range1.IsIntersectsWith(Range.Create(1, 3, false)));
+			Assert.IsFalse(range1.IsIntersectsWith(Range.Create(3, 5, false)));
+			Assert.IsFalse(range1.IsIntersectsWith(Range.Create(0, 0, false)));
+			Assert.IsFalse(range1.IsIntersectsWith(Range.Create(-2, -1, false)));
 
-			Assert.IsFalse(range1.IntersectsWith(Range.Empty<int>()));
-			Assert.IsTrue(Range.StartsWith(0, false).IntersectsWith(Range.StartsWith(-2, false)));
+			Assert.IsFalse(range1.IsIntersectsWith(Range.Empty<int>()));
+			Assert.IsTrue(Range.StartsWith(0, false).IsIntersectsWith(Range.StartsWith(-2, false)));
 		}
 
 		[Test]
@@ -125,8 +125,8 @@ namespace CodeJam.Ranges
 		private static void CheckUnion<TValue>(Range<TValue> range1, Range<TValue> range2, string representation)
 			where TValue : IComparable<TValue>
 		{
-			Assert.AreEqual(range1.Union(range2).DisplayValue(), representation);
-			Assert.AreEqual(range2.Union(range1).DisplayValue(), representation);
+			Assert.AreEqual(range1.Union(range2).GetDisplayValue(), representation);
+			Assert.AreEqual(range2.Union(range1).GetDisplayValue(), representation);
 		}
 
 		private static void CheckExclude<TValue>(Range<TValue> range1, Range<TValue> range2, params string[] representation)
@@ -136,7 +136,7 @@ namespace CodeJam.Ranges
 			Assert.AreEqual(representation.Length, result.Length);
 
 			for (var i = 0; i < result.Length; i++)
-				Assert.AreEqual(representation[i], result[i].DisplayValue());
+				Assert.AreEqual(representation[i], result[i].GetDisplayValue());
 		}
 
 		private static void CheckIntersect<TValue>(Range<TValue> range1, Range<TValue> range2, Range<TValue> expected)

@@ -6,23 +6,12 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Ranges
 {
-	[Flags]
-	public enum RangeOptions
-	{
-		None = 0,
-		HasStart = 0x1,
-		HasEnd = 0x2,
-		IncludingStart = 0x4,
-		IncludingEnd = 0x8,
-		IsEmpty = 0x10
-	}
-
 	/// <summary>
 	/// Immutable struct for keeping range parameters
 	/// </summary>
 	/// <typeparam name="TValue">Type of range value</typeparam>
 	[PublicAPI]
-	[DebuggerDisplay("{DisplayValue()}")]
+	[DebuggerDisplay("{GetDisplayValue()}")]
 	public struct Range<TValue> : IComparable<Range<TValue>>
 		where TValue : IComparable<TValue>
 	{
@@ -131,15 +120,14 @@ namespace CodeJam.Ranges
 		{
 		}
 
-		private Range(RangeValue start, RangeValue end, bool icludeStart, bool icludeEnd)
+		private Range(RangeValue start, RangeValue end, bool includeStart, bool includeEnd)
 			: this(start.Value, end.Value,
 				(start.HasValue ? RangeOptions.HasStart : RangeOptions.None)
 					| (end.HasValue ? RangeOptions.HasEnd : RangeOptions.None)
-					| (icludeStart ? RangeOptions.IncludingStart : RangeOptions.None)
-					| (icludeEnd ? RangeOptions.IncludingEnd : RangeOptions.None)
+					| (includeStart ? RangeOptions.IncludingStart : RangeOptions.None)
+					| (includeEnd ? RangeOptions.IncludingEnd : RangeOptions.None)
 				)
-		{
-		}
+		{}
 
 		/// <summary>
 		/// Indicates that range has Start.
@@ -171,11 +159,11 @@ namespace CodeJam.Ranges
 		/// </summary>
 		public bool IsFull => _options == RangeOptions.None;
 
-		private RangeValue StartValue
-			=> new RangeValue(Start, !HasStart ? ValueInfo.MinValue : IncludeStart ? ValueInfo.Included : ValueInfo.Excluded);
+		private RangeValue StartValue =>
+			new RangeValue(Start, !HasStart ? ValueInfo.MinValue : IncludeStart ? ValueInfo.Included : ValueInfo.Excluded);
 
-		private RangeValue EndValue
-			=> new RangeValue(End, !HasEnd ? ValueInfo.MaxValue : IncludeEnd ? ValueInfo.Included : ValueInfo.Excluded);
+		private RangeValue EndValue =>
+			new RangeValue(End, !HasEnd ? ValueInfo.MaxValue : IncludeEnd ? ValueInfo.Included : ValueInfo.Excluded);
 
 		/// <summary>
 		/// Compares this instance with a specified <see cref="Range{TValue}"/> and indicates whether this instance precedes, follows, or appears in the same position in the sort order as the specified <see cref="Range{TValue}"/>.
@@ -283,6 +271,7 @@ namespace CodeJam.Ranges
 		/// <param name="newStart">New value for <see cref="Start"/>.</param>
 		/// <param name="include">Indicates that new <see cref="Start"/> value should be included or excluded in result range. Leave it null for deriving that parameter from original range.</param>
 		/// <returns>A new range.</returns>
+		[Pure]
 		public Range<TValue> ChangeStart(TValue newStart, bool? include = null) =>
 			new Range<TValue>(
 				newStart,
@@ -296,6 +285,7 @@ namespace CodeJam.Ranges
 		/// <param name="newEnd">New value for <see cref="End"/>.</param>
 		/// <param name="include">Indicates that new <see cref="End"/> value should be included or excluded in result range. Leave it null for deriving that parameter from original range.</param>
 		/// <returns>A new range.</returns>
+		[Pure]
 		public Range<TValue> ChangeEnd(TValue newEnd, bool? include = null) =>
 			new Range<TValue>(
 				Start,
@@ -310,6 +300,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// A <see cref="Range{TValue}"/> structure that bounds the union of the two <see cref="Range{TValue}"/> structures.
 		/// </returns>
+		[Pure]
 		public Range<TValue> Union(Range<TValue> other)
 		{
 			var current = this;
@@ -368,6 +359,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// true if <paramref name="value"/> is in range; otherwise, false.
 		/// </returns>
+		[Pure]
 		public bool Contains(TValue value) => Contains(value, true);
 
 		private bool Contains(TValue value, bool included)
@@ -399,6 +391,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// true if <paramref name="other"/> is adjastent to current instance; otherwise, false.
 		/// </returns>
+		[Pure]
 		public bool IsAdjastent(Range<TValue> other)
 		{
 			var current = this;
@@ -417,7 +410,8 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// This method returns true if there is any intersection, otherwise false.
 		/// </returns>
-		public bool IntersectsWith(Range<TValue> other)
+		[Pure]
+		public bool IsIntersectsWith(Range<TValue> other)
 		{
 			var current = this;
 
@@ -447,6 +441,7 @@ namespace CodeJam.Ranges
 		/// <param name="other">range for exclude.</param>
 		/// <returns>Enumeration of new ranges.</returns>
 		[NotNull]
+		[Pure]
 		public IEnumerable<Range<TValue>> Exclude(Range<TValue> other)
 		{
 			var current = this;
@@ -607,6 +602,8 @@ namespace CodeJam.Ranges
 		/// Inverts current range
 		/// </summary>
 		/// <returns>An Enumerator of ranges after inversion</returns>
+		[NotNull]
+		[Pure]
 		public IEnumerable<Range<TValue>> Invert()
 		{
 			if (IsEmpty)
@@ -640,7 +637,8 @@ namespace CodeJam.Ranges
 		/// Generates human readable string for debugging.
 		/// </summary>
 		/// <returns>A new string.</returns>
-		public string DisplayValue()
+		[Pure]
+		public string GetDisplayValue()
 		{
 			if (IsEmpty)
 				return string.Empty;
