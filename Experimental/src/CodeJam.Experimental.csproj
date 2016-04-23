@@ -69,6 +69,9 @@
     <Compile Include="CmdLine\Parser\QuotedOrNonquotedValueNode.cs" />
     <Compile Include="CmdLine\PrintUsageSettings.cs" />
     <Compile Include="CmdLine\UsagePrinter.cs" />
+    <Compile Include="Collections\DisjointSets.cs" />
+    <Compile Include="Collections\DisjointSetsBase.cs" />
+    <Compile Include="Collections\DisjointSetsT.cs" />
     <Compile Include="RangesV2\IRange`1.cs" />
     <Compile Include="RangesV2\RangeConstants.cs" />
     <Compile Include="RangesV2\RangeExtesions.Core.cs" />
@@ -90,6 +93,7 @@
       <Name>CodeJam.Main</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

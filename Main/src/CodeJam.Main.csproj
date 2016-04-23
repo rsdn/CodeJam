@@ -97,9 +97,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DebugCode.tt</DependentUpon>
     </Compile>
-    <Compile Include="Collections\DisjointSets.cs" />
-    <Compile Include="Collections\DisjointSetsBase.cs" />
-    <Compile Include="Collections\DisjointSetsT.cs" />
     <Compile Include="Collections\EnumerableExtensions.Index.cs" />
     <Compile Include="Collections\IndexedItem.cs" />
     <Compile Include="Collections\EnumerableExtensions.Page.cs" />
