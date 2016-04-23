@@ -30,48 +30,48 @@ namespace CodeJam
 			=> list.LowerBound(value, 0);
 
 		/// <summary>
-		/// Returns the minimum index i in the range [from, list.Count - 1] such that list[i] >= value
+		/// Returns the minimum index i in the range [startIndex, list.Count - 1] such that list[i] >= value
 		/// or list.Count if no such i exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
+		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The lower bound for the value</returns>
 		[Pure]
-		public static int LowerBound([NotNull, InstantHandle] this IList<float> list, float value, int from)
-			=> list.LowerBound(value, from, list.Count);
+		public static int LowerBound([NotNull, InstantHandle] this IList<float> list, float value, int startIndex)
+			=> list.LowerBound(value, startIndex, list.Count);
 
 		/// <summary>
-		/// Returns the minimum index i in the range [from, to - 1] such that list[i] >= value
-		/// or "to" if no such i exists
+		/// Returns the minimum index i in the range [startIndex, endIndex - 1] such that list[i] >= value
+		/// or endIndex if no such i exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
-		/// <param name="to">The upper bound for the index (not included)</param>
+		/// <param name="startIndex">The minimum index</param>
+		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The lower bound for the value</returns>
 		[Pure]
 		public static int LowerBound(
 			[NotNull, InstantHandle] this IList<float> list,
 			float value,
-			int from,
-			int to)
+			int startIndex,
+			int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
-			ValidateIndicesRange(from, to, list.Count);
-			while (from < to)
+			ValidateIndicesRange(startIndex, endIndex, list.Count);
+			while (startIndex < endIndex)
 			{
-				var median = from + (to - from) / 2;
+				var median = startIndex + (endIndex - startIndex) / 2;
 				if (list[median] >= value)
 				{
-					to = median;
+					endIndex = median;
 				}
 				else
 				{
-					from = median + 1;
+					startIndex = median + 1;
 				}
 			}
-			return from;
+			return startIndex;
 		}
 		#endregion
 
@@ -88,48 +88,48 @@ namespace CodeJam
 			=> list.LowerBound(value, 0);
 
 		/// <summary>
-		/// Returns the minimum index i in the range [from, list.Count - 1] such that list[i] >= value
+		/// Returns the minimum index i in the range [startIndex, list.Count - 1] such that list[i] >= value
 		/// or list.Count if no such i exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
+		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The lower bound for the value</returns>
 		[Pure]
-		public static int LowerBound([NotNull, InstantHandle] this IList<double> list, double value, int from)
-			=> list.LowerBound(value, from, list.Count);
+		public static int LowerBound([NotNull, InstantHandle] this IList<double> list, double value, int startIndex)
+			=> list.LowerBound(value, startIndex, list.Count);
 
 		/// <summary>
-		/// Returns the minimum index i in the range [from, to - 1] such that list[i] >= value
-		/// or "to" if no such i exists
+		/// Returns the minimum index i in the range [startIndex, endIndex - 1] such that list[i] >= value
+		/// or endIndex if no such i exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
-		/// <param name="to">The upper bound for the index (not included)</param>
+		/// <param name="startIndex">The minimum index</param>
+		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The lower bound for the value</returns>
 		[Pure]
 		public static int LowerBound(
 			[NotNull, InstantHandle] this IList<double> list,
 			double value,
-			int from,
-			int to)
+			int startIndex,
+			int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
-			ValidateIndicesRange(from, to, list.Count);
-			while (from < to)
+			ValidateIndicesRange(startIndex, endIndex, list.Count);
+			while (startIndex < endIndex)
 			{
-				var median = from + (to - from) / 2;
+				var median = startIndex + (endIndex - startIndex) / 2;
 				if (list[median] >= value)
 				{
-					to = median;
+					endIndex = median;
 				}
 				else
 				{
-					from = median + 1;
+					startIndex = median + 1;
 				}
 			}
-			return from;
+			return startIndex;
 		}
 		#endregion
 
@@ -146,48 +146,48 @@ namespace CodeJam
 			=> list.LowerBound(value, 0);
 
 		/// <summary>
-		/// Returns the minimum index i in the range [from, list.Count - 1] such that list[i] >= value
+		/// Returns the minimum index i in the range [startIndex, list.Count - 1] such that list[i] >= value
 		/// or list.Count if no such i exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
+		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The lower bound for the value</returns>
 		[Pure]
-		public static int LowerBound([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, int from)
-			=> list.LowerBound(value, from, list.Count);
+		public static int LowerBound([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, int startIndex)
+			=> list.LowerBound(value, startIndex, list.Count);
 
 		/// <summary>
-		/// Returns the minimum index i in the range [from, to - 1] such that list[i] >= value
-		/// or "to" if no such i exists
+		/// Returns the minimum index i in the range [startIndex, endIndex - 1] such that list[i] >= value
+		/// or endIndex if no such i exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
-		/// <param name="to">The upper bound for the index (not included)</param>
+		/// <param name="startIndex">The minimum index</param>
+		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The lower bound for the value</returns>
 		[Pure]
 		public static int LowerBound(
 			[NotNull, InstantHandle] this IList<TimeSpan> list,
 			TimeSpan value,
-			int from,
-			int to)
+			int startIndex,
+			int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
-			ValidateIndicesRange(from, to, list.Count);
-			while (from < to)
+			ValidateIndicesRange(startIndex, endIndex, list.Count);
+			while (startIndex < endIndex)
 			{
-				var median = from + (to - from) / 2;
+				var median = startIndex + (endIndex - startIndex) / 2;
 				if (list[median] >= value)
 				{
-					to = median;
+					endIndex = median;
 				}
 				else
 				{
-					from = median + 1;
+					startIndex = median + 1;
 				}
 			}
-			return from;
+			return startIndex;
 		}
 		#endregion
 
@@ -204,48 +204,48 @@ namespace CodeJam
 			=> list.LowerBound(value, 0);
 
 		/// <summary>
-		/// Returns the minimum index i in the range [from, list.Count - 1] such that list[i] >= value
+		/// Returns the minimum index i in the range [startIndex, list.Count - 1] such that list[i] >= value
 		/// or list.Count if no such i exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
+		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The lower bound for the value</returns>
 		[Pure]
-		public static int LowerBound([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, int from)
-			=> list.LowerBound(value, from, list.Count);
+		public static int LowerBound([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, int startIndex)
+			=> list.LowerBound(value, startIndex, list.Count);
 
 		/// <summary>
-		/// Returns the minimum index i in the range [from, to - 1] such that list[i] >= value
-		/// or "to" if no such i exists
+		/// Returns the minimum index i in the range [startIndex, endIndex - 1] such that list[i] >= value
+		/// or endIndex if no such i exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
-		/// <param name="to">The upper bound for the index (not included)</param>
+		/// <param name="startIndex">The minimum index</param>
+		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The lower bound for the value</returns>
 		[Pure]
 		public static int LowerBound(
 			[NotNull, InstantHandle] this IList<DateTime> list,
 			DateTime value,
-			int from,
-			int to)
+			int startIndex,
+			int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
-			ValidateIndicesRange(from, to, list.Count);
-			while (from < to)
+			ValidateIndicesRange(startIndex, endIndex, list.Count);
+			while (startIndex < endIndex)
 			{
-				var median = from + (to - from) / 2;
+				var median = startIndex + (endIndex - startIndex) / 2;
 				if (list[median] >= value)
 				{
-					to = median;
+					endIndex = median;
 				}
 				else
 				{
-					from = median + 1;
+					startIndex = median + 1;
 				}
 			}
-			return from;
+			return startIndex;
 		}
 		#endregion
 
@@ -262,48 +262,48 @@ namespace CodeJam
 			=> list.LowerBound(value, 0);
 
 		/// <summary>
-		/// Returns the minimum index i in the range [from, list.Count - 1] such that list[i] >= value
+		/// Returns the minimum index i in the range [startIndex, list.Count - 1] such that list[i] >= value
 		/// or list.Count if no such i exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
+		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The lower bound for the value</returns>
 		[Pure]
-		public static int LowerBound([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, int from)
-			=> list.LowerBound(value, from, list.Count);
+		public static int LowerBound([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, int startIndex)
+			=> list.LowerBound(value, startIndex, list.Count);
 
 		/// <summary>
-		/// Returns the minimum index i in the range [from, to - 1] such that list[i] >= value
-		/// or "to" if no such i exists
+		/// Returns the minimum index i in the range [startIndex, endIndex - 1] such that list[i] >= value
+		/// or endIndex if no such i exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
-		/// <param name="to">The upper bound for the index (not included)</param>
+		/// <param name="startIndex">The minimum index</param>
+		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The lower bound for the value</returns>
 		[Pure]
 		public static int LowerBound(
 			[NotNull, InstantHandle] this IList<DateTimeOffset> list,
 			DateTimeOffset value,
-			int from,
-			int to)
+			int startIndex,
+			int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
-			ValidateIndicesRange(from, to, list.Count);
-			while (from < to)
+			ValidateIndicesRange(startIndex, endIndex, list.Count);
+			while (startIndex < endIndex)
 			{
-				var median = from + (to - from) / 2;
+				var median = startIndex + (endIndex - startIndex) / 2;
 				if (list[median] >= value)
 				{
-					to = median;
+					endIndex = median;
 				}
 				else
 				{
-					from = median + 1;
+					startIndex = median + 1;
 				}
 			}
-			return from;
+			return startIndex;
 		}
 		#endregion
 	}
