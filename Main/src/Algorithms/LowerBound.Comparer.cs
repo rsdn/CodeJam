@@ -25,72 +25,72 @@ namespace CodeJam
 			list.LowerBound(value, 0, list.Count, comparer);
 
 		/// <summary>
-		/// Returns the minimum index i in the range [from, list.Count - 1] such that list[i] >= value
+		/// Returns the minimum index i in the range [startIndex, list.Count - 1] such that list[i] >= value
 		/// or list.Count if no such i exists
 		/// </summary>
 		/// <typeparam name="TElement">The list element type</typeparam>
 		/// <typeparam name="TValue">The type of the value</typeparam>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
+		/// <param name="startIndex">The minimum index</param>
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The lower bound for the value</returns>
 		[Pure]
 		public static int LowerBound<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
-				int from,
+				int startIndex,
 				[NotNull, InstantHandle] Func<TElement, TValue, int> comparer) =>
-			list.LowerBound(value, from, list.Count, comparer);
+			list.LowerBound(value, startIndex, list.Count, comparer);
 
 		/// <summary>
-		/// Returns the minimum index i in the range [from, to - 1] such that list[i] >= value
-		/// or "to" if no such i exists
+		/// Returns the minimum index i in the range [startIndex, endIndex - 1] such that list[i] >= value
+		/// or endIndex if no such i exists
 		/// </summary>
 		/// <typeparam name="TElement">The list element type</typeparam>
 		/// <typeparam name="TValue">The type of the value</typeparam>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
-		/// <param name="to">The upper bound for the index (not included)</param>
+		/// <param name="startIndex">The minimum index</param>
+		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The lower bound for the value</returns>
 		[Pure]
 		public static int LowerBound<TElement, TValue>(
 			[NotNull, InstantHandle] this IList<TElement> list,
 			TValue value,
-			int from,
-			int to,
+			int startIndex,
+			int endIndex,
 			[NotNull, InstantHandle] Func<TElement, TValue, int> comparer)
 		{
 			Code.NotNull(list, nameof(list));
 			Code.NotNull(comparer, nameof(comparer));
-			ValidateIndicesRange(from, to, list.Count);
+			ValidateIndicesRange(startIndex, endIndex, list.Count);
 
-			while (from < to)
+			while (startIndex < endIndex)
 			{
-				var median = from + (to - from) / 2;
+				var median = startIndex + (endIndex - startIndex) / 2;
 				var compareResult = comparer(list[median], value);
 				if (compareResult >= 0)
 				{
-					to = median;
+					endIndex = median;
 				}
 				else
 				{
-					from = median + 1;
+					startIndex = median + 1;
 				}
 			}
-			return from;
+			return startIndex;
 		}
 
 		/// <summary>Validates a range of indices of a list</summary>
-		/// <param name="from">The minimum index</param>
-		/// <param name="to">The upper bound of the index (not included)</param>
+		/// <param name="startIndex">The minimum index</param>
+		/// <param name="endIndex">The upper bound of the index (not included)</param>
 		/// <param name="count">The number of elements in the list</param>
-		private static void ValidateIndicesRange(int from, int to, int count)
+		private static void ValidateIndicesRange(int startIndex, int endIndex, int count)
 		{
-			Code.InRange(from, nameof(from), 0, to);
-			Code.InRange(to, nameof(to), from, count);
+			Code.InRange(startIndex, nameof(startIndex), 0, endIndex);
+			Code.InRange(endIndex, nameof(endIndex), startIndex, count);
 		}
 	}
 }

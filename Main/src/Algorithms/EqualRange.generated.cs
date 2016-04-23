@@ -31,60 +31,60 @@ namespace CodeJam
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
-		///		i is the smallest index in the range [from, list.Count - 1] such that list[i] >= value or list.Count if no such i exists
-		///		j is the smallest index in the range [from, list.Count - 1] such that list[i] > value or list.Count if no such j exists
+		///		i is the smallest index in the range [startIndex, list.Count - 1] such that list[i] >= value or list.Count if no such i exists
+		///		j is the smallest index in the range [startIndex, list.Count - 1] such that list[i] > value or list.Count if no such j exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
+		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<float> list, float value, int from)
-			=> list.EqualRange(value, from, list.Count);
+		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<float> list, float value, int startIndex)
+			=> list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
-		///		i is the smallest index in the range [from, to - 1] such that list[i] >= value or "to" if no such i exists
-		///		j is the smallest index in the range [from, to - 1] such that list[i] > value or "to" if no such j exists
+		///		i is the smallest index in the range [startIndex, endIndex - 1] such that list[i] >= value or endIndex if no such i exists
+		///		j is the smallest index in the range [startIndex, endIndex - 1] such that list[i] > value or endIndex if no such j exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
-		/// <param name="to">The upper bound for the index (not included)</param>
+		/// <param name="startIndex">The minimum index</param>
+		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
 		public static ValueTuple<int, int> EqualRange(
 			[NotNull, InstantHandle] this IList<float> list,
 			float value,
-			int from,
-			int to)
+			int startIndex,
+			int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
-			ValidateIndicesRange(from, to, list.Count);
-			var upperBoundFrom = from;
-			var upperBoundTo = to;
+			ValidateIndicesRange(startIndex, endIndex, list.Count);
+			var upperBoundStartIndex = startIndex;
+			var upperBoundEndIndex = endIndex;
 
 			// the loop locates the lower bound at the same time restricting the range for upper bound search
-			while (from < to)
+			while (startIndex < endIndex)
 			{
-				var median = from + (to - from) / 2;
+				var median = startIndex + (endIndex - startIndex) / 2;
 				if (list[median] < value)
 				{
-					from = median + 1;
-					upperBoundFrom = from;
+					startIndex = median + 1;
+					upperBoundStartIndex = startIndex;
 				}
 				else if (list[median] == value)
 				{
-					to = median;
-					upperBoundFrom = to + 1;
+					endIndex = median;
+					upperBoundStartIndex = endIndex + 1;
 				}
 				else
 				{
-					to = median;
-					upperBoundTo = to;
+					endIndex = median;
+					upperBoundEndIndex = endIndex;
 				}
 			}
-			return ValueTuple.Create(from, UpperBoundCore(list, value, upperBoundFrom, upperBoundTo));
+			return ValueTuple.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
 		}
 		#endregion
 
@@ -103,60 +103,60 @@ namespace CodeJam
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
-		///		i is the smallest index in the range [from, list.Count - 1] such that list[i] >= value or list.Count if no such i exists
-		///		j is the smallest index in the range [from, list.Count - 1] such that list[i] > value or list.Count if no such j exists
+		///		i is the smallest index in the range [startIndex, list.Count - 1] such that list[i] >= value or list.Count if no such i exists
+		///		j is the smallest index in the range [startIndex, list.Count - 1] such that list[i] > value or list.Count if no such j exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
+		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<double> list, double value, int from)
-			=> list.EqualRange(value, from, list.Count);
+		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<double> list, double value, int startIndex)
+			=> list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
-		///		i is the smallest index in the range [from, to - 1] such that list[i] >= value or "to" if no such i exists
-		///		j is the smallest index in the range [from, to - 1] such that list[i] > value or "to" if no such j exists
+		///		i is the smallest index in the range [startIndex, endIndex - 1] such that list[i] >= value or endIndex if no such i exists
+		///		j is the smallest index in the range [startIndex, endIndex - 1] such that list[i] > value or endIndex if no such j exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
-		/// <param name="to">The upper bound for the index (not included)</param>
+		/// <param name="startIndex">The minimum index</param>
+		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
 		public static ValueTuple<int, int> EqualRange(
 			[NotNull, InstantHandle] this IList<double> list,
 			double value,
-			int from,
-			int to)
+			int startIndex,
+			int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
-			ValidateIndicesRange(from, to, list.Count);
-			var upperBoundFrom = from;
-			var upperBoundTo = to;
+			ValidateIndicesRange(startIndex, endIndex, list.Count);
+			var upperBoundStartIndex = startIndex;
+			var upperBoundEndIndex = endIndex;
 
 			// the loop locates the lower bound at the same time restricting the range for upper bound search
-			while (from < to)
+			while (startIndex < endIndex)
 			{
-				var median = from + (to - from) / 2;
+				var median = startIndex + (endIndex - startIndex) / 2;
 				if (list[median] < value)
 				{
-					from = median + 1;
-					upperBoundFrom = from;
+					startIndex = median + 1;
+					upperBoundStartIndex = startIndex;
 				}
 				else if (list[median] == value)
 				{
-					to = median;
-					upperBoundFrom = to + 1;
+					endIndex = median;
+					upperBoundStartIndex = endIndex + 1;
 				}
 				else
 				{
-					to = median;
-					upperBoundTo = to;
+					endIndex = median;
+					upperBoundEndIndex = endIndex;
 				}
 			}
-			return ValueTuple.Create(from, UpperBoundCore(list, value, upperBoundFrom, upperBoundTo));
+			return ValueTuple.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
 		}
 		#endregion
 
@@ -175,60 +175,60 @@ namespace CodeJam
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
-		///		i is the smallest index in the range [from, list.Count - 1] such that list[i] >= value or list.Count if no such i exists
-		///		j is the smallest index in the range [from, list.Count - 1] such that list[i] > value or list.Count if no such j exists
+		///		i is the smallest index in the range [startIndex, list.Count - 1] such that list[i] >= value or list.Count if no such i exists
+		///		j is the smallest index in the range [startIndex, list.Count - 1] such that list[i] > value or list.Count if no such j exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
+		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, int from)
-			=> list.EqualRange(value, from, list.Count);
+		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, int startIndex)
+			=> list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
-		///		i is the smallest index in the range [from, to - 1] such that list[i] >= value or "to" if no such i exists
-		///		j is the smallest index in the range [from, to - 1] such that list[i] > value or "to" if no such j exists
+		///		i is the smallest index in the range [startIndex, endIndex - 1] such that list[i] >= value or endIndex if no such i exists
+		///		j is the smallest index in the range [startIndex, endIndex - 1] such that list[i] > value or endIndex if no such j exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
-		/// <param name="to">The upper bound for the index (not included)</param>
+		/// <param name="startIndex">The minimum index</param>
+		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
 		public static ValueTuple<int, int> EqualRange(
 			[NotNull, InstantHandle] this IList<TimeSpan> list,
 			TimeSpan value,
-			int from,
-			int to)
+			int startIndex,
+			int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
-			ValidateIndicesRange(from, to, list.Count);
-			var upperBoundFrom = from;
-			var upperBoundTo = to;
+			ValidateIndicesRange(startIndex, endIndex, list.Count);
+			var upperBoundStartIndex = startIndex;
+			var upperBoundEndIndex = endIndex;
 
 			// the loop locates the lower bound at the same time restricting the range for upper bound search
-			while (from < to)
+			while (startIndex < endIndex)
 			{
-				var median = from + (to - from) / 2;
+				var median = startIndex + (endIndex - startIndex) / 2;
 				if (list[median] < value)
 				{
-					from = median + 1;
-					upperBoundFrom = from;
+					startIndex = median + 1;
+					upperBoundStartIndex = startIndex;
 				}
 				else if (list[median] == value)
 				{
-					to = median;
-					upperBoundFrom = to + 1;
+					endIndex = median;
+					upperBoundStartIndex = endIndex + 1;
 				}
 				else
 				{
-					to = median;
-					upperBoundTo = to;
+					endIndex = median;
+					upperBoundEndIndex = endIndex;
 				}
 			}
-			return ValueTuple.Create(from, UpperBoundCore(list, value, upperBoundFrom, upperBoundTo));
+			return ValueTuple.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
 		}
 		#endregion
 
@@ -247,60 +247,60 @@ namespace CodeJam
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
-		///		i is the smallest index in the range [from, list.Count - 1] such that list[i] >= value or list.Count if no such i exists
-		///		j is the smallest index in the range [from, list.Count - 1] such that list[i] > value or list.Count if no such j exists
+		///		i is the smallest index in the range [startIndex, list.Count - 1] such that list[i] >= value or list.Count if no such i exists
+		///		j is the smallest index in the range [startIndex, list.Count - 1] such that list[i] > value or list.Count if no such j exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
+		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, int from)
-			=> list.EqualRange(value, from, list.Count);
+		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, int startIndex)
+			=> list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
-		///		i is the smallest index in the range [from, to - 1] such that list[i] >= value or "to" if no such i exists
-		///		j is the smallest index in the range [from, to - 1] such that list[i] > value or "to" if no such j exists
+		///		i is the smallest index in the range [startIndex, endIndex - 1] such that list[i] >= value or endIndex if no such i exists
+		///		j is the smallest index in the range [startIndex, endIndex - 1] such that list[i] > value or endIndex if no such j exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
-		/// <param name="to">The upper bound for the index (not included)</param>
+		/// <param name="startIndex">The minimum index</param>
+		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
 		public static ValueTuple<int, int> EqualRange(
 			[NotNull, InstantHandle] this IList<DateTime> list,
 			DateTime value,
-			int from,
-			int to)
+			int startIndex,
+			int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
-			ValidateIndicesRange(from, to, list.Count);
-			var upperBoundFrom = from;
-			var upperBoundTo = to;
+			ValidateIndicesRange(startIndex, endIndex, list.Count);
+			var upperBoundStartIndex = startIndex;
+			var upperBoundEndIndex = endIndex;
 
 			// the loop locates the lower bound at the same time restricting the range for upper bound search
-			while (from < to)
+			while (startIndex < endIndex)
 			{
-				var median = from + (to - from) / 2;
+				var median = startIndex + (endIndex - startIndex) / 2;
 				if (list[median] < value)
 				{
-					from = median + 1;
-					upperBoundFrom = from;
+					startIndex = median + 1;
+					upperBoundStartIndex = startIndex;
 				}
 				else if (list[median] == value)
 				{
-					to = median;
-					upperBoundFrom = to + 1;
+					endIndex = median;
+					upperBoundStartIndex = endIndex + 1;
 				}
 				else
 				{
-					to = median;
-					upperBoundTo = to;
+					endIndex = median;
+					upperBoundEndIndex = endIndex;
 				}
 			}
-			return ValueTuple.Create(from, UpperBoundCore(list, value, upperBoundFrom, upperBoundTo));
+			return ValueTuple.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
 		}
 		#endregion
 
@@ -319,60 +319,60 @@ namespace CodeJam
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
-		///		i is the smallest index in the range [from, list.Count - 1] such that list[i] >= value or list.Count if no such i exists
-		///		j is the smallest index in the range [from, list.Count - 1] such that list[i] > value or list.Count if no such j exists
+		///		i is the smallest index in the range [startIndex, list.Count - 1] such that list[i] >= value or list.Count if no such i exists
+		///		j is the smallest index in the range [startIndex, list.Count - 1] such that list[i] > value or list.Count if no such j exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
+		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, int from)
-			=> list.EqualRange(value, from, list.Count);
+		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, int startIndex)
+			=> list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
-		///		i is the smallest index in the range [from, to - 1] such that list[i] >= value or "to" if no such i exists
-		///		j is the smallest index in the range [from, to - 1] such that list[i] > value or "to" if no such j exists
+		///		i is the smallest index in the range [startIndex, endIndex - 1] such that list[i] >= value or endIndex if no such i exists
+		///		j is the smallest index in the range [startIndex, endIndex - 1] such that list[i] > value or endIndex if no such j exists
 		/// </summary>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
-		/// <param name="to">The upper bound for the index (not included)</param>
+		/// <param name="startIndex">The minimum index</param>
+		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
 		public static ValueTuple<int, int> EqualRange(
 			[NotNull, InstantHandle] this IList<DateTimeOffset> list,
 			DateTimeOffset value,
-			int from,
-			int to)
+			int startIndex,
+			int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
-			ValidateIndicesRange(from, to, list.Count);
-			var upperBoundFrom = from;
-			var upperBoundTo = to;
+			ValidateIndicesRange(startIndex, endIndex, list.Count);
+			var upperBoundStartIndex = startIndex;
+			var upperBoundEndIndex = endIndex;
 
 			// the loop locates the lower bound at the same time restricting the range for upper bound search
-			while (from < to)
+			while (startIndex < endIndex)
 			{
-				var median = from + (to - from) / 2;
+				var median = startIndex + (endIndex - startIndex) / 2;
 				if (list[median] < value)
 				{
-					from = median + 1;
-					upperBoundFrom = from;
+					startIndex = median + 1;
+					upperBoundStartIndex = startIndex;
 				}
 				else if (list[median] == value)
 				{
-					to = median;
-					upperBoundFrom = to + 1;
+					endIndex = median;
+					upperBoundStartIndex = endIndex + 1;
 				}
 				else
 				{
-					to = median;
-					upperBoundTo = to;
+					endIndex = median;
+					upperBoundEndIndex = endIndex;
 				}
 			}
-			return ValueTuple.Create(from, UpperBoundCore(list, value, upperBoundFrom, upperBoundTo));
+			return ValueTuple.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
 		}
 		#endregion
 
