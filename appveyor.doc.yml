@@ -1,0 +1,21 @@
+version: 1.0.{build}
+image: Visual Studio 2015
+configuration: Debug
+clone_folder: c:\projects\codejam
+environment:
+  SHFBROOT: C:\EWSoftware.SHFB.2015.10.10.0\tools\
+install:
+- cmd: >-
+    nuget install EWSoftware.SHFB -o c:\ -Version 2015.10.10
+
+    nuget install EWSoftware.SHFB.NETFramework -o c:\projects\codejam
+build:
+  project: CodeJamDoc.sln
+  verbosity: minimal
+after_build:
+- cmd: 7z a -r CodeJamDoc.zip Help\*.*
+artifacts:
+- path: CodeJamDoc.zip
+  name: CodeJamDoc
+on_finish:
+- ps: Push-AppveyorArtifact C:\projects\codejam\Help\LastBuild.log
