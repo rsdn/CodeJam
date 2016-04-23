@@ -40,6 +40,11 @@ namespace CodeJam.TableData
 			Code.NotNull(parser, nameof(parser));
 			Code.NotNull(reader, nameof(reader));
 
+			return ParseCore(parser, reader);
+		}
+
+		private static IEnumerable<DataLine> ParseCore(Parser parser, TextReader reader)
+		{
 			var lineNum = 1;
 			while (true)
 			{

@@ -64,7 +64,7 @@ namespace CodeJam.Services
 			var calls = 0;
 			using (var container = new ServiceContainer())
 			{
-				using (container.Publish<IDisposable>(sp => Disposable.Create(() => calls++)))
+				using (container.Publish(sp => Disposable.Create(() => calls++)))
 				{
 					Assert.AreEqual(0, calls, "#A01");
 					// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
@@ -72,7 +72,7 @@ namespace CodeJam.Services
 					Assert.AreEqual(0, calls, "#A02");
 				}
 				Assert.AreEqual(1, calls, "#A03");
-				container.Publish<IDisposable>(sp => Disposable.Create(() => calls++));
+				container.Publish(sp => Disposable.Create(() => calls++));
 				// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
 				container.GetService<IDisposable>();
 				Assert.AreEqual(1, calls, "#A04");
