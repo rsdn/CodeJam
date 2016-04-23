@@ -80,7 +80,7 @@ namespace CodeJam.Ranges
 			CheckIntersect(Range.EndsWith(10, false), Range.StartsWith(10, true));
 			CheckIntersect(Range.EndsWith(10, false), Range.StartsWith(10, false));
 
-			CheckIntersect(Range.EndsWith(10, true), Range.StartsWith(10, true), Range.Simple(10));
+			CheckIntersect(Range.EndsWith(10, true), Range.StartsWith(10, true), Range.IsSimple(10));
 
 			CheckIntersect(Range.EndsWith(10, true), Range.Create(0, 9, true), Range.Create(0, 9, true));
 			CheckIntersect(Range.EndsWith(10, true), Range.Create(0, 9, true, false), Range.Create(0, 9, true, false));

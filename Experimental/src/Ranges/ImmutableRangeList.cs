@@ -296,7 +296,7 @@ namespace CodeJam.Ranges
 			if (IsFull)
 				return true;
 
-			var index = Values.BinarySearch(Range.Simple(value));
+			var index = Values.BinarySearch(Range.IsSimple(value));
 			return index >= 0;
 		}
 
