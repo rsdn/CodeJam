@@ -45,6 +45,68 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
+		public void IntAreEqual() => Assert.AreEqual(1 == 2, IntOp.AreEqual(1, 2));
+
+		[Test]
+		public void EnumAreEqual() =>
+			Assert.AreEqual(
+				EnumValueA.Value == EnumValueB.Value,
+				EnumOp.AreEqual(EnumValueA.Value, EnumValueB.Value));
+
+		[Test]
+		public void NullableEnumAreEqual()
+		{
+			Assert.AreEqual(EnumValueA == EnumValueB, NullableEnumOp.AreEqual(EnumValueA, EnumValueB));
+			Assert.AreEqual(EnumValueA == EnumValueC, NullableEnumOp.AreEqual(EnumValueA, EnumValueC));
+		}
+
+		[Test]
+		public void NullableDoubleAreEqual() => Assert.AreEqual(1f == 2f, NullableDoubleOp.AreEqual(1, 2));
+
+		[Test]
+		public void IntAreNotEqual() => Assert.AreEqual(1 != 2, IntOp.AreNotEqual(1, 2));
+
+		[Test]
+		public void EnumAreNotEqual() =>
+			Assert.AreEqual(
+				EnumValueA.Value != EnumValueB.Value,
+				EnumOp.AreNotEqual(EnumValueA.Value, EnumValueB.Value));
+
+		[Test]
+		public void NullableEnumAreNotEqual()
+		{
+			Assert.AreEqual(EnumValueA != EnumValueB, NullableEnumOp.AreNotEqual(EnumValueA, EnumValueB));
+			Assert.AreEqual(EnumValueA != EnumValueC, NullableEnumOp.AreNotEqual(EnumValueA, EnumValueC));
+		}
+
+		[Test]
+		public void NullableDoubleAreNotEqual() => Assert.AreEqual(1f != 2f, NullableDoubleOp.AreNotEqual(1, 2));
+
+		[Test]
+		public void IntGreaterThan() => Assert.AreEqual(1 > 2, IntOp.GreaterThan(1, 2));
+
+		[Test]
+		public void NullableDoubleGreaterThan() => Assert.AreEqual(1f > 2f, NullableDoubleOp.GreaterThan(1, 2));
+
+		[Test]
+		public void IntGreaterThanOrEqual() => Assert.AreEqual(1 >= 2, IntOp.GreaterThanOrEqual(1, 2));
+
+		[Test]
+		public void NullableDoubleGreaterThanOrEqual() => Assert.AreEqual(1f >= 2f, NullableDoubleOp.GreaterThanOrEqual(1, 2));
+
+		[Test]
+		public void IntLessThan() => Assert.AreEqual(1 < 2, IntOp.LessThan(1, 2));
+
+		[Test]
+		public void NullableDoubleLessThan() => Assert.AreEqual(1f < 2f, NullableDoubleOp.LessThan(1, 2));
+
+		[Test]
+		public void IntLessThanOrEqual() => Assert.AreEqual(1 <= 2, IntOp.LessThanOrEqual(1, 2));
+
+		[Test]
+		public void NullableDoubleLessThanOrEqual() => Assert.AreEqual(1f <= 2f, NullableDoubleOp.LessThanOrEqual(1, 2));
+
+		[Test]
 		public void IntPlus() => Assert.AreEqual(1 + 2, IntOp.Plus(1, 2));
 
 		[Test]

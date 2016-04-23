@@ -74,6 +74,8 @@
 			{
 				switch (Type)
 				{
+					case ExpressionType.Equal:
+					case ExpressionType.NotEqual:
 					case ExpressionType.OnesComplement:
 					case ExpressionType.ExclusiveOr:
 					case ExpressionType.And:

@@ -67,6 +67,31 @@ namespace CodeJam.Arithmetic
 
 <#		}#>
 <#	}#>
+<#	else if (op.OpType == OpType.Comparison) {#>
+		[Test]
+		public void Int<#=op.Name#>() => Assert.AreEqual(1 <#=op.Sign#> 2, IntOp.<#=op.Name#>(1, 2));
+
+<#		if (op.ForEnums) {#>
+		[Test]
+		public void Enum<#=op.Name#>() =>
+			Assert.AreEqual(
+				EnumValueA.Value <#=op.Sign#> EnumValueB.Value,
+				EnumOp.<#=op.Name#>(EnumValueA.Value, EnumValueB.Value));
+
+		[Test]
+		public void NullableEnum<#=op.Name#>()
+		{
+			Assert.AreEqual(EnumValueA <#=op.Sign#> EnumValueB, NullableEnumOp.<#=op.Name#>(EnumValueA, EnumValueB));
+			Assert.AreEqual(EnumValueA <#=op.Sign#> EnumValueC, NullableEnumOp.<#=op.Name#>(EnumValueA, EnumValueC));
+		}
+
+<#		}#>
+<#		if (!op.IntOnly) {#>
+		[Test]
+		public void NullableDouble<#=op.Name#>() => Assert.AreEqual(1f <#=op.Sign#> 2f, NullableDoubleOp.<#=op.Name#>(1, 2));
+
+<#		}#>
+<#	}#>
 <#}#>
 	}
 }
