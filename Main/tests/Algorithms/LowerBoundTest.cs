@@ -10,8 +10,48 @@ namespace CodeJam
 	[TestFixture]
 	public class LowerBoundTest
 	{
+		/// <summary>Shows how to use LowerBound to search for a value equal or greater than the given value</summary>
 		[Test]
-		public void Test01NegativeFrom()
+		public void Test01LowerBoundSearchSample()
+		{
+			// The list should be sorted!
+			var sortedData = new List<string> { "B", "C", "C", "D", "F" };
+
+			var indexOfLowerBound = sortedData.LowerBound("A");
+			// No value, so the position of the first greater value should be returned
+			Assert.That(indexOfLowerBound, Is.EqualTo(sortedData.IndexOf("B")));
+
+			indexOfLowerBound = sortedData.LowerBound("B");
+			// Exact match
+			Assert.That(indexOfLowerBound, Is.EqualTo(sortedData.IndexOf("B")));
+
+			indexOfLowerBound = sortedData.LowerBound("C");
+			// The position of the first match should be returned
+			Assert.That(indexOfLowerBound, Is.EqualTo(sortedData.IndexOf("C")));
+
+			indexOfLowerBound = sortedData.LowerBound("E");
+			// No value, so the position of the first greater value should be returned
+			Assert.That(indexOfLowerBound, Is.EqualTo(sortedData.IndexOf("F")));
+
+			indexOfLowerBound = sortedData.LowerBound("G");
+			// No value and no greater value, so the position after the last element should be returned
+			Assert.That(indexOfLowerBound, Is.EqualTo(sortedData.Count));
+		}
+
+		/// <summary>Shows how to use LowerBound to insert a new value to the sorted list while preserving the order</summary>
+		[Test]
+		public void Test02LowerBoundInsertionSample()
+		{
+			// The list should be sorted!
+			var sortedData = new List<int> { 1, 2, 3, 5, 6 };
+			const int valueToInsert = 4;
+			var insertionIndex = sortedData.LowerBound(valueToInsert);
+			sortedData.Insert(insertionIndex, valueToInsert);
+			Assert.That(sortedData.IndexOf(valueToInsert), Is.EqualTo(3));
+		}
+
+		[Test]
+		public void Test03NegativeFrom()
 		{
 			var list = new List<double> { 0 };
 			const int from = -1;
@@ -28,7 +68,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void Test02NegativeTo()
+		public void Test04NegativeTo()
 		{
 			var list = new List<double> { 0 };
 			const int to = -1;
@@ -44,7 +84,7 @@ namespace CodeJam
 
 
 		[Test]
-		public void Test03ToExceedsCount()
+		public void Test05ToExceedsCount()
 		{
 			var list = new List<double> { 0 };
 			var to = list.Count + 1;
@@ -59,7 +99,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void Test04BadFromToOrder()
+		public void Test06BadFromToOrder()
 		{
 			var list = new List<double> { 0, 1, 2 };
 			const int from = 2;
@@ -83,7 +123,7 @@ namespace CodeJam
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 15.0, 0, 3, 3)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 5.0, 1, 4, 1)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 30000.0, 0, 4, 4)]
-		public void Test05WithAllParams(double[] data, double value, int from, int to, int expected)
+		public void Test07WithAllParams(double[] data, double value, int from, int to, int expected)
 		{
 			// comparer version
 			var list = (IList<double>)data;
@@ -97,7 +137,7 @@ namespace CodeJam
 
 		[Test]
 		[TestCase(new double[0], 11.0, 0)]
-		public void Test06WithComparer(double[] data, double value, int expected)
+		public void Test08WithComparer(double[] data, double value, int expected)
 		{
 			// comparer version
 			var list = (IList<double>)data;
@@ -113,7 +153,7 @@ namespace CodeJam
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 42.0, 6, 6)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 1002.0, 3, 7)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 12.0, 3, 3)]
-		public void Test07WithFrom(double[] data, double value, int from, int expected)
+		public void Test09WithFrom(double[] data, double value, int from, int expected)
 		{
 			// comparer version
 			var list = (IList<double>)data;
@@ -136,7 +176,7 @@ namespace CodeJam
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 12.0, 2)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 3.0, 1)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 14534.0, 7)]
-		public void Test08WithoutParams(double[] data, double value, int expected)
+		public void Test10WithoutParams(double[] data, double value, int expected)
 		{
 			// comparer version
 			var list = (IList<double>)data;
