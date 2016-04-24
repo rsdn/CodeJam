@@ -6,7 +6,10 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 
+using CodeJam;
 using CodeJam.Strings;
+
+using JetBrains.Annotations;
 
 using Microsoft.DiaSymReader;
 
@@ -144,10 +147,49 @@ namespace BenchmarkDotNet.NUnit
 			}
 
 			#region COM interop
+			private enum ChecksumAlgorithmKind
+			{
+				[UsedImplicitly]
+				Unknown = 0,
+				Md5,
+				Sha1
+			}
+
 			// ReSharper disable IdentifierTypo
 			// ReSharper disable CommentTypo
 			private class SymDocument
 			{
+				private static byte[] ComputeChecksumCore(string fileName, ChecksumAlgorithmKind checksumAlgorithm)
+				{
+					HashAlgorithm alg;
+					switch (checksumAlgorithm)
+					{
+						case ChecksumAlgorithmKind.Md5:
+							alg = MD5.Create();
+							break;
+						case ChecksumAlgorithmKind.Sha1:
+							alg = SHA1.Create();
+							break;
+						default:
+							throw new NotSupportedException($"Unknown {nameof(checksumAlgorithm)}: {checksumAlgorithm}");
+					}
+
+					try
+					{
+						return alg.ComputeHash(File.ReadAllBytes(fileName));
+					}
+					finally
+					{
+						alg.Dispose();
+					}
+				}
+
+				private static readonly Func<string, ChecksumAlgorithmKind, byte[]> computeChecksumCached =
+					Algorithms.Memoize(
+						(string fileName, ChecksumAlgorithmKind checksumAlgorithm) =>
+							ComputeChecksumCore(fileName, checksumAlgorithm));
+
+
 				// guids are from corsym.h
 				private static readonly Guid CorSym_SourceHash_MD5 = new Guid("406ea660-64cf-4c82-b6f0-42d48172a799");
 				private static readonly Guid CorSym_SourceHash_SHA1 = new Guid("ff1816ec-aa5e-4d10-87f7-6f4963833460");
@@ -183,37 +225,23 @@ namespace BenchmarkDotNet.NUnit
 					ThrowExceptionForHR(hr);
 
 					ChecksumAlgorithmId = id;
+					if (id == CorSym_SourceHash_MD5)
+					{
+						ChecksumAlgorithm = ChecksumAlgorithmKind.Md5;
+					}
+					else if (id == CorSym_SourceHash_SHA1)
+					{
+						ChecksumAlgorithm = ChecksumAlgorithmKind.Sha1;
+					}
 				}
 
 				public string Url { get; }
 				public byte[] Checksum { get; }
+				[UsedImplicitly]
 				private Guid ChecksumAlgorithmId { get; }
+				private ChecksumAlgorithmKind ChecksumAlgorithm { get; }
 
-				public byte[] ComputeChecksum()
-				{
-					HashAlgorithm alg;
-					if (ChecksumAlgorithmId == CorSym_SourceHash_MD5)
-					{
-						alg = MD5.Create();
-					}
-					else if (ChecksumAlgorithmId == CorSym_SourceHash_SHA1)
-					{
-						alg = SHA1.Create();
-					}
-					else
-					{
-						throw new NotSupportedException($"Unknown {nameof(ChecksumAlgorithmId)}: {ChecksumAlgorithmId}");
-					}
-
-					try
-					{
-						return alg.ComputeHash(File.ReadAllBytes(Url));
-					}
-					finally
-					{
-						alg.Dispose();
-					}
-				}
+				public byte[] ComputeChecksum() => computeChecksumCached(Url, ChecksumAlgorithm);
 			}
 
 			/// <summary>
