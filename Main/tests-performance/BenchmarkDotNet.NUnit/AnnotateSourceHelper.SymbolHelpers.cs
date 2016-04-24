@@ -1,10 +1,14 @@
 ﻿using System;
-using System.Diagnostics.SymbolStore;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 
-using JetBrains.Annotations;
+using CodeJam.Strings;
+
+using Microsoft.DiaSymReader;
 
 // ReSharper disable CheckNamespace
 
@@ -17,93 +21,224 @@ namespace BenchmarkDotNet.NUnit
 		///  http://sorin.serbans.net/blog/2010/08/how-to-read-pdb-files/257/
 		///  http://stackoverflow.com/questions/13911069/how-to-get-global-variables-definition-from-symbols-tables
 		///  http://referencesource.microsoft.com/#System.Management/Instrumentation/MetaDataInfo.cs,45
+		///  https://github.com/dotnet/roslyn/blob/master/src/Test/PdbUtilities/Shared/SymUnmanagedReaderExtensions.cs#L483
+		///  http://stackoverflow.com/questions/36649271/check-that-pdb-file-matches-to-the-source
 		/// </summary>
+		[SuppressMessage("ReSharper", "InconsistentNaming")]
+		[SuppressMessage("ReSharper", "SuspiciousTypeConversion.Global")]
 		private static class SymbolHelpers
 		{
-			// ReSharper disable once SuggestBaseTypeForParameter
-			[CanBeNull]
-			public static ISymbolMethod TryGetSymbols(MethodBase target)
+			// BASEDON: http://stackoverflow.com/questions/36649271/check-that-pdb-file-matches-to-the-source
+			public static bool TryGetSourceInfo(
+				MethodBase method,
+				out string sourceFileName,
+				out int firstCodeLine)
 			{
-				// ReSharper disable once PossibleNullReferenceException
-				var assembly = target.DeclaringType.Assembly;
-				var codeBase = new Uri(assembly.CodeBase).LocalPath;
-				var codeBaseDirectory = Path.GetDirectoryName(codeBase);
-				var symbolReader = TryGetSymbolReaderForFile(assembly.Location, codeBaseDirectory);
+				firstCodeLine = -1;
+				sourceFileName = null;
 
-				return symbolReader?.GetMethod(new SymbolToken(target.MetadataToken));
+				var methodSymbols = TryGetMethodSymbols(method);
+				if (methodSymbols != null)
+				{
+					int[] startLines;
+					ISymUnmanagedDocument[] documents;
+					GetDocsAndLines(methodSymbols, out documents, out startLines);
+
+					if (documents.Length == 0)
+						throw new InvalidOperationException($"Method {method}, no PDB data available");
+
+					Array.Sort(startLines, documents);
+					var doc = new SymDocument(documents[0]);
+					var computedChecksum = doc.ComputeChecksum();
+					if (!doc.Checksum.SequenceEqual(computedChecksum))
+					{
+						var expected = doc.Checksum.ToHexString();
+						var actual = computedChecksum.ToHexString();
+
+						throw new InvalidOperationException(
+							$"Checksum validation failed. File '{doc.Url}'.\r\nActual: 0x{actual}\r\nExpected: 0x{expected}");
+					}
+
+					sourceFileName = doc.Url;
+					firstCodeLine = startLines[0];
+				}
+
+				return sourceFileName != null && firstCodeLine >= 0;
 			}
 
-			[CanBeNull]
-			private static ISymbolReader TryGetSymbolReaderForFile(string pathModule, string searchPath) =>
-				TryGetSymbolReaderForFile(new SymBinder(), pathModule, searchPath);
-
-			// ReSharper disable once SuggestBaseTypeForParameter
-			[CanBeNull]
-			private static ISymbolReader TryGetSymbolReaderForFile(
-				SymBinder binder, string pathModule, string searchPath)
+			private static ISymUnmanagedMethod TryGetMethodSymbols(MethodBase method)
 			{
-				ISymbolReader reader;
-
-				IMetaDataDispenser dispenser = null;
-				IMetaDataImportStub importer = null;
-				var importerPtr = IntPtr.Zero;
 				try
 				{
-					// ReSharper disable once SuspiciousTypeConversion.Global
-					dispenser = (IMetaDataDispenser)new CorMetaDataDispenser();
-					var importerGuid = new Guid(InterfaceMetaDataImportGuid);
-					importer = (IMetaDataImportStub)dispenser.OpenScope(pathModule, 0, ref importerGuid);
+					// ReSharper disable once PossibleNullReferenceException
+					var assembly = method.DeclaringType.Assembly;
+					var codeBase = new Uri(assembly.CodeBase).LocalPath;
+					var codeBaseDirectory = Path.GetDirectoryName(codeBase);
 
-					// This will manually AddRef the underlying object, so we need to 
-					// be very careful to Release it.
-					importerPtr = Marshal.GetComInterfaceForObject(importer, typeof(IMetaDataImportStub));
+					var dispenser = (IMetaDataDispenser)new CorMetaDataDispenser();
+					var import = dispenser.OpenScope(codeBase, 0, typeof(IMetaDataImportStub).GUID);
+					var binder = (ISymUnmanagedBinder)new CorSymBinder();
 
-					try
-					{
-						reader = binder.GetReader(importerPtr, pathModule, searchPath);
-					}
-					catch (COMException)
-					{
-						reader = null;
-					}
+					ISymUnmanagedReader reader;
+					var hr2 = binder.GetReaderForFile(import, codeBase, codeBaseDirectory, out reader);
+					ThrowExceptionForHR(hr2);
+
+					ISymUnmanagedMethod methodSymbols;
+					hr2 = reader.GetMethod(method.MetadataToken, out methodSymbols);
+					ThrowExceptionForHR(hr2);
+					return methodSymbols;
 				}
-				finally
+				catch (COMException)
 				{
-					if (importerPtr != IntPtr.Zero)
-						Marshal.Release(importerPtr);
-
-					if (importer != null)
-						Marshal.ReleaseComObject(importer);
-
-					if (dispenser != null)
-						Marshal.ReleaseComObject(dispenser);
+					return null;
 				}
+			}
 
-				return reader;
+			private static void GetDocsAndLines(
+				ISymUnmanagedMethod methodSymbols,
+				out ISymUnmanagedDocument[] documents,
+				out int[] startLines)
+			{
+				int numAvailable;
+				var hr = methodSymbols.GetSequencePointCount(out numAvailable);
+				ThrowExceptionForHR(hr);
+
+				documents = new ISymUnmanagedDocument[numAvailable];
+				startLines = new int[numAvailable];
+
+				if (numAvailable > 0)
+				{
+					var offsets = new int[numAvailable];
+					var startColumns = new int[numAvailable];
+					var endLines = new int[numAvailable];
+					var endColumns = new int[numAvailable];
+
+					int numRead;
+					hr = methodSymbols.GetSequencePoints(
+						numAvailable, out numRead,
+						offsets, documents,
+						startLines, startColumns,
+						endLines, endColumns);
+					ThrowExceptionForHR(hr);
+
+					if (numRead != numAvailable)
+					{
+						throw new InvalidOperationException($"Read only {numRead} of {numAvailable} sequence points.");
+					}
+				}
+			}
+
+			private const int E_FAIL = unchecked((int)0x80004005);
+			private const int E_NOTIMPL = unchecked((int)0x80004001);
+			private static readonly IntPtr _ignoreIErrorInfo = new IntPtr(-1);
+
+			// BASEDON https://github.com/dotnet/roslyn/blob/master/src/Test/PdbUtilities/Shared/SymUnmanagedReaderExtensions.cs#L483
+			private static void ThrowExceptionForHR(int hr)
+			{
+				// E_FAIL indicates "no info". 
+				// E_NOTIMPL indicates a lack of ISymUnmanagedReader support (in a particular implementation). 
+				if (hr < 0 && hr != E_FAIL && hr != E_NOTIMPL)
+				{
+					Marshal.ThrowExceptionForHR(hr, _ignoreIErrorInfo);
+				}
 			}
 
 			#region COM interop
-			private const string InterfaceMetaDataImportGuid = "7DAC8207-D3AE-4c75-9B67-92801A497D44";
-			private const string InterfaceMetaDataDispenserGuid = "809C652E-7396-11D2-9771-00A0C9B4D50C";
-			private const string MetaDataDispenserGuid = "E5CB7A31-7512-11d2-89CE-0080C792E5D8";
+			// ReSharper disable IdentifierTypo
+			// ReSharper disable CommentTypo
+			private class SymDocument
+			{
+				// guids are from corsym.h
+				private static readonly Guid CorSym_SourceHash_MD5 = new Guid("406ea660-64cf-4c82-b6f0-42d48172a799");
+				private static readonly Guid CorSym_SourceHash_SHA1 = new Guid("ff1816ec-aa5e-4d10-87f7-6f4963833460");
+
+				public SymDocument(ISymUnmanagedDocument doc)
+				{
+					if (doc == null)
+						throw new ArgumentNullException(nameof(doc));
+
+					int len;
+					var hr = doc.GetUrl(0, out len, null);
+					ThrowExceptionForHR(hr);
+					if (len > 0)
+					{
+						var urlChars = new char[len];
+						hr = doc.GetUrl(len, out len, urlChars);
+						ThrowExceptionForHR(hr);
+						Url = new string(urlChars, 0, len - 1);
+					}
+
+					hr = doc.GetChecksum(0, out len, null);
+					ThrowExceptionForHR(hr);
+
+					if (len > 0)
+					{
+						Checksum = new byte[len];
+						hr = doc.GetChecksum(len, out len, Checksum);
+						ThrowExceptionForHR(hr);
+					}
+
+					var id = Guid.Empty;
+					hr = doc.GetChecksumAlgorithmId(ref id);
+					ThrowExceptionForHR(hr);
+
+					ChecksumAlgorithmId = id;
+				}
+
+				public string Url { get; }
+				public byte[] Checksum { get; }
+				private Guid ChecksumAlgorithmId { get; }
+
+				public byte[] ComputeChecksum()
+				{
+					HashAlgorithm alg;
+					if (ChecksumAlgorithmId == CorSym_SourceHash_MD5)
+					{
+						alg = MD5.Create();
+					}
+					else if (ChecksumAlgorithmId == CorSym_SourceHash_SHA1)
+					{
+						alg = SHA1.Create();
+					}
+					else
+					{
+						throw new NotSupportedException($"Unknown {nameof(ChecksumAlgorithmId)}: {ChecksumAlgorithmId}");
+					}
+
+					try
+					{
+						return alg.ComputeHash(File.ReadAllBytes(Url));
+					}
+					finally
+					{
+						alg.Dispose();
+					}
+				}
+			}
+
+			/// <summary>
+			/// CoClass for getting an ISymUnmanagedBinder
+			/// </summary>
+			[ComImport, Guid("0A29FF9E-7F9C-4437-8B11-F424491E3931")]
+			internal class CorSymBinder { }
+
+			/// <summary>
+			/// CoClass for getting an IMetaDataDispenser
+			/// </summary>
+			[ComImport]
+			[Guid("E5CB7A31-7512-11d2-89CE-0080C792E5D8")]
+			[TypeLibType(TypeLibTypeFlags.FCanCreate)]
+			[ClassInterface(ClassInterfaceType.None)]
+			private class CorMetaDataDispenser { }
 
 			[ComImport]
-			[Guid(InterfaceMetaDataImportGuid)]
+			[Guid("7DAC8207-D3AE-4c75-9B67-92801A497D44")]
 			[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 			[TypeLibType(TypeLibTypeFlags.FRestricted)]
 			private interface IMetaDataImportStub
 			{
 				// ...
 			}
-
-			/// <summary>
-			/// CoClass for getting an IMetaDataDispenser
-			/// </summary>
-			[ComImport]
-			[Guid(MetaDataDispenserGuid)]
-			[TypeLibType(TypeLibTypeFlags.FCanCreate)]
-			[ClassInterface(ClassInterfaceType.None)]
-			private class CorMetaDataDispenser { }
 
 			/// <summary>
 			/// This version of the IMetaDataDispenser interface defines
@@ -122,7 +257,7 @@ namespace BenchmarkDotNet.NUnit
 			///    Marshal.Release(unk);
 			/// </summary>
 			[ComImport]
-			[Guid(InterfaceMetaDataDispenserGuid)]
+			[Guid("809C652E-7396-11D2-9771-00A0C9B4D50C")]
 			[InterfaceType(ComInterfaceType.InterfaceIsIUnknown /*0x0001*/)]
 			[TypeLibType(TypeLibTypeFlags.FRestricted /*0x0200*/)]
 			private interface IMetaDataDispenser
@@ -147,6 +282,9 @@ namespace BenchmarkDotNet.NUnit
 					[In] ref Guid riid);
 			}
 			#endregion
+
+			// ReSharper restore CommentTypo
+			// ReSharper restore IdentifierTypo
 		}
 	}
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.SymbolStore;
 using System.IO;
 using System.Linq;
 using System.Xml;
@@ -108,27 +107,11 @@ namespace BenchmarkDotNet.NUnit
 		#endregion
 
 		#region Helper methods
-		private static bool TryGetSourceInfo(CompetitionTarget competitionTarget, out string fileName, out int firstCodeLine)
-		{
-			fileName = null;
-			firstCodeLine = 0;
-			var methodSymbols = SymbolHelpers.TryGetSymbols(competitionTarget.Target.Method);
-			if (methodSymbols != null)
-			{
-				var count = methodSymbols.SequencePointCount;
-				var docs = new ISymbolDocument[count];
-				var offsets = new int[count];
-				var lines = new int[count];
-				var columns = new int[count];
-				var endlines = new int[count];
-				var endcolumns = new int[count];
-				methodSymbols.GetSequencePoints(offsets, docs, lines, columns, endlines, endcolumns);
-
-				fileName = docs[0].URL;
-				firstCodeLine = lines.Min();
-			}
-			return fileName != null;
-		}
+		private static bool TryGetSourceInfo(
+			CompetitionTarget competitionTarget,
+			out string sourceFileName, out int firstCodeLine) =>
+				SymbolHelpers.TryGetSourceInfo(
+					competitionTarget.Target.Method, out sourceFileName, out firstCodeLine);
 		#endregion
 
 		public static void AnnotateBenchmarkFiles(Summary summary, List<IWarning> warnings)

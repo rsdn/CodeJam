@@ -10,6 +10,7 @@ using NUnit.Framework;
 using static CodeJam.AssemblyWideConfig;
 
 // ReSharper disable once CheckNamespace
+
 namespace CodeJam
 {
 	/// <summary>
