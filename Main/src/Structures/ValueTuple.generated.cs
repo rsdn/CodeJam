@@ -30,6 +30,7 @@ namespace CodeJam
 		/// <param name="item2">The value of the component 2 of the tuple.</param>
 		/// <typeparam name="T2">The type of the component 2 of the tuple.</typeparam>
 		/// <returns>A 2-tuple whose value is (item1, item2).</returns>
+		[Pure]
 		public static ValueTuple<T1, T2> Create<T1, T2>(T1 item1, T2 item2) =>
 			new ValueTuple<T1, T2>(item1, item2);
 
@@ -43,6 +44,7 @@ namespace CodeJam
 		/// <param name="item3">The value of the component 3 of the tuple.</param>
 		/// <typeparam name="T3">The type of the component 3 of the tuple.</typeparam>
 		/// <returns>A 3-tuple whose value is (item1, item2).</returns>
+		[Pure]
 		public static ValueTuple<T1, T2, T3> Create<T1, T2, T3>(T1 item1, T2 item2, T3 item3) =>
 			new ValueTuple<T1, T2, T3>(item1, item2, item3);
 
@@ -58,6 +60,7 @@ namespace CodeJam
 		/// <param name="item4">The value of the component 4 of the tuple.</param>
 		/// <typeparam name="T4">The type of the component 4 of the tuple.</typeparam>
 		/// <returns>A 4-tuple whose value is (item1, item2).</returns>
+		[Pure]
 		public static ValueTuple<T1, T2, T3, T4> Create<T1, T2, T3, T4>(T1 item1, T2 item2, T3 item3, T4 item4) =>
 			new ValueTuple<T1, T2, T3, T4>(item1, item2, item3, item4);
 
@@ -75,6 +78,7 @@ namespace CodeJam
 		/// <param name="item5">The value of the component 5 of the tuple.</param>
 		/// <typeparam name="T5">The type of the component 5 of the tuple.</typeparam>
 		/// <returns>A 5-tuple whose value is (item1, item2).</returns>
+		[Pure]
 		public static ValueTuple<T1, T2, T3, T4, T5> Create<T1, T2, T3, T4, T5>(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5) =>
 			new ValueTuple<T1, T2, T3, T4, T5>(item1, item2, item3, item4, item5);
 
@@ -94,6 +98,7 @@ namespace CodeJam
 		/// <param name="item6">The value of the component 6 of the tuple.</param>
 		/// <typeparam name="T6">The type of the component 6 of the tuple.</typeparam>
 		/// <returns>A 6-tuple whose value is (item1, item2).</returns>
+		[Pure]
 		public static ValueTuple<T1, T2, T3, T4, T5, T6> Create<T1, T2, T3, T4, T5, T6>(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6) =>
 			new ValueTuple<T1, T2, T3, T4, T5, T6>(item1, item2, item3, item4, item5, item6);
 
@@ -115,6 +120,7 @@ namespace CodeJam
 		/// <param name="item7">The value of the component 7 of the tuple.</param>
 		/// <typeparam name="T7">The type of the component 7 of the tuple.</typeparam>
 		/// <returns>A 7-tuple whose value is (item1, item2).</returns>
+		[Pure]
 		public static ValueTuple<T1, T2, T3, T4, T5, T6, T7> Create<T1, T2, T3, T4, T5, T6, T7>(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7) =>
 			new ValueTuple<T1, T2, T3, T4, T5, T6, T7>(item1, item2, item3, item4, item5, item6, item7);
 
@@ -138,6 +144,7 @@ namespace CodeJam
 		/// <param name="item8">The value of the component 8 of the tuple.</param>
 		/// <typeparam name="T8">The type of the component 8 of the tuple.</typeparam>
 		/// <returns>A 8-tuple whose value is (item1, item2).</returns>
+		[Pure]
 		public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, T8> Create<T1, T2, T3, T4, T5, T6, T7, T8>(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7, T8 item8) =>
 			new ValueTuple<T1, T2, T3, T4, T5, T6, T7, T8>(item1, item2, item3, item4, item5, item6, item7, item8);
 
@@ -180,6 +187,7 @@ namespace CodeJam
 		/// true if the specified object  is equal to the current object; otherwise, false.
 		/// </returns>
 		/// <param name="obj">The object to compare with the current object. </param>
+		[Pure]
 		public override bool Equals(object obj) =>
 			((IStructuralEquatable)this).Equals(obj, EqualityComparer<object>.Default);
 
@@ -213,6 +221,7 @@ namespace CodeJam
 		/// <returns>
 		/// A 32-bit signed integer that is the hash code for this instance.
 		/// </returns>
+		[Pure]
 		public override int GetHashCode() => ((IStructuralEquatable)this).GetHashCode(EqualityComparer<object>.Default);
 
 		int IStructuralEquatable.GetHashCode(IEqualityComparer comparer) =>
@@ -224,6 +233,8 @@ namespace CodeJam
 		/// <returns>
 		/// A <see cref="T:System.String"/> containing a fully qualified type name.
 		/// </returns>
+		[Pure]
+		[NotNull]
 		public override string ToString()
 		{
 			var sb = new StringBuilder();
@@ -297,6 +308,7 @@ namespace CodeJam
 		/// true if the specified object  is equal to the current object; otherwise, false.
 		/// </returns>
 		/// <param name="obj">The object to compare with the current object. </param>
+		[Pure]
 		public override bool Equals(object obj) =>
 			((IStructuralEquatable)this).Equals(obj, EqualityComparer<object>.Default);
 
@@ -332,6 +344,7 @@ namespace CodeJam
 		/// <returns>
 		/// A 32-bit signed integer that is the hash code for this instance.
 		/// </returns>
+		[Pure]
 		public override int GetHashCode() => ((IStructuralEquatable)this).GetHashCode(EqualityComparer<object>.Default);
 
 		int IStructuralEquatable.GetHashCode(IEqualityComparer comparer) =>
@@ -343,6 +356,8 @@ namespace CodeJam
 		/// <returns>
 		/// A <see cref="T:System.String"/> containing a fully qualified type name.
 		/// </returns>
+		[Pure]
+		[NotNull]
 		public override string ToString()
 		{
 			var sb = new StringBuilder();
@@ -427,6 +442,7 @@ namespace CodeJam
 		/// true if the specified object  is equal to the current object; otherwise, false.
 		/// </returns>
 		/// <param name="obj">The object to compare with the current object. </param>
+		[Pure]
 		public override bool Equals(object obj) =>
 			((IStructuralEquatable)this).Equals(obj, EqualityComparer<object>.Default);
 
@@ -464,6 +480,7 @@ namespace CodeJam
 		/// <returns>
 		/// A 32-bit signed integer that is the hash code for this instance.
 		/// </returns>
+		[Pure]
 		public override int GetHashCode() => ((IStructuralEquatable)this).GetHashCode(EqualityComparer<object>.Default);
 
 		int IStructuralEquatable.GetHashCode(IEqualityComparer comparer) =>
@@ -475,6 +492,8 @@ namespace CodeJam
 		/// <returns>
 		/// A <see cref="T:System.String"/> containing a fully qualified type name.
 		/// </returns>
+		[Pure]
+		[NotNull]
 		public override string ToString()
 		{
 			var sb = new StringBuilder();
@@ -570,6 +589,7 @@ namespace CodeJam
 		/// true if the specified object  is equal to the current object; otherwise, false.
 		/// </returns>
 		/// <param name="obj">The object to compare with the current object. </param>
+		[Pure]
 		public override bool Equals(object obj) =>
 			((IStructuralEquatable)this).Equals(obj, EqualityComparer<object>.Default);
 
@@ -609,6 +629,7 @@ namespace CodeJam
 		/// <returns>
 		/// A 32-bit signed integer that is the hash code for this instance.
 		/// </returns>
+		[Pure]
 		public override int GetHashCode() => ((IStructuralEquatable)this).GetHashCode(EqualityComparer<object>.Default);
 
 		int IStructuralEquatable.GetHashCode(IEqualityComparer comparer) =>
@@ -620,6 +641,8 @@ namespace CodeJam
 		/// <returns>
 		/// A <see cref="T:System.String"/> containing a fully qualified type name.
 		/// </returns>
+		[Pure]
+		[NotNull]
 		public override string ToString()
 		{
 			var sb = new StringBuilder();
@@ -726,6 +749,7 @@ namespace CodeJam
 		/// true if the specified object  is equal to the current object; otherwise, false.
 		/// </returns>
 		/// <param name="obj">The object to compare with the current object. </param>
+		[Pure]
 		public override bool Equals(object obj) =>
 			((IStructuralEquatable)this).Equals(obj, EqualityComparer<object>.Default);
 
@@ -767,6 +791,7 @@ namespace CodeJam
 		/// <returns>
 		/// A 32-bit signed integer that is the hash code for this instance.
 		/// </returns>
+		[Pure]
 		public override int GetHashCode() => ((IStructuralEquatable)this).GetHashCode(EqualityComparer<object>.Default);
 
 		int IStructuralEquatable.GetHashCode(IEqualityComparer comparer) =>
@@ -778,6 +803,8 @@ namespace CodeJam
 		/// <returns>
 		/// A <see cref="T:System.String"/> containing a fully qualified type name.
 		/// </returns>
+		[Pure]
+		[NotNull]
 		public override string ToString()
 		{
 			var sb = new StringBuilder();
@@ -895,6 +922,7 @@ namespace CodeJam
 		/// true if the specified object  is equal to the current object; otherwise, false.
 		/// </returns>
 		/// <param name="obj">The object to compare with the current object. </param>
+		[Pure]
 		public override bool Equals(object obj) =>
 			((IStructuralEquatable)this).Equals(obj, EqualityComparer<object>.Default);
 
@@ -938,6 +966,7 @@ namespace CodeJam
 		/// <returns>
 		/// A 32-bit signed integer that is the hash code for this instance.
 		/// </returns>
+		[Pure]
 		public override int GetHashCode() => ((IStructuralEquatable)this).GetHashCode(EqualityComparer<object>.Default);
 
 		int IStructuralEquatable.GetHashCode(IEqualityComparer comparer) =>
@@ -949,6 +978,8 @@ namespace CodeJam
 		/// <returns>
 		/// A <see cref="T:System.String"/> containing a fully qualified type name.
 		/// </returns>
+		[Pure]
+		[NotNull]
 		public override string ToString()
 		{
 			var sb = new StringBuilder();
@@ -1077,6 +1108,7 @@ namespace CodeJam
 		/// true if the specified object  is equal to the current object; otherwise, false.
 		/// </returns>
 		/// <param name="obj">The object to compare with the current object. </param>
+		[Pure]
 		public override bool Equals(object obj) =>
 			((IStructuralEquatable)this).Equals(obj, EqualityComparer<object>.Default);
 
@@ -1122,6 +1154,7 @@ namespace CodeJam
 		/// <returns>
 		/// A 32-bit signed integer that is the hash code for this instance.
 		/// </returns>
+		[Pure]
 		public override int GetHashCode() => ((IStructuralEquatable)this).GetHashCode(EqualityComparer<object>.Default);
 
 		int IStructuralEquatable.GetHashCode(IEqualityComparer comparer) =>
@@ -1133,6 +1166,8 @@ namespace CodeJam
 		/// <returns>
 		/// A <see cref="T:System.String"/> containing a fully qualified type name.
 		/// </returns>
+		[Pure]
+		[NotNull]
 		public override string ToString()
 		{
 			var sb = new StringBuilder();
