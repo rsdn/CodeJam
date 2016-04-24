@@ -125,8 +125,11 @@ namespace CodeJam.Reflection
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type" /> is nullable numeric.</returns>
 		[Pure]
-		public static bool IsNullableNumeric([NotNull] this Type type) =>
-			type.IsNullable() && type.GetGenericArguments()[0].IsNumeric();
+		public static bool IsNullableNumeric([NotNull] this Type type)
+		{
+			var arg = Nullable.GetUnderlyingType(type);
+			return arg != null && arg.IsNumeric();
+		}
 
 		/// <summary>
 		/// Checks if <paramref name="type"/> is nullable integer type.
@@ -134,8 +137,11 @@ namespace CodeJam.Reflection
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is nullable integer type.</returns>
 		[Pure]
-		public static bool IsNullableInteger([NotNull] this Type type) =>
-			type.IsNullable() && type.GetGenericArguments()[0].IsInteger();
+		public static bool IsNullableInteger([NotNull] this Type type)
+		{
+			var arg = Nullable.GetUnderlyingType(type);
+			return arg != null && arg.IsInteger();
+		}
 
 		/// <summary>
 		/// Checks if <paramref name="type"/> is nullable enum type.
@@ -143,8 +149,11 @@ namespace CodeJam.Reflection
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is nullable enum type.</returns>
 		[Pure]
-		public static bool IsNullableEnum([NotNull] this Type type) =>
-			type.IsNullable() && type.GetGenericArguments()[0].IsEnum;
+		public static bool IsNullableEnum([NotNull] this Type type)
+		{
+			var arg = Nullable.GetUnderlyingType(type);
+			return arg != null && arg.IsEnum;
+		}
 
 		/// <summary>
 		/// Determines whether the <paramref name="type"/> derives from the specified <paramref name="check"/>.
