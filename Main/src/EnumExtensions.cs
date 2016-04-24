@@ -44,12 +44,22 @@ namespace CodeJam
 			private static readonly IReadOnlyDictionary<string, TEnum> _nameValues = GetNameValuesCore(_enumType);
 
 			public static readonly TEnum _flagsMask = _isFlagsEnum ? GetFlagsMaskCore(_values.ToArray()) : default(TEnum);
-			#endregion
+#endregion
 
-			#region Init helpers
-			private static Dictionary<string, TEnum> GetNameValuesCore(Type enumType)
+#region Init helpers
+			private static
+#if FW40
+				DictionaryWithReadOnly<string, TEnum>
+#else
+				Dictionary<string, TEnum>
+#endif
+				GetNameValuesCore(Type enumType)
 			{
+#if FW40
+				var result = new DictionaryWithReadOnly<string, TEnum>();
+#else
 				var result = new Dictionary<string, TEnum>();
+#endif
 				if (enumType.IsEnum)
 				{
 					var names = Enum.GetNames(enumType);
@@ -75,7 +85,7 @@ namespace CodeJam
 
 				return result;
 			}
-			#endregion
+#endregion
 
 			[DebuggerHidden, MethodImpl(PlatformDependent.AggressiveInlining)]
 			private static void AssertUsage()

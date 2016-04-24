@@ -131,6 +131,7 @@
     <Compile Include="TableData\TableDataParser.cs" />
     <Compile Include="TableData\TableDataPrinter.cs" />
     <Compile Include="Targeting\CustomAttributeExtensions.cs" />
+    <Compile Include="Targeting\DictionaryWithReadOnly.cs" />
     <Compile Include="Targeting\PlatformDependent.cs" />
     <Compile Include="Collections\ArrayExtensions.cs" />
     <Compile Include="Collections\ArrayExtensions.generated.cs">
