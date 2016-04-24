@@ -92,6 +92,7 @@
     <Compile Include="CalibrationBenchmarks\DispatchingOptimizationBenchmark.cs" />
     <Compile Include="CalibrationBenchmarks\ProofsOpsCountNotSensitiveBenchmark .cs" />
     <Compile Include="CalibrationBenchmarks\ProofsSensitivityBenchmark.cs" />
+    <Compile Include="Enums\EnumExtensionsBenchmark.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

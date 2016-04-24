@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace CodeJam
 {
 	[TestFixture(Category = "Enums")]
-	public class EnumTests
+	public class EnumUseCaseTests
 	{
 		[Flags]
 		enum F

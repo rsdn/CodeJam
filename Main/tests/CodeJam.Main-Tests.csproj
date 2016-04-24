@@ -71,7 +71,8 @@
     <Compile Include="Collections\EnumerableExtensionTests.Slice.cs" />
     <Compile Include="Collections\EnumerableExtensionTests.TakeLast.cs" />
     <Compile Include="Collections\EnumerableExtensionTests.cs" />
-    <Compile Include="Enums\EnumTests.cs" />
+    <Compile Include="Enums\EnumUseCaseTests.cs" />
+    <Compile Include="Enums\EnumExtensionsTests.cs" />
     <Compile Include="IO\TempDataTests.cs" />
     <Compile Include="DisposableTests.cs" />
     <Compile Include="QueryableExtensionsTests.cs" />
