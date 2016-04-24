@@ -28,6 +28,7 @@ namespace CodeJam
 		/// <typeparam name="T<#=j#>">The type of the component <#=j#> of the tuple.</typeparam>
 <#	}#>
 		/// <returns>A <#=i#>-tuple whose value is (item1, item2).</returns>
+		[Pure]
 		public static ValueTuple<<#=typeList#>> Create<<#=typeList#>>(<#=List(i, j => "T" + j + " item" + j)#>) =>
 			new ValueTuple<<#=typeList#>>(<#=List(i, j => "item" + j)#>);
 
@@ -74,6 +75,7 @@ namespace CodeJam
 		/// true if the specified object  is equal to the current object; otherwise, false.
 		/// </returns>
 		/// <param name="obj">The object to compare with the current object. </param>
+		[Pure]
 		public override bool Equals(object obj) =>
 			((IStructuralEquatable)this).Equals(obj, EqualityComparer<object>.Default);
 
@@ -109,6 +111,7 @@ namespace CodeJam
 		/// <returns>
 		/// A 32-bit signed integer that is the hash code for this instance.
 		/// </returns>
+		[Pure]
 		public override int GetHashCode() => ((IStructuralEquatable)this).GetHashCode(EqualityComparer<object>.Default);
 
 		int IStructuralEquatable.GetHashCode(IEqualityComparer comparer) =>
@@ -120,6 +123,8 @@ namespace CodeJam
 		/// <returns>
 		/// A <see cref="T:System.String"/> containing a fully qualified type name.
 		/// </returns>
+		[Pure]
+		[NotNull]
 		public override string ToString()
 		{
 			var sb = new StringBuilder();

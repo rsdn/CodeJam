@@ -301,7 +301,9 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// Unquoted <paramref name="arg"/>, if <paramref name="arg"/> is quoted, or <paramref name="arg"/> itself.
 		/// </returns>
-		public static string Unquote(this string arg)
+		[NotNull]
+		[Pure]
+		public static string Unquote([NotNull] this string arg)
 		{
 			bool quoted;
 			return Unquote(arg, out quoted);
@@ -315,7 +317,9 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// Unquoted <paramref name="arg"/>, if <paramref name="arg"/> is quoted, or <paramref name="arg"/> itself.
 		/// </returns>
-		public static string Unquote(this string arg, out bool quoted) => Unquote(arg, '"', out quoted);
+		[NotNull]
+		[Pure]
+		public static string Unquote([NotNull] this string arg, out bool quoted) => Unquote(arg, '"', out quoted);
 
 		/// <summary>
 		/// Remove one set of leading and trailing d<paramref name="quotationChar"/>, if both are present.
@@ -326,8 +330,12 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// Unquoted <paramref name="arg"/>, if <paramref name="arg"/> is quoted, or <paramref name="arg"/> itself.
 		/// </returns>
-		public static string Unquote(this string arg, char quotationChar, out bool quoted)
+		[Pure]
+		[NotNull]
+		public static string Unquote([NotNull] this string arg, char quotationChar, out bool quoted)
 		{
+			Code.NotNull(arg, nameof(arg));
+
 			if (arg.Length > 1 && arg[0] == quotationChar && arg[arg.Length - 1] == quotationChar)
 			{
 				quoted = true;

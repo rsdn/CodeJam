@@ -10,8 +10,10 @@ namespace CodeJam.Strings
 	static partial class StringExtensions
 	{
 		/// <summary>
-		/// Infix form of <see cref="string.IsNullOrEmpty"/>.
+		/// Infix form of <see cref="string.IsNullOrEmpty" />.
 		/// </summary>
+		/// <param name="str">The string.</param>
+		/// <returns><c>true</c> if <paramref name="str"/> is null or empty; otherwise, <c>false</c>.</returns>
 		[Pure]
 		[ContractAnnotation("str:null => true")]
 		public static bool IsNullOrEmpty([CanBeNull] this string str) => string.IsNullOrEmpty(str);
@@ -19,6 +21,8 @@ namespace CodeJam.Strings
 		/// <summary>
 		/// Returns true if argument is not null nor empty.
 		/// </summary>
+		/// <param name="str">The string.</param>
+		/// <returns><c>true</c> if <paramref name="str"/> is not null nor empty; otherwise, <c>false</c>.</returns>
 		[Pure]
 		[ContractAnnotation("str:null => false")]
 		public static bool NotNullNorEmpty([CanBeNull] this string str) => !string.IsNullOrEmpty(str);
@@ -26,6 +30,9 @@ namespace CodeJam.Strings
 		/// <summary>
 		/// Infix form of <see cref="string.IsNullOrWhiteSpace"/>.
 		/// </summary>
+		/// <returns>
+		/// <c>true</c> if <paramref name="str"/> is null, empty or contains only whitespaces; otherwise <c>false</c>.
+		/// </returns>
 		[Pure]
 		[ContractAnnotation("str:null => true")]
 		public static bool IsNullOrWhiteSpace([CanBeNull] this string str) => string.IsNullOrWhiteSpace(str);
@@ -33,6 +40,10 @@ namespace CodeJam.Strings
 		/// <summary>
 		/// Returns true if argument is not null nor whitespace.
 		/// </summary>
+		/// <returns>
+		/// <c>true</c> if <paramref name="str"/> is not null, nor empty or contains not only whitespaces;
+		/// otherwise <c>false</c>.
+		/// </returns>
 		[Pure]
 		[ContractAnnotation("str:null => false")]
 		public static bool NotNullNorWhiteSpace([CanBeNull] this string str) => !string.IsNullOrWhiteSpace(str);
@@ -218,14 +229,24 @@ namespace CodeJam.Strings
 		/// <param name="str">The string containing the characters to encode.</param>
 		/// <param name="encoding">Encoding to convert.</param>
 		/// <returns>A byte array containing the results of encoding the specified set of characters.</returns>
-		public static byte[] ToBytes(this string str, Encoding encoding) => encoding.GetBytes(str);
+		[NotNull]
+		[Pure]
+		public static byte[] ToBytes([NotNull] this string str, [NotNull] Encoding encoding)
+		{
+			Code.NotNull(str, nameof(str));
+			Code.NotNull(encoding, nameof(encoding));
+
+			return encoding.GetBytes(str);
+		}
 
 		/// <summary>
 		/// Encodes all the characters in the specified string into a sequence of bytes using UTF-8 encoding.
 		/// </summary>
 		/// <param name="str">The string containing the characters to encode.</param>
 		/// <returns>A byte array containing the results of encoding the specified set of characters.</returns>
-		public static byte[] ToBytes(this string str) => ToBytes(str, Encoding.UTF8);
+		[NotNull]
+		[Pure]
+		public static byte[] ToBytes([NotNull] this string str) => ToBytes(str, Encoding.UTF8);
 
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-specific format to its 32-bit
