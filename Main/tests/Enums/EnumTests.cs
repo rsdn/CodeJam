@@ -144,22 +144,22 @@ namespace CodeJam
 		public static bool DoesNotInclude<T>(this T value, T flag)
 			where T : struct, IComparable, IFormattable, IConvertible =>
 				Ops<T>.NotEq(flag, default(T)) &&
-				Ops<T>.NotEq(
-					Ops<T>.And(value, flag),
-					flag);
+					Ops<T>.NotEq(
+						Ops<T>.And(value, flag),
+						flag);
 
 		public static bool IncludesAny<T>(this T value, T flag)
 			where T : struct, IComparable, IFormattable, IConvertible =>
 				Ops<T>.Eq(flag, default(T)) ||
-				Ops<T>.NotEq(
-					Ops<T>.And(value, flag),
-					default(T));
+					Ops<T>.NotEq(
+						Ops<T>.And(value, flag),
+						default(T));
 
 		public static bool DoesNotIncludeAny<T>(this T value, T flag)
 			where T : struct, IComparable, IFormattable, IConvertible =>
 				Ops<T>.NotEq(flag, default(T)) &&
-				Ops<T>.Eq(
-					Ops<T>.And(value, flag),
-					default(T));
+					Ops<T>.Eq(
+						Ops<T>.And(value, flag),
+						default(T));
 	}
 }

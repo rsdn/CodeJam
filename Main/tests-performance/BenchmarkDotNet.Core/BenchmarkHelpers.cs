@@ -29,7 +29,7 @@ namespace BenchmarkDotNet.Helpers
 		/// </summary>
 		/// <remarks>
 		/// The implementation is expected to be consistent with the one from Excel.
-		/// It's a quite common to export bench output into .csv for further analysis 
+		/// It's a quite common to export bench output into .csv for further analysis
 		/// And it's a good idea to have same results from all tools being used.
 		/// </remarks>
 		/// <param name="values">Sequence of the values to be calculated</param>

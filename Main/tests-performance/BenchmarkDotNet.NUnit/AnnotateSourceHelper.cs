@@ -21,7 +21,7 @@ namespace BenchmarkDotNet.NUnit
 {
 	/// <summary>
 	/// Fills min..max values for [CompetitionBenchmark] attribute
-	/// DANGER: this will try to update sources. May fail. 
+	/// DANGER: this will try to update sources. May fail.
 	/// </summary>
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
