@@ -4,11 +4,11 @@ using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 
 #if DEBUG
-namespace CodeJam.Arithmetic
+namespace CodeJam.Reflection
 {
 	/// <summary>
-	/// The <see cref="Arithmetic"/> namespace contains classes that allow to use arithmetic operations with
-	/// generic arguments.
+	/// The <see cref="Reflection"/> namespace contains types that helps working with <see cref="System.Reflection"/>
+	/// functionality.
 	/// </summary>
 	[UsedImplicitly]
 	[CompilerGenerated]

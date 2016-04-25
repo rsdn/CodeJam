@@ -107,6 +107,7 @@
     <Compile Include="Collections\QueryableExtensions.cs" />
     <Compile Include="IO\NamespaceDoc.cs" />
     <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="Reflection\NamespaceDoc.cs" />
     <Compile Include="Services\NamespaceDoc.cs" />
     <Compile Include="Strings\NamespaceDoc.cs" />
     <Compile Include="Strings\CharExtensions.Infix.generated.cs">
@@ -195,6 +196,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InterlockedOperations.tt</DependentUpon>
     </Compile>
+    <Compile Include="Threading\NamespaceDoc.cs" />
     <Compile Include="Threading\ParallelExtensions.cs" />
     <Compile Include="Threading\ParallelQueue.cs" />
     <Compile Include="Threading\ReaderWriterLockSlimExtensions.cs" />
