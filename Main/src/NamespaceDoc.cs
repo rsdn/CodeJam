@@ -17,7 +17,7 @@ namespace CodeJam
 	/// </summary>
 	[UsedImplicitly]
 	[CompilerGenerated]
-	class NamespaceDoc
-	{}
+	internal class NamespaceDoc
+	{ }
 }
 #endif
