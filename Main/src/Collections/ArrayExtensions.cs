@@ -12,15 +12,20 @@ namespace CodeJam.Collections
 	public partial class ArrayExtensions
 	{
 		/// <summary>
-		/// Returns true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
+		/// Returns true, if length and content of <paramref name="a" /> equals <paramref name="b" />.
 		/// </summary>
+		/// <typeparam name="T">Type of array item.</typeparam>
 		/// <param name="a">The first array to compare.</param>
 		/// <param name="b">The second array to compare.</param>
-		/// <param name="comparer">Instance of <see cref="IComparer{T}"/> to compare values.</param>
+		/// <param name="comparer">Instance of <see cref="IComparer{T}" /> to compare values.</param>
+		/// <returns>
+		/// <c>true</c> if content of <paramref name="a"/> equals to <paramref name="b"/>, <c>false</c> otherwise.
+		/// </returns>
+		/// <exception cref="ArgumentNullException"><paramref name="comparer"/> is null.</exception>
 		[Pure]
 		public static bool EqualsTo<T>([CanBeNull] this T[] a, [CanBeNull] T[] b, [NotNull] IEqualityComparer<T> comparer)
 		{
-			if (comparer == null) throw new ArgumentNullException(nameof(comparer));
+			Code.NotNull(comparer, nameof(comparer));
 
 			if (a == b)
 				return true;
@@ -42,8 +47,12 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Returns true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
 		/// </summary>
+		/// <typeparam name="T">Type of array item.</typeparam>
 		/// <param name="a">The first array to compare.</param>
 		/// <param name="b">The second array to compare.</param>
+		/// <returns>
+		/// <c>true</c> if content of <paramref name="a"/> equals to <paramref name="b"/>, <c>false</c> otherwise.
+		/// </returns>
 		[Pure]
 		public static bool EqualsTo<T>([CanBeNull] this T[] a, [CanBeNull] T[] b) =>
 			EqualsTo(a, b, EqualityComparer<T>.Default);
@@ -51,7 +60,14 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Checks if any element in array exists.
 		/// </summary>
+		/// <typeparam name="T">Type of array item.</typeparam>
+		/// <param name="array">Array to check.</param>
 		/// <remarks>This method performs fast check instead of creating enumerator</remarks>
-		public static bool Any<T>(this T[] array) => array.Length != 0;
+		[Pure]
+		public static bool Any<T>([NotNull] this T[] array)
+		{
+			Code.NotNull(array, nameof(array));
+			return array.Length != 0;
+		}
 	}
 }
