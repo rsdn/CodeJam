@@ -1,4 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using System.Runtime.CompilerServices;
+
+using JetBrains.Annotations;
 
 namespace CodeJam.TableData
 {
@@ -7,7 +9,8 @@ namespace CodeJam.TableData
 	/// The <see cref="TableData"/> namespace contains types for working with CSV and fixed with text data formats.
 	/// </summary>
 	[UsedImplicitly]
-	public class NamespaceDoc
+	[CompilerGenerated]
+	class NamespaceDoc
 	{
 		
 	}

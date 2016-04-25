@@ -53,6 +53,7 @@ namespace CodeJam.Reflection
 		/// <exception cref="ArgumentNullException"><paramref name="type"/> is null</exception>
 		/// <exception cref="ArgumentException">No suitable constructors found</exception>
 		[NotNull]
+		[Pure]
 		public static object CreateInstance([NotNull] this Type type, params ParamInfo[] parameters)
 		{
 			if (type == null) throw new ArgumentNullException(nameof(type));

@@ -25,8 +25,8 @@ namespace CodeJam.Reflection
 		[NotNull, Pure]
 		public static Stream GetRequiredResourceStream([NotNull] this Assembly assembly, [NotNull] string name)
 		{
-			if (assembly == null) throw new ArgumentNullException(nameof(assembly));
-			if (name.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(name));
+			Code.NotNull(assembly, nameof(assembly));
+			Code.NotNullNorWhiteSpace(name, nameof(name));
 
 			var result = assembly.GetManifestResourceStream(name);
 			if (result == null)
@@ -39,28 +39,29 @@ namespace CodeJam.Reflection
 		/// Returns path to assembly <paramref name="assembly"/> file.
 		/// </summary>
 		/// <param name="assembly">Assembly.</param>
+		/// <returns>Path to <paramref name="assembly"/>.</returns>
 		[NotNull]
 		[Pure]
 		public static string GetAssemblyPath([NotNull] this Assembly assembly)
 		{
-			if (assembly == null)
-				throw new ArgumentNullException(nameof(assembly));
+			Code.NotNull(assembly, nameof(assembly));
 
 			var codeBase = assembly.CodeBase;
 			if (codeBase == null)
-				throw new ArgumentException($"Assembly {assembly} has no physical code base.");
+				throw CodeExceptions.Argument(nameof(assembly), $"Assembly {assembly} has no physical code base.");
 
 			var uri = new Uri(codeBase);
 			if (uri.IsFile)
 				return uri.LocalPath;
 
-			throw new ArgumentException($"Assembly '{assembly}' placed not on local disk.");
+			throw CodeExceptions.Argument(nameof(assembly), $"Assembly '{assembly}' placed not on local disk.");
 		}
 
 		/// <summary>
 		/// Returns directory part of path to assembly <paramref name="assembly"/> file.
 		/// </summary>
 		/// <param name="assembly">Assembly.</param>
+		/// <returns>Folder part of path to <paramref name="assembly"/>.</returns>
 		[CanBeNull]
 		[Pure]
 		public static string GetAssemblyDirectory([NotNull] this Assembly assembly) =>
