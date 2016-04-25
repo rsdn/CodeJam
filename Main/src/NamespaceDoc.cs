@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
 
@@ -15,7 +16,8 @@ namespace CodeJam
 	/// </para>
 	/// </summary>
 	[UsedImplicitly]
-	public class NamespaceDoc
+	[CompilerGenerated]
+	class NamespaceDoc
 	{}
 }
 #endif

@@ -1,4 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using System.Runtime.CompilerServices;
+
+using JetBrains.Annotations;
 
 namespace CodeJam.Strings
 {
@@ -8,7 +10,8 @@ namespace CodeJam.Strings
 	/// manipulation.
 	/// </summary>
 	[UsedImplicitly]
-	public class NamespaceDoc
+	[CompilerGenerated]
+	class NamespaceDoc
 	{}
 #endif
 }
