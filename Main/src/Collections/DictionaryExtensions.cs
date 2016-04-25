@@ -25,16 +25,26 @@ namespace CodeJam.Collections
 		/// in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure]
-		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, TKey key)
-		{
-			Code.NotNull(dictionary, nameof(dictionary));
+		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, TKey key) =>
+			GetValueOrDefault(dictionary, key, default(TValue));
 
-			TValue result;
-			return
-				dictionary.TryGetValue(key, out result)
-					? result
-					: default(TValue);
-		}
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
+		/// <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
+		/// in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure]
+		public static TValue GetValueOrDefault<TKey, TValue>(
+				[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
+				TKey key) =>
+			GetValueOrDefault(dictionary, key, default(TValue));
 
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
@@ -52,32 +62,6 @@ namespace CodeJam.Collections
 		[Pure]
 		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this Dictionary<TKey, TValue> dictionary, TKey key) =>
 			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key);
-
-		/// <summary>
-		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
-		/// <paramref name="dictionary"/>
-		/// </summary>
-		/// <typeparam name="TKey">The type of the key.</typeparam>
-		/// <typeparam name="TValue">The type of the value.</typeparam>
-		/// <param name="dictionary">The dictionary.</param>
-		/// <param name="key">The key.</param>
-		/// <returns>
-		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
-		/// in <paramref name="dictionary"/>
-		/// </returns>
-		[Pure]
-		public static TValue GetValueOrDefault<TKey, TValue>(
-			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
-			TKey key)
-		{
-			Code.NotNull(dictionary, nameof(dictionary));
-
-			TValue result;
-			return
-				dictionary.TryGetValue(key, out result)
-					? result
-					: default(TValue);
-		}
 
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
@@ -108,6 +92,204 @@ namespace CodeJam.Collections
 		}
 
 		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
+		/// in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="defaultValue">Default value.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
+		/// does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure]
+		public static TValue GetValueOrDefault<TKey, TValue>(
+			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
+			TKey key,
+			TValue defaultValue)
+		{
+			Code.NotNull(dictionary, nameof(dictionary));
+
+			TValue result;
+			return
+				dictionary.TryGetValue(key, out result)
+					? result
+					: defaultValue;
+		}
+
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
+		/// in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="defaultValue">Default value.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
+		/// does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure]
+		public static TValue GetValueOrDefault<TKey, TValue>(
+				[NotNull] this Dictionary<TKey, TValue> dictionary,
+				TKey key,
+				TValue defaultValue) =>
+			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValue);
+
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or default value if key does not exists
+		/// in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <typeparam name="TResult">Result type.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="resultSelector">Function to select result.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/>
+		/// does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure]
+		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
+				[NotNull] this IDictionary<TKey, TValue> dictionary,
+				TKey key,
+				[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
+			GetValueOrDefault(dictionary, key, resultSelector, default(TResult));
+
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or default value if key does not exists
+		/// in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <typeparam name="TResult">Result type.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="resultSelector">Function to select result.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/>
+		/// does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure]
+		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
+				[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
+				TKey key,
+				[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
+			GetValueOrDefault(dictionary, key, resultSelector, default(TResult));
+
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or default value if key does not exists
+		/// in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <typeparam name="TResult">Result type.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="resultSelector">Function to select result.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/>
+		/// does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure]
+		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
+				[NotNull] this Dictionary<TKey, TValue> dictionary,
+				TKey key,
+				[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
+			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, default(TResult));
+
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
+		/// in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <typeparam name="TResult">Result type.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="resultSelector">Function to select result.</param>
+		/// <param name="defaultValue">Default value.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
+		/// does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure]
+		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
+			[NotNull] this IDictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
+			TResult defaultValue)
+		{
+			Code.NotNull(dictionary, nameof(dictionary));
+			Code.NotNull(resultSelector, nameof(resultSelector));
+
+			TValue result;
+			return
+				dictionary.TryGetValue(key, out result)
+					? resultSelector(key, result)
+					: defaultValue;
+		}
+
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
+		/// in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <typeparam name="TResult">Result type.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="resultSelector">Function to select result.</param>
+		/// <param name="defaultValue">Default value.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
+		/// does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure]
+		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
+			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
+			TResult defaultValue)
+		{
+			Code.NotNull(dictionary, nameof(dictionary));
+			Code.NotNull(resultSelector, nameof(resultSelector));
+
+			TValue result;
+			return
+				dictionary.TryGetValue(key, out result)
+					? resultSelector(key, result)
+					: defaultValue;
+		}
+
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
+		/// in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <typeparam name="TResult">Result type.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="resultSelector">Function to select result.</param>
+		/// <param name="defaultValue">Default value.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
+		/// does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure]
+		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
+			[NotNull] this Dictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
+			TResult defaultValue) =>
+				GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, defaultValue);
+
+		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
 		/// if key does not exists in <paramref name="dictionary"/>
 		/// </summary>
@@ -135,6 +317,144 @@ namespace CodeJam.Collections
 					? result
 					: defaultValueFactory(key);
 		}
+
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
+		/// if key does not exists in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="defaultValueFactory">Function to return default value.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
+		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure]
+		public static TValue GetValueOrDefault<TKey, TValue>(
+			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory)
+		{
+			Code.NotNull(dictionary, nameof(dictionary));
+			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
+
+			TValue result;
+			return
+				dictionary.TryGetValue(key, out result)
+					? result
+					: defaultValueFactory(key);
+		}
+
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
+		/// if key does not exists in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="defaultValueFactory">Function to return default value.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
+		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure]
+		public static TValue GetValueOrDefault<TKey, TValue>(
+			[NotNull] this Dictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory) =>
+				GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValueFactory);
+
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
+		/// if key does not exists in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <typeparam name="TResult">Result type.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="defaultValueFactory">Function to return default value.</param>
+		/// <param name="resultSelector">Function to select result.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
+		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure]
+		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
+			[NotNull] this IDictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
+			[NotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory)
+		{
+			Code.NotNull(dictionary, nameof(dictionary));
+			Code.NotNull(resultSelector, nameof(resultSelector));
+			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
+
+			TValue result;
+			return
+				dictionary.TryGetValue(key, out result)
+					? resultSelector(key, result)
+					: defaultValueFactory(key);
+		}
+
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
+		/// if key does not exists in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <typeparam name="TResult">Result type.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="defaultValueFactory">Function to return default value.</param>
+		/// <param name="resultSelector">Function to select result.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
+		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure]
+		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
+			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
+			[NotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory)
+		{
+			Code.NotNull(dictionary, nameof(dictionary));
+			Code.NotNull(resultSelector, nameof(resultSelector));
+			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
+
+			TValue result;
+			return
+				dictionary.TryGetValue(key, out result)
+					? resultSelector(key, result)
+					: defaultValueFactory(key);
+		}
+
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
+		/// if key does not exists in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <typeparam name="TResult">Result type.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="defaultValueFactory">Function to return default value.</param>
+		/// <param name="resultSelector">Function to select result.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
+		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure]
+		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
+				[NotNull] this Dictionary<TKey, TValue> dictionary,
+				TKey key,
+				[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
+				[NotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory) =>
+			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, defaultValueFactory);
 		#endregion
 
 		#region GetOrAdd, AddOrUpdate

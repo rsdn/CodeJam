@@ -3,6 +3,8 @@ CodeJam 1.0.0-rc2 Release Notes
 
 What's new in 1.0.0-rc2
 ----------------------
+* Additional overloads for char static methods
+* DictionaryExtensions.GetValueOrDefault additional overloads
 * AssertArgument with message factory overload removed
 * DisjointSets postponed to next release
 * Performance optimization

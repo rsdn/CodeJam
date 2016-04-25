@@ -2,6 +2,8 @@
 using System.Collections.Concurrent;
 using System.Linq;
 
+using CodeJam.Collections;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Services
@@ -18,7 +20,13 @@ namespace CodeJam.Services
 		private readonly ConcurrentDictionary<Type, IServiceBag> _services =
 			new ConcurrentDictionary<Type, IServiceBag>();
 
-		/// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:System.Object" /> class.
+		/// </summary>
+		/// <param name="parentProvider">The parent provider.</param>
+		/// <param name="publishSelf">
+		/// if set to <c>true</c> container publish itself as <see cref="IServicePublisher"/> service.
+		/// </param>
 		public ServiceContainer([CanBeNull] IServiceProvider parentProvider, bool publishSelf = true)
 		{
 			_parentProvider = parentProvider;
@@ -27,6 +35,9 @@ namespace CodeJam.Services
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+		/// <param name="publishSelf">
+		/// if set to <c>true</c> container publish itself as <see cref="IServicePublisher"/> service.
+		/// </param>
 		public ServiceContainer(bool publishSelf = true) : this(null, publishSelf) { }
 
 		private void ConcealService(Type serviceType)
@@ -37,28 +48,18 @@ namespace CodeJam.Services
 			bag.Dispose();
 		}
 
-		#region Implementation of IServiceProvider
-		/// <summary>Gets the service object of the specified type.</summary>
-		/// <returns>A service object of type <paramref name="serviceType" />.-or- null if there is no service object of type <paramref name="serviceType" />.</returns>
-		/// <param name="serviceType">An object that specifies the type of service object to get. </param>
 		[CanBeNull]
-		public object GetService(Type serviceType)
+		public object GetService([NotNull] Type serviceType)
 		{
-			IServiceBag bag;
-			return
-				_services.TryGetValue(serviceType, out bag)
-					? bag.GetInstance(this, serviceType)
-					: _parentProvider?.GetService(serviceType);
-		}
-		#endregion
+			Code.NotNull(serviceType, nameof(serviceType));
 
-		#region Implementation of IServicePublisher
-		/// <summary>
-		/// Publish service.
-		/// </summary>
-		/// <param name="serviceType">Type of service object to publish.</param>
-		/// <param name="serviceInstance">Instance of service of type <paramref name="serviceType"/>.</param>
-		/// <returns>Disposable cookie to conceal published service</returns>
+			return
+				_services.GetValueOrDefault(
+					serviceType,
+					(type, bag) => bag.GetInstance(this, type),
+					type => _parentProvider?.GetService(serviceType));
+		}
+
 		public IDisposable Publish(Type serviceType, object serviceInstance)
 		{
 			if (!_services.TryAdd(serviceType, new InstanceBag(serviceInstance)))
@@ -77,12 +78,6 @@ namespace CodeJam.Services
 					});
 		}
 
-		/// <summary>
-		/// Publish service.
-		/// </summary>
-		/// <param name="serviceType">Type of service object to publish.</param>
-		/// <param name="instanceFactory">Factory to create service instance</param>
-		/// <returns>Disposable cookie to conceal published service</returns>
 		public IDisposable Publish(Type serviceType, Func<IServicePublisher, object> instanceFactory)
 		{
 			if (!_services.TryAdd(serviceType, new FactoryBag(instanceFactory)))
@@ -100,7 +95,6 @@ namespace CodeJam.Services
 						}
 					});
 		}
-		#endregion
 
 		#region ServiceBag classes
 		private interface IServiceBag
@@ -158,9 +152,7 @@ namespace CodeJam.Services
 			}
 			#endregion
 		}
-		#endregion
 
-		#region Implementation of IDisposable
 		/// <summary>
 		/// Calls <see cref="IDisposable.Dispose"/> methods in all created service instances, that implements
 		/// <see cref="IDisposable"/>.
