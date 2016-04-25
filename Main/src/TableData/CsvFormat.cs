@@ -24,10 +24,12 @@ namespace CodeJam.TableData
 		/// </summary>
 		/// <param name="allowEscaping">If true, allows values escaping.</param>
 		/// <param name="columnSeparator">Char to use as column separator</param>
-		/// <returns>Parser to use with <see cref="TableDataParser.Parse(TableDataParser.Parser,string)"/></returns>
-		public static TableDataParser.Parser CreateParser(bool allowEscaping = true, char columnSeparator = ',') =>
+		/// <returns>Parser to use with <see cref="TableDataParser.Parse(Parser,string)"/></returns>
+		[Pure]
+		[NotNull]
+		public static Parser CreateParser(bool allowEscaping = true, char columnSeparator = ',') =>
 			allowEscaping
-				? (TableDataParser.Parser)((TextReader rdr, ref int ln) => ParseCsv(rdr, ref ln, columnSeparator))
+				? (Parser)((TextReader rdr, ref int ln) => ParseCsv(rdr, ref ln, columnSeparator))
 				: ((TextReader rdr, ref int ln) => ParseCsvNoEscape(rdr, ref ln, columnSeparator));
 
 		[CanBeNull]
@@ -175,7 +177,7 @@ namespace CodeJam.TableData
 			return parts;
 		}
 
-#region CharReader struct
+		#region CharReader struct
 		private struct CharReader
 		{
 			private const int s_Eof = -1;
@@ -218,9 +220,9 @@ namespace CodeJam.TableData
 
 			public CharReader Peek() => new CharReader(m_Reader, m_Reader.Peek());
 		}
-#endregion
+		#endregion
 
-#region ParserState enum
+		#region ParserState enum
 		private enum ParserState
 		{
 			ExpectField,
@@ -228,15 +230,17 @@ namespace CodeJam.TableData
 			QuotedField,
 			AfterField
 		}
-#endregion
-#endregion
+		#endregion
+		#endregion
 
-#region Formatter
+		#region Formatter
 		/// <summary>
 		/// Creates formatter for CSV.
 		/// </summary>
 		/// <param name="allowEscaping">If true, use escaping.</param>
 		/// <returns>Formatter instance</returns>
+		[NotNull]
+		[Pure]
 		public static ITableDataFormatter CreateFormatter(bool allowEscaping = true) =>
 			allowEscaping
 				? (ITableDataFormatter)new CsvFormatter()
@@ -287,7 +291,7 @@ namespace CodeJam.TableData
 
 		private class CsvNoEscapeFormatter : ITableDataFormatter
 		{
-#region Implementation of ITableDataFormatter
+		#region Implementation of ITableDataFormatter
 			/// <summary>
 			/// Returns length of formatted value.
 			/// </summary>
@@ -307,6 +311,6 @@ namespace CodeJam.TableData
 					.Join(", ");
 #endregion
 		}
-#endregion
+		#endregion
 	}
 }

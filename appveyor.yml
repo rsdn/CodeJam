@@ -25,7 +25,7 @@ nuget:
   project_feed: false
 
 before_build:
-- cmd: nuget restore
+- cmd: nuget restore CodeJam.sln
 
 build:
   project: CodeJam.sln

@@ -9,13 +9,6 @@ namespace CodeJam.TableData
 	public interface ITableDataFormatter
 	{
 		/// <summary>
-		/// Returns length of formatted value.
-		/// </summary>
-		/// <param name="value">Value.</param>
-		/// <returns>Length of formatted value representation.</returns>
-		int GetValueLength(string value);
-
-		/// <summary>
 		/// Prints line of table data.
 		/// </summary>
 		/// <param name="values">Line values.</param>

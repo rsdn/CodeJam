@@ -15,6 +15,18 @@ All in English.
 Feel free to fix all typos, misphrases, obvious errors in text and so on.
 However, please take time to open an issue before making more significant changes. Thanks!
 
+### _What can you contribute?_
+We are going to accept almost anything until it fits into description of the project:
+>CodeJam is a set of handy reusable .NET components that can simplify your daily work and save your time when you copy and paste your favorite helper methods and classes from one project to another.
+
+Some limitations do apply, however.
+
+* The quality bar. The CodeJam project aims to provide the same level of good API design and same usabilty that the  .Net Framework does. This means that all new additions will be tuned to match common conventions. We trying to keep behavior in line with existing APIs, we often do change the names of the proposed APIs if there's better naming and we're trying to follow the framework design guidelines until there's no explicit reason to violate it. Be prepared:)
+ All changes are disputable. So, if you want to keep the original design unmodified your arguments are welcome!
+ 
+* No third-party dependencies if possible. We're trying to keep the library small and easy to plug in.
+
+* Specialized and platform-dependent code should be added into separate packages such as [CodeJam.Extensibility](https://github.com/rsdn/CodeJam.Extensibility)  or [CodeJam.Web](https://github.com/rsdn/CodeJam.Web).
 
 ## Tooling support
 **The project should support clone, restore packages and build routine.**
@@ -29,6 +41,11 @@ We include ReSharper (8.0 and higher) settings file (`.\CodeJam.sln.DotSettings`
 1. If ReSharper recommendation is **obviously** wrong, please suppress it using the "Disable once with comment" command.
 1. In all other cases please try to follow the ReSharper recommendations. This helps to maintain the same code style over all code files in the project. Thank you in advance for understanding.
 1. If you think that some recommendation is obviously wrong and should be changed, please file an issue first. 
+
+#### _ReSharper extensions_
+Please, use the free [ReSpeller extension](https://resharper-plugins.jetbrains.com/packages/ReSpeller/) (installed via ReSharper's extension manager). All words that are not in team-shared dictionary should be added to it (Add custom word to user dictionary > Save To > Solution team-shared).
+
+As an alternative there's [VS Spell Checker extension](https://visualstudiogallery.msdn.microsoft.com/a23de100-31a1-405c-b4b7-d6be40c3dfff) however it doesn't check typos in code and we do not maintain user dictionary for it. 
 
 ### _Tooling support (NUnit)_
 TBD

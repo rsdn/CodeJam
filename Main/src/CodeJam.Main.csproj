@@ -97,17 +97,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DebugCode.tt</DependentUpon>
     </Compile>
-    <Compile Include="Collections\DisjointSets.cs" />
-    <Compile Include="Collections\DisjointSetsBase.cs" />
-    <Compile Include="Collections\DisjointSetsT.cs" />
     <Compile Include="Collections\EnumerableExtensions.Index.cs" />
     <Compile Include="Collections\IndexedItem.cs" />
     <Compile Include="Collections\EnumerableExtensions.Page.cs" />
     <Compile Include="Collections\EnumerableExtensions.Slice.cs" />
     <Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
     <Compile Include="Collections\QueryableExtensions.cs" />
+    <Compile Include="EnumExtensions.cs" />
     <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Strings\NamespaceDoc.cs" />
+    <Compile Include="Strings\CharExtensions.Infix.generated.cs">
+      <DependentUpon>CharExtensions.Infix.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Strings\StringExtensions.CharInfix.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringExtensions.CharInfix.tt</DependentUpon>
+    </Compile>
     <Compile Include="Structures\Option.cs" />
     <Compile Include="Reflection\InfoOf`1.cs" />
     <Compile Include="Reflection\ParamInfo.cs" />
@@ -119,9 +127,11 @@
     <Compile Include="TableData\DataLine.cs" />
     <Compile Include="TableData\FixedWidthFormat.cs" />
     <Compile Include="TableData\ITableDataFormatter.cs" />
+    <Compile Include="TableData\NamespaceDoc.cs" />
     <Compile Include="TableData\TableDataParser.cs" />
     <Compile Include="TableData\TableDataPrinter.cs" />
     <Compile Include="Targeting\CustomAttributeExtensions.cs" />
+    <Compile Include="Targeting\DictionaryWithReadOnly.cs" />
     <Compile Include="Targeting\PlatformDependent.cs" />
     <Compile Include="Collections\ArrayExtensions.cs" />
     <Compile Include="Collections\ArrayExtensions.generated.cs">
@@ -197,6 +207,7 @@
       <DependentUpon>Compile.tt</DependentUpon>
     </None>
     <Compile Include="Reflection\ReflectionExtension.CreateInstance.cs" />
+    <None Include="Strings\CharMethods.ttinclude" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Algorithms\EqualRange.tt">
@@ -218,6 +229,14 @@
     <Content Include="Arithmetic\Operators.Numeric.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Operators.Numeric.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Strings\CharExtensions.Infix.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CharExtensions.Infix.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Strings\StringExtensions.CharInfix.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StringExtensions.CharInfix.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Threading\InterlockedOperations.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

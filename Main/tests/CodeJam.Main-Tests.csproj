@@ -59,7 +59,6 @@
     <Compile Include="Assertions\CodeAssertionsTest.cs" />
     <Compile Include="Collections\MinMaxByTests.cs" />
     <Compile Include="Collections\ArrayExtensionsTest.cs" />
-    <Compile Include="Collections\DisjointSetsTest.cs" />
     <Compile Include="Collections\QueryableExtensionsTests.ApplyOrder.cs" />
     <Compile Include="Collections\DictionaryExtensionsTest.cs" />
     <Compile Include="Collections\MinMaxByTests.generated.cs">
@@ -72,6 +71,8 @@
     <Compile Include="Collections\EnumerableExtensionTests.Slice.cs" />
     <Compile Include="Collections\EnumerableExtensionTests.TakeLast.cs" />
     <Compile Include="Collections\EnumerableExtensionTests.cs" />
+    <Compile Include="Enums\EnumUseCaseTests.cs" />
+    <Compile Include="Enums\EnumExtensionsTests.cs" />
     <Compile Include="IO\TempDataTests.cs" />
     <Compile Include="DisposableTests.cs" />
     <Compile Include="QueryableExtensionsTests.cs" />

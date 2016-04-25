@@ -1,14 +1,17 @@
-﻿using JetBrains.Annotations;
+﻿using System.Runtime.CompilerServices;
+
+using JetBrains.Annotations;
 
 namespace CodeJam.Strings
 {
 #if DEBUG
 	/// <summary>
-	/// The <see cref="CodeJam.Strings"/> namespaces contain types for <see cref="char"/> and <see cref="string"/>
+	/// The <see cref="Strings"/> namespace contains types for <see cref="char"/> and <see cref="string"/>
 	/// manipulation.
 	/// </summary>
 	[UsedImplicitly]
-	public class NamespaceDoc
+	[CompilerGenerated]
+	class NamespaceDoc
 	{}
 #endif
 }

@@ -27,8 +27,19 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Appends specified <paramref name="element"/> to end of the collection.
 		/// </summary>
+		/// <typeparam name="T">Type of element.</typeparam>
+		/// <param name="source">The source enumerable.</param>
+		/// <param name="element">Element to concat.</param>
+		/// <returns>Concatenated enumerable</returns>
 		[Pure, NotNull]
 		public static IEnumerable<T> Concat<T>([NotNull] this IEnumerable<T> source, T element)
+		{
+			Code.NotNull(source, nameof(source));
+
+			return ConcatCore(source, element);
+		}
+
+		private static IEnumerable<T> ConcatCore<T>(IEnumerable<T> source, T element)
 		{
 			foreach (var item in source)
 				yield return item;
@@ -36,10 +47,21 @@ namespace CodeJam.Collections
 		}
 
 		/// <summary>
-		/// Appends specified <paramref name="elements"/> to end of the collection.
+		/// Appends specified <paramref name="elements" /> to end of the collection.
 		/// </summary>
+		/// <typeparam name="T">Type of element.</typeparam>
+		/// <param name="source">The source enumerable.</param>
+		/// <param name="elements">Elements to concat.</param>
+		/// <returns>Concatenated enumerable</returns>
 		[Pure, NotNull]
 		public static IEnumerable<T> Concat<T>([NotNull] this IEnumerable<T> source, params T[] elements)
+		{
+			Code.NotNull(source, nameof(source));
+
+			return ConcatCore(source, elements);
+		}
+
+		private static IEnumerable<T> ConcatCore<T>(IEnumerable<T> source, T[] elements)
 		{
 			foreach (var item in source)
 				yield return item;
@@ -50,8 +72,19 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Prepends specified <paramref name="element"/> to the collection start.
 		/// </summary>
+		/// <typeparam name="T">Type of element.</typeparam>
+		/// <param name="source">The source enumerable.</param>
+		/// <param name="element">Element to prepend.</param>
+		/// <returns>Concatenated enumerable</returns>
 		[Pure, NotNull]
 		public static IEnumerable<T> Prepend<T>([NotNull] this IEnumerable<T> source, T element)
+		{
+			Code.NotNull(source, nameof(source));
+
+			return PrependCore(source, element);
+		}
+
+		private static IEnumerable<T> PrependCore<T>(IEnumerable<T> source, T element)
 		{
 			yield return element;
 			foreach (var item in source)
@@ -61,8 +94,19 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Prepends specified <paramref name="elements"/> to the collection start.
 		/// </summary>
+		/// <typeparam name="T">Type of element.</typeparam>
+		/// <param name="source">The source enumerable.</param>
+		/// <param name="elements">Elements to prepend.</param>
+		/// <returns>Concatenated enumerable</returns>
 		[Pure, NotNull]
 		public static IEnumerable<T> Prepend<T>([NotNull] this IEnumerable<T> source, params T[] elements)
+		{
+			Code.NotNull(source, nameof(source));
+
+			return PrependCore(source, elements);
+		}
+
+		private static IEnumerable<T> PrependCore<T>(IEnumerable<T> source, T[] elements)
 		{
 			foreach (var element in elements)
 				yield return element;
@@ -256,29 +300,45 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Returns first element, or specified <paramref name="defaultValue"/>, if sequence is empty.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="source"/>.</typeparam>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to return an element from.</param>
+		/// <param name="defaultValue">Default value.</param>
+		/// <returns>
+		/// <c>default</c>(<typeparamref name="T"/>) if <paramref name="source"/> is empty; otherwise, the first element in
+		/// <paramref name="source"/>.
+		/// </returns>
 		[Pure]
 		public static T FirstOrDefault<T>([NotNull, InstantHandle] this IEnumerable<T> source, T defaultValue)
 		{
-			if (source == null)
-				throw new ArgumentNullException(nameof(source));
+			Code.NotNull(source, nameof(source));
+
 			foreach (var item in source)
 				return item;
 			return defaultValue;
 		}
 
 		/// <summary>
-		/// Returns first element, or specified <paramref name="defaultValue"/>, if sequence is empty.
+		/// Returns the first element of the sequence that satisfies a condition or a specified
+		/// <paramref name="defaultValue"/> if no such element is found.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="source"/>.</typeparam>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to return an element from.</param>
+		/// <param name="defaultValue">Default value.</param>
+		/// <param name="predicate">A function to test each element for a condition.</param>
+		/// <returns>
+		/// <c>default</c>(<typeparamref name="T"/>) if <paramref name="source"/> is empty or if no element passes the test
+		/// specified by <paramref name="predicate"/>; otherwise, the first element in source that passes the test specified
+		/// by <paramref name="predicate"/>.
+		/// </returns>
 		[Pure]
 		public static T FirstOrDefault<T>(
 			[NotNull, InstantHandle] this IEnumerable<T> source,
 			T defaultValue,
 			[NotNull, InstantHandle] Func<T, bool> predicate)
 		{
-			if (source == null)
-				throw new ArgumentNullException(nameof(source));
-			if (predicate == null)
-				throw new ArgumentNullException(nameof(predicate));
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(predicate, nameof(predicate));
+
 			foreach (var item in source)
 				if (predicate(item))
 					return item;
@@ -294,7 +354,8 @@ namespace CodeJam.Collections
 		/// A <see cref="List{T}"/> that contains elements from the input sequence.
 		/// </returns>
 		[NotNull, Pure]
-		public static List<T> AsList<T>([NotNull, InstantHandle] this IEnumerable<T> source) => source as List<T> ?? new List<T>(source);
+		public static List<T> AsList<T>([NotNull, InstantHandle] this IEnumerable<T> source) =>
+			source as List<T> ?? new List<T>(source);
 
 		/// <summary>
 		/// Casts the specified sequence to array if possible, or creates an array from.
@@ -305,13 +366,24 @@ namespace CodeJam.Collections
 		/// An array that contains elements from the input sequence.
 		/// </returns>
 		[NotNull, Pure]
-		public static T[] AsArray<T>([NotNull, InstantHandle] this IEnumerable<T> source) => source as T[] ?? source.ToArray();
+		public static T[] AsArray<T>([NotNull, InstantHandle] this IEnumerable<T> source) =>
+			source as T[] ?? source.ToArray();
 
 		/// <summary>
 		/// Returns string representations of <paramref name="source"/> items.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
+		/// <param name="source">The <see cref="IEnumerable{T}"/> to create strings from.</param>
+		/// <returns>Enumeration of string representation of <paramref name="source"/> elements.</returns>
 		[NotNull, Pure]
 		public static IEnumerable<string> ToStrings<T>([NotNull] this IEnumerable<T> source)
+		{
+			Code.NotNull(source, nameof(source));
+
+			return ToStringsCore(source);
+		}
+
+		private static IEnumerable<string> ToStringsCore<T>(IEnumerable<T> source)
 		{
 			// ReSharper disable once LoopCanBeConvertedToQuery
 			foreach (var obj in source)

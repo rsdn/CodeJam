@@ -166,7 +166,7 @@ namespace CodeJam.Ranges
 			}
 			else
 			{
-				result = string.Join(", ", Values.Select(v => v.DisplayValue()));
+				result = string.Join(", ", Values.Select(v => v.GetDisplayValue()));
 			}
 
 			return "[" + result + "]";
@@ -226,7 +226,7 @@ namespace CodeJam.Ranges
 				do
 				{
 					var current = sourceList[i];
-					if (current.IntersectsWith(toRemove))
+					if (current.IsIntersectsWith(toRemove))
 					{
 						var rangesAfterExclusion = current.Exclude(toRemove);
 						if (copyValues == null)
@@ -296,7 +296,7 @@ namespace CodeJam.Ranges
 			if (IsFull)
 				return true;
 
-			var index = Values.BinarySearch(Range.Simple(value));
+			var index = Values.BinarySearch(Range.IsSimple(value));
 			return index >= 0;
 		}
 

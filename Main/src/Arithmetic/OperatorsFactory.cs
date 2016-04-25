@@ -16,22 +16,62 @@ namespace CodeJam.Arithmetic
 			new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);
 
 		[NotNull]
+		private static Type GetOperandType([NotNull] Type argType)
+		{
+			var temp = argType;
+
+			bool nullable = false;
+			if (temp.IsNullable())
+			{
+				temp = temp.ToUnderlying();
+				nullable = true;
+			}
+
+			var result = argType;
+			if (temp.IsEnum)
+			{
+				result = temp.GetEnumUnderlyingType();
+				if (nullable)
+				{
+					result = typeof(Nullable<>).MakeGenericType(result);
+				}
+			}
+
+			return result;
+		}
+
+		[NotNull]
 		private static Func<T, TResult> GetUnaryOperatorCore<T, TResult>(ExpressionType comparisonType)
 		{
-			var arg = Expression.Parameter(typeof(T), "arg1");
+			var arg1 = Expression.Parameter(typeof(T), "arg1");
+
+			var argType = typeof(T);
+			var operandType = GetOperandType(argType);
+
+			Expression arg1Operand = arg1;
+			if (operandType != argType)
+			{
+				arg1Operand = Expression.Convert(arg1, operandType);
+			}
+
 			Expression body;
 			try
 			{
 				// ReSharper disable once AssignNullToNotNullAttribute
-				body = Expression.MakeUnary(comparisonType, arg, null);
+				body = Expression.MakeUnary(comparisonType, arg1Operand, null);
 			}
 			catch (InvalidOperationException ex)
 			{
 				throw NotSupported<T>(comparisonType, ex);
 			}
 
+			if (argType == typeof(TResult) && operandType != argType)
+			{
+				body = Expression.Convert(body, argType);
+			}
+
 			var result = Expression.Lambda<Func<T, TResult>>(
-				body, comparisonType.ToString(), new[] { arg });
+				body, comparisonType.ToString(), new[] { arg1 });
 
 			try
 			{
@@ -48,14 +88,31 @@ namespace CodeJam.Arithmetic
 		{
 			var arg1 = Expression.Parameter(typeof(T), "arg1");
 			var arg2 = Expression.Parameter(typeof(T), "arg2");
+
+			var argType = typeof(T);
+			var operandType = GetOperandType(argType);
+
+			Expression arg1Operand = arg1;
+			Expression arg2Operand = arg2;
+			if (operandType != argType)
+			{
+				arg1Operand = Expression.Convert(arg1, operandType);
+				arg2Operand = Expression.Convert(arg2, operandType);
+			}
+
 			Expression body;
 			try
 			{
-				body = Expression.MakeBinary(comparisonType, arg1, arg2);
+				body = Expression.MakeBinary(comparisonType, arg1Operand, arg2Operand);
 			}
 			catch (InvalidOperationException ex)
 			{
 				throw NotSupported<T>(comparisonType, ex);
+			}
+
+			if (argType == typeof(TResult) && operandType != argType)
+			{
+				body = Expression.Convert(body, argType);
 			}
 
 			var result = Expression.Lambda<Func<T, T, TResult>>(

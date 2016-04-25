@@ -23,6 +23,7 @@ namespace CodeJam
 		/// to enable auto-annotation of benchmark methods
 		/// </summary>
 		public static readonly bool AnnotateOnRun = GetAssemblySwitch(() => AnnotateOnRun);
+
 		/// <summary>
 		/// OPTIONAL: Set AssemblyWideConfig.IgnoreAnnotatedLimits=true in app.config
 		/// to enable ignoring existing limits on auto-annotation of benchmark methods
@@ -56,13 +57,13 @@ namespace CodeJam
 		/// </summary>
 		public static IConfig RunConfig => new AssemblyWideConfig(true);
 
-		/// <summary> 
+		/// <summary>
 		/// Constructor
 		/// </summary>
 		[UsedImplicitly]
 		public AssemblyWideConfig() : this(false) { }
 
-		/// <summary> 
+		/// <summary>
 		/// Constructor
 		/// </summary>
 		public AssemblyWideConfig(bool asRunConfig)

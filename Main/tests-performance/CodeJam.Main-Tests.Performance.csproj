@@ -35,7 +35,6 @@
       <HintPath>..\..\packages\BenchmarkDotNet.0.9.3\lib\net45\BenchmarkDotNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ISymWrapper" />
     <Reference Include="JetBrains.Annotations, Version=10.1.4.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JetBrains.Annotations.10.1.4\lib\net20\JetBrains.Annotations.dll</HintPath>
       <Private>True</Private>
@@ -44,6 +43,10 @@
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.DiaSymReader, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.DiaSymReader.1.0.7\lib\net20\Microsoft.DiaSymReader.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -86,11 +89,13 @@
     <Compile Include="BenchmarkDotNet.NUnit\CompetitionTarget.cs" />
     <Compile Include="BenchmarkDotNet.NUnit\CompetitionTargetHelpers.cs" />
     <Compile Include="BenchmarkDotNet.NUnit\Configs.cs" />
+    <Compile Include="CalibrationBenchmarks\NestedStructAccessBenchmark.cs" />
     <Compile Include="CalibrationBenchmarks\CallCostsBenchmark.cs" />
     <Compile Include="CalibrationBenchmarks\StructAndInterfacesBenchmark.cs" />
     <Compile Include="CalibrationBenchmarks\DispatchingOptimizationBenchmark.cs" />
     <Compile Include="CalibrationBenchmarks\ProofsOpsCountNotSensitiveBenchmark .cs" />
     <Compile Include="CalibrationBenchmarks\ProofsSensitivityBenchmark.cs" />
+    <Compile Include="Enums\EnumExtensionsBenchmark.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

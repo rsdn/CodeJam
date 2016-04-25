@@ -118,7 +118,6 @@ namespace CodeJam
 		private static int CallGeneric<TStruct>(TStruct s, int a)
 			where TStruct : IStruct => s.CallInterface(a);
 
-
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static int CallGenericStruct<TStruct>(TStruct s, int a)
 			where TStruct : struct, IStruct => s.CallInterface(a);

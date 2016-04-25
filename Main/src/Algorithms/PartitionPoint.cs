@@ -20,7 +20,7 @@ namespace CodeJam
 			=> PartitionPoint(list, 0, list.Count, predicate);
 
 		/// <summary>
-		/// Returns the index i in the range [from, list.Count - 1] such that
+		/// Returns the index i in the range [startIndex, list.Count - 1] such that
 		///		predicate(list[j]) = true for j &lt; i
 		///		and predicate(list[k]) = false for k >= i
 		/// or list.Count if no such i exists
@@ -28,42 +28,42 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="T">The list element type</typeparam>
 		/// <param name="list">The sorted list</param>
-		/// <param name="from">The minimum index</param>
+		/// <param name="startIndex">The minimum index</param>
 		/// <param name="predicate">The predicate</param>
 		/// <returns>The partition point</returns>
-		public static int PartitionPoint<T>(this IList<T> list, int from, Predicate<T> predicate)
-			=> PartitionPoint(list, from, list.Count, predicate);
+		public static int PartitionPoint<T>(this IList<T> list, int startIndex, Predicate<T> predicate)
+			=> PartitionPoint(list, startIndex, list.Count, predicate);
 
 		/// <summary>
-		/// Returns the index i in the range [from, to - 1] such that
+		/// Returns the index i in the range [startIndex, endIndex - 1] such that
 		///		predicate(list[j]) = true for j &lt; i
 		///		and predicate(list[k]) = false for k >= i
-		/// or "to" if no such i exists
+		/// or endIndex if no such i exists
 		/// <remarks>The list should be partitioned according to the predicate</remarks>
 		/// </summary>
 		/// <typeparam name="T">The list element type</typeparam>
 		/// <param name="list">The sorted list</param>
-		/// <param name="from">The minimum index</param>
-		/// <param name="to">The upper bound for the index (not included)</param>
+		/// <param name="startIndex">The minimum index</param>
+		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <param name="predicate">The predicate</param>
 		/// <returns>The partition point</returns>
-		public static int PartitionPoint<T>(this IList<T> list, int from, int to, Predicate<T> predicate)
+		public static int PartitionPoint<T>(this IList<T> list, int startIndex, int endIndex, Predicate<T> predicate)
 		{
-			ValidateIndicesRange(from, to, list.Count);
-			while (from < to)
+			ValidateIndicesRange(startIndex, endIndex, list.Count);
+			while (startIndex < endIndex)
 			{
-				var median = from + (to - from) / 2;
+				var median = startIndex + (endIndex - startIndex) / 2;
 				var testResult = predicate(list[median]);
 				if (!testResult)
 				{
-					to = median;
+					endIndex = median;
 				}
 				else
 				{
-					from = median + 1;
+					startIndex = median + 1;
 				}
 			}
-			return from;
+			return startIndex;
 		}
 	}
 }

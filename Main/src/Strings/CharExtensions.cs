@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 using JetBrains.Annotations;
 
@@ -8,90 +9,78 @@ namespace CodeJam.Strings
 	/// <see cref="char"/> structure extensions.
 	/// </summary>
 	[PublicAPI]
-	public static class CharExtensions
+	public static partial class CharExtensions
 	{
 		/// <summary>
-		/// Infix form of <see cref="char.IsLetter(char)"/>.
+		/// Converts the value of a Unicode character to its lowercase equivalent.
 		/// </summary>
+		/// <param name="chr">The Unicode character to convert.</param>
+		/// <returns>
+		/// The lowercase equivalent of <paramref name="chr"/>, or the unchanged value of <paramref name="chr"/>,
+		/// if <paramref name="chr"/> is already lowercase or not alphabetic.
+		/// </returns>
 		[Pure]
-		public static bool IsLetter(this char chr) => char.IsLetter(chr);
+		public static char ToLower(this char chr) => char.ToLower(chr);
 
 		/// <summary>
-		/// Infix form of <see cref="char.IsDigit(char)"/>.
+		/// Converts the value of a Unicode character to its lowercase equivalent.
 		/// </summary>
+		/// <param name="chr">The Unicode character to convert.</param>
+		/// <param name="culture">An object that supplies culture-specific casing rules.</param>
+		/// <returns>
+		/// The lowercase equivalent of <paramref name="chr"/>, modified according to <paramref name="culture"/>,
+		/// or the unchanged value of <paramref name="chr"/>, if <paramref name="chr"/> is already lowercase or not
+		/// alphabetic.
+		/// </returns>
 		[Pure]
-		public static bool IsDigit(this char chr) => char.IsDigit(chr);
+		public static char ToLower(this char chr, CultureInfo culture) => char.ToLower(chr, culture);
 
 		/// <summary>
-		/// Infix form of <see cref="char.IsLetterOrDigit(char)"/>.
+		/// Converts the value of a Unicode character to its lowercase equivalent using the casing rules of the invariant
+		/// culture.
 		/// </summary>
+		/// <param name="chr">The Unicode character to convert.</param>
+		/// <returns>
+		/// The lowercase equivalent of <paramref name="chr"/>, or the unchanged value of <paramref name="chr"/>,
+		/// if <paramref name="chr"/> is already lowercase or not alphabetic.
+		/// </returns>
 		[Pure]
-		public static bool IsLetterOrDigit(this char chr) => char.IsLetterOrDigit(chr);
+		public static char ToLowerInvariant(this char chr) => char.ToLowerInvariant(chr);
 
 		/// <summary>
-		/// Infix form of <see cref="char.IsWhiteSpace(char)"/>.
+		/// Converts the value of a Unicode character to its uppercase equivalent.
 		/// </summary>
+		/// <param name="chr">The Unicode character to convert.</param>
+		/// <returns>
+		/// The uppercase equivalent of <paramref name="chr"/>, or the unchanged value of <paramref name="chr"/>,
+		/// if <paramref name="chr"/> is already uppercase or not alphabetic.
+		/// </returns>
 		[Pure]
-		public static bool IsWhiteSpace(this char chr) => char.IsWhiteSpace(chr);
+		public static char ToUpper(this char chr) => char.ToUpper(chr);
 
 		/// <summary>
-		/// Infix form of <see cref="char.IsControl(char)"/>.
+		/// Converts the value of a Unicode character to its uppercase equivalent.
 		/// </summary>
+		/// <param name="chr">The Unicode character to convert.</param>
+		/// <param name="culture">An object that supplies culture-specific casing rules.</param>
+		/// <returns>
+		/// The uppercase equivalent of <paramref name="chr"/>, modified according to <paramref name="culture"/>,
+		/// or the unchanged value of <paramref name="chr"/>,  if <paramref name="chr"/> is already uppercase or not
+		/// alphabetic.
+		/// </returns>
 		[Pure]
-		public static bool IsControl(this char chr) => char.IsControl(chr);
+		public static char ToUpper(this char chr, CultureInfo culture) => char.ToUpper(chr, culture);
 
 		/// <summary>
-		/// Infix form of <see cref="char.IsSurrogate(char)"/>.
+		/// Converts the value of a Unicode character to its uppercase equivalent using the casing rules of the invariant
+		/// culture.
 		/// </summary>
+		/// <param name="chr">The Unicode character to convert.</param>
+		/// <returns>
+		/// The uppercase equivalent of <paramref name="chr"/>, or the unchanged value of <paramref name="chr"/>,
+		/// if <paramref name="chr"/> is already uppercase or not alphabetic.
+		/// </returns>
 		[Pure]
-		public static bool IsSurrogate(this char chr) => char.IsSurrogate(chr);
-
-		/// <summary>
-		/// Infix form of <see cref="char.IsHighSurrogate(char)"/>.
-		/// </summary>
-		[Pure]
-		public static bool IsHighSurrogate(this char chr) => char.IsHighSurrogate(chr);
-
-		/// <summary>
-		/// Infix form of <see cref="char.IsLowSurrogate(char)"/>.
-		/// </summary>
-		[Pure]
-		public static bool IsLowSurrogate(this char chr) => char.IsLowSurrogate(chr);
-
-		/// <summary>
-		/// Infix form of <see cref="char.IsLower(char)"/>.
-		/// </summary>
-		[Pure]
-		public static bool IsLower(this char chr) => char.IsLower(chr);
-
-		/// <summary>
-		/// Infix form of <see cref="char.IsUpper(char)"/>.
-		/// </summary>
-		[Pure]
-		public static bool IsUpper(this char chr) => char.IsUpper(chr);
-
-		/// <summary>
-		/// Infix form of <see cref="char.IsNumber(char)"/>.
-		/// </summary>
-		[Pure]
-		public static bool IsNumber(this char chr) => char.IsNumber(chr);
-
-		/// <summary>
-		/// Infix form of <see cref="char.IsPunctuation(char)"/>.
-		/// </summary>
-		[Pure]
-		public static bool IsPunctuation(this char chr) => char.IsPunctuation(chr);
-
-		/// <summary>
-		/// Infix form of <see cref="char.IsSeparator(char)"/>.
-		/// </summary>
-		[Pure]
-		public static bool IsSeparator(this char chr) => char.IsSeparator(chr);
-
-		/// <summary>
-		/// Infix form of <see cref="char.IsSymbol(char)"/>.
-		/// </summary>
-		[Pure]
-		public static bool IsSymbol(this char chr) => char.IsSymbol(chr);
+		public static char ToUpperInvariant(this char chr) => char.ToUpperInvariant(chr);
 	}
 }

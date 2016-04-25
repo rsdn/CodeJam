@@ -120,6 +120,42 @@ namespace CodeJam.Reflection
 		}
 
 		/// <summary>
+		/// Checks if <paramref name="type" /> is nullable numeric type.
+		/// </summary>
+		/// <param name="type">Type to check.</param>
+		/// <returns>True, if <paramref name="type" /> is nullable numeric.</returns>
+		[Pure]
+		public static bool IsNullableNumeric([NotNull] this Type type)
+		{
+			var arg = Nullable.GetUnderlyingType(type);
+			return arg != null && arg.IsNumeric();
+		}
+
+		/// <summary>
+		/// Checks if <paramref name="type"/> is nullable integer type.
+		/// </summary>
+		/// <param name="type">Type to check.</param>
+		/// <returns>True, if <paramref name="type"/> is nullable integer type.</returns>
+		[Pure]
+		public static bool IsNullableInteger([NotNull] this Type type)
+		{
+			var arg = Nullable.GetUnderlyingType(type);
+			return arg != null && arg.IsInteger();
+		}
+
+		/// <summary>
+		/// Checks if <paramref name="type"/> is nullable enum type.
+		/// </summary>
+		/// <param name="type">Type to check.</param>
+		/// <returns>True, if <paramref name="type"/> is nullable enum type.</returns>
+		[Pure]
+		public static bool IsNullableEnum([NotNull] this Type type)
+		{
+			var arg = Nullable.GetUnderlyingType(type);
+			return arg != null && arg.IsEnum;
+		}
+
+		/// <summary>
 		/// Determines whether the <paramref name="type"/> derives from the specified <paramref name="check"/>.
 		/// </summary>
 		/// <remarks>
@@ -245,7 +281,7 @@ namespace CodeJam.Reflection
 			return
 				!type.IsPublic &&
 				 type.IsGenericType &&
-				(type.Name.StartsWith("<>f__AnonymousType",  StringComparison.Ordinal) ||
+				(type.Name.StartsWith("<>f__AnonymousType", StringComparison.Ordinal) ||
 				 type.Name.StartsWith("VB$AnonymousType", StringComparison.Ordinal) &&
 				Attribute.IsDefined(type, typeof(CompilerGeneratedAttribute), false));
 		}

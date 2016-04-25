@@ -14,6 +14,7 @@ namespace CodeJam
 		/// <summary>
 		/// Initializes a new instance to the specified value.
 		/// </summary>
+		/// <param name="value">The value.</param>
 		public Option(T value)
 		{
 			HasValue = true;
@@ -31,8 +32,11 @@ namespace CodeJam
 		public T Value { get; }
 
 		/// <summary>
-		/// Creates a new object initialized to a specified value. 
+		/// Creates a new object initialized to a specified value.
 		/// </summary>
+		/// <param name="value">Value to convert.</param>
+		/// <returns>Instance of <see cref="Option{T}"/>.</returns>
+		[Pure]
 		public static implicit operator Option<T>(T value) => new Option<T>(value);
 	}
 }

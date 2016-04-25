@@ -125,7 +125,7 @@ namespace BenchmarkDotNet.NUnit
 		}
 
 		private static IConfig CreateCompetitionConfig(
-			IConfig baseConfig, CompetitionStateAnalyser competitionState, 
+			IConfig baseConfig, CompetitionStateAnalyser competitionState,
 			AccumulationLogger logger)
 		{
 			baseConfig = baseConfig ?? DefaultConfig.Instance;

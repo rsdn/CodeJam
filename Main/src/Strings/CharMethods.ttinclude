@@ -1,0 +1,20 @@
+﻿<#var methods =
+	new[]
+	{
+		new {Name = "Control", NoIdx = false, NoChr = false},
+		new {Name = "HighSurrogate", NoIdx = false, NoChr = false},
+		new {Name = "LowSurrogate", NoIdx = false, NoChr = false},
+		new {Name = "Digit", NoIdx = true, NoChr = false},
+		new {Name = "Letter", NoIdx = true, NoChr = false},
+		new {Name = "LetterOrDigit", NoIdx = true, NoChr = false},
+		new {Name = "Lower", NoIdx = true, NoChr = false},
+		new {Name = "Upper", NoIdx = true, NoChr = false},
+		new {Name = "Number", NoIdx = true, NoChr = false},
+		new {Name = "Punctuation", NoIdx = true, NoChr = false},
+		new {Name = "Separator", NoIdx = true, NoChr = false},
+		new {Name = "Surrogate", NoIdx = false, NoChr = false},
+		new {Name = "SurrogatePair", NoIdx = false, NoChr = true},
+		new {Name = "Symbol", NoIdx = true, NoChr = false},
+		new {Name = "WhiteSpace", NoIdx = true, NoChr = false},
+	};
+#>

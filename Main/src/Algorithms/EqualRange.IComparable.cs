@@ -29,8 +29,8 @@ namespace CodeJam
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
-		///		i is the smallest index in the range [from, list.Count - 1] such that list[i] >= value or list.Count if no such i exists
-		///		j is the smallest index in the range [from, list.Count - 1] such that list[i] > value or list.Count if no such j exists
+		///		i is the smallest index in the range [startIndex, list.Count - 1] such that list[i] >= value or list.Count if no such i exists
+		///		j is the smallest index in the range [startIndex, list.Count - 1] such that list[i] > value or list.Count if no such j exists
 		/// </summary>
 		/// <typeparam name="TElement">
 		/// The list element type
@@ -39,20 +39,20 @@ namespace CodeJam
 		/// <typeparam name="TValue">The type of the value</typeparam>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
+		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
 		public static ValueTuple<int, int> EqualRange<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
-				int from)
+				int startIndex)
 			where TElement : IComparable<TValue> =>
-			list.EqualRange(value, from, list.Count);
+			list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
-		///		i is the smallest index in the range [from, to - 1] such that list[i] >= value or "to" if no such i exists
-		///		j is the smallest index in the range [from, to - 1] such that list[i] > value or "to" if no such j exists
+		///		i is the smallest index in the range [startIndex, endIndex - 1] such that list[i] >= value or endIndex if no such i exists
+		///		j is the smallest index in the range [startIndex, endIndex - 1] such that list[i] > value or endIndex if no such j exists
 		/// </summary>
 		/// <typeparam name="TElement">
 		/// The list element type
@@ -61,44 +61,44 @@ namespace CodeJam
 		/// <typeparam name="TValue">The type of the value</typeparam>
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
-		/// <param name="from">The minimum index</param>
-		/// <param name="to">The upper bound for the index (not included)</param>
+		/// <param name="startIndex">The minimum index</param>
+		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
 		public static ValueTuple<int, int> EqualRange<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
-				int from,
-				int to)
+				int startIndex,
+				int endIndex)
 			where TElement : IComparable<TValue>
 		{
 			Code.NotNull(list, nameof(list));
-			ValidateIndicesRange(from, to, list.Count);
-			var upperBoundFrom = from;
-			var upperBoundTo = to;
+			ValidateIndicesRange(startIndex, endIndex, list.Count);
+			var upperBoundStartIndex = startIndex;
+			var upperBoundEndIndex = endIndex;
 
 			// the loop locates the lower bound at the same time restricting the range for upper bound search
-			while (from < to)
+			while (startIndex < endIndex)
 			{
-				var median = from + (to - from) / 2;
+				var median = startIndex + (endIndex - startIndex) / 2;
 				var compareResult = list[median].CompareTo(value);
 				if (compareResult < 0)
 				{
-					from = median + 1;
-					upperBoundFrom = from;
+					startIndex = median + 1;
+					upperBoundStartIndex = startIndex;
 				}
 				else if (compareResult == 0)
 				{
-					to = median;
-					upperBoundFrom = to + 1;
+					endIndex = median;
+					upperBoundStartIndex = endIndex + 1;
 				}
 				else
 				{
-					to = median;
-					upperBoundTo = to;
+					endIndex = median;
+					upperBoundEndIndex = endIndex;
 				}
 			}
-			return ValueTuple.Create(from, UpperBoundCore(list, value, upperBoundFrom, upperBoundTo));
+			return ValueTuple.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
 		}
 	}
 }

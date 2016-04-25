@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Experimental", "Experimenta
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1C7E7F10-7332-42A4-A73D-1F05E656B0EC}"
 	ProjectSection(SolutionItems) = preProject
+		appveyor.doc.yml = appveyor.doc.yml
 		appveyor.yml = appveyor.yml
 		CodeJamDoc.shfbproj = CodeJamDoc.shfbproj
 		CONTRIBUTING.md = CONTRIBUTING.md
@@ -42,8 +43,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "T4.Reusable", "T4.Reusable"
 		T4.Reusable\DebugCodeGenerator.ttinclude = T4.Reusable\DebugCodeGenerator.ttinclude
 		T4.Reusable\Transform.ttinclude = T4.Reusable\Transform.ttinclude
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.Experimental-Tests.Performance", "Experimental\tests-performance\CodeJam.Experimental-Tests.Performance.csproj", "{00E3881C-3D4D-4AE3-B1B4-CDCDC99F7E51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,10 +70,6 @@ Global
 		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EDF4429-251A-416D-BB68-93F227191BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EDF4429-251A-416D-BB68-93F227191BCF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00E3881C-3D4D-4AE3-B1B4-CDCDC99F7E51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00E3881C-3D4D-4AE3-B1B4-CDCDC99F7E51}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00E3881C-3D4D-4AE3-B1B4-CDCDC99F7E51}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00E3881C-3D4D-4AE3-B1B4-CDCDC99F7E51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,6 +80,5 @@ Global
 		{7BD77DA2-A731-400C-A88E-215FC592E6E3} = {D56CF63D-0A29-4F5A-8E2C-0DAF338119EE}
 		{F6F97573-4D26-4217-89F6-819DF96FCB4A} = {D56CF63D-0A29-4F5A-8E2C-0DAF338119EE}
 		{8EDF4429-251A-416D-BB68-93F227191BCF} = {C99F66F0-32AA-45EB-B112-D18498754A6B}
-		{00E3881C-3D4D-4AE3-B1B4-CDCDC99F7E51} = {D56CF63D-0A29-4F5A-8E2C-0DAF338119EE}
 	EndGlobalSection
 EndGlobal
