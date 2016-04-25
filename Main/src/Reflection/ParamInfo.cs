@@ -11,16 +11,26 @@ namespace CodeJam.Reflection
 	public class ParamInfo
 	{
 		/// <summary>Initializes a new instance of the <see cref="ParamInfo" /> class.</summary>
+		/// <param name="name">Name of the parameter.</param>
+		/// <param name="value">Value of the parameter.</param>
+		/// <param name="required"><c>True</c> if parameter required.</param>
 		public ParamInfo([NotNull] string name, [CanBeNull] object value, bool required = true)
 		{
-			if (name == null) throw new ArgumentNullException(nameof(name));
+			Code.NotNullNorWhiteSpace(name, nameof(name));
+
 			Name = name;
 			Value = value;
 			Required = required;
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="ParamInfo" /> class.</summary>
-		public static ParamInfo Param([NotNull] string name, [CanBeNull] object value, bool required = false) =>
+		/// <param name="name">Name of the parameter.</param>
+		/// <param name="value">Value of the parameter.</param>
+		/// <param name="required"><c>True</c> if parameter required.</param>
+		/// <returns>Instance of <see cref="ParamInfo"/>.</returns>
+		[Pure]
+		[NotNull]
+		public static ParamInfo Param([NotNull] string name, [CanBeNull] object value, bool required = true) =>
 			new ParamInfo(name, value, required);
 
 		/// <summary>
