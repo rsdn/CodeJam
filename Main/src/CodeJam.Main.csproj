@@ -81,6 +81,7 @@
     <Compile Include="Algorithms\Swap.cs" />
     <Compile Include="Algorithms\UpperBound.IComparable.cs" />
     <Compile Include="Algorithms\UpperBound.Comparer.cs" />
+    <Compile Include="Arithmetic\NamespaceDoc.cs" />
     <Compile Include="Arithmetic\Operators.Numeric.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -101,9 +102,12 @@
     <Compile Include="Collections\IndexedItem.cs" />
     <Compile Include="Collections\EnumerableExtensions.Page.cs" />
     <Compile Include="Collections\EnumerableExtensions.Slice.cs" />
+    <Compile Include="Collections\NamespaceDoc.cs" />
     <Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
     <Compile Include="Collections\QueryableExtensions.cs" />
+    <Compile Include="IO\NamespaceDoc.cs" />
     <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="Services\NamespaceDoc.cs" />
     <Compile Include="Strings\NamespaceDoc.cs" />
     <Compile Include="Strings\CharExtensions.Infix.generated.cs">
       <DependentUpon>CharExtensions.Infix.tt</DependentUpon>
@@ -195,6 +199,7 @@
     <Compile Include="Threading\ParallelQueue.cs" />
     <Compile Include="Threading\ReaderWriterLockSlimExtensions.cs" />
     <Compile Include="Utilities\Memory.cs" />
+    <Compile Include="Xml\NamespaceDoc.cs" />
     <Compile Include="Xml\XNodeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
