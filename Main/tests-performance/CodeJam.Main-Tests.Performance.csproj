@@ -91,6 +91,7 @@
     <Compile Include="BenchmarkDotNet.NUnit\Configs.cs" />
     <Compile Include="CalibrationBenchmarks\NestedStructAccessBenchmark.cs" />
     <Compile Include="CalibrationBenchmarks\CallCostsBenchmark.cs" />
+    <Compile Include="CalibrationBenchmarks\ParamsOptimizationFailBenchmark.cs" />
     <Compile Include="CalibrationBenchmarks\StructAndInterfacesBenchmark.cs" />
     <Compile Include="CalibrationBenchmarks\DispatchingOptimizationBenchmark.cs" />
     <Compile Include="CalibrationBenchmarks\ProofsOpsCountNotSensitiveBenchmark .cs" />
