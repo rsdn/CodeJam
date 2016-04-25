@@ -48,6 +48,9 @@ namespace CodeJam.Services
 			bag.Dispose();
 		}
 
+		/// <summary>Gets the service object of the specified type.</summary>
+		/// <returns>A service object of type <paramref name="serviceType" />.-or- null if there is no service object of type <paramref name="serviceType" />.</returns>
+		/// <param name="serviceType">An object that specifies the type of service object to get. </param>
 		[CanBeNull]
 		public object GetService([NotNull] Type serviceType)
 		{
@@ -60,6 +63,12 @@ namespace CodeJam.Services
 					type => _parentProvider?.GetService(serviceType));
 		}
 
+		/// <summary>
+		/// Publish service.
+		/// </summary>
+		/// <param name="serviceType">Type of service object to publish.</param>
+		/// <param name="serviceInstance">Instance of service of type <paramref name="serviceType"/>.</param>
+		/// <returns>Disposable cookie to conceal published service</returns>
 		public IDisposable Publish(Type serviceType, object serviceInstance)
 		{
 			if (!_services.TryAdd(serviceType, new InstanceBag(serviceInstance)))
@@ -78,6 +87,12 @@ namespace CodeJam.Services
 					});
 		}
 
+		/// <summary>
+		/// Publish service.
+		/// </summary>
+		/// <param name="serviceType">Type of service object to publish.</param>
+		/// <param name="instanceFactory">Factory to create service instance</param>
+		/// <returns>Disposable cookie to conceal published service</returns>
 		public IDisposable Publish(Type serviceType, Func<IServicePublisher, object> instanceFactory)
 		{
 			if (!_services.TryAdd(serviceType, new FactoryBag(instanceFactory)))
