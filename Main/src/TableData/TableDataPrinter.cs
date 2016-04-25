@@ -16,6 +16,10 @@ namespace CodeJam.TableData
 		/// <summary>
 		/// Prints full CSV table
 		/// </summary>
+		/// <param name="formatter">The formatter.</param>
+		/// <param name="writer">Instance of <see cref="TextWriter"/> to write to.</param>
+		/// <param name="data">Data to write.</param>
+		/// <param name="indent">The indent.</param>
 		public static void Print(
 			[NotNull] this ITableDataFormatter formatter,
 			[NotNull] TextWriter writer,
