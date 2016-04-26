@@ -6,27 +6,25 @@ using static CodeJam.PlatformDependent;
 
 namespace CodeJam.RangesV2
 {
-	/// <summary>
-	/// Describes a range of the values
-	/// </summary>
+	/// <summary>Describes a range of the values</summary>
 	/// <typeparam name="T">
 	/// The type of the value. Should implement <seealso cref="IComparable{T}"/> or <seealso cref="IComparable"/>.
 	/// </typeparam>
 	public partial struct Range<T> : IEquatable<Range<T>>
 	{
 		#region Operators
-		/// <summary> Equality operator </summary>
-		/// <param name="range1">Range 1</param>
-		/// <param name="range2">Range 2</param>
+		/// <summary>Implements the operator ==.</summary>
+		/// <param name="range1">The range1.</param>
+		/// <param name="range2">The range2.</param>
 		/// <returns><c>True</c>, if ranges are equal</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator ==(Range<T> range1, Range<T> range2) =>
 			range1.Equals(range2);
 
-		/// <summary> Inequality operator. </summary>
-		/// <param name="range1">Range 1</param>
-		/// <param name="range2">Range 2</param>
-		/// <returns><c>True</c>, if ranges are not equal.</returns>
+		/// <summary>Implements the operator !=.</summary>
+		/// <param name="range1">The range1.</param>
+		/// <param name="range2">The range2.</param>
+		/// <returns><c>True</c>, if ranges are inequal.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator !=(Range<T> range1, Range<T> range2) =>
 			!range1.Equals(range2);
@@ -34,8 +32,8 @@ namespace CodeJam.RangesV2
 
 		#region CLS-friendly operators
 		/// <summary> Equality comparison method. </summary>
-		/// <param name="range1">Range 1</param>
-		/// <param name="range2">Range 2</param>
+		/// <param name="range1">The range1.</param>
+		/// <param name="range2">The range2.</param>
 		/// <returns><c>True</c>, if ranges are equal.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool Equals(Range<T> range1, Range<T> range2) =>
@@ -64,7 +62,7 @@ namespace CodeJam.RangesV2
 		public override bool Equals(object obj) =>
 			obj is Range<T> && Equals((Range<T>)obj);
 
-		/// <summary>Returns the hash code for the current boundary.</summary>
+		/// <summary>Returns a hash code for the current range.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
 		public override int GetHashCode() =>
 			HashCode.Combine(From.GetHashCode(), To.GetHashCode());

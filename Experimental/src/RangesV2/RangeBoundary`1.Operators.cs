@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using CodeJam.Arithmetic;
 
 using static CodeJam.PlatformDependent;
+using static CodeJam.RangesV2.RangeBoundary;
 
 namespace CodeJam.RangesV2
 {
@@ -63,6 +64,11 @@ namespace CodeJam.RangesV2
 		/// Core comparison logic. Following order is used:
 		/// '∅' &lt; '-∞' &lt; 'a)' &lt; '[a' == 'a]' &lt; '(a' &lt; '+∞'.
 		/// </summary>
+		/// <param name="value1">The value1.</param>
+		/// <param name="boundaryKind1">The boundary kind1.</param>
+		/// <param name="value2">The value2.</param>
+		/// <param name="boundaryKind2">The boundary kind2.</param>
+		/// <returns>Result of the comparison.</returns>
 		// DONTTOUCH. Any change will break the performance or the correctness of the comparison. 
 		//   Please create issue at first
 		[MethodImpl(AggressiveInlining)]
@@ -75,7 +81,7 @@ namespace CodeJam.RangesV2
 			// If any boundary has no value - compare kinds
 			if (HasNoValue(boundaryKind1) || HasNoValue(boundaryKind2))
 			{
-				result = boundaryKind1.CompareTo(boundaryKind2);
+				result = BoundaryKindCompareFunc(boundaryKind1, boundaryKind2);
 			}
 			else
 			{
@@ -86,7 +92,7 @@ namespace CodeJam.RangesV2
 				// ReSharper disable once BitwiseOperatorOnEnumWithoutFlags
 				if (result == EqualResult && IsExclusiveKind(boundaryKind1 | boundaryKind2))
 				{
-					result = boundaryKind1.CompareTo(boundaryKind2);
+					result = BoundaryKindCompareFunc(boundaryKind1, boundaryKind2);
 				}
 			}
 			return result;
@@ -96,113 +102,113 @@ namespace CodeJam.RangesV2
 		#endregion
 
 		#region Operators
-		/// <summary> Equality operator. </summary>
-		/// <param name="boundary1">Boundary 1.</param>
-		/// <param name="boundary2">Boundary 2.</param>
+		/// <summary>Equality operator.</summary>
+		/// <param name="boundary1">The boundary1.</param>
+		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundaries are equal.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator ==(RangeBoundary<T> boundary1, RangeBoundary<T> boundary2) =>
 			boundary1.Equals(boundary2);
 
 		/// <summary> Inequality operator. </summary>
-		/// <param name="boundary1">Boundary 1.</param>
-		/// <param name="boundary2">Boundary 2.</param>
+		/// <param name="boundary1">The boundary1.</param>
+		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundaries are not equal.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator !=(RangeBoundary<T> boundary1, RangeBoundary<T> boundary2) =>
 			!boundary1.Equals(boundary2);
 
 		/// <summary> Greater than operator. </summary>
-		/// <param name="boundary1">Boundary 1.</param>
-		/// <param name="boundary2">Boundary 2.</param>
+		/// <param name="boundary1">The boundary1.</param>
+		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 > boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator >(RangeBoundary<T> boundary1, RangeBoundary<T> boundary2) =>
 			boundary1.CompareTo(boundary2) > 0;
 
 		/// <summary> Greater than or equal operator. </summary>
-		/// <param name="boundary1">Boundary 1.</param>
-		/// <param name="boundary2">Boundary 2.</param>
+		/// <param name="boundary1">The boundary1.</param>
+		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 >= boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator >=(RangeBoundary<T> boundary1, RangeBoundary<T> boundary2) =>
 			boundary1.CompareTo(boundary2) >= 0;
 
 		/// <summary> Less than operator. </summary>
-		/// <param name="boundary1">Boundary 1.</param>
-		/// <param name="boundary2">Boundary 2.</param>
+		/// <param name="boundary1">The boundary1.</param>
+		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &lt; boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator <(RangeBoundary<T> boundary1, RangeBoundary<T> boundary2) =>
 			boundary1.CompareTo(boundary2) < 0;
 
 		/// <summary> Less than or equal operator. </summary>
-		/// <param name="boundary1">Boundary 1.</param>
-		/// <param name="boundary2">Boundary 2.</param>
+		/// <param name="boundary1">The boundary1.</param>
+		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &lt;= boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator <=(RangeBoundary<T> boundary1, RangeBoundary<T> boundary2) =>
 			boundary1.CompareTo(boundary2) <= 0;
 
 		/// <summary> Greater than operator. </summary>
-		/// <param name="boundary1">Boundary 1.</param>
-		/// <param name="boundary2">The value of the boundary 2.</param>
+		/// <param name="boundary1">The boundary1.</param>
+		/// <param name="boundary2">The value of the boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 > boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator >(RangeBoundary<T> boundary1, T boundary2) =>
 			boundary1.CompareTo(boundary2) > 0;
 
 		/// <summary> Greater than or equal operator. </summary>
-		/// <param name="boundary1">Boundary 1.</param>
-		/// <param name="boundary2">The value of the boundary 2.</param>
+		/// <param name="boundary1">The boundary1.</param>
+		/// <param name="boundary2">The value of the boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 >= boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator >=(RangeBoundary<T> boundary1, T boundary2) =>
 			boundary1.CompareTo(boundary2) >= 0;
 
 		/// <summary> Less than operator. </summary>
-		/// <param name="boundary1">Boundary 1.</param>
-		/// <param name="boundary2">The value of the boundary 2.</param>
+		/// <param name="boundary1">The boundary1.</param>
+		/// <param name="boundary2">The value of the boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &lt; boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator <(RangeBoundary<T> boundary1, T boundary2) =>
 			boundary1.CompareTo(boundary2) < 0;
 
 		/// <summary> Less than or equal operator. </summary>
-		/// <param name="boundary1">Boundary 1.</param>
-		/// <param name="boundary2">The value of the boundary 2.</param>
+		/// <param name="boundary1">The boundary1.</param>
+		/// <param name="boundary2">The value of the boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &lt;= boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator <=(RangeBoundary<T> boundary1, T boundary2) =>
 			boundary1.CompareTo(boundary2) <= 0;
 
 		/// <summary> Greater than operator. </summary>
-		/// <param name="boundary1">The value of the boundary 1.</param>
-		/// <param name="boundary2">Boundary 2.</param>
+		/// <param name="boundary1">The value of the boundary1.</param>
+		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 > boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator >(T boundary1, RangeBoundary<T> boundary2) =>
 			boundary2.CompareTo(boundary1) < 0;
 
 		/// <summary> Greater than or equal operator. </summary>
-		/// <param name="boundary1">The value of the boundary 1.</param>
-		/// <param name="boundary2">Boundary 2.</param>
+		/// <param name="boundary1">The value of the boundary1.</param>
+		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 >= boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator >=(T boundary1, RangeBoundary<T> boundary2) =>
 			boundary2.CompareTo(boundary1) <= 0;
 
 		/// <summary> Less than operator. </summary>
-		/// <param name="boundary1">The value of the boundary 1.</param>
-		/// <param name="boundary2">Boundary 2.</param>
+		/// <param name="boundary1">The value of the boundary1.</param>
+		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &lt; boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator <(T boundary1, RangeBoundary<T> boundary2) =>
 			boundary2.CompareTo(boundary1) > 0;
 
 		/// <summary> Less than or equal operator. </summary>
-		/// <param name="boundary1">The value of the boundary 1.</param>
-		/// <param name="boundary2">Boundary 2.</param>
+		/// <param name="boundary1">The value of the boundary1.</param>
+		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &lt;= boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator <=(T boundary1, RangeBoundary<T> boundary2) =>
@@ -211,16 +217,16 @@ namespace CodeJam.RangesV2
 
 		#region CLS-friendly operators
 		/// <summary> Equality comparison method. </summary>
-		/// <param name="boundary1">Boundary 1.</param>
-		/// <param name="boundary2">Boundary 2.</param>
+		/// <param name="boundary1">The boundary1.</param>
+		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundaries are equal.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool Equals(RangeBoundary<T> boundary1, RangeBoundary<T> boundary2) =>
 			boundary1 == boundary2;
 
 		/// <summary> Comparison method. </summary>
-		/// <param name="boundary1">Boundary 1.</param>
-		/// <param name="boundary2">Boundary 2.</param>
+		/// <param name="boundary1">The boundary1.</param>
+		/// <param name="boundary2">The boundary2.</param>
 		/// <returns>
 		/// <c>0</c>, if boundaries are equal,
 		/// Negative value if boundary1 &lt; boundary2,
@@ -231,8 +237,8 @@ namespace CodeJam.RangesV2
 			boundary1.CompareTo(boundary2);
 
 		/// <summary> Comparison method. </summary>
-		/// <param name="boundary1">Boundary 1.</param>
-		/// <param name="boundary2">The value of the boundary 2.</param>
+		/// <param name="boundary1">The boundary1.</param>
+		/// <param name="boundary2">The value of the boundary2.</param>
 		/// <returns>
 		/// <c>0</c>, if boundaries are equal,
 		/// Negative value if boundary1 &lt; boundary2,
@@ -243,8 +249,8 @@ namespace CodeJam.RangesV2
 			boundary1.CompareTo(boundary2);
 
 		/// <summary> Comparison method. </summary>
-		/// <param name="boundary1">The value of the boundary 1.</param>
-		/// <param name="boundary2">Boundary 2.</param>
+		/// <param name="boundary1">The value of the boundary1.</param>
+		/// <param name="boundary2">The boundary2.</param>
 		/// <returns>
 		/// <c>0</c>, if boundaries are equal,
 		/// Negative value if boundary1 &lt; boundary2,
@@ -266,7 +272,7 @@ namespace CodeJam.RangesV2
 
 		#region IEquatable<RangeBoundary<T>>
 		/// <summary>Indicates whether the current boundary is equal to another.</summary>
-		/// <param name="other">An boundary to compare with this.</param>
+		/// <param name="other">The boundary to compare with this.</param>
 		/// <returns>
 		/// <c>True</c> if the current boundary is equal to the <paramref name="other"/> parameter;
 		/// otherwise, false.
@@ -291,10 +297,10 @@ namespace CodeJam.RangesV2
 		{
 			if (HasValue)
 			{
-				return HashCode.Combine(_value.GetHashCode(), _kind.GetHashCode());
+				return HashCode.Combine(_value.GetHashCode(), (int)_kind);
 			}
 
-			return _kind.GetHashCode();
+			return (int)_kind;
 		}
 		#endregion
 

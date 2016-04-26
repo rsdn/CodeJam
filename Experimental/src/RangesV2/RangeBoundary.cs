@@ -1,37 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using CodeJam.Arithmetic;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.RangesV2
 {
-	/// <summary>
-	/// RangeBoundary helpers and extension methods
-	/// </summary>
+	/// <summary>RangeBoundary helpers and extension methods</summary>
 	[PublicAPI]
 	public static class RangeBoundary
 	{
 		#region Helper types
-		/// <summary>
-		/// Implementation of order-by-descending comparer
-		/// </summary>
+		/// <summary>Implementation of order-by-descending comparer.</summary>
+		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		public sealed class DescendingComparer<T> : IComparer<RangeBoundary<T>>
 		{
 			#region IComparer<Range<T>>
-			/// <summary>
-			/// Order-by-descending comparison
-			/// </summary>
+			/// <summary>Order-by-descending comparison</summary>
+			/// <param name="x">The first boundary to compare.</param>
+			/// <param name="y">The second boundary to compare.</param>
+			/// <returns>
+			/// A signed integer that indicates the relative values of  <paramref name="x"/> and <paramref name="y"/>.
+			/// * Less than zero: <paramref name="x"/> is less than <paramref name="y"/>.
+			/// * Zero: <paramref name="x"/> equals <paramref name="y"/>.
+			/// * Greater than zero: <paramref name="x"/> is greater than <paramref name="y"/>.
+			/// </returns>
 			public int Compare(RangeBoundary<T> x, RangeBoundary<T> y) => y.CompareTo(x);
 			#endregion
 		}
+
+		/// <summary>The boundary kind compare function.</summary>
+		internal static readonly Func<RangeBoundaryKind, RangeBoundaryKind, int> BoundaryKindCompareFunc =
+			Operators<RangeBoundaryKind>.Compare;
 		#endregion
 
-		/// <summary>
-		/// Checks that boundary1 is complementation for boundary1
-		/// </summary>
-		/// <typeparam name="T">The type of the boundary value</typeparam>
-		/// <param name="boundary">The range boundary</param>
-		/// <param name="other">Another boundary</param>
+		/// <summary>Checks that boundary1 is complementation for boundary1</summary>
+		/// <typeparam name="T">The type of the boundary value.</typeparam>
+		/// <param name="boundary">The range boundary.</param>
+		/// <param name="other">Another boundary.</param>
 		/// <returns><c>True</c>, if boundary1 is complementation for boundary1.</returns>
 		public static bool IsComplementationFor<T>(this RangeBoundary<T> boundary, RangeBoundary<T> other) =>
 			boundary.HasValue && boundary.GetComplementation() == other;
@@ -45,9 +52,9 @@ namespace CodeJam.RangesV2
 		/// Empty or infinite boundaries will throw. Check <see cref="RangeBoundary{T}.HasValue"/>
 		/// before calling the method.
 		/// </summary>
-		/// <typeparam name="T">The type of the boundary value</typeparam>
-		/// <param name="boundary">The range boundary</param>
-		/// <returns>Complementation for the boundary</returns>
+		/// <typeparam name="T">The type of the boundary value.</typeparam>
+		/// <param name="boundary">The range boundary.</param>
+		/// <returns>Complementation for the boundary.</returns>
 		public static RangeBoundary<T> GetComplementation<T>(this RangeBoundary<T> boundary)
 		{
 			RangeBoundaryKind newKind;
@@ -77,11 +84,11 @@ namespace CodeJam.RangesV2
 		/// Creates a new boundary with a new value.
 		/// If the boundary has on value the value will not update.
 		/// </summary>
-		/// <typeparam name="T">The type of the boundary value</typeparam>
-		/// <param name="boundary">The range boundary</param>
-		/// <returns>Complementation for the boundary</returns>
-		/// <param name="updateCallback">Callback returning new value of the boundary</param>
-		/// <returns>Range boundary with the same kind but with a new value</returns>
+		/// <typeparam name="T">The type of the boundary value.</typeparam>
+		/// <param name="boundary">The range boundary.</param>
+		/// <returns>Complementation for the boundary.</returns>
+		/// <param name="updateCallback">Callback returning new value of the boundary.</param>
+		/// <returns>Range boundary with the same kind but with a new value.</returns>
 		public static RangeBoundary<T> UpdateValue<T>(
 			this RangeBoundary<T> boundary,
 			[NotNull, InstantHandle] Func<T, T> updateCallback)

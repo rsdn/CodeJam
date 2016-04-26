@@ -11,13 +11,15 @@ namespace CodeJam.RangesV2
 	/// <typeparam name="T">
 	/// The type of the value. Should implement <seealso cref="IComparable{T}"/> or <seealso cref="IComparable"/>.
 	/// </typeparam>
-	/// <typeparam name="TRange">
-	/// The type of the resulting range
-	/// </typeparam>
+	/// <typeparam name="TRange">The type of the resulting range</typeparam>
+	/// <seealso cref="CodeJam.RangesV2.IRange{T}"/>
 	[PublicAPI]
 	public interface IRangeFactory<T, out TRange> : IRange<T> where TRange : IRange<T>
 	{
-		/// <summary> Creates a new instance of the range </summary>
+		/// <summary>Creates a new instance of the range.</summary>
+		/// <param name="from">From boundary.</param>
+		/// <param name="to">To boundary.</param>
+		/// <returns>Creates a new instance of the range with specified from-to boundaries.</returns>
 		TRange CreateRange(RangeBoundary<T> from, RangeBoundary<T> to);
 	}
 }

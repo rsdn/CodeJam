@@ -2,9 +2,7 @@
 
 namespace CodeJam.RangesV2
 {
-	/// <summary>
-	/// RangeBoundary constants
-	/// </summary>
+	/// <summary>RangeBoundary constants</summary>
 	public static class RangeConstants
 	{
 		#region Boundary constants
@@ -13,10 +11,10 @@ namespace CodeJam.RangesV2
 		internal const string NegativeInfinityBoundaryString = "(-∞";
 		internal const string PositiveInfinityBoundaryString = "+∞)";
 
-		internal const char FromExclusiveChar = '(';
-		internal const char FromInclusiveChar = '[';
-		internal const char ToExclusiveChar = ')';
-		internal const char ToInclusiveChar = ']';
+		internal const string FromExclusiveString = "(";
+		internal const string FromInclusiveString = "[";
+		internal const string ToExclusiveString = ")";
+		internal const string ToInclusiveString = "]";
 		#endregion
 
 		#region Range constants
