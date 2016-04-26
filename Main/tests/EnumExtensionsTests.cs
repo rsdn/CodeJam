@@ -66,6 +66,14 @@ namespace CodeJam
 			Assert.IsFalse(Enum.IsDefined(typeof(F), Ab));
 			Assert.IsFalse(Enum.IsDefined(typeof(F), Abc));
 			Assert.IsFalse(Enum.IsDefined(typeof(F), AbU));
+
+			Assert.IsTrue(EnumExtensions.IsFlagsDefined(F.A));
+			Assert.IsTrue(EnumExtensions.IsFlagsDefined(F.CD));
+			Assert.IsTrue(EnumExtensions.IsFlagsDefined(Ab));
+			Assert.IsTrue(EnumExtensions.IsFlagsDefined(Abc));
+			Assert.IsTrue(EnumExtensions.IsFlagsDefined(Abcd));
+			Assert.IsFalse(EnumExtensions.IsFlagsDefined(Undef));
+			Assert.IsFalse(EnumExtensions.IsFlagsDefined(AbU));
 		}
 
 		[Test]
@@ -133,12 +141,26 @@ namespace CodeJam
 			Assert.IsFalse(Abc.IsFlagSet(Bd));
 			Assert.IsFalse(Abc.IsFlagSet(D));
 
+			Assert.IsFalse(Abc.IsFlagNotSet(Zero));
+			Assert.IsFalse(Abc.IsFlagNotSet(Bc));
+			Assert.IsFalse(Abc.IsFlagNotSet(Abc));
+			Assert.IsTrue(Abc.IsFlagNotSet(Abcd));
+			Assert.IsTrue(Abc.IsFlagNotSet(Bd));
+			Assert.IsTrue(Abc.IsFlagNotSet(D));
+
 			Assert.IsTrue(Abc.IsFlagMatch(Zero));
 			Assert.IsTrue(Abc.IsFlagMatch(Bc));
 			Assert.IsTrue(Abc.IsFlagMatch(Abc));
 			Assert.IsTrue(Abc.IsFlagMatch(Abcd));
 			Assert.IsTrue(Abc.IsFlagMatch(Bd));
 			Assert.IsFalse(Abc.IsFlagMatch(D));
+
+			Assert.IsFalse(Abc.IsFlagNotMatch(Zero));
+			Assert.IsFalse(Abc.IsFlagNotMatch(Bc));
+			Assert.IsFalse(Abc.IsFlagNotMatch(Abc));
+			Assert.IsFalse(Abc.IsFlagNotMatch(Abcd));
+			Assert.IsFalse(Abc.IsFlagNotMatch(Bd));
+			Assert.IsTrue(Abc.IsFlagNotMatch(D));
 		}
 
 		[Test]
@@ -198,6 +220,28 @@ namespace CodeJam
 			Assert.IsTrue(isFlagMatch(Abc, Abcd));
 			Assert.IsTrue(isFlagMatch(Abc, Bd));
 			Assert.IsFalse(isFlagMatch(Abc, D));
+		}
+
+		[Test]
+		public static void Test03SetFlag()
+		{
+			Assert.AreEqual(Abc.SetFlag(Zero), Abc);
+			Assert.AreEqual(Abc.SetFlag(Bc), Abc);
+			Assert.AreEqual(Abc.SetFlag(Abc), Abc);
+			Assert.AreEqual(Abc.SetFlag(Abcd), Abcd);
+			Assert.AreEqual(Abc.SetFlag(Bd), Abcd);
+			Assert.AreEqual(Abc.SetFlag(D), Abcd);
+		}
+
+		[Test]
+		public static void Test04ClearFlag()
+		{
+			Assert.AreEqual(Abc.ClearFlag(Zero), Abc);
+			Assert.AreEqual(Abc.ClearFlag(Bc), F.A);
+			Assert.AreEqual(Abc.ClearFlag(Abc), Zero);
+			Assert.AreEqual(Abc.ClearFlag(Abcd), Zero);
+			Assert.AreEqual(Abc.ClearFlag(Bd), F.A | F.C);
+			Assert.AreEqual(Abc.ClearFlag(D), Abc);
 		}
 	}
 }

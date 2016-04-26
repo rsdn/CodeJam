@@ -43,18 +43,28 @@ namespace CodeJam
 
 			private static readonly IReadOnlyDictionary<string, TEnum> _nameValues = GetNameValuesCore(_enumType);
 
-			public static readonly TEnum _flagsMask = _isFlagsEnum ? GetFlagsMaskCore(_values.ToArray()) : default(TEnum);
+			private static readonly TEnum _flagsMask = _isFlagsEnum ? GetFlagsMaskCore(_values.ToArray()) : default(TEnum);
 			#endregion
 
 			#region Flag operations emit
 			[CanBeNull]
-			public static readonly Func<TEnum, TEnum, bool> IsFlagSetCallback = _isEnum || _isNullableEnum
+			private static readonly Func<TEnum, TEnum, bool> _isFlagSetCallback = _isEnum || _isNullableEnum
 				? OperatorsFactory.IsFlagSetOperator<TEnum>()
 				: null;
 
 			[CanBeNull]
-			public static readonly Func<TEnum, TEnum, bool> IsFlagMatchCallback = _isEnum || _isNullableEnum
+			private static readonly Func<TEnum, TEnum, bool> _isFlagMatchCallback = _isEnum || _isNullableEnum
 				? OperatorsFactory.IsFlagMatchOperator<TEnum>()
+				: null;
+
+			[CanBeNull]
+			private static readonly Func<TEnum, TEnum, TEnum> _setFlagCallback = _isEnum || _isNullableEnum
+				? OperatorsFactory.SetFlagOperator<TEnum>()
+				: null;
+
+			[CanBeNull]
+			private static readonly Func<TEnum, TEnum, TEnum> _clearFlagCallback = _isEnum || _isNullableEnum
+				? OperatorsFactory.ClearFlagOperator<TEnum>()
 				: null;
 			#endregion
 
@@ -93,10 +103,9 @@ namespace CodeJam
 
 				return result;
 			}
-			#endregion
 
 			[DebuggerHidden, MethodImpl(PlatformDependent.AggressiveInlining)]
-			public static void AssertUsage()
+			private static void AssertUsage()
 			{
 				if (!_isEnum && !_isNullableEnum)
 				{
@@ -105,7 +114,9 @@ namespace CodeJam
 						$"The {typeof(TEnum).Name} type is not enum type");
 				}
 			}
+			#endregion
 
+			#region API
 			public static IReadOnlyDictionary<string, TEnum> NameValues
 			{
 				[MethodImpl(PlatformDependent.AggressiveInlining)]
@@ -122,6 +133,60 @@ namespace CodeJam
 				AssertUsage();
 				return _values.Contains(value);
 			}
+
+			[MethodImpl(PlatformDependent.AggressiveInlining)]
+			public static bool IsFlagsDefined(TEnum flags)
+			{
+				AssertUsage();
+				return _values.Contains(flags) ||
+					// ReSharper disable once PossibleNullReferenceException
+					(_isFlagsEnum && IsFlagSetCallback(_flagsMask, flags));
+			}
+
+			[NotNull]
+			public static Func<TEnum, TEnum, bool> IsFlagSetCallback
+			{
+				get
+				{
+					AssertUsage();
+					// ReSharper disable once AssignNullToNotNullAttribute
+					return _isFlagSetCallback;
+				}
+			}
+
+			[NotNull]
+			public static Func<TEnum, TEnum, bool> IsFlagMatchCallback
+			{
+				get
+				{
+					AssertUsage();
+					// ReSharper disable once AssignNullToNotNullAttribute
+					return _isFlagMatchCallback;
+				}
+			}
+
+			[NotNull]
+			public static Func<TEnum, TEnum, TEnum> SetFlagCallback
+			{
+				get
+				{
+					AssertUsage();
+					// ReSharper disable once AssignNullToNotNullAttribute
+					return _setFlagCallback;
+				}
+			}
+
+			[NotNull]
+			public static Func<TEnum, TEnum, TEnum> ClearFlagCallback
+			{
+				get
+				{
+					AssertUsage();
+					// ReSharper disable once AssignNullToNotNullAttribute
+					return _clearFlagCallback;
+				}
+			}
+			#endregion
 		}
 
 		#region Metadata checks
@@ -133,6 +198,15 @@ namespace CodeJam
 		public static bool IsDefined<TEnum>(TEnum value)
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				Holder<TEnum>.IsDefined(value);
+
+		/// <summary>Determines whether all bits of the flags combination are defined</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="flags">The flags to check.</param>
+		/// <returns>True, if enum defines all bits of the flags combination.</returns>
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		public static bool IsFlagsDefined<TEnum>(TEnum flags)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.IsFlagsDefined(flags);
 
 		/// <summary>Try to parse the enum value.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
@@ -160,7 +234,7 @@ namespace CodeJam
 		}
 		#endregion
 
-		#region Flags
+		#region Flag checks
 		/// <summary>Determines whether the specified flag is set.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value.</param>
@@ -168,13 +242,8 @@ namespace CodeJam
 		/// <returns><c>true</c> if the value includes all bits of the flag or the flag is zero.</returns>
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static bool IsFlagSet<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
-		{
-			Holder<TEnum>.AssertUsage();
-			// Validated via AssertUsage()
-			// ReSharper disable once PossibleNullReferenceException
-			return Holder<TEnum>.IsFlagSetCallback(value, flag);
-		}
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.IsFlagSetCallback(value, flag);
 
 		/// <summary>Determines whether any bit from specified flag is set.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
@@ -183,13 +252,51 @@ namespace CodeJam
 		/// <returns><c>true</c> if the value includes any bit of the flags or the flag is zero.</returns>
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static bool IsFlagMatch<TEnum>(this TEnum value, TEnum flags)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
-		{
-			Holder<TEnum>.AssertUsage();
-			// Validated via AssertUsage()
-			// ReSharper disable once PossibleNullReferenceException
-			return Holder<TEnum>.IsFlagMatchCallback(value, flags);
-		}
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.IsFlagMatchCallback(value, flags);
+
+		/// <summary>Determines whether the specified flag is not set.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The value.</param>
+		/// <param name="flag">The flag.</param>
+		/// <returns><c>true</c> if the value does not include all bits of the flag.</returns>
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		public static bool IsFlagNotSet<TEnum>(this TEnum value, TEnum flag)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				!Holder<TEnum>.IsFlagSetCallback(value, flag);
+
+		/// <summary>Determines whether any bit from specified flag is not set.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The value.</param>
+		/// <param name="flags">The bitwise combinations of the flags.</param>
+		/// <returns><c>true</c> if the value does not include any bit of the flags.</returns>
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		public static bool IsFlagNotMatch<TEnum>(this TEnum value, TEnum flags)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				!Holder<TEnum>.IsFlagMatchCallback(value, flags);
+		#endregion
+
+		#region Flag operations
+		/// <summary>Sets the flag.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The value.</param>
+		/// <param name="flag">The flag.</param>
+		/// <returns>Bitwise combination of the flag and the value</returns>
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		public static TEnum SetFlag<TEnum>(this TEnum value, TEnum flag)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.SetFlagCallback(value, flag);
+
+
+		/// <summary>Clears the flag.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The value.</param>
+		/// <param name="flag">The flag.</param>
+		/// <returns>The bits of the value excluding the ones from the flag.</returns>
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		public static TEnum ClearFlag<TEnum>(this TEnum value, TEnum flag)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.ClearFlagCallback(value, flag);
 		#endregion
 	}
 }

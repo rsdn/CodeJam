@@ -106,7 +106,6 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		private static Func<T, T, TResult> GetBinaryOperatorCore<T, TResult>(ExpressionType operatorType) =>
 			CompileOperatorCore<Func<T, T, TResult>>(
-				// ReSharper disable once AssignNullToNotNullAttribute
 				args => MakeBinary(operatorType, args[0], args[1]),
 				ex => NotSupported<T>(operatorType, ex),
 				operatorType.ToString(),
@@ -224,7 +223,6 @@ namespace CodeJam.Arithmetic
 		/// <returns>Callback for (value &amp; flag) == flag check</returns>
 		public static Func<T, T, bool> IsFlagSetOperator<T>() => 
 			CompileOperatorCore<Func<T, T, bool>>(
-				// ReSharper disable once AssignNullToNotNullAttribute
 				args => Equal(And(args[0], args[1]), args[1]),
 				ex => NotSupported<T>(ExpressionType.And, ex),
 				"IsFlagSet",
@@ -239,7 +237,6 @@ namespace CodeJam.Arithmetic
 		{
 			var zero = Constant(0, GetOperandType(typeof(T)));
 			return CompileOperatorCore<Func<T, T, bool>>(
-				// ReSharper disable once AssignNullToNotNullAttribute
 				args => Or(
 					Equal(args[1], zero), 
 					NotEqual(
@@ -251,6 +248,30 @@ namespace CodeJam.Arithmetic
 				Parameter(typeof(T), "value"),
 				Parameter(typeof(T), "flags"));
 		}
+
+		/// <summary>Emits code for (value | flag) operator.</summary>
+		/// <typeparam name="T">The type of the operands</typeparam>
+		/// <returns>Callback for (value | flag) operator.</returns>
+		public static Func<T, T, T> SetFlagOperator<T>() =>
+			CompileOperatorCore<Func<T, T, T>>(
+				args => Or(args[0], args[1]),
+				ex => NotSupported<T>(ExpressionType.Or, ex),
+				"SetFlag",
+				typeof(T),
+                Parameter(typeof(T), "value"),
+				Parameter(typeof(T), "flag"));
+
+		/// <summary>Emits code for (value & ~flag) operator.</summary>
+		/// <typeparam name="T">The type of the operands</typeparam>
+		/// <returns>Callback for (value & ~flag) operator.</returns>
+		public static Func<T, T, T> ClearFlagOperator<T>() =>
+			CompileOperatorCore<Func<T, T, T>>(
+				args => And(args[0], OnesComplement(args[1])),
+				ex => NotSupported<T>(ExpressionType.And, ex),
+				"ClearFlag",
+				typeof(T),
+				Parameter(typeof(T), "value"),
+				Parameter(typeof(T), "flag"));
 		#endregion
 	}
 }
