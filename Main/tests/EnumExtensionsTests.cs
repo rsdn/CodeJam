@@ -67,13 +67,13 @@ namespace CodeJam
 			Assert.IsFalse(Enum.IsDefined(typeof(F), Abc));
 			Assert.IsFalse(Enum.IsDefined(typeof(F), AbU));
 
-			Assert.IsTrue(EnumExtensions.IsFlagsDefined(F.A));
-			Assert.IsTrue(EnumExtensions.IsFlagsDefined(F.CD));
-			Assert.IsTrue(EnumExtensions.IsFlagsDefined(Ab));
-			Assert.IsTrue(EnumExtensions.IsFlagsDefined(Abc));
-			Assert.IsTrue(EnumExtensions.IsFlagsDefined(Abcd));
-			Assert.IsFalse(EnumExtensions.IsFlagsDefined(Undef));
-			Assert.IsFalse(EnumExtensions.IsFlagsDefined(AbU));
+			Assert.IsTrue(EnumExtensions.AreFlagsDefined(F.A));
+			Assert.IsTrue(EnumExtensions.AreFlagsDefined(F.CD));
+			Assert.IsTrue(EnumExtensions.AreFlagsDefined(Ab));
+			Assert.IsTrue(EnumExtensions.AreFlagsDefined(Abc));
+			Assert.IsTrue(EnumExtensions.AreFlagsDefined(Abcd));
+			Assert.IsFalse(EnumExtensions.AreFlagsDefined(Undef));
+			Assert.IsFalse(EnumExtensions.AreFlagsDefined(AbU));
 		}
 
 		[Test]

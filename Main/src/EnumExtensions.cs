@@ -204,7 +204,7 @@ namespace CodeJam
 		/// <param name="flags">The flags to check.</param>
 		/// <returns>True, if enum defines all bits of the flags combination.</returns>
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
-		public static bool IsFlagsDefined<TEnum>(TEnum flags)
+		public static bool AreFlagsDefined<TEnum>(TEnum flags)
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				Holder<TEnum>.IsFlagsDefined(flags);
 
