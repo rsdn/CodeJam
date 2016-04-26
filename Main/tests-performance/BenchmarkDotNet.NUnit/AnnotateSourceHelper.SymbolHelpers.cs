@@ -69,6 +69,7 @@ namespace BenchmarkDotNet.NUnit
 				return sourceFileName != null && firstCodeLine >= 0;
 			}
 
+			// ReSharper disable once SuggestBaseTypeForParameter
 			private static ISymUnmanagedMethod TryGetMethodSymbols(MethodBase method)
 			{
 				try

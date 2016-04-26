@@ -251,7 +251,7 @@ namespace CodeJam
 				var value = F.CD;
 				var flag = F.B | F.C;
 				for (int i = 0; i < Count; i++)
-					a = (value | flag);
+					a = value | flag;
 				return a;
 			}
 
@@ -299,7 +299,7 @@ namespace CodeJam
 				var value = F.CD;
 				var flag = F.B | F.C;
 				for (int i = 0; i < Count; i++)
-					a = (value | flag);
+					a = value | flag;
 				return a;
 			}
 

@@ -1,10 +1,11 @@
-﻿using System.Runtime.CompilerServices;
+﻿#if DEBUG
+using System;
+using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
 
 namespace CodeJam.Strings
 {
-#if DEBUG
 	/// <summary>
 	/// The <see cref="Strings"/> namespace contains types for <see cref="char"/> and <see cref="string"/>
 	/// manipulation.
@@ -13,5 +14,5 @@ namespace CodeJam.Strings
 	[CompilerGenerated]
 	class NamespaceDoc
 	{}
-#endif
 }
+#endif

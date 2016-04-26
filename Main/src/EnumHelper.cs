@@ -121,6 +121,7 @@ namespace CodeJam
 				return result;
 			}
 
+			// ReSharper disable once SuggestBaseTypeForParameter
 			private static TEnum GetFlagsMaskCore(TEnum[] values)
 			{
 				if (values.Length == 0)
@@ -177,7 +178,7 @@ namespace CodeJam
 				AssertUsage();
 				return _values.Contains(flags) ||
 					// ReSharper disable once PossibleNullReferenceException
-					(_isFlagsEnum && IsFlagSetCallback(_flagsMask, flags));
+					_isFlagsEnum && IsFlagSetCallback(_flagsMask, flags);
 			}
 
 			[NotNull]

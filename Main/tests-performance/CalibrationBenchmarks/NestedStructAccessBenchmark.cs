@@ -33,6 +33,7 @@ namespace CodeJam
 #pragma warning restore 649
 #pragma warning restore 169
 
+			[Pure]
 			public decimal Test() => _a;
 		}
 

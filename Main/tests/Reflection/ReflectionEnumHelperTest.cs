@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-
-using CodeJam.Strings;
 
 using NUnit.Framework;
 

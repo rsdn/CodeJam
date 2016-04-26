@@ -1,6 +1,7 @@
-﻿namespace System.Collections.Generic
+﻿#if FW40
+namespace System.Collections.Generic
 {
-#if FW40
+
 	/// <summary>
 	/// <see cref="Dictionary{TKey,TValue}"/> that implements <see cref="IReadOnlyDictionary{TKey,TValue}"/>.
 	/// </summary>
@@ -12,5 +13,5 @@
 		IEnumerable<TKey> IReadOnlyDictionary<TKey, TValue>.Keys => Keys;
 		IEnumerable<TValue> IReadOnlyDictionary<TKey, TValue>.Values => Values;
 	}
-#endif
 }
+#endif
