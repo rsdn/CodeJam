@@ -261,9 +261,9 @@ namespace CodeJam.Arithmetic
                 Parameter(typeof(T), "value"),
 				Parameter(typeof(T), "flag"));
 
-		/// <summary>Emits code for (value & ~flag) operator.</summary>
+		/// <summary>Emits code for (value &amp; ~flag) operator.</summary>
 		/// <typeparam name="T">The type of the operands</typeparam>
-		/// <returns>Callback for (value & ~flag) operator.</returns>
+		/// <returns>Callback for (value &amp; ~flag) operator.</returns>
 		public static Func<T, T, T> ClearFlagOperator<T>() =>
 			CompileOperatorCore<Func<T, T, T>>(
 				args => And(args[0], OnesComplement(args[1])),

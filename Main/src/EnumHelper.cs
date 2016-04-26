@@ -16,7 +16,7 @@ namespace CodeJam
 	/// Extension methods for Enum types
 	/// </summary>
 	[PublicAPI]
-	public static class EnumExtensions
+	public static class EnumHelper
 	{
 		private static class Holder<TEnum>
 			where TEnum : struct

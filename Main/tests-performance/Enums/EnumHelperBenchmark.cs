@@ -16,14 +16,14 @@ using static CodeJam.AssemblyWideConfig;
 namespace CodeJam
 {
 	/// <summary>
-	/// Proof test: <see cref="EnumExtensions"/> methods are faster than their framework counterparts.
+	/// Proof test: <see cref="EnumHelper"/> methods are faster than their framework counterparts.
 	/// </summary>
 	[PublicAPI]
-	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": EnumExtensions")]
+	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": EnumHelper")]
 	[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "ConvertToConstant.Local")]
-	public class EnumExtensionsBenchmark
+	public class EnumHelperBenchmark
 	{
 		private const int Count = 250 * 1000;
 
@@ -53,7 +53,7 @@ namespace CodeJam
 			{
 				bool a = false;
 				for (int i = 0; i < Count; i++)
-					a = EnumExtensions.IsDefined(F.C | F.D);
+					a = EnumHelper.IsDefined(F.C | F.D);
 				return a;
 			}
 
@@ -62,7 +62,7 @@ namespace CodeJam
 			{
 				bool a = false;
 				for (int i = 0; i < Count; i++)
-					a = EnumExtensions.IsDefined(F.B | F.C);
+					a = EnumHelper.IsDefined(F.B | F.C);
 				return a;
 			}
 
@@ -96,7 +96,7 @@ namespace CodeJam
 			{
 				var a = F.Zero;
 				for (int i = 0; i < Count; i++)
-					EnumExtensions.TryParse(Fa, out a);
+					EnumHelper.TryParse(Fa, out a);
 				return a;
 			}
 
@@ -105,7 +105,7 @@ namespace CodeJam
 			{
 				var a = F.Zero;
 				for (int i = 0; i < Count; i++)
-					EnumExtensions.TryParse(Fx, out a);
+					EnumHelper.TryParse(Fx, out a);
 				return a;
 			}
 

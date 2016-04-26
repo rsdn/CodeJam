@@ -9,12 +9,12 @@ using NUnit.Framework;
 
 namespace CodeJam
 {
-	[TestFixture(Category = "EnumExtensions")]
+	[TestFixture(Category = "EnumHelper")]
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[SuppressMessage("ReSharper", "HeapView.DelegateAllocation")]
 	[SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
-	public static class EnumExtensionsTests
+	public static class EnumHelperTests
 	{
 		#region Enum constants
 		[Flags]
@@ -46,17 +46,17 @@ namespace CodeJam
 		public static void Test00Defined()
 		{
 			Assert.Throws<ArgumentException>(() => Enum.IsDefined(typeof(int), 2));
-			Assert.Throws<ArgumentException>(() => EnumExtensions.IsDefined(2));
-			Assert.Throws<ArgumentException>(() => EnumExtensions.IsDefined(2.0));
+			Assert.Throws<ArgumentException>(() => EnumHelper.IsDefined(2));
+			Assert.Throws<ArgumentException>(() => EnumHelper.IsDefined(2.0));
 
-			Assert.IsTrue(EnumExtensions.IsDefined(F.A));
-			Assert.IsTrue(EnumExtensions.IsDefined(F.B));
-			Assert.IsTrue(EnumExtensions.IsDefined(F.C));
-			Assert.IsTrue(EnumExtensions.IsDefined(F.CD));
-			Assert.IsFalse(EnumExtensions.IsDefined(Undef));
-			Assert.IsFalse(EnumExtensions.IsDefined(Ab));
-			Assert.IsFalse(EnumExtensions.IsDefined(Abc));
-			Assert.IsFalse(EnumExtensions.IsDefined(AbU));
+			Assert.IsTrue(EnumHelper.IsDefined(F.A));
+			Assert.IsTrue(EnumHelper.IsDefined(F.B));
+			Assert.IsTrue(EnumHelper.IsDefined(F.C));
+			Assert.IsTrue(EnumHelper.IsDefined(F.CD));
+			Assert.IsFalse(EnumHelper.IsDefined(Undef));
+			Assert.IsFalse(EnumHelper.IsDefined(Ab));
+			Assert.IsFalse(EnumHelper.IsDefined(Abc));
+			Assert.IsFalse(EnumHelper.IsDefined(AbU));
 
 			Assert.IsTrue(Enum.IsDefined(typeof(F), F.A));
 			Assert.IsTrue(Enum.IsDefined(typeof(F), F.B));
@@ -67,13 +67,13 @@ namespace CodeJam
 			Assert.IsFalse(Enum.IsDefined(typeof(F), Abc));
 			Assert.IsFalse(Enum.IsDefined(typeof(F), AbU));
 
-			Assert.IsTrue(EnumExtensions.AreFlagsDefined(F.A));
-			Assert.IsTrue(EnumExtensions.AreFlagsDefined(F.CD));
-			Assert.IsTrue(EnumExtensions.AreFlagsDefined(Ab));
-			Assert.IsTrue(EnumExtensions.AreFlagsDefined(Abc));
-			Assert.IsTrue(EnumExtensions.AreFlagsDefined(Abcd));
-			Assert.IsFalse(EnumExtensions.AreFlagsDefined(Undef));
-			Assert.IsFalse(EnumExtensions.AreFlagsDefined(AbU));
+			Assert.IsTrue(EnumHelper.AreFlagsDefined(F.A));
+			Assert.IsTrue(EnumHelper.AreFlagsDefined(F.CD));
+			Assert.IsTrue(EnumHelper.AreFlagsDefined(Ab));
+			Assert.IsTrue(EnumHelper.AreFlagsDefined(Abc));
+			Assert.IsTrue(EnumHelper.AreFlagsDefined(Abcd));
+			Assert.IsFalse(EnumHelper.AreFlagsDefined(Undef));
+			Assert.IsFalse(EnumHelper.AreFlagsDefined(AbU));
 		}
 
 		[Test]
@@ -81,51 +81,51 @@ namespace CodeJam
 		{
 			int wrongParse;
 			Assert.Throws<ArgumentException>(() => Enum.TryParse("2", out wrongParse));
-			Assert.Throws<ArgumentException>(() => EnumExtensions.TryParse("2", out wrongParse));
-			Assert.Throws<ArgumentException>(() => EnumExtensions.TryParse<int>("2"));
+			Assert.Throws<ArgumentException>(() => EnumHelper.TryParse("2", out wrongParse));
+			Assert.Throws<ArgumentException>(() => EnumHelper.TryParse<int>("2"));
 
 			F result1;
 			F result2;
 			Assert.AreEqual(
-				EnumExtensions.TryParse(nameof(F.A), out result1),
+				EnumHelper.TryParse(nameof(F.A), out result1),
 				Enum.TryParse(nameof(F.A), out result2));
 			Assert.AreEqual(result1, result2);
-			Assert.AreEqual(result1, EnumExtensions.TryParse<F>(nameof(F.A)));
+			Assert.AreEqual(result1, EnumHelper.TryParse<F>(nameof(F.A)));
 
 			Assert.AreEqual(
-				EnumExtensions.TryParse(Undef.ToString(), out result1),
+				EnumHelper.TryParse(Undef.ToString(), out result1),
 				Enum.TryParse(Undef.ToString(), out result2));
 			Assert.AreEqual(result1, result2);
-			Assert.AreEqual(result1, EnumExtensions.TryParse<F>(Undef.ToString()));
+			Assert.AreEqual(result1, EnumHelper.TryParse<F>(Undef.ToString()));
 
 			Assert.AreEqual(
-				EnumExtensions.TryParse(nameof(F.CD), out result1),
+				EnumHelper.TryParse(nameof(F.CD), out result1),
 				Enum.TryParse(nameof(F.CD), out result2));
 			Assert.AreEqual(result1, result2);
 
 			Assert.AreEqual(
-				EnumExtensions.TryParse(Abcd.ToString(), out result1),
+				EnumHelper.TryParse(Abcd.ToString(), out result1),
 				Enum.TryParse(Abcd.ToString(), out result2));
 			Assert.AreEqual(result1, result2);
 
 			Assert.AreEqual(
-				EnumExtensions.TryParse(AbU.ToString(), out result1),
+				EnumHelper.TryParse(AbU.ToString(), out result1),
 				Enum.TryParse(AbU.ToString(), out result2));
 			Assert.AreEqual(result1, result2);
 
 			Assert.AreEqual(
-				EnumExtensions.TryParse("0", out result1),
+				EnumHelper.TryParse("0", out result1),
 				Enum.TryParse("0", out result2));
 			Assert.AreEqual(result1, result2);
 
 			Assert.AreEqual(
-				EnumExtensions.TryParse("1", out result1),
+				EnumHelper.TryParse("1", out result1),
 				Enum.TryParse("1", out result2));
 			Assert.AreEqual(result1, result2);
 		}
 
 		[Test]
-		public static void Test0201FlagsEnumExtensions()
+		public static void Test0201FlagsEnumHelper()
 		{
 			Assert.IsTrue(Abc.HasFlag(Zero));
 			Assert.IsTrue(Abc.HasFlag(Bc));
@@ -170,12 +170,12 @@ namespace CodeJam
 		{
 			var isFlagSet = OperatorsFactory.IsFlagSetOperator<int>();
 			var isFlagMatch = OperatorsFactory.IsFlagMatchOperator<int>();
-			const int Abc = (int)EnumExtensionsTests.Abc;
-			const int Abcd = (int)EnumExtensionsTests.Abcd;
-			const int Bc = (int)EnumExtensionsTests.Bc;
-			const int Bd = (int)EnumExtensionsTests.Bd;
-			const int D = (int)EnumExtensionsTests.D;
-			const int Zero = (int)EnumExtensionsTests.Zero;
+			const int Abc = (int)EnumHelperTests.Abc;
+			const int Abcd = (int)EnumHelperTests.Abcd;
+			const int Bc = (int)EnumHelperTests.Bc;
+			const int Bd = (int)EnumHelperTests.Bd;
+			const int D = (int)EnumHelperTests.D;
+			const int Zero = (int)EnumHelperTests.Zero;
 
 			Assert.IsTrue(isFlagSet(Abc, Zero));
 			Assert.IsTrue(isFlagSet(Abc, Bc));
@@ -200,12 +200,12 @@ namespace CodeJam
 			Func<int, int, bool> isFlagSet = (value, flag) => (value & flag) == flag;
 			Func<int, int, bool> isFlagMatch = (value, flag) => (flag == 0) || ((value & flag) != 0);
 
-			const int Abc = (int)EnumExtensionsTests.Abc;
-			const int Abcd = (int)EnumExtensionsTests.Abcd;
-			const int Bc = (int)EnumExtensionsTests.Bc;
-			const int Bd = (int)EnumExtensionsTests.Bd;
-			const int D = (int)EnumExtensionsTests.D;
-			const int Zero = (int)EnumExtensionsTests.Zero;
+			const int Abc = (int)EnumHelperTests.Abc;
+			const int Abcd = (int)EnumHelperTests.Abcd;
+			const int Bc = (int)EnumHelperTests.Bc;
+			const int Bd = (int)EnumHelperTests.Bd;
+			const int D = (int)EnumHelperTests.D;
+			const int Zero = (int)EnumHelperTests.Zero;
 
 			Assert.IsTrue(isFlagSet(Abc, Zero));
 			Assert.IsTrue(isFlagSet(Abc, Bc));
