@@ -62,6 +62,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <typeparam name="T">Type of array item.</typeparam>
 		/// <param name="array">Array to check.</param>
+		/// <returns><c>True</c>, if array is not empty.</returns>
 		/// <remarks>This method performs fast check instead of creating enumerator</remarks>
 		[Pure]
 		public static bool Any<T>([NotNull] this T[] array)

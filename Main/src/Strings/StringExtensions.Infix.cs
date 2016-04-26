@@ -182,6 +182,8 @@ namespace CodeJam.Strings
 		/// <summary>
 		/// Returns length of argument, even if argument is null.
 		/// </summary>
+		/// <param name="str">The string.</param>
+		/// <returns>Length of the <paramref name="str"/> or 0, if <paramref name="str"/> is null.</returns>
 		[Pure]
 		public static int Length([CanBeNull] this string str) => str?.Length ?? 0;
 
