@@ -48,6 +48,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="a">The first array to compare.</param>
 		/// <param name="b">The second array to compare.</param>
+		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
 		public static unsafe bool EqualsTo([CanBeNull] this byte[] a, [CanBeNull] byte[] b)
 		{
@@ -109,6 +110,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="a">The first array to compare.</param>
 		/// <param name="b">The second array to compare.</param>
+		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
 		public static unsafe bool EqualsTo([CanBeNull] this sbyte[] a, [CanBeNull] sbyte[] b)
 		{
@@ -170,6 +172,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="a">The first array to compare.</param>
 		/// <param name="b">The second array to compare.</param>
+		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
 		public static unsafe bool EqualsTo([CanBeNull] this short[] a, [CanBeNull] short[] b)
 		{
@@ -231,6 +234,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="a">The first array to compare.</param>
 		/// <param name="b">The second array to compare.</param>
+		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
 		public static unsafe bool EqualsTo([CanBeNull] this ushort[] a, [CanBeNull] ushort[] b)
 		{
@@ -292,6 +296,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="a">The first array to compare.</param>
 		/// <param name="b">The second array to compare.</param>
+		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
 		public static unsafe bool EqualsTo([CanBeNull] this int[] a, [CanBeNull] int[] b)
 		{
@@ -353,6 +358,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="a">The first array to compare.</param>
 		/// <param name="b">The second array to compare.</param>
+		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
 		public static unsafe bool EqualsTo([CanBeNull] this uint[] a, [CanBeNull] uint[] b)
 		{
@@ -414,6 +420,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="a">The first array to compare.</param>
 		/// <param name="b">The second array to compare.</param>
+		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
 		public static unsafe bool EqualsTo([CanBeNull] this long[] a, [CanBeNull] long[] b)
 		{
@@ -475,6 +482,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="a">The first array to compare.</param>
 		/// <param name="b">The second array to compare.</param>
+		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
 		public static unsafe bool EqualsTo([CanBeNull] this ulong[] a, [CanBeNull] ulong[] b)
 		{

@@ -30,6 +30,7 @@ namespace CodeJam.Strings
 		/// <summary>
 		/// Infix form of <see cref="string.IsNullOrWhiteSpace"/>.
 		/// </summary>
+		/// <param name="str">The string.</param>
 		/// <returns>
 		/// <c>true</c> if <paramref name="str"/> is null, empty or contains only whitespaces; otherwise <c>false</c>.
 		/// </returns>
@@ -41,6 +42,7 @@ namespace CodeJam.Strings
 		/// Returns true if argument is not null nor whitespace.
 		/// </summary>
 		/// <returns>
+		/// <param name="str">The string.</param>
 		/// <c>true</c> if <paramref name="str"/> is not null, nor empty or contains not only whitespaces;
 		/// otherwise <c>false</c>.
 		/// </returns>
@@ -186,6 +188,8 @@ namespace CodeJam.Strings
 		/// <summary>
 		/// Culture invariant version of <see cref="IFormattable.ToString(string,System.IFormatProvider)"/>
 		/// </summary>
+		/// <param name="s">Object to convert.</param>
+		/// <returns>String representation of <paramref name="s"/> according to rules of invariant culture.</returns>
 		[NotNull, Pure]
 		public static string ToInvariantString<T>([NotNull] this T s) where T : IFormattable =>
 			s.ToString(null, CultureInfo.InvariantCulture);
@@ -193,6 +197,9 @@ namespace CodeJam.Strings
 		/// <summary>
 		/// Culture invariant version of <see cref="IFormattable.ToString(string,System.IFormatProvider)"/>
 		/// </summary>
+		/// <param name="s">Object to convert.</param>
+		/// <param name="format">Format string</param>
+		/// <returns>String representation of <paramref name="s"/> according to rules of invariant culture.</returns>
 		[NotNull, Pure]
 		public static string ToInvariantString<T>([NotNull] this T s, string format) where T : IFormattable =>
 			s.ToString(format, CultureInfo.InvariantCulture);
