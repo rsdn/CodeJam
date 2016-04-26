@@ -12,20 +12,20 @@ namespace CodeJam.Strings
 	public partial class StringExtensions
 	{
 		/// <summary>
-		/// Retrieves a substring from <paramref name="str" />.
+		/// Retrieves a substring from <paramref name="str"/>.
 		/// </summary>
 		/// <param name="str">
 		/// String to retrieve substring from.
 		/// </param>
 		/// <param name="origin">
 		/// Specifies the beginning, or the end as a reference point for offset, using a value of type
-		/// <see cref="StringOrigin" />.
+		/// <see cref="StringOrigin"/>.
 		/// </param>
 		/// <param name="length">The number of characters in the substring.</param>
 		/// <returns>
-		/// A string that is equivalent to the substring of length <paramref name="length" /> that begins at
-		/// <paramref name="origin" /> in  <paramref name="str" />, or Empty if length of <paramref name="str" />
-		/// or <paramref name="length" /> is zero.
+		/// A string that is equivalent to the substring of length <paramref name="length"/> that begins at
+		/// <paramref name="origin"/> in  <paramref name="str"/>, or Empty if length of <paramref name="str"/>
+		/// or <paramref name="length"/> is zero.
 		/// </returns>
 		[NotNull]
 		[Pure]
@@ -119,7 +119,9 @@ namespace CodeJam.Strings
 		/// <param name="str">String to trim.</param>
 		/// <param name="suffix">Suffix to trim.</param>
 		/// <param name="comparer">Comparer to compare value of suffix.</param>
-		/// <returns>Trimmed <paramref name="str"/>, or original <paramref name="str"/> if suffix does not exists.</returns>
+		/// <returns>
+		/// Trimmed <paramref name="str"/>, or original <paramref name="str"/> if suffix does not exists.
+		/// </returns>
 		[NotNull]
 		[Pure]
 		public static string TrimSuffix(
@@ -147,7 +149,9 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="str">String to trim.</param>
 		/// <param name="suffix">Suffix to trim.</param>
-		/// <returns>Trimmed <paramref name="str"/>, or original <paramref name="str"/> if suffix does not exists.</returns>
+		/// <returns>
+		/// Trimmed <paramref name="str"/>, or original <paramref name="str"/> if suffix does not exists.
+		/// </returns>
 		[NotNull]
 		[Pure]
 		public static string TrimSuffix([NotNull] this string str, [CanBeNull] string suffix) =>

@@ -41,7 +41,7 @@ namespace CodeJam.Services
 		/// <returns>A service object of type serviceType.</returns>
 		[CanBeNull]
 		[Pure]
-		public static T GetService<T> ([NotNull] this IServiceProvider provider)
+		public static T GetService<T>([NotNull] this IServiceProvider provider)
 		{
 			Code.NotNull(provider, nameof(provider));
 			return (T)provider.GetService(typeof(T));

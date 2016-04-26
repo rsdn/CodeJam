@@ -10,7 +10,7 @@ namespace CodeJam.Strings
 	static partial class StringExtensions
 	{
 		/// <summary>
-		/// Infix form of <see cref="string.IsNullOrEmpty" />.
+		/// Infix form of <see cref="string.IsNullOrEmpty"/>.
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <returns><c>true</c> if <paramref name="str"/> is null or empty; otherwise, <c>false</c>.</returns>
@@ -96,7 +96,7 @@ namespace CodeJam.Strings
 			string.Format(format, arg0, arg1, arg2);
 
 		/// <summary>
-		/// Replaces the format items in a specified string with the string representations 
+		/// Replaces the format items in a specified string with the string representations
 		/// of corresponding objects in a specified array.
 		/// </summary>
 		/// <param name="format">A composite format string.</param>
@@ -110,7 +110,7 @@ namespace CodeJam.Strings
 		public static string FormatWith([NotNull] this string format, params object[] args) => string.Format(format, args);
 
 		/// <summary>
-		/// Concatenates all the elements of a string array, using the specified separator between each element. 
+		/// Concatenates all the elements of a string array, using the specified separator between each element.
 		/// </summary>
 		/// <remarks>
 		/// Infix form of <see cref="string.Join(string,string[])"/>.
@@ -126,7 +126,8 @@ namespace CodeJam.Strings
 		/// If <paramref name="values"/> has no members, the method returns <see cref="string.Empty"/>.
 		/// </returns>
 		[NotNull, Pure]
-		public static string Join([NotNull] this string[] values, [CanBeNull] string separator) => string.Join(separator, values);
+		public static string Join([NotNull] this string[] values, [CanBeNull] string separator) =>
+			string.Join(separator, values);
 
 		/// <summary>
 		/// Concatenates the members of a constructed <see cref="IEnumerable{T}"/> collection of type <see cref="string"/>,
@@ -156,8 +157,10 @@ namespace CodeJam.Strings
 		/// Infix form of <see cref="string.Join{T}(string, IEnumerable{T})"/>.
 		/// </remarks>
 		/// <param name="values">A collection that contains the strings to concatenate.</param>
-		/// <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only
-		/// if <paramref name="values"/> has more than one element.</param>
+		/// <param name="separator">
+		/// The string to use as a separator. <paramref name="separator"/> is included in the returned string only
+		/// if <paramref name="values"/> has more than one element.
+		/// </param>
 		/// <returns>
 		/// A string that consists of the members of <paramref name="values"/> delimited by the <paramref name="separator"/>
 		/// string.
@@ -228,9 +231,9 @@ namespace CodeJam.Strings
 		[NotNull]
 		[Pure]
 		public static string ToBase64(
-				[NotNull] this byte[] data,
-				Base64FormattingOptions options = Base64FormattingOptions.None) =>
-			Convert.ToBase64String(data, options);
+			[NotNull] this byte[] data,
+			Base64FormattingOptions options = Base64FormattingOptions.None) =>
+				Convert.ToBase64String(data, options);
 
 		/// <summary>
 		/// Encodes all the characters in the specified string into a sequence of bytes.

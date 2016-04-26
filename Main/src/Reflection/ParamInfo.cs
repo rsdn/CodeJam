@@ -10,7 +10,7 @@ namespace CodeJam.Reflection
 	[PublicAPI]
 	public class ParamInfo
 	{
-		/// <summary>Initializes a new instance of the <see cref="ParamInfo" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="ParamInfo"/> class.</summary>
 		/// <param name="name">Name of the parameter.</param>
 		/// <param name="value">Value of the parameter.</param>
 		/// <param name="required"><c>True</c> if parameter required.</param>
@@ -23,7 +23,7 @@ namespace CodeJam.Reflection
 			Required = required;
 		}
 
-		/// <summary>Initializes a new instance of the <see cref="ParamInfo" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="ParamInfo"/> class.</summary>
 		/// <param name="name">Name of the parameter.</param>
 		/// <param name="value">Value of the parameter.</param>
 		/// <param name="required"><c>True</c> if parameter required.</param>

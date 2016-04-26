@@ -34,8 +34,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="valueFactory">Function to create value on demand.</param>
 		public LazyDictionary([NotNull] Func<TKey, TValue> valueFactory)
-			: this(valueFactory, EqualityComparer<TKey>.Default)
-		{ }
+			: this(valueFactory, EqualityComparer<TKey>.Default) { }
 
 		/// <summary>
 		/// Clears all created values

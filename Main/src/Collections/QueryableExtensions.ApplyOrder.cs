@@ -31,8 +31,9 @@ namespace CodeJam.Collections
 		/// An <see cref="IOrderedQueryable{TElement}"/> whose elements are sorted according to a key.
 		/// </returns>
 		[NotNull, Pure]
-		public static IOrderedQueryable<T> OrderByDescending<T>([NotNull] this IQueryable<T> source, [NotNull] string property) =>
-			ApplyOrder(source, property, nameof(OrderByDescending));
+		public static IOrderedQueryable<T> OrderByDescending<T>(
+			[NotNull] this IQueryable<T> source, [NotNull] string property) =>
+				ApplyOrder(source, property, nameof(OrderByDescending));
 
 		/// <summary>
 		/// Performs a subsequent ordering of the elements in a sequence in ascending order according to a key.
@@ -75,7 +76,7 @@ namespace CodeJam.Collections
 				Expression.Call(
 					typeof(Queryable),
 					method,
-					new[] {typeof(T), ((MemberExpression)member).Member.GetMemberType()},
+					new[] { typeof(T), ((MemberExpression)member).Member.GetMemberType() },
 					source.Expression,
 					Expression.Quote(expression)));
 		}

@@ -17,7 +17,7 @@ namespace CodeJam.Xml
 	public static class XNodeExtensions
 	{
 		/// <summary>
-		/// Returns <paramref name="document" /> root, or throw an exception, if root is null.
+		/// Returns <paramref name="document"/> root, or throw an exception, if root is null.
 		/// </summary>
 		/// <param name="document">The document.</param>
 		/// <returns>Document root</returns>
@@ -55,7 +55,7 @@ namespace CodeJam.Xml
 		}
 
 		/// <summary>
-		/// Returns child element with name <paramref name="name" />, or throws an exception if element does not exists.
+		/// Returns child element with name <paramref name="name"/>, or throws an exception if element does not exists.
 		/// </summary>
 		/// <param name="parent">Parent element.</param>
 		/// <param name="name">Name of the element.</param>
@@ -101,7 +101,7 @@ namespace CodeJam.Xml
 		}
 
 		/// <summary>
-		/// Returns attribute with name <paramref name="name" />, or throws an exception if attribute does not exists.
+		/// Returns attribute with name <paramref name="name"/>, or throws an exception if attribute does not exists.
 		/// </summary>
 		/// <param name="element">The <see cref="XElement"/>.</param>
 		/// <param name="name">Name of the attribute.</param>
@@ -131,7 +131,7 @@ namespace CodeJam.Xml
 		/// <param name="attrName">Attribute name.</param>
 		/// <param name="parser">Value parser</param>
 		/// <param name="defaultValue">Default value.</param>
-		/// <returns>Parsed value or <paramref name="defaultValue" /> if attribute not exists.</returns>
+		/// <returns>Parsed value or <paramref name="defaultValue"/> if attribute not exists.</returns>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="element"/> or <paramref name="attrName"/> or <paramref name="parser"/> is null.
 		/// </exception>
@@ -180,7 +180,7 @@ namespace CodeJam.Xml
 		/// <param name="valueSelector">Function to select element value</param>
 		/// <param name="defaultValue">Default value.</param>
 		/// <param name="names">Array of possible element names.</param>
-		/// <returns>Selected element value or <paramref name="defaultValue" /> if element does not exist.</returns>
+		/// <returns>Selected element value or <paramref name="defaultValue"/> if element does not exist.</returns>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="parent"/> or <paramref name="valueSelector"/> or <paramref name="names"/> is null.
 		/// </exception>
@@ -207,9 +207,9 @@ namespace CodeJam.Xml
 		/// <param name="name">Element name.</param>
 		/// <param name="valueSelector">Function to select element value</param>
 		/// <param name="defaultValue">Default value.</param>
-		/// <returns>Selected element value or <paramref name="defaultValue" /> if element does not exist</returns>
+		/// <returns>Selected element value or <paramref name="defaultValue"/> if element does not exist</returns>
 		/// <exception cref="ArgumentNullException">
-		/// <paramref name="parent" /> or <paramref name="valueSelector" /> is null.
+		/// <paramref name="parent"/> or <paramref name="valueSelector"/> is null.
 		/// </exception>
 		[Pure]
 		public static T ElementValueOrDefault<T>(
@@ -231,9 +231,9 @@ namespace CodeJam.Xml
 		/// <param name="name">Element name.</param>
 		/// <param name="valueSelector">Function to parse element value</param>
 		/// <param name="defaultValue">Default value.</param>
-		/// <returns>Selected element value or <paramref name="defaultValue" /> if element does not exist</returns>
+		/// <returns>Selected element value or <paramref name="defaultValue"/> if element does not exist</returns>
 		/// <exception cref="ArgumentNullException">
-		/// <paramref name="parent" /> or <paramref name="name"/> or <paramref name="valueSelector" /> is null.
+		/// <paramref name="parent"/> or <paramref name="name"/> or <paramref name="valueSelector"/> is null.
 		/// </exception>
 		[Pure]
 		public static T ElementValueOrDefault<T>(
@@ -253,9 +253,9 @@ namespace CodeJam.Xml
 		/// <param name="parent">Parent element.</param>
 		/// <param name="name">Element name.</param>
 		/// <param name="defaultValue">Default value.</param>
-		/// <returns>Selected element value or <paramref name="defaultValue" /> if element does not exist</returns>
+		/// <returns>Selected element value or <paramref name="defaultValue"/> if element does not exist</returns>
 		/// <exception cref="ArgumentNullException">
-		/// <paramref name="parent" /> or <paramref name="name" /> is null.
+		/// <paramref name="parent"/> or <paramref name="name"/> is null.
 		/// </exception>
 		[Pure]
 		[NotNull]

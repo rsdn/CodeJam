@@ -1,5 +1,6 @@
-﻿#if DEBUG
-using System;
+﻿using System;
+
+#if DEBUG
 using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;

@@ -1,6 +1,6 @@
-﻿
+﻿using System;
+
 #if DEBUG
-using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
