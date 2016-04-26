@@ -72,6 +72,7 @@
     <Compile Include="Collections\DisjointSets.cs" />
     <Compile Include="Collections\DisjointSetsBase.cs" />
     <Compile Include="Collections\DisjointSetsT.cs" />
+    <Compile Include="RangesV2\IRangeFactory.cs" />
     <Compile Include="RangesV2\IRange`1.cs" />
     <Compile Include="RangesV2\RangeConstants.cs" />
     <Compile Include="RangesV2\RangeExtesions.Core.cs" />

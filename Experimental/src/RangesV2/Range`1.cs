@@ -51,6 +51,19 @@ namespace CodeJam.RangesV2
 			From = from;
 			To = to;
 		}
+
+		/// <summary> Creates instance of <seealso cref="Range{T}"/> </summary>
+		/// <param name="fromValue">
+		/// The value of the from boundary. Infinite (or empty) boundaries should use default(T) as the value.
+		/// </param>
+		/// <param name="fromKind">The kind of the from boundary.</param>
+		/// <param name="toValue">
+		/// The value of the to boundary. Infinite (or empty) boundaries should use default(T) as the value.
+		/// </param>
+		/// <param name="toKind">The kind of the to boundary.</param>
+		public Range(T fromValue, RangeBoundaryKind fromKind, T toValue, RangeBoundaryKind toKind)
+			: this(new RangeBoundary<T>(fromValue, fromKind), new RangeBoundary<T>(toValue, toKind))
+		{ }
 		#endregion
 
 		#region Properties
