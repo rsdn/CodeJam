@@ -1,10 +1,11 @@
-﻿using System.Runtime.CompilerServices;
+﻿#if DEBUG
+using System;
+using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
 
 namespace CodeJam.TableData
 {
-#if DEBUG
 	/// <summary>
 	/// The <see cref="TableData"/> namespace contains types for working with CSV and fixed with text data formats.
 	/// </summary>
@@ -14,5 +15,5 @@ namespace CodeJam.TableData
 	{
 		
 	}
-#endif
 }
+#endif

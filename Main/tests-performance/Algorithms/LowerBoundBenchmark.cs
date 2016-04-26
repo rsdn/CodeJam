@@ -17,9 +17,10 @@ namespace CodeJam.Algorithms
 	[PublicAPI]
 	public class LowerBoundBenchmark
 	{
-		private static double[] testData_;
 		private const int Steps = 10;
-		private static int increment_;
+
+		private double[] _testData;
+		private int _increment;
 
 		[Params(1000, 10 * 1000, 100 * 1000, 1000 * 1000)]
 		public int Count { get; set; }
@@ -28,13 +29,13 @@ namespace CodeJam.Algorithms
 		public void SetupData()
 		{
 			var rnd = new Random();
-			testData_ = new double[Count];
-			for (var i = 0; i < testData_.Length; ++i)
+			_testData = new double[Count];
+			for (var i = 0; i < _testData.Length; ++i)
 			{
-				testData_[i] = rnd.Next(int.MaxValue) * 0.001;
+				_testData[i] = rnd.Next(int.MaxValue) * 0.001;
 			}
-			testData_.Sort();
-			increment_ = testData_.Length / Steps;
+			_testData.Sort();
+			_increment = _testData.Length / Steps;
 		}
 
 		[Test]
@@ -45,8 +46,8 @@ namespace CodeJam.Algorithms
 		{
 			for (var i = 0; i < Steps; ++i)
 			{
-				var target = testData_[increment_ * i];
-				LowerBoundIComparable(testData_, target, 0, testData_.Length);
+				var target = _testData[_increment * i];
+				LowerBoundIComparable(_testData, target, 0, _testData.Length);
 			}
 		}
 
@@ -55,9 +56,9 @@ namespace CodeJam.Algorithms
 		{
 			for (var i = 0; i < Steps; ++i)
 			{
-				var target = testData_[increment_ * i];
+				var target = _testData[_increment * i];
 				// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-				testData_.LowerBound(target, 0, testData_.Length, Comparer<double>.Default.Compare);
+				_testData.LowerBound(target, 0, _testData.Length, Comparer<double>.Default.Compare);
 			}
 		}
 
@@ -66,9 +67,9 @@ namespace CodeJam.Algorithms
 		{
 			for (var i = 0; i < Steps; ++i)
 			{
-				var target = testData_[increment_ * i];
+				var target = _testData[_increment * i];
 				// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-				testData_.LowerBound(target, 0, testData_.Length);
+				_testData.LowerBound(target, 0, _testData.Length);
 			}
 		}
 

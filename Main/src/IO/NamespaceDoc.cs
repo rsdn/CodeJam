@@ -1,9 +1,10 @@
-﻿using System;
+﻿
+#if DEBUG
+using System;
 using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
 
-#if DEBUG
 namespace CodeJam.IO
 {
 	/// <summary>
