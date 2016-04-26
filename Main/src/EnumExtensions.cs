@@ -44,22 +44,30 @@ namespace CodeJam
 			private static readonly IReadOnlyDictionary<string, TEnum> _nameValues = GetNameValuesCore(_enumType);
 
 			public static readonly TEnum _flagsMask = _isFlagsEnum ? GetFlagsMaskCore(_values.ToArray()) : default(TEnum);
-#endregion
+			#endregion
 
-#region Init helpers
-			private static
-#if FW40
-				DictionaryWithReadOnly<string, TEnum>
-#else
-				Dictionary<string, TEnum>
-#endif
-				GetNameValuesCore(Type enumType)
+			#region Flag operations emit
+			[CanBeNull]
+			public static readonly Func<TEnum, TEnum, bool> IsFlagSetCallback = _isEnum || _isNullableEnum
+				? OperatorsFactory.IsFlagSetOperator<TEnum>()
+				: null;
+
+			[CanBeNull]
+			public static readonly Func<TEnum, TEnum, bool> IsFlagMatchCallback = _isEnum || _isNullableEnum
+				? OperatorsFactory.IsFlagMatchOperator<TEnum>()
+				: null;
+			#endregion
+
+			#region Init helpers
+			private static IReadOnlyDictionary<string, TEnum> GetNameValuesCore(Type enumType)
 			{
+				var result =
 #if FW40
-				var result = new DictionaryWithReadOnly<string, TEnum>();
+				new DictionaryWithReadOnly<string, TEnum>();
 #else
-				var result = new Dictionary<string, TEnum>();
+					new Dictionary<string, TEnum>();
 #endif
+
 				if (enumType.IsEnum)
 				{
 					var names = Enum.GetNames(enumType);
@@ -85,10 +93,10 @@ namespace CodeJam
 
 				return result;
 			}
-#endregion
+			#endregion
 
 			[DebuggerHidden, MethodImpl(PlatformDependent.AggressiveInlining)]
-			private static void AssertUsage()
+			public static void AssertUsage()
 			{
 				if (!_isEnum && !_isNullableEnum)
 				{
@@ -116,6 +124,7 @@ namespace CodeJam
 			}
 		}
 
+		#region Metadata checks
 		/// <summary>Determines whether the specified value is defined</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value to check.</param>
@@ -146,5 +155,36 @@ namespace CodeJam
 				? value
 				: (TEnum?)null;
 		}
+		#endregion
+
+		#region Flags
+		/// <summary>Determines whether the specified flag is set.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The value.</param>
+		/// <param name="flag">The flag.</param>
+		/// <returns><c>true</c> if the value includes all bits of the flag or the flag is zero.</returns>
+		public static bool IsFlagSet<TEnum>(this TEnum value, TEnum flag)
+			where TEnum : struct, IComparable, IFormattable, IConvertible
+		{
+			Holder<TEnum>.AssertUsage();
+			// Validated via AssertUsage()
+			// ReSharper disable once PossibleNullReferenceException
+			return Holder<TEnum>.IsFlagSetCallback(value, flag);
+		}
+
+		/// <summary>Determines whether any bit from specified flag is set.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The value.</param>
+		/// <param name="flags">The bitwise combinations of the flags.</param>
+		/// <returns><c>true</c> if the value includes any bit of the flags or the flag is zero.</returns>
+		public static bool IsFlagMatch<TEnum>(this TEnum value, TEnum flags)
+			where TEnum : struct, IComparable, IFormattable, IConvertible
+		{
+			Holder<TEnum>.AssertUsage();
+			// Validated via AssertUsage()
+			// ReSharper disable once PossibleNullReferenceException
+			return Holder<TEnum>.IsFlagMatchCallback(value, flags);
+		}
+		#endregion
 	}
 }
