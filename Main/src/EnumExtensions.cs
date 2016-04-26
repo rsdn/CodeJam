@@ -129,6 +129,7 @@ namespace CodeJam
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value to check.</param>
 		/// <returns>True, if enum defines the value.</returns>
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static bool IsDefined<TEnum>(TEnum value)
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				Holder<TEnum>.IsDefined(value);
@@ -138,6 +139,7 @@ namespace CodeJam
 		/// <param name="name">The name.</param>
 		/// <param name="value">The value.</param>
 		/// <returns><c>true</c>, if parsing was successful; <c>false</c> otherwise.</returns>
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static bool TryParse<TEnum>(string name, out TEnum value)
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				Holder<TEnum>.NameValues.TryGetValue(name, out value) ||
@@ -147,6 +149,7 @@ namespace CodeJam
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="name">The name.</param>
 		/// <returns>Parsed value, if parsing was successful; <c>null</c> otherwise.</returns>
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static TEnum? TryParse<TEnum>(string name)
 			where TEnum : struct, IComparable, IFormattable, IConvertible
 		{
@@ -163,6 +166,7 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <param name="flag">The flag.</param>
 		/// <returns><c>true</c> if the value includes all bits of the flag or the flag is zero.</returns>
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static bool IsFlagSet<TEnum>(this TEnum value, TEnum flag)
 			where TEnum : struct, IComparable, IFormattable, IConvertible
 		{
@@ -177,6 +181,7 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <param name="flags">The bitwise combinations of the flags.</param>
 		/// <returns><c>true</c> if the value includes any bit of the flags or the flag is zero.</returns>
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static bool IsFlagMatch<TEnum>(this TEnum value, TEnum flags)
 			where TEnum : struct, IComparable, IFormattable, IConvertible
 		{
