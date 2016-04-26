@@ -3,7 +3,8 @@ using System.Linq;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.Collections {
+namespace CodeJam.Collections
+{
 	/// <summary>
 	/// Extensions for <see cref="IQueryable{T}"/>
 	/// </summary>

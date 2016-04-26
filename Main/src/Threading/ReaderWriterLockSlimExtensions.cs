@@ -50,7 +50,6 @@ namespace CodeJam.Threading
 			new UpgradeableReadLockScope(readerWriterLock);
 
 		#region Inner type: ReadLockScope
-
 		/// <summary>
 		/// The <see cref="ReaderWriterLockSlim"/> wrapper.
 		/// </summary>
@@ -76,11 +75,9 @@ namespace CodeJam.Threading
 			[DebuggerStepThrough]
 			public void Dispose() => _readerWriterLock.ExitReadLock();
 		}
-
 		#endregion
 
 		#region Inner type: WriteLockScope
-
 		/// <summary>
 		/// The <see cref="ReaderWriterLockSlim"/> wrapper.
 		/// </summary>
@@ -94,7 +91,8 @@ namespace CodeJam.Threading
 			/// </summary>
 			/// <param name="readerWriterLock">The <see cref="ReaderWriterLockSlim"/> instance.</param>
 			[DebuggerStepThrough]
-			public WriteLockScope([NotNull] ReaderWriterLockSlim readerWriterLock) {
+			public WriteLockScope([NotNull] ReaderWriterLockSlim readerWriterLock)
+			{
 				_readerWriterLock = readerWriterLock;
 				readerWriterLock.EnterWriteLock();
 			}
@@ -105,11 +103,9 @@ namespace CodeJam.Threading
 			[DebuggerStepThrough]
 			public void Dispose() => _readerWriterLock.ExitWriteLock();
 		}
-
 		#endregion
 
 		#region Inner type: UpgradeableReadLockScope
-
 		/// <summary>
 		/// The <see cref="ReaderWriterLockSlim"/> wrapper.
 		/// </summary>
@@ -135,7 +131,6 @@ namespace CodeJam.Threading
 			[DebuggerStepThrough]
 			public void Dispose() => _readerWriterLock.ExitUpgradeableReadLock();
 		}
-
 		#endregion
 	}
 }

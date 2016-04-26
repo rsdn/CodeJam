@@ -25,12 +25,12 @@ namespace CodeJam.Collections
 		[NotNull]
 		[Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
-				[NotNull] Func<TKey, TValue> valueFactory,
-				[NotNull] IEqualityComparer<TKey> comparer,
-				bool threadSafe) =>
-			threadSafe
-				? new ConcurrentLazyDictionary<TKey, TValue>(valueFactory, comparer)
-				: (ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory, comparer);
+			[NotNull] Func<TKey, TValue> valueFactory,
+			[NotNull] IEqualityComparer<TKey> comparer,
+			bool threadSafe) =>
+				threadSafe
+					? new ConcurrentLazyDictionary<TKey, TValue>(valueFactory, comparer)
+					: (ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory, comparer);
 
 		/// <summary>
 		/// Creates implementation of <see cref="ILazyDictionary{TKey,TValue}"/>.
@@ -43,10 +43,10 @@ namespace CodeJam.Collections
 		[NotNull]
 		[Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
-				[NotNull] Func<TKey, TValue> valueFactory,
-				bool threadSafe) =>
-			threadSafe
-				? new ConcurrentLazyDictionary<TKey, TValue>(valueFactory)
-				: (ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory);
+			[NotNull] Func<TKey, TValue> valueFactory,
+			bool threadSafe) =>
+				threadSafe
+					? new ConcurrentLazyDictionary<TKey, TValue>(valueFactory)
+					: (ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory);
 	}
 }

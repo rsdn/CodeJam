@@ -44,7 +44,7 @@ namespace CodeJam.Arithmetic
 
 		// ReSharper disable once SuggestBaseTypeForParameter
 		[NotNull]
-		private static Expression PrepareOperand([NotNull]ParameterExpression arg)
+		private static Expression PrepareOperand([NotNull] ParameterExpression arg)
 		{
 			var argType = arg.Type;
 			var operandType = GetOperandType(argType);
@@ -61,7 +61,7 @@ namespace CodeJam.Arithmetic
 
 		private static TDelegate CompileOperatorCore<TDelegate>(
 			Func<Expression[], Expression> expressionFactory,
-			Func<Exception, Exception> exceptionFactory, 
+			Func<Exception, Exception> exceptionFactory,
 			string methodName, Type resultTupe,
 			params ParameterExpression[] args)
 		{
@@ -94,11 +94,11 @@ namespace CodeJam.Arithmetic
 			new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);
 
 		[NotNull]
-		private static Func<T, TResult> GetUnaryOperatorCore<T, TResult>(ExpressionType operatorType) => 
+		private static Func<T, TResult> GetUnaryOperatorCore<T, TResult>(ExpressionType operatorType) =>
 			CompileOperatorCore<Func<T, TResult>>(
 				// ReSharper disable once AssignNullToNotNullAttribute
 				args => MakeUnary(operatorType, args[0], null),
-				ex=> NotSupported<T>(operatorType, ex),
+				ex => NotSupported<T>(operatorType, ex),
 				operatorType.ToString(),
 				typeof(TResult),
 				Parameter(typeof(T), "arg1"));
@@ -112,7 +112,6 @@ namespace CodeJam.Arithmetic
 				typeof(TResult),
 				Parameter(typeof(T), "arg1"),
 				Parameter(typeof(T), "arg2"));
-
 		#endregion
 
 		#region Operators
@@ -221,7 +220,7 @@ namespace CodeJam.Arithmetic
 		/// <summary>Emits code for (value &amp; flag) == flag check.</summary>
 		/// <typeparam name="T">The type of the operands</typeparam>
 		/// <returns>Callback for (value &amp; flag) == flag check</returns>
-		public static Func<T, T, bool> IsFlagSetOperator<T>() => 
+		public static Func<T, T, bool> IsFlagSetOperator<T>() =>
 			CompileOperatorCore<Func<T, T, bool>>(
 				args => Equal(And(args[0], args[1]), args[1]),
 				ex => NotSupported<T>(ExpressionType.And, ex),
@@ -238,7 +237,7 @@ namespace CodeJam.Arithmetic
 			var zero = Constant(0, GetOperandType(typeof(T)));
 			return CompileOperatorCore<Func<T, T, bool>>(
 				args => Or(
-					Equal(args[1], zero), 
+					Equal(args[1], zero),
 					NotEqual(
 						And(args[0], args[1]),
 						zero)),
@@ -258,7 +257,7 @@ namespace CodeJam.Arithmetic
 				ex => NotSupported<T>(ExpressionType.Or, ex),
 				"SetFlag",
 				typeof(T),
-                Parameter(typeof(T), "value"),
+				Parameter(typeof(T), "value"),
 				Parameter(typeof(T), "flag"));
 
 		/// <summary>Emits code for (value &amp; ~flag) operator.</summary>

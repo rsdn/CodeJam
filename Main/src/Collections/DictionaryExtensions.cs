@@ -13,10 +13,11 @@ namespace CodeJam.Collections
 	public static class DictionaryExtensions
 	{
 		#region GetValueOrDefault
+
 		#region IDictionary overloads
 		/// <summary>
-		/// Returns value associated with <paramref name="key" />, or default(TValue) if key does not exists in
-		/// <paramref name="dictionary" />
+		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
+		/// <paramref name="dictionary"/>
 		/// </summary>
 		/// <typeparam name="TKey">The type of the key.</typeparam>
 		/// <typeparam name="TValue">The type of the value.</typeparam>
@@ -74,10 +75,10 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
-				[NotNull] this IDictionary<TKey, TValue> dictionary,
-				TKey key,
-				[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
-			GetValueOrDefault(dictionary, key, resultSelector, default(TResult));
+			[NotNull] this IDictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
+				GetValueOrDefault(dictionary, key, resultSelector, default(TResult));
 
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
@@ -189,9 +190,9 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		public static TValue GetValueOrDefault<TKey, TValue>(
-				[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
-				TKey key) =>
-			GetValueOrDefault(dictionary, key, default(TValue));
+			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
+			TKey key) =>
+				GetValueOrDefault(dictionary, key, default(TValue));
 
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
@@ -237,10 +238,10 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
-				[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
-				TKey key,
-				[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
-			GetValueOrDefault(dictionary, key, resultSelector, default(TResult));
+			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
+				GetValueOrDefault(dictionary, key, resultSelector, default(TResult));
 
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
@@ -370,10 +371,10 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		public static TValue GetValueOrDefault<TKey, TValue>(
-				[NotNull] this Dictionary<TKey, TValue> dictionary,
-				TKey key,
-				TValue defaultValue) =>
-			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValue);
+			[NotNull] this Dictionary<TKey, TValue> dictionary,
+			TKey key,
+			TValue defaultValue) =>
+				GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValue);
 
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default value if key does not exists
@@ -391,10 +392,10 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
-				[NotNull] this Dictionary<TKey, TValue> dictionary,
-				TKey key,
-				[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
-			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, default(TResult));
+			[NotNull] this Dictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
+				GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, default(TResult));
 
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
@@ -434,10 +435,10 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		public static TValue GetValueOrDefault<TKey, TValue>(
-				[NotNull] this Dictionary<TKey, TValue> dictionary,
-				TKey key,
-				[NotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory) =>
-			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValueFactory);
+			[NotNull] this Dictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory) =>
+				GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValueFactory);
 
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
@@ -456,11 +457,11 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
-				[NotNull] this Dictionary<TKey, TValue> dictionary,
-				TKey key,
-				[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
-				[NotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory) =>
-			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, defaultValueFactory);
+			[NotNull] this Dictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
+			[NotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory) =>
+				GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, defaultValueFactory);
 		#endregion
 
 		#region ConcurrentDictionary
@@ -479,9 +480,9 @@ namespace CodeJam.Collections
 		// Resolve ambiguity between IDictionary and IReadOnlyDictionary in System.Dictionary class.
 		[Pure]
 		public static TValue GetValueOrDefault<TKey, TValue>(
-				[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
-				TKey key) =>
-			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key);
+			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
+			TKey key) =>
+				GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key);
 
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
@@ -498,10 +499,10 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		public static TValue GetValueOrDefault<TKey, TValue>(
-				[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
-				TKey key,
-				TValue defaultValue) =>
-			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValue);
+			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
+			TKey key,
+			TValue defaultValue) =>
+				GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValue);
 
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default value if key does not exists
@@ -519,10 +520,10 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
-				[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
-				TKey key,
-				[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
-			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, default(TResult));
+			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
+				GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, default(TResult));
 
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
@@ -562,10 +563,10 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		public static TValue GetValueOrDefault<TKey, TValue>(
-				[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
-				TKey key,
-				[NotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory) =>
-			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValueFactory);
+			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory) =>
+				GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValueFactory);
 
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
@@ -584,12 +585,13 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
-				[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
-				TKey key,
-				[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
-				[NotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory) =>
-			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, defaultValueFactory);
+			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
+			[NotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory) =>
+				GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, defaultValueFactory);
 		#endregion
+
 		#endregion
 
 		#region GetOrAdd, AddOrUpdate
@@ -677,7 +679,9 @@ namespace CodeJam.Collections
 		/// <param name="dictionary">The dictionary.</param>
 		/// <param name="key">The key to be added or whose value should be updated</param>
 		/// <param name="addValue">The value to be added for an absent key</param>
-		/// <param name="updateValueFactory">The function used to generate a new value for an existing key based on the key's existing value</param>
+		/// <param name="updateValueFactory">
+		/// The function used to generate a new value for an existing key based on the key's existing value
+		/// </param>
 		/// <returns>
 		///   The new value for the key. This will be either be addValue (if the key was absent) or the result of
 		///   updateValueFactory (if the key was present).
@@ -710,7 +714,9 @@ namespace CodeJam.Collections
 		/// <param name="dictionary">The dictionary.</param>
 		/// <param name="key">The key to be added or whose value should be updated</param>
 		/// <param name="addValueFactory">The function used to generate a value for an absent key</param>
-		/// <param name="updateValueFactory">The function used to generate a new value for an existing key based on the key's existing value</param>
+		/// <param name="updateValueFactory">
+		/// The function used to generate a new value for an existing key based on the key's existing value
+		/// </param>
 		/// <returns>
 		///   The new value for the key. This will be either be addValue (if the key was absent) or the result of
 		///   updateValueFactory (if the key was present).

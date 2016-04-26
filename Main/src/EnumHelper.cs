@@ -293,7 +293,8 @@ namespace CodeJam
 			TEnum result;
 			if (Holder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out result))
 				return result;
-			return (TEnum)Enum.Parse(typeof(TEnum), name, ignoreCase);		}
+			return (TEnum)Enum.Parse(typeof(TEnum), name, ignoreCase);
+		}
 
 		/// <summary>Returns a dictionary containing the enum names and their values.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>

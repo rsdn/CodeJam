@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CodeJam.Collections 
+namespace CodeJam.Collections
 {
 	/// <summary>
 	/// Represents an element associated with its index in a sequence.
@@ -57,12 +57,16 @@ namespace CodeJam.Collections
 
 		#region Equality members
 		/// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
-		/// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+		/// <returns>
+		/// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+		/// </returns>
 		/// <param name="other">An object to compare with this object.</param>
 		public bool Equals(IndexedItem<T> other) => EqualityComparer<T>.Default.Equals(Item, other.Item);
 
 		/// <summary>Indicates whether this instance and a specified object are equal.</summary>
-		/// <returns>true if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, false. </returns>
+		/// <returns>
+		/// true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.
+		/// </returns>
 		/// <param name="obj">The object to compare with the current instance. </param>
 		public override bool Equals(object obj)
 		{

@@ -29,8 +29,10 @@ namespace CodeJam.Reflection
 
 			switch (body.NodeType)
 			{
-				case ExpressionType.MemberAccess: return ((MemberExpression)body).Member;
-				case ExpressionType.Call: return ((MethodCallExpression)body).Method;
+				case ExpressionType.MemberAccess:
+					return ((MemberExpression)body).Member;
+				case ExpressionType.Call:
+					return ((MethodCallExpression)body).Method;
 				default:
 					return ((NewExpression)body).Constructor;
 			}

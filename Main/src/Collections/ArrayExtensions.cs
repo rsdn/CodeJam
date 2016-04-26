@@ -6,18 +6,18 @@ using JetBrains.Annotations;
 namespace CodeJam.Collections
 {
 	/// <summary>
-	/// <see cref="Array" /> class extensions.
+	/// <see cref="Array"/> class extensions.
 	/// </summary>
 	[PublicAPI]
 	public partial class ArrayExtensions
 	{
 		/// <summary>
-		/// Returns true, if length and content of <paramref name="a" /> equals <paramref name="b" />.
+		/// Returns true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
 		/// </summary>
 		/// <typeparam name="T">Type of array item.</typeparam>
 		/// <param name="a">The first array to compare.</param>
 		/// <param name="b">The second array to compare.</param>
-		/// <param name="comparer">Instance of <see cref="IComparer{T}" /> to compare values.</param>
+		/// <param name="comparer">Instance of <see cref="IComparer{T}"/> to compare values.</param>
 		/// <returns>
 		/// <c>true</c> if content of <paramref name="a"/> equals to <paramref name="b"/>, <c>false</c> otherwise.
 		/// </returns>

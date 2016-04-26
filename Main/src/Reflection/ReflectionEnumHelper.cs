@@ -23,7 +23,7 @@ namespace CodeJam.Reflection
 		[CanBeNull]
 		public static FieldInfo GetField<T>(T value) where T : struct
 		{
-			var type = typeof (T);
+			var type = typeof(T);
 			var name = Enum.GetName(type, value);
 			if (name == null)
 				return null;
