@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
+using CodeJam.Collections;
 using CodeJam.Reflection;
 
 using JetBrains.Annotations;
@@ -41,7 +42,9 @@ namespace CodeJam
 				? new HashSet<TEnum>((TEnum[])Enum.GetValues(_enumType))
 				: new HashSet<TEnum>();
 
-			private static readonly IReadOnlyDictionary<string, TEnum> _nameValues = GetNameValuesCore(_enumType);
+			private static readonly IReadOnlyDictionary<string, TEnum> _nameValues = GetNameValuesCore(_enumType, false);
+			private static readonly IReadOnlyDictionary<string, TEnum> _nameValuesIgnoreCase = GetNameValuesCore(_enumType, true);
+			private static readonly IReadOnlyDictionary<TEnum, string> _valueNames = GetValueNamesCore(_enumType);
 
 			private static readonly TEnum _flagsMask = _isFlagsEnum ? GetFlagsMaskCore(_values.ToArray()) : default(TEnum);
 			#endregion
@@ -69,13 +72,13 @@ namespace CodeJam
 			#endregion
 
 			#region Init helpers
-			private static IReadOnlyDictionary<string, TEnum> GetNameValuesCore(Type enumType)
+			private static IReadOnlyDictionary<string, TEnum> GetNameValuesCore(Type enumType, bool ignoreCase)
 			{
 				var result =
 #if FW40
-				new DictionaryWithReadOnly<string, TEnum>();
+					new DictionaryWithReadOnly<string, TEnum>(ignoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
 #else
-					new Dictionary<string, TEnum>();
+					new Dictionary<string, TEnum>(ignoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
 #endif
 
 				if (enumType.IsEnum)
@@ -84,7 +87,35 @@ namespace CodeJam
 					var values = (TEnum[])Enum.GetValues(enumType);
 					for (var i = 0; i < names.Length; i++)
 					{
+						// DONTTOUCH: case may be ignored
+						if (result.ContainsKey(names[i]))
+							continue;
+
 						result.Add(names[i], values[i]);
+					}
+				}
+				return result;
+			}
+
+			private static IReadOnlyDictionary<TEnum, string> GetValueNamesCore(Type enumType)
+			{
+				var result =
+#if FW40
+					new DictionaryWithReadOnly<TEnum, string>();
+#else
+					new Dictionary<TEnum, string>();
+#endif
+
+				if (enumType.IsEnum)
+				{
+					var names = Enum.GetNames(enumType);
+					var values = (TEnum[])Enum.GetValues(enumType);
+					for (var i = 0; i < names.Length; i++)
+					{
+						if (result.ContainsKey(values[i]))
+							continue;
+
+						result.Add(values[i], names[i]);
 					}
 				}
 				return result;
@@ -117,13 +148,19 @@ namespace CodeJam
 			#endregion
 
 			#region API
-			public static IReadOnlyDictionary<string, TEnum> NameValues
+			public static IReadOnlyDictionary<string, TEnum> GetNameValues(bool ignoreCase)
+			{
+				AssertUsage();
+				return ignoreCase ? _nameValuesIgnoreCase : _nameValues;
+			}
+
+			public static IReadOnlyDictionary<TEnum, string> ValueNames
 			{
 				[MethodImpl(PlatformDependent.AggressiveInlining)]
 				get
 				{
 					AssertUsage();
-					return _nameValues;
+					return _valueNames;
 				}
 			}
 
@@ -211,27 +248,92 @@ namespace CodeJam
 		/// <summary>Try to parse the enum value.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="name">The name.</param>
-		/// <param name="value">The value.</param>
+		/// <param name="result">The parsed value.</param>
 		/// <returns><c>true</c>, if parsing was successful; <c>false</c> otherwise.</returns>
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
-		public static bool TryParse<TEnum>(string name, out TEnum value)
+		public static bool TryParse<TEnum>(string name, out TEnum result)
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.NameValues.TryGetValue(name, out value) ||
-					Enum.TryParse(name, out value);
+				TryParse(name, false, out result);
 
 		/// <summary>Try to parse the enum value.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="name">The name.</param>
+		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
+		/// <param name="result">The parsed value.</param>
+		/// <returns><c>true</c>, if parsing was successful; <c>false</c> otherwise.</returns>
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		public static bool TryParse<TEnum>(string name, bool ignoreCase, out TEnum result)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out result) ||
+					Enum.TryParse(name, ignoreCase, out result);
+
+		/// <summary>Try to parse the enum value.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="name">The name.</param>
+		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
 		/// <returns>Parsed value, if parsing was successful; <c>null</c> otherwise.</returns>
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
-		public static TEnum? TryParse<TEnum>(string name)
+		public static TEnum? TryParse<TEnum>(string name, bool ignoreCase = false)
 			where TEnum : struct, IComparable, IFormattable, IConvertible
 		{
-			TEnum value;
-			return (Holder<TEnum>.NameValues.TryGetValue(name, out value) || Enum.TryParse(name, out value))
-				? value
-				: (TEnum?)null;
+			TEnum result;
+			return TryParse(name, ignoreCase, out result) ? result : (TEnum?)null;
 		}
+
+		/// <summary>Parse the enum value.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="name">The name.</param>
+		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
+		/// <returns>Parsed value.</returns>
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		public static TEnum Parse<TEnum>(string name, bool ignoreCase = false)
+			where TEnum : struct, IComparable, IFormattable, IConvertible
+		{
+			TEnum result;
+			if (Holder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out result))
+				return result;
+			return (TEnum)Enum.Parse(typeof(TEnum), name, ignoreCase);		}
+
+		/// <summary>Returns a dictionary containing the enum names and their values.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
+		/// <returns>Returns a dictionary containing the enum names and their values.</returns>
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		public static IReadOnlyDictionary<string, TEnum> GetNameValues<TEnum>(bool ignoreCase = false)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.GetNameValues(ignoreCase);
+
+		/// <summary>
+		/// Retrieves an array of the names of the constants in a specified enumeration.
+		/// </summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
+		/// <returns>A string array of the names of the constants in enumType.</returns>
+		[NotNull]
+		[Pure]
+		public static string[] GetNames<TEnum>(bool ignoreCase = false)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.GetNameValues(ignoreCase).Keys.ToArray();
+
+		/// <summary>
+		/// Retrieves an array of the values of the constants in a specified enumeration.
+		/// </summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <returns>An array that contains the values of the constants in enumType.</returns>
+		[NotNull]
+		[Pure]
+		public static TEnum[] GetValues<TEnum>()
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.GetNameValues(false).Values.ToArray();
+
+		/// <summary>Returns the name of the enum value.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The enum value.</param>
+		/// <returns>The name of the enum value, or <c>null</c> if there is no value defined.</returns>
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		public static string GetName<TEnum>(TEnum value)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.ValueNames.GetValueOrDefault(value);
 		#endregion
 
 		#region Flag checks
@@ -286,7 +388,6 @@ namespace CodeJam
 		public static TEnum SetFlag<TEnum>(this TEnum value, TEnum flag)
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				Holder<TEnum>.SetFlagCallback(value, flag);
-
 
 		/// <summary>Clears the flag.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>

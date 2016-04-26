@@ -184,7 +184,7 @@
     <Compile Include="Structures\ObjectPools\ObjectPool.cs" />
     <Compile Include="Structures\Option`1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reflection\EnumHelper.cs" />
+    <Compile Include="Reflection\ReflectionEnumHelper.cs" />
     <Compile Include="Reflection\ExpressionHelper.cs" />
     <Compile Include="Reflection\InfoOf.cs" />
     <Compile Include="Reflection\ReflectionExtensions.cs" />

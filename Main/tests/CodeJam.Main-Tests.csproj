@@ -87,7 +87,7 @@
     <Compile Include="Threading\ParallelQueueTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\InfoOfTest.cs" />
-    <Compile Include="Reflection\EnumHelperTest.cs" />
+    <Compile Include="Reflection\ReflectionEnumHelperTest.cs" />
     <Compile Include="Reflection\ReflectionExtensionsTest.cs" />
     <Compile Include="Strings\NaturalOrderStringComparerTests.cs" />
     <Compile Include="Strings\StringExtensionsTests.cs" />

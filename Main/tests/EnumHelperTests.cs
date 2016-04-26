@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 using CodeJam.Arithmetic;
+using CodeJam.Strings;
 
 using NUnit.Framework;
 
@@ -14,7 +16,7 @@ namespace CodeJam
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[SuppressMessage("ReSharper", "HeapView.DelegateAllocation")]
 	[SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
-	public static class EnumHelperTests
+	public class EnumHelperTests
 	{
 		#region Enum constants
 		[Flags]
@@ -43,7 +45,7 @@ namespace CodeJam
 		#endregion
 
 		[Test]
-		public static void Test00Defined()
+		public void Test00Defined()
 		{
 			Assert.Throws<ArgumentException>(() => Enum.IsDefined(typeof(int), 2));
 			Assert.Throws<ArgumentException>(() => EnumHelper.IsDefined(2));
@@ -77,7 +79,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public static void Test01Parse()
+		public void Test01Parse()
 		{
 			int wrongParse;
 			Assert.Throws<ArgumentException>(() => Enum.TryParse("2", out wrongParse));
@@ -125,7 +127,31 @@ namespace CodeJam
 		}
 
 		[Test]
-		public static void Test0201FlagsEnumHelper()
+		public void Test02GetName() => Assert.AreEqual("ReturnValue", EnumHelper.GetName(AttributeTargets.ReturnValue));
+
+		[Test]
+		public void Test03GetNames() =>
+			Assert.AreEqual(
+				"Assembly, Module, Class, Struct, Enum, Constructor, Method, Property, Field, Event, Interface, Parameter, " +
+				"Delegate, ReturnValue, GenericParameter, All",
+				EnumHelper.GetNames<AttributeTargets>().Join(", "));
+
+		[Test]
+		public void Test04GetValues() =>
+			Assert.AreEqual(
+				"Assembly, Module, Class, Struct, Enum, Constructor, Method, Property, Field, Event, Interface, Parameter, " +
+				"Delegate, ReturnValue, GenericParameter, All",
+				EnumHelper.GetValues<AttributeTargets>().Join(", "));
+
+		[Test]
+		public void Test05GetPairs() =>
+			Assert.AreEqual(
+				"Assembly, Module, Class, Struct, Enum, Constructor, Method, Property, Field, Event, Interface, Parameter, " +
+				"Delegate, ReturnValue, GenericParameter, All",
+				EnumHelper.GetNameValues<AttributeTargets>().Select(kvp => kvp.Key).Join(", "));
+
+		[Test]
+		public static void Test0601FlagsEnumHelper()
 		{
 			Assert.IsTrue(Abc.HasFlag(Zero));
 			Assert.IsTrue(Abc.HasFlag(Bc));
@@ -166,7 +192,7 @@ namespace CodeJam
 		[Test]
 		[SuppressMessage("ReSharper", "InconsistentNaming")]
 		[SuppressMessage("ReSharper", "LocalVariableHidesMember")]
-		public static void Test0202FlagsOperators()
+		public static void Test0602FlagsOperators()
 		{
 			var isFlagSet = OperatorsFactory.IsFlagSetOperator<int>();
 			var isFlagMatch = OperatorsFactory.IsFlagMatchOperator<int>();
@@ -195,7 +221,7 @@ namespace CodeJam
 		[Test]
 		[SuppressMessage("ReSharper", "InconsistentNaming")]
 		[SuppressMessage("ReSharper", "LocalVariableHidesMember")]
-		public static void Test0203FlagsInt()
+		public static void Test0603FlagsInt()
 		{
 			Func<int, int, bool> isFlagSet = (value, flag) => (value & flag) == flag;
 			Func<int, int, bool> isFlagMatch = (value, flag) => (flag == 0) || ((value & flag) != 0);
@@ -223,7 +249,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public static void Test03SetFlag()
+		public static void Test07SetFlag()
 		{
 			Assert.AreEqual(Abc.SetFlag(Zero), Abc);
 			Assert.AreEqual(Abc.SetFlag(Bc), Abc);
@@ -234,7 +260,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public static void Test04ClearFlag()
+		public static void Test08ClearFlag()
 		{
 			Assert.AreEqual(Abc.ClearFlag(Zero), Abc);
 			Assert.AreEqual(Abc.ClearFlag(Bc), F.A);
