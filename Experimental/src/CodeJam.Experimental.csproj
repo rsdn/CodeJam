@@ -44,6 +44,9 @@
     <Compile Include="..\..\Jetbrains.Annotations.cs">
       <Link>Jetbrains.Annotations.cs</Link>
     </Compile>
+    <Compile Include="..\..\Main\src\Targeting\PlatformDependent.cs">
+      <Link>Targeting\PlatformDependent.cs</Link>
+    </Compile>
     <Compile Include="CmdLine\CommandLineChecker.cs" />
     <Compile Include="CmdLine\CommandLineHelper.cs" />
     <Compile Include="CmdLine\Model\Checking\CmdLineRules.cs" />
@@ -66,11 +69,24 @@
     <Compile Include="CmdLine\Parser\QuotedOrNonquotedValueNode.cs" />
     <Compile Include="CmdLine\PrintUsageSettings.cs" />
     <Compile Include="CmdLine\UsagePrinter.cs" />
+    <Compile Include="Collections\DisjointSets.cs" />
+    <Compile Include="Collections\DisjointSetsBase.cs" />
+    <Compile Include="Collections\DisjointSetsT.cs" />
+    <Compile Include="RangesV2\IRange`1.cs" />
+    <Compile Include="RangesV2\RangeConstants.cs" />
+    <Compile Include="RangesV2\RangeExtesions.Core.cs" />
+    <Compile Include="RangesV2\RangeBoundary.cs" />
+    <Compile Include="RangesV2\RangeBoundaryKind.cs" />
+    <Compile Include="RangesV2\RangeBoundary`1.Operators.cs" />
+    <Compile Include="RangesV2\RangeBoundary`1.cs" />
+    <Compile Include="RangesV2\Range`1.Operators.cs" />
+    <Compile Include="RangesV2\Range`1.cs" />
     <Compile Include="Ranges\ImmutableRangeList.cs" />
     <Compile Include="Ranges\ImmutableRangeListExtensions.cs" />
     <Compile Include="Ranges\Range%271.cs" />
     <Compile Include="Ranges\Range.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ranges\RangeOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj">
@@ -78,6 +94,7 @@
       <Name>CodeJam.Main</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

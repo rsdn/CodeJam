@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 namespace CodeJam.Arithmetic
 {
 	/// <summary>
-	/// The <see cref="Arithmetic"/> namespace contains classes that allow to use arithmetic operations with
+	/// The <see cref="CodeJam.Arithmetic"/> namespace contains classes that allow to use arithmetic operations with
 	/// generic arguments.
 	/// </summary>
 	[UsedImplicitly]

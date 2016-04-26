@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -19,6 +20,9 @@ using NUnit.Framework;
 
 namespace BenchmarkDotNet.NUnit
 {
+	/// <summary>
+	/// Runner for competition performance tests
+	/// </summary>
 	[PublicAPI]
 	public static class CompetitionBenchmarkRunner
 	{
@@ -67,27 +71,28 @@ namespace BenchmarkDotNet.NUnit
 		}
 
 		private static void RunCompetitionUnderSetup(
-			Type benchmarkType, IConfig config, double minRatio, double maxRatio)
+			Type benchmarkType, IConfig baseConfig, double minRatio, double maxRatio)
 		{
 			ValidateCompetitionSetup(benchmarkType);
 
 			// Capturing the output
 			var logger = InitAccumulationLogger();
 			// Competition analyzer
-			var competitionAnalyser = new CompetitionAnalyser();
+			var competitionState = new CompetitionStateAnalyser();
 			// Final config
-			var runConfig = CreateRunConfig(config, competitionAnalyser, logger);
+			var competitionConfig = CreateCompetitionConfig(baseConfig, competitionState, logger);
+
 			Summary summary = null;
 			try
 			{
-				summary = RunCore(benchmarkType, runConfig, competitionAnalyser);
+				summary = RunCore(benchmarkType, competitionConfig, competitionState);
 			}
 			finally
 			{
 				DumpOutputSummaryAtTop(summary, logger);
 			}
 
-			competitionAnalyser.ValidateSummary(summary, minRatio, maxRatio);
+			competitionState.ValidateSummary(summary, minRatio, maxRatio);
 		}
 
 		private static void ValidateCompetitionSetup(Type benchmarkType)
@@ -119,11 +124,22 @@ namespace BenchmarkDotNet.NUnit
 			return logger;
 		}
 
-		private static IConfig CreateRunConfig(IConfig config, CompetitionAnalyser runState, AccumulationLogger logger)
+		private static IConfig CreateCompetitionConfig(
+			IConfig baseConfig, CompetitionStateAnalyser competitionState,
+			AccumulationLogger logger)
 		{
+			baseConfig = baseConfig ?? DefaultConfig.Instance;
+			var existingParameters = baseConfig.GetAnalysers()
+				.OfType<CompetitionParametersAnalyser>()
+				.SingleOrDefault();
+
 			// TODO: better setup?
-			var result = BenchmarkHelpers.CreateUnitTestConfig(config ?? DefaultConfig.Instance);
-			result.Add(runState);
+			var result = BenchmarkHelpers.CreateUnitTestConfig(baseConfig);
+			result.Add(competitionState);
+			if (existingParameters == null)
+			{
+				result.Add(new CompetitionParametersAnalyser());
+			}
 			result.Add(logger);
 			result.Add(
 				StatisticColumn.Min,
@@ -136,21 +152,23 @@ namespace BenchmarkDotNet.NUnit
 			return result;
 		}
 
-		private static Summary RunCore(Type benchmarkType, IConfig runConfig, CompetitionAnalyser runState)
+		private static Summary RunCore(
+			Type benchmarkType, IConfig competitionConfig,
+			CompetitionStateAnalyser competitionState)
 		{
 			Summary summary = null;
 
 			const int rerunCount = 10;
 			for (var i = 0; i < rerunCount; i++)
 			{
-				runState.LastRun = i == rerunCount - 1;
-				runState.RerunRequested = false;
+				competitionState.LastRun = i == rerunCount - 1;
+				competitionState.RerunRequested = false;
 
 				// Running the benchmark
-				summary = BenchmarkRunner.Run(benchmarkType, runConfig);
+				summary = BenchmarkRunner.Run(benchmarkType, competitionConfig);
 
 				// Rerun if annotated
-				if (!runState.RerunRequested)
+				if (!competitionState.RerunRequested)
 				{
 					break;
 				}

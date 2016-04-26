@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace BenchmarkDotNet.NUnit
 {
-	public partial class AnnotateSourceAnalyser
+	internal static partial class AnnotateSourceHelper
 	{
 		private static readonly Regex _breakIfRegex = new Regex(
 			@"///|\sclass\s|\}|\;",

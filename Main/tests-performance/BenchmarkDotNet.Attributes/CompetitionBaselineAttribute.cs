@@ -9,10 +9,16 @@ using JetBrains.Annotations;
 
 namespace BenchmarkDotNet.NUnit
 {
+	/// <summary>
+	/// Marks the baseline competition benchmark
+	/// </summary>
 	[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
 	[PublicAPI, MeansImplicitUse]
 	public class CompetitionBaselineAttribute : BenchmarkAttribute
 	{
+		/// <summary>
+		/// Marks the baseline competition benchmark
+		/// </summary>
 		public CompetitionBaselineAttribute()
 		{
 			Baseline = true;

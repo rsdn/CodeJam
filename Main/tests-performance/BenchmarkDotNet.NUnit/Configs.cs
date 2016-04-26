@@ -20,7 +20,7 @@ namespace BenchmarkDotNet.NUnit
 		/// </summary>
 		public static readonly IConfig Instance = new FastRunConfig();
 
-		/// <summary> 
+		/// <summary>
 		/// Constructor
 		/// </summary>
 		public FastRunConfig()
@@ -48,7 +48,7 @@ namespace BenchmarkDotNet.NUnit
 		/// </summary>
 		public static readonly IConfig Instance = new TestProofConfig();
 
-		/// <summary> 
+		/// <summary>
 		/// Constructor
 		/// </summary>
 		public TestProofConfig()

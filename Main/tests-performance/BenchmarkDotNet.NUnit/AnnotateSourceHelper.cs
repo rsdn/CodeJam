@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.SymbolStore;
 using System.IO;
 using System.Linq;
 using System.Xml;
@@ -21,11 +20,11 @@ namespace BenchmarkDotNet.NUnit
 {
 	/// <summary>
 	/// Fills min..max values for [CompetitionBenchmark] attribute
-	/// DANGER: this will try to update sources. May fail. 
+	/// DANGER: this will try to update sources. May fail.
 	/// </summary>
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
-	public partial class AnnotateSourceAnalyser : IAnalyser
+	internal static partial class AnnotateSourceHelper
 	{
 		#region Helper types
 		private class AnnotateContext
@@ -108,50 +107,22 @@ namespace BenchmarkDotNet.NUnit
 		#endregion
 
 		#region Helper methods
-		private static bool TryGetSourceInfo(CompetitionTarget competitionTarget, out string fileName, out int firstCodeLine)
-		{
-			fileName = null;
-			firstCodeLine = 0;
-			var methodSymbols = SymbolHelpers.TryGetSymbols(competitionTarget.Target.Method);
-			if (methodSymbols != null)
-			{
-				var count = methodSymbols.SequencePointCount;
-				var docs = new ISymbolDocument[count];
-				var offsets = new int[count];
-				var lines = new int[count];
-				var columns = new int[count];
-				var endlines = new int[count];
-				var endcolumns = new int[count];
-				methodSymbols.GetSequencePoints(offsets, docs, lines, columns, endlines, endcolumns);
-
-				fileName = docs[0].URL;
-				firstCodeLine = lines.Min();
-			}
-			return fileName != null;
-		}
+		private static bool TryGetSourceInfo(
+			CompetitionTarget competitionTarget,
+			out string sourceFileName, out int firstCodeLine) =>
+				SymbolHelpers.TryGetSourceInfo(
+					competitionTarget.Target.Method, out sourceFileName, out firstCodeLine);
 		#endregion
 
-		#region Public API
-		public bool RerunIfModified { get; set; }
-
-		public IEnumerable<IWarning> Analyze(Summary summary)
+		public static void AnnotateBenchmarkFiles(Summary summary, List<IWarning> warnings)
 		{
-			var competitionAnalyser = summary.Config.GetAnalysers().OfType<CompetitionAnalyser>().Single();
-			var warnings = new List<IWarning>();
+			var competitionState = summary.Config.GetAnalysers().OfType<CompetitionStateAnalyser>().Single();
+			var competitionParameters = summary.Config.GetAnalysers().OfType<CompetitionParametersAnalyser>().Single();
 			var logger = summary.Config.GetCompositeLogger();
-			AnnotateBenchmarkFiles(summary, competitionAnalyser, logger, warnings);
 
-			return warnings;
-		}
-		#endregion
-
-		private void AnnotateBenchmarkFiles(
-			Summary summary, CompetitionAnalyser competitionAnalyser,
-			ILogger logger, List<IWarning> warnings)
-		{
 			var annContext = new AnnotateContext();
-			var competitionTargets = competitionAnalyser.GetCompetitionTargets(summary);
-			var newTargets = competitionAnalyser.GetNewCompetitionTargets(summary);
+			var competitionTargets = competitionState.GetCompetitionTargets(summary);
+			var newTargets = competitionState.GetNewCompetitionTargets(summary);
 			if (newTargets.Length == 0)
 			{
 				logger.WriteLineInfo("All competition benchmarks are in boundary.");
@@ -194,20 +165,20 @@ namespace BenchmarkDotNet.NUnit
 					}
 				}
 
-				if (RerunIfModified && !competitionAnalyser.LastRun)
+				if (competitionParameters.RerunIfModified && !competitionState.LastRun)
 				{
 					var message = $"Method {targetMethodName} annotation updated, benchmark has to be restarted";
 					logger.WriteLineInfo(message);
-					warnings.Add(new Warning(nameof(AnnotateSourceAnalyser), message, null));
+					warnings.Add(new Warning(nameof(AnnotateSourceHelper), message, null));
 
 					competitionTargets[newTarget.Target] = newTarget;
-					competitionAnalyser.RerunRequested = true;
+					competitionState.RerunRequested = true;
 				}
 				else
 				{
 					var message = $"Method {targetMethodName} annotation updated.";
 					logger.WriteLineInfo(message);
-					warnings.Add(new Warning(nameof(AnnotateSourceAnalyser), message, null));
+					warnings.Add(new Warning(nameof(AnnotateSourceHelper), message, null));
 				}
 			}
 

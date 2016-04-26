@@ -14,11 +14,17 @@ namespace BenchmarkDotNet.NUnit
 	[PublicAPI, MeansImplicitUse]
 	public class CompetitionMetadataAttribute : Attribute
 	{
+		/// <summary>
+		/// Specifies XML resource to be used as benchmark limit data.
+		/// </summary>
 		public CompetitionMetadataAttribute(string metadataResourceName)
 		{
 			MetadataResourceName = metadataResourceName;
 		}
 
+		/// <summary>
+		/// Path to the XML resource to be used as benchmark limit data.
+		/// </summary>
 		public string MetadataResourceName { get; }
 	}
 }

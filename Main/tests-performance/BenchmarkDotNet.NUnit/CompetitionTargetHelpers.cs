@@ -39,6 +39,9 @@ namespace BenchmarkDotNet.NUnit
 		public static void InitCompetitionTargets(CompetitionTargets competitionTargets, Summary summary)
 		{
 			competitionTargets.Clear();
+			var competitionParameters = summary.Config.GetAnalysers()
+				.OfType<CompetitionParametersAnalyser>()
+				.Single();
 
 			var resourceCache = new Dictionary<string, XDocument>();
 
@@ -51,7 +54,9 @@ namespace BenchmarkDotNet.NUnit
 					!competitionAttribute.Baseline &&
 					!competitionAttribute.DoesNotCompete)
 				{
-					var competitionTarget = GetCompetitionTarget(target, competitionAttribute, resourceCache);
+					var competitionTarget = GetCompetitionTarget(
+						target, competitionAttribute, resourceCache,
+						competitionParameters);
 
 					competitionTargets.Add(target, competitionTarget);
 				}
@@ -60,7 +65,8 @@ namespace BenchmarkDotNet.NUnit
 
 		private static CompetitionTarget GetCompetitionTarget(
 			Target target, CompetitionBenchmarkAttribute competitionAttribute,
-			IDictionary<string, XDocument> resourceCache)
+			IDictionary<string, XDocument> resourceCache,
+			CompetitionParametersAnalyser competitionParameters)
 		{
 			string targetResourceName = null;
 			var targetType = target.Type;
@@ -93,8 +99,14 @@ namespace BenchmarkDotNet.NUnit
 					resourceCache[targetResourceName] = resourceDoc;
 				}
 
+				if (competitionParameters.IgnoreExistingAnnotations)
+					return new CompetitionTarget(target, 0, 0, true);
+
 				return GetCompetitionTargetFromResource(target, resourceDoc);
 			}
+
+			if (competitionParameters.IgnoreExistingAnnotations)
+				return new CompetitionTarget(target, 0, 0, false);
 
 			return new CompetitionTarget(
 				target,

@@ -15,14 +15,20 @@ namespace CodeJam
 	/// Use this to run fast but inaccurate measures
 	/// OPTIONAL: Updates source files with actual min..max ratio for [CompetitionBenchmark]
 	/// </summary>
-	internal class AssemblyWideConfig : ManualConfig
+	[PublicAPI]
+	public class AssemblyWideConfig : ManualConfig
 	{
 		/// <summary>
-		/// OPTIONAL: Set AssemblyWideConfig.AnnotateOnRun=true in app.config Set this to true
+		/// OPTIONAL: Set AssemblyWideConfig.AnnotateOnRun=true in app.config
 		/// to enable auto-annotation of benchmark methods
 		/// </summary>
-		[UsedImplicitly]
 		public static readonly bool AnnotateOnRun = GetAssemblySwitch(() => AnnotateOnRun);
+
+		/// <summary>
+		/// OPTIONAL: Set AssemblyWideConfig.IgnoreAnnotatedLimits=true in app.config
+		/// to enable ignoring existing limits on auto-annotation of benchmark methods
+		/// </summary>
+		public static readonly bool IgnoreExistingAnnotations = GetAssemblySwitch(() => IgnoreExistingAnnotations);
 
 		private static bool GetAssemblySwitch(Expression<Func<bool>> appSwitchGetter)
 		{
@@ -51,13 +57,13 @@ namespace CodeJam
 		/// </summary>
 		public static IConfig RunConfig => new AssemblyWideConfig(true);
 
-		/// <summary> 
+		/// <summary>
 		/// Constructor
 		/// </summary>
 		[UsedImplicitly]
 		public AssemblyWideConfig() : this(false) { }
 
-		/// <summary> 
+		/// <summary>
 		/// Constructor
 		/// </summary>
 		public AssemblyWideConfig(bool asRunConfig)
@@ -69,9 +75,11 @@ namespace CodeJam
 
 			if (AnnotateOnRun)
 				Add(
-					new AnnotateSourceAnalyser
+					new CompetitionParametersAnalyser
 					{
-						RerunIfModified = true
+						AnnotateOnRun = true,
+						RerunIfModified = true,
+						IgnoreExistingAnnotations = IgnoreExistingAnnotations
 					});
 		}
 	}
