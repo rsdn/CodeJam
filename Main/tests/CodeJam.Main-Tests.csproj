@@ -50,13 +50,13 @@
     <Compile Include="Algorithms\SwapTest.cs" />
     <Compile Include="Algorithms\EqualRangeTest.cs" />
     <Compile Include="Algorithms\UpperBoundTest.cs" />
-    <Compile Include="Arithmetic\OperatorsTest.cs" />
-    <Compile Include="Arithmetic\OperatorsTest.Numeric.generated.cs">
+    <Compile Include="Arithmetic\OperatorsTests.cs" />
+    <Compile Include="Arithmetic\OperatorsTests.Numeric.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OperatorsTest.Numeric.tt</DependentUpon>
+      <DependentUpon>OperatorsTests.Numeric.tt</DependentUpon>
     </Compile>
-    <Compile Include="Assertions\CodeAssertionsTest.cs" />
+    <Compile Include="Assertions\CodeTests.cs" />
     <Compile Include="Collections\MinMaxByTests.cs" />
     <Compile Include="Collections\ArrayExtensionsTest.cs" />
     <Compile Include="Collections\QueryableExtensionsTests.ApplyOrder.cs" />
@@ -79,15 +79,15 @@
     <Compile Include="Reflection\CreateInstanceTests.cs" />
     <Compile Include="Services\ServicesTests.cs" />
     <Compile Include="TableData\TableDataTest.cs" />
-    <Compile Include="Threading\InterlockedOperationsTest.generated.cs">
-      <DependentUpon>InterlockedOperationsTest.tt</DependentUpon>
+    <Compile Include="Threading\InterlockedOperationsTests.generated.cs">
+      <DependentUpon>InterlockedOperationsTests.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Threading\ParallelQueueTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\InfoOfTest.cs" />
-    <Compile Include="Reflection\ReflectionEnumHelperTest.cs" />
+    <Compile Include="Reflection\ReflectionEnumHelperTests.cs" />
     <Compile Include="Reflection\ReflectionExtensionsTest.cs" />
     <Compile Include="Strings\NaturalOrderStringComparerTests.cs" />
     <Compile Include="Strings\StringExtensionsTests.cs" />
@@ -101,17 +101,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Arithmetic\OperatorsTest.Numeric.tt">
+    <Content Include="Arithmetic\OperatorsTests.Numeric.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>OperatorsTest.Numeric.generated.cs</LastGenOutput>
+      <LastGenOutput>OperatorsTests.Numeric.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Collections\MinMaxByTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MinMaxByTests.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Threading\InterlockedOperationsTest.tt">
+    <Content Include="Threading\InterlockedOperationsTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>InterlockedOperationsTest.generated.cs</LastGenOutput>
+      <LastGenOutput>InterlockedOperationsTests.generated.cs</LastGenOutput>
     </Content>
     <EmbeddedResource Include="Strings\Data\Dates.Expected.txt" />
     <EmbeddedResource Include="Strings\Data\Dates.txt" />

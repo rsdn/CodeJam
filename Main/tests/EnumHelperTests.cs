@@ -45,7 +45,7 @@ namespace CodeJam
 		#endregion
 
 		[Test]
-		public void Test00Defined()
+		public void Test00IsDefined()
 		{
 			Assert.Throws<ArgumentException>(() => Enum.IsDefined(typeof(int), 2));
 			Assert.Throws<ArgumentException>(() => EnumHelper.IsDefined(2));
@@ -144,14 +144,14 @@ namespace CodeJam
 				EnumHelper.GetValues<AttributeTargets>().Join(", "));
 
 		[Test]
-		public void Test05GetPairs() =>
+		public void Test05GetNameValues() =>
 			Assert.AreEqual(
 				"Assembly, Module, Class, Struct, Enum, Constructor, Method, Property, Field, Event, Interface, Parameter, " +
 				"Delegate, ReturnValue, GenericParameter, All",
 				EnumHelper.GetNameValues<AttributeTargets>().Select(kvp => kvp.Key).Join(", "));
 
 		[Test]
-		public static void Test0601FlagsEnumHelper()
+		public static void Test0601IsFlagSet()
 		{
 			Assert.IsTrue(Abc.HasFlag(Zero));
 			Assert.IsTrue(Abc.HasFlag(Bc));
@@ -192,7 +192,7 @@ namespace CodeJam
 		[Test]
 		[SuppressMessage("ReSharper", "InconsistentNaming")]
 		[SuppressMessage("ReSharper", "LocalVariableHidesMember")]
-		public static void Test0602FlagsOperators()
+		public static void Test0602IsFlagSetOperators()
 		{
 			var c = EnumHelper.GetValues<AttributeTargets>();
 			Console.WriteLine(c);
@@ -223,7 +223,7 @@ namespace CodeJam
 		[Test]
 		[SuppressMessage("ReSharper", "InconsistentNaming")]
 		[SuppressMessage("ReSharper", "LocalVariableHidesMember")]
-		public static void Test0603FlagsInt()
+		public static void Test0603IsFlagSetInt()
 		{
 			Func<int, int, bool> isFlagSet = (value, flag) => (value & flag) == flag;
 			Func<int, int, bool> isFlagMatch = (value, flag) => (flag == 0) || ((value & flag) != 0);

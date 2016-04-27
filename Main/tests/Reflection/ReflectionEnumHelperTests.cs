@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace CodeJam.Reflection
 {
 	[TestFixture]
-	public class ReflectionEnumHelperTest
+	public class ReflectionEnumHelperTests
 	{
 		[Test]
 		[SuppressMessage("ReSharper", "PossibleNullReferenceException")]

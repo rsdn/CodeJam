@@ -14,7 +14,7 @@ namespace CodeJam.Assertions
 	[SuppressMessage("ReSharper", "NotResolvedInText")]
 	[SuppressMessage("ReSharper", "PassStringInterpolation")]
 	[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
-	public class CodeAssertionsTest
+	public class CodeTests
 	{
 		private bool? _breakOnException;
 		private CultureInfo _previousCulture;
@@ -76,7 +76,7 @@ namespace CodeJam.Assertions
 		}
 
 		[Test]
-		public void NotNullNorWhiteSpace()
+		public void TestNotNullNorWhiteSpace()
 		{
 			Assert.Throws<ArgumentException>(() => Code.NotNullNorWhiteSpace(null, "arg00"));
 			Assert.Throws<ArgumentException>(() => Code.NotNullNorWhiteSpace("", "arg00"));
@@ -210,7 +210,7 @@ namespace CodeJam.Assertions
 		}
 
 		[Test]
-		public void ValidIndexAndCount()
+		public void TestValidIndexAndCount()
 		{
 			Assert.Throws<IndexOutOfRangeException>(() => Code.ValidIndexAndCount(1, "arg00", 1, "arg01", 1));
 			Assert.Throws<ArgumentOutOfRangeException>(() => Code.ValidIndexAndCount(0, "arg00", 2, "arg01", 1));

@@ -18,7 +18,7 @@ namespace CodeJam.Threading
 	/// Provides a helper class for initializing a values in a thread-safe manner.
 	/// </summary>
 	[TestFixture(Category = "Threading")]
-	public static class InterlockedOperationsTest
+	public static class InterlockedOperationsTests
 	{
 		#region double overloads
 		[Test]

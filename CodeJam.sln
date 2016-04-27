@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Jetbrains.Annotations.cs = Jetbrains.Annotations.cs
 		LICENSE = LICENSE
 		README.md = README.md
+		TestsGuidelines.md = TestsGuidelines.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.Main-Tests.Performance", "Main\tests-performance\CodeJam.Main-Tests.Performance.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"

@@ -9,13 +9,14 @@ NB: these are not mandatory and should be threated as a baseline recomendations.
 * DO store benchmark tests in a separate project. 
 
 ### _NUnit test classes design guidelines_
-* DO suffix the name of the test class with "Tests". Examlple: EnumHelperTests.
+* DO suffix the name of the test class with "Tests". Example: EnumHelperTests.
 * PREFER to use name of the class being tested as a prefix of the test class name. Otherwise, the prefix should be the name of the scenario the test covers.
 * DO apply [TestFixture] attribute.
 * CONSIDER specifying Category in the attribute if there's more than one test class for the feature set.
 
 ### _NUnit test methods design guidelines_
-* DO prefix the name of the test with TestXx prefix where Xx is the number of the test in the class. This makes it much easier to find the test by it's name. Example: Test00IsDefined (checks EnumHelper.IsDefined method)
+* DO prefix the name of the test with Test prefix. Example: TestNotNull().
+* PREFER to add a 'number-of-test-in-class' prefix after the Test prefix. This makes it much easier to find the test by it's name. Example: Test00IsDefined (checks EnumHelper.IsDefined method)
 * PREFER to use the name of the method being tested as a suffix of the test method name. Otherwise, the suffix should be the name of the scenario the test method covers.
 * DO NOT place "check use case scenario" and "check all args combinations" logic in the same test method. The test method should EITHER cover the specific use case OR test single API point (different overloads or logically coupled methods are treated as a same API point).
  
@@ -39,7 +40,8 @@ TODO: **define**
 
 ### _Competition perf test classes design guidelines_
 * DO name each perftest runner method as "Run" + TestCaseClassName. Examples: RunEnumHelperPerfTests or RunIsFlagSetCase.
-* DO prefix the name of the test case method with TestXx prefix where Xx is the number of the competition test in the test case class. This makes it much easier to find the test by it's name. Example: Test01NaiveImplementation 
+* DO prefix the name of the test with Test prefix. Example: TestBinarySort().
+* PREFER to add a 'number-of-test-in-class' prefix after the Test prefix. This makes it much easier to find the test by it's name. Example: Test01NaiveImplementation.
 * DO suffix the name of the test case method with the description of the competition member. Example: Test02UsingEmittedCode 
 * DO mark a baseline competition method as a [CompetitionBaseline]. There can be only one baseline method per each test case class
 * CONSIDER to mark as a baseline the fastest method in the competition. Competition methods are rated as a relative to the baseline and if the competitor runs much faster than the baseline the ranks will be something alike 0.01 .. 0.02. 

@@ -18,174 +18,209 @@ using NullableEnumOp = CodeJam.Arithmetic.Operators<System.AttributeTargets?>;
 
 namespace CodeJam.Arithmetic
 {
-	partial class OperatorsTest
+	partial class OperatorsTests
 	{
-		private static AttributeTargets? EnumValueA = AttributeTargets.Method;
-		private static AttributeTargets? EnumValueB = AttributeTargets.Class;
-		private static AttributeTargets? EnumValueC = null;
+		private static AttributeTargets? NullableEnumA = AttributeTargets.Method;
+		private static AttributeTargets? NullableEnumB = AttributeTargets.Class;
+		private static AttributeTargets? NullableEnumC = null;
 
+		#region UnaryMinus
 		[Test]
 		public void IntUnaryMinus() => Assert.AreEqual(-42, IntOp.UnaryMinus(42));
 
 		[Test]
 		public void NullableDoubleUnaryMinus() => Assert.AreEqual(-42f, NullableDoubleOp.UnaryMinus(42f));
+		#endregion
 
+		#region OnesComplement
 		[Test]
 		public void IntOnesComplement() => Assert.AreEqual(~42, IntOp.OnesComplement(42));
 
 		[Test]
 		public void EnumOnesComplement() =>
-			Assert.AreEqual(~EnumValueA.Value, EnumOp.OnesComplement(EnumValueA.Value));
+			Assert.AreEqual(~NullableEnumA.Value, EnumOp.OnesComplement(NullableEnumA.Value));
 
 		[Test]
 		public void NullableEnumOnesComplement()
 		{
-			Assert.AreEqual(~EnumValueA, NullableEnumOp.OnesComplement(EnumValueA));
-			Assert.AreEqual(~EnumValueC, NullableEnumOp.OnesComplement(EnumValueC));
+			Assert.AreEqual(~NullableEnumA, NullableEnumOp.OnesComplement(NullableEnumA));
+			Assert.AreEqual(~NullableEnumC, NullableEnumOp.OnesComplement(NullableEnumC));
 		}
+		#endregion
 
+		#region AreEqual
 		[Test]
 		public void IntAreEqual() => Assert.AreEqual(1 == 2, IntOp.AreEqual(1, 2));
 
 		[Test]
 		public void EnumAreEqual() =>
 			Assert.AreEqual(
-				EnumValueA.Value == EnumValueB.Value,
-				EnumOp.AreEqual(EnumValueA.Value, EnumValueB.Value));
+				NullableEnumA.Value == NullableEnumB.Value,
+				EnumOp.AreEqual(NullableEnumA.Value, NullableEnumB.Value));
 
 		[Test]
 		public void NullableEnumAreEqual()
 		{
-			Assert.AreEqual(EnumValueA == EnumValueB, NullableEnumOp.AreEqual(EnumValueA, EnumValueB));
-			Assert.AreEqual(EnumValueA == EnumValueC, NullableEnumOp.AreEqual(EnumValueA, EnumValueC));
+			Assert.AreEqual(NullableEnumA == NullableEnumB, NullableEnumOp.AreEqual(NullableEnumA, NullableEnumB));
+			Assert.AreEqual(NullableEnumA == NullableEnumC, NullableEnumOp.AreEqual(NullableEnumA, NullableEnumC));
 		}
 
 		[Test]
 		public void NullableDoubleAreEqual() => Assert.AreEqual(1f == 2f, NullableDoubleOp.AreEqual(1, 2));
+		#endregion
 
+		#region AreNotEqual
 		[Test]
 		public void IntAreNotEqual() => Assert.AreEqual(1 != 2, IntOp.AreNotEqual(1, 2));
 
 		[Test]
 		public void EnumAreNotEqual() =>
 			Assert.AreEqual(
-				EnumValueA.Value != EnumValueB.Value,
-				EnumOp.AreNotEqual(EnumValueA.Value, EnumValueB.Value));
+				NullableEnumA.Value != NullableEnumB.Value,
+				EnumOp.AreNotEqual(NullableEnumA.Value, NullableEnumB.Value));
 
 		[Test]
 		public void NullableEnumAreNotEqual()
 		{
-			Assert.AreEqual(EnumValueA != EnumValueB, NullableEnumOp.AreNotEqual(EnumValueA, EnumValueB));
-			Assert.AreEqual(EnumValueA != EnumValueC, NullableEnumOp.AreNotEqual(EnumValueA, EnumValueC));
+			Assert.AreEqual(NullableEnumA != NullableEnumB, NullableEnumOp.AreNotEqual(NullableEnumA, NullableEnumB));
+			Assert.AreEqual(NullableEnumA != NullableEnumC, NullableEnumOp.AreNotEqual(NullableEnumA, NullableEnumC));
 		}
 
 		[Test]
 		public void NullableDoubleAreNotEqual() => Assert.AreEqual(1f != 2f, NullableDoubleOp.AreNotEqual(1, 2));
+		#endregion
 
+		#region GreaterThan
 		[Test]
 		public void IntGreaterThan() => Assert.AreEqual(1 > 2, IntOp.GreaterThan(1, 2));
 
 		[Test]
 		public void NullableDoubleGreaterThan() => Assert.AreEqual(1f > 2f, NullableDoubleOp.GreaterThan(1, 2));
+		#endregion
 
+		#region GreaterThanOrEqual
 		[Test]
 		public void IntGreaterThanOrEqual() => Assert.AreEqual(1 >= 2, IntOp.GreaterThanOrEqual(1, 2));
 
 		[Test]
 		public void NullableDoubleGreaterThanOrEqual() => Assert.AreEqual(1f >= 2f, NullableDoubleOp.GreaterThanOrEqual(1, 2));
+		#endregion
 
+		#region LessThan
 		[Test]
 		public void IntLessThan() => Assert.AreEqual(1 < 2, IntOp.LessThan(1, 2));
 
 		[Test]
 		public void NullableDoubleLessThan() => Assert.AreEqual(1f < 2f, NullableDoubleOp.LessThan(1, 2));
+		#endregion
 
+		#region LessThanOrEqual
 		[Test]
 		public void IntLessThanOrEqual() => Assert.AreEqual(1 <= 2, IntOp.LessThanOrEqual(1, 2));
 
 		[Test]
 		public void NullableDoubleLessThanOrEqual() => Assert.AreEqual(1f <= 2f, NullableDoubleOp.LessThanOrEqual(1, 2));
+		#endregion
 
+		#region Plus
 		[Test]
 		public void IntPlus() => Assert.AreEqual(1 + 2, IntOp.Plus(1, 2));
 
 		[Test]
 		public void NullableDoublePlus() => Assert.AreEqual(1f + 2f, NullableDoubleOp.Plus(1, 2));
+		#endregion
 
+		#region Minus
 		[Test]
 		public void IntMinus() => Assert.AreEqual(1 - 2, IntOp.Minus(1, 2));
 
 		[Test]
 		public void NullableDoubleMinus() => Assert.AreEqual(1f - 2f, NullableDoubleOp.Minus(1, 2));
+		#endregion
 
+		#region Mul
 		[Test]
 		public void IntMul() => Assert.AreEqual(1 * 2, IntOp.Mul(1, 2));
 
 		[Test]
 		public void NullableDoubleMul() => Assert.AreEqual(1f * 2f, NullableDoubleOp.Mul(1, 2));
+		#endregion
 
+		#region Div
 		[Test]
 		public void IntDiv() => Assert.AreEqual(1 / 2, IntOp.Div(1, 2));
 
 		[Test]
 		public void NullableDoubleDiv() => Assert.AreEqual(1f / 2f, NullableDoubleOp.Div(1, 2));
+		#endregion
 
+		#region Modulo
 		[Test]
 		public void IntModulo() => Assert.AreEqual(1 % 2, IntOp.Modulo(1, 2));
+		#endregion
 
+		#region Xor
 		[Test]
 		public void IntXor() => Assert.AreEqual(1 ^ 2, IntOp.Xor(1, 2));
 
 		[Test]
 		public void EnumXor() =>
 			Assert.AreEqual(
-				EnumValueA.Value ^ EnumValueB.Value,
-				EnumOp.Xor(EnumValueA.Value, EnumValueB.Value));
+				NullableEnumA.Value ^ NullableEnumB.Value,
+				EnumOp.Xor(NullableEnumA.Value, NullableEnumB.Value));
 
 		[Test]
 		public void NullableEnumXor()
 		{
-			Assert.AreEqual(EnumValueA ^ EnumValueB, NullableEnumOp.Xor(EnumValueA, EnumValueB));
-			Assert.AreEqual(EnumValueA ^ EnumValueC, NullableEnumOp.Xor(EnumValueA, EnumValueC));
+			Assert.AreEqual(NullableEnumA ^ NullableEnumB, NullableEnumOp.Xor(NullableEnumA, NullableEnumB));
+			Assert.AreEqual(NullableEnumA ^ NullableEnumC, NullableEnumOp.Xor(NullableEnumA, NullableEnumC));
 		}
+		#endregion
 
+		#region BitwiseAnd
 		[Test]
 		public void IntBitwiseAnd() => Assert.AreEqual(1 & 2, IntOp.BitwiseAnd(1, 2));
 
 		[Test]
 		public void EnumBitwiseAnd() =>
 			Assert.AreEqual(
-				EnumValueA.Value & EnumValueB.Value,
-				EnumOp.BitwiseAnd(EnumValueA.Value, EnumValueB.Value));
+				NullableEnumA.Value & NullableEnumB.Value,
+				EnumOp.BitwiseAnd(NullableEnumA.Value, NullableEnumB.Value));
 
 		[Test]
 		public void NullableEnumBitwiseAnd()
 		{
-			Assert.AreEqual(EnumValueA & EnumValueB, NullableEnumOp.BitwiseAnd(EnumValueA, EnumValueB));
-			Assert.AreEqual(EnumValueA & EnumValueC, NullableEnumOp.BitwiseAnd(EnumValueA, EnumValueC));
+			Assert.AreEqual(NullableEnumA & NullableEnumB, NullableEnumOp.BitwiseAnd(NullableEnumA, NullableEnumB));
+			Assert.AreEqual(NullableEnumA & NullableEnumC, NullableEnumOp.BitwiseAnd(NullableEnumA, NullableEnumC));
 		}
+		#endregion
 
+		#region BitwiseOr
 		[Test]
 		public void IntBitwiseOr() => Assert.AreEqual(1 | 2, IntOp.BitwiseOr(1, 2));
 
 		[Test]
 		public void EnumBitwiseOr() =>
 			Assert.AreEqual(
-				EnumValueA.Value | EnumValueB.Value,
-				EnumOp.BitwiseOr(EnumValueA.Value, EnumValueB.Value));
+				NullableEnumA.Value | NullableEnumB.Value,
+				EnumOp.BitwiseOr(NullableEnumA.Value, NullableEnumB.Value));
 
 		[Test]
 		public void NullableEnumBitwiseOr()
 		{
-			Assert.AreEqual(EnumValueA | EnumValueB, NullableEnumOp.BitwiseOr(EnumValueA, EnumValueB));
-			Assert.AreEqual(EnumValueA | EnumValueC, NullableEnumOp.BitwiseOr(EnumValueA, EnumValueC));
+			Assert.AreEqual(NullableEnumA | NullableEnumB, NullableEnumOp.BitwiseOr(NullableEnumA, NullableEnumB));
+			Assert.AreEqual(NullableEnumA | NullableEnumC, NullableEnumOp.BitwiseOr(NullableEnumA, NullableEnumC));
 		}
+		#endregion
 
+		#region LeftShift
 		[Test]
 		public void IntLeftShift() => Assert.AreEqual(1 << 2, IntOp.LeftShift(1, 2));
+		#endregion
 
+		#region RightShift
 		[Test]
 		public void IntRightShift() => Assert.AreEqual(1 >> 2, IntOp.RightShift(1, 2));
-
+		#endregion
 	}
 }
