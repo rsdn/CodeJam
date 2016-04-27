@@ -25,12 +25,12 @@ namespace CodeJam
 	[SuppressMessage("ReSharper", "SuggestVarOrType_SimpleTypes")]
 	[SuppressMessage("ReSharper", "UnusedTypeParameter")]
 	[PublicAPI]
-	public class CallCostsBenchmark
+	public class CallCostPerfTests
 	{
 		[Test]
 		// WAITINGFOR: https://github.com/PerfDotNet/BenchmarkDotNet/issues/126.
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkCallCosts() =>
+		public void RunCallCostPerfTests() =>
 			CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		#region CompetitionMethods

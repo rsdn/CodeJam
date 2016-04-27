@@ -15,7 +15,7 @@ namespace CodeJam.Algorithms
 	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory)]
 	[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
 	[PublicAPI]
-	public class LowerBoundBenchmark
+	public class LowerBoundPerfTests
 	{
 		private const int Steps = 10;
 
@@ -39,7 +39,7 @@ namespace CodeJam.Algorithms
 		}
 
 		[Test]
-		public void TestLowerBound() => CompetitionBenchmarkRunner.Run(this, AssemblyWideConfig.RunConfig);
+		public void RunLowerBoundPerfTests() => CompetitionBenchmarkRunner.Run(this, AssemblyWideConfig.RunConfig);
 
 		[CompetitionBaseline]
 		public void Test00IComparable()

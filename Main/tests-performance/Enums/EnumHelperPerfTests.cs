@@ -23,7 +23,7 @@ namespace CodeJam
 	[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "ConvertToConstant.Local")]
-	public class EnumHelperBenchmark
+	public class EnumHelperPerfTests
 	{
 		private const int Count = 250 * 1000;
 
@@ -43,7 +43,7 @@ namespace CodeJam
 		private const string Fx = "X";
 
 		[Test]
-		public void Benchmark00IsDefined() =>
+		public void RunIsDefinedCase() =>
 			CompetitionBenchmarkRunner.Run<IsDefinedCase>(RunConfig);
 
 		public class IsDefinedCase
@@ -86,7 +86,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void Benchmark01TryParse() =>
+		public void RunTryParseCase() =>
 			CompetitionBenchmarkRunner.Run<TryParseCase>(RunConfig);
 
 		public class TryParseCase
@@ -129,7 +129,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void Benchmark02IsFlagSet() =>
+		public void RunIsFlagSetCase() =>
 			CompetitionBenchmarkRunner.Run<IsFlagSetCase>(RunConfig);
 
 		public class IsFlagSetCase
@@ -188,7 +188,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void Benchmark03IsFlagMatch() =>
+		public void RunIsFlagMatchCase() =>
 			CompetitionBenchmarkRunner.Run<IsFlagMatchCase>(RunConfig);
 
 		public class IsFlagMatchCase
@@ -236,7 +236,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void Benchmark04SetFlag() =>
+		public void RunSetFlagCase() =>
 			CompetitionBenchmarkRunner.Run<SetFlagCase>(RunConfig);
 
 		public class SetFlagCase
@@ -284,7 +284,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void Benchmark05ClearFlag() =>
+		public void RunClearFlagCase() =>
 			CompetitionBenchmarkRunner.Run<ClearFlagCase>(RunConfig);
 
 		public class ClearFlagCase

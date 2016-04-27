@@ -16,11 +16,11 @@ namespace CodeJam
 	/// </summary>
 	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Self-testing")]
 	[PublicAPI]
-	public class ProofsSensitivityBenchmark
+	public class SensitivityPerfTests
 	{
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkSensitivity() => CompetitionBenchmarkRunner.Run(this, RunConfig);
+		public void RunSensitivityPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		[Params(1000, 10 * 1000, 100 * 1000, 1000 * 1000)]
 		public int Count { get; set; }

@@ -16,7 +16,7 @@ namespace CodeJam
 	/// </summary>
 	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Self-testing")]
 	[PublicAPI]
-	public class ParamsOptimizationFailBenchmark
+	public class ParamsOptimizationFailPerfTests
 	{
 		private static int Call(int a) => a + 1;
 		private static int CallParams(int a, params int[] args) => a + 1;
@@ -24,7 +24,7 @@ namespace CodeJam
 
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkParamsOptimizationFail() => CompetitionBenchmarkRunner.Run(this, RunConfig);
+		public void RunParamsOptimizationFailPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		private const int Count = 10 * 1000 * 1000;
 

@@ -59,19 +59,19 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Algorithms\LowerBoundBenchmark.cs" />
-    <Compile Include="Arithmetic\NumOperatorsPerfTest.generated.cs">
-      <DependentUpon>NumOperatorsPerfTest.tt</DependentUpon>
+    <Compile Include="Algorithms\LowerBoundPerfTests.cs" />
+    <Compile Include="Arithmetic\NumOperatorsPerfTests.generated.cs">
+      <DependentUpon>NumOperatorsPerfTests.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Arithmetic\OperatorsBenchmarkBase.cs" />
-    <Compile Include="Arithmetic\OperatorsComparePerformanceTest.cs" />
-    <Compile Include="Arithmetic\OperatorsGreaterThanOrEqualPerformanceTest.cs" />
-    <Compile Include="Arithmetic\OperatorsLessThanPerformanceTest.cs" />
+    <Compile Include="Arithmetic\OperatorsBaseCase.cs" />
+    <Compile Include="Arithmetic\OperatorsComparePerfTests.cs" />
+    <Compile Include="Arithmetic\OperatorsGreaterThanOrEqualPerfTests.cs" />
+    <Compile Include="Arithmetic\OperatorsLessThanPerfTests.cs" />
     <Compile Include="AssemblyWideConfig.cs" />
-    <Compile Include="Assertions\CodeAssertionsPerformanceTest.cs" />
-    <Compile Include="Assertions\DebugCodeAssertionsPerformanceTest.cs" />
+    <Compile Include="Assertions\CodePerfTests.cs" />
+    <Compile Include="Assertions\DebugCodePerfTests.cs" />
     <Compile Include="BenchmarkConstants.cs" />
     <Compile Include="BenchmarkDotNet.Attributes\CompetitionBaselineAttribute.cs" />
     <Compile Include="BenchmarkDotNet.Attributes\CompetitionBenchmarkAttribute.cs" />
@@ -89,14 +89,14 @@
     <Compile Include="BenchmarkDotNet.NUnit\CompetitionTarget.cs" />
     <Compile Include="BenchmarkDotNet.NUnit\CompetitionTargetHelpers.cs" />
     <Compile Include="BenchmarkDotNet.NUnit\Configs.cs" />
-    <Compile Include="CalibrationBenchmarks\NestedStructAccessBenchmark.cs" />
-    <Compile Include="CalibrationBenchmarks\CallCostsBenchmark.cs" />
-    <Compile Include="CalibrationBenchmarks\ParamsOptimizationFailBenchmark.cs" />
-    <Compile Include="CalibrationBenchmarks\StructAndInterfacesBenchmark.cs" />
-    <Compile Include="CalibrationBenchmarks\DispatchingOptimizationBenchmark.cs" />
-    <Compile Include="CalibrationBenchmarks\ProofsOpsCountNotSensitiveBenchmark .cs" />
-    <Compile Include="CalibrationBenchmarks\ProofsSensitivityBenchmark.cs" />
-    <Compile Include="Enums\EnumHelperBenchmark.cs" />
+    <Compile Include="CalibrationBenchmarks\NestedStructAccessPerfTests.cs" />
+    <Compile Include="CalibrationBenchmarks\CallCostPerfTests.cs" />
+    <Compile Include="CalibrationBenchmarks\ParamsOptimizationFailPerfTests.cs" />
+    <Compile Include="CalibrationBenchmarks\StructAndInterfacesPerfTests.cs" />
+    <Compile Include="CalibrationBenchmarks\JitOptimizedDispatchPerfTests.cs" />
+    <Compile Include="CalibrationBenchmarks\OpsCountNotSensitivePerfTests.cs" />
+    <Compile Include="CalibrationBenchmarks\SensitivityPerfTests.cs" />
+    <Compile Include="Enums\EnumHelperPerfTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -110,11 +110,11 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Arithmetic\NumOperatorsPerfTest.tt">
+    <Content Include="Arithmetic\NumOperatorsPerfTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NumOperatorsPerfTest.generated.cs</LastGenOutput>
+      <LastGenOutput>NumOperatorsPerfTests.generated.cs</LastGenOutput>
     </Content>
-    <EmbeddedResource Include="Arithmetic\NumOperatorsPerfTest.generated.xml" />
+    <EmbeddedResource Include="Arithmetic\NumOperatorsPerfTests.generated.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CodeJam-Tests.Performance.dll.config">

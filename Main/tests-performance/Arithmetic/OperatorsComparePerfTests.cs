@@ -18,20 +18,20 @@ namespace CodeJam.Arithmetic
 	/// </summary>
 	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Operators")]
 	[PublicAPI]
-	public class OperatorsComparePerformanceTest
+	public class OperatorsComparePerfTests
 	{
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkComparisonInt() =>
-			CompetitionBenchmarkRunner.Run<IntCase>(RunConfig);
+		public void RunIntComparisonCase() =>
+			CompetitionBenchmarkRunner.Run<IntComparisonCase>(RunConfig);
 
 		[PublicAPI]
-		public class IntCase : IntOperatorsBenchmark
+		public class IntComparisonCase : IntOperatorsBaseCase
 		{
 			private static readonly Comparer<int> _comparer = Comparer<int>.Default;
 			private static readonly Func<int, int, int> _expressionFunc;
 
-			static IntCase()
+			static IntComparisonCase()
 			{
 				Expression<Func<int, int, int>> exp = (a, b) => a.CompareTo(b);
 				_expressionFunc = exp.Compile();
@@ -76,16 +76,16 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkComparisonNullableInt() =>
-			CompetitionBenchmarkRunner.Run<NullableIntCase>(RunConfig);
+		public void RunNullableIntComparisonCase() =>
+			CompetitionBenchmarkRunner.Run<NullableIntComparisonCase>(RunConfig);
 
 		[PublicAPI]
-		public class NullableIntCase : NullableIntOperatorsBenchmark
+		public class NullableIntComparisonCase : NullableIntOperatorsBaseCase
 		{
 			private static readonly Comparer<int?> _comparer = Comparer<int?>.Default;
 			private static readonly Func<int?, int?, int> _expressionFunc;
 
-			static NullableIntCase()
+			static NullableIntComparisonCase()
 			{
 				Expression<Func<int?, int?, int>> exp = (a, b) => a == b ? 0 : (a > b ? 1 : -1);
 				_expressionFunc = exp.Compile();
@@ -134,16 +134,16 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkComparisonNullableDateTime() =>
-			CompetitionBenchmarkRunner.Run<NullableDateTimeCase>(RunConfig);
+		public void RunNullableDateTimeComparisonCase() =>
+			CompetitionBenchmarkRunner.Run<NullableDateTimeComparisonCase>(RunConfig);
 
 		[PublicAPI]
-		public class NullableDateTimeCase : NullableDateTimeOperatorsBenchmark
+		public class NullableDateTimeComparisonCase : NullableDateTimeOperatorsBaseCase
 		{
 			private static readonly Comparer<DateTime?> _comparer = Comparer<DateTime?>.Default;
 			private static readonly Func<DateTime?, DateTime?, int> _expressionFunc;
 
-			static NullableDateTimeCase()
+			static NullableDateTimeComparisonCase()
 			{
 				Expression<Func<DateTime?, DateTime?, int>> exp = (a, b) => a == b ? 0 : (a > b ? 1 : -1);
 				_expressionFunc = exp.Compile();
@@ -192,11 +192,11 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkComparisonString() =>
-			CompetitionBenchmarkRunner.Run<StringCase>(RunConfig);
+		public void RunStringComparisonCase() =>
+			CompetitionBenchmarkRunner.Run<StringComparisonCase>(RunConfig);
 
 		[PublicAPI]
-		public class StringCase : StringOperatorsBenchmark
+		public class StringComparisonCase : StringOperatorsBaseCase
 		{
 			private static readonly Comparer<string> _comparer = Comparer<string>.Default;
 			private static readonly Func<string, string, int> _expressionFunc = string.CompareOrdinal;

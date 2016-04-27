@@ -16,7 +16,7 @@ namespace CodeJam
 	/// </summary>
 	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Self-testing")]
 	[PublicAPI]
-	public class NestedStructAccessBenchmark
+	public class NestedStructAccessPerfTests
 	{
 		private struct HeavyStruct
 		{
@@ -57,7 +57,7 @@ namespace CodeJam
 
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkNestedStructAccess() => CompetitionBenchmarkRunner.Run(this, RunConfig);
+		public void RunNestedStructAccessPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		private const int Count = 10 * 1000 * 1000;
 

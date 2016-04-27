@@ -14,26 +14,26 @@ namespace CodeJam.Arithmetic
 {
 	/// <summary>
 	/// Checks:
-	/// 1. Proofs that there's no way to make Operators (of T).LessThan faster.
+	/// 1. Proofs that there's no way to make Operators (of T).GreaterThanOrEqual faster.
 	/// </summary>
 	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Operators")]
 	[PublicAPI]
-	public class OperatorsLessThanPerformanceTest
+	public class OperatorsGreaterThanOrEqualPerfTests
 	{
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkLessThanInt() =>
-			CompetitionBenchmarkRunner.Run<IntCase>(RunConfig);
+		public void RunIntGreaterThanOrEqualCase() =>
+			CompetitionBenchmarkRunner.Run<IntGreaterThanOrEqualCase>(RunConfig);
 
 		[PublicAPI]
-		public class IntCase : IntOperatorsBenchmark
+		public class IntGreaterThanOrEqualCase : IntOperatorsBaseCase
 		{
 			private static readonly Comparer<int> _comparer = Comparer<int>.Default;
 			private static readonly Func<int, int, bool> _expressionFunc;
 
-			static IntCase()
+			static IntGreaterThanOrEqualCase()
 			{
-				Expression<Func<int, int, bool>> exp = (a, b) => a < b;
+				Expression<Func<int, int, bool>> exp = (a, b) => a >= b;
 				_expressionFunc = exp.Compile();
 			}
 
@@ -42,29 +42,29 @@ namespace CodeJam.Arithmetic
 			{
 				var result = false;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] < ValuesB[i];
+					result = ValuesA[i] >= ValuesB[i];
 				return result;
 			}
 
-			[CompetitionBenchmark(2.05, 2.21)]
+			[CompetitionBenchmark(2.50, 2.71)]
 			public bool Test01Operators()
 			{
 				var result = false;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = Operators<int>.LessThan(ValuesA[i], ValuesB[i]);
+					result = Operators<int>.GreaterThanOrEqual(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 
-			[CompetitionBenchmark(2.83, 4.35)]
+			[CompetitionBenchmark(2.83, 3.05)]
 			public bool Test02Comparer()
 			{
 				var result = false;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = _comparer.Compare(ValuesA[i], ValuesB[i]) < 0;
+					result = _comparer.Compare(ValuesA[i], ValuesB[i]) >= 0;
 				return result;
 			}
 
-			[CompetitionBenchmark(1.98, 2.80)]
+			[CompetitionBenchmark(2.64, 2.91)]
 			public bool Test03ExpressionFunc()
 			{
 				var result = false;
@@ -76,18 +76,18 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkLessThanNullableInt() =>
-			CompetitionBenchmarkRunner.Run<NullableIntCase>(RunConfig);
+		public void RunNullableIntGreaterThanOrEqualCase() =>
+			CompetitionBenchmarkRunner.Run<NullableIntGreaterThanOrEqualCase>(RunConfig);
 
 		[PublicAPI]
-		public class NullableIntCase : NullableIntOperatorsBenchmark
+		public class NullableIntGreaterThanOrEqualCase : NullableIntOperatorsBaseCase
 		{
 			private static readonly Comparer<int?> _comparer = Comparer<int?>.Default;
 			private static readonly Func<int?, int?, bool> _expressionFunc;
 
-			static NullableIntCase()
+			static NullableIntGreaterThanOrEqualCase()
 			{
-				Expression<Func<int?, int?, bool>> exp = (a, b) => a < b;
+				Expression<Func<int?, int?, bool>> exp = (a, b) => a >= b;
 				_expressionFunc = exp.Compile();
 			}
 
@@ -96,29 +96,29 @@ namespace CodeJam.Arithmetic
 			{
 				var result = false;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] < ValuesB[i];
+					result = ValuesA[i] >= ValuesB[i];
 				return result;
 			}
 
-			[CompetitionBenchmark(1.59, 1.71)]
+			[CompetitionBenchmark(1.41, 2.05)]
 			public bool Test01Operators()
 			{
 				var result = false;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = Operators<int?>.LessThan(ValuesA[i], ValuesB[i]);
+					result = Operators<int?>.GreaterThanOrEqual(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 
-			[CompetitionBenchmark(1.55, 1.93)]
+			[CompetitionBenchmark(1.64, 2.10)]
 			public bool Test02Comparer()
 			{
 				var result = false;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = _comparer.Compare(ValuesA[i], ValuesB[i]) < 0;
+					result = _comparer.Compare(ValuesA[i], ValuesB[i]) >= 0;
 				return result;
 			}
 
-			[CompetitionBenchmark(1.67, 2.03)]
+			[CompetitionBenchmark(1.36, 2.00)]
 			public bool Test03ExpressionFunc()
 			{
 				var result = false;
@@ -130,18 +130,18 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkLessThanNullableDateTime() =>
-			CompetitionBenchmarkRunner.Run<NullableDateTimeCase>(RunConfig);
+		public void RunNullableDateTimeGreaterThanOrEqualCase() =>
+			CompetitionBenchmarkRunner.Run<NullableDateTimeGreaterThanOrEqualCase>(RunConfig);
 
 		[PublicAPI]
-		public class NullableDateTimeCase : NullableDateTimeOperatorsBenchmark
+		public class NullableDateTimeGreaterThanOrEqualCase : NullableDateTimeOperatorsBaseCase
 		{
 			private static readonly Comparer<DateTime?> _comparer = Comparer<DateTime?>.Default;
 			private static readonly Func<DateTime?, DateTime?, bool> _expressionFunc;
 
-			static NullableDateTimeCase()
+			static NullableDateTimeGreaterThanOrEqualCase()
 			{
-				Expression<Func<DateTime?, DateTime?, bool>> exp = (a, b) => a < b;
+				Expression<Func<DateTime?, DateTime?, bool>> exp = (a, b) => a >= b;
 				_expressionFunc = exp.Compile();
 			}
 
@@ -150,29 +150,29 @@ namespace CodeJam.Arithmetic
 			{
 				var result = false;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] < ValuesB[i];
+					result = ValuesA[i] >= ValuesB[i];
 				return result;
 			}
 
-			[CompetitionBenchmark(0.93, 1.32)]
+			[CompetitionBenchmark(1.08, 1.29)]
 			public bool Test01Operators()
 			{
 				var result = false;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = Operators<DateTime?>.LessThan(ValuesA[i], ValuesB[i]);
+					result = Operators<DateTime?>.GreaterThanOrEqual(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 
-			[CompetitionBenchmark(0.76, 0.90)]
+			[CompetitionBenchmark(0.85, 0.92)]
 			public bool Test02Comparer()
 			{
 				var result = false;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = _comparer.Compare(ValuesA[i], ValuesB[i]) < 0;
+					result = _comparer.Compare(ValuesA[i], ValuesB[i]) >= 0;
 				return result;
 			}
 
-			[CompetitionBenchmark(0.89, 1.09)]
+			[CompetitionBenchmark(1.07, 2.33)]
 			public bool Test03ExpressionFunc()
 			{
 				var result = false;
@@ -184,43 +184,43 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkLessThanString() =>
-			CompetitionBenchmarkRunner.Run<StringCase>(RunConfig);
+		public void RunStringGreaterThanOrEqualCase() =>
+			CompetitionBenchmarkRunner.Run<StringGreaterThanOrEqualCase>(RunConfig);
 
 		[PublicAPI]
-		public class StringCase : StringOperatorsBenchmark
+		public class StringGreaterThanOrEqualCase : StringOperatorsBaseCase
 		{
 			private static readonly Comparer<string> _comparer = Comparer<string>.Default;
-			private static readonly Func<string, string, bool> _expressionFunc = (a, b) => string.CompareOrdinal(a, b) < 0;
+			private static readonly Func<string, string, bool> _expressionFunc = (a, b) => string.CompareOrdinal(a, b) >= 0;
 
 			[CompetitionBaseline]
 			public bool Test00DirectCompare()
 			{
 				var result = false;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = string.Compare(ValuesA[i], ValuesB[i], StringComparison.Ordinal) < 0;
+					result = string.Compare(ValuesA[i], ValuesB[i], StringComparison.Ordinal) >= 0;
 				return result;
 			}
 
-			[CompetitionBenchmark(1.06, 1.34)]
+			[CompetitionBenchmark(1.18, 1.44)]
 			public bool Test01Operators()
 			{
 				var result = false;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = Operators<string>.LessThan(ValuesA[i], ValuesB[i]);
+					result = Operators<string>.GreaterThanOrEqual(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 
-			[CompetitionBenchmark(12.57, 17.19)]
+			[CompetitionBenchmark(14.46, 17.06)]
 			public bool Test02Comparer()
 			{
 				var result = false;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = _comparer.Compare(ValuesA[i], ValuesB[i]) < 0;
+					result = _comparer.Compare(ValuesA[i], ValuesB[i]) >= 0;
 				return result;
 			}
 
-			[CompetitionBenchmark(0.82, 1.14)]
+			[CompetitionBenchmark(1.01, 1.19)]
 			public bool Test03ExpressionFunc()
 			{
 				var result = false;

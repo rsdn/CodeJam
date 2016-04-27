@@ -17,7 +17,7 @@ namespace CodeJam
 	/// </summary>
 	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Self-testing")]
 	[PublicAPI]
-	public class DispatchingOptimizationBenchmark
+	public class JitOptimizedDispatchPerfTests
 	{
 		// Use case:
 		// 1. We have multiple implementations for the same algorithm.
@@ -25,7 +25,7 @@ namespace CodeJam
 		// 3. We want as few penalty for dispatching as it is possible;
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkJitOptimizedDispatch() =>
+		public void RunJitOptimizedDispatchPerfTests() =>
 			CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		public const int Count = 10 * 1000 * 1000;
@@ -80,7 +80,7 @@ namespace CodeJam
 
 			// 2.1. Updating the readonly field. The change should be ignored.
 			// ReSharper disable once PossibleNullReferenceException
-			typeof(DispatchingOptimizationBenchmark)
+			typeof(JitOptimizedDispatchPerfTests)
 				.GetField(nameof(_implementationToUse1), BindingFlags.Static | BindingFlags.NonPublic)
 				.SetValue(null, ImplementationToUse.Implementation3);
 

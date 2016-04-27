@@ -10,7 +10,7 @@ namespace CodeJam.Arithmetic
 	/// Base class for all operator test cases;
 	/// </summary>
 	[PublicAPI]
-	public abstract class OperatorsBenchmarkBase<T>
+	public abstract class OperatorsBaseCase<T>
 	{
 		/// <summary> Count of items </summary>
 		protected int Count { get; set; } = 1000 * 1000;
@@ -51,14 +51,14 @@ namespace CodeJam.Arithmetic
 	}
 
 	/// <summary> Base class for int perf tests </summary>
-	public abstract class IntOperatorsBenchmark : OperatorsBenchmarkBase<int>
+	public abstract class IntOperatorsBaseCase : OperatorsBaseCase<int>
 	{
 		protected override int GetValueA(int i) => i;
 		protected override int GetValueB(int i) => i;
 	}
 
 	/// <summary> Base class for int? perf tests </summary>
-	public abstract class NullableIntOperatorsBenchmark : OperatorsBenchmarkBase<int?>
+	public abstract class NullableIntOperatorsBaseCase : OperatorsBaseCase<int?>
 	{
 		protected override int? GetValueA(int i) => i == 0 ? null : (int?)i;
 
@@ -66,7 +66,7 @@ namespace CodeJam.Arithmetic
 	}
 
 	/// <summary> Base class for double? perf tests </summary>
-	public abstract class NullableDoubleOperatorsBenchmark : OperatorsBenchmarkBase<double?>
+	public abstract class NullableDoubleOperatorsBaseCase : OperatorsBaseCase<double?>
 	{
 		protected override double? GetValueA(int i) => i == 0 ? null : (int?)i;
 
@@ -74,7 +74,7 @@ namespace CodeJam.Arithmetic
 	}
 
 	/// <summary> Base class for DateTime? perf tests </summary>
-	public abstract class NullableDateTimeOperatorsBenchmark : OperatorsBenchmarkBase<DateTime?>
+	public abstract class NullableDateTimeOperatorsBaseCase : OperatorsBaseCase<DateTime?>
 	{
 		protected override DateTime? GetValueA(int i) =>
 			i == 0 ? (DateTime?)null : DateTime.UtcNow.AddDays(i);
@@ -83,10 +83,10 @@ namespace CodeJam.Arithmetic
 	}
 
 	/// <summary> Base class for string perf tests </summary>
-	public abstract class StringOperatorsBenchmark : OperatorsBenchmarkBase<string>
+	public abstract class StringOperatorsBaseCase : OperatorsBaseCase<string>
 	{
 		/// <summary> Constructor </summary>
-		protected StringOperatorsBenchmark()
+		protected StringOperatorsBaseCase()
 		{
 			Count /= 5;
 		}

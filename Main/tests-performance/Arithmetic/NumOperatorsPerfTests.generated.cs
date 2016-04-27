@@ -21,14 +21,15 @@ using static CodeJam.AssemblyWideConfig;
 namespace CodeJam.Arithmetic
 {
 	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Operators (generated)")]
-	[CompetitionMetadata("CodeJam.Arithmetic.NumOperatorsPerfTest.generated.xml")]
+	[CompetitionMetadata("CodeJam.Arithmetic.NumOperatorsPerfTests.generated.xml")]
 	[Explicit("Server run speed not stable")]
-	public class NumOperatorsPerfTest
+	public class NumOperatorsPerfTests
 	{
+		#region UnaryMinus
 		[Test]
-		public void IntUnaryMinus() => CompetitionBenchmarkRunner.Run<IntUnaryMinusCase>(RunConfig);
+		public void RunIntUnaryMinusCase() => CompetitionBenchmarkRunner.Run<IntUnaryMinusCase>(RunConfig);
 
-		public class IntUnaryMinusCase : IntOperatorsBenchmark
+		public class IntUnaryMinusCase : IntOperatorsBaseCase
 		{
 			private readonly Func<int, int> _intUnaryMinus = IntOp.UnaryMinus;
 
@@ -50,11 +51,13 @@ namespace CodeJam.Arithmetic
 				return result;
 			}
 		}
+		#endregion
 
+		#region OnesComplement
 		[Test]
-		public void IntOnesComplement() => CompetitionBenchmarkRunner.Run<IntOnesComplementCase>(RunConfig);
+		public void RunIntOnesComplementCase() => CompetitionBenchmarkRunner.Run<IntOnesComplementCase>(RunConfig);
 
-		public class IntOnesComplementCase : IntOperatorsBenchmark
+		public class IntOnesComplementCase : IntOperatorsBaseCase
 		{
 			private readonly Func<int, int> _intOnesComplement = IntOp.OnesComplement;
 
@@ -76,11 +79,31 @@ namespace CodeJam.Arithmetic
 				return result;
 			}
 		}
+		#endregion
 
+		#region AreEqual
+		#endregion
+
+		#region AreNotEqual
+		#endregion
+
+		#region GreaterThan
+		#endregion
+
+		#region GreaterThanOrEqual
+		#endregion
+
+		#region LessThan
+		#endregion
+
+		#region LessThanOrEqual
+		#endregion
+
+		#region Plus
 		[Test]
-		public void IntPlus() => CompetitionBenchmarkRunner.Run<IntPlusCase>(RunConfig);
+		public void RunIntPlusCase() => CompetitionBenchmarkRunner.Run<IntPlusCase>(RunConfig);
 
-		public class IntPlusCase : IntOperatorsBenchmark
+		public class IntPlusCase : IntOperatorsBaseCase
 		{
 			private readonly Func<int, int, int> _intPlus = IntOp.Plus;
 
@@ -104,9 +127,9 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		public void NullableDoublePlus() => CompetitionBenchmarkRunner.Run<NullableDoublePlusCase>(RunConfig);
+		public void RunNullableDoublePlusCase() => CompetitionBenchmarkRunner.Run<NullableDoublePlusCase>(RunConfig);
 
-		public class NullableDoublePlusCase : NullableDoubleOperatorsBenchmark
+		public class NullableDoublePlusCase : NullableDoubleOperatorsBaseCase
 		{
 			private readonly Func<double?, double?, double?> _doublePlus = NullableDoubleOp.Plus;
 
@@ -128,11 +151,13 @@ namespace CodeJam.Arithmetic
 				return result;
 			}
 		}
+		#endregion
 
+		#region Minus
 		[Test]
-		public void IntMinus() => CompetitionBenchmarkRunner.Run<IntMinusCase>(RunConfig);
+		public void RunIntMinusCase() => CompetitionBenchmarkRunner.Run<IntMinusCase>(RunConfig);
 
-		public class IntMinusCase : IntOperatorsBenchmark
+		public class IntMinusCase : IntOperatorsBaseCase
 		{
 			private readonly Func<int, int, int> _intMinus = IntOp.Minus;
 
@@ -156,9 +181,9 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		public void NullableDoubleMinus() => CompetitionBenchmarkRunner.Run<NullableDoubleMinusCase>(RunConfig);
+		public void RunNullableDoubleMinusCase() => CompetitionBenchmarkRunner.Run<NullableDoubleMinusCase>(RunConfig);
 
-		public class NullableDoubleMinusCase : NullableDoubleOperatorsBenchmark
+		public class NullableDoubleMinusCase : NullableDoubleOperatorsBaseCase
 		{
 			private readonly Func<double?, double?, double?> _doubleMinus = NullableDoubleOp.Minus;
 
@@ -180,11 +205,13 @@ namespace CodeJam.Arithmetic
 				return result;
 			}
 		}
+		#endregion
 
+		#region Mul
 		[Test]
-		public void IntMul() => CompetitionBenchmarkRunner.Run<IntMulCase>(RunConfig);
+		public void RunIntMulCase() => CompetitionBenchmarkRunner.Run<IntMulCase>(RunConfig);
 
-		public class IntMulCase : IntOperatorsBenchmark
+		public class IntMulCase : IntOperatorsBaseCase
 		{
 			private readonly Func<int, int, int> _intMul = IntOp.Mul;
 
@@ -208,9 +235,9 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		public void NullableDoubleMul() => CompetitionBenchmarkRunner.Run<NullableDoubleMulCase>(RunConfig);
+		public void RunNullableDoubleMulCase() => CompetitionBenchmarkRunner.Run<NullableDoubleMulCase>(RunConfig);
 
-		public class NullableDoubleMulCase : NullableDoubleOperatorsBenchmark
+		public class NullableDoubleMulCase : NullableDoubleOperatorsBaseCase
 		{
 			private readonly Func<double?, double?, double?> _doubleMul = NullableDoubleOp.Mul;
 
@@ -232,11 +259,13 @@ namespace CodeJam.Arithmetic
 				return result;
 			}
 		}
+		#endregion
 
+		#region Div
 		[Test]
-		public void IntDiv() => CompetitionBenchmarkRunner.Run<IntDivCase>(RunConfig);
+		public void RunIntDivCase() => CompetitionBenchmarkRunner.Run<IntDivCase>(RunConfig);
 
-		public class IntDivCase : IntOperatorsBenchmark
+		public class IntDivCase : IntOperatorsBaseCase
 		{
 			private readonly Func<int, int, int> _intDiv = IntOp.Div;
 
@@ -260,9 +289,9 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		public void NullableDoubleDiv() => CompetitionBenchmarkRunner.Run<NullableDoubleDivCase>(RunConfig);
+		public void RunNullableDoubleDivCase() => CompetitionBenchmarkRunner.Run<NullableDoubleDivCase>(RunConfig);
 
-		public class NullableDoubleDivCase : NullableDoubleOperatorsBenchmark
+		public class NullableDoubleDivCase : NullableDoubleOperatorsBaseCase
 		{
 			private readonly Func<double?, double?, double?> _doubleDiv = NullableDoubleOp.Div;
 
@@ -284,11 +313,13 @@ namespace CodeJam.Arithmetic
 				return result;
 			}
 		}
+		#endregion
 
+		#region Modulo
 		[Test]
-		public void IntModulo() => CompetitionBenchmarkRunner.Run<IntModuloCase>(RunConfig);
+		public void RunIntModuloCase() => CompetitionBenchmarkRunner.Run<IntModuloCase>(RunConfig);
 
-		public class IntModuloCase : IntOperatorsBenchmark
+		public class IntModuloCase : IntOperatorsBaseCase
 		{
 			private readonly Func<int, int, int> _intModulo = IntOp.Modulo;
 
@@ -310,11 +341,13 @@ namespace CodeJam.Arithmetic
 				return result;
 			}
 		}
+		#endregion
 
+		#region Xor
 		[Test]
-		public void IntXor() => CompetitionBenchmarkRunner.Run<IntXorCase>(RunConfig);
+		public void RunIntXorCase() => CompetitionBenchmarkRunner.Run<IntXorCase>(RunConfig);
 
-		public class IntXorCase : IntOperatorsBenchmark
+		public class IntXorCase : IntOperatorsBaseCase
 		{
 			private readonly Func<int, int, int> _intXor = IntOp.Xor;
 
@@ -336,11 +369,13 @@ namespace CodeJam.Arithmetic
 				return result;
 			}
 		}
+		#endregion
 
+		#region BitwiseAnd
 		[Test]
-		public void IntBitwiseAnd() => CompetitionBenchmarkRunner.Run<IntBitwiseAndCase>(RunConfig);
+		public void RunIntBitwiseAndCase() => CompetitionBenchmarkRunner.Run<IntBitwiseAndCase>(RunConfig);
 
-		public class IntBitwiseAndCase : IntOperatorsBenchmark
+		public class IntBitwiseAndCase : IntOperatorsBaseCase
 		{
 			private readonly Func<int, int, int> _intBitwiseAnd = IntOp.BitwiseAnd;
 
@@ -362,11 +397,13 @@ namespace CodeJam.Arithmetic
 				return result;
 			}
 		}
+		#endregion
 
+		#region BitwiseOr
 		[Test]
-		public void IntBitwiseOr() => CompetitionBenchmarkRunner.Run<IntBitwiseOrCase>(RunConfig);
+		public void RunIntBitwiseOrCase() => CompetitionBenchmarkRunner.Run<IntBitwiseOrCase>(RunConfig);
 
-		public class IntBitwiseOrCase : IntOperatorsBenchmark
+		public class IntBitwiseOrCase : IntOperatorsBaseCase
 		{
 			private readonly Func<int, int, int> _intBitwiseOr = IntOp.BitwiseOr;
 
@@ -388,11 +425,13 @@ namespace CodeJam.Arithmetic
 				return result;
 			}
 		}
+		#endregion
 
+		#region LeftShift
 		[Test]
-		public void IntLeftShift() => CompetitionBenchmarkRunner.Run<IntLeftShiftCase>(RunConfig);
+		public void RunIntLeftShiftCase() => CompetitionBenchmarkRunner.Run<IntLeftShiftCase>(RunConfig);
 
-		public class IntLeftShiftCase : IntOperatorsBenchmark
+		public class IntLeftShiftCase : IntOperatorsBaseCase
 		{
 			private readonly Func<int, int, int> _intLeftShift = IntOp.LeftShift;
 
@@ -414,11 +453,13 @@ namespace CodeJam.Arithmetic
 				return result;
 			}
 		}
+		#endregion
 
+		#region RightShift
 		[Test]
-		public void IntRightShift() => CompetitionBenchmarkRunner.Run<IntRightShiftCase>(RunConfig);
+		public void RunIntRightShiftCase() => CompetitionBenchmarkRunner.Run<IntRightShiftCase>(RunConfig);
 
-		public class IntRightShiftCase : IntOperatorsBenchmark
+		public class IntRightShiftCase : IntOperatorsBaseCase
 		{
 			private readonly Func<int, int, int> _intRightShift = IntOp.RightShift;
 
@@ -440,6 +481,6 @@ namespace CodeJam.Arithmetic
 				return result;
 			}
 		}
-
+		#endregion
 	}
 }

@@ -19,11 +19,11 @@ namespace CodeJam.Assertions
 	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory)]
 	[SuppressMessage("ReSharper", "PassStringInterpolation")]
 	[PublicAPI]
-	public class CodeAssertionsPerformanceTest
+	public class CodePerfTests
 	{
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkCodeAssertions() =>
+		public void RunCodePerfTests() =>
 			CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		//[Params(10 * 1000, 100 * 1000, 1000 * 1000)]

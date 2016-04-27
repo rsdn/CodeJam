@@ -18,11 +18,11 @@ namespace CodeJam
 	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Self-testing")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_SimpleTypes")]
-	public class StructAndInterfacesBenchmark
+	public class StructAndInterfacesPerfTests
 	{
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkStructAndInterfaces() =>
+		public void RunStructAndInterfacesPerfTests() =>
 			CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		private const int Count = 10 * 1000 * 1000;

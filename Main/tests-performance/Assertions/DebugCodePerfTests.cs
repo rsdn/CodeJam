@@ -16,11 +16,11 @@ namespace CodeJam.Assertions
 	/// </summary>
 	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory)]
 	[PublicAPI]
-	public class DebugCodeAssertionsPerformanceTest
+	public class DebugCodePerfTests
 	{
 		[Test]
 		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkDebugCodeAssertions() =>
+		public void RunDebugCodePerfTests() =>
 			CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		//[Params(10 * 1000, 100 * 1000, 1000 * 1000)]
