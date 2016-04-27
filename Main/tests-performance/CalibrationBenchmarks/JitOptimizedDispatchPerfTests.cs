@@ -42,6 +42,7 @@ namespace CodeJam
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		private static int DirectCall(int i) => Implementation2(i);
 
+		// ReSharper disable once ConvertToConstant.Local
 		private static readonly ImplementationToUse _implementationToUse1 = ImplementationToUse.Implementation2;
 
 		[MethodImpl(MethodImplOptions.NoInlining)]

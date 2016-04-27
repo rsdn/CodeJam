@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using CodeJam.Arithmetic;
-
 using JetBrains.Annotations;
 
 namespace CodeJam.RangesV2

@@ -2,9 +2,6 @@
 
 using BenchmarkDotNet.Attributes;
 
-using CodeJam.Arithmetic;
-using CodeJam.Reflection;
-
 using JetBrains.Annotations;
 
 namespace CodeJam.RangesV2

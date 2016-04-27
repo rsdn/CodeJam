@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.NUnit;
 
@@ -18,6 +19,7 @@ namespace CodeJam.RangesV2Alternatives
 	/// </summary>
 	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Boundary")]
 	[PublicAPI]
+	[SuppressMessage("ReSharper", "PassStringInterpolation")]
 	public class RangeAlternativesPerfTests
 	{
 		[Test]
@@ -55,7 +57,7 @@ namespace CodeJam.RangesV2Alternatives
 				Console.WriteLine("!allocated! RangeStubCompact: {0,9:F2} KB", (mem5 - mem4) / 1024.0);
 				Console.WriteLine("!allocated! RangeOld:         {0,9:F2} KB", (mem6 - mem5) / 1024.0);
 
-				for (int i = 0; i < _data.Length; i++)
+				for (var i = 0; i < _data.Length; i++)
 				{
 					_data[i] = new KeyValuePair<int, int>(i, i + 1);
 					_rangeData[i] = new RangeStub<int>(i, i + 1);
@@ -169,7 +171,7 @@ namespace CodeJam.RangesV2Alternatives
 				Console.WriteLine("!allocated! RangeStubCompact: {0,9:F2} KB", (mem5 - mem4) / 1024.0);
 				Console.WriteLine("!allocated! RangeOld:         {0,9:F2} KB", (mem6 - mem5) / 1024.0);
 
-				for (int i = 0; i < _data.Length; i++)
+				for (var i = 0; i < _data.Length; i++)
 				{
 					_data[i] = new KeyValuePair<int?, int?>(i, i + 1);
 					_rangeData[i] = new RangeStub<int?>(i, i + 1);

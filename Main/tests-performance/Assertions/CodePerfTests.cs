@@ -104,6 +104,7 @@ namespace CodeJam.Assertions
 			{
 				var arg = GetArg(i);
 
+				// ReSharper disable once PassStringInterpolation
 				Code.AssertArgument(arg != null, nameof(arg), "Argument {0} should be not null", nameof(arg));
 				result = arg;
 			}
