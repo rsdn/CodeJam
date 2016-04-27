@@ -14,12 +14,12 @@ namespace CodeJam
 	/// <summary>
 	/// Proof test: benchmark is not sensitive enough if OperationsPerInvoke is used instead of tight loop.
 	/// </summary>
-	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Self-testing")]
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
 	[PublicAPI]
 	public class OpsCountNotSensitivePerfTests
 	{
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunOpsCountNotSensitivePerfTests() =>
 			CompetitionBenchmarkRunner.Run(this, RunConfig);
 

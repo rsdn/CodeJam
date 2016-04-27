@@ -17,17 +17,17 @@ namespace CodeJam.RangesV2
 	/// Checks:
 	/// 1. Proofs that there's no way to make RangeBoundary (of T) faster.
 	/// </summary>
-	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Boundary")]
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Boundary")]
 	[PublicAPI]
-	public class BoundaryComparePerformanceTest
+	public class RangeBoundaryCompareToPerfTests
 	{
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkBoundaryComparisonInt() =>
-			CompetitionBenchmarkRunner.Run<IntCase>(RunConfig);
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+		public void RunIntRangeBoundaryCompareToCase() =>
+			CompetitionBenchmarkRunner.Run<IntRangeBoundaryCompareToCase>(RunConfig);
 
 		[PublicAPI]
-		public class IntCase : IntBoundaryBenchmark
+		public class IntRangeBoundaryCompareToCase : IntRangeBoundaryBaseCase
 		{
 			[CompetitionBaseline]
 			public int Test00DirectCompare()
@@ -76,12 +76,12 @@ namespace CodeJam.RangesV2
 		}
 
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void BenchmarkBoundaryComparisonNullableInt() =>
-			CompetitionBenchmarkRunner.Run<NullableIntCase>(RunConfig);
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+		public void RunNullableIntRangeBoundaryCompareToCase() =>
+			CompetitionBenchmarkRunner.Run<NullableIntRangeBoundaryCompareToCase>(RunConfig);
 
 		[PublicAPI]
-		public class NullableIntCase : NullableIntBoundaryBenchmark
+		public class NullableIntRangeBoundaryCompareToCase : NullableIntRangeBoundaryBaseCase
 		{
 			[CompetitionBaseline]
 			public int Test00DirectCompare()

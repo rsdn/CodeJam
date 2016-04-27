@@ -16,17 +16,17 @@ namespace CodeJam.RangesV2Alternatives
 	/// <summary>
 	/// Test to choose valid Range(of T) implementation.
 	/// </summary>
-	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Boundary")]
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Boundary")]
 	[PublicAPI]
-	public class RangeAlternativesPerformanceTest
+	public class RangeAlternativesPerfTests
 	{
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void CompareRangeInt() =>
-		CompetitionBenchmarkRunner.Run<IntCase>(RunConfig);
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+		public void RunRangeUnionIntCase() =>
+			CompetitionBenchmarkRunner.Run<RangeUnionIntCase>(RunConfig);
 
 		[PublicAPI]
-		public class IntCase
+		public class RangeUnionIntCase
 		{
 			private const int Count = 100 * 1000;
 			private readonly KeyValuePair<int, int>[] _data;
@@ -35,7 +35,7 @@ namespace CodeJam.RangesV2Alternatives
 			private readonly RangeStubCompact<int>[] _rangeCompactData;
 			private readonly Range<int>[] _rangeData2;
 
-			public IntCase()
+			public RangeUnionIntCase()
 			{
 				var mem1 = GC.GetTotalMemory(true);
 				_data = new KeyValuePair<int, int>[Count];
@@ -135,12 +135,12 @@ namespace CodeJam.RangesV2Alternatives
 		}
 
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void CompareRangeNullableInt() =>
-			CompetitionBenchmarkRunner.Run<NullableIntCase>(RunConfig);
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+		public void RunRangeUnionNullableIntCase() =>
+			CompetitionBenchmarkRunner.Run<RangeUnionNullableIntCase>(RunConfig);
 
 		[PublicAPI]
-		public class NullableIntCase
+		public class RangeUnionNullableIntCase
 		{
 			private const int Count = 100 * 1000;
 			private readonly KeyValuePair<int?, int?>[] _data;
@@ -149,7 +149,7 @@ namespace CodeJam.RangesV2Alternatives
 			private readonly RangeStubCompact<int?>[] _rangeCompactData;
 			private readonly Range<int>[] _rangeData2;
 
-			public NullableIntCase()
+			public RangeUnionNullableIntCase()
 			{
 				var mem1 = GC.GetTotalMemory(true);
 				_data = new KeyValuePair<int?, int?>[Count];

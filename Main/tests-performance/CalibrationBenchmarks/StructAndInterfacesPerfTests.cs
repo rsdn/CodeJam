@@ -15,13 +15,13 @@ namespace CodeJam
 	/// Used as a proof that the fluent API over extension methods will be effective enough
 	/// to see what I'm talking about: https://blogs.msdn.microsoft.com/alexj/2009/07/31/another-c-trick-fluents-inheritance-and-extension-methods/
 	/// </summary>
-	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Self-testing")]
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_SimpleTypes")]
 	public class StructAndInterfacesPerfTests
 	{
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunStructAndInterfacesPerfTests() =>
 			CompetitionBenchmarkRunner.Run(this, RunConfig);
 

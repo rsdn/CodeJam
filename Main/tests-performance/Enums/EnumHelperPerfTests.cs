@@ -19,8 +19,8 @@ namespace CodeJam
 	/// Proof test: <see cref="EnumHelper"/> methods are faster than their framework counterparts.
 	/// </summary>
 	[PublicAPI]
-	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": EnumHelper")]
-	[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": EnumHelper")]
+	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "ConvertToConstant.Local")]
 	public class EnumHelperPerfTests

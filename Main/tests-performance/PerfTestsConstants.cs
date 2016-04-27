@@ -5,13 +5,13 @@ namespace CodeJam
 	/// <summary>
 	/// Class with constants used to be used in a benchmark code
 	/// </summary>
-	public static class BenchmarkConstants
+	public static class PerfTestsConstants
 	{
 		/// <summary>
 		/// Please, mark all benchmark classes with [TestFixture(Category = BenchmarkConstants.BenchmarkCategory)].
 		/// That way it's easier to sort out them in a Test Explorer window
 		/// </summary>
-		public const string BenchmarkCategory = "Performance";
+		public const string PerfTestCategory = "Performance";
 
 		/// <summary>
 		/// Please, mark all benchmark classes with [Explicit(BenchmarkConstants.ExplicitExcludeReason)]

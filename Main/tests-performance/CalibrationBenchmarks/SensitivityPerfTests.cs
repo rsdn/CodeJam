@@ -14,12 +14,12 @@ namespace CodeJam
 	/// <summary>
 	/// Proof test: benchmark is sensitive enough to spot a minimal method change
 	/// </summary>
-	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Self-testing")]
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
 	[PublicAPI]
 	public class SensitivityPerfTests
 	{
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunSensitivityPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		[Params(1000, 10 * 1000, 100 * 1000, 1000 * 1000)]

@@ -54,10 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RangesV2\BoundaryBenchmarkBase.cs" />
-    <Compile Include="RangesV2\BoundaryComparePerformanceTest.cs" />
+    <Compile Include="RangesV2\RangeBoundaryBaseCase.cs" />
+    <Compile Include="RangesV2\RangeBoundaryCompareToPerfTests.cs" />
     <Compile Include="RangesV2Alternatives\RangeAlternatives.cs" />
-    <Compile Include="RangesV2Alternatives\RangeAlternativesPerformanceTest.cs" />
+    <Compile Include="RangesV2Alternatives\RangeAlternativesPerfTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

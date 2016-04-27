@@ -16,22 +16,22 @@ namespace CodeJam.Arithmetic
 	/// Checks:
 	/// 1. Proofs that there's no way to make Operators (of T).Compare faster.
 	/// </summary>
-	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Operators")]
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Operators")]
 	[PublicAPI]
 	public class OperatorsComparePerfTests
 	{
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void RunIntComparisonCase() =>
-			CompetitionBenchmarkRunner.Run<IntComparisonCase>(RunConfig);
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+		public void RunIntCompareCase() =>
+			CompetitionBenchmarkRunner.Run<IntCompareCase>(RunConfig);
 
 		[PublicAPI]
-		public class IntComparisonCase : IntOperatorsBaseCase
+		public class IntCompareCase : IntOperatorsBaseCase
 		{
 			private static readonly Comparer<int> _comparer = Comparer<int>.Default;
 			private static readonly Func<int, int, int> _expressionFunc;
 
-			static IntComparisonCase()
+			static IntCompareCase()
 			{
 				Expression<Func<int, int, int>> exp = (a, b) => a.CompareTo(b);
 				_expressionFunc = exp.Compile();
@@ -75,17 +75,17 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void RunNullableIntComparisonCase() =>
-			CompetitionBenchmarkRunner.Run<NullableIntComparisonCase>(RunConfig);
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+		public void RunNullableIntCompareCase() =>
+			CompetitionBenchmarkRunner.Run<NullableIntCompareCase>(RunConfig);
 
 		[PublicAPI]
-		public class NullableIntComparisonCase : NullableIntOperatorsBaseCase
+		public class NullableIntCompareCase : NullableIntOperatorsBaseCase
 		{
 			private static readonly Comparer<int?> _comparer = Comparer<int?>.Default;
 			private static readonly Func<int?, int?, int> _expressionFunc;
 
-			static NullableIntComparisonCase()
+			static NullableIntCompareCase()
 			{
 				Expression<Func<int?, int?, int>> exp = (a, b) => a == b ? 0 : (a > b ? 1 : -1);
 				_expressionFunc = exp.Compile();
@@ -133,17 +133,17 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void RunNullableDateTimeComparisonCase() =>
-			CompetitionBenchmarkRunner.Run<NullableDateTimeComparisonCase>(RunConfig);
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+		public void RunNullableDateTimeCompareCase() =>
+			CompetitionBenchmarkRunner.Run<NullableDateTimeCompareCase>(RunConfig);
 
 		[PublicAPI]
-		public class NullableDateTimeComparisonCase : NullableDateTimeOperatorsBaseCase
+		public class NullableDateTimeCompareCase : NullableDateTimeOperatorsBaseCase
 		{
 			private static readonly Comparer<DateTime?> _comparer = Comparer<DateTime?>.Default;
 			private static readonly Func<DateTime?, DateTime?, int> _expressionFunc;
 
-			static NullableDateTimeComparisonCase()
+			static NullableDateTimeCompareCase()
 			{
 				Expression<Func<DateTime?, DateTime?, int>> exp = (a, b) => a == b ? 0 : (a > b ? 1 : -1);
 				_expressionFunc = exp.Compile();
@@ -191,12 +191,12 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		public void RunStringComparisonCase() =>
-			CompetitionBenchmarkRunner.Run<StringComparisonCase>(RunConfig);
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+		public void RunStringCompareCase() =>
+			CompetitionBenchmarkRunner.Run<StringCompareCase>(RunConfig);
 
 		[PublicAPI]
-		public class StringComparisonCase : StringOperatorsBaseCase
+		public class StringCompareCase : StringOperatorsBaseCase
 		{
 			private static readonly Comparer<string> _comparer = Comparer<string>.Default;
 			private static readonly Func<string, string, int> _expressionFunc = string.CompareOrdinal;

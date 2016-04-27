@@ -72,7 +72,7 @@
     <Compile Include="AssemblyWideConfig.cs" />
     <Compile Include="Assertions\CodePerfTests.cs" />
     <Compile Include="Assertions\DebugCodePerfTests.cs" />
-    <Compile Include="BenchmarkConstants.cs" />
+    <Compile Include="PerfTestsConstants.cs" />
     <Compile Include="BenchmarkDotNet.Attributes\CompetitionBaselineAttribute.cs" />
     <Compile Include="BenchmarkDotNet.Attributes\CompetitionBenchmarkAttribute.cs" />
     <Compile Include="BenchmarkDotNet.Attributes\CompetitionMetadataAttribute.cs" />

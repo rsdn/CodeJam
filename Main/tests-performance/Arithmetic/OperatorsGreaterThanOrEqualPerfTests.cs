@@ -16,12 +16,12 @@ namespace CodeJam.Arithmetic
 	/// Checks:
 	/// 1. Proofs that there's no way to make Operators (of T).GreaterThanOrEqual faster.
 	/// </summary>
-	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Operators")]
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Operators")]
 	[PublicAPI]
 	public class OperatorsGreaterThanOrEqualPerfTests
 	{
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunIntGreaterThanOrEqualCase() =>
 			CompetitionBenchmarkRunner.Run<IntGreaterThanOrEqualCase>(RunConfig);
 
@@ -75,7 +75,7 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunNullableIntGreaterThanOrEqualCase() =>
 			CompetitionBenchmarkRunner.Run<NullableIntGreaterThanOrEqualCase>(RunConfig);
 
@@ -129,7 +129,7 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunNullableDateTimeGreaterThanOrEqualCase() =>
 			CompetitionBenchmarkRunner.Run<NullableDateTimeGreaterThanOrEqualCase>(RunConfig);
 
@@ -183,7 +183,7 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunStringGreaterThanOrEqualCase() =>
 			CompetitionBenchmarkRunner.Run<StringGreaterThanOrEqualCase>(RunConfig);
 

@@ -14,7 +14,7 @@ namespace CodeJam
 	/// Proof test: params overloads DOES NOT use Array.Empty{T}
 	/// ( https://github.com/dotnet/roslyn/issues/1103 )
 	/// </summary>
-	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Self-testing")]
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
 	[PublicAPI]
 	public class ParamsOptimizationFailPerfTests
 	{
@@ -23,7 +23,7 @@ namespace CodeJam
 		private static int CallArray(int a, int[] args) => a + 1;
 
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunParamsOptimizationFailPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		private const int Count = 10 * 1000 * 1000;

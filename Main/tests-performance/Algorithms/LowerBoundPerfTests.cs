@@ -12,8 +12,8 @@ using NUnit.Framework;
 
 namespace CodeJam.Algorithms
 {
-	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory)]
-	[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory)]
+	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	[PublicAPI]
 	public class LowerBoundPerfTests
 	{

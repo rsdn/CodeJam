@@ -13,7 +13,7 @@ namespace CodeJam.RangesV2
 	/// Base class for all operator test cases;
 	/// </summary>
 	[PublicAPI]
-	public abstract class BoundaryBenchmarkBase<T>
+	public abstract class RangeBoundaryBaseCase<T>
 	{
 		// ReSharper disable once StaticMemberInGenericType
 		private static readonly RangeBoundaryKind[] _boundaries = EnumHelper.GetValues<RangeBoundaryKind>();
@@ -79,14 +79,14 @@ namespace CodeJam.RangesV2
 	}
 
 	/// <summary> Base class for int perf tests </summary>
-	public abstract class IntBoundaryBenchmark : BoundaryBenchmarkBase<int>
+	public abstract class IntRangeBoundaryBaseCase : RangeBoundaryBaseCase<int>
 	{
 		protected override int GetValueA(int i) => i;
 		protected override int GetValueB(int i) => i;
 	}
 
 	/// <summary> Base class for int? perf tests </summary>
-	public abstract class NullableIntBoundaryBenchmark : BoundaryBenchmarkBase<int?>
+	public abstract class NullableIntRangeBoundaryBaseCase : RangeBoundaryBaseCase<int?>
 	{
 		protected override int? GetValueA(int i) => i == 0 ? null : (int?)i;
 
@@ -94,7 +94,7 @@ namespace CodeJam.RangesV2
 	}
 
 	/// <summary> Base class for double? perf tests </summary>
-	public abstract class NullableDoubleBoundaryBenchmark : BoundaryBenchmarkBase<double?>
+	public abstract class NullableDoubleRangeBoundaryBaseCase : RangeBoundaryBaseCase<double?>
 	{
 		protected override double? GetValueA(int i) => i == 0 ? null : (int?)i;
 
@@ -102,7 +102,7 @@ namespace CodeJam.RangesV2
 	}
 
 	/// <summary> Base class for DateTime? perf tests </summary>
-	public abstract class NullableDateTimeBoundaryBenchmark : BoundaryBenchmarkBase<DateTime?>
+	public abstract class NullableDateTimeRangeBoundaryBaseCase : RangeBoundaryBaseCase<DateTime?>
 	{
 		protected override DateTime? GetValueA(int i) =>
 			i == 0 ? (DateTime?)null : DateTime.UtcNow.AddDays(i);
@@ -111,10 +111,10 @@ namespace CodeJam.RangesV2
 	}
 
 	/// <summary> Base class for string perf tests </summary>
-	public abstract class StringBoundaryBenchmark : BoundaryBenchmarkBase<string>
+	public abstract class StringRangeBoundaryBaseCase : RangeBoundaryBaseCase<string>
 	{
 		/// <summary> Constructor </summary>
-		protected StringBoundaryBenchmark()
+		protected StringRangeBoundaryBaseCase()
 		{
 			Count /= 5;
 		}

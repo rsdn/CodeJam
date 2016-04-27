@@ -16,12 +16,12 @@ namespace CodeJam.Arithmetic
 	/// Checks:
 	/// 1. Proofs that there's no way to make Operators (of T).LessThan faster.
 	/// </summary>
-	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Operators")]
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Operators")]
 	[PublicAPI]
 	public class OperatorsLessThanPerfTests
 	{
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunIntLessThanCase() =>
 			CompetitionBenchmarkRunner.Run<IntLessThanCase>(RunConfig);
 
@@ -75,7 +75,7 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunNullableIntLessThanCase() =>
 			CompetitionBenchmarkRunner.Run<NullableIntLessThanCase>(RunConfig);
 
@@ -129,7 +129,7 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunNullableDateTimeLessThanCase() =>
 			CompetitionBenchmarkRunner.Run<NullableDateTimeLessThanCase>(RunConfig);
 
@@ -183,7 +183,7 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunStringLessThanCase() =>
 			CompetitionBenchmarkRunner.Run<StringLessThanCase>(RunConfig);
 

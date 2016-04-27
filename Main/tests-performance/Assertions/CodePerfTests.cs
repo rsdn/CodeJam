@@ -16,13 +16,13 @@ namespace CodeJam.Assertions
 	/// 1. Assertion implementation methods should be NOT SLOWER then usual if-then-throw approach
 	/// 2. Assertion should add no more than 20% penalty on tight loop use-case.
 	/// </summary>
-	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory)]
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory)]
 	[SuppressMessage("ReSharper", "PassStringInterpolation")]
 	[PublicAPI]
 	public class CodePerfTests
 	{
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunCodePerfTests() =>
 			CompetitionBenchmarkRunner.Run(this, RunConfig);
 

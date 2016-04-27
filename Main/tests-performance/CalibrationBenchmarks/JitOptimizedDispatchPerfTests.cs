@@ -15,7 +15,7 @@ namespace CodeJam
 	/// <summary>
 	/// Proof test: JIT optimizations on handwritten method dispatching
 	/// </summary>
-	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Self-testing")]
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
 	[PublicAPI]
 	public class JitOptimizedDispatchPerfTests
 	{
@@ -24,7 +24,7 @@ namespace CodeJam
 		// 2. We want to choose implementation depending on process' environment: feature switches, FW version etc.
 		// 3. We want as few penalty for dispatching as it is possible;
 		[Test]
-		[Explicit(BenchmarkConstants.ExplicitExcludeReason)]
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunJitOptimizedDispatchPerfTests() =>
 			CompetitionBenchmarkRunner.Run(this, RunConfig);
 
