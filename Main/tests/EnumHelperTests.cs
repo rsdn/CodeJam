@@ -20,7 +20,7 @@ namespace CodeJam
 	{
 		#region Enum constants
 		[Flags]
-		private enum F
+		private enum F: byte
 		{
 			Zero = 0x0,
 			A = 0x1,
@@ -194,6 +194,8 @@ namespace CodeJam
 		[SuppressMessage("ReSharper", "LocalVariableHidesMember")]
 		public static void Test0602FlagsOperators()
 		{
+			var c = EnumHelper.GetValues<AttributeTargets>();
+			Console.WriteLine(c);
 			var isFlagSet = OperatorsFactory.IsFlagSetOperator<int>();
 			var isFlagMatch = OperatorsFactory.IsFlagMatchOperator<int>();
 			const int Abc = (int)EnumHelperTests.Abc;

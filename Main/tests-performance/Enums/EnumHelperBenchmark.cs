@@ -28,7 +28,7 @@ namespace CodeJam
 		private const int Count = 250 * 1000;
 
 		[Flags, PublicAPI]
-		public enum F
+		public enum F: byte
 		{
 			Zero = 0x0,
 			A = 0x1,

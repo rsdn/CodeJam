@@ -234,7 +234,7 @@ namespace CodeJam.Arithmetic
 		/// <returns>Callback for (flag == 0) || ((value &amp; flag) != 0) check</returns>
 		public static Func<T, T, bool> IsFlagMatchOperator<T>()
 		{
-			var zero = Constant(0, GetOperandType(typeof(T)));
+			var zero = Convert(Constant(0), GetOperandType(typeof(T)));
 			return CompileOperatorCore<Func<T, T, bool>>(
 				args => Or(
 					Equal(args[1], zero),
