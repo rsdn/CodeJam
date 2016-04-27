@@ -25,10 +25,9 @@ namespace CodeJam
 	[SuppressMessage("ReSharper", "ConvertToConstant.Local")]
 	public class EnumHelperPerfTests
 	{
-		private const int Count = 250 * 1000;
-
+		#region PerfTest helpers
 		[Flags, PublicAPI]
-		public enum F: byte
+		public enum F : byte
 		{
 			Zero = 0x0,
 			A = 0x1,
@@ -41,6 +40,9 @@ namespace CodeJam
 
 		private const string Fa = nameof(F.A);
 		private const string Fx = "X";
+		#endregion
+
+		private const int Count = 250 * 1000;
 
 		[Test]
 		public void RunIsDefinedCase() =>

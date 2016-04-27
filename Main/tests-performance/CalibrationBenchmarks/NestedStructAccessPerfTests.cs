@@ -15,9 +15,10 @@ namespace CodeJam
 	/// as in http://blog.nodatime.org/2014/07/micro-optimization-surprising.html
 	/// </summary>
 	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
-	[PublicAPI]
+	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	public class NestedStructAccessPerfTests
 	{
+		#region PerfTest helpers
 		private struct HeavyStruct
 		{
 #pragma warning disable 169
@@ -54,12 +55,12 @@ namespace CodeJam
 
 			public decimal Test() => _h.Test();
 		}
-
-		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
-		public void RunNestedStructAccessPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
+		#endregion
 
 		private const int Count = 10 * 1000 * 1000;
+
+		[Test]
+		public void RunNestedStructAccessPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		[CompetitionBaseline]
 		public decimal Test00Mutable()

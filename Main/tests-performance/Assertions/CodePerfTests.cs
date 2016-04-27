@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.NUnit;
 
@@ -17,19 +16,19 @@ namespace CodeJam.Assertions
 	/// 2. Assertion should add no more than 20% penalty on tight loop use-case.
 	/// </summary>
 	[TestFixture(Category = PerfTestsConstants.PerfTestCategory)]
-	[SuppressMessage("ReSharper", "PassStringInterpolation")]
+	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	[PublicAPI]
 	public class CodePerfTests
 	{
-		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
-		public void RunCodePerfTests() =>
-			CompetitionBenchmarkRunner.Run(this, RunConfig);
+		#region PerfTest helpers
+		private static string GetArg(int i) => i % 2 == 0 ? "0" : "1";
+		#endregion
 
 		//[Params(10 * 1000, 100 * 1000, 1000 * 1000)]
 		public int Count { get; set; } = 100 * 1000;
 
-		private static string GetArg(int i) => i % 2 == 0 ? "0" : "1";
+		[Test]
+		public void RunCodePerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		[CompetitionBaseline]
 		public string Test00RunWithoutAssertion()

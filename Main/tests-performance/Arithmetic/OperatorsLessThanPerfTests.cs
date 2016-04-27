@@ -17,15 +17,14 @@ namespace CodeJam.Arithmetic
 	/// 1. Proofs that there's no way to make Operators (of T).LessThan faster.
 	/// </summary>
 	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Operators")]
+	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	[PublicAPI]
 	public class OperatorsLessThanPerfTests
 	{
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunIntLessThanCase() =>
 			CompetitionBenchmarkRunner.Run<IntLessThanCase>(RunConfig);
 
-		[PublicAPI]
 		public class IntLessThanCase : IntOperatorsBaseCase
 		{
 			private static readonly Comparer<int> _comparer = Comparer<int>.Default;
@@ -75,11 +74,9 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunNullableIntLessThanCase() =>
 			CompetitionBenchmarkRunner.Run<NullableIntLessThanCase>(RunConfig);
 
-		[PublicAPI]
 		public class NullableIntLessThanCase : NullableIntOperatorsBaseCase
 		{
 			private static readonly Comparer<int?> _comparer = Comparer<int?>.Default;
@@ -129,11 +126,9 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunNullableDateTimeLessThanCase() =>
 			CompetitionBenchmarkRunner.Run<NullableDateTimeLessThanCase>(RunConfig);
 
-		[PublicAPI]
 		public class NullableDateTimeLessThanCase : NullableDateTimeOperatorsBaseCase
 		{
 			private static readonly Comparer<DateTime?> _comparer = Comparer<DateTime?>.Default;
@@ -183,11 +178,9 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunStringLessThanCase() =>
 			CompetitionBenchmarkRunner.Run<StringLessThanCase>(RunConfig);
 
-		[PublicAPI]
 		public class StringLessThanCase : StringOperatorsBaseCase
 		{
 			private static readonly Comparer<string> _comparer = Comparer<string>.Default;

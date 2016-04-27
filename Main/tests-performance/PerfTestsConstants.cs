@@ -3,7 +3,7 @@
 namespace CodeJam
 {
 	/// <summary>
-	/// Class with constants used to be used in a benchmark code
+	/// Class with constants used to be used in a performance tests code
 	/// </summary>
 	public static class PerfTestsConstants
 	{

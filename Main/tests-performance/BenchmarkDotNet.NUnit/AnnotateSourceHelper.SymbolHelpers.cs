@@ -190,7 +190,6 @@ namespace BenchmarkDotNet.NUnit
 						(string fileName, ChecksumAlgorithmKind checksumAlgorithm) =>
 							ComputeChecksumCore(fileName, checksumAlgorithm));
 
-
 				// guids are from corsym.h
 				private static readonly Guid CorSym_SourceHash_MD5 = new Guid("406ea660-64cf-4c82-b6f0-42d48172a799");
 				private static readonly Guid CorSym_SourceHash_SHA1 = new Guid("ff1816ec-aa5e-4d10-87f7-6f4963833460");

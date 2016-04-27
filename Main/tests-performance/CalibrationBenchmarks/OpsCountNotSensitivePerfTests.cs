@@ -3,8 +3,6 @@ using System;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.NUnit;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 using static CodeJam.AssemblyWideConfig;
@@ -15,19 +13,20 @@ namespace CodeJam
 	/// Proof test: benchmark is not sensitive enough if OperationsPerInvoke is used instead of tight loop.
 	/// </summary>
 	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
-	[PublicAPI]
+	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	public class OpsCountNotSensitivePerfTests
 	{
-		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
-		public void RunOpsCountNotSensitivePerfTests() =>
-			CompetitionBenchmarkRunner.Run(this, RunConfig);
-
-		public const int Count = 1000 * 1000;
+		#region PerfTest helpers
 		private int _result;
 
 		[Setup]
 		public void Setup() => _result = 0;
+		#endregion
+
+		private const int Count = 1000 * 1000;
+
+		[Test]
+		public void RunOpsCountNotSensitivePerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		[Benchmark(Baseline = true, OperationsPerInvoke = Count)]
 		public int Test00Baseline() => _result = ++_result;

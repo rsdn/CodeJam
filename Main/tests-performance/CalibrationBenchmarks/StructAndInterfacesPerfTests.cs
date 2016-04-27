@@ -18,14 +18,40 @@ namespace CodeJam
 	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_SimpleTypes")]
+	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	public class StructAndInterfacesPerfTests
 	{
-		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
-		public void RunStructAndInterfacesPerfTests() =>
-			CompetitionBenchmarkRunner.Run(this, RunConfig);
+		#region PerfTest helpers
+		private struct Struct : IStruct
+		{
+			// ReSharper disable once MemberCanBeMadeStatic.Local
+			public int Call(int a) => a + 1;
+
+			public int CallInterface(int a) => a + 1;
+		}
+
+		private interface IStruct
+		{
+			int CallInterface(int a);
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static int CallExt(IStruct s, int a) => s.CallInterface(a);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static int CallGeneric<TStruct>(TStruct s, int a)
+			where TStruct : IStruct => s.CallInterface(a);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static int CallGenericStruct<TStruct>(TStruct s, int a)
+			where TStruct : struct, IStruct => s.CallInterface(a);
+		#endregion
 
 		private const int Count = 10 * 1000 * 1000;
+
+		[Test]
+		public void RunStructAndInterfacesPerfTests() =>
+			CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		[CompetitionBaseline]
 		public int Test00Baseline()
@@ -97,29 +123,5 @@ namespace CodeJam
 			}
 			return Count;
 		}
-
-		private struct Struct : IStruct
-		{
-			// ReSharper disable once MemberCanBeMadeStatic.Local
-			public int Call(int a) => a + 1;
-
-			public int CallInterface(int a) => a + 1;
-		}
-
-		private interface IStruct
-		{
-			int CallInterface(int a);
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static int CallExt(IStruct s, int a) => s.CallInterface(a);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static int CallGeneric<TStruct>(TStruct s, int a)
-			where TStruct : IStruct => s.CallInterface(a);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static int CallGenericStruct<TStruct>(TStruct s, int a)
-			where TStruct : struct, IStruct => s.CallInterface(a);
 	}
 }

@@ -4,8 +4,6 @@ using System.Linq.Expressions;
 
 using BenchmarkDotNet.NUnit;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 using static CodeJam.AssemblyWideConfig;
@@ -17,15 +15,13 @@ namespace CodeJam.Arithmetic
 	/// 1. Proofs that there's no way to make Operators (of T).GreaterThanOrEqual faster.
 	/// </summary>
 	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Operators")]
-	[PublicAPI]
+	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	public class OperatorsGreaterThanOrEqualPerfTests
 	{
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunIntGreaterThanOrEqualCase() =>
 			CompetitionBenchmarkRunner.Run<IntGreaterThanOrEqualCase>(RunConfig);
 
-		[PublicAPI]
 		public class IntGreaterThanOrEqualCase : IntOperatorsBaseCase
 		{
 			private static readonly Comparer<int> _comparer = Comparer<int>.Default;
@@ -75,11 +71,9 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunNullableIntGreaterThanOrEqualCase() =>
 			CompetitionBenchmarkRunner.Run<NullableIntGreaterThanOrEqualCase>(RunConfig);
 
-		[PublicAPI]
 		public class NullableIntGreaterThanOrEqualCase : NullableIntOperatorsBaseCase
 		{
 			private static readonly Comparer<int?> _comparer = Comparer<int?>.Default;
@@ -129,11 +123,9 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunNullableDateTimeGreaterThanOrEqualCase() =>
 			CompetitionBenchmarkRunner.Run<NullableDateTimeGreaterThanOrEqualCase>(RunConfig);
 
-		[PublicAPI]
 		public class NullableDateTimeGreaterThanOrEqualCase : NullableDateTimeOperatorsBaseCase
 		{
 			private static readonly Comparer<DateTime?> _comparer = Comparer<DateTime?>.Default;
@@ -183,11 +175,9 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunStringGreaterThanOrEqualCase() =>
 			CompetitionBenchmarkRunner.Run<StringGreaterThanOrEqualCase>(RunConfig);
 
-		[PublicAPI]
 		public class StringGreaterThanOrEqualCase : StringOperatorsBaseCase
 		{
 			private static readonly Comparer<string> _comparer = Comparer<string>.Default;

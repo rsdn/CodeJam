@@ -15,16 +15,16 @@ namespace CodeJam.Assertions
 	/// 1. Heavy DebugCode assertions has no impact on release build
 	/// </summary>
 	[TestFixture(Category = PerfTestsConstants.PerfTestCategory)]
+	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	[PublicAPI]
 	public class DebugCodePerfTests
 	{
-		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
-		public void RunDebugCodePerfTests() =>
-			CompetitionBenchmarkRunner.Run(this, RunConfig);
-
 		//[Params(10 * 1000, 100 * 1000, 1000 * 1000)]
 		public int Count { get; set; } = 100 * 1000;
+
+		[Test]
+		public void RunDebugCodePerfTests() =>
+			CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		[CompetitionBaseline]
 		public string Test00RunWithoutAssertion()

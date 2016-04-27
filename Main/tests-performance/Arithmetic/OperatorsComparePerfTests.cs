@@ -4,8 +4,6 @@ using System.Linq.Expressions;
 
 using BenchmarkDotNet.NUnit;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 using static CodeJam.AssemblyWideConfig;
@@ -17,15 +15,13 @@ namespace CodeJam.Arithmetic
 	/// 1. Proofs that there's no way to make Operators (of T).Compare faster.
 	/// </summary>
 	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Operators")]
-	[PublicAPI]
+	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	public class OperatorsComparePerfTests
 	{
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunIntCompareCase() =>
 			CompetitionBenchmarkRunner.Run<IntCompareCase>(RunConfig);
 
-		[PublicAPI]
 		public class IntCompareCase : IntOperatorsBaseCase
 		{
 			private static readonly Comparer<int> _comparer = Comparer<int>.Default;
@@ -75,11 +71,9 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunNullableIntCompareCase() =>
 			CompetitionBenchmarkRunner.Run<NullableIntCompareCase>(RunConfig);
 
-		[PublicAPI]
 		public class NullableIntCompareCase : NullableIntOperatorsBaseCase
 		{
 			private static readonly Comparer<int?> _comparer = Comparer<int?>.Default;
@@ -133,11 +127,9 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunNullableDateTimeCompareCase() =>
 			CompetitionBenchmarkRunner.Run<NullableDateTimeCompareCase>(RunConfig);
 
-		[PublicAPI]
 		public class NullableDateTimeCompareCase : NullableDateTimeOperatorsBaseCase
 		{
 			private static readonly Comparer<DateTime?> _comparer = Comparer<DateTime?>.Default;
@@ -191,11 +183,9 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunStringCompareCase() =>
 			CompetitionBenchmarkRunner.Run<StringCompareCase>(RunConfig);
 
-		[PublicAPI]
 		public class StringCompareCase : StringOperatorsBaseCase
 		{
 			private static readonly Comparer<string> _comparer = Comparer<string>.Default;

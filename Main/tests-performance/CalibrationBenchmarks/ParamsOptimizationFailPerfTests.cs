@@ -2,8 +2,6 @@ using System;
 
 using BenchmarkDotNet.NUnit;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 using static CodeJam.AssemblyWideConfig;
@@ -15,18 +13,21 @@ namespace CodeJam
 	/// ( https://github.com/dotnet/roslyn/issues/1103 )
 	/// </summary>
 	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
-	[PublicAPI]
+	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	public class ParamsOptimizationFailPerfTests
 	{
+		#region PerfTest helpers
 		private static int Call(int a) => a + 1;
+		// ReSharper disable once UnusedParameter.Local
 		private static int CallParams(int a, params int[] args) => a + 1;
+		// ReSharper disable once UnusedParameter.Local
 		private static int CallArray(int a, int[] args) => a + 1;
-
-		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
-		public void RunParamsOptimizationFailPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
+		#endregion
 
 		private const int Count = 10 * 1000 * 1000;
+
+		[Test]
+		public void RunParamsOptimizationFailPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		[CompetitionBaseline]
 		public int Test00CallBaseline()

@@ -4,8 +4,6 @@ using System.Runtime.CompilerServices;
 
 using BenchmarkDotNet.NUnit;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 using static CodeJam.AssemblyWideConfig;
@@ -16,88 +14,14 @@ namespace CodeJam
 	/// Proof test: JIT optimizations on handwritten method dispatching
 	/// </summary>
 	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
-	[PublicAPI]
 	public class JitOptimizedDispatchPerfTests
 	{
 		// Use case:
 		// 1. We have multiple implementations for the same algorithm.
 		// 2. We want to choose implementation depending on process' environment: feature switches, FW version etc.
 		// 3. We want as few penalty for dispatching as it is possible;
-		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
-		public void RunJitOptimizedDispatchPerfTests() =>
-			CompetitionBenchmarkRunner.Run(this, RunConfig);
 
-		public const int Count = 10 * 1000 * 1000;
-
-		[CompetitionBaseline]
-		public int Test00Baseline()
-		{
-			var sum = 0;
-			for (var i = 0; i < Count; i++)
-			{
-				sum += DirectCall(i);
-			}
-			return sum;
-		}
-
-		[CompetitionBenchmark(0.89, 1.09)]
-		public int Test01SwitchOverReadonlyField()
-		{
-			var sum = 0;
-			for (var i = 0; i < Count; i++)
-			{
-				sum += SwitchOverReadonlyField(i);
-			}
-			return sum;
-		}
-
-		[CompetitionBenchmark(1.18, 1.64)]
-		public int Test02SwitchOverMutableField()
-		{
-			var sum = 0;
-			for (var i = 0; i < Count; i++)
-			{
-				sum += SwitchOverMutableField(i);
-			}
-			return sum;
-		}
-
-		#region Assertion to proof the idea works at all
-		[Test]
-		public void AssertJitOptimizedDispatch()
-		{
-			const int someNum = 1024;
-			var impl2 = Implementation2(someNum);
-			var impl3 = Implementation3(someNum);
-
-			// 1. Jitting the methods. Impl2 should be used.
-			Assert.AreEqual(DirectCall(someNum), impl2);
-			Assert.AreEqual(SwitchOverReadonlyField(someNum), impl2);
-			Assert.AreEqual(SwitchOverMutableField(someNum), impl2);
-
-			// 2. Update the field values:
-
-			// 2.1. Updating the readonly field. The change should be ignored.
-			// ReSharper disable once PossibleNullReferenceException
-			typeof(JitOptimizedDispatchPerfTests)
-				.GetField(nameof(_implementationToUse1), BindingFlags.Static | BindingFlags.NonPublic)
-				.SetValue(null, ImplementationToUse.Implementation3);
-
-			//2.2. Updating the field.
-			// Should NOT be ignored;
-			_implementationToUse2 = ImplementationToUse.Implementation3;
-
-			// 3. Now, the assertions:
-			// Nothing changed
-			Assert.AreEqual(DirectCall(someNum), impl2);
-			// Same as previous call (switch thrown away by JIT)
-			Assert.AreEqual(SwitchOverReadonlyField(someNum), impl2);
-			// Uses implementation 3
-			Assert.AreEqual(SwitchOverMutableField(someNum), impl3);
-		}
-		#endregion
-
+		#region PerfTest helpers
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static int Implementation1(int i) => i * i;
 
@@ -154,5 +78,81 @@ namespace CodeJam
 			}
 		}
 		#endregion
+
+		#endregion
+
+		#region Assertion to proof the idea works at all
+		[Test]
+		public void AssertJitOptimizedDispatch()
+		{
+			const int someNum = 1024;
+			var impl2 = Implementation2(someNum);
+			var impl3 = Implementation3(someNum);
+
+			// 1. Triggers JIT of the methods. Impl2 should be used.
+			Assert.AreEqual(DirectCall(someNum), impl2);
+			Assert.AreEqual(SwitchOverReadonlyField(someNum), impl2);
+			Assert.AreEqual(SwitchOverMutableField(someNum), impl2);
+
+			// 2. Update the field values:
+
+			// 2.1. Updating the readonly field. The change should be ignored.
+			// ReSharper disable once PossibleNullReferenceException
+			typeof(JitOptimizedDispatchPerfTests)
+				.GetField(nameof(_implementationToUse1), BindingFlags.Static | BindingFlags.NonPublic)
+				.SetValue(null, ImplementationToUse.Implementation3);
+
+			//2.2. Updating the field.
+			// Should NOT be ignored;
+			_implementationToUse2 = ImplementationToUse.Implementation3;
+
+			// 3. Now, the assertions:
+			// Nothing changed
+			Assert.AreEqual(DirectCall(someNum), impl2);
+			// Same as previous call (switch thrown away by JIT)
+			Assert.AreEqual(SwitchOverReadonlyField(someNum), impl2);
+			// Uses implementation 3
+			Assert.AreEqual(SwitchOverMutableField(someNum), impl3);
+		}
+		#endregion
+
+		private const int Count = 10 * 1000 * 1000;
+
+		[Test]
+		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+		public void RunJitOptimizedDispatchPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
+
+		[CompetitionBaseline]
+		public int Test00Baseline()
+		{
+			var sum = 0;
+			for (var i = 0; i < Count; i++)
+			{
+				sum += DirectCall(i);
+			}
+			return sum;
+		}
+
+		[CompetitionBenchmark(0.89, 1.09)]
+		public int Test01SwitchOverReadonlyField()
+		{
+			var sum = 0;
+			for (var i = 0; i < Count; i++)
+			{
+				sum += SwitchOverReadonlyField(i);
+			}
+			return sum;
+		}
+
+		[CompetitionBenchmark(1.18, 1.64)]
+		public int Test02SwitchOverMutableField()
+		{
+			var sum = 0;
+			for (var i = 0; i < Count; i++)
+			{
+				sum += SwitchOverMutableField(i);
+			}
+			return sum;
+		}
 	}
 }
