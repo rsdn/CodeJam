@@ -8,10 +8,20 @@ using JetBrains.Annotations;
 
 namespace CodeJam.RangesV2Alternatives
 {
-
+	[PublicAPI]
+	public interface ITestRange<T>
+	{
+		RangeBoundary<T> From { get; }
+		RangeBoundary<T> To { get; }
+	}
+	[PublicAPI]
+	public interface ITestRangeFactory<T, out TRange> : ITestRange<T> where TRange : ITestRange<T>
+	{
+		TRange CreateRange(RangeBoundary<T> from, RangeBoundary<T> to);
+	}
 
 	[PublicAPI]
-	public struct RangeStub<T> : IRangeFactory<T, RangeStub<T>>
+	public struct RangeStub<T> : ITestRangeFactory<T, RangeStub<T>>
 	{
 		public RangeStub(T from, T to)
 		{
@@ -50,7 +60,7 @@ namespace CodeJam.RangesV2Alternatives
 
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "BitwiseOperatorOnEnumWithoutFlags")]
-	public struct RangeStubCompact<T> : IRangeFactory<T, RangeStubCompact<T>>
+	public struct RangeStubCompact<T> : ITestRangeFactory<T, RangeStubCompact<T>>
 	{
 		private const RangeBoundaryKind FromMask = RangeBoundaryKind.Empty |
 			RangeBoundaryKind.NegativeInfinity |
@@ -87,7 +97,7 @@ namespace CodeJam.RangesV2Alternatives
 	}
 
 	[PublicAPI]
-	public struct RangeStub<T, TKey> : IRangeFactory<T, RangeStub<T, TKey>>
+	public struct RangeStub<T, TKey> : ITestRangeFactory<T, RangeStub<T, TKey>>
 	{
 		public RangeStub(T from, T to, TKey key)
 		{
@@ -116,8 +126,8 @@ namespace CodeJam.RangesV2Alternatives
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static TRange1 UnionCore<TRange1, TRange2, T>(this TRange1 range1, TRange2 range2)
-			where TRange1 : IRangeFactory<T, TRange1>
-			where TRange2 : IRange<T>
+			where TRange1 : ITestRangeFactory<T, TRange1>
+			where TRange2 : ITestRange<T>
 		{
 			var from = range1.From;
 			var to = range1.To;
@@ -133,15 +143,15 @@ namespace CodeJam.RangesV2Alternatives
 		}
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static RangeStub<T> Union<T, TRange>(this RangeStub<T> range1, TRange range2)
-			where TRange : IRange<T> =>
+			where TRange : ITestRange<T> =>
 			UnionCore<RangeStub<T>, TRange, T>(range1, range2);
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static RangeStubCompact<T> Union<T, TRange>(this RangeStubCompact<T> range1, TRange range2)
-			where TRange : IRange<T> =>
+			where TRange : ITestRange<T> =>
 			UnionCore<RangeStubCompact<T>, TRange, T>(range1, range2);
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static RangeStub<T, TKey> Union<T, TKey, TRange>(this RangeStub<T, TKey> range1, TRange range2)
-			where TRange : IRange<T> =>
+			where TRange : ITestRange<T> =>
 			UnionCore<RangeStub<T, TKey>, TRange, T>(range1, range2);
 	}
 }

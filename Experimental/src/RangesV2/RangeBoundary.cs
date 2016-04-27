@@ -29,10 +29,6 @@ namespace CodeJam.RangesV2
 			public int Compare(RangeBoundary<T> x, RangeBoundary<T> y) => y.CompareTo(x);
 			#endregion
 		}
-
-		/// <summary>The boundary kind compare function.</summary>
-		internal static readonly Func<RangeBoundaryKind, RangeBoundaryKind, int> BoundaryKindCompareFunc =
-			Operators<RangeBoundaryKind>.Compare;
 		#endregion
 
 		/// <summary>Checks that boundary1 is complementation for boundary1</summary>

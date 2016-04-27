@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using CodeJam.Arithmetic;
 
 using static CodeJam.PlatformDependent;
-using static CodeJam.RangesV2.RangeBoundary;
 
 namespace CodeJam.RangesV2
 {
@@ -81,7 +80,7 @@ namespace CodeJam.RangesV2
 			// If any boundary has no value - compare kinds
 			if (HasNoValue(boundaryKind1) || HasNoValue(boundaryKind2))
 			{
-				result = BoundaryKindCompareFunc(boundaryKind1, boundaryKind2);
+				result = ((byte)boundaryKind1).CompareTo((byte)boundaryKind2);
 			}
 			else
 			{
@@ -92,7 +91,7 @@ namespace CodeJam.RangesV2
 				// ReSharper disable once BitwiseOperatorOnEnumWithoutFlags
 				if (result == EqualResult && IsExclusiveKind(boundaryKind1 | boundaryKind2))
 				{
-					result = BoundaryKindCompareFunc(boundaryKind1, boundaryKind2);
+					result = ((byte)boundaryKind1).CompareTo((byte)boundaryKind2);
 				}
 			}
 			return result;
