@@ -42,6 +42,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -236,6 +237,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -430,6 +432,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -624,6 +627,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -818,6 +822,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -1012,6 +1017,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -1206,6 +1212,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -1400,6 +1407,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -1590,10 +1598,16 @@ namespace CodeJam.Collections
 			TSource item;
 			using (var e = source.GetEnumerator())
 			{
-				if (!e.MoveNext())
-					throw NoElementsException();
+				float value;
+				do
+				{
+					if (!e.MoveNext())
+						throw NoElementsException();
 
-				var value = selector(e.Current);
+					value = selector(e.Current);
+				}
+				while (float.IsNaN(value));
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -1633,10 +1647,15 @@ namespace CodeJam.Collections
 			TSource item;
 			using (var e = source.GetEnumerator())
 			{
-				if (!e.MoveNext())
-					return defaultValue;
+				float value;
+				do
+				{
+					if (!e.MoveNext())
+						return defaultValue;
 
-				var value = selector(e.Current);
+					value = selector(e.Current);
+				}
+				while (float.IsNaN(value));
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -1681,7 +1700,7 @@ namespace CodeJam.Collections
 
 					value = selector(e.Current);
 				}
-				while (!value.HasValue);
+				while (float.IsNaN(value.GetValueOrDefault(float.NaN)));
 
 				// Keep hold of the wrapped value, and do comparisons on that, rather than
 				// using the lifted operation each time.
@@ -1784,10 +1803,16 @@ namespace CodeJam.Collections
 			TSource item;
 			using (var e = source.GetEnumerator())
 			{
-				if (!e.MoveNext())
-					throw NoElementsException();
+				double value;
+				do
+				{
+					if (!e.MoveNext())
+						throw NoElementsException();
 
-				var value = selector(e.Current);
+					value = selector(e.Current);
+				}
+				while (double.IsNaN(value));
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -1827,10 +1852,15 @@ namespace CodeJam.Collections
 			TSource item;
 			using (var e = source.GetEnumerator())
 			{
-				if (!e.MoveNext())
-					return defaultValue;
+				double value;
+				do
+				{
+					if (!e.MoveNext())
+						return defaultValue;
 
-				var value = selector(e.Current);
+					value = selector(e.Current);
+				}
+				while (double.IsNaN(value));
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -1875,7 +1905,7 @@ namespace CodeJam.Collections
 
 					value = selector(e.Current);
 				}
-				while (!value.HasValue);
+				while (double.IsNaN(value.GetValueOrDefault(double.NaN)));
 
 				// Keep hold of the wrapped value, and do comparisons on that, rather than
 				// using the lifted operation each time.
@@ -1982,6 +2012,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -2180,6 +2211,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -2374,6 +2406,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -2568,6 +2601,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -2762,6 +2796,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -2956,6 +2991,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -3150,6 +3186,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -3344,6 +3381,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -3538,6 +3576,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -3728,10 +3767,16 @@ namespace CodeJam.Collections
 			TSource item;
 			using (var e = source.GetEnumerator())
 			{
-				if (!e.MoveNext())
-					throw NoElementsException();
+				float value;
+				do
+				{
+					if (!e.MoveNext())
+						throw NoElementsException();
 
-				var value = selector(e.Current);
+					value = selector(e.Current);
+				}
+				while (float.IsNaN(value));
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -3771,10 +3816,15 @@ namespace CodeJam.Collections
 			TSource item;
 			using (var e = source.GetEnumerator())
 			{
-				if (!e.MoveNext())
-					return defaultValue;
+				float value;
+				do
+				{
+					if (!e.MoveNext())
+						return defaultValue;
 
-				var value = selector(e.Current);
+					value = selector(e.Current);
+				}
+				while (float.IsNaN(value));
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -3819,7 +3869,7 @@ namespace CodeJam.Collections
 
 					value = selector(e.Current);
 				}
-				while (!value.HasValue);
+				while (float.IsNaN(value.GetValueOrDefault(float.NaN)));
 
 				// Keep hold of the wrapped value, and do comparisons on that, rather than
 				// using the lifted operation each time.
@@ -3922,10 +3972,16 @@ namespace CodeJam.Collections
 			TSource item;
 			using (var e = source.GetEnumerator())
 			{
-				if (!e.MoveNext())
-					throw NoElementsException();
+				double value;
+				do
+				{
+					if (!e.MoveNext())
+						throw NoElementsException();
 
-				var value = selector(e.Current);
+					value = selector(e.Current);
+				}
+				while (double.IsNaN(value));
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -3965,10 +4021,15 @@ namespace CodeJam.Collections
 			TSource item;
 			using (var e = source.GetEnumerator())
 			{
-				if (!e.MoveNext())
-					return defaultValue;
+				double value;
+				do
+				{
+					if (!e.MoveNext())
+						return defaultValue;
 
-				var value = selector(e.Current);
+					value = selector(e.Current);
+				}
+				while (double.IsNaN(value));
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -4013,7 +4074,7 @@ namespace CodeJam.Collections
 
 					value = selector(e.Current);
 				}
-				while (!value.HasValue);
+				while (double.IsNaN(value.GetValueOrDefault(double.NaN)));
 
 				// Keep hold of the wrapped value, and do comparisons on that, rather than
 				// using the lifted operation each time.
@@ -4120,6 +4181,7 @@ namespace CodeJam.Collections
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+
 				item = e.Current;
 				while (e.MoveNext())
 				{

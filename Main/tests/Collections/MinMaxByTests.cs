@@ -12,19 +12,23 @@ namespace CodeJam
 	{
 		#region NaN support
 		[TestCase(new[] { 1, double.NaN, 2, 3, 4, 5, 6 }, ExpectedResult = 1.0)]
-		public double MinByNaNOk(double[] source) =>
+		[TestCase(new[] { double.NaN, 1, 2, 3, 4, 5, 6 }, ExpectedResult = 1.0)]
+		public double MinByNaN(double[] source) =>
 			source.Select(v => new Item<double>(v)).MinBy(i => i.Value).Value;
 
+		[TestCase(new[] { 1, double.NaN, 2, 3, 4, 5, 6 }, ExpectedResult = 1.0)]
 		[TestCase(new[] { double.NaN, 1, 2, 3, 4, 5, 6 }, ExpectedResult = 1.0)]
-		public double MinByNaNFail(double[] source) =>
-			source.Select(v => new Item<double>(v)).MinBy(i => i.Value).Value;
+		public double MinByOrDefaultNaN(double[] source) =>
+			source.Select(v => new Item<double>(v)).MinByOrDefault(i => i.Value).Value;
+
+		[TestCase(new[] { 1, double.NaN, 2, 3, 4, 5, 6 }, ExpectedResult = 1.0)]
+		[TestCase(new[] { double.NaN, 1, 2, 3, 4, 5, 6 }, ExpectedResult = 1.0)]
+		public double? MinByNullableNaN(double[] source) =>
+			source.Select(v => new Item<double?>(v)).MinBy(i => i.Value).Value;
 
 		[TestCase(new[] { 1, double.NaN, 6, 5, 4, 3, 2, 1 }, ExpectedResult = 6.0)]
-		public double MaxByNaNOk(double[] source) =>
-			source.Select(v => new Item<double>(v)).MaxBy(i => i.Value).Value;
-
 		[TestCase(new[] { double.NaN, 6, 5, 4, 3, 2, 1 }, ExpectedResult = 6.0)]
-		public double MaxByNaNFail(double[] source) =>
+		public double MaxByNaN(double[] source) =>
 			source.Select(v => new Item<double>(v)).MaxBy(i => i.Value).Value;
 		#endregion
 
