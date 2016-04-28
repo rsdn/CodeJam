@@ -95,4 +95,20 @@ namespace CodeJam.Arithmetic
 
 		protected override string GetValueB(int i) => i.ToString();
 	}
+
+	/// <summary> Base class for enum perf tests </summary>
+	public abstract class EnumOperatorsBaseCase : OperatorsBaseCase<AttributeTargets>
+	{
+		protected override AttributeTargets GetValueA(int i) => (AttributeTargets)i;
+
+		protected override AttributeTargets GetValueB(int i) => (AttributeTargets)i;
+	}
+
+	/// <summary> Base class for nullable enum perf tests </summary>
+	public abstract class NullableEnumOperatorsBaseCase : OperatorsBaseCase<AttributeTargets?>
+	{
+		protected override AttributeTargets? GetValueA(int i) => i == 0 ? null : (AttributeTargets?)i;
+
+		protected override AttributeTargets? GetValueB(int i) => (AttributeTargets?)i;
+	}
 }

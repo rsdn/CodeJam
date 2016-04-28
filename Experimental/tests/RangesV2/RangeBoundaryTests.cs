@@ -13,6 +13,7 @@ namespace CodeJam.RangesV2
 	[SuppressMessage("ReSharper", "ObjectCreationAsStatement")]
 	[SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
 	[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
+	[SuppressMessage("ReSharper", "ConvertToConstant.Local")]
 	public class RangeBoundaryTests
 	{
 		[Test]

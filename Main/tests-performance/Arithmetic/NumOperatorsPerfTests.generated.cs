@@ -20,7 +20,7 @@ using static CodeJam.AssemblyWideConfig;
 
 namespace CodeJam.Arithmetic
 {
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Operators (generated)")]
+	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Operators (generated)")]
 	[CompetitionMetadata("CodeJam.Arithmetic.NumOperatorsPerfTests.generated.xml")]
 	[Explicit("Server run speed not stable")]
 	public class NumOperatorsPerfTests
@@ -79,24 +79,6 @@ namespace CodeJam.Arithmetic
 				return result;
 			}
 		}
-		#endregion
-
-		#region AreEqual
-		#endregion
-
-		#region AreNotEqual
-		#endregion
-
-		#region GreaterThan
-		#endregion
-
-		#region GreaterThanOrEqual
-		#endregion
-
-		#region LessThan
-		#endregion
-
-		#region LessThanOrEqual
 		#endregion
 
 		#region Plus

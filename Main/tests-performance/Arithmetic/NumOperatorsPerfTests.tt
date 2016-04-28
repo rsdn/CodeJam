@@ -22,6 +22,8 @@ namespace CodeJam.Arithmetic
 	{
 <#bool addFirstRegion = false;
 foreach (var op in ops) {
+	if (op.OpType == OpType.Comparison)
+		continue;
 	bool addFirst = false;
 	WriteSeparatorLine(ref addFirstRegion);#>
 		#region <#=op.Name#>
