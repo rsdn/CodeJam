@@ -16,6 +16,7 @@ namespace CodeJam.Assertions
 	[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
 	public class CodeTests
 	{
+		#region Test helpers
 		private bool? _breakOnException;
 		private CultureInfo _previousCulture;
 
@@ -38,6 +39,7 @@ namespace CodeJam.Assertions
 			CodeExceptions.BreakOnException = _breakOnException.GetValueOrDefault();
 			Thread.CurrentThread.CurrentUICulture = _previousCulture;
 		}
+		#endregion
 
 		[Test]
 		public void TestNotNull()

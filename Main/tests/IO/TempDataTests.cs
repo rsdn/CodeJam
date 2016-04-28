@@ -9,8 +9,10 @@ namespace CodeJam.IO
 	[TestFixture(Category = "Temp data")]
 	public class TempDataTests
 	{
+		#region Test helpers
 		private static void AssertDisposed<T>(Func<T> memberCallback) =>
 			Assert.Throws<ObjectDisposedException>(() => memberCallback());
+		#endregion
 
 		[Test]
 		public void Test01Directory()

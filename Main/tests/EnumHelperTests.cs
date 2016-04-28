@@ -18,7 +18,7 @@ namespace CodeJam
 	[SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
 	public class EnumHelperTests
 	{
-		#region Enum constants
+		#region Test helpers
 		[Flags]
 		private enum F: byte
 		{

@@ -10,7 +10,7 @@ namespace CodeJam.Arithmetic
 	[SuppressMessage("ReSharper", "UnusedParameter.Local")]
 	public partial class OperatorsTests
 	{
-		#region Helper types
+		#region Test helpers
 		private class ClassNoComparable { }
 
 		private class ClassComparable : IComparable
@@ -71,13 +71,13 @@ namespace CodeJam.Arithmetic
 
 			public static bool operator <=(ClassOperatorsComparable2 a, ClassOperatorsComparable2 b) => true;
 		}
-		#endregion
 
 		private static void AssertOperator<T>(Func<T> opGetter) =>
 			Assert.DoesNotThrow(() => opGetter());
 
 		private static void AssertNoOperator<T>(Func<T> opGetter) =>
 			Assert.Throws<NotSupportedException>(() => opGetter());
+		#endregion
 
 		[Test]
 		public void Test00OperatorsSupported()
