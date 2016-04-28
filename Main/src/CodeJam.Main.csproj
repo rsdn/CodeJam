@@ -82,10 +82,10 @@
     <Compile Include="Algorithms\UpperBound.IComparable.cs" />
     <Compile Include="Algorithms\UpperBound.Comparer.cs" />
     <Compile Include="Arithmetic\NamespaceDoc.cs" />
-    <Compile Include="Arithmetic\Operators.Numeric.generated.cs">
+    <Compile Include="Arithmetic\Operators.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Operators.Numeric.tt</DependentUpon>
+      <DependentUpon>Operators.tt</DependentUpon>
     </Compile>
     <Compile Include="Arithmetic\OperatorsFactory.cs" />
     <Compile Include="Arithmetic\Operators.cs" />
@@ -238,9 +238,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LowerBound.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Arithmetic\Operators.Numeric.tt">
+    <Content Include="Arithmetic\Operators.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Operators.Numeric.generated.cs</LastGenOutput>
+      <LastGenOutput>Operators.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Reflection\ExpressionHelper.Func.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
