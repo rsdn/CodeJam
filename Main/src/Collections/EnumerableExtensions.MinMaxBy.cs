@@ -45,7 +45,7 @@ namespace CodeJam.Collections
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, TValue> selector,
 			TSource defaultValue = default(TSource)) =>
-				MinByOrDefault(source, selector, Comparer<TValue>.Default);
+				MinByOrDefault(source, selector, Comparer<TValue>.Default, defaultValue);
 
 		/// <summary>
 		/// Invokes a <paramref name="selector"/> on each element of a <paramref name="source"/>
@@ -178,7 +178,7 @@ namespace CodeJam.Collections
 				using (var e = source.GetEnumerator())
 				{
 					if (!e.MoveNext())
-						return default(TSource);
+						return defaultValue;
 
 					value = selector(e.Current);
 					item = e.Current;
@@ -363,7 +363,7 @@ namespace CodeJam.Collections
 				using (var e = source.GetEnumerator())
 				{
 					if (!e.MoveNext())
-						return default(TSource);
+						return defaultValue;
 
 					value = selector(e.Current);
 					item = e.Current;
