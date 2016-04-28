@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
+using System.Reflection;
 
 using CodeJam.Collections;
 using CodeJam.Reflection;
@@ -90,6 +91,9 @@ namespace CodeJam.Arithmetic
 			}
 		}
 
+		private static NotSupportedException MethodNotSupported(Type type, string methodName, Exception ex) =>
+			new NotSupportedException($"The type {type.Name} has no method {methodName} defined.", ex);
+
 		private static NotSupportedException NotSupported<T>(ExpressionType operatorType, Exception ex) =>
 			new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);
 
@@ -145,6 +149,12 @@ namespace CodeJam.Arithmetic
 			if (t == typeof(string))
 				return (Func<T, T, int>)(object)(Func<string, string, int>)string.CompareOrdinal;
 
+			if (t.IsEnum)
+				return EnumComparison<T>(false);
+
+			if (t.IsNullableEnum())
+				return EnumComparison<T>(true);
+
 			if (t.IsNullable())
 				t = t.GetGenericArguments()[0];
 
@@ -154,6 +164,105 @@ namespace CodeJam.Arithmetic
 
 			return Comparer<T>.Default.Compare;
 		}
+
+		#region Enum comparison
+		private static Func<T, T, int> EnumComparison<T>(bool nullable)
+		{
+			var underlyingType = typeof(T);
+			if (nullable)
+			{
+				underlyingType = underlyingType.ToUnderlying();
+			}
+			underlyingType = underlyingType.GetEnumUnderlyingType();
+
+			const string compareMethodName = nameof(int.CompareTo);
+			var compareMethod = underlyingType.GetMethod(compareMethodName, new[] { underlyingType });
+			if (compareMethod == null)
+				throw MethodNotSupported(underlyingType, compareMethodName, null);
+
+			const string compareToName = nameof(int.CompareTo);
+
+			// returns (a,b)=> a_Underlying.CompareTo(b_Underlying)
+
+			var argA = Parameter(typeof(T), "arg1");
+			var argB = Parameter(typeof(T), "arg2");
+
+			Expression body;
+			try
+			{
+				body = nullable
+					? BuildNullableEnumComparisonCore<T>(compareMethod, argA, argB)
+					: BuildEnumComparisonCore(compareMethod, argA, argB);
+			}
+			catch (Exception ex)
+			{
+				throw MethodNotSupported(compareMethod.DeclaringType, compareMethod.Name, ex);
+			}
+
+			var result = Lambda<Func<T, T, int>>(body, compareToName, new[] { argA, argB });
+
+			try
+			{
+				return result.Compile();
+			}
+			catch (Exception ex)
+			{
+				throw MethodNotSupported(compareMethod.DeclaringType, compareMethod.Name, ex);
+			}
+		}
+
+		[SuppressMessage("ReSharper", "SuggestBaseTypeForParameter")]
+		[SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+		private static MethodCallExpression BuildEnumComparisonCore(
+			MethodInfo compareMethod,
+			ParameterExpression argA,
+			ParameterExpression argB)
+		{
+			var underlyingType = compareMethod.DeclaringType;
+
+			// (a,b)=> a_Underlying.CompareTo(b_Underlying)
+			return Call(
+				Convert(argA, underlyingType),
+				compareMethod,
+				Convert(argB, underlyingType));
+		}
+
+		[SuppressMessage("ReSharper", "SuggestBaseTypeForParameter")]
+		[SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+		private static Expression BuildNullableEnumComparisonCore<T>(
+			MethodInfo compareMethod,
+			ParameterExpression argA,
+			ParameterExpression argB)
+		{
+			var underlyingType = compareMethod.DeclaringType;
+			var nullConst = Constant(null, typeof(T));
+
+			// (b == null ? 0 : -1)
+			var caseIfAIsNull =
+				Condition(
+					Equal(argB, nullConst),
+					Constant(0, typeof(int)),
+					Constant(-1, typeof(int)));
+
+			// (b == null ? 1 : ((underlyingType)a).CompareTo((underlyingType)b))
+			var caseIfAIsNotNull =
+				Condition(
+					Equal(argB, nullConst),
+					Constant(1, typeof(int)),
+					Call(
+						Convert(argA, underlyingType),
+						compareMethod,
+						Convert(argB, underlyingType)));
+
+			//	a == null
+			//		? (b == null ? 0 : -1)
+			//		: (b == null ? 1 : ((underlyingType)a).CompareTo((underlyingType)b));
+			return Condition(
+				Equal(argA, nullConst),
+				caseIfAIsNull,
+				caseIfAIsNotNull);
+		}
+		#endregion
 
 		/// <summary>Compare operator factory method..</summary>
 		/// <typeparam name="T">The type of the operands</typeparam>
