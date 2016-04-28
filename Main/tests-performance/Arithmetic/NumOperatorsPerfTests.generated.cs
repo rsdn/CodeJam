@@ -20,7 +20,7 @@ using static CodeJam.AssemblyWideConfig;
 
 namespace CodeJam.Arithmetic
 {
-	[TestFixture(Category = BenchmarkConstants.BenchmarkCategory + ": Operators (generated)")]
+	[TestFixture(Category = PerfTestsConstants.BenchmarkCategory + ": Operators (generated)")]
 	[CompetitionMetadata("CodeJam.Arithmetic.NumOperatorsPerfTests.generated.xml")]
 	[Explicit("Server run speed not stable")]
 	public class NumOperatorsPerfTests
