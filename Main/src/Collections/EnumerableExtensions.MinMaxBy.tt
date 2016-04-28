@@ -22,6 +22,7 @@ namespace CodeJam.Collections
 <#
 		foreach (var type in new[] { "byte", "sbyte", "short", "ushort", "int", "uint", "long", "ulong", "float", "double", "decimal" })
 		{
+			var hasNaN = type == "float" || type == "double";
 #>
 		#region <#= type #>
 		/// <summary>
@@ -43,10 +44,24 @@ namespace CodeJam.Collections
 			TSource item;
 			using (var e = source.GetEnumerator())
 			{
+<#			if (hasNaN) {#>
+				<#=type#> value;
+				do
+				{
+					if (!e.MoveNext())
+						throw NoElementsException();
+
+					value = selector(e.Current);
+				}
+				while (<#=type#>.IsNaN(value));
+<#			}#>
+<#			else {#>
 				if (!e.MoveNext())
 					throw NoElementsException();
 
 				var value = selector(e.Current);
+<#			}#>
+
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -86,10 +101,23 @@ namespace CodeJam.Collections
 			TSource item;
 			using (var e = source.GetEnumerator())
 			{
+<#			if (hasNaN) {#>
+				<#=type#> value;
+				do
+				{
+					if (!e.MoveNext())
+						return defaultValue;
+
+					value = selector(e.Current);
+				}
+				while (<#=type#>.IsNaN(value));
+<#			}#>
+<#			else {#>
 				if (!e.MoveNext())
 					return defaultValue;
 
 				var value = selector(e.Current);
+<#			}#>
 				item = e.Current;
 				while (e.MoveNext())
 				{
@@ -134,7 +162,11 @@ namespace CodeJam.Collections
 
 					value = selector(e.Current);
 				}
+<#			if (hasNaN) {#>
+				while (<#=type#>.IsNaN(value.GetValueOrDefault(<#=type#>.NaN)));
+<#			} else {#>
 				while (!value.HasValue);
+<#			}#>
 
 				// Keep hold of the wrapped value, and do comparisons on that, rather than
 				// using the lifted operation each time.

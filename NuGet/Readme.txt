@@ -1,5 +1,9 @@
-CodeJam 1.0.0-rc2 Release Notes
+CodeJam 1.0.0 Release Notes
 ---------------------------------
+
+What's new in 1.0.0
+----------------------
+* Fixed MinBy/MaxBy behavior with NaN values
 
 What's new in 1.0.0-rc2
 ----------------------

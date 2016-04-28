@@ -7,18 +7,40 @@ using NUnit.Framework;
 
 namespace CodeJam
 {
-	[TestFixture]
+	[TestFixture(Category = "MinMaxBy")]
 	public partial class MinMaxByTests
 	{
+		#region NaN support
+		[TestCase(new[] { 1, double.NaN, 2, 3, 4, 5, 6 }, ExpectedResult = 1.0)]
+		[TestCase(new[] { double.NaN, 1, 2, 3, 4, 5, 6 }, ExpectedResult = 1.0)]
+		public double MinByNaN(double[] source) =>
+			source.Select(v => new Item<double>(v)).MinBy(i => i.Value).Value;
+
+		[TestCase(new[] { 1, double.NaN, 2, 3, 4, 5, 6 }, ExpectedResult = 1.0)]
+		[TestCase(new[] { double.NaN, 1, 2, 3, 4, 5, 6 }, ExpectedResult = 1.0)]
+		public double MinByOrDefaultNaN(double[] source) =>
+			source.Select(v => new Item<double>(v)).MinByOrDefault(i => i.Value).Value;
+
+		[TestCase(new[] { 1, double.NaN, 2, 3, 4, 5, 6 }, ExpectedResult = 1.0)]
+		[TestCase(new[] { double.NaN, 1, 2, 3, 4, 5, 6 }, ExpectedResult = 1.0)]
+		public double? MinByNullableNaN(double[] source) =>
+			source.Select(v => new Item<double?>(v)).MinBy(i => i.Value).Value;
+
+		[TestCase(new[] { 1, double.NaN, 6, 5, 4, 3, 2, 1 }, ExpectedResult = 6.0)]
+		[TestCase(new[] { double.NaN, 6, 5, 4, 3, 2, 1 }, ExpectedResult = 6.0)]
+		public double MaxByNaN(double[] source) =>
+			source.Select(v => new Item<double>(v)).MaxBy(i => i.Value).Value;
+		#endregion
+
 		#region Min
-		[TestCase(new[] {3, 1, 0, 4, 6}, ExpectedResult = "0")]
-		[TestCase(new[] {1}, ExpectedResult = "1")]
+		[TestCase(new[] { 3, 1, 0, 4, 6 }, ExpectedResult = "0")]
+		[TestCase(new[] { 1 }, ExpectedResult = "1")]
 		public string MinByString(int[] source) =>
 			source.Select(v => new Item<string>(v.ToString())).MinBy(i => i.Value)?.Value;
 
 
 		[TestCase(arg: new string[0])]
-		[TestCase(arg: new string[] {null, null})]
+		[TestCase(arg: new string[] { null, null })]
 		public void MinByStringNoElements(string[] source) =>
 			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
 			Assert.Throws<InvalidOperationException>(() => source.MinBy(s => s));
