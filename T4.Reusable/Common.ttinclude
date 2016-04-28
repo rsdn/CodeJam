@@ -4,10 +4,45 @@
 		{
 			return string.Join(separator, Enumerable.Range(1, count).Select(elem));
 		}
-		protected void WriteSeparatorLine(ref bool addFirst)
+
+		protected void WriteLine()
 		{
-			if (!addFirst)
-				addFirst = true;
+			WriteLine("");
+		}
+
+		protected void WriteSeparatorLine(ref bool notFirstItem)
+		{
+			if (!notFirstItem)
+				notFirstItem = true;
 			else
 				WriteLine("");
+		}
+
+		private string _regionName;
+		protected void WriteRegionLine(string regionName)
+		{
+			if (_regionName == null)
+			{
+				_regionName = regionName;
+				WriteLine("\t\t#region " + regionName);
+			}
+			else if (_regionName != regionName)
+			{
+				_regionName = regionName;
+				WriteLine("\t\t#endregion");
+				WriteLine();
+				WriteLine("\t\t#region " + regionName);
+			}
+			else
+			{
+				WriteLine();
+			}
+		}
+		protected void WriteEndregionLine()
+		{
+			if (_regionName != null)
+			{
+				_regionName = null;
+				WriteLine("\t\t#endregion");
+			}
 		}#>

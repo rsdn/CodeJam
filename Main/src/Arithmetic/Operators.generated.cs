@@ -23,6 +23,7 @@ namespace CodeJam.Arithmetic
 	static partial class Operators<T>
 	{
 		#region Unary
+		/// <summary>UnaryMinus operator factory.</summary>
 		private static readonly Lazy<Func<T, T>> _unaryMinus =
 			new Lazy<Func<T, T>>(() => UnaryOperator<T>(ExpressionType.Negate), LazyMode);
 
@@ -31,6 +32,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T> UnaryMinus => _unaryMinus.Value;
 
+		/// <summary>OnesComplement operator factory.</summary>
 		private static readonly Lazy<Func<T, T>> _onesComplement =
 			new Lazy<Func<T, T>>(() => UnaryOperator<T>(ExpressionType.OnesComplement), LazyMode);
 
@@ -41,6 +43,7 @@ namespace CodeJam.Arithmetic
 		#endregion
 
 		#region Comparison
+		/// <summary>AreEqual operator factory.</summary>
 		private static readonly Lazy<Func<T, T, bool>> _areEqual =
 			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.Equal), LazyMode);
 		
@@ -49,6 +52,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, bool> AreEqual => _areEqual.Value;
 
+		/// <summary>AreNotEqual operator factory.</summary>
 		private static readonly Lazy<Func<T, T, bool>> _areNotEqual =
 			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.NotEqual), LazyMode);
 		
@@ -57,6 +61,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, bool> AreNotEqual => _areNotEqual.Value;
 
+		/// <summary>GreaterThan operator factory.</summary>
 		private static readonly Lazy<Func<T, T, bool>> _greaterThan =
 			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.GreaterThan), LazyMode);
 		
@@ -65,6 +70,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, bool> GreaterThan => _greaterThan.Value;
 
+		/// <summary>GreaterThanOrEqual operator factory.</summary>
 		private static readonly Lazy<Func<T, T, bool>> _greaterThanOrEqual =
 			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.GreaterThanOrEqual), LazyMode);
 		
@@ -73,6 +79,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, bool> GreaterThanOrEqual => _greaterThanOrEqual.Value;
 
+		/// <summary>LessThan operator factory.</summary>
 		private static readonly Lazy<Func<T, T, bool>> _lessThan =
 			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.LessThan), LazyMode);
 		
@@ -81,6 +88,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, bool> LessThan => _lessThan.Value;
 
+		/// <summary>LessThanOrEqual operator factory.</summary>
 		private static readonly Lazy<Func<T, T, bool>> _lessThanOrEqual =
 			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.LessThanOrEqual), LazyMode);
 		
@@ -91,6 +99,7 @@ namespace CodeJam.Arithmetic
 		#endregion
 
 		#region Binary
+		/// <summary>Plus operator factory.</summary>
 		private static readonly Lazy<Func<T, T, T>> _plus =
 			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.Add), LazyMode);
 
@@ -99,6 +108,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, T> Plus => _plus.Value;
 
+		/// <summary>Minus operator factory.</summary>
 		private static readonly Lazy<Func<T, T, T>> _minus =
 			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.Subtract), LazyMode);
 
@@ -107,6 +117,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, T> Minus => _minus.Value;
 
+		/// <summary>Mul operator factory.</summary>
 		private static readonly Lazy<Func<T, T, T>> _mul =
 			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.Multiply), LazyMode);
 
@@ -115,6 +126,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, T> Mul => _mul.Value;
 
+		/// <summary>Div operator factory.</summary>
 		private static readonly Lazy<Func<T, T, T>> _div =
 			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.Divide), LazyMode);
 
@@ -123,6 +135,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, T> Div => _div.Value;
 
+		/// <summary>Modulo operator factory.</summary>
 		private static readonly Lazy<Func<T, T, T>> _modulo =
 			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.Modulo), LazyMode);
 
@@ -131,6 +144,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, T> Modulo => _modulo.Value;
 
+		/// <summary>Xor operator factory.</summary>
 		private static readonly Lazy<Func<T, T, T>> _xor =
 			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.ExclusiveOr), LazyMode);
 
@@ -139,6 +153,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, T> Xor => _xor.Value;
 
+		/// <summary>BitwiseAnd operator factory.</summary>
 		private static readonly Lazy<Func<T, T, T>> _bitwiseAnd =
 			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.And), LazyMode);
 
@@ -147,6 +162,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, T> BitwiseAnd => _bitwiseAnd.Value;
 
+		/// <summary>BitwiseOr operator factory.</summary>
 		private static readonly Lazy<Func<T, T, T>> _bitwiseOr =
 			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.Or), LazyMode);
 
@@ -155,6 +171,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, T> BitwiseOr => _bitwiseOr.Value;
 
+		/// <summary>LeftShift operator factory.</summary>
 		private static readonly Lazy<Func<T, T, T>> _leftShift =
 			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.LeftShift), LazyMode);
 
@@ -163,6 +180,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, T> LeftShift => _leftShift.Value;
 
+		/// <summary>RightShift operator factory.</summary>
 		private static readonly Lazy<Func<T, T, T>> _rightShift =
 			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.RightShift), LazyMode);
 
