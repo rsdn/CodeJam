@@ -75,6 +75,7 @@
     <Compile Include="IO\TempDataTests.cs" />
     <Compile Include="DisposableTests.cs" />
     <Compile Include="QueryableExtensionsTests.cs" />
+    <Compile Include="Reflection\ExpressionHelperTests.cs" />
     <Compile Include="Reflection\AssemblyExtensionsTest.cs" />
     <Compile Include="Reflection\CreateInstanceTests.cs" />
     <Compile Include="Services\ServicesTests.cs" />

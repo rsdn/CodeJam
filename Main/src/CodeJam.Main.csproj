@@ -108,6 +108,11 @@
     <Compile Include="EnumHelper.cs" />
     <Compile Include="IO\NamespaceDoc.cs" />
     <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="Reflection\ExpressionHelper.Func.generated.cs">
+      <DependentUpon>ExpressionHelper.Func.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reflection\NamespaceDoc.cs" />
     <Compile Include="Services\NamespaceDoc.cs" />
     <Compile Include="Strings\NamespaceDoc.cs" />
@@ -213,7 +218,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Compile.tt</DependentUpon>
     </None>
-    <Compile Include="Reflection\ReflectionExtension.CreateInstance.cs" />
+    <Compile Include="Reflection\ReflectionExtensions.CreateInstance.cs" />
     <None Include="Strings\CharMethods.ttinclude" />
   </ItemGroup>
   <ItemGroup>
@@ -236,6 +241,10 @@
     <Content Include="Arithmetic\Operators.Numeric.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Operators.Numeric.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Reflection\ExpressionHelper.Func.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ExpressionHelper.Func.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Strings\CharExtensions.Infix.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

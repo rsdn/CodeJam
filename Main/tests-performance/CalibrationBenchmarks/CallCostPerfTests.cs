@@ -24,6 +24,7 @@ namespace CodeJam
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_SimpleTypes")]
 	[SuppressMessage("ReSharper", "UnusedTypeParameter")]
+	// WAITINGFOR: https://github.com/PerfDotNet/BenchmarkDotNet/issues/126.
 	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	[PublicAPI]
 	public class CallCostPerfTests
@@ -112,7 +113,6 @@ namespace CodeJam
 		private const int Count = 100 * 1000;
 
 		[Test]
-		// WAITINGFOR: https://github.com/PerfDotNet/BenchmarkDotNet/issues/126.
 		public void RunCallCostPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		[CompetitionBaseline]

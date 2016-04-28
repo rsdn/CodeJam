@@ -10,7 +10,7 @@ namespace CodeJam.Reflection
 	/// Provides a helper class to get the property, field, ctor or method from an expression.
 	/// </summary>
 	[PublicAPI]
-	public static class ExpressionHelper
+	public static partial class ExpressionHelper
 	{
 		/// <summary>
 		/// Gets the <see cref="MemberInfo"/>.
