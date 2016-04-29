@@ -46,6 +46,7 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(ReqPrmsCtor), new[] { "!a:aval", "!c:cval" })]
 		[TestCase(typeof(OptsPrmsCtor), new[] { "!c:cval" })]
 		public void NoSuitableCtors(Type type, string[] paramStrs) =>
+			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
 			Assert.Throws<ArgumentException>(() => type.CreateInstance(ParseParams(paramStrs)));
 
 		private class ParamlessCtor

@@ -17,12 +17,13 @@ namespace CodeJam.Reflection
 	/// <summary>
 	/// Provides a helper class to get the property, field, ctor or method from an expression.
 	/// </summary>
-	public static partial class ExpressionHelper
+	public static class Expr
 	{
 		#region Action<...>
 		/// <summary>Helper for type inference from the lambda expression.</summary>
 		/// <param name="actionExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Action> Action(Expression<Action> actionExpression) =>
 			actionExpression;
 
@@ -30,6 +31,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="T1">The type of argument #1.</typeparam>
 		/// <param name="actionExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Action<T1>> Action<T1>(Expression<Action<T1>> actionExpression) =>
 			actionExpression;
 
@@ -38,6 +40,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="T2">The type of argument #2.</typeparam>
 		/// <param name="actionExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Action<T1, T2>> Action<T1, T2>(Expression<Action<T1, T2>> actionExpression) =>
 			actionExpression;
 
@@ -47,6 +50,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="T3">The type of argument #3.</typeparam>
 		/// <param name="actionExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Action<T1, T2, T3>> Action<T1, T2, T3>(Expression<Action<T1, T2, T3>> actionExpression) =>
 			actionExpression;
 
@@ -57,6 +61,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="T4">The type of argument #4.</typeparam>
 		/// <param name="actionExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Action<T1, T2, T3, T4>> Action<T1, T2, T3, T4>(Expression<Action<T1, T2, T3, T4>> actionExpression) =>
 			actionExpression;
 
@@ -68,6 +73,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="T5">The type of argument #5.</typeparam>
 		/// <param name="actionExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Action<T1, T2, T3, T4, T5>> Action<T1, T2, T3, T4, T5>(Expression<Action<T1, T2, T3, T4, T5>> actionExpression) =>
 			actionExpression;
 
@@ -80,6 +86,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="T6">The type of argument #6.</typeparam>
 		/// <param name="actionExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Action<T1, T2, T3, T4, T5, T6>> Action<T1, T2, T3, T4, T5, T6>(Expression<Action<T1, T2, T3, T4, T5, T6>> actionExpression) =>
 			actionExpression;
 
@@ -93,6 +100,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="T7">The type of argument #7.</typeparam>
 		/// <param name="actionExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Action<T1, T2, T3, T4, T5, T6, T7>> Action<T1, T2, T3, T4, T5, T6, T7>(Expression<Action<T1, T2, T3, T4, T5, T6, T7>> actionExpression) =>
 			actionExpression;
 		#endregion
@@ -102,6 +110,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="funcExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Func<TResult>> Func<TResult>(Expression<Func<TResult>> funcExpression) =>
 			funcExpression;
 
@@ -110,6 +119,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="funcExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Func<T1, TResult>> Func<T1, TResult>(Expression<Func<T1, TResult>> funcExpression) =>
 			funcExpression;
 
@@ -119,6 +129,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="funcExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Func<T1, T2, TResult>> Func<T1, T2, TResult>(Expression<Func<T1, T2, TResult>> funcExpression) =>
 			funcExpression;
 
@@ -129,6 +140,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="funcExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Func<T1, T2, T3, TResult>> Func<T1, T2, T3, TResult>(Expression<Func<T1, T2, T3, TResult>> funcExpression) =>
 			funcExpression;
 
@@ -140,6 +152,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="funcExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Func<T1, T2, T3, T4, TResult>> Func<T1, T2, T3, T4, TResult>(Expression<Func<T1, T2, T3, T4, TResult>> funcExpression) =>
 			funcExpression;
 
@@ -152,6 +165,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="funcExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Func<T1, T2, T3, T4, T5, TResult>> Func<T1, T2, T3, T4, T5, TResult>(Expression<Func<T1, T2, T3, T4, T5, TResult>> funcExpression) =>
 			funcExpression;
 
@@ -165,6 +179,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="funcExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Func<T1, T2, T3, T4, T5, T6, TResult>> Func<T1, T2, T3, T4, T5, T6, TResult>(Expression<Func<T1, T2, T3, T4, T5, T6, TResult>> funcExpression) =>
 			funcExpression;
 
@@ -179,6 +194,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="funcExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Func<T1, T2, T3, T4, T5, T6, T7, TResult>> Func<T1, T2, T3, T4, T5, T6, T7, TResult>(Expression<Func<T1, T2, T3, T4, T5, T6, T7, TResult>> funcExpression) =>
 			funcExpression;
 		#endregion

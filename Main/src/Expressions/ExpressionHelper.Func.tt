@@ -10,7 +10,7 @@ namespace CodeJam.Reflection
 	/// <summary>
 	/// Provides a helper class to get the property, field, ctor or method from an expression.
 	/// </summary>
-	public static partial class ExpressionHelper
+	public static class Expr
 	{
 		#region Action<...>
 <#		for (int i = 0; i < 8; i++)
@@ -42,6 +42,7 @@ namespace CodeJam.Reflection
 <#+			}#>
 		/// <param name="actionExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Action<#=typeList#>> Action<#=typeList#>(Expression<Action<#=typeList#>> actionExpression) =>
 			actionExpression;
 <#+		}
@@ -58,6 +59,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="funcExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
+		[Pure]
 		public static Expression<Func<#=typeList#>> Func<#=typeList#>(Expression<Func<#=typeList#>> funcExpression) =>
 			funcExpression;
 <#+		}
