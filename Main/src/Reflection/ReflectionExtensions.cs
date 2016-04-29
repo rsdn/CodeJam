@@ -249,5 +249,22 @@ namespace CodeJam.Reflection
 				 type.Name.StartsWith("VB$AnonymousType", StringComparison.Ordinal) &&
 				Attribute.IsDefined(type, typeof(CompilerGeneratedAttribute), false));
 		}
+
+		/// <summary>
+		/// Returns default constructor.
+		/// </summary>
+		/// <param name="type">A <see cref="System.Type"/> instance. </param>
+		/// <returns></returns>
+		[Pure]
+		public static ConstructorInfo GetDefaultConstructor([NotNull] this Type type)
+		{
+			if (type == null) throw new ArgumentNullException(nameof(type));
+
+			return type.GetConstructor(
+				BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public,
+				null,
+				Type.EmptyTypes,
+				null);
+		}
 	}
 }

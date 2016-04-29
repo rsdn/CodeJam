@@ -105,6 +105,7 @@
     <Compile Include="Collections\NamespaceDoc.cs" />
     <Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
     <Compile Include="Collections\QueryableExtensions.cs" />
+    <Compile Include="Expressions\ExpressionExtensions.cs" />
     <Compile Include="IO\NamespaceDoc.cs" />
     <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Reflection\NamespaceDoc.cs" />
