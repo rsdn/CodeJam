@@ -51,10 +51,10 @@
     <Compile Include="Algorithms\EqualRangeTest.cs" />
     <Compile Include="Algorithms\UpperBoundTest.cs" />
     <Compile Include="Arithmetic\OperatorsTests.cs" />
-    <Compile Include="Arithmetic\OperatorsTests.Numeric.generated.cs">
+    <Compile Include="Arithmetic\OperatorsTests.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OperatorsTests.Numeric.tt</DependentUpon>
+      <DependentUpon>OperatorsTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Assertions\CodeTests.cs" />
     <Compile Include="Collections\MinMaxByTests.cs" />
@@ -103,9 +103,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Arithmetic\OperatorsTests.Numeric.tt">
+    <Content Include="Arithmetic\OperatorsTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>OperatorsTests.Numeric.generated.cs</LastGenOutput>
+      <LastGenOutput>OperatorsTests.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Collections\MinMaxByTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

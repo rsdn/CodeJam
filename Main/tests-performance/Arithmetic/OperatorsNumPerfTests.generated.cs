@@ -17,10 +17,10 @@ using static CodeJam.AssemblyWideConfig;
 
 namespace CodeJam.Arithmetic
 {
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Operators (generated)")]
-	[CompetitionMetadata("CodeJam.Arithmetic.NumOperatorsPerfTests.generated.xml")]
-	[Explicit("Server run speed not stable")]
-	public class NumOperatorsPerfTests
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Operators<T>.Numeric")]
+	[CompetitionMetadata("CodeJam.Arithmetic.OperatorsNumPerfTests.generated.xml")]
+	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+	public class OperatorsNumPerfTests
 	{
 		#region Unary
 		#region UnaryMinus
@@ -117,7 +117,7 @@ namespace CodeJam.Arithmetic
 		public class IntPlusCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opPlus = Operators<int>.Plus;
-			private static readonly Func<int, int, int> _emittedPlus = (a, b) => a+b;
+			private static readonly Func<int, int, int> _emittedPlus = (a, b) => a + b;
 
 			[CompetitionBaseline]
 			public int Test00PlusBaseline()
@@ -127,7 +127,7 @@ namespace CodeJam.Arithmetic
 				{
 					var a = ValuesA[i];
 					var b = ValuesB[i];
-					result = a+b;
+					result = a + b;
 				}
 				return result;
 			}
@@ -158,7 +158,7 @@ namespace CodeJam.Arithmetic
 		public class NullableDoublePlusCase : NullableDoubleOperatorsBaseCase
 		{
 			private static readonly Func<double?, double?, double?> _opPlus = Operators<double?>.Plus;
-			private static readonly Func<double?, double?, double?> _emittedPlus = (a, b) => a+b;
+			private static readonly Func<double?, double?, double?> _emittedPlus = (a, b) => a + b;
 
 			[CompetitionBaseline]
 			public double? Test00PlusBaseline()
@@ -168,7 +168,7 @@ namespace CodeJam.Arithmetic
 				{
 					var a = ValuesA[i];
 					var b = ValuesB[i];
-					result = a+b;
+					result = a + b;
 				}
 				return result;
 			}
@@ -201,7 +201,7 @@ namespace CodeJam.Arithmetic
 		public class IntMinusCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opMinus = Operators<int>.Minus;
-			private static readonly Func<int, int, int> _emittedMinus = (a, b) => a-b;
+			private static readonly Func<int, int, int> _emittedMinus = (a, b) => a - b;
 
 			[CompetitionBaseline]
 			public int Test00MinusBaseline()
@@ -211,7 +211,7 @@ namespace CodeJam.Arithmetic
 				{
 					var a = ValuesA[i];
 					var b = ValuesB[i];
-					result = a-b;
+					result = a - b;
 				}
 				return result;
 			}
@@ -242,7 +242,7 @@ namespace CodeJam.Arithmetic
 		public class NullableDoubleMinusCase : NullableDoubleOperatorsBaseCase
 		{
 			private static readonly Func<double?, double?, double?> _opMinus = Operators<double?>.Minus;
-			private static readonly Func<double?, double?, double?> _emittedMinus = (a, b) => a-b;
+			private static readonly Func<double?, double?, double?> _emittedMinus = (a, b) => a - b;
 
 			[CompetitionBaseline]
 			public double? Test00MinusBaseline()
@@ -252,7 +252,7 @@ namespace CodeJam.Arithmetic
 				{
 					var a = ValuesA[i];
 					var b = ValuesB[i];
-					result = a-b;
+					result = a - b;
 				}
 				return result;
 			}
@@ -285,7 +285,7 @@ namespace CodeJam.Arithmetic
 		public class IntMulCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opMul = Operators<int>.Mul;
-			private static readonly Func<int, int, int> _emittedMul = (a, b) => a*b;
+			private static readonly Func<int, int, int> _emittedMul = (a, b) => a * b;
 
 			[CompetitionBaseline]
 			public int Test00MulBaseline()
@@ -295,7 +295,7 @@ namespace CodeJam.Arithmetic
 				{
 					var a = ValuesA[i];
 					var b = ValuesB[i];
-					result = a*b;
+					result = a * b;
 				}
 				return result;
 			}
@@ -326,7 +326,7 @@ namespace CodeJam.Arithmetic
 		public class NullableDoubleMulCase : NullableDoubleOperatorsBaseCase
 		{
 			private static readonly Func<double?, double?, double?> _opMul = Operators<double?>.Mul;
-			private static readonly Func<double?, double?, double?> _emittedMul = (a, b) => a*b;
+			private static readonly Func<double?, double?, double?> _emittedMul = (a, b) => a * b;
 
 			[CompetitionBaseline]
 			public double? Test00MulBaseline()
@@ -336,7 +336,7 @@ namespace CodeJam.Arithmetic
 				{
 					var a = ValuesA[i];
 					var b = ValuesB[i];
-					result = a*b;
+					result = a * b;
 				}
 				return result;
 			}
@@ -369,7 +369,7 @@ namespace CodeJam.Arithmetic
 		public class IntDivCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opDiv = Operators<int>.Div;
-			private static readonly Func<int, int, int> _emittedDiv = (a, b) => a/b;
+			private static readonly Func<int, int, int> _emittedDiv = (a, b) => a / b;
 
 			[CompetitionBaseline]
 			public int Test00DivBaseline()
@@ -379,7 +379,7 @@ namespace CodeJam.Arithmetic
 				{
 					var a = ValuesA[i];
 					var b = ValuesB[i];
-					result = a/b;
+					result = a / b;
 				}
 				return result;
 			}
@@ -410,7 +410,7 @@ namespace CodeJam.Arithmetic
 		public class NullableDoubleDivCase : NullableDoubleOperatorsBaseCase
 		{
 			private static readonly Func<double?, double?, double?> _opDiv = Operators<double?>.Div;
-			private static readonly Func<double?, double?, double?> _emittedDiv = (a, b) => a/b;
+			private static readonly Func<double?, double?, double?> _emittedDiv = (a, b) => a / b;
 
 			[CompetitionBaseline]
 			public double? Test00DivBaseline()
@@ -420,7 +420,7 @@ namespace CodeJam.Arithmetic
 				{
 					var a = ValuesA[i];
 					var b = ValuesB[i];
-					result = a/b;
+					result = a / b;
 				}
 				return result;
 			}
@@ -453,7 +453,7 @@ namespace CodeJam.Arithmetic
 		public class IntModuloCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opModulo = Operators<int>.Modulo;
-			private static readonly Func<int, int, int> _emittedModulo = (a, b) => a%b;
+			private static readonly Func<int, int, int> _emittedModulo = (a, b) => a % b;
 
 			[CompetitionBaseline]
 			public int Test00ModuloBaseline()
@@ -463,7 +463,7 @@ namespace CodeJam.Arithmetic
 				{
 					var a = ValuesA[i];
 					var b = ValuesB[i];
-					result = a%b;
+					result = a % b;
 				}
 				return result;
 			}
@@ -496,7 +496,7 @@ namespace CodeJam.Arithmetic
 		public class IntXorCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opXor = Operators<int>.Xor;
-			private static readonly Func<int, int, int> _emittedXor = (a, b) => a^b;
+			private static readonly Func<int, int, int> _emittedXor = (a, b) => a ^ b;
 
 			[CompetitionBaseline]
 			public int Test00XorBaseline()
@@ -506,7 +506,7 @@ namespace CodeJam.Arithmetic
 				{
 					var a = ValuesA[i];
 					var b = ValuesB[i];
-					result = a^b;
+					result = a ^ b;
 				}
 				return result;
 			}
@@ -539,7 +539,7 @@ namespace CodeJam.Arithmetic
 		public class IntBitwiseAndCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opBitwiseAnd = Operators<int>.BitwiseAnd;
-			private static readonly Func<int, int, int> _emittedBitwiseAnd = (a, b) => a&b;
+			private static readonly Func<int, int, int> _emittedBitwiseAnd = (a, b) => a & b;
 
 			[CompetitionBaseline]
 			public int Test00BitwiseAndBaseline()
@@ -549,7 +549,7 @@ namespace CodeJam.Arithmetic
 				{
 					var a = ValuesA[i];
 					var b = ValuesB[i];
-					result = a&b;
+					result = a & b;
 				}
 				return result;
 			}
@@ -582,7 +582,7 @@ namespace CodeJam.Arithmetic
 		public class IntBitwiseOrCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opBitwiseOr = Operators<int>.BitwiseOr;
-			private static readonly Func<int, int, int> _emittedBitwiseOr = (a, b) => a|b;
+			private static readonly Func<int, int, int> _emittedBitwiseOr = (a, b) => a | b;
 
 			[CompetitionBaseline]
 			public int Test00BitwiseOrBaseline()
@@ -592,7 +592,7 @@ namespace CodeJam.Arithmetic
 				{
 					var a = ValuesA[i];
 					var b = ValuesB[i];
-					result = a|b;
+					result = a | b;
 				}
 				return result;
 			}
@@ -625,7 +625,7 @@ namespace CodeJam.Arithmetic
 		public class IntLeftShiftCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opLeftShift = Operators<int>.LeftShift;
-			private static readonly Func<int, int, int> _emittedLeftShift = (a, b) => a<<b;
+			private static readonly Func<int, int, int> _emittedLeftShift = (a, b) => a << b;
 
 			[CompetitionBaseline]
 			public int Test00LeftShiftBaseline()
@@ -635,7 +635,7 @@ namespace CodeJam.Arithmetic
 				{
 					var a = ValuesA[i];
 					var b = ValuesB[i];
-					result = a<<b;
+					result = a << b;
 				}
 				return result;
 			}
@@ -668,7 +668,7 @@ namespace CodeJam.Arithmetic
 		public class IntRightShiftCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opRightShift = Operators<int>.RightShift;
-			private static readonly Func<int, int, int> _emittedRightShift = (a, b) => a>>b;
+			private static readonly Func<int, int, int> _emittedRightShift = (a, b) => a >> b;
 
 			[CompetitionBaseline]
 			public int Test00RightShiftBaseline()
@@ -678,7 +678,7 @@ namespace CodeJam.Arithmetic
 				{
 					var a = ValuesA[i];
 					var b = ValuesB[i];
-					result = a>>b;
+					result = a >> b;
 				}
 				return result;
 			}

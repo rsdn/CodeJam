@@ -60,25 +60,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\LowerBoundPerfTests.cs" />
-    <Compile Include="Arithmetic\EqualityOperatorsPerfTests.generated.cs">
-      <DependentUpon>EqualityOperatorsPerfTests.tt</DependentUpon>
+    <Compile Include="Arithmetic\OperatorsLessOrGreaterPerfTests.generated.cs">
+      <DependentUpon>OperatorsLessOrGreaterPerfTests.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Arithmetic\ComparisonOperatorsPerfTests.generated.cs">
-      <DependentUpon>ComparisonOperatorsPerfTests.tt</DependentUpon>
+    <Compile Include="Arithmetic\OperatorsEqualityPerfTests.generated.cs">
+      <DependentUpon>OperatorsEqualityPerfTests.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Arithmetic\NumOperatorsPerfTests.generated.cs">
-      <DependentUpon>NumOperatorsPerfTests.tt</DependentUpon>
+    <Compile Include="Arithmetic\OperatorsComparePerfTests.generated.cs">
+      <DependentUpon>OperatorsComparePerfTests.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Arithmetic\OperatorsNumPerfTests.generated.cs">
+      <DependentUpon>OperatorsNumPerfTests.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Arithmetic\OperatorsBaseCase.cs" />
-    <Compile Include="Arithmetic\OperatorsComparePerfTests.cs" />
-    <Compile Include="Arithmetic\OperatorsGreaterThanOrEqualPerfTests.cs" />
-    <Compile Include="Arithmetic\OperatorsLessThanPerfTests.cs" />
     <Compile Include="AssemblyWideConfig.cs" />
     <Compile Include="Assertions\CodePerfTests.cs" />
     <Compile Include="Assertions\DebugCodePerfTests.cs" />
@@ -120,21 +122,35 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Arithmetic\OperatorsComparePerfTests.generated.xml">
+      <DependentUpon>OperatorsComparePerfTests.tt</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Arithmetic\OperatorsEqualityPerfTests.generated.xml">
+      <DependentUpon>OperatorsEqualityPerfTests.tt</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Arithmetic\OperatorsLessOrGreaterPerfTests.generated.xml">
+      <DependentUpon>OperatorsLessOrGreaterPerfTests.tt</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Arithmetic\OperatorsNumPerfTests.generated.xml">
+      <DependentUpon>OperatorsNumPerfTests.tt</DependentUpon>
+    </EmbeddedResource>
     <None Include="Arithmetic\OperatorsPerfTests.ttinclude" />
-    <Content Include="Arithmetic\EqualityOperatorsPerfTests.tt">
+    <Content Include="Arithmetic\OperatorsLessOrGreaterPerfTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EqualityOperatorsPerfTests.generated.cs</LastGenOutput>
+      <LastGenOutput>OperatorsLessOrGreaterPerfTests.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Arithmetic\ComparisonOperatorsPerfTests.tt">
+    <Content Include="Arithmetic\OperatorsEqualityPerfTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ComparisonOperatorsPerfTests.generated.cs</LastGenOutput>
+      <LastGenOutput>OperatorsEqualityPerfTests.generated.cs</LastGenOutput>
     </Content>
-    <EmbeddedResource Include="Arithmetic\ComparisonOperatorsPerfTests.generated.xml" />
-    <Content Include="Arithmetic\NumOperatorsPerfTests.tt">
+    <Content Include="Arithmetic\OperatorsComparePerfTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NumOperatorsPerfTests.generated.cs</LastGenOutput>
+      <LastGenOutput>OperatorsComparePerfTests.generated.cs</LastGenOutput>
     </Content>
-    <EmbeddedResource Include="Arithmetic\NumOperatorsPerfTests.generated.xml" />
+    <Content Include="Arithmetic\OperatorsNumPerfTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>OperatorsNumPerfTests.generated.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="CodeJam-Tests.Performance.dll.config">

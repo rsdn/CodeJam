@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace CodeJam.Expressions
 {
-	[TestFixture(Category = "Reflection")]
+	[TestFixture(Category = "Expressions")]
 	public class ExprTests
 	{
 		[Test]

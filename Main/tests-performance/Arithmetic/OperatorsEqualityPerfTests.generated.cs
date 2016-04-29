@@ -18,10 +18,10 @@ using static CodeJam.AssemblyWideConfig;
 
 namespace CodeJam.Arithmetic
 {
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Comparison operators (generated)")]
-	[CompetitionMetadata("CodeJam.Arithmetic.ComparisonOperatorsPerfTests.generated.xml")]
-	[Explicit("Server run speed not stable")]
-	public class EqualityOperatorsPerfTests
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Operators<T>.Equality")]
+	[CompetitionMetadata("CodeJam.Arithmetic.OperatorsEqualityPerfTests.generated.xml")]
+	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+	public class OperatorsEqualityPerfTests
 	{
 		#region AreEqual
 		[Test]

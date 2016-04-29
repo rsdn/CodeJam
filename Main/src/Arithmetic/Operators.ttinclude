@@ -86,7 +86,21 @@
 				}
 			}
 		}
-
+		
+		public bool IsEqualityOp
+		{
+			get
+			{
+				switch (Type)
+				{
+					case ExpressionType.Equal:
+					case ExpressionType.NotEqual:
+						return true;
+					default:
+						return false;
+				}
+			}
+		}
 		public OpType OpType
 		{
 			get

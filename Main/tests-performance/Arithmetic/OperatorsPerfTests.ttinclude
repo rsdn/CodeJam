@@ -13,9 +13,14 @@
 			equals ? "" : " == false");
 	}
 
+	private void EmitGreaterOrLessOpCase(OpInfo op, string type, string caseName, string rawAbCode = null)
+	{
+		EmitBinaryOpCore(type, "bool", caseName, op.Name, rawAbCode ?? "a " + op.Sign + " b", op.Sign + " 0", null);
+	}
+
 	private void EmitBinaryOpCase(OpInfo op, string type, string caseName)
 	{
-		EmitBinaryOpCore(type, type, caseName, op.Name, "a" + op.Sign + "b", null, null);
+		EmitBinaryOpCore(type, type, caseName, op.Name, "a " + op.Sign + " b", null, null);
 	}
 
 	private void EmitUnaryOpCase(OpInfo op, string type, string caseName)
