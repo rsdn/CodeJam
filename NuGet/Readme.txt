@@ -1,9 +1,12 @@
-CodeJam 1.0.0 Release Notes
+CodeJam 1.0.0-rc3 Release Notes
 ---------------------------------
 
-What's new in 1.0.0
+What's new in 1.0.0-rc3
 ----------------------
 * Fixed MinBy/MaxBy behavior with NaN values
+* Expression visitor added
+* ExpressionHelper splitted into two parts - Expr and ExpressionExtensions
+* Fixes and code cleanup
 
 What's new in 1.0.0-rc2
 ----------------------
