@@ -23,6 +23,7 @@ namespace CodeJam.Threading
 
 		WriteRegionLine("Generic overloads");
 		EmitOverloadsFor("T", true);
+
 		FlushRegions();
 #>
 	}

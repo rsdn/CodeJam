@@ -19,99 +19,93 @@ namespace CodeJam.Arithmetic
 	[Explicit("Server run speed not stable")]
 	public class NumOperatorsPerfTests
 	{
-<#bool addFirstRegion = false;
-foreach (var op in ops) {
-	if (op.OpType == OpType.Comparison)
-		continue;
-	bool addFirst = false;
-	WriteSeparatorLine(ref addFirstRegion);#>
-		#region <#=op.Name#>
 <#
-	if (op.OpType == OpType.Unary) {
-		WriteSeparatorLine(ref addFirst);#>
-		[Test]
-		public void RunInt<#=op.Name#>Case() => CompetitionBenchmarkRunner.Run<Int<#=op.Name#>Case>(RunConfig);
+	foreach (var op in ops)
+	{
+		if (op.OpType == OpType.Comparison)
+			continue;
 
-		public class Int<#=op.Name#>Case : IntOperatorsBaseCase
+		WriteRegionLine(op.OpType.ToString(), "op.OpType");
+		WriteRegionLine(op.Name, "op.Name");
+
+		if (op.OpType == OpType.Unary)
 		{
-			private readonly Func<int, int> _int<#=op.Name#> = IntOp.<#=op.Name#>;
+			EmitUnaryOpCase(op, "int", "Int");
+		}
+		else
+		{
+			EmitBinaryOpCase(op, "int", "Int");
+			if (!op.IntOnly)
+			{
+				WriteLine();
+				EmitBinaryOpCase(op, "double?", "NullableDouble");
+			}
+		}
+	}
+	FlushRegions();
+#>
+	}
+}<#+
+
+	private void EmitUnaryOpCase(OpInfo op, string type, string caseName)
+	{
+#>
+		[Test]
+		public void Run<#=caseName#><#=op.Name#>Case() => CompetitionBenchmarkRunner.Run<<#=caseName#><#=op.Name#>Case>(RunConfig);
+
+		public class <#=caseName#><#=op.Name#>Case : <#=caseName#>OperatorsBaseCase
+		{
+			private readonly Func<<#=type#>, <#=type#>> _op<#=op.Name#> = Operators<<#=type#>>.<#=op.Name#>;
 
 			[CompetitionBaseline]
-			public int <#=op.Name#>Baseline()
+			public <#=type#> <#=op.Name#>Baseline()
 			{
-				var result = 0;
+				var result = default(<#=type#>);
 				for (var i = 0; i < ValuesA.Length; i++)
 					result = <#=op.Sign#>ValuesB[i];
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public int <#=op.Name#>Operator()
+			public  <#=type#> <#=op.Name#>Operator()
 			{
-				var result = 0;
+				var result = default(<#=type#>);
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = _int<#=op.Name#>(ValuesB[i]);
+					result = _op<#=op.Name#>(ValuesB[i]);
 				return result;
 			}
 		}
-<#	}#>
-<#	else if (op.OpType == OpType.Binary) {
-		WriteSeparatorLine(ref addFirst);#>
-		[Test]
-		public void RunInt<#=op.Name#>Case() => CompetitionBenchmarkRunner.Run<Int<#=op.Name#>Case>(RunConfig);
-
-		public class Int<#=op.Name#>Case : IntOperatorsBaseCase
-		{
-			private readonly Func<int, int, int> _int<#=op.Name#> = IntOp.<#=op.Name#>;
-
-			[CompetitionBaseline]
-			public int <#=op.Name#>Baseline()
-			{
-				var result = 0;
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] <#=op.Sign#> ValuesB[i];
-				return result;
-			}
-
-			[CompetitionBenchmark]
-			public int <#=op.Name#>Operator()
-			{
-				var result = 0;
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = _int<#=op.Name#>(ValuesA[i], ValuesB[i]);
-				return result;
-			}
-		}
-<#		if (!op.IntOnly) {#>
-
-		[Test]
-		public void RunNullableDouble<#=op.Name#>Case() => CompetitionBenchmarkRunner.Run<NullableDouble<#=op.Name#>Case>(RunConfig);
-
-		public class NullableDouble<#=op.Name#>Case : NullableDoubleOperatorsBaseCase
-		{
-			private readonly Func<double?, double?, double?> _double<#=op.Name#> = NullableDoubleOp.<#=op.Name#>;
-
-			[CompetitionBaseline]
-			public double? <#=op.Name#>Baseline()
-			{
-				double? result = 0;
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] <#=op.Sign#> ValuesB[i];
-				return result;
-			}
-
-			[CompetitionBenchmark]
-			public double? <#=op.Name#>Operator()
-			{
-				double? result = 0;
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = _double<#=op.Name#>(ValuesA[i], ValuesB[i]);
-				return result;
-			}
-		}
-<#		}#>
-<#	}#>
-		#endregion
-<#}#>
+<#+
 	}
-}
+
+	private void EmitBinaryOpCase(OpInfo op, string type, string caseName)
+	{
+#>
+		[Test]
+		public void Run<#=caseName#><#=op.Name#>Case() => CompetitionBenchmarkRunner.Run<<#=caseName#><#=op.Name#>Case>(RunConfig);
+
+		public class <#=caseName#><#=op.Name#>Case : <#=caseName#>OperatorsBaseCase
+		{
+			private readonly Func<<#=type#>, <#=type#>, <#=type#>> _op<#=op.Name#> = Operators<<#=type#>>.<#=op.Name#>;
+
+			[CompetitionBaseline]
+			public <#=type#> <#=op.Name#>Baseline()
+			{
+				var result = default(<#=type#>);
+				for (var i = 0; i < ValuesA.Length; i++)
+					result = ValuesA[i] <#=op.Sign#> ValuesB[i];
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public <#=type#> <#=op.Name#>Operator()
+			{
+				var result = default(<#=type#>);
+				for (var i = 0; i < ValuesA.Length; i++)
+					result = _op<#=op.Name#>(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+		}
+<#+
+	}
+#>

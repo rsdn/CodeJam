@@ -12,55 +12,60 @@ namespace CodeJam.Reflection
 	/// </summary>
 	public static class Expr
 	{
-		#region Action<...>
-<#		for (int i = 0; i < 8; i++)
-		{
-			if (i > 0)
-				WriteLine("");
-			OverloadsForAction(i);
-		}#>
-		#endregion
+<#
+	WriteRegionLine("Action<...>");
+	for (int i = 0; i < 8; i++)
+	{
+		if (i > 0)
+			WriteLine("");
+		EmitAction(i);
+	}
 
-		#region Func<...>
-<#		for (int i = 0; i < 8; i++)
-		{
-			if (i > 0)
-				WriteLine("");
-			OverloadsForFunc(i);
-		}#>
-		#endregion
+	WriteRegionLine("Func<...>");
+	for (int i = 0; i < 8; i++)
+	{
+		if (i > 0)
+			WriteLine("");
+		EmitFunc(i);
+	}
+
+	FlushRegions();
+#>
 	}
 }<#+
-		private void OverloadsForAction(int argCount)
-		{
-			var typeList = argCount == 0?
-				"" :
-				"<" + List(argCount, n => "T" + n, ", ") + ">";#>
+
+	private void EmitAction(int argCount)
+	{
+		var typeList = argCount == 0?
+			"" :
+			"<" + List(argCount, n => "T" + n, ", ") + ">";
+#>
 		/// <summary>Helper for type inference from the lambda expression.</summary>
-<#+			for (int i = 1; i <= argCount; i++) {#>
+<#+		for (int i = 1; i <= argCount; i++) {#>
 		/// <typeparam name="T<#=i#>">The type of argument #<#=i#>.</typeparam>
-<#+			}#>
+<#+		}#>
 		/// <param name="actionExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
 		[Pure]
 		public static Expression<Action<#=typeList#>> Action<#=typeList#>(Expression<Action<#=typeList#>> actionExpression) =>
 			actionExpression;
-<#+		}
+<#+	}
 
-		private void OverloadsForFunc(int argCount)
-		{
-			var typeList = argCount == 0?
-				"<TResult>" :
-				"<" + List(argCount, n => "T" + n, ", ") + ", TResult" + ">";#>
+	private void EmitFunc(int argCount)
+	{
+		var typeList = argCount == 0?
+			"<TResult>" :
+			"<" + List(argCount, n => "T" + n, ", ") + ", TResult" + ">";#>
 		/// <summary>Helper for type inference from the lambda expression.</summary>
-<#+			for (int i = 1; i <= argCount; i++) {#>
+<#+		for (int i = 1; i <= argCount; i++) {#>
 		/// <typeparam name="T<#=i#>">The type of argument #<#=i#>.</typeparam>
-<#+			}#>
+<#+		}#>
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="funcExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
 		[Pure]
 		public static Expression<Func<#=typeList#>> Func<#=typeList#>(Expression<Func<#=typeList#>> funcExpression) =>
 			funcExpression;
-<#+		}
+<#+
+	}
 #>

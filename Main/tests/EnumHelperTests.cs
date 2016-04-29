@@ -194,8 +194,6 @@ namespace CodeJam
 		[SuppressMessage("ReSharper", "LocalVariableHidesMember")]
 		public static void Test0602IsFlagSetOperators()
 		{
-			var c = EnumHelper.GetValues<AttributeTargets>();
-			Console.WriteLine(c);
 			var isFlagSet = OperatorsFactory.IsFlagSetOperator<int>();
 			var isFlagMatch = OperatorsFactory.IsFlagMatchOperator<int>();
 			const int Abc = (int)EnumHelperTests.Abc;
