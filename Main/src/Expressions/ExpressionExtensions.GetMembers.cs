@@ -4,13 +4,9 @@ using System.Reflection;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.Reflection
+namespace CodeJam.Expressions
 {
-	/// <summary>
-	/// Provides a helper class to get the property, field, ctor or method from an expression.
-	/// </summary>
-	[PublicAPI]
-	public static class ExpressionHelper
+	public static partial class ExpressionExtensions
 	{
 		/// <summary>
 		/// Gets the <see cref="MemberInfo"/>.
@@ -20,8 +16,10 @@ namespace CodeJam.Reflection
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
 		[NotNull, Pure]
-		public static MemberInfo GetMemberInfo([NotNull] LambdaExpression expression)
+		public static MemberInfo GetMemberInfo([NotNull] this LambdaExpression expression)
 		{
+			Code.NotNull(expression, nameof(expression));
+
 			var body = expression.Body;
 			var unary = body as UnaryExpression;
 			if (unary != null)
@@ -46,7 +44,7 @@ namespace CodeJam.Reflection
 		/// The <see cref="PropertyInfo"/> instance.
 		/// </returns>
 		[NotNull, Pure]
-		public static PropertyInfo GetProperty([NotNull] LambdaExpression expression) =>
+		public static PropertyInfo GetProperty([NotNull] this LambdaExpression expression) =>
 			(PropertyInfo)GetMemberExpression(expression).Member;
 
 		/// <summary>
@@ -57,7 +55,7 @@ namespace CodeJam.Reflection
 		/// The <see cref="FieldInfo"/> instance.
 		/// </returns>
 		[NotNull, Pure]
-		public static FieldInfo GetField([NotNull] LambdaExpression expression) =>
+		public static FieldInfo GetField([NotNull] this LambdaExpression expression) =>
 			(FieldInfo)GetMemberExpression(expression).Member;
 
 		/// <summary>
@@ -68,7 +66,7 @@ namespace CodeJam.Reflection
 		/// The <see cref="ConstructorInfo"/> instance.
 		/// </returns>
 		[NotNull, Pure]
-		public static ConstructorInfo GetConstructor([NotNull] LambdaExpression expression) =>
+		public static ConstructorInfo GetConstructor([NotNull] this LambdaExpression expression) =>
 			(ConstructorInfo)GetMemberInfo(expression);
 
 		/// <summary>
@@ -79,7 +77,7 @@ namespace CodeJam.Reflection
 		/// The <see cref="MethodInfo"/> instance.
 		/// </returns>
 		[NotNull, Pure]
-		public static MethodInfo GetMethod([NotNull] LambdaExpression expression)
+		public static MethodInfo GetMethod([NotNull] this LambdaExpression expression)
 		{
 			var info = GetMemberInfo(expression);
 			return
@@ -96,7 +94,7 @@ namespace CodeJam.Reflection
 		/// A name of the property.
 		/// </returns>
 		[NotNull, Pure]
-		public static string GetPropertyName([NotNull] LambdaExpression expression) =>
+		public static string GetPropertyName([NotNull] this LambdaExpression expression) =>
 			GetMemberExpression(expression).Member.Name;
 
 		/// <summary>
@@ -107,7 +105,7 @@ namespace CodeJam.Reflection
 		/// A composited name of the property.
 		/// </returns>
 		[NotNull, Pure]
-		public static string GetFullPropertyName([NotNull] LambdaExpression expression) =>
+		public static string GetFullPropertyName([NotNull] this LambdaExpression expression) =>
 			GetFullPropertyNameImpl(GetMemberExpression(expression));
 
 		/// <summary>
@@ -118,7 +116,7 @@ namespace CodeJam.Reflection
 		/// A name of the method.
 		/// </returns>
 		[NotNull, Pure]
-		public static string GetMethodName([NotNull] LambdaExpression expression) =>
+		public static string GetMethodName([NotNull] this LambdaExpression expression) =>
 			GetMethod(expression).Name;
 
 		private static string GetFullPropertyNameImpl(MemberExpression expression)

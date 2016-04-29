@@ -106,6 +106,11 @@
     <Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
     <Compile Include="Collections\QueryableExtensions.cs" />
     <Compile Include="Expressions\ExpressionExtensions.cs" />
+    <Compile Include="Expressions\ExpressionHelper.Func.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExpressionHelper.Func.tt</DependentUpon>
+    </Compile>
     <Compile Include="IO\NamespaceDoc.cs" />
     <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Reflection\NamespaceDoc.cs" />
@@ -184,7 +189,7 @@
     <Compile Include="Structures\Option`1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\EnumHelper.cs" />
-    <Compile Include="Reflection\ExpressionHelper.cs" />
+    <Compile Include="Expressions\ExpressionExtensions.GetMembers.cs" />
     <Compile Include="Reflection\InfoOf.cs" />
     <Compile Include="Reflection\ReflectionExtensions.cs" />
     <Compile Include="Strings\CharExtensions.cs" />
@@ -235,6 +240,10 @@
     <Content Include="Arithmetic\Operators.Numeric.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Operators.Numeric.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Expressions\ExpressionHelper.Func.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ExpressionHelper.Func.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Strings\CharExtensions.Infix.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

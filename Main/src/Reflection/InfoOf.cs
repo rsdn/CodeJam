@@ -2,6 +2,8 @@
 using System.Linq.Expressions;
 using System.Reflection;
 
+using CodeJam.Expressions;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Reflection
@@ -22,7 +24,7 @@ namespace CodeJam.Reflection
 		/// </returns>
 		[NotNull, Pure]
 		public static MemberInfo Member<TValue>([NotNull] Expression<Func<TValue>> expression) =>
-			ExpressionHelper.GetMemberInfo(expression);
+			expression.GetMemberInfo();
 
 		/// <summary>
 		/// Returns the <see cref="MemberInfo"/>.
@@ -33,7 +35,7 @@ namespace CodeJam.Reflection
 		/// </returns>
 		[NotNull, Pure]
 		public static MemberInfo Member<T>([NotNull] Expression<Func<T, object>> expression) =>
-			ExpressionHelper.GetMemberInfo(expression);
+			expression.GetMemberInfo();
 
 		/// <summary>
 		/// Returns the <see cref="MemberInfo"/>.
@@ -44,7 +46,7 @@ namespace CodeJam.Reflection
 		/// </returns>
 		[NotNull, Pure]
 		public static MemberInfo Member<T, TValue>([NotNull] Expression<Func<T, TValue>> expression) =>
-			ExpressionHelper.GetMemberInfo(expression);
+			expression.GetMemberInfo();
 		#endregion
 
 		#region Property
@@ -57,7 +59,7 @@ namespace CodeJam.Reflection
 		/// </returns>
 		[NotNull, Pure]
 		public static PropertyInfo Property<TValue>([NotNull] Expression<Func<TValue>> expression) =>
-			ExpressionHelper.GetProperty(expression);
+			expression.GetProperty();
 
 		/// <summary>
 		/// Returns the property.
@@ -68,7 +70,7 @@ namespace CodeJam.Reflection
 		/// </returns>
 		[NotNull, Pure]
 		public static PropertyInfo Property<T>([NotNull] Expression<Func<T, object>> expression) =>
-			ExpressionHelper.GetProperty(expression);
+			expression.GetProperty();
 
 		/// <summary>
 		/// Returns the property.
@@ -79,7 +81,7 @@ namespace CodeJam.Reflection
 		/// </returns>
 		[NotNull, Pure]
 		public static PropertyInfo Property<T, TValue>([NotNull] Expression<Func<T, TValue>> expression) =>
-			ExpressionHelper.GetProperty(expression);
+			expression.GetProperty();
 		#endregion
 
 		#region Field
@@ -92,7 +94,7 @@ namespace CodeJam.Reflection
 		/// </returns>
 		[NotNull, Pure]
 		public static FieldInfo Field<TValue>([NotNull] Expression<Func<TValue>> expression) =>
-			ExpressionHelper.GetField(expression);
+			expression.GetField();
 
 		/// <summary>
 		/// Returns the field.
@@ -103,7 +105,7 @@ namespace CodeJam.Reflection
 		/// </returns>
 		[NotNull, Pure]
 		public static FieldInfo Field<T>([NotNull] Expression<Func<T, object>> expression) =>
-			ExpressionHelper.GetField(expression);
+			expression.GetField();
 
 		/// <summary>
 		/// Returns the field.
@@ -114,7 +116,7 @@ namespace CodeJam.Reflection
 		/// </returns>
 		[NotNull, Pure]
 		public static FieldInfo Field<T, TValue>([NotNull] Expression<Func<T, TValue>> expression) =>
-			ExpressionHelper.GetField(expression);
+			expression.GetField();
 		#endregion
 
 		#region Constructor
@@ -127,7 +129,7 @@ namespace CodeJam.Reflection
 		/// </returns>
 		[NotNull, Pure]
 		public static ConstructorInfo Constructor<T>([NotNull] Expression<Func<T>> expression) =>
-			ExpressionHelper.GetConstructor(expression);
+			expression.GetConstructor();
 		#endregion
 
 		#region Method
@@ -140,7 +142,7 @@ namespace CodeJam.Reflection
 		/// </returns>
 		[NotNull, Pure]
 		public static MethodInfo Method<T>([NotNull] Expression<Func<T>> expression) =>
-			ExpressionHelper.GetMethod(expression);
+			expression.GetMethod();
 
 		/// <summary>
 		/// Returns the method.
@@ -151,7 +153,7 @@ namespace CodeJam.Reflection
 		/// </returns>
 		[NotNull, Pure]
 		public static MethodInfo Method<T>([NotNull] Expression<Func<T, object>> expression) =>
-			ExpressionHelper.GetMethod(expression);
+			expression.GetMethod();
 
 		/// <summary>
 		/// Returns the method.
@@ -162,7 +164,7 @@ namespace CodeJam.Reflection
 		/// </returns>
 		[NotNull, Pure]
 		public static MethodInfo Method<T, TResult>([NotNull] Expression<Func<T, TResult>> expression) =>
-			ExpressionHelper.GetMethod(expression);
+			expression.GetMethod();
 
 		/// <summary>
 		/// Returns the method.
@@ -173,7 +175,7 @@ namespace CodeJam.Reflection
 		/// </returns>
 		[NotNull, Pure]
 		public static MethodInfo Method([NotNull] Expression<Action> expression) =>
-			ExpressionHelper.GetMethod(expression);
+			expression.GetMethod();
 
 		/// <summary>
 		/// Returns the method.
@@ -184,7 +186,7 @@ namespace CodeJam.Reflection
 		/// </returns>
 		[NotNull, Pure]
 		public static MethodInfo Method<T>([NotNull] Expression<Action<T>> expression) =>
-			ExpressionHelper.GetMethod(expression);
+			expression.GetMethod();
 		#endregion
 	}
 }

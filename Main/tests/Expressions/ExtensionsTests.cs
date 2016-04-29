@@ -9,7 +9,7 @@ namespace CodeJam.Expressions
 	[TestFixture(Category = "Expressions")]
 	public class ExtensionsTests
 	{
-		static Expression Transform(Expression e)
+		private static Expression Transform(Expression e)
 		{
 			if (e.NodeType == ExpressionType.Constant)
 			{
@@ -27,7 +27,7 @@ namespace CodeJam.Expressions
 			return e;
 		}
 
-		static Func<int,int> Transform(Expression<Func<int,int>> expr)
+		private static Func<int,int> Transform(Expression<Func<int,int>> expr)
 			=> expr.Transform(Transform).Compile();
 
 		[Test]
@@ -38,14 +38,14 @@ namespace CodeJam.Expressions
 			Assert.That(Transform(p => (int)(2L + Math.Max(p, 3) * 5))(4), Is.EqualTo(18));
 		}
 
-		class MultiSelectItem
+		private class MultiSelectItem
 		{
 			public byte   ItemType;
 			public int    ItemValue;
 			public string ItemText;
 		}
 
-		static Func<T,MultiSelectItem> ToMultiSelectItem<T>(
+		private static Func<T,MultiSelectItem> ToMultiSelectItem<T>(
 			Expression<Func<T,byte>>   getItemType,
 			Expression<Func<T,int>>    getItemValue,
 			Expression<Func<T,string>> getItemText)
@@ -54,7 +54,7 @@ namespace CodeJam.Expressions
 			{
 				ItemType  = 1,
 				ItemValue = 2,
-				ItemText  = "$3$",
+				ItemText  = "$3$"
 			};
 
 			var ex1 = getItemType. ReplaceParameters(expr.Parameters[0]);
