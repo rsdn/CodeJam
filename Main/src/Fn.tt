@@ -5,12 +5,12 @@ using System.Linq.Expressions;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.Expressions
+namespace CodeJam
 {
 	/// <summary>
-	/// Provides helper methods for Action and Func delegates.
+	/// Helper methods for <see cref="Func{TResult}"/> and <seealso cref="Action"/> delegates.
 	/// </summary>
-	public static class Expr
+	public static partial class Fn
 	{
 <#
 	WriteRegionLine("Action<...>");
@@ -40,15 +40,15 @@ namespace CodeJam.Expressions
 			"" :
 			"<" + List(argCount, n => "T" + n, ", ") + ">";
 #>
-		/// <summary>Helper for type inference from the lambda expression.</summary>
+		/// <summary>Helper for type inference from the lambda callback.</summary>
 <#+		for (int i = 1; i <= argCount; i++) {#>
 		/// <typeparam name="T<#=i#>">The type of argument #<#=i#>.</typeparam>
 <#+		}#>
-		/// <param name="actionExpression">The lambda expression.</param>
-		/// <returns>The lambda expression passed.</returns>
+		/// <param name="action">The lambda callback.</param>
+		/// <returns>The lambda callback passed.</returns>
 		[Pure]
-		public static Expression<Action<#=typeList#>> Action<#=typeList#>(Expression<Action<#=typeList#>> actionExpression) =>
-			actionExpression;
+		public static Action<#=typeList#> Action<#=typeList#>(Action<#=typeList#> action) =>
+			action;
 <#+
 	}
 
@@ -57,16 +57,16 @@ namespace CodeJam.Expressions
 		var typeList = argCount == 0?
 			"<TResult>" :
 			"<" + List(argCount, n => "T" + n, ", ") + ", TResult" + ">";#>
-		/// <summary>Helper for type inference from the lambda expression.</summary>
+		/// <summary>Helper for type inference from the lambda callback.</summary>
 <#+		for (int i = 1; i <= argCount; i++) {#>
 		/// <typeparam name="T<#=i#>">The type of argument #<#=i#>.</typeparam>
 <#+		}#>
 		/// <typeparam name="TResult">The result type.</typeparam>
-		/// <param name="funcExpression">The lambda expression.</param>
-		/// <returns>The lambda expression passed.</returns>
+		/// <param name="func">The lambda callback.</param>
+		/// <returns>The lambda callback passed.</returns>
 		[Pure]
-		public static Expression<Func<#=typeList#>> Func<#=typeList#>(Expression<Func<#=typeList#>> funcExpression) =>
-			funcExpression;
+		public static Func<#=typeList#> Func<#=typeList#>(Func<#=typeList#> func) =>
+			func;
 <#+
 	}
 #>

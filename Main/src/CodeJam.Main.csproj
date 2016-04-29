@@ -111,6 +111,11 @@
     <Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
     <Compile Include="Collections\QueryableExtensions.cs" />
     <Compile Include="EnumHelper.cs" />
+    <Compile Include="Fn.generated.cs">
+      <DependentUpon>Fn.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Expressions\ExpressionExtensions.cs" />
     <Compile Include="Expressions\Expr.generated.cs">
       <DependentUpon>ExpressionHelper.Func.tt</DependentUpon>
@@ -250,6 +255,10 @@
     <Content Include="Collections\DictionaryExtensions.GetValueOrDefault.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DictionaryExtensions.GetValueOrDefault.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Fn.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Fn.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Expressions\Expr.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
