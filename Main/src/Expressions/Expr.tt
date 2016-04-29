@@ -46,9 +46,13 @@ namespace CodeJam.Expressions
 <#+		}#>
 		/// <param name="actionExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
-		[Pure]
-		public static Expression<Action<#=typeList#>> Action<#=typeList#>(Expression<Action<#=typeList#>> actionExpression) =>
-			actionExpression;
+		[Pure, NotNull]
+		public static Expression<Action<#=typeList#>> Action<#=typeList#>(
+			[NotNull] Expression<Action<#=typeList#>> actionExpression)
+		{
+			Code.NotNull(actionExpression, nameof(actionExpression));
+			return actionExpression;
+		}
 <#+
 	}
 
@@ -64,9 +68,13 @@ namespace CodeJam.Expressions
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="funcExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
-		[Pure]
-		public static Expression<Func<#=typeList#>> Func<#=typeList#>(Expression<Func<#=typeList#>> funcExpression) =>
-			funcExpression;
+		[Pure, NotNull]
+		public static Expression<Func<#=typeList#>> Func<#=typeList#>(
+			[NotNull] Expression<Func<#=typeList#>> funcExpression)
+		{
+			Code.NotNull(funcExpression, nameof(funcExpression));
+			return funcExpression;
+		}
 <#+
 	}
 #>

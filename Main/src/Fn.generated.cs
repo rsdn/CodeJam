@@ -23,26 +23,38 @@ namespace CodeJam
 		/// <summary>Helper for type inference from the lambda callback.</summary>
 		/// <param name="action">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Action Action(Action action) =>
-			action;
+		[Pure, NotNull]
+		public static Action Action(
+			[NotNull] Action action)
+		{
+			Code.NotNull(action, nameof(action));
+			return action;
+		}
 
 		/// <summary>Helper for type inference from the lambda callback.</summary>
 		/// <typeparam name="T1">The type of argument #1.</typeparam>
 		/// <param name="action">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Action<T1> Action<T1>(Action<T1> action) =>
-			action;
+		[Pure, NotNull]
+		public static Action<T1> Action<T1>(
+			[NotNull] Action<T1> action)
+		{
+			Code.NotNull(action, nameof(action));
+			return action;
+		}
 
 		/// <summary>Helper for type inference from the lambda callback.</summary>
 		/// <typeparam name="T1">The type of argument #1.</typeparam>
 		/// <typeparam name="T2">The type of argument #2.</typeparam>
 		/// <param name="action">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Action<T1, T2> Action<T1, T2>(Action<T1, T2> action) =>
-			action;
+		[Pure, NotNull]
+		public static Action<T1, T2> Action<T1, T2>(
+			[NotNull] Action<T1, T2> action)
+		{
+			Code.NotNull(action, nameof(action));
+			return action;
+		}
 
 		/// <summary>Helper for type inference from the lambda callback.</summary>
 		/// <typeparam name="T1">The type of argument #1.</typeparam>
@@ -50,9 +62,13 @@ namespace CodeJam
 		/// <typeparam name="T3">The type of argument #3.</typeparam>
 		/// <param name="action">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Action<T1, T2, T3> Action<T1, T2, T3>(Action<T1, T2, T3> action) =>
-			action;
+		[Pure, NotNull]
+		public static Action<T1, T2, T3> Action<T1, T2, T3>(
+			[NotNull] Action<T1, T2, T3> action)
+		{
+			Code.NotNull(action, nameof(action));
+			return action;
+		}
 
 		/// <summary>Helper for type inference from the lambda callback.</summary>
 		/// <typeparam name="T1">The type of argument #1.</typeparam>
@@ -61,9 +77,13 @@ namespace CodeJam
 		/// <typeparam name="T4">The type of argument #4.</typeparam>
 		/// <param name="action">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Action<T1, T2, T3, T4> Action<T1, T2, T3, T4>(Action<T1, T2, T3, T4> action) =>
-			action;
+		[Pure, NotNull]
+		public static Action<T1, T2, T3, T4> Action<T1, T2, T3, T4>(
+			[NotNull] Action<T1, T2, T3, T4> action)
+		{
+			Code.NotNull(action, nameof(action));
+			return action;
+		}
 
 		/// <summary>Helper for type inference from the lambda callback.</summary>
 		/// <typeparam name="T1">The type of argument #1.</typeparam>
@@ -73,9 +93,13 @@ namespace CodeJam
 		/// <typeparam name="T5">The type of argument #5.</typeparam>
 		/// <param name="action">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Action<T1, T2, T3, T4, T5> Action<T1, T2, T3, T4, T5>(Action<T1, T2, T3, T4, T5> action) =>
-			action;
+		[Pure, NotNull]
+		public static Action<T1, T2, T3, T4, T5> Action<T1, T2, T3, T4, T5>(
+			[NotNull] Action<T1, T2, T3, T4, T5> action)
+		{
+			Code.NotNull(action, nameof(action));
+			return action;
+		}
 
 		/// <summary>Helper for type inference from the lambda callback.</summary>
 		/// <typeparam name="T1">The type of argument #1.</typeparam>
@@ -86,9 +110,13 @@ namespace CodeJam
 		/// <typeparam name="T6">The type of argument #6.</typeparam>
 		/// <param name="action">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Action<T1, T2, T3, T4, T5, T6> Action<T1, T2, T3, T4, T5, T6>(Action<T1, T2, T3, T4, T5, T6> action) =>
-			action;
+		[Pure, NotNull]
+		public static Action<T1, T2, T3, T4, T5, T6> Action<T1, T2, T3, T4, T5, T6>(
+			[NotNull] Action<T1, T2, T3, T4, T5, T6> action)
+		{
+			Code.NotNull(action, nameof(action));
+			return action;
+		}
 
 		/// <summary>Helper for type inference from the lambda callback.</summary>
 		/// <typeparam name="T1">The type of argument #1.</typeparam>
@@ -100,9 +128,13 @@ namespace CodeJam
 		/// <typeparam name="T7">The type of argument #7.</typeparam>
 		/// <param name="action">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Action<T1, T2, T3, T4, T5, T6, T7> Action<T1, T2, T3, T4, T5, T6, T7>(Action<T1, T2, T3, T4, T5, T6, T7> action) =>
-			action;
+		[Pure, NotNull]
+		public static Action<T1, T2, T3, T4, T5, T6, T7> Action<T1, T2, T3, T4, T5, T6, T7>(
+			[NotNull] Action<T1, T2, T3, T4, T5, T6, T7> action)
+		{
+			Code.NotNull(action, nameof(action));
+			return action;
+		}
 		#endregion
 
 		#region Func<...>
@@ -110,18 +142,26 @@ namespace CodeJam
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="func">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Func<TResult> Func<TResult>(Func<TResult> func) =>
-			func;
+		[Pure, NotNull]
+		public static Func<TResult> Func<TResult>(
+			[NotNull] Func<TResult> func)
+		{
+			Code.NotNull(func, nameof(func));
+			return func;
+		}
 
 		/// <summary>Helper for type inference from the lambda callback.</summary>
 		/// <typeparam name="T1">The type of argument #1.</typeparam>
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="func">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Func<T1, TResult> Func<T1, TResult>(Func<T1, TResult> func) =>
-			func;
+		[Pure, NotNull]
+		public static Func<T1, TResult> Func<T1, TResult>(
+			[NotNull] Func<T1, TResult> func)
+		{
+			Code.NotNull(func, nameof(func));
+			return func;
+		}
 
 		/// <summary>Helper for type inference from the lambda callback.</summary>
 		/// <typeparam name="T1">The type of argument #1.</typeparam>
@@ -129,9 +169,13 @@ namespace CodeJam
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="func">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Func<T1, T2, TResult> Func<T1, T2, TResult>(Func<T1, T2, TResult> func) =>
-			func;
+		[Pure, NotNull]
+		public static Func<T1, T2, TResult> Func<T1, T2, TResult>(
+			[NotNull] Func<T1, T2, TResult> func)
+		{
+			Code.NotNull(func, nameof(func));
+			return func;
+		}
 
 		/// <summary>Helper for type inference from the lambda callback.</summary>
 		/// <typeparam name="T1">The type of argument #1.</typeparam>
@@ -140,9 +184,13 @@ namespace CodeJam
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="func">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Func<T1, T2, T3, TResult> Func<T1, T2, T3, TResult>(Func<T1, T2, T3, TResult> func) =>
-			func;
+		[Pure, NotNull]
+		public static Func<T1, T2, T3, TResult> Func<T1, T2, T3, TResult>(
+			[NotNull] Func<T1, T2, T3, TResult> func)
+		{
+			Code.NotNull(func, nameof(func));
+			return func;
+		}
 
 		/// <summary>Helper for type inference from the lambda callback.</summary>
 		/// <typeparam name="T1">The type of argument #1.</typeparam>
@@ -152,9 +200,13 @@ namespace CodeJam
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="func">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Func<T1, T2, T3, T4, TResult> Func<T1, T2, T3, T4, TResult>(Func<T1, T2, T3, T4, TResult> func) =>
-			func;
+		[Pure, NotNull]
+		public static Func<T1, T2, T3, T4, TResult> Func<T1, T2, T3, T4, TResult>(
+			[NotNull] Func<T1, T2, T3, T4, TResult> func)
+		{
+			Code.NotNull(func, nameof(func));
+			return func;
+		}
 
 		/// <summary>Helper for type inference from the lambda callback.</summary>
 		/// <typeparam name="T1">The type of argument #1.</typeparam>
@@ -165,9 +217,13 @@ namespace CodeJam
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="func">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Func<T1, T2, T3, T4, T5, TResult> Func<T1, T2, T3, T4, T5, TResult>(Func<T1, T2, T3, T4, T5, TResult> func) =>
-			func;
+		[Pure, NotNull]
+		public static Func<T1, T2, T3, T4, T5, TResult> Func<T1, T2, T3, T4, T5, TResult>(
+			[NotNull] Func<T1, T2, T3, T4, T5, TResult> func)
+		{
+			Code.NotNull(func, nameof(func));
+			return func;
+		}
 
 		/// <summary>Helper for type inference from the lambda callback.</summary>
 		/// <typeparam name="T1">The type of argument #1.</typeparam>
@@ -179,9 +235,13 @@ namespace CodeJam
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="func">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Func<T1, T2, T3, T4, T5, T6, TResult> Func<T1, T2, T3, T4, T5, T6, TResult>(Func<T1, T2, T3, T4, T5, T6, TResult> func) =>
-			func;
+		[Pure, NotNull]
+		public static Func<T1, T2, T3, T4, T5, T6, TResult> Func<T1, T2, T3, T4, T5, T6, TResult>(
+			[NotNull] Func<T1, T2, T3, T4, T5, T6, TResult> func)
+		{
+			Code.NotNull(func, nameof(func));
+			return func;
+		}
 
 		/// <summary>Helper for type inference from the lambda callback.</summary>
 		/// <typeparam name="T1">The type of argument #1.</typeparam>
@@ -194,9 +254,13 @@ namespace CodeJam
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="func">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Func<T1, T2, T3, T4, T5, T6, T7, TResult> Func<T1, T2, T3, T4, T5, T6, T7, TResult>(Func<T1, T2, T3, T4, T5, T6, T7, TResult> func) =>
-			func;
+		[Pure, NotNull]
+		public static Func<T1, T2, T3, T4, T5, T6, T7, TResult> Func<T1, T2, T3, T4, T5, T6, T7, TResult>(
+			[NotNull] Func<T1, T2, T3, T4, T5, T6, T7, TResult> func)
+		{
+			Code.NotNull(func, nameof(func));
+			return func;
+		}
 		#endregion
 	}
 }

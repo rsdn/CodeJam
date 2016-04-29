@@ -46,9 +46,13 @@ namespace CodeJam
 <#+		}#>
 		/// <param name="action">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Action<#=typeList#> Action<#=typeList#>(Action<#=typeList#> action) =>
-			action;
+		[Pure, NotNull]
+		public static Action<#=typeList#> Action<#=typeList#>(
+			[NotNull] Action<#=typeList#> action)
+		{
+			Code.NotNull(action, nameof(action));
+			return action;
+		}
 <#+
 	}
 
@@ -64,9 +68,13 @@ namespace CodeJam
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="func">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure]
-		public static Func<#=typeList#> Func<#=typeList#>(Func<#=typeList#> func) =>
-			func;
+		[Pure, NotNull]
+		public static Func<#=typeList#> Func<#=typeList#>(
+			[NotNull] Func<#=typeList#> func)
+		{
+			Code.NotNull(func, nameof(func));
+			return func;
+		}
 <#+
 	}
 #>
