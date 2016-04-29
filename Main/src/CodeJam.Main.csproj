@@ -106,6 +106,7 @@
     <Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
     <Compile Include="Collections\QueryableExtensions.cs" />
     <Compile Include="EnumHelper.cs" />
+    <Compile Include="Expressions\ExpressionExtensions.cs" />
     <Compile Include="IO\NamespaceDoc.cs" />
     <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Reflection\ExpressionHelper.Func.generated.cs">
