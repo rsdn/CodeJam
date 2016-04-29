@@ -79,6 +79,7 @@
     <Compile Include="Reflection\ExpressionHelperTests.cs" />
     <Compile Include="Reflection\AssemblyExtensionsTest.cs" />
     <Compile Include="Reflection\CreateInstanceTests.cs" />
+    <Compile Include="Expressions\ExprTests.cs" />
     <Compile Include="Services\ServicesTests.cs" />
     <Compile Include="TableData\TableDataTest.cs" />
     <Compile Include="Threading\InterlockedOperationsTests.generated.cs">
