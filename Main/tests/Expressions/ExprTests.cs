@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-using CodeJam.Expressions;
-
 using NUnit.Framework;
 
-namespace CodeJam.Reflection
+namespace CodeJam.Expressions
 {
 	[TestFixture(Category = "Reflection")]
 	public class ExpressionHelperTests
