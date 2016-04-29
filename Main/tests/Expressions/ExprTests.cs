@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
+using CodeJam.Expressions;
+
 using NUnit.Framework;
 
 namespace CodeJam.Reflection

@@ -13,7 +13,7 @@ using System.Linq.Expressions;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.Reflection
+namespace CodeJam.Expressions
 {
 	/// <summary>
 	/// Provides helper methods for Action and Func delegates.
