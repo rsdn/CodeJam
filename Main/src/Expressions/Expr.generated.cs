@@ -16,7 +16,7 @@ using JetBrains.Annotations;
 namespace CodeJam.Reflection
 {
 	/// <summary>
-	/// Provides a helper class to get the property, field, ctor or method from an expression.
+	/// Provides helper methods for Action and Func delegates.
 	/// </summary>
 	public static class Expr
 	{
