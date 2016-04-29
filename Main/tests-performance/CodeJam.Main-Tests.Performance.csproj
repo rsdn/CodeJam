@@ -60,6 +60,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\LowerBoundPerfTests.cs" />
+    <Compile Include="Arithmetic\EqualityOperatorsPerfTests.generated.cs">
+      <DependentUpon>EqualityOperatorsPerfTests.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Arithmetic\ComparisonOperatorsPerfTests.generated.cs">
+      <DependentUpon>ComparisonOperatorsPerfTests.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Arithmetic\NumOperatorsPerfTests.generated.cs">
       <DependentUpon>NumOperatorsPerfTests.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -110,6 +120,16 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Arithmetic\OperatorsPerfTests.ttinclude" />
+    <Content Include="Arithmetic\EqualityOperatorsPerfTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EqualityOperatorsPerfTests.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Arithmetic\ComparisonOperatorsPerfTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ComparisonOperatorsPerfTests.generated.cs</LastGenOutput>
+    </Content>
+    <EmbeddedResource Include="Arithmetic\ComparisonOperatorsPerfTests.generated.xml" />
     <Content Include="Arithmetic\NumOperatorsPerfTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NumOperatorsPerfTests.generated.cs</LastGenOutput>

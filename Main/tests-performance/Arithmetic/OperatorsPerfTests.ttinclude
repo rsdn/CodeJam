@@ -1,0 +1,149 @@
+﻿<#@ include file="$(SolutionDir)Main\src\Arithmetic\Operators.ttinclude" #><#+
+	private void EmitCompareOpCase(string type, string caseName, string rawAbCode)
+	{
+		EmitBinaryOpCore(type, "int", caseName, "Compare", rawAbCode, "", null);
+	}
+	private void EmitEqualityOpCase(string type, string caseName, bool equals)
+	{
+		EmitBinaryOpCore(
+			type, "bool", caseName, 
+			equals ? "AreEqual" : "AreNotEqual",
+			equals ? "a == b" : "a != b",
+			equals ? " == 0" : " != 0",
+			equals ? "" : " == false");
+	}
+
+	private void EmitBinaryOpCase(OpInfo op, string type, string caseName)
+	{
+		EmitBinaryOpCore(type, type, caseName, op.Name, "a" + op.Sign + "b", null, null);
+	}
+
+	private void EmitUnaryOpCase(OpInfo op, string type, string caseName)
+	{
+		EmitUnaryOpCore(type, type, caseName, op.Name, op.Sign + "b");
+	}
+
+	private void EmitUnaryOpCore(
+		string type, string resultType, string caseName, string operatorName,
+		string rawBCode)
+	{
+#>
+		[Test]
+		public void Run<#=caseName#><#=operatorName#>Case() =>
+			CompetitionBenchmarkRunner.Run<<#=caseName#><#=operatorName#>Case>(RunConfig);
+
+		public class <#=caseName#><#=operatorName#>Case : <#=caseName#>OperatorsBaseCase
+		{
+			private static readonly Func<<#=type#>, <#=resultType#>> _op<#=operatorName#> = Operators<<#=type#>>.<#=operatorName#>;
+			private static readonly Func<<#=type#>, <#=resultType#>> _emitted<#=operatorName#> = b => <#=rawBCode#>;
+
+			[CompetitionBaseline]
+			public <#=resultType#> Test00<#=operatorName#>Baseline()
+			{
+				var result = default(<#=resultType#>);
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var b = ValuesB[i];
+					result = <#=rawBCode#>;
+				}
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public <#=resultType#> Test01<#=operatorName#>Operator()
+			{
+				var result = default(<#=resultType#>);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _op<#=operatorName#>(ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public <#=resultType#> Test02<#=operatorName#>Emitted()
+			{
+				var result = default(<#=resultType#>);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emitted<#=operatorName#>(ValuesB[i]);
+				return result;
+			}
+		}
+<#+
+	}
+
+	private void EmitBinaryOpCore(
+		string type, string resultType, string caseName, string operatorName,
+		string rawAbCode,
+		string comparisonSuffix, string equalitySuffix)
+	{
+#>
+		[Test]
+		public void Run<#=caseName#><#=operatorName#>Case() =>
+			CompetitionBenchmarkRunner.Run<<#=caseName#><#=operatorName#>Case>(RunConfig);
+
+		public class <#=caseName#><#=operatorName#>Case : <#=caseName#>OperatorsBaseCase
+		{
+			private static readonly Func<<#=type#>, <#=type#>, <#=resultType#>> _op<#=operatorName#> = Operators<<#=type#>>.<#=operatorName#>;
+			private static readonly Func<<#=type#>, <#=type#>, <#=resultType#>> _emitted<#=operatorName#> = (a, b) => <#=rawAbCode#>;
+<#+		if (comparisonSuffix != null) {#>
+			private static readonly Comparer<<#=type#>> _comparer = Comparer<<#=type#>>.Default;
+<#+		}#>
+<#+		if (equalitySuffix != null) {#>
+			private static readonly EqualityComparer<<#=type#>> _eqComparer = EqualityComparer<<#=type#>>.Default;
+<#+		}#>
+
+			[CompetitionBaseline]
+			public <#=resultType#> Test00<#=operatorName#>Baseline()
+			{
+				var result = default(<#=resultType#>);
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var a = ValuesA[i];
+					var b = ValuesB[i];
+					result = <#=rawAbCode#>;
+				}
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public <#=resultType#> Test01<#=operatorName#>Operator()
+			{
+				var result = default(<#=resultType#>);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _op<#=operatorName#>(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public <#=resultType#> Test02<#=operatorName#>Emitted()
+			{
+				var result = default(<#=resultType#>);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emitted<#=operatorName#>(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+<#+		if (comparisonSuffix != null) {#>
+
+			[CompetitionBenchmark]
+			public <#=resultType#> Test03Comparer()
+			{
+				var result = default(<#=resultType#>);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _comparer.Compare(ValuesA[i], ValuesB[i])<#=comparisonSuffix#>;
+				return result;
+			}
+<#+		}#>
+<#+		if (equalitySuffix != null) {#>
+
+			[CompetitionBenchmark]
+			public <#=resultType#> Test03EqualityComparer()
+			{
+				var result = default(<#=resultType#>);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _eqComparer.Equals(ValuesA[i], ValuesB[i])<#=equalitySuffix#>;
+				return result;
+			}
+<#+		}#>
+		}
+<#+
+	}
+#>

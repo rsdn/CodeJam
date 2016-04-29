@@ -13,9 +13,6 @@ using BenchmarkDotNet.NUnit;
 
 using NUnit.Framework;
 
-using IntOp = CodeJam.Arithmetic.Operators<int>;
-using NullableDoubleOp = CodeJam.Arithmetic.Operators<double?>;
-
 using static CodeJam.AssemblyWideConfig;
 
 namespace CodeJam.Arithmetic
@@ -28,27 +25,41 @@ namespace CodeJam.Arithmetic
 		#region Unary
 		#region UnaryMinus
 		[Test]
-		public void RunIntUnaryMinusCase() => CompetitionBenchmarkRunner.Run<IntUnaryMinusCase>(RunConfig);
+		public void RunIntUnaryMinusCase() =>
+			CompetitionBenchmarkRunner.Run<IntUnaryMinusCase>(RunConfig);
 
 		public class IntUnaryMinusCase : IntOperatorsBaseCase
 		{
-			private readonly Func<int, int> _opUnaryMinus = Operators<int>.UnaryMinus;
+			private static readonly Func<int, int> _opUnaryMinus = Operators<int>.UnaryMinus;
+			private static readonly Func<int, int> _emittedUnaryMinus = b => -b;
 
 			[CompetitionBaseline]
-			public int UnaryMinusBaseline()
+			public int Test00UnaryMinusBaseline()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = -ValuesB[i];
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var b = ValuesB[i];
+					result = -b;
+				}
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public  int UnaryMinusOperator()
+			public int Test01UnaryMinusOperator()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
+				for (var i = 0; i < ValuesB.Length; i++)
 					result = _opUnaryMinus(ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public int Test02UnaryMinusEmitted()
+			{
+				var result = default(int);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emittedUnaryMinus(ValuesB[i]);
 				return result;
 			}
 		}
@@ -56,27 +67,41 @@ namespace CodeJam.Arithmetic
 
 		#region OnesComplement
 		[Test]
-		public void RunIntOnesComplementCase() => CompetitionBenchmarkRunner.Run<IntOnesComplementCase>(RunConfig);
+		public void RunIntOnesComplementCase() =>
+			CompetitionBenchmarkRunner.Run<IntOnesComplementCase>(RunConfig);
 
 		public class IntOnesComplementCase : IntOperatorsBaseCase
 		{
-			private readonly Func<int, int> _opOnesComplement = Operators<int>.OnesComplement;
+			private static readonly Func<int, int> _opOnesComplement = Operators<int>.OnesComplement;
+			private static readonly Func<int, int> _emittedOnesComplement = b => ~b;
 
 			[CompetitionBaseline]
-			public int OnesComplementBaseline()
+			public int Test00OnesComplementBaseline()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ~ValuesB[i];
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var b = ValuesB[i];
+					result = ~b;
+				}
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public  int OnesComplementOperator()
+			public int Test01OnesComplementOperator()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
+				for (var i = 0; i < ValuesB.Length; i++)
 					result = _opOnesComplement(ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public int Test02OnesComplementEmitted()
+			{
+				var result = default(int);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emittedOnesComplement(ValuesB[i]);
 				return result;
 			}
 		}
@@ -86,53 +111,83 @@ namespace CodeJam.Arithmetic
 		#region Binary
 		#region Plus
 		[Test]
-		public void RunIntPlusCase() => CompetitionBenchmarkRunner.Run<IntPlusCase>(RunConfig);
+		public void RunIntPlusCase() =>
+			CompetitionBenchmarkRunner.Run<IntPlusCase>(RunConfig);
 
 		public class IntPlusCase : IntOperatorsBaseCase
 		{
-			private readonly Func<int, int, int> _opPlus = Operators<int>.Plus;
+			private static readonly Func<int, int, int> _opPlus = Operators<int>.Plus;
+			private static readonly Func<int, int, int> _emittedPlus = (a, b) => a+b;
 
 			[CompetitionBaseline]
-			public int PlusBaseline()
+			public int Test00PlusBaseline()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] + ValuesB[i];
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var a = ValuesA[i];
+					var b = ValuesB[i];
+					result = a+b;
+				}
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public int PlusOperator()
+			public int Test01PlusOperator()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
+				for (var i = 0; i < ValuesB.Length; i++)
 					result = _opPlus(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public int Test02PlusEmitted()
+			{
+				var result = default(int);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emittedPlus(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 		}
 
 		[Test]
-		public void RunNullableDoublePlusCase() => CompetitionBenchmarkRunner.Run<NullableDoublePlusCase>(RunConfig);
+		public void RunNullableDoublePlusCase() =>
+			CompetitionBenchmarkRunner.Run<NullableDoublePlusCase>(RunConfig);
 
 		public class NullableDoublePlusCase : NullableDoubleOperatorsBaseCase
 		{
-			private readonly Func<double?, double?, double?> _opPlus = Operators<double?>.Plus;
+			private static readonly Func<double?, double?, double?> _opPlus = Operators<double?>.Plus;
+			private static readonly Func<double?, double?, double?> _emittedPlus = (a, b) => a+b;
 
 			[CompetitionBaseline]
-			public double? PlusBaseline()
+			public double? Test00PlusBaseline()
 			{
 				var result = default(double?);
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] + ValuesB[i];
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var a = ValuesA[i];
+					var b = ValuesB[i];
+					result = a+b;
+				}
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public double? PlusOperator()
+			public double? Test01PlusOperator()
 			{
 				var result = default(double?);
-				for (var i = 0; i < ValuesA.Length; i++)
+				for (var i = 0; i < ValuesB.Length; i++)
 					result = _opPlus(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public double? Test02PlusEmitted()
+			{
+				var result = default(double?);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emittedPlus(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 		}
@@ -140,53 +195,83 @@ namespace CodeJam.Arithmetic
 
 		#region Minus
 		[Test]
-		public void RunIntMinusCase() => CompetitionBenchmarkRunner.Run<IntMinusCase>(RunConfig);
+		public void RunIntMinusCase() =>
+			CompetitionBenchmarkRunner.Run<IntMinusCase>(RunConfig);
 
 		public class IntMinusCase : IntOperatorsBaseCase
 		{
-			private readonly Func<int, int, int> _opMinus = Operators<int>.Minus;
+			private static readonly Func<int, int, int> _opMinus = Operators<int>.Minus;
+			private static readonly Func<int, int, int> _emittedMinus = (a, b) => a-b;
 
 			[CompetitionBaseline]
-			public int MinusBaseline()
+			public int Test00MinusBaseline()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] - ValuesB[i];
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var a = ValuesA[i];
+					var b = ValuesB[i];
+					result = a-b;
+				}
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public int MinusOperator()
+			public int Test01MinusOperator()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
+				for (var i = 0; i < ValuesB.Length; i++)
 					result = _opMinus(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public int Test02MinusEmitted()
+			{
+				var result = default(int);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emittedMinus(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 		}
 
 		[Test]
-		public void RunNullableDoubleMinusCase() => CompetitionBenchmarkRunner.Run<NullableDoubleMinusCase>(RunConfig);
+		public void RunNullableDoubleMinusCase() =>
+			CompetitionBenchmarkRunner.Run<NullableDoubleMinusCase>(RunConfig);
 
 		public class NullableDoubleMinusCase : NullableDoubleOperatorsBaseCase
 		{
-			private readonly Func<double?, double?, double?> _opMinus = Operators<double?>.Minus;
+			private static readonly Func<double?, double?, double?> _opMinus = Operators<double?>.Minus;
+			private static readonly Func<double?, double?, double?> _emittedMinus = (a, b) => a-b;
 
 			[CompetitionBaseline]
-			public double? MinusBaseline()
+			public double? Test00MinusBaseline()
 			{
 				var result = default(double?);
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] - ValuesB[i];
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var a = ValuesA[i];
+					var b = ValuesB[i];
+					result = a-b;
+				}
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public double? MinusOperator()
+			public double? Test01MinusOperator()
 			{
 				var result = default(double?);
-				for (var i = 0; i < ValuesA.Length; i++)
+				for (var i = 0; i < ValuesB.Length; i++)
 					result = _opMinus(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public double? Test02MinusEmitted()
+			{
+				var result = default(double?);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emittedMinus(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 		}
@@ -194,53 +279,83 @@ namespace CodeJam.Arithmetic
 
 		#region Mul
 		[Test]
-		public void RunIntMulCase() => CompetitionBenchmarkRunner.Run<IntMulCase>(RunConfig);
+		public void RunIntMulCase() =>
+			CompetitionBenchmarkRunner.Run<IntMulCase>(RunConfig);
 
 		public class IntMulCase : IntOperatorsBaseCase
 		{
-			private readonly Func<int, int, int> _opMul = Operators<int>.Mul;
+			private static readonly Func<int, int, int> _opMul = Operators<int>.Mul;
+			private static readonly Func<int, int, int> _emittedMul = (a, b) => a*b;
 
 			[CompetitionBaseline]
-			public int MulBaseline()
+			public int Test00MulBaseline()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] * ValuesB[i];
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var a = ValuesA[i];
+					var b = ValuesB[i];
+					result = a*b;
+				}
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public int MulOperator()
+			public int Test01MulOperator()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
+				for (var i = 0; i < ValuesB.Length; i++)
 					result = _opMul(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public int Test02MulEmitted()
+			{
+				var result = default(int);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emittedMul(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 		}
 
 		[Test]
-		public void RunNullableDoubleMulCase() => CompetitionBenchmarkRunner.Run<NullableDoubleMulCase>(RunConfig);
+		public void RunNullableDoubleMulCase() =>
+			CompetitionBenchmarkRunner.Run<NullableDoubleMulCase>(RunConfig);
 
 		public class NullableDoubleMulCase : NullableDoubleOperatorsBaseCase
 		{
-			private readonly Func<double?, double?, double?> _opMul = Operators<double?>.Mul;
+			private static readonly Func<double?, double?, double?> _opMul = Operators<double?>.Mul;
+			private static readonly Func<double?, double?, double?> _emittedMul = (a, b) => a*b;
 
 			[CompetitionBaseline]
-			public double? MulBaseline()
+			public double? Test00MulBaseline()
 			{
 				var result = default(double?);
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] * ValuesB[i];
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var a = ValuesA[i];
+					var b = ValuesB[i];
+					result = a*b;
+				}
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public double? MulOperator()
+			public double? Test01MulOperator()
 			{
 				var result = default(double?);
-				for (var i = 0; i < ValuesA.Length; i++)
+				for (var i = 0; i < ValuesB.Length; i++)
 					result = _opMul(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public double? Test02MulEmitted()
+			{
+				var result = default(double?);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emittedMul(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 		}
@@ -248,53 +363,83 @@ namespace CodeJam.Arithmetic
 
 		#region Div
 		[Test]
-		public void RunIntDivCase() => CompetitionBenchmarkRunner.Run<IntDivCase>(RunConfig);
+		public void RunIntDivCase() =>
+			CompetitionBenchmarkRunner.Run<IntDivCase>(RunConfig);
 
 		public class IntDivCase : IntOperatorsBaseCase
 		{
-			private readonly Func<int, int, int> _opDiv = Operators<int>.Div;
+			private static readonly Func<int, int, int> _opDiv = Operators<int>.Div;
+			private static readonly Func<int, int, int> _emittedDiv = (a, b) => a/b;
 
 			[CompetitionBaseline]
-			public int DivBaseline()
+			public int Test00DivBaseline()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] / ValuesB[i];
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var a = ValuesA[i];
+					var b = ValuesB[i];
+					result = a/b;
+				}
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public int DivOperator()
+			public int Test01DivOperator()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
+				for (var i = 0; i < ValuesB.Length; i++)
 					result = _opDiv(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public int Test02DivEmitted()
+			{
+				var result = default(int);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emittedDiv(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 		}
 
 		[Test]
-		public void RunNullableDoubleDivCase() => CompetitionBenchmarkRunner.Run<NullableDoubleDivCase>(RunConfig);
+		public void RunNullableDoubleDivCase() =>
+			CompetitionBenchmarkRunner.Run<NullableDoubleDivCase>(RunConfig);
 
 		public class NullableDoubleDivCase : NullableDoubleOperatorsBaseCase
 		{
-			private readonly Func<double?, double?, double?> _opDiv = Operators<double?>.Div;
+			private static readonly Func<double?, double?, double?> _opDiv = Operators<double?>.Div;
+			private static readonly Func<double?, double?, double?> _emittedDiv = (a, b) => a/b;
 
 			[CompetitionBaseline]
-			public double? DivBaseline()
+			public double? Test00DivBaseline()
 			{
 				var result = default(double?);
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] / ValuesB[i];
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var a = ValuesA[i];
+					var b = ValuesB[i];
+					result = a/b;
+				}
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public double? DivOperator()
+			public double? Test01DivOperator()
 			{
 				var result = default(double?);
-				for (var i = 0; i < ValuesA.Length; i++)
+				for (var i = 0; i < ValuesB.Length; i++)
 					result = _opDiv(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public double? Test02DivEmitted()
+			{
+				var result = default(double?);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emittedDiv(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 		}
@@ -302,27 +447,42 @@ namespace CodeJam.Arithmetic
 
 		#region Modulo
 		[Test]
-		public void RunIntModuloCase() => CompetitionBenchmarkRunner.Run<IntModuloCase>(RunConfig);
+		public void RunIntModuloCase() =>
+			CompetitionBenchmarkRunner.Run<IntModuloCase>(RunConfig);
 
 		public class IntModuloCase : IntOperatorsBaseCase
 		{
-			private readonly Func<int, int, int> _opModulo = Operators<int>.Modulo;
+			private static readonly Func<int, int, int> _opModulo = Operators<int>.Modulo;
+			private static readonly Func<int, int, int> _emittedModulo = (a, b) => a%b;
 
 			[CompetitionBaseline]
-			public int ModuloBaseline()
+			public int Test00ModuloBaseline()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] % ValuesB[i];
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var a = ValuesA[i];
+					var b = ValuesB[i];
+					result = a%b;
+				}
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public int ModuloOperator()
+			public int Test01ModuloOperator()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
+				for (var i = 0; i < ValuesB.Length; i++)
 					result = _opModulo(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public int Test02ModuloEmitted()
+			{
+				var result = default(int);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emittedModulo(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 		}
@@ -330,27 +490,42 @@ namespace CodeJam.Arithmetic
 
 		#region Xor
 		[Test]
-		public void RunIntXorCase() => CompetitionBenchmarkRunner.Run<IntXorCase>(RunConfig);
+		public void RunIntXorCase() =>
+			CompetitionBenchmarkRunner.Run<IntXorCase>(RunConfig);
 
 		public class IntXorCase : IntOperatorsBaseCase
 		{
-			private readonly Func<int, int, int> _opXor = Operators<int>.Xor;
+			private static readonly Func<int, int, int> _opXor = Operators<int>.Xor;
+			private static readonly Func<int, int, int> _emittedXor = (a, b) => a^b;
 
 			[CompetitionBaseline]
-			public int XorBaseline()
+			public int Test00XorBaseline()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] ^ ValuesB[i];
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var a = ValuesA[i];
+					var b = ValuesB[i];
+					result = a^b;
+				}
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public int XorOperator()
+			public int Test01XorOperator()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
+				for (var i = 0; i < ValuesB.Length; i++)
 					result = _opXor(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public int Test02XorEmitted()
+			{
+				var result = default(int);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emittedXor(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 		}
@@ -358,27 +533,42 @@ namespace CodeJam.Arithmetic
 
 		#region BitwiseAnd
 		[Test]
-		public void RunIntBitwiseAndCase() => CompetitionBenchmarkRunner.Run<IntBitwiseAndCase>(RunConfig);
+		public void RunIntBitwiseAndCase() =>
+			CompetitionBenchmarkRunner.Run<IntBitwiseAndCase>(RunConfig);
 
 		public class IntBitwiseAndCase : IntOperatorsBaseCase
 		{
-			private readonly Func<int, int, int> _opBitwiseAnd = Operators<int>.BitwiseAnd;
+			private static readonly Func<int, int, int> _opBitwiseAnd = Operators<int>.BitwiseAnd;
+			private static readonly Func<int, int, int> _emittedBitwiseAnd = (a, b) => a&b;
 
 			[CompetitionBaseline]
-			public int BitwiseAndBaseline()
+			public int Test00BitwiseAndBaseline()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] & ValuesB[i];
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var a = ValuesA[i];
+					var b = ValuesB[i];
+					result = a&b;
+				}
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public int BitwiseAndOperator()
+			public int Test01BitwiseAndOperator()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
+				for (var i = 0; i < ValuesB.Length; i++)
 					result = _opBitwiseAnd(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public int Test02BitwiseAndEmitted()
+			{
+				var result = default(int);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emittedBitwiseAnd(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 		}
@@ -386,27 +576,42 @@ namespace CodeJam.Arithmetic
 
 		#region BitwiseOr
 		[Test]
-		public void RunIntBitwiseOrCase() => CompetitionBenchmarkRunner.Run<IntBitwiseOrCase>(RunConfig);
+		public void RunIntBitwiseOrCase() =>
+			CompetitionBenchmarkRunner.Run<IntBitwiseOrCase>(RunConfig);
 
 		public class IntBitwiseOrCase : IntOperatorsBaseCase
 		{
-			private readonly Func<int, int, int> _opBitwiseOr = Operators<int>.BitwiseOr;
+			private static readonly Func<int, int, int> _opBitwiseOr = Operators<int>.BitwiseOr;
+			private static readonly Func<int, int, int> _emittedBitwiseOr = (a, b) => a|b;
 
 			[CompetitionBaseline]
-			public int BitwiseOrBaseline()
+			public int Test00BitwiseOrBaseline()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] | ValuesB[i];
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var a = ValuesA[i];
+					var b = ValuesB[i];
+					result = a|b;
+				}
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public int BitwiseOrOperator()
+			public int Test01BitwiseOrOperator()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
+				for (var i = 0; i < ValuesB.Length; i++)
 					result = _opBitwiseOr(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public int Test02BitwiseOrEmitted()
+			{
+				var result = default(int);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emittedBitwiseOr(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 		}
@@ -414,27 +619,42 @@ namespace CodeJam.Arithmetic
 
 		#region LeftShift
 		[Test]
-		public void RunIntLeftShiftCase() => CompetitionBenchmarkRunner.Run<IntLeftShiftCase>(RunConfig);
+		public void RunIntLeftShiftCase() =>
+			CompetitionBenchmarkRunner.Run<IntLeftShiftCase>(RunConfig);
 
 		public class IntLeftShiftCase : IntOperatorsBaseCase
 		{
-			private readonly Func<int, int, int> _opLeftShift = Operators<int>.LeftShift;
+			private static readonly Func<int, int, int> _opLeftShift = Operators<int>.LeftShift;
+			private static readonly Func<int, int, int> _emittedLeftShift = (a, b) => a<<b;
 
 			[CompetitionBaseline]
-			public int LeftShiftBaseline()
+			public int Test00LeftShiftBaseline()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] << ValuesB[i];
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var a = ValuesA[i];
+					var b = ValuesB[i];
+					result = a<<b;
+				}
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public int LeftShiftOperator()
+			public int Test01LeftShiftOperator()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
+				for (var i = 0; i < ValuesB.Length; i++)
 					result = _opLeftShift(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public int Test02LeftShiftEmitted()
+			{
+				var result = default(int);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emittedLeftShift(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 		}
@@ -442,27 +662,42 @@ namespace CodeJam.Arithmetic
 
 		#region RightShift
 		[Test]
-		public void RunIntRightShiftCase() => CompetitionBenchmarkRunner.Run<IntRightShiftCase>(RunConfig);
+		public void RunIntRightShiftCase() =>
+			CompetitionBenchmarkRunner.Run<IntRightShiftCase>(RunConfig);
 
 		public class IntRightShiftCase : IntOperatorsBaseCase
 		{
-			private readonly Func<int, int, int> _opRightShift = Operators<int>.RightShift;
+			private static readonly Func<int, int, int> _opRightShift = Operators<int>.RightShift;
+			private static readonly Func<int, int, int> _emittedRightShift = (a, b) => a>>b;
 
 			[CompetitionBaseline]
-			public int RightShiftBaseline()
+			public int Test00RightShiftBaseline()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
-					result = ValuesA[i] >> ValuesB[i];
+				for (var i = 0; i < ValuesB.Length; i++)
+				{
+					var a = ValuesA[i];
+					var b = ValuesB[i];
+					result = a>>b;
+				}
 				return result;
 			}
 
 			[CompetitionBenchmark]
-			public int RightShiftOperator()
+			public int Test01RightShiftOperator()
 			{
 				var result = default(int);
-				for (var i = 0; i < ValuesA.Length; i++)
+				for (var i = 0; i < ValuesB.Length; i++)
 					result = _opRightShift(ValuesA[i], ValuesB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark]
+			public int Test02RightShiftEmitted()
+			{
+				var result = default(int);
+				for (var i = 0; i < ValuesB.Length; i++)
+					result = _emittedRightShift(ValuesA[i], ValuesB[i]);
 				return result;
 			}
 		}

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CompetitionBenchmarks>
+	<Competition Target="EnumCompareCase">
+		<Candidate Target="Test01Operators" MinRatio="0.17" MaxRatio="0.19" />
+		<Candidate Target="Test02Comparer" MinRatio="1.46" MaxRatio="1.56" />
+		<Candidate Target="Test03ExpressionFunc" MinRatio="1.07" MaxRatio="1.15" />
+	</Competition>
+	<Competition Target="IntCompareCase">
+		<Candidate Target="Test01Operators" MinRatio="1.94" MaxRatio="2.07" />
+		<Candidate Target="Test02Comparer" MinRatio="1.90" MaxRatio="2.04" />
+		<Candidate Target="Test03ExpressionFunc" MinRatio="1.83" MaxRatio="1.95" />
+	</Competition>
+	<Competition Target="NullableDateTimeCompareCase">
+		<Candidate Target="Test01Operators" MinRatio="0.32" MaxRatio="0.36" />
+		<Candidate Target="Test02Comparer" MinRatio="0.78" MaxRatio="0.84" />
+		<Candidate Target="Test03ExpressionFunc" MinRatio="1.22" MaxRatio="1.31" />
+	</Competition>
+	<Competition Target="NullableEnumCompareCase">
+		<Candidate Target="Test01Operators" MinRatio="1.39" MaxRatio="1.49" />
+		<Candidate Target="Test02Comparer" MinRatio="59.94" MaxRatio="63.68" />
+		<Candidate Target="Test03ExpressionFunc" MinRatio="1.25" MaxRatio="1.34" />
+	</Competition>
+	<Competition Target="NullableIntCompareCase">
+		<Candidate Target="Test01Operators" MinRatio="1.07" MaxRatio="1.19" />
+		<Candidate Target="Test02Comparer" MinRatio="1.10" MaxRatio="1.19" />
+		<Candidate Target="Test03ExpressionFunc" MinRatio="1.30" MaxRatio="1.40" />
+	</Competition>
+	<Competition Target="StringCompareCase">
+		<Candidate Target="Test01Operators" MinRatio="1.18" MaxRatio="1.27" />
+		<Candidate Target="Test02Comparer" MinRatio="18.14" MaxRatio="19.28" />
+		<Candidate Target="Test03ExpressionFunc" MinRatio="1.27" MaxRatio="1.36" />
+	</Competition>
+</CompetitionBenchmarks>
