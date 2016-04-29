@@ -384,7 +384,7 @@ namespace CodeJam.Threading
 		}
 		#endregion
 
-		#region T overloads
+		#region Generic overloads
 		/// <summary>
 		/// Initialize the value referenced by <paramref name="target"/> in a thread-safe manner.
 		/// The value is changed to <paramref name="value"/> only if the current value is default(T).

@@ -28,14 +28,14 @@
 			new OpInfo("RightShift", ">>", ExpressionType.RightShift),
 		};
 #><#+
-	protected enum OpType
+	private enum OpType
 	{
 		Binary = 0,
 		Comparison = 1,
 		Unary = 2
 	}
 
-	protected class OpInfo
+	private class OpInfo
 	{
 		public string Name { get; private set; }
 		public string Sign { get; private set; }

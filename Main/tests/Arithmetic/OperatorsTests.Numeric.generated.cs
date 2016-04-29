@@ -24,6 +24,7 @@ namespace CodeJam.Arithmetic
 		private static AttributeTargets? NullableEnumB = AttributeTargets.Class;
 		private static AttributeTargets? NullableEnumC = null;
 
+		#region Unary
 		#region UnaryMinus
 		[Test]
 		public void TestIntUnaryMinus() => Assert.AreEqual(-42, IntOp.UnaryMinus(42));
@@ -47,7 +48,9 @@ namespace CodeJam.Arithmetic
 			Assert.AreEqual(~NullableEnumC, NullableEnumOp.OnesComplement(NullableEnumC));
 		}
 		#endregion
+		#endregion
 
+		#region Comparison
 		#region AreEqual
 		[Test]
 		public void TestIntAreEqual() => Assert.AreEqual(1 == 2, IntOp.AreEqual(1, 2));
@@ -121,7 +124,9 @@ namespace CodeJam.Arithmetic
 		[Test]
 		public void TestNullableDoubleLessThanOrEqual() => Assert.AreEqual(1f <= 2f, NullableDoubleOp.LessThanOrEqual(1, 2));
 		#endregion
+		#endregion
 
+		#region Binary
 		#region Plus
 		[Test]
 		public void TestIntPlus() => Assert.AreEqual(1 + 2, IntOp.Plus(1, 2));
@@ -221,6 +226,7 @@ namespace CodeJam.Arithmetic
 		#region RightShift
 		[Test]
 		public void TestIntRightShift() => Assert.AreEqual(1 >> 2, IntOp.RightShift(1, 2));
+		#endregion
 		#endregion
 	}
 }
