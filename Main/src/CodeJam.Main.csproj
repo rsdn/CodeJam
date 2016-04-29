@@ -107,12 +107,11 @@
     <Compile Include="Collections\QueryableExtensions.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="Expressions\ExpressionExtensions.cs" />
-    <Compile Include="IO\NamespaceDoc.cs" />
-    <Compile Include="NamespaceDoc.cs" />
-    <Compile Include="Expressions\ExpressionHelper.Func.generated.cs">
+    <Compile Include="Expressions\Expr.generated.cs">
       <DependentUpon>ExpressionHelper.Func.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Expr.tt</DependentUpon>
     </Compile>
     <Compile Include="Reflection\NamespaceDoc.cs" />
     <Compile Include="Services\NamespaceDoc.cs" />
@@ -243,9 +242,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Operators.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Expressions\ExpressionHelper.Func.tt">
+    <Content Include="Expressions\Expr.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ExpressionHelper.Func.generated.cs</LastGenOutput>
+      <LastGenOutput>Expr.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Strings\CharExtensions.Infix.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
