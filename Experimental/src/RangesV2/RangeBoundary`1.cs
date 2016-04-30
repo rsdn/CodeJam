@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 using JetBrains.Annotations;
 
-using static CodeJam.RangesV2.RangeConstants;
+using static CodeJam.RangesV2.RangeInternal;
 
 namespace CodeJam.RangesV2
 {
@@ -84,6 +84,23 @@ namespace CodeJam.RangesV2
 			_value = value;
 			_kind = boundaryKind;
 		}
+
+		/// <summary>Creates a new range boundary.</summary>
+		/// <param name="value">
+		/// The value of the boundary. Infinite (or empty) boundaries should use default(T) as the value.
+		/// </param>
+		/// <param name="boundaryKind">The kind of the boundary.</param>
+		/// <param name="skipsArgValidation">Stub argument to mark unsafe (no validation) constructor overload.</param>
+		[Obsolete(SkipsArgValidationObsolete)]
+		internal RangeBoundary(T value, RangeBoundaryKind boundaryKind, UnsafeOverload skipsArgValidation)
+#if DEBUG
+			: this(value, boundaryKind) { }
+#else
+		{
+			_value = value;
+			_kind = boundaryKind;
+		}
+#endif
 		#endregion
 
 		#region Properties

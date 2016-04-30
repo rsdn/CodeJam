@@ -3,13 +3,13 @@ using System.Diagnostics.CodeAnalysis;
 
 using JetBrains.Annotations;
 
-using static CodeJam.RangesV2.RangeConstants;
+using static CodeJam.RangesV2.RangeInternal;
 
 namespace CodeJam.RangesV2
 {
 	/// <summary>Describes a range of the values</summary>
 	/// <typeparam name="T">
-	/// The type of the value. Should implement <seealso cref="IComparable{T}"/> or <seealso cref="IComparable"/>.
+	/// The type of the range values. Should implement <seealso cref="IComparable{T}"/> or <seealso cref="IComparable"/>.
 	/// </typeparam>
 	[Serializable]
 	[PublicAPI]
@@ -37,9 +37,8 @@ namespace CodeJam.RangesV2
 		{
 			if (from.IsNotEmpty || to.IsNotEmpty)
 			{
-				// TODO: uncomment
-				//Range.ValidateFrom(from);
-				//Range.ValidateTo(to);
+				ValidateFrom(from);
+				ValidateTo(to);
 				if (to < from)
 				{
 					throw CodeExceptions.ArgumentOutOfRange(nameof(to), to, from, RangeBoundary<T>.PositiveInfinity);
@@ -50,17 +49,22 @@ namespace CodeJam.RangesV2
 			To = to;
 		}
 
-		/// <summary>Creates instance of <seealso cref="Range{T}"/></summary>
-		/// <param name="fromValue">
-		/// The value of the from boundary. Infinite (or empty) boundaries should use default(T) as the value.
-		/// </param>
-		/// <param name="fromKind">The kind of the from boundary.</param>
-		/// <param name="toValue">
-		/// The value of the to boundary. Infinite (or empty) boundaries should use default(T) as the value.
-		/// </param>
-		/// <param name="toKind">The kind of the to boundary.</param>
-		public Range(T fromValue, RangeBoundaryKind fromKind, T toValue, RangeBoundaryKind toKind)
-			: this(new RangeBoundary<T>(fromValue, fromKind), new RangeBoundary<T>(toValue, toKind)) { }
+		/// <summary>
+		/// Creates instance of <seealso cref="Range{T}"/>
+		/// </summary>
+		/// <param name="from">Boundary from</param>
+		/// <param name="to">Boundary to</param>
+		/// <param name="skipsArgValidation">Stub argument to mark unsafe (no validation) constructor overload.</param>
+		[Obsolete(SkipsArgValidationObsolete)]
+		internal Range(RangeBoundary<T> from, RangeBoundary<T> to, UnsafeOverload skipsArgValidation)
+#if DEBUG
+			: this(from, to) { }
+#else
+		{
+			From = from;
+			To = to;
+		}
+#endif
 		#endregion
 
 		#region Properties

@@ -18,11 +18,11 @@ namespace CodeJam.RangesV2
 	/// 1. Proofs that there's no way to make RangeBoundary (of T) faster.
 	/// </summary>
 	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Boundary")]
+	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	[PublicAPI]
 	public class RangeBoundaryCompareToPerfTests
 	{
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunIntRangeBoundaryCompareToCase() =>
 			CompetitionBenchmarkRunner.Run<IntRangeBoundaryCompareToCase>(RunConfig);
 
@@ -38,7 +38,7 @@ namespace CodeJam.RangesV2
 				return result;
 			}
 
-			[CompetitionBenchmark(4.45, 4.79)]
+			[CompetitionBenchmark(3.89, 4.26)]
 			public int Test01Operators()
 			{
 				var result = 0;
@@ -47,7 +47,7 @@ namespace CodeJam.RangesV2
 				return result;
 			}
 
-			[CompetitionBenchmark(4.89, 5.23)]
+			[CompetitionBenchmark(4.35, 5.20)]
 			public int Test02BoundaryValuesOperators()
 			{
 				var result = 0;
@@ -56,7 +56,7 @@ namespace CodeJam.RangesV2
 				return result;
 			}
 
-			[CompetitionBenchmark(4.38, 4.74)]
+			[CompetitionBenchmark(5.85, 6.30)]
 			public int Test03BoundariesCompare()
 			{
 				var result = 0;
@@ -65,7 +65,7 @@ namespace CodeJam.RangesV2
 				return result;
 			}
 
-			[CompetitionBenchmark(5.69, 6.06)]
+			[CompetitionBenchmark(5.28, 6.01)]
 			public int Test04BoundaryToValueCompare()
 			{
 				var result = 0;
@@ -76,7 +76,6 @@ namespace CodeJam.RangesV2
 		}
 
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 		public void RunNullableIntRangeBoundaryCompareToCase() =>
 			CompetitionBenchmarkRunner.Run<NullableIntRangeBoundaryCompareToCase>(RunConfig);
 
@@ -93,7 +92,7 @@ namespace CodeJam.RangesV2
 				return result;
 			}
 
-			[CompetitionBenchmark(1.85, 1.99)]
+			[CompetitionBenchmark(2.13, 2.49)]
 			public int Test01Operators()
 			{
 				var result = 0;
@@ -102,7 +101,7 @@ namespace CodeJam.RangesV2
 				return result;
 			}
 
-			[CompetitionBenchmark(2.56, 2.74)]
+			[CompetitionBenchmark(3.03, 3.34)]
 			public int Test02BoundaryValuesOperators()
 			{
 				var result = 0;
@@ -111,7 +110,7 @@ namespace CodeJam.RangesV2
 				return result;
 			}
 
-			[CompetitionBenchmark(2.31, 2.47)]
+			[CompetitionBenchmark(2.26, 2.68)]
 			public int Test03BoundariesCompare()
 			{
 				var result = 0;
@@ -120,7 +119,7 @@ namespace CodeJam.RangesV2
 				return result;
 			}
 
-			[CompetitionBenchmark(25.49, 27.22)]
+			[CompetitionBenchmark(24.76, 29.16)]
 			public int Test04BoundaryToValueCompare()
 			{
 				var result = 0;

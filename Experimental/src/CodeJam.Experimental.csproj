@@ -82,7 +82,8 @@
     <Compile Include="Parsing\PrefixUnaryOperator.cs" />
     <Compile Include="RangesV2\IRangeFactory.cs" />
     <Compile Include="RangesV2\IRange`1.cs" />
-    <Compile Include="RangesV2\RangeConstants.cs" />
+    <Compile Include="RangesV2\Range.cs" />
+    <Compile Include="RangesV2\RangeInternal.cs" />
     <Compile Include="RangesV2\RangeExtesions.Core.cs" />
     <Compile Include="RangesV2\RangeBoundary.cs" />
     <Compile Include="RangesV2\RangeBoundaryKind.cs" />
@@ -103,7 +104,9 @@
       <Name>CodeJam.Main</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="RangesV2\RangesV2PlannedOptimizations.md" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

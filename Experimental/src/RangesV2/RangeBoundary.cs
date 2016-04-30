@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 using JetBrains.Annotations;
 
+using static CodeJam.RangesV2.RangeInternal;
+
 namespace CodeJam.RangesV2
 {
 	/// <summary>RangeBoundary helpers and extension methods</summary>
@@ -71,7 +73,9 @@ namespace CodeJam.RangesV2
 			}
 
 			var value = boundary.Value;
-			return new RangeBoundary<T>(value, newKind);
+#pragma warning disable 618 // Args are validated
+			return new RangeBoundary<T>(value, newKind, SkipsArgValidation);
+#pragma warning restore 618
 		}
 
 		/// <summary>
@@ -99,7 +103,9 @@ namespace CodeJam.RangesV2
 				}
 				else
 				{
-					boundary = new RangeBoundary<T>(newValue, boundary.Kind);
+#pragma warning disable 618 // Args are validated
+					boundary = new RangeBoundary<T>(newValue, boundary.Kind, SkipsArgValidation);
+#pragma warning restore 618
 				}
 			}
 
