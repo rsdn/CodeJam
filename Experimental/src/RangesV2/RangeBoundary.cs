@@ -75,14 +75,14 @@ namespace CodeJam.RangesV2
 		}
 
 		/// <summary>
-		/// Creates a new boundary with a new value.
-		/// If the boundary has on value the value will not update.
+		/// Creates a new boundary with updated value (if the current boundary has one).
+		/// If the boundary has no value the method returns the boundary unchanged.
 		/// </summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="boundary">The range boundary.</param>
 		/// <returns>Complementation for the boundary.</returns>
 		/// <param name="updateCallback">Callback returning new value of the boundary.</param>
-		/// <returns>Range boundary with the same kind but with a new value.</returns>
+		/// <returns>Range boundary with the same kind but with a new value (if the current boundary has one).</returns>
 		public static RangeBoundary<T> UpdateValue<T>(
 			this RangeBoundary<T> boundary,
 			[NotNull, InstantHandle] Func<T, T> updateCallback)

@@ -48,6 +48,7 @@
     <Compile Include="CmdLine\PrintUsageTest.cs" />
     <Compile Include="Collections\DisjointSetsTest.cs" />
     <Compile Include="Parsing\ParseHelperTests.cs" />
+    <Compile Include="RangesV2\RangeBoundaryExtensionsTests.cs" />
     <Compile Include="RangesV2\RangeBoundaryTests.cs" />
     <Compile Include="Ranges\ImmutableRangeListTests.cs" />
     <Compile Include="Ranges\RangeTests.cs" />
