@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>CodeJam</id>
-		<version>1.0.0-rc3</version>
+		<version>1.0.0</version>
 		<title>CodeJam .NET Library</title>
 		<authors>andrewvk</authors>
 		<licenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</licenseUrl>
