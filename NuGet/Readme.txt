@@ -1,6 +1,13 @@
 CodeJam 1.0.0 Release Notes
 ---------------------------------
 
+What's new in 1.1.0-beta1
+----------------------
+* Enum helpers and operators
+* Performance optimization
+* Refactoring
+* Fixes and code cleanup
+
 What's new in 1.0.0
 ----------------------
 * Small fixes
