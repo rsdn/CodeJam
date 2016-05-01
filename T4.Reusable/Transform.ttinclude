@@ -1,26 +1,61 @@
 ﻿<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Text.RegularExpressions" #><#+
 
-	protected void Transform(string source, params ReplaceInfo[] info)
+	private void Transform(string source, ReplaceInfo[] additionalReplaces, params ReplaceInfo[] replaces)
 	{
+		var replaceList = new List<ReplaceInfo>(additionalReplaces);
+		replaceList.AddRange(replaces);
+		Transform(source, replaceList.ToArray());
+	}
+	private void Transform(string source, params ReplaceInfo[] replaces)
+	{
+		Func<string, string, string, ReplaceInfo, string> replaceCore = (text, pattern, replacement, replaceInfo) =>
+		{
+			if (replaceInfo.SwapMode || replaceInfo.EscapePattern)
+			{
+				pattern = Regex.Escape(pattern);
+			}
+			pattern = replaceInfo.WholeWord
+				? @"(?<=\W|^)" +  pattern + @"(?=\W|$)"
+				: pattern;
+
+			var newText = Regex.Replace(text, pattern, replacement);
+			if (replaceInfo.ThrowOnFail && newText == text)
+				throw new InvalidOperationException("The match for " + pattern + " not found");
+
+			return newText;
+		};
+
 		var sourceText = File.ReadAllText(source);
 
-		foreach (var replaceInfo in info)
+		foreach (var replaceInfo in replaces)
 		{
-			var newText = Regex.Replace(sourceText, replaceInfo.Pattern, replaceInfo.Replacement);
-			if (replaceInfo.ThrowOnFail && newText == sourceText)
-				throw new InvalidOperationException("The match for " + replaceInfo.Pattern + " not found");
-
-			sourceText = newText;
+			if (replaceInfo.SwapMode)
+			{
+				// 1. Replace Replacement to temp
+				sourceText = replaceCore(sourceText, replaceInfo.Replacement, "tempTempTemptemp", replaceInfo);
+				// 2. Replace Pattern to Replacement
+				sourceText = replaceCore(sourceText, replaceInfo.Pattern, replaceInfo.Replacement, replaceInfo);
+				// 3. Replace temp to Pattern
+				sourceText = replaceCore(sourceText, "tempTempTemptemp", replaceInfo.Pattern, replaceInfo);
+			}
+			else
+			{
+				sourceText = replaceCore(sourceText, replaceInfo.Pattern, replaceInfo.Replacement, replaceInfo);
+			}
 		}
 
 		Write(sourceText);
 	}
 
-	protected class ReplaceInfo
+	private class ReplaceInfo
 	{
 		public string Pattern { get; set; }
 		public string Replacement { get; set; }
 		public bool ThrowOnFail { get; set; }
+		public bool WholeWord { get; set; }
+		public bool SwapMode { get; set; }
+		public bool EscapePattern { get; set; }
 	}
 #>

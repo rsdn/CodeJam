@@ -13,19 +13,32 @@ namespace CodeJam.RangesV2
 	public abstract class RangeBoundaryBaseCase<T>
 	{
 		// ReSharper disable once StaticMemberInGenericType
-		private static readonly RangeBoundaryKind[] _boundaries = EnumHelper.GetValues<RangeBoundaryKind>();
+		private static readonly RangeBoundaryFromKind[] _fromBoundaries = EnumHelper.GetValues<RangeBoundaryFromKind>();
+		// ReSharper disable once StaticMemberInGenericType
+		private static readonly RangeBoundaryToKind[] _toBoundaries = EnumHelper.GetValues<RangeBoundaryToKind>();
 
-		private static RangeBoundary<T> CreateBoundary(T value, int i)
+		private static RangeBoundaryFrom<T> CreateBoundaryFrom(T value, int i)
 		{
-			var boundaryKind = _boundaries[i % _boundaries.Length];
+			var boundaryKind = _fromBoundaries[i % _fromBoundaries.Length];
 			switch (boundaryKind)
 			{
-				case RangeBoundaryKind.Empty:
-				case RangeBoundaryKind.NegativeInfinity:
-				case RangeBoundaryKind.PositiveInfinity:
-					return new RangeBoundary<T>(default(T), boundaryKind);
+				case RangeBoundaryFromKind.Empty:
+				case RangeBoundaryFromKind.Infinite:
+					return new RangeBoundaryFrom<T>(default(T), boundaryKind);
 				default:
-					return new RangeBoundary<T>(value, boundaryKind);
+					return new RangeBoundaryFrom<T>(value, boundaryKind);
+			}
+		}
+		private static RangeBoundaryTo<T> CreateBoundaryTo(T value, int i)
+		{
+			var boundaryKind = _toBoundaries[i % _toBoundaries.Length];
+			switch (boundaryKind)
+			{
+				case RangeBoundaryToKind.Empty:
+				case RangeBoundaryToKind.Infinite:
+					return new RangeBoundaryTo<T>(default(T), boundaryKind);
+				default:
+					return new RangeBoundaryTo<T>(value, boundaryKind);
 			}
 		}
 
@@ -42,8 +55,10 @@ namespace CodeJam.RangesV2
 
 		protected T[] ValuesA;
 		protected T[] ValuesB;
-		protected RangeBoundary<T>[] BoundariesA;
-		protected RangeBoundary<T>[] BoundariesB;
+		protected RangeBoundaryFrom<T>[] BoundariesFromA;
+		protected RangeBoundaryTo<T>[] BoundariesToA;
+		protected RangeBoundaryFrom<T>[] BoundariesFromB;
+		protected RangeBoundaryTo<T>[] BoundariesToB;
 
 		/// <summary> Get value A from index </summary>
 		protected abstract T GetValueA(int i);
@@ -61,16 +76,20 @@ namespace CodeJam.RangesV2
 			var count = Count;
 			ValuesA = new T[count];
 			ValuesB = new T[count];
-			BoundariesA = new RangeBoundary<T>[count];
-			BoundariesB = new RangeBoundary<T>[count];
+			BoundariesFromA = new RangeBoundaryFrom<T>[count];
+			BoundariesToA = new RangeBoundaryTo<T>[count];
+			BoundariesFromB = new RangeBoundaryFrom<T>[count];
+			BoundariesToB = new RangeBoundaryTo<T>[count];
 			for (var i = 0; i < count; i++)
 			{
 				var iA = i % ValueARepeats + ValueAOffset;
 				var iB = i % ValueBRepeats + ValueBOffset;
 				ValuesA[i] = GetValueA(iA);
 				ValuesB[i] = GetValueB(iB);
-				BoundariesA[i] = CreateBoundary(ValuesA[i], iA);
-				BoundariesB[i] = CreateBoundary(ValuesB[i], iB);
+				BoundariesFromA[i] = CreateBoundaryFrom(ValuesA[i], iA);
+				BoundariesToA[i] = CreateBoundaryTo(ValuesA[i], iA);
+				BoundariesFromB[i] = CreateBoundaryFrom(ValuesB[i], iB);
+				BoundariesToB[i] = CreateBoundaryTo(ValuesB[i], iB);
 			}
 		}
 	}

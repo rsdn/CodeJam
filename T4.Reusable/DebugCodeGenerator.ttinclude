@@ -21,7 +21,7 @@
 		var oldClassPath = Host.ResolvePath(oldClassName + ".cs");
 		if (!File.Exists(oldClassPath))
 		{
-			throw new FileNotFoundException("File '" + oldClassPath + "' does not exist");
+			throw new FileNotFoundException("File '" + oldClassPath + "' does not exist.");
 		}
 
 		WriteLine(@"using static CodeJam.DebugCode;");
@@ -31,15 +31,17 @@
 			Host.ResolvePath(oldClassPath),
 			new ReplaceInfo
 			{ 
-				Pattern = "class " + Regex.Escape(oldClassName),
+				Pattern = "class " + oldClassName,
 				Replacement = "class " + newClassName,
-				ThrowOnFail = true
+				ThrowOnFail = true,
+				EscapePattern = true
 			},
 			new ReplaceInfo
 			{
-				Pattern = Regex.Escape("[DebuggerHidden"),
+				Pattern = "[DebuggerHidden",
 				Replacement = "[Conditional(DebugCondition), DebuggerHidden",
-				ThrowOnFail = true
+				ThrowOnFail = true,
+				EscapePattern = true
 			});
 	}
 #>

@@ -18,7 +18,7 @@ using static CodeJam.AssemblyWideConfig;
 
 namespace CodeJam.Arithmetic
 {
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Operators<T>.Equality")]
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Operators<T>, equality")]
 	[CompetitionMetadata("CodeJam.Arithmetic.OperatorsEqualityPerfTests.generated.xml")]
 	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	public class OperatorsEqualityPerfTests

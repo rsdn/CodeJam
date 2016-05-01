@@ -1,0 +1,17 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ include file="RangeBoundaryToReplacer.ttinclude" #>
+<#
+	Run(
+		new ReplaceInfo
+		{ 
+			Pattern = @"FromInclusiveString \+ (.*?);",
+			Replacement = @"$1 + ToInclusiveString;",
+			ThrowOnFail = true
+		},
+		new ReplaceInfo
+		{ 
+			Pattern = @"FromExclusiveString \+ (.*?);",
+			Replacement = @"$1 + ToExclusiveString;",
+			ThrowOnFail = true
+		});
+#>

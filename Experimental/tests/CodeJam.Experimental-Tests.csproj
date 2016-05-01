@@ -48,8 +48,13 @@
     <Compile Include="CmdLine\PrintUsageTest.cs" />
     <Compile Include="Collections\DisjointSetsTest.cs" />
     <Compile Include="Parsing\ParseHelperTests.cs" />
-    <Compile Include="RangesV2\RangeBoundaryExtensionsTests.cs" />
-    <Compile Include="RangesV2\RangeBoundaryTests.cs" />
+    <Compile Include="RangesV2\RangeBoundaryFromToTests.cs" />
+    <Compile Include="RangesV2\RangeBoundaryFromTests.cs" />
+    <Compile Include="RangesV2\RangeBoundaryToTests.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RangeBoundaryToTests.tt</DependentUpon>
+    </Compile>
     <Compile Include="Ranges\ImmutableRangeListTests.cs" />
     <Compile Include="Ranges\RangeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,10 +70,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RangesV2\RangeBoundaryToTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RangeBoundaryToTests.generated.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

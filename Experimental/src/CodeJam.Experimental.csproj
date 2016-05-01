@@ -80,15 +80,23 @@
     <Compile Include="Parsing\ParseHelper.cs" />
     <Compile Include="Parsing\PostfixUnaryOperator.cs" />
     <Compile Include="Parsing\PrefixUnaryOperator.cs" />
+    <Compile Include="RangesV2\[Boundaries]\RangeBoundaryFrom`1.cs" />
+    <Compile Include="RangesV2\[Boundaries]\RangeBoundaryTo`1.generated.cs">
+      <DependentUpon>RangeBoundaryTo`1.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="RangesV2\[Boundaries]\RangeBoundary.Operators.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RangeBoundary.Operators.tt</DependentUpon>
+    </Compile>
     <Compile Include="RangesV2\IRangeFactory.cs" />
     <Compile Include="RangesV2\IRange`1.cs" />
     <Compile Include="RangesV2\Range.cs" />
     <Compile Include="RangesV2\RangeInternal.cs" />
-    <Compile Include="RangesV2\RangeExtesions.Core.cs" />
-    <Compile Include="RangesV2\RangeBoundary.cs" />
-    <Compile Include="RangesV2\RangeBoundaryKind.cs" />
-    <Compile Include="RangesV2\RangeBoundary`1.Operators.cs" />
-    <Compile Include="RangesV2\RangeBoundary`1.cs" />
+    <Compile Include="RangesV2\RangeExtensions.Core.cs" />
+    <Compile Include="RangesV2\[Boundaries]\RangeBoundaryKind.cs" />
     <Compile Include="RangesV2\Range`1.Operators.cs" />
     <Compile Include="RangesV2\Range`1.cs" />
     <Compile Include="Ranges\ImmutableRangeList.cs" />
@@ -105,7 +113,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="RangesV2\[Boundaries]\RangeBoundaryToReplacer.ttinclude" />
+    <Content Include="RangesV2\[Boundaries]\RangeBoundaryTo`1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RangeBoundaryTo`1.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="RangesV2\[Boundaries]\RangeBoundary.Operators.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RangeBoundary.Operators.generated.cs</LastGenOutput>
+    </Content>
     <None Include="RangesV2\RangesV2PlannedOptimizations.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

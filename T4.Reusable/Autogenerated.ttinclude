@@ -1,5 +1,6 @@
 ﻿<#@ output extension=".generated.cs" #>
 <#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml.Linq" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Linq" #>
 //------------------------------------------------------------------------------
@@ -11,6 +12,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 <#+
+	private string EscapeXmlDocString(string xmlDocText) 
+	{
+		return new System.Xml.Linq.XText(xmlDocText).ToString();
+	}
+
 	private string List(int count, Func<int, string> elem, string separator = ", ") 
 	{
 		return string.Join(separator, Enumerable.Range(1, count).Select(elem));

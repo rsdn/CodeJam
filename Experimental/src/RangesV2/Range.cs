@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 using JetBrains.Annotations;
@@ -12,82 +13,129 @@ namespace CodeJam.RangesV2
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	public static class Range
 	{
+		#region Assertion methods
+		/// <summary>Validates that the boundary is not empty.</summary>
+		/// <typeparam name="T">The type of the boundary value.</typeparam>
+		/// <param name="boundary">The boundary.</param>
+		/// <exception cref="System.ArgumentException">Thrown if the boundary is empty.</exception>
+		[DebuggerHidden, AssertionMethod]
+		internal static void ValidateNotEmpty<T>(RangeBoundaryFrom<T> boundary)
+		{
+			if (boundary.IsEmpty)
+			{
+				throw CodeExceptions.Argument(
+					nameof(boundary),
+					"The boundary should be not empty.");
+			}
+		}
+
+		/// <summary>Validates that the boundary is not empty.</summary>
+		/// <typeparam name="T">The type of the boundary value.</typeparam>
+		/// <param name="boundary">The boundary.</param>
+		/// <exception cref="System.ArgumentException">Thrown if the boundary is empty.</exception>
+		[DebuggerHidden, AssertionMethod]
+		internal static void ValidateNotEmpty<T>(RangeBoundaryTo<T> boundary)
+		{
+			if (boundary.IsEmpty)
+			{
+				throw CodeExceptions.Argument(
+					nameof(boundary),
+					"The boundary should be not empty.");
+			}
+		}
+
+		/// <summary>Validates that the range is not empty.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="range">The range.</param>
+		/// <exception cref="System.ArgumentException">Thrown if the range is empty.</exception>
+		[DebuggerHidden, AssertionMethod]
+		internal static void ValidateNotEmpty<T>(Range<T> range)
+		{
+			if (range.IsEmpty)
+			{
+				throw CodeExceptions.Argument(
+					nameof(range),
+					"The range should be not empty.");
+			}
+		}
+		#endregion
+
 		#region Boundary factory methods
-		/// <summary>Inclusive From boundary factory method.</summary>
+		/// <summary>Inclusive boundary From factory method.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="fromValue">From value.</param>
 		/// <returns>
-		/// New inclusive from boundary, or the positive infinity boundary if the <paramref name="fromValue" /> is <c>null</c>
+		/// New inclusive boundary From, or the negative infinity boundary if the <paramref name="fromValue" /> is <c>null</c>.
 		/// </returns>
-		public static RangeBoundary<T> BoundaryFrom<T>(T fromValue) =>
+		public static RangeBoundaryFrom<T> BoundaryFrom<T>(T fromValue) =>
 #pragma warning disable 618 // Args are validated
-			new RangeBoundary<T>(
+			new RangeBoundaryFrom<T>(
 				fromValue,
 				fromValue == null
-					? RangeBoundaryKind.NegativeInfinity
-					: RangeBoundaryKind.FromInclusive,
+					? RangeBoundaryFromKind.Infinite
+					: RangeBoundaryFromKind.Inclusive,
 				SkipsArgValidation);
 #pragma warning restore 618
 
-		/// <summary>Exclusive From boundary factory method.</summary>
+		/// <summary>Exclusive boundary From factory method.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="fromValue">From value.</param>
 		/// <returns>
-		/// New exclusive from boundary, or the positive infinity boundary if the <paramref name="fromValue" /> is <c>null</c>
+		/// New exclusive boundary From, or the negative infinity boundary if the <paramref name="fromValue" /> is <c>null</c>.
 		/// </returns>
-		public static RangeBoundary<T> ExclusiveBoundaryFrom<T>(T fromValue) =>
+		public static RangeBoundaryFrom<T> BoundaryFromExclusive<T>(T fromValue) =>
 #pragma warning disable 618 // Args are validated
-			new RangeBoundary<T>(
+			new RangeBoundaryFrom<T>(
 				fromValue,
 				fromValue == null
-					? RangeBoundaryKind.NegativeInfinity
-					: RangeBoundaryKind.FromExclusive,
+					? RangeBoundaryFromKind.Infinite
+					: RangeBoundaryFromKind.Exclusive,
 				SkipsArgValidation);
 #pragma warning restore 618
 
 		/// <summary>Negative infinity boundary (-∞) factory method.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <returns>The negative infinity boundary (-∞).</returns>
-		public static RangeBoundary<T> InfiniteBoundaryFrom<T>() =>
-			RangeBoundary<T>.NegativeInfinity;
+		public static RangeBoundaryFrom<T> BoundaryFromInfinity<T>() =>
+			RangeBoundaryFrom<T>.NegativeInfinity;
 
-		/// <summary>Inclusive To boundary factory method.</summary>
+		/// <summary>Inclusive boundary To factory method.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="toValue">To value.</param>
 		/// <returns>
-		/// New inclusive to boundary, or the positive infinity boundary if the <paramref name="toValue" /> is <c>null</c>
+		/// New inclusive boundary To, or the positive infinity boundary if the <paramref name="toValue" /> is <c>null</c>.
 		/// </returns>
-		public static RangeBoundary<T> BoundaryTo<T>(T toValue) =>
+		public static RangeBoundaryTo<T> BoundaryTo<T>(T toValue) =>
 #pragma warning disable 618 // Args are validated
-			new RangeBoundary<T>(
+			new RangeBoundaryTo<T>(
 				toValue,
 				toValue == null
-					? RangeBoundaryKind.PositiveInfinity
-					: RangeBoundaryKind.ToInclusive,
+					? RangeBoundaryToKind.Infinite
+					: RangeBoundaryToKind.Inclusive,
 				SkipsArgValidation);
 #pragma warning restore 618
 
-		/// <summary>Exclusive To boundary factory method.</summary>
+		/// <summary>Exclusive boundary To factory method.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="toValue">To value.</param>
 		/// <returns>
-		/// New exclusive to boundary, or the positive infinity boundary if the <paramref name="toValue" /> is <c>null</c>
+		/// New exclusive boundary To, or the positive infinity boundary if the <paramref name="toValue" /> is <c>null</c>.
 		/// </returns>
-		public static RangeBoundary<T> ExclusiveBoundaryTo<T>(T toValue) =>
+		public static RangeBoundaryTo<T> BoundaryToExclusive<T>(T toValue) =>
 #pragma warning disable 618 // Args are validated
-			new RangeBoundary<T>(
+			new RangeBoundaryTo<T>(
 				toValue,
 				toValue == null
-					? RangeBoundaryKind.PositiveInfinity
-					: RangeBoundaryKind.ToExclusive,
+					? RangeBoundaryToKind.Infinite
+					: RangeBoundaryToKind.Exclusive,
 				SkipsArgValidation);
 #pragma warning restore 618
 
 		/// <summary>Positive infinity boundary (+∞) factory method.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <returns>The positive infinity boundary (-∞).</returns>
-		public static RangeBoundary<T> InfiniteBoundaryTo<T>() =>
-			RangeBoundary<T>.PositiveInfinity;
+		public static RangeBoundaryTo<T> BoundaryToInfinity<T>() =>
+			RangeBoundaryTo<T>.PositiveInfinity;
 		#endregion
 
 		#region Boundary operations
@@ -96,120 +144,133 @@ namespace CodeJam.RangesV2
 		/// <param name="boundary1">The boundary1.</param>
 		/// <param name="boundary2">The boundary2.</param>
 		/// <returns>The less one of the two boundaries.</returns>
-		public static RangeBoundary<T> Min<T>(RangeBoundary<T> boundary1, RangeBoundary<T> boundary2)
-		{
-			ValidateSame(boundary1, boundary2);
-			return boundary1 <= boundary2 ? boundary1 : boundary2;
-		}
+		public static RangeBoundaryFrom<T> Min<T>(RangeBoundaryFrom<T> boundary1, RangeBoundaryFrom<T> boundary2) =>
+			boundary1 <= boundary2 ? boundary1 : boundary2;
+
+		/// <summary>Returns the less one of the two boundaries.</summary>
+		/// <typeparam name="T">The type of the boundary value.</typeparam>
+		/// <param name="boundary1">The boundary1.</param>
+		/// <param name="boundary2">The boundary2.</param>
+		/// <returns>The less one of the two boundaries.</returns>
+		public static RangeBoundaryTo<T> Min<T>(RangeBoundaryTo<T> boundary1, RangeBoundaryTo<T> boundary2) =>
+			boundary1 <= boundary2 ? boundary1 : boundary2;
 
 		/// <summary>Returns the greater one of the two boundaries.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="boundary1">The boundary1.</param>
 		/// <param name="boundary2">The boundary2.</param>
 		/// <returns>The greater one of the two boundaries.</returns>
-		public static RangeBoundary<T> Max<T>(RangeBoundary<T> boundary1, RangeBoundary<T> boundary2)
-		{
-			ValidateSame(boundary1, boundary2);
-			return boundary1 >= boundary2 ? boundary1 : boundary2;
-		}
+		public static RangeBoundaryFrom<T> Max<T>(RangeBoundaryFrom<T> boundary1, RangeBoundaryFrom<T> boundary2) =>
+			boundary1 >= boundary2 ? boundary1 : boundary2;
+
+		/// <summary>Returns the greater one of the two boundaries.</summary>
+		/// <typeparam name="T">The type of the boundary value.</typeparam>
+		/// <param name="boundary1">The boundary1.</param>
+		/// <param name="boundary2">The boundary2.</param>
+		/// <returns>The greater one of the two boundaries.</returns>
+		public static RangeBoundaryTo<T> Max<T>(RangeBoundaryTo<T> boundary1, RangeBoundaryTo<T> boundary2) =>
+			boundary1 >= boundary2 ? boundary1 : boundary2;
 
 		/// <summary>Returns the less one of the two From boundaries.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="value1">The value of the boundary1.</param>
 		/// <param name="value2">The value of the boundary2.</param>
-		/// <returns>The greater one of the two From boundaries.</returns>
-		public static RangeBoundary<T> MinFrom<T>(T value1, T value2) => Min(BoundaryFrom(value1), BoundaryFrom(value2));
+		/// <returns>The less one of the two From boundaries.</returns>
+		public static RangeBoundaryFrom<T> MinFrom<T>(T value1, T value2) =>
+			Min(BoundaryFrom(value1), BoundaryFrom(value2));
 
-		/// <summary>Returns the less one of the two From boundaries.</summary>
+		/// <summary>Returns the greater one of the two From boundaries.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="value1">The value of the boundary1.</param>
 		/// <param name="value2">The value of the boundary2.</param>
 		/// <returns>The greater one of the two From boundaries.</returns>
-		public static RangeBoundary<T> MaxFrom<T>(T value1, T value2) => Max(BoundaryFrom(value1), BoundaryFrom(value2));
+		public static RangeBoundaryFrom<T> MaxFrom<T>(T value1, T value2) =>
+			Max(BoundaryFrom(value1), BoundaryFrom(value2));
 
 		/// <summary>Returns the less one of the two To boundaries.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="value1">The value of the boundary1.</param>
 		/// <param name="value2">The value of the boundary2.</param>
-		/// <returns>The greater one of the two To boundaries.</returns>
-		public static RangeBoundary<T> MinTo<T>(T value1, T value2) => Min(BoundaryTo(value1), BoundaryTo(value2));
+		/// <returns>The less one of the two To boundaries.</returns>
+		public static RangeBoundaryTo<T> MinTo<T>(T value1, T value2) =>
+			Min(BoundaryTo(value1), BoundaryTo(value2));
 
-		/// <summary>Returns the less one of the two To boundaries.</summary>
+		/// <summary>Returns the greater one of the two To boundaries.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="value1">The value of the boundary1.</param>
 		/// <param name="value2">The value of the boundary2.</param>
 		/// <returns>The greater one of the two To boundaries.</returns>
-		public static RangeBoundary<T> MaxTo<T>(T value1, T value2) => Max(BoundaryTo(value1), BoundaryTo(value2));
+		public static RangeBoundaryTo<T> MaxTo<T>(T value1, T value2) =>
+			Max(BoundaryTo(value1), BoundaryTo(value2));
 		#endregion
 
 		#region Range validation
 		/// <summary>Returns true if the boundaries can be used for valid range creation.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
-		/// <param name="from">The value of the from boundary.</param>
-		/// <param name="to">The value of the to boundary.</param>
+		/// <param name="from">The value of the boundary From.</param>
+		/// <param name="to">The value of the boundary To.</param>
 		/// <returns><c>true</c>, if the boundaries can be used for valid range creation.</returns>
 		public static bool IsValid<T>(T from, T to) =>
 			BoundaryFrom(from) <= BoundaryTo(to);
 
 		/// <summary>Returns true if the boundaries can be used for valid range creation.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
-		/// <param name="from">The from boundary.</param>
-		/// <param name="to">The to boundary.</param>
+		/// <param name="from">Boundary From.</param>
+		/// <param name="to">Boundary To.</param>
 		/// <returns><c>true</c>, if the boundaries can be used for valid range creation.</returns>
-		public static bool IsValid<T>(RangeBoundary<T> from, RangeBoundary<T> to) =>
-			(from.IsEmpty && to.IsEmpty) ||
-				(from.IsFromBoundary && to.IsToBoundary && from <= to);
+		public static bool IsValid<T>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+			(from.IsEmpty && to.IsEmpty) || from <= to;
 		#endregion
 
 		#region Range factory methods
 		/// <summary>Creates the range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
-		/// <param name="from">From boundary.</param>
-		/// <param name="to">To boundary.</param>
+		/// <param name="from">Boundary From.</param>
+		/// <param name="to">Boundary To.</param>
 		/// <returns></returns>
-		public static Range<T> Create<T>(RangeBoundary<T> from, RangeBoundary<T> to) =>
+		public static Range<T> Create<T>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new Range<T>(from, to);
 
 		/// <summary>Creates the range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
-		/// <param name="fromValue">The value of from inclusive boundary.</param>
-		/// <param name="toValue">The value of to inclusive boundary.</param>
+		/// <param name="fromValue">The value of the boundary From inclusive.</param>
+		/// <param name="toValue">The value of the boundary To inclusive.</param>
 		/// <returns>A new range.</returns>
 		public static Range<T> Create<T>(T fromValue, T toValue) =>
 			new Range<T>(BoundaryFrom(fromValue), BoundaryTo(toValue));
 
 		/// <summary>Creates the range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
-		/// <param name="fromValue">The value of from exclusive boundary.</param>
-		/// <param name="toValue">The value of to exclusive boundary.</param>
+		/// <param name="fromValue">The value of the boundary From exclusive.</param>
+		/// <param name="toValue">The value of the boundary To exclusive.</param>
 		/// <returns>A new range.</returns>
 		public static Range<T> CreateExclusive<T>(T fromValue, T toValue) =>
-			new Range<T>(ExclusiveBoundaryFrom(fromValue), ExclusiveBoundaryTo(toValue));
+			new Range<T>(BoundaryFromExclusive(fromValue), BoundaryToExclusive(toValue));
 
 		/// <summary>Creates the range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
-		/// <param name="fromValue">The value of from exclusive boundary.</param>
-		/// <param name="toValue">The value of to inclusive boundary.</param>
+		/// <param name="fromValue">The value of the boundary From exclusive.</param>
+		/// <param name="toValue">The value of the boundary To inclusive.</param>
 		/// <returns>A new range.</returns>
 		public static Range<T> CreateExclusiveFrom<T>(T fromValue, T toValue) =>
-			new Range<T>(ExclusiveBoundaryFrom(fromValue), BoundaryTo(toValue));
+			new Range<T>(BoundaryFromExclusive(fromValue), BoundaryTo(toValue));
 
 		/// <summary>Creates the range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
-		/// <param name="fromValue">The value of from inclusive boundary.</param>
-		/// <param name="toValue">The value of to exclusive boundary.</param>
+		/// <param name="fromValue">The value of the boundary From inclusive.</param>
+		/// <param name="toValue">The value of the boundary To exclusive.</param>
 		/// <returns>A new range.</returns>
 		public static Range<T> CreateExclusiveTo<T>(T fromValue, T toValue) =>
-			new Range<T>(BoundaryFrom(fromValue), ExclusiveBoundaryTo(toValue));
+			new Range<T>(BoundaryFrom(fromValue), BoundaryToExclusive(toValue));
 		#endregion
 
 		#region Failsafe Range factory methods
 		/// <summary>Tries to create the range. Returns <seealso cref="Range{T}.Empty"/> if failed.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
-		/// <param name="from">From boundary.</param>
-		/// <param name="to">To boundary.</param>
+		/// <param name="from">Boundary From.</param>
+		/// <param name="to">Boundary To.</param>
 		/// <returns>A new range or the <seealso cref="Range{T}.Empty"/> if the boundaries forms invalid range.</returns>
-		public static Range<T> TryCreate<T>(RangeBoundary<T> from, RangeBoundary<T> to) =>
+		public static Range<T> TryCreate<T>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			IsValid(from, to)
 #pragma warning disable 618 // Args are validated
 				? new Range<T>(from, to, SkipsArgValidation)
@@ -218,8 +279,8 @@ namespace CodeJam.RangesV2
 
 		/// <summary>Tries to create the range. Returns <seealso cref="Range{T}.Empty"/> if failed.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
-		/// <param name="fromValue">The value of from inclusive boundary.</param>
-		/// <param name="toValue">The value of to inclusive boundary.</param>
+		/// <param name="fromValue">The value of the boundary From inclusive.</param>
+		/// <param name="toValue">The value of the boundary To inclusive.</param>
 		/// <returns>A new range or the <seealso cref="Range{T}.Empty"/> if the boundaries forms invalid range.</returns>
 		public static Range<T> TryCreate<T>(T fromValue, T toValue) =>
 			IsValid(fromValue, toValue)
@@ -230,37 +291,39 @@ namespace CodeJam.RangesV2
 
 		/// <summary>Tries to create the range. Returns <seealso cref="Range{T}.Empty"/> if failed.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
-		/// <param name="fromValue">The value of from exclusive boundary.</param>
-		/// <param name="toValue">The value of to exclusive boundary.</param>
+		/// <param name="fromValue">The value of the boundary From exclusive.</param>
+		/// <param name="toValue">The value of the boundary To exclusive.</param>
 		/// <returns>A new range or the <seealso cref="Range{T}.Empty"/> if the boundaries forms invalid range.</returns>
 		public static Range<T> TryCreateExclusive<T>(T fromValue, T toValue) =>
 			IsValid(fromValue, toValue)
 #pragma warning disable 618 // Args are validated
-				? new Range<T>(ExclusiveBoundaryFrom(fromValue), ExclusiveBoundaryTo(toValue), SkipsArgValidation)
+				? new Range<T>(BoundaryFromExclusive(fromValue), BoundaryToExclusive(toValue), SkipsArgValidation)
 #pragma warning restore 618
 				: Range<T>.Empty;
 
 		/// <summary>Tries to create the range. Returns <seealso cref="Range{T}.Empty"/> if failed.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
-		/// <param name="fromValue">The value of from exclusive boundary.</param>
-		/// <param name="toValue">The value of to inclusive boundary.</param>
+		/// <param name="fromValue">The value of the boundary From exclusive.</param>
+		/// <param name="toValue">The value of the boundary To inclusive.</param>
 		/// <returns>A new range or the <seealso cref="Range{T}.Empty"/> if the boundaries forms invalid range.</returns>
-		public static Range<T> TryCreateExclusiveFrom<T>(T fromValue, T toValue) => IsValid(fromValue, toValue)
+		public static Range<T> TryCreateExclusiveFrom<T>(T fromValue, T toValue) =>
+			IsValid(fromValue, toValue)
 #pragma warning disable 618 // Args are validated
-			? new Range<T>(ExclusiveBoundaryFrom(fromValue), BoundaryTo(toValue), SkipsArgValidation)
+				? new Range<T>(BoundaryFromExclusive(fromValue), BoundaryTo(toValue), SkipsArgValidation)
 #pragma warning restore 618
-			: Range<T>.Empty;
+				: Range<T>.Empty;
 
 		/// <summary>Tries to create the range. Returns <seealso cref="Range{T}.Empty"/> if failed.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
-		/// <param name="fromValue">The value of from inclusive boundary.</param>
-		/// <param name="toValue">The value of to exclusive boundary.</param>
+		/// <param name="fromValue">The value of the boundary From inclusive.</param>
+		/// <param name="toValue">The value of the boundary To exclusive.</param>
 		/// <returns>A new range or the <seealso cref="Range{T}.Empty"/> if the boundaries forms invalid range.</returns>
-		public static Range<T> TryCreateExclusiveTo<T>(T fromValue, T toValue) => IsValid(fromValue, toValue)
+		public static Range<T> TryCreateExclusiveTo<T>(T fromValue, T toValue) =>
+			IsValid(fromValue, toValue)
 #pragma warning disable 618 // Args are validated
-			? new Range<T>(BoundaryFrom(fromValue), ExclusiveBoundaryTo(toValue), SkipsArgValidation)
+				? new Range<T>(BoundaryFrom(fromValue), BoundaryToExclusive(toValue), SkipsArgValidation)
 #pragma warning restore 618
-			: Range<T>.Empty;
+				: Range<T>.Empty;
 		#endregion
 	}
 }

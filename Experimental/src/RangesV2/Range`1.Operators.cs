@@ -16,7 +16,7 @@ namespace CodeJam.RangesV2
 		/// <summary>Implements the operator ==.</summary>
 		/// <param name="range1">The range1.</param>
 		/// <param name="range2">The range2.</param>
-		/// <returns><c>True</c>, if ranges are equal</returns>
+		/// <returns><c>True</c>, if ranges are equal.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator ==(Range<T> range1, Range<T> range2) =>
 			range1.Equals(range2);
@@ -24,20 +24,10 @@ namespace CodeJam.RangesV2
 		/// <summary>Implements the operator !=.</summary>
 		/// <param name="range1">The range1.</param>
 		/// <param name="range2">The range2.</param>
-		/// <returns><c>True</c>, if ranges are inequal.</returns>
+		/// <returns><c>True</c>, if ranges are not equal.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool operator !=(Range<T> range1, Range<T> range2) =>
 			!range1.Equals(range2);
-		#endregion
-
-		#region CLS-friendly operators
-		/// <summary> Equality comparison method. </summary>
-		/// <param name="range1">The range1.</param>
-		/// <param name="range2">The range2.</param>
-		/// <returns><c>True</c>, if ranges are equal.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static bool Equals(Range<T> range1, Range<T> range2) =>
-			range1 == range2;
 		#endregion
 
 		#region IEquatable<Range<T>>
@@ -49,9 +39,7 @@ namespace CodeJam.RangesV2
 		/// </returns>
 		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 		public bool Equals(Range<T> other) =>
-			IsEmpty
-				? other.IsEmpty
-				: (From == other.From && To == other.To);
+			From == other.From && To == other.To;
 
 		/// <summary>Indicates whether the current range and a specified object are equal.</summary>
 		/// <param name="obj">The object to compare with this. </param>

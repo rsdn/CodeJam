@@ -38,7 +38,7 @@ namespace CodeJam.RangesV2
 				return result;
 			}
 
-			[CompetitionBenchmark(3.89, 4.26)]
+			[CompetitionBenchmark(3.47, 3.89)]
 			public int Test01Operators()
 			{
 				var result = 0;
@@ -47,30 +47,39 @@ namespace CodeJam.RangesV2
 				return result;
 			}
 
-			[CompetitionBenchmark(4.35, 5.20)]
+			[CompetitionBenchmark(4.44, 4.94)]
 			public int Test02BoundaryValuesOperators()
 			{
 				var result = 0;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = Operators<int>.Compare(BoundariesA[i].GetValueOrDefault(), BoundariesB[i].GetValueOrDefault());
+					result = Operators<int>.Compare(BoundariesFromA[i].GetValueOrDefault(), BoundariesFromB[i].GetValueOrDefault());
 				return result;
 			}
 
-			[CompetitionBenchmark(5.85, 6.30)]
-			public int Test03BoundariesCompare()
+			[CompetitionBenchmark(2.52, 2.84)]
+			public int Test03BoundariesCompareFrom()
 			{
 				var result = 0;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = BoundariesA[i].CompareTo(BoundariesB[i]);
+					result = BoundariesFromA[i].CompareTo(BoundariesFromB[i]);
 				return result;
 			}
 
-			[CompetitionBenchmark(5.28, 6.01)]
+			[CompetitionBenchmark(3.02, 3.36)]
+			public int Test03BoundariesCompareFromTo()
+			{
+				var result = 0;
+				for (var i = 0; i < ValuesA.Length; i++)
+					result = BoundariesFromA[i].CompareTo(BoundariesToB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark(2.56, 2.89)]
 			public int Test04BoundaryToValueCompare()
 			{
 				var result = 0;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = BoundariesA[i].CompareTo(ValuesB[i]);
+					result = BoundariesFromA[i].CompareTo(ValuesB[i]);
 				return result;
 			}
 		}
@@ -92,7 +101,7 @@ namespace CodeJam.RangesV2
 				return result;
 			}
 
-			[CompetitionBenchmark(2.13, 2.49)]
+			[CompetitionBenchmark(1.85, 2.01)]
 			public int Test01Operators()
 			{
 				var result = 0;
@@ -101,30 +110,39 @@ namespace CodeJam.RangesV2
 				return result;
 			}
 
-			[CompetitionBenchmark(3.03, 3.34)]
+			[CompetitionBenchmark(2.61, 2.80)]
 			public int Test02BoundaryValuesOperators()
 			{
 				var result = 0;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = Operators<int?>.Compare(BoundariesA[i].GetValueOrDefault(), BoundariesB[i].GetValueOrDefault());
+					result = Operators<int?>.Compare(BoundariesFromA[i].GetValueOrDefault(), BoundariesFromB[i].GetValueOrDefault());
 				return result;
 			}
 
-			[CompetitionBenchmark(2.26, 2.68)]
-			public int Test03BoundariesCompare()
+			[CompetitionBenchmark(1.79, 2.06)]
+			public int Test03BoundariesCompareFrom()
 			{
 				var result = 0;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = BoundariesA[i].CompareTo(BoundariesB[i]);
+					result = BoundariesFromA[i].CompareTo(BoundariesFromB[i]);
 				return result;
 			}
 
-			[CompetitionBenchmark(24.76, 29.16)]
+			[CompetitionBenchmark(2.01, 2.24)]
+			public int Test03BoundariesCompareFromTo()
+			{
+				var result = 0;
+				for (var i = 0; i < ValuesA.Length; i++)
+					result = BoundariesFromA[i].CompareTo(BoundariesToB[i]);
+				return result;
+			}
+
+			[CompetitionBenchmark(25.98, 31.00)]
 			public int Test04BoundaryToValueCompare()
 			{
 				var result = 0;
 				for (var i = 0; i < ValuesA.Length; i++)
-					result = BoundariesA[i].CompareTo(ValuesB[i]);
+					result = BoundariesFromA[i].CompareTo(ValuesB[i]);
 				return result;
 			}
 		}

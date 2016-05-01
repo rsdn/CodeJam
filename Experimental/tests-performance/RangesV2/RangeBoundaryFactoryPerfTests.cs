@@ -25,18 +25,18 @@ namespace CodeJam.RangesV2
 			CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		[CompetitionBaseline]
-		public RangeBoundary<int> Test00Validated()
+		public RangeBoundaryFrom<int> Test00Validated()
 		{
-			var result = RangeBoundary<int>.Empty;
+			var result = RangeBoundaryFrom<int>.Empty;
 			for (var i = 0; i < Count; i++)
-				result = new RangeBoundary<int>(i, RangeBoundaryKind.FromInclusive);
+				result = new RangeBoundaryFrom<int>(i, RangeBoundaryFromKind.Inclusive);
 			return result;
 		}
 
-		[CompetitionBenchmark(0.43, 0.48)]
-		public RangeBoundary<int> Test01NoValidation()
+		[CompetitionBenchmark(0.46, 0.50)]
+		public RangeBoundaryFrom<int> Test01NoValidation()
 		{
-			var result = RangeBoundary<int>.Empty;
+			var result = RangeBoundaryFrom<int>.Empty;
 			for (var i = 0; i < Count; i++)
 				result = Range.BoundaryFrom(i);
 			return result;

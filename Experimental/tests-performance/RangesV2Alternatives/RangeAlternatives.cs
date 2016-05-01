@@ -11,13 +11,13 @@ namespace CodeJam.RangesV2Alternatives
 	[PublicAPI]
 	public interface ITestRange<T>
 	{
-		RangeBoundary<T> From { get; }
-		RangeBoundary<T> To { get; }
+		RangeBoundaryFrom<T> From { get; }
+		RangeBoundaryTo<T> To { get; }
 	}
 	[PublicAPI]
 	public interface ITestRangeFactory<T, out TRange> : ITestRange<T> where TRange : ITestRange<T>
 	{
-		TRange CreateRange(RangeBoundary<T> from, RangeBoundary<T> to);
+		TRange CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to);
 	}
 
 	[PublicAPI]
@@ -25,10 +25,10 @@ namespace CodeJam.RangesV2Alternatives
 	{
 		public RangeStub(T from, T to)
 		{
-			From = new RangeBoundary<T>(from, RangeBoundaryKind.FromInclusive);
-			To = new RangeBoundary<T>(from, RangeBoundaryKind.ToInclusive);
+			From = new RangeBoundaryFrom<T>(from, RangeBoundaryFromKind.Inclusive);
+			To = new RangeBoundaryTo<T>(from, RangeBoundaryToKind.Inclusive);
 		}
-		public RangeStub(RangeBoundary<T> from, RangeBoundary<T> to)
+		public RangeStub(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to)
 		{
 			From = from;
 			To = to;
@@ -50,11 +50,11 @@ namespace CodeJam.RangesV2Alternatives
 			return new RangeStub<T>(from, to);
 		}
 
-		public RangeBoundary<T> From { get; }
-		public RangeBoundary<T> To { get; }
+		public RangeBoundaryFrom<T> From { get; }
+		public RangeBoundaryTo<T> To { get; }
 
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		public RangeStub<T> CreateRange(RangeBoundary<T> from, RangeBoundary<T> to) =>
+		public RangeStub<T> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new RangeStub<T>(from, to);
 	}
 
@@ -62,37 +62,37 @@ namespace CodeJam.RangesV2Alternatives
 	[SuppressMessage("ReSharper", "BitwiseOperatorOnEnumWithoutFlags")]
 	public struct RangeStubCompact<T> : ITestRangeFactory<T, RangeStubCompact<T>>
 	{
-		private const RangeBoundaryKind FromMask = RangeBoundaryKind.Empty |
-			RangeBoundaryKind.NegativeInfinity |
-			RangeBoundaryKind.FromExclusive |
-			RangeBoundaryKind.FromInclusive;
+		private const RangeBoundaryFromKind FromMask = RangeBoundaryFromKind.Empty |
+			RangeBoundaryFromKind.Infinite |
+			RangeBoundaryFromKind.Exclusive |
+			RangeBoundaryFromKind.Inclusive;
 
-		private const RangeBoundaryKind ToMask = RangeBoundaryKind.Empty |
-			RangeBoundaryKind.PositiveInfinity |
-			RangeBoundaryKind.ToExclusive |
-			RangeBoundaryKind.ToInclusive;
+		private const RangeBoundaryToKind ToMask = RangeBoundaryToKind.Empty |
+			RangeBoundaryToKind.Infinite |
+			RangeBoundaryToKind.Exclusive |
+			RangeBoundaryToKind.Inclusive;
 
 		private T _from;
 		private T _to;
-		private RangeBoundaryKind _combined;
+		private int _combined;
 		public RangeStubCompact(T from, T to)
 		{
 			_from = from;
 			_to = to;
-			_combined = RangeBoundaryKind.FromInclusive | RangeBoundaryKind.ToInclusive;
+			_combined = (int)RangeBoundaryFromKind.Inclusive | (int)RangeBoundaryToKind.Inclusive;
 		}
-		public RangeStubCompact(RangeBoundary<T> from, RangeBoundary<T> to)
+		public RangeStubCompact(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to)
 		{
 			_from = from.GetValueOrDefault();
 			_to = to.GetValueOrDefault();
-			_combined = from.Kind | to.Kind;
+			_combined = (int)from.Kind | (int)to.Kind;
 		}
 
-		public RangeBoundary<T> From => new RangeBoundary<T>(_from, _combined & FromMask);
-		public RangeBoundary<T> To => new RangeBoundary<T>(_from, _combined & ToMask);
+		public RangeBoundaryFrom<T> From => new RangeBoundaryFrom<T>(_from, (RangeBoundaryFromKind)_combined & FromMask);
+		public RangeBoundaryTo<T> To => new RangeBoundaryTo<T>(_from, (RangeBoundaryToKind)_combined & ToMask);
 
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		public RangeStubCompact<T> CreateRange(RangeBoundary<T> from, RangeBoundary<T> to) =>
+		public RangeStubCompact<T> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new RangeStubCompact<T>(from, to);
 	}
 
@@ -101,23 +101,23 @@ namespace CodeJam.RangesV2Alternatives
 	{
 		public RangeStub(T from, T to, TKey key)
 		{
-			From = new RangeBoundary<T>(from, RangeBoundaryKind.FromInclusive);
-			To = new RangeBoundary<T>(from, RangeBoundaryKind.ToInclusive);
+			From = new RangeBoundaryFrom<T>(from, RangeBoundaryFromKind.Inclusive);
+			To = new RangeBoundaryTo<T>(from, RangeBoundaryToKind.Inclusive);
 			Key = key;
 		}
-		public RangeStub(RangeBoundary<T> from, RangeBoundary<T> to, TKey key)
+		public RangeStub(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, TKey key)
 		{
 			From = from;
 			To = to;
 			Key = key;
 		}
 
-		public RangeBoundary<T> From { get; }
-		public RangeBoundary<T> To { get; }
+		public RangeBoundaryFrom<T> From { get; }
+		public RangeBoundaryTo<T> To { get; }
 		public TKey Key { get; }
 
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		public RangeStub<T, TKey> CreateRange(RangeBoundary<T> from, RangeBoundary<T> to) =>
+		public RangeStub<T, TKey> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new RangeStub<T, TKey>(from, to, Key);
 	}
 
