@@ -67,15 +67,14 @@ namespace CodeJam.RangesV2
 		/// <returns>
 		/// New inclusive boundary From, or the negative infinity boundary if the <paramref name="fromValue" /> is <c>null</c>.
 		/// </returns>
-		public static RangeBoundaryFrom<T> BoundaryFrom<T>(T fromValue) =>
+		public static RangeBoundaryFrom<T> BoundaryFrom<T>(T fromValue)
+		{
+			var kind = RangeBoundaryFromKind.Inclusive;
+			RangeBoundaryFrom<T>.CoerceBoundaryValue(ref fromValue, ref kind);
 #pragma warning disable 618 // Args are validated
-			new RangeBoundaryFrom<T>(
-				fromValue,
-				fromValue == null
-					? RangeBoundaryFromKind.Infinite
-					: RangeBoundaryFromKind.Inclusive,
-				SkipsArgValidation);
+			return new RangeBoundaryFrom<T>(fromValue, kind,SkipsArgValidation);
 #pragma warning restore 618
+		}
 
 		/// <summary>Exclusive boundary From factory method.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
@@ -83,15 +82,14 @@ namespace CodeJam.RangesV2
 		/// <returns>
 		/// New exclusive boundary From, or the negative infinity boundary if the <paramref name="fromValue" /> is <c>null</c>.
 		/// </returns>
-		public static RangeBoundaryFrom<T> BoundaryFromExclusive<T>(T fromValue) =>
+		public static RangeBoundaryFrom<T> BoundaryFromExclusive<T>(T fromValue)
+		{
+			var kind = RangeBoundaryFromKind.Exclusive;
+			RangeBoundaryFrom<T>.CoerceBoundaryValue(ref fromValue, ref kind);
 #pragma warning disable 618 // Args are validated
-			new RangeBoundaryFrom<T>(
-				fromValue,
-				fromValue == null
-					? RangeBoundaryFromKind.Infinite
-					: RangeBoundaryFromKind.Exclusive,
-				SkipsArgValidation);
+			return new RangeBoundaryFrom<T>(fromValue, kind, SkipsArgValidation);
 #pragma warning restore 618
+		}
 
 		/// <summary>Negative infinity boundary (-∞) factory method.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
@@ -105,15 +103,14 @@ namespace CodeJam.RangesV2
 		/// <returns>
 		/// New inclusive boundary To, or the positive infinity boundary if the <paramref name="toValue" /> is <c>null</c>.
 		/// </returns>
-		public static RangeBoundaryTo<T> BoundaryTo<T>(T toValue) =>
+		public static RangeBoundaryTo<T> BoundaryTo<T>(T toValue)
+		{
+			var kind = RangeBoundaryToKind.Inclusive;
+			RangeBoundaryTo<T>.CoerceBoundaryValue(ref toValue, ref kind);
 #pragma warning disable 618 // Args are validated
-			new RangeBoundaryTo<T>(
-				toValue,
-				toValue == null
-					? RangeBoundaryToKind.Infinite
-					: RangeBoundaryToKind.Inclusive,
-				SkipsArgValidation);
+			return new RangeBoundaryTo<T>(toValue, kind, SkipsArgValidation);
 #pragma warning restore 618
+		}
 
 		/// <summary>Exclusive boundary To factory method.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
@@ -121,15 +118,14 @@ namespace CodeJam.RangesV2
 		/// <returns>
 		/// New exclusive boundary To, or the positive infinity boundary if the <paramref name="toValue" /> is <c>null</c>.
 		/// </returns>
-		public static RangeBoundaryTo<T> BoundaryToExclusive<T>(T toValue) =>
+		public static RangeBoundaryTo<T> BoundaryToExclusive<T>(T toValue)
+		{
+			var kind = RangeBoundaryToKind.Exclusive;
+			RangeBoundaryTo<T>.CoerceBoundaryValue(ref toValue, ref kind);
 #pragma warning disable 618 // Args are validated
-			new RangeBoundaryTo<T>(
-				toValue,
-				toValue == null
-					? RangeBoundaryToKind.Infinite
-					: RangeBoundaryToKind.Exclusive,
-				SkipsArgValidation);
+			return new RangeBoundaryTo<T>(toValue, kind, SkipsArgValidation);
 #pragma warning restore 618
+		}
 
 		/// <summary>Positive infinity boundary (+∞) factory method.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
@@ -211,6 +207,8 @@ namespace CodeJam.RangesV2
 		/// <param name="to">The value of the boundary To.</param>
 		/// <returns><c>true</c>, if the boundaries can be used for valid range creation.</returns>
 		public static bool IsValid<T>(T from, T to) =>
+			RangeBoundaryFrom<T>.IsValid(from) &&
+			RangeBoundaryTo<T>.IsValid(to) &&
 			BoundaryFrom(from) <= BoundaryTo(to);
 
 		/// <summary>Returns true if the boundaries can be used for valid range creation.</summary>

@@ -33,13 +33,56 @@ namespace CodeJam.RangesV2
 		private static readonly Func<T, T, bool> _equalsFunc = Operators<T>.AreEqual;
 		private static readonly Func<T, T, int> _compareFunc = Operators<T>.Compare;
 
+		private static readonly bool _hasNegativeInfinity = Operators<T>.HasNegativeInfinity;
+		private static readonly T _negativeInfinity = Operators<T>.HasNegativeInfinity
+			? Operators<T>.NegativeInfinity
+			: default(T);
+		private static readonly bool _hasPositiveInfinity = Operators<T>.HasPositiveInfinity;
+		private static readonly T _positiveInfinity = Operators<T>.HasPositiveInfinity
+			? Operators<T>.PositiveInfinity
+			: default(T);
+
+		/// <summary>Helper method to handle default and infinite values.</summary>
+		/// <param name="value">The value of the boundary..</param>
+		/// <param name="boundaryKind">The kind of the boundary.</param>
+		[MethodImpl(AggressiveInlining)]
+		internal static void CoerceBoundaryValue(ref T value, ref RangeBoundaryFromKind boundaryKind)
+		{
+			if (_hasNegativeInfinity && _equalsFunc(value, _negativeInfinity) && boundaryKind != RangeBoundaryFromKind.Empty)
+			{
+				value = default(T);
+			}
+			// TODO: what to do with TryCreate???
+			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity))
+			{
+				throw CodeExceptions.Argument(nameof(value), "The From boundary does not accept positive infinity value.");
+			}
+
+			if (value == null)
+			{
+				boundaryKind = RangeBoundaryFromKind.Infinite;
+			}
+		}
+
+		/// <summary>Checks if the value can be used as the value of the boundary.</summary>
+		/// <param name="value">The value to check.</param>
+		/// <returns><c>true</c> if it is safe to pass the value as a boundary constructor parameter.</returns>
+		[MethodImpl(AggressiveInlining)]
+		internal static bool IsValid(T value)
+		{
+			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity))
+			{
+				return false;
+			}
+			return true;
+		}
+
 		#region Predefined values
 		/// <summary>Empty range boundary, ∅.</summary>
 		public static readonly RangeBoundaryFrom<T> Empty;
 
 		/// <summary>Negative infinity, -∞.</summary>
-		public static readonly RangeBoundaryFrom<T> NegativeInfinity = new RangeBoundaryFrom<T>(
-			default(T), RangeBoundaryFromKind.Infinite);
+		public static readonly RangeBoundaryFrom<T> NegativeInfinity = new RangeBoundaryFrom<T>(default(T), RangeBoundaryFromKind.Infinite);
 		#endregion
 
 		#region Formattable logic
@@ -63,29 +106,35 @@ namespace CodeJam.RangesV2
 
 		/// <summary>Creates a new range boundary.</summary>
 		/// <param name="value">
-		/// The value of the boundary. Infinite (or empty) boundaries should use default(T) as the value.
+		/// The value of the boundary.
+		/// Infinite (or empty) boundaries should use default(T) or NegativeInfinity(T) (if the type has one) as the value.
 		/// </param>
 		/// <param name="boundaryKind">The kind of the boundary.</param>
 		public RangeBoundaryFrom(T value, RangeBoundaryFromKind boundaryKind)
 		{
-			if (boundaryKind != RangeBoundaryFromKind.Inclusive &&
-				boundaryKind != RangeBoundaryFromKind.Exclusive)
+			if (_hasNegativeInfinity && _equalsFunc(value, _negativeInfinity) && boundaryKind != RangeBoundaryFromKind.Empty)
+			{
+				value = default(T);
+			}
+			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity))
+			{
+				throw CodeExceptions.Argument(nameof(value), "The From boundary does not accept positive infinity value.");
+			}
+
+			if (boundaryKind != RangeBoundaryFromKind.Inclusive && boundaryKind != RangeBoundaryFromKind.Exclusive)
 			{
 				if (_compareFunc(value, default(T)) != EqualResult)
 				{
-					throw CodeExceptions.Argument(
-						nameof(value),
-						"Value of the infinite/empty boundary should be equal to default(T).");
+					throw CodeExceptions.Argument(nameof(value), "Value of the infinite/empty boundary should be equal to default(T).");
 				}
 			}
-			else if (value == null)
+			else
 			{
-				throw CodeExceptions.Argument(
-					nameof(boundaryKind),
-					"BoundaryKind for the null values should be either RangeBoundaryFromKind.NegativeInfinity, " +
-						"RangeBoundaryFromKind.PositiveInfinity or RangeBoundaryFromKind.Empty.");
+				if (value == null)
+				{
+					throw CodeExceptions.Argument(nameof(boundaryKind), "BoundaryKind for the null values should be either RangeBoundaryFromKind.Infinite or RangeBoundaryFromKind.Empty.");
+				}
 			}
-
 			_value = value;
 			_kind = boundaryKind;
 		}
@@ -144,9 +193,7 @@ namespace CodeJam.RangesV2
 
 		/// <summary>The boundary has value.</summary>
 		/// <value><c>true</c> if the boundary has value; otherwise, <c>false</c>.</value>
-		public bool HasValue =>
-			_kind == RangeBoundaryFromKind.Inclusive ||
-				_kind == RangeBoundaryFromKind.Exclusive;
+		public bool HasValue => _kind == RangeBoundaryFromKind.Inclusive || _kind == RangeBoundaryFromKind.Exclusive;
 
 		/// <summary>The value of the boundary.</summary>
 		/// <value>
@@ -160,9 +207,7 @@ namespace CodeJam.RangesV2
 			{
 				if (!HasValue)
 				{
-					throw CodeExceptions.InvalidOperation(
-						"Boundary has no value. Check for HasValue property before obtaining the Value " +
-							"or use GetValueOrDefault() instead.");
+					throw CodeExceptions.InvalidOperation("Boundary has no value. Check for HasValue property before obtaining the Value " + "or use GetValueOrDefault() instead.");
 				}
 				return _value;
 			}
@@ -205,8 +250,7 @@ namespace CodeJam.RangesV2
 					newKind = RangeBoundaryToKind.Inclusive;
 					break;
 				default:
-					throw CodeExceptions.UnexpectedValue(
-						$" Cannot get complementation for the boundary '{this}' as it has no value.");
+					throw CodeExceptions.UnexpectedValue($" Cannot get complementation for the boundary '{this}' as it has no value.");
 			}
 
 #pragma warning disable 618 // Args are validated
@@ -217,8 +261,7 @@ namespace CodeJam.RangesV2
 		/// <summary>Checks that the boundary is complementation for specified boundary.</summary>
 		/// <param name="other">Another boundary.</param>
 		/// <returns><c>True</c>, if the boundary is complementation for specified boundary.</returns>
-		public bool IsComplementationFor(RangeBoundaryTo<T> other) =>
-			HasValue && GetComplementation() == other;
+		public bool IsComplementationFor(RangeBoundaryTo<T> other) => HasValue && GetComplementation() == other;
 
 		/// <summary>
 		/// Creates a new boundary with updated value (if the current boundary has one).
@@ -233,9 +276,7 @@ namespace CodeJam.RangesV2
 				var newValue = updateCallback(_value);
 
 #pragma warning disable 618 // Args are validated
-				return newValue == null
-					? NegativeInfinity
-					: new RangeBoundaryFrom<T>(newValue, _kind, SkipsArgValidation);
+				return newValue == null ? NegativeInfinity : new RangeBoundaryFrom<T>(newValue, _kind, SkipsArgValidation);
 #pragma warning restore 618
 			}
 
@@ -251,8 +292,7 @@ namespace CodeJam.RangesV2
 		/// otherwise, false.
 		/// </returns>
 		[MethodImpl(AggressiveInlining)]
-		public bool Equals(RangeBoundaryFrom<T> other) =>
-			_kind == other._kind && _equalsFunc(_value, other._value);
+		public bool Equals(RangeBoundaryFrom<T> other) => _kind == other._kind && _equalsFunc(_value, other._value);
 
 		/// <summary>Indicates whether the current boundary and a specified object are equal.</summary>
 		/// <param name="obj">The object to compare with this. </param>
@@ -260,8 +300,7 @@ namespace CodeJam.RangesV2
 		/// <c>True</c> if <paramref name="obj"/> and the current boundary are the same type
 		/// and represent the same value; otherwise, false.
 		/// </returns>
-		public override bool Equals(object obj) =>
-			obj is RangeBoundaryFrom<T> && Equals((RangeBoundaryFrom<T>)obj);
+		public override bool Equals(object obj) => obj is RangeBoundaryFrom<T> && Equals((RangeBoundaryFrom<T>)obj);
 
 		/// <summary>Returns the hash code for the current boundary.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
@@ -342,8 +381,7 @@ namespace CodeJam.RangesV2
 
 				// Are same and any of is exclusive - compare kinds.
 				// ReSharper disable once BitwiseOperatorOnEnumWithoutFlags
-				if (result == EqualResult &&
-					(_kind == RangeBoundaryFromKind.Exclusive || other.Kind == RangeBoundaryToKind.Exclusive))
+				if (result == EqualResult && (_kind == RangeBoundaryFromKind.Exclusive || other.Kind == RangeBoundaryToKind.Exclusive))
 				{
 					result = ((byte)_kind).CompareTo((byte)other.Kind);
 				}
@@ -369,9 +407,7 @@ namespace CodeJam.RangesV2
 		[MethodImpl(AggressiveInlining)]
 		public int CompareTo(T other)
 		{
-			var otherBoundaryKind = other == null
-				? RangeBoundaryFromKind.Infinite
-				: RangeBoundaryFromKind.Inclusive;
+			var otherBoundaryKind = other == null ? RangeBoundaryFromKind.Infinite : RangeBoundaryFromKind.Inclusive;
 #pragma warning disable 618 // Args are validated
 			var otherBoundary = new RangeBoundaryFrom<T>(other, otherBoundaryKind, SkipsArgValidation);
 #pragma warning restore 618

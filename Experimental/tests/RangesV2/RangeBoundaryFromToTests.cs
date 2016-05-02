@@ -14,7 +14,7 @@ namespace CodeJam.RangesV2
 	public class RangeBoundaryFromToTests
 	{
 		[Test]
-		public static void Test01ToString()
+		public static void TestBoundaryToString()
 		{
 			int? value1 = 1;
 
@@ -30,7 +30,7 @@ namespace CodeJam.RangesV2
 		}
 
 		[Test]
-		public static void Test02ComparisonBoundaryKinds()
+		public static void TestBoundaryKindComparison()
 		{
 			int? value1 = 1;
 
@@ -80,7 +80,7 @@ namespace CodeJam.RangesV2
 		}
 
 		[Test]
-		public static void Test03ComparisonValues()
+		public static void TestBoundaryValueComparison()
 		{
 			int? value1 = 1;
 			int? value2 = 2;
@@ -113,7 +113,7 @@ namespace CodeJam.RangesV2
 
 
 		[Test]
-		public static void Test07ComparisonRawValue()
+		public static void TestBoundaryRawValueComparison()
 		{
 			int? value1 = 1;
 			int? value2 = 2;

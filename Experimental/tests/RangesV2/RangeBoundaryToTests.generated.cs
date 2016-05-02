@@ -25,7 +25,7 @@ namespace CodeJam.RangesV2
 	public class RangeBoundaryToTests
 	{
 		[Test]
-		public static void Test00BoundaryToCreation()
+		public static void TestBoundaryToCreation()
 		{
 			int? value1 = 1;
 			int? value2 = 2;
@@ -38,8 +38,8 @@ namespace CodeJam.RangesV2
 
 			Throws<ArgumentException>(() => new RangeBoundaryTo<int?>(value1, RangeBoundaryToKind.Empty));
 			Throws<ArgumentException>(() => new RangeBoundaryTo<int?>(value2, RangeBoundaryToKind.Infinite));
-			Throws<ArgumentException>(() => new RangeBoundaryTo<int?>(empty, RangeBoundaryToKind.Exclusive));
 			Throws<ArgumentException>(() => new RangeBoundaryTo<int?>(empty, RangeBoundaryToKind.Inclusive));
+			Throws<ArgumentException>(() => new RangeBoundaryTo<int?>(empty, RangeBoundaryToKind.Exclusive));
 
 			AreEqual(
 				RangeBoundaryTo<int?>.PositiveInfinity,
@@ -62,7 +62,36 @@ namespace CodeJam.RangesV2
 		}
 
 		[Test]
-		public static void Test01BoundaryToProperties()
+		public static void TestBoundaryPositiveInfinityValue()
+		{
+			double? infOk = double.PositiveInfinity;
+			double? infFail = double.NegativeInfinity;
+			double? empty = null;
+
+			DoesNotThrow(() => new RangeBoundaryTo<double?>(infOk, RangeBoundaryToKind.Infinite));
+
+			Throws<ArgumentException>(() => new RangeBoundaryTo<double?>(infOk, RangeBoundaryToKind.Empty));
+			Throws<ArgumentException>(() => new RangeBoundaryTo<double?>(infFail, RangeBoundaryToKind.Empty));
+			Throws<ArgumentException>(() => new RangeBoundaryTo<double?>(infFail, RangeBoundaryToKind.Infinite));
+			Throws<ArgumentException>(() => new RangeBoundaryTo<double?>(infOk, RangeBoundaryToKind.Inclusive));
+			Throws<ArgumentException>(() => new RangeBoundaryTo<double?>(infFail, RangeBoundaryToKind.Inclusive));
+			Throws<ArgumentException>(() => new RangeBoundaryTo<double?>(infOk, RangeBoundaryToKind.Exclusive));
+			Throws<ArgumentException>(() => new RangeBoundaryTo<double?>(infFail, RangeBoundaryToKind.Exclusive));
+
+			AreEqual(
+				RangeBoundaryTo<double?>.PositiveInfinity,
+				Range.BoundaryTo(infOk));
+			AreEqual(
+				RangeBoundaryTo<double?>.PositiveInfinity,
+				Range.BoundaryToExclusive(infOk));
+
+			AreEqual(
+				Range.BoundaryToExclusive(infOk).GetValueOrDefault(),
+				empty);
+		}
+
+		[Test]
+		public static void TestBoundaryToProperties()
 		{
 			int? value1 = 1;
 			int? value2 = 2;
@@ -118,7 +147,7 @@ namespace CodeJam.RangesV2
 		}
 
 		[Test]
-		public static void Test02BoundaryToEquality()
+		public static void TestBoundaryToEquality()
 		{
 			int? value1 = 1;
 			int? value2 = 2;
@@ -159,7 +188,7 @@ namespace CodeJam.RangesV2
 		}
 
 		[Test]
-		public static void Test03BoundaryToComplementation()
+		public static void TestBoundaryToComplementation()
 		{
 			int? value1 = 1;
 			int? value2 = 2;
@@ -191,7 +220,7 @@ namespace CodeJam.RangesV2
 		}
 
 		[Test]
-		public static void Test04BoundaryToUpdate()
+		public static void TestBoundaryToUpdate()
 		{
 			int? value1 = 1;
 			int? value2 = 2;
