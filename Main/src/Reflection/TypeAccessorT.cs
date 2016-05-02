@@ -6,6 +6,9 @@ using System.Reflection;
 
 namespace CodeJam.Reflection
 {
+	/// <summary>
+	/// Provides fast access to type and its members.
+	/// </summary>
 	public class TypeAccessor<T> : TypeAccessor
 	{
 		static TypeAccessor()
@@ -82,6 +85,7 @@ namespace CodeJam.Reflection
 			throw new InvalidOperationException($"Cant create an instance of abstract class '{typeof(T).FullName}'.");
 		}
 
+		// ReSharper disable once StaticMemberInGenericType
 		static readonly List<MemberInfo> _members = new List<MemberInfo>();
 
 		internal TypeAccessor()
@@ -91,10 +95,22 @@ namespace CodeJam.Reflection
 		}
 
 		static readonly Func<T> _createInstance;
+
+		/// <summary>
+		/// Creates an instance of <see cref="TypeAccessor"/>.
+		/// </summary>
+		/// <returns>Instance of <see cref="TypeAccessor"/>.</returns>
 		public override object CreateInstance() => _createInstance();
 
+		/// <summary>
+		/// Creates an instance of <see cref="TypeAccessor"/>.
+		/// </summary>
+		/// <returns>Instance of <see cref="TypeAccessor"/>.</returns>
 		public T Create() => _createInstance();
 
+		/// <summary>
+		/// Type to access.
+		/// </summary>
 		public override Type Type => typeof(T);
 	}
 }

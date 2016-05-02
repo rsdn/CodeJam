@@ -11,10 +11,14 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Reflection
 {
+	/// <summary>
+	/// Provides fast access to a type member.
+	/// </summary>
+
 	[PublicAPI]
 	public class MemberAccessor
 	{
-		public MemberAccessor(TypeAccessor typeAccessor, string memberName)
+		internal MemberAccessor(TypeAccessor typeAccessor, string memberName)
 		{
 			TypeAccessor = typeAccessor;
 
@@ -175,7 +179,7 @@ namespace CodeJam.Reflection
 			SetExpressions();
 		}
 
-		public MemberAccessor(TypeAccessor typeAccessor, MemberInfo memberInfo)
+		internal MemberAccessor(TypeAccessor typeAccessor, MemberInfo memberInfo)
 		{
 			TypeAccessor = typeAccessor;
 
@@ -188,22 +192,33 @@ namespace CodeJam.Reflection
 			MemberInfo = memberInfo;
 			Type       = MemberInfo is PropertyInfo ? ((PropertyInfo)MemberInfo).PropertyType : ((FieldInfo)MemberInfo).FieldType;
 
-			HasGetter = true;
-
 			if (memberInfo is PropertyInfo)
+			{
+				HasGetter = ((PropertyInfo)memberInfo).GetGetMethod(true) != null;
 				HasSetter = ((PropertyInfo)memberInfo).GetSetMethod(true) != null;
+			}
 			else
+			{
+				HasGetter = true;
 				HasSetter = !((FieldInfo)memberInfo).IsInitOnly;
+			}
 
 			var objParam   = Expression.Parameter(TypeAccessor.Type, "obj");
 			var valueParam = Expression.Parameter(Type, "value");
 
-			GetterExpression = Expression.Lambda(Expression.MakeMemberAccess(objParam, memberInfo), objParam);
+			if (HasGetter)
+			{
+				GetterExpression = Expression.Lambda(Expression.MakeMemberAccess(objParam, memberInfo), objParam);
+			}
+			else
+			{
+				GetterExpression = Expression.Lambda(Expression.Constant(GetDefaultValue(Type), Type), objParam);
+			}
 
 			if (HasSetter)
 			{
 				SetterExpression = Expression.Lambda(
-					Expression.Assign(GetterExpression.Body, valueParam),
+					Expression.Assign(Expression.MakeMemberAccess(objParam, memberInfo), valueParam),
 					objParam,
 					valueParam);
 			}
@@ -212,8 +227,7 @@ namespace CodeJam.Reflection
 				var fakeParam = Expression.Parameter(typeof(int));
 
 				SetterExpression = Expression.Lambda(
-					Expression.Block(
-						new[] { fakeParam }, Expression.Assign(fakeParam, Expression.Constant(0))),
+					Expression.Block(new[] { fakeParam }, Expression.Assign(fakeParam, Expression.Constant(0))),
 					objParam,
 					valueParam);
 			}
@@ -278,21 +292,75 @@ namespace CodeJam.Reflection
 
 		#region Public Properties
 
-		public MemberInfo            MemberInfo       { get; private set; }
-		public TypeAccessor          TypeAccessor     { get; private set; }
-		public bool                  HasGetter        { get; private set; }
-		public bool                  HasSetter        { get; private set; }
-		public Type                  Type             { get; private set; }
-		public bool                  IsComplex        { get; private set; }
-		public LambdaExpression      GetterExpression { get; private set; }
-		public LambdaExpression      SetterExpression { get; private set; }
-		public Func  <object,object> Getter           { get; private set; }
-		public Action<object,object> Setter           { get; private set; }
-		public string                Name => MemberInfo.Name;
+		/// <summary>
+		/// Member <see cref="MemberInfo"/>.
+		/// </summary>
+		public MemberInfo MemberInfo { get; private set; }
 
+		/// <summary>
+		/// Parent <see cref="TypeAccessor"/>.
+		/// </summary>
+		public TypeAccessor TypeAccessor { get; private set; }
+
+		/// <summary>
+		/// True, if the member has getter.
+		/// </summary>
+		public bool HasGetter { get; private set; }
+
+		/// <summary>
+		/// True, if the member has setter.
+		/// </summary>
+		public bool HasSetter { get; private set; }
+
+		/// <summary>
+		/// Member <see cref="Type"/>.
+		/// </summary>
+		public Type Type { get; private set; }
+
+		/// <summary>
+		/// True, if the member is complex.
+		/// </summary>
+		public bool IsComplex { get; private set; }
+
+		/// <summary>
+		/// Getter expression of the member.
+		/// </summary>
+		public LambdaExpression GetterExpression { get; private set; }
+
+		/// <summary>
+		/// Setter expression of the member.
+		/// </summary>
+		public LambdaExpression SetterExpression { get; private set; }
+
+		/// <summary>
+		/// Member getter function.
+		/// </summary>
+		public Func<object,object> Getter { get; private set; }
+
+		/// <summary>
+		/// Member setter action.
+		/// </summary>
+		public Action<object,object> Setter { get; private set; }
+
+		/// <summary>
+		/// Member name.
+		/// </summary>
+		public string Name
+			=> MemberInfo.Name;
+
+		/// <summary>
+		/// Gets member value for provided object.
+		/// </summary>
+		/// <param name="o">Object to access.</param>
+		/// <returns>Member value.</returns>
 		public object GetValue(object o)
 			=> Getter(o);
 
+		/// <summary>
+		/// Sets member value for provided object.
+		/// </summary>
+		/// <param name="o">Object to access.</param>
+		/// <param name="value">Value to set.</param>
 		public void SetValue(object o, object value)
 			=> Setter(o, value);
 

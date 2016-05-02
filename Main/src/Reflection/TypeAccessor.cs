@@ -8,7 +8,7 @@ using JetBrains.Annotations;
 namespace CodeJam.Reflection
 {
 	/// <summary>
-	/// 
+	/// Provides fast access to type and its members.
 	/// </summary>
 	[DebuggerDisplay("Type = {Type}")]
 	[PublicAPI]
@@ -16,6 +16,10 @@ namespace CodeJam.Reflection
 	{
 		#region Protected Emit Helpers
 
+		/// <summary>
+		/// Adds <see cref="MemberAccessor"/>.
+		/// </summary>
+		/// <param name="member">Instance of <see cref="MemberAccessor"/>.</param>
 		protected void AddMember([NotNull] MemberAccessor member)
 		{
 			if (member == null) throw new ArgumentNullException(nameof(member));
@@ -29,6 +33,10 @@ namespace CodeJam.Reflection
 
 		#region CreateInstance
 
+		/// <summary>
+		/// Creates an instance of the accessed type.
+		/// </summary>
+		/// <returns>An instance of the accessed type.</returns>
 		[DebuggerStepThrough]
 		public virtual object CreateInstance()
 		{
@@ -39,7 +47,14 @@ namespace CodeJam.Reflection
 
 		#region Public Members
 
+		/// <summary>
+		/// Type to access.
+		/// </summary>
 		public abstract Type Type { get; }
+
+		/// <summary>
+		/// Type members.
+		/// </summary>
 		public List<MemberAccessor> Members { get; } = new List<MemberAccessor>();
 
 		#endregion
@@ -48,6 +63,11 @@ namespace CodeJam.Reflection
 
 		readonly ConcurrentDictionary<string,MemberAccessor> _membersByName = new ConcurrentDictionary<string,MemberAccessor>();
 
+		/// <summary>
+		/// Returns <see cref="MemberAccessor"/> by its name.
+		/// </summary>
+		/// <param name="memberName">Member name.</param>
+		/// <returns>Instance of <see cref="MemberAccessor"/>.</returns>
 		public MemberAccessor this[string memberName] =>
 			_membersByName.GetOrAdd(memberName, name =>
 			{
@@ -56,6 +76,11 @@ namespace CodeJam.Reflection
 				return ma;
 			});
 
+		/// <summary>
+		/// Returns <see cref="MemberAccessor"/> by index.
+		/// </summary>
+		/// <param name="index">Member index.</param>
+		/// <returns>Instance of <see cref="MemberAccessor"/>.</returns>
 		public MemberAccessor this[int index]
 			=> Members[index];
 
@@ -65,6 +90,11 @@ namespace CodeJam.Reflection
 
 		static readonly ConcurrentDictionary<Type,TypeAccessor> _accessors = new ConcurrentDictionary<Type,TypeAccessor>();
 
+		/// <summary>
+		/// Creates an instance of <see cref="TypeAccessor"/>.
+		/// </summary>
+		/// <param name="type">Type to access.</param>
+		/// <returns>Instance of <see cref="TypeAccessor"/>.</returns>
 		public static TypeAccessor GetAccessor([NotNull] Type type)
 		{
 			if (type == null) throw new ArgumentNullException(nameof(type));
@@ -76,13 +106,18 @@ namespace CodeJam.Reflection
 
 			var accessorType = typeof(TypeAccessor<>).MakeGenericType(type);
 
-			accessor = (TypeAccessor)Activator.CreateInstance(accessorType);
+			accessor = (TypeAccessor)Activator.CreateInstance(accessorType, true);
 
 			_accessors[type] = accessor;
 
 			return accessor;
 		}
 
+		/// <summary>
+		/// Creates an instance of <see cref="TypeAccessor"/>.
+		/// </summary>
+		/// <typeparam name="T">Type to access.</typeparam>
+		/// <returns>Instance of <see cref="TypeAccessor"/>.</returns>
 		public static TypeAccessor<T> GetAccessor<T>()
 		{
 			TypeAccessor accessor;
