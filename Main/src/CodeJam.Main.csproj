@@ -114,7 +114,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reflection\MemberAccessor.cs" />
     <Compile Include="Reflection\NamespaceDoc.cs" />
+    <Compile Include="Reflection\TypeAccessor.cs" />
+    <Compile Include="Reflection\TypeAccessorT.cs" />
     <Compile Include="Services\NamespaceDoc.cs" />
     <Compile Include="Strings\NamespaceDoc.cs" />
     <Compile Include="Strings\CharExtensions.Infix.generated.cs">
