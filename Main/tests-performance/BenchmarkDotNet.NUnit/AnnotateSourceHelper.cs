@@ -6,7 +6,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 
-using BenchmarkDotNet.Analyzers;
+using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;

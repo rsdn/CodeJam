@@ -268,6 +268,7 @@
 	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ESettingsUpgrade_002EMigrateThisQualifierSettings/@EntryIndexedValue">True</s:Boolean>
 	<s:Int64 x:Key="/Default/ReSpeller/MinWordLength/@EntryValue">4</s:Int64>
 	<s:Boolean x:Key="/Default/ReSpeller/UserDictionaries/=en_005Fus/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ReSpeller/UserDictionaries/=en_005Fus/Words/=Analyse/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ReSpeller/UserDictionaries/=en_005Fus/Words/=analyser/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ReSpeller/UserDictionaries/=en_005Fus/Words/=arg/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ReSpeller/UserDictionaries/=en_005Fus/Words/=async/@EntryIndexedValue">True</s:Boolean>

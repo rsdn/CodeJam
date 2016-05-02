@@ -29,6 +29,7 @@ namespace BenchmarkDotNet.Columns
 		public double PercentileRatio { get; }
 
 		public virtual bool AlwaysShow => true;
+		public ColumnCategory Category => ColumnCategory.Statistics;
 		public virtual string ColumnName => "P" + PercentileRatio * 100;
 		public virtual bool IsAvailable(Summary summary) => true;
 		public override string ToString() => ColumnName;

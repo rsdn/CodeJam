@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using BenchmarkDotNet.Analyzers;
+using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
@@ -20,7 +20,7 @@ namespace BenchmarkDotNet.NUnit
 	{
 		private readonly CompetitionTargets _competitionTargets = new Dictionary<Target, CompetitionTarget>();
 
-		public IEnumerable<IWarning> Analyze(Summary summary) => Enumerable.Empty<IWarning>();
+		public IEnumerable<IWarning> Analyse(Summary summary) => Enumerable.Empty<IWarning>();
 
 		public bool LastRun { get; set; }
 		public bool RerunRequested { get; set; }

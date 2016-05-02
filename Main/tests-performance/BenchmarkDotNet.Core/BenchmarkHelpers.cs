@@ -85,7 +85,7 @@ namespace BenchmarkDotNet.Helpers
 		}
 
 		public static string ToStr(this double value, string format = "0.##") =>
-			string.Format(EnvironmentHelper.MainCultureInfo, $"{{0:{format}}}", value);
+			string.Format(EnvironmentInfo.MainCultureInfo, $"{{0:{format}}}", value);
 		#endregion
 
 		#region Statistics-related
@@ -108,7 +108,7 @@ namespace BenchmarkDotNet.Helpers
 		/// </summary>
 		public static double GetPercentile(this Summary summary, Benchmark benchmark, double percentileRatio)
 		{
-			var values = summary.Reports[benchmark]
+			var values = summary.Reports.Single(r => r.Benchmark == benchmark)
 				.GetResultRuns()
 				.Select(r => r.GetAverageNanoseconds());
 			return Percentile(values, percentileRatio);
@@ -130,6 +130,7 @@ namespace BenchmarkDotNet.Helpers
 			result.Add(template.GetDiagnosers().ToArray());
 			result.Add(template.GetAnalysers().ToArray());
 			result.Add(template.GetJobs().ToArray());
+			result.Add(template.GetValidators().ToArray());
 
 			return result;
 		}

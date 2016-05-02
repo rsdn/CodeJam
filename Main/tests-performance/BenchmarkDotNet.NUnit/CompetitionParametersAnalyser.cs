@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-using BenchmarkDotNet.Analyzers;
+using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Reports;
 
 using JetBrains.Annotations;
@@ -23,7 +23,7 @@ namespace BenchmarkDotNet.NUnit
 		public bool AnnotateOnRun { get; set; }
 		public bool IgnoreExistingAnnotations { get; set; }
 
-		public IEnumerable<IWarning> Analyze(Summary summary)
+		public IEnumerable<IWarning> Analyse(Summary summary)
 		{
 			var warnings = new List<IWarning>();
 			if (AnnotateOnRun)

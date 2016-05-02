@@ -12,7 +12,7 @@ using static CodeJam.AssemblyWideConfig;
 
 namespace CodeJam.Arithmetic
 {
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Operators<T>.Compare (generated)")]
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Operators<T>.Compare")]
 	[CompetitionMetadata("CodeJam.Arithmetic.OperatorsComparePerfTests.generated.xml")]
 	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	public class OperatorsComparePerfTests

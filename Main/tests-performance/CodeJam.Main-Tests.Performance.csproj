@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CodeJam</RootNamespace>
     <AssemblyName>CodeJam-Tests.Performance</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BenchmarkDotNet, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\BenchmarkDotNet.0.9.3\lib\net45\BenchmarkDotNet.dll</HintPath>
+    <Reference Include="BenchmarkDotNet, Version=0.9.5.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\BenchmarkDotNet.0.9.5\lib\net46\BenchmarkDotNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JetBrains.Annotations, Version=10.1.4.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
@@ -41,7 +41,7 @@
     </Reference>
     <Reference Include="Microsoft.Build" />
     <Reference Include="Microsoft.Build.Framework" />
-    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="Microsoft.Build.Utilities.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.DiaSymReader, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.DiaSymReader.1.0.7\lib\net20\Microsoft.DiaSymReader.dll</HintPath>
@@ -54,7 +54,6 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Management" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
