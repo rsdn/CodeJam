@@ -24,5 +24,41 @@ namespace CodeJam.Arithmetic
 		/// </summary>
 		[NotNull]
 		public static Func<T, T, int> Compare => _compare.Value;
+
+		#region Infinity values
+		private static readonly Lazy<bool> _hasNegativeInfinity =
+			new Lazy<bool>(OperatorsFactory.HasNegativeInfinity<T>, LazyMode);
+
+		/// <summary>
+		/// Check for the negative infinity value.
+		/// </summary>
+		public static bool HasNegativeInfinity => _hasNegativeInfinity.Value;
+
+		private static readonly Lazy<T> _negativeInfinity =
+			new Lazy<T>(OperatorsFactory.GetNegativeInfinity<T>, LazyMode);
+
+		/// <summary>
+		/// Negative infinity value
+		/// </summary>
+		[NotNull]
+		public static T NegativeInfinity => _negativeInfinity.Value;
+
+		private static readonly Lazy<bool> _hasPositiveInfinity =
+			new Lazy<bool>(OperatorsFactory.HasPositiveInfinity<T>, LazyMode);
+
+		/// <summary>
+		/// Check for the positive infinity value.
+		/// </summary>
+		public static bool HasPositiveInfinity => _hasPositiveInfinity.Value;
+
+		private static readonly Lazy<T> _positiveInfinity =
+			new Lazy<T>(OperatorsFactory.GetPositiveInfinity<T>, LazyMode);
+
+		/// <summary>
+		/// Positive infinity value
+		/// </summary>
+		[NotNull]
+		public static T PositiveInfinity => _positiveInfinity.Value;
+		#endregion
 	}
 }

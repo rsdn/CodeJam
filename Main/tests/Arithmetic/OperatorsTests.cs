@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
+using JetBrains.Annotations;
+
 using NUnit.Framework;
 
 namespace CodeJam.Arithmetic
@@ -9,13 +11,24 @@ namespace CodeJam.Arithmetic
 	[TestFixture(Category = "Operators")]
 	[SuppressMessage("ReSharper", "ClassNeverInstantiated.Local")]
 	[SuppressMessage("ReSharper", "UnusedParameter.Local")]
+	[SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
 	public partial class OperatorsTests
 	{
 		#region Test helpers
-		private class ClassNoComparable { }
-
-		private class ClassComparable : IComparable
+		private class ClassNoComparable
 		{
+			[UsedImplicitly]
+			public static readonly ClassNoComparable NegativeInfinity = new ClassNoComparable();
+		}
+
+		private struct StructComparable : IComparable
+		{
+			// DONTTOUCH: uses wrong type to proof that check for infinity will fail.
+			[UsedImplicitly]
+			public static readonly ClassNoComparable NegativeInfinity = new ClassNoComparable();
+			[UsedImplicitly]
+			public static readonly StructComparable PositiveInfinity = new StructComparable();
+
 			public int CompareTo(object obj) => 0;
 		}
 
@@ -212,8 +225,8 @@ namespace CodeJam.Arithmetic
 		{
 			AssertNoOperator(() => Operators<ClassNoComparable>.Compare);
 			AssertNoOperator(() => Operators<ClassNoComparable>.GreaterThanOrEqual);
-			AssertOperator(() => Operators<ClassComparable>.Compare);
-			AssertOperator(() => Operators<ClassComparable>.GreaterThanOrEqual);
+			AssertOperator(() => Operators<StructComparable>.Compare);
+			AssertOperator(() => Operators<StructComparable>.GreaterThanOrEqual);
 			AssertOperator(() => Operators<ClassGenericComparable>.Compare);
 			AssertOperator(() => Operators<ClassGenericComparable>.GreaterThanOrEqual);
 			AssertOperator(() => Operators<ClassComparable2>.Compare);
@@ -359,6 +372,52 @@ namespace CodeJam.Arithmetic
 				AssertOperatorsCompare<SomeEnumByte?>(SomeEnumByte.A, null);
 				AssertOperatorsCompare<SomeEnumLong?>(SomeEnumLong.A, null);
 			*/
+		}
+
+		[Test]
+		public void Test05OperatorsInfinity()
+		{
+			Assert.IsTrue(Operators<double>.HasNegativeInfinity);
+			Assert.IsTrue(Operators<double>.HasPositiveInfinity);
+			Assert.IsTrue(Operators<float>.HasNegativeInfinity);
+			Assert.IsTrue(Operators<float>.HasPositiveInfinity);
+			Assert.IsFalse(Operators<int>.HasNegativeInfinity);
+			Assert.IsFalse(Operators<int>.HasPositiveInfinity);
+
+			Assert.IsTrue(Operators<double?>.HasNegativeInfinity);
+			Assert.IsTrue(Operators<double?>.HasPositiveInfinity);
+			Assert.IsTrue(Operators<float?>.HasNegativeInfinity);
+			Assert.IsTrue(Operators<float?>.HasPositiveInfinity);
+			Assert.IsFalse(Operators<int?>.HasNegativeInfinity);
+			Assert.IsFalse(Operators<int?>.HasPositiveInfinity);
+
+			Assert.IsTrue(Operators<ClassNoComparable>.HasNegativeInfinity);
+			Assert.IsFalse(Operators<ClassNoComparable>.HasPositiveInfinity);
+			Assert.IsFalse(Operators<StructComparable>.HasNegativeInfinity);
+			Assert.IsTrue(Operators<StructComparable>.HasPositiveInfinity);
+			Assert.IsFalse(Operators<StructComparable?>.HasNegativeInfinity);
+			Assert.IsTrue(Operators<StructComparable?>.HasPositiveInfinity);
+
+			Assert.AreEqual(Operators<double>.NegativeInfinity, double.NegativeInfinity);
+			Assert.AreEqual(Operators<double>.PositiveInfinity, double.PositiveInfinity);
+			Assert.AreEqual(Operators<float>.NegativeInfinity, float.NegativeInfinity);
+			Assert.AreEqual(Operators<float>.PositiveInfinity, float.PositiveInfinity);
+			Assert.Throws<NotSupportedException>(() => Operators<int>.NegativeInfinity.ToString());
+			Assert.Throws<NotSupportedException>(() => Operators<int>.PositiveInfinity.ToString());
+
+			Assert.AreEqual(Operators<double?>.NegativeInfinity, double.NegativeInfinity);
+			Assert.AreEqual(Operators<double?>.PositiveInfinity, double.PositiveInfinity);
+			Assert.AreEqual(Operators<float?>.NegativeInfinity, float.NegativeInfinity);
+			Assert.AreEqual(Operators<float?>.PositiveInfinity, float.PositiveInfinity);
+			Assert.Throws<NotSupportedException>(() => Operators<int?>.NegativeInfinity.ToString());
+			Assert.Throws<NotSupportedException>(() => Operators<int?>.PositiveInfinity.ToString());
+
+			Assert.AreEqual(Operators<ClassNoComparable>.NegativeInfinity, ClassNoComparable.NegativeInfinity);
+			Assert.Throws<NotSupportedException>(() => Operators<ClassNoComparable>.PositiveInfinity.ToString());
+			Assert.Throws<NotSupportedException>(() => Operators<StructComparable>.NegativeInfinity.ToString());
+			Assert.AreEqual(Operators<StructComparable>.PositiveInfinity, StructComparable.PositiveInfinity);
+			Assert.Throws<NotSupportedException>(() => Operators<StructComparable?>.NegativeInfinity.ToString());
+			Assert.AreEqual(Operators<StructComparable?>.PositiveInfinity, StructComparable.PositiveInfinity);
 		}
 	}
 }

@@ -14,7 +14,6 @@ using static System.Linq.Expressions.Expression;
 namespace CodeJam.Arithmetic
 {
 	/// <summary>Helper class to emit operators logic</summary>
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public static class OperatorsFactory
 	{
 		#region Helpers
@@ -91,11 +90,30 @@ namespace CodeJam.Arithmetic
 			}
 		}
 
+		private static NotSupportedException FieldNotSupported(Type type, string fieldName, Exception ex) =>
+			new NotSupportedException($"The type {type.Name} has no field {fieldName} defined.", ex);
+
 		private static NotSupportedException MethodNotSupported(Type type, string methodName, Exception ex) =>
 			new NotSupportedException($"The type {type.Name} has no method {methodName} defined.", ex);
 
 		private static NotSupportedException NotSupported<T>(ExpressionType operatorType, Exception ex) =>
 			new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);
+
+		private static FieldInfo TryGetOpField<T>(string fieldName)
+		{
+			var t = typeof(T);
+			if (t.IsNullable())
+			{
+				t = t.ToUnderlying();
+			}
+
+			var field = t.GetField(fieldName, BindingFlags.Public | BindingFlags.Static);
+			// ReSharper disable ArrangeRedundantParentheses
+			return (field == null || !typeof(T).IsAssignableFrom(field.FieldType))
+				? null
+				: field;
+			// ReSharper restore ArrangeRedundantParentheses
+		}
 
 		[NotNull]
 		private static Func<T, TResult> GetUnaryOperatorCore<T, TResult>(ExpressionType operatorType) =>
@@ -116,6 +134,56 @@ namespace CodeJam.Arithmetic
 				typeof(TResult),
 				Parameter(typeof(T), "arg1"),
 				Parameter(typeof(T), "arg2"));
+		#endregion
+
+		#region Infinity
+		/// <summary>Determines whether the type has negative infinity value.</summary>
+		/// <typeparam name="T">The type to check.</typeparam>
+		/// <returns><c>true</c> if the type has negative infinity value.</returns>
+		public static bool HasNegativeInfinity<T>()
+		{
+			var field = TryGetOpField<T>(nameof(double.NegativeInfinity));
+
+			return field != null;
+		}
+
+		/// <summary>Returns the negative infinity value.</summary>
+		/// <typeparam name="T">The type to get value for.</typeparam>
+		/// <exception cref="NotSupportedException">Thrown if the type has no corresponding value.</exception>
+		/// <returns>The negative infinity value or <seealso cref="NotSupportedException"/> if the type has no corresponding value.</returns>
+		[NotNull]
+		public static T GetNegativeInfinity<T>()
+		{
+			var field = TryGetOpField<T>(nameof(double.NegativeInfinity));
+			if (field == null)
+				throw FieldNotSupported(typeof(T), nameof(double.NegativeInfinity), null);
+
+			return (T)field.GetValue(null);
+		}
+
+		/// <summary>Determines whether the type has positive infinity value.</summary>
+		/// <typeparam name="T">The type to check.</typeparam>
+		/// <returns><c>true</c> if the type has positive infinity value.</returns>
+		public static bool HasPositiveInfinity<T>()
+		{
+			var field = TryGetOpField<T>(nameof(double.PositiveInfinity));
+
+			return field != null;
+		}
+
+		/// <summary>Returns the positive infinity value.</summary>
+		/// <typeparam name="T">The type to get value for.</typeparam>
+		/// <exception cref="NotSupportedException">Thrown if the type has no corresponding value.</exception>
+		/// <returns>The positive infinity value or <seealso cref="NotSupportedException"/> if the type has no corresponding value.</returns>
+		[NotNull]
+		public static T GetPositiveInfinity<T>()
+		{
+			var field = TryGetOpField<T>(nameof(double.PositiveInfinity));
+			if (field == null)
+				throw FieldNotSupported(typeof(T), nameof(double.PositiveInfinity), null);
+
+			return (T)field.GetValue(null);
+		}
 		#endregion
 
 		#region Operators
