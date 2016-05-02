@@ -14,22 +14,29 @@ namespace CodeJam.Threading
 	public static class InterlockedOperationsTests
 	{
 <#
-		OverladsFor("double", "1.0", "2.0");
-		WriteLine("");
-		OverladsFor("float", "1.0f", "2.0f");
-		WriteLine("");
-		OverladsFor("int", "1", "2");
-		WriteLine("");
-		OverladsFor("long", "1L", "2L");
-		WriteLine("");
-		OverladsFor("string", "\"A\"", "\"B\"");#>
+		WriteRegionLine("double overloads");
+		EmitOverloadsFor("double", "1.0", "2.0");
+
+		WriteRegionLine("float overloads");
+		EmitOverloadsFor("float", "1.0f", "2.0f");
+
+		WriteRegionLine("int overloads");
+		EmitOverloadsFor("int", "1", "2");
+
+		WriteRegionLine("long overloads");
+		EmitOverloadsFor("long", "1L", "2L");
+
+		WriteRegionLine("string overloads");
+		EmitOverloadsFor("string", "\"A\"", "\"B\"");
+
+		FlushRegions();
+#>
 	}
 }<#+
-		private void OverladsFor(string typeName, string valueA, string valueB)
+		private void EmitOverloadsFor(string typeName, string valueA, string valueB)
 		{
 			var t = typeName;
 			var tName = char.ToUpperInvariant(typeName[0]) + typeName.Substring(1);#>
-		#region <#=t#> overloads
 		[Test]
 		public static void Test<#=tName#>Initialize()
 		{
@@ -84,5 +91,4 @@ namespace CodeJam.Threading
 				i => InterlockedOperations.Update(ref field, a, (t1, t2) => t1 + t2));
 			Assert.That(field, Is.EqualTo(sum));
 		}
-		#endregion
 <#+}#>

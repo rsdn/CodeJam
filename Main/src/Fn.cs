@@ -5,10 +5,10 @@ using JetBrains.Annotations;
 namespace CodeJam
 {
 	/// <summary>
-	/// Helper methods for <see cref="Func{TResult}"/> delegate.
+	/// Helper methods for <see cref="Func{TResult}"/> and <seealso cref="Action"/> delegates.
 	/// </summary>
 	[PublicAPI]
-	public static class Fn
+	public static partial class Fn
 	{
 		/// <summary>
 		/// Gets the function that always returns true.

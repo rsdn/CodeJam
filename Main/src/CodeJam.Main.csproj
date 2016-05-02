@@ -98,6 +98,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DebugCode.tt</DependentUpon>
     </Compile>
+    <Compile Include="Collections\DictionaryExtensions.GetValueOrDefault.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DictionaryExtensions.GetValueOrDefault.tt</DependentUpon>
+    </Compile>
     <Compile Include="Collections\EnumerableExtensions.Index.cs" />
     <Compile Include="Collections\IndexedItem.cs" />
     <Compile Include="Collections\EnumerableExtensions.Page.cs" />
@@ -106,13 +111,17 @@
     <Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
     <Compile Include="Collections\QueryableExtensions.cs" />
     <Compile Include="EnumHelper.cs" />
+    <Compile Include="Fn.generated.cs">
+      <DependentUpon>Fn.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Expressions\ExpressionExtensions.cs" />
-    <Compile Include="IO\NamespaceDoc.cs" />
-    <Compile Include="NamespaceDoc.cs" />
-    <Compile Include="Reflection\ExpressionHelper.Func.generated.cs">
+    <Compile Include="Expressions\Expr.generated.cs">
       <DependentUpon>ExpressionHelper.Func.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Expr.tt</DependentUpon>
     </Compile>
     <Compile Include="Reflection\MemberAccessor.cs" />
     <Compile Include="Reflection\NamespaceDoc.cs" />
@@ -194,7 +203,7 @@
     <Compile Include="Structures\Option`1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\ReflectionEnumHelper.cs" />
-    <Compile Include="Reflection\ExpressionHelper.cs" />
+    <Compile Include="Expressions\ExpressionExtensions.GetMembers.cs" />
     <Compile Include="Reflection\InfoOf.cs" />
     <Compile Include="Reflection\ReflectionExtensions.cs" />
     <Compile Include="Strings\CharExtensions.cs" />
@@ -246,9 +255,17 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Operators.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Reflection\ExpressionHelper.Func.tt">
+    <Content Include="Collections\DictionaryExtensions.GetValueOrDefault.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ExpressionHelper.Func.generated.cs</LastGenOutput>
+      <LastGenOutput>DictionaryExtensions.GetValueOrDefault.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Fn.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Fn.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Expressions\Expr.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Expr.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Strings\CharExtensions.Infix.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

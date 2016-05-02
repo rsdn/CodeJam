@@ -34,7 +34,7 @@ namespace CodeJam.Arithmetic
 			EmitBinary(op);
 		}
 	}
-	WriteEndregionLine();
+	FlushRegions();
 #>
 	}
 }<#+

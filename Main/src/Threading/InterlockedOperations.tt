@@ -14,28 +14,32 @@ namespace CodeJam.Threading
 	public static class InterlockedOperations
 	{
 <#
-		OverloadsFor("double", false);
-		WriteLine("");
-		OverloadsFor("float", false);
-		WriteLine("");
-		OverloadsFor("int", false);
-		WriteLine("");
-		OverloadsFor("long", false);
-		WriteLine("");
-		OverloadsFor("T", true);#>
+		var types = new[] { "double", "float", "int", "long" };
+		foreach (var typeName in types)
+		{
+			WriteRegionLine(typeName + " overloads");
+			EmitOverloadsFor(typeName, false);
+		}
+
+		WriteRegionLine("Generic overloads");
+		EmitOverloadsFor("T", true);
+
+		FlushRegions();
+#>
 	}
 }<#+
-		private void OverloadsFor(string typeName, bool forRefTypes)
-		{
-			var t = typeName;
-			var tXmlDoc = forRefTypes? 
-				"\r\n\t\t/// <typeparam name=\"" + typeName + "\">Type of value.</typeparam>" :
-				"";
-			var tXmlT = forRefTypes? "{" + typeName + "}" : "";
-			var tT = forRefTypes? "<" + typeName + ">" : "";
-			var tNotNull = forRefTypes? "[NotNull] " + typeName : typeName;
-			var tWhere = forRefTypes? "\r\n\t\t\twhere " + typeName + " : class" : "";#>
-		#region <#=t#> overloads
+
+	private void EmitOverloadsFor(string typeName, bool forRefTypes)
+	{
+		var t = typeName;
+		var tXmlDoc = forRefTypes? 
+			"\r\n\t\t/// <typeparam name=\"" + typeName + "\">Type of value.</typeparam>" :
+			"";
+		var tXmlT = forRefTypes? "{" + typeName + "}" : "";
+		var tT = forRefTypes? "<" + typeName + ">" : "";
+		var tNotNull = forRefTypes? "[NotNull] " + typeName : typeName;
+		var tWhere = forRefTypes? "\r\n\t\t\twhere " + typeName + " : class" : "";
+#>
 		/// <summary>
 		/// Initialize the value referenced by <paramref name="target"/> in a thread-safe manner.
 		/// The value is changed to <paramref name="value"/> only if the current value is default(<#=t#>).
@@ -124,5 +128,6 @@ namespace CodeJam.Threading
 			while (Interlocked.CompareExchange(ref value, newState, oldState) != oldState);
 			return newState;
 		}
-		#endregion
-<#+}#>
+<#+
+	}
+#>

@@ -17,15 +17,36 @@ namespace CodeJam.Arithmetic
 		private static AttributeTargets? NullableEnumA = AttributeTargets.Method;
 		private static AttributeTargets? NullableEnumB = AttributeTargets.Class;
 		private static AttributeTargets? NullableEnumC = null;
-<#foreach (var op in ops) {
-	bool addFirst = false;#>
 
-		#region <#=op.Name#>
-<#	if (op.OpType == OpType.Unary) {
-		WriteSeparatorLine(ref addFirst);#>
+<#
+	foreach (var op in ops)
+	{
+		WriteRegionLine(op.OpType.ToString(), "op.OpType");
+		WriteRegionLine(op.Name, "op.Name");
+
+		if (op.OpType == OpType.Unary)
+		{
+			EmitUnary(op);
+		}
+		else
+		{
+			EmitBinaryOrComparison(op);
+		}
+	}
+	FlushRegions();
+#>
+	}
+}<#+
+
+	private void EmitUnary(OpInfo op)
+	{
+#>
 		[Test]
 		public void TestInt<#=op.Name#>() => Assert.AreEqual(<#=op.Sign#>42, IntOp.<#=op.Name#>(42));
-<#		if (op.ForEnums) {#>
+<#+
+		if (op.ForEnums)
+		{
+#>
 
 		[Test]
 		public void TestEnum<#=op.Name#>() =>
@@ -37,18 +58,27 @@ namespace CodeJam.Arithmetic
 			Assert.AreEqual(<#=op.Sign#>NullableEnumA, NullableEnumOp.<#=op.Name#>(NullableEnumA));
 			Assert.AreEqual(<#=op.Sign#>NullableEnumC, NullableEnumOp.<#=op.Name#>(NullableEnumC));
 		}
-<#		}#>
-<#		if (!op.IntOnly) {#>
+<#+
+		}
+		if (!op.IntOnly)
+		{
+#>
 
 		[Test]
 		public void TestNullableDouble<#=op.Name#>() => Assert.AreEqual(<#=op.Sign#>42f, NullableDoubleOp.<#=op.Name#>(42f));
-<#		}#>
-<#	}#>
-<#	else if (op.OpType == OpType.Binary || op.OpType == OpType.Comparison) {
-		WriteSeparatorLine(ref addFirst);#>
+<#+
+		}
+	}
+
+	private void EmitBinaryOrComparison(OpInfo op)
+	{
+#>
 		[Test]
 		public void TestInt<#=op.Name#>() => Assert.AreEqual(1 <#=op.Sign#> 2, IntOp.<#=op.Name#>(1, 2));
-<#		if (op.ForEnums) {#>
+<#+
+		if (op.ForEnums)
+		{
+#>
 
 		[Test]
 		public void TestEnum<#=op.Name#>() =>
@@ -62,14 +92,14 @@ namespace CodeJam.Arithmetic
 			Assert.AreEqual(NullableEnumA <#=op.Sign#> NullableEnumB, NullableEnumOp.<#=op.Name#>(NullableEnumA, NullableEnumB));
 			Assert.AreEqual(NullableEnumA <#=op.Sign#> NullableEnumC, NullableEnumOp.<#=op.Name#>(NullableEnumA, NullableEnumC));
 		}
-<#		}#>
-<#		if (!op.IntOnly) {#>
+<#+
+		}
+		if (!op.IntOnly)
+		{
+#>
 
 		[Test]
 		public void TestNullableDouble<#=op.Name#>() => Assert.AreEqual(1f <#=op.Sign#> 2f, NullableDoubleOp.<#=op.Name#>(1, 2));
-<#		}#>
-<#	}#>
-		#endregion
-<#}#>
-	}
-}
+<#+
+		}
+	}#>

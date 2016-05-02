@@ -1,9 +1,23 @@
 CodeJam 1.0.0 Release Notes
 ---------------------------------
 
+What's new in 1.1.0-beta1
+----------------------
+* Enum helpers and operators
+* Performance optimization
+* Refactoring
+* Fixes and code cleanup
+
 What's new in 1.0.0
 ----------------------
+* Small fixes
+
+What's new in 1.0.0-rc3
+----------------------
 * Fixed MinBy/MaxBy behavior with NaN values
+* Expression visitor added
+* ExpressionHelper splitted into two parts - Expr and ExpressionExtensions
+* Fixes and code cleanup
 
 What's new in 1.0.0-rc2
 ----------------------

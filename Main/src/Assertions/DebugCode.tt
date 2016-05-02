@@ -1,4 +1,4 @@
-﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ include file="$(SolutionDir)T4.Reusable\DebugCodeGenerator.ttinclude" #>
 <#
 	Run();

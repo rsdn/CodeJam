@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -11,17 +12,16 @@ namespace CodeJam.Expressions
 	/// <see cref="Expression"/> Extensions.
 	/// </summary>
 	[PublicAPI]
-	public static class ExpressionExtensions
+	public static partial class ExpressionExtensions
 	{
 		#region VisitInternal
-
-		static void VisitInternal<T>(IEnumerable<T> source, Action<T> func)
+		private static void VisitInternal<T>(IEnumerable<T> source, Action<T> func)
 		{
 			foreach (var item in source)
 				func(item);
 		}
 
-		static void VisitInternal<T>(IEnumerable<T> source, Action<Expression> func)
+		private static void VisitInternal<T>(IEnumerable<T> source, Action<Expression> func)
 			where T : Expression
 		{
 			foreach (var item in source)
@@ -40,7 +40,7 @@ namespace CodeJam.Expressions
 			VisitInternal(expr, func);
 		}
 
-		static void VisitInternal(this Expression expr, Action<Expression> func)
+		private static void VisitInternal(this Expression expr, Action<Expression> func)
 		{
 			if (expr == null)
 				return;
@@ -303,13 +303,13 @@ namespace CodeJam.Expressions
 			func(expr);
 		}
 
-		static void VisitInternal<T>(IEnumerable<T> source, Func<T,bool> func)
+		private static void VisitInternal<T>(IEnumerable<T> source, Func<T,bool> func)
 		{
 			foreach (var item in source)
 				func(item);
 		}
 
-		static void VisitInternal<T>(IEnumerable<T> source, Func<Expression,bool> func)
+		private static void VisitInternal<T>(IEnumerable<T> source, Func<Expression,bool> func)
 			where T : Expression
 		{
 			foreach (var item in source)
@@ -328,7 +328,8 @@ namespace CodeJam.Expressions
 			VisitInternal(expr, func);
 		}
 
-		static void VisitInternal(this Expression expr, Func<Expression,bool> func)
+		[SuppressMessage("ReSharper", "TailRecursiveCall")]
+		private static void VisitInternal(this Expression expr, Func<Expression,bool> func)
 		{
 			if (expr == null || !func(expr))
 				return;
@@ -590,8 +591,7 @@ namespace CodeJam.Expressions
 		#endregion
 
 		#region Find
-
-		static Expression FindInternal<T>(IEnumerable<T> source, Func<T,Expression> func)
+		private static Expression FindInternal<T>(IEnumerable<T> source, Func<T,Expression> func)
 		{
 			foreach (var item in source)
 			{
@@ -603,7 +603,7 @@ namespace CodeJam.Expressions
 			return null;
 		}
 
-		static Expression FindInternal<T>(IEnumerable<T> source, Func<Expression,bool> func)
+		private static Expression FindInternal<T>(IEnumerable<T> source, Func<Expression,bool> func)
 			where T : Expression
 		{
 			foreach (var item in source)
@@ -642,7 +642,8 @@ namespace CodeJam.Expressions
 			return FindInternal(expr, func);
 		}
 
-		static Expression FindInternal(this Expression expr, Func<Expression,bool> func)
+		[SuppressMessage("ReSharper", "TailRecursiveCall")]
+		private static Expression FindInternal(this Expression expr, Func<Expression,bool> func)
 		{
 			if (expr == null || func(expr))
 				return expr;
@@ -932,7 +933,7 @@ namespace CodeJam.Expressions
 			});
 		}
 
-		static IEnumerable<T> TransformInternal<T>(ICollection<T> source, Func<T,T> func)
+		private static IEnumerable<T> TransformInternal<T>(ICollection<T> source, Func<T,T> func)
 			where T : class
 		{
 			var modified = false;
@@ -948,7 +949,7 @@ namespace CodeJam.Expressions
 			return modified ? list : source;
 		}
 
-		static IEnumerable<T> TransformInternal<T>(ICollection<T> source, Func<Expression,Expression> func)
+		private static IEnumerable<T> TransformInternal<T>(ICollection<T> source, Func<Expression,Expression> func)
 			where T : Expression
 		{
 			var modified = false;
@@ -993,7 +994,7 @@ namespace CodeJam.Expressions
 			return TransformInternal(expr, func);
 		}
 
-		static Expression TransformInternal(this Expression expr, Func<Expression,Expression> func)
+		private static Expression TransformInternal(this Expression expr, Func<Expression,Expression> func)
 		{
 			if (expr == null)
 				return null;
@@ -1109,7 +1110,7 @@ namespace CodeJam.Expressions
 						var b = TransformInternal(e.Body,       func);
 						var p = TransformInternal(e.Parameters, func);
 
-						return b != e.Body || p != e.Parameters ? Expression.Lambda(expr.Type, b, p.ToArray()) : expr;
+						return b != e.Body || !ReferenceEquals(p, e.Parameters) ? Expression.Lambda(expr.Type, b, p.ToArray()) : expr;
 					}
 
 				case ExpressionType.ListInit:
@@ -1120,7 +1121,7 @@ namespace CodeJam.Expressions
 							TransformInternal(e.Initializers,  p =>
 							{
 								var args = TransformInternal(p.Arguments, func);
-								return args != p.Arguments? Expression.ElementInit(p.AddMethod, args): p;
+								return !ReferenceEquals(args, p.Arguments)? Expression.ElementInit(p.AddMethod, args): p;
 							}));
 					}
 
@@ -1149,7 +1150,7 @@ namespace CodeJam.Expressions
 											TransformInternal(ml.Initializers, p =>
 											{
 												var args = TransformInternal(p.Arguments, func);
-												return args != p.Arguments? Expression.ElementInit(p.AddMethod, args): p;
+												return !ReferenceEquals(args, p.Arguments)? Expression.ElementInit(p.AddMethod, args): p;
 											}));
 									}
 
