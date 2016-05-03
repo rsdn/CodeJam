@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 
 // ReSharper disable CheckNamespace
 
-namespace BenchmarkDotNet.NUnit
+namespace BenchmarkDotNet.UnitTesting
 {
 	/// <summary>
 	/// Use this to run fast but inaccurate measures

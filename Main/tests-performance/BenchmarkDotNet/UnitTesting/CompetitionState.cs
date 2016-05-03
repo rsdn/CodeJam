@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Reports;
@@ -8,7 +7,7 @@ using BenchmarkDotNet.Running;
 
 // ReSharper disable CheckNamespace
 
-namespace BenchmarkDotNet.NUnit
+namespace BenchmarkDotNet.UnitTesting
 {
 	using CompetitionTargets = IDictionary<Target, CompetitionTarget>;
 
@@ -16,12 +15,20 @@ namespace BenchmarkDotNet.NUnit
 	/// Internal class to manage consequent runs.
 	/// DO NOT add this one explicitly
 	/// </summary>
-	internal class CompetitionStateAnalyser : IAnalyser
+	internal class CompetitionState : IAnalyser
 	{
 		private readonly CompetitionTargets _competitionTargets = new Dictionary<Target, CompetitionTarget>();
 
-		public IEnumerable<IWarning> Analyse(Summary summary) => Enumerable.Empty<IWarning>();
+		public IEnumerable<IWarning> Analyse(Summary summary)
+		{
+			var warnings = new List<IWarning>();
+			if (summary.GetCompetitionParameters().AnnotateOnRun)
+			{
+				AnnotateSourceHelper.AnnotateBenchmarkFiles(summary, warnings);
+			}
 
+			return warnings;
+		}
 		public bool LastRun { get; set; }
 		public bool RerunRequested { get; set; }
 
@@ -35,10 +42,10 @@ namespace BenchmarkDotNet.NUnit
 			return _competitionTargets;
 		}
 
-		public CompetitionTarget[] GetNewCompetitionTargets(Summary summary)
+		public CompetitionTarget[] GetCompetitionTargetsToUpdate(Summary summary)
 		{
 			var competitionTargets = GetCompetitionTargets(summary);
-			return CompetitionTargetHelpers.GetNewCompetitionTargets(summary, competitionTargets);
+			return CompetitionTargetHelpers.GetCompetitionTargetsToUpdate(summary, competitionTargets);
 		}
 
 		public void ValidateSummary(Summary summary, double defaultMinRatio, double defaultMaxRatio)

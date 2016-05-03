@@ -9,7 +9,7 @@
 
 using System;
 
-using BenchmarkDotNet.NUnit;
+using BenchmarkDotNet.UnitTesting;
 
 using NUnit.Framework;
 

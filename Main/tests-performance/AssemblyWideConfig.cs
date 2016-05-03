@@ -3,7 +3,7 @@ using System.Configuration;
 using System.Linq.Expressions;
 
 using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.NUnit;
+using BenchmarkDotNet.UnitTesting;
 
 using CodeJam.Reflection;
 
@@ -74,13 +74,15 @@ namespace CodeJam
 			Add(FastRunConfig.Instance);
 
 			if (AnnotateOnRun)
+			{
 				Add(
-					new CompetitionParametersAnalyser
+					new CompetitionParameters
 					{
 						AnnotateOnRun = true,
 						RerunIfModified = true,
 						IgnoreExistingAnnotations = IgnoreExistingAnnotations
 					});
+			}
 		}
 	}
 }

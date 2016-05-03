@@ -15,7 +15,7 @@ using Microsoft.DiaSymReader;
 
 // ReSharper disable CheckNamespace
 
-namespace BenchmarkDotNet.NUnit
+namespace BenchmarkDotNet.UnitTesting
 {
 	internal static partial class AnnotateSourceHelper
 	{

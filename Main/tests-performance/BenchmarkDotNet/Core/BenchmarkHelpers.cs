@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 
-using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Horology;
 using BenchmarkDotNet.Jobs;
-using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Parameters;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
@@ -64,15 +58,6 @@ namespace BenchmarkDotNet.Helpers
 			return elements[index];
 			// ReSharper restore SuggestVarOrType_BuiltInTypes
 		}
-
-		/// <summary>
-		/// Retrieves the typed attribute value for the specified method
-		/// </summary>
-		/// <typeparam name="TAttribute">Type of the attribute</typeparam>
-		/// <param name="method">Method annotated with the attribute</param>
-		/// <returns>The instance of attribute or <c>null</c> if none</returns>
-		public static TAttribute TryGetAttribute<TAttribute>(this MethodInfo method) where TAttribute : Attribute
-			=> (TAttribute)Attribute.GetCustomAttribute(method, typeof(TAttribute));
 		#endregion
 
 		#region Column helpers
@@ -112,62 +97,6 @@ namespace BenchmarkDotNet.Helpers
 				.GetResultRuns()
 				.Select(r => r.GetAverageNanoseconds());
 			return Percentile(values, percentileRatio);
-		}
-		#endregion
-
-		#region Benchmark configuration
-		/// <summary>
-		/// Removes the default console logger, removes all exporters but default markdown exporter.
-		/// </summary>
-		// TODO: do not filter the exporters?
-		public static ManualConfig CreateUnitTestConfig(IConfig template)
-		{
-			var result = new ManualConfig();
-			result.Add(template.GetColumns().ToArray());
-			//result.Add(template.GetExporters().ToArray());
-			result.Add(template.GetExporters().Where(l => l == MarkdownExporter.Default).ToArray());
-			result.Add(template.GetLoggers().Where(l => l != ConsoleLogger.Default).ToArray());
-			result.Add(template.GetDiagnosers().ToArray());
-			result.Add(template.GetAnalysers().ToArray());
-			result.Add(template.GetJobs().ToArray());
-			result.Add(template.GetValidators().ToArray());
-
-			return result;
-		}
-
-		/// <summary>
-		/// Checks that the assembly is build in debug mode.
-		/// </summary>
-		public static bool IsDebugAssembly(this Assembly assembly)
-		{
-			var optAtt = (DebuggableAttribute)Attribute.GetCustomAttribute(assembly, typeof(DebuggableAttribute));
-			return optAtt != null && optAtt.IsJITOptimizerDisabled;
-		}
-		#endregion
-
-		#region IO
-		/// <summary>
-		/// Writes file content without empty line at the end
-		/// </summary>
-		// BASEDON: http://stackoverflow.com/a/11689630
-		public static void WriteFileContent(string path, string[] lines)
-		{
-			if (path == null)
-				throw new ArgumentNullException(nameof(path));
-			if (lines == null)
-				throw new ArgumentNullException(nameof(lines));
-
-			using (var writer = File.CreateText(path))
-			{
-				if (lines.Length > 0)
-				{
-					for (var i = 0; i < lines.Length - 1; i++)
-					{
-						writer.WriteLine(lines[i]);
-					}
-					writer.Write(lines[lines.Length - 1]);
-				}
-			}
 		}
 		#endregion
 	}

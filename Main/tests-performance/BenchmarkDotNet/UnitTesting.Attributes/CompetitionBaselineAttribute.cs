@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 // ReSharper disable CheckNamespace
 // ReSharper disable once RedundantAttributeUsageProperty
 
-namespace BenchmarkDotNet.NUnit
+namespace BenchmarkDotNet.UnitTesting
 {
 	/// <summary>
 	/// Marks the baseline competition benchmark

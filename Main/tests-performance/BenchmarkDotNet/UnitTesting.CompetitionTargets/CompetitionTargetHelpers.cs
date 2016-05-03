@@ -11,44 +11,28 @@ using BenchmarkDotNet.Parameters;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
-using CodeJam;
-
-using JetBrains.Annotations;
-
 // ReSharper disable CheckNamespace
+using static BenchmarkDotNet.UnitTesting.CompetitionHelpers;
 
-namespace BenchmarkDotNet.NUnit
+namespace BenchmarkDotNet.UnitTesting
 {
 	using CompetitionTargets = IDictionary<Target, CompetitionTarget>;
 
 	/// <summary>
 	/// Helper methods for <see cref="CompetitionTarget"/>
 	/// </summary>
-	[PublicAPI]
-	public static class CompetitionTargetHelpers
+	internal static class CompetitionTargetHelpers
 	{
-		#region XML metadata constants
-		public const string CompetitionBenchmarksRootNode = "CompetitionBenchmarks";
-		public const string CompetitionNode = "Competition";
-		public const string CandidateNode = "Candidate";
-		public const string TargetAttribute = "Target";
-		public const string MinRatioAttribute = "MinRatio";
-		public const string MaxRatioAttribute = "MaxRatio";
-		#endregion
-
 		public static void InitCompetitionTargets(CompetitionTargets competitionTargets, Summary summary)
 		{
 			competitionTargets.Clear();
-			var competitionParameters = summary.Config.GetAnalysers()
-				.OfType<CompetitionParametersAnalyser>()
-				.Single();
+			var competitionParameters = summary.GetCompetitionParameters();
 
 			var resourceCache = new Dictionary<string, XDocument>();
 
 			foreach (var target in summary.Benchmarks.Select(d => d.Target).Distinct())
 			{
-				var competitionAttribute = (CompetitionBenchmarkAttribute)
-					target.Method.GetCustomAttribute(typeof(CompetitionBenchmarkAttribute));
+				var competitionAttribute = target.Method.GetCustomAttribute<CompetitionBenchmarkAttribute>();
 
 				if (competitionAttribute != null &&
 					!competitionAttribute.Baseline &&
@@ -66,14 +50,13 @@ namespace BenchmarkDotNet.NUnit
 		private static CompetitionTarget GetCompetitionTarget(
 			Target target, CompetitionBenchmarkAttribute competitionAttribute,
 			IDictionary<string, XDocument> resourceCache,
-			CompetitionParametersAnalyser competitionParameters)
+			CompetitionParameters competitionParameters)
 		{
 			string targetResourceName = null;
 			var targetType = target.Type;
 			while (targetType != null && targetResourceName == null)
 			{
-				targetResourceName = targetType
-					.GetCustomAttribute<CompetitionMetadataAttribute>()
+				targetResourceName = targetType.GetCustomAttribute<CompetitionMetadataAttribute>()
 					?.MetadataResourceName;
 
 				targetType = targetType.DeclaringType;
@@ -151,7 +134,7 @@ namespace BenchmarkDotNet.NUnit
 			return new CompetitionTarget(target, min, max, true);
 		}
 
-		public static CompetitionTarget[] GetNewCompetitionTargets(Summary summary, CompetitionTargets competitionTargets)
+		public static CompetitionTarget[] GetCompetitionTargetsToUpdate(Summary summary, CompetitionTargets competitionTargets)
 		{
 			var fixedMinTargets = new HashSet<CompetitionTarget>();
 			var fixedMaxTargets = new HashSet<CompetitionTarget>();
@@ -175,7 +158,11 @@ namespace BenchmarkDotNet.NUnit
 					var minRatio = summary.GetPercentile(benchmark, 0.85) / baselineMetricMin;
 					var maxRatio = summary.GetPercentile(benchmark, 0.95) / baselineMetricMax;
 					if (minRatio > maxRatio)
-						Algorithms.Swap(ref minRatio, ref maxRatio);
+					{
+						var temp = minRatio;
+						minRatio = maxRatio;
+						maxRatio = temp;
+					}
 
 					CompetitionTarget newTarget;
 					if (!newTargets.TryGetValue(competitionTarget.Target, out newTarget))

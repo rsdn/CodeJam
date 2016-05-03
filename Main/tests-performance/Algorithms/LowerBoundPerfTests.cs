@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.NUnit;
+using BenchmarkDotNet.UnitTesting;
 
 using CodeJam.Collections;
 

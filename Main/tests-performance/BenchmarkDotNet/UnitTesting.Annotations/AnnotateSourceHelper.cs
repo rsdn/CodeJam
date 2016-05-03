@@ -8,21 +8,17 @@ using System.Xml.Linq;
 
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
-using JetBrains.Annotations;
-
 // ReSharper disable CheckNamespace
 
-namespace BenchmarkDotNet.NUnit
+namespace BenchmarkDotNet.UnitTesting
 {
 	/// <summary>
 	/// Fills min..max values for [CompetitionBenchmark] attribute
 	/// DANGER: this will try to update sources. May fail.
 	/// </summary>
-	[PublicAPI]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	internal static partial class AnnotateSourceHelper
 	{
@@ -36,7 +32,7 @@ namespace BenchmarkDotNet.NUnit
 			// ReSharper disable once MemberCanBePrivate.Local
 			public bool HasChanges => _changedFiles.Any();
 
-			public string[] GetFileLines(string file)
+			public IReadOnlyList<string> GetFileLines(string file)
 			{
 				if (_xmlAnnotations.ContainsKey(file))
 					throw new InvalidOperationException($"File {file} already loaded as XML annotation");
@@ -74,7 +70,7 @@ namespace BenchmarkDotNet.NUnit
 
 			public void ReplaceLine(string file, int lineIndex, string newLine)
 			{
-				GetFileLines(file)[lineIndex] = newLine;
+				_sourceLines[file][lineIndex] = newLine;
 				MarkAsChanged(file);
 			}
 
@@ -86,7 +82,7 @@ namespace BenchmarkDotNet.NUnit
 				foreach (var pair in _sourceLines)
 				{
 					if (_changedFiles.Contains(pair.Key))
-						BenchmarkHelpers.WriteFileContent(pair.Key, pair.Value);
+						CompetitionHelpers.WriteFileContent(pair.Key, pair.Value);
 				}
 
 				var saveSettings = new XmlWriterSettings
@@ -116,24 +112,24 @@ namespace BenchmarkDotNet.NUnit
 
 		public static void AnnotateBenchmarkFiles(Summary summary, List<IWarning> warnings)
 		{
-			var competitionState = summary.Config.GetAnalysers().OfType<CompetitionStateAnalyser>().Single();
-			var competitionParameters = summary.Config.GetAnalysers().OfType<CompetitionParametersAnalyser>().Single();
+			var competitionState = summary.GetCompetitionState();
+			var competitionParameters = summary.GetCompetitionParameters();
 			var logger = summary.Config.GetCompositeLogger();
 
 			var annContext = new AnnotateContext();
 			var competitionTargets = competitionState.GetCompetitionTargets(summary);
-			var newTargets = competitionState.GetNewCompetitionTargets(summary);
-			if (newTargets.Length == 0)
+			var changedTargets = competitionState.GetCompetitionTargetsToUpdate(summary);
+			if (changedTargets.Length == 0)
 			{
-				logger.WriteLineInfo("All competition benchmarks are in boundary.");
+				logger.WriteLineInfo("All competition benchmarks do not require annotation. Skipping.");
 				return;
 			}
 
-			foreach (var newTarget in newTargets)
+			foreach (var newTarget in changedTargets)
 			{
 				var targetMethodName = newTarget.CandidateName;
 
-				logger.WriteLineInfo($"Method {targetMethodName}: new boundary [{newTarget.MinText},{newTarget.MaxText}].");
+				logger.WriteLineInfo($"Method {targetMethodName}: new relative time limits [{newTarget.MinText},{newTarget.MaxText}].");
 
 				int firstCodeLine;
 				string fileName;
@@ -147,7 +143,7 @@ namespace BenchmarkDotNet.NUnit
 				{
 					var resourceFileName = Path.ChangeExtension(fileName, ".xml");
 					logger.WriteLineInfo(
-						$"Method {targetMethodName}: annotate resource file {resourceFileName}.");
+						$"Method {targetMethodName}: annotating resource file {resourceFileName}.");
 					bool annotated = TryFixBenchmarkResource(annContext, resourceFileName, newTarget);
 					if (!annotated)
 					{
@@ -157,11 +153,12 @@ namespace BenchmarkDotNet.NUnit
 				}
 				else
 				{
-					logger.WriteLineInfo($"Method {targetMethodName}: annotate at line {firstCodeLine}, file {fileName}.");
+					logger.WriteLineInfo($"Method {targetMethodName}: annotating file {fileName}, line {firstCodeLine}.");
 					bool annotated = TryFixBenchmarkAttribute(annContext, fileName, firstCodeLine, newTarget);
 					if (!annotated)
 					{
-						throw new InvalidOperationException($"Method {targetMethodName}: could not annotate. Source file {fileName}.");
+						throw new InvalidOperationException(
+							$"Method {targetMethodName}: could not annotate source file {fileName}.");
 					}
 				}
 

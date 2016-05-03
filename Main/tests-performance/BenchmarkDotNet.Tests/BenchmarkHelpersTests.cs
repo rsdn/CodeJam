@@ -1,33 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-
-using BenchmarkDotNet.Helpers;
 
 using NUnit.Framework;
 
 // ReSharper disable CheckNamespace
 
-namespace BenchmarkDotNet.NUnit.Tests
+namespace BenchmarkDotNet.Helpers.Tests
 {
 	internal class BenchmarkHelpersTests
 	{
-		[Test]
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		[System.ComponentModel.Description("SomeDescription")]
-		public void TestTryGetAttribute()
-		{
-			var method = (MethodInfo)MethodBase.GetCurrentMethod();
-
-			Assert.IsNull(method.TryGetAttribute<AuthorAttribute>());
-			Assert.IsNotNull(method.TryGetAttribute<TestAttribute>());
-			Assert.AreEqual(method.MethodImplementationFlags, MethodImplAttributes.NoInlining);
-			Assert.AreEqual(
-				method.TryGetAttribute<System.ComponentModel.DescriptionAttribute>().Description,
-				"SomeDescription");
-		}
-
 		#region Percentile
 		/// <summary>
 		///  Some pseudo-random values

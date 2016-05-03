@@ -7,7 +7,6 @@ using System.Runtime.CompilerServices;
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Exporters;
-using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
@@ -18,7 +17,7 @@ using NUnit.Framework;
 
 // ReSharper disable CheckNamespace
 
-namespace BenchmarkDotNet.NUnit
+namespace BenchmarkDotNet.UnitTesting
 {
 	/// <summary>
 	/// Runner for competition performance tests
@@ -78,7 +77,7 @@ namespace BenchmarkDotNet.NUnit
 			// Capturing the output
 			var logger = InitAccumulationLogger();
 			// Competition analyzer
-			var competitionState = new CompetitionStateAnalyser();
+			var competitionState = new CompetitionState();
 			// Final config
 			var competitionConfig = CreateCompetitionConfig(baseConfig, competitionState, logger);
 
@@ -125,20 +124,20 @@ namespace BenchmarkDotNet.NUnit
 		}
 
 		private static IConfig CreateCompetitionConfig(
-			IConfig baseConfig, CompetitionStateAnalyser competitionState,
+			IConfig baseConfig, CompetitionState competitionState,
 			AccumulationLogger logger)
 		{
 			baseConfig = baseConfig ?? DefaultConfig.Instance;
 			var existingParameters = baseConfig.GetAnalysers()
-				.OfType<CompetitionParametersAnalyser>()
+				.OfType<CompetitionState>()
 				.SingleOrDefault();
 
 			// TODO: better setup?
-			var result = BenchmarkHelpers.CreateUnitTestConfig(baseConfig);
+			var result = CompetitionHelpers.CreateCompetitionTestConfig(baseConfig);
 			result.Add(competitionState);
 			if (existingParameters == null)
 			{
-				result.Add(new CompetitionParametersAnalyser());
+				result.Add(new CompetitionParameters());
 			}
 			result.Add(logger);
 			result.Add(
@@ -154,7 +153,7 @@ namespace BenchmarkDotNet.NUnit
 
 		private static Summary RunCore(
 			Type benchmarkType, IConfig competitionConfig,
-			CompetitionStateAnalyser competitionState)
+			CompetitionState competitionState)
 		{
 			Summary summary = null;
 

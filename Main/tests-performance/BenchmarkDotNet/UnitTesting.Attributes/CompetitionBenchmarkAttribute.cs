@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 // ReSharper disable CheckNamespace
 // ReSharper disable once RedundantAttributeUsageProperty
 
-namespace BenchmarkDotNet.NUnit
+namespace BenchmarkDotNet.UnitTesting
 {
 	/// <summary>
 	/// Marks the competition benchmark
@@ -45,12 +45,12 @@ namespace BenchmarkDotNet.NUnit
 		public bool DoesNotCompete { get; set; }
 
 		/// <summary>
-		/// Max timing ratio related to the baseline benchmark
+		/// Max timing ratio (relative to the baseline benchmark)
 		/// </summary>
 		public double MaxRatio { get; private set; }
 
 		/// <summary>
-		/// Min timing ratio related to the baseline benchmark
+		/// Min timing ratio (relative to the baseline benchmark)
 		/// </summary>
 		public double MinRatio { get; private set; }
 	}

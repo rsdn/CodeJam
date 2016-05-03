@@ -5,9 +5,10 @@ using System.Xml.Linq;
 
 using JetBrains.Annotations;
 
-// ReSharper disable CheckNamespace
+using static BenchmarkDotNet.UnitTesting.CompetitionHelpers;
 
-namespace BenchmarkDotNet.NUnit
+// ReSharper disable CheckNamespace
+namespace BenchmarkDotNet.UnitTesting
 {
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	internal static partial class AnnotateSourceHelper
@@ -20,15 +21,15 @@ namespace BenchmarkDotNet.NUnit
 			var candidateName = competitionTarget.CandidateName;
 
 			var xdoc = annotateContext.GetXmlAnnotation(xmlFileName);
-			var competition = GetOrAdd(xdoc.Root, CompetitionTargetHelpers.CompetitionNode, competitionName);
-			var candidate = GetOrAdd(competition, CompetitionTargetHelpers.CandidateNode, candidateName);
+			var competition = GetOrAdd(xdoc.Root, CompetitionNode, competitionName);
+			var candidate = GetOrAdd(competition, CandidateNode, candidateName);
 
 			var minText = !competitionTarget.IgnoreMin ? competitionTarget.MinText : null;
 			// Always prints
 			var maxText = competitionTarget.MaxText;
 
-			SetAttribute(candidate, CompetitionTargetHelpers.MinRatioAttribute, minText);
-			SetAttribute(candidate, CompetitionTargetHelpers.MaxRatioAttribute, maxText);
+			SetAttribute(candidate, MinRatioAttribute, minText);
+			SetAttribute(candidate, MaxRatioAttribute, maxText);
 
 			annotateContext.MarkAsChanged(xmlFileName);
 
@@ -42,12 +43,12 @@ namespace BenchmarkDotNet.NUnit
 
 			var result = element
 				.Elements(name)
-				.SingleOrDefault(e => e.Attribute(CompetitionTargetHelpers.TargetAttribute)?.Value == targetName);
+				.SingleOrDefault(e => e.Attribute(TargetAttribute)?.Value == targetName);
 
 			if (result == null)
 			{
 				result = new XElement(name);
-				SetAttribute(result, CompetitionTargetHelpers.TargetAttribute, targetName);
+				SetAttribute(result, TargetAttribute, targetName);
 				element.Add(result);
 			}
 

@@ -1,7 +1,7 @@
 using System;
 
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.NUnit;
+using BenchmarkDotNet.UnitTesting;
 
 using JetBrains.Annotations;
 

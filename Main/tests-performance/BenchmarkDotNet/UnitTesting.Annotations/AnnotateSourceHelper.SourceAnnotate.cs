@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 // ReSharper disable CheckNamespace
 
-namespace BenchmarkDotNet.NUnit
+namespace BenchmarkDotNet.UnitTesting
 {
 	internal static partial class AnnotateSourceHelper
 	{
