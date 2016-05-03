@@ -397,7 +397,7 @@ namespace CodeJam.Collections
 		/// <param name="source">An <see cref="IEnumerable{T}"/> to aggregate over.</param>
 		/// <param name="func">An accumulator function to be invoked on each element.</param>
 		/// <param name="defaultSelector">A function to select default value if the source is empty.</param>
-		/// <returns></returns>
+		/// <returns>The final accumulator value.</returns>
 		[Pure]
 		public static TSource AggregateOrDefault<TSource>(
 			[NotNull] this IEnumerable<TSource>     source,
