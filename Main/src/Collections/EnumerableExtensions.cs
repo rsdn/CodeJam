@@ -373,7 +373,7 @@ namespace CodeJam.Collections
 		/// Returns string representations of <paramref name="source"/> items.
 		/// </summary>
 		/// <typeparam name="T">The type of the elements of source.</typeparam>
-		/// <param name="source">The <see cref="IEnumerable{T}"/> to create strings from.</param>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to create strings from.</param>
 		/// <returns>Enumeration of string representation of <paramref name="source"/> elements.</returns>
 		[NotNull, Pure]
 		public static IEnumerable<string> ToStrings<T>([NotNull] this IEnumerable<T> source)
@@ -388,6 +388,38 @@ namespace CodeJam.Collections
 			// ReSharper disable once LoopCanBeConvertedToQuery
 			foreach (var obj in source)
 				yield return obj?.ToString() ?? "";
+		}
+
+		/// <summary>
+		/// Applies an accumulator function over a sequence.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to aggregate over.</param>
+		/// <param name="func">An accumulator function to be invoked on each element.</param>
+		/// <param name="defaultSelector">A function to select default value if the source is empty.</param>
+		/// <returns></returns>
+		[Pure]
+		public static TSource AggregateOrDefault<TSource>(
+			[NotNull] this IEnumerable<TSource>     source,
+			[NotNull] Func<TSource,TSource,TSource> func,
+			[NotNull] Func<TSource>                 defaultSelector)
+		{
+			if (source          == null) throw new ArgumentNullException(nameof(source));
+			if (func            == null) throw new ArgumentNullException(nameof(func));
+			if (defaultSelector == null) throw new ArgumentNullException(nameof(defaultSelector));
+
+			using (var enumerator = source.GetEnumerator())
+			{
+				if (!enumerator.MoveNext())
+					return defaultSelector();
+
+				var result = enumerator.Current;
+
+				while (enumerator.MoveNext())
+					result = func(result, enumerator.Current);
+
+				return result;
+			}
 		}
 	}
 }
