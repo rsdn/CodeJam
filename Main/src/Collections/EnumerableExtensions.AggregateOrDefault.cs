@@ -1,0 +1,219 @@
+﻿using System;
+using System.Collections.Generic;
+
+using JetBrains.Annotations;
+
+namespace CodeJam.Collections
+{
+	partial class EnumerableExtensions
+	{
+		/// <summary>
+		/// Applies an accumulator function over a sequence.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to aggregate over.</param>
+		/// <param name="func">An accumulator function to be invoked on each element.</param>
+		/// <param name="defaultValue">Default value returned if the source is empty.</param>
+		/// <returns>The final accumulator value.</returns>
+		[Pure]
+		public static TSource AggregateOrDefault<TSource>(
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] Func<TSource, TSource, TSource> func,
+			TSource defaultValue = default(TSource))
+		{
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(func, nameof(func));
+
+			using (var enumerator = source.GetEnumerator())
+			{
+				if (!enumerator.MoveNext())
+					return defaultValue;
+
+				var result = enumerator.Current;
+
+				while (enumerator.MoveNext())
+					result = func(result, enumerator.Current);
+
+				return result;
+			}
+		}
+
+		/// <summary>
+		/// Applies an accumulator function over a sequence.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <typeparam name="TAccumulate">The type of the accumulator value.</typeparam>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to aggregate over.</param>
+		/// <param name="seed">The initial accumulator value.</param>
+		/// <param name="func">An accumulator function to be invoked on each element.</param>
+		/// <param name="defaultValue">Default value returned if the source is empty.</param>
+		/// <returns>The final accumulator value.</returns>
+		[Pure]
+		public static TAccumulate AggregateOrDefault<TSource, TAccumulate>(
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
+			TAccumulate seed,
+			[NotNull, InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,
+			TAccumulate defaultValue = default(TAccumulate))
+		{
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(func, nameof(func));
+
+			using (var enumerator = source.GetEnumerator())
+			{
+				if (!enumerator.MoveNext())
+					return defaultValue;
+
+				var result = func(seed, enumerator.Current);
+
+				while (enumerator.MoveNext())
+					result = func(result, enumerator.Current);
+
+				return result;
+			}
+		}
+
+		/// <summary>
+		/// Applies an accumulator function over a sequence.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <typeparam name="TAccumulate">The type of the accumulator value.</typeparam>
+		/// <typeparam name="TResult">The type of the resulting value.</typeparam>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to aggregate over.</param>
+		/// <param name="seed">The initial accumulator value.</param>
+		/// <param name="func">An accumulator function to be invoked on each element.</param>
+		/// <param name="resultSelector">A function to transform the final accumulator value into the result value.</param>
+		/// <param name="defaultValue">Default value returned if the source is empty.</param>
+		/// <returns>The final accumulator value.</returns>
+		[Pure]
+		public static TResult AggregateOrDefault<TSource, TAccumulate, TResult>(
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
+			TAccumulate seed,
+			[NotNull, InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,
+			[NotNull, InstantHandle] Func<TAccumulate, TResult> resultSelector,
+			TResult defaultValue = default(TResult))
+		{
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(func, nameof(func));
+			Code.NotNull(resultSelector, nameof(resultSelector));
+
+			using (var enumerator = source.GetEnumerator())
+			{
+				if (!enumerator.MoveNext())
+					return defaultValue;
+
+				var result = func(seed, enumerator.Current);
+
+				while (enumerator.MoveNext())
+					result = func(result, enumerator.Current);
+
+				return resultSelector(result);
+			}
+		}
+
+		/// <summary>
+		/// Applies an accumulator function over a sequence.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to aggregate over.</param>
+		/// <param name="func">An accumulator function to be invoked on each element.</param>
+		/// <param name="defaultSelector">A function to select default value if the source is empty.</param>
+		/// <returns>The final accumulator value.</returns>
+		[Pure]
+		public static TSource AggregateOrDefault<TSource>(
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] Func<TSource, TSource, TSource> func,
+			[NotNull, InstantHandle] Func<TSource> defaultSelector)
+		{
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(func, nameof(func));
+			Code.NotNull(defaultSelector, nameof(defaultSelector));
+
+			using (var enumerator = source.GetEnumerator())
+			{
+				if (!enumerator.MoveNext())
+					return defaultSelector();
+
+				var result = enumerator.Current;
+
+				while (enumerator.MoveNext())
+					result = func(result, enumerator.Current);
+
+				return result;
+			}
+		}
+
+		/// <summary>
+		/// Applies an accumulator function over a sequence.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <typeparam name="TAccumulate">The type of the accumulator value.</typeparam>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to aggregate over.</param>
+		/// <param name="seed">The initial accumulator value.</param>
+		/// <param name="func">An accumulator function to be invoked on each element.</param>
+		/// <param name="defaultSelector">A function to select default value if the source is empty.</param>
+		/// <returns>The final accumulator value.</returns>
+		[Pure]
+		public static TAccumulate AggregateOrDefault<TSource, TAccumulate>(
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
+			TAccumulate seed,
+			[NotNull, InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,
+			[NotNull, InstantHandle] Func<TAccumulate> defaultSelector)
+		{
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(func, nameof(func));
+			Code.NotNull(defaultSelector, nameof(defaultSelector));
+
+			using (var enumerator = source.GetEnumerator())
+			{
+				if (!enumerator.MoveNext())
+					return defaultSelector();
+
+				var result = func(seed, enumerator.Current);
+
+				while (enumerator.MoveNext())
+					result = func(result, enumerator.Current);
+
+				return result;
+			}
+		}
+
+		/// <summary>
+		/// Applies an accumulator function over a sequence.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <typeparam name="TAccumulate">The type of the accumulator value.</typeparam>
+		/// <typeparam name="TResult">The type of the resulting value.</typeparam>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to aggregate over.</param>
+		/// <param name="seed">The initial accumulator value.</param>
+		/// <param name="func">An accumulator function to be invoked on each element.</param>
+		/// <param name="resultSelector">A function to transform the final accumulator value into the result value.</param>
+		/// <param name="defaultSelector">A function to select default value if the source is empty.</param>
+		/// <returns>The final accumulator value.</returns>
+		[Pure]
+		public static TResult AggregateOrDefault<TSource, TAccumulate, TResult>(
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
+			TAccumulate seed,
+			[NotNull, InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,
+			[NotNull, InstantHandle] Func<TAccumulate, TResult> resultSelector,
+			[NotNull, InstantHandle] Func<TResult> defaultSelector)
+		{
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(func, nameof(func));
+			Code.NotNull(resultSelector, nameof(resultSelector));
+			Code.NotNull(defaultSelector, nameof(defaultSelector));
+
+			using (var enumerator = source.GetEnumerator())
+			{
+				if (!enumerator.MoveNext())
+					return defaultSelector();
+
+				var result = func(seed, enumerator.Current);
+
+				while (enumerator.MoveNext())
+					result = func(result, enumerator.Current);
+
+				return resultSelector(result);
+			}
+		}
+	}
+}

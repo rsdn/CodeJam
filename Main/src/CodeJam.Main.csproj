@@ -103,6 +103,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DictionaryExtensions.GetValueOrDefault.tt</DependentUpon>
     </Compile>
+    <Compile Include="Collections\EnumerableExtensions.AggregateOrDefault.cs" />
     <Compile Include="Collections\EnumerableExtensions.Index.cs" />
     <Compile Include="Collections\IndexedItem.cs" />
     <Compile Include="Collections\EnumerableExtensions.Page.cs" />
