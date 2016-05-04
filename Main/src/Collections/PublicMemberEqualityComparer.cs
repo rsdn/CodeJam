@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-
-using CodeJam.Expressions;
-using CodeJam.Reflection;
 
 using JetBrains.Annotations;
 
@@ -39,63 +34,7 @@ namespace CodeJam.Collections
 
 		#endregion
 
-		private static readonly Func<T,T,bool> _equals = GetEquals();
-
-		private static Func<T,T,bool> GetEquals()
-		{
-			var ta  = TypeAccessor.GetAccessor<T>();
-			var x   = Expression.Parameter(typeof(T), "x");
-			var y   = Expression.Parameter(typeof(T), "y");
-			var exs = ta.Members.Select(ma =>
-			{
-				var eq = typeof(EqualityComparer<>).MakeGenericType(ma.Type);
-				var pi = eq.GetProperty("Default");
-				var mi = eq.GetMethods().Single(m => m.IsPublic && m.Name == "Equals" && m.GetParameters().Length == 2);
-
-				return (Expression)Expression.Call(
-					Expression.Property(null, pi),
-					mi,
-					ma.GetterExpression.ReplaceParameters(x),
-					ma.GetterExpression.ReplaceParameters(y));
-			});
-
-			var ex = exs.AggregateOrDefault(Expression.AndAlso, () => Expression.Constant(true));
-			var l  = Expression.Lambda<Func<T,T,bool>>(ex, x, y);
-
-			return l.Compile();
-		}
-
-		private static readonly Func<T,int> _getHashCode = GetGetHashCode();
-
-		private static Func<T,int> GetGetHashCode()
-		{
-			var ta  = TypeAccessor.GetAccessor<T>();
-			var p   = Expression.Parameter(typeof(T),   "p");
-			var num = Expression.Parameter(typeof(int), "num");
-			var ex  = Expression.Block(
-				new[] { num },
-				new Expression[] { Expression.Assign(num, Expression.Constant(Objects.Random.Next())) }
-					.Concat(ta.Members.Select(ma =>
-					{
-						var eq = typeof(EqualityComparer<>).MakeGenericType(ma.Type);
-						var pi = eq.GetProperty("Default");
-						var mi = eq.GetMethods().Single(m => m.IsPublic && m.Name == "GetHashCode" && m.GetParameters().Length == 1);
-
-						return Expression.Assign(
-							num,
-							Expression.Add(
-								Expression.Multiply(num, Expression.Constant(-1521134295 )),
-								Expression.Call(
-									Expression.Property(null, pi),
-									mi,
-									ma.GetterExpression.ReplaceParameters(p))
-								));
-					}))
-					.Concat(num));
-
-			var l = Expression.Lambda<Func<T,int>>(ex, p);
-
-			return l.Compile();
-		}
+		private static readonly Func<T,T,bool> _equals      = ComparerBuilder<T>.GetEqualsFunc();
+		private static readonly Func<T,int>    _getHashCode = ComparerBuilder<T>.GetGetHashCodeFunc();
 	}
 }

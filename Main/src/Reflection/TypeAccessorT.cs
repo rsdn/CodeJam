@@ -112,5 +112,12 @@ namespace CodeJam.Reflection
 		/// Type to access.
 		/// </summary>
 		public override Type Type => typeof(T);
+
+		/// <summary>
+		/// Creates an instance of <see cref="TypeAccessor{T}"/>.
+		/// </summary>
+		/// <returns>Instance of <see cref="TypeAccessor{T}"/>.</returns>
+		public static TypeAccessor<T> GetAccessor()
+			=> GetAccessor<T>();
 	}
 }

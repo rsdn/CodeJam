@@ -98,6 +98,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DebugCode.tt</DependentUpon>
     </Compile>
+    <Compile Include="Collections\ComparerBuilder.cs" />
     <Compile Include="Collections\DictionaryExtensions.GetValueOrDefault.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

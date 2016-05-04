@@ -59,6 +59,7 @@
     <Compile Include="Assertions\CodeTests.cs" />
     <Compile Include="Collections\MinMaxByTests.cs" />
     <Compile Include="Collections\ArrayExtensionsTest.cs" />
+    <Compile Include="Collections\ComparerBuilderTests.cs" />
     <Compile Include="Collections\PublicMemberEqualityComparerTests.cs" />
     <Compile Include="Collections\QueryableExtensionsTests.ApplyOrder.cs" />
     <Compile Include="Collections\DictionaryExtensionsTest.cs" />
