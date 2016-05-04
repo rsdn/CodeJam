@@ -32,7 +32,7 @@ namespace CodeJam.Collections
 		[Test]
 		public void EqualsTest()
 		{
-			var eq = new PublicMemberEqualityComparer<TestClass>();
+			var eq = ComparerBuilder<TestClass>.GetEqualityComparer();
 
 			Assert.That(eq.Equals(new TestClass(), new TestClass()),              Is.True);
 			Assert.That(eq.Equals(null,            null),                         Is.True);
@@ -85,7 +85,8 @@ namespace CodeJam.Collections
 				null,
 				new TestClass { Field1 = 2, Prop2 = "1"  },
 				new TestClass { Field1 = 2, Prop2 = "2"  },
-				new TestClass { Field1 = 2, Prop2 = "2"  }
+				new TestClass { Field1 = 2, Prop2 = "2"  },
+				null,
 			};
 
 			Assert.That(arr.Distinct(eq).Count(), Is.EqualTo(5));
@@ -102,7 +103,8 @@ namespace CodeJam.Collections
 				null,
 				new TestClass { Field1 = 2, Prop2 = "1"  },
 				new TestClass { Field1 = 2, Prop2 = "2"  },
-				new TestClass { Field1 = 2, Prop2 = "2"  }
+				new TestClass { Field1 = 2, Prop2 = "2"  },
+				null,
 			};
 
 			Assert.That(arr.Distinct(eq).Count(), Is.EqualTo(3));
@@ -119,7 +121,8 @@ namespace CodeJam.Collections
 				null,
 				new TestClass { Field1 = 2, Prop2 = "1"  },
 				new TestClass { Field1 = 2, Prop2 = "2"  },
-				new TestClass { Field1 = 2, Prop2 = "2"  }
+				new TestClass { Field1 = 2, Prop2 = "2"  },
+				null,
 			};
 
 			Assert.That(arr.Distinct(eq).Count(), Is.EqualTo(5));
