@@ -86,7 +86,7 @@ namespace CodeJam.Collections
 				new TestClass { Field1 = 2, Prop2 = "1"  },
 				new TestClass { Field1 = 2, Prop2 = "2"  },
 				new TestClass { Field1 = 2, Prop2 = "2"  },
-				null,
+				null
 			};
 
 			Assert.That(arr.Distinct(eq).Count(), Is.EqualTo(5));
@@ -104,7 +104,7 @@ namespace CodeJam.Collections
 				new TestClass { Field1 = 2, Prop2 = "1"  },
 				new TestClass { Field1 = 2, Prop2 = "2"  },
 				new TestClass { Field1 = 2, Prop2 = "2"  },
-				null,
+				null
 			};
 
 			Assert.That(arr.Distinct(eq).Count(), Is.EqualTo(3));
@@ -122,7 +122,7 @@ namespace CodeJam.Collections
 				new TestClass { Field1 = 2, Prop2 = "1"  },
 				new TestClass { Field1 = 2, Prop2 = "2"  },
 				new TestClass { Field1 = 2, Prop2 = "2"  },
-				null,
+				null
 			};
 
 			Assert.That(arr.Distinct(eq).Count(), Is.EqualTo(5));
