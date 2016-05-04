@@ -110,7 +110,6 @@
     <Compile Include="Collections\EnumerableExtensions.Page.cs" />
     <Compile Include="Collections\EnumerableExtensions.Slice.cs" />
     <Compile Include="Collections\NamespaceDoc.cs" />
-    <Compile Include="Collections\PublicMemberEqualityComparer.cs" />
     <Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
     <Compile Include="Collections\QueryableExtensions.cs" />
     <Compile Include="EnumHelper.cs" />
