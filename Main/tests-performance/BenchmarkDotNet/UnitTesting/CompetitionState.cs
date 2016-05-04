@@ -29,6 +29,7 @@ namespace BenchmarkDotNet.UnitTesting
 
 			return warnings;
 		}
+
 		public bool LastRun { get; set; }
 		public bool RerunRequested { get; set; }
 

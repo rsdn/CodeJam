@@ -8,9 +8,11 @@ namespace CodeJam.RangesV2
 	/// Common factory interface to enable 'derived' range creation.
 	/// Use case example: preserve the key of the range on range intersection.
 	/// </summary>
-	/// <typeparam name="T">The type of the value. Should implement <seealso cref="IComparable{T}" /> or <seealso cref="IComparable" />.</typeparam>
+	/// <typeparam name="T">
+	/// The type of the value. Should implement <seealso cref="IComparable{T}"/> or <seealso cref="IComparable"/>.
+	/// </typeparam>
 	/// <typeparam name="TRange">The type of the resulting range</typeparam>
-	/// <seealso cref="CodeJam.RangesV2.IRange{T}" />
+	/// <seealso cref="CodeJam.RangesV2.IRange{T}"/>
 	[PublicAPI]
 	public interface IRangeFactory<T, out TRange> : IRange<T> where TRange : IRange<T>
 	{

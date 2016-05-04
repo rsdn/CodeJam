@@ -24,13 +24,13 @@ namespace CodeJam.RangesV2
 		/// </summary>
 		[Obsolete(SkipsArgValidationObsolete)]
 #pragma warning disable 618
-		internal const UnsafeOverload SkipsArgValidation = UnsafeOverload.SkipsArgValidation;
+			internal const UnsafeOverload SkipsArgValidation = UnsafeOverload.SkipsArgValidation;
 #pragma warning restore 618
 
 		/// <summary>The message for unsafe (no arg validation) method.</summary>
 		internal const string SkipsArgValidationObsolete =
 			"Marked as obsolete to emit warnings on incorrect usage. " +
-			"Read comments on RangeInternal.SkipsArgValidation before suppressing the warning.";
+				"Read comments on RangeInternal.SkipsArgValidation before suppressing the warning.";
 		#endregion
 
 		#region Boundary constants

@@ -57,7 +57,7 @@ namespace CodeJam.Assertions
 			var ex = Assert.Throws<ArgumentNullException>(() => DebugCode.NotNull<object>(null, "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 #else
-			// ReSharper disable once InvocationIsSkipped
+	// ReSharper disable once InvocationIsSkipped
 			Assert.DoesNotThrow(() => DebugCode.NotNull<object>(null, "arg00"));
 #endif
 

@@ -111,7 +111,6 @@ namespace CodeJam.RangesV2
 			IsTrue(fromEx2 < pInf);
 		}
 
-
 		[Test]
 		[Explicit("Should fail. Disabled for now.")]
 		public static void TestBoundaryRawValueComparison()

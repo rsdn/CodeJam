@@ -29,6 +29,7 @@ namespace CodeJam.RangesV2
 					return new RangeBoundaryFrom<T>(value, boundaryKind);
 			}
 		}
+
 		private static RangeBoundaryTo<T> CreateBoundaryTo(T value, int i)
 		{
 			var boundaryKind = _toBoundaries[i % _toBoundaries.Length];

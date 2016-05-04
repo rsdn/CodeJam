@@ -34,10 +34,13 @@ namespace CodeJam.RangesV2
 		private static readonly Func<T, T, int> _compareFunc = Operators<T>.Compare;
 
 		private static readonly bool _hasNegativeInfinity = Operators<T>.HasNegativeInfinity;
+
 		private static readonly T _negativeInfinity = Operators<T>.HasNegativeInfinity
 			? Operators<T>.NegativeInfinity
 			: default(T);
+
 		private static readonly bool _hasPositiveInfinity = Operators<T>.HasPositiveInfinity;
+
 		private static readonly T _positiveInfinity = Operators<T>.HasPositiveInfinity
 			? Operators<T>.PositiveInfinity
 			: default(T);
@@ -82,7 +85,8 @@ namespace CodeJam.RangesV2
 		public static readonly RangeBoundaryFrom<T> Empty;
 
 		/// <summary>Negative infinity, -∞.</summary>
-		public static readonly RangeBoundaryFrom<T> NegativeInfinity = new RangeBoundaryFrom<T>(default(T), RangeBoundaryFromKind.Infinite);
+		public static readonly RangeBoundaryFrom<T> NegativeInfinity = new RangeBoundaryFrom<T>(
+			default(T), RangeBoundaryFromKind.Infinite);
 		#endregion
 
 		#region Formattable logic
@@ -132,7 +136,9 @@ namespace CodeJam.RangesV2
 			{
 				if (value == null)
 				{
-					throw CodeExceptions.Argument(nameof(boundaryKind), "BoundaryKind for the null values should be either RangeBoundaryFromKind.Infinite or RangeBoundaryFromKind.Empty.");
+					throw CodeExceptions.Argument(
+						nameof(boundaryKind),
+						"BoundaryKind for the null values should be either RangeBoundaryFromKind.Infinite or RangeBoundaryFromKind.Empty.");
 				}
 			}
 			_value = value;
@@ -207,7 +213,9 @@ namespace CodeJam.RangesV2
 			{
 				if (!HasValue)
 				{
-					throw CodeExceptions.InvalidOperation("Boundary has no value. Check for HasValue property before obtaining the Value " + "or use GetValueOrDefault() instead.");
+					throw CodeExceptions.InvalidOperation(
+						"Boundary has no value. Check for HasValue property before obtaining the Value "
+							+ "or use GetValueOrDefault() instead.");
 				}
 				return _value;
 			}
@@ -381,7 +389,8 @@ namespace CodeJam.RangesV2
 
 				// Are same and any of is exclusive - compare kinds.
 				// ReSharper disable once BitwiseOperatorOnEnumWithoutFlags
-				if (result == EqualResult && (_kind == RangeBoundaryFromKind.Exclusive || other.Kind == RangeBoundaryToKind.Exclusive))
+				if (result == EqualResult
+					&& (_kind == RangeBoundaryFromKind.Exclusive || other.Kind == RangeBoundaryToKind.Exclusive))
 				{
 					result = ((byte)_kind).CompareTo((byte)other.Kind);
 				}

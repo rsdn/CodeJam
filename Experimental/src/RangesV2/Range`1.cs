@@ -92,7 +92,9 @@ namespace CodeJam.RangesV2
 		/// <value><c>true</c> if the range is not empty; otherwise, <c>false</c>.</value>
 		public bool IsNotEmpty => From.IsNotEmpty;
 
-		/// <summary>The range is Zero length range (the values of the boundary From and the boundary To are the same).</summary>
+		/// <summary>
+		/// The range is Zero length range (the values of the boundary From and the boundary To are the same).
+		/// </summary>
 		/// <value> <c>true</c> if the range is single point range; otherwise, <c>false</c>. </value>
 		public bool IsSinglePoint => From.CompareTo(To) == 0;
 

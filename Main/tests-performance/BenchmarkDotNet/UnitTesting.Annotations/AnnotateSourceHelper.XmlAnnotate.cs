@@ -8,6 +8,7 @@ using JetBrains.Annotations;
 using static BenchmarkDotNet.UnitTesting.CompetitionHelpers;
 
 // ReSharper disable CheckNamespace
+
 namespace BenchmarkDotNet.UnitTesting
 {
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]

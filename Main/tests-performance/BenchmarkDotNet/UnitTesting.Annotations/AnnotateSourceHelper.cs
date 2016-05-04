@@ -129,7 +129,8 @@ namespace BenchmarkDotNet.UnitTesting
 			{
 				var targetMethodName = newTarget.CandidateName;
 
-				logger.WriteLineInfo($"Method {targetMethodName}: new relative time limits [{newTarget.MinText},{newTarget.MaxText}].");
+				logger.WriteLineInfo(
+					$"Method {targetMethodName}: new relative time limits [{newTarget.MinText},{newTarget.MaxText}].");
 
 				int firstCodeLine;
 				string fileName;

@@ -20,7 +20,7 @@ namespace CodeJam
 	{
 		#region Test helpers
 		[Flags]
-		private enum F: byte
+		private enum F : byte
 		{
 			Zero = 0x0,
 			A = 0x1,
@@ -133,21 +133,21 @@ namespace CodeJam
 		public void Test03GetNames() =>
 			Assert.AreEqual(
 				"Assembly, Module, Class, Struct, Enum, Constructor, Method, Property, Field, Event, Interface, Parameter, " +
-				"Delegate, ReturnValue, GenericParameter, All",
+					"Delegate, ReturnValue, GenericParameter, All",
 				EnumHelper.GetNames<AttributeTargets>().Join(", "));
 
 		[Test]
 		public void Test04GetValues() =>
 			Assert.AreEqual(
 				"Assembly, Module, Class, Struct, Enum, Constructor, Method, Property, Field, Event, Interface, Parameter, " +
-				"Delegate, ReturnValue, GenericParameter, All",
+					"Delegate, ReturnValue, GenericParameter, All",
 				EnumHelper.GetValues<AttributeTargets>().Join(", "));
 
 		[Test]
 		public void Test05GetNameValues() =>
 			Assert.AreEqual(
 				"Assembly, Module, Class, Struct, Enum, Constructor, Method, Property, Field, Event, Interface, Parameter, " +
-				"Delegate, ReturnValue, GenericParameter, All",
+					"Delegate, ReturnValue, GenericParameter, All",
 				EnumHelper.GetNameValues<AttributeTargets>().Select(kvp => kvp.Key).Join(", "));
 
 		[Test]

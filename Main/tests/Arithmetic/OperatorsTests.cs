@@ -26,6 +26,7 @@ namespace CodeJam.Arithmetic
 			// DONTTOUCH: uses wrong type to proof that check for infinity will fail.
 			[UsedImplicitly]
 			public static readonly ClassNoComparable NegativeInfinity = new ClassNoComparable();
+
 			[UsedImplicitly]
 			// ReSharper disable once RedundantDefaultMemberInitializer
 			public static readonly StructComparable PositiveInfinity = new StructComparable();

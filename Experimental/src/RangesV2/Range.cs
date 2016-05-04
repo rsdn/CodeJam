@@ -8,7 +8,7 @@ using static CodeJam.RangesV2.RangeInternal;
 
 namespace CodeJam.RangesV2
 {
-	/// <summary>Helper methods for the <seealso cref="Range{T}" />.</summary>
+	/// <summary>Helper methods for the <seealso cref="Range{T}"/>.</summary>
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	public static class Range
@@ -65,14 +65,14 @@ namespace CodeJam.RangesV2
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="fromValue">From value.</param>
 		/// <returns>
-		/// New inclusive boundary From, or the negative infinity boundary if the <paramref name="fromValue" /> is <c>null</c>.
+		/// New inclusive boundary From, or the negative infinity boundary if the <paramref name="fromValue"/> is <c>null</c>.
 		/// </returns>
 		public static RangeBoundaryFrom<T> BoundaryFrom<T>(T fromValue)
 		{
 			var kind = RangeBoundaryFromKind.Inclusive;
 			RangeBoundaryFrom<T>.CoerceBoundaryValue(ref fromValue, ref kind);
 #pragma warning disable 618 // Args are validated
-			return new RangeBoundaryFrom<T>(fromValue, kind,SkipsArgValidation);
+			return new RangeBoundaryFrom<T>(fromValue, kind, SkipsArgValidation);
 #pragma warning restore 618
 		}
 
@@ -80,7 +80,7 @@ namespace CodeJam.RangesV2
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="fromValue">From value.</param>
 		/// <returns>
-		/// New exclusive boundary From, or the negative infinity boundary if the <paramref name="fromValue" /> is <c>null</c>.
+		/// New exclusive boundary From, or the negative infinity boundary if the <paramref name="fromValue"/> is <c>null</c>.
 		/// </returns>
 		public static RangeBoundaryFrom<T> BoundaryFromExclusive<T>(T fromValue)
 		{
@@ -101,7 +101,7 @@ namespace CodeJam.RangesV2
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="toValue">To value.</param>
 		/// <returns>
-		/// New inclusive boundary To, or the positive infinity boundary if the <paramref name="toValue" /> is <c>null</c>.
+		/// New inclusive boundary To, or the positive infinity boundary if the <paramref name="toValue"/> is <c>null</c>.
 		/// </returns>
 		public static RangeBoundaryTo<T> BoundaryTo<T>(T toValue)
 		{
@@ -116,7 +116,7 @@ namespace CodeJam.RangesV2
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="toValue">To value.</param>
 		/// <returns>
-		/// New exclusive boundary To, or the positive infinity boundary if the <paramref name="toValue" /> is <c>null</c>.
+		/// New exclusive boundary To, or the positive infinity boundary if the <paramref name="toValue"/> is <c>null</c>.
 		/// </returns>
 		public static RangeBoundaryTo<T> BoundaryToExclusive<T>(T toValue)
 		{
@@ -208,8 +208,8 @@ namespace CodeJam.RangesV2
 		/// <returns><c>true</c>, if the boundaries can be used for valid range creation.</returns>
 		public static bool IsValid<T>(T from, T to) =>
 			RangeBoundaryFrom<T>.IsValid(from) &&
-			RangeBoundaryTo<T>.IsValid(to) &&
-			BoundaryFrom(from) <= BoundaryTo(to);
+				RangeBoundaryTo<T>.IsValid(to) &&
+				BoundaryFrom(from) <= BoundaryTo(to);
 
 		/// <summary>Returns true if the boundaries can be used for valid range creation.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>

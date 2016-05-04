@@ -150,7 +150,9 @@ namespace CodeJam.Arithmetic
 		/// <summary>Returns the negative infinity value.</summary>
 		/// <typeparam name="T">The type to get value for.</typeparam>
 		/// <exception cref="NotSupportedException">Thrown if the type has no corresponding value.</exception>
-		/// <returns>The negative infinity value or <seealso cref="NotSupportedException"/> if the type has no corresponding value.</returns>
+		/// <returns>
+		/// The negative infinity value or <seealso cref="NotSupportedException"/> if the type has no corresponding value.
+		/// </returns>
 		[NotNull]
 		public static T GetNegativeInfinity<T>()
 		{
@@ -174,7 +176,9 @@ namespace CodeJam.Arithmetic
 		/// <summary>Returns the positive infinity value.</summary>
 		/// <typeparam name="T">The type to get value for.</typeparam>
 		/// <exception cref="NotSupportedException">Thrown if the type has no corresponding value.</exception>
-		/// <returns>The positive infinity value or <seealso cref="NotSupportedException"/> if the type has no corresponding value.</returns>
+		/// <returns>
+		/// The positive infinity value or <seealso cref="NotSupportedException"/> if the type has no corresponding value.
+		/// </returns>
 		[NotNull]
 		public static T GetPositiveInfinity<T>()
 		{

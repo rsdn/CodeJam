@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
@@ -14,6 +15,7 @@ namespace CodeJam.RangesV2Alternatives
 		RangeBoundaryFrom<T> From { get; }
 		RangeBoundaryTo<T> To { get; }
 	}
+
 	[PublicAPI]
 	public interface ITestRangeFactory<T, out TRange> : ITestRange<T> where TRange : ITestRange<T>
 	{
@@ -28,6 +30,7 @@ namespace CodeJam.RangesV2Alternatives
 			From = new RangeBoundaryFrom<T>(from, RangeBoundaryFromKind.Inclusive);
 			To = new RangeBoundaryTo<T>(from, RangeBoundaryToKind.Inclusive);
 		}
+
 		public RangeStub(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to)
 		{
 			From = from;
@@ -75,12 +78,14 @@ namespace CodeJam.RangesV2Alternatives
 		private T _from;
 		private T _to;
 		private int _combined;
+
 		public RangeStubCompact(T from, T to)
 		{
 			_from = from;
 			_to = to;
 			_combined = (int)RangeBoundaryFromKind.Inclusive | (int)RangeBoundaryToKind.Inclusive;
 		}
+
 		public RangeStubCompact(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to)
 		{
 			_from = from.GetValueOrDefault();
@@ -105,6 +110,7 @@ namespace CodeJam.RangesV2Alternatives
 			To = new RangeBoundaryTo<T>(from, RangeBoundaryToKind.Inclusive);
 			Key = key;
 		}
+
 		public RangeStub(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, TKey key)
 		{
 			From = from;
@@ -139,19 +145,22 @@ namespace CodeJam.RangesV2Alternatives
 			{
 				to = range2.To;
 			}
-			return range1.CreateRange(from, to);// range1.CreateRange(from, to);
+			return range1.CreateRange(from, to); // range1.CreateRange(from, to);
 		}
+
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static RangeStub<T> Union<T, TRange>(this RangeStub<T> range1, TRange range2)
 			where TRange : ITestRange<T> =>
-			UnionCore<RangeStub<T>, TRange, T>(range1, range2);
+				UnionCore<RangeStub<T>, TRange, T>(range1, range2);
+
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static RangeStubCompact<T> Union<T, TRange>(this RangeStubCompact<T> range1, TRange range2)
 			where TRange : ITestRange<T> =>
-			UnionCore<RangeStubCompact<T>, TRange, T>(range1, range2);
+				UnionCore<RangeStubCompact<T>, TRange, T>(range1, range2);
+
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static RangeStub<T, TKey> Union<T, TKey, TRange>(this RangeStub<T, TKey> range1, TRange range2)
 			where TRange : ITestRange<T> =>
-			UnionCore<RangeStub<T, TKey>, TRange, T>(range1, range2);
+				UnionCore<RangeStub<T, TKey>, TRange, T>(range1, range2);
 	}
 }

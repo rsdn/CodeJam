@@ -134,7 +134,8 @@ namespace BenchmarkDotNet.UnitTesting
 			return new CompetitionTarget(target, min, max, true);
 		}
 
-		public static CompetitionTarget[] GetCompetitionTargetsToUpdate(Summary summary, CompetitionTargets competitionTargets)
+		public static CompetitionTarget[] GetCompetitionTargetsToUpdate(
+			Summary summary, CompetitionTargets competitionTargets)
 		{
 			var fixedMinTargets = new HashSet<CompetitionTarget>();
 			var fixedMaxTargets = new HashSet<CompetitionTarget>();
