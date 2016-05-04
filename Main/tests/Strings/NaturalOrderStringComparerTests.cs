@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
@@ -146,16 +147,17 @@ namespace CodeJam.Strings
 			return list;
 		}
 
+		[SuppressMessage("ReSharper", "UnusedParameter.Local")]
 		private static void DumpData(IEnumerable<string> list)
 		{
-			var transformed = list.Select(s =>
-				s == null
-					? "< NULL >"
-					: s.Length == 0
-						? "< EMPTY >"
-						: s);
-
-			Console.WriteLine(transformed.Join("\r\n"));
+			//var transformed = list.Select(s =>
+			//	s == null
+			//		? "< NULL >"
+			//		: s.Length == 0
+			//			? "< EMPTY >"
+			//			: s);
+			//
+			//Console.WriteLine(transformed.Join("\r\n"));
 		}
 	}
 }
