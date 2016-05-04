@@ -72,6 +72,7 @@
     <Compile Include="Collections\EnumerableExtensionTests.Slice.cs" />
     <Compile Include="Collections\EnumerableExtensionTests.TakeLast.cs" />
     <Compile Include="Collections\EnumerableExtensionTests.cs" />
+    <Compile Include="ExceptionExtensionsTests.cs" />
     <Compile Include="FnTests.cs" />
     <Compile Include="EnumHelperTests.cs" />
     <Compile Include="Expressions\ExpressionExtensionsTests.cs" />

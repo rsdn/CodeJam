@@ -4,6 +4,6 @@ namespace CodeJam
 {
 	static class Objects
 	{
-		public static readonly Random Random = new Random((int)DateTime.Now.Ticks);
+		public static readonly Random Random = new Random(unchecked((int)DateTime.Now.Ticks));
 	}
 }

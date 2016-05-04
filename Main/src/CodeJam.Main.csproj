@@ -112,6 +112,7 @@
     <Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
     <Compile Include="Collections\QueryableExtensions.cs" />
     <Compile Include="EnumHelper.cs" />
+    <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="Fn.generated.cs">
       <DependentUpon>Fn.tt</DependentUpon>
       <AutoGen>True</AutoGen>
