@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
+using CodeJam.Expressions;
 using CodeJam.Reflection;
 
 using JetBrains.Annotations;
@@ -54,8 +55,8 @@ namespace CodeJam.Collections
 				return (Expression)Expression.Call(
 					Expression.Property(null, pi),
 					mi,
-					Expression.PropertyOrField(x, ma.Name),
-					Expression.PropertyOrField(y, ma.Name));
+					ma.GetterExpression.ReplaceParameters(x),
+					ma.GetterExpression.ReplaceParameters(y));
 			});
 
 			var ex = exs.AggregateOrDefault(Expression.AndAlso, () => Expression.Constant(true));
@@ -87,7 +88,7 @@ namespace CodeJam.Collections
 								Expression.Call(
 									Expression.Property(null, pi),
 									mi,
-									Expression.PropertyOrField(p, ma.Name))
+									ma.GetterExpression.ReplaceParameters(p))
 								));
 					}))
 					.Concat(num));

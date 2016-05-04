@@ -40,14 +40,24 @@ namespace CodeJam
 					stringBuilder.AppendLine(ex.StackTrace);
 
 				var notFoundException = ex as FileNotFoundException;
+
 				if (notFoundException != null)
 				{
 					var fex = notFoundException;
 
 					stringBuilder.AppendLine($"File Name: {fex.FileName}");
-					stringBuilder.AppendLine(fex.FusionLog.IsNullOrEmpty() ? "Fusion log is empty or disabled." : fex.FusionLog);
+
+					if (fex.FusionLog.IsNullOrEmpty())
+					{
+						stringBuilder.AppendLine("Fusion log is empty or disabled.");
+					}
+					else
+					{
+						stringBuilder.Append(fex.FusionLog);
+					}
 				}
-				else {
+				else
+				{
 					var aex = ex as AggregateException;
 
 					if (aex?.InnerExceptions != null)
