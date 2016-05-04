@@ -396,17 +396,48 @@ namespace CodeJam.Collections
 		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
 		/// <param name="source">An <see cref="IEnumerable{T}"/> to aggregate over.</param>
 		/// <param name="func">An accumulator function to be invoked on each element.</param>
+		/// <param name="defaultValue">Default value returned if the source is empty.</param>
+		/// <returns>The final accumulator value.</returns>
+		[Pure]
+		public static TSource AggregateOrDefault<TSource>(
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] Func<TSource, TSource, TSource> func,
+			TSource defaultValue = default(TSource))
+		{
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(func, nameof(func));
+
+			using (var enumerator = source.GetEnumerator())
+			{
+				if (!enumerator.MoveNext())
+					return defaultValue;
+
+				var result = enumerator.Current;
+
+				while (enumerator.MoveNext())
+					result = func(result, enumerator.Current);
+
+				return result;
+			}
+		}
+
+		/// <summary>
+		/// Applies an accumulator function over a sequence.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to aggregate over.</param>
+		/// <param name="func">An accumulator function to be invoked on each element.</param>
 		/// <param name="defaultSelector">A function to select default value if the source is empty.</param>
 		/// <returns>The final accumulator value.</returns>
 		[Pure]
 		public static TSource AggregateOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource>     source,
-			[NotNull] Func<TSource,TSource,TSource> func,
-			[NotNull] Func<TSource>                 defaultSelector)
+			[NotNull, InstantHandle] this IEnumerable<TSource>     source,
+			[NotNull, InstantHandle] Func<TSource,TSource,TSource> func,
+			[NotNull, InstantHandle] Func<TSource>                 defaultSelector)
 		{
-			if (source          == null) throw new ArgumentNullException(nameof(source));
-			if (func            == null) throw new ArgumentNullException(nameof(func));
-			if (defaultSelector == null) throw new ArgumentNullException(nameof(defaultSelector));
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(func, nameof(func));
+			Code.NotNull(defaultSelector, nameof(defaultSelector));
 
 			using (var enumerator = source.GetEnumerator())
 			{
