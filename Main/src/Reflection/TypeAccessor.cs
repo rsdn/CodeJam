@@ -60,8 +60,8 @@ namespace CodeJam.Reflection
 		#endregion
 
 		#region Items
-
-		readonly ConcurrentDictionary<string,MemberAccessor> _membersByName = new ConcurrentDictionary<string,MemberAccessor>();
+		private readonly ConcurrentDictionary<string,MemberAccessor> _membersByName =
+			new ConcurrentDictionary<string,MemberAccessor>();
 
 		/// <summary>
 		/// Returns <see cref="MemberAccessor"/> by its name.
@@ -87,8 +87,8 @@ namespace CodeJam.Reflection
 		#endregion
 
 		#region Static Members
-
-		static readonly ConcurrentDictionary<Type,TypeAccessor> _accessors = new ConcurrentDictionary<Type,TypeAccessor>();
+		private static readonly ConcurrentDictionary<Type,TypeAccessor> _accessors =
+			new ConcurrentDictionary<Type,TypeAccessor>();
 
 		/// <summary>
 		/// Creates an instance of <see cref="TypeAccessor"/>.

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-
-using CodeJam.Arithmetic;
-using CodeJam.Strings;
 
 using NUnit.Framework;
 

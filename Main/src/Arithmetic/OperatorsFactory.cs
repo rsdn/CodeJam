@@ -22,7 +22,7 @@ namespace CodeJam.Arithmetic
 		{
 			var temp = argType;
 
-			bool nullable = false;
+			var nullable = false;
 			if (temp.IsNullable())
 			{
 				temp = temp.ToUnderlying();

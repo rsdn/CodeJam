@@ -34,7 +34,7 @@ namespace CodeJam.Reflection
 
 				var members  = memberName.Split('.');
 				var objParam = Expression.Parameter(TypeAccessor.Type, "obj");
-				var expr     = objParam as Expression;
+				var expr     = (Expression)objParam;
 				var infos    = members.Select(m =>
 				{
 					expr = Expression.PropertyOrField(expr, m);
@@ -73,13 +73,9 @@ namespace CodeJam.Reflection
 
 								return Expression.Block(
 									new[] { local },
-									new[]
-									{
-										Expression.Assign(local, next) as Expression,
-										Expression.IfThen(
-											Expression.NotEqual(local, Expression.Constant(null)),
-											makeGetter(local, i + 1))
-									});
+									Expression.Assign(local, next) as Expression,
+									Expression.IfThen(Expression.NotEqual(local, Expression.Constant(null)),
+									makeGetter(local, i + 1)));
 							}
 
 							return makeGetter(next, i + 1);
@@ -187,15 +183,17 @@ namespace CodeJam.Reflection
 			SetExpressions();
 		}
 
-		void SetSimple(MemberInfo memberInfo)
+		private void SetSimple(MemberInfo memberInfo)
 		{
 			MemberInfo = memberInfo;
-			Type       = MemberInfo is PropertyInfo ? ((PropertyInfo)MemberInfo).PropertyType : ((FieldInfo)MemberInfo).FieldType;
+			var propertyInfo = MemberInfo as PropertyInfo;
+			Type = propertyInfo?.PropertyType ?? ((FieldInfo)MemberInfo).FieldType;
 
-			if (memberInfo is PropertyInfo)
+			propertyInfo = memberInfo as PropertyInfo;
+			if (propertyInfo != null)
 			{
-				HasGetter = ((PropertyInfo)memberInfo).GetGetMethod(true) != null;
-				HasSetter = ((PropertyInfo)memberInfo).GetSetMethod(true) != null;
+				HasGetter = propertyInfo.GetGetMethod(true) != null;
+				HasSetter = propertyInfo.GetSetMethod(true) != null;
 			}
 			else
 			{
@@ -206,14 +204,10 @@ namespace CodeJam.Reflection
 			var objParam   = Expression.Parameter(TypeAccessor.Type, "obj");
 			var valueParam = Expression.Parameter(Type, "value");
 
-			if (HasGetter)
-			{
-				GetterExpression = Expression.Lambda(Expression.MakeMemberAccess(objParam, memberInfo), objParam);
-			}
-			else
-			{
-				GetterExpression = Expression.Lambda(Expression.Constant(GetDefaultValue(Type), Type), objParam);
-			}
+			GetterExpression =
+				HasGetter
+					? Expression.Lambda(Expression.MakeMemberAccess(objParam, memberInfo), objParam)
+					: Expression.Lambda(Expression.Constant(GetDefaultValue(Type), Type), objParam);
 
 			if (HasSetter)
 			{
@@ -233,7 +227,7 @@ namespace CodeJam.Reflection
 			}
 		}
 
-		void SetExpressions()
+		private void SetExpressions()
 		{
 			var objParam   = Expression.Parameter(typeof(object), "obj");
 			var getterExpr = GetterExpression.ReplaceParameters(Expression.Convert(objParam, TypeAccessor.Type));
@@ -250,11 +244,11 @@ namespace CodeJam.Reflection
 			Setter = setter.Compile();
 		}
 
-		const FieldAttributes EnumField = FieldAttributes.Public | FieldAttributes.Static | FieldAttributes.Literal;
+		private const FieldAttributes EnumField = FieldAttributes.Public | FieldAttributes.Static | FieldAttributes.Literal;
 
-		static readonly ConcurrentDictionary<Type,object> _defaultValues = new ConcurrentDictionary<Type,object>();
+		private static readonly ConcurrentDictionary<Type,object> _defaultValues = new ConcurrentDictionary<Type,object>();
 
-		object GetDefaultValue(Type type)
+		private object GetDefaultValue(Type type)
 		{
 			object value;
 
@@ -278,7 +272,7 @@ namespace CodeJam.Reflection
 			return value;
 		}
 
-		static T GetDefaultValue<T>()
+		private static T GetDefaultValue<T>()
 		{
 			object value;
 

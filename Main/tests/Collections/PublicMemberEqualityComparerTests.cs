@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 
+using JetBrains.Annotations;
+
 using NUnit.Framework;
 
 namespace CodeJam.Collections
@@ -8,7 +10,8 @@ namespace CodeJam.Collections
 	[TestFixture]
 	public class PublicMemberEqualityComparerTests
 	{
-		class TestClass
+		[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+		private class TestClass
 		{
 			public int    Field1;
 			public string Prop2 { get; set; }
@@ -38,7 +41,7 @@ namespace CodeJam.Collections
 			Assert.That(eq.Equals(new TestClass(), new TestClass { Field1 = 1 }), Is.False);
 		}
 
-		class NoMemberClass
+		private class NoMemberClass
 		{
 		}
 
@@ -53,7 +56,8 @@ namespace CodeJam.Collections
 			Assert.That(eq.Equals(new NoMemberClass(), null),                Is.False);
 		}
 
-		class OneMemberClass
+		[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+		private class OneMemberClass
 		{
 			public int Field1;
 		}
@@ -81,7 +85,7 @@ namespace CodeJam.Collections
 				null,
 				new TestClass { Field1 = 2, Prop2 = "1"  },
 				new TestClass { Field1 = 2, Prop2 = "2"  },
-				new TestClass { Field1 = 2, Prop2 = "2"  },
+				new TestClass { Field1 = 2, Prop2 = "2"  }
 			};
 
 			Assert.That(arr.Distinct(eq).Count(), Is.EqualTo(5));

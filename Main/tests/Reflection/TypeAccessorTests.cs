@@ -7,16 +7,20 @@ namespace CodeJam.Reflection
 	[TestFixture]
 	public class TypeAccessorTests
 	{
-		class TestType
+		private class TestType
 		{
 			public string Field1;
 			public string Field2 { get; set; }
 
-			string _field3 = "123";
+			// ReSharper disable once ConvertToConstant.Local
+			private readonly string _field3 = "123";
+
+			// ReSharper disable once ConvertToAutoProperty
 			public string Field3 => _field3;
 
 			public int Field4
 			{
+				// ReSharper disable once MemberCanBePrivate.Local
 				set { Field5 = value; }
 			}
 

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
+using CodeJam.Reflection;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
-	using Reflection;
-
 	/// <summary>
 	/// Provides an implementations of the <see cref="T:System.Collections.Generic.IEqualityComparer`1" /> generic interface
 	/// based on object public members equality.
@@ -38,9 +38,9 @@ namespace CodeJam.Collections
 
 		#endregion
 
-		static readonly Func<T,T,bool> _equals = GetEquals();
+		private static readonly Func<T,T,bool> _equals = GetEquals();
 
-		static Func<T,T,bool> GetEquals()
+		private static Func<T,T,bool> GetEquals()
 		{
 			var ta  = TypeAccessor.GetAccessor<T>();
 			var x   = Expression.Parameter(typeof(T), "x");
@@ -64,9 +64,9 @@ namespace CodeJam.Collections
 			return l.Compile();
 		}
 
-		static readonly Func<T,int> _getHashCode = GetGetHashCode();
+		private static readonly Func<T,int> _getHashCode = GetGetHashCode();
 
-		static Func<T,int> GetGetHashCode()
+		private static Func<T,int> GetGetHashCode()
 		{
 			var ta  = TypeAccessor.GetAccessor<T>();
 			var p   = Expression.Parameter(typeof(T),   "p");

@@ -36,6 +36,7 @@ namespace BenchmarkDotNet.UnitTesting
 			return true;
 		}
 
+		// ReSharper disable once SuggestBaseTypeForParameter
 		private static XElement GetOrAdd(XElement element, XName name, string targetName)
 		{
 			if (targetName == null)
@@ -56,6 +57,7 @@ namespace BenchmarkDotNet.UnitTesting
 		}
 
 		[CanBeNull]
+		// ReSharper disable once UnusedMethodReturnValue.Local
 		private static XAttribute SetAttribute(XElement element, XName attributeName, string attributeValue)
 		{
 			if (attributeValue == null)

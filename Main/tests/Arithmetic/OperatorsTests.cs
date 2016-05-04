@@ -27,6 +27,7 @@ namespace CodeJam.Arithmetic
 			[UsedImplicitly]
 			public static readonly ClassNoComparable NegativeInfinity = new ClassNoComparable();
 			[UsedImplicitly]
+			// ReSharper disable once RedundantDefaultMemberInitializer
 			public static readonly StructComparable PositiveInfinity = new StructComparable();
 
 			public int CompareTo(object obj) => 0;

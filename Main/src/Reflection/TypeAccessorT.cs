@@ -75,18 +75,18 @@ namespace CodeJam.Reflection
 			}
 		}
 
-		static T ThrowException()
+		private static T ThrowException()
 		{
 			throw new InvalidOperationException($"The '{typeof(T).FullName}' type must have default or init constructor.");
 		}
 
-		static T ThrowAbstractException()
+		private static T ThrowAbstractException()
 		{
 			throw new InvalidOperationException($"Cant create an instance of abstract class '{typeof(T).FullName}'.");
 		}
 
 		// ReSharper disable once StaticMemberInGenericType
-		static readonly List<MemberInfo> _members = new List<MemberInfo>();
+		private static readonly List<MemberInfo> _members = new List<MemberInfo>();
 
 		internal TypeAccessor()
 		{
@@ -94,7 +94,7 @@ namespace CodeJam.Reflection
 				AddMember(new MemberAccessor(this, member));
 		}
 
-		static readonly Func<T> _createInstance;
+		private static readonly Func<T> _createInstance;
 
 		/// <summary>
 		/// Creates an instance of <see cref="TypeAccessor"/>.

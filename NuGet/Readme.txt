@@ -1,15 +1,24 @@
-CodeJam 1.0.0 Release Notes
+CodeJam 1.0.0-beta2 Release Notes
 ---------------------------------
 
+What's new in 1.1.0-beta2
+------------------------
+* TypeAccessor class
+* Negative/PositiveInfinity generic operators
+* EnumerableExtensions.AggregateOrDefault methods
+* PublicMemberEqualityComparer class
+* Exception.GetText() extension method
+* Fixes and code cleanup
+
 What's new in 1.1.0-beta1
-----------------------
+------------------------
 * Enum helpers and operators
 * Performance optimization
 * Refactoring
 * Fixes and code cleanup
 
 What's new in 1.0.0
-----------------------
+------------------
 * Small fixes
 
 What's new in 1.0.0-rc3

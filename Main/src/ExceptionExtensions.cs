@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 using CodeJam.Strings;
@@ -40,25 +39,18 @@ namespace CodeJam
 				if (ex.StackTrace.NotNullNorEmpty())
 					stringBuilder.AppendLine(ex.StackTrace);
 
-				if (ex is FileNotFoundException)
+				var notFoundException = ex as FileNotFoundException;
+				if (notFoundException != null)
 				{
-					var fex = (FileNotFoundException)ex;
+					var fex = notFoundException;
 
-					stringBuilder
-						.AppendLine($"File Name: {fex.FileName}")
-						;
-
-					if (fex.FusionLog.IsNullOrEmpty())
-						stringBuilder.AppendLine("Fusion log is empty or disabled.")
-						;
-					else
-						stringBuilder.AppendLine(fex.FusionLog);
+					stringBuilder.AppendLine($"File Name: {fex.FileName}");
+					stringBuilder.AppendLine(fex.FusionLog.IsNullOrEmpty() ? "Fusion log is empty or disabled." : fex.FusionLog);
 				}
-				else if (ex is AggregateException)
-				{
-					var aex = (AggregateException)ex;
+				else {
+					var aex = ex as AggregateException;
 
-					if (aex.InnerExceptions != null)
+					if (aex?.InnerExceptions != null)
 					{
 						var foundInnerException = false;
 
