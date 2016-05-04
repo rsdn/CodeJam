@@ -2,7 +2,7 @@
 
 using NUnit.Framework;
 
-namespace CodeJam
+namespace CodeJam.Collections
 {
 	[TestFixture]
 	public partial class QueryableExtensionsTests

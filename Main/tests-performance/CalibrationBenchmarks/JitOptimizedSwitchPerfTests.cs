@@ -40,7 +40,7 @@ namespace CodeJam
 		[CompetitionBaseline]
 		public int Test0000Baseline()
 		{
-			int a = 0;
+			var a = 0;
 			for (var i = 0; i < Count; i++)
 			{
 				a = DefaultAction(a);
@@ -53,7 +53,7 @@ namespace CodeJam
 		[SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
 		public int Test0101ConstDisabledFeature()
 		{
-			int a = 0;
+			var a = 0;
 			for (var i = 0; i < Count; i++)
 			{
 #pragma warning disable 162
@@ -70,7 +70,7 @@ namespace CodeJam
 		[SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
 		public int Test0102IfConstDisabledFeature()
 		{
-			int a = 0;
+			var a = 0;
 			for (var i = 0; i < Count; i++)
 			{
 #pragma warning disable 162
@@ -86,7 +86,7 @@ namespace CodeJam
 		[CompetitionBenchmark(0.97, 1.04)]
 		public int Test0201DisabledFeature()
 		{
-			int a = 0;
+			var a = 0;
 			for (var i = 0; i < Count; i++)
 			{
 				if (_featureDisabled && FeatureCheck(a))
@@ -99,7 +99,7 @@ namespace CodeJam
 		[CompetitionBenchmark(0.97, 1.04)]
 		public int Test0202IfDisabledFeature()
 		{
-			int a = 0;
+			var a = 0;
 			for (var i = 0; i < Count; i++)
 			{
 				if (_featureDisabled)
@@ -113,7 +113,7 @@ namespace CodeJam
 		[CompetitionBenchmark(0.98, 1.05)]
 		public int Test0203NotEnabledFeature()
 		{
-			int a = 0;
+			var a = 0;
 			for (var i = 0; i < Count; i++)
 			{
 				if (!_featureEnabled && FeatureCheck(a))
@@ -126,7 +126,7 @@ namespace CodeJam
 		[CompetitionBenchmark(1.85, 1.98)]
 		public int Test0301MutableFeature()
 		{
-			int a = 0;
+			var a = 0;
 			for (var i = 0; i < Count; i++)
 			{
 				if (_featureMutable && FeatureCheck(a))
@@ -139,7 +139,7 @@ namespace CodeJam
 		[CompetitionBenchmark(1.86, 1.98)]
 		public int Test0301IfMutableFeature()
 		{
-			int a = 0;
+			var a = 0;
 			for (var i = 0; i < Count; i++)
 			{
 				if (_featureMutable)
@@ -153,7 +153,7 @@ namespace CodeJam
 		[CompetitionBenchmark(14.93, 15.87)]
 		public int Test0301EnabledFeature()
 		{
-			int a = 0;
+			var a = 0;
 			for (var i = 0; i < Count; i++)
 			{
 				if (_featureEnabled && FeatureCheck(a))
@@ -166,7 +166,7 @@ namespace CodeJam
 		[CompetitionBenchmark(14.94, 15.88)]
 		public int Test0302IfEnabledFeature()
 		{
-			int a = 0;
+			var a = 0;
 			for (var i = 0; i < Count; i++)
 			{
 				if (_featureEnabled)

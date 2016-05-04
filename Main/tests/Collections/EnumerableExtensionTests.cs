@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using CodeJam.Collections;
 using CodeJam.Strings;
 
 using NUnit.Framework;
 
-namespace CodeJam
+namespace CodeJam.Collections
 {
 	[TestFixture]
 	public partial class EnumerableExtensionTests

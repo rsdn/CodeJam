@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq;
 
-using CodeJam.Collections;
-
 using NUnit.Framework;
 
-namespace CodeJam
+namespace CodeJam.Collections
 {
 	[TestFixture(Category = "MinMaxBy")]
 	public partial class MinMaxByTests

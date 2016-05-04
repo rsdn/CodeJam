@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using CodeJam.Collections;
-
 using NUnit.Framework;
 
-namespace CodeJam
+namespace CodeJam.Collections
 {
 	[TestFixture]
 	public class DictionaryExtensionsTest

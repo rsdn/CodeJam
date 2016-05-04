@@ -64,7 +64,7 @@ namespace CodeJam.Collections
 			=> GetGetHashCodeFunc(TypeAccessor.GetAccessor<T>().Members);
 
 		// ReSharper disable once StaticMemberInGenericType
-		static readonly int _randomSeed = Objects.Random.Next();
+		private static readonly int _randomSeed = Objects.Random.Next();
 
 		/// <summary>
 		/// Returns GetHashCode function for provided members for type T to compare.
@@ -102,7 +102,7 @@ namespace CodeJam.Collections
 			return l.Compile();
 		}
 
-		class Comparer : EqualityComparer<T>
+		private class Comparer : EqualityComparer<T>
 		{
 			public Comparer(Func<T,T,bool> equals, Func<T,int> getHashCode)
 			{
@@ -120,7 +120,7 @@ namespace CodeJam.Collections
 				=> obj == null ? 0 : _getHashCode(obj);
 		}
 
-		static Comparer _equalityComparer;
+		private static Comparer _equalityComparer;
 
 		/// <summary>
 		/// Returns implementations of the <see cref="T:System.Collections.Generic.IEqualityComparer`1" /> generic interface

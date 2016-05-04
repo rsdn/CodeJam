@@ -1,10 +1,8 @@
 ﻿using System;
 
-using CodeJam.Collections;
-
 using NUnit.Framework;
 
-namespace CodeJam
+namespace CodeJam.Collections
 {
 	[TestFixture]
 	public class ArrayExtensionsTest

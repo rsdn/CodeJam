@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Linq;
 
-using CodeJam.Collections;
 using CodeJam.Strings;
 
 using NUnit.Framework;
 
-namespace CodeJam
+namespace CodeJam.Collections
 {
 	partial class EnumerableExtensionTests
 	{

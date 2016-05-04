@@ -6,8 +6,8 @@ What's new in 1.1.0-beta2
 * TypeAccessor class
 * Negative/PositiveInfinity generic operators
 * EnumerableExtensions.AggregateOrDefault methods
-* PublicMemberEqualityComparer class
-* Exception.GetText() extension method
+* ComparerBuilder class
+* Exception.ToDiagnosticString() extension method
 * Fixes and code cleanup
 
 What's new in 1.1.0-beta1

@@ -6,7 +6,7 @@ using CodeJam.Strings;
 
 using NUnit.Framework;
 
-namespace CodeJam
+namespace CodeJam.Collections
 {
 	[TestFixture]
 	partial class MinMaxByTests
