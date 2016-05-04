@@ -129,7 +129,7 @@ namespace BenchmarkDotNet.UnitTesting
 		{
 			baseConfig = baseConfig ?? DefaultConfig.Instance;
 			var existingParameters = baseConfig.GetAnalysers()
-				.OfType<CompetitionState>()
+				.OfType<CompetitionParameters>()
 				.SingleOrDefault();
 
 			// TODO: better setup?

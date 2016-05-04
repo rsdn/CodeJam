@@ -66,7 +66,7 @@ namespace CodeJam.RangesV2
 		/// <param name="value">The value to compare with.</param>
 		/// <returns>A new boundary to be used in comparison</returns>
 		internal static RangeBoundaryFrom<T> GetCompareToBoundary<T>(T value) =>
-			BoundaryFrom(value);
+			RangeBoundaryFrom<T>.AdjustAndCreate(value, RangeBoundaryFromKind.Inclusive);
 		#endregion
 
 		#region Boundary factory methods
@@ -76,14 +76,8 @@ namespace CodeJam.RangesV2
 		/// <returns>
 		/// New inclusive boundary From, or the negative infinity boundary if the <paramref name="fromValue"/> is <c>null</c>.
 		/// </returns>
-		public static RangeBoundaryFrom<T> BoundaryFrom<T>(T fromValue)
-		{
-			var kind = RangeBoundaryFromKind.Inclusive;
-			RangeBoundaryFrom<T>.CoerceBoundaryValue(ref fromValue, ref kind);
-#pragma warning disable 618 // Args are validated
-			return new RangeBoundaryFrom<T>(fromValue, kind, SkipsArgValidation);
-#pragma warning restore 618
-		}
+		public static RangeBoundaryFrom<T> BoundaryFrom<T>(T fromValue) =>
+			RangeBoundaryFrom<T>.AdjustAndCreate(fromValue, RangeBoundaryFromKind.Inclusive);
 
 		/// <summary>Exclusive boundary From factory method.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
@@ -91,14 +85,8 @@ namespace CodeJam.RangesV2
 		/// <returns>
 		/// New exclusive boundary From, or the negative infinity boundary if the <paramref name="fromValue"/> is <c>null</c>.
 		/// </returns>
-		public static RangeBoundaryFrom<T> BoundaryFromExclusive<T>(T fromValue)
-		{
-			var kind = RangeBoundaryFromKind.Exclusive;
-			RangeBoundaryFrom<T>.CoerceBoundaryValue(ref fromValue, ref kind);
-#pragma warning disable 618 // Args are validated
-			return new RangeBoundaryFrom<T>(fromValue, kind, SkipsArgValidation);
-#pragma warning restore 618
-		}
+		public static RangeBoundaryFrom<T> BoundaryFromExclusive<T>(T fromValue) =>
+			RangeBoundaryFrom<T>.AdjustAndCreate(fromValue, RangeBoundaryFromKind.Exclusive);
 
 		/// <summary>Negative infinity boundary (-∞) factory method.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
@@ -112,14 +100,8 @@ namespace CodeJam.RangesV2
 		/// <returns>
 		/// New inclusive boundary To, or the positive infinity boundary if the <paramref name="toValue"/> is <c>null</c>.
 		/// </returns>
-		public static RangeBoundaryTo<T> BoundaryTo<T>(T toValue)
-		{
-			var kind = RangeBoundaryToKind.Inclusive;
-			RangeBoundaryTo<T>.CoerceBoundaryValue(ref toValue, ref kind);
-#pragma warning disable 618 // Args are validated
-			return new RangeBoundaryTo<T>(toValue, kind, SkipsArgValidation);
-#pragma warning restore 618
-		}
+		public static RangeBoundaryTo<T> BoundaryTo<T>(T toValue) =>
+			RangeBoundaryTo<T>.AdjustAndCreate(toValue, RangeBoundaryToKind.Inclusive);
 
 		/// <summary>Exclusive boundary To factory method.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
@@ -127,14 +109,8 @@ namespace CodeJam.RangesV2
 		/// <returns>
 		/// New exclusive boundary To, or the positive infinity boundary if the <paramref name="toValue"/> is <c>null</c>.
 		/// </returns>
-		public static RangeBoundaryTo<T> BoundaryToExclusive<T>(T toValue)
-		{
-			var kind = RangeBoundaryToKind.Exclusive;
-			RangeBoundaryTo<T>.CoerceBoundaryValue(ref toValue, ref kind);
-#pragma warning disable 618 // Args are validated
-			return new RangeBoundaryTo<T>(toValue, kind, SkipsArgValidation);
-#pragma warning restore 618
-		}
+		public static RangeBoundaryTo<T> BoundaryToExclusive<T>(T toValue) =>
+			RangeBoundaryTo<T>.AdjustAndCreate(toValue, RangeBoundaryToKind.Exclusive);
 
 		/// <summary>Positive infinity boundary (+∞) factory method.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
@@ -284,17 +260,27 @@ namespace CodeJam.RangesV2
 #pragma warning restore 618
 				: Range<T>.Empty;
 
+		private static Range<T> TryCreateCore<T>(
+			T from, RangeBoundaryFromKind fromKind,
+			T to, RangeBoundaryToKind toKind) =>
+				IsValid(from, to)
+#pragma warning disable 618 // Args are validated
+					? new Range<T>(
+						RangeBoundaryFrom<T>.AdjustAndCreate(from, fromKind),
+						RangeBoundaryTo<T>.AdjustAndCreate(to, toKind),
+						SkipsArgValidation)
+#pragma warning restore 618
+					: Range<T>.Empty;
+
 		/// <summary>Tries to create the range. Returns <seealso cref="Range{T}.Empty"/> if failed.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
 		/// <param name="fromValue">The value of the boundary From inclusive.</param>
 		/// <param name="toValue">The value of the boundary To inclusive.</param>
 		/// <returns>A new range or the <seealso cref="Range{T}.Empty"/> if the boundaries forms invalid range.</returns>
 		public static Range<T> TryCreate<T>(T fromValue, T toValue) =>
-			IsValid(fromValue, toValue)
-#pragma warning disable 618 // Args are validated
-				? new Range<T>(BoundaryFrom(fromValue), BoundaryTo(toValue), SkipsArgValidation)
-#pragma warning restore 618
-				: Range<T>.Empty;
+			TryCreateCore(
+				fromValue, RangeBoundaryFromKind.Inclusive, 
+				toValue, RangeBoundaryToKind.Inclusive);
 
 		/// <summary>Tries to create the range. Returns <seealso cref="Range{T}.Empty"/> if failed.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -302,11 +288,9 @@ namespace CodeJam.RangesV2
 		/// <param name="toValue">The value of the boundary To exclusive.</param>
 		/// <returns>A new range or the <seealso cref="Range{T}.Empty"/> if the boundaries forms invalid range.</returns>
 		public static Range<T> TryCreateExclusive<T>(T fromValue, T toValue) =>
-			IsValid(fromValue, toValue)
-#pragma warning disable 618 // Args are validated
-				? new Range<T>(BoundaryFromExclusive(fromValue), BoundaryToExclusive(toValue), SkipsArgValidation)
-#pragma warning restore 618
-				: Range<T>.Empty;
+			TryCreateCore(
+				fromValue, RangeBoundaryFromKind.Exclusive,
+				toValue, RangeBoundaryToKind.Exclusive);
 
 		/// <summary>Tries to create the range. Returns <seealso cref="Range{T}.Empty"/> if failed.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -314,11 +298,9 @@ namespace CodeJam.RangesV2
 		/// <param name="toValue">The value of the boundary To inclusive.</param>
 		/// <returns>A new range or the <seealso cref="Range{T}.Empty"/> if the boundaries forms invalid range.</returns>
 		public static Range<T> TryCreateExclusiveFrom<T>(T fromValue, T toValue) =>
-			IsValid(fromValue, toValue)
-#pragma warning disable 618 // Args are validated
-				? new Range<T>(BoundaryFromExclusive(fromValue), BoundaryTo(toValue), SkipsArgValidation)
-#pragma warning restore 618
-				: Range<T>.Empty;
+			TryCreateCore(
+				fromValue, RangeBoundaryFromKind.Exclusive,
+				toValue, RangeBoundaryToKind.Inclusive);
 
 		/// <summary>Tries to create the range. Returns <seealso cref="Range{T}.Empty"/> if failed.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -326,11 +308,9 @@ namespace CodeJam.RangesV2
 		/// <param name="toValue">The value of the boundary To exclusive.</param>
 		/// <returns>A new range or the <seealso cref="Range{T}.Empty"/> if the boundaries forms invalid range.</returns>
 		public static Range<T> TryCreateExclusiveTo<T>(T fromValue, T toValue) =>
-			IsValid(fromValue, toValue)
-#pragma warning disable 618 // Args are validated
-				? new Range<T>(BoundaryFrom(fromValue), BoundaryToExclusive(toValue), SkipsArgValidation)
-#pragma warning restore 618
-				: Range<T>.Empty;
+			TryCreateCore(
+				fromValue, RangeBoundaryFromKind.Exclusive,
+				toValue, RangeBoundaryToKind.Inclusive);
 		#endregion
 	}
 }

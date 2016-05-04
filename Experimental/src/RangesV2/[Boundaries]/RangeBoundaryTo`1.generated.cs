@@ -50,21 +50,21 @@ namespace CodeJam.RangesV2
 
 		private static readonly bool _hasNegativeInfinity = Operators<T>.HasNegativeInfinity;
 
+		/// <summary>The _negative infinity</summary>
 		private static readonly T _negativeInfinity = Operators<T>.HasNegativeInfinity
 			? Operators<T>.NegativeInfinity
 			: default(T);
 
-		/// <summary>Helper method to handle default and infinite values.</summary>
-		/// <param name="value">The value of the boundary..</param>
+		/// <summary>Helper method to create a boundary that handles default and infinite values.</summary>
+		/// <param name="value">The value of the boundary.</param>
 		/// <param name="boundaryKind">The kind of the boundary.</param>
 		[MethodImpl(AggressiveInlining)]
-		internal static void CoerceBoundaryValue(ref T value, ref RangeBoundaryToKind boundaryKind)
+		internal static RangeBoundaryTo<T> AdjustAndCreate(T value, RangeBoundaryToKind boundaryKind)
 		{
 			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity) && boundaryKind != RangeBoundaryToKind.Empty)
 			{
 				value = default(T);
 			}
-			// TODO: what to do with TryCreate???
 			if (_hasNegativeInfinity && _equalsFunc(value, _negativeInfinity))
 			{
 				throw CodeExceptions.Argument(nameof(value), "The To boundary does not accept negative infinity value.");
@@ -74,6 +74,10 @@ namespace CodeJam.RangesV2
 			{
 				boundaryKind = RangeBoundaryToKind.Infinite;
 			}
+
+#pragma warning disable 618 // Args are validated
+			return new RangeBoundaryTo<T>(value, boundaryKind, SkipsArgValidation);
+#pragma warning restore 618
 		}
 
 		/// <summary>Checks if the value can be used as the value of the boundary.</summary>
@@ -270,9 +274,7 @@ namespace CodeJam.RangesV2
 					throw CodeExceptions.UnexpectedValue($" Cannot get complementation for the boundary '{this}' as it has no value.");
 			}
 
-#pragma warning disable 618 // Args are validated
-			return new RangeBoundaryFrom<T>(_value, newKind, SkipsArgValidation);
-#pragma warning restore 618
+			return RangeBoundaryFrom<T>.AdjustAndCreate(_value, newKind);
 		}
 
 		/// <summary>Checks that the boundary is complementation for specified boundary.</summary>
@@ -292,9 +294,9 @@ namespace CodeJam.RangesV2
 			{
 				var newValue = updateCallback(_value);
 
-#pragma warning disable 618 // Args are validated
-				return newValue == null ? PositiveInfinity : new RangeBoundaryTo<T>(newValue, _kind, SkipsArgValidation);
-#pragma warning restore 618
+				return newValue == null
+					? PositiveInfinity
+					: AdjustAndCreate(newValue, _kind);
 			}
 
 			return this;
@@ -423,7 +425,7 @@ namespace CodeJam.RangesV2
 		// DONTTOUCH. Any change will break the performance or the correctness of the comparison. 
 		//   Please create issue at first
 		[MethodImpl(AggressiveInlining)]
-		public int CompareTo(T other) => 
+		public int CompareTo(T other) =>
 			CompareTo(Range.GetCompareToBoundary(other));
 		#endregion
 
