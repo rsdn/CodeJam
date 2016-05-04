@@ -20,7 +20,7 @@ namespace CodeJam
 		/// <param name="exception">Exception to process.</param>
 		/// <param name="stringBuilder"><see cref="StringBuilder"/> instance.</param>
 		/// <returns>Detailed exception text.</returns>
-		public static StringBuilder GetText(this Exception exception, StringBuilder stringBuilder)
+		public static StringBuilder ToDiagnosticString(this Exception exception, StringBuilder stringBuilder)
 		{
 			for (var ex = exception; ex != null; ex = ex.InnerException)
 			{
@@ -67,7 +67,7 @@ namespace CodeJam
 						foreach (var e in aex.InnerExceptions)
 						{
 							foundInnerException = foundInnerException || e != ex.InnerException;
-							GetText(e, stringBuilder);
+							ToDiagnosticString(e, stringBuilder);
 						}
 
 						if (foundInnerException)
@@ -84,7 +84,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="exception">Exception to process.</param>
 		/// <returns>Detailed exception text.</returns>
-		public static string GetText(this Exception exception)
-			=> exception.GetText(new StringBuilder()).ToString();
+		public static string ToDiagnosticString(this Exception exception)
+			=> exception.ToDiagnosticString(new StringBuilder()).ToString();
 	}
 }

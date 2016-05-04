@@ -12,7 +12,7 @@ namespace CodeJam
 		public void InternalExceptionTest()
 		{
 			var ex = new Exception("123", new ApplicationException());
-			var text = ex.GetText();
+			var text = ex.ToDiagnosticString();
 
 			Console.WriteLine(text);
 
@@ -32,7 +32,7 @@ namespace CodeJam
 			}
 			catch (Exception ex)
 			{
-				var text = ex.GetText();
+				var text = ex.ToDiagnosticString();
 
 				Console.WriteLine(text);
 			}
@@ -42,7 +42,7 @@ namespace CodeJam
 		public void AggregateExceptionTest()
 		{
 			var ex = new AggregateException("000", new Exception("123"), new Exception("456"));
-			var text = ex.GetText();
+			var text = ex.ToDiagnosticString();
 
 			Console.WriteLine(text);
 
