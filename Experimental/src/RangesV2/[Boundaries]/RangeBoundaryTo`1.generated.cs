@@ -43,10 +43,13 @@ namespace CodeJam.RangesV2
 		private static readonly Func<T, T, int> _compareFunc = Operators<T>.Compare;
 
 		private static readonly bool _hasPositiveInfinity = Operators<T>.HasPositiveInfinity;
+
 		private static readonly T _positiveInfinity = Operators<T>.HasPositiveInfinity
 			? Operators<T>.PositiveInfinity
 			: default(T);
+
 		private static readonly bool _hasNegativeInfinity = Operators<T>.HasNegativeInfinity;
+
 		private static readonly T _negativeInfinity = Operators<T>.HasNegativeInfinity
 			? Operators<T>.NegativeInfinity
 			: default(T);
@@ -91,7 +94,8 @@ namespace CodeJam.RangesV2
 		public static readonly RangeBoundaryTo<T> Empty;
 
 		/// <summary>Positive infinity, +∞.</summary>
-		public static readonly RangeBoundaryTo<T> PositiveInfinity = new RangeBoundaryTo<T>(default(T), RangeBoundaryToKind.Infinite);
+		public static readonly RangeBoundaryTo<T> PositiveInfinity = new RangeBoundaryTo<T>(
+			default(T), RangeBoundaryToKind.Infinite);
 		#endregion
 
 		#region Formattable logic
@@ -141,7 +145,9 @@ namespace CodeJam.RangesV2
 			{
 				if (value == null)
 				{
-					throw CodeExceptions.Argument(nameof(boundaryKind), "BoundaryKind for the null values should be either RangeBoundaryToKind.Infinite or RangeBoundaryToKind.Empty.");
+					throw CodeExceptions.Argument(
+						nameof(boundaryKind),
+						"BoundaryKind for the null values should be either RangeBoundaryToKind.Infinite or RangeBoundaryToKind.Empty.");
 				}
 			}
 			_value = value;
@@ -216,7 +222,9 @@ namespace CodeJam.RangesV2
 			{
 				if (!HasValue)
 				{
-					throw CodeExceptions.InvalidOperation("Boundary has no value. Check for HasValue property before obtaining the Value " + "or use GetValueOrDefault() instead.");
+					throw CodeExceptions.InvalidOperation(
+						"Boundary has no value. Check for HasValue property before obtaining the Value "
+							+ "or use GetValueOrDefault() instead.");
 				}
 				return _value;
 			}
@@ -329,7 +337,7 @@ namespace CodeJam.RangesV2
 		/// Compares the current boundary with another one. Following order is used:
 		/// '∅' &lt; '+∞' &lt; 'a)' &lt; '[a' == 'a]' &lt; '(a' &lt; '-∞'.
 		/// </summary>
-		/// <param name="other">Boundary value to compare with this.</param>
+		/// <param name="other">Boundary to compare with this.</param>
 		/// <returns>
 		/// A value that indicates the relative order of the objects being compared.
 		/// The return value has the following meanings:
@@ -365,7 +373,7 @@ namespace CodeJam.RangesV2
 		/// Compares the current boundary with another one. Following order is used:
 		/// '∅' &lt; '+∞' &lt; 'a)' &lt; '[a' == 'a]' &lt; '(a' &lt; '-∞'.
 		/// </summary>
-		/// <param name="other">Boundary value to compare with this.</param>
+		/// <param name="other">Boundary to compare with this.</param>
 		/// <returns>
 		/// A value that indicates the relative order of the objects being compared.
 		/// The return value has the following meanings:
@@ -390,7 +398,8 @@ namespace CodeJam.RangesV2
 
 				// Are same and any of is exclusive - compare kinds.
 				// ReSharper disable once BitwiseOperatorOnEnumWithoutFlags
-				if (result == EqualResult && (_kind == RangeBoundaryToKind.Exclusive || other.Kind == RangeBoundaryFromKind.Exclusive))
+				if (result == EqualResult
+					&& (_kind == RangeBoundaryToKind.Exclusive || other.Kind == RangeBoundaryFromKind.Exclusive))
 				{
 					result = ((byte)_kind).CompareTo((byte)other.Kind);
 				}
@@ -403,7 +412,7 @@ namespace CodeJam.RangesV2
 		/// Compares the current boundary with the value of another To boundary. Following order is used:
 		/// '∅' &lt; '+∞' &lt; 'a)' &lt; '[a' == 'a]' &lt; '(a' &lt; '-∞'.
 		/// </summary>
-		/// <param name="other">An object to compare with this.</param>
+		/// <param name="other">Boundary value to compare with this.</param>
 		/// <returns>
 		/// A value that indicates the relative order of the objects being compared.
 		/// The return value has the following meanings:
@@ -414,14 +423,8 @@ namespace CodeJam.RangesV2
 		// DONTTOUCH. Any change will break the performance or the correctness of the comparison. 
 		//   Please create issue at first
 		[MethodImpl(AggressiveInlining)]
-		public int CompareTo(T other)
-		{
-			var otherBoundaryKind = other == null ? RangeBoundaryToKind.Infinite : RangeBoundaryToKind.Inclusive;
-#pragma warning disable 618 // Args are validated
-			var otherBoundary = new RangeBoundaryTo<T>(other, otherBoundaryKind, SkipsArgValidation);
-#pragma warning restore 618
-			return CompareTo(otherBoundary);
-		}
+		public int CompareTo(T other) => 
+			CompareTo(Range.GetCompareToBoundary(other));
 		#endregion
 
 		#region IComparable

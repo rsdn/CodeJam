@@ -112,7 +112,6 @@ namespace CodeJam.RangesV2
 		}
 
 		[Test]
-		[Explicit("Should fail. Disabled for now.")]
 		public static void TestBoundaryRawValueComparison()
 		{
 			int? value1 = 1;
@@ -139,7 +138,14 @@ namespace CodeJam.RangesV2
 			IsTrue(pInf > empty);
 
 			IsTrue(toEx1 > empty);
+			IsTrue(toInc1 > empty);
+			IsTrue(fromEx2 > empty);
+			IsTrue(fromInc2 > empty);
+
 			IsTrue(empty < toEx2);
+			IsTrue(empty < toInc2);
+			IsTrue(empty < fromEx1);
+			IsTrue(empty < fromInc1);
 
 			IsTrue(nInf < value1);
 			IsTrue(toEx1 < value1);

@@ -328,7 +328,7 @@ namespace CodeJam.RangesV2
 		/// Compares the current boundary with another one. Following order is used:
 		/// '∅' &lt; '-∞' &lt; 'a)' &lt; '[a' == 'a]' &lt; '(a' &lt; '+∞'.
 		/// </summary>
-		/// <param name="other">Boundary value to compare with this.</param>
+		/// <param name="other">Boundary to compare with this.</param>
 		/// <returns>
 		/// A value that indicates the relative order of the objects being compared.
 		/// The return value has the following meanings:
@@ -364,7 +364,7 @@ namespace CodeJam.RangesV2
 		/// Compares the current boundary with another one. Following order is used:
 		/// '∅' &lt; '-∞' &lt; 'a)' &lt; '[a' == 'a]' &lt; '(a' &lt; '+∞'.
 		/// </summary>
-		/// <param name="other">Boundary value to compare with this.</param>
+		/// <param name="other">Boundary to compare with this.</param>
 		/// <returns>
 		/// A value that indicates the relative order of the objects being compared.
 		/// The return value has the following meanings:
@@ -403,7 +403,7 @@ namespace CodeJam.RangesV2
 		/// Compares the current boundary with the value of another From boundary. Following order is used:
 		/// '∅' &lt; '-∞' &lt; 'a)' &lt; '[a' == 'a]' &lt; '(a' &lt; '+∞'.
 		/// </summary>
-		/// <param name="other">An object to compare with this.</param>
+		/// <param name="other">Boundary value to compare with this.</param>
 		/// <returns>
 		/// A value that indicates the relative order of the objects being compared.
 		/// The return value has the following meanings:
@@ -414,14 +414,8 @@ namespace CodeJam.RangesV2
 		// DONTTOUCH. Any change will break the performance or the correctness of the comparison. 
 		//   Please create issue at first
 		[MethodImpl(AggressiveInlining)]
-		public int CompareTo(T other)
-		{
-			var otherBoundaryKind = other == null ? RangeBoundaryFromKind.Infinite : RangeBoundaryFromKind.Inclusive;
-#pragma warning disable 618 // Args are validated
-			var otherBoundary = new RangeBoundaryFrom<T>(other, otherBoundaryKind, SkipsArgValidation);
-#pragma warning restore 618
-			return CompareTo(otherBoundary);
-		}
+		public int CompareTo(T other) => 
+			CompareTo(Range.GetCompareToBoundary(other));
 		#endregion
 
 		#region IComparable

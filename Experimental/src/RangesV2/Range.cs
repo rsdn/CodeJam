@@ -60,6 +60,15 @@ namespace CodeJam.RangesV2
 		}
 		#endregion
 
+		#region CompareTo boundary
+		/// <summary>Helper method for obtaining a comparison boundary from a value.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="value">The value to compare with.</param>
+		/// <returns>A new boundary to be used in comparison</returns>
+		internal static RangeBoundaryFrom<T> GetCompareToBoundary<T>(T value) =>
+			BoundaryFrom(value);
+		#endregion
+
 		#region Boundary factory methods
 		/// <summary>Inclusive boundary From factory method.</summary>
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
