@@ -79,6 +79,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Arithmetic\OperatorsBaseCase.cs" />
+    <Compile Include="AppSwitch.cs" />
     <Compile Include="AssemblyWideConfig.cs" />
     <Compile Include="Assertions\CodePerfTests.cs" />
     <Compile Include="Assertions\DebugCodePerfTests.cs" />
