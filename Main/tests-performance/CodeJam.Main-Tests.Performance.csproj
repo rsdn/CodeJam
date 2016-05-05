@@ -104,7 +104,7 @@
     <Compile Include="PerfTestsConstants.cs" />
     <Compile Include="CalibrationBenchmarks\NestedStructAccessPerfTests.cs" />
     <Compile Include="CalibrationBenchmarks\CallCostPerfTests.cs" />
-    <Compile Include="CalibrationBenchmarks\ParamsOptimizationFailPerfTests.cs" />
+    <Compile Include="CalibrationBenchmarks\CallCostParamsPerfTests.cs" />
     <Compile Include="CalibrationBenchmarks\StructAndInterfacesPerfTests.cs" />
     <Compile Include="CalibrationBenchmarks\JitOptimizedDispatchPerfTests.cs" />
     <Compile Include="CalibrationBenchmarks\OpsCountNotSensitivePerfTests.cs" />

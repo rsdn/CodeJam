@@ -158,6 +158,7 @@ namespace BenchmarkDotNet.UnitTesting
 					bool annotated = TryFixBenchmarkAttribute(annContext, fileName, firstCodeLine, newTarget);
 					if (!annotated)
 					{
+						logger.WriteError($"Method {targetMethodName}: could not annotate source file {fileName}.");
 						throw new InvalidOperationException(
 							$"Method {targetMethodName}: could not annotate source file {fileName}.");
 					}
