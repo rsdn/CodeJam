@@ -32,7 +32,7 @@ namespace BenchmarkDotNet.UnitTesting
 					LaunchCount = 1,
 					WarmupCount = 3,
 					TargetCount = 10,
-					Jit = Jit.RyuJit
+					//Jit = Jit.RyuJit
 				});
 		}
 	}

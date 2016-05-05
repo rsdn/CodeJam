@@ -16,8 +16,8 @@ namespace BenchmarkDotNet.UnitTesting
 			@"
 				(\[CompetitionBenchmark\(?)
 				(
-					\s*\-?\d+\.?\d*\s*
-					(\,\s*\-?\d+\.?\d*\s*)?
+					(?:  \s*\-?\d+\.?\d*\s*)
+					(?:\,\s*\-?\d+\.?\d*\s*)?
 				)?
 				(.*?\])",
 			RegexOptions.IgnorePatternWhitespace | RegexOptions.CultureInvariant | RegexOptions.Compiled);
@@ -52,7 +52,7 @@ namespace BenchmarkDotNet.UnitTesting
 		private static string FixAttributeContent(Match m, CompetitionTarget competitionTarget)
 		{
 			var attributeStartText = m.Groups[1].Value;
-			var attributeEndText = m.Groups[4].Value;
+			var attributeEndText = m.Groups[3].Value;
 
 			var attributeWithoutBraces = !attributeStartText.EndsWith("(");
 			var attributeWithoutMinMax = !m.Groups[2].Success;
