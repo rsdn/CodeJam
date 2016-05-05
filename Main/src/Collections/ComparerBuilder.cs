@@ -12,7 +12,7 @@ namespace CodeJam.Collections
 	using Reflection;
 
 	/// <summary>
-	/// Builds comparer fanctions and comparers.
+	/// Builds comparer functions and comparers.
 	/// </summary>
 	/// <typeparam name="T">The type of objects to compare.</typeparam>
 	[PublicAPI]
