@@ -32,7 +32,7 @@ namespace CodeJam.Threading
 	private void EmitOverloadsFor(string typeName, bool forRefTypes)
 	{
 		var t = typeName;
-		var tXmlDoc = forRefTypes? 
+		var tXmlDoc = forRefTypes?
 			"\r\n\t\t/// <typeparam name=\"" + typeName + "\">Type of value.</typeparam>" :
 			"";
 		var tXmlT = forRefTypes? "{" + typeName + "}" : "";

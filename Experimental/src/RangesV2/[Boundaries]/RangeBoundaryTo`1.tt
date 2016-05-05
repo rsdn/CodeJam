@@ -3,13 +3,13 @@
 <#
 	Run(
 		new ReplaceInfo // Swap parts in ToString()
-		{ 
+		{
 			Pattern = @"FromInclusiveString \+ (.*?);",
 			Replacement = @"$1 + ToInclusiveString;",
 			ThrowOnFail = true
 		},
 		new ReplaceInfo // Swap parts in ToString()
-		{ 
+		{
 			Pattern = @"FromExclusiveString \+ (.*?);",
 			Replacement = @"$1 + ToExclusiveString;",
 			ThrowOnFail = true

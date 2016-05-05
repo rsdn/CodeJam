@@ -59,7 +59,7 @@ namespace CodeJam.Arithmetic
 		/// <summary><#=op.Name#> operator factory.</summary>
 		private static readonly Lazy<Func<T, T, bool>> _<#=op.LowerName#> =
 			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.<#=op.Type#>), LazyMode);
-		
+
 		/// <summary><#=op.Name#> operator.</summary>
 		/// <value>The <#=op.Name#> operator.</value>
 		[NotNull]

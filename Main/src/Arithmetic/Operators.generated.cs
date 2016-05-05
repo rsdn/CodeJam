@@ -46,7 +46,7 @@ namespace CodeJam.Arithmetic
 		/// <summary>AreEqual operator factory.</summary>
 		private static readonly Lazy<Func<T, T, bool>> _areEqual =
 			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.Equal), LazyMode);
-		
+
 		/// <summary>AreEqual operator.</summary>
 		/// <value>The AreEqual operator.</value>
 		[NotNull]
@@ -55,7 +55,7 @@ namespace CodeJam.Arithmetic
 		/// <summary>AreNotEqual operator factory.</summary>
 		private static readonly Lazy<Func<T, T, bool>> _areNotEqual =
 			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.NotEqual), LazyMode);
-		
+
 		/// <summary>AreNotEqual operator.</summary>
 		/// <value>The AreNotEqual operator.</value>
 		[NotNull]
@@ -64,7 +64,7 @@ namespace CodeJam.Arithmetic
 		/// <summary>GreaterThan operator factory.</summary>
 		private static readonly Lazy<Func<T, T, bool>> _greaterThan =
 			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.GreaterThan), LazyMode);
-		
+
 		/// <summary>GreaterThan operator.</summary>
 		/// <value>The GreaterThan operator.</value>
 		[NotNull]
@@ -73,7 +73,7 @@ namespace CodeJam.Arithmetic
 		/// <summary>GreaterThanOrEqual operator factory.</summary>
 		private static readonly Lazy<Func<T, T, bool>> _greaterThanOrEqual =
 			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.GreaterThanOrEqual), LazyMode);
-		
+
 		/// <summary>GreaterThanOrEqual operator.</summary>
 		/// <value>The GreaterThanOrEqual operator.</value>
 		[NotNull]
@@ -82,7 +82,7 @@ namespace CodeJam.Arithmetic
 		/// <summary>LessThan operator factory.</summary>
 		private static readonly Lazy<Func<T, T, bool>> _lessThan =
 			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.LessThan), LazyMode);
-		
+
 		/// <summary>LessThan operator.</summary>
 		/// <value>The LessThan operator.</value>
 		[NotNull]
@@ -91,7 +91,7 @@ namespace CodeJam.Arithmetic
 		/// <summary>LessThanOrEqual operator factory.</summary>
 		private static readonly Lazy<Func<T, T, bool>> _lessThanOrEqual =
 			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.LessThanOrEqual), LazyMode);
-		
+
 		/// <summary>LessThanOrEqual operator.</summary>
 		/// <value>The LessThanOrEqual operator.</value>
 		[NotNull]

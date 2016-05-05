@@ -6,7 +6,7 @@
 	private void EmitEqualityOpCase(string type, string caseName, bool equals)
 	{
 		EmitBinaryOpCore(
-			type, "bool", caseName, 
+			type, "bool", caseName,
 			equals ? "AreEqual" : "AreNotEqual",
 			equals ? "a == b" : "a != b",
 			equals ? " == 0" : " != 0",

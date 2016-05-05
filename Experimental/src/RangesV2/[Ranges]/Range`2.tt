@@ -9,7 +9,7 @@
 			ThrowOnFail = true
 		},
 		new ReplaceInfo // Fix parameter passing #2
-		{ 
+		{
 			Pattern = @"to\)\)",
 			Replacement = @"to), key)",
 			ThrowOnFail = true

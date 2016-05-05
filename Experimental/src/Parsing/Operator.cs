@@ -5,6 +5,6 @@ namespace CodeJam.Parsing
 	[PublicAPI]
 	public abstract class Operator
 	{
-		
+
 	}
 }

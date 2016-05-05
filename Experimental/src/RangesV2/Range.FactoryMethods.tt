@@ -3,7 +3,7 @@
 <#
 	Run("Range.FactoryMethods.cs",
 		new ReplaceInfo // Fix parameter passing #2
-		{ 
+		{
 			Pattern = @"(toValue.+?)\);",
 			Replacement = @"$1, key);",
 			ThrowOnFail = true

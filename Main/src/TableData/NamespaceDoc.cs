@@ -13,7 +13,7 @@ namespace CodeJam.TableData
 	[CompilerGenerated]
 	internal class NamespaceDoc
 	{
-		
+
 	}
 }
 #endif

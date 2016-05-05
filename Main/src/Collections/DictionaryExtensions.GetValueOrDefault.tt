@@ -23,7 +23,7 @@ var self = GetType();
 var flags = BindingFlags.Instance | BindingFlags.NonPublic;
 var methodCount = self.GetMethods(flags).Where(m => m.Name.StartsWith("Header")).Count();
 foreach (var type in types) {#>
-		#region <#=type.Name#><TKey, TValue> overloads 
+		#region <#=type.Name#><TKey, TValue> overloads
 <#
 	for (int i = 1; i <= methodCount; i++)
 	{

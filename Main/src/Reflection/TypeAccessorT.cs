@@ -44,7 +44,7 @@ namespace CodeJam.Reflection
 
 			foreach (var memberInfo in type.GetMembers(BindingFlags.Instance | BindingFlags.Public))
 			{
-				if (memberInfo.MemberType == MemberTypes.Field || 
+				if (memberInfo.MemberType == MemberTypes.Field ||
 					memberInfo.MemberType == MemberTypes.Property && ((PropertyInfo)memberInfo).GetIndexParameters().Length == 0)
 				{
 					_members.Add(memberInfo);

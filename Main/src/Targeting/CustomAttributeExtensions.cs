@@ -155,7 +155,7 @@ namespace System.Reflection
 
 #region APIs that return all attributes
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -167,7 +167,7 @@ namespace System.Reflection
 			Attribute.GetCustomAttributes(element);
 
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -179,7 +179,7 @@ namespace System.Reflection
 			Attribute.GetCustomAttributes(element);
 
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -191,7 +191,7 @@ namespace System.Reflection
 			Attribute.GetCustomAttributes(element);
 
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -203,7 +203,7 @@ namespace System.Reflection
 			Attribute.GetCustomAttributes(element);
 
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -216,7 +216,7 @@ namespace System.Reflection
 			Attribute.GetCustomAttributes(element, inherit);
 
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -231,7 +231,7 @@ namespace System.Reflection
 
 #region APIs that return all attributes of a particular type
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -244,7 +244,7 @@ namespace System.Reflection
 			Attribute.GetCustomAttributes(element, attributeType);
 
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -257,7 +257,7 @@ namespace System.Reflection
 			Attribute.GetCustomAttributes(element, attributeType);
 
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -270,7 +270,7 @@ namespace System.Reflection
 			Attribute.GetCustomAttributes(element, attributeType);
 
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -283,7 +283,7 @@ namespace System.Reflection
 			Attribute.GetCustomAttributes(element, attributeType);
 
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -296,7 +296,7 @@ namespace System.Reflection
 			(IEnumerable<T>)GetCustomAttributes(element, typeof(T));
 
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -309,7 +309,7 @@ namespace System.Reflection
 			(IEnumerable<T>)GetCustomAttributes(element, typeof(T));
 
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -322,7 +322,7 @@ namespace System.Reflection
 			(IEnumerable<T>)GetCustomAttributes(element, typeof(T));
 
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -335,7 +335,7 @@ namespace System.Reflection
 			(IEnumerable<T>)GetCustomAttributes(element, typeof(T));
 
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -352,7 +352,7 @@ namespace System.Reflection
 			Attribute.GetCustomAttributes(element, attributeType, inherit);
 
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -369,7 +369,7 @@ namespace System.Reflection
 			Attribute.GetCustomAttributes(element, attributeType, inherit);
 
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>
@@ -383,7 +383,7 @@ namespace System.Reflection
 			(IEnumerable<T>)GetCustomAttributes(element, typeof(T), inherit);
 
 		/// <summary>
-		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the 
+		/// Retrieves a collection of custom attributes that are applied to a specified member, and optionally inspects the
 		/// ancestors of that member.
 		/// </summary>
 		/// <param name="element">The member to inspect.</param>

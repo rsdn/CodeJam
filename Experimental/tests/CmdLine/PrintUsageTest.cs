@@ -79,10 +79,10 @@ Copyright (C) 2010 by CodeJam Team. All rights reserved.
 Usage: program.exe <cmd1|cmd2> [/opt1...]
 
                          - COMMANDS -
- cmd1 - 
- cmd2 - 
+ cmd1 -
+ cmd2 -
                          - OPTIONS -
- /opt1 - 
+ /opt1 -
 ",
 				res);
 		}

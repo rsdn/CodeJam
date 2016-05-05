@@ -12,12 +12,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 <#+
-	private string EscapeXmlDocString(string xmlDocText) 
+	private string EscapeXmlDocString(string xmlDocText)
 	{
 		return new System.Xml.Linq.XText(xmlDocText).ToString();
 	}
 
-	private string List(int count, Func<int, string> elem, string separator = ", ") 
+	private string List(int count, Func<int, string> elem, string separator = ", ")
 	{
 		return string.Join(separator, Enumerable.Range(1, count).Select(elem));
 	}
@@ -126,7 +126,7 @@
 			_regions.Clear();
 		}
 	}
-	
+
 	private readonly RegionState _regions = new RegionState();
 
 	private void WriteRegionLine(string regionName, string regionLevelKey = "")

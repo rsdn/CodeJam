@@ -30,7 +30,7 @@
 		Transform(
 			Host.ResolvePath(oldClassPath),
 			new ReplaceInfo // Rename the class (add Debug prefix to the name)
-			{ 
+			{
 				Pattern = "class " + oldClassName,
 				Replacement = "class " + newClassName,
 				ThrowOnFail = true,

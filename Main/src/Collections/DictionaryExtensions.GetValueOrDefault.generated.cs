@@ -17,7 +17,7 @@ namespace CodeJam.Collections
 {
 	partial class DictionaryExtensions
 	{
-		#region IDictionary<TKey, TValue> overloads 
+		#region IDictionary<TKey, TValue> overloads
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
 		/// <paramref name="dictionary"/>
@@ -178,7 +178,7 @@ namespace CodeJam.Collections
 		}
 		#endregion
 
-		#region IReadOnlyDictionary<TKey, TValue> overloads 
+		#region IReadOnlyDictionary<TKey, TValue> overloads
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
 		/// <paramref name="dictionary"/>
@@ -339,7 +339,7 @@ namespace CodeJam.Collections
 		}
 		#endregion
 
-		#region Dictionary<TKey, TValue> overloads 
+		#region Dictionary<TKey, TValue> overloads
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
 		/// <paramref name="dictionary"/>
@@ -500,7 +500,7 @@ namespace CodeJam.Collections
 		}
 		#endregion
 
-		#region ConcurrentDictionary<TKey, TValue> overloads 
+		#region ConcurrentDictionary<TKey, TValue> overloads
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
 		/// <paramref name="dictionary"/>

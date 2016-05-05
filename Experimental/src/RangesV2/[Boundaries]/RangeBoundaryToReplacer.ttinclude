@@ -16,7 +16,7 @@
 			oldClassPath,
 			additionalReplaces,
 			new ReplaceInfo // Replace From <> To words
-			{ 
+			{
 				Pattern = "From",
 				Replacement = "To",
 				ThrowOnFail = false,
@@ -24,7 +24,7 @@
 				SwapMode = true
 			},
 			new ReplaceInfo // Replace BoundaryFrom <> BoundaryTo
-			{ 
+			{
 				Pattern = "BoundaryFrom",
 				Replacement = "BoundaryTo",
 				ThrowOnFail = true,
@@ -32,7 +32,7 @@
 				SwapMode = true
 			},
 			new ReplaceInfo // Replace Negative <> Negative
-			{ 
+			{
 				Pattern = "Negative",
 				Replacement = "Positive",
 				ThrowOnFail = false,
@@ -40,7 +40,7 @@
 				SwapMode = true
 			},
 			new ReplaceInfo // Replace negative <> positive
-			{ 
+			{
 				Pattern = "negative",
 				Replacement = "positive",
 				ThrowOnFail = false,
@@ -48,7 +48,7 @@
 				SwapMode = true
 			},
 			new ReplaceInfo // Replace -∞ <> +∞
-			{ 
+			{
 				Pattern = "-∞",
 				Replacement = "+∞",
 				ThrowOnFail = false,

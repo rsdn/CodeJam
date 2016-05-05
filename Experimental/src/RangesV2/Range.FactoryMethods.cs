@@ -55,7 +55,7 @@ namespace CodeJam.RangesV2
 		/// <returns>A new range or empty range if the boundaries forms invalid range.</returns>
 		public static Range<T> TryCreate<T>(T fromValue, T toValue) =>
 			TryCreateCore(
-				fromValue, RangeBoundaryFromKind.Inclusive, 
+				fromValue, RangeBoundaryFromKind.Inclusive,
 				toValue, RangeBoundaryToKind.Inclusive);
 
 		/// <summary>Tries to create the range. Returnss empty range if failed.</summary>

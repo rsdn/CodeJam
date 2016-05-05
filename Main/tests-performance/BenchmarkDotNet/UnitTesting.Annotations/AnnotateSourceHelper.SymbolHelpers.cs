@@ -139,8 +139,8 @@ namespace BenchmarkDotNet.UnitTesting
 			// BASEDON https://github.com/dotnet/roslyn/blob/master/src/Test/PdbUtilities/Shared/SymUnmanagedReaderExtensions.cs#L483
 			private static void ThrowExceptionForHR(int hr)
 			{
-				// E_FAIL indicates "no info". 
-				// E_NOTIMPL indicates a lack of ISymUnmanagedReader support (in a particular implementation). 
+				// E_FAIL indicates "no info".
+				// E_NOTIMPL indicates a lack of ISymUnmanagedReader support (in a particular implementation).
 				if (hr < 0 && hr != E_FAIL && hr != E_NOTIMPL)
 				{
 					Marshal.ThrowExceptionForHR(hr, _ignoreIErrorInfo);

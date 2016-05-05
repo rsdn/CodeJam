@@ -59,7 +59,7 @@ namespace CodeJam.RangesV2
 			<#=notOp#>boundary1.Equals(boundary2);
 <#+
 	}
-	
+
 	private void EmitComparisonOp(OpInfo op, string kind)
 	{
 		var escapedOp = EscapeXmlDocString(op.Sign);

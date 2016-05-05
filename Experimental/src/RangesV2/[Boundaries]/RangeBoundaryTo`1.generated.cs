@@ -424,7 +424,7 @@ namespace CodeJam.RangesV2
 		/// * Zero This object is equal to <paramref name="other"/>.
 		/// * Greater than zero This object is greater than <paramref name="other"/>.
 		/// </returns>
-		// DONTTOUCH. Any change will break the performance or the correctness of the comparison. 
+		// DONTTOUCH. Any change will break the performance or the correctness of the comparison.
 		//   Please create issue at first
 		[MethodImpl(AggressiveInlining)]
 		public int CompareTo(T other) =>

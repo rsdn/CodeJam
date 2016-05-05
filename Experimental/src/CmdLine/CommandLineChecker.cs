@@ -24,7 +24,7 @@ namespace CodeJam.CmdLine
 				if (!cmds.Add(command.Name))
 					throw new CommandLineCheckException($"Duplicate commands '{command.Name}'");
 			var cmdOpts = new Dictionary<string, HashSet<string>>();
-			foreach (var cmdOpt in 
+			foreach (var cmdOpt in
 				rules
 					.Options
 					.SelectMany(

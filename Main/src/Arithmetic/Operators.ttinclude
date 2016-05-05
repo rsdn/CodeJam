@@ -47,7 +47,7 @@
 			Type = type;
 			Sign = sign;
 		}
-		
+
 		public bool IntOnly
 		{
 			get
@@ -86,7 +86,7 @@
 				}
 			}
 		}
-		
+
 		public bool IsEqualityOp
 		{
 			get
