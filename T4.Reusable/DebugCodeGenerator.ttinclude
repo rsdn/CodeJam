@@ -29,14 +29,14 @@
 
 		Transform(
 			Host.ResolvePath(oldClassPath),
-			new ReplaceInfo
+			new ReplaceInfo // Rename the class (add Debug prefix to the name)
 			{ 
 				Pattern = "class " + oldClassName,
 				Replacement = "class " + newClassName,
 				ThrowOnFail = true,
 				EscapePattern = true
 			},
-			new ReplaceInfo
+			new ReplaceInfo // Adds [Conditional(DebugCondition)] attribute
 			{
 				Pattern = "[DebuggerHidden",
 				Replacement = "[Conditional(DebugCondition), DebuggerHidden",

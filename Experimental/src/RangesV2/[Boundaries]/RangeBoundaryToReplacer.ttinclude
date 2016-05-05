@@ -15,7 +15,7 @@
 		Transform(
 			oldClassPath,
 			additionalReplaces,
-			new ReplaceInfo
+			new ReplaceInfo // Replace From <> To words
 			{ 
 				Pattern = "From",
 				Replacement = "To",
@@ -23,7 +23,7 @@
 				WholeWord = true,
 				SwapMode = true
 			},
-			new ReplaceInfo
+			new ReplaceInfo // Replace BoundaryFrom <> BoundaryTo
 			{ 
 				Pattern = "BoundaryFrom",
 				Replacement = "BoundaryTo",
@@ -31,7 +31,7 @@
 				WholeWord = false,
 				SwapMode = true
 			},
-			new ReplaceInfo
+			new ReplaceInfo // Replace Negative <> Negative
 			{ 
 				Pattern = "Negative",
 				Replacement = "Positive",
@@ -39,7 +39,7 @@
 				WholeWord = false,
 				SwapMode = true
 			},
-			new ReplaceInfo
+			new ReplaceInfo // Replace negative <> positive
 			{ 
 				Pattern = "negative",
 				Replacement = "positive",
@@ -47,7 +47,7 @@
 				WholeWord = false,
 				SwapMode = true
 			},
-			new ReplaceInfo
+			new ReplaceInfo // Replace -∞ <> +∞
 			{ 
 				Pattern = "-∞",
 				Replacement = "+∞",

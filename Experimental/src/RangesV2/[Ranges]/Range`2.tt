@@ -2,13 +2,13 @@
 <#@ include file="RangeWithTKeyReplacer.ttinclude" #>
 <#
 	Run("Range`1.cs",
-		new ReplaceInfo
-		{ 
+		new ReplaceInfo // Fix .ctor body
+		{
 			Pattern = @"(\r\n.+?)(To = to;)",
 			Replacement = @"$1$2$1Key = key;",
 			ThrowOnFail = true
 		},
-		new ReplaceInfo
+		new ReplaceInfo // Fix parameter passing #2
 		{ 
 			Pattern = @"to\)\)",
 			Replacement = @"to), key)",
