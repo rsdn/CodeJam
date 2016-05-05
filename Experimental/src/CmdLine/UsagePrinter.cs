@@ -107,7 +107,10 @@ namespace CodeJam.CmdLine
 						.ToList();
 				var maxLen = cmdDescs.Max(desc => desc.Name.Length);
 				foreach (var desc in cmdDescs)
-					writer.WriteLine($" {desc.Name.PadRight(maxLen)} - {desc.Description}");
+				{
+					var descWithSpace = desc.Description.IsNullOrEmpty() ? "" : " " + desc.Description;
+					writer.WriteLine($" {desc.Name.PadRight(maxLen)} -{descWithSpace}");
+				}
 			}
 
 			if (hasOpts)
@@ -120,7 +123,10 @@ namespace CodeJam.CmdLine
 						.ToList();
 				var maxLen = optDescs.Max(desc => desc.Name.Length);
 				foreach (var desc in optDescs)
-					writer.WriteLine($" {desc.Name.PadRight(maxLen)} - {desc.Description}");
+				{
+					var descWithSpace = desc.Description.IsNullOrEmpty() ? "" : " " + desc.Description;
+					writer.WriteLine($" {desc.Name.PadRight(maxLen)} -{descWithSpace}");
+				}
 			}
 		}
 
