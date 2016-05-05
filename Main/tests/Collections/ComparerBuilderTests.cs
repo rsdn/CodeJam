@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+
+using CodeJam.Reflection;
 
 using JetBrains.Annotations;
 
@@ -122,6 +126,64 @@ namespace CodeJam.Collections
 				new TestClass { Field1 = 2, Prop2 = "1"  },
 				new TestClass { Field1 = 2, Prop2 = "2"  },
 				new TestClass { Field1 = 2, Prop2 = "2"  },
+				null
+			};
+
+			Assert.That(arr.Distinct(eq).Count(), Is.EqualTo(5));
+		}
+
+		[Test]
+		public void DistinctByMember3Test()
+		{
+			var eq  = ComparerBuilder<TestClass>.GetEqualityComparer(ta => ta.Members.Where(m => m.Name.EndsWith("1")));
+			var arr = new[]
+			{
+				new TestClass { Field1 = 1, Prop2 = "2"  },
+				new TestClass { Field1 = 1, Prop2 = null },
+				null,
+				new TestClass { Field1 = 2, Prop2 = "1"  },
+				new TestClass { Field1 = 2, Prop2 = "2"  },
+				new TestClass { Field1 = 2, Prop2 = "2"  },
+				null
+			};
+
+			Assert.That(arr.Distinct(eq).Count(), Is.EqualTo(3));
+		}
+
+		[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
+		class IdentifierAttribute : Attribute
+		{
+		}
+
+		class TestClass2
+		{
+			[Identifier]
+			public int    EntityType { get; set; }
+			[Identifier]
+			public int    EntityID   { get; set; }
+
+			public string Name       { get; set; }
+		}
+
+		IEnumerable<MemberAccessor> GetIdentifiers(TypeAccessor typeAccessor)
+		{
+			foreach (var member in typeAccessor.Members)
+				if (member.MemberInfo.GetCustomAttribute<IdentifierAttribute>() != null)
+					yield return member;
+		}
+
+		[Test]
+		public void AttributeTest()
+		{
+			var eq  = ComparerBuilder<TestClass2>.GetEqualityComparer(GetIdentifiers);
+			var arr = new[]
+			{
+				null,
+				new TestClass2 { EntityType = 1, EntityID = 1, Name = "1"  },
+				new TestClass2 { EntityType = 1, EntityID = 2, Name = null },
+				new TestClass2 { EntityType = 2, EntityID = 1, Name = "2"  },
+				new TestClass2 { EntityType = 2, EntityID = 1, Name = "3"  },
+				new TestClass2 { EntityType = 2, EntityID = 2, Name = "4"  },
 				null
 			};
 

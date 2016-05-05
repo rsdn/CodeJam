@@ -135,7 +135,7 @@ namespace CodeJam.Collections
 		/// Returns implementations of the <see cref="T:System.Collections.Generic.IEqualityComparer`1" /> generic interface
 		/// based on provided object public members equality.
 		/// </summary>
-		/// <param name="membersToCompare">members to compare.</param>
+		/// <param name="membersToCompare">Members to compare.</param>
 		/// <returns>Instance of <see cref="T:System.Collections.Generic.IEqualityComparer`1" />.</returns>
 		[Pure]
 		public static IEqualityComparer<T> GetEqualityComparer([NotNull] params Expression<Func<T,object>>[] membersToCompare)
@@ -154,6 +154,19 @@ namespace CodeJam.Collections
 
 			var members = TypeAccessor<T>.GetAccessor().Members.Where(m => hashSet.Contains(m.MemberInfo)).ToList();
 
+			return new Comparer(GetEqualsFunc(members), GetGetHashCodeFunc(members));
+		}
+
+		/// <summary>
+		/// Returns implementations of the <see cref="T:System.Collections.Generic.IEqualityComparer`1" /> generic interface
+		/// based on provided object public members equality.
+		/// </summary>
+		/// <param name="membersToCompare">A function that returns members to compare.</param>
+		/// <returns>Instance of <see cref="T:System.Collections.Generic.IEqualityComparer`1" />.</returns>
+		[Pure]
+		public static IEqualityComparer<T> GetEqualityComparer([NotNull] Func<TypeAccessor<T>,IEnumerable<MemberAccessor>> membersToCompare)
+		{
+			var members = membersToCompare(TypeAccessor<T>.GetAccessor()).ToList();
 			return new Comparer(GetEqualsFunc(members), GetGetHashCodeFunc(members));
 		}
 	}
