@@ -50,20 +50,18 @@ namespace CodeJam.RangesV2
 			bool toEmpty = to.IsEmpty;
 			if (fromEmpty != toEmpty)
 			{
-				if (fromEmpty)
-					throw CodeExceptions.Argument(
-						nameof(from),
-						"The boundary From should be not empty.");
 				throw CodeExceptions.Argument(
-					nameof(to),
-					"The boundary To should be not empty.");
+					nameof(from),
+					$"Both {nameof(from)} and {nameof(to)} args should be either empty or non-empty.");
 			}
 
 			if (!fromEmpty)
 			{
 				if (to < from)
 				{
-					throw CodeExceptions.Argument(nameof(to), "The boundary to should be greater than or equal to boundary from.");
+					throw CodeExceptions.Argument(
+						nameof(to),
+						$"The boundary {nameof(to)} should be greater than or equal to boundary {nameof(from)}.");
 				}
 			}
 
@@ -130,7 +128,7 @@ namespace CodeJam.RangesV2
 
 		/// <summary>The range is Infinite range (-∞..+∞).</summary>
 		/// <value><c>true</c> if the range is infinite; otherwise, <c>false</c>.</value>
-		public bool IsInfinity => From.IsNegativeInfinity && To.IsPositiveInfinity;
+		public bool IsInfinite => From.IsNegativeInfinity && To.IsPositiveInfinity;
 
 		#region IEquatable<Range<T>>
 		/// <summary>Indicates whether the current range and a specified object are equal.</summary>

@@ -73,7 +73,7 @@ namespace CodeJam.RangesV2
 				throw CodeExceptions.Argument(nameof(value), "The To boundary does not accept negative infinity value.");
 			}
 
-			if (value == null)
+			if (value == null && boundaryKind != RangeBoundaryToKind.Empty)
 			{
 				boundaryKind = RangeBoundaryToKind.Infinite;
 			}
@@ -291,7 +291,7 @@ namespace CodeJam.RangesV2
 		/// </summary>
 		/// <param name="updateCallback">Callback returning new value of the boundary.</param>
 		/// <returns>Range boundary with the same kind but with a new value (if the current boundary has one).</returns>
-		public RangeBoundaryTo<T> UpdateValue([NotNull, InstantHandle] Func<T, T> updateCallback)
+		public RangeBoundaryTo<T> WithValue([NotNull, InstantHandle] Func<T, T> updateCallback)
 		{
 			if (HasValue)
 			{

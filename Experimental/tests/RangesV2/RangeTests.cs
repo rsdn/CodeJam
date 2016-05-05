@@ -56,13 +56,13 @@ namespace CodeJam.RangesV2
 				Range<int?>.Empty,
 				new Range<int?>(RangeBoundaryFrom<int?>.Empty, RangeBoundaryTo<int?>.Empty));
 			AreEqual(
-				Range<int?>.Infinity,
+				Range<int?>.Infinite,
 				Range.Create(empty, empty));
 			AreEqual(
-				Range<double>.Infinity,
+				Range<double>.Infinite,
 				Range.Create(double.NegativeInfinity, double.PositiveInfinity));
 			AreNotEqual(
-				Range<int?>.Infinity,
+				Range<int?>.Infinite,
 				Range.Create(empty, empty, key));
 
 			AreEqual(
@@ -89,17 +89,17 @@ namespace CodeJam.RangesV2
 			AreEqual(a.To.Kind, RangeBoundaryToKind.Empty);
 			IsTrue(a.IsEmpty);
 			IsFalse(a.IsNotEmpty);
-			IsFalse(a.IsInfinity);
+			IsFalse(a.IsInfinite);
 			IsFalse(a.IsSinglePoint);
 
-			a = Range<int?>.Infinity;
+			a = Range<int?>.Infinite;
 			Throws<InvalidOperationException>(() => a.FromValue.ToString());
 			Throws<InvalidOperationException>(() => a.ToValue.ToString());
 			AreEqual(a.From.Kind, RangeBoundaryFromKind.Infinite);
 			AreEqual(a.To.Kind, RangeBoundaryToKind.Infinite);
 			IsFalse(a.IsEmpty);
 			IsTrue(a.IsNotEmpty);
-			IsTrue(a.IsInfinity);
+			IsTrue(a.IsInfinite);
 			IsFalse(a.IsSinglePoint);
 
 			a = Range.CreateExclusiveTo(empty, value2);
@@ -109,7 +109,7 @@ namespace CodeJam.RangesV2
 			AreEqual(a.To.Kind, RangeBoundaryToKind.Exclusive);
 			IsFalse(a.IsEmpty);
 			IsTrue(a.IsNotEmpty);
-			IsFalse(a.IsInfinity);
+			IsFalse(a.IsInfinite);
 			IsFalse(a.IsSinglePoint);
 
 			a = Range.Create(value1, value2);
@@ -119,7 +119,7 @@ namespace CodeJam.RangesV2
 			AreEqual(a.To.Kind, RangeBoundaryToKind.Inclusive);
 			IsFalse(a.IsEmpty);
 			IsTrue(a.IsNotEmpty);
-			IsFalse(a.IsInfinity);
+			IsFalse(a.IsInfinite);
 			IsFalse(a.IsSinglePoint);
 
 			var b = Range.Create(value1, value1, key);
@@ -130,7 +130,7 @@ namespace CodeJam.RangesV2
 			AreEqual(b.To.Kind, RangeBoundaryToKind.Inclusive);
 			IsFalse(b.IsEmpty);
 			IsTrue(b.IsNotEmpty);
-			IsFalse(b.IsInfinity);
+			IsFalse(b.IsInfinite);
 			IsTrue(b.IsSinglePoint);
 		}
 
@@ -146,8 +146,8 @@ namespace CodeJam.RangesV2
 
 
 			AreEqual(Range<int?>.Empty, Range.Create(eFrom, eTo));
-			AreEqual(Range<int?>.Infinity, Range.Create(empty, empty));
-			AreNotEqual(Range<double?>.Infinity, Range.Create(empty, empty));
+			AreEqual(Range<int?>.Infinite, Range.Create(empty, empty));
+			AreNotEqual(Range<double?>.Infinite, Range.Create(empty, empty));
 
 			AreEqual(
 				Range.CreateExclusiveFrom(value1, value2).From,

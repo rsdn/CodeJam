@@ -12,7 +12,7 @@ namespace CodeJam.RangesV2
 	/// <summary>Describes a keyed range of the values</summary>
 	public partial struct Range<T, TKey>
 	{
-		private static readonly Func<TKey, TKey, bool> _equalityFunc = Operators<TKey>.AreEqual;
+		private static readonly Func<TKey, TKey, bool> _keyEqualityFunc = Operators<TKey>.AreEqual;
 
 		/// <summary>The value associated with the range.</summary>
 		/// <value>The value of the range key.</value>
@@ -35,13 +35,15 @@ namespace CodeJam.RangesV2
 		/// otherwise, false.
 		/// </returns>
 		public bool Equals(Range<T, TKey> other) =>
-			From == other.From && To == other.To && _equalityFunc(Key, other.Key);
+			From == other.From && To == other.To && _keyEqualityFunc(Key, other.Key);
 
 		/// <summary>Returns a hash code for the current range.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
-		public override int GetHashCode() => Key == null
-			? HashCode.Combine(From.GetHashCode(), To.GetHashCode(), 0)
-			: HashCode.Combine(From.GetHashCode(), To.GetHashCode(), Key.GetHashCode());
+		public override int GetHashCode() =>
+			HashCode.Combine(
+				From.GetHashCode(),
+				To.GetHashCode(),
+				Key?.GetHashCode() ?? 0);
 		#endregion
 
 		#region ToString

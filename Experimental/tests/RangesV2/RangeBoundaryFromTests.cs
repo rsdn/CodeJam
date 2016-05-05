@@ -218,26 +218,26 @@ namespace CodeJam.RangesV2
 		}
 
 		[Test]
-		public static void TestBoundaryFromUpdate()
+		public static void TestBoundaryFromWithValue()
 		{
 			int? value1 = 1;
 			int? value2 = 2;
 
 			var boundary = Range.BoundaryFrom(value1);
-			var boundary2 = boundary.UpdateValue(i => i + 1);
+			var boundary2 = boundary.WithValue(i => i + 1);
 			AreEqual(boundary.Kind, boundary2.Kind);
 			AreEqual(boundary2.Value, value2);
 
 			boundary = Range.BoundaryFromExclusive(value1);
-			boundary2 = boundary.UpdateValue(i => i + 1);
+			boundary2 = boundary.WithValue(i => i + 1);
 			AreEqual(boundary.Kind, boundary2.Kind);
 			AreEqual(boundary2.Value, value2);
 
 			boundary = RangeBoundaryFrom<int?>.Empty;
-			boundary2 = boundary.UpdateValue(i => i + 1);
+			boundary2 = boundary.WithValue(i => i + 1);
 			AreEqual(boundary, boundary2);
 			boundary = RangeBoundaryFrom<int?>.NegativeInfinity;
-			boundary2 = boundary.UpdateValue(i => i + 1);
+			boundary2 = boundary.WithValue(i => i + 1);
 			AreEqual(boundary, boundary2);
 		}
 	}

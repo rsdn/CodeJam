@@ -15,7 +15,7 @@ namespace CodeJam.RangesV2
 		public static readonly Range<T> Empty = new Range<T>(RangeBoundaryFrom<T>.Empty, RangeBoundaryTo<T>.Empty);
 
 		/// <summary>Infinite range, (-∞..+∞)</summary>
-		public static readonly Range<T> Infinity = new Range<T>(
+		public static readonly Range<T> Infinite = new Range<T>(
 			RangeBoundaryFrom<T>.NegativeInfinity, RangeBoundaryTo<T>.PositiveInfinity);
 		#endregion
 
