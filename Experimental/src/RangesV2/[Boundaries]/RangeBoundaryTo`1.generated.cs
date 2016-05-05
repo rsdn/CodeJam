@@ -66,6 +66,7 @@ namespace CodeJam.RangesV2
 			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity) && boundaryKind != RangeBoundaryToKind.Empty)
 			{
 				value = default(T);
+				boundaryKind = RangeBoundaryToKind.Infinite;
 			}
 			if (_hasNegativeInfinity && _equalsFunc(value, _negativeInfinity))
 			{

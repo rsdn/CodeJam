@@ -22,9 +22,9 @@
 #>
 "<#= msBuildExe #>" <#= projectName #>.csproj /target:Clean   /property:Configuration=Debug   /property:OutputPath=bin\Debug.<#= p.OutputPath #>\
 "<#= msBuildExe #>" <#= projectName #>.csproj /target:Clean   /property:Configuration=Release /property:OutputPath=bin\Release.<#= p.OutputPath #>\
-"<#= msBuildExe #>" <#= projectName #>.csproj /target:ReBuild /property:Configuration=Debug   /property:OutputPath=bin\Debug.<#= p.OutputPath #>\   /property:TargetFrameworkVersion=<#= p.TargetFramework #> /p:DefineConstants="<#= p.DefineConstants #>" <#if(!string.IsNullOrEmpty(p.FWPathOverride)){#>-p:FrameworkPathOverride="<#=p.FWPathOverride#>"<#}#>
+"<#= msBuildExe #>" <#= projectName #>.csproj /target:ReBuild /property:Configuration=Debug   /property:OutputPath=bin\Debug.<#= p.OutputPath #>\   /property:TargetFrameworkVersion=<#= p.TargetFramework #> /p:DefineConstants="<#= p.DefineConstants #>"<#if(!string.IsNullOrEmpty(p.FWPathOverride)){#> -p:FrameworkPathOverride="<#=p.FWPathOverride#>"<#}#>
 
-"<#= msBuildExe #>" <#= projectName #>.csproj /target:ReBuild /property:Configuration=Release /property:OutputPath=bin\Release.<#= p.OutputPath #>\ /property:TargetFrameworkVersion=<#= p.TargetFramework #> /p:DefineConstants="<#= p.DefineConstants #>"  <#if(!string.IsNullOrEmpty(p.FWPathOverride)){#>-p:FrameworkPathOverride="<#=p.FWPathOverride#>"<#}#>
+"<#= msBuildExe #>" <#= projectName #>.csproj /target:ReBuild /property:Configuration=Release /property:OutputPath=bin\Release.<#= p.OutputPath #>\ /property:TargetFrameworkVersion=<#= p.TargetFramework #> /p:DefineConstants="<#= p.DefineConstants #>"<#if(!string.IsNullOrEmpty(p.FWPathOverride)){#> -p:FrameworkPathOverride="<#=p.FWPathOverride#>"<#}#>
 
 
 <#

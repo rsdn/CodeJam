@@ -13,7 +13,7 @@ namespace CodeJam.RangesV2
 	[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
 	[SuppressMessage("ReSharper", "ConvertToConstant.Local")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
-	public class RangeFactoryTests
+	public class RangeTests
 	{
 		[Test]
 		public static void TestRangeCreate()
@@ -49,6 +49,8 @@ namespace CodeJam.RangesV2
 			Throws<ArgumentException>(() => Range.CreateExclusive(value2, value1, key));
 			Throws<ArgumentException>(() => Range.Create(RangeBoundaryFrom<int?>.Empty, Range.BoundaryTo(value2), key));
 			Throws<ArgumentException>(() => Range.Create(Range.BoundaryFrom(empty), RangeBoundaryTo<int?>.Empty, key));
+			Throws<ArgumentException>(() => Range.Create(double.NegativeInfinity, double.NegativeInfinity, key));
+			Throws<ArgumentException>(() => Range.Create(double.PositiveInfinity, double.PositiveInfinity, key));
 
 			AreEqual(
 				Range<int?>.Empty,
@@ -56,6 +58,9 @@ namespace CodeJam.RangesV2
 			AreEqual(
 				Range<int?>.Infinity,
 				Range.Create(empty, empty));
+			AreEqual(
+				Range<double>.Infinity,
+				Range.Create(double.NegativeInfinity, double.PositiveInfinity));
 			AreNotEqual(
 				Range<int?>.Infinity,
 				Range.Create(empty, empty, key));
@@ -66,6 +71,7 @@ namespace CodeJam.RangesV2
 
 			IsTrue(Range.TryCreate(value2, value1, key).IsEmpty);
 			IsFalse(Range.TryCreate(value1, value2, key).IsEmpty);
+			IsTrue(Range.TryCreate(double.NegativeInfinity, double.NegativeInfinity, key).IsEmpty);
 		}
 
 		[Test]
@@ -128,45 +134,35 @@ namespace CodeJam.RangesV2
 			IsTrue(b.IsSinglePoint);
 		}
 
-		//[Test]
-		public static void TestBoundaryFromEquality()
+		[Test]
+		public static void TestRangeEquality()
 		{
 			int? value1 = 1;
 			int? value2 = 2;
 			int? empty = null;
 
-			var e = new RangeBoundaryFrom<int?>();
-			var inf = Range.BoundaryFrom(empty);
-			var a1 = Range.BoundaryFrom(value1);
-			var a12 = Range.BoundaryFrom(value1);
-			var a2 = Range.BoundaryFrom(value2);
-			var b1 = Range.BoundaryTo(value1);
+			var eFrom = new RangeBoundaryFrom<int?>();
+			var eTo = new RangeBoundaryTo<int?>();
 
-			AreEqual(e, RangeBoundaryFrom<int?>.Empty);
-			IsTrue(e == RangeBoundaryFrom<int?>.Empty);
-			IsFalse(e != RangeBoundaryFrom<int?>.Empty);
 
-			AreEqual(inf, RangeBoundaryFrom<int?>.NegativeInfinity);
-			IsTrue(inf == RangeBoundaryFrom<int?>.NegativeInfinity);
+			AreEqual(Range<int?>.Empty, Range.Create(eFrom, eTo));
+			AreEqual(Range<int?>.Infinity, Range.Create(empty, empty));
+			AreNotEqual(Range<double?>.Infinity, Range.Create(empty, empty));
 
-			AreNotEqual(a1, empty);
-			AreNotEqual(a1, inf);
+			AreEqual(
+				Range.CreateExclusiveFrom(value1, value2).From,
+				Range.BoundaryFromExclusive(value1));
 
-			AreEqual(a1, a12);
-			IsTrue(a1 == a12);
-			IsFalse(a1 != a12);
+			AreEqual(
+				Range.CreateExclusiveFrom(value1, value2).To,
+				Range.BoundaryTo(value2));
 
-			AreNotEqual(a1, a2);
-			IsFalse(a1 == a2);
-			IsTrue(a1 != a2);
+			AreNotEqual(
+				Range.CreateExclusiveFrom(value1, value2),
+				Range.Create(value1, value2));
 
-			AreEqual(a1.Value, value1);
-			AreNotEqual(a1.Value, value2);
-			AreNotEqual(a1, value1);
-			AreNotEqual(a1, value2);
-
-			AreNotEqual(a1, b1);
-			AreEqual(b1.Value, value1);
+			IsTrue(Range.Create(value1, value2) == Range.Create<int?>(1, 2));
+			IsFalse(Range.Create(value1, value2) == Range.Create(value1, value1));
 		}
 	}
 }

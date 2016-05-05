@@ -77,6 +77,13 @@ namespace CodeJam.RangesV2
 				Range.BoundaryFromExclusive(infOk));
 
 			AreEqual(
+				RangeBoundaryFrom<double>.NegativeInfinity,
+				Range.BoundaryFrom(infOk.Value));
+			AreEqual(
+				RangeBoundaryFrom<double>.NegativeInfinity,
+				Range.BoundaryFromExclusive(infOk.Value));
+
+			AreEqual(
 				Range.BoundaryFromExclusive(infOk).GetValueOrDefault(),
 				empty);
 		}
