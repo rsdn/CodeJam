@@ -1,30 +1,41 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
 
+using static CodeJam.PlatformDependent;
 using static CodeJam.RangesV2.RangeInternal;
+
+// The file contains members to be shared between Range<T> and Range<T, TKey>.
 
 namespace CodeJam.RangesV2
 {
-	/// <summary>Describes a range of the values</summary>
 	/// <typeparam name="T">
-	/// The type of the range values. Should implement <seealso cref="IComparable{T}"/> or <seealso cref="IComparable"/>.
+	/// The type of the value. Should implement <seealso cref="IComparable{T}"/> or <seealso cref="IComparable"/>.
 	/// </typeparam>
 	[Serializable]
 	[PublicAPI]
 	//[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	public partial struct Range<T> : IRangeFactory<T, Range<T>>, IFormattable
+	public partial struct Range<T> : IRangeFactory<T, Range<T>>, IEquatable<Range<T>>, IFormattable
 	{
 		#region Static members
 
-		#region Predefined values
-		/// <summary>Empty range, ∅</summary>
-		public static readonly Range<T> Empty = new Range<T>(RangeBoundaryFrom<T>.Empty, RangeBoundaryTo<T>.Empty);
+		#region Operators
+		/// <summary>Implements the operator ==.</summary>
+		/// <param name="range1">The range1.</param>
+		/// <param name="range2">The range2.</param>
+		/// <returns><c>True</c>, if ranges are equal.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static bool operator ==(Range<T> range1, Range<T> range2) =>
+			range1.Equals(range2);
 
-		/// <summary>Infinite range, (-∞..+∞)</summary>
-		public static readonly Range<T> Infinity = new Range<T>(
-			RangeBoundaryFrom<T>.NegativeInfinity, RangeBoundaryTo<T>.PositiveInfinity);
+		/// <summary>Implements the operator !=.</summary>
+		/// <param name="range1">The range1.</param>
+		/// <param name="range2">The range2.</param>
+		/// <returns><c>True</c>, if ranges are not equal.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static bool operator !=(Range<T> range1, Range<T> range2) =>
+			!range1.Equals(range2);
 		#endregion
 
 		#endregion
@@ -35,17 +46,36 @@ namespace CodeJam.RangesV2
 		/// <param name="to">Boundary To.</param>
 		public Range(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to)
 		{
-			if (from.IsNotEmpty || to.IsNotEmpty)
+			bool fromEmpty = from.IsEmpty;
+			bool toEmpty = to.IsEmpty;
+			if (fromEmpty != toEmpty)
+			{
+				if (fromEmpty)
+					throw CodeExceptions.Argument(
+						nameof(from),
+						"The boundary From should be not empty.");
+				throw CodeExceptions.Argument(
+					nameof(to),
+					"The boundary To should be not empty.");
+			}
+
+			if (!fromEmpty)
 			{
 				if (to < from)
 				{
-					throw CodeExceptions.Argument(nameof(to), "The boundary from should be less than or equal to boundary to");
+					throw CodeExceptions.Argument(nameof(to), "The boundary to should be greater than or equal to boundary from.");
 				}
 			}
 
 			From = from;
 			To = to;
 		}
+
+		/// <summary>Creates instance of <seealso cref="Range{T}"/></summary>
+		/// <param name="from">Boundary From.</param>
+		/// <param name="to">Boundary To.</param>
+		public Range(T from, T to) :
+			this(Range.BoundaryFrom(from), Range.BoundaryTo(to)) { }
 
 		/// <summary>
 		/// Creates instance of <seealso cref="Range{T}"/>
@@ -96,28 +126,26 @@ namespace CodeJam.RangesV2
 		/// The range is Zero length range (the values of the boundary From and the boundary To are the same).
 		/// </summary>
 		/// <value> <c>true</c> if the range is single point range; otherwise, <c>false</c>. </value>
-		public bool IsSinglePoint => From.CompareTo(To) == 0;
+		public bool IsSinglePoint => From.IsNotEmpty && From.CompareTo(To) == 0;
 
 		/// <summary>The range is Infinite range (-∞..+∞).</summary>
 		/// <value><c>true</c> if the range is infinite; otherwise, <c>false</c>.</value>
 		public bool IsInfinity => From.IsNegativeInfinity && To.IsPositiveInfinity;
+
+		#region IEquatable<Range<T>>
+		/// <summary>Indicates whether the current range and a specified object are equal.</summary>
+		/// <param name="obj">The object to compare with this. </param>
+		/// <returns>
+		/// <c>True</c> if <paramref name="obj"/> and the current range are the same type
+		/// and represent the same value; otherwise, false.
+		/// </returns>
+		public override bool Equals(object obj) =>
+			obj is Range<T> && Equals((Range<T>)obj);
 		#endregion
 
-		#region IRangeFactory members
-		/// <summary>Creates a new instance of the range.</summary>
-		/// <param name="from">Boundary From.</param>
-		/// <param name="to">Boundary To.</param>
-		/// <returns>Creates a new instance of the range with specified From-To boundaries.</returns>
-		Range<T> IRangeFactory<T, Range<T>>.CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
-			new Range<T>(from, to);
 		#endregion
 
 		#region ToString
-		/// <summary>Returns string representation of the range.</summary>
-		/// <returns>The string representation of the range.</returns>
-		public override string ToString() =>
-			IsEmpty ? EmptyString : From + SeparatorString + To;
-
 		/// <summary>
 		/// Returns string representation of the range using the specified format string.
 		/// If <typeparamref name="T"/> does not implement <seealso cref="IFormattable"/> the format string is ignored.
@@ -126,19 +154,6 @@ namespace CodeJam.RangesV2
 		/// <returns>The string representation of the range.</returns>
 		[NotNull]
 		public string ToString(string format) => ToString(format, null);
-
-		/// <summary>
-		/// Returns string representation of the range using the specified format string.
-		/// If <typeparamref name="T"/> does not implement <seealso cref="IFormattable"/> the format string is ignored.
-		/// </summary>
-		/// <param name="format">The format string.</param>
-		/// <param name="formatProvider">The format provider.</param>
-		/// <returns>The string representation of the range.</returns>
-		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
-		public string ToString(string format, IFormatProvider formatProvider) =>
-			IsEmpty
-				? EmptyString
-				: (From.ToString(format, formatProvider) + SeparatorString + To.ToString(format, formatProvider));
 		#endregion
 	}
 }

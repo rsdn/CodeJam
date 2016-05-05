@@ -44,6 +44,7 @@
     <Compile Include="CmdLine\PrintUsageTest.cs" />
     <Compile Include="Collections\DisjointSetsTest.cs" />
     <Compile Include="Parsing\ParseHelperTests.cs" />
+    <Compile Include="RangesV2\RangeFactoryTests.cs" />
     <Compile Include="RangesV2\RangeBoundaryFromToTests.cs" />
     <Compile Include="RangesV2\RangeBoundaryFromTests.cs" />
     <Compile Include="RangesV2\RangeBoundaryToTests.generated.cs">

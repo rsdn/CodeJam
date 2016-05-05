@@ -137,6 +137,7 @@ namespace CodeJam
 			}
 
 			[DebuggerHidden, MethodImpl(PlatformDependent.AggressiveInlining)]
+			[AssertionMethod]
 			private static void AssertUsage()
 			{
 				if (!_isEnum && !_isNullableEnum)

@@ -9,6 +9,8 @@ using JetBrains.Annotations;
 using static CodeJam.PlatformDependent;
 using static CodeJam.RangesV2.RangeInternal;
 
+// The file contains members to be shared between RangeBoundaryFrom<T> and RangeBoundaryTo<T>.
+
 namespace CodeJam.RangesV2
 {
 	/// <summary>The From boundary of the range.</summary>
@@ -210,9 +212,9 @@ namespace CodeJam.RangesV2
 		/// The value of the boundary of <seealso cref="InvalidOperationException"/> if <see cref="HasValue"/> equals to <c>false</c>.
 		/// </value>
 		/// <exception cref="InvalidOperationException">Thrown if <see cref="HasValue"/> equals to <c>false</c>.</exception>
-		[DebuggerHidden]
 		public T Value
 		{
+			[DebuggerHidden]
 			get
 			{
 				if (!HasValue)

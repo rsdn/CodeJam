@@ -10,3 +10,8 @@
 ## List of fixes:
  * DO WE NEED IT? detect NaN
  * Resolve the circular dependency with Range and RangeBoundary.CompareTo(value).
+ * Design flaw with type inference:
+ ```
+  Range.Create(Range.BoundaryFrom(1), Range.BoundaryFrom(1)) =>
+	Range<RangeBoundaryFrom<int>>;
+ ```

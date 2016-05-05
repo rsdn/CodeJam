@@ -47,8 +47,8 @@ namespace CodeJam.RangesV2
 
 		#region Range constants
 		// TODO: uncomment
-		//internal const char KeyPrefixChar = '\'';
-		//internal const string KeySeparatorString = "': ";
+		internal const string KeyPrefixString = "'";
+		internal const string KeySeparatorString = "': ";
 		internal const string SeparatorString = "..";
 		#endregion
 	}

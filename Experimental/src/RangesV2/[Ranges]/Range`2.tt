@@ -1,0 +1,17 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ include file="RangeWithTKeyReplacer.ttinclude" #>
+<#
+	Run("Range`1.cs",
+		new ReplaceInfo
+		{ 
+			Pattern = @"(\r\n.+?)(To = to;)",
+			Replacement = @"$1$2$1Key = key;",
+			ThrowOnFail = true
+		},
+		new ReplaceInfo
+		{ 
+			Pattern = @"to\)\)",
+			Replacement = @"to), key)",
+			ThrowOnFail = true
+		});
+#>
