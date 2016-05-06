@@ -152,6 +152,7 @@ namespace CodeJam.RangesV2
 		/// <c>True</c> if <paramref name="obj"/> and the current range are the same type
 		/// and represent the same value; otherwise, false.
 		/// </returns>
+		[Pure]
 		public override bool Equals(object obj) =>
 			obj is Range<T, TKey> && Equals((Range<T, TKey>)obj);
 		#endregion
@@ -165,7 +166,7 @@ namespace CodeJam.RangesV2
 		/// </summary>
 		/// <param name="format">The format string.</param>
 		/// <returns>The string representation of the range.</returns>
-		[NotNull]
+		[Pure, NotNull]
 		public string ToString(string format) => ToString(format, null);
 		#endregion
 	}

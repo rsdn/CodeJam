@@ -164,5 +164,33 @@ namespace CodeJam.RangesV2
 			IsTrue(Range.Create(value1, value2) == Range.Create<int?>(1, 2));
 			IsFalse(Range.Create(value1, value2) == Range.Create(value1, value1));
 		}
+
+
+		/// <summary>Tests the range to string.</summary>
+		[Test]
+		public static void TestRangeToString()
+		{
+			int? value1 = 1;
+			int? empty = null;
+			string key = "Hello";
+
+			AreEqual(Range<int>.Empty.ToString(), "∅");
+			AreEqual(Range<int>.Infinite.ToString(), "(-∞..+∞)");
+			AreEqual(Range.Create(1, 1).ToString(), "[1..1]");
+			AreEqual(Range.Create(1, 2).ToString(), "[1..2]");
+			AreEqual(Range.CreateExclusive(1, 2).ToString(), "(1..2)");
+			AreEqual(Range.CreateExclusiveFrom(1, 2).ToString(), "(1..2]");
+			AreEqual(Range.CreateExclusiveTo(1, 2).ToString(), "[1..2)");
+			AreEqual(Range.CreateExclusive(value1, empty).ToString("000"), "(001..+∞)");
+
+			AreEqual(Range.Create(RangeBoundaryFrom<int>.Empty, RangeBoundaryTo<int>.Empty, key).ToString(), "'Hello': ∅");
+			AreEqual(Range.Create(empty, empty, key).ToString(), "'Hello': (-∞..+∞)");
+			AreEqual(Range.Create(1, 1, key).ToString(), "'Hello': [1..1]");
+			AreEqual(Range.Create(1, 2, key).ToString(), "'Hello': [1..2]");
+			AreEqual(Range.CreateExclusive(1, 2, key).ToString(), "'Hello': (1..2)");
+			AreEqual(Range.CreateExclusiveFrom(1, 2, key).ToString(), "'Hello': (1..2]");
+			AreEqual(Range.CreateExclusiveTo(1, 2, key).ToString(), "'Hello': [1..2)");
+			AreEqual(Range.CreateExclusive(value1, empty, 3).ToString("000"), "'3': (001..+∞)");
+		}
 	}
 }

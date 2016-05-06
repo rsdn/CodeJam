@@ -13,7 +13,7 @@ namespace CodeJam.RangesV2
 	/// <summary>
 	/// 1. Proofs that arg validation skipped when possible.
 	/// </summary>
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Boundary")]
+	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Ranges")]
 	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	[PublicAPI]
 	public class RangeBoundaryFactoryPerfTests

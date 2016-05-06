@@ -15,3 +15,7 @@
   Range.Create(Range.BoundaryFrom(1), Range.BoundaryFrom(1)) =>
 	Range<RangeBoundaryFrom<int>>;
  ```
+ * DO WE NEED IT? Fix naming for Empty boundaries. Alternative names: Void, None, EmptyRangeBoundary
+
+## Documentation:
+As proposed by Lexey: Document weird moments with .IsExclusive property for Infinity boundaries.

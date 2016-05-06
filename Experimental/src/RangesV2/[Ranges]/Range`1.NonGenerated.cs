@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
+using JetBrains.Annotations;
+
 using static CodeJam.RangesV2.RangeInternal;
 
 namespace CodeJam.RangesV2
@@ -24,6 +26,7 @@ namespace CodeJam.RangesV2
 		/// <param name="from">Boundary From.</param>
 		/// <param name="to">Boundary To.</param>
 		/// <returns>Creates a new instance of the range with specified From-To boundaries.</returns>
+		[Pure]
 		Range<T> IRangeFactory<T, Range<T>>.CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new Range<T>(from, to);
 		#endregion
@@ -35,12 +38,14 @@ namespace CodeJam.RangesV2
 		/// <c>True</c> if the current range is equal to the <paramref name="other"/> parameter;
 		/// otherwise, false.
 		/// </returns>
+		[Pure]
 		public bool Equals(Range<T> other) =>
 			From == other.From && To == other.To;
 
 
 		/// <summary>Returns a hash code for the current range.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+		[Pure]
 		public override int GetHashCode() =>
 			HashCode.Combine(From.GetHashCode(), To.GetHashCode());
 		#endregion
@@ -48,6 +53,7 @@ namespace CodeJam.RangesV2
 		#region ToString
 		/// <summary>Returns string representation of the range.</summary>
 		/// <returns>The string representation of the range.</returns>
+		[Pure]
 		public override string ToString() =>
 			IsEmpty ? EmptyString : From + SeparatorString + To;
 
@@ -59,6 +65,7 @@ namespace CodeJam.RangesV2
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
 		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
+		[Pure]
 		public string ToString(string format, IFormatProvider formatProvider) =>
 			IsEmpty
 				? EmptyString

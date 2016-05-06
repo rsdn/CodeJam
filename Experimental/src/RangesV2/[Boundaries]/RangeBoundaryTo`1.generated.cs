@@ -108,7 +108,8 @@ namespace CodeJam.RangesV2
 		#region Formattable logic
 		private static Func<T, string, IFormatProvider, string> GetFormattableCallback()
 		{
-			if (typeof(IFormattable).IsAssignableFrom(typeof(T)))
+			var type = Nullable.GetUnderlyingType(typeof(T)) ?? typeof(T);
+			if (typeof(IFormattable).IsAssignableFrom(type))
 			{
 				return (value, format, formatProvider) => ((IFormattable)value).ToString(format, formatProvider);
 			}
@@ -241,6 +242,7 @@ namespace CodeJam.RangesV2
 		/// The value of the boundary or the default(T) if <see cref="HasValue"/> property equals to <c>false</c>.
 		/// </summary>
 		/// <returns>he value of the boundary or default(T).</returns>
+		[Pure]
 		public T GetValueOrDefault() => _value;
 
 		/// <summary>
@@ -248,6 +250,7 @@ namespace CodeJam.RangesV2
 		/// </summary>
 		/// <param name="defaultValue">The default value.</param>
 		/// <returns>Value of the boundary or <paramref name="defaultValue"/>.</returns>
+		[Pure]
 		public T GetValueOrDefault(T defaultValue) => HasValue ? _value : defaultValue;
 		#endregion
 
@@ -262,6 +265,7 @@ namespace CodeJam.RangesV2
 		/// before calling the method.
 		/// </summary>
 		/// <returns>Complementation for the boundary.</returns>
+		[Pure]
 		public RangeBoundaryFrom<T> GetComplementation()
 		{
 			RangeBoundaryFromKind newKind;
@@ -283,6 +287,7 @@ namespace CodeJam.RangesV2
 		/// <summary>Checks that the boundary is complementation for specified boundary.</summary>
 		/// <param name="other">Another boundary.</param>
 		/// <returns><c>True</c>, if the boundary is complementation for specified boundary.</returns>
+		[Pure]
 		public bool IsComplementationFor(RangeBoundaryFrom<T> other) => HasValue && GetComplementation() == other;
 
 		/// <summary>
@@ -291,6 +296,7 @@ namespace CodeJam.RangesV2
 		/// </summary>
 		/// <param name="updateCallback">Callback returning new value of the boundary.</param>
 		/// <returns>Range boundary with the same kind but with a new value (if the current boundary has one).</returns>
+		[Pure]
 		public RangeBoundaryTo<T> WithValue([NotNull, InstantHandle] Func<T, T> updateCallback)
 		{
 			if (HasValue)
@@ -313,6 +319,7 @@ namespace CodeJam.RangesV2
 		/// <c>True</c> if the current boundary is equal to the <paramref name="other"/> parameter;
 		/// otherwise, false.
 		/// </returns>
+		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public bool Equals(RangeBoundaryTo<T> other) => _kind == other._kind && _equalsFunc(_value, other._value);
 
@@ -322,10 +329,12 @@ namespace CodeJam.RangesV2
 		/// <c>True</c> if <paramref name="obj"/> and the current boundary are the same type
 		/// and represent the same value; otherwise, false.
 		/// </returns>
+		[Pure]
 		public override bool Equals(object obj) => obj is RangeBoundaryTo<T> && Equals((RangeBoundaryTo<T>)obj);
 
 		/// <summary>Returns the hash code for the current boundary.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+		[Pure]
 		public override int GetHashCode()
 		{
 			if (HasValue)
@@ -350,6 +359,7 @@ namespace CodeJam.RangesV2
 		/// * Zero This object is equal to <paramref name="other"/>.
 		/// * Greater than zero This object is greater than <paramref name="other"/>.
 		/// </returns>
+		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public int CompareTo(RangeBoundaryTo<T> other)
 		{
@@ -386,6 +396,7 @@ namespace CodeJam.RangesV2
 		/// * Zero This object is equal to <paramref name="other"/>.
 		/// * Greater than zero This object is greater than <paramref name="other"/>.
 		/// </returns>
+		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public int CompareTo(RangeBoundaryFrom<T> other)
 		{
@@ -427,6 +438,7 @@ namespace CodeJam.RangesV2
 		/// </returns>
 		// DONTTOUCH. Any change will break the performance or the correctness of the comparison.
 		//   Please create issue at first
+		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public int CompareTo(T other) =>
 			CompareTo(Range.GetCompareToBoundary(other));
@@ -445,6 +457,7 @@ namespace CodeJam.RangesV2
 		/// * Zero This object is equal to <paramref name="obj"/>.
 		/// * Greater than zero This object is greater than <paramref name="obj"/>.
 		/// </returns>
+		[Pure]
 		int IComparable.CompareTo(object obj)
 		{
 			var otherA = obj as RangeBoundaryTo<T>?;
@@ -467,6 +480,7 @@ namespace CodeJam.RangesV2
 		#region ToString
 		/// <summary> Returns string representation of the boundary. </summary>
 		/// <returns> The string representation of the boundary. </returns>
+		[Pure]
 		public override string ToString()
 		{
 			// DONTTOUCH: do not convert this into switch with multiple returns.
@@ -500,6 +514,7 @@ namespace CodeJam.RangesV2
 		/// </summary>
 		/// <param name="format">The format string</param>
 		/// <returns> The string representation of the boundary. </returns>
+		[Pure, NotNull]
 		public string ToString(string format) => ToString(format, null);
 
 		/// <summary>
@@ -509,6 +524,7 @@ namespace CodeJam.RangesV2
 		/// <param name="format">The format string</param>
 		/// <param name="formatProvider">The format provider</param>
 		/// <returns> The string representation of the boundary. </returns>
+		[Pure]
 		public string ToString(string format, IFormatProvider formatProvider)
 		{
 			// DONTTOUCH: do not convert this into switch with multiple returns.

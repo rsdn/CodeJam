@@ -23,10 +23,14 @@ namespace CodeJam.RangesV2
 			AreEqual(RangeBoundaryFrom<int?>.NegativeInfinity.ToString(), "(-∞");
 			AreEqual(RangeBoundaryTo<int?>.PositiveInfinity.ToString(), "+∞)");
 
-			AreEqual(Range.BoundaryFrom(value1).ToString(), "[" + value1);
-			AreEqual(Range.BoundaryFromExclusive(value1).ToString(), "(" + value1);
-			AreEqual(Range.BoundaryTo(value1).ToString(), value1 + "]");
-			AreEqual(Range.BoundaryToExclusive(value1).ToString(), value1 + ")");
+			AreEqual(Range.BoundaryFrom(value1).ToString(), "[1");
+			AreEqual(Range.BoundaryFromExclusive(value1).ToString(), "(1");
+			AreEqual(Range.BoundaryTo(value1).ToString(), "1]");
+			AreEqual(Range.BoundaryToExclusive(value1).ToString(), "1)");
+
+			AreEqual(Range.BoundaryToExclusive(value1).ToString("000"), "001)");
+			AreEqual(RangeBoundaryTo<int?>.Empty.ToString("000"), "∅");
+			AreEqual(RangeBoundaryFrom<int?>.NegativeInfinity.ToString("000"), "(-∞");
 		}
 
 		[Test]
