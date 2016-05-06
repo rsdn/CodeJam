@@ -53,6 +53,7 @@
       <Link>Jetbrains.Annotations.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RangesV2Alternatives\RangeAlternativesUnionPerfTests.cs" />
     <Compile Include="RangesV2\RangeBoundaryBaseCase.cs" />
     <Compile Include="RangesV2\RangeBoundaryFactoryPerfTests.cs" />
     <Compile Include="RangesV2\RangeBoundaryCompareToPerfTests.cs" />

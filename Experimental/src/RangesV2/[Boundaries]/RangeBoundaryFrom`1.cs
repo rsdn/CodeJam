@@ -113,7 +113,8 @@ namespace CodeJam.RangesV2
 		#endregion
 
 		#region Fields & .ctor
-		private readonly T _value;
+		// DONTTOUCH: DO NOT mark fields as readonly. See NestedStructAccessPerfTests as a proof WHY.
+		private T _value;
 		private readonly RangeBoundaryFromKind _kind;
 
 		/// <summary>Creates a new range boundary.</summary>
@@ -285,22 +286,36 @@ namespace CodeJam.RangesV2
 		/// Creates a new boundary with updated value (if the current boundary has one).
 		/// If the boundary has no value the method returns the boundary unchanged.
 		/// </summary>
-		/// <param name="updateCallback">Callback returning new value of the boundary.</param>
+		/// <param name="newValueSelector">Callback to obtain a new value for the boundary. Used if the boundary has a value.</param>
 		/// <returns>Range boundary with the same kind but with a new value (if the current boundary has one).</returns>
 		[Pure]
-		public RangeBoundaryFrom<T> WithValue([NotNull, InstantHandle] Func<T, T> updateCallback)
+		public RangeBoundaryFrom<T> WithValue([NotNull, InstantHandle] Func<T, T> newValueSelector)
 		{
 			if (HasValue)
 			{
-				var newValue = updateCallback(_value);
+				var newValue = newValueSelector(_value);
 
-				return newValue == null
-					? NegativeInfinity
-					: AdjustAndCreate(newValue, _kind);
+				return AdjustAndCreate(newValue, _kind);
 			}
 
 			return this;
 		}
+
+		/// <summary>
+		/// Creates a new boundary with exclusive boundary kind if the current boundary has a value.
+		/// The original boundary is returned otherwise.
+		/// </summary>
+		/// <returns>Range boundary with exclusive boundary kind or the original one if the boundary has no value.</returns>
+		[Pure]
+		public RangeBoundaryFrom<T> ToExclusive() => IsInclusiveBoundary ? Range.BoundaryFromExclusive(_value) : this;
+
+		/// <summary>
+		/// Creates a new boundary with inclusive boundary kind if the current boundary has a value.
+		/// The original boundary is returned otherwise.
+		/// </summary>
+		/// <returns>Range boundary with inclusive boundary kind or the original one if the boundary has no value.</returns>
+		[Pure]
+		public RangeBoundaryFrom<T> ToInclusive() => IsExclusiveBoundary ? Range.BoundaryFrom(_value) : this;
 		#endregion
 
 		#region IEquatable<RangeBoundaryFrom<T>>
@@ -356,12 +371,8 @@ namespace CodeJam.RangesV2
 		{
 			int result;
 
-			// If any boundary has no value - compare kinds
-			if (!HasValue || !other.HasValue)
-			{
-				result = ((byte)_kind).CompareTo((byte)other._kind);
-			}
-			else
+			// If any boundary has no value - compare kinds only
+			if (HasValue && other.HasValue)
 			{
 				// Compare values
 				result = _compareFunc(_value, other._value);
@@ -371,6 +382,10 @@ namespace CodeJam.RangesV2
 				{
 					result = ((byte)_kind).CompareTo((byte)other._kind);
 				}
+			}
+			else
+			{
+				result = ((byte)_kind).CompareTo((byte)other._kind);
 			}
 			return result;
 		}
@@ -393,15 +408,11 @@ namespace CodeJam.RangesV2
 		{
 			int result;
 
-			// If any boundary has no value - compare kinds
-			if (!HasValue || !other.HasValue)
-			{
-				result = ((byte)_kind).CompareTo((byte)other.Kind);
-			}
-			else
+			// If any boundary has no value - compare kinds only
+			if (HasValue && other.HasValue)
 			{
 				// Compare values
-				result = _compareFunc(_value, other.Value);
+				result = _compareFunc(_value, other.GetValueOrDefault());
 
 				// Are same and any of is exclusive - compare kinds.
 				// ReSharper disable once BitwiseOperatorOnEnumWithoutFlags
@@ -410,6 +421,10 @@ namespace CodeJam.RangesV2
 				{
 					result = ((byte)_kind).CompareTo((byte)other.Kind);
 				}
+			}
+			else
+			{
+				result = ((byte)_kind).CompareTo((byte)other.Kind);
 			}
 			return result;
 		}

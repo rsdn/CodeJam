@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+
+using static CodeJam.PlatformDependent;
 
 namespace CodeJam.RangesV2
 {
@@ -11,6 +14,7 @@ namespace CodeJam.RangesV2
 		/// <param name="from">Boundary From.</param>
 		/// <param name="to">Boundary To.</param>
 		/// <returns></returns>
+		[MethodImpl(AggressiveInlining)]
 		public static Range<T> Create<T>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new Range<T>(from, to);
 
@@ -19,6 +23,7 @@ namespace CodeJam.RangesV2
 		/// <param name="fromValue">The value of the boundary From inclusive.</param>
 		/// <param name="toValue">The value of the boundary To inclusive.</param>
 		/// <returns>A new range.</returns>
+		[MethodImpl(AggressiveInlining)]
 		public static Range<T> Create<T>(T fromValue, T toValue) =>
 			new Range<T>(BoundaryFrom(fromValue), BoundaryTo(toValue));
 
@@ -27,6 +32,7 @@ namespace CodeJam.RangesV2
 		/// <param name="fromValue">The value of the boundary From exclusive.</param>
 		/// <param name="toValue">The value of the boundary To exclusive.</param>
 		/// <returns>A new range.</returns>
+		[MethodImpl(AggressiveInlining)]
 		public static Range<T> CreateExclusive<T>(T fromValue, T toValue) =>
 			new Range<T>(BoundaryFromExclusive(fromValue), BoundaryToExclusive(toValue));
 
@@ -35,6 +41,7 @@ namespace CodeJam.RangesV2
 		/// <param name="fromValue">The value of the boundary From exclusive.</param>
 		/// <param name="toValue">The value of the boundary To inclusive.</param>
 		/// <returns>A new range.</returns>
+		[MethodImpl(AggressiveInlining)]
 		public static Range<T> CreateExclusiveFrom<T>(T fromValue, T toValue) =>
 			new Range<T>(BoundaryFromExclusive(fromValue), BoundaryTo(toValue));
 
@@ -43,6 +50,7 @@ namespace CodeJam.RangesV2
 		/// <param name="fromValue">The value of the boundary From inclusive.</param>
 		/// <param name="toValue">The value of the boundary To exclusive.</param>
 		/// <returns>A new range.</returns>
+		[MethodImpl(AggressiveInlining)]
 		public static Range<T> CreateExclusiveTo<T>(T fromValue, T toValue) =>
 			new Range<T>(BoundaryFrom(fromValue), BoundaryToExclusive(toValue));
 		#endregion
@@ -53,6 +61,7 @@ namespace CodeJam.RangesV2
 		/// <param name="fromValue">The value of the boundary From inclusive.</param>
 		/// <param name="toValue">The value of the boundary To inclusive.</param>
 		/// <returns>A new range or empty range if the boundaries forms invalid range.</returns>
+		[MethodImpl(AggressiveInlining)]
 		public static Range<T> TryCreate<T>(T fromValue, T toValue) =>
 			TryCreateCore(
 				fromValue, RangeBoundaryFromKind.Inclusive,
@@ -63,6 +72,7 @@ namespace CodeJam.RangesV2
 		/// <param name="fromValue">The value of the boundary From exclusive.</param>
 		/// <param name="toValue">The value of the boundary To exclusive.</param>
 		/// <returns>A new range or empty range if the boundaries forms invalid range.</returns>
+		[MethodImpl(AggressiveInlining)]
 		public static Range<T> TryCreateExclusive<T>(T fromValue, T toValue) =>
 			TryCreateCore(
 				fromValue, RangeBoundaryFromKind.Exclusive,
@@ -73,6 +83,7 @@ namespace CodeJam.RangesV2
 		/// <param name="fromValue">The value of the boundary From exclusive.</param>
 		/// <param name="toValue">The value of the boundary To inclusive.</param>
 		/// <returns>A new range or empty range if the boundaries forms invalid range.</returns>
+		[MethodImpl(AggressiveInlining)]
 		public static Range<T> TryCreateExclusiveFrom<T>(T fromValue, T toValue) =>
 			TryCreateCore(
 				fromValue, RangeBoundaryFromKind.Exclusive,
@@ -83,6 +94,7 @@ namespace CodeJam.RangesV2
 		/// <param name="fromValue">The value of the boundary From inclusive.</param>
 		/// <param name="toValue">The value of the boundary To exclusive.</param>
 		/// <returns>A new range or empty range if the boundaries forms invalid range.</returns>
+		[MethodImpl(AggressiveInlining)]
 		public static Range<T> TryCreateExclusiveTo<T>(T fromValue, T toValue) =>
 			TryCreateCore(
 				fromValue, RangeBoundaryFromKind.Exclusive,

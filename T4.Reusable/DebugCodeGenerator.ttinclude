@@ -4,6 +4,9 @@
 
 	public void Run()
 	{
+		WriteLine(@"using static CodeJam.DebugCode;");
+		WriteLine("");
+
 		const string message =
 			"The name of the template should follow the pattern 'Debug' + AssertionFile + '.tt'. " +
 			"The name of the assertion class should be suffixed with 'Code'. " +
@@ -18,17 +21,8 @@
 		}
 
 		var oldClassName = newClassName.Substring("Debug".Length);
-		var oldClassPath = Host.ResolvePath(oldClassName + ".cs");
-		if (!File.Exists(oldClassPath))
-		{
-			throw new FileNotFoundException("File '" + oldClassPath + "' does not exist.");
-		}
-
-		WriteLine(@"using static CodeJam.DebugCode;");
-		WriteLine("");
-
 		Transform(
-			Host.ResolvePath(oldClassPath),
+			oldClassName + ".cs",
 			new ReplaceInfo // Rename the class (add Debug prefix to the name)
 			{
 				Pattern = "class " + oldClassName,

@@ -25,10 +25,30 @@ namespace CodeJam.RangesV2
 		/// <summary>Creates a new instance of the range.</summary>
 		/// <param name="from">Boundary From.</param>
 		/// <param name="to">Boundary To.</param>
-		/// <returns>Creates a new instance of the range with specified From-To boundaries.</returns>
+		/// <returns>A new instance of the range with specified From-To boundaries.</returns>
 		[Pure]
 		Range<T> IRangeFactory<T, Range<T>>.CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new Range<T>(from, to);
+
+		/// <summary>Creates a new instance of the range without validating its boundaries.</summary>
+		/// <param name="from">Boundary From.</param>
+		/// <param name="to">Boundary To.</param>
+		/// <returns>A new instance of the range with specified From-To boundaries.</returns>
+		[Pure]
+		[Obsolete(SkipsArgValidationObsolete)]
+		Range<T> IRangeFactory<T, Range<T>>.CreateRangeUnsafe(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+			new Range<T>(from, to, SkipsArgValidation);
+
+		/// <summary>Creates a new instance of the range, if possible.</summary>
+		/// <param name="from">Boundary From.</param>
+		/// <param name="to">Boundary To.</param>
+		/// <returns>
+		/// A new instance of the range with specified From-To boundaries,
+		/// or empty range, if from-to boundaries forms invalid range pair.
+		/// </returns>
+		[Pure]
+		Range<T> IRangeFactory<T, Range<T>>.TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+			Range.TryCreate(from, to);
 		#endregion
 
 		#region IEquatable<Range<T>>

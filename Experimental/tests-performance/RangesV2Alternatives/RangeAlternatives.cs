@@ -15,46 +15,87 @@ namespace CodeJam.RangesV2Alternatives
 		RangeBoundaryFrom<T> From { get; }
 		RangeBoundaryTo<T> To { get; }
 	}
+	[PublicAPI]
+	public static class RangeExtensions
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static TRange1 UnionCore<TRange1, TRange2, T>(this TRange1 range, TRange2 other)
+			where TRange1 : ITestRangeFactory<T, TRange1>
+			where TRange2 : ITestRange<T>
+		{
+			return range.CreateRange(
+				range.From <= other.From ? range.From : other.From,
+				(range.To.IsEmpty || range.To >= other.To) ? range.To : other.To);
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static TRange UnionAlt<T, TRange>(this TRange range, RangeStub<T> other)
+			where TRange : ITestRangeFactory<T, TRange>
+		{
+			return range.CreateRange(
+				range.From <= other.From ? range.From : other.From,
+				(range.To.IsEmpty || range.To >= other.To) ? range.To : other.To);
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static RangeStub<T> Union<T, TRange>(this RangeStub<T> range1, TRange range2)
+			where TRange : ITestRange<T> =>
+				UnionCore<RangeStub<T>, TRange, T>(range1, range2);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static RangeStubCompact<T> Union<T, TRange>(this RangeStubCompact<T> range1, TRange range2)
+			where TRange : ITestRange<T> =>
+				UnionCore<RangeStubCompact<T>, TRange, T>(range1, range2);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static RangeStub<T, TKey> Union<T, TKey, TRange>(this RangeStub<T, TKey> range1, TRange range2)
+			where TRange : ITestRange<T> =>
+				UnionCore<RangeStub<T, TKey>, TRange, T>(range1, range2);
+	}
+
 
 	[PublicAPI]
 	public interface ITestRangeFactory<T, out TRange> : ITestRange<T> where TRange : ITestRange<T>
 	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		TRange CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to);
 	}
 
 	[PublicAPI]
 	public struct RangeStub<T> : ITestRangeFactory<T, RangeStub<T>>
 	{
+		private readonly RangeBoundaryFrom<T> _from;
+		private readonly RangeBoundaryTo<T> _to;
+
 		public RangeStub(T from, T to)
 		{
-			From = new RangeBoundaryFrom<T>(from, RangeBoundaryFromKind.Inclusive);
-			To = new RangeBoundaryTo<T>(from, RangeBoundaryToKind.Inclusive);
+			_from = new RangeBoundaryFrom<T>(from, RangeBoundaryFromKind.Inclusive);
+			_to = new RangeBoundaryTo<T>(from, RangeBoundaryToKind.Inclusive);
 		}
 
 		public RangeStub(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to)
 		{
-			From = from;
-			To = to;
+			_from = from;
+			_to = to;
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public RangeStub<T> Union2(RangeStub<T> range2)
+		public RangeStub<T> UnionInstance(RangeStub<T> other)
 		{
-			var from = From;
-			var to = To;
-			if (from > range2.From)
-			{
-				from = range2.From;
-			}
-			if (to < range2.To)
-			{
-				to = range2.To;
-			}
-			return new RangeStub<T>(from, to);
+			//if (_from.IsEmpty)
+			//	return new RangeStub<T>(other._from, other._to);
+			//if (other._from.IsEmpty)
+			//	return this;
+
+			return new RangeStub<T>(
+				_from <= other._from ? _from : other._from,
+				(_to.IsEmpty || _to >= other._to) ? _to : other._to);
 		}
 
-		public RangeBoundaryFrom<T> From { get; }
-		public RangeBoundaryTo<T> To { get; }
+		// ReSharper disable once ConvertToAutoProperty
+		public RangeBoundaryFrom<T> From => _from;
+		// ReSharper disable once ConvertToAutoProperty
+		public RangeBoundaryTo<T> To => _to;
 
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public RangeStub<T> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
@@ -125,42 +166,5 @@ namespace CodeJam.RangesV2Alternatives
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public RangeStub<T, TKey> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new RangeStub<T, TKey>(from, to, Key);
-	}
-
-	[PublicAPI]
-	public static class RangeExtensions
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static TRange1 UnionCore<TRange1, TRange2, T>(this TRange1 range1, TRange2 range2)
-			where TRange1 : ITestRangeFactory<T, TRange1>
-			where TRange2 : ITestRange<T>
-		{
-			var from = range1.From;
-			var to = range1.To;
-			if (from > range2.From)
-			{
-				from = range2.From;
-			}
-			if (to < range2.To)
-			{
-				to = range2.To;
-			}
-			return range1.CreateRange(from, to); // range1.CreateRange(from, to);
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static RangeStub<T> Union<T, TRange>(this RangeStub<T> range1, TRange range2)
-			where TRange : ITestRange<T> =>
-				UnionCore<RangeStub<T>, TRange, T>(range1, range2);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static RangeStubCompact<T> Union<T, TRange>(this RangeStubCompact<T> range1, TRange range2)
-			where TRange : ITestRange<T> =>
-				UnionCore<RangeStubCompact<T>, TRange, T>(range1, range2);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static RangeStub<T, TKey> Union<T, TKey, TRange>(this RangeStub<T, TKey> range1, TRange range2)
-			where TRange : ITestRange<T> =>
-				UnionCore<RangeStub<T, TKey>, TRange, T>(range1, range2);
 	}
 }
