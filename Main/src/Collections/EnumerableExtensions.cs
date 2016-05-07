@@ -131,7 +131,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">The <see cref="IEnumerable{T}"/> to create a <see cref="HashSet{T}"/> from.</param>
 		/// <param name="comparer">The <see cref="IEqualityComparer{T}"/> implementation to use
-		/// to comparing values in the set, or <c>null</c> to use tghe default implementation for the set type.</param>
+		/// to comparing values in the set, or <c>null</c> to use the default implementation for the set type.</param>
 		/// <returns>
 		/// A <see cref="HashSet{T}"/> that contains elements from the input sequence.
 		/// </returns>
