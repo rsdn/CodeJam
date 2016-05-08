@@ -126,6 +126,8 @@ namespace CodeJam.RangesV2
 		/// <param name="range">The source range.</param>
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the range contains another range.</returns>
+		// DONTTOUCH: The last parameter should be nongeneric to avoid overload resolution conflicts
+		// WAITINGFOR: https://github.com/dotnet/roslyn/issues/250 (case 2)
 		public static bool Contains<T, TKey, TRange>(this TRange range, Range<T, TKey> other)
 			where TRange : IRange<T>
 		{
@@ -197,6 +199,88 @@ namespace CodeJam.RangesV2
 
 			return value;
 		}
+		#endregion
+
+		#region StartsAfter & EndsBefore
+		/// <summary>Determines whether the range starts after the value specified.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey">The type of the range key</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="value">The value to check.</param>
+		/// <returns><c>true</c>, if the range starts after the value.</returns>
+		public static bool StartsAfter<T, TKey>(this Range<T, TKey> range, T value) =>
+			RangeBoundaryFrom<T>.IsValid(value) && range.From > Range.BoundaryFrom(value);
+
+		/// <summary>Determines whether the range starts after the boundary specified.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey">The type of the range key</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="other">The boundary to check.</param>
+		/// <returns><c>true</c>, if the range starts after the boundary.</returns>
+		public static bool StartsAfter<T, TKey>(this Range<T, TKey> range, RangeBoundaryFrom<T> other) =>
+			other.IsNotEmpty && range.From > other;
+
+		/// <summary>Determines whether the range starts after the boundary specified.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey">The type of the range key</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="other">The boundary to check.</param>
+		/// <returns><c>true</c>, if the range starts after the boundary.</returns>
+		public static bool StartsAfter<T, TKey>(this Range<T, TKey> range, RangeBoundaryTo<T> other) =>
+			other.IsNotEmpty && range.From > other;
+
+		/// <summary>Determines whether the range starts after the range specified.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey">The type of the range key</typeparam>
+		/// <typeparam name="TRange">The type of the range.</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="other">The range to check.</param>
+		/// <returns><c>true</c>, if the range starts after another range.</returns>
+		// DONTTOUCH: The last parameter should be nongeneric to avoid overload resolution conflicts
+		// WAITINGFOR: https://github.com/dotnet/roslyn/issues/250 (case 2)
+		public static bool StartsAfter<T, TKey, TRange>(this TRange range, Range<T, TKey> other)
+			where TRange : IRange<T> =>
+				other.IsNotEmpty && range.From > other.To;
+
+		/// <summary>Determines whether the range ends before the value specified.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey">The type of the range key</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="value">The value to check.</param>
+		/// <returns><c>true</c>, if the range ends before the value.</returns>
+		public static bool EndsBefore<T, TKey>(this Range<T, TKey> range, T value) =>
+			range.IsNotEmpty && RangeBoundaryTo<T>.IsValid(value) && range.To < Range.BoundaryTo(value);
+
+		/// <summary>Determines whether the range ends before the boundary specified.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey">The type of the range key</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="other">The boundary to check.</param>
+		/// <returns><c>true</c>, if the range ends before the boundary.</returns>
+		public static bool EndsBefore<T, TKey>(this Range<T, TKey> range, RangeBoundaryFrom<T> other) =>
+			range.IsNotEmpty && other.IsNotEmpty && range.To < other;
+
+		/// <summary>Determines whether the range ends before the boundary specified.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey">The type of the range key</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="other">The boundary to check.</param>
+		/// <returns><c>true</c>, if the range ends before the boundary.</returns>
+		public static bool EndsBefore<T, TKey>(this Range<T, TKey> range, RangeBoundaryTo<T> other) =>
+			range.IsNotEmpty && other.IsNotEmpty && range.To < other;
+
+		/// <summary>Determines whether the range ends before the range specified.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey">The type of the range key</typeparam>
+		/// <typeparam name="TRange">The type of the range.</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="other">The range to check.</param>
+		/// <returns><c>true</c>, if the range ends before another range.</returns>
+		// DONTTOUCH: The last parameter should be nongeneric to avoid overload resolution conflicts
+		// WAITINGFOR: https://github.com/dotnet/roslyn/issues/250 (case 2)
+		public static bool EndsBefore<T, TKey, TRange>(this TRange range, Range<T, TKey> other)
+			where TRange : IRange<T> =>
+				range.IsNotEmpty && other.IsNotEmpty && range.To < other.From;
 		#endregion
 	}
 }

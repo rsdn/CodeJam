@@ -266,7 +266,6 @@ namespace CodeJam.RangesV2
 			IsFalse(range.HasIntersection(3, 4));
 		}
 
-
 		[Test]
 		public static void TestRangeAdjust()
 		{
@@ -296,6 +295,122 @@ namespace CodeJam.RangesV2
 			Throws<ArgumentException>(() => range.Adjust(double.NegativeInfinity));
 			Throws<ArgumentException>(() => range.Adjust(1.5));
 			Throws<ArgumentException>(() => range.Adjust(double.PositiveInfinity));
+		}
+
+		[Test]
+		public static void TestRangeStartsAfter()
+		{
+			double? empty = null;
+			double? value1 = 1;
+			double? value2 = 2;
+			var emptyFrom = RangeBoundaryFrom<double?>.Empty;
+			var emptyTo = RangeBoundaryTo<double?>.Empty;
+
+			var range = Range.Create(value1, value2);
+			IsTrue(range.StartsAfter(null));
+			IsTrue(range.StartsAfter(double.NegativeInfinity));
+			IsFalse(range.StartsAfter(double.PositiveInfinity));
+			IsFalse(range.StartsAfter(RangeBoundaryFrom<double?>.Empty));
+			IsFalse(range.StartsAfter(RangeBoundaryTo<double?>.Empty));
+			IsTrue(range.StartsAfter(0));
+			IsFalse(range.StartsAfter(1));
+			IsFalse(range.StartsAfter(1.5));
+			IsFalse(range.StartsAfter(2));
+			IsFalse(range.StartsAfter(3));
+
+			range = Range.Create(emptyFrom, emptyTo);
+			IsFalse(range.StartsAfter(null));
+			IsFalse(range.StartsAfter(double.NegativeInfinity));
+			IsFalse(range.StartsAfter(double.PositiveInfinity));
+			IsFalse(range.StartsAfter(RangeBoundaryFrom<double?>.Empty));
+			IsFalse(range.StartsAfter(RangeBoundaryTo<double?>.Empty));
+			IsFalse(range.StartsAfter(0));
+
+			range = Range.CreateExclusive(empty, empty);
+			IsFalse(range.StartsAfter(null));
+			IsFalse(range.StartsAfter(double.NegativeInfinity));
+			IsFalse(range.StartsAfter(double.PositiveInfinity));
+			IsFalse(range.StartsAfter(RangeBoundaryFrom<double?>.Empty));
+			IsFalse(range.StartsAfter(RangeBoundaryTo<double?>.Empty));
+			IsFalse(range.StartsAfter(0));
+
+			range = Range.CreateExclusive(value1, value2);
+			IsTrue(range.StartsAfter(1));
+			IsFalse(range.StartsAfter(1.5));
+			IsFalse(range.StartsAfter(2));
+
+			range = Range.CreateExclusive(value1, value2);
+			IsTrue(range.StartsAfter(Range.BoundaryFrom<double?>(1)));
+			IsFalse(range.StartsAfter(Range.BoundaryTo<double?>(2)));
+			IsFalse(range.StartsAfter(Range.BoundaryFromExclusive<double?>(1)));
+			IsFalse(range.StartsAfter(Range.BoundaryFromExclusive<double?>(1.5)));
+			IsFalse(range.StartsAfter(Range.BoundaryFromExclusive<double?>(2)));
+			IsTrue(range.StartsAfter(Range.BoundaryToExclusive<double?>(1)));
+			IsFalse(range.StartsAfter(Range.BoundaryToExclusive<double?>(1.5)));
+			IsFalse(range.StartsAfter(Range.BoundaryToExclusive<double?>(2)));
+
+			Throws<ArgumentException>(
+				() => range.StartsAfter(Range.BoundaryFrom<double?>(double.PositiveInfinity)));
+			Throws<ArgumentException>(
+				() => range.StartsAfter(Range.BoundaryTo<double?>(double.NegativeInfinity)));
+		}
+
+		[Test]
+		public static void TestRangeEndsBefore()
+		{
+			double? empty = null;
+			double? value1 = 1;
+			double? value2 = 2;
+			var emptyFrom = RangeBoundaryFrom<double?>.Empty;
+			var emptyTo = RangeBoundaryTo<double?>.Empty;
+
+			var range = Range.Create(value1, value2);
+			IsTrue(range.EndsBefore(null));
+			IsFalse(range.EndsBefore(double.NegativeInfinity));
+			IsTrue(range.EndsBefore(double.PositiveInfinity));
+			IsFalse(range.EndsBefore(RangeBoundaryFrom<double?>.Empty));
+			IsFalse(range.EndsBefore(RangeBoundaryTo<double?>.Empty));
+			IsFalse(range.EndsBefore(0));
+			IsFalse(range.EndsBefore(1));
+			IsFalse(range.EndsBefore(1.5));
+			IsFalse(range.EndsBefore(2));
+			IsTrue(range.EndsBefore(3));
+
+			range = Range.Create(emptyFrom, emptyTo);
+			IsFalse(range.EndsBefore(null));
+			IsFalse(range.EndsBefore(double.NegativeInfinity));
+			IsFalse(range.EndsBefore(double.PositiveInfinity));
+			IsFalse(range.EndsBefore(RangeBoundaryFrom<double?>.Empty));
+			IsFalse(range.EndsBefore(RangeBoundaryTo<double?>.Empty));
+			IsFalse(range.EndsBefore(0));
+
+			range = Range.CreateExclusive(empty, empty);
+			IsFalse(range.EndsBefore(null));
+			IsFalse(range.EndsBefore(double.NegativeInfinity));
+			IsFalse(range.EndsBefore(double.PositiveInfinity));
+			IsFalse(range.EndsBefore(RangeBoundaryFrom<double?>.Empty));
+			IsFalse(range.EndsBefore(RangeBoundaryTo<double?>.Empty));
+			IsFalse(range.EndsBefore(0));
+
+			range = Range.CreateExclusive(value1, value2);
+			IsFalse(range.EndsBefore(1));
+			IsFalse(range.EndsBefore(1.5));
+			IsTrue(range.EndsBefore(2));
+
+			range = Range.CreateExclusive(value1, value2);
+			IsFalse(range.EndsBefore(Range.BoundaryFrom<double?>(1)));
+			IsTrue(range.EndsBefore(Range.BoundaryTo<double?>(2)));
+			IsFalse(range.EndsBefore(Range.BoundaryFromExclusive<double?>(1)));
+			IsFalse(range.EndsBefore(Range.BoundaryFromExclusive<double?>(1.5)));
+			IsTrue(range.EndsBefore(Range.BoundaryFromExclusive<double?>(2)));
+			IsFalse(range.EndsBefore(Range.BoundaryToExclusive<double?>(1)));
+			IsFalse(range.EndsBefore(Range.BoundaryToExclusive<double?>(1.5)));
+			IsFalse(range.EndsBefore(Range.BoundaryToExclusive<double?>(2)));
+
+			Throws<ArgumentException>(
+				() => range.EndsBefore(Range.BoundaryFrom<double?>(double.PositiveInfinity)));
+			Throws<ArgumentException>(
+				() => range.EndsBefore(Range.BoundaryTo<double?>(double.NegativeInfinity)));
 		}
 	}
 }
