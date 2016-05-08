@@ -126,6 +126,30 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Expr.tt</DependentUpon>
     </Compile>
+    <Compile Include="Mapping\CodeJamConvertException.cs" />
+    <Compile Include="Mapping\CodeJamMappingException.cs" />
+    <Compile Include="Mapping\ConvertBuilder.cs" />
+    <Compile Include="Mapping\Converter.cs" />
+    <Compile Include="Mapping\ConvertInfo.cs" />
+    <Compile Include="Mapping\ConvertT.cs" />
+    <Compile Include="Mapping\ConvertTo.cs" />
+    <Compile Include="Mapping\DefaultValue.cs" />
+    <Compile Include="Mapping\DefaultValueExpression.cs" />
+    <Compile Include="Mapping\DefaultValueT.cs" />
+    <Compile Include="Mapping\IGenericInfoProvider.cs" />
+    <Compile Include="Mapping\MappingSchema.cs" />
+    <Compile Include="Mapping\MappingSchemaInfo.cs" />
+    <Compile Include="Mapping\MapValue.cs" />
+    <Compile Include="Mapping\MapValueAttribute.cs" />
+    <Compile Include="Metadata\AttributeInfo.cs" />
+    <Compile Include="Metadata\AttributeReader.cs" />
+    <Compile Include="Metadata\FluentMetadataReader.cs" />
+    <Compile Include="Metadata\IMetadataReader.cs" />
+    <Compile Include="Metadata\MetadataException.cs" />
+    <Compile Include="Metadata\MetadataReader.cs" />
+    <Compile Include="Metadata\MetaMemberInfo.cs" />
+    <Compile Include="Metadata\MetaTypeInfo.cs" />
+    <Compile Include="Metadata\XmlAttributeReader.cs" />
     <Compile Include="Objects.cs" />
     <Compile Include="Reflection\MemberAccessor.cs" />
     <Compile Include="Reflection\NamespaceDoc.cs" />

@@ -45,6 +45,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\PartitionPointTest.cs" />
@@ -81,6 +83,12 @@
     <Compile Include="IO\TempDataTests.cs" />
     <Compile Include="DisposableTests.cs" />
     <Compile Include="Collections\QueryableExtensionsTests.cs" />
+    <Compile Include="Mapping\ChangeTypeTests.cs" />
+    <Compile Include="Mapping\ConvertTests.cs" />
+    <Compile Include="Mapping\DefaultValueTests.cs" />
+    <Compile Include="Mapping\MappingSchemaTests.cs" />
+    <Compile Include="Metadata\AttributeReaderTests.cs" />
+    <Compile Include="Metadata\XmlReaderTests.cs" />
     <Compile Include="Reflection\AssemblyExtensionsTest.cs" />
     <Compile Include="Reflection\CreateInstanceTests.cs" />
     <Compile Include="Expressions\ExprTests.cs" />
