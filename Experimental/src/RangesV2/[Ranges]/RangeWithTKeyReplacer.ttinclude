@@ -46,6 +46,26 @@
 			additionalReplaces,
 			new ReplaceInfo // Range<T, TKey>
 			{
+				Pattern = @"Range<T>",
+				Replacement = "Range<T, TKey>",
+				ThrowOnFail = true,
+				WholeWord = true
+			},
+			new ReplaceInfo // Range<T, TKey2
+			{
+				Pattern = @"(static.+?)<T([^>]*?>\()((?:.|\r|\n)*?this\b)",
+				Replacement = "$1<T, TKey$2$3",
+				ThrowOnFail = true
+			},
+			new ReplaceInfo // Fix generic params XML docs
+			{
+				Pattern = @"(\r\n.+?)(<typeparam name=""T"">(?:.|\r|\n)*?</typeparam>)",
+				Replacement = @"$1$2$1<typeparam name=""TKey"">The type of the range key</typeparam>",
+				ThrowOnFail = true
+			});
+			/*
+			new ReplaceInfo // Range<T, TKey>
+			{
 				Pattern = @"static Range<T>(.*?<T)(.*?\((?:\s|\r|n)*this Range<T)",
 				Replacement = "static Range<T, TKey>$1, TKey$2, TKey",
 				ThrowOnFail = true
@@ -62,5 +82,6 @@
 				Replacement = @"$1$2$1<typeparam name=""TKey"">The type of the range key</typeparam>",
 				ThrowOnFail = true
 			});
+			*/
 	}
 #>

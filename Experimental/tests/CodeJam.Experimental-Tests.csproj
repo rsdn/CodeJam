@@ -50,12 +50,12 @@
     <Compile Include="CmdLine\PrintUsageTest.cs" />
     <Compile Include="Collections\DisjointSetsTest.cs" />
     <Compile Include="Parsing\ParseHelperTests.cs" />
-    <Compile Include="RangesV2\RangeWithTKeyExtensionsTests.generated.cs">
-      <DependentUpon>RangeWithTKeyExtensionsTests.tt</DependentUpon>
+    <Compile Include="RangesV2\RangeTests.ExtensionsWithKey.generated.cs">
+      <DependentUpon>RangeTests.ExtensionsWithKey.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="RangesV2\RangeExtensionsTests.cs" />
+    <Compile Include="RangesV2\RangeTests.Extensions.cs" />
     <Compile Include="RangesV2\RangeTests.cs" />
     <Compile Include="RangesV2\RangeBoundaryFromToTests.cs" />
     <Compile Include="RangesV2\RangeBoundaryFromTests.cs" />
@@ -86,9 +86,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="RangesV2\RangeWithTKeyExtensionsTests.tt">
+    <Content Include="RangesV2\RangeTests.ExtensionsWithKey.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RangeWithTKeyExtensionsTests.generated.cs</LastGenOutput>
+      <LastGenOutput>RangeTests.ExtensionsWithKey.generated.cs</LastGenOutput>
     </Content>
     <Content Include="RangesV2\RangeBoundaryToTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

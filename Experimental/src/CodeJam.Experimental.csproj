@@ -80,12 +80,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="RangesV2\[RangeOperators]\RangeExtensions.ForRangeWithKey.generated.cs">
+    <Compile Include="RangesV2\[RangeExtensions]\RangeExtensions.ForRangeWithKey.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RangeExtensions.ForRangeWithKey.tt</DependentUpon>
     </Compile>
-    <Compile Include="RangesV2\[RangeOperators]\RangeExtensions.ForRange.cs" />
+    <Compile Include="RangesV2\[RangeExtensions]\RangeExtensions.ForRange.cs" />
     <Compile Include="RangesV2\[Ranges]\Range`2.NonGenerated.cs" />
     <Compile Include="RangesV2\[Ranges]\Range`2.generated.cs">
       <AutoGen>True</AutoGen>
@@ -107,7 +107,7 @@
     <Compile Include="RangesV2\[Ranges]\IRange`1.cs" />
     <Compile Include="RangesV2\Range.cs" />
     <Compile Include="RangesV2\RangeInternal.cs" />
-    <Compile Include="RangesV2\[RangeOperators]\RangeExtensions.cs" />
+    <Compile Include="RangesV2\[RangeExtensions]\RangeExtensions.cs" />
     <Compile Include="RangesV2\[Boundaries]\RangeBoundaryKind.cs" />
     <Compile Include="RangesV2\[Ranges]\Range`1.NonGenerated.cs" />
     <Compile Include="RangesV2\[Ranges]\Range`1.cs" />
@@ -132,7 +132,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Range.FactoryMethods.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="RangesV2\[RangeOperators]\RangeExtensions.ForRangeWithKey.tt">
+    <Content Include="RangesV2\[RangeExtensions]\RangeExtensions.ForRangeWithKey.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RangeExtensions.ForRangeWithKey.generated.cs</LastGenOutput>
     </Content>

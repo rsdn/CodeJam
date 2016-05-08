@@ -10,11 +10,12 @@ namespace CodeJam.RangesV2
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	public static partial class RangeExtensions
 	{
+		#region Updating a range
 		private static TRange MakeInclusiveCore<T, TRange>(
 			TRange range, Func<T, T> fromValueSelector, Func<T, T> toValueSelector)
 			where TRange : IRangeFactory<T, TRange>
 		{
-			if (range.From.IsEmpty || (!range.From.IsExclusiveBoundary && !range.To.IsExclusiveBoundary))
+			if (range.IsEmpty || (!range.From.IsExclusiveBoundary && !range.To.IsExclusiveBoundary))
 			{
 				return range;
 			}
@@ -37,7 +38,7 @@ namespace CodeJam.RangesV2
 			TRange range, Func<T, T> fromValueSelector, Func<T, T> toValueSelector)
 			where TRange : IRangeFactory<T, TRange>
 		{
-			if (range.From.IsEmpty || (!range.From.IsInclusiveBoundary && !range.To.IsInclusiveBoundary))
+			if (range.IsEmpty || (!range.From.IsInclusiveBoundary && !range.To.IsInclusiveBoundary))
 			{
 				return range;
 			}
@@ -65,7 +66,6 @@ namespace CodeJam.RangesV2
 			return range.TryCreateRange(from, to);
 		}
 
-		#region Self-operations
 		/// <summary>Creates a range without a range key.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
 		/// <typeparam name="TKey">The type of the key.</typeparam>

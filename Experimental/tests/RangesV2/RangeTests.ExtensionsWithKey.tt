@@ -2,7 +2,7 @@
 <#@ include file="$(SolutionDir)Experimental\src\RangesV2\[Ranges]\RangeWithTKeyReplacer.ttinclude" #>
 <#
 		Transform(
-			"RangeExtensionsTests.cs",
+			"RangeTests.Extensions.cs",
 			new ReplaceInfo // Adds a range to a
 			{
 				Pattern = "TestRange",
@@ -12,7 +12,7 @@
 			new ReplaceInfo // Adds a range to a
 			{
 				Pattern = @"(Range.Create.*?\([^,\)]+?,[^,\)]+?)\)",
-				Replacement = @"$1, '_')",
+				Replacement = @"$1, RangeKey)",
 				ThrowOnFail = true
 			});
 #>

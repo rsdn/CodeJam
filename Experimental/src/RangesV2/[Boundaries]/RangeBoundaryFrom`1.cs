@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
@@ -49,11 +50,12 @@ namespace CodeJam.RangesV2
 			? Operators<T>.PositiveInfinity
 			: default(T);
 
-		/// <summary>Helper method to create a boundary that handles default and infinite values.</summary>
+		/// <summary>Infrastructure helper method to create a boundary that handles default and infinite values.</summary>
 		/// <param name="value">The value of the boundary.</param>
 		/// <param name="boundaryKind">The kind of the boundary.</param>
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		[MethodImpl(AggressiveInlining)]
-		internal static RangeBoundaryFrom<T> AdjustAndCreate(T value, RangeBoundaryFromKind boundaryKind)
+		public static RangeBoundaryFrom<T> AdjustAndCreate(T value, RangeBoundaryFromKind boundaryKind)
 		{
 			if (_hasNegativeInfinity && _equalsFunc(value, _negativeInfinity) && boundaryKind != RangeBoundaryFromKind.Empty)
 			{
@@ -75,11 +77,12 @@ namespace CodeJam.RangesV2
 #pragma warning restore 618
 		}
 
-		/// <summary>Checks if the value can be used as the value of the boundary.</summary>
+		/// <summary>Infrastructure helper method to check if the value can be used as the value of the boundary.</summary>
 		/// <param name="value">The value to check.</param>
 		/// <returns><c>true</c> if it is safe to pass the value as a boundary constructor parameter.</returns>
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		[MethodImpl(AggressiveInlining)]
-		internal static bool IsValid(T value)
+		public static bool IsValid(T value)
 		{
 			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity))
 			{

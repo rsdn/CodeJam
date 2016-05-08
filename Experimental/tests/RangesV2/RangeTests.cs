@@ -13,8 +13,11 @@ namespace CodeJam.RangesV2
 	[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
 	[SuppressMessage("ReSharper", "ConvertToConstant.Local")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
-	public class RangeTests
+	public static partial class RangeTests
 	{
+		private const char RangeKey = '_';
+		private const string RangeKey2 = ">";
+
 		[Test]
 		public static void TestRangeCreate()
 		{

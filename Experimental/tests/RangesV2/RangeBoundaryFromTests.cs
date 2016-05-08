@@ -50,6 +50,10 @@ namespace CodeJam.RangesV2
 			AreNotEqual(
 				new RangeBoundaryFrom<int?>(value1, RangeBoundaryFromKind.Exclusive),
 				Range.BoundaryFromExclusive(value2));
+
+			AreNotEqual(
+				RangeBoundaryFrom<int>.NegativeInfinity,
+				Range.BoundaryFrom(0));
 		}
 
 		[Test]
