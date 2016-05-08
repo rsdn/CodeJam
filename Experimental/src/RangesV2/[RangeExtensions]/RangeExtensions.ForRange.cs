@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CodeJam.RangesV2
 {
 	/// <summary>Extension methods for <seealso cref="Range{T}"/>.</summary>
+	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	public static partial class RangeExtensions
 	{
 		#region Updating a range
@@ -13,8 +15,26 @@ namespace CodeJam.RangesV2
 		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if the boundary is exclusive.</param>
 		/// <returns>A range with inclusive boundaries.</returns>
 		public static Range<T> MakeInclusive<T>(
-			this Range<T> range, Func<T, T> fromValueSelector, Func<T, T> toValueSelector) =>
-				MakeInclusiveCore(range, fromValueSelector, toValueSelector);
+			this Range<T> range, Func<T, T> fromValueSelector, Func<T, T> toValueSelector)
+		{
+			if (range.IsEmpty || (!range.From.IsExclusiveBoundary && !range.To.IsExclusiveBoundary))
+			{
+				return range;
+			}
+
+			var from = range.From;
+			if (from.IsExclusiveBoundary)
+			{
+				from = Range.BoundaryFrom(fromValueSelector(from.GetValueOrDefault()));
+			}
+			var to = range.To;
+			if (to.IsExclusiveBoundary)
+			{
+				to = Range.BoundaryTo(toValueSelector(to.GetValueOrDefault()));
+			}
+
+			return range.TryCreateRange(from, to);
+		}
 
 		/// <summary>Replaces inclusive boundaries with exclusive ones with the values from the selector callbacks</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -23,8 +43,26 @@ namespace CodeJam.RangesV2
 		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if the boundary is inclusive.</param>
 		/// <returns>A range with exclusive boundaries.</returns>
 		public static Range<T> MakeExclusive<T>(
-			this Range<T> range, Func<T, T> fromValueSelector, Func<T, T> toValueSelector) =>
-				MakeExclusiveCore(range, fromValueSelector, toValueSelector);
+			this Range<T> range, Func<T, T> fromValueSelector, Func<T, T> toValueSelector)
+		{
+			if (range.IsEmpty || (!range.From.IsInclusiveBoundary && !range.To.IsInclusiveBoundary))
+			{
+				return range;
+			}
+
+			var from = range.From;
+			if (from.IsInclusiveBoundary)
+			{
+				from = Range.BoundaryFromExclusive(fromValueSelector(from.GetValueOrDefault()));
+			}
+			var to = range.To;
+			if (to.IsInclusiveBoundary)
+			{
+				to = Range.BoundaryToExclusive(toValueSelector(to.GetValueOrDefault()));
+			}
+
+			return range.TryCreateRange(from, to);
+		}
 
 		/// <summary>Updates the values of the boundaries of the range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -32,7 +70,7 @@ namespace CodeJam.RangesV2
 		/// <param name="valueSelector">Callback to obtain a new value for the boundaries. Used if boundary has a value.</param>
 		/// <returns>A range with new values.</returns>
 		public static Range<T> WithValues<T>(this Range<T> range, Func<T, T> valueSelector) =>
-			WithValuesCore(range, valueSelector, valueSelector);
+			WithValues(range, valueSelector, valueSelector);
 
 		/// <summary>Updates the values of the boundaries of the range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -40,8 +78,12 @@ namespace CodeJam.RangesV2
 		/// <param name="fromValueSelector">Callback to obtain a new value for the From boundary. Used if boundary has a value.</param>
 		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if boundary has a value.</param>
 		/// <returns>A range with new values.</returns>
-		public static Range<T> WithValues<T>(this Range<T> range, Func<T, T> fromValueSelector, Func<T, T> toValueSelector) =>
-			WithValuesCore(range, fromValueSelector, toValueSelector);
+		public static Range<T> WithValues<T>(this Range<T> range, Func<T, T> fromValueSelector, Func<T, T> toValueSelector)
+		{
+			var from = range.From.WithValue(fromValueSelector);
+			var to = range.To.WithValue(toValueSelector);
+			return range.TryCreateRange(from, to);
+		}
 
 		/// <summary>Creates a new range with the key specified.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -251,6 +293,158 @@ namespace CodeJam.RangesV2
 		public static bool EndsBefore<T, TRange>(this TRange range, Range<T> other)
 			where TRange : IRange<T> =>
 				range.IsNotEmpty && other.IsNotEmpty && range.To < other.From;
+		#endregion
+
+		#region Union/Extend
+		/// <summary>Returns a union range containing both of the ranges.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="from">The boundary From value.</param>
+		/// <param name="to">The boundary To value.</param>
+		/// <returns>A union range containing both of the ranges.</returns>
+		public static Range<T> Union<T>(this Range<T> range, T from, T to) =>
+			Union(range, Range.Create(from, to));
+
+		/// <summary>Returns a union range containing both of the ranges.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TRange">The type of another range.</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="other">The range to union with.</param>
+		/// <returns>A union range containing both of the ranges.</returns>
+		public static Range<T> Union<T, TRange>(this Range<T> range, TRange other)
+			where TRange : IRange<T>
+		{
+			if (range.IsEmpty)
+				return range.TryCreateRange(other.From, other.To);
+
+			if (other.IsEmpty)
+				return range;
+
+			return range.TryCreateRange(
+				other.From >= range.From ? range.From : other.From,
+				range.To >= other.To ? range.To : other.To);
+		}
+
+		/// <summary>Extends the range from the left.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="from">A new value From.</param>
+		/// <returns>A range with a new From boundary or the source fange if the new boundary is greater than original.</returns>
+		public static Range<T> ExtendFrom<T>(this Range<T> range, T from) =>
+			ExtendFrom(range, Range.BoundaryFrom(from));
+
+		/// <summary>Extends the range from the left.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="from">A new boundary From.</param>
+		/// <returns>A range with a new From boundary or the source fange if the new boundary is greater than original.</returns>
+		public static Range<T> ExtendFrom<T>(this Range<T> range, RangeBoundaryFrom<T> from)
+		{
+			if (range.IsEmpty || from.IsEmpty)
+				return range;
+
+			return range.From <= from
+				? range
+				: range.TryCreateRange(from, range.To);
+		}
+
+		/// <summary>Extends the range from the right.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="to">A new value To.</param>
+		/// <returns>A range with a new To boundary or the source fange if the new boundary is less than original.</returns>
+		public static Range<T> ExtendTo<T>(this Range<T> range, T to) =>
+			ExtendTo(range, Range.BoundaryTo(to));
+
+		/// <summary>Extends the range from the right.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="to">A new boundary To.</param>
+		/// <returns>A range with a new To boundary or the source fange if the new boundary is less than original.</returns>
+		public static Range<T> ExtendTo<T>(this Range<T> range, RangeBoundaryTo<T> to)
+		{
+			if (range.IsEmpty || to.IsEmpty)
+				return range;
+
+			return range.To >= to
+				? range
+				: range.TryCreateRange(range.From, to);
+		}
+		#endregion
+
+		#region Intersect/Trim
+		/// <summary>Returns an intersection of the the ranges.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="from">The boundary From value.</param>
+		/// <param name="to">The boundary To value.</param>
+		/// <returns>An intersection range or empty range if the ranges do not intersect.</returns>
+		public static Range<T> Intersect<T>(this Range<T> range, T from, T to) =>
+			Intersect(range, Range.Create(from, to));
+
+		/// <summary>Returns an intersection of the the ranges.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TRange">The type of another range.</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="other">The range to intersect with.</param>
+		/// <returns>An intersection range or empty range if the ranges do not intersect.</returns>
+		public static Range<T> Intersect<T, TRange>(this Range<T> range, TRange other)
+			where TRange : IRange<T> =>
+				range.TryCreateRange(
+					(range.IsEmpty || range.From >= other.From) ? range.From : other.From,
+					range.To <= other.To ? range.To : other.To);
+
+		/// <summary>Trims the range from the left.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="from">A new value From.</param>
+		/// <returns>
+		/// A range with a new From boundary
+		/// or the source fange if the new boundary is less than original
+		/// or an empty range if the new From boundary is greater than To boundary of the range.
+		/// </returns>
+		public static Range<T> TrimFrom<T>(this Range<T> range, T from) =>
+			TrimFrom(range, Range.BoundaryFrom(from));
+
+		/// <summary>Trims the range from the left.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="from">A new boundary From.</param>
+		/// <returns>
+		/// A range with a new From boundary
+		/// or the source fange if the new boundary is less than original
+		/// or an empty range if the new From boundary is greater than To boundary of the range.
+		/// </returns>
+		public static Range<T> TrimFrom<T>(this Range<T> range, RangeBoundaryFrom<T> from) =>
+			from.IsNotEmpty && range.From >= from
+				? range
+				: range.TryCreateRange(from, range.To);
+
+		/// <summary>Trims the range from the right.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="to">A new value To.</param>
+		/// <returns>
+		/// A range with a new To boundary
+		/// or the source fange if the new boundary is greater than original
+		/// or an empty range if the new To boundary is less than From boundary of the range.
+		/// </returns>
+		public static Range<T> TrimTo<T>(this Range<T> range, T to) =>
+			TrimTo(range, Range.BoundaryTo(to));
+
+		/// <summary>Trims the range from the right.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="range">The source range.</param>
+		/// <param name="to">A new boundary To.</param>
+		/// <returns>
+		/// A range with a new To boundary
+		/// or the source fange if the new boundary is greater than original
+		/// or an empty range if the new To boundary is less than From boundary of the range.
+		/// </returns>
+		public static Range<T> TrimTo<T>(this Range<T> range, RangeBoundaryTo<T> to) =>
+			to.IsNotEmpty && range.To <= to
+				? range
+				: range.TryCreateRange(range.From, to);
 		#endregion
 	}
 }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
 
+using static CodeJam.PlatformDependent;
 using static CodeJam.RangesV2.RangeInternal;
 
 namespace CodeJam.RangesV2
@@ -30,15 +32,6 @@ namespace CodeJam.RangesV2
 		Range<T> IRangeFactory<T, Range<T>>.CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new Range<T>(from, to);
 
-		/// <summary>Creates a new instance of the range without validating its boundaries.</summary>
-		/// <param name="from">Boundary From.</param>
-		/// <param name="to">Boundary To.</param>
-		/// <returns>A new instance of the range with specified From-To boundaries.</returns>
-		[Pure]
-		[Obsolete(SkipsArgValidationObsolete)]
-		Range<T> IRangeFactory<T, Range<T>>.CreateRangeUnsafe(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
-			new Range<T>(from, to, SkipsArgValidation);
-
 		/// <summary>Creates a new instance of the range, if possible.</summary>
 		/// <param name="from">Boundary From.</param>
 		/// <param name="to">Boundary To.</param>
@@ -59,15 +52,17 @@ namespace CodeJam.RangesV2
 		/// otherwise, false.
 		/// </returns>
 		[Pure]
+		[MethodImpl(AggressiveInlining)]
 		public bool Equals(Range<T> other) =>
-			From == other.From && To == other.To;
+			_from == other._from && _to == other._to;
 
 
 		/// <summary>Returns a hash code for the current range.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
 		[Pure]
+		[SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode", Justification = "Read the comment on the fields.")]
 		public override int GetHashCode() =>
-			HashCode.Combine(From.GetHashCode(), To.GetHashCode());
+			HashCode.Combine(_from.GetHashCode(), _to.GetHashCode());
 		#endregion
 
 		#region ToString
@@ -75,7 +70,7 @@ namespace CodeJam.RangesV2
 		/// <returns>The string representation of the range.</returns>
 		[Pure]
 		public override string ToString() =>
-			IsEmpty ? EmptyString : From + SeparatorString + To;
+			IsEmpty ? EmptyString : _from + SeparatorString + _to;
 
 		/// <summary>
 		/// Returns string representation of the range using the specified format string.
@@ -84,12 +79,12 @@ namespace CodeJam.RangesV2
 		/// <param name="format">The format string.</param>
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
-		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 		[Pure]
+		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 		public string ToString(string format, IFormatProvider formatProvider) =>
 			IsEmpty
 				? EmptyString
-				: (From.ToString(format, formatProvider) + SeparatorString + To.ToString(format, formatProvider));
+				: (_from.ToString(format, formatProvider) + SeparatorString + _to.ToString(format, formatProvider));
 		#endregion
 	}
 }

@@ -101,8 +101,7 @@ namespace CodeJam.Arithmetic
 
 		private static FieldInfo TryGetOpField<T>(string fieldName)
 		{
-			var t = typeof(T);
-			t = t.ToNullableUnderlying();
+			var t = typeof(T).ToNullableUnderlying();
 
 			var field = t.GetField(fieldName, BindingFlags.Public | BindingFlags.Static);
 			// ReSharper disable ArrangeRedundantParentheses

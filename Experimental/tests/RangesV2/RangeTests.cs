@@ -54,6 +54,9 @@ namespace CodeJam.RangesV2
 			Throws<ArgumentException>(() => Range.Create(Range.BoundaryFrom(empty), RangeBoundaryTo<int?>.Empty, key));
 			Throws<ArgumentException>(() => Range.Create(double.NegativeInfinity, double.NegativeInfinity, key));
 			Throws<ArgumentException>(() => Range.Create(double.PositiveInfinity, double.PositiveInfinity, key));
+			Throws<ArgumentException>(() => Range.Create(double.PositiveInfinity, double.NegativeInfinity, key));
+			Throws<ArgumentException>(() => Range.Create(double.PositiveInfinity, 2, key));
+			Throws<ArgumentException>(() => Range.Create(1, double.NegativeInfinity, key));
 
 			AreEqual(
 				Range<int?>.Empty,

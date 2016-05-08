@@ -412,5 +412,291 @@ namespace CodeJam.RangesV2
 			Throws<ArgumentException>(
 				() => range.EndsBefore(Range.BoundaryTo<double?>(double.NegativeInfinity)));
 		}
+
+		[Test]
+		public static void TestRangeUnion()
+		{
+			double value1 = 1;
+			double value2 = 2;
+			var emptyFrom = RangeBoundaryFrom<double>.Empty;
+			var emptyTo = RangeBoundaryTo<double>.Empty;
+			var emptyRange = Range.Create(emptyFrom, emptyTo);
+			var infiniteRange = Range.Create(double.NegativeInfinity, double.PositiveInfinity);
+
+			var range = Range.Create(value1, value2);
+			AreEqual(range.Union(range), range);
+			AreEqual(range.Union(1, 2), range);
+			AreEqual(range.Union(1.5, 1.5), range);
+			AreEqual(range.Union(0, 3), Range.Create(0.0, 3.0));
+			AreEqual(range.Union(1.5, 3), Range.Create(1.0, 3.0));
+			AreEqual(range.Union(0, 1.5), Range.Create(0.0, 2.0));
+			AreEqual(range.Union(3, 4), Range.Create(1.0, 4.0));
+			AreEqual(range.Union(-2, -1), Range.Create(-2.0, 2.0));
+			AreEqual(range.Union(emptyRange), range);
+			AreEqual(emptyRange.Union(range), range);
+			AreEqual(range.Union(infiniteRange), infiniteRange);
+			AreEqual(infiniteRange.Union(range), infiniteRange);
+			AreEqual(emptyRange.Union(infiniteRange), infiniteRange);
+			AreEqual(infiniteRange.Union(emptyRange), infiniteRange);
+
+			range = Range.CreateExclusive(value1, value2);
+			AreEqual(range.Union(range), range);
+			AreEqual(range.Union(1, 2), Range.Create(1.0, 2.0));
+			AreEqual(range.Union(1.5, 1.5), range);
+			AreEqual(range.Union(0, 3), Range.Create(0.0, 3.0));
+			AreEqual(range.Union(1.5, 3), Range.CreateExclusiveFrom(1.0, 3.0));
+			AreEqual(range.Union(0, 1.5), Range.CreateExclusiveTo(0.0, 2.0));
+			AreEqual(range.Union(3, 4), Range.CreateExclusiveFrom(1.0, 4.0));
+			AreEqual(range.Union(-2, -1), Range.CreateExclusiveTo(-2.0, 2.0));
+			AreEqual(range.Union(emptyRange), range);
+			AreEqual(emptyRange.Union(range), range);
+			AreEqual(range.Union(infiniteRange), infiniteRange);
+			AreEqual(infiniteRange.Union(range), infiniteRange);
+			AreEqual(emptyRange.Union(infiniteRange), infiniteRange);
+			AreEqual(infiniteRange.Union(emptyRange), infiniteRange);
+
+			Throws<ArgumentException>(
+				() => range.Union(2, 1));
+			Throws<ArgumentException>(
+				() => range.Union(double.PositiveInfinity, double.NegativeInfinity));
+			Throws<ArgumentException>(
+				() => range.Union(2, double.NegativeInfinity));
+			Throws<ArgumentException>(
+				() => range.Union(double.PositiveInfinity, 1));
+		}
+
+		[Test]
+		public static void TestRangeIntersection()
+		{
+			double value1 = 1;
+			double value2 = 2;
+			var emptyFrom = RangeBoundaryFrom<double>.Empty;
+			var emptyTo = RangeBoundaryTo<double>.Empty;
+			var emptyRange = Range.Create(emptyFrom, emptyTo);
+			var infiniteRange = Range.Create(double.NegativeInfinity, double.PositiveInfinity);
+
+			var range = Range.Create(value1, value2);
+			AreEqual(range.Intersect(range), range);
+			AreEqual(range.Intersect(1, 2), range);
+			AreEqual(range.Intersect(1.5, 1.5), Range.Create(1.5, 1.5));
+			AreEqual(range.Intersect(0, 3), range);
+			AreEqual(range.Intersect(1.5, 3), Range.Create(1.5, 2.0));
+			AreEqual(range.Intersect(0, 1.5), Range.Create(1.0, 1.5));
+			AreEqual(range.Intersect(3, 4), emptyRange);
+			AreEqual(range.Intersect(-2, -1), emptyRange);
+			AreEqual(range.Intersect(emptyRange), emptyRange);
+			AreEqual(emptyRange.Intersect(range), emptyRange);
+			AreEqual(range.Intersect(infiniteRange), range);
+			AreEqual(infiniteRange.Intersect(range), range);
+			AreEqual(emptyRange.Intersect(infiniteRange), emptyRange);
+			AreEqual(infiniteRange.Intersect(emptyRange), emptyRange);
+
+			range = Range.CreateExclusive(value1, value2);
+			AreEqual(range.Intersect(range), range);
+			AreEqual(range.Intersect(1, 2), range);
+			AreEqual(range.Intersect(1.5, 1.5), Range.Create(1.5, 1.5));
+			AreEqual(range.Intersect(0, 3), range);
+			AreEqual(range.Intersect(1.5, 3), Range.CreateExclusiveTo(1.5, 2.0));
+			AreEqual(range.Intersect(0, 1.5), Range.CreateExclusiveFrom(1.0, 1.5));
+			AreEqual(range.Intersect(3, 4), emptyRange);
+			AreEqual(range.Intersect(-2, -1), emptyRange);
+			AreEqual(range.Intersect(emptyRange), emptyRange);
+			AreEqual(emptyRange.Intersect(range), emptyRange);
+			AreEqual(range.Intersect(infiniteRange), range);
+			AreEqual(infiniteRange.Intersect(range), range);
+			AreEqual(emptyRange.Intersect(infiniteRange), emptyRange);
+			AreEqual(infiniteRange.Intersect(emptyRange), emptyRange);
+
+			Throws<ArgumentException>(
+				() => range.Intersect(2, 1));
+			Throws<ArgumentException>(
+				() => range.Intersect(double.PositiveInfinity, double.NegativeInfinity));
+			Throws<ArgumentException>(
+				() => range.Intersect(2, double.NegativeInfinity));
+			Throws<ArgumentException>(
+				() => range.Intersect(double.PositiveInfinity, 1));
+		}
+
+		[Test]
+		public static void TestRangeExtendFrom()
+		{
+			double? empty = null;
+			double? value1 = 1;
+			double? value2 = 2;
+			var emptyFrom = RangeBoundaryFrom<double?>.Empty;
+			var emptyTo = RangeBoundaryTo<double?>.Empty;
+
+			var range = Range.Create(value1, value2);
+			AreEqual(range.ExtendFrom(null), Range.Create(empty, value2));
+			AreEqual(range.ExtendFrom(double.NegativeInfinity), Range.Create(empty, value2));
+			Throws<ArgumentException>(() => range.ExtendFrom(double.PositiveInfinity));
+			AreEqual(range.ExtendFrom(RangeBoundaryFrom<double?>.Empty), range);
+			AreEqual(range.ExtendFrom(0), Range.Create(0, value2));
+			AreEqual(range.ExtendFrom(1), range);
+			AreEqual(range.ExtendFrom(1.5), range);
+			AreEqual(range.ExtendFrom(2), range);
+			AreEqual(range.ExtendFrom(3), range);
+
+			range = Range.Create(emptyFrom, emptyTo);
+			AreEqual(range.ExtendFrom(null), range);
+			AreEqual(range.ExtendFrom(double.NegativeInfinity), range);
+			Throws<ArgumentException>(() => range.ExtendFrom(double.PositiveInfinity));
+			AreEqual(range.ExtendFrom(RangeBoundaryFrom<double?>.Empty), range);
+			AreEqual(range.ExtendFrom(0), range);
+
+			range = Range.CreateExclusive(empty, empty);
+			AreEqual(range.ExtendFrom(null), range);
+			AreEqual(range.ExtendFrom(double.NegativeInfinity), range);
+			Throws<ArgumentException>(() => range.ExtendFrom(double.PositiveInfinity));
+			AreEqual(range.ExtendFrom(RangeBoundaryFrom<double?>.Empty), range);
+			AreEqual(range.ExtendFrom(0), range);
+
+			range = Range.CreateExclusive(value1, value2);
+			AreEqual(range.ExtendFrom(1), Range.CreateExclusiveTo(1, value2));
+			AreEqual(range.ExtendFrom(1.5), range);
+			AreEqual(range.ExtendFrom(2), range);
+
+			range = Range.CreateExclusive(value1, value2);
+			AreEqual(range.ExtendFrom(Range.BoundaryFrom<double?>(1)), Range.CreateExclusiveTo(1, value2));
+			AreEqual(range.ExtendFrom(Range.BoundaryFromExclusive<double?>(1)), range);
+			AreEqual(range.ExtendFrom(Range.BoundaryFromExclusive<double?>(0)), Range.CreateExclusive(0, value2));
+		}
+
+		[Test]
+		public static void TestRangeExtendTo()
+		{
+			double? empty = null;
+			double? value1 = 1;
+			double? value2 = 2;
+			var emptyFrom = RangeBoundaryFrom<double?>.Empty;
+			var emptyTo = RangeBoundaryTo<double?>.Empty;
+
+			var range = Range.Create(value1, value2);
+			AreEqual(range.ExtendTo(null), Range.Create(value1, empty));
+			AreEqual(range.ExtendTo(double.PositiveInfinity), Range.Create(value1, empty));
+			Throws<ArgumentException>(() => range.ExtendTo(double.NegativeInfinity));
+			AreEqual(range.ExtendTo(RangeBoundaryTo<double?>.Empty), range);
+			AreEqual(range.ExtendTo(0), range);
+			AreEqual(range.ExtendTo(1), range);
+			AreEqual(range.ExtendTo(1.5), range);
+			AreEqual(range.ExtendTo(2), range);
+			AreEqual(range.ExtendTo(3), Range.Create(value1, 3));
+
+			range = Range.Create(emptyFrom, emptyTo);
+			AreEqual(range.ExtendTo(null), range);
+			AreEqual(range.ExtendTo(double.PositiveInfinity), range);
+			Throws<ArgumentException>(() => range.ExtendTo(double.NegativeInfinity));
+			AreEqual(range.ExtendTo(RangeBoundaryTo<double?>.Empty), range);
+			AreEqual(range.ExtendTo(0), range);
+
+			range = Range.CreateExclusive(empty, empty);
+			AreEqual(range.ExtendTo(null), range);
+			AreEqual(range.ExtendTo(double.PositiveInfinity), range);
+			Throws<ArgumentException>(() => range.ExtendTo(double.NegativeInfinity));
+			AreEqual(range.ExtendTo(RangeBoundaryTo<double?>.Empty), range);
+			AreEqual(range.ExtendTo(0), range);
+
+			range = Range.CreateExclusive(value1, value2);
+			AreEqual(range.ExtendTo(1), range);
+			AreEqual(range.ExtendTo(1.5), range);
+			AreEqual(range.ExtendTo(2), Range.CreateExclusiveFrom(value1, 2));
+
+			range = Range.CreateExclusive(value1, value2);
+			AreEqual(range.ExtendTo(Range.BoundaryTo<double?>(2)), Range.CreateExclusiveFrom(value1, 2));
+			AreEqual(range.ExtendTo(Range.BoundaryToExclusive<double?>(2)), range);
+			AreEqual(range.ExtendTo(Range.BoundaryToExclusive<double?>(3)), Range.CreateExclusive(value1, 3));
+		}
+
+		[Test]
+		public static void TestRangeTrimFrom()
+		{
+			double? empty = null;
+			double? value1 = 1;
+			double? value2 = 2;
+			var emptyFrom = RangeBoundaryFrom<double?>.Empty;
+			var emptyTo = RangeBoundaryTo<double?>.Empty;
+			var emptyRange = Range.Create(emptyFrom, emptyTo);
+
+			var range = Range.Create(value1, value2);
+			AreEqual(range.TrimFrom(null), range);
+			AreEqual(range.TrimFrom(double.NegativeInfinity), range);
+			Throws<ArgumentException>(() => range.TrimFrom(double.PositiveInfinity));
+			AreEqual(range.TrimFrom(RangeBoundaryFrom<double?>.Empty), emptyRange);
+			AreEqual(range.TrimFrom(0), range);
+			AreEqual(range.TrimFrom(1), range);
+			AreEqual(range.TrimFrom(1.5), Range.Create(1.5, value2));
+			AreEqual(range.TrimFrom(2), Range.Create(2, value2));
+			AreEqual(range.TrimFrom(3), emptyRange);
+
+			range = Range.Create(emptyFrom, emptyTo);
+			AreEqual(range.TrimFrom(null), range);
+			AreEqual(range.TrimFrom(double.NegativeInfinity), range);
+			Throws<ArgumentException>(() => range.TrimFrom(double.PositiveInfinity));
+			AreEqual(range.TrimFrom(RangeBoundaryFrom<double?>.Empty), range);
+			AreEqual(range.TrimFrom(0), range);
+
+			range = Range.CreateExclusive(empty, empty);
+			AreEqual(range.TrimFrom(null), range);
+			AreEqual(range.TrimFrom(double.NegativeInfinity), range);
+			Throws<ArgumentException>(() => range.TrimFrom(double.PositiveInfinity));
+			AreEqual(range.TrimFrom(RangeBoundaryFrom<double?>.Empty), emptyRange);
+			AreEqual(range.TrimFrom(0), Range.Create(0, empty));
+
+			range = Range.CreateExclusive(value1, value2);
+			AreEqual(range.TrimFrom(1), range);
+			AreEqual(range.TrimFrom(1.5), Range.CreateExclusiveTo(1.5, value2));
+			AreEqual(range.TrimFrom(2), emptyRange);
+
+			range = Range.CreateExclusive(value1, value2);
+			AreEqual(range.TrimFrom(Range.BoundaryFrom<double?>(1)), range);
+			AreEqual(range.TrimFrom(Range.BoundaryFrom<double?>(1.5)), Range.CreateExclusiveTo(1.5, value2));
+			AreEqual(range.TrimFrom(Range.BoundaryFrom<double?>(2)), emptyRange);
+		}
+
+		[Test]
+		public static void TestRangeTrimTo()
+		{
+			double? empty = null;
+			double? value1 = 1;
+			double? value2 = 2;
+			var emptyFrom = RangeBoundaryFrom<double?>.Empty;
+			var emptyTo = RangeBoundaryTo<double?>.Empty;
+			var emptyRange = Range.Create(emptyFrom, emptyTo);
+
+			var range = Range.Create(value1, value2);
+			AreEqual(range.TrimTo(null), range);
+			AreEqual(range.TrimTo(double.PositiveInfinity), range);
+			Throws<ArgumentException>(() => range.TrimTo(double.NegativeInfinity));
+			AreEqual(range.TrimTo(RangeBoundaryTo<double?>.Empty), emptyRange);
+			AreEqual(range.TrimTo(0), emptyRange);
+			AreEqual(range.TrimTo(1), Range.Create(value1, 1));
+			AreEqual(range.TrimTo(1.5), Range.Create(value1, 1.5));
+			AreEqual(range.TrimTo(2), range);
+			AreEqual(range.TrimTo(3), range);
+
+			range = Range.Create(emptyFrom, emptyTo);
+			AreEqual(range.TrimTo(null), range);
+			AreEqual(range.TrimTo(double.PositiveInfinity), range);
+			Throws<ArgumentException>(() => range.TrimTo(double.NegativeInfinity));
+			AreEqual(range.TrimTo(RangeBoundaryTo<double?>.Empty), range);
+			AreEqual(range.TrimTo(0), range);
+
+			range = Range.CreateExclusive(empty, empty);
+			AreEqual(range.TrimTo(null), range);
+			AreEqual(range.TrimTo(double.PositiveInfinity), range);
+			Throws<ArgumentException>(() => range.TrimTo(double.NegativeInfinity));
+			AreEqual(range.TrimTo(RangeBoundaryTo<double?>.Empty), emptyRange);
+			AreEqual(range.TrimTo(0), Range.Create(empty, 0));
+
+			range = Range.CreateExclusive(value1, value2);
+			AreEqual(range.TrimTo(2), range);
+			AreEqual(range.TrimTo(1.5), Range.CreateExclusiveFrom(value1, 1.5));
+			AreEqual(range.TrimTo(1), emptyRange);
+
+			range = Range.CreateExclusive(value1, value2);
+			AreEqual(range.TrimTo(Range.BoundaryTo<double?>(2)), range);
+			AreEqual(range.TrimTo(Range.BoundaryTo<double?>(1.5)), Range.CreateExclusiveFrom(value1, 1.5));
+			AreEqual(range.TrimTo(Range.BoundaryTo<double?>(1)), emptyRange);
+		}
 	}
 }

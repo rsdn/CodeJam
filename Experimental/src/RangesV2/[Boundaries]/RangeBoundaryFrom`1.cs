@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
@@ -72,7 +73,7 @@ namespace CodeJam.RangesV2
 				boundaryKind = RangeBoundaryFromKind.Infinite;
 			}
 
-#pragma warning disable 618 // Args are validated
+#pragma warning disable 618 // Validation not required: value and kind are adjusted
 			return new RangeBoundaryFrom<T>(value, boundaryKind, SkipsArgValidation);
 #pragma warning restore 618
 		}
@@ -119,7 +120,7 @@ namespace CodeJam.RangesV2
 		#region Fields & .ctor
 		// DONTTOUCH: DO NOT mark fields as readonly. See NestedStructAccessPerfTests as a proof WHY.
 		private T _value;
-		private readonly RangeBoundaryFromKind _kind;
+		private RangeBoundaryFromKind _kind;
 
 		/// <summary>Creates a new range boundary.</summary>
 		/// <param name="value">
@@ -345,6 +346,7 @@ namespace CodeJam.RangesV2
 		/// <summary>Returns the hash code for the current boundary.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
 		[Pure]
+		[SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode", Justification = "Read the comment on the fields.")]
 		public override int GetHashCode()
 		{
 			if (HasValue)

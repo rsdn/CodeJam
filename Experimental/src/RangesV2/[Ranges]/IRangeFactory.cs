@@ -22,13 +22,6 @@ namespace CodeJam.RangesV2
 		/// <returns>A new instance of the range with specified From-To boundaries.</returns>
 		TRange CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to);
 
-		/// <summary>Creates a new instance of the range without validating its boundaries.</summary>
-		/// <param name="from">Boundary From.</param>
-		/// <param name="to">Boundary To.</param>
-		/// <returns>A new instance of the range with specified From-To boundaries.</returns>
-		[Obsolete(RangeInternal.SkipsArgValidationObsolete)]
-		TRange CreateRangeUnsafe(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to);
-
 		/// <summary>Creates a new instance of the range, if possible.</summary>
 		/// <param name="from">Boundary From.</param>
 		/// <param name="to">Boundary To.</param>

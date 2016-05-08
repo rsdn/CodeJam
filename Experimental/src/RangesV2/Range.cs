@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
@@ -12,59 +10,8 @@ namespace CodeJam.RangesV2
 {
 	/// <summary>Helper methods for the <seealso cref="Range{T}"/>.</summary>
 	[PublicAPI]
-	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	public static partial class Range
 	{
-		#region Assertion methods
-		/// <summary>Validates that the boundary is not empty.</summary>
-		/// <typeparam name="T">The type of the boundary value.</typeparam>
-		/// <param name="boundary">The boundary.</param>
-		/// <exception cref="System.ArgumentException">Thrown if the boundary is empty.</exception>
-		[DebuggerHidden, MethodImpl(AggressiveInlining)]
-		[AssertionMethod]
-		internal static void ValidateNotEmpty<T>(RangeBoundaryFrom<T> boundary)
-		{
-			if (boundary.IsEmpty)
-			{
-				throw CodeExceptions.Argument(
-					nameof(boundary),
-					"The boundary should be not empty.");
-			}
-		}
-
-		/// <summary>Validates that the boundary is not empty.</summary>
-		/// <typeparam name="T">The type of the boundary value.</typeparam>
-		/// <param name="boundary">The boundary.</param>
-		/// <exception cref="System.ArgumentException">Thrown if the boundary is empty.</exception>
-		[DebuggerHidden, MethodImpl(AggressiveInlining)]
-		[AssertionMethod]
-		internal static void ValidateNotEmpty<T>(RangeBoundaryTo<T> boundary)
-		{
-			if (boundary.IsEmpty)
-			{
-				throw CodeExceptions.Argument(
-					nameof(boundary),
-					"The boundary should be not empty.");
-			}
-		}
-
-		/// <summary>Validates that the range is not empty.</summary>
-		/// <typeparam name="T">The type of the range values.</typeparam>
-		/// <param name="range">The range.</param>
-		/// <exception cref="System.ArgumentException">Thrown if the range is empty.</exception>
-		[DebuggerHidden, MethodImpl(AggressiveInlining)]
-		[AssertionMethod]
-		internal static void ValidateNotEmpty<T>(Range<T> range)
-		{
-			if (range.IsEmpty)
-			{
-				throw CodeExceptions.Argument(
-					nameof(range),
-					"The range should be not empty.");
-			}
-		}
-		#endregion
-
 		#region CompareTo boundary
 		/// <summary>Helper method for obtaining a comparison boundary from a value.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -224,7 +171,7 @@ namespace CodeJam.RangesV2
 		/// <returns><c>true</c>, if the boundaries can be used for valid range creation.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool IsValid<T>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
-			(from.IsEmpty && to.IsEmpty) || from <= to;
+			from.IsEmpty ? to.IsEmpty : from <= to;
 		#endregion
 
 		#region Failsafe Range factory methods
@@ -236,7 +183,7 @@ namespace CodeJam.RangesV2
 		[MethodImpl(AggressiveInlining)]
 		public static Range<T> TryCreate<T>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			IsValid(from, to)
-#pragma warning disable 618 // Args are validated
+#pragma warning disable 618 // Validation not required: IsValid() called.
 				? new Range<T>(from, to, SkipsArgValidation)
 #pragma warning restore 618
 				: Range<T>.Empty;
@@ -246,7 +193,7 @@ namespace CodeJam.RangesV2
 			T from, RangeBoundaryFromKind fromKind,
 			T to, RangeBoundaryToKind toKind) =>
 				IsValid(from, to)
-#pragma warning disable 618 // Args are validated
+#pragma warning disable 618 // Validation not required: IsValid() called.
 					? new Range<T>(
 						RangeBoundaryFrom<T>.AdjustAndCreate(from, fromKind),
 						RangeBoundaryTo<T>.AdjustAndCreate(to, toKind),
@@ -264,7 +211,7 @@ namespace CodeJam.RangesV2
 		[MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> TryCreate<T, TKey>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, TKey key) =>
 			IsValid(from, to)
-#pragma warning disable 618 // Args are validated
+#pragma warning disable 618 // Validation not required: IsValid() called.
 				? new Range<T, TKey>(from, to, key, SkipsArgValidation)
 				: new Range<T, TKey>(RangeBoundaryFrom<T>.Empty, RangeBoundaryTo<T>.Empty, key, SkipsArgValidation);
 #pragma warning restore 618
@@ -275,7 +222,7 @@ namespace CodeJam.RangesV2
 			T to, RangeBoundaryToKind toKind,
 			TKey key) =>
 				IsValid(from, to)
-#pragma warning disable 618 // Args are validated
+#pragma warning disable 618 // Validation not required: IsValid() called.
 					? new Range<T, TKey>(
 						RangeBoundaryFrom<T>.AdjustAndCreate(from, fromKind),
 						RangeBoundaryTo<T>.AdjustAndCreate(to, toKind),
