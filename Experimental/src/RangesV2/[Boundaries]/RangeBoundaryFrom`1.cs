@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
+using CodeJam.Reflection;
 
 using JetBrains.Annotations;
 
@@ -99,7 +100,7 @@ namespace CodeJam.RangesV2
 		#region Formattable logic
 		private static Func<T, string, IFormatProvider, string> GetFormattableCallback()
 		{
-			var type = Nullable.GetUnderlyingType(typeof(T)) ?? typeof(T);
+			var type = typeof(T).ToNullableUnderlying();
 			if (typeof(IFormattable).IsAssignableFrom(type))
 			{
 				return (value, format, formatProvider) => ((IFormattable)value).ToString(format, formatProvider);
