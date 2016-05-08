@@ -38,5 +38,18 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="Option{T}"/>.</returns>
 		[Pure]
 		public static implicit operator Option<T>(T value) => new Option<T>(value);
+
+		/// <summary>
+		/// Creates an instance of <see cref="Option{T}"/>
+		/// </summary>
+		/// <param name="value">Value</param>
+		/// <returns>New instance of <see cref="Option{T}"/>.</returns>
+		[Pure]
+		public static Option<T> Some(T value) => new Option<T>(value);
+
+		/// <summary>
+		/// Represents default none of objects.
+		/// </summary>
+		public static Option<T> None { get; }
 	}
 }
