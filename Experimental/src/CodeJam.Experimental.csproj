@@ -41,9 +41,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Jetbrains.Annotations.cs">
-      <Link>Jetbrains.Annotations.cs</Link>
-    </Compile>
     <Compile Include="CmdLine\CommandLineChecker.cs" />
     <Compile Include="CmdLine\CommandLineHelper.cs" />
     <Compile Include="CmdLine\Model\Checking\CmdLineRules.cs" />
