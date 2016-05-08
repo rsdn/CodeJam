@@ -230,13 +230,44 @@ namespace CodeJam.Reflection
 		{
 			Code.NotNull(type, nameof(type));
 
-			if (type.IsEnum)
-				return Enum.GetUnderlyingType(type);
-			var nullUnder = Nullable.GetUnderlyingType(type);
-			if (nullUnder != null)
-				return nullUnder;
+			type = Nullable.GetUnderlyingType(type) ?? type;
+			return type.IsEnum ? Enum.GetUnderlyingType(type) : type;
+		}
 
-			return type;
+		/// <summary>
+		/// Returns the underlying type argument of the specified nullable type.
+		/// </summary>
+		/// <param name="type">A <see cref="System.Type"/> instance. </param>
+		/// <returns><list>
+		/// <item>The type argument of the type parameter,
+		/// if the type parameter is a closed generic nullable type.</item>
+		/// </list>
+		/// </returns>
+		[NotNull]
+		[Pure]
+		public static Type ToNullableUnderlying([NotNull] this Type type)
+		{
+			Code.NotNull(type, nameof(type));
+
+			return Nullable.GetUnderlyingType(type) ?? type;
+		}
+
+		/// <summary>
+		/// Returns the underlying type argument of the specified enum type.
+		/// </summary>
+		/// <param name="type">A <see cref="System.Type"/> instance. </param>
+		/// <returns><list>
+		/// <item>The underlying Type if the type parameter is an enum type.</item>
+		/// <item>Otherwise, the type itself.</item>
+		/// </list>
+		/// </returns>
+		[NotNull]
+		[Pure]
+		public static Type ToEnumUnderlying([NotNull] this Type type)
+		{
+			Code.NotNull(type, nameof(type));
+
+			return type.IsEnum ? Enum.GetUnderlyingType(type) : type;
 		}
 
 		/// <summary>

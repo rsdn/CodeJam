@@ -25,7 +25,7 @@ namespace CodeJam.Arithmetic
 			var nullable = false;
 			if (temp.IsNullable())
 			{
-				temp = temp.ToUnderlying();
+				temp = temp.ToNullableUnderlying();
 				nullable = true;
 			}
 
@@ -243,7 +243,7 @@ namespace CodeJam.Arithmetic
 			var underlyingType = typeof(T);
 			if (nullable)
 			{
-				underlyingType = underlyingType.ToUnderlying();
+				underlyingType = underlyingType.ToNullableUnderlying();
 			}
 			underlyingType = underlyingType.GetEnumUnderlyingType();
 
