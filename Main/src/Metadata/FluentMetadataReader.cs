@@ -8,7 +8,7 @@ namespace CodeJam.Metadata
 {
 	using Collections;
 
-	public class FluentMetadataReader : IMetadataReader
+	class FluentMetadataReader : IMetadataReader
 	{
 		readonly ConcurrentDictionary<Type,List<Attribute>> _types = new ConcurrentDictionary<Type,List<Attribute>>();
 

@@ -7,6 +7,11 @@ namespace CodeJam.Mapping
 {
 	using Expressions;
 
+	/// <summary>
+	/// Provides data convertion functionality.
+	/// </summary>
+	/// <typeparam name="TFrom">Type to convert from.</typeparam>
+	/// <typeparam name="TTo">Type to convert to.</typeparam>
 	[PublicAPI]
 	public static class Convert<TFrom,TTo>
 	{
@@ -27,7 +32,11 @@ namespace CodeJam.Mapping
 		}
 
 		private static Expression<Func<TFrom,TTo>> _expression;
-		public  static Expression<Func<TFrom,TTo>>  Expression
+
+		/// <summary>
+		/// Represents an expression that converts a value of <i>TFrom</i> type to <i>TTo</i> type.
+		/// </summary>
+		public static Expression<Func<TFrom,TTo>> Expression
 		{
 			get { return _expression; }
 			set
@@ -53,7 +62,11 @@ namespace CodeJam.Mapping
 		}
 
 		private static Func<TFrom,TTo> _lambda;
-		public static  Func<TFrom,TTo>  Lambda
+
+		/// <summary>
+		/// Represents a function that converts a value of <i>TFrom</i> type to <i>TTo</i> type.
+		/// </summary>
+		public static Func<TFrom,TTo> Lambda
 		{
 			get { return _lambda; }
 			set
@@ -85,9 +98,9 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		public static Func<TFrom,TTo> From
-		{
-			get { return _lambda; }
-		}
+		/// <summary>
+		/// Returns a function that converts a value of <i>TFrom</i> type to <i>TTo</i> type.
+		/// </summary>
+		public static Func<TFrom,TTo> From => _lambda;
 	}
 }

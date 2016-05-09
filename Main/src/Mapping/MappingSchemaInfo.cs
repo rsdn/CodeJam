@@ -131,15 +131,11 @@ namespace CodeJam.Mapping
 		}
 
 		public ConvertInfo.LambdaInfo GetConvertInfo(Type from, Type to)
-		{
-			return _convertInfo == null ? null : _convertInfo.Get(@from, to);
-		}
+			=> _convertInfo?.Get(@from, to);
 
 		private ConcurrentDictionary<object,Func<object,object>> _converters;
 		public  ConcurrentDictionary<object,Func<object,object>>  Converters
-		{
-			get { return _converters ?? (_converters = new ConcurrentDictionary<object,Func<object,object>>()); }
-		}
+			=> _converters ?? (_converters = new ConcurrentDictionary<object,Func<object,object>>());
 
 		#endregion
 	}

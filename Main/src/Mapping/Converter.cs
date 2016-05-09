@@ -68,8 +68,8 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Adds a custom converter from <i>TFrom</i> to <i>TTo</i> types.
 		/// </summary>
-		/// <typeparam name="TFrom">Type from convert.</typeparam>
-		/// <typeparam name="TTo">Type to convert.</typeparam>
+		/// <typeparam name="TFrom">Type to convert from.</typeparam>
+		/// <typeparam name="TTo">Type to convert to.</typeparam>
 		/// <param name="expr">Convert expression.</param>
 		public static void SetConverter<TFrom,TTo>(Expression<Func<TFrom,TTo>> expr)
 			=> _expressions[new { from = typeof(TFrom), to = typeof(TTo) }] = expr;
@@ -83,6 +83,13 @@ namespace CodeJam.Mapping
 
 		static readonly ConcurrentDictionary<object,Func<object,object>> _converters = new ConcurrentDictionary<object,Func<object,object>>();
 
+		/// <summary>
+		/// Returns an object of a specified type whose value is equivalent to a specified object.
+		/// </summary>
+		/// <param name="value">An object to convert.</param>
+		/// <param name="conversionType">The type of object to return.</param>
+		/// <param name="mappingSchema">A mapping schema that defines custom converters.</param>
+		/// <returns>An object whose type is <i>conversionType</i> and whose value is equivalent to <i>value</i>.</returns>
 		public static object ChangeType(object value, Type conversionType, MappingSchema mappingSchema = null)
 		{
 			if (value == null || value is DBNull)
@@ -135,6 +142,13 @@ namespace CodeJam.Mapping
 			public static readonly ConcurrentDictionary<Type,Func<object,T>> Converters = new ConcurrentDictionary<Type,Func<object,T>>();
 		}
 
+		/// <summary>
+		/// Returns an object of a specified type whose value is equivalent to a specified object.
+		/// </summary>
+		/// <typeparam name="T">The type of object to return.</typeparam>
+		/// <param name="value">An object to convert.</param>
+		/// <param name="mappingSchema">A mapping schema that defines custom converters.</param>
+		/// <returns>An object whose type is <i>conversionType</i> and whose value is equivalent to <i>value</i>.</returns>
 		public static T ChangeTypeTo<T>(object value, MappingSchema mappingSchema = null)
 		{
 			if (value == null || value is DBNull)
@@ -180,14 +194,14 @@ namespace CodeJam.Mapping
 
 			if (me != null)
 			{
-				if (me.Member.Name == "Value" && me.Member.DeclaringType.IsGenericType)
+				if (me.Member.Name == "Value" && me.Member.DeclaringType?.IsGenericType == true)
 					return me.Member.DeclaringType.GetGenericTypeDefinition() == typeof(DefaultValue<>);
 			}
 
 			return expr is DefaultValueExpression;
 		}
 
-		public static Type GetDefaultMappingFromEnumType(MappingSchema mappingSchema, Type enumType)
-			=> ConvertBuilder.GetDefaultMappingFromEnumType(mappingSchema, enumType);
+//		public static Type GetDefaultMappingFromEnumType(MappingSchema mappingSchema, Type enumType)
+//			=> ConvertBuilder.GetDefaultMappingFromEnumType(mappingSchema, enumType);
 	}
 }

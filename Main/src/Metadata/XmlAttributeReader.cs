@@ -12,7 +12,7 @@ namespace CodeJam.Metadata
 	using Collections;
 	using Mapping;
 
-	public class XmlAttributeReader : IMetadataReader
+	class XmlAttributeReader : IMetadataReader
 	{
 		readonly Dictionary<string,MetaTypeInfo> _types;
 

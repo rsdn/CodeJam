@@ -41,10 +41,12 @@ namespace CodeJam.Mapping
 		/// Gets default value for provided <see cref="Type"/>.
 		/// </summary>
 		/// <param name="type"><see cref="Type"/> to get default value.</param>
+		/// <param name="mappingSchema">An instance of <see cref="MappingSchema"/>.</param>
 		/// <returns>Default value of the provided <see cref="Type"/></returns>
-		public static object GetValue([JetBrains.Annotations.NotNull] Type type, MappingSchema mappingSchema = null)
+		[Pure]
+		public static object GetValue([NotNull] Type type, MappingSchema mappingSchema = null)
 		{
-			if (type == null) throw new ArgumentNullException("type");
+			Code.NotNull(type, nameof(type));
 
 			var ms = mappingSchema ?? MappingSchema.Default;
 
@@ -90,6 +92,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <typeparam name="T">Type to get default value.</typeparam>
 		/// <returns>Default value of the provided <see cref="Type"/></returns>
+		[Pure]
 		public static T GetValue<T>()
 		{
 			object value;
