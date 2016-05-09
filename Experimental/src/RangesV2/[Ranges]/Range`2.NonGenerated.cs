@@ -3,6 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 
 using CodeJam.Arithmetic;
 
+using JetBrains.Annotations;
+
 using static CodeJam.RangesV2.RangeInternal;
 
 namespace CodeJam.RangesV2
@@ -22,9 +24,30 @@ namespace CodeJam.RangesV2
 		/// <summary>Creates a new instance of the range.</summary>
 		/// <param name="from">Boundary From.</param>
 		/// <param name="to">Boundary To.</param>
-		/// <returns>Creates a new instance of the range with specified From-To boundaries.</returns>
+		/// <returns>A new instance of the range with specified From-To boundaries.</returns>
+		[Pure]
 		Range<T, TKey> IRangeFactory<T, Range<T, TKey>>.CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new Range<T, TKey>(from, to, Key);
+
+		/// <summary>Creates a new instance of the range without validating its boundaries.</summary>
+		/// <param name="from">Boundary From.</param>
+		/// <param name="to">Boundary To.</param>
+		/// <returns>A new instance of the range with specified From-To boundaries.</returns>
+		[Pure]
+		[Obsolete(SkipsArgValidationObsolete)]
+		Range<T, TKey> IRangeFactory<T, Range<T, TKey>>.CreateRangeUnsafe(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+			new Range<T, TKey>(from, to, Key, SkipsArgValidation);
+
+		/// <summary>Creates a new instance of the range, if possible.</summary>
+		/// <param name="from">Boundary From.</param>
+		/// <param name="to">Boundary To.</param>
+		/// <returns>
+		/// A new instance of the range with specified From-To boundaries,
+		/// or empty range, if from-to boundaries forms invalid range pair.
+		/// </returns>
+		[Pure]
+		Range<T, TKey> IRangeFactory<T, Range<T, TKey>>.TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+			Range.TryCreate(from, to, Key);
 		#endregion
 
 		#region IEquatable<Range<T, TKey>>
@@ -49,6 +72,7 @@ namespace CodeJam.RangesV2
 		#region ToString
 		/// <summary>Returns string representation of the range.</summary>
 		/// <returns>The string representation of the range.</returns>
+		[Pure]
 		public override string ToString() =>
 			KeyPrefixString + Key + KeySeparatorString +
 				(IsEmpty ? EmptyString : From + SeparatorString + To);
@@ -61,6 +85,7 @@ namespace CodeJam.RangesV2
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
 		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
+		[Pure]
 		public string ToString(string format, IFormatProvider formatProvider) =>
 			KeyPrefixString + Key + KeySeparatorString +
 				(IsEmpty

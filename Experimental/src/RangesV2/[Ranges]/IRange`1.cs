@@ -18,5 +18,13 @@ namespace CodeJam.RangesV2
 		/// <summary>Boundary To. Limits the values from the right.</summary>
 		/// <value>Boundary To.</value>
 		RangeBoundaryTo<T> To { get; }
+
+		/// <summary>The range is empty, ∅.</summary>
+		/// <value><c>true</c> if the range is empty; otherwise, <c>false</c>.</value>
+		bool IsEmpty { get; }
+
+		/// <summary>The range is NOT empty, ≠ ∅</summary>
+		/// <value><c>true</c> if the range is not empty; otherwise, <c>false</c>.</value>
+		bool IsNotEmpty { get; }
 	}
 }

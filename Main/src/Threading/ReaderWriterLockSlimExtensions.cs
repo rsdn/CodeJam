@@ -8,7 +8,7 @@ using JetBrains.Annotations;
 namespace CodeJam.Threading
 {
 	/// <summary>
-	/// Represents the extenion methods for <see cref="ReaderWriterLockSlim"/>.
+	/// Represents the extension methods for <see cref="ReaderWriterLockSlim"/>.
 	/// </summary>
 	[PublicAPI]
 	public static class ReaderWriterLockSlimExtensions

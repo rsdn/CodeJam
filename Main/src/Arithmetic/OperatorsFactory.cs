@@ -25,7 +25,7 @@ namespace CodeJam.Arithmetic
 			var nullable = false;
 			if (temp.IsNullable())
 			{
-				temp = temp.ToUnderlying();
+				temp = temp.ToNullableUnderlying();
 				nullable = true;
 			}
 
@@ -102,10 +102,7 @@ namespace CodeJam.Arithmetic
 		private static FieldInfo TryGetOpField<T>(string fieldName)
 		{
 			var t = typeof(T);
-			if (t.IsNullable())
-			{
-				t = t.ToUnderlying();
-			}
+			t = t.ToNullableUnderlying();
 
 			var field = t.GetField(fieldName, BindingFlags.Public | BindingFlags.Static);
 			// ReSharper disable ArrangeRedundantParentheses
@@ -243,7 +240,7 @@ namespace CodeJam.Arithmetic
 			var underlyingType = typeof(T);
 			if (nullable)
 			{
-				underlyingType = underlyingType.ToUnderlying();
+				underlyingType = underlyingType.ToNullableUnderlying();
 			}
 			underlyingType = underlyingType.GetEnumUnderlyingType();
 

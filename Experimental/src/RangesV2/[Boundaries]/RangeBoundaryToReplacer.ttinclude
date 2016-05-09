@@ -6,14 +6,9 @@
 	{
 		var newClassName = Path.GetFileNameWithoutExtension(Host.TemplateFile);
 		var oldClassName = newClassName.Replace("To", "From");
-		var oldClassPath = Host.ResolvePath(oldClassName + ".cs");
-		if (!File.Exists(oldClassPath))
-		{
-			throw new FileNotFoundException("File '" + oldClassPath + "' does not exist.");
-		}
 
 		Transform(
-			oldClassPath,
+			oldClassName + ".cs",
 			additionalReplaces,
 			new ReplaceInfo // Replace From <> To words
 			{

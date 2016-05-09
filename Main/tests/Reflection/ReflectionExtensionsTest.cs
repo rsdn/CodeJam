@@ -160,6 +160,7 @@ namespace CodeJam.Reflection
 
 		[TestCase(typeof(AttributeTargets), ExpectedResult = typeof(int))]
 		[TestCase(typeof(int?), ExpectedResult = typeof(int))]
+		[TestCase(typeof(AttributeTargets?), ExpectedResult = typeof(int))]
 		[TestCase(typeof(string), ExpectedResult = typeof(string))]
 		public Type ToUnderlying(Type type) => type.ToUnderlying();
 

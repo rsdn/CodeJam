@@ -30,6 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\CodeJam.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
@@ -44,6 +50,12 @@
     <Compile Include="CmdLine\PrintUsageTest.cs" />
     <Compile Include="Collections\DisjointSetsTest.cs" />
     <Compile Include="Parsing\ParseHelperTests.cs" />
+    <Compile Include="RangesV2\RangeTests.ExtensionsWithKey.generated.cs">
+      <DependentUpon>RangeTests.ExtensionsWithKey.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="RangesV2\RangeTests.Extensions.cs" />
     <Compile Include="RangesV2\RangeTests.cs" />
     <Compile Include="RangesV2\RangeBoundaryFromToTests.cs" />
     <Compile Include="RangesV2\RangeBoundaryFromTests.cs" />
@@ -74,6 +86,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="RangesV2\RangeTests.ExtensionsWithKey.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RangeTests.ExtensionsWithKey.generated.cs</LastGenOutput>
+    </Content>
     <Content Include="RangesV2\RangeBoundaryToTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RangeBoundaryToTests.generated.cs</LastGenOutput>

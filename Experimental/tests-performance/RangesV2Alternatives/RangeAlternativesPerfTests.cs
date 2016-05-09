@@ -24,11 +24,11 @@ namespace CodeJam.RangesV2Alternatives
 	{
 		[Test]
 		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
-		public void RunRangeUnionIntCase() =>
-			CompetitionBenchmarkRunner.Run<RangeUnionIntCase>(RunConfig);
+		public void RunRangeAlternativesIntCase() =>
+			CompetitionBenchmarkRunner.Run<RangeAlternativesIntCase>(RunConfig);
 
 		[PublicAPI]
-		public class RangeUnionIntCase
+		public class RangeAlternativesIntCase
 		{
 			private const int Count = 100 * 1000;
 			private readonly KeyValuePair<int, int>[] _data;
@@ -37,7 +37,7 @@ namespace CodeJam.RangesV2Alternatives
 			private readonly RangeStubCompact<int>[] _rangeCompactData;
 			private readonly Range<int>[] _rangeData2;
 
-			public RangeUnionIntCase()
+			public RangeAlternativesIntCase()
 			{
 				var mem1 = GC.GetTotalMemory(true);
 				_data = new KeyValuePair<int, int>[Count];
@@ -91,19 +91,8 @@ namespace CodeJam.RangesV2Alternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(11.06, 12.80)]
-			public RangeStub<int> Test02RangeOpt()
-			{
-				var result = _rangeData[0];
-				for (var i = 1; i < _rangeData.Length; i++)
-				{
-					result = result.Union2(_rangeData[i]);
-				}
-				return result;
-			}
-
 			[CompetitionBenchmark(18.04, 19.97)]
-			public RangeStub<int, string> Test03KeyRange()
+			public RangeStub<int, string> Test02KeyRange()
 			{
 				var result = _rangeKeyData[0];
 				for (var i = 1; i < _rangeData.Length; i++)
@@ -114,7 +103,7 @@ namespace CodeJam.RangesV2Alternatives
 			}
 
 			[CompetitionBenchmark(12.07, 13.13)]
-			public RangeStubCompact<int> Test04CompactRange()
+			public RangeStubCompact<int> Test03CompactRange()
 			{
 				var result = _rangeCompactData[0];
 				for (var i = 1; i < _rangeData.Length; i++)
@@ -125,7 +114,7 @@ namespace CodeJam.RangesV2Alternatives
 			}
 
 			[CompetitionBenchmark(236.68, 268.63)]
-			public Range<int> Test05RangeOld()
+			public Range<int> Test04RangeOld()
 			{
 				var result = _rangeData2[0];
 				for (var i = 1; i < _rangeData2.Length; i++)
@@ -138,11 +127,11 @@ namespace CodeJam.RangesV2Alternatives
 
 		[Test]
 		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
-		public void RunRangeUnionNullableIntCase() =>
-			CompetitionBenchmarkRunner.Run<RangeUnionNullableIntCase>(RunConfig);
+		public void RunRangeAlternativesNullableIntCase() =>
+			CompetitionBenchmarkRunner.Run<RangeAlternativesNullableIntCase>(RunConfig);
 
 		[PublicAPI]
-		public class RangeUnionNullableIntCase
+		public class RangeAlternativesNullableIntCase
 		{
 			private const int Count = 100 * 1000;
 			private readonly KeyValuePair<int?, int?>[] _data;
@@ -151,7 +140,7 @@ namespace CodeJam.RangesV2Alternatives
 			private readonly RangeStubCompact<int?>[] _rangeCompactData;
 			private readonly Range<int>[] _rangeData2;
 
-			public RangeUnionNullableIntCase()
+			public RangeAlternativesNullableIntCase()
 			{
 				var mem1 = GC.GetTotalMemory(true);
 				_data = new KeyValuePair<int?, int?>[Count];
@@ -205,19 +194,8 @@ namespace CodeJam.RangesV2Alternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(3.95, 4.24)]
-			public RangeStub<int?> Test02RangeOpt()
-			{
-				var result = _rangeData[0];
-				for (var i = 1; i < _rangeData.Length; i++)
-				{
-					result = result.Union2(_rangeData[i]);
-				}
-				return result;
-			}
-
 			[CompetitionBenchmark(6.20, 6.85)]
-			public RangeStub<int?, string> Test03KeyRange()
+			public RangeStub<int?, string> Test02KeyRange()
 			{
 				var result = _rangeKeyData[0];
 				for (var i = 1; i < _rangeData.Length; i++)
@@ -228,7 +206,7 @@ namespace CodeJam.RangesV2Alternatives
 			}
 
 			[CompetitionBenchmark(21.95, 24.74)]
-			public RangeStubCompact<int?> Test04CompactRange()
+			public RangeStubCompact<int?> Test03CompactRange()
 			{
 				var result = _rangeCompactData[0];
 				for (var i = 1; i < _rangeData.Length; i++)
@@ -239,7 +217,7 @@ namespace CodeJam.RangesV2Alternatives
 			}
 
 			[CompetitionBenchmark(37.16, 39.63)]
-			public Range<int> Test05RangeOld()
+			public Range<int> Test04RangeOld()
 			{
 				var result = _rangeData2[0];
 				for (var i = 1; i < _rangeData2.Length; i++)
