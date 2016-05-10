@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
+
+using static CodeJam.PlatformDependent;
 
 namespace CodeJam.RangesV2
 {
@@ -9,6 +12,7 @@ namespace CodeJam.RangesV2
 	public static partial class RangeExtensions
 	{
 		#region Range factory methods
+		[MethodImpl(AggressiveInlining)]
 		private static TRange TryCreateRange<T, TRange>(
 			this TRange range,
 			RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to)
@@ -21,6 +25,7 @@ namespace CodeJam.RangesV2
 		/// <typeparam name="TKey">The type of the key.</typeparam>
 		/// <param name="range">The range to remove key from.</param>
 		/// <returns>A new range without a key.</returns>
+		[MethodImpl(AggressiveInlining)]
 		public static Range<T> WithoutKey<T, TKey>(this Range<T, TKey> range) =>
 			Range.Create(range.From, range.To);
 	}

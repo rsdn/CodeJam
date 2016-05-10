@@ -231,6 +231,5 @@ namespace CodeJam.RangesV2
 					: new Range<T, TKey>(RangeBoundaryFrom<T>.Empty, RangeBoundaryTo<T>.Empty, key, SkipsArgValidation);
 #pragma warning restore 618
 		#endregion
-
 	}
 }

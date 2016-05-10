@@ -150,7 +150,6 @@ namespace CodeJam.RangesV2
 			var eFrom = new RangeBoundaryFrom<int?>();
 			var eTo = new RangeBoundaryTo<int?>();
 
-
 			AreEqual(Range<int?>.Empty, Range.Create(eFrom, eTo));
 			AreEqual(Range<int?>.Infinite, Range.Create(empty, empty));
 			AreNotEqual(Range<double?>.Infinite, Range.Create(empty, empty));
@@ -171,14 +170,13 @@ namespace CodeJam.RangesV2
 			IsFalse(Range.Create(value1, value2) == Range.Create(value1, value1));
 		}
 
-
 		/// <summary>Tests the range to string.</summary>
 		[Test]
 		public static void TestRangeToString()
 		{
 			int? value1 = 1;
 			int? empty = null;
-			string key = "Hello";
+			var key = "Hello";
 
 			AreEqual(Range<int>.Empty.ToString(), "∅");
 			AreEqual(Range<int>.Infinite.ToString(), "(-∞..+∞)");

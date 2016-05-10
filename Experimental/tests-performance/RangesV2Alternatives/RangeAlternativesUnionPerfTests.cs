@@ -162,9 +162,9 @@ namespace CodeJam.RangesV2Alternatives
 				var result = _rangeData[0];
 				for (var j = 0; j < RepeatCount; j++)
 					for (var i = 1; i < _rangeData.Length; i++)
-				{
-					result = _rangeData[i].UnionInstance(_rangeData2[i]);
-				}
+					{
+						result = _rangeData[i].UnionInstance(_rangeData2[i]);
+					}
 				return result;
 			}
 
@@ -174,9 +174,9 @@ namespace CodeJam.RangesV2Alternatives
 				var result = _rangeData[0];
 				for (var j = 0; j < RepeatCount; j++)
 					for (var i = 1; i < _rangeData.Length; i++)
-				{
-					result = _rangeData[i].Union(_rangeData2[i]);
-				}
+					{
+						result = _rangeData[i].Union(_rangeData2[i]);
+					}
 				return result;
 			}
 
@@ -186,9 +186,9 @@ namespace CodeJam.RangesV2Alternatives
 				var result = _rangeData[0];
 				for (var j = 0; j < RepeatCount; j++)
 					for (var i = 1; i < _rangeData.Length; i++)
-				{
-					result = _rangeData[i].UnionAlt(_rangeData2[i]);
-				}
+					{
+						result = _rangeData[i].UnionAlt(_rangeData2[i]);
+					}
 				return result;
 			}
 		}

@@ -56,7 +56,6 @@ namespace CodeJam.RangesV2
 		public bool Equals(Range<T> other) =>
 			_from == other._from && _to == other._to;
 
-
 		/// <summary>Returns a hash code for the current range.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
 		[Pure]

@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
@@ -25,6 +26,7 @@ namespace CodeJam.RangesV2
 	/// <typeparam name="TKey">The type of the range key</typeparam>
 	[Serializable]
 	[PublicAPI]
+	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	//[DebuggerDisplay("{DebuggerDisplay,nq}")]
 	public partial struct Range<T, TKey> : IRangeFactory<T, Range<T, TKey>>, IEquatable<Range<T, TKey>>, IFormattable
 	{

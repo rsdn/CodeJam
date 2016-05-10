@@ -10,6 +10,7 @@ namespace CodeJam.RangesV2
 	[TestFixture(Category = "Ranges")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
+	[SuppressMessage("ReSharper", "ConvertToConstant.Local")]
 	public static partial class RangeTests
 	{
 		[Test]
@@ -318,6 +319,10 @@ namespace CodeJam.RangesV2
 			IsFalse(range.StartsAfter(2));
 			IsFalse(range.StartsAfter(3));
 
+			IsTrue(range.StartsAfter(Range.Create(empty, 0, RangeKey2)));
+			IsTrue(range.StartsAfter(Range.CreateExclusiveTo(empty, 1, RangeKey2)));
+			IsFalse(range.StartsAfter(Range.Create(empty, 1, RangeKey2)));
+
 			range = Range.Create(emptyFrom, emptyTo);
 			IsFalse(range.StartsAfter(null));
 			IsFalse(range.StartsAfter(double.NegativeInfinity));
@@ -375,6 +380,10 @@ namespace CodeJam.RangesV2
 			IsFalse(range.EndsBefore(1.5));
 			IsFalse(range.EndsBefore(2));
 			IsTrue(range.EndsBefore(3));
+
+			IsFalse(range.EndsBefore(Range.Create(2, empty, RangeKey2)));
+			IsTrue(range.EndsBefore(Range.CreateExclusiveFrom(2, empty, RangeKey2)));
+			IsTrue(range.EndsBefore(Range.Create(3, empty, RangeKey2)));
 
 			range = Range.Create(emptyFrom, emptyTo);
 			IsFalse(range.EndsBefore(null));
