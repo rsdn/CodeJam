@@ -106,7 +106,7 @@ namespace CodeJam.Mapping
 		}
 
 		/// <summary>
-		/// Set default value for provided <see cref="Type"/>.
+		/// Sets default value for provided <see cref="Type"/>.
 		/// </summary>
 		/// <typeparam name="T">Type to set default value for.</typeparam>
 		/// <param name="value">Value to set.</param>

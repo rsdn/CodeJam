@@ -143,7 +143,6 @@
     <Compile Include="Mapping\MapValueAttribute.cs" />
     <Compile Include="Metadata\AttributeInfo.cs" />
     <Compile Include="Metadata\AttributeReader.cs" />
-    <Compile Include="Metadata\FluentMetadataReader.cs" />
     <Compile Include="Metadata\IMetadataReader.cs" />
     <Compile Include="Metadata\MetadataException.cs" />
     <Compile Include="Metadata\MetadataReader.cs" />

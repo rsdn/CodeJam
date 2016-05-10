@@ -6,7 +6,7 @@ namespace CodeJam.Mapping
 {
 	class ConvertInfo
 	{
-		public static ConvertInfo Default = new ConvertInfo();
+		public static readonly ConvertInfo Default = new ConvertInfo();
 
 		public class LambdaInfo
 		{
@@ -22,19 +22,17 @@ namespace CodeJam.Mapping
 				IsSchemaSpecific = isSchemaSpecific;
 			}
 
-			public LambdaExpression Lambda;
-			public LambdaExpression CheckNullLambda;
-			public Delegate         Delegate;
-			public bool             IsSchemaSpecific;
+			public readonly LambdaExpression Lambda;
+			public readonly LambdaExpression CheckNullLambda;
+			public readonly Delegate         Delegate;
+			public readonly bool             IsSchemaSpecific;
 		}
 
 		readonly ConcurrentDictionary<Type,ConcurrentDictionary<Type,LambdaInfo>> _expressions =
 			new ConcurrentDictionary<Type,ConcurrentDictionary<Type,LambdaInfo>>();
 
 		public void Set(Type from, Type to, LambdaInfo expr)
-		{
-			Set(_expressions, from, to, expr);
-		}
+			=> Set(_expressions, @from, to, expr);
 
 		static void Set(ConcurrentDictionary<Type,ConcurrentDictionary<Type,LambdaInfo>> expressions, Type from, Type to, LambdaInfo expr)
 		{

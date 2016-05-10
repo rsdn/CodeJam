@@ -15,26 +15,45 @@ namespace CodeJam.Mapping
 	using Metadata;
 	using Reflection;
 
+	/// <summary>
+	/// Providers object / value mapping support.
+	/// </summary>
 	[PublicAPI]
 	public class MappingSchema
 	{
 		#region Init
 
+		/// <summary>
+		/// Create an instance of <seealso cref="MappingSchema"/>.
+		/// </summary>
 		public MappingSchema()
 			: this(null, (MappingSchema[])null)
 		{
 		}
 
+		/// <summary>
+		/// Create an instance of <seealso cref="MappingSchema"/>.
+		/// </summary>
+		/// <param name="schemas">Base schemas.</param>
 		public MappingSchema(params MappingSchema[] schemas)
 			: this(null, schemas)
 		{
 		}
 
+		/// <summary>
+		/// Create an instance of <seealso cref="MappingSchema"/>.
+		/// </summary>
+		/// <param name="configuration">Configuration name.</param>
 		public MappingSchema(string configuration/* ??? */)
 			: this(configuration, null)
 		{
 		}
 
+		/// <summary>
+		/// Create an instance of <seealso cref="MappingSchema"/>.
+		/// </summary>
+		/// <param name="configuration">Configuration name.</param>
+		/// <param name="schemas">Base schemas.</param>
 		public MappingSchema(string configuration, params MappingSchema[] schemas)
 		{
 			var schemaInfo = new MappingSchemaInfo(configuration);
@@ -75,8 +94,16 @@ namespace CodeJam.Mapping
 
 		const FieldAttributes EnumLookup = FieldAttributes.Public | FieldAttributes.Static | FieldAttributes.Literal;
 
-		public object GetDefaultValue(Type type)
+		/// <summary>
+		/// Gets default value for provided <see cref="Type"/>.
+		/// </summary>
+		/// <param name="type"><see cref="Type"/> to get default value.</param>
+		/// <returns>Default value of the provided <see cref="Type"/></returns>
+		[Pure]
+		public object GetDefaultValue([NotNull] Type type)
 		{
+			Code.NotNull(type, nameof(type));
+
 			foreach (var info in Schemas)
 			{
 				var o = info.GetDefaultValue(type);
@@ -108,8 +135,14 @@ namespace CodeJam.Mapping
 			return DefaultValue.GetValue(type, this);
 		}
 
-		public void SetDefaultValue(Type type, object value)
+		/// <summary>
+		/// Sets default value for provided <see cref="Type"/>.
+		/// </summary>
+		/// <param name="type">Type to set default value for.</param>
+		/// <param name="value">Value to set.</param>
+		public void SetDefaultValue([NotNull] Type type, object value)
 		{
+			Code.NotNull(type, nameof(type));
 			Schemas[0].SetDefaultValue(type, value);
 		}
 
@@ -117,23 +150,18 @@ namespace CodeJam.Mapping
 
 		#region GenericConvertProvider
 
-		public void InitGenericConvertProvider<T>()
-		{
-			InitGenericConvertProvider(typeof(T));
-		}
+		// Should be public.
+		//
+		void InitGenericConvertProvider<T>()
+			=> InitGenericConvertProvider(typeof(T));
 
-		public bool InitGenericConvertProvider(params Type[] types)
-		{
-			return Schemas.Aggregate(false, (cur, info) => cur || info.InitGenericConvertProvider(types, this));
-		}
+		bool InitGenericConvertProvider(params Type[] types)
+			=> Schemas.Aggregate(false, (cur, info) => cur || info.InitGenericConvertProvider(types, this));
 
-		public void SetGenericConvertProvider(Type type)
+		void SetGenericConvertProvider(Type type)
 		{
 			if (!type.IsGenericTypeDefinition)
 				throw new CodeJamMappingException($"'{type}' must be a generic type.");
-
-//			if (!typeof(IGenericInfoProvider).IsSameOrParentOf(type))
-//				throw new CodeJamMappingException("'{0}' must inherit from 'IGenericInfoProvider'.".Args(type));
 
 			Schemas[0].SetGenericConvertProvider(type);
 		}
@@ -142,44 +170,83 @@ namespace CodeJam.Mapping
 
 		#region Convert
 
+		/// <summary>
+		/// Returns an object of a specified type whose value is equivalent to a specified object.
+		/// </summary>
+		/// <param name="value">An object to convert.</param>
+		/// <typeparam name="T">The type of object to return.</typeparam>
+		/// <returns>An object whose type is <i>conversionType</i> and whose value is equivalent to <i>value</i>.</returns>
 		public T ChangeTypeTo<T>(object value)
-		{
-			return Converter.ChangeTypeTo<T>(value, this);
-		}
+			=> Converter.ChangeTypeTo<T>(value, this);
 
+		/// <summary>
+		/// Returns an object of a specified type whose value is equivalent to a specified object.
+		/// </summary>
+		/// <param name="value">An object to convert.</param>
+		/// <param name="conversionType">The type of object to return.</param>
+		/// <returns>An object whose type is <i>conversionType</i> and whose value is equivalent to <i>value</i>.</returns>
 		public object ChangeType(object value, Type conversionType)
-		{
-			return Converter.ChangeType(value, conversionType, this);
-		}
+			=> Converter.ChangeType(value, conversionType, this);
 
+		/// <summary>
+		/// Converts enum to its map value.
+		/// </summary>
+		/// <param name="value">Value to convert.</param>
+		/// <returns>Mapped value.</returns>
 		public object EnumToValue(Enum value)
 		{
 			var toType = ConvertBuilder.GetDefaultMappingFromEnumType(this, value.GetType());
 			return Converter.ChangeType(value, toType, this);
 		}
 
-		public virtual LambdaExpression TryGetConvertExpression(Type @from, Type to)
-		{
-			return null;
-		}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="from"></param>
+		/// <param name="to"></param>
+		/// <returns></returns>
+		protected internal virtual LambdaExpression TryGetConvertExpression(Type from, Type to)
+			=> null;
 
 		internal ConcurrentDictionary<object,Func<object,object>> Converters
-		{
-			get { return Schemas[0].Converters; }
-		}
+			=> Schemas[0].Converters;
 
+		/// <summary>
+		/// Returns an expression that converts a value of type <i>TFrom</i> to <i>TTo</i>.
+		/// </summary>
+		/// <typeparam name="TFrom">Type to convert from.</typeparam>
+		/// <typeparam name="TTo">Type to convert to.</typeparam>
+		/// <returns>Convert expression.</returns>
 		public Expression<Func<TFrom,TTo>> GetConvertExpression<TFrom,TTo>()
 		{
 			var li = GetConverter(typeof(TFrom), typeof(TTo), true);
 			return (Expression<Func<TFrom,TTo>>)ReduceDefaultValue(li.CheckNullLambda);
 		}
 
-		public LambdaExpression GetConvertExpression(Type from, Type to, bool checkNull = true, bool createDefault = true)
+		/// <summary>
+		/// Returns an expression that converts a value of type <i>from</i> to <i>to</i>.
+		/// </summary>
+		/// <param name="from">Type to convert from.</param>
+		/// <param name="to">Type to convert to.</param>
+		/// <param name="checkNull">If <i>true</i>, created expression checks input value for <i>null</i>.</param>
+		/// <param name="createDefault">If <i>true</i>, new expression is created.</param>
+		/// <returns>Convert expression.</returns>
+		public LambdaExpression GetConvertExpression(
+			[NotNull] Type from, [NotNull] Type to, bool checkNull = true, bool createDefault = true)
 		{
+			Code.NotNull(from, nameof(from));
+			Code.NotNull(to,   nameof(to));
+
 			var li = GetConverter(from, to, createDefault);
 			return li == null ? null : (LambdaExpression)ReduceDefaultValue(checkNull ? li.CheckNullLambda : li.Lambda);
 		}
 
+		/// <summary>
+		/// Returns converter from a value of type <i>TFrom</i> to <i>TTo</i>.
+		/// </summary>
+		/// <typeparam name="TFrom">Type to convert from.</typeparam>
+		/// <typeparam name="TTo">Type to convert to.</typeparam>
+		/// <returns>Convert function.</returns>
 		public Func<TFrom,TTo> GetConverter<TFrom,TTo>()
 		{
 			var li = GetConverter(typeof(TFrom), typeof(TTo), true);
@@ -197,15 +264,22 @@ namespace CodeJam.Mapping
 			return (Func<TFrom,TTo>)li.Delegate;
 		}
 
+		/// <summary>
+		/// Adds an expression that converts a value of type <i>fromType</i> to <i>toType</i>.
+		/// </summary>
+		/// <param name="fromType">Type to convert from.</param>
+		/// <param name="toType">Type to convert to.</param>
+		/// <param name="expr">Expression to set.</param>
+		/// <param name="addNullCheck">If <i>true</i>, adds an expression to check null value.</param>
 		public void SetConvertExpression(
 			[NotNull] Type fromType,
 			[NotNull] Type toType,
 			[NotNull] LambdaExpression expr,
 			bool addNullCheck = true)
 		{
-			if (fromType == null) throw new ArgumentNullException(nameof(fromType));
-			if (toType   == null) throw new ArgumentNullException(nameof(toType));
-			if (expr     == null) throw new ArgumentNullException(nameof(expr));
+			Code.NotNull(fromType, nameof(fromType));
+			Code.NotNull(toType,   nameof(toType));
+			Code.NotNull(expr,     nameof(expr));
 
 			var ex = addNullCheck && expr.Find(Converter.IsDefaultValuePlaceHolder) == null?
 				AddNullCheck(expr) :
@@ -214,11 +288,18 @@ namespace CodeJam.Mapping
 			Schemas[0].SetConvertInfo(fromType, toType, new ConvertInfo.LambdaInfo(ex, expr, null, false));
 		}
 
+		/// <summary>
+		/// Adds an expression that converts a value of type <i>fromType</i> to <i>toType</i>.
+		/// </summary>
+		/// <typeparam name="TFrom">Type to convert from.</typeparam>
+		/// <typeparam name="TTo">Type to convert to.</typeparam>
+		/// <param name="expr">Expression to set.</param>
+		/// <param name="addNullCheck">If <i>true</i>, adds an expression to check null value.</param>
 		public void SetConvertExpression<TFrom,TTo>(
 			[NotNull] Expression<Func<TFrom,TTo>> expr,
 			bool addNullCheck = true)
 		{
-			if (expr == null) throw new ArgumentNullException(nameof(expr));
+			Code.NotNull(expr, nameof(expr));
 
 			var ex = addNullCheck && expr.Find(Converter.IsDefaultValuePlaceHolder) == null?
 				AddNullCheck(expr) :
@@ -227,18 +308,31 @@ namespace CodeJam.Mapping
 			Schemas[0].SetConvertInfo(typeof(TFrom), typeof(TTo), new ConvertInfo.LambdaInfo(ex, expr, null, false));
 		}
 
+		/// <summary>
+		/// Adds an expression that converts a value of type <i>fromType</i> to <i>toType</i>.
+		/// </summary>
+		/// <typeparam name="TFrom">Type to convert from.</typeparam>
+		/// <typeparam name="TTo">Type to convert to.</typeparam>
+		/// <param name="checkNullExpr">Null check expression.</param>
+		/// <param name="expr">Convert expression.</param>
 		public void SetConvertExpression<TFrom,TTo>(
 			[NotNull] Expression<Func<TFrom,TTo>> checkNullExpr,
 			[NotNull] Expression<Func<TFrom,TTo>> expr)
 		{
-			if (expr == null) throw new ArgumentNullException(nameof(expr));
+			Code.NotNull(expr, nameof(expr));
 
 			Schemas[0].SetConvertInfo(typeof(TFrom), typeof(TTo), new ConvertInfo.LambdaInfo(checkNullExpr, expr, null, false));
 		}
 
+		/// <summary>
+		/// Adds a function expression that converts a value of type <i>fromType</i> to <i>toType</i>.
+		/// </summary>
+		/// <typeparam name="TFrom">Type to convert from.</typeparam>
+		/// <typeparam name="TTo">Type to convert to.</typeparam>
+		/// <param name="func">Convert function.</param>
 		public void SetConverter<TFrom,TTo>([NotNull] Func<TFrom,TTo> func)
 		{
-			if (func == null) throw new ArgumentNullException(nameof(func));
+			Code.NotNull(func, nameof(func));
 
 			var p  = Expression.Parameter(typeof(TFrom), "p");
 			var ex = Expression.Lambda<Func<TFrom,TTo>>(Expression.Invoke(Expression.Constant(func), p), p);
@@ -382,15 +476,20 @@ namespace CodeJam.Mapping
 		}
 
 		Expression ReduceDefaultValue(Expression expr)
-		{
-			return expr.Transform(e =>
-				Converter.IsDefaultValuePlaceHolder(e) ?
-					Expression.Constant(GetDefaultValue(e.Type), e.Type) :
-					e);
-		}
+			=>
+				expr.Transform(e =>
+					Converter.IsDefaultValuePlaceHolder(e) ?
+						Expression.Constant(GetDefaultValue(e.Type), e.Type) :
+						e);
 
-		public void SetCultureInfo(CultureInfo info)
+		/// <summary>
+		/// Initializes culture specific converters.
+		/// </summary>
+		/// <param name="info">Instance of <seealso cref="CultureInfo"/></param>
+		public void SetCultureInfo([NotNull] CultureInfo info)
 		{
+			Code.NotNull(info, nameof(info));
+
 			SetConvertExpression((SByte     v) =>           v.      ToString(info.NumberFormat));
 			SetConvertExpression((SByte?    v) =>           v.Value.ToString(info.NumberFormat));
 			SetConvertExpression((string    s) =>             SByte.Parse(s, info.NumberFormat));
@@ -461,6 +560,9 @@ namespace CodeJam.Mapping
 
 		#region MetadataReader
 
+		/// <summary>
+		/// Gets or sets metadata reader.
+		/// </summary>
 		public IMetadataReader MetadataReader
 		{
 			get { return Schemas[0].MetadataReader; }
@@ -471,8 +573,14 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		public void AddMetadataReader(IMetadataReader reader)
+		/// <summary>
+		/// Adds metadata reader.
+		/// </summary>
+		/// <param name="reader">Instance of <see cref="IMetadataReader"/></param>
+		public void AddMetadataReader([NotNull] IMetadataReader reader)
 		{
+			Code.NotNull(reader, nameof(reader));
+
 			MetadataReader = MetadataReader == null ? reader : new MetadataReader(reader, MetadataReader);
 		}
 
@@ -497,6 +605,13 @@ namespace CodeJam.Mapping
 			}
 		}
 
+		/// <summary>
+		/// Returns custom attributes applied to provided type.
+		/// </summary>
+		/// <param name="type">Object type</param>
+		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
+		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this type are returned.</typeparam>
+		/// <returns>Array of custom attributes.</returns>
 		public T[] GetAttributes<T>(Type type, bool inherit = true)
 			where T : Attribute
 		{
@@ -508,6 +623,13 @@ namespace CodeJam.Mapping
 			return q.ToArray();
 		}
 
+		/// <summary>
+		/// Returns custom attributes applied to provided type member.
+		/// </summary>
+		/// <param name="memberInfo">Type member.</param>
+		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
+		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this member are returned.</typeparam>
+		/// <returns>Array of custom attributes.</returns>
 		public T[] GetAttributes<T>(MemberInfo memberInfo, bool inherit = true)
 			where T : Attribute
 		{
@@ -519,6 +641,13 @@ namespace CodeJam.Mapping
 			return q.ToArray();
 		}
 
+		/// <summary>
+		/// Returns custom attribute applied to provided type.
+		/// </summary>
+		/// <param name="type">Object type</param>
+		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
+		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this type are returned.</typeparam>
+		/// <returns>A custom attribute or <i>null</i>.</returns>
 		public T GetAttribute<T>(Type type, bool inherit = true)
 			where T : Attribute
 		{
@@ -526,6 +655,13 @@ namespace CodeJam.Mapping
 			return attrs.Length == 0 ? null : attrs[0];
 		}
 
+		/// <summary>
+		/// Returns custom attribute applied to provided type member.
+		/// </summary>
+		/// <param name="memberInfo">Type member.</param>
+		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
+		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this member are returned.</typeparam>
+		/// <returns>A custom attribute or <i>null</i>.</returns>
 		public T GetAttribute<T>(MemberInfo memberInfo, bool inherit = true)
 			where T : Attribute
 		{
@@ -533,6 +669,14 @@ namespace CodeJam.Mapping
 			return attrs.Length == 0 ? null : attrs[0];
 		}
 
+		/// <summary>
+		/// Returns custom attributes applied to provided type.
+		/// </summary>
+		/// <param name="type">Object type</param>
+		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
+		/// <param name="configGetter">A function that returns configuration value is supported by the attribute.</param>
+		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this type are returned.</typeparam>
+		/// <returns>Array of custom attributes.</returns>
 		public T[] GetAttributes<T>(Type type, Func<T,string> configGetter, bool inherit = true)
 			where T : Attribute
 		{
@@ -547,6 +691,14 @@ namespace CodeJam.Mapping
 			return list.Concat(attrs.Where(a => string.IsNullOrEmpty(configGetter(a)))).ToArray();
 		}
 
+		/// <summary>
+		/// Returns custom attributes applied to provided type member.
+		/// </summary>
+		/// <param name="memberInfo">Type member.</param>
+		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
+		/// <param name="configGetter">A function that returns configuration value is supported by the attribute.</param>
+		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this member are returned.</typeparam>
+		/// <returns>Array of custom attributes.</returns>
 		public T[] GetAttributes<T>(MemberInfo memberInfo, Func<T,string> configGetter, bool inherit = true)
 			where T : Attribute
 		{
@@ -561,6 +713,14 @@ namespace CodeJam.Mapping
 			return list.Concat(attrs.Where(a => string.IsNullOrEmpty(configGetter(a)))).ToArray();
 		}
 
+		/// <summary>
+		/// Returns custom attribute applied to provided type.
+		/// </summary>
+		/// <param name="type">Object type</param>
+		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
+		/// <param name="configGetter">A function that returns configuration value is supported by the attribute.</param>
+		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this type are returned.</typeparam>
+		/// <returns>A custom attribute or <i>null</i>.</returns>
 		public T GetAttribute<T>(Type type, Func<T,string> configGetter, bool inherit = true)
 			where T : Attribute
 		{
@@ -568,6 +728,14 @@ namespace CodeJam.Mapping
 			return attrs.Length == 0 ? null : attrs[0];
 		}
 		
+		/// <summary>
+		/// Returns custom attribute applied to provided type member.
+		/// </summary>
+		/// <param name="memberInfo">Type member.</param>
+		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
+		/// <param name="configGetter">A function that returns configuration value is supported by the attribute.</param>
+		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this member are returned.</typeparam>
+		/// <returns>A custom attribute or <i>null</i>.</returns>
 		public T GetAttribute<T>(MemberInfo memberInfo, Func<T,string> configGetter, bool inherit = true)
 			where T : Attribute
 		{
@@ -580,12 +748,17 @@ namespace CodeJam.Mapping
 		#region Configuration
 
 		private string _configurationID;
-		public  string  ConfigurationID
-		{
-			get { return _configurationID ?? (_configurationID = string.Join(".", ConfigurationList)); }
-		}
+
+		/// <summary>
+		/// Gets configuration ID.
+		/// </summary>
+		public  string  ConfigurationID => _configurationID ?? (_configurationID = string.Join(".", ConfigurationList));
 
 		private string[] _configurationList;
+
+		/// <summary>
+		/// Configuration list.
+		/// </summary>
 		public  string[]  ConfigurationList
 		{
 			get
@@ -615,6 +788,9 @@ namespace CodeJam.Mapping
 			Schemas = new[] { mappingSchemaInfo };
 		}
 
+		/// <summary>
+		/// Default mapping schema.
+		/// </summary>
 		public static MappingSchema Default = new DefaultMappingSchema();
 
 		class DefaultMappingSchema : MappingSchema
@@ -631,9 +807,15 @@ namespace CodeJam.Mapping
 
 		ConcurrentDictionary<Type,MapValue[]> _mapValues;
 
+		/// <summary>
+		/// Returns mapping values for provided enum type.
+		/// </summary>
+		/// <param name="type">Type to get mapping values.</param>
+		/// <returns>Array of mapping values.</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="type" /> is null.</exception>
 		public virtual MapValue[] GetMapValues([NotNull] Type type)
 		{
-			if (type == null) throw new ArgumentNullException(nameof(type));
+			Code.NotNull(type, nameof(type));
 
 			if (_mapValues == null)
 				_mapValues = new ConcurrentDictionary<Type,MapValue[]>();

@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Metadata
 {
-	public class MetadataReader : IMetadataReader
+	class MetadataReader : IMetadataReader
 	{
 		public static MetadataReader Default = new MetadataReader(
 			new AttributeReader()

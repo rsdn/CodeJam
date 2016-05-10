@@ -14,7 +14,7 @@ namespace CodeJam.Mapping
 			Configuration = configuration;
 		}
 
-		public string          Configuration;
+		public readonly string Configuration;
 		public IMetadataReader MetadataReader;
 
 		#region Default Values
@@ -42,34 +42,9 @@ namespace CodeJam.Mapping
 
 		#endregion
 
-		#region CanBeNull
-
-		volatile ConcurrentDictionary<Type,bool> _canBeNull;
-
-		public Option<bool> GetCanBeNull(Type type)
-		{
-			if (_canBeNull == null)
-				return Option<bool>.None;
-
-			bool o;
-			return _canBeNull.TryGetValue(type, out o) ? Option.Create(o) : Option<bool>.None;
-		}
-
-		public void SetCanBeNull(Type type, bool value)
-		{
-			if (_canBeNull == null)
-				lock (this)
-					if (_canBeNull == null)
-						_canBeNull = new ConcurrentDictionary<Type,bool>();
-
-			_canBeNull[type] = value;
-		}
-
-		#endregion
-
 		#region GenericConvertProvider
 
-		volatile Dictionary<Type,List<Type[]>> _genericConvertProviders;
+		volatile ConcurrentDictionary<Type,List<Type[]>> _genericConvertProviders;
 
 		public bool InitGenericConvertProvider(Type[] types, MappingSchema mappingSchema)
 		{
@@ -109,12 +84,10 @@ namespace CodeJam.Mapping
 			if (_genericConvertProviders == null)
 				lock (this)
 					if (_genericConvertProviders == null)
-						_genericConvertProviders = new Dictionary<Type,List<Type[]>>();
+						_genericConvertProviders = new ConcurrentDictionary<Type,List<Type[]>>();
 
 			if (!_genericConvertProviders.ContainsKey(type))
-				lock (_genericConvertProviders)
-					if (!_genericConvertProviders.ContainsKey(type))
-						_genericConvertProviders[type] = new List<Type[]>();
+				_genericConvertProviders[type] = new List<Type[]>();
 		}
 
 		#endregion
