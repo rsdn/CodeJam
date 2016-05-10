@@ -22,7 +22,9 @@ namespace CodeJam.RangesV2
 	public static partial class RangeExtensions
 	{
 		#region Updating a range
-		/// <summary>Replaces exclusive boundaries with inclusive ones with the values from the selector callbacks</summary>
+		/// <summary>
+		/// Replaces exclusive boundaries with inclusive ones with the values from the selector callbacks
+		/// </summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
 		/// <typeparam name="TKey">The type of the range key</typeparam>
 		/// <param name="range">The source range.</param>
@@ -53,7 +55,9 @@ namespace CodeJam.RangesV2
 			return range.TryCreateRange(from, to);
 		}
 
-		/// <summary>Replaces inclusive boundaries with exclusive ones with the values from the selector callbacks</summary>
+		/// <summary>
+		/// Replaces inclusive boundaries with exclusive ones with the values from the selector callbacks
+		/// </summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
 		/// <typeparam name="TKey">The type of the range key</typeparam>
 		/// <param name="range">The source range.</param>
@@ -396,7 +400,9 @@ namespace CodeJam.RangesV2
 		/// <typeparam name="TKey">The type of the range key</typeparam>
 		/// <param name="range">The source range.</param>
 		/// <param name="from">A new value From.</param>
-		/// <returns>A range with a new From boundary or the source fange if the new boundary is greater than original.</returns>
+		/// <returns>
+		/// A range with a new From boundary or the source fange if the new boundary is greater than original.
+		/// </returns>
 		[MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> ExtendFrom<T, TKey>(this Range<T, TKey> range, T from) =>
 			ExtendFrom(range, Range.BoundaryFrom(from));
@@ -406,7 +412,9 @@ namespace CodeJam.RangesV2
 		/// <typeparam name="TKey">The type of the range key</typeparam>
 		/// <param name="range">The source range.</param>
 		/// <param name="from">A new boundary From.</param>
-		/// <returns>A range with a new From boundary or the source fange if the new boundary is greater than original.</returns>
+		/// <returns>
+		/// A range with a new From boundary or the source fange if the new boundary is greater than original.
+		/// </returns>
 		[MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> ExtendFrom<T, TKey>(this Range<T, TKey> range, RangeBoundaryFrom<T> from)
 		{
@@ -423,7 +431,9 @@ namespace CodeJam.RangesV2
 		/// <typeparam name="TKey">The type of the range key</typeparam>
 		/// <param name="range">The source range.</param>
 		/// <param name="to">A new value To.</param>
-		/// <returns>A range with a new To boundary or the source fange if the new boundary is less than original.</returns>
+		/// <returns>
+		/// A range with a new To boundary or the source fange if the new boundary is less than original.
+		/// </returns>
 		[MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> ExtendTo<T, TKey>(this Range<T, TKey> range, T to) =>
 			ExtendTo(range, Range.BoundaryTo(to));
@@ -433,7 +443,9 @@ namespace CodeJam.RangesV2
 		/// <typeparam name="TKey">The type of the range key</typeparam>
 		/// <param name="range">The source range.</param>
 		/// <param name="to">A new boundary To.</param>
-		/// <returns>A range with a new To boundary or the source fange if the new boundary is less than original.</returns>
+		/// <returns>
+		/// A range with a new To boundary or the source fange if the new boundary is less than original.
+		/// </returns>
 		[MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> ExtendTo<T, TKey>(this Range<T, TKey> range, RangeBoundaryTo<T> to)
 		{

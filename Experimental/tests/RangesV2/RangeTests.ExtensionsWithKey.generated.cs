@@ -19,6 +19,7 @@ namespace CodeJam.RangesV2
 	[TestFixture(Category = "Ranges")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
+	[SuppressMessage("ReSharper", "ConvertToConstant.Local")]
 	public static partial class RangeTests
 	{
 		[Test]

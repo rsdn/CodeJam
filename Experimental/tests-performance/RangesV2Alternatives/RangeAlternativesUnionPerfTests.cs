@@ -36,6 +36,8 @@ namespace CodeJam.RangesV2Alternatives
 			private readonly KeyValuePair<int, int>[] _data2;
 			private readonly RangeStub<int>[] _rangeData;
 			private readonly RangeStub<int>[] _rangeData2;
+			private readonly Range<int>[] _rangeDataImpl;
+			private readonly Range<int>[] _rangeDataImpl2;
 
 			public RangeUnionIntCase()
 			{
@@ -43,6 +45,8 @@ namespace CodeJam.RangesV2Alternatives
 				_data2 = new KeyValuePair<int, int>[Count];
 				_rangeData = new RangeStub<int>[Count];
 				_rangeData2 = new RangeStub<int>[Count];
+				_rangeDataImpl = new Range<int>[Count];
+				_rangeDataImpl2 = new Range<int>[Count];
 
 				for (var i = 0; i < _data.Length; i++)
 				{
@@ -52,6 +56,8 @@ namespace CodeJam.RangesV2Alternatives
 					_data2[i] = new KeyValuePair<int, int>(i - 1, i);
 					_rangeData[i] = new RangeStub<int>(fromBoundary, Range.BoundaryTo(i + 1));
 					_rangeData2[i] = new RangeStub<int>(Range.BoundaryFrom(i - 1), toBoundary);
+					_rangeDataImpl[i] = new Range<int>(fromBoundary, Range.BoundaryTo(i + 1));
+					_rangeDataImpl2[i] = new Range<int>(Range.BoundaryFrom(i - 1), toBoundary);
 				}
 			}
 
@@ -69,7 +75,7 @@ namespace CodeJam.RangesV2Alternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(9.68, 10.34)]
+			[CompetitionBenchmark(14.02, 14.90)]
 			public RangeStub<int> Test01RangeInstance()
 			{
 				var result = _rangeData[0];
@@ -81,7 +87,7 @@ namespace CodeJam.RangesV2Alternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(10.66, 11.36)]
+			[CompetitionBenchmark(15.73, 16.73)]
 			public RangeStub<int> Test02RangeExtension()
 			{
 				var result = _rangeData[0];
@@ -93,8 +99,20 @@ namespace CodeJam.RangesV2Alternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(10.43, 11.08)]
+			[CompetitionBenchmark(15.11, 16.09)]
 			public RangeStub<int> Test02RangeExtensionAlt()
+			{
+				var result = _rangeData[0];
+				for (var j = 0; j < RepeatCount; j++)
+					for (var i = 1; i < _rangeData.Length; i++)
+					{
+						result = _rangeData[i].UnionAlt(_rangeData2[i]);
+					}
+				return result;
+			}
+
+			[CompetitionBenchmark(14.76, 15.74)]
+			public RangeStub<int> Test03RangeImpl()
 			{
 				var result = _rangeData[0];
 				for (var j = 0; j < RepeatCount; j++)
@@ -120,6 +138,8 @@ namespace CodeJam.RangesV2Alternatives
 			private readonly KeyValuePair<int?, int?>[] _data2;
 			private readonly RangeStub<int?>[] _rangeData;
 			private readonly RangeStub<int?>[] _rangeData2;
+			private readonly Range<int?>[] _rangeDataImpl;
+			private readonly Range<int?>[] _rangeDataImpl2;
 
 			public RangeUnionNIntCase()
 			{
@@ -127,6 +147,8 @@ namespace CodeJam.RangesV2Alternatives
 				_data2 = new KeyValuePair<int?, int?>[Count];
 				_rangeData = new RangeStub<int?>[Count];
 				_rangeData2 = new RangeStub<int?>[Count];
+				_rangeDataImpl = new Range<int?>[Count];
+				_rangeDataImpl2 = new Range<int?>[Count];
 
 				for (var i = 0; i < _data.Length; i++)
 				{
@@ -136,6 +158,8 @@ namespace CodeJam.RangesV2Alternatives
 					_data2[i] = new KeyValuePair<int?, int?>(i - 1, i);
 					_rangeData[i] = new RangeStub<int?>(fromBoundary, Range.BoundaryTo((int?)i + 1));
 					_rangeData2[i] = new RangeStub<int?>(Range.BoundaryFrom((int?)i - 1), toBoundary);
+					_rangeDataImpl[i] = new Range<int?>(fromBoundary, Range.BoundaryTo((int?)i + 1));
+					_rangeDataImpl2[i] = new Range<int?>(Range.BoundaryFrom((int?)i - 1), toBoundary);
 				}
 			}
 
@@ -156,7 +180,7 @@ namespace CodeJam.RangesV2Alternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(1.55, 1.69)]
+			[CompetitionBenchmark(1.29, 1.38)]
 			public RangeStub<int?> Test01RangeInstance()
 			{
 				var result = _rangeData[0];
@@ -168,7 +192,7 @@ namespace CodeJam.RangesV2Alternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(2.00, 2.15)]
+			[CompetitionBenchmark(1.58, 1.71)]
 			public RangeStub<int?> Test02RangeExtension()
 			{
 				var result = _rangeData[0];
@@ -180,8 +204,20 @@ namespace CodeJam.RangesV2Alternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(1.69, 1.81)]
+			[CompetitionBenchmark(1.54, 1.65)]
 			public RangeStub<int?> Test02RangeExtensionAlt()
+			{
+				var result = _rangeData[0];
+				for (var j = 0; j < RepeatCount; j++)
+					for (var i = 1; i < _rangeData.Length; i++)
+					{
+						result = _rangeData[i].UnionAlt(_rangeData2[i]);
+					}
+				return result;
+			}
+
+			[CompetitionBenchmark(1.47, 1.58)]
+			public RangeStub<int?> Test03RangeImpl()
 			{
 				var result = _rangeData[0];
 				for (var j = 0; j < RepeatCount; j++)

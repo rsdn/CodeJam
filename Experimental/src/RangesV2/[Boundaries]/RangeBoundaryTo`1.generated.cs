@@ -60,7 +60,9 @@ namespace CodeJam.RangesV2
 			? Operators<T>.NegativeInfinity
 			: default(T);
 
-		/// <summary>Infrastructure helper method to create a boundary that handles default and infinite values.</summary>
+		/// <summary>
+		/// Infrastructure helper method to create a boundary that handles default and infinite values.
+		/// </summary>
 		/// <param name="value">The value of the boundary.</param>
 		/// <param name="boundaryKind">The kind of the boundary.</param>
 		[EditorBrowsable(EditorBrowsableState.Never)]
@@ -87,7 +89,9 @@ namespace CodeJam.RangesV2
 #pragma warning restore 618
 		}
 
-		/// <summary>Infrastructure helper method to check if the value can be used as the value of the boundary.</summary>
+		/// <summary>
+		/// Infrastructure helper method to check if the value can be used as the value of the boundary.
+		/// </summary>
 		/// <param name="value">The value to check.</param>
 		/// <returns><c>true</c> if it is safe to pass the value as a boundary constructor parameter.</returns>
 		[EditorBrowsable(EditorBrowsableState.Never)]
@@ -319,7 +323,9 @@ namespace CodeJam.RangesV2
 		/// Creates a new boundary with exclusive boundary kind if the current boundary has a value.
 		/// The original boundary is returned otherwise.
 		/// </summary>
-		/// <returns>Range boundary with exclusive boundary kind or the original one if the boundary has no value.</returns>
+		/// <returns>
+		/// Range boundary with exclusive boundary kind or the original one if the boundary has no value.
+		/// </returns>
 		[Pure]
 		public RangeBoundaryTo<T> ToExclusive() => IsInclusiveBoundary ? Range.BoundaryToExclusive(_value) : this;
 
@@ -327,7 +333,9 @@ namespace CodeJam.RangesV2
 		/// Creates a new boundary with inclusive boundary kind if the current boundary has a value.
 		/// The original boundary is returned otherwise.
 		/// </summary>
-		/// <returns>Range boundary with inclusive boundary kind or the original one if the boundary has no value.</returns>
+		/// <returns>
+		/// Range boundary with inclusive boundary kind or the original one if the boundary has no value.
+		/// </returns>
 		[Pure]
 		public RangeBoundaryTo<T> ToInclusive() => IsExclusiveBoundary ? Range.BoundaryTo(_value) : this;
 		#endregion
