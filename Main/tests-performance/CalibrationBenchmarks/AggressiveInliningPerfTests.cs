@@ -211,13 +211,15 @@ namespace CodeJam
 
 			private static int CallManualInline(int i) => i + 1;
 
+			[MethodImpl(MethodImplOptions.NoInlining)]
 			private static int CallAuto(int i) =>
 				new StructAuto<int>(i, false).Value + 1;
 
+			[MethodImpl(MethodImplOptions.NoInlining)]
 			private static int CallNoInline(int i) =>
 				new StructNoInline<int>(i, false).Value + 1;
 
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			[MethodImpl(MethodImplOptions.NoInlining)]
 			private static int CallInline(int i) =>
 				new StructInline<int>(i, false).Value + 1;
 			#endregion
@@ -233,7 +235,7 @@ namespace CodeJam
 				return sum;
 			}
 
-			[CompetitionBenchmark(5.82, 6.20)]
+			[CompetitionBenchmark(5.80, 6.18)]
 			public int Test01Auto()
 			{
 				var sum = 0;
@@ -244,7 +246,7 @@ namespace CodeJam
 				return sum;
 			}
 
-			[CompetitionBenchmark(5.74, 6.12)]
+			[CompetitionBenchmark(5.80, 6.20)]
 			public int Test02NoInline()
 			{
 				var sum = 0;
@@ -255,7 +257,7 @@ namespace CodeJam
 				return sum;
 			}
 
-			[CompetitionBenchmark(0.98, 1.05)]
+			[CompetitionBenchmark(2.60, 2.77)]
 			public int Test03AggressiveInline()
 			{
 				var sum = 0;

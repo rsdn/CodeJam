@@ -1,10 +1,11 @@
 ﻿## List of optimizations to do:
-* Agressive inlining and prooftest for it
+* DO WE NEED IT? Agressive inlining on struct constructors. Should measure first.
 * DO WE NEED IT? factory methods for Nullable<T> => Range<T>; 
   Good part: ~2x speedup?
   Bad part: GetValueOrDefault for infinity will return 0, not null.
 
 ## List of optimizations done:
+* prooftest AggressiveInliningPerfTests +  AggressiveInlining annotations.
 * Non-readonly fields:https://codeblog.jonskeet.uk/2014/07/16/micro-optimization-the-surprising-inefficiency-of-readonly-fields/
 
 ## List of fixes:
