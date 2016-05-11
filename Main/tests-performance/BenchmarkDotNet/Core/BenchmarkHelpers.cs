@@ -93,8 +93,11 @@ namespace BenchmarkDotNet.Helpers
 		/// </summary>
 		public static double GetPercentile(this Summary summary, Benchmark benchmark, double percentileRatio)
 		{
-			var values = summary.Reports.Single(r => r.Benchmark == benchmark)
-				.GetResultRuns()
+			var benchmarkReport = summary.Reports.SingleOrDefault(r => r.Benchmark == benchmark);
+			if (benchmarkReport == null)
+				return 0;
+
+			var values = benchmarkReport.GetResultRuns()
 				.Select(r => r.GetAverageNanoseconds());
 			return Percentile(values, percentileRatio);
 		}

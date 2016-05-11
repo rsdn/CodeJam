@@ -76,7 +76,7 @@ namespace BenchmarkDotNet.UnitTesting
 
 		#region Competition benchmarks
 		public static CompetitionParameters GetCompetitionParameters(this Summary summary) =>
-			summary.Config.GetAnalysers()
+			summary.Config.GetValidators()
 				.OfType<CompetitionParameters>()
 				.Single();
 

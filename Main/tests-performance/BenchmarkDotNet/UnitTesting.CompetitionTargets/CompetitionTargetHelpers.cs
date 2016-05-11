@@ -11,6 +11,8 @@ using BenchmarkDotNet.Parameters;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
+using CodeJam.Collections;
+
 // ReSharper disable CheckNamespace
 using static BenchmarkDotNet.UnitTesting.CompetitionHelpers;
 
@@ -218,6 +220,8 @@ namespace BenchmarkDotNet.UnitTesting
 			Summary summary, double defaultMinRatio, double defaultMaxRatio,
 			CompetitionTargets competitionTargets)
 		{
+			ValidatePreconditions(summary);
+
 			// Based on 95th percentile
 			const double percentileRatio = 0.95;
 
@@ -256,6 +260,40 @@ namespace BenchmarkDotNet.UnitTesting
 					ValidateBenchmark(benchmark, actualRatio, benchmarkMinRatio, benchmarkMaxRatio);
 				}
 			}
+		}
+
+		private static void ValidatePreconditions(Summary summary)
+		{
+			if (summary.HasCriticalValidationErrors)
+			{
+				var messages = summary.ValidationErrors
+					.Where(err => err.IsCritical)
+					.Select(
+						err =>
+							(err.Benchmark == null ? null : err.Benchmark.ShortInfo + ": ") +
+								err.Message)
+					.ToArray();
+
+				if (messages.Length > 0)
+					throw new InvalidOperationException(
+						"Validation failed:\r\n" + string.Join(Environment.NewLine, messages));
+
+				throw new InvalidOperationException("Benchmark validation failed.");
+			}
+
+			var benchReports = summary.Reports
+				.Where(r => r.ExecuteResults.Any())
+				.Select(r => r.Benchmark)
+				.ToHashSet();
+			var benchMissing = summary.Benchmarks
+				.Where(b => !benchReports.Contains(b))
+				.Select(b => b.Target.Method.Name)
+				.Distinct()
+				.ToArray();
+
+			if (benchMissing.Length > 0)
+				throw new InvalidOperationException(
+					"No reports for benchmarks: " + string.Join(", ", benchMissing));
 		}
 
 		private static void ValidateBenchmark(
