@@ -46,7 +46,6 @@ namespace CodeJam.RangesV2
 
 		private static readonly bool _hasPositiveInfinity = Operators<T>.HasPositiveInfinity;
 
-		/// <summary>The _positive infinity</summary>
 		private static readonly T _positiveInfinity = Operators<T>.HasPositiveInfinity
 			? Operators<T>.PositiveInfinity
 			: default(T);

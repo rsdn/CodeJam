@@ -103,6 +103,7 @@
     <Compile Include="BenchmarkDotNet\UnitTesting\CompetitionParameters.cs" />
     <Compile Include="BenchmarkDotNet\UnitTesting\CompetitionState.cs" />
     <Compile Include="BenchmarkDotNet\UnitTesting\Configs.cs" />
+    <Compile Include="CalibrationBenchmarks\AggressiveInliningPerfTests.cs" />
     <Compile Include="CalibrationBenchmarks\JitOptimizedFeatureSwitchPerfTests.cs" />
     <Compile Include="PerfTestsConstants.cs" />
     <Compile Include="CalibrationBenchmarks\NestedStructAccessPerfTests.cs" />

@@ -33,7 +33,7 @@ namespace CodeJam.RangesV2
 			return result;
 		}
 
-		[CompetitionBenchmark(0.46, 0.50)]
+		[CompetitionBenchmark(0.83, 0.90)]
 		public RangeBoundaryFrom<int> Test01NoValidation()
 		{
 			var result = RangeBoundaryFrom<int>.Empty;
