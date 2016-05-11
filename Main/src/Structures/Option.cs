@@ -11,13 +11,47 @@ namespace CodeJam
 	public static class Option
 	{
 		/// <summary>
-		/// Create instance of <see cref="Option{T}"/>
+		/// Creates instance of <see cref="Option{T}"/> with specified value.
 		/// </summary>
 		/// <typeparam name="T">Type of value</typeparam>
 		/// <param name="value">Value</param>
-		/// <returns>New instance of <see cref="Option{T}"/>.</returns>
+		/// <returns>Instance of <see cref="Option{T}"/>.</returns>
 		[Pure]
-		public static Option<T> Create<T>(T value) => new Option<T>(value);
+		public static Option<T> Some<T>(T value) => new Option<T>(value);
+
+		/// <summary>
+		/// Creates instance of <see cref="Option{T}"/> with specified value, if value not null.
+		/// </summary>
+		/// <typeparam name="T">Type of value</typeparam>
+		/// <param name="value">Value</param>
+		/// <returns>
+		/// Instance of <see cref="Option{T}"/> with <paramref name="value"/>, if <paramref name="value"/> not null,
+		/// or instance without value.
+		/// </returns>
+		[Pure]
+		public static Option<T> SomeHasValue<T>([CanBeNull] T value) where T : class =>
+			value != null ? Some(value) : None<T>();
+
+		/// <summary>
+		/// Creates instance of <see cref="Option{T}"/> with specified value, if <paramref name="value"/> has value.
+		/// </summary>
+		/// <typeparam name="T">Type of value</typeparam>
+		/// <param name="value">Value</param>
+		/// <returns>
+		/// Instance of <see cref="Option{T}"/> with <paramref name="value"/>, if <paramref name="value"/> has value,
+		/// or instance without value.
+		/// </returns>
+		[Pure]
+		public static Option<T> SomeHasValue<T>(T? value) where T : struct =>
+			value.HasValue ? Some(value.Value) : None<T>();
+
+		/// <summary>
+		/// Creates instance of <see cref="Option{T}"/> without value.
+		/// </summary>
+		/// <typeparam name="T">Type of value.</typeparam>
+		/// <returns>Instance without value.</returns>
+		[Pure]
+		public static Option<T> None<T>() => new Option<T>();
 
 		/// <summary>
 		/// Calls <paramref name="someAction"/> if <paramref name="option"/> has value,
@@ -27,7 +61,7 @@ namespace CodeJam
 		/// <param name="option"><see cref="Option{T}"/> instance to match.</param>
 		/// <param name="someAction">Action if value exists.</param>
 		/// <param name="noneAction">Action if no value.</param>
-		public static void Match<T>(
+		public static void Do<T>(
 			this Option<T> option,
 			[NotNull, InstantHandle] Action<Option<T>> someAction,
 			[NotNull, InstantHandle] Action noneAction)
@@ -42,25 +76,25 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Calls <paramref name="someFunc"/> if <paramref name="option"/> has value,
-		/// and <paramref name="noneFunc"/> otherwise.
+		/// Calls <paramref name="someSelector"/> if <paramref name="option"/> has value,
+		/// and <paramref name="noneSelector"/> otherwise.
 		/// </summary>
 		/// <typeparam name="T">Type of value</typeparam>
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <param name="option"><see cref="Option{T}"/> instance to match.</param>
-		/// <param name="someFunc">Function if value exists.</param>
-		/// <param name="noneFunc">Function if no value.</param>
+		/// <param name="someSelector">Function if value exists.</param>
+		/// <param name="noneSelector">Function if no value.</param>
 		/// <returns>Result of matched function</returns>
 		[Pure]
-		public static TResult Match<T, TResult>(
+		public static TResult GetValueOrDefault<T, TResult>(
 			this Option<T> option,
-			[NotNull, InstantHandle] Func<Option<T>, TResult> someFunc,
-			[NotNull, InstantHandle] Func<TResult> noneFunc)
+			[NotNull, InstantHandle] Func<Option<T>, TResult> someSelector,
+			[NotNull, InstantHandle] Func<TResult> noneSelector)
 		{
-			Code.NotNull(someFunc, nameof(someFunc));
-			Code.NotNull(noneFunc, nameof(noneFunc));
+			Code.NotNull(someSelector, nameof(someSelector));
+			Code.NotNull(noneSelector, nameof(noneSelector));
 
-			return option.HasValue ? someFunc(option) : noneFunc();
+			return option.HasValue ? someSelector(option) : noneSelector();
 		}
 
 		/// <summary>
@@ -87,13 +121,60 @@ namespace CodeJam
 		/// has no value.
 		/// </returns>
 		[Pure]
-		public static Option<TResult> Map<T, TResult>(
+		public static Option<TResult> With<T, TResult>(
 			this Option<T> option,
 			[NotNull, InstantHandle] Func<T, TResult> selectFunc)
 		{
 			Code.NotNull(selectFunc, nameof(selectFunc));
 
-			return option.HasValue ? new Option<TResult>(selectFunc(option.Value)) : new Option<TResult>();
+			return option.HasValue ? new Option<TResult>(selectFunc(option.Value)) : None<TResult>();
+		}
+
+		/// <summary>
+		/// Converts <paramref name="option"/> value to another option with <paramref name="selectFunc"/>.
+		/// </summary>
+		/// <typeparam name="T">Type of value</typeparam>
+		/// <typeparam name="TResult">Type of result</typeparam>
+		/// <param name="option"><see cref="Option{T}"/> instance to match.</param>
+		/// <param name="selectFunc">Function to map value</param>
+		/// <param name="defaultValue">Default value.</param>
+		/// <returns>
+		/// Converted by <paramref name="selectFunc"/> value, or option with <paramref name="defaultValue"/>, if
+		/// <paramref name="option"/> has no value.
+		/// </returns>
+		[Pure]
+		public static Option<TResult> With<T, TResult>(
+			this Option<T> option,
+			[NotNull, InstantHandle] Func<T, TResult> selectFunc,
+			TResult defaultValue)
+		{
+			Code.NotNull(selectFunc, nameof(selectFunc));
+
+			return new Option<TResult>(option.HasValue ? selectFunc(option.Value) : defaultValue);
+		}
+
+		/// <summary>
+		/// Converts <paramref name="option"/> value to another option with <paramref name="selectFunc"/>.
+		/// </summary>
+		/// <typeparam name="T">Type of value</typeparam>
+		/// <typeparam name="TResult">Type of result</typeparam>
+		/// <param name="option"><see cref="Option{T}"/> instance to match.</param>
+		/// <param name="selectFunc">Function to map value</param>
+		/// <param name="defaultFunc">Function to return default value.</param>
+		/// <returns>
+		/// Converted by <paramref name="selectFunc"/> value, or option with value returned by
+		/// <paramref name="defaultFunc"/>, if <paramref name="option"/> has no value.
+		/// </returns>
+		[Pure]
+		public static Option<TResult> With<T, TResult>(
+			this Option<T> option,
+			[NotNull, InstantHandle] Func<T, TResult> selectFunc,
+			[NotNull, InstantHandle] Func<TResult> defaultFunc)
+		{
+			Code.NotNull(selectFunc, nameof(selectFunc));
+			Code.NotNull(defaultFunc, nameof(defaultFunc));
+
+			return new Option<TResult>(option.HasValue ? selectFunc(option.Value) : defaultFunc());
 		}
 	}
 }

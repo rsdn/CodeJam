@@ -81,20 +81,32 @@ namespace BenchmarkDotNet.UnitTesting
 			// Final config
 			var competitionConfig = CreateCompetitionConfig(baseConfig, competitionState, logger);
 
-			Summary summary = null;
 			try
 			{
-				summary = RunCore(benchmarkType, competitionConfig, competitionState);
-			}
-			finally
-			{
-				DumpOutputSummaryAtTop(summary, logger);
-			}
+				Summary summary = null;
+				try
+				{
+					summary = RunCore(benchmarkType, competitionConfig, competitionState);
+				}
+				finally
+				{
+					DumpOutputSummaryAtTop(summary, logger);
+				}
 
-			competitionState.ValidateSummary(summary, minRatio, maxRatio);
+				competitionState.ValidateSummary(summary, minRatio, maxRatio);
+			}
+			catch (Exception ex)
+			{
+				ConsoleLogger.Default.WriteError("Exception:" + ex);
+				throw;
+			}
 		}
 
-		private static void ValidateCompetitionSetup(Type benchmarkType)
+		private static
+			void ValidateCompetitionSetup
+			(
+			Type
+				benchmarkType)
 		{
 			if (!Debugger.IsAttached)
 			{
@@ -113,7 +125,9 @@ namespace BenchmarkDotNet.UnitTesting
 			}
 		}
 
-		private static AccumulationLogger InitAccumulationLogger()
+		private static
+			AccumulationLogger InitAccumulationLogger
+			()
 		{
 			var logger = new AccumulationLogger();
 			logger.WriteLine();
@@ -123,12 +137,14 @@ namespace BenchmarkDotNet.UnitTesting
 			return logger;
 		}
 
-		private static IConfig CreateCompetitionConfig(
+		private static
+			IConfig CreateCompetitionConfig
+			(
 			IConfig baseConfig, CompetitionState competitionState,
 			AccumulationLogger logger)
 		{
 			baseConfig = baseConfig ?? DefaultConfig.Instance;
-			var existingParameters = baseConfig.GetAnalysers()
+			var existingParameters = baseConfig.GetValidators()
 				.OfType<CompetitionParameters>()
 				.SingleOrDefault();
 
@@ -140,6 +156,7 @@ namespace BenchmarkDotNet.UnitTesting
 				result.Add(new CompetitionParameters());
 			}
 			result.Add(logger);
+			result.Add(Validators.JitOptimizationsValidator.FailOnError);
 			result.Add(
 				StatisticColumn.Min,
 				ScaledPercentileColumn.S0Column,
@@ -151,7 +168,9 @@ namespace BenchmarkDotNet.UnitTesting
 			return result;
 		}
 
-		private static Summary RunCore(
+		private static
+			Summary RunCore
+			(
 			Type benchmarkType, IConfig competitionConfig,
 			CompetitionState competitionState)
 		{
@@ -176,7 +195,9 @@ namespace BenchmarkDotNet.UnitTesting
 			return summary;
 		}
 
-		private static void DumpOutputSummaryAtTop(Summary summary, AccumulationLogger logger)
+		private static
+			void DumpOutputSummaryAtTop
+			(Summary summary, AccumulationLogger logger)
 		{
 			if (summary != null)
 			{

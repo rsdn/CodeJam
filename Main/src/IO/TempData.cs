@@ -69,7 +69,7 @@ namespace CodeJam.IO
 			/// </param>
 			protected void Dispose(bool disposing)
 			{
-#pragma warning disable 420
+#pragma warning disable 420 // Interlocked is safe to call on volatile fields.
 				var path = Interlocked.Exchange(ref _path, null);
 #pragma warning restore 420
 				if (path == null)

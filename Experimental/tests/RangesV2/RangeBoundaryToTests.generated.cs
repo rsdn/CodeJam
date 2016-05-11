@@ -59,6 +59,10 @@ namespace CodeJam.RangesV2
 			AreNotEqual(
 				new RangeBoundaryTo<int?>(value1, RangeBoundaryToKind.Exclusive),
 				Range.BoundaryToExclusive(value2));
+
+			AreNotEqual(
+				RangeBoundaryTo<int>.PositiveInfinity,
+				Range.BoundaryTo(0));
 		}
 
 		[Test]
@@ -248,6 +252,56 @@ namespace CodeJam.RangesV2
 			boundary = RangeBoundaryTo<int?>.PositiveInfinity;
 			boundary2 = boundary.WithValue(i => i + 1);
 			AreEqual(boundary, boundary2);
+		}
+
+		[Test]
+		public static void TestBoundaryToToExclusive()
+		{
+			int? value1 = 1;
+			int? empty = null;
+
+			var boundary = RangeBoundaryTo<int?>.Empty;
+			var boundary2 = boundary.ToExclusive();
+			IsTrue(boundary2.IsEmpty);
+
+			boundary = Range.BoundaryTo(empty);
+			boundary2 = boundary.ToExclusive();
+			IsTrue(boundary2.IsPositiveInfinity);
+
+			boundary = Range.BoundaryTo(value1);
+			boundary2 = boundary.ToExclusive();
+			AreEqual(boundary2.Value, boundary.Value);
+			AreEqual(boundary2.Kind, RangeBoundaryToKind.Exclusive);
+
+			boundary = Range.BoundaryToExclusive(value1);
+			boundary2 = boundary.ToExclusive();
+			AreEqual(boundary2.Value, boundary.Value);
+			AreEqual(boundary2.Kind, RangeBoundaryToKind.Exclusive);
+		}
+
+		[Test]
+		public static void TestBoundaryToToInclusive()
+		{
+			int? value1 = 1;
+			int? empty = null;
+
+			var boundary = RangeBoundaryTo<int?>.Empty;
+			var boundary2 = boundary.ToInclusive();
+			IsTrue(boundary2.IsEmpty);
+
+			boundary = Range.BoundaryTo(empty);
+			boundary2 = boundary.ToInclusive();
+			IsTrue(boundary2.IsPositiveInfinity);
+
+			boundary = Range.BoundaryTo(value1);
+			boundary2 = boundary.ToInclusive();
+			AreEqual(boundary2.Value, boundary.Value);
+			AreEqual(boundary2.Kind, RangeBoundaryToKind.Inclusive);
+
+			boundary = Range.BoundaryToExclusive(value1);
+			boundary2 = boundary.ToInclusive();
+			AreEqual(boundary2.Value, boundary.Value);
+			AreEqual(boundary2.Kind, RangeBoundaryToKind.Inclusive);
 		}
 	}
 }

@@ -23,8 +23,8 @@ namespace CodeJam.RangesV2
 		/// AND the code is on the hotpath.
 		/// </summary>
 		[Obsolete(SkipsArgValidationObsolete)]
-#pragma warning disable 618
-			internal const UnsafeOverload SkipsArgValidation = UnsafeOverload.SkipsArgValidation;
+#pragma warning disable 618 // The warning is transitive: the constant is marked as obsolete.
+		internal const UnsafeOverload SkipsArgValidation = UnsafeOverload.SkipsArgValidation;
 #pragma warning restore 618
 
 		/// <summary>The message for unsafe (no arg validation) method.</summary>
@@ -46,7 +46,6 @@ namespace CodeJam.RangesV2
 		#endregion
 
 		#region Range constants
-		// TODO: uncomment
 		internal const string KeyPrefixString = "'";
 		internal const string KeySeparatorString = "': ";
 		internal const string SeparatorString = "..";

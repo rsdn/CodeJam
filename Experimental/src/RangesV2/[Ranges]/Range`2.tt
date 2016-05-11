@@ -2,10 +2,16 @@
 <#@ include file="RangeWithTKeyReplacer.ttinclude" #>
 <#
 	Run("Range`1.cs",
+		new ReplaceInfo // Add TKey field
+		{
+			Pattern = @"(\r\n.+?)(private RangeBoundaryTo<T> _to;)",
+			Replacement = @"$1$2$1private TKey _key;",
+			ThrowOnFail = true
+		},
 		new ReplaceInfo // Fix .ctor body
 		{
-			Pattern = @"(\r\n.+?)(To = to;)",
-			Replacement = @"$1$2$1Key = key;",
+			Pattern = @"(\r\n.+?)(_to = to;)",
+			Replacement = @"$1$2$1_key = key;",
 			ThrowOnFail = true
 		},
 		new ReplaceInfo // Fix parameter passing #2

@@ -31,9 +31,7 @@ namespace CodeJam
 			private static readonly bool _isEnum = typeof(TEnum).IsEnum;
 			private static readonly bool _isNullableEnum = typeof(TEnum).IsNullableEnum();
 
-			private static readonly Type _enumType = typeof(TEnum).IsNullableEnum()
-				? Nullable.GetUnderlyingType(typeof(TEnum))
-				: typeof(TEnum);
+			private static readonly Type _enumType = typeof(TEnum).ToNullableUnderlying();
 
 			// ReSharper disable once StaticMemberInGenericType
 			private static readonly bool _isFlagsEnum =

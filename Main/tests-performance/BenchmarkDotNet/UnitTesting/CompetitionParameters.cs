@@ -5,6 +5,8 @@ using System.Linq;
 
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Reports;
+using BenchmarkDotNet.Running;
+using BenchmarkDotNet.Validators;
 
 using JetBrains.Annotations;
 
@@ -12,15 +14,12 @@ using JetBrains.Annotations;
 
 namespace BenchmarkDotNet.UnitTesting
 {
-	// TODO: As validator once
-	// https://github.com/PerfDotNet/BenchmarkDotNet/issues/153
-	// will be fixed
 	/// <summary>
 	/// Competition parameters
 	/// </summary>
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
-	public class CompetitionParameters : IAnalyser
+	public class CompetitionParameters : IValidator
 	{
 		#region Public API
 		public bool RerunIfModified { get; set; }
@@ -29,6 +28,13 @@ namespace BenchmarkDotNet.UnitTesting
 
 		public IEnumerable<IWarning> Analyse(Summary summary) =>
 			Enumerable.Empty<IWarning>();
+		#endregion
+
+		#region Implementation of IValidator
+		IEnumerable<IValidationError> IValidator.Validate(IList<Benchmark> benchmarks) => 
+			Enumerable.Empty<IValidationError>();
+
+		bool IValidator.TreatsWarningsAsErrors => false;
 		#endregion
 	}
 }

@@ -2,14 +2,20 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Text.RegularExpressions" #><#+
 
-	private void Transform(string source, ReplaceInfo[] additionalReplaces, params ReplaceInfo[] replaces)
+	private void Transform(string sourceFileName, ReplaceInfo[] additionalReplaces, params ReplaceInfo[] replaces)
 	{
 		var replaceList = new List<ReplaceInfo>(additionalReplaces);
 		replaceList.AddRange(replaces);
-		Transform(source, replaceList.ToArray());
+		Transform(sourceFileName, replaceList.ToArray());
 	}
-	private void Transform(string source, params ReplaceInfo[] replaces)
+	private void Transform(string sourceFileName, params ReplaceInfo[] replaces)
 	{
+		var filePath = Host.ResolvePath(sourceFileName);
+		if (!File.Exists(filePath))
+		{
+			throw new FileNotFoundException("File '" + filePath + "' does not exist.");
+		}
+
 		Func<string, string, string, ReplaceInfo, string> replaceCore = (text, pattern, replacement, replaceInfo) =>
 		{
 			if (replaceInfo.SwapMode || replaceInfo.EscapePattern)
@@ -27,7 +33,7 @@
 			return newText;
 		};
 
-		var sourceText = File.ReadAllText(source);
+		var sourceText = File.ReadAllText(filePath);
 
 		foreach (var replaceInfo in replaces)
 		{

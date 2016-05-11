@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
@@ -25,6 +26,7 @@ namespace CodeJam.RangesV2
 	/// <typeparam name="TKey">The type of the range key</typeparam>
 	[Serializable]
 	[PublicAPI]
+	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	//[DebuggerDisplay("{DebuggerDisplay,nq}")]
 	public partial struct Range<T, TKey> : IRangeFactory<T, Range<T, TKey>>, IEquatable<Range<T, TKey>>, IFormattable
 	{
@@ -51,6 +53,11 @@ namespace CodeJam.RangesV2
 		#endregion
 
 		#region Fields & .ctor()
+		// DONTTOUCH: DO NOT mark fields as readonly. See NestedStructAccessPerfTests as a proof WHY.
+		private RangeBoundaryFrom<T> _from;
+		private RangeBoundaryTo<T> _to;
+		private TKey _key;
+
 		/// <summary>Creates instance of <seealso cref="Range{T}"/></summary>
 		/// <param name="from">Boundary From.</param>
 		/// <param name="to">Boundary To.</param>
@@ -76,9 +83,9 @@ namespace CodeJam.RangesV2
 				}
 			}
 
-			From = from;
-			To = to;
-			Key = key;
+			_from = from;
+			_to = to;
+			_key = key;
 		}
 
 		/// <summary>Creates instance of <seealso cref="Range{T}"/></summary>
@@ -101,9 +108,9 @@ namespace CodeJam.RangesV2
 			: this(from, to, key) { }
 #else
 		{
-			From = from;
-			To = to;
-			Key = key;
+			_from = from;
+			_to = to;
+			_key = key;
 		}
 #endif
 		#endregion
@@ -111,39 +118,40 @@ namespace CodeJam.RangesV2
 		#region Properties
 		/// <summary>Boundary From. Limits the values from the left.</summary>
 		/// <value>Boundary From.</value>
-		public RangeBoundaryFrom<T> From { get; }
+		public RangeBoundaryFrom<T> From => _from;
 
 		/// <summary>Boundary To. Limits the values from the right.</summary>
 		/// <value>Boundary To.</value>
-		public RangeBoundaryTo<T> To { get; }
+		public RangeBoundaryTo<T> To => _to;
 
 		/// <summary>The value of Boundary From.</summary>
 		/// <value>The value of Boundary From or InvalidOperationException, if From.HasValue is <c>false</c>.</value>
 		/// <exception cref="InvalidOperationException">Thrown if From.HasValue is <c>false</c>.</exception>
-		public T FromValue => From.Value;
+		public T FromValue => _from.Value;
 
 		/// <summary>The value of Boundary To.</summary>
 		/// <value>The value of Boundary To or InvalidOperationException, if To.HasValue is <c>false</c>.</value>
 		/// <exception cref="InvalidOperationException">Thrown if To.HasValue is <c>false</c>.</exception>
-		public T ToValue => To.Value;
+		public T ToValue => _to.Value;
 
 		/// <summary>The range is empty, ∅.</summary>
 		/// <value><c>true</c> if the range is empty; otherwise, <c>false</c>.</value>
-		public bool IsEmpty => From.IsEmpty;
+		public bool IsEmpty => _from.IsEmpty;
 
 		/// <summary>The range is NOT empty, ≠ ∅</summary>
 		/// <value><c>true</c> if the range is not empty; otherwise, <c>false</c>.</value>
-		public bool IsNotEmpty => From.IsNotEmpty;
+		public bool IsNotEmpty => _from.IsNotEmpty;
 
 		/// <summary>
 		/// The range is Zero length range (the values of the boundary From and the boundary To are the same).
 		/// </summary>
 		/// <value> <c>true</c> if the range is single point range; otherwise, <c>false</c>. </value>
-		public bool IsSinglePoint => From.IsNotEmpty && From.CompareTo(To) == 0;
+		public bool IsSinglePoint => _from.IsNotEmpty && _from.CompareTo(_to) == 0;
 
 		/// <summary>The range is Infinite range (-∞..+∞).</summary>
 		/// <value><c>true</c> if the range is infinite; otherwise, <c>false</c>.</value>
-		public bool IsInfinite => From.IsNegativeInfinity && To.IsPositiveInfinity;
+		public bool IsInfinite => _from.IsNegativeInfinity && _to.IsPositiveInfinity;
+		#endregion
 
 		#region IEquatable<Range<T, TKey>>
 		/// <summary>Indicates whether the current range and a specified object are equal.</summary>
@@ -155,8 +163,6 @@ namespace CodeJam.RangesV2
 		[Pure]
 		public override bool Equals(object obj) =>
 			obj is Range<T, TKey> && Equals((Range<T, TKey>)obj);
-		#endregion
-
 		#endregion
 
 		#region ToString

@@ -13,7 +13,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
-		/// <returns>Topologicaly sorted list of items in <paramref name="source"/>.</returns>
+		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
 		[NotNull]
 		[Pure]
 		public static List<T> TopoSort<T>(
@@ -27,7 +27,7 @@ namespace CodeJam.Collections
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="keySelector">Function that returns an item key, wich is used to compare.</param>
-		/// <returns>Topologicaly sorted list of items in <paramref name="source"/>.</returns>
+		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
 		[NotNull]
 		[Pure]
 		public static List<T> TopoSort<T, TKey>(
@@ -43,7 +43,7 @@ namespace CodeJam.Collections
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="keySelector">Function that returns an item key, wich is used to compare.</param>
 		/// <param name="keyComparer">Equality comparer for item comparison</param>
-		/// <returns>Topologicaly sorted list of items in <paramref name="source"/>.</returns>
+		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
 		[NotNull]
 		[Pure]
 		public static List<T> TopoSort<T, TKey>(
@@ -59,7 +59,7 @@ namespace CodeJam.Collections
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="equalityComparer">Equality comparer for item comparison</param>
-		/// <returns>Topologicaly sorted list of items in <paramref name="source"/>.</returns>
+		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
 		[NotNull]
 		[Pure]
 		public static List<T> TopoSort<T>(

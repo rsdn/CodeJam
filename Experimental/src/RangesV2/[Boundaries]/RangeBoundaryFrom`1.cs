@@ -1,8 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
+using CodeJam.Reflection;
 
 using JetBrains.Annotations;
 
@@ -43,16 +46,18 @@ namespace CodeJam.RangesV2
 
 		private static readonly bool _hasPositiveInfinity = Operators<T>.HasPositiveInfinity;
 
-		/// <summary>The _positive infinity</summary>
 		private static readonly T _positiveInfinity = Operators<T>.HasPositiveInfinity
 			? Operators<T>.PositiveInfinity
 			: default(T);
 
-		/// <summary>Helper method to create a boundary that handles default and infinite values.</summary>
+		/// <summary>
+		/// Infrastructure helper method to create a boundary that handles default and infinite values.
+		/// </summary>
 		/// <param name="value">The value of the boundary.</param>
 		/// <param name="boundaryKind">The kind of the boundary.</param>
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		[MethodImpl(AggressiveInlining)]
-		internal static RangeBoundaryFrom<T> AdjustAndCreate(T value, RangeBoundaryFromKind boundaryKind)
+		public static RangeBoundaryFrom<T> AdjustAndCreate(T value, RangeBoundaryFromKind boundaryKind)
 		{
 			if (_hasNegativeInfinity && _equalsFunc(value, _negativeInfinity) && boundaryKind != RangeBoundaryFromKind.Empty)
 			{
@@ -69,16 +74,19 @@ namespace CodeJam.RangesV2
 				boundaryKind = RangeBoundaryFromKind.Infinite;
 			}
 
-#pragma warning disable 618 // Args are validated
+#pragma warning disable 618 // Validation not required: value and kind are adjusted
 			return new RangeBoundaryFrom<T>(value, boundaryKind, SkipsArgValidation);
 #pragma warning restore 618
 		}
 
-		/// <summary>Checks if the value can be used as the value of the boundary.</summary>
+		/// <summary>
+		/// Infrastructure helper method to check if the value can be used as the value of the boundary.
+		/// </summary>
 		/// <param name="value">The value to check.</param>
 		/// <returns><c>true</c> if it is safe to pass the value as a boundary constructor parameter.</returns>
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		[MethodImpl(AggressiveInlining)]
-		internal static bool IsValid(T value)
+		public static bool IsValid(T value)
 		{
 			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity))
 			{
@@ -99,7 +107,7 @@ namespace CodeJam.RangesV2
 		#region Formattable logic
 		private static Func<T, string, IFormatProvider, string> GetFormattableCallback()
 		{
-			var type = Nullable.GetUnderlyingType(typeof(T)) ?? typeof(T);
+			var type = typeof(T).ToNullableUnderlying();
 			if (typeof(IFormattable).IsAssignableFrom(type))
 			{
 				return (value, format, formatProvider) => ((IFormattable)value).ToString(format, formatProvider);
@@ -113,8 +121,9 @@ namespace CodeJam.RangesV2
 		#endregion
 
 		#region Fields & .ctor
-		private readonly T _value;
-		private readonly RangeBoundaryFromKind _kind;
+		// DONTTOUCH: DO NOT mark fields as readonly. See NestedStructAccessPerfTests as a proof WHY.
+		private T _value;
+		private RangeBoundaryFromKind _kind;
 
 		/// <summary>Creates a new range boundary.</summary>
 		/// <param name="value">
@@ -285,22 +294,40 @@ namespace CodeJam.RangesV2
 		/// Creates a new boundary with updated value (if the current boundary has one).
 		/// If the boundary has no value the method returns the boundary unchanged.
 		/// </summary>
-		/// <param name="updateCallback">Callback returning new value of the boundary.</param>
+		/// <param name="newValueSelector">Callback to obtain a new value for the boundary. Used if the boundary has a value.</param>
 		/// <returns>Range boundary with the same kind but with a new value (if the current boundary has one).</returns>
 		[Pure]
-		public RangeBoundaryFrom<T> WithValue([NotNull, InstantHandle] Func<T, T> updateCallback)
+		public RangeBoundaryFrom<T> WithValue([NotNull, InstantHandle] Func<T, T> newValueSelector)
 		{
 			if (HasValue)
 			{
-				var newValue = updateCallback(_value);
+				var newValue = newValueSelector(_value);
 
-				return newValue == null
-					? NegativeInfinity
-					: AdjustAndCreate(newValue, _kind);
+				return AdjustAndCreate(newValue, _kind);
 			}
 
 			return this;
 		}
+
+		/// <summary>
+		/// Creates a new boundary with exclusive boundary kind if the current boundary has a value.
+		/// The original boundary is returned otherwise.
+		/// </summary>
+		/// <returns>
+		/// Range boundary with exclusive boundary kind or the original one if the boundary has no value.
+		/// </returns>
+		[Pure]
+		public RangeBoundaryFrom<T> ToExclusive() => IsInclusiveBoundary ? Range.BoundaryFromExclusive(_value) : this;
+
+		/// <summary>
+		/// Creates a new boundary with inclusive boundary kind if the current boundary has a value.
+		/// The original boundary is returned otherwise.
+		/// </summary>
+		/// <returns>
+		/// Range boundary with inclusive boundary kind or the original one if the boundary has no value.
+		/// </returns>
+		[Pure]
+		public RangeBoundaryFrom<T> ToInclusive() => IsExclusiveBoundary ? Range.BoundaryFrom(_value) : this;
 		#endregion
 
 		#region IEquatable<RangeBoundaryFrom<T>>
@@ -326,6 +353,7 @@ namespace CodeJam.RangesV2
 		/// <summary>Returns the hash code for the current boundary.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
 		[Pure]
+		[SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode", Justification = "Read the comment on the fields.")]
 		public override int GetHashCode()
 		{
 			if (HasValue)
@@ -356,12 +384,8 @@ namespace CodeJam.RangesV2
 		{
 			int result;
 
-			// If any boundary has no value - compare kinds
-			if (!HasValue || !other.HasValue)
-			{
-				result = ((byte)_kind).CompareTo((byte)other._kind);
-			}
-			else
+			// If any boundary has no value - compare kinds only
+			if (HasValue && other.HasValue)
 			{
 				// Compare values
 				result = _compareFunc(_value, other._value);
@@ -371,6 +395,10 @@ namespace CodeJam.RangesV2
 				{
 					result = ((byte)_kind).CompareTo((byte)other._kind);
 				}
+			}
+			else
+			{
+				result = ((byte)_kind).CompareTo((byte)other._kind);
 			}
 			return result;
 		}
@@ -393,15 +421,11 @@ namespace CodeJam.RangesV2
 		{
 			int result;
 
-			// If any boundary has no value - compare kinds
-			if (!HasValue || !other.HasValue)
-			{
-				result = ((byte)_kind).CompareTo((byte)other.Kind);
-			}
-			else
+			// If any boundary has no value - compare kinds only
+			if (HasValue && other.HasValue)
 			{
 				// Compare values
-				result = _compareFunc(_value, other.Value);
+				result = _compareFunc(_value, other.GetValueOrDefault());
 
 				// Are same and any of is exclusive - compare kinds.
 				// ReSharper disable once BitwiseOperatorOnEnumWithoutFlags
@@ -410,6 +434,10 @@ namespace CodeJam.RangesV2
 				{
 					result = ((byte)_kind).CompareTo((byte)other.Kind);
 				}
+			}
+			else
+			{
+				result = ((byte)_kind).CompareTo((byte)other.Kind);
 			}
 			return result;
 		}

@@ -19,7 +19,16 @@ namespace CodeJam.RangesV2
 		/// <summary>Creates a new instance of the range.</summary>
 		/// <param name="from">Boundary From.</param>
 		/// <param name="to">Boundary To.</param>
-		/// <returns>Creates a new instance of the range with specified From-To boundaries.</returns>
+		/// <returns>A new instance of the range with specified From-To boundaries.</returns>
 		TRange CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to);
+
+		/// <summary>Creates a new instance of the range, if possible.</summary>
+		/// <param name="from">Boundary From.</param>
+		/// <param name="to">Boundary To.</param>
+		/// <returns>
+		/// A new instance of the range with specified From-To boundaries,
+		/// or empty range, if from-to boundaries forms invalid range pair.
+		/// </returns>
+		TRange TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to);
 	}
 }

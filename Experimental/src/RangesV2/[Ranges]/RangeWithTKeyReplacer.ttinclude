@@ -4,14 +4,8 @@
 
 	private void Run(string sourceFileName, params ReplaceInfo[] additionalReplaces)
 	{
-		var oldClassPath = Host.ResolvePath(sourceFileName);
-		if (!File.Exists(oldClassPath))
-		{
-			throw new FileNotFoundException("File '" + oldClassPath + "' does not exist.");
-		}
-
 		Transform(
-			oldClassPath,
+			sourceFileName,
 			additionalReplaces,
 			new ReplaceInfo // Fix generic params
 			{
@@ -41,6 +35,32 @@
 			{
 				Pattern = @"(,\s+to(?:Value)?)\)",
 				Replacement = @"$1, key)",
+				ThrowOnFail = false
+			});
+	}
+
+	private void RunRangeOperations(string sourceFileName, params ReplaceInfo[] additionalReplaces)
+	{
+		Transform(
+			sourceFileName,
+			additionalReplaces,
+			new ReplaceInfo // Range<T, TKey>
+			{
+				Pattern = @"Range<T>",
+				Replacement = "Range<T, TKey>",
+				ThrowOnFail = true,
+				WholeWord = true
+			},
+			new ReplaceInfo // Range<T, TKey2
+			{
+				Pattern = @"(static.+?)<T([^>]*?>\()((?:.|\r|\n)*?this\b)",
+				Replacement = "$1<T, TKey$2$3",
+				ThrowOnFail = true
+			},
+			new ReplaceInfo // Fix generic params XML docs
+			{
+				Pattern = @"(\r\n.+?)(<typeparam name=""T"">(?:.|\r|\n)*?</typeparam>)",
+				Replacement = @"$1$2$1<typeparam name=""TKey"">The type of the range key</typeparam>",
 				ThrowOnFail = true
 			});
 	}
