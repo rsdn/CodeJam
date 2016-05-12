@@ -44,7 +44,7 @@ namespace CodeJam.RangesV2
 		}
 
 		/// <summary> Count of items </summary>
-		protected int Count { get; set; } = 1000 * 1000;
+		protected int Count { get; set; } = 10 * 1000;
 		/// <summary> Repeat value A each </summary>
 		protected int ValueARepeats { get; set; } = 5;
 		/// <summary> Start offset for A index </summary>

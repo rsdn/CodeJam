@@ -107,7 +107,6 @@ namespace CodeJam
 				return sum;
 			}
 
-
 			[CompetitionBenchmark(0.96, 1.04)]
 			public int Test03AggressiveInline()
 			{

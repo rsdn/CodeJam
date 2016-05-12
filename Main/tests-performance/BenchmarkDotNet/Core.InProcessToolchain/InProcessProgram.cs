@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Reflection;
 
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Portability;
 using BenchmarkDotNet.Running;
 
 using static BenchmarkDotNet.Toolchains.ProgramFactory;
@@ -13,7 +15,8 @@ namespace BenchmarkDotNet.Toolchains
 {
 	public interface IProgram
 	{
-		void Init(Benchmark benchmarkToRun);
+		// TODO: Init() with string[] args
+		void Init(Benchmark benchmarkToRun, TextWriter output);
 		void Run();
 	}
 
@@ -27,14 +30,14 @@ namespace BenchmarkDotNet.Toolchains
 			{
 				var programType = typeof(InProcessProgram<>).MakeGenericType(
 					target.Type);
-				var program = Activator.CreateInstance(programType, benchmark);
+				var program = Activator.CreateInstance(programType);
 				return (IProgram)program;
 			}
 			else
 			{
 				var programType = typeof(InProcessProgram<,>).MakeGenericType(
 					target.Type, targetMethodReturnType);
-				var program = Activator.CreateInstance(programType, benchmark);
+				var program = Activator.CreateInstance(programType);
 				return (IProgram)program;
 			}
 		}
@@ -107,17 +110,18 @@ namespace BenchmarkDotNet.Toolchains
 				var targetType = benchmark.Target.Type;
 				var paramProperty = targetType.GetProperty(parameter.Name, flags);
 
-				if (paramProperty == null || paramProperty.SetMethod == null)
+				var setter = paramProperty?.GetSetter();
+				if (setter == null)
 					throw new InvalidOperationException(
 						$"Type {targetType.FullName}: no settable property {parameter.Name} found.");
 
-				if (paramProperty.SetMethod.IsStatic)
+				if (setter.IsStatic)
 				{
-					paramProperty.SetValue(null, parameter.Value);
+					setter.Invoke(null, new [] { parameter.Value });
 				}
 				else
 				{
-					paramProperty.SetValue(instance, parameter.Value);
+					setter.Invoke(instance, new[] { parameter.Value });
 				}
 			}
 		}
@@ -138,8 +142,9 @@ namespace BenchmarkDotNet.Toolchains
 		private Action setupAction;
 		private int operationsPerInvoke;
 		private IJob job;
+		private TextWriter output;
 
-		public void Init(Benchmark benchmarkToRun)
+		public void Init(Benchmark benchmarkToRun, TextWriter textualOutput)
 		{
 			benchmark = benchmarkToRun;
 			var target = benchmark.Target;
@@ -150,33 +155,43 @@ namespace BenchmarkDotNet.Toolchains
 
 			operationsPerInvoke = target.OperationsPerInvoke;
 			job = benchmark.Job;
+			output = textualOutput;
 
 			SetupProperties(instance, benchmarkToRun);
 		}
 
 		public void Run()
 		{
+			if (benchmark == null)
+				throw new InvalidOperationException("Call Init() first.");
+
+			var oldWriter = Console.Out;
 			try
 			{
+				Console.SetOut(output);
 				SetupProperties(instance, benchmark);
 				setupAction();
 				runCallback();
 
-				Console.WriteLine();
+				output.WriteLine();
 				foreach (var infoLine in EnvironmentInfo.GetCurrent().ToFormattedString())
 				{
-					Console.WriteLine("// {0}", infoLine);
+					output.WriteLine("// {0}", infoLine);
 				}
-				Console.WriteLine();
+				output.WriteLine();
 
 				new MethodInvoker().Invoke(job, operationsPerInvoke, setupAction, runCallback, idleCallback);
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine(ex);
+				output.WriteLine(ex);
 				throw;
 			}
-		} 
+			finally
+			{
+				Console.SetOut(oldWriter);
+			}
+		}
 		#endregion
 	}
 
@@ -194,8 +209,9 @@ namespace BenchmarkDotNet.Toolchains
 		private Action setupAction;
 		private int operationsPerInvoke;
 		private IJob job;
+		private TextWriter output;
 
-		public void Init(Benchmark benchmarkToRun)
+		public void Init(Benchmark benchmarkToRun, TextWriter textualOutput)
 		{
 			benchmark = benchmarkToRun;
 			var target = benchmark.Target;
@@ -206,34 +222,43 @@ namespace BenchmarkDotNet.Toolchains
 
 			operationsPerInvoke = target.OperationsPerInvoke;
 			job = benchmark.Job;
+			output = textualOutput;
 
 			SetupProperties(instance, benchmarkToRun);
 		}
 
 		public void Run()
 		{
+			if (benchmark == null)
+				throw new InvalidOperationException("Call Init() first.");
+
+			var oldWriter = Console.Out;
 			try
 			{
+				Console.SetOut(output);
 				SetupProperties(instance, benchmark);
 				setupAction();
 				runCallback();
 
-				Console.WriteLine();
+				output.WriteLine();
 				foreach (var infoLine in EnvironmentInfo.GetCurrent().ToFormattedString())
 				{
-					Console.WriteLine("// {0}", infoLine);
+					output.WriteLine("// {0}", infoLine);
 				}
-				Console.WriteLine();
+				output.WriteLine();
 
 				new MethodInvoker().Invoke(job, operationsPerInvoke, setupAction, runCallback, idleCallback);
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine(ex);
+				output.WriteLine(ex);
 				throw;
+			}
+			finally
+			{
+				Console.SetOut(oldWriter);
 			}
 		}
 		#endregion
-
 	}
 }

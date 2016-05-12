@@ -12,6 +12,8 @@ namespace BenchmarkDotNet.Toolchains
 	[PublicAPI]
 	public sealed class InProcessToolchain : IToolchain
 	{
+		public static readonly IToolchain Default = new InProcessToolchain();
+
 		// TODO: check that analyzers can run in-process
 		// TODO: check that job matches the environment
 		// TODO: check that the target is not static class

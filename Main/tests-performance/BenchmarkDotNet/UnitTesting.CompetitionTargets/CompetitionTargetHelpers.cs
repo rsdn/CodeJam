@@ -294,6 +294,34 @@ namespace BenchmarkDotNet.UnitTesting
 			if (benchMissing.Length > 0)
 				throw new InvalidOperationException(
 					"No reports for benchmarks: " + string.Join(", ", benchMissing));
+
+			var tooFastReports = summary.Reports
+				.Where(
+					rp => rp.GetResultRuns().Any(
+						r => r.GetAverageNanoseconds() < 200 * 1000))
+				.Select(rp => rp.Benchmark.Target.Method.Name)
+				.ToArray();
+
+			if (tooFastReports.Length > 0)
+				throw new InvalidOperationException(
+					"The benchmarks " + string.Join(", ", tooFastReports) +
+						"runs faster than 0.2 ms. Results cannot be trusted.");
+
+			if (!summary.GetCompetitionParameters().AllowSlowBenchmarks)
+			{
+				var tooSlowReports = summary.Reports
+					.Where(
+						rp => rp.GetResultRuns().Any(
+							r => r.GetAverageNanoseconds() > 500 * 1000 * 1000))
+					.Select(rp => rp.Benchmark.Target.Method.Name)
+					.ToArray();
+
+				if (tooSlowReports.Length > 0)
+					throw new InvalidOperationException(
+						"The benchmarks " + string.Join(", ", tooSlowReports) +
+							"runs longer than 0.5 sec. Consider to rewrite the test as the peek timings will be hidden by averages " +
+							$"or set the {nameof(CompetitionParameters)}.{nameof(CompetitionParameters.AllowSlowBenchmarks)} to true.");
+			}
 		}
 
 		private static void ValidateBenchmark(

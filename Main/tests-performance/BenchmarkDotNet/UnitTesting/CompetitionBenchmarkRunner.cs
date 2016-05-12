@@ -59,8 +59,10 @@ namespace BenchmarkDotNet.UnitTesting
 			try
 			{
 				// WORKAROUND: fixing the https://github.com/nunit/nunit3-vs-adapter/issues/96
-				Environment.CurrentDirectory = TestContext.CurrentContext.TestDirectory;
-
+				if (TestContext.CurrentContext.WorkDirectory != null)
+				{
+					Environment.CurrentDirectory = TestContext.CurrentContext.TestDirectory;
+				}
 				RunCompetitionUnderSetup(benchmarkType, config, minRatio, maxRatio);
 			}
 			finally
@@ -102,11 +104,7 @@ namespace BenchmarkDotNet.UnitTesting
 			}
 		}
 
-		private static
-			void ValidateCompetitionSetup
-			(
-			Type
-				benchmarkType)
+		private static void ValidateCompetitionSetup(Type benchmarkType)
 		{
 			if (!Debugger.IsAttached)
 			{
@@ -137,9 +135,7 @@ namespace BenchmarkDotNet.UnitTesting
 			return logger;
 		}
 
-		private static
-			IConfig CreateCompetitionConfig
-			(
+		private static IConfig CreateCompetitionConfig(
 			IConfig baseConfig, CompetitionState competitionState,
 			AccumulationLogger logger)
 		{
@@ -156,7 +152,10 @@ namespace BenchmarkDotNet.UnitTesting
 				result.Add(new CompetitionParameters());
 			}
 			result.Add(logger);
-			result.Add(Validators.JitOptimizationsValidator.FailOnError);
+			if (!Debugger.IsAttached)
+			{
+				result.Add(Validators.JitOptimizationsValidator.FailOnError);
+			}
 			result.Add(
 				StatisticColumn.Min,
 				ScaledPercentileColumn.S0Column,
@@ -168,9 +167,7 @@ namespace BenchmarkDotNet.UnitTesting
 			return result;
 		}
 
-		private static
-			Summary RunCore
-			(
+		private static Summary RunCore(
 			Type benchmarkType, IConfig competitionConfig,
 			CompetitionState competitionState)
 		{
@@ -195,9 +192,7 @@ namespace BenchmarkDotNet.UnitTesting
 			return summary;
 		}
 
-		private static
-			void DumpOutputSummaryAtTop
-			(Summary summary, AccumulationLogger logger)
+		private static void DumpOutputSummaryAtTop (Summary summary, AccumulationLogger logger)
 		{
 			if (summary != null)
 			{
