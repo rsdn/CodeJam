@@ -803,6 +803,68 @@ namespace CodeJam.Mapping
 
 		#endregion
 
+		#region Scalar Types
+
+		/// <summary>
+		/// <i>true</i> if value type is considered as scalar type.
+		/// </summary>
+		public bool IsStructIsScalarType { get; set; } = true;
+
+		/// <summary>
+		/// Returns <i>true</i> if provided type is considered as a scalar type.
+		/// </summary>
+		/// <param name="type">Type to check.</param>
+		/// <returns></returns>
+		public bool IsScalarType(Type type)
+		{
+			foreach (var info in Schemas)
+			{
+				var o = info.GetScalarType(type);
+				if (o.HasValue)
+					return o.Value;
+			}
+
+			var attr = GetAttribute<ScalarTypeAttribute>(type, a => a.Configuration);
+			var ret  = false;
+
+			if (attr != null)
+			{
+				ret = attr.IsScalar;
+			}
+			else
+			{
+				type = type.ToNullableUnderlying();
+
+				if (type.IsEnum || type.IsPrimitive || (IsStructIsScalarType && type.IsValueType))
+					ret = true;
+			}
+
+			SetScalarType(type, ret);
+
+			return ret;
+		}
+
+		/// <summary>
+		/// Sets an scalar type indicator scalar for provided type.
+		/// </summary>
+		/// <param name="type">Type to set.</param>
+		/// <param name="isScalarType">Acalar type indicator.</param>
+		public void SetScalarType(Type type, bool isScalarType = true)
+			=> Schemas[0].SetScalarType(type, isScalarType);
+
+		/// <summary>
+		/// Adds scalar type and its default value.
+		/// </summary>
+		/// <param name="type">Type to add</param>
+		/// <param name="defaultValue">Default value.</param>
+		public void AddScalarType(Type type, object defaultValue)
+		{
+			SetScalarType  (type);
+			SetDefaultValue(type, defaultValue);
+		}
+
+		#endregion
+
 		#region GetMapValues
 
 		ConcurrentDictionary<Type,MapValue[]> _mapValues;

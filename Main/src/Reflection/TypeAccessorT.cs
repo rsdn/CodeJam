@@ -19,7 +19,8 @@ namespace CodeJam.Reflection
 
 			if (type.IsValueType)
 			{
-				_createInstance = () => default(T);
+				CreateInstanceExpression = () => default(T);
+				_createInstance          = () => default(T);
 			}
 			else
 			{
@@ -34,12 +35,14 @@ namespace CodeJam.Reflection
 
 					var body = Expression.Call(null, ((MethodCallExpression)mi.Body).Method);
 
-					_createInstance = Expression.Lambda<Func<T>>(body).Compile();
+					CreateInstanceExpression = Expression.Lambda<Func<T>>(body);
 				}
 				else
 				{
-					_createInstance = Expression.Lambda<Func<T>>(Expression.New(ctor)).Compile();
+					CreateInstanceExpression = Expression.Lambda<Func<T>>(Expression.New(ctor));
 				}
+
+				_createInstance = CreateInstanceExpression.Compile();
 			}
 
 			foreach (var memberInfo in type.GetMembers(BindingFlags.Instance | BindingFlags.Public))
@@ -93,6 +96,11 @@ namespace CodeJam.Reflection
 			foreach (var member in _members)
 				AddMember(new MemberAccessor(this, member));
 		}
+
+		/// <summary>
+		/// Returns create instance expression.
+		/// </summary>
+		public static Expression<Func<T>> CreateInstanceExpression { get; }
 
 		private static readonly Func<T> _createInstance;
 
