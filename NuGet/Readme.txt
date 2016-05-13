@@ -3,7 +3,7 @@ CodeJam 1.0.0-beta3 Release Notes
 
 What's new in 1.1.0-beta3
 ------------------------
-* New CompareBuilder.GetEqualityComparer overload
+* New ComparerBuilder.GetEqualityComparer overload
 * Option<T> improvements and refactoring
 * ReflectionExtensions.ToNullableUnderlying and ToEnumUnderlying methods
 * Fixes and code cleanup
