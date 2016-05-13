@@ -35,7 +35,7 @@ namespace CodeJam
 #pragma warning restore 169
 
 			[Pure]
-			public int Test(int i) => _h + i + 1;
+			public int Test(int a) => _h + a + 1;
 		}
 
 		private struct HeavyStructWrapperReadonly
@@ -74,7 +74,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(23.28, 26.00)]
+		[CompetitionBenchmark(13.16, 14.58)]
 		public decimal Test01Readonly()
 		{
 			var a = 0;

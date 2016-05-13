@@ -57,7 +57,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(1.00, 1.07)]
+		[CompetitionBenchmark(0.95, 1.06)]
 		[SuppressMessage("ReSharper", "HeuristicUnreachableCode")]
 		[SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
 		public int Test0101ConstDisabledFeature()
@@ -74,7 +74,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(0.96, 1.06)]
+		[CompetitionBenchmark(0.91, 1.08)]
 		[SuppressMessage("ReSharper", "HeuristicUnreachableCode")]
 		[SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
 		public int Test0102IfConstDisabledFeature()
@@ -92,7 +92,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(0.97, 1.04)]
+		[CompetitionBenchmark(0.94, 1.05)]
 		public int Test0201DisabledFeature()
 		{
 			var a = 0;
@@ -105,7 +105,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(1.00, 1.08)]
+		[CompetitionBenchmark(0.93, 1.04)]
 		public int Test0202IfDisabledFeature()
 		{
 			var a = 0;
@@ -119,7 +119,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(0.96, 1.04)]
+		[CompetitionBenchmark(0.96, 1.08)]
 		public int Test0203AnotherClassDisabledFeature()
 		{
 			var a = 0;
@@ -132,7 +132,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(0.99, 1.06)]
+		[CompetitionBenchmark(0.94, 1.06)]
 		public int Test0203NotEnabledFeature()
 		{
 			var a = 0;
@@ -145,7 +145,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(1.90, 2.03)]
+		[CompetitionBenchmark(1.77, 1.98)]
 		public int Test0301MutableFeature()
 		{
 			var a = 0;
@@ -158,7 +158,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(1.87, 2.00)]
+		[CompetitionBenchmark(1.84, 2.05)]
 		public int Test0301IfMutableFeature()
 		{
 			var a = 0;
@@ -172,7 +172,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(14.99, 15.96)]
+		[CompetitionBenchmark(14.17, 16.58)]
 		public int Test0301EnabledFeature()
 		{
 			var a = 0;
@@ -185,7 +185,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(14.68, 15.65)]
+		[CompetitionBenchmark(14.18, 16.52)]
 		public int Test0302IfEnabledFeature()
 		{
 			var a = 0;

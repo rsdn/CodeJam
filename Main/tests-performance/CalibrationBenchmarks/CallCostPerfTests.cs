@@ -127,7 +127,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(0.88, 1.12)]
+		[CompetitionBenchmark(0.97, 1.11)]
 		public int Test01Call()
 		{
 			int a = 0;
@@ -138,7 +138,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(0.89, 1.28)]
+		[CompetitionBenchmark(0.95, 1.17)]
 		public int Test02GenericCall()
 		{
 			int a = 0;
@@ -149,7 +149,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(0.90, 1.05)]
+		[CompetitionBenchmark(0.97, 1.09)]
 		public int Test03InstanceCall()
 		{
 			int a = 0;
@@ -161,7 +161,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(0.90, 1.09)]
+		[CompetitionBenchmark(0.99, 1.11)]
 		public int Test04InstanceGenericCall()
 		{
 			int a = 0;
@@ -173,7 +173,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(7.13, 9.04)]
+		[CompetitionBenchmark(7.11, 9.17)]
 		public int Test05CallNoInline()
 		{
 			int a = 0;
@@ -184,7 +184,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(7.45, 9.39)]
+		[CompetitionBenchmark(8.03, 9.01)]
 		public int Test06InstanceCallNoInline()
 		{
 			int a = 0;
@@ -196,7 +196,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(5.93, 7.01)]
+		[CompetitionBenchmark(6.42, 7.22)]
 		public int Test07InstanceVirtualCall()
 		{
 			int a = 0;
@@ -208,7 +208,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(5.88, 7.51)]
+		[CompetitionBenchmark(6.49, 7.20)]
 		public int Test08DerivedVirtualCall()
 		{
 			int a = 0;
@@ -220,7 +220,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(7.64, 9.19)]
+		[CompetitionBenchmark(7.99, 8.98)]
 		public int Test09InterfaceCall()
 		{
 			int a = 0;
@@ -232,7 +232,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(7.67, 9.13)]
+		[CompetitionBenchmark(8.31, 9.37)]
 		public int Test10DerivedInterfaceCall()
 		{
 			int a = 0;
@@ -244,7 +244,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(7.57, 8.98)]
+		[CompetitionBenchmark(8.16, 9.60)]
 		public int Test11GenericInterfaceCall()
 		{
 			int a = 0;
@@ -256,7 +256,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(7.63, 9.25)]
+		[CompetitionBenchmark(8.33, 9.22)]
 		public int Test12DerivedGenericInterfaceCall()
 		{
 			int a = 0;
@@ -268,7 +268,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(36.35, 43.71)]
+		[CompetitionBenchmark(39.97, 44.41)]
 		public int Test13InterfaceGenericCall()
 		{
 			int a = 0;
@@ -280,7 +280,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(37.26, 46.17)]
+		[CompetitionBenchmark(40.55, 45.36)]
 		public int Test14DerivedInterfaceGenericCall()
 		{
 			int a = 0;
@@ -292,7 +292,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(6.72, 8.93)]
+		[CompetitionBenchmark(7.11, 8.99)]
 		public int Test15LambdaCached()
 		{
 			int a1 = 0;
@@ -304,7 +304,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(9.33, 10.92)]
+		[CompetitionBenchmark(9.92, 11.02)]
 		public int Test16LambdaNew()
 		{
 			int a1 = 0;
@@ -316,7 +316,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(9.77, 10.86)]
+		[CompetitionBenchmark(9.91, 11.21)]
 		public int Test17LambdaClosure()
 		{
 			int a1 = 0;
@@ -330,7 +330,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(51.18, 82.72)]
+		[CompetitionBenchmark(55.16, 67.44)]
 		public int Test18LambdaClosureLocal()
 		{
 			int a1 = 0;
@@ -343,7 +343,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(9.70, 12.19)]
+		[CompetitionBenchmark(9.91, 11.87)]
 		public int Test19FuncCached()
 		{
 			int a = 0;
@@ -355,7 +355,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(7.64, 9.10)]
+		[CompetitionBenchmark(8.33, 9.40)]
 		public int Test20FuncCachedInstance()
 		{
 			int a = 0;
@@ -367,7 +367,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(37.31, 43.81)]
+		[CompetitionBenchmark(37.43, 45.80)]
 		public int Test21FuncNew()
 		{
 			int a = 0;

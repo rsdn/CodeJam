@@ -96,6 +96,7 @@ namespace BenchmarkDotNet.UnitTesting
 				}
 
 				competitionState.ValidateSummary(summary, minRatio, maxRatio);
+				CompetitionTargetHelpers.ValidatePostconditions(summary);
 			}
 			catch (Exception ex)
 			{
@@ -104,7 +105,8 @@ namespace BenchmarkDotNet.UnitTesting
 			}
 			if (competitionState.RunCount > 1)
 			{
-				throw new IgnoreException($"Benchmark for {benchmarkType.Name} was run multiple times to get the stable results. Consider to rerun it.");
+				throw new IgnoreException(
+					$"Benchmark for {benchmarkType.Name} was run multiple times to get the stable results. Consider to rerun it.");
 			}
 		}
 
@@ -127,9 +129,7 @@ namespace BenchmarkDotNet.UnitTesting
 			}
 		}
 
-		private static
-			AccumulationLogger InitAccumulationLogger
-			()
+		private static AccumulationLogger InitAccumulationLogger()
 		{
 			var logger = new AccumulationLogger();
 			logger.WriteLine();
@@ -187,6 +187,7 @@ namespace BenchmarkDotNet.UnitTesting
 
 				// Running the benchmark
 				summary = BenchmarkRunner.Run(benchmarkType, competitionConfig);
+				CompetitionTargetHelpers.ValidatePreconditions(summary);
 				competitionState.RunCount++;
 				competitionState.RerunCount--;
 

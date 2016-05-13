@@ -84,7 +84,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.97, 1.04)]
+			[CompetitionBenchmark(0.89, 1.10)]
 			public int Test01Auto()
 			{
 				var a = 0;
@@ -93,7 +93,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(10.33, 11.01)]
+			[CompetitionBenchmark(26.89, 30.60)]
 			public int Test02NoInline()
 			{
 				var a = 0;
@@ -102,12 +102,12 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.96, 1.04)]
+			[CompetitionBenchmark(0.90, 1.10)]
 			public int Test03AggressiveInline()
 			{
 				var a = 0;
 				for (var i = 0; i < Count; i++)
-					a = CallInline1(i);
+					a = CallInline1(a);
 				return a;
 			}
 		}
@@ -225,7 +225,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(5.80, 6.18)]
+			[CompetitionBenchmark(15.22, 16.94)]
 			public int Test01Auto()
 			{
 				var a = 0;
@@ -234,21 +234,21 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(5.80, 6.20)]
+			[CompetitionBenchmark(16.34, 18.08)]
 			public int Test02NoInline()
 			{
 				var a = 0;
 				for (var i = 0; i < Count; i++)
-					a = CallNoInline(i);
+					a = CallNoInline(a);
 				return a;
 			}
 
-			[CompetitionBenchmark(2.60, 2.77)]
+			[CompetitionBenchmark(7.21, 8.04)]
 			public int Test03AggressiveInline()
 			{
 				var a = 0;
 				for (var i = 0; i < Count; i++)
-					a = CallInline(i);
+					a = CallInline(a);
 				return a;
 			}
 		}

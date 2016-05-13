@@ -23,13 +23,13 @@ namespace CodeJam
 
 		#region PerfTest helpers
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static int Implementation1(int i) => i * i + 1;
+		private static int Implementation1(int a) => a * a + 1;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static int Implementation2(int i) => i + 1;
+		private static int Implementation2(int a) => a + 1;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static int Implementation3(int i) => i / 2 + 1;
+		private static int Implementation3(int a) => a / 2 + 1;
 
 		private enum ImplementationToUse
 		{
@@ -40,22 +40,22 @@ namespace CodeJam
 
 		#region Dispatching implementations
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		private static int DirectCall(int i) => Implementation2(i);
+		private static int DirectCall(int a) => Implementation2(a);
 
 		// ReSharper disable once ConvertToConstant.Local
 		private static readonly ImplementationToUse _implementationToUse1 = ImplementationToUse.Implementation2;
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		private static int SwitchOverReadonlyField(int i)
+		private static int SwitchOverReadonlyField(int a)
 		{
 			switch (_implementationToUse1)
 			{
 				case ImplementationToUse.Implementation1:
-					return Implementation1(i);
+					return Implementation1(a);
 				case ImplementationToUse.Implementation2:
-					return Implementation2(i);
+					return Implementation2(a);
 				case ImplementationToUse.Implementation3:
-					return Implementation3(i);
+					return Implementation3(a);
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
@@ -64,16 +64,16 @@ namespace CodeJam
 		private static volatile ImplementationToUse _implementationToUse2 = ImplementationToUse.Implementation2;
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		private static int SwitchOverMutableField(int i)
+		private static int SwitchOverMutableField(int a)
 		{
 			switch (_implementationToUse2)
 			{
 				case ImplementationToUse.Implementation1:
-					return Implementation1(i);
+					return Implementation1(a);
 				case ImplementationToUse.Implementation2:
-					return Implementation2(i);
+					return Implementation2(a);
 				case ImplementationToUse.Implementation3:
-					return Implementation3(i);
+					return Implementation3(a);
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
@@ -132,7 +132,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(0.89, 1.09)]
+		[CompetitionBenchmark(0.95, 1.06)]
 		public int Test01SwitchOverReadonlyField()
 		{
 			var a = 0;
@@ -141,7 +141,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(1.18, 1.64)]
+		[CompetitionBenchmark(1.42, 1.75)]
 		public int Test02SwitchOverMutableField()
 		{
 			var a = 0;

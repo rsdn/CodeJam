@@ -59,7 +59,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(0.97, 1.08)]
+		[CompetitionBenchmark(0.96, 1.08)]
 		public int Test01Struct()
 		{
 			var a = 0;
@@ -69,7 +69,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(0.99, 1.07)]
+		[CompetitionBenchmark(0.93, 1.04)]
 		public int Test02StructInterfaceCall()
 		{
 			var a = 0;
@@ -79,7 +79,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(22.72, 24.82)]
+		[CompetitionBenchmark(23.62, 29.26)]
 		public int Test03InterfaceCall()
 		{
 			var a = 0;
@@ -89,7 +89,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(1.95, 2.09)]
+		[CompetitionBenchmark(1.82, 2.13)]
 		public int Test04GenericCall()
 		{
 			var a = 0;
@@ -99,7 +99,7 @@ namespace CodeJam
 			return Count;
 		}
 
-		[CompetitionBenchmark(1.96, 2.09)]
+		[CompetitionBenchmark(1.78, 1.98)]
 		public int Test05GenericStructCall()
 		{
 			var a = 0;

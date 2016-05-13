@@ -220,8 +220,6 @@ namespace BenchmarkDotNet.UnitTesting
 			Summary summary, double defaultMinRatio, double defaultMaxRatio,
 			CompetitionTargets competitionTargets)
 		{
-			ValidatePreconditions(summary);
-
 			// Based on 95th percentile
 			const double percentileRatio = 0.95;
 
@@ -262,7 +260,7 @@ namespace BenchmarkDotNet.UnitTesting
 			}
 		}
 
-		private static void ValidatePreconditions(Summary summary)
+		public static void ValidatePreconditions(Summary summary)
 		{
 			if (summary.HasCriticalValidationErrors)
 			{
@@ -294,7 +292,10 @@ namespace BenchmarkDotNet.UnitTesting
 			if (benchMissing.Length > 0)
 				throw new InvalidOperationException(
 					"No reports for benchmarks: " + string.Join(", ", benchMissing));
+		}
 
+		public static void ValidatePostconditions(Summary summary)
+		{
 			var tooFastReports = summary.Reports
 				.Where(
 					rp => rp.GetResultRuns().Any(
