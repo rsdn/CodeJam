@@ -146,8 +146,8 @@ namespace BenchmarkDotNet.UnitTesting
 			foreach (var benchGroup in summary.SameConditionBenchmarks())
 			{
 				var baselineBenchmark = GetBaselineBenchmark(benchGroup);
-				var baselineMetricMin = summary.GetPercentile(baselineBenchmark, 0.85);
-				var baselineMetricMax = summary.GetPercentile(baselineBenchmark, 0.95);
+				var baselineMetricMin = summary.TryGetPercentile(baselineBenchmark, 85);
+				var baselineMetricMax = summary.TryGetPercentile(baselineBenchmark, 95);
 
 				foreach (var benchmark in benchGroup)
 				{
@@ -158,8 +158,8 @@ namespace BenchmarkDotNet.UnitTesting
 					if (!competitionTargets.TryGetValue(benchmark.Target, out competitionTarget))
 						continue;
 
-					var minRatio = summary.GetPercentile(benchmark, 0.85) / baselineMetricMin;
-					var maxRatio = summary.GetPercentile(benchmark, 0.95) / baselineMetricMax;
+					var minRatio = summary.TryGetPercentile(benchmark, 85) / baselineMetricMin;
+					var maxRatio = summary.TryGetPercentile(benchmark, 95) / baselineMetricMax;
 					if (minRatio > maxRatio)
 					{
 						var temp = minRatio;
@@ -173,12 +173,12 @@ namespace BenchmarkDotNet.UnitTesting
 						newTarget = competitionTarget.Clone();
 					}
 
-					if (newTarget.UnionWithMin(minRatio))
+					if (newTarget.UnionWithMin(minRatio ?? 0))
 					{
 						fixedMinTargets.Add(newTarget);
 						newTargets[newTarget.Target] = newTarget;
 					}
-					if (newTarget.UnionWithMax(maxRatio))
+					if (newTarget.UnionWithMax(maxRatio ?? 0))
 					{
 						fixedMaxTargets.Add(newTarget);
 						newTargets[newTarget.Target] = newTarget;
@@ -221,13 +221,13 @@ namespace BenchmarkDotNet.UnitTesting
 			CompetitionTargets competitionTargets)
 		{
 			// Based on 95th percentile
-			const double percentileRatio = 0.95;
+			const int percentile = 95;
 
 			var benchmarkGroups = summary.SameConditionBenchmarks();
 			foreach (var benchmarkGroup in benchmarkGroups)
 			{
 				var baselineBenchmark = GetBaselineBenchmark(benchmarkGroup);
-				var baselineMetric = summary.GetPercentile(baselineBenchmark, percentileRatio);
+				var baselineMetric = summary.TryGetPercentile(baselineBenchmark, percentile) ?? 0;
 				if (baselineMetric <= 0)
 					throw new InvalidOperationException($"Baseline benchmark {baselineBenchmark.ShortInfo} does not compute");
 
@@ -252,7 +252,7 @@ namespace BenchmarkDotNet.UnitTesting
 						benchmarkMaxRatio = competitionTarget.Max;
 					}
 
-					var reportMetric = summary.GetPercentile(benchmark, percentileRatio);
+					var reportMetric = summary.TryGetPercentile(benchmark, percentile) ?? 0;
 					var actualRatio = Math.Round(reportMetric / baselineMetric, 2);
 
 					ValidateBenchmark(benchmark, actualRatio, benchmarkMinRatio, benchmarkMaxRatio);

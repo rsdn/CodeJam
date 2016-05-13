@@ -90,7 +90,6 @@
     <Compile Include="AssemblyWideConfig.cs" />
     <Compile Include="Assertions\CodePerfTests.cs" />
     <Compile Include="Assertions\DebugCodePerfTests.cs" />
-    <Compile Include="BenchmarkDotNet.Tests\BenchmarkHelpersTests.cs" />
     <Compile Include="BenchmarkDotNet\Core.InProcessToolchain\InProcessProgram.cs" />
     <Compile Include="BenchmarkDotNet\Core.InProcessToolchain\InProcessGenerator.cs" />
     <Compile Include="BenchmarkDotNet\Core.InProcessToolchain\InProcessBuilder.cs" />
@@ -98,7 +97,6 @@
     <Compile Include="BenchmarkDotNet\Core.InProcessToolchain\InProcessToolchain.cs" />
     <Compile Include="BenchmarkDotNet\Core\Extensions\ProcessExtensions.cs" />
     <Compile Include="BenchmarkDotNet\Core\Portability\AssemblyExtensions.cs" />
-    <Compile Include="BenchmarkDotNet\Core\BenchmarkColumns.cs" />
     <Compile Include="BenchmarkDotNet\Core\BenchmarkHelpers.cs" />
     <Compile Include="BenchmarkDotNet\Core\Portability\FieldInfoExtensions.cs" />
     <Compile Include="BenchmarkDotNet\Core\Portability\MemberInfoExtensions.cs" />
