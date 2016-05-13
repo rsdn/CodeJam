@@ -22,8 +22,9 @@ namespace CodeJam
 		// 1. We have a complex logec split into multiple methods
 		// 2. The logic is used on hotpath
 		// 3. [MethodImpl(AggressiveInlining)] can be used to force the inlining and to speedup the code.
-		// NB: use with care. In some cases inlining can result in significant slowdown.
-		private const int Count = 10 * 1000 * 1000;
+		// NB: use with care. In some cases inlining too much code can result in significant slowdown.
+		// TODO: prooftest for slowdown, anyone?
+		private const int Count = 1000 * 1000;
 
 		[Test]
 		public void RunCaseAggInlineNoEffect() =>
@@ -32,90 +33,82 @@ namespace CodeJam
 		public class CaseAggInlineNoEffect
 		{
 			#region PerfTest helpers
-			private static int CallManualInline(int i) => i + 5;
+			private static int CallManualInline(int a) => a + 5;
 
 			// Will inline - auto
-			private static int CallAuto1(int i) => CallAuto2(i) + 1;
-			private static int CallAuto2(int i) => CallAuto3(i) + 1;
-			private static int CallAuto3(int i) => CallAuto4(i) + 1;
-			private static int CallAuto4(int i) => CallAuto5(i) + 1;
-			private static int CallAuto5(int i) => i + 1;
+			private static int CallAuto1(int a) => CallAuto2(a) + 1;
+			private static int CallAuto2(int a) => CallAuto3(a) + 1;
+			private static int CallAuto3(int a) => CallAuto4(a) + 1;
+			private static int CallAuto4(int a) => CallAuto5(a) + 1;
+			private static int CallAuto5(int a) => a + 1;
 
 			// Will NOT inline - forced
 			[MethodImpl(MethodImplOptions.NoInlining)]
-			private static int CallNoInline1(int i) => CallNoInline2(i) + 1;
+			private static int CallNoInline1(int a) => CallNoInline2(a) + 1;
 
 			[MethodImpl(MethodImplOptions.NoInlining)]
-			private static int CallNoInline2(int i) => CallNoInline3(i) + 1;
+			private static int CallNoInline2(int a) => CallNoInline3(a) + 1;
 
 			[MethodImpl(MethodImplOptions.NoInlining)]
-			private static int CallNoInline3(int i) => CallNoInline4(i) + 1;
+			private static int CallNoInline3(int a) => CallNoInline4(a) + 1;
 
 			[MethodImpl(MethodImplOptions.NoInlining)]
-			private static int CallNoInline4(int i) => CallNoInline5(i) + 1;
+			private static int CallNoInline4(int a) => CallNoInline5(a) + 1;
 
 			[MethodImpl(MethodImplOptions.NoInlining)]
-			private static int CallNoInline5(int i) => i + 1;
+			private static int CallNoInline5(int a) => a + 1;
 
 			// Will inline - forced
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			private static int CallInline1(int i) => CallInline2(i) + 1;
+			private static int CallInline1(int a) => CallInline2(a) + 1;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			private static int CallInline2(int i) => CallInline3(i) + 1;
+			private static int CallInline2(int a) => CallInline3(a) + 1;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			private static int CallInline3(int i) => CallInline4(i) + 1;
+			private static int CallInline3(int a) => CallInline4(a) + 1;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			private static int CallInline4(int i) => CallInline5(i) + 1;
+			private static int CallInline4(int a) => CallInline5(a) + 1;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			private static int CallInline5(int i) => i + 1;
+			private static int CallInline5(int a) => a + 1;
 			#endregion
 
 			[CompetitionBaseline]
 			public int Test00Baseline()
 			{
-				var sum = 0;
+				var a = 0;
 				for (var i = 0; i < Count; i++)
-				{
-					sum += CallManualInline(i);
-				}
-				return sum;
+					a = CallManualInline(a);
+				return a;
 			}
 
 			[CompetitionBenchmark(0.97, 1.04)]
 			public int Test01Auto()
 			{
-				var sum = 0;
+				var a = 0;
 				for (var i = 0; i < Count; i++)
-				{
-					sum += CallAuto1(i);
-				}
-				return sum;
+					a = CallAuto1(a);
+				return a;
 			}
 
 			[CompetitionBenchmark(10.33, 11.01)]
 			public int Test02NoInline()
 			{
-				var sum = 0;
+				var a = 0;
 				for (var i = 0; i < Count; i++)
-				{
-					sum += CallNoInline1(i);
-				}
-				return sum;
+					a = CallNoInline1(a);
+				return a;
 			}
 
 			[CompetitionBenchmark(0.96, 1.04)]
 			public int Test03AggressiveInline()
 			{
-				var sum = 0;
+				var a = 0;
 				for (var i = 0; i < Count; i++)
-				{
-					sum += CallInline1(i);
-				}
-				return sum;
+					a = CallInline1(i);
+				return a;
 			}
 		}
 
@@ -208,63 +201,55 @@ namespace CodeJam
 				public T Value { get; }
 			}
 
-			private static int CallManualInline(int i) => i + 1;
+			private static int CallManualInline(int a) => a + 1;
 
 			[MethodImpl(MethodImplOptions.NoInlining)]
-			private static int CallAuto(int i) =>
-				new StructAuto<int>(i, false).Value + 1;
+			private static int CallAuto(int a) =>
+				new StructAuto<int>(a, false).Value + 1;
 
 			[MethodImpl(MethodImplOptions.NoInlining)]
-			private static int CallNoInline(int i) =>
-				new StructNoInline<int>(i, false).Value + 1;
+			private static int CallNoInline(int a) =>
+				new StructNoInline<int>(a, false).Value + 1;
 
 			[MethodImpl(MethodImplOptions.NoInlining)]
-			private static int CallInline(int i) =>
-				new StructInline<int>(i, false).Value + 1;
+			private static int CallInline(int a) =>
+				new StructInline<int>(a, false).Value + 1;
 			#endregion
 
 			[CompetitionBaseline]
 			public int Test00Baseline()
 			{
-				var sum = 0;
+				var a = 0;
 				for (var i = 0; i < Count; i++)
-				{
-					sum += CallManualInline(i);
-				}
-				return sum;
+					a = CallManualInline(a);
+				return a;
 			}
 
 			[CompetitionBenchmark(5.80, 6.18)]
 			public int Test01Auto()
 			{
-				var sum = 0;
+				var a = 0;
 				for (var i = 0; i < Count; i++)
-				{
-					sum += CallAuto(i);
-				}
-				return sum;
+					a = CallAuto(a);
+				return a;
 			}
 
 			[CompetitionBenchmark(5.80, 6.20)]
 			public int Test02NoInline()
 			{
-				var sum = 0;
+				var a = 0;
 				for (var i = 0; i < Count; i++)
-				{
-					sum += CallNoInline(i);
-				}
-				return sum;
+					a = CallNoInline(i);
+				return a;
 			}
 
 			[CompetitionBenchmark(2.60, 2.77)]
 			public int Test03AggressiveInline()
 			{
-				var sum = 0;
+				var a = 0;
 				for (var i = 0; i < Count; i++)
-				{
-					sum += CallInline(i);
-				}
-				return sum;
+					a = CallInline(i);
+				return a;
 			}
 		}
 	}

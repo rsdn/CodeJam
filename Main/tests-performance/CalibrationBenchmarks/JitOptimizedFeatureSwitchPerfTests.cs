@@ -35,9 +35,9 @@ namespace CodeJam
 		private static bool _featureMutable = bool.Parse("false"); // should be calculated at runtime
 		private static readonly bool _featureDisabled = bool.Parse("false"); // should be calculated at runtime
 
-		private static bool FeatureCheck(int i) => i > 1;
-		private static int FeatureAction(int i) => i * i / i;
-		private static int DefaultAction(int i) => i + 1;
+		private static bool FeatureCheck(int a) => a > 1;
+		private static int FeatureAction(int a) => a * a / a;
+		private static int DefaultAction(int a) => a + 1;
 		#endregion
 
 		private const int Count = 1000 * 1000;

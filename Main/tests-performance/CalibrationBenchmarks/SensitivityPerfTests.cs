@@ -28,27 +28,25 @@ namespace CodeJam
 		[CompetitionBaseline]
 		public int Test00Baseline()
 		{
-			var sum = 0;
+			var a = 0;
 			var count = Count;
 			for (var i = 0; i < count; i++)
 			{
-				sum += i;
+				a += i;
 			}
-
-			return sum;
+			return a;
 		}
 
 		[CompetitionBenchmark(1.46, 1.79)]
 		public int Test01PlusOne()
 		{
-			var sum = 0;
+			var a = 0;
 			var count = Count;
 			for (var i = 0; i < count; i++)
 			{
-				sum += i + 1;
+				a += i + 1;
 			}
-
-			return sum;
+			return a;
 		}
 	}
 }

@@ -188,15 +188,15 @@ namespace BenchmarkDotNet.UnitTesting
 
 			foreach (var competitionTarget in fixedMinTargets)
 			{
-				// min = 0.97x;
+				// min = 0.95x;
 				competitionTarget.UnionWithMin(
-					Math.Floor(competitionTarget.Min * 97) / 100);
+					Math.Floor(competitionTarget.Min * 95) / 100);
 			}
 			foreach (var competitionTarget in fixedMaxTargets)
 			{
-				// max = 1.03x;
+				// max = 1.05x;
 				competitionTarget.UnionWithMax(
-					Math.Ceiling(competitionTarget.Max * 103) / 100);
+					Math.Ceiling(competitionTarget.Max * 105) / 100);
 			}
 
 			return newTargets.Values.ToArray();

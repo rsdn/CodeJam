@@ -39,7 +39,8 @@ namespace CodeJam
 		private const int Count = 1000 * 1000;
 
 		[Test]
-		public void RunCallCostParamsPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
+		public void RunCallCostParamsPerfTests() => 
+			CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		[CompetitionBaseline]
 		public int Test00CallBaseline()
@@ -69,7 +70,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(16.91, 20.73)]
+		[CompetitionBenchmark(16.91, 21.80)]
 		public int Test03ParamsNew()
 		{
 			var a = 0;
@@ -97,7 +98,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(7.62, 9.06)]
+		[CompetitionBenchmark(7.05, 9.06)]
 		public int Test06CallParamsNoInlineCached()
 		{
 			var a = 0;

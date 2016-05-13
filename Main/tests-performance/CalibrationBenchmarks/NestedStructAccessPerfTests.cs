@@ -30,12 +30,12 @@ namespace CodeJam
 			private readonly decimal _e;
 			private readonly decimal _f;
 			private readonly decimal _g;
-			private readonly decimal _h;
+			private readonly int _h;
 #pragma warning restore 649
 #pragma warning restore 169
 
 			[Pure]
-			public decimal Test(decimal i) => _a + i + 1;
+			public int Test(int i) => _h + i + 1;
 		}
 
 		private struct HeavyStructWrapperReadonly
@@ -44,7 +44,7 @@ namespace CodeJam
 			private readonly HeavyStruct _h;
 #pragma warning restore 649
 
-			public decimal Test(decimal i) => _h.Test(i);
+			public int Test(int a) => _h.Test(a);
 		}
 
 		private struct HeavyStructWrapperMutable
@@ -53,7 +53,7 @@ namespace CodeJam
 			private HeavyStruct _h;
 #pragma warning restore 649
 
-			public decimal Test(decimal i) => _h.Test(i);
+			public int Test(int a) => _h.Test(a);
 		}
 		#endregion
 
@@ -65,7 +65,7 @@ namespace CodeJam
 		[CompetitionBaseline]
 		public decimal Test00Mutable()
 		{
-			var a = 0m;
+			var a = 0;
 			var s = new HeavyStructWrapperMutable();
 			for (var i = 0; i < Count; i++)
 			{
@@ -77,7 +77,7 @@ namespace CodeJam
 		[CompetitionBenchmark(23.28, 26.00)]
 		public decimal Test01Readonly()
 		{
-			var a = 0m;
+			var a = 0;
 			var s = new HeavyStructWrapperReadonly();
 			for (var i = 0; i < Count; i++)
 			{

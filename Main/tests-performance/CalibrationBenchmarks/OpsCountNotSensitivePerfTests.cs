@@ -35,6 +35,6 @@ namespace CodeJam
 		public int Test00Baseline() => _result = ++_result;
 
 		[CompetitionBenchmark(0.42, 5.61, OperationsPerInvoke = Count)]
-		public int Test01PlusTwo() => _result = ++_result + 2;
+		public int Test01PlusTwo() => _result = ++_result + 1;
 	}
 }

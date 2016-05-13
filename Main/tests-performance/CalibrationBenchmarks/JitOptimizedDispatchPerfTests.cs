@@ -23,13 +23,13 @@ namespace CodeJam
 
 		#region PerfTest helpers
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static int Implementation1(int i) => i * i;
+		private static int Implementation1(int i) => i * i + 1;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static int Implementation2(int i) => i + 1;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static int Implementation3(int i) => i / 2;
+		private static int Implementation3(int i) => i / 2 + 1;
 
 		private enum ImplementationToUse
 		{
@@ -117,7 +117,7 @@ namespace CodeJam
 		}
 		#endregion
 
-		private const int Count = 10 * 1000 * 1000;
+		private const int Count = 1000 * 1000;
 
 		[Test]
 		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
@@ -126,34 +126,28 @@ namespace CodeJam
 		[CompetitionBaseline]
 		public int Test00Baseline()
 		{
-			var sum = 0;
+			var a = 0;
 			for (var i = 0; i < Count; i++)
-			{
-				sum += DirectCall(i);
-			}
-			return sum;
+				a = DirectCall(a);
+			return a;
 		}
 
 		[CompetitionBenchmark(0.89, 1.09)]
 		public int Test01SwitchOverReadonlyField()
 		{
-			var sum = 0;
+			var a = 0;
 			for (var i = 0; i < Count; i++)
-			{
-				sum += SwitchOverReadonlyField(i);
-			}
-			return sum;
+				a = SwitchOverReadonlyField(a);
+			return a;
 		}
 
 		[CompetitionBenchmark(1.18, 1.64)]
 		public int Test02SwitchOverMutableField()
 		{
-			var sum = 0;
+			var a = 0;
 			for (var i = 0; i < Count; i++)
-			{
-				sum += SwitchOverMutableField(i);
-			}
-			return sum;
+				a = SwitchOverMutableField(a);
+			return a;
 		}
 	}
 }
