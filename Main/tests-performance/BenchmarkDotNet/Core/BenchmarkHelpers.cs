@@ -28,8 +28,13 @@ namespace BenchmarkDotNet.Helpers
 		/// <summary>
 		/// Groups benchmarks being run under same conditions (job+parameters)
 		/// </summary>
-		public static ILookup<KeyValuePair<IJob, ParameterInstances>, Benchmark> SameConditionBenchmarks(this Summary summary)
-			=> summary.Benchmarks.ToLookup(b => new KeyValuePair<IJob, ParameterInstances>(b.Job, b.Parameters));
+		public static ILookup<KeyValuePair<IJob, ParameterInstances>, Benchmark> SameConditionBenchmarks(this Summary summary)=> 
+			summary.Benchmarks.ToLookup(b => new KeyValuePair<IJob, ParameterInstances>(b.Job, b.Parameters));
+
+		// ReSharper disable once ParameterTypeCanBeEnumerable.Local
+		public static Benchmark TryGetBaseline(
+			this IGrouping<KeyValuePair<IJob, ParameterInstances>, Benchmark> benchmarkGroup) => 
+			benchmarkGroup.SingleOrDefault(b => b.Target.Baseline);
 
 		/// <summary>
 		/// Calculates the Nth percentile for the benchmark

@@ -5,7 +5,6 @@ using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.Results;
 
 // ReSharper disable CheckNamespace
-
 namespace BenchmarkDotNet.Toolchains
 {
 	public class InProcessBuilder : IBuilder

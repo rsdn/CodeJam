@@ -96,7 +96,7 @@ namespace BenchmarkDotNet.UnitTesting
 				}
 
 				competitionState.ValidateSummary(summary, minRatio, maxRatio);
-				CompetitionTargetHelpers.ValidatePostconditions(summary);
+				competitionState.ValidatePostconditions(summary);
 			}
 			catch (Exception ex)
 			{
@@ -162,11 +162,9 @@ namespace BenchmarkDotNet.UnitTesting
 			}
 			result.Add(
 				StatisticColumn.Min,
-				ScaledPercentileColumn.S0Column,
-				ScaledPercentileColumn.S50Column,
-				ScaledPercentileColumn.S85Column,
-				ScaledPercentileColumn.S95Column,
-				ScaledPercentileColumn.S100Column,
+				BaselineDiffColumn.Scaled50,
+				BaselineDiffColumn.Scaled85,
+				BaselineDiffColumn.Scaled95,
 				StatisticColumn.Max);
 			return result;
 		}
@@ -177,24 +175,26 @@ namespace BenchmarkDotNet.UnitTesting
 		{
 			Summary summary = null;
 
-			const int rerunCount = 10;
 			competitionState.RunCount = 0;
-			competitionState.RerunCount = 0;
-			int i = 0;
-			for (; i < rerunCount; i++)
+			competitionState.LastRun = false;
+			competitionState.RerunRequested = false;
+
+			int rerunCount = 1;
+			const int maxRerunCount = 10;
+			for (int i = 0; i < rerunCount && !competitionState.LastRun; i++)
 			{
-				competitionState.LastRun = i == rerunCount - 1;
+				competitionState.RerunRequested = false;
+				competitionState.LastRun = i >= maxRerunCount - 1;
 
 				// Running the benchmark
 				summary = BenchmarkRunner.Run(benchmarkType, competitionConfig);
-				CompetitionTargetHelpers.ValidatePreconditions(summary);
+				competitionState.ValidatePreconditions(summary);
 				competitionState.RunCount++;
-				competitionState.RerunCount--;
 
 				// Rerun if annotated
-				if (competitionState.RerunCount <= 0)
+				if (competitionState.RerunRequested)
 				{
-					break;
+					rerunCount+=2;
 				}
 			}
 

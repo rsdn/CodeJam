@@ -116,6 +116,7 @@
     <Compile Include="BenchmarkDotNet\UnitTesting\CompetitionParameters.cs" />
     <Compile Include="BenchmarkDotNet\UnitTesting\CompetitionState.cs" />
     <Compile Include="BenchmarkDotNet\UnitTesting\Configs.cs" />
+    <Compile Include="BenchmarkDotNet\UnitTesting\Message.cs" />
     <Compile Include="CalibrationBenchmarks\AggressiveInliningPerfTests.cs" />
     <Compile Include="CalibrationBenchmarks\JitOptimizedFeatureSwitchPerfTests.cs" />
     <Compile Include="PerfTestsConstants.cs" />
@@ -172,6 +173,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="BenchmarkDotNet\BenchmarkDotNetPlannedChanges.md" />
     <None Include="CodeJam-Tests.Performance.exe.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -3,7 +3,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.IO.MemoryMappedFiles;
 using System.Threading;
 
 using BenchmarkDotNet.Diagnosers;
@@ -14,7 +13,6 @@ using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.Results;
 
 // ReSharper disable CheckNamespace
-
 namespace BenchmarkDotNet.Toolchains
 {
 	public class InProcessExecutor : IExecutor
@@ -65,7 +63,7 @@ namespace BenchmarkDotNet.Toolchains
 						}
 					}
 				},
-				logger, ProcessPriorityClass.High,
+				logger, ProcessPriorityClass.RealTime,
 				benchmark.Job.Affinity);
 			return new ExecuteResult(true, lines.ToArray());
 		}
@@ -80,7 +78,7 @@ namespace BenchmarkDotNet.Toolchains
 			var oldAffinity = process.ProcessorAffinity;
 			try
 			{
-				process.SetPriority(ProcessPriorityClass.RealTime, logger);
+				process.SetPriority(priority, logger);
 				if (!affinity.IsAuto)
 				{
 					process.ProcessorAffinity = new IntPtr(affinity.Value);

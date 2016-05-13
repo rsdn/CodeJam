@@ -6,8 +6,6 @@ using System.Reflection;
 using System.Xml.Linq;
 
 using BenchmarkDotNet.Helpers;
-using BenchmarkDotNet.Jobs;
-using BenchmarkDotNet.Parameters;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
@@ -145,9 +143,14 @@ namespace BenchmarkDotNet.UnitTesting
 
 			foreach (var benchGroup in summary.SameConditionBenchmarks())
 			{
-				var baselineBenchmark = GetBaselineBenchmark(benchGroup);
-				var baselineMetricMin = summary.TryGetPercentile(baselineBenchmark, 85);
-				var baselineMetricMax = summary.TryGetPercentile(baselineBenchmark, 95);
+				var baselineBenchmark = benchGroup.TryGetBaseline();
+				if (baselineBenchmark == null)
+					throw new InvalidOperationException("Baseline benchmark is not defined.");
+
+				var baselineMetricMin = summary.TryGetPercentile(baselineBenchmark, 85) ?? 0;
+				var baselineMetricMax = summary.TryGetPercentile(baselineBenchmark, 95) ?? 0;
+				if (baselineMetricMin <= 0 || baselineMetricMax <= 0)
+					throw new InvalidOperationException($"Baseline benchmark {baselineBenchmark.ShortInfo} does not compute");
 
 				foreach (var benchmark in benchGroup)
 				{
@@ -202,20 +205,6 @@ namespace BenchmarkDotNet.UnitTesting
 			return newTargets.Values.ToArray();
 		}
 
-		// ReSharper disable once ParameterTypeCanBeEnumerable.Local
-		private static Benchmark GetBaselineBenchmark(
-			IGrouping<KeyValuePair<IJob, ParameterInstances>, Benchmark> benchmarkGroup)
-		{
-			var baselineBenchmarks = benchmarkGroup.Where(b => b.Target.Baseline).ToArray();
-			if (baselineBenchmarks.Length == 0)
-				throw new InvalidOperationException("Define Baseline benchmark");
-			if (baselineBenchmarks.Length != 1)
-				throw new InvalidOperationException("There should be only one Baseline benchmark");
-
-			var baselineBenchmark = baselineBenchmarks.Single();
-			return baselineBenchmark;
-		}
-
 		public static void ValidateSummary(
 			Summary summary, double defaultMinRatio, double defaultMaxRatio,
 			CompetitionTargets competitionTargets)
@@ -226,7 +215,10 @@ namespace BenchmarkDotNet.UnitTesting
 			var benchmarkGroups = summary.SameConditionBenchmarks();
 			foreach (var benchmarkGroup in benchmarkGroups)
 			{
-				var baselineBenchmark = GetBaselineBenchmark(benchmarkGroup);
+				var baselineBenchmark = benchmarkGroup.TryGetBaseline();
+				if (baselineBenchmark == null)
+					throw new InvalidOperationException("Baseline benchmark is not defined.");
+
 				var baselineMetric = summary.TryGetPercentile(baselineBenchmark, percentile) ?? 0;
 				if (baselineMetric <= 0)
 					throw new InvalidOperationException($"Baseline benchmark {baselineBenchmark.ShortInfo} does not compute");

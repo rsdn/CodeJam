@@ -18,6 +18,14 @@ namespace BenchmarkDotNet.UnitTesting
 	internal class CompetitionState : IAnalyser
 	{
 		private readonly CompetitionTargets _competitionTargets = new Dictionary<Target, CompetitionTarget>();
+		private readonly List<IMessage> _messages = new List<IMessage>();
+		public IEnumerable<IMessage> GetMessages() => _messages.ToArray();
+
+		public void WriteMessage(MessageSource messageSource, MessageSeverity messageSeverity, string message) => 
+			_messages.Add(new Message(messageSource, messageSeverity, message));
+
+		public void WriteMessage(MessageSource messageSource, MessageSeverity messageSeverity, string messageFormat, params object[] args) => 
+			WriteMessage(messageSource, messageSeverity, string.Format(messageFormat, args));
 
 		public IEnumerable<IWarning> Analyse(Summary summary)
 		{
@@ -31,7 +39,7 @@ namespace BenchmarkDotNet.UnitTesting
 		}
 
 		public bool LastRun { get; set; }
-		public int RerunCount { get; set; }
+		public bool RerunRequested { get; set; }
 		public int RunCount { get; set; }
 
 		public CompetitionTargets GetCompetitionTargets(Summary summary)
@@ -50,10 +58,14 @@ namespace BenchmarkDotNet.UnitTesting
 			return CompetitionTargetHelpers.GetCompetitionTargetsToUpdate(summary, competitionTargets);
 		}
 
+		public void ValidatePreconditions(Summary summary) => CompetitionTargetHelpers.ValidatePreconditions(summary);
+
 		public void ValidateSummary(Summary summary, double defaultMinRatio, double defaultMaxRatio)
 		{
 			var competitionTargets = GetCompetitionTargets(summary);
 			CompetitionTargetHelpers.ValidateSummary(summary, defaultMinRatio, defaultMaxRatio, competitionTargets);
 		}
+
+		public void ValidatePostconditions(Summary summary) => CompetitionTargetHelpers.ValidatePostconditions(summary);
 	}
 }
