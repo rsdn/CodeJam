@@ -30,10 +30,9 @@ namespace BenchmarkDotNet.UnitTesting
 				new Job
 				{
 					IterationTime = 10,
-					LaunchCount = 2,
+					LaunchCount = 1,
 					WarmupCount = 3,
-					TargetCount = 20,
-					//Platform = Platform.X64,
+					TargetCount = 10,
 					Toolchain = InProcessToolchain.Default
 				});
 		}

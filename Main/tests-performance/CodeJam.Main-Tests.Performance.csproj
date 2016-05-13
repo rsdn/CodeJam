@@ -174,7 +174,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CodeJam-Tests.Performance.dll.config">
+    <None Include="CodeJam-Tests.Performance.exe.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

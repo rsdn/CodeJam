@@ -11,6 +11,6 @@ namespace BenchmarkDotNet.Toolchains
 	public class InProcessBuilder : IBuilder
 	{
 		public BuildResult Build(GenerateResult generateResult, ILogger logger, Benchmark benchmark) => 
-			new BuildResult(generateResult, true, null, "~");
+			new BuildResult(generateResult, true, null, ".");
 	}
 }

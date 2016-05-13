@@ -102,6 +102,10 @@ namespace BenchmarkDotNet.UnitTesting
 				ConsoleLogger.Default.WriteError("Exception:" + ex);
 				throw;
 			}
+			if (competitionState.RunCount > 1)
+			{
+				throw new IgnoreException($"Benchmark for {benchmarkType.Name} was run multiple times to get the stable results. Consider to rerun it.");
+			}
 		}
 
 		private static void ValidateCompetitionSetup(Type benchmarkType)
@@ -174,16 +178,20 @@ namespace BenchmarkDotNet.UnitTesting
 			Summary summary = null;
 
 			const int rerunCount = 10;
-			for (var i = 0; i < rerunCount; i++)
+			competitionState.RunCount = 0;
+			competitionState.RerunCount = 0;
+			int i = 0;
+			for (; i < rerunCount; i++)
 			{
 				competitionState.LastRun = i == rerunCount - 1;
-				competitionState.RerunRequested = false;
 
 				// Running the benchmark
 				summary = BenchmarkRunner.Run(benchmarkType, competitionConfig);
+				competitionState.RunCount++;
+				competitionState.RerunCount--;
 
 				// Rerun if annotated
-				if (!competitionState.RerunRequested)
+				if (competitionState.RerunCount <= 0)
 				{
 					break;
 				}
@@ -192,12 +200,12 @@ namespace BenchmarkDotNet.UnitTesting
 			return summary;
 		}
 
-		private static void DumpOutputSummaryAtTop (Summary summary, AccumulationLogger logger)
+		private static void DumpOutputSummaryAtTop(Summary summary, AccumulationLogger logger)
 		{
 			if (summary != null)
 			{
 				// Dumping the benchmark results to console
-				MarkdownExporter.Default.ExportToLog(summary, ConsoleLogger.Default);
+				MarkdownExporter.Console.ExportToLog(summary, ConsoleLogger.Default);
 			}
 
 			// Dumping all captured output below the benchmark results

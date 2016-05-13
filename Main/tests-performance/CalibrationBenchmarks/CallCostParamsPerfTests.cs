@@ -50,7 +50,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(0.97, 1.05)]
+		[CompetitionBenchmark(0.96, 1.08)]
 		public int Test01Params()
 		{
 			var a = 0;
@@ -59,7 +59,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(0.98, 1.06)]
+		[CompetitionBenchmark(0.91, 1.06)]
 		public int Test02ParamsCached()
 		{
 			var a = 0;
@@ -69,7 +69,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(15.97, 16.97)]
+		[CompetitionBenchmark(16.91, 20.73)]
 		public int Test03ParamsNew()
 		{
 			var a = 0;
@@ -79,7 +79,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(7.58, 8.06)]
+		[CompetitionBenchmark(7.16, 8.17)]
 		public int Test04CallNoInline()
 		{
 			var a = 0;
@@ -88,7 +88,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(25.77, 27.42)]
+		[CompetitionBenchmark(7.24, 8.00)]
 		public int Test05CallParamsNoInline()
 		{
 			var a = 0;
@@ -97,7 +97,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(8.29, 8.82)]
+		[CompetitionBenchmark(7.62, 9.06)]
 		public int Test06CallParamsNoInlineCached()
 		{
 			var a = 0;
@@ -107,7 +107,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(22.81, 24.28)]
+		[CompetitionBenchmark(22.97, 25.88)]
 		public int Test07CallParamsNoInlineNew()
 		{
 			var a = 0;

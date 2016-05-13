@@ -298,14 +298,13 @@ namespace BenchmarkDotNet.UnitTesting
 			var tooFastReports = summary.Reports
 				.Where(
 					rp => rp.GetResultRuns().Any(
-						r => r.GetAverageNanoseconds() < 200 * 1000))
+						r => r.GetAverageNanoseconds() < 400))
 				.Select(rp => rp.Benchmark.Target.Method.Name)
 				.ToArray();
-
 			if (tooFastReports.Length > 0)
 				throw new InvalidOperationException(
 					"The benchmarks " + string.Join(", ", tooFastReports) +
-						"runs faster than 0.2 ms. Results cannot be trusted.");
+						"runs faster than 400 nanoseconds. Results cannot be trusted.");
 
 			if (!summary.GetCompetitionParameters().AllowSlowBenchmarks)
 			{
@@ -319,7 +318,7 @@ namespace BenchmarkDotNet.UnitTesting
 				if (tooSlowReports.Length > 0)
 					throw new InvalidOperationException(
 						"The benchmarks " + string.Join(", ", tooSlowReports) +
-							"runs longer than 0.5 sec. Consider to rewrite the test as the peek timings will be hidden by averages " +
+							"runs longer than half a second. Consider to rewrite the test as the peek timings will be hidden by averages " +
 							$"or set the {nameof(CompetitionParameters)}.{nameof(CompetitionParameters.AllowSlowBenchmarks)} to true.");
 			}
 		}
