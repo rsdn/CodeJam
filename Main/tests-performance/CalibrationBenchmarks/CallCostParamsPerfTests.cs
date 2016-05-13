@@ -39,7 +39,8 @@ namespace CodeJam
 		private const int Count = 1000 * 1000;
 
 		[Test]
-		public void RunCallCostParamsPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
+		public void RunCallCostParamsPerfTests() => 
+			CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		[CompetitionBaseline]
 		public int Test00CallBaseline()
@@ -50,7 +51,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(0.97, 1.05)]
+		[CompetitionBenchmark(0.88, 1.09)]
 		public int Test01Params()
 		{
 			var a = 0;
@@ -59,7 +60,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(0.98, 1.06)]
+		[CompetitionBenchmark(0.90, 1.08)]
 		public int Test02ParamsCached()
 		{
 			var a = 0;
@@ -69,7 +70,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(15.97, 16.97)]
+		[CompetitionBenchmark(16.00, 22.29)]
 		public int Test03ParamsNew()
 		{
 			var a = 0;
@@ -79,7 +80,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(7.58, 8.06)]
+		[CompetitionBenchmark(6.68, 8.37)]
 		public int Test04CallNoInline()
 		{
 			var a = 0;
@@ -88,7 +89,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(25.77, 27.42)]
+		[CompetitionBenchmark(6.73, 8.40)]
 		public int Test05CallParamsNoInline()
 		{
 			var a = 0;
@@ -97,7 +98,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(8.29, 8.82)]
+		[CompetitionBenchmark(7.26, 9.42)]
 		public int Test06CallParamsNoInlineCached()
 		{
 			var a = 0;
@@ -107,7 +108,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(22.81, 24.28)]
+		[CompetitionBenchmark(22.05, 28.76)]
 		public int Test07CallParamsNoInlineNew()
 		{
 			var a = 0;

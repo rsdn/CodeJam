@@ -59,8 +59,10 @@ namespace BenchmarkDotNet.UnitTesting
 			try
 			{
 				// WORKAROUND: fixing the https://github.com/nunit/nunit3-vs-adapter/issues/96
-				Environment.CurrentDirectory = TestContext.CurrentContext.TestDirectory;
-
+				if (TestContext.CurrentContext.WorkDirectory != null)
+				{
+					Environment.CurrentDirectory = TestContext.CurrentContext.TestDirectory;
+				}
 				RunCompetitionUnderSetup(benchmarkType, config, minRatio, maxRatio);
 			}
 			finally
@@ -94,19 +96,21 @@ namespace BenchmarkDotNet.UnitTesting
 				}
 
 				competitionState.ValidateSummary(summary, minRatio, maxRatio);
+				CompetitionTargetHelpers.ValidatePostconditions(summary);
 			}
 			catch (Exception ex)
 			{
 				ConsoleLogger.Default.WriteError("Exception:" + ex);
 				throw;
 			}
+			if (competitionState.RunCount > 1)
+			{
+				throw new IgnoreException(
+					$"Benchmark for {benchmarkType.Name} was run multiple times to get the stable results. Consider to rerun it.");
+			}
 		}
 
-		private static
-			void ValidateCompetitionSetup
-			(
-			Type
-				benchmarkType)
+		private static void ValidateCompetitionSetup(Type benchmarkType)
 		{
 			if (!Debugger.IsAttached)
 			{
@@ -125,9 +129,7 @@ namespace BenchmarkDotNet.UnitTesting
 			}
 		}
 
-		private static
-			AccumulationLogger InitAccumulationLogger
-			()
+		private static AccumulationLogger InitAccumulationLogger()
 		{
 			var logger = new AccumulationLogger();
 			logger.WriteLine();
@@ -137,9 +139,7 @@ namespace BenchmarkDotNet.UnitTesting
 			return logger;
 		}
 
-		private static
-			IConfig CreateCompetitionConfig
-			(
+		private static IConfig CreateCompetitionConfig(
 			IConfig baseConfig, CompetitionState competitionState,
 			AccumulationLogger logger)
 		{
@@ -156,7 +156,10 @@ namespace BenchmarkDotNet.UnitTesting
 				result.Add(new CompetitionParameters());
 			}
 			result.Add(logger);
-			result.Add(Validators.JitOptimizationsValidator.FailOnError);
+			if (!Debugger.IsAttached)
+			{
+				result.Add(Validators.JitOptimizationsValidator.FailOnError);
+			}
 			result.Add(
 				StatisticColumn.Min,
 				ScaledPercentileColumn.S0Column,
@@ -168,25 +171,28 @@ namespace BenchmarkDotNet.UnitTesting
 			return result;
 		}
 
-		private static
-			Summary RunCore
-			(
+		private static Summary RunCore(
 			Type benchmarkType, IConfig competitionConfig,
 			CompetitionState competitionState)
 		{
 			Summary summary = null;
 
 			const int rerunCount = 10;
-			for (var i = 0; i < rerunCount; i++)
+			competitionState.RunCount = 0;
+			competitionState.RerunCount = 0;
+			int i = 0;
+			for (; i < rerunCount; i++)
 			{
 				competitionState.LastRun = i == rerunCount - 1;
-				competitionState.RerunRequested = false;
 
 				// Running the benchmark
 				summary = BenchmarkRunner.Run(benchmarkType, competitionConfig);
+				CompetitionTargetHelpers.ValidatePreconditions(summary);
+				competitionState.RunCount++;
+				competitionState.RerunCount--;
 
 				// Rerun if annotated
-				if (!competitionState.RerunRequested)
+				if (competitionState.RerunCount <= 0)
 				{
 					break;
 				}
@@ -195,14 +201,12 @@ namespace BenchmarkDotNet.UnitTesting
 			return summary;
 		}
 
-		private static
-			void DumpOutputSummaryAtTop
-			(Summary summary, AccumulationLogger logger)
+		private static void DumpOutputSummaryAtTop(Summary summary, AccumulationLogger logger)
 		{
 			if (summary != null)
 			{
 				// Dumping the benchmark results to console
-				MarkdownExporter.Default.ExportToLog(summary, ConsoleLogger.Default);
+				MarkdownExporter.Console.ExportToLog(summary, ConsoleLogger.Default);
 			}
 
 			// Dumping all captured output below the benchmark results

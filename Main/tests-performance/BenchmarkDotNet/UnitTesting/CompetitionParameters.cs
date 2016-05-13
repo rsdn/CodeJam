@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-using BenchmarkDotNet.Analysers;
-using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Validators;
 
@@ -25,9 +23,7 @@ namespace BenchmarkDotNet.UnitTesting
 		public bool RerunIfModified { get; set; }
 		public bool AnnotateOnRun { get; set; }
 		public bool IgnoreExistingAnnotations { get; set; }
-
-		public IEnumerable<IWarning> Analyse(Summary summary) =>
-			Enumerable.Empty<IWarning>();
+		public bool AllowSlowBenchmarks { get; set; }
 		#endregion
 
 		#region Implementation of IValidator

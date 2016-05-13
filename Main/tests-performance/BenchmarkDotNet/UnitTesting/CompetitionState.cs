@@ -31,7 +31,8 @@ namespace BenchmarkDotNet.UnitTesting
 		}
 
 		public bool LastRun { get; set; }
-		public bool RerunRequested { get; set; }
+		public int RerunCount { get; set; }
+		public int RunCount { get; set; }
 
 		public CompetitionTargets GetCompetitionTargets(Summary summary)
 		{

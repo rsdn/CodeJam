@@ -2,6 +2,7 @@
 
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Toolchains;
 
 using JetBrains.Annotations;
 
@@ -28,11 +29,11 @@ namespace BenchmarkDotNet.UnitTesting
 			Add(
 				new Job
 				{
-					IterationTime = 100,
+					IterationTime = 10,
 					LaunchCount = 1,
 					WarmupCount = 3,
 					TargetCount = 10,
-					Platform = Platform.X64
+					Toolchain = InProcessToolchain.Default
 				});
 		}
 	}

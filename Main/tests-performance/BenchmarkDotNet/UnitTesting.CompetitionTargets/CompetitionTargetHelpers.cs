@@ -188,15 +188,15 @@ namespace BenchmarkDotNet.UnitTesting
 
 			foreach (var competitionTarget in fixedMinTargets)
 			{
-				// min = 0.97x;
+				// min = 0.95x;
 				competitionTarget.UnionWithMin(
-					Math.Floor(competitionTarget.Min * 97) / 100);
+					Math.Floor(competitionTarget.Min * 95) / 100);
 			}
 			foreach (var competitionTarget in fixedMaxTargets)
 			{
-				// max = 1.03x;
+				// max = 1.05x;
 				competitionTarget.UnionWithMax(
-					Math.Ceiling(competitionTarget.Max * 103) / 100);
+					Math.Ceiling(competitionTarget.Max * 105) / 100);
 			}
 
 			return newTargets.Values.ToArray();
@@ -220,8 +220,6 @@ namespace BenchmarkDotNet.UnitTesting
 			Summary summary, double defaultMinRatio, double defaultMaxRatio,
 			CompetitionTargets competitionTargets)
 		{
-			ValidatePreconditions(summary);
-
 			// Based on 95th percentile
 			const double percentileRatio = 0.95;
 
@@ -262,7 +260,7 @@ namespace BenchmarkDotNet.UnitTesting
 			}
 		}
 
-		private static void ValidatePreconditions(Summary summary)
+		public static void ValidatePreconditions(Summary summary)
 		{
 			if (summary.HasCriticalValidationErrors)
 			{
@@ -294,6 +292,36 @@ namespace BenchmarkDotNet.UnitTesting
 			if (benchMissing.Length > 0)
 				throw new InvalidOperationException(
 					"No reports for benchmarks: " + string.Join(", ", benchMissing));
+		}
+
+		public static void ValidatePostconditions(Summary summary)
+		{
+			var tooFastReports = summary.Reports
+				.Where(
+					rp => rp.GetResultRuns().Any(
+						r => r.GetAverageNanoseconds() < 400))
+				.Select(rp => rp.Benchmark.Target.Method.Name)
+				.ToArray();
+			if (tooFastReports.Length > 0)
+				throw new InvalidOperationException(
+					"The benchmarks " + string.Join(", ", tooFastReports) +
+						"runs faster than 400 nanoseconds. Results cannot be trusted.");
+
+			if (!summary.GetCompetitionParameters().AllowSlowBenchmarks)
+			{
+				var tooSlowReports = summary.Reports
+					.Where(
+						rp => rp.GetResultRuns().Any(
+							r => r.GetAverageNanoseconds() > 500 * 1000 * 1000))
+					.Select(rp => rp.Benchmark.Target.Method.Name)
+					.ToArray();
+
+				if (tooSlowReports.Length > 0)
+					throw new InvalidOperationException(
+						"The benchmarks " + string.Join(", ", tooSlowReports) +
+							"runs longer than half a second. Consider to rewrite the test as the peek timings will be hidden by averages " +
+							$"or set the {nameof(CompetitionParameters)}.{nameof(CompetitionParameters.AllowSlowBenchmarks)} to true.");
+			}
 		}
 
 		private static void ValidateBenchmark(

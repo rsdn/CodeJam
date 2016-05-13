@@ -171,7 +171,7 @@ namespace BenchmarkDotNet.UnitTesting
 					warnings.Add(new Warning(nameof(AnnotateSourceHelper), message, null));
 
 					competitionTargets[newTarget.Target] = newTarget;
-					competitionState.RerunRequested = true;
+					competitionState.RerunCount += 2;
 				}
 				else
 				{

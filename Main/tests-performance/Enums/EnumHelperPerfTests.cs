@@ -209,7 +209,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(8.58, 9.19)]
+			[CompetitionBenchmark(10.26, 10.94)]
 			public bool Test01IsFlagMatch()
 			{
 				var a = false;
@@ -218,7 +218,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(5.74, 6.13)]
+			[CompetitionBenchmark(5.81, 6.20)]
 			public bool Test02IsFlagMatchEnumOp()
 			{
 				var a = false;
@@ -227,7 +227,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(5.72, 6.14)]
+			[CompetitionBenchmark(6.63, 7.09)]
 			public bool Test03IsFlagMatchIntOp()
 			{
 				var a = false;

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8EDF4429-251A-416D-BB68-93F227191BCF}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CodeJam</RootNamespace>
     <AssemblyName>CodeJam-Tests.Performance</AssemblyName>
@@ -35,6 +35,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\..\CodeJam.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BenchmarkDotNet, Version=0.9.6.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
@@ -88,8 +91,19 @@
     <Compile Include="Assertions\CodePerfTests.cs" />
     <Compile Include="Assertions\DebugCodePerfTests.cs" />
     <Compile Include="BenchmarkDotNet.Tests\BenchmarkHelpersTests.cs" />
+    <Compile Include="BenchmarkDotNet\Core.InProcessToolchain\InProcessProgram.cs" />
+    <Compile Include="BenchmarkDotNet\Core.InProcessToolchain\InProcessGenerator.cs" />
+    <Compile Include="BenchmarkDotNet\Core.InProcessToolchain\InProcessBuilder.cs" />
+    <Compile Include="BenchmarkDotNet\Core.InProcessToolchain\InProcessExecutor.cs" />
+    <Compile Include="BenchmarkDotNet\Core.InProcessToolchain\InProcessToolchain.cs" />
+    <Compile Include="BenchmarkDotNet\Core\Extensions\ProcessExtensions.cs" />
+    <Compile Include="BenchmarkDotNet\Core\Portability\AssemblyExtensions.cs" />
     <Compile Include="BenchmarkDotNet\Core\BenchmarkColumns.cs" />
     <Compile Include="BenchmarkDotNet\Core\BenchmarkHelpers.cs" />
+    <Compile Include="BenchmarkDotNet\Core\Portability\FieldInfoExtensions.cs" />
+    <Compile Include="BenchmarkDotNet\Core\Portability\MemberInfoExtensions.cs" />
+    <Compile Include="BenchmarkDotNet\Core\Portability\PropertyInfoExtensions.cs" />
+    <Compile Include="BenchmarkDotNet\Core\Portability\TypeExtensions.cs" />
     <Compile Include="BenchmarkDotNet\UnitTesting.Annotations\AnnotateSourceHelper.cs" />
     <Compile Include="BenchmarkDotNet\UnitTesting.Annotations\AnnotateSourceHelper.SourceAnnotate.cs" />
     <Compile Include="BenchmarkDotNet\UnitTesting.Annotations\AnnotateSourceHelper.SymbolHelpers.cs" />
@@ -115,6 +129,7 @@
     <Compile Include="CalibrationBenchmarks\OpsCountNotSensitivePerfTests.cs" />
     <Compile Include="CalibrationBenchmarks\SensitivityPerfTests.cs" />
     <Compile Include="Enums\EnumHelperPerfTests.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +174,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CodeJam-Tests.Performance.dll.config">
+    <None Include="CodeJam-Tests.Performance.exe.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
