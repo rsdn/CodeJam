@@ -90,18 +90,6 @@
     <Compile Include="AssemblyWideConfig.cs" />
     <Compile Include="Assertions\CodePerfTests.cs" />
     <Compile Include="Assertions\DebugCodePerfTests.cs" />
-    <Compile Include="BenchmarkDotNet\Core.InProcessToolchain\InProcessProgram.cs" />
-    <Compile Include="BenchmarkDotNet\Core.InProcessToolchain\InProcessGenerator.cs" />
-    <Compile Include="BenchmarkDotNet\Core.InProcessToolchain\InProcessBuilder.cs" />
-    <Compile Include="BenchmarkDotNet\Core.InProcessToolchain\InProcessExecutor.cs" />
-    <Compile Include="BenchmarkDotNet\Core.InProcessToolchain\InProcessToolchain.cs" />
-    <Compile Include="BenchmarkDotNet\Core\Extensions\ProcessExtensions.cs" />
-    <Compile Include="BenchmarkDotNet\Core\Portability\AssemblyExtensions.cs" />
-    <Compile Include="BenchmarkDotNet\Core\BenchmarkHelpers.cs" />
-    <Compile Include="BenchmarkDotNet\Core\Portability\FieldInfoExtensions.cs" />
-    <Compile Include="BenchmarkDotNet\Core\Portability\MemberInfoExtensions.cs" />
-    <Compile Include="BenchmarkDotNet\Core\Portability\PropertyInfoExtensions.cs" />
-    <Compile Include="BenchmarkDotNet\Core\Portability\TypeExtensions.cs" />
     <Compile Include="BenchmarkDotNet\UnitTesting.Annotations\AnnotateSourceHelper.cs" />
     <Compile Include="BenchmarkDotNet\UnitTesting.Annotations\AnnotateSourceHelper.SourceAnnotate.cs" />
     <Compile Include="BenchmarkDotNet\UnitTesting.Annotations\AnnotateSourceHelper.SymbolHelpers.cs" />
@@ -132,6 +120,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\src-perfomance\CodeJam.BenchmarkDotNet.csproj">
+      <Project>{31fb3174-858c-4cf8-8d56-b74cb5294af0}</Project>
+      <Name>CodeJam.BenchmarkDotNet</Name>
+    </ProjectReference>
     <ProjectReference Include="..\src\CodeJam.Main.csproj">
       <Project>{2f2046cc-fb47-4318-b335-5a82b04b6c40}</Project>
       <Name>CodeJam.Main</Name>
