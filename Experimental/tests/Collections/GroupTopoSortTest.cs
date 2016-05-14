@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using CodeJam.Strings;
@@ -10,13 +11,14 @@ namespace CodeJam.Collections
 	[TestFixture]
 	public class GroupTopoSortTest
 	{
-		[TestCase(arg: new[] { "a:b", "b:c", "c" }, TestName = "Simple", ExpectedResult = "c : b : a")]
+		[TestCase(arg: new[] { "a" }, ExpectedResult = "a")]
+		[TestCase(arg: new[] { "a", "b" }, ExpectedResult = "a, b")]
+		[TestCase(arg: new[] { "a:b", "b:c", "c" }, TestName = "3 in line", ExpectedResult = "c : b : a")]
 		[TestCase(arg: new[] { "a:c", "b:c", "c" }, ExpectedResult = "c : a, b")]
 		[TestCase(arg: new[] { "a", "b", "c: a, b" }, ExpectedResult = "a, b : c")]
 		[TestCase(arg: new[] { "a:c", "b:c", "c", "d:a, b" }, TestName = "Diamond", ExpectedResult = "c : a, b : d")]
 		[TestCase(arg: new[] { "a", "b:a", "c" }, ExpectedResult = "a, c : b")]
 		[TestCase(arg: new[] { "a", "b:a", "c", "d:c" }, ExpectedResult = "a, c : b, d")]
-		// TODO: add more cases
 		public string GroupTopoSort(string[] source)
 		{
 			// Prepare dependency structure
@@ -37,6 +39,24 @@ namespace CodeJam.Collections
 					.Join(" : ");
 			Assert.AreEqual(collSort, enSort);
 			return collSort;
+		}
+
+		[TestCase(arg: new[] { "a:a" })]
+		[TestCase(arg: new[] { "a:b", "b:a" })]
+		[TestCase(arg: new[] { "a:c", "b:a", "c:b" })]
+		public void GroupTopoSortCycle(string[] source)
+		{
+			// Prepare dependency structure
+			Dictionary<string, string[]> deps;
+			var items = GetDepStructure(source, out deps);
+
+			// Perform sort
+			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
+			Assert.Throws<ArgumentException>(
+				() =>
+					items
+						.GroupTopoSort(i => deps[i])
+						.ToArray());
 		}
 
 		private static ICollection<string> GetDepStructure(IEnumerable<string> source, out Dictionary<string, string[]> deps)

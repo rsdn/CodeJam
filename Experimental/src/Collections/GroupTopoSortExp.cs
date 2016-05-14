@@ -47,7 +47,7 @@ namespace CodeJam.Collections
 
 			var completedCounter = 0;
 
-			while (completedCounter != workArray.Length)
+			while (completedCounter < workArray.Length)
 			{
 				var level = new List<T>();
 
@@ -55,6 +55,7 @@ namespace CodeJam.Collections
 					if (workArray[i].Processed == 0)
 						workArray[i].Processed = null;
 
+				var lastCounter = completedCounter;
 				for (var i = 0; i < workArray.Length; i++)
 					if (workArray[i].Processed == null)
 					{
@@ -66,6 +67,8 @@ namespace CodeJam.Collections
 						workArray[i].Processed = -1;
 						completedCounter++;
 					}
+				if (completedCounter == lastCounter)
+					throw CodeExceptions.Argument(nameof(source), "Cycle detected.");
 
 				yield return level.ToArray();
 			}
