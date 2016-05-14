@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace CodeJam.Collections
 {
 	[TestFixture]
-	[Ignore("TDB")]
+	[Explicit("TBD")]
 	public class GroupTopoSortTest
 	{
 		[TestCase(arg: new[] { "a:b", "b:c", "c" }, TestName = "Simple", ExpectedResult = "c, b, a")]

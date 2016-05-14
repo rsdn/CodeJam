@@ -26,8 +26,11 @@ namespace CodeJam.Collections
 			var indexes =
 				workArray
 					.ToDictionary(i => i.Item, i => i.Index, equalityComparer);
+			foreach (var item in workArray)
+				foreach (var child in item.Children)
+					workArray[indexes[child]].Processed++;
 
-			var completedCounter = 0;
+				var completedCounter = 0;
 
 			while (completedCounter != workArray.Length)
 			{
@@ -70,7 +73,7 @@ namespace CodeJam.Collections
 				Children = children;
 				Index = index;
 				Item = item;
-				Processed = Children.Length;
+				Processed = 0;
 			}
 
 			public int Index { get; }
