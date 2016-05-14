@@ -30,9 +30,14 @@ namespace CodeJam.Collections
 			Func<T, IEnumerable<T>> dependsOnGetter,
 			IEqualityComparer<T> equalityComparer)
 		{
+			if (source.Count == 0)
+			{
+				yield break;
+			}
 			var dependants = LazyDictionary.Create(k => new List<T>(), equalityComparer, false);
-			var workArray = new TopoSortWorkItem<T>[source.Count];
+			var workArray = new int[source.Count];
 			var indexes = new Dictionary<T, int>();
+			var level = new List<T>();
 			foreach (var item in source.WithIndex())
 			{
 				var count = 0;
@@ -41,49 +46,48 @@ namespace CodeJam.Collections
 					dependants[dep].Add(item.Item);
 					count++;
 				}
-				workArray[item.Index] = new TopoSortWorkItem<T>(item.Item, count);
+				if (count == 0)
+				{
+					level.Add(item.Item);
+				}
+				else
+				{
+					workArray[item.Index] = count;
+				}
 				indexes.Add(item.Item, item.Index);
 			}
-
-			var completedCounter = 0;
-
-			while (completedCounter < workArray.Length)
+			if (level.Count == 0)
 			{
-				var level = new List<T>();
+				throw CodeExceptions.Argument(nameof(source), "Cycle detected.");
+			}
 
-				for (var i = 0; i < workArray.Length; i++)
-					if (workArray[i].Processed == 0)
-						workArray[i].Processed = null;
-
-				var lastCounter = completedCounter;
-				for (var i = 0; i < workArray.Length; i++)
-					if (workArray[i].Processed == null)
+			var pendingCount = workArray.Length;
+			for (;;)
+			{
+				var nextLevel = new Lazy<List<T>>(() => new List<T>());
+				foreach (var item in level)
+				{
+					foreach (var dep in dependants[item])
 					{
-						level.Add(workArray[i].Item);
-
-						foreach (var dep in dependants[workArray[i].Item])
-							workArray[indexes[dep]].Processed--;
-
-						workArray[i].Processed = -1;
-						completedCounter++;
+						var pending = --workArray[indexes[dep]];
+						if (pending == 0)
+						{
+							nextLevel.Value.Add(dep);
+						}
 					}
-				if (completedCounter == lastCounter)
-					throw CodeExceptions.Argument(nameof(source), "Cycle detected.");
-
+				}
 				yield return level.ToArray();
+				pendingCount -= level.Count;
+				if (pendingCount == 0)
+				{
+					yield break;
+				}
+				if (!nextLevel.IsValueCreated)
+				{
+					throw CodeExceptions.Argument(nameof(source), "Cycle detected.");
+				}
+				level = nextLevel.Value;
 			}
-		}
-
-		private struct TopoSortWorkItem<T>
-		{
-			public TopoSortWorkItem(T item, int? processed) : this()
-			{
-				Item = item;
-				Processed = processed;
-			}
-
-			public T Item { get; }
-			public int? Processed { get; set; }
 		}
 	}
 }
