@@ -31,9 +31,8 @@ namespace CodeJam.Collections
 			IEqualityComparer<T> equalityComparer)
 		{
 			if (source.Count == 0)
-			{
 				yield break;
-			}
+
 			var dependants = LazyDictionary.Create(k => new List<T>(), equalityComparer, false);
 			var workArray = new int[source.Count];
 			var indexes = new Dictionary<T, int>();
@@ -47,47 +46,37 @@ namespace CodeJam.Collections
 					count++;
 				}
 				if (count == 0)
-				{
 					level.Add(item.Item);
-				}
 				else
-				{
 					workArray[item.Index] = count;
-				}
 				indexes.Add(item.Item, item.Index);
 			}
+
 			if (level.Count == 0)
-			{
-				throw CodeExceptions.Argument(nameof(source), "Cycle detected.");
-			}
+				throw CycleException(nameof(source));
 
 			var pendingCount = workArray.Length;
-			for (;;)
+			while (true)
 			{
 				var nextLevel = new Lazy<List<T>>(() => new List<T>());
 				foreach (var item in level)
-				{
 					foreach (var dep in dependants[item])
 					{
 						var pending = --workArray[indexes[dep]];
 						if (pending == 0)
-						{
 							nextLevel.Value.Add(dep);
-						}
 					}
-				}
 				yield return level.ToArray();
 				pendingCount -= level.Count;
 				if (pendingCount == 0)
-				{
 					yield break;
-				}
 				if (!nextLevel.IsValueCreated)
-				{
-					throw CodeExceptions.Argument(nameof(source), "Cycle detected.");
-				}
+					throw CycleException(nameof(source));
 				level = nextLevel.Value;
 			}
 		}
+
+		private static ArgumentException CycleException(string argName) =>
+			CodeExceptions.Argument(argName, "Cycle detected.");
 	}
 }

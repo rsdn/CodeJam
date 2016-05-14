@@ -11,6 +11,7 @@ namespace CodeJam.Collections
 	[TestFixture]
 	public class GroupTopoSortTest
 	{
+		[TestCase(arg: new string[0], ExpectedResult = "")]
 		[TestCase(arg: new[] { "a" }, ExpectedResult = "a")]
 		[TestCase(arg: new[] { "a", "b" }, ExpectedResult = "a, b")]
 		[TestCase(arg: new[] { "a:b", "b:c", "c" }, TestName = "3 in line", ExpectedResult = "c : b : a")]
@@ -19,6 +20,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new[] { "a:c", "b:c", "c", "d:a, b" }, TestName = "Diamond", ExpectedResult = "c : a, b : d")]
 		[TestCase(arg: new[] { "a", "b:a", "c" }, ExpectedResult = "a, c : b")]
 		[TestCase(arg: new[] { "a", "b:a", "c", "d:c" }, ExpectedResult = "a, c : b, d")]
+		[TestCase(arg: new[] { "a", "b:a", "c:b", "d:e", "e" }, ExpectedResult = "a, e : b, d : c")]
 		public string GroupTopoSort(string[] source)
 		{
 			// Prepare dependency structure
