@@ -8,14 +8,14 @@ using NUnit.Framework;
 namespace CodeJam.Collections
 {
 	[TestFixture]
-	[Explicit("TBD")]
 	public class GroupTopoSortTest
 	{
-		[TestCase(arg: new[] { "a:b", "b:c", "c" }, TestName = "Simple", ExpectedResult = "c, b, a")]
-		[TestCase(arg: new[] { "a:c", "b:c", "c" }, ExpectedResult = "c, a, b")]
-		[TestCase(arg: new[] { "a", "b", "c: a, b" }, ExpectedResult = "a, b, c")]
-		[TestCase(arg: new[] { "a:c", "b:c", "c", "d:a, b" }, TestName = "Diamond", ExpectedResult = "c, a, b, d")]
-		[TestCase(arg: new[] { "a", "b:a", "c" }, ExpectedResult = "a, c, b")]
+		[TestCase(arg: new[] { "a:b", "b:c", "c" }, TestName = "Simple", ExpectedResult = "c : b : a")]
+		[TestCase(arg: new[] { "a:c", "b:c", "c" }, ExpectedResult = "c : a, b")]
+		[TestCase(arg: new[] { "a", "b", "c: a, b" }, ExpectedResult = "a, b : c")]
+		[TestCase(arg: new[] { "a:c", "b:c", "c", "d:a, b" }, TestName = "Diamond", ExpectedResult = "c : a, b : d")]
+		[TestCase(arg: new[] { "a", "b:a", "c" }, ExpectedResult = "a, c : b")]
+		[TestCase(arg: new[] { "a", "b:a", "c", "d:c" }, ExpectedResult = "a, c : b, d")]
 		// TODO: add more cases
 		public string GroupTopoSort(string[] source)
 		{
@@ -24,10 +24,22 @@ namespace CodeJam.Collections
 			var items = GetDepStructure(source, out deps);
 
 			// Perform sort
-			return items.GroupTopoSort(i => deps[i]).Select(l => l.Join(", ")).Join(" : ");
+			var collSort =
+				items
+					.GroupTopoSort(i => deps[i])
+					.Select(l => l.Join(", "))
+					.Join(" : ");
+			var enSort =
+				items
+					.AsEnumerable()
+					.GroupTopoSort(i => deps[i])
+					.Select(l => l.Join(", "))
+					.Join(" : ");
+			Assert.AreEqual(collSort, enSort);
+			return collSort;
 		}
 
-		private static IEnumerable<string> GetDepStructure(IEnumerable<string> source, out Dictionary<string, string[]> deps)
+		private static ICollection<string> GetDepStructure(IEnumerable<string> source, out Dictionary<string, string[]> deps)
 		{
 			var items = new HashSet<string>();
 			deps = new Dictionary<string, string[]>();
@@ -43,30 +55,6 @@ namespace CodeJam.Collections
 						: Array<string>.Empty);
 			}
 			return items;
-		}
-
-		private static IEnumerable<Holder> GetDepStructure(IEnumerable<string> source, out Dictionary<Holder, Holder[]> deps)
-		{
-			Dictionary<string, string[]> innerDeps;
-			var items = GetDepStructure(source, out innerDeps);
-			deps = innerDeps.ToDictionary(
-				kv => new Holder(kv.Key),
-				kv => kv.Value.Select(v => new Holder(v)).ToArray(),
-				new KeyEqualityComparer<Holder, string>(v => v.Value));
-
-			return items.Select(v => new Holder(v));
-		}
-
-		private class Holder
-		{
-			public string Value { get; }
-
-			public Holder(string value)
-			{
-				Value = value;
-
-			}
-			public override string ToString() => Value;
 		}
 	}
 }
