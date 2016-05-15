@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-using BenchmarkDotNet.UnitTesting;
+using BenchmarkDotNet.Competitions;
 
 using CodeJam.Arithmetic;
 

@@ -2,14 +2,12 @@
 
 using JetBrains.Annotations;
 
-// ReSharper disable CheckNamespace
-// ReSharper disable once RedundantAttributeUsageProperty
-
-namespace BenchmarkDotNet.UnitTesting
+namespace BenchmarkDotNet.Competitions
 {
 	/// <summary>
 	/// Specifies XML resource to be used as benchmark annotation.
 	/// </summary>
+// ReSharper disable once RedundantAttributeUsageProperty
 	[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
 	[PublicAPI, MeansImplicitUse]
 	public class CompetitionMetadataAttribute : Attribute

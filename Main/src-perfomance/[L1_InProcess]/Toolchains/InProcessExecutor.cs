@@ -58,23 +58,24 @@ namespace BenchmarkDotNet.Toolchains
 			return new ExecuteResult(true, lines.ToArray());
 		}
 
-		private static Thread PrepareRunThread(IRunnableBenchmark program, StreamWriter outputWriter, BlockingStream outputStream) =>
-			new Thread(
-				() =>
+		private static Thread PrepareRunThread(
+			IRunnableBenchmark program, StreamWriter outputWriter, BlockingStream outputStream) =>
+				new Thread(
+					() =>
+					{
+						try
+						{
+							program.Run();
+						}
+						finally
+						{
+							outputWriter.Flush();
+							outputStream.CompleteWriting();
+						}
+					})
 				{
-					try
-					{
-						program.Run();
-					}
-					finally
-					{
-						outputWriter.Flush();
-						outputStream.CompleteWriting();
-					}
-				})
-			{
-				Priority = ThreadPriority.Highest
-			};
+					Priority = ThreadPriority.Highest
+				};
 
 		private static void RunWithPriority(
 			ProcessPriorityClass priority, Count affinity, ILogger logger,
@@ -241,9 +242,9 @@ namespace BenchmarkDotNet.Toolchains
 				if (buffer == null)
 					throw new ArgumentNullException("buffer");
 				if (offset < 0)
-					throw new ArgumentOutOfRangeException("offset");
+					throw new ArgumentOutOfRangeException("offset", offset, null);
 				if (count < 0)
-					throw new ArgumentOutOfRangeException("count");
+					throw new ArgumentOutOfRangeException("count", count, null);
 				if (buffer.Length - offset < count)
 					throw new ArgumentException("buffer.Length - offset < count");
 			}

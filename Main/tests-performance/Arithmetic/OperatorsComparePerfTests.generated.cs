@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-using BenchmarkDotNet.UnitTesting;
+using BenchmarkDotNet.Competitions;
 
 using NUnit.Framework;
 

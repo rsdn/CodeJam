@@ -4,14 +4,12 @@ using BenchmarkDotNet.Attributes;
 
 using JetBrains.Annotations;
 
-// ReSharper disable CheckNamespace
-// ReSharper disable once RedundantAttributeUsageProperty
-
-namespace BenchmarkDotNet.UnitTesting
+namespace BenchmarkDotNet.Competitions
 {
 	/// <summary>
 	/// Marks the baseline competition benchmark
 	/// </summary>
+// ReSharper disable once RedundantAttributeUsageProperty
 	[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
 	[PublicAPI, MeansImplicitUse]
 	public class CompetitionBaselineAttribute : BenchmarkAttribute

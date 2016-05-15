@@ -1,6 +1,5 @@
 ﻿using System;
 
-using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 
@@ -13,12 +12,7 @@ namespace BenchmarkDotNet.Toolchains
 	{
 		public static readonly IToolchain Default = new InProcessToolchain();
 
-		public bool IsSupported(Benchmark benchmark, ILogger logger)
-		{
-			BenchmarkHelpers.ValidateEnvironment(benchmark, logger);
-
-			return true;
-		}
+		public bool IsSupported(Benchmark benchmark, ILogger logger) => true;
 
 		public string Name => nameof(InProcessToolchain);
 		public IGenerator Generator { get; } = new InProcessGenerator();

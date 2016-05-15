@@ -6,9 +6,7 @@ using BenchmarkDotNet.Toolchains;
 
 using JetBrains.Annotations;
 
-// ReSharper disable CheckNamespace
-
-namespace BenchmarkDotNet.UnitTesting
+namespace BenchmarkDotNet.Competitions
 {
 	/// <summary>
 	/// Use this to run fast but inaccurate measures

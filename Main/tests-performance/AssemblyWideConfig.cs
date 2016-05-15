@@ -1,7 +1,7 @@
 ﻿using System;
 
+using BenchmarkDotNet.Competitions;
 using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.UnitTesting;
 
 using JetBrains.Annotations;
 
@@ -53,7 +53,7 @@ namespace CodeJam
 					new CompetitionParameters
 					{
 						AnnotateOnRun = true,
-						RerunIfModified = true,
+						RerunIfValidationFailed = true,
 						IgnoreExistingAnnotations = IgnoreExistingAnnotations
 					});
 			}

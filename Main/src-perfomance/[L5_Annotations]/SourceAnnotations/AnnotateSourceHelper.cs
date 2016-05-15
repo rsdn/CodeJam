@@ -7,13 +7,14 @@ using System.Xml;
 using System.Xml.Linq;
 
 using BenchmarkDotNet.Analysers;
-using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Competitions.Limits;
+using BenchmarkDotNet.Competitions.RunState;
+using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
-using BenchmarkDotNet.Reports;
 
-// ReSharper disable CheckNamespace
+using JetBrains.Annotations;
 
-namespace BenchmarkDotNet.UnitTesting
+namespace BenchmarkDotNet.SourceAnnotations
 {
 	/// <summary>
 	/// Fills min..max values for [CompetitionBenchmark] attribute
@@ -23,6 +24,14 @@ namespace BenchmarkDotNet.UnitTesting
 	internal static partial class AnnotateSourceHelper
 	{
 		#region Helper types
+		private enum ChecksumAlgorithmKind
+		{
+			[UsedImplicitly]
+			Unknown = 0,
+			Md5,
+			Sha1
+		}
+
 		private class AnnotateContext
 		{
 			private readonly Dictionary<string, string[]> _sourceLines = new Dictionary<string, string[]>();
@@ -82,7 +91,7 @@ namespace BenchmarkDotNet.UnitTesting
 				foreach (var pair in _sourceLines)
 				{
 					if (_changedFiles.Contains(pair.Key))
-						CompetitionHelpers.WriteFileContent(pair.Key, pair.Value);
+						BenchmarkHelpers.WriteFileContent(pair.Key, pair.Value);
 				}
 
 				var saveSettings = new XmlWriterSettings
@@ -102,86 +111,71 @@ namespace BenchmarkDotNet.UnitTesting
 		}
 		#endregion
 
-		#region Helper methods
-		private static bool TryGetSourceInfo(
-			CompetitionTarget competitionTarget,
-			out string sourceFileName, out int firstCodeLine) =>
-				SymbolHelpers.TryGetSourceInfo(
-					competitionTarget.Target.Method, out sourceFileName, out firstCodeLine);
-		#endregion
-
-		public static void AnnotateBenchmarkFiles(Summary summary, List<IWarning> warnings)
+		public static CompetitionTarget[] TryAnnotateBenchmarkFiles(
+			CompetitionTarget[] targetsToAnnotate, List<IWarning> warnings, ILogger logger)
 		{
-			var competitionState = summary.GetCompetitionState();
-			var competitionParameters = summary.GetCompetitionParameters();
-			var logger = summary.Config.GetCompositeLogger();
+			var annotatedTargets = new List<CompetitionTarget>();
 
 			var annContext = new AnnotateContext();
-			var competitionTargets = competitionState.GetCompetitionTargets(summary);
-			var changedTargets = competitionState.GetCompetitionTargetsToUpdate(summary);
-			if (changedTargets.Length == 0)
+			foreach (var targetToAnnotate in targetsToAnnotate)
 			{
-				logger.WriteLineInfo("All competition benchmarks do not require annotation. Skipping.");
-				return;
-			}
-
-			foreach (var newTarget in changedTargets)
-			{
-				var targetMethodName = newTarget.CandidateName;
+				var targetMethodName = targetToAnnotate.CandidateName;
 
 				logger.WriteLineInfo(
-					$"Method {targetMethodName}: new relative time limits [{newTarget.MinText},{newTarget.MaxText}].");
+					$"Method {targetMethodName}: new relative time limits [{targetToAnnotate.MinText},{targetToAnnotate.MaxText}].");
 
 				int firstCodeLine;
 				string fileName;
-				bool hasSource = TryGetSourceInfo(newTarget, out fileName, out firstCodeLine);
+				string validationMessage;
+				bool hasSource = SymbolHelpers.TryGetSourceInfo(
+					targetToAnnotate.Target.Method,
+					out fileName, out firstCodeLine, out validationMessage);
+
 				if (!hasSource)
 				{
-					throw new InvalidOperationException($"Method {targetMethodName}: could not annotate. Source file not found.");
+					validationMessage = validationMessage ?? "Source file not found.";
+					warnings.Add(
+						new Warning(
+							nameof(MessageSeverity.SetupError), $"Method {targetMethodName}: could not annotate. {validationMessage}", null));
+					continue;
 				}
 
-				if (newTarget.UsesResourceAnnotation)
+				if (targetToAnnotate.UsesResourceAnnotation)
 				{
 					var resourceFileName = Path.ChangeExtension(fileName, ".xml");
-					logger.WriteLineInfo(
-						$"Method {targetMethodName}: annotating resource file {resourceFileName}.");
-					bool annotated = TryFixBenchmarkResource(annContext, resourceFileName, newTarget);
+					logger.WriteLineInfo($"Method {targetMethodName}: annotating resource file {resourceFileName}.");
+					var annotated = TryFixBenchmarkResource(annContext, resourceFileName, targetToAnnotate);
 					if (!annotated)
 					{
-						throw new InvalidOperationException(
-							$"Method {targetMethodName}: could not annotate resource file {resourceFileName}.");
+						warnings.Add(
+							new Warning(
+								nameof(MessageSeverity.SetupError),
+								$"Method {targetMethodName}: could not annotate resource file {resourceFileName}.", null));
+						continue;
 					}
 				}
 				else
 				{
 					logger.WriteLineInfo($"Method {targetMethodName}: annotating file {fileName}, line {firstCodeLine}.");
-					bool annotated = TryFixBenchmarkAttribute(annContext, fileName, firstCodeLine, newTarget);
+					var annotated = TryFixBenchmarkAttribute(annContext, fileName, firstCodeLine, targetToAnnotate);
 					if (!annotated)
 					{
-						logger.WriteError($"Method {targetMethodName}: could not annotate source file {fileName}.");
-						throw new InvalidOperationException(
-							$"Method {targetMethodName}: could not annotate source file {fileName}.");
+						warnings.Add(
+							new Warning(
+								nameof(MessageSeverity.SetupError), $"Method {targetMethodName}: could not annotate source file {fileName}.",
+								null));
+						continue;
 					}
 				}
 
-				if (competitionParameters.RerunIfModified && !competitionState.LastRun)
-				{
-					var message = $"Method {targetMethodName} annotation updated, benchmark has to be restarted";
-					logger.WriteLineInfo(message);
-					warnings.Add(new Warning(nameof(AnnotateSourceHelper), message, null));
-
-					competitionTargets[newTarget.Target] = newTarget;
-					competitionState.RerunRequested = true;
-				}
-				else
-				{
-					var message = $"Method {targetMethodName} annotation updated.";
-					logger.WriteLineInfo(message);
-					warnings.Add(new Warning(nameof(AnnotateSourceHelper), message, null));
-				}
+				var message = $"Method {targetMethodName} annotation updated.";
+				logger.WriteLineInfo(message);
+				warnings.Add(new Warning(nameof(MessageSeverity.Informational), message, null));
+				annotatedTargets.Add(targetToAnnotate);
 			}
 
 			annContext.Save();
+			return annotatedTargets.ToArray();
 		}
 	}
 }

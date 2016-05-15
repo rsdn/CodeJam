@@ -3,13 +3,15 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Xml.Linq;
 
+using BenchmarkDotNet.Competitions.Limits;
+
 using JetBrains.Annotations;
 
-using static BenchmarkDotNet.UnitTesting.CompetitionHelpers;
+using static BenchmarkDotNet.Analysers.CompetitionLimitsAnalyserHelpers;
 
 // ReSharper disable CheckNamespace
 
-namespace BenchmarkDotNet.UnitTesting
+namespace BenchmarkDotNet.SourceAnnotations
 {
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	internal static partial class AnnotateSourceHelper

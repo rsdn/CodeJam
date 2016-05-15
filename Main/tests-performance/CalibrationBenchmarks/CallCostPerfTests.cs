@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-using BenchmarkDotNet.UnitTesting;
+using BenchmarkDotNet.Competitions;
 
 using JetBrains.Annotations;
 

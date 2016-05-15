@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
@@ -6,17 +7,15 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 
-using CodeJam;
-using CodeJam.Strings;
-
 using JetBrains.Annotations;
 
 using Microsoft.DiaSymReader;
 
 // ReSharper disable CheckNamespace
 
-namespace BenchmarkDotNet.UnitTesting
+namespace BenchmarkDotNet.SourceAnnotations
 {
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	internal static partial class AnnotateSourceHelper
 	{
 		/// <summary>
@@ -27,7 +26,6 @@ namespace BenchmarkDotNet.UnitTesting
 		///  https://github.com/dotnet/roslyn/blob/master/src/Test/PdbUtilities/Shared/SymUnmanagedReaderExtensions.cs#L483
 		///  http://stackoverflow.com/questions/36649271/check-that-pdb-file-matches-to-the-source
 		/// </summary>
-		[SuppressMessage("ReSharper", "InconsistentNaming")]
 		[SuppressMessage("ReSharper", "SuspiciousTypeConversion.Global")]
 		private static class SymbolHelpers
 		{
@@ -35,10 +33,12 @@ namespace BenchmarkDotNet.UnitTesting
 			public static bool TryGetSourceInfo(
 				MethodBase method,
 				out string sourceFileName,
-				out int firstCodeLine)
+				out int firstCodeLine,
+				out string validationMessage)
 			{
 				firstCodeLine = -1;
 				sourceFileName = null;
+				validationMessage = null;
 
 				var methodSymbols = TryGetMethodSymbols(method);
 				if (methodSymbols != null)
@@ -52,21 +52,16 @@ namespace BenchmarkDotNet.UnitTesting
 
 					Array.Sort(startLines, documents);
 					var doc = new SymDocument(documents[0]);
-					var computedChecksum = doc.ComputeChecksum();
-					if (!doc.Checksum.SequenceEqual(computedChecksum))
+
+					validationMessage = ValidateFileHash(doc);
+					if (validationMessage == null)
 					{
-						var expected = doc.Checksum.ToHexString();
-						var actual = computedChecksum.ToHexString();
-
-						throw new InvalidOperationException(
-							$"Checksum validation failed. File '{doc.Url}'.\r\nActual: 0x{actual}\r\nExpected: 0x{expected}");
+						sourceFileName = doc.Url;
+						firstCodeLine = startLines[0];
 					}
-
-					sourceFileName = doc.Url;
-					firstCodeLine = startLines[0];
 				}
 
-				return sourceFileName != null && firstCodeLine >= 0;
+				return validationMessage == null;
 			}
 
 			// ReSharper disable once SuggestBaseTypeForParameter
@@ -132,6 +127,67 @@ namespace BenchmarkDotNet.UnitTesting
 				}
 			}
 
+			#region Validate checksum
+			private static readonly Dictionary<string, byte[]> _md5Hashes = new Dictionary<string, byte[]>();
+			private static readonly Dictionary<string, byte[]> _sha1Hashes = new Dictionary<string, byte[]>();
+
+			private const string Sha1AlgName = "SHA1";
+			private const string Md5AlgName = "Md5";
+
+			private static string ToHexString([NotNull] byte[] data) =>
+				string.Concat(data.Select(b => b.ToString("X2")));
+
+			private static string ValidateCore(
+				string file,
+				IDictionary<string, byte[]> fileHashes,
+				string hashAlgName,
+				byte[] expectedChecksum)
+			{
+				byte[] actualChecksum;
+				lock (fileHashes)
+				{
+					if (!fileHashes.TryGetValue(file, out actualChecksum))
+					{
+						using (var f = File.OpenRead(file))
+						using (var h = HashAlgorithm.Create(hashAlgName))
+						{
+							// ReSharper disable once PossibleNullReferenceException
+							actualChecksum = h.ComputeHash(f);
+						}
+					}
+				}
+
+				if (expectedChecksum.SequenceEqual(actualChecksum))
+				{
+					// ReSharper disable once RedundantAssignment
+					return null;
+				}
+
+				var expected = ToHexString(expectedChecksum);
+				var actual = ToHexString(actualChecksum);
+
+				return $"{hashAlgName} checksum validation failed. File '{file}'.\r\nActual: 0x{actual}\r\nExpected: 0x{expected}";
+			}
+
+			private static string ValidateFileHash(
+				SymDocument doc)
+			{
+				switch (doc.ChecksumAlgorithm)
+				{
+					case ChecksumAlgorithmKind.Md5:
+						return ValidateCore(doc.Url, _md5Hashes, Md5AlgName, doc.Checksum);
+					case ChecksumAlgorithmKind.Sha1:
+						return ValidateCore(doc.Url, _sha1Hashes, Sha1AlgName, doc.Checksum);
+					default:
+						throw new ArgumentOutOfRangeException(nameof(doc.ChecksumAlgorithm), doc.ChecksumAlgorithm, null);
+				}
+			}
+			#endregion
+
+			#region COM interop
+			// ReSharper disable IdentifierTypo
+			// ReSharper disable CommentTypo
+			// ReSharper disable InconsistentNaming
 			private const int E_FAIL = unchecked((int)0x80004005);
 			private const int E_NOTIMPL = unchecked((int)0x80004001);
 			private static readonly IntPtr _ignoreIErrorInfo = new IntPtr(-1);
@@ -147,49 +203,8 @@ namespace BenchmarkDotNet.UnitTesting
 				}
 			}
 
-			#region COM interop
-			private enum ChecksumAlgorithmKind
-			{
-				[UsedImplicitly]
-				Unknown = 0,
-				Md5,
-				Sha1
-			}
-
-			// ReSharper disable IdentifierTypo
-			// ReSharper disable CommentTypo
 			private class SymDocument
 			{
-				private static byte[] ComputeChecksumCore(string fileName, ChecksumAlgorithmKind checksumAlgorithm)
-				{
-					HashAlgorithm alg;
-					switch (checksumAlgorithm)
-					{
-						case ChecksumAlgorithmKind.Md5:
-							alg = MD5.Create();
-							break;
-						case ChecksumAlgorithmKind.Sha1:
-							alg = SHA1.Create();
-							break;
-						default:
-							throw new NotSupportedException($"Unknown {nameof(checksumAlgorithm)}: {checksumAlgorithm}");
-					}
-
-					try
-					{
-						return alg.ComputeHash(File.ReadAllBytes(fileName));
-					}
-					finally
-					{
-						alg.Dispose();
-					}
-				}
-
-				private static readonly Func<string, ChecksumAlgorithmKind, byte[]> computeChecksumCached =
-					Algorithms.Memoize(
-						(string fileName, ChecksumAlgorithmKind checksumAlgorithm) =>
-							ComputeChecksumCore(fileName, checksumAlgorithm));
-
 				// guids are from corsym.h
 				private static readonly Guid CorSym_SourceHash_MD5 = new Guid("406ea660-64cf-4c82-b6f0-42d48172a799");
 				private static readonly Guid CorSym_SourceHash_SHA1 = new Guid("ff1816ec-aa5e-4d10-87f7-6f4963833460");
@@ -239,9 +254,7 @@ namespace BenchmarkDotNet.UnitTesting
 				public byte[] Checksum { get; }
 				[UsedImplicitly]
 				private Guid ChecksumAlgorithmId { get; }
-				private ChecksumAlgorithmKind ChecksumAlgorithm { get; }
-
-				public byte[] ComputeChecksum() => computeChecksumCached(Url, ChecksumAlgorithm);
+				public ChecksumAlgorithmKind ChecksumAlgorithm { get; }
 			}
 
 			/// <summary>
@@ -309,10 +322,11 @@ namespace BenchmarkDotNet.UnitTesting
 					[In] uint dwOpenFlags,
 					[In] ref Guid riid);
 			}
-			#endregion
 
+			// ReSharper restore InconsistentNaming
 			// ReSharper restore CommentTypo
 			// ReSharper restore IdentifierTypo
+			#endregion
 		}
 	}
 }

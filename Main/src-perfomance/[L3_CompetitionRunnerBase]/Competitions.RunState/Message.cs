@@ -1,12 +1,17 @@
-﻿namespace BenchmarkDotNet.UnitTesting
+﻿using System;
+
+namespace BenchmarkDotNet.Competitions.RunState
 {
+	// DONTTOUCH: order is important
 	public enum MessageSeverity
 	{
-		ExecutionError,
-		Error,
+		Informational,
 		Warning,
-		Informational
+		TestError,
+		SetupError,
+		ExecutionError
 	}
+
 	public enum MessageSource
 	{
 		Other,
@@ -15,13 +20,14 @@
 		BenchmarkRunner
 	}
 
-	interface IMessage
+	public interface IMessage
 	{
 		MessageSource MessageSource { get; }
 		MessageSeverity MessageSeverity { get; }
 		string MessageText { get; }
 	}
-	public class Message: IMessage
+
+	public class Message : IMessage
 	{
 		public Message(MessageSource messageSource, MessageSeverity messageSeverity, string messageText)
 		{

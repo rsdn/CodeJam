@@ -90,21 +90,6 @@
     <Compile Include="AssemblyWideConfig.cs" />
     <Compile Include="Assertions\CodePerfTests.cs" />
     <Compile Include="Assertions\DebugCodePerfTests.cs" />
-    <Compile Include="BenchmarkDotNet\UnitTesting.Annotations\AnnotateSourceHelper.cs" />
-    <Compile Include="BenchmarkDotNet\UnitTesting.Annotations\AnnotateSourceHelper.SourceAnnotate.cs" />
-    <Compile Include="BenchmarkDotNet\UnitTesting.Annotations\AnnotateSourceHelper.SymbolHelpers.cs" />
-    <Compile Include="BenchmarkDotNet\UnitTesting.Annotations\AnnotateSourceHelper.XmlAnnotate.cs" />
-    <Compile Include="BenchmarkDotNet\UnitTesting.Attributes\CompetitionBaselineAttribute.cs" />
-    <Compile Include="BenchmarkDotNet\UnitTesting.Attributes\CompetitionBenchmarkAttribute.cs" />
-    <Compile Include="BenchmarkDotNet\UnitTesting.Attributes\CompetitionMetadataAttribute.cs" />
-    <Compile Include="BenchmarkDotNet\UnitTesting.CompetitionTargets\CompetitionTarget.cs" />
-    <Compile Include="BenchmarkDotNet\UnitTesting.CompetitionTargets\CompetitionTargetHelpers.cs" />
-    <Compile Include="BenchmarkDotNet\UnitTesting\CompetitionBenchmarkRunner.cs" />
-    <Compile Include="BenchmarkDotNet\UnitTesting\CompetitionHelpers.cs" />
-    <Compile Include="BenchmarkDotNet\UnitTesting\CompetitionParameters.cs" />
-    <Compile Include="BenchmarkDotNet\UnitTesting\CompetitionState.cs" />
-    <Compile Include="BenchmarkDotNet\UnitTesting\Configs.cs" />
-    <Compile Include="BenchmarkDotNet\UnitTesting\Message.cs" />
     <Compile Include="CalibrationBenchmarks\AggressiveInliningPerfTests.cs" />
     <Compile Include="CalibrationBenchmarks\JitOptimizedFeatureSwitchPerfTests.cs" />
     <Compile Include="PerfTestsConstants.cs" />
@@ -146,6 +131,7 @@
     <EmbeddedResource Include="Arithmetic\OperatorsNumPerfTests.generated.xml">
       <DependentUpon>OperatorsNumPerfTests.tt</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Arithmetic\OperatorsPerfTests.ttinclude" />
     <Content Include="Arithmetic\OperatorsLessOrGreaterPerfTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -165,7 +151,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="BenchmarkDotNet\BenchmarkDotNetPlannedChanges.md" />
     <None Include="CodeJam-Tests.Performance.exe.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

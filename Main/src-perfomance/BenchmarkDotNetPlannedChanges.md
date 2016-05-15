@@ -1,4 +1,11 @@
-﻿## layered design: Bench.NET part
+﻿## TODO:
+ * refine api for StateSlots
+ * validate culture usage
+ * validate null values on percentiles
+ * ValidatePreconditions / postconditions - throw => warnings.
+
+
+## layered design: Bench.NET part
 
   * In-process toolchain. Should be included in Bench.Net.
       + validates that job matches to the environment. Fails if do not math.

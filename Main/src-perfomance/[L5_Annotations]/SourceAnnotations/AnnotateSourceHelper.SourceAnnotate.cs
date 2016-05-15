@@ -2,9 +2,9 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-// ReSharper disable CheckNamespace
+using BenchmarkDotNet.Competitions.Limits;
 
-namespace BenchmarkDotNet.UnitTesting
+namespace BenchmarkDotNet.SourceAnnotations
 {
 	internal static partial class AnnotateSourceHelper
 	{
@@ -88,7 +88,7 @@ namespace BenchmarkDotNet.UnitTesting
 				result.Append(", ");
 			}
 
-			// Always prints
+			// MaxText should be specified even if ignored.
 			result.Append(competitionTarget.MaxText);
 		}
 	}
