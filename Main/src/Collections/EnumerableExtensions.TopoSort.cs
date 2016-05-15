@@ -190,12 +190,13 @@ namespace CodeJam.Collections
 			Code.NotNull(dependsOnGetter, nameof(dependsOnGetter));
 			Code.NotNull(equalityComparer, nameof(equalityComparer));
 
+			// Fast path
 			if (source.Count == 0)
 				yield break;
 
 			var dependants = LazyDictionary.Create(k => new List<T>(), equalityComparer, false);
 			var workArray = new int[source.Count];
-			var indexes = new Dictionary<T, int>();
+			var indices = new Dictionary<T, int>(equalityComparer);
 			var level = new List<T>();
 			foreach (var item in source.WithIndex())
 			{
@@ -209,7 +210,7 @@ namespace CodeJam.Collections
 					level.Add(item.Item);
 				else
 					workArray[item.Index] = count;
-				indexes.Add(item.Item, item.Index);
+				indices.Add(item.Item, item.Index);
 			}
 
 			if (level.Count == 0)
@@ -218,11 +219,11 @@ namespace CodeJam.Collections
 			var pendingCount = workArray.Length;
 			while (true)
 			{
-				var nextLevel = new Lazy<List<T>>(() => new List<T>());
+				var nextLevel = Lazy.Create(() => new List<T>(), false);
 				foreach (var item in level)
 					foreach (var dep in dependants[item])
 					{
-						var pending = --workArray[indexes[dep]];
+						var pending = --workArray[indices[dep]];
 						if (pending == 0)
 							nextLevel.Value.Add(dep);
 					}
