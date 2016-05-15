@@ -298,6 +298,22 @@ namespace CodeJam.Collections
 				first.Union(second, KeyEqualityComparer.Create(keySelector, comparer));
 
 		/// <summary>
+		/// Projects each element of a sequence to an <see cref="IEnumerable{T}"/> and flattens the resulting sequences into
+		/// one sequence.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <param name="source">A sequence of values to project.</param>
+		/// <returns>
+		/// An <see cref="IEnumerable{T}"/> whose elements are the result of invoking the one-to-many transform function
+		/// on each element of the input sequence.
+		/// </returns>
+		[NotNull]
+		[Pure]
+		public static IEnumerable<TSource> SelectMany<TSource>(
+				[NotNull, InstantHandle] this IEnumerable<IEnumerable<TSource>> source) =>
+			source.SelectMany(Fn<IEnumerable<TSource>>.Self);
+
+		/// <summary>
 		/// Returns first element, or specified <paramref name="defaultValue"/>, if sequence is empty.
 		/// </summary>
 		/// <typeparam name="T">The type of the elements of <paramref name="source"/>.</typeparam>
