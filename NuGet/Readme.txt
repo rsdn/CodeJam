@@ -1,5 +1,12 @@
-CodeJam 1.0.0-beta3 Release Notes
+CodeJam 1.0.0-beta4 Release Notes
 ---------------------------------
+
+What's new in 1.1.0-beta4
+------------------------
+* EnumerableExtensions.GroupTopoSort methods
+* EnumerableExtensions.TopoSort methods reimplemented using GroupTopoSort
+* EnumerableExtensions.TopoSort methods refactoring
+* Fixes and code cleanup
 
 What's new in 1.1.0-beta3
 ------------------------
