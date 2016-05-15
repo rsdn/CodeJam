@@ -6,6 +6,7 @@ What's new in 1.1.0-beta4
 * EnumerableExtensions.GroupTopoSort methods
 * EnumerableExtensions.TopoSort methods reimplemented using GroupTopoSort
 * EnumerableExtensions.TopoSort methods refactoring
+* Lazy.Create helpers for type inference
 * Fixes and code cleanup
 
 What's new in 1.1.0-beta3

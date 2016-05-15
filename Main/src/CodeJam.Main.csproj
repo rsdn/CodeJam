@@ -126,6 +126,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Expr.tt</DependentUpon>
     </Compile>
+    <Compile Include="Lazy.cs" />
     <Compile Include="Objects.cs" />
     <Compile Include="Reflection\MemberAccessor.cs" />
     <Compile Include="Reflection\NamespaceDoc.cs" />
