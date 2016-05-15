@@ -178,7 +178,9 @@ namespace CodeJam.Collections
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="equalityComparer">Equality comparer for item comparison</param>
-		/// <returns>Topologically sorted list of items in <paramref name="source"/> separated by dependency level.</returns>
+		/// <returns>
+		/// Topologically sorted list of items in <paramref name="source"/>, separated by dependency level.
+		/// </returns>
 		[NotNull]
 		[Pure]
 		public static IEnumerable<T[]> GroupTopoSort<T>(
@@ -215,6 +217,13 @@ namespace CodeJam.Collections
 
 			if (level.Count == 0)
 				throw CycleException(nameof(source));
+
+			// Fast path
+			if (level.Count == workArray.Length)
+			{
+				yield return level.ToArray();
+				yield break;
+			}
 
 			var pendingCount = workArray.Length;
 			while (true)
