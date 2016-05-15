@@ -3,7 +3,7 @@
 <#@ include file="OperatorsPerfTests.ttinclude" #>
 using System;
 
-using BenchmarkDotNet.UnitTesting;
+using BenchmarkDotNet.Competitions;
 
 using NUnit.Framework;
 

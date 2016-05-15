@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-using BenchmarkDotNet.UnitTesting;
+using BenchmarkDotNet.Competitions;
 
 using NUnit.Framework;
 
