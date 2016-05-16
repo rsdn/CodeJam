@@ -49,6 +49,8 @@
     <Compile Include="CmdLine\ParserTest.cs" />
     <Compile Include="CmdLine\PrintUsageTest.cs" />
     <Compile Include="Collections\DisjointSetsTest.cs" />
+    <Compile Include="Collections\SuffixTreeNaive.cs" />
+    <Compile Include="Collections\SuffixTreeNaiveTest.cs" />
     <Compile Include="Parsing\ParseHelperTests.cs" />
     <Compile Include="RangesV2\RangeTests.ExtensionsWithKey.generated.cs">
       <DependentUpon>RangeTests.ExtensionsWithKey.tt</DependentUpon>
