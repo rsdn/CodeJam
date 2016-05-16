@@ -70,7 +70,6 @@
     <Compile Include="StubTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="[L0_Core]\Helpers\BenchmarkHelpers.cs" />
-    <Compile Include="[L0_Core]\Extensions\ProcessExtensions.cs" />
     <Compile Include="[L0_Core]\Portability\AssemblyExtensions.cs" />
     <Compile Include="[L0_Core]\Portability\FieldInfoExtensions.cs" />
     <Compile Include="[L0_Core]\Portability\MemberInfoExtensions.cs" />
@@ -85,11 +84,11 @@
     <Compile Include="[L1_InProcess]\Toolchains\IRunnableBenchmark.cs" />
     <Compile Include="[L1_InProcess]\Toolchains\RunnableBenchmark.cs" />
     <Compile Include="[L1_InProcess]\Toolchains\InProcessToolchain.cs" />
-    <Compile Include="[L3_CompetitionRunnerBase]\Competitions\CompetitionRunnerBase.cs" />
-    <Compile Include="[L4_CompetitionLimits]\Analysers\CompetitionLimitsAnalyserHelpers.cs" />
-    <Compile Include="[L3_CompetitionRunnerBase]\Competitions.RunState\CompetitionState.cs" />
-    <Compile Include="[L2_CompetitionState]\Competitions.RunState\StateSlots.cs" />
-    <Compile Include="[L3_CompetitionRunnerBase]\Competitions.RunState\Message.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Competitions.Core\CompetitionCore.cs" />
+    <Compile Include="[L4_CompetitionLimits]\Competitions\CompetitionLimitConstants.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Competitions.Core\CompetitionState.cs" />
+    <Compile Include="[L2_RunState]\Running.Stateful\RunStateSlots.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Messages\Message.cs" />
     <Compile Include="[L4_CompetitionLimits]\Competitions\CompetitionLimit.cs" />
     <Compile Include="[L4_CompetitionLimits]\Analysers\CompetitionLimitsAnalyser.cs" />
     <Compile Include="[L4_CompetitionLimits]\Competitions\CompetitionTarget.cs" />
@@ -101,16 +100,17 @@
     <Compile Include="[L5_Annotations]\SourceAnnotations\AnnotateSourceHelper.SourceAnnotate.cs" />
     <Compile Include="[L5_Annotations]\SourceAnnotations\AnnotateSourceHelper.SymbolHelpers.cs" />
     <Compile Include="[L5_Annotations]\SourceAnnotations\AnnotateSourceHelper.XmlAnnotate.cs" />
-    <Compile Include="[L6_NUnitRunner]\Competitions\CompetitionBenchmarkRunner.cs" />
-    <Compile Include="[L6_NUnitRunner]\Competitions\CompetitionParameters.cs" />
-    <Compile Include="[L6_NUnitRunner]\Competitions\Configs.cs" />
+    <Compile Include="[L6_AllTogether]\Running.Competitions.Core\CompetitionRunnerCore.cs" />
+    <Compile Include="[L7_NUnitRunner]\Competitions\CompetitionBenchmarkRunner.cs" />
+    <Compile Include="[L6_AllTogether]\Competitions\CompetitionParameters.cs" />
+    <Compile Include="[L6_AllTogether]\Competitions\Configs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BenchmarkDotNetPlannedChanges.md" />
+    <None Include="sidenotes.md" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

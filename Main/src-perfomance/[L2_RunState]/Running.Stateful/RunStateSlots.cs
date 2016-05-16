@@ -4,12 +4,11 @@ using System.Linq;
 
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Reports;
-using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Validators;
 
-namespace BenchmarkDotNet.Competitions.RunState
+namespace BenchmarkDotNet.Running.Stateful
 {
-	internal class StateSlots : IValidator
+	internal class RunStateSlots : IValidator
 	{
 		private readonly IDictionary<Type, object> _stateSlots = new Dictionary<Type, object>();
 
@@ -34,7 +33,7 @@ namespace BenchmarkDotNet.Competitions.RunState
 			return result;
 		}
 
-		#region IValidator stub inplementation
+		#region IValidator stub implementation
 		IEnumerable<IValidationError> IValidator.Validate(IList<Benchmark> benchmarks) =>
 			Enumerable.Empty<IValidationError>();
 
@@ -42,7 +41,7 @@ namespace BenchmarkDotNet.Competitions.RunState
 		#endregion
 	}
 
-	public class StateSlot<T> where T : new()
+	public class RunState<T> where T : new()
 	{
 		public T this[Summary summary] => this[summary.Config];
 
@@ -51,7 +50,7 @@ namespace BenchmarkDotNet.Competitions.RunState
 			get
 			{
 				var slots = config.GetValidators()
-					.OfType<StateSlots>()
+					.OfType<RunStateSlots>()
 					.Single();
 				return slots.GetSlot<T>();
 			}

@@ -9,7 +9,7 @@ namespace BenchmarkDotNet
 		[Test]
 		[Explicit("Too fool Appveyor")]
 		public static void TestTooFoolAppveyor()
-		{ 
+		{
 			Assert.That(1, Is.EqualTo(1));
 		}
 	}

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace BenchmarkDotNet.Analysers
+namespace BenchmarkDotNet.Competitions
 {
-	internal static class CompetitionLimitsAnalyserHelpers
+	internal static class CompetitionLimitConstants
 	{
 		public const int EmptyValue = 0;
 		public const int IgnoreValue = -1;

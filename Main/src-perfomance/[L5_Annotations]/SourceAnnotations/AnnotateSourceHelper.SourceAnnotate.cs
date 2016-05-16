@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-using BenchmarkDotNet.Competitions.Limits;
+using BenchmarkDotNet.Competitions;
 
 namespace BenchmarkDotNet.SourceAnnotations
 {

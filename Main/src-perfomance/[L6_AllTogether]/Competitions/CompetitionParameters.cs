@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-using BenchmarkDotNet.Competitions.Limits;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Validators;
 
@@ -27,7 +26,7 @@ namespace BenchmarkDotNet.Competitions
 		public CompetitionLimit DefaultCompetitionLimit { get; set; }
 		#endregion
 
-		#region Implementation of IValidator
+		#region IValidator stub implementation
 		IEnumerable<IValidationError> IValidator.Validate(IList<Benchmark> benchmarks) =>
 			Enumerable.Empty<IValidationError>();
 

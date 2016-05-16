@@ -1,10 +1,9 @@
 ﻿using System;
 
-using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Running;
 
-namespace BenchmarkDotNet.Competitions.Limits
+namespace BenchmarkDotNet.Competitions
 {
 	internal class CompetitionTarget : CompetitionLimit
 	{
@@ -36,10 +35,10 @@ namespace BenchmarkDotNet.Competitions.Limits
 
 		public string MinText => IgnoreMin
 			? Min.ToString(EnvironmentInfo.MainCultureInfo)
-			: Min.ToString(CompetitionLimitsAnalyserHelpers.RatioFormat, EnvironmentInfo.MainCultureInfo);
+			: Min.ToString(CompetitionLimitConstants.RatioFormat, EnvironmentInfo.MainCultureInfo);
 		public string MaxText => IgnoreMax
 			? Max.ToString(EnvironmentInfo.MainCultureInfo)
-			: Max.ToString(CompetitionLimitsAnalyserHelpers.RatioFormat, EnvironmentInfo.MainCultureInfo);
+			: Max.ToString(CompetitionLimitConstants.RatioFormat, EnvironmentInfo.MainCultureInfo);
 		#endregion
 
 		public CompetitionTarget Clone() => new CompetitionTarget(Target, this, UsesResourceAnnotation);

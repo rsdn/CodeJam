@@ -14,10 +14,12 @@ namespace BenchmarkDotNet.Toolchains
 
 	// Copy of the code generated for each benchmark
 	[SuppressMessage("ReSharper", "InconsistentNaming")]
+	[SuppressMessage("ReSharper", "PassStringInterpolation")]
 	public class RunnableBenchmark<TTarget, TResult> : IRunnableBenchmark where TTarget : new()
 	{
 		private Func<TResult> runCallback;
 		private Func<TResult> idleCallback;
+		// ReSharper disable once MemberCanBeMadeStatic.Local
 		private TResult Idle() => default(TResult);
 
 		#region Copy this into InProcessProgram<TTarget>
@@ -81,13 +83,15 @@ namespace BenchmarkDotNet.Toolchains
 
 	// Copy of the InProcessProgram<TTarget, TResult>. Func<TResult> => Action.
 	[SuppressMessage("ReSharper", "InconsistentNaming")]
+	[SuppressMessage("ReSharper", "PassStringInterpolation")]
 	public class RunnableBenchmark<TTarget> : IRunnableBenchmark where TTarget : new()
 	{
 		private Action runCallback;
 		private Action idleCallback;
+		// ReSharper disable once MemberCanBeMadeStatic.Local
 		private void Idle() { }
 
-		#region Copied from InProcessProgram<TTarget, TResult>		private Benchmark benchmark;
+		#region Copied from InProcessProgram<TTarget, TResult>
 		private Benchmark benchmark;
 		private TTarget instance;
 		private Action setupAction;

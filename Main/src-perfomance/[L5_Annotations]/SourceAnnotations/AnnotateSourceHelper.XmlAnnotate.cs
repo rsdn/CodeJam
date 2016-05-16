@@ -3,11 +3,11 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Xml.Linq;
 
-using BenchmarkDotNet.Competitions.Limits;
+using BenchmarkDotNet.Competitions;
 
 using JetBrains.Annotations;
 
-using static BenchmarkDotNet.Analysers.CompetitionLimitsAnalyserHelpers;
+using static BenchmarkDotNet.Competitions.CompetitionLimitConstants;
 
 // ReSharper disable CheckNamespace
 
@@ -40,6 +40,7 @@ namespace BenchmarkDotNet.SourceAnnotations
 		}
 
 		// ReSharper disable once SuggestBaseTypeForParameter
+		[NotNull]
 		private static XElement GetOrAdd(XElement element, XName name, string targetName)
 		{
 			if (targetName == null)

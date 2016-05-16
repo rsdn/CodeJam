@@ -1,8 +1,9 @@
 ﻿using System;
 
-namespace BenchmarkDotNet.Competitions.RunState
+namespace BenchmarkDotNet.Running.Messages
 {
-	// DONTTOUCH: order is important
+	// DONTTOUCH: DO NOT change the order of the enum values.
+	// It is used to compare the severities.
 	public enum MessageSeverity
 	{
 		Informational,
@@ -16,8 +17,8 @@ namespace BenchmarkDotNet.Competitions.RunState
 	{
 		Other,
 		Validator,
-		Analyser,
-		BenchmarkRunner
+		BenchmarkRunner,
+		Analyser
 	}
 
 	public interface IMessage

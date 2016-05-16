@@ -7,12 +7,10 @@ using System.Xml;
 using System.Xml.Linq;
 
 using BenchmarkDotNet.Analysers;
-using BenchmarkDotNet.Competitions.Limits;
-using BenchmarkDotNet.Competitions.RunState;
+using BenchmarkDotNet.Competitions;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
-
-using JetBrains.Annotations;
+using BenchmarkDotNet.Running.Messages;
 
 namespace BenchmarkDotNet.SourceAnnotations
 {
@@ -24,14 +22,6 @@ namespace BenchmarkDotNet.SourceAnnotations
 	internal static partial class AnnotateSourceHelper
 	{
 		#region Helper types
-		private enum ChecksumAlgorithmKind
-		{
-			[UsedImplicitly]
-			Unknown = 0,
-			Md5,
-			Sha1
-		}
-
 		private class AnnotateContext
 		{
 			private readonly Dictionary<string, string[]> _sourceLines = new Dictionary<string, string[]>();

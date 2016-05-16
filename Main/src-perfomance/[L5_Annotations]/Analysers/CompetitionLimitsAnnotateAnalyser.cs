@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using BenchmarkDotNet.Competitions.Limits;
+using BenchmarkDotNet.Competitions;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;

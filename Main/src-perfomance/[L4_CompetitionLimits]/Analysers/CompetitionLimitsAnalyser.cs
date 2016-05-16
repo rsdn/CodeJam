@@ -6,13 +6,14 @@ using System.Reflection;
 using System.Xml.Linq;
 
 using BenchmarkDotNet.Competitions;
-using BenchmarkDotNet.Competitions.Limits;
-using BenchmarkDotNet.Competitions.RunState;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
+using BenchmarkDotNet.Running.Competitions.Core;
+using BenchmarkDotNet.Running.Messages;
+using BenchmarkDotNet.Running.Stateful;
 
-using static BenchmarkDotNet.Analysers.CompetitionLimitsAnalyserHelpers;
+using static BenchmarkDotNet.Competitions.CompetitionLimitConstants;
 
 namespace BenchmarkDotNet.Analysers
 {
@@ -20,8 +21,8 @@ namespace BenchmarkDotNet.Analysers
 	{
 		protected class CompetitionTargets : Dictionary<Target, CompetitionTarget> { }
 
-		protected static readonly StateSlot<CompetitionTargets> TargetsSlot =
-			new StateSlot<CompetitionTargets>();
+		protected static readonly RunState<CompetitionTargets> TargetsSlot =
+			new RunState<CompetitionTargets>();
 
 		#region Parse competition targets helpers
 		private static string TryGetTargetResourceName(Target target)
@@ -65,7 +66,16 @@ namespace BenchmarkDotNet.Analysers
 			return resourceDoc;
 		}
 
-		private static CompetitionTarget GetCompetitionTargetFromResource(Target target, XDocument resourceDoc)
+		private static CompetitionTarget GetCompetitionTargetFromAttribute(
+			Target target, CompetitionBenchmarkAttribute competitionAttribute) =>
+				new CompetitionTarget(
+					target,
+					competitionAttribute.MinRatio,
+					competitionAttribute.MaxRatio,
+					false);
+
+		private static CompetitionTarget GetCompetitionTargetFromResource(
+			Target target, XDocument resourceDoc)
 		{
 			var competitionName = target.Type.Name;
 			var candidateName = target.Method.Name;
@@ -129,35 +139,15 @@ namespace BenchmarkDotNet.Analysers
 			if (!validated && RerunIfValidationFailed)
 			{
 				// TODO: detailed message???
-				CompetitionState.StateSlot[summary].RequestRerun(
+				CompetitionCore.RunState[summary].RequestRerun(
 					"Competition validation failed, requesting rerun.");
 			}
 
 			ValidatePostconditions(summary);
 
-			// TODO: rewrite to reusable code
-			var competitionState = CompetitionState.StateSlot[summary];
-			if (competitionState.LastRun || !competitionState.RerunRequested)
-			{
-				FillMessages(competitionState, warnings);
-			}
-			return warnings.ToArray();
-		}
-
-		private void FillMessages(CompetitionState competitionState, List<IWarning> warnings)
-		{
-			foreach (var warning in warnings)
-			{
-				MessageSeverity severity;
-				if (!Enum.TryParse(warning.Kind, out severity))
-				{
-					severity = MessageSeverity.Warning;
-				}
-				competitionState.WriteMessage(
-					MessageSource.Analyser,
-					severity,
-					warning.Message);
-			}
+			var result = warnings.ToArray();
+			CompetitionCore.FillAnalyserMessages(summary, warnings);
+			return result;
 		}
 
 		#region Parsing competition target info
@@ -200,11 +190,7 @@ namespace BenchmarkDotNet.Analysers
 				if (IgnoreExistingAnnotations)
 					return new CompetitionTarget(target, fallbackLimit, false);
 
-				return new CompetitionTarget(
-					target,
-					competitionAttribute.MinRatio,
-					competitionAttribute.MaxRatio,
-					false);
+				return GetCompetitionTargetFromAttribute(target, competitionAttribute);
 			}
 
 			// DONTTOUCH: the doc should be loaded for validation even if IgnoreExistingAnnotations = true

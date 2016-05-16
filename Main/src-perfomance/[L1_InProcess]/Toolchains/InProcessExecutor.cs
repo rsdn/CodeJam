@@ -6,7 +6,7 @@ using System.IO;
 using System.Threading;
 
 using BenchmarkDotNet.Diagnosers;
-using BenchmarkDotNet.Extensions;
+using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
@@ -39,7 +39,9 @@ namespace BenchmarkDotNet.Toolchains
 				{
 					runThread.Start();
 					// TODO: notify analyser?
-					runThread.Join();
+					// TODO: configurable timeout?
+					if (!runThread.Join(TimeSpan.FromMinutes(5)))
+						throw new InvalidOperationException("Benchmark takes to long to run.");
 				});
 
 			var outputReader = new StreamReader(outputStream);
@@ -59,7 +61,7 @@ namespace BenchmarkDotNet.Toolchains
 		}
 
 		private static Thread PrepareRunThread(
-			IRunnableBenchmark program, StreamWriter outputWriter, BlockingStream outputStream) =>
+			IRunnableBenchmark program, TextWriter outputWriter, BlockingStream outputStream) =>
 				new Thread(
 					() =>
 					{
@@ -89,7 +91,7 @@ namespace BenchmarkDotNet.Toolchains
 				process.SetPriority(priority, logger);
 				if (!affinity.IsAuto)
 				{
-					process.ProcessorAffinity = new IntPtr(affinity.Value);
+					process.SetAffinity((IntPtr)affinity.Value, logger);
 				}
 				runCallback();
 			}
@@ -97,7 +99,7 @@ namespace BenchmarkDotNet.Toolchains
 			{
 				if (!affinity.IsAuto)
 				{
-					process.ProcessorAffinity = oldAffinity;
+					process.SetAffinity(oldAffinity, logger);
 				}
 				process.SetPriority(oldPriority, logger);
 			}

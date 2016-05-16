@@ -128,6 +128,14 @@ namespace BenchmarkDotNet.SourceAnnotations
 			}
 
 			#region Validate checksum
+			private enum ChecksumAlgorithmKind
+			{
+				[UsedImplicitly]
+				Unknown = 0,
+				Md5,
+				Sha1
+			}
+
 			private static readonly Dictionary<string, byte[]> _md5Hashes = new Dictionary<string, byte[]>();
 			private static readonly Dictionary<string, byte[]> _sha1Hashes = new Dictionary<string, byte[]>();
 

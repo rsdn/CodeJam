@@ -6,18 +6,25 @@ using System.Linq;
 using System.Reflection;
 
 using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Parameters;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
+using JetBrains.Annotations;
+
 namespace BenchmarkDotNet.Helpers
 {
+	// TODO: move to different classes
 	/// <summary>
 	/// Helper methods for benchmark infrastructure
 	/// </summary>
+	[PublicAPI]
 	public static class BenchmarkHelpers
 	{
-		#region Statistics-related
+		#region Benchmark-related
+
+		#region Selects
 		/// <summary>
 		/// Returns the baseline for the benchmark
 		/// </summary>
@@ -26,47 +33,40 @@ namespace BenchmarkDotNet.Helpers
 				.FirstOrDefault(b => b.Target.Baseline);
 
 		/// <summary>
-		/// Groups benchmarks being run under same conditions (job+parameters)
+		/// Returns the report for the benchmark
 		/// </summary>
-		public static ILookup<KeyValuePair<IJob, ParameterInstances>, Benchmark> SameConditionBenchmarks(this Summary summary)
-			=> summary.Benchmarks.ToLookup(b => new KeyValuePair<IJob, ParameterInstances>(b.Job, b.Parameters));
-
-		// ReSharper disable once ParameterTypeCanBeEnumerable.Local
-		public static Benchmark TryGetBaseline(
-			this IGrouping<KeyValuePair<IJob, ParameterInstances>, Benchmark> benchmarkGroup)
-			=> benchmarkGroup.SingleOrDefault(b => b.Target.Baseline);
-
 		public static BenchmarkReport TryGetBenchmarkReport(this Summary summary, Benchmark benchmark) =>
 			summary.Reports.SingleOrDefault(r => r.Benchmark == benchmark);
 
 		/// <summary>
-		/// Calculates the Nth percentile for the benchmark
+		/// Groups benchmarks being run under same conditions (job+parameters)
 		/// </summary>
-		public static double? TryGetScaledPercentile(
-			this Summary summary, Benchmark benchmark, int baselinePercentile, int benchmarkPercentile)
-		{
-			var baselineBenchmark = summary.TryGetBaseline(benchmark);
-			if (baselineBenchmark == null)
-				return null;
+		public static ILookup<KeyValuePair<IJob, ParameterInstances>, Benchmark> SameConditionBenchmarks(
+			this Summary summary) =>
+				summary.Benchmarks.ToLookup(b => new KeyValuePair<IJob, ParameterInstances>(b.Job, b.Parameters));
 
-			var benchmarkReport = summary.TryGetBenchmarkReport(benchmark);
-			if (benchmarkReport?.ResultStatistics == null)
-				return null;
+		/// <summary>
+		/// Returns targets for the summary
+		/// </summary>
+		// ReSharper disable once ReturnTypeCanBeEnumerable.Global
+		public static IOrderedEnumerable<Target> GetTargets(this Summary summary) =>
+			summary.Benchmarks
+				.Select(d => d.Target)
+				.Distinct()
+				.OrderBy(d => d.FullInfo);
 
-			var baselineReport = summary.TryGetBenchmarkReport(baselineBenchmark);
-			if (baselineReport?.ResultStatistics == null)
-				return null;
+		/// <summary>
+		/// Returns jobs usede in the benchmarks
+		/// </summary>
+		// ReSharper disable once ReturnTypeCanBeEnumerable.Global
+		public static IOrderedEnumerable<IJob> GetJobs(this IEnumerable<Benchmark> benchmarks) =>
+			benchmarks
+				.Select(d => d.Job)
+				.Distinct()
+				.OrderBy(d => d.GetShortInfo());
+		#endregion
 
-			var baselineMetric = benchmarkReport.ResultStatistics.Percentiles.Percentile(baselinePercentile);
-			var benchmarkMetric = baselineReport.ResultStatistics.Percentiles.Percentile(benchmarkPercentile);
-
-			// ReSharper disable once CompareOfFloatsByEqualityOperator
-			if (baselineMetric == 0)
-				return null;
-
-			return benchmarkMetric / baselineMetric;
-		}
-
+		#region Percentiles
 		/// <summary>
 		/// Calculates the Nth percentile for the benchmark
 		/// </summary>
@@ -81,44 +81,41 @@ namespace BenchmarkDotNet.Helpers
 		/// Calculates the Nth percentile for the benchmark
 		/// </summary>
 		public static double? TryGetScaledPercentile(
-			this Summary summary, Benchmark benchmark, int percentile)
+			this Summary summary, Benchmark benchmark, int percentile) =>
+				TryGetScaledPercentile(summary, benchmark, percentile, percentile);
+
+		/// <summary>
+		/// Calculates the Nth percentile for the benchmark
+		/// </summary>
+		private static double? TryGetScaledPercentile(
+			this Summary summary, Benchmark benchmark, int baselinePercentile, int benchmarkPercentile)
 		{
 			var baselineBenchmark = summary.TryGetBaseline(benchmark);
-
 			if (baselineBenchmark == null)
 				return null;
-			var benchmarkReport = summary.Reports.SingleOrDefault(r => r.Benchmark == benchmark);
 
+			var benchmarkReport = summary.TryGetBenchmarkReport(benchmark);
 			if (benchmarkReport?.ResultStatistics == null)
 				return null;
 
-			var baselineReport = summary.Reports.SingleOrDefault(r => r.Benchmark == baselineBenchmark);
+			var baselineReport = summary.TryGetBenchmarkReport(baselineBenchmark);
 			if (baselineReport?.ResultStatistics == null)
 				return null;
 
-			var baselineMetric = baselineReport.ResultStatistics.Percentiles.Percentile(percentile);
-			var currentMetric = benchmarkReport.ResultStatistics.Percentiles.Percentile(percentile);
+			var baselineMetric = baselineReport.ResultStatistics.Percentiles.Percentile(baselinePercentile);
+			var benchmarkMetric = benchmarkReport.ResultStatistics.Percentiles.Percentile(benchmarkPercentile);
 
 			// ReSharper disable once CompareOfFloatsByEqualityOperator
 			if (baselineMetric == 0)
 				return null;
 
-			return currentMetric / baselineMetric;
+			return benchmarkMetric / baselineMetric;
 		}
-
-		public static IOrderedEnumerable<Target> GetTargets(this Summary summary) =>
-			summary.Benchmarks
-				.Select(d => d.Target)
-				.Distinct()
-				.OrderBy(d => d.FullInfo);
-
-		public static IOrderedEnumerable<IJob> GetJobs(this IEnumerable<Benchmark> benchmarks) =>
-			benchmarks
-				.Select(d => d.Job)
-				.Distinct()
-				.OrderBy(d => d.GetShortInfo());
 		#endregion
 
+		#endregion
+
+		#region Reflection
 		/// <summary>
 		/// Checks that the assembly is build in debug mode.
 		/// </summary>
@@ -127,6 +124,48 @@ namespace BenchmarkDotNet.Helpers
 			var optAtt = (DebuggableAttribute)Attribute.GetCustomAttribute(assembly, typeof(DebuggableAttribute));
 			return optAtt != null && optAtt.IsJITOptimizerDisabled;
 		}
+		#endregion
+
+		#region Process
+		/// <summary>
+		/// Tries to change the priority of the process
+		/// </summary>
+		public static void SetPriority(
+			this Process process, ProcessPriorityClass priority, ILogger logger)
+		{
+			try
+			{
+				process.PriorityClass = priority;
+			}
+			catch (Exception ex)
+			{
+				logger.WriteLineError(
+					string.Format(
+						"Failed to set up priority {1}. Make sure you have the right permissions. Message: {0}", ex.Message,
+						priority));
+			}
+		}
+
+		/// <summary>
+		/// Tries to change the priority of the process
+		/// </summary>
+		public static void SetAffinity(
+			this Process process, IntPtr processorAffinity, ILogger logger)
+		{
+			try
+			{
+				process.ProcessorAffinity = processorAffinity;
+			}
+			catch (Exception ex)
+			{
+				logger.WriteLineError(
+					string.Format(
+						"Failed to set up processor affinity 0x{1:X}. Make sure you have the right permissions. Message: {0}",
+						ex.Message,
+						(long)processorAffinity));
+			}
+		}
+		#endregion
 
 		#region IO
 		/// <summary>

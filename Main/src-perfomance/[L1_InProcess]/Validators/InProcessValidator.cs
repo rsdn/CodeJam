@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
@@ -8,11 +9,12 @@ using BenchmarkDotNet.Toolchains;
 
 namespace BenchmarkDotNet.Validators
 {
+	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public class InProcessValidator : IValidator
 	{
 		// ReSharper disable HeapView.DelegateAllocation
 		private static readonly IReadOnlyDictionary<string, Func<IJob, EnvironmentInfo, string>> _validationRules = new Dictionary
-			<string, Func<IJob, EnvironmentInfo, string>>()
+			<string, Func<IJob, EnvironmentInfo, string>>
 		{
 			{ nameof(IJob.Affinity), NoValidation },
 			{ nameof(IJob.Framework), ValidateFramework },
@@ -119,7 +121,7 @@ namespace BenchmarkDotNet.Validators
 				? null
 				: "The toolchain should be set to InProcess";
 
-		// TODO: check that analyzers can run in-process
+		// TODO: check that analysers can run in-process
 		// TODO: check that the target is not static class
 		public IEnumerable<IValidationError> Validate(IList<Benchmark> benchmarks)
 		{

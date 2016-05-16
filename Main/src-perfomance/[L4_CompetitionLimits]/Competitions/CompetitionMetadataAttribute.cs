@@ -7,7 +7,7 @@ namespace BenchmarkDotNet.Competitions
 	/// <summary>
 	/// Specifies XML resource to be used as benchmark annotation.
 	/// </summary>
-// ReSharper disable once RedundantAttributeUsageProperty
+	// ReSharper disable once RedundantAttributeUsageProperty
 	[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
 	[PublicAPI, MeansImplicitUse]
 	public class CompetitionMetadataAttribute : Attribute
