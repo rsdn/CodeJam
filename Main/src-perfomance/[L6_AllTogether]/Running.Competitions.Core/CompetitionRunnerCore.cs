@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -9,6 +10,8 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
+using BenchmarkDotNet.Running.Messages;
+using BenchmarkDotNet.Toolchains.InProcess;
 using BenchmarkDotNet.Validators;
 
 using JetBrains.Annotations;
@@ -38,6 +41,55 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 						throw new InvalidOperationException(
 							$"Set the solution configuration into Release mode. Assembly {refAssembly.GetName().Name} was build as debug.");
 				}
+			}
+		}
+
+
+		public static void ReportMessagesToUser(
+			CompetitionState competitionState,
+			Action<string> reportErrorCallback,
+			Action<string> reportWarningCallback)
+		{
+			if (competitionState == null)
+				return;
+
+			var messages = competitionState.GetMessages();
+
+			var errorMessages = messages
+				.Where(m => m.MessageSeverity > MessageSeverity.Warning)
+				.OrderBy(m => (int)m.MessageSource)
+				.ThenByDescending(m => m.MessageSeverity)
+				.Select(m => "\t* " + m.MessageText)
+				.ToArray();
+			var validationMessages = messages
+				.Where(m => m.MessageSeverity == MessageSeverity.Warning)
+				.OrderBy(m => (int)m.MessageSource)
+				.ThenByDescending(m => m.MessageSeverity)
+				.Select(m => "\t* " + m.MessageText)
+				.ToArray();
+
+			if (errorMessages.Length > 0)
+			{
+				var tmp = new List<string>(errorMessages.Length + validationMessages.Length + 2);
+				tmp.Add("Errors:");
+				tmp.AddRange(errorMessages);
+				if (validationMessages.Length > 0)
+				{
+					tmp.Add("Warnings:");
+					tmp.AddRange(validationMessages);
+				}
+
+				reportErrorCallback?.Invoke(
+					string.Join(Environment.NewLine, tmp));
+			}
+			else if (validationMessages.Length > 0)
+			{
+				var tmp = new List<string>(validationMessages.Length + 1);
+				tmp.Add("Warnings:");
+				tmp.AddRange(validationMessages);
+
+				reportWarningCallback?.Invoke(
+					string.Join(Environment.NewLine, tmp));
 			}
 		}
 
@@ -111,7 +163,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 					result.Add(JitOptimizationsValidator.FailOnError);
 				}
 			}
-			if (template.GetJobs().Any(j => j.Toolchain is Toolchains.InProcessToolchain))
+			if (template.GetJobs().Any(j => j.Toolchain is InProcessToolchain))
 			{
 				result.Add(new InProcessValidator());
 			}
@@ -119,19 +171,20 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			return result;
 		}
 
-		private static void InitCompetitionConfig(ManualConfig config, CompetitionParameters existingParameters)
+		private static void InitCompetitionConfig(ManualConfig config, CompetitionParameters competitionParameters)
 		{
-			if (existingParameters.DisableValidation)
+			if (competitionParameters.DisableValidation)
 			{
 				return;
 			}
 			var annotator = new Analysers.CompetitionLimitsAnnotateAnalyser()
 			{
-				AllowSlowBenchmarks = existingParameters.AllowSlowBenchmarks,
-				AnnotateOnRun = existingParameters.AnnotateOnRun,
-				IgnoreExistingAnnotations = existingParameters.IgnoreExistingAnnotations,
-				DefaultCompetitionLimit = existingParameters.DefaultCompetitionLimit,
-				RerunIfValidationFailed = existingParameters.RerunIfValidationFailed
+				AllowSlowBenchmarks = competitionParameters.AllowSlowBenchmarks,
+				AnnotateOnRun = competitionParameters.AnnotateOnRun,
+				IgnoreExistingAnnotations = competitionParameters.IgnoreExistingAnnotations,
+				DefaultCompetitionLimit = competitionParameters.DefaultCompetitionLimit,
+				MaxRuns = 3,
+				AdditionalRunsOnAnnotate = 2
 			};
 			config.Add(annotator);
 		}

@@ -25,30 +25,57 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 		#endregion
 
 		#region State properties
-		public bool LastRun { get; private set; }
-		public bool RerunRequested { get; private set; }
+		public bool LastRun => RunCount >= MaxRunCount;
+		public int MaxRunCount { get; private set; }
 		public int RunCount { get; private set; }
+		public int AdditionalRunsRequested { get; private set; }
 		public Summary LastRunSummary { get; private set; }
 		#endregion
 
 		#region State modification
-		internal void InitOnRun(bool lastRun)
+		internal void FirstTimeInit(int maxRunCount)
 		{
-			LastRun = lastRun;
-			LastRunSummary = null;
-			RerunRequested = false;
+			MaxRunCount = maxRunCount;
+			RunCount = -1;
+			PrepareForRun();
 		}
 
-		internal void RunSucceed(Summary summary)
+		internal void PrepareForRun()
+		{
+			RunCount++;
+			LastRunSummary = null;
+			AdditionalRunsRequested = 0;
+		}
+
+		internal void RunCompleted(Summary summary)
 		{
 			LastRunSummary = summary;
-			RunCount++;
 		}
 
-		public void RequestRerun(string explanationMessage)
+		public void RequestReruns(int additionalRunsCount, string explanationMessage)
 		{
-			WriteMessage(MessageSource.BenchmarkRunner, MessageSeverity.Informational, explanationMessage);
-			RerunRequested = true;
+			if (additionalRunsCount < 0)
+				throw new ArgumentOutOfRangeException(
+					nameof(additionalRunsCount), additionalRunsCount, null);
+
+			if (string.IsNullOrEmpty(explanationMessage))
+				throw new ArgumentNullException(nameof(explanationMessage));
+
+			if (additionalRunsCount == 0)
+			{
+				WriteMessage(
+					MessageSource.BenchmarkRunner,
+					MessageSeverity.Informational,
+					"No reruns requested: " + explanationMessage);
+			}
+			else
+			{
+				WriteMessage(
+					MessageSource.BenchmarkRunner,
+					MessageSeverity.Informational,
+					"Rerun requested: " + explanationMessage);
+				AdditionalRunsRequested = Math.Max(additionalRunsCount, AdditionalRunsRequested);
+			}
 		}
 		#endregion
 	}

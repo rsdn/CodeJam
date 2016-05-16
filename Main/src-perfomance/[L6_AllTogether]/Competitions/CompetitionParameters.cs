@@ -24,6 +24,7 @@ namespace BenchmarkDotNet.Competitions
 		public bool IgnoreExistingAnnotations { get; set; }
 		public bool AllowSlowBenchmarks { get; set; }
 		public CompetitionLimit DefaultCompetitionLimit { get; set; }
+		public int MaxRerunCount { get; set; } = 10;
 		#endregion
 
 		#region IValidator stub implementation

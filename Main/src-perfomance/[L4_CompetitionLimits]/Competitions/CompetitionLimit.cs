@@ -2,21 +2,23 @@
 
 using JetBrains.Annotations;
 
+using static BenchmarkDotNet.Competitions.CompetitionLimitConstants;
+
 namespace BenchmarkDotNet.Competitions
 {
 	[PublicAPI]
 	public class CompetitionLimit
 	{
 		public static readonly CompetitionLimit NoLimit = new CompetitionLimit(
-			CompetitionLimitConstants.IgnoreValue, CompetitionLimitConstants.IgnoreValue);
+			IgnoreValue, IgnoreValue);
 
 		public CompetitionLimit(
 			double minRatio, double maxRatio)
 		{
 			if (minRatio < 0)
-				minRatio = CompetitionLimitConstants.IgnoreValue;
+				minRatio = IgnoreValue;
 			if (maxRatio < 0)
-				maxRatio = CompetitionLimitConstants.IgnoreValue;
+				maxRatio = IgnoreValue;
 
 			Min = minRatio;
 			Max = maxRatio;
@@ -26,9 +28,9 @@ namespace BenchmarkDotNet.Competitions
 		public double Max { get; protected set; }
 
 		// ReSharper disable once CompareOfFloatsByEqualityOperator
-		public bool MinIsEmpty => Min == CompetitionLimitConstants.EmptyValue;
+		public bool MinIsEmpty => Min == EmptyValue;
 		// ReSharper disable once CompareOfFloatsByEqualityOperator
-		public bool MaxIsEmpty => Max == CompetitionLimitConstants.EmptyValue;
+		public bool MaxIsEmpty => Max == EmptyValue;
 
 		public bool IgnoreMin => Min < 0;
 		public bool IgnoreMax => Max < 0;

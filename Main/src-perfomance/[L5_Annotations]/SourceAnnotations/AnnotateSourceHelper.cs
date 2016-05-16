@@ -10,6 +10,7 @@ using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Competitions;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
+using BenchmarkDotNet.Running.Competitions.Core;
 using BenchmarkDotNet.Running.Messages;
 
 namespace BenchmarkDotNet.SourceAnnotations
@@ -112,7 +113,7 @@ namespace BenchmarkDotNet.SourceAnnotations
 				var targetMethodName = targetToAnnotate.CandidateName;
 
 				logger.WriteLineInfo(
-					$"Method {targetMethodName}: new relative time limits [{targetToAnnotate.MinText},{targetToAnnotate.MaxText}].");
+					$"// Method {targetMethodName}: new relative time limits [{targetToAnnotate.MinText},{targetToAnnotate.MaxText}].");
 
 				int firstCodeLine;
 				string fileName;
@@ -124,43 +125,39 @@ namespace BenchmarkDotNet.SourceAnnotations
 				if (!hasSource)
 				{
 					validationMessage = validationMessage ?? "Source file not found.";
-					warnings.Add(
-						new Warning(
-							nameof(MessageSeverity.SetupError), $"Method {targetMethodName}: could not annotate. {validationMessage}", null));
+					warnings.AddWarning(
+						MessageSeverity.SetupError,
+						$"Method {targetMethodName}: could not annotate. {validationMessage}");
 					continue;
 				}
 
 				if (targetToAnnotate.UsesResourceAnnotation)
 				{
 					var resourceFileName = Path.ChangeExtension(fileName, ".xml");
-					logger.WriteLineInfo($"Method {targetMethodName}: annotating resource file {resourceFileName}.");
+					logger.WriteLineInfo($"// Method {targetMethodName}: annotating resource file {resourceFileName}.");
 					var annotated = TryFixBenchmarkResource(annContext, resourceFileName, targetToAnnotate);
 					if (!annotated)
 					{
-						warnings.Add(
-							new Warning(
-								nameof(MessageSeverity.SetupError),
-								$"Method {targetMethodName}: could not annotate resource file {resourceFileName}.", null));
+						warnings.AddWarning(
+							MessageSeverity.SetupError,
+							$"Method {targetMethodName}: could not annotate resource file {resourceFileName}.", null);
 						continue;
 					}
 				}
 				else
 				{
-					logger.WriteLineInfo($"Method {targetMethodName}: annotating file {fileName}, line {firstCodeLine}.");
+					logger.WriteLineInfo($"// Method {targetMethodName}: annotating file {fileName}, line {firstCodeLine}.");
 					var annotated = TryFixBenchmarkAttribute(annContext, fileName, firstCodeLine, targetToAnnotate);
 					if (!annotated)
 					{
-						warnings.Add(
-							new Warning(
-								nameof(MessageSeverity.SetupError), $"Method {targetMethodName}: could not annotate source file {fileName}.",
-								null));
+						warnings.AddWarning(
+							MessageSeverity.SetupError,
+							$"Method {targetMethodName}: could not annotate source file {fileName}.");
 						continue;
 					}
 				}
 
-				var message = $"Method {targetMethodName} annotation updated.";
-				logger.WriteLineInfo(message);
-				warnings.Add(new Warning(nameof(MessageSeverity.Informational), message, null));
+				logger.WriteLineInfo($"// !Method {targetMethodName} annotation updated.");
 				annotatedTargets.Add(targetToAnnotate);
 			}
 

@@ -171,7 +171,7 @@ namespace BenchmarkDotNet.Helpers
 		/// <summary>
 		/// Writes file content without empty line at the end
 		/// </summary>
-		// BASEDON: http://stackoverflow.com/a/11689630
+		// THANKSTO: http://stackoverflow.com/a/11689630
 		public static void WriteFileContent(string path, string[] lines)
 		{
 			if (path == null)

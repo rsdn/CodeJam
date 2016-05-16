@@ -12,7 +12,7 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.Results;
 
-namespace BenchmarkDotNet.Toolchains
+namespace BenchmarkDotNet.Toolchains.InProcess
 {
 	public class InProcessExecutor : IExecutor
 	{

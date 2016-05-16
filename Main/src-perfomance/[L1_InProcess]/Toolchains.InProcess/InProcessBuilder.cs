@@ -4,11 +4,11 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.Results;
 
-namespace BenchmarkDotNet.Toolchains
+namespace BenchmarkDotNet.Toolchains.InProcess
 {
 	public class InProcessBuilder : IBuilder
 	{
 		public BuildResult Build(GenerateResult generateResult, ILogger logger, Benchmark benchmark) =>
-			new BuildResult(generateResult, true, null, ".");
+			new BuildResult(generateResult, true, null, null);
 	}
 }

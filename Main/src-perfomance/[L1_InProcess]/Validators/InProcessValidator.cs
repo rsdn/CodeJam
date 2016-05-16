@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
-using BenchmarkDotNet.Toolchains;
+using BenchmarkDotNet.Toolchains.InProcess;
 
 namespace BenchmarkDotNet.Validators
 {
@@ -126,6 +126,7 @@ namespace BenchmarkDotNet.Validators
 		public IEnumerable<IValidationError> Validate(IList<Benchmark> benchmarks)
 		{
 			var result = new List<IValidationError>();
+
 			var env = EnvironmentInfo.GetCurrent();
 			foreach (var job in benchmarks.GetJobs())
 			{
@@ -148,6 +149,7 @@ namespace BenchmarkDotNet.Validators
 					}
 				}
 			}
+
 			return result.ToArray();
 		}
 

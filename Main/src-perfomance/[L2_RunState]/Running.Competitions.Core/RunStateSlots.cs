@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Validators;
 
-namespace BenchmarkDotNet.Running.Stateful
+namespace BenchmarkDotNet.Running.Competitions.Core
 {
 	internal class RunStateSlots : IValidator
 	{
+		// TODO: To ConcurrentDictionary if supported by all targets
 		private readonly IDictionary<Type, object> _stateSlots = new Dictionary<Type, object>();
 
 		public T GetSlot<T>()
@@ -39,21 +38,5 @@ namespace BenchmarkDotNet.Running.Stateful
 
 		bool IValidator.TreatsWarningsAsErrors => false;
 		#endregion
-	}
-
-	public class RunState<T> where T : new()
-	{
-		public T this[Summary summary] => this[summary.Config];
-
-		public T this[IConfig config]
-		{
-			get
-			{
-				var slots = config.GetValidators()
-					.OfType<RunStateSlots>()
-					.Single();
-				return slots.GetSlot<T>();
-			}
-		}
 	}
 }

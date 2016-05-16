@@ -7,7 +7,6 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running.Messages;
-using BenchmarkDotNet.Running.Stateful;
 
 using JetBrains.Annotations;
 
@@ -21,7 +20,10 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 	{
 		public static readonly RunState<CompetitionState> RunState = new RunState<CompetitionState>();
 
-		public static CompetitionState Run(Type benchmarkType, ManualConfig competitionConfig)
+		public static CompetitionState Run(
+			Type benchmarkType,
+			ManualConfig competitionConfig,
+			int maxRunCount)
 		{
 			if (benchmarkType == null)
 				throw new ArgumentNullException(nameof(benchmarkType));
@@ -39,7 +41,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 
 			competitionConfig.Add(new RunStateSlots());
 			var competitionState = RunState[competitionConfig];
-
+			competitionState.FirstTimeInit(maxRunCount);
 			try
 			{
 				RunCore(competitionState, benchmarkType, competitionConfig);
@@ -70,13 +72,21 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			}
 		}
 
+
+		public static void AddWarning(
+			this List<IWarning> warnings, 
+			MessageSeverity severity, string message,
+			BenchmarkReport report = null) =>
+				warnings.Add(
+					new Warning(severity.ToString(), message, report));
+
 		public static void FillAnalyserMessages(Summary summary, IEnumerable<IWarning> warnings)
 		{
 			if (summary == null)
 				return;
 
 			var competitionState = RunState[summary];
-			if (competitionState.LastRun || !competitionState.RerunRequested)
+			if (competitionState.LastRun || competitionState.AdditionalRunsRequested == 0)
 			{
 				foreach (var warning in warnings)
 				{
@@ -91,93 +101,53 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			}
 		}
 
-		public static void ReportMessagesToUser(
-			CompetitionState competitionState,
-			Action<string> reportErrorCallback,
-			Action<string> reportWarningCallback)
-		{
-			if (competitionState == null)
-				return;
-
-			var messages = competitionState.GetMessages();
-
-			var errorMessages = messages
-				.Where(m => m.MessageSeverity > MessageSeverity.Warning)
-				.OrderBy(m => (int)m.MessageSource)
-				.ThenByDescending(m => m.MessageSeverity)
-				.Select(m => m.MessageText)
-				.ToArray();
-			if (errorMessages.Length > 0)
-			{
-				reportErrorCallback?.Invoke(
-					string.Join(Environment.NewLine, errorMessages));
-			}
-
-			var validationMessages = messages
-				.Where(m => m.MessageSeverity == MessageSeverity.Warning)
-				.OrderBy(m => (int)m.MessageSource)
-				.ThenByDescending(m => m.MessageSeverity)
-				.Select(m => m.MessageText)
-				.ToArray();
-			if (validationMessages.Length > 0)
-			{
-				reportWarningCallback?.Invoke(
-					string.Join(Environment.NewLine, validationMessages));
-			}
-		}
-
 		private static void RunCore(
 			CompetitionState competitionState,
 			Type benchmarkType,
 			IConfig competitionConfig)
 		{
-			// TODO: As a settable option?
-			// TODO: different maxRerun in annotation mode and in validation mode?
-			// TODO: extensibility points for validation and for annotation?
-			const int maxRerunCount = 10;
-
 			var logger = competitionConfig.GetCompositeLogger();
-			int rerunCount = 1;
-			for (int i = 0; i < rerunCount; i++)
+			int runsLeft = 1;
+			int run = 0;
+			while (runsLeft > 0)
 			{
-				var lastRun = i >= maxRerunCount - 1;
-				competitionState.InitOnRun(lastRun);
+				run++;
+				runsLeft--;
 
-				var runMessage = lastRun
-					? $"Run #{i}, expected total: {rerunCount} (rerun limit exceeded, last run)."
-					: $"Run #{i}, expected total: {rerunCount}.";
-				logger.WriteInfo(runMessage);
+				var runMessage = competitionState.LastRun
+					? $"// !Run {run}, runs requested: {run + runsLeft} (rerun limit exceeded, last run)."
+					: $"// !Run #{run}, runs requested: {run + runsLeft}.";
+				logger.WriteLineInfo(runMessage);
+
+				competitionState.PrepareForRun();
 
 				// Running the benchmark
 				var summary = BenchmarkRunner.Run(benchmarkType, competitionConfig);
-				competitionState.RunSucceed(summary);
+				competitionState.RunCompleted(summary);
 
-				if (lastRun)
+				if (competitionState.LastRun)
 					break;
 
-				// Rerun if requested
-				if (competitionState.RerunRequested)
+				if (competitionState.AdditionalRunsRequested > 0)
 				{
-					rerunCount += 2;
-					if (rerunCount > maxRerunCount)
-						rerunCount = maxRerunCount;
+					runsLeft = Math.Max(runsLeft, competitionState.AdditionalRunsRequested);
 
-					logger.WriteInfo("Rerun requested. Rerun count changed to {rerunCount}.");
+					logger.WriteLineInfo($"// !Rerun requested. Runs left: {runsLeft}.");
 				}
 			}
 
 			// TODO: move to somewhere else?
-			if (competitionState.RunCount >= maxRerunCount)
+			if (competitionState.LastRun)
 			{
 				competitionState.WriteMessage(
 					MessageSource.BenchmarkRunner, MessageSeverity.TestError,
-					"The benchmark run count exceeded rerun count limits. Consider to adjust competition limits.");
+					"The benchmark run count exceeded max rerun limits (read log for details). Consider to adjust competition setup.");
 			}
 			else if (competitionState.RunCount > 1)
 			{
 				competitionState.WriteMessage(
 					MessageSource.BenchmarkRunner, MessageSeverity.Warning,
-					$"The benchmark was run {competitionState.RunCount} times. Consider to adjust competition limits.");
+					$"The benchmark was run {competitionState.RunCount} times (read log for details). Consider to adjust competition setup.");
 			}
 		}
 	}

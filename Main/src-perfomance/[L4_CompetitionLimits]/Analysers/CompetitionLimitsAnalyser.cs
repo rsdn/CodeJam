@@ -11,7 +11,6 @@ using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Running.Competitions.Core;
 using BenchmarkDotNet.Running.Messages;
-using BenchmarkDotNet.Running.Stateful;
 
 using static BenchmarkDotNet.Competitions.CompetitionLimitConstants;
 
@@ -19,7 +18,7 @@ namespace BenchmarkDotNet.Analysers
 {
 	internal class CompetitionLimitsAnalyser : IAnalyser
 	{
-		protected class CompetitionTargets : Dictionary<Target, CompetitionTarget> { }
+		protected class CompetitionTargets : Dictionary<MethodInfo, CompetitionTarget> { }
 
 		protected static readonly RunState<CompetitionTargets> TargetsSlot =
 			new RunState<CompetitionTargets>();
@@ -47,9 +46,10 @@ namespace BenchmarkDotNet.Analysers
 
 			if (resourceStream == null)
 			{
-				var message =
-					$"Method {target.Method.Name}: resource stream {targetResourceName} not found";
-				warnings.Add(new Warning(nameof(MessageSeverity.SetupError), message, null));
+				warnings.AddWarning(
+					MessageSeverity.SetupError,
+					$"Method {target.Method.Name}: resource stream {targetResourceName} not found");
+
 				return null;
 			}
 
@@ -57,9 +57,10 @@ namespace BenchmarkDotNet.Analysers
 			var rootNode = resourceDoc.Element(CompetitionBenchmarksRootNode);
 			if (rootNode == null)
 			{
-				var message =
-					$"Resource {targetResourceName}: root node {CompetitionBenchmarksRootNode} not found.";
-				warnings.Add(new Warning(nameof(MessageSeverity.SetupError), message, null));
+				warnings.AddWarning(
+					MessageSeverity.SetupError,
+					$"Resource {targetResourceName}: root node {CompetitionBenchmarksRootNode} not found.");
+
 				return null;
 			}
 
@@ -118,32 +119,34 @@ namespace BenchmarkDotNet.Analysers
 		#endregion
 
 		public bool IgnoreExistingAnnotations { get; set; }
-		public bool RerunIfValidationFailed { get; set; }
 		public bool AllowSlowBenchmarks { get; set; }
+		public int MaxRuns { get; set; } = 0;
+
 		public CompetitionLimit DefaultCompetitionLimit { get; set; }
 
 		public IEnumerable<IWarning> Analyse(Summary summary)
 		{
-			// TODO: as warnings
-			ValidatePreconditions(summary);
-
 			var warnings = new List<IWarning>();
-			var competitionTargets = TargetsSlot[summary];
-			if (competitionTargets.Count == 0)
+			ValidatePreconditions(summary, warnings);
+			if (warnings.Count == 0)
 			{
-				InitCompetitionTargets(competitionTargets, summary, warnings);
+				var competitionTargets = TargetsSlot[summary];
+				if (competitionTargets.Count == 0)
+				{
+					InitCompetitionTargets(competitionTargets, summary, warnings);
+				}
+
+				bool validated = ValidateSummary(summary, competitionTargets, warnings);
+
+				var competitionState = CompetitionCore.RunState[summary];
+				if (!validated && MaxRuns > competitionState.RunCount)
+				{
+					// TODO: detailed message???
+					competitionState.RequestReruns(1, "Competition validation failed.");
+				}
+
+				ValidatePostconditions(summary, warnings);
 			}
-
-			bool validated = ValidateSummary(summary, competitionTargets, warnings);
-
-			if (!validated && RerunIfValidationFailed)
-			{
-				// TODO: detailed message???
-				CompetitionCore.RunState[summary].RequestRerun(
-					"Competition validation failed, requesting rerun.");
-			}
-
-			ValidatePostconditions(summary);
 
 			var result = warnings.ToArray();
 			CompetitionCore.FillAnalyserMessages(summary, warnings);
@@ -173,7 +176,7 @@ namespace BenchmarkDotNet.Analysers
 						target, competitionAttribute,
 						resourceCache, warnings);
 
-					competitionTargets.Add(target, competitionTarget);
+					competitionTargets.Add(target.Method, competitionTarget);
 				}
 			}
 		}
@@ -218,7 +221,7 @@ namespace BenchmarkDotNet.Analysers
 				foreach (var benchmark in benchmarkGroup)
 				{
 					CompetitionTarget competitionTarget;
-					if (!competitionTargets.TryGetValue(benchmark.Target, out competitionTarget))
+					if (!competitionTargets.TryGetValue(benchmark.Target.Method, out competitionTarget))
 						continue;
 
 					validated &= ValidateBenchmark(
@@ -241,11 +244,10 @@ namespace BenchmarkDotNet.Analysers
 			if (actualRatio == null)
 			{
 				var baselineBenchmark = summary.TryGetBaseline(benchmark);
-				warnings.Add(
-					new Warning(
-						nameof(MessageSeverity.SetupError),
-						$"Baseline benchmark {baselineBenchmark?.ShortInfo} does not compute",
-						summary.TryGetBenchmarkReport(benchmark)));
+				warnings.AddWarning(
+					MessageSeverity.SetupError,
+					$"Baseline benchmark {baselineBenchmark?.ShortInfo} does not compute",
+					summary.TryGetBenchmarkReport(benchmark));
 				return false;
 			}
 
@@ -260,11 +262,10 @@ namespace BenchmarkDotNet.Analysers
 				if (actualRatio < competitionLimit.Min)
 				{
 					validated = false;
-					warnings.Add(
-						new Warning(
-							nameof(MessageSeverity.TestError),
-							$"Method {targetMethodName} runs faster than {competitionLimit.MinText}x baseline. Actual ratio: {actualRatioText}x",
-							summary.TryGetBenchmarkReport(benchmark)));
+					warnings.AddWarning(
+						MessageSeverity.TestError,
+						$"Method {targetMethodName} runs faster than {competitionLimit.MinText}x baseline. Actual ratio: {actualRatioText}x",
+						summary.TryGetBenchmarkReport(benchmark));
 				}
 			}
 
@@ -273,18 +274,17 @@ namespace BenchmarkDotNet.Analysers
 				if (actualRatio > competitionLimit.Max)
 				{
 					validated = false;
-					warnings.Add(
-						new Warning(
-							nameof(MessageSeverity.TestError),
-							$"Method {targetMethodName} runs slower than {competitionLimit.MaxText}x baseline. Actual ratio: {actualRatioText}x",
-							summary.TryGetBenchmarkReport(benchmark)));
+					warnings.AddWarning(
+						MessageSeverity.TestError,
+						$"Method {targetMethodName} runs slower than {competitionLimit.MaxText}x baseline. Actual ratio: {actualRatioText}x",
+						summary.TryGetBenchmarkReport(benchmark));
 				}
 			}
 
 			return validated;
 		}
 
-		private void ValidatePreconditions(Summary summary)
+		private void ValidatePreconditions(Summary summary, List<IWarning> warnings)
 		{
 			if (summary.HasCriticalValidationErrors)
 			{
@@ -297,29 +297,44 @@ namespace BenchmarkDotNet.Analysers
 					.ToArray();
 
 				if (messages.Length > 0)
-					throw new InvalidOperationException(
-						"Validation failed:\r\n" + string.Join(Environment.NewLine, messages));
-
-				throw new InvalidOperationException("Benchmark validation failed.");
+				{
+					var messageText = string.Join(Environment.NewLine + "\t", messages);
+					warnings.AddWarning(
+						MessageSeverity.ExecutionError,
+						$"Validation failed:{Environment.NewLine}\t{messageText}");
+				}
+				else
+				{
+					warnings.AddWarning(
+						MessageSeverity.ExecutionError,
+						"Summary has validation errors.",
+						null);
+				}
 			}
 
-			var runnedBenchmarks = new HashSet<Benchmark>(
-				summary.Reports
-					.Where(r => r.ExecuteResults.Any())
-					.Select(r => r.Benchmark));
+			if (warnings.Count == 0)
+			{
+				var runnedBenchmarks = new HashSet<Benchmark>(
+					summary.Reports
+						.Where(r => r.ExecuteResults.Any())
+						.Select(r => r.Benchmark));
 
-			var benchMissing = summary.Benchmarks
-				.Where(b => !runnedBenchmarks.Contains(b))
-				.Select(b => b.Target.Method.Name)
-				.Distinct()
-				.ToArray();
+				var benchMissing = summary.Benchmarks
+					.Where(b => !runnedBenchmarks.Contains(b))
+					.Select(b => b.Target.Method.Name)
+					.Distinct()
+					.ToArray();
 
-			if (benchMissing.Length > 0)
-				throw new InvalidOperationException(
-					"No reports for benchmarks: " + string.Join(", ", benchMissing));
+				if (benchMissing.Length > 0)
+				{
+					warnings.AddWarning(
+						MessageSeverity.ExecutionError,
+						"No reports for benchmarks: " + string.Join(", ", benchMissing));
+				}
+			}
 		}
 
-		public void ValidatePostconditions(Summary summary)
+		public void ValidatePostconditions(Summary summary, List<IWarning> warnings)
 		{
 			var tooFastReports = summary.Reports
 				.Where(
@@ -328,9 +343,12 @@ namespace BenchmarkDotNet.Analysers
 				.Select(rp => rp.Benchmark.Target.Method.Name)
 				.ToArray();
 			if (tooFastReports.Length > 0)
-				throw new InvalidOperationException(
+			{
+				warnings.AddWarning(
+					MessageSeverity.Warning,
 					"The benchmarks " + string.Join(", ", tooFastReports) +
-						"runs faster than 400 nanoseconds. Results cannot be trusted.");
+						" runs faster than 400 nanoseconds. Results cannot be trusted.");
+			}
 
 			if (!AllowSlowBenchmarks)
 			{
@@ -342,10 +360,13 @@ namespace BenchmarkDotNet.Analysers
 					.ToArray();
 
 				if (tooSlowReports.Length > 0)
-					throw new InvalidOperationException(
+				{
+					warnings.AddWarning(
+						MessageSeverity.Warning,
 						"The benchmarks " + string.Join(", ", tooSlowReports) +
-							"runs longer than half a second. Consider to rewrite the test as the peek timings will be hidden by averages " +
-							$"or set the {nameof(AllowSlowBenchmarks)} to true.");
+							" runs longer than half a second. Consider to rewrite the test as the peek timings will be hidden by averages" +
+							$" or set the {nameof(AllowSlowBenchmarks)} to true.");
+				}
 			}
 		}
 	}

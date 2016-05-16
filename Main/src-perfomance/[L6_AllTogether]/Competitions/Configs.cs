@@ -2,7 +2,7 @@
 
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
-using BenchmarkDotNet.Toolchains;
+using BenchmarkDotNet.Toolchains.InProcess;
 
 using JetBrains.Annotations;
 
@@ -31,6 +31,8 @@ namespace BenchmarkDotNet.Competitions
 					LaunchCount = 1,
 					WarmupCount = 3,
 					TargetCount = 10,
+					Platform = Platform.X64,
+					Jit = Jit.RyuJit,
 					Toolchain = InProcessToolchain.Default
 				});
 		}

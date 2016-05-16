@@ -145,6 +145,7 @@ namespace BenchmarkDotNet.SourceAnnotations
 			private static string ToHexString([NotNull] byte[] data) =>
 				string.Concat(data.Select(b => b.ToString("X2")));
 
+			// TODO: To ConcurrentDictionary if supported by all targets
 			private static string ValidateCore(
 				string file,
 				IDictionary<string, byte[]> fileHashes,

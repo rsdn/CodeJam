@@ -5,9 +5,9 @@ using System.Linq;
 using BenchmarkDotNet.Competitions;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Helpers;
-using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
+using BenchmarkDotNet.Running.Competitions.Core;
 using BenchmarkDotNet.SourceAnnotations;
 
 namespace BenchmarkDotNet.Analysers
@@ -15,6 +15,7 @@ namespace BenchmarkDotNet.Analysers
 	internal class CompetitionLimitsAnnotateAnalyser : CompetitionLimitsAnalyser
 	{
 		public bool AnnotateOnRun { get; set; } = true;
+		public int AdditionalRunsOnAnnotate { get; set; } = 2;
 
 		protected override bool ValidateSummary(
 			Summary summary, CompetitionTargets competitionTargets, List<IWarning> warnings)
@@ -24,21 +25,31 @@ namespace BenchmarkDotNet.Analysers
 			if (!AnnotateOnRun)
 				return result;
 
-			var logger = summary.Config.GetCompositeLogger();
 
 			var targetsToAnnotate = GetTargetsToAnnotate(summary, competitionTargets);
 			if (targetsToAnnotate.Length == 0)
 			{
-				logger.WriteLineInfo("All competition benchmarks do not require annotation. Skipping.");
+				CompetitionCore.RunState[summary].RequestReruns(
+					0,
+					"All competition benchmarks do not require annotation. Skipping reruns.");
 			}
 			else
 			{
+				var logger = summary.Config.GetCompositeLogger();
 				var annotatedTargets = AnnotateSourceHelper.TryAnnotateBenchmarkFiles(
 					targetsToAnnotate, warnings, logger);
 
 				foreach (var competitionTarget in annotatedTargets)
 				{
-					competitionTargets[competitionTarget.Target] = competitionTarget;
+					competitionTargets[competitionTarget.Target.Method] = competitionTarget;
+				}
+
+				if (annotatedTargets.Length > 0 && AdditionalRunsOnAnnotate > 0)
+				{
+					// TODO: detailed message???
+					CompetitionCore.RunState[summary].RequestReruns(
+						AdditionalRunsOnAnnotate,
+						"Annotations updated, requesting rerun.");
 				}
 			}
 
@@ -57,7 +68,7 @@ namespace BenchmarkDotNet.Analysers
 				foreach (var benchmark in benchGroup)
 				{
 					CompetitionTarget competitionTarget;
-					if (!competitionTargets.TryGetValue(benchmark.Target, out competitionTarget))
+					if (!competitionTargets.TryGetValue(benchmark.Target.Method, out competitionTarget))
 						continue;
 
 					var minRatio = summary.TryGetScaledPercentile(benchmark, 85);

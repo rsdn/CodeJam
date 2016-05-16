@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 using BenchmarkDotNet.Configs;
@@ -79,14 +80,17 @@ namespace BenchmarkDotNet.Competitions
 			CompetitionState competitionState = null;
 			try
 			{
-				competitionState = CompetitionCore.Run(benchmarkType, competitionConfig);
+				var parameters = competitionConfig.GetValidators()
+					.OfType<CompetitionParameters>()
+					.Single();
+				competitionState = CompetitionCore.Run(benchmarkType, competitionConfig, parameters.MaxRerunCount);
 			}
 			finally
 			{
 				DumpOutputSummaryAtTop(competitionState?.LastRunSummary, logger);
 			}
 
-			CompetitionCore.ReportMessagesToUser(
+			ReportMessagesToUser(
 				competitionState,
 				msg => { throw new AssertionException(msg); },
 				msg => { throw new IgnoreException(msg); });

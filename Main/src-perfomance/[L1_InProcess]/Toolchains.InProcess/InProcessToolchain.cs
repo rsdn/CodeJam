@@ -5,7 +5,7 @@ using BenchmarkDotNet.Running;
 
 using JetBrains.Annotations;
 
-namespace BenchmarkDotNet.Toolchains
+namespace BenchmarkDotNet.Toolchains.InProcess
 {
 	[PublicAPI]
 	public sealed class InProcessToolchain : IToolchain
