@@ -97,14 +97,16 @@
     <Compile Include="[L4_CompetitionLimits]\Competitions\[Attributes]\CompetitionBenchmarkAttribute.cs" />
     <Compile Include="[L4_CompetitionLimits]\Competitions\[Attributes]\CompetitionMetadataAttribute.cs" />
     <Compile Include="[L5_Annotations]\Analysers\CompetitionLimitsAnnotateAnalyser.cs" />
-    <Compile Include="[L5_Annotations]\SourceAnnotations\AnnotateSourceHelper.cs" />
-    <Compile Include="[L5_Annotations]\SourceAnnotations\AnnotateSourceHelper.SourceAnnotate.cs" />
-    <Compile Include="[L5_Annotations]\SourceAnnotations\AnnotateSourceHelper.SymbolHelpers.cs" />
-    <Compile Include="[L5_Annotations]\SourceAnnotations\AnnotateSourceHelper.XmlAnnotate.cs" />
-    <Compile Include="[L6_AllTogether]\Running.Competitions.Core\CompetitionRunnerCore.cs" />
+    <Compile Include="[L5_Annotations]\Running.Competitions.SourceAnnotations\AnnotateSourceHelper.cs" />
+    <Compile Include="[L5_Annotations]\Running.Competitions.SourceAnnotations\AnnotateSourceHelper.SourceAnnotate.cs" />
+    <Compile Include="[L5_Annotations]\Running.Competitions.SourceAnnotations\AnnotateSourceHelper.SymbolHelpers.cs" />
+    <Compile Include="[L5_Annotations]\Running.Competitions.SourceAnnotations\AnnotateSourceHelper.XmlAnnotate.cs" />
+    <Compile Include="[L6_AllTogether]\Configs\ICompetitionConfig.cs" />
+    <Compile Include="[L6_AllTogether]\Configs\ManualCompetitionConfig.cs" />
+    <Compile Include="[L6_AllTogether]\Running.Competitions.Core\CompetitionRunnerBase.cs" />
     <Compile Include="[L7_NUnitRunner]\Competitions\CompetitionBenchmarkRunner.cs" />
-    <Compile Include="[L6_AllTogether]\Competitions\CompetitionParameters.cs" />
-    <Compile Include="[L6_AllTogether]\Competitions\Configs.cs" />
+    <Compile Include="[L6_AllTogether]\Configs\Configs.cs" />
+    <Compile Include="[L7_NUnitRunner]\Running.Competitions.Core\NUnitCompetitionRunner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

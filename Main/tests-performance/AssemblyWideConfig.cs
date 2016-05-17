@@ -12,24 +12,24 @@ namespace CodeJam
 	/// OPTIONAL: Updates source files with actual min..max ratio for [CompetitionBenchmark]
 	/// </summary>
 	[PublicAPI]
-	public class AssemblyWideConfig : ManualConfig
+	public class AssemblyWideConfig : ManualCompetitionConfig
 	{
 		/// <summary>
 		/// OPTIONAL: Set AssemblyWideConfig.AnnotateOnRun=true in app.config
 		/// to enable auto-annotation of benchmark methods
 		/// </summary>
-		public static readonly bool AnnotateOnRun = AppSwitch.GetAssemblySwitch(() => AnnotateOnRun);
+		public static readonly new bool AnnotateOnRun = AppSwitch.GetAssemblySwitch(() => AnnotateOnRun);
 
 		/// <summary>
 		/// OPTIONAL: Set AssemblyWideConfig.IgnoreAnnotatedLimits=true in app.config
 		/// to enable ignoring existing limits on auto-annotation of benchmark methods
 		/// </summary>
-		public static readonly bool IgnoreExistingAnnotations = AppSwitch.GetAssemblySwitch(() => IgnoreExistingAnnotations);
+		public static readonly new bool IgnoreExistingAnnotations = AppSwitch.GetAssemblySwitch(() => IgnoreExistingAnnotations);
 
 		/// <summary>
 		/// Instance of the config
 		/// </summary>
-		public static IConfig RunConfig => new AssemblyWideConfig(true);
+		public static ICompetitionConfig RunConfig => new AssemblyWideConfig(true);
 
 		/// <summary>
 		/// Constructor
@@ -49,13 +49,9 @@ namespace CodeJam
 
 			if (AnnotateOnRun)
 			{
-				Add(
-					new CompetitionParameters
-					{
-						AnnotateOnRun = true,
-						RerunIfValidationFailed = true,
-						IgnoreExistingAnnotations = IgnoreExistingAnnotations
-					});
+				base.AnnotateOnRun = true;
+				RerunIfValidationFailed = true;
+				base.IgnoreExistingAnnotations = IgnoreExistingAnnotations;
 			}
 		}
 	}

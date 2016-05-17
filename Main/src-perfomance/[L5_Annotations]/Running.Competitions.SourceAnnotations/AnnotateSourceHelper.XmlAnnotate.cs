@@ -11,7 +11,7 @@ using static BenchmarkDotNet.Competitions.CompetitionLimitConstants;
 
 // ReSharper disable CheckNamespace
 
-namespace BenchmarkDotNet.SourceAnnotations
+namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 {
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	internal static partial class AnnotateSourceHelper
@@ -24,11 +24,11 @@ namespace BenchmarkDotNet.SourceAnnotations
 			var candidateName = competitionTarget.CandidateName;
 
 			var xdoc = annotateContext.GetXmlAnnotation(xmlFileName);
-			var competition = GetOrAdd(xdoc.Root, CompetitionNode, competitionName);
-			var candidate = GetOrAdd(competition, CandidateNode, candidateName);
+			var competition = GetOrAddForTarget(xdoc.Root, CompetitionNode, competitionName);
+			var candidate = GetOrAddForTarget(competition, CandidateNode, candidateName);
 
 			var minText = !competitionTarget.IgnoreMin ? competitionTarget.MinText : null;
-			// Always prints
+			// MaxText should be specified even if ignored.
 			var maxText = competitionTarget.MaxText;
 
 			SetAttribute(candidate, MinRatioAttribute, minText);
@@ -41,7 +41,7 @@ namespace BenchmarkDotNet.SourceAnnotations
 
 		// ReSharper disable once SuggestBaseTypeForParameter
 		[NotNull]
-		private static XElement GetOrAdd(XElement element, XName name, string targetName)
+		private static XElement GetOrAddForTarget(XElement element, XName name, string targetName)
 		{
 			if (targetName == null)
 				throw new ArgumentNullException(nameof(targetName));

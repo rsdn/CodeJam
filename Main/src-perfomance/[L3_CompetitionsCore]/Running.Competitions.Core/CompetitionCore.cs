@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using BenchmarkDotNet.Analysers;
@@ -16,65 +17,13 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 	/// Reusable parts of competitions logic.
 	/// </summary>
 	[PublicAPI]
+	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public static class CompetitionCore
 	{
 		public static readonly RunState<CompetitionState> RunState = new RunState<CompetitionState>();
 
-		public static CompetitionState Run(
-			Type benchmarkType,
-			ManualConfig competitionConfig,
-			int maxRunCount)
-		{
-			if (benchmarkType == null)
-				throw new ArgumentNullException(nameof(benchmarkType));
-
-			if (competitionConfig == null)
-				throw new ArgumentNullException(nameof(competitionConfig));
-
-			var runStateSlots = competitionConfig.GetValidators().OfType<RunStateSlots>().FirstOrDefault();
-			if (runStateSlots != null)
-			{
-				throw new ArgumentException(
-					$"The competition config should not include {nameof(RunStateSlots)}",
-					nameof(competitionConfig));
-			}
-
-			competitionConfig.Add(new RunStateSlots());
-			var competitionState = RunState[competitionConfig];
-			competitionState.FirstTimeInit(maxRunCount);
-			try
-			{
-				RunCore(competitionState, benchmarkType, competitionConfig);
-			}
-			catch (Exception ex)
-			{
-				competitionState.WriteMessage(MessageSource.BenchmarkRunner, MessageSeverity.ExecutionError, ex.ToString());
-			}
-
-			FillMessagesAfterLastRun(competitionState.LastRunSummary);
-			return competitionState;
-		}
-
-		private static void FillMessagesAfterLastRun(Summary summary)
-		{
-			if (summary == null)
-				return;
-
-			var competitionState = RunState[summary];
-			foreach (var validationError in summary.ValidationErrors)
-			{
-				var severity = validationError.IsCritical ? MessageSeverity.TestError : MessageSeverity.Warning;
-				var message = validationError.Benchmark == null
-					? validationError.Message
-					: $"Benchmark {validationError.Benchmark.ShortInfo}:{Environment.NewLine}\t{validationError.Message}";
-
-				competitionState.WriteMessage(MessageSource.Validator, severity, message);
-			}
-		}
-
-
 		public static void AddWarning(
-			this List<IWarning> warnings, 
+			this List<IWarning> warnings,
 			MessageSeverity severity, string message,
 			BenchmarkReport report = null) =>
 				warnings.Add(
@@ -101,6 +50,58 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			}
 		}
 
+		private static void FillMessagesAfterLastRun(Summary summary)
+		{
+			if (summary == null)
+				return;
+
+			var competitionState = RunState[summary];
+			foreach (var validationError in summary.ValidationErrors)
+			{
+				var severity = validationError.IsCritical ? MessageSeverity.TestError : MessageSeverity.Warning;
+				var message = validationError.Benchmark == null
+					? validationError.Message
+					: $"Benchmark {validationError.Benchmark.ShortInfo}:{Environment.NewLine}\t{validationError.Message}";
+
+				competitionState.WriteMessage(MessageSource.Validator, severity, message);
+			}
+		}
+
+		internal static CompetitionState Run(
+			Type benchmarkType,
+			IConfig competitionConfig,
+			int maxRunCount)
+		{
+			if (benchmarkType == null)
+				throw new ArgumentNullException(nameof(benchmarkType));
+
+			if (competitionConfig == null)
+				throw new ArgumentNullException(nameof(competitionConfig));
+
+			var runStateSlots = competitionConfig.GetValidators().OfType<RunStateSlots>();
+			if (!runStateSlots.Any())
+			{
+				throw new ArgumentException(
+					$"The competition config should include {nameof(RunStateSlots)} validator",
+					nameof(competitionConfig));
+			}
+
+			var competitionState = RunState[competitionConfig];
+			competitionState.FirstTimeInit(maxRunCount);
+
+			try
+			{
+				RunCore(competitionState, benchmarkType, competitionConfig);
+			}
+			catch (Exception ex)
+			{
+				competitionState.WriteMessage(MessageSource.BenchmarkRunner, MessageSeverity.ExecutionError, ex.ToString());
+			}
+			FillMessagesAfterLastRun(competitionState.LastRunSummary);
+
+			return competitionState;
+		}
+
 		private static void RunCore(
 			CompetitionState competitionState,
 			Type benchmarkType,
@@ -116,7 +117,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 
 				var runMessage = competitionState.LastRun
 					? $"// !Run {run}, runs requested: {run + runsLeft} (rerun limit exceeded, last run)."
-					: $"// !Run #{run}, runs requested: {run + runsLeft}.";
+					: $"// !Run {run}, runs requested: {run + runsLeft}.";
 				logger.WriteLineInfo(runMessage);
 
 				competitionState.PrepareForRun();

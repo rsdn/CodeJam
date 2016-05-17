@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 using BenchmarkDotNet.Competitions;
 
-namespace BenchmarkDotNet.SourceAnnotations
+namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 {
 	internal static partial class AnnotateSourceHelper
 	{

@@ -13,13 +13,14 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running.Competitions.Core;
 using BenchmarkDotNet.Running.Messages;
 
-namespace BenchmarkDotNet.SourceAnnotations
+namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 {
 	/// <summary>
 	/// Fills min..max values for [CompetitionBenchmark] attribute
 	/// DANGER: this will try to update sources. May fail.
 	/// </summary>
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	internal static partial class AnnotateSourceHelper
 	{
 		#region Helper types
@@ -70,6 +71,9 @@ namespace BenchmarkDotNet.SourceAnnotations
 
 			public void ReplaceLine(string file, int lineIndex, string newLine)
 			{
+				if (!_sourceLines.ContainsKey(file))
+					throw new InvalidOperationException($"File {file} not loaded yet");
+
 				_sourceLines[file][lineIndex] = newLine;
 				MarkAsChanged(file);
 			}
@@ -82,7 +86,9 @@ namespace BenchmarkDotNet.SourceAnnotations
 				foreach (var pair in _sourceLines)
 				{
 					if (_changedFiles.Contains(pair.Key))
+					{
 						BenchmarkHelpers.WriteFileContent(pair.Key, pair.Value);
+					}
 				}
 
 				var saveSettings = new XmlWriterSettings
@@ -95,13 +101,16 @@ namespace BenchmarkDotNet.SourceAnnotations
 					if (_changedFiles.Contains(pair.Key))
 					{
 						using (var writer = XmlWriter.Create(pair.Key, saveSettings))
+						{
 							pair.Value.Save(writer);
+						}
 					}
 				}
 			}
 		}
 		#endregion
 
+		// ReSharper disable once ParameterTypeCanBeEnumerable.Global
 		public static CompetitionTarget[] TryAnnotateBenchmarkFiles(
 			CompetitionTarget[] targetsToAnnotate, List<IWarning> warnings, ILogger logger)
 		{
@@ -113,8 +122,9 @@ namespace BenchmarkDotNet.SourceAnnotations
 				var targetMethodName = targetToAnnotate.CandidateName;
 
 				logger.WriteLineInfo(
-					$"// Method {targetMethodName}: new relative time limits [{targetToAnnotate.MinText},{targetToAnnotate.MaxText}].");
+					$"// Method {targetMethodName}: new relative time limits [{targetToAnnotate.MinText}, {targetToAnnotate.MaxText}].");
 
+				// DONTTOUCH: the source should be loaded for checksum validation even if target uses resource annotation
 				int firstCodeLine;
 				string fileName;
 				string validationMessage;

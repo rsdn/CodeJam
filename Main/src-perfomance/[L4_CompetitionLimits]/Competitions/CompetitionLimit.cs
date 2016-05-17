@@ -9,8 +9,7 @@ namespace BenchmarkDotNet.Competitions
 	[PublicAPI]
 	public class CompetitionLimit
 	{
-		public static readonly CompetitionLimit NoLimit = new CompetitionLimit(
-			IgnoreValue, IgnoreValue);
+		public static readonly CompetitionLimit NoLimit = new CompetitionLimit(IgnoreValue, IgnoreValue);
 
 		public CompetitionLimit(
 			double minRatio, double maxRatio)

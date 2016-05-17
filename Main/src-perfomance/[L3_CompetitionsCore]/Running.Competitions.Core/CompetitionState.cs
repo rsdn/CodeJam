@@ -47,10 +47,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			AdditionalRunsRequested = 0;
 		}
 
-		internal void RunCompleted(Summary summary)
-		{
-			LastRunSummary = summary;
-		}
+		internal void RunCompleted(Summary summary) => LastRunSummary = summary;
 
 		public void RequestReruns(int additionalRunsCount, string explanationMessage)
 		{

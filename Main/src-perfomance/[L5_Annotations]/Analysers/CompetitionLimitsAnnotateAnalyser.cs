@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using BenchmarkDotNet.Competitions;
@@ -8,10 +9,11 @@ using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Running.Competitions.Core;
-using BenchmarkDotNet.SourceAnnotations;
+using BenchmarkDotNet.Running.Competitions.SourceAnnotations;
 
 namespace BenchmarkDotNet.Analysers
 {
+	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 	internal class CompetitionLimitsAnnotateAnalyser : CompetitionLimitsAnalyser
 	{
 		public bool AnnotateOnRun { get; set; } = true;
@@ -24,7 +26,6 @@ namespace BenchmarkDotNet.Analysers
 
 			if (!AnnotateOnRun)
 				return result;
-
 
 			var targetsToAnnotate = GetTargetsToAnnotate(summary, competitionTargets);
 			if (targetsToAnnotate.Length == 0)
@@ -73,6 +74,11 @@ namespace BenchmarkDotNet.Analysers
 
 					var minRatio = summary.TryGetScaledPercentile(benchmark, 85);
 					var maxRatio = summary.TryGetScaledPercentile(benchmark, 95);
+
+					// TODO: warning?
+					if (minRatio == null || maxRatio == null)
+						continue;
+
 					if (minRatio > maxRatio)
 					{
 						var temp = minRatio;
@@ -86,12 +92,12 @@ namespace BenchmarkDotNet.Analysers
 						newTarget = competitionTarget.Clone();
 					}
 
-					if (newTarget.UnionWithMin(minRatio ?? 0))
+					if (newTarget.UnionWithMin(minRatio.Value))
 					{
 						fixedMinTargets.Add(newTarget);
 						newTargets[newTarget.Target] = newTarget;
 					}
-					if (newTarget.UnionWithMax(maxRatio ?? 0))
+					if (newTarget.UnionWithMax(maxRatio.Value))
 					{
 						fixedMaxTargets.Add(newTarget);
 						newTargets[newTarget.Target] = newTarget;

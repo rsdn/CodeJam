@@ -2,6 +2,8 @@
 
 using NUnit.Framework;
 
+// ReSharper disable All
+
 namespace BenchmarkDotNet
 {
 	public static class StubTest

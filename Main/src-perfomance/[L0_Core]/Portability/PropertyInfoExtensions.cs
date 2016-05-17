@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Reflection;
 
+// Copied from BenchmarkDotNet
+// ReSharper disable All
+
 namespace BenchmarkDotNet.Portability
 {
 	internal static class PropertyInfoExtensions

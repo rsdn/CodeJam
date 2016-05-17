@@ -13,7 +13,7 @@ using Microsoft.DiaSymReader;
 
 // ReSharper disable CheckNamespace
 
-namespace BenchmarkDotNet.SourceAnnotations
+namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 {
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	internal static partial class AnnotateSourceHelper
@@ -142,6 +142,7 @@ namespace BenchmarkDotNet.SourceAnnotations
 			private const string Sha1AlgName = "SHA1";
 			private const string Md5AlgName = "Md5";
 
+			// ReSharper disable once ParameterTypeCanBeEnumerable.Local
 			private static string ToHexString([NotNull] byte[] data) =>
 				string.Concat(data.Select(b => b.ToString("X2")));
 

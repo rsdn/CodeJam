@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -16,8 +17,11 @@ using static BenchmarkDotNet.Competitions.CompetitionLimitConstants;
 
 namespace BenchmarkDotNet.Analysers
 {
+	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	internal class CompetitionLimitsAnalyser : IAnalyser
 	{
+		// TODO: to readonly dict + api to update the targets
 		protected class CompetitionTargets : Dictionary<MethodInfo, CompetitionTarget> { }
 
 		protected static readonly RunState<CompetitionTargets> TargetsSlot =
@@ -120,7 +124,7 @@ namespace BenchmarkDotNet.Analysers
 
 		public bool IgnoreExistingAnnotations { get; set; }
 		public bool AllowSlowBenchmarks { get; set; }
-		public int MaxRuns { get; set; } = 0;
+		public int MaxRuns { get; set; }
 
 		public CompetitionLimit DefaultCompetitionLimit { get; set; }
 
@@ -254,7 +258,7 @@ namespace BenchmarkDotNet.Analysers
 			bool validated = true;
 
 			var actualRatioText = actualRatio.GetValueOrDefault().ToString(
-				RatioFormat,
+				ActualRatioFormat,
 				EnvironmentInfo.MainCultureInfo);
 
 			if (!competitionLimit.IgnoreMin)
@@ -284,6 +288,7 @@ namespace BenchmarkDotNet.Analysers
 			return validated;
 		}
 
+		// ReSharper disable once MemberCanBeMadeStatic.Local
 		private void ValidatePreconditions(Summary summary, List<IWarning> warnings)
 		{
 			if (summary.HasCriticalValidationErrors)
@@ -334,7 +339,7 @@ namespace BenchmarkDotNet.Analysers
 			}
 		}
 
-		public void ValidatePostconditions(Summary summary, List<IWarning> warnings)
+		private void ValidatePostconditions(Summary summary, List<IWarning> warnings)
 		{
 			var tooFastReports = summary.Reports
 				.Where(
@@ -361,11 +366,12 @@ namespace BenchmarkDotNet.Analysers
 
 				if (tooSlowReports.Length > 0)
 				{
-					warnings.AddWarning(
-						MessageSeverity.Warning,
-						"The benchmarks " + string.Join(", ", tooSlowReports) +
-							" runs longer than half a second. Consider to rewrite the test as the peek timings will be hidden by averages" +
-							$" or set the {nameof(AllowSlowBenchmarks)} to true.");
+					warnings.
+						AddWarning(
+							MessageSeverity.Warning,
+							"The benchmarks " + string.Join(", ", tooSlowReports) +
+								" runs longer than half a second. Consider to rewrite the test as the peek timings will be hidden by averages" +
+								$" or set the {nameof(AllowSlowBenchmarks)} to true.");
 				}
 			}
 		}

@@ -1,12 +1,11 @@
 ﻿using System;
 
-using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Toolchains.InProcess;
 
 using JetBrains.Annotations;
 
-namespace BenchmarkDotNet.Competitions
+namespace BenchmarkDotNet.Configs
 {
 	/// <summary>
 	/// Use this to run fast but inaccurate measures
@@ -39,7 +38,7 @@ namespace BenchmarkDotNet.Competitions
 	}
 
 	/// <summary>
-	/// Use this to run slower but proven-to-be-accurate perf tests
+	/// Use this to run very slow but proven-to-be-accurate perf tests
 	/// </summary>
 	[PublicAPI]
 	public class TestProofConfig : ManualConfig

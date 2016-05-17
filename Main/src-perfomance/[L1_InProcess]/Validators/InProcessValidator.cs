@@ -7,11 +7,15 @@ using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.InProcess;
 
+using JetBrains.Annotations;
+
 namespace BenchmarkDotNet.Validators
 {
+	[PublicAPI]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public class InProcessValidator : IValidator
 	{
+		#region Validation rules
 		// ReSharper disable HeapView.DelegateAllocation
 		private static readonly IReadOnlyDictionary<string, Func<IJob, EnvironmentInfo, string>> _validationRules = new Dictionary
 			<string, Func<IJob, EnvironmentInfo, string>>
@@ -120,6 +124,17 @@ namespace BenchmarkDotNet.Validators
 			job.Toolchain is InProcessToolchain
 				? null
 				: "The toolchain should be set to InProcess";
+		#endregion
+
+		public static readonly IValidator DontFailOnError = new InProcessValidator(false);
+		public static readonly IValidator FailOnError = new InProcessValidator(true);
+
+		private InProcessValidator(bool failOnErrors)
+		{
+			TreatsWarningsAsErrors = failOnErrors;
+		}
+
+		public bool TreatsWarningsAsErrors { get; }
 
 		// TODO: check that analysers can run in-process
 		// TODO: check that the target is not static class
@@ -144,7 +159,7 @@ namespace BenchmarkDotNet.Validators
 						if (!string.IsNullOrEmpty(message))
 						{
 							var prefix = $"Job {job.GetShortInfo()}, property {jobProperty.Name}: ";
-							result.Add(new ValidationError(true, prefix + message));
+							result.Add(new ValidationError(TreatsWarningsAsErrors, prefix + message));
 						}
 					}
 				}
@@ -152,7 +167,5 @@ namespace BenchmarkDotNet.Validators
 
 			return result.ToArray();
 		}
-
-		public bool TreatsWarningsAsErrors => true;
 	}
 }

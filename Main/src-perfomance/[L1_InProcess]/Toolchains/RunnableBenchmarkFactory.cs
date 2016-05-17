@@ -101,6 +101,7 @@ namespace BenchmarkDotNet.Toolchains
 					throw new InvalidOperationException(
 						$"Type {targetType.FullName}: no settable property {parameter.Name} found.");
 
+				// ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
 				if (setter.IsStatic)
 				{
 					setter.Invoke(null, new[] { parameter.Value });

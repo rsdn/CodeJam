@@ -6,7 +6,9 @@ namespace BenchmarkDotNet.Competitions
 	{
 		public const int EmptyValue = 0;
 		public const int IgnoreValue = -1;
-		public const string RatioFormat = "0.00###";
+
+		public const string RatioFormat = "0.00";
+		public const string ActualRatioFormat = "0.00#";
 
 		#region XML metadata constants
 		public const string CompetitionBenchmarksRootNode = "CompetitionBenchmarks";
