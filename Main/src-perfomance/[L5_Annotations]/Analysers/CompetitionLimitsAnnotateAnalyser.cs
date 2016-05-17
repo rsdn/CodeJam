@@ -19,20 +19,20 @@ namespace BenchmarkDotNet.Analysers
 		public bool AnnotateOnRun { get; set; } = true;
 		public int AdditionalRunsOnAnnotate { get; set; } = 2;
 
-		protected override bool ValidateSummary(
+		protected override void ValidateSummary(
 			Summary summary, CompetitionTargets competitionTargets, List<IWarning> warnings)
 		{
-			var result = base.ValidateSummary(summary, competitionTargets, warnings);
+			base.ValidateSummary(summary, competitionTargets, warnings);
 
 			if (!AnnotateOnRun)
-				return result;
+				return;
 
 			var targetsToAnnotate = GetTargetsToAnnotate(summary, competitionTargets);
 			if (targetsToAnnotate.Length == 0)
 			{
 				CompetitionCore.RunState[summary].RequestReruns(
 					0,
-					"All competition benchmarks do not require annotation. Skipping reruns.");
+					"All competition benchmarks do not require annotation.");
 			}
 			else
 			{
@@ -50,11 +50,9 @@ namespace BenchmarkDotNet.Analysers
 					// TODO: detailed message???
 					CompetitionCore.RunState[summary].RequestReruns(
 						AdditionalRunsOnAnnotate,
-						"Annotations updated, requesting rerun.");
+						"Annotations updated.");
 				}
 			}
-
-			return result;
 		}
 
 		private static CompetitionTarget[] GetTargetsToAnnotate(
@@ -75,7 +73,7 @@ namespace BenchmarkDotNet.Analysers
 					var minRatio = summary.TryGetScaledPercentile(benchmark, 85);
 					var maxRatio = summary.TryGetScaledPercentile(benchmark, 95);
 
-					// TODO: warning?
+					// No warnings required. Missing values should be checked by CompetitionLimitsAnalyser.
 					if (minRatio == null || maxRatio == null)
 						continue;
 

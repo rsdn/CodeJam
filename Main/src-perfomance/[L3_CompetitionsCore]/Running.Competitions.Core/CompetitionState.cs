@@ -16,11 +16,23 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 		#region Messages
 		public IMessage[] GetMessages() => _messages.ToArray();
 
-		public void WriteMessage(MessageSource messageSource, MessageSeverity messageSeverity, string message) =>
-			_messages.Add(new Message(messageSource, messageSeverity, message));
+		public void WriteMessage(
+			MessageSource messageSource, MessageSeverity messageSeverity,
+			string message)
+		{
+			MessagesInRun++;
+			_messages.Add(
+				new Message(
+					RunCount,
+					MessagesInRun,
+					messageSource,
+					messageSeverity,
+					message));
+		}
 
 		public void WriteMessage(
-			MessageSource messageSource, MessageSeverity messageSeverity, string messageFormat, params object[] args) =>
+			MessageSource messageSource, MessageSeverity messageSeverity,
+			string messageFormat, params object[] args) =>
 				WriteMessage(messageSource, messageSeverity, string.Format(messageFormat, args));
 		#endregion
 
@@ -28,6 +40,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 		public bool LastRun => RunCount >= MaxRunCount;
 		public int MaxRunCount { get; private set; }
 		public int RunCount { get; private set; }
+		public int MessagesInRun { get; private set; }
 		public int AdditionalRunsRequested { get; private set; }
 		public Summary LastRunSummary { get; private set; }
 		#endregion
@@ -43,6 +56,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 		internal void PrepareForRun()
 		{
 			RunCount++;
+			MessagesInRun = 0;
 			LastRunSummary = null;
 			AdditionalRunsRequested = 0;
 		}
@@ -63,14 +77,15 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 				WriteMessage(
 					MessageSource.BenchmarkRunner,
 					MessageSeverity.Informational,
-					"No reruns requested: " + explanationMessage);
+					$"No reruns requested: {explanationMessage}");
 			}
 			else
 			{
 				WriteMessage(
 					MessageSource.BenchmarkRunner,
 					MessageSeverity.Informational,
-					"Rerun requested: " + explanationMessage);
+					$"Requesting {additionalRunsCount} run(s): {explanationMessage}");
+
 				AdditionalRunsRequested = Math.Max(additionalRunsCount, AdditionalRunsRequested);
 			}
 		}

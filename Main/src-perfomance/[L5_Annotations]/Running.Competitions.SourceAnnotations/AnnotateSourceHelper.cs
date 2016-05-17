@@ -94,7 +94,8 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 				var saveSettings = new XmlWriterSettings
 				{
 					Indent = true,
-					IndentChars = "\t"
+					IndentChars = "\t",
+					NewLineChars = "\r\n"
 				};
 				foreach (var pair in _xmlAnnotations)
 				{

@@ -88,27 +88,44 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 
 			var allMessages = new List<string>(errorMessages.Length + warningMessages.Length + infoMessages.Length + 3);
 
-			if (errorMessages.Length > 0)
+			bool hasErrors = errorMessages.Length > 0;
+			bool hasWarnings = warningMessages.Length > 0;
+			bool hasInfo = infoMessages.Length > 0;
+
+			if (!hasErrors && !hasWarnings)
+				return;
+
+			// ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
+			if (hasErrors)
+			{
+				allMessages.Add("Execution failed, details below.");
+			}
+			else
+			{
+				allMessages.Add("Test completed with warnings, details below.");
+			}
+
+			if (hasErrors)
 			{
 				allMessages.Add("Errors:");
 				allMessages.AddRange(errorMessages);
 			}
-			if (warningMessages.Length > 0)
+			if (hasWarnings)
 			{
 				allMessages.Add("Warnings:");
 				allMessages.AddRange(warningMessages);
 			}
-			if (infoMessages.Length > 0)
+			if (hasInfo)
 			{
-				allMessages.Add("Informational:");
+				allMessages.Add("Diagnostic messages:");
 				allMessages.AddRange(infoMessages);
 			}
 
-			if (errorMessages.Length > 0)
+			if (hasErrors)
 			{
 				ReportAsError(string.Join(Environment.NewLine, allMessages));
 			}
-			else if (warningMessages.Length > 0)
+			else
 			{
 				ReportAsWarning(string.Join(Environment.NewLine, allMessages));
 			}
@@ -117,12 +134,13 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 		private string[] GetMessageLines(IMessage[] messages, Func<IMessage, bool> filter)
 		{
 			var result =
-				from pair in messages.Where(filter).Select((m, i) => new { Msg = m, Index = i })
+				from message in messages.Where(filter)
 				orderby
-					pair.Msg.MessageSource,
-					(int)pair.Msg.MessageSeverity descending,
-					pair.Index
-				select "\t* " + pair.Msg.MessageText;
+					message.MessageSource,
+					(int)message.MessageSeverity descending,
+					message.RunNumber,
+					message.RunMessageNumber
+				select $"    * Run #{message.RunNumber}: {message.MessageText}";
 
 			return result.ToArray();
 		}
@@ -188,7 +206,15 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			var result = OverrideValidators(competitionConfig);
 			if (competitionConfig.GetJobs().Any(j => j.Toolchain is InProcessToolchain))
 			{
-				result.Insert(0, InProcessValidator.FailOnError);
+				// ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
+				if (competitionConfig.AnnotateOnRun)
+				{
+					result.Insert(0, InProcessValidator.FailOnError);
+				}
+				else
+				{
+					result.Insert(0, InProcessValidator.DontFailOnError);
+				}
 			}
 
 			if (EnvironmentInfo.GetCurrent().HasAttachedDebugger)

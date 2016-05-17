@@ -38,10 +38,12 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 				() =>
 				{
 					runThread.Start();
-					// TODO: notify analyser?
+					// TODO: notify diagnoser?
 					// TODO: configurable timeout?
 					if (!runThread.Join(TimeSpan.FromMinutes(5)))
-						throw new InvalidOperationException("Benchmark takes to long to run.");
+						throw new InvalidOperationException(
+							"Benchmark takes to long to run. " +
+								"Prefer to use out-of process toolchains for long-running benchmarks.");
 				});
 
 			var outputReader = new StreamReader(outputStream);

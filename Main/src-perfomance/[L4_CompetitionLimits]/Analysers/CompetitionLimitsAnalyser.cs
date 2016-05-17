@@ -140,14 +140,7 @@ namespace BenchmarkDotNet.Analysers
 					InitCompetitionTargets(competitionTargets, summary, warnings);
 				}
 
-				bool validated = ValidateSummary(summary, competitionTargets, warnings);
-
-				var competitionState = CompetitionCore.RunState[summary];
-				if (!validated && MaxRuns > competitionState.RunCount)
-				{
-					// TODO: detailed message???
-					competitionState.RequestReruns(1, "Competition validation failed.");
-				}
+				ValidateSummary(summary, competitionTargets, warnings);
 
 				ValidatePostconditions(summary, warnings);
 			}
@@ -190,7 +183,7 @@ namespace BenchmarkDotNet.Analysers
 			IDictionary<string, XDocument> resourceCache,
 			List<IWarning> warnings)
 		{
-			var fallbackLimit = DefaultCompetitionLimit ?? CompetitionLimit.NoLimit;
+			var fallbackLimit = DefaultCompetitionLimit ?? CompetitionLimit.Empty;
 			var targetResourceName = TryGetTargetResourceName(target);
 			if (targetResourceName == null)
 			{
@@ -215,7 +208,7 @@ namespace BenchmarkDotNet.Analysers
 		}
 		#endregion
 
-		protected virtual bool ValidateSummary(
+		protected virtual void ValidateSummary(
 			Summary summary, CompetitionTargets competitionTargets,
 			List<IWarning> warnings)
 		{
@@ -234,7 +227,12 @@ namespace BenchmarkDotNet.Analysers
 				}
 			}
 
-			return validated;
+			var competitionState = CompetitionCore.RunState[summary];
+			if (!validated && MaxRuns > competitionState.RunCount)
+			{
+				// TODO: detailed message???
+				competitionState.RequestReruns(1, "Competition validation failed.");
+			}
 		}
 
 		private static bool ValidateBenchmark(

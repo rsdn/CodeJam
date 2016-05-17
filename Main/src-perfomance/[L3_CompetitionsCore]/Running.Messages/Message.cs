@@ -29,6 +29,8 @@ namespace BenchmarkDotNet.Running.Messages
 
 	public interface IMessage
 	{
+		int RunNumber { get; }
+		int RunMessageNumber { get; }
 		MessageSource MessageSource { get; }
 		MessageSeverity MessageSeverity { get; }
 		string MessageText { get; }
@@ -36,13 +38,20 @@ namespace BenchmarkDotNet.Running.Messages
 
 	public class Message : IMessage
 	{
-		public Message(MessageSource messageSource, MessageSeverity messageSeverity, string messageText)
+		public Message(
+			int runNumber,
+			int runMessageNumber,
+			MessageSource messageSource, MessageSeverity messageSeverity, string messageText)
 		{
+			RunNumber = runNumber;
+			RunMessageNumber = runMessageNumber;
 			MessageSeverity = messageSeverity;
 			MessageText = messageText;
 			MessageSource = messageSource;
 		}
 
+		public int RunNumber { get; }
+		public int RunMessageNumber { get; }
 		public MessageSource MessageSource { get; }
 		public MessageSeverity MessageSeverity { get; }
 		public string MessageText { get; }
