@@ -42,11 +42,7 @@ namespace CodeJam.Collections
 			var root = Root;
 			var data = InternalData;
 			var end = data.Length;
-			Func<int, char, int> childComparer = (index, c) =>
-			{
-				var childFirstChar = data[GetNode(index).Begin];
-				return childFirstChar - c;
-			};
+			var childComparer = GetComparer();
 			for (var i = InternalData.Length - 1; i >= 0; --i)
 			{
 				var currentNode = root;

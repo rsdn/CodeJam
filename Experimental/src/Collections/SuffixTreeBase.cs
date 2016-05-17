@@ -72,31 +72,15 @@ namespace CodeJam.Collections
 		/// <summary>Implementation of the tree building algorithm</summary>
 	    protected abstract void Build();
 
-		/// <summary>A suffix tree node</summary>
-	    protected class Node
-		{
-			public Node(int begin, int end)
-			{
-				Begin = begin;
-				End = end;
-			}
+		/// <summary>Creates a comparer for nodes against a char</summary>
+		/// <returns>The comparer</returns>
+	    protected Func<int, char, int> GetComparer() => (index, c) =>
+	    {
+		    var firstChar = InternalData[GetNode(index).Begin];
+		    return firstChar - c;
+	    };
 
-			/// <summary>
-			/// List of child nodes
-			/// <remarks>null for leaf nodes</remarks>
-			/// </summary>
-			public List<int> Children { get; set; }
-			/// <summary>
-			/// Shows whether it is a leaf or an internal node
-			/// </summary>
-			public bool IsLeaf => Children == null;
-			/// <summary>Index of the first character of a substring corresponding to the node</summary>
-			public int Begin { get; }
-			/// <summary>Index after the last character of a substring corresponding to the node</summary>
-			public int End { get; set; }
-		}
-
-		/// <summary>Removes a terminal character if present</summary>
+	    /// <summary>Removes a terminal character if present</summary>
 		private void RemoveTerminal()
 		{
 			if (Data.Length == InternalData.Length)
@@ -104,7 +88,16 @@ namespace CodeJam.Collections
 				// no terminal was added
 				return;
 			}
+
 			var end = InternalData.Length;
+			// Drop terminal node from Root children
+			if (!Root.IsLeaf)
+			{
+				var childComparer = GetComparer();
+				var terminalNodeIndex = Root.Children.LowerBound(InternalData[end - 1], childComparer);
+				DebugCode.AssertState(terminalNodeIndex > end, "Terminal node should be present");
+				Root.Children.RemoveAt(terminalNodeIndex);
+			}
 			foreach (var n in nodes_)
 			{
 				if (n.End == end)
@@ -174,5 +167,29 @@ namespace CodeJam.Collections
 		    var n = GetNode(nodeIndex);
 		    sb.AppendLine($"({nodeIndex}, [{n.Begin}-{n.End}), {InternalData.Substring(n.Begin, n.End - n.Begin)})");
 	    }
+
+		/// <summary>A suffix tree node</summary>
+		protected class Node
+		{
+			public Node(int begin, int end)
+			{
+				Begin = begin;
+				End = end;
+			}
+
+			/// <summary>
+			/// List of child nodes
+			/// <remarks>null for leaf nodes</remarks>
+			/// </summary>
+			public List<int> Children { get; set; }
+			/// <summary>
+			/// Shows whether it is a leaf or an internal node
+			/// </summary>
+			public bool IsLeaf => Children == null;
+			/// <summary>Index of the first character of a substring corresponding to the node</summary>
+			public int Begin { get; }
+			/// <summary>Index after the last character of a substring corresponding to the node</summary>
+			public int End { get; set; }
+		}
 	}
 }

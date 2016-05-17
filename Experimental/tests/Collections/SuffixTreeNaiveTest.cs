@@ -18,7 +18,7 @@ namespace CodeJam.Collections
 			var st = SuffixTreeNaiveProxy.Create("ABRABRABRABRA");
 			Console.Write(st.Print());
 			var expected =
-				"[{},{A}[{},{BRA}[{},{BRA}[{},{BRA}[{},{BRA}]]]],{BRA}[{},{BRA}[{},{BRA}[{},{BRA}]]],{RA}[{},{BRA}[{},{BRA}[{},{BRA}]]]]";
+				"[{A}[{},{BRA}[{},{BRA}[{},{BRA}[{},{BRA}]]]],{BRA}[{},{BRA}[{},{BRA}[{},{BRA}]]],{RA}[{},{BRA}[{},{BRA}[{},{BRA}]]]]";
 			Assert.That(st.EncodeNodes(), Is.EqualTo(expected));
 		}
 
@@ -27,7 +27,7 @@ namespace CodeJam.Collections
 		{
 			var st = SuffixTreeNaiveProxy.Create("MISSISSIPPI");
 			Console.Write(st.Print());
-			var expected = "[{},{I}[{},{PPI},{SSI}[{PPI},{SSIPPI}]],{MISSISSIPPI},{P}[{I},{PI}],{S}[{I}[{PPI},{SSIPPI}],{SI}[{PPI},{SSIPPI}]]]";
+			var expected = "[{I}[{},{PPI},{SSI}[{PPI},{SSIPPI}]],{MISSISSIPPI},{P}[{I},{PI}],{S}[{I}[{PPI},{SSIPPI}],{SI}[{PPI},{SSIPPI}]]]";
 			Assert.That(st.EncodeNodes(), Is.EqualTo(expected));
 		}
 
@@ -36,7 +36,7 @@ namespace CodeJam.Collections
 		{
 			var st = SuffixTreeNaiveProxy.Create("AAAAABAAAAA");
 			Console.Write(st.Print());
-			var expected = "[{},{A}[{},{A}[{},{A}[{},{A}[{},{A}[{},{BAAAAA}],{BAAAAA}],{BAAAAA}],{BAAAAA}],{BAAAAA}],{BAAAAA}]";
+			var expected = "[{A}[{},{A}[{},{A}[{},{A}[{},{A}[{},{BAAAAA}],{BAAAAA}],{BAAAAA}],{BAAAAA}],{BAAAAA}],{BAAAAA}]";
 			Assert.That(st.EncodeNodes(), Is.EqualTo(expected));
 		}
 
@@ -54,7 +54,7 @@ namespace CodeJam.Collections
 		{
 			var st = SuffixTreeNaiveProxy.Create("ABRACADABRA");
 			Console.Write(st.Print());
-			var expected = "[{},{A}[{},{BRA}[{},{CADABRA}],{CADABRA},{DABRA}],{BRA}[{},{CADABRA}],{CADABRA},{DABRA},{RA}[{},{CADABRA}]]";
+			var expected = "[{A}[{},{BRA}[{},{CADABRA}],{CADABRA},{DABRA}],{BRA}[{},{CADABRA}],{CADABRA},{DABRA},{RA}[{},{CADABRA}]]";
 			Assert.That(st.EncodeNodes(), Is.EqualTo(expected));
 		}
 
