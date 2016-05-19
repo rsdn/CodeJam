@@ -164,6 +164,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 							// ReSharper disable once PossibleNullReferenceException
 							actualChecksum = h.ComputeHash(f);
 						}
+						fileHashes[file] = actualChecksum;
 					}
 				}
 

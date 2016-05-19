@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
+using System.Text;
+using System.Xml;
 
 using BenchmarkDotNet.Competitions;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Helpers;
+using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Running.Competitions.Core;
@@ -16,8 +20,9 @@ namespace BenchmarkDotNet.Analysers
 	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 	internal class CompetitionLimitsAnnotateAnalyser : CompetitionLimitsAnalyser
 	{
-		public bool AnnotateOnRun { get; set; } = true;
-		public int AdditionalRunsOnAnnotate { get; set; } = 2;
+		public int AdditionalRunsOnAnnotate { get; set; }
+		public bool AnnotateOnRun { get; set; }
+		public bool LogAnnotationResults { get; set; }
 
 		protected override void ValidateSummary(
 			Summary summary, CompetitionTargets competitionTargets, List<IWarning> warnings)
@@ -27,32 +32,73 @@ namespace BenchmarkDotNet.Analysers
 			if (!AnnotateOnRun)
 				return;
 
+			var competitionState = CompetitionCore.RunState[summary];
+			var logger = summary.Config.GetCompositeLogger();
+
 			var targetsToAnnotate = GetTargetsToAnnotate(summary, competitionTargets);
-			if (targetsToAnnotate.Length == 0)
+			if (targetsToAnnotate.Length != 0)
 			{
-				CompetitionCore.RunState[summary].RequestReruns(
-					0,
-					"All competition benchmarks do not require annotation.");
-			}
-			else
-			{
-				var logger = summary.Config.GetCompositeLogger();
-				var annotatedTargets = AnnotateSourceHelper.TryAnnotateBenchmarkFiles(
+				targetsToAnnotate = AnnotateSourceHelper.TryAnnotateBenchmarkFiles(
 					targetsToAnnotate, warnings, logger);
 
-				foreach (var competitionTarget in annotatedTargets)
+				foreach (var competitionTarget in targetsToAnnotate)
 				{
 					competitionTargets[competitionTarget.Target.Method] = competitionTarget;
 				}
+			}
 
-				if (annotatedTargets.Length > 0 && AdditionalRunsOnAnnotate > 0)
+			if (AdditionalRunsOnAnnotate > 0)
+			{
+				if (targetsToAnnotate.Length == 0)
+				{
+					competitionState.RequestReruns(
+						0,
+						"All competition benchmarks do not require annotation.");
+				}
+				else
 				{
 					// TODO: detailed message???
-					CompetitionCore.RunState[summary].RequestReruns(
+					competitionState.RequestReruns(
 						AdditionalRunsOnAnnotate,
 						"Annotations updated.");
 				}
 			}
+
+			if (competitionState.LooksLikeLastRun && LogAnnotationResults)
+			{
+				ExportAnnotationResultsCore(competitionTargets, logger);
+			}
+		}
+
+		private void ExportAnnotationResultsCore(CompetitionTargets competitionTargets, ILogger logger)
+		{
+			var targets = competitionTargets.Values
+				.Where(t => t.WasUpdated)
+				.ToArray();
+			if (targets.Length == 0)
+			{
+				logger.WriteLineInfo(
+					"// No competition benchmark annotations were updated, nothing to export.");
+				return;
+			}
+
+			var xDoc = AnnotateSourceHelper.CreateXmlAnnotationDoc(true);
+			foreach (var competitionTarget in targets)
+			{
+				AnnotateSourceHelper.UpdateXmlAnnotation(competitionTarget, xDoc);
+			}
+
+			logger.WriteLineInfo(CompetitionLimitConstants.LogAnnotationStart);
+
+			var tmp = new StringBuilder();
+			var writerSettings = AnnotateSourceHelper.GetXmlWriterSettings();
+			using (var writer = XmlWriter.Create(tmp, writerSettings))
+			{
+				xDoc.Save(writer);
+			}
+			logger.WriteLineInfo(tmp.ToString());
+
+			logger.WriteLineInfo(CompetitionLimitConstants.LogAnnotationEnd);
 		}
 
 		private static CompetitionTarget[] GetTargetsToAnnotate(

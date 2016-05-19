@@ -1,5 +1,7 @@
 ﻿using System;
 
+using static BenchmarkDotNet.Loggers.HostLogger;
+
 namespace BenchmarkDotNet.Competitions
 {
 	internal static class CompetitionLimitConstants
@@ -11,6 +13,8 @@ namespace BenchmarkDotNet.Competitions
 		public const string ActualRatioFormat = "0.00#";
 
 		#region XML metadata constants
+		public const string LogAnnotationStart = LogImportantAreaStart + "------xml_annotation_begin------";
+		public const string LogAnnotationEnd = LogImportantAreaEnd + "------xml_annotation_end------";
 		public const string CompetitionBenchmarksRootNode = "CompetitionBenchmarks";
 		public const string CompetitionNode = "Competition";
 		public const string CandidateNode = "Candidate";

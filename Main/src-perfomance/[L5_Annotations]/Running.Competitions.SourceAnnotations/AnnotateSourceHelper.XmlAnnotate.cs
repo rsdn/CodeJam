@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Xml;
 using System.Xml.Linq;
 
 using BenchmarkDotNet.Competitions;
@@ -16,15 +17,52 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	internal static partial class AnnotateSourceHelper
 	{
+		private class UseFullNameAnnotation
+		{
+			public static readonly UseFullNameAnnotation Instance = new UseFullNameAnnotation();
+			private UseFullNameAnnotation() { }
+		}
+
+		public static XmlWriterSettings GetXmlWriterSettings() =>
+			new XmlWriterSettings
+				{
+					Indent = true,
+					IndentChars = "\t",
+					NewLineChars = "\r\n"
+				};
+
+
 		private static bool TryFixBenchmarkResource(
 			AnnotateContext annotateContext, string xmlFileName,
 			CompetitionTarget competitionTarget)
 		{
-			var competitionName = competitionTarget.CompetitionName;
-			var candidateName = competitionTarget.CandidateName;
+			var xDoc = annotateContext.GetXmlAnnotation(xmlFileName);
+			UpdateXmlAnnotation(competitionTarget, xDoc);
 
-			var xdoc = annotateContext.GetXmlAnnotation(xmlFileName);
-			var competition = GetOrAddForTarget(xdoc.Root, CompetitionNode, competitionName);
+			annotateContext.MarkAsChanged(xmlFileName);
+
+			return true;
+		}
+
+		public static XDocument CreateXmlAnnotationDoc(bool competitionFullName)
+		{
+			var result = new XDocument(new XElement(CompetitionBenchmarksRootNode));
+			if (competitionFullName)
+			{
+				result.AddAnnotation(UseFullNameAnnotation.Instance);
+			}
+			return result;
+		}
+
+		public static void UpdateXmlAnnotation(
+			CompetitionTarget competitionTarget,
+			XDocument xDoc)
+		{
+			var competitionName = xDoc.Annotations<UseFullNameAnnotation>().Any()
+				? competitionTarget.CompetitionFullName
+				: competitionTarget.CompetitionName;
+			var candidateName = competitionTarget.CandidateName;
+			var competition = GetOrAddForTarget(xDoc.Root, CompetitionNode, competitionName);
 			var candidate = GetOrAddForTarget(competition, CandidateNode, candidateName);
 
 			var minText = !competitionTarget.IgnoreMin ? competitionTarget.MinText : null;
@@ -33,10 +71,6 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 
 			SetAttribute(candidate, MinRatioAttribute, minText);
 			SetAttribute(candidate, MaxRatioAttribute, maxText);
-
-			annotateContext.MarkAsChanged(xmlFileName);
-
-			return true;
 		}
 
 		// ReSharper disable once SuggestBaseTypeForParameter

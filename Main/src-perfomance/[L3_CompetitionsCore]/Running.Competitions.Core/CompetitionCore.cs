@@ -11,6 +11,8 @@ using BenchmarkDotNet.Running.Messages;
 
 using JetBrains.Annotations;
 
+using static BenchmarkDotNet.Loggers.HostLogger;
+
 namespace BenchmarkDotNet.Running.Competitions.Core
 {
 	/// <summary>
@@ -20,6 +22,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public static class CompetitionCore
 	{
+		#region API to use during the run
 		public static readonly RunState<CompetitionState> RunState = new RunState<CompetitionState>();
 
 		public static void AddWarning(
@@ -35,7 +38,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 				return;
 
 			var competitionState = RunState[summary];
-			if (competitionState.LastRun || competitionState.AdditionalRunsRequested == 0)
+			if (competitionState.LooksLikeLastRun)
 			{
 				foreach (var warning in warnings)
 				{
@@ -66,11 +69,13 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 				competitionState.WriteMessage(MessageSource.Validator, severity, message);
 			}
 		}
+		#endregion
 
+		#region Run logic
 		internal static CompetitionState Run(
 			Type benchmarkType,
 			IConfig competitionConfig,
-			int maxRunCount)
+			int maxRunsAllowed)
 		{
 			if (benchmarkType == null)
 				throw new ArgumentNullException(nameof(benchmarkType));
@@ -87,11 +92,11 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			}
 
 			var competitionState = RunState[competitionConfig];
-			competitionState.FirstTimeInit(maxRunCount);
-
 			try
 			{
-				RunCore(competitionState, benchmarkType, competitionConfig);
+				RunCore(
+					competitionState, maxRunsAllowed,
+					benchmarkType, competitionConfig);
 			}
 			catch (Exception ex)
 			{
@@ -103,24 +108,23 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 		}
 
 		private static void RunCore(
-			CompetitionState competitionState,
-			Type benchmarkType,
-			IConfig competitionConfig)
+			CompetitionState competitionState, int maxRunsAllowed,
+			Type benchmarkType, IConfig competitionConfig)
 		{
 			var logger = competitionConfig.GetCompositeLogger();
-			int runsLeft = 1;
-			int run = 0;
-			while (runsLeft > 0)
+			competitionState.FirstTimeInit(maxRunsAllowed);
+			while (competitionState.RunsLeft > 0)
 			{
-				run++;
-				runsLeft--;
-
-				var runMessage = competitionState.LastRun
-					? $"// !Run {run}, runs requested: {run + runsLeft} (rerun limit exceeded, last run)."
-					: $"// !Run {run}, runs requested: {run + runsLeft}.";
-				logger.WriteLineInfo(runMessage);
-
 				competitionState.PrepareForRun();
+
+				var run = competitionState.RunNumber;
+				var runsExpected = competitionState.RunNumber + competitionState.RunsLeft;
+				var runMessage = competitionState.LastRun
+					? $"{LogImportantInfoPrefix}Run {run}, total runs (expected): {runsExpected} (rerun limit exceeded, last run)."
+					: $"{LogImportantInfoPrefix}Run {run}, total runs (expected): {runsExpected}.";
+				logger.WriteLine();
+				logger.WriteLineInfo(runMessage);
+				logger.WriteLine();
 
 				// Running the benchmark
 				var summary = BenchmarkRunner.Run(benchmarkType, competitionConfig);
@@ -129,11 +133,9 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 				if (competitionState.LastRun)
 					break;
 
-				if (competitionState.AdditionalRunsRequested > 0)
+				if (competitionState.RunsLeft > 0)
 				{
-					runsLeft = Math.Max(runsLeft, competitionState.AdditionalRunsRequested);
-
-					logger.WriteLineInfo($"// !Rerun requested. Runs left: {runsLeft}.");
+					logger.WriteLineInfo($"{LogImportantInfoPrefix}Rerun requested. Runs left: {competitionState.RunsLeft}.");
 				}
 			}
 
@@ -144,12 +146,13 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 					MessageSource.BenchmarkRunner, MessageSeverity.TestError,
 					"The benchmark run count exceeded max rerun limits (read log for details). Consider to adjust competition setup.");
 			}
-			else if (competitionState.RunCount > 1)
+			else if (competitionState.RunNumber > 1)
 			{
 				competitionState.WriteMessage(
 					MessageSource.BenchmarkRunner, MessageSeverity.Warning,
-					$"The benchmark was run {competitionState.RunCount} times (read log for details). Consider to adjust competition setup.");
+					$"The benchmark was run {competitionState.RunNumber} times (read log for details). Consider to adjust competition setup.");
 			}
 		}
+		#endregion
 	}
 }

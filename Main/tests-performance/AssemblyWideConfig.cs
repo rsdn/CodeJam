@@ -47,11 +47,12 @@ namespace CodeJam
 
 			Add(FastRunConfig.Instance);
 
+			EnableReruns = true;
 			if (AnnotateOnRun)
 			{
 				base.AnnotateOnRun = true;
-				RerunIfValidationFailed = true;
 				base.IgnoreExistingAnnotations = IgnoreExistingAnnotations;
+				LogAnnotationResults = true;
 			}
 		}
 	}

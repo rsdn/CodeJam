@@ -86,6 +86,7 @@
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessToolchain.cs" />
     <Compile Include="[L2_RunState]\Running.Competitions.Core\RunState`1.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Competitions.Core\CompetitionCore.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Loggers\HostLogger.cs" />
     <Compile Include="[L4_CompetitionLimits]\Competitions\CompetitionLimitConstants.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Competitions.Core\CompetitionState.cs" />
     <Compile Include="[L2_RunState]\Running.Competitions.Core\RunStateSlots.cs" />

@@ -91,12 +91,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 					}
 				}
 
-				var saveSettings = new XmlWriterSettings
-				{
-					Indent = true,
-					IndentChars = "\t",
-					NewLineChars = "\r\n"
-				};
+				var saveSettings = GetXmlWriterSettings();
 				foreach (var pair in _xmlAnnotations)
 				{
 					if (_changedFiles.Contains(pair.Key))

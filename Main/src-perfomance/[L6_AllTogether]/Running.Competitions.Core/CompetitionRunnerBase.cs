@@ -26,35 +26,48 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public abstract class CompetitionRunnerBase
 	{
-		public void RunCompetition(Type benchmarkType, ICompetitionConfig baseConfig)
+		protected abstract class HostLogger : Loggers.HostLogger
 		{
-			baseConfig = baseConfig ?? new ManualCompetitionConfig();
+			protected HostLogger(ILogger wrappedLogger, bool detailedLogging)
+				: base(wrappedLogger, detailedLogging) { }
+		}
+
+		public void RunCompetition(Type benchmarkType, ICompetitionConfig competitionConfig)
+		{
+			competitionConfig = competitionConfig ?? new ManualCompetitionConfig();
 
 			ValidateCompetitionSetup(benchmarkType);
+			OnBeforeRun(benchmarkType, competitionConfig);
 
-			var competitionConfig = CreateBenchmarkConfig(baseConfig);
+			var benchmarkConfig = CreateBenchmarkConfig(competitionConfig);
 
 			bool runSucceed = false;
 			IMessage[] messages;
 			Summary summary = null;
 			try
 			{
-				var competitionState = CompetitionCore.Run(benchmarkType, competitionConfig, baseConfig.MaxRunCount);
+				var competitionState = CompetitionCore.Run(
+					benchmarkType,
+					benchmarkConfig, 
+					competitionConfig.MaxRunsAllowed);
 				messages = competitionState.GetMessages();
 				summary = competitionState.LastRunSummary;
 				runSucceed = true;
 			}
 			finally
 			{
-				OnAfterRun(runSucceed, competitionConfig, summary);
+				var hostLogger = benchmarkConfig.GetLoggers().OfType<HostLogger>().Single();
+				ReportHostLogger(hostLogger, summary);
+
+				OnAfterRun(runSucceed, benchmarkConfig, summary);
 			}
 
 			ReportMessagesToUser(messages);
 		}
 
-		protected virtual void ValidateCompetitionSetup(Type benchmarkType)
+		private void ValidateCompetitionSetup(Type benchmarkType)
 		{
-			if (EnvironmentInfo.GetCurrent().HasAttachedDebugger)
+			if (!EnvironmentInfo.GetCurrent().HasAttachedDebugger)
 			{
 				var assembly = benchmarkType.Assembly;
 				if (assembly.IsDebugAssembly())
@@ -70,12 +83,6 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 				}
 			}
 		}
-
-		protected virtual void OnAfterRun(bool runSucceed, IConfig competitionConfig, Summary summary) { }
-
-		#region Messages
-		protected abstract void ReportAsError(string messages);
-		protected abstract void ReportAsWarning(string messages);
 
 		private void ReportMessagesToUser(IMessage[] messages)
 		{
@@ -95,6 +102,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			if (!hasErrors && !hasWarnings)
 				return;
 
+			// TODO: simplify
 			// ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
 			if (hasErrors)
 			{
@@ -144,18 +152,28 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 
 			return result.ToArray();
 		}
+
+		#region Host-related logic
+		protected virtual void OnBeforeRun(Type benchmarkType, ICompetitionConfig config) { }
+		protected virtual void OnAfterRun(bool runSucceed, IConfig benchmarkConfig, Summary summary) { }
+
+		protected abstract HostLogger CreateHostLogger(ICompetitionConfig competitionConfig);
+		protected abstract void ReportHostLogger(HostLogger logger, [CanBeNull]Summary summary);
+
+		protected abstract void ReportAsError(string messages);
+		protected abstract void ReportAsWarning(string messages);
 		#endregion
 
-		#region Create config
+		#region Create benchark config
 		private IConfig CreateBenchmarkConfig(ICompetitionConfig competitionConfig)
 		{
 			var result = new ManualConfig();
 
 			result.Add(OverrideJobs(competitionConfig).ToArray());
 			result.Add(OverrideExporters(competitionConfig).ToArray());
-			result.Add(OverrideLoggers(competitionConfig).ToArray());
 			result.Add(OverrideDiagnosers(competitionConfig).ToArray());
 
+			result.Add(GetLoggers(competitionConfig).ToArray());
 			result.Add(GetColumns(competitionConfig).ToArray());
 			result.Add(GetValidators(competitionConfig).ToArray());
 			result.Add(GetAnalysers(competitionConfig).ToArray());
@@ -163,28 +181,13 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			return result;
 		}
 
-		#region Override config
-		protected virtual List<IJob> OverrideJobs(ICompetitionConfig baseConfig) =>
-			baseConfig.GetJobs().ToList();
-
-		protected virtual List<IColumn> OverrideColumns(ICompetitionConfig baseConfig) =>
-			baseConfig.GetColumns().ToList();
-
-		protected virtual List<IExporter> OverrideExporters(ICompetitionConfig baseConfig) =>
-			baseConfig.GetExporters().ToList();
-
-		protected virtual List<ILogger> OverrideLoggers(ICompetitionConfig baseConfig) =>
-			baseConfig.GetLoggers().ToList();
-
-		protected virtual List<IDiagnoser> OverrideDiagnosers(ICompetitionConfig baseConfig) =>
-			baseConfig.GetDiagnosers().ToList();
-
-		protected virtual List<IAnalyser> OverrideAnalysers(ICompetitionConfig baseConfig) =>
-			baseConfig.GetAnalysers().ToList();
-
-		protected virtual List<IValidator> OverrideValidators(ICompetitionConfig baseConfig) =>
-			baseConfig.GetValidators().ToList();
-		#endregion
+		private List<ILogger> GetLoggers(ICompetitionConfig competitionConfig)
+		{
+			var result = OverrideLoggers(competitionConfig);
+			var hostLogger = CreateHostLogger(competitionConfig);
+			result.Insert(0, hostLogger);
+			return result;
+		}
 
 		private List<IColumn> GetColumns(ICompetitionConfig competitionConfig)
 		{
@@ -198,6 +201,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 					BaselineDiffColumn.Scaled95,
 					StatisticColumn.Max
 				});
+
 			return result;
 		}
 
@@ -236,21 +240,55 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 		private List<IAnalyser> GetAnalysers(ICompetitionConfig competitionConfig)
 		{
 			var result = OverrideAnalysers(competitionConfig);
+
+			// DONTTOUCH: the CompetitionLimitsAnnotateAnalyser should be last analyser in the chain.
 			if (!competitionConfig.DisableValidation)
 			{
 				var annotator = new CompetitionLimitsAnnotateAnalyser
 				{
 					AllowSlowBenchmarks = competitionConfig.AllowSlowBenchmarks,
+					DefaultCompetitionLimit = competitionConfig.DefaultCompetitionLimit,
+
 					AnnotateOnRun = competitionConfig.AnnotateOnRun,
 					IgnoreExistingAnnotations = competitionConfig.IgnoreExistingAnnotations,
-					DefaultCompetitionLimit = competitionConfig.DefaultCompetitionLimit,
-					MaxRuns = 3,
-					AdditionalRunsOnAnnotate = 2
+					LogAnnotationResults = competitionConfig.LogAnnotationResults,
 				};
+
+				if (competitionConfig.EnableReruns)
+				{
+					annotator.MaxRuns = 3;
+					annotator.AdditionalRunsOnAnnotate = 2;
+				}
+
 				result.Add(annotator);
 			}
+
 			return result;
 		}
+
+		#region Override config parameters
+		protected virtual List<IJob> OverrideJobs(ICompetitionConfig baseConfig) =>
+			baseConfig.GetJobs().ToList();
+
+		protected virtual List<IExporter> OverrideExporters(ICompetitionConfig baseConfig) =>
+			baseConfig.GetExporters().ToList();
+
+		protected virtual List<IDiagnoser> OverrideDiagnosers(ICompetitionConfig baseConfig) =>
+			baseConfig.GetDiagnosers().ToList();
+
+		protected virtual List<ILogger> OverrideLoggers(ICompetitionConfig baseConfig) =>
+			baseConfig.GetLoggers().ToList();
+
+		protected virtual List<IColumn> OverrideColumns(ICompetitionConfig baseConfig) =>
+			baseConfig.GetColumns().ToList();
+
+		protected virtual List<IValidator> OverrideValidators(ICompetitionConfig baseConfig) =>
+			baseConfig.GetValidators().ToList();
+
+		protected virtual List<IAnalyser> OverrideAnalysers(ICompetitionConfig baseConfig) =>
+			baseConfig.GetAnalysers().ToList();
+		#endregion
+
 		#endregion
 	}
 }

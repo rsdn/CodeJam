@@ -7,16 +7,18 @@ namespace BenchmarkDotNet.Configs
 	public interface ICompetitionConfig : IConfig
 	{
 		// Runner config
-		int MaxRunCount { get; }
-		bool AllowSlowBenchmarks { get; }
-		CompetitionLimit DefaultCompetitionLimit { get; }
+		bool DetailedLogging { get; }
+		bool DisableValidation { get; }
+		int MaxRunsAllowed { get; }
 
 		// Validation config
-		bool DisableValidation { get; }
-		bool RerunIfValidationFailed { get; }
+		bool AllowSlowBenchmarks { get; }
+		CompetitionLimit DefaultCompetitionLimit { get; }
+		bool EnableReruns { get; }
 
 		// Annotation config
 		bool AnnotateOnRun { get; }
 		bool IgnoreExistingAnnotations { get; }
+		bool LogAnnotationResults { get; }
 	}
 }

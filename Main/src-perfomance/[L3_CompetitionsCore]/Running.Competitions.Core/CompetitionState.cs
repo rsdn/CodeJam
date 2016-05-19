@@ -13,52 +13,38 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 	{
 		private readonly List<IMessage> _messages = new List<IMessage>();
 
-		#region Messages
-		public IMessage[] GetMessages() => _messages.ToArray();
-
-		public void WriteMessage(
-			MessageSource messageSource, MessageSeverity messageSeverity,
-			string message)
-		{
-			MessagesInRun++;
-			_messages.Add(
-				new Message(
-					RunCount,
-					MessagesInRun,
-					messageSource,
-					messageSeverity,
-					message));
-		}
-
-		public void WriteMessage(
-			MessageSource messageSource, MessageSeverity messageSeverity,
-			string messageFormat, params object[] args) =>
-				WriteMessage(messageSource, messageSeverity, string.Format(messageFormat, args));
-		#endregion
-
 		#region State properties
-		public bool LastRun => RunCount >= MaxRunCount;
-		public int MaxRunCount { get; private set; }
-		public int RunCount { get; private set; }
+		public bool LastRun => RunNumber >= MaxRunsAllowed;
+		public bool LooksLikeLastRun => RunsLeft <= 0;
+
+		public int MaxRunsAllowed { get; private set; }
+
+		public int RunNumber { get; private set; }
+		public int RunsLeft { get; private set; }
+
 		public int MessagesInRun { get; private set; }
-		public int AdditionalRunsRequested { get; private set; }
 		public Summary LastRunSummary { get; private set; }
 		#endregion
 
 		#region State modification
-		internal void FirstTimeInit(int maxRunCount)
+		internal void FirstTimeInit(int maxRunsAllowed)
 		{
-			MaxRunCount = maxRunCount;
-			RunCount = -1;
-			PrepareForRun();
+			MaxRunsAllowed = maxRunsAllowed;
+
+			RunsLeft = 1;
+			RunNumber = 0;
+
+			MessagesInRun = 0;
+			LastRunSummary = null;
 		}
 
 		internal void PrepareForRun()
 		{
-			RunCount++;
+			RunsLeft--;
+			RunNumber++;
+
 			MessagesInRun = 0;
 			LastRunSummary = null;
-			AdditionalRunsRequested = 0;
 		}
 
 		internal void RunCompleted(Summary summary) => LastRunSummary = summary;
@@ -86,9 +72,32 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 					MessageSeverity.Informational,
 					$"Requesting {additionalRunsCount} run(s): {explanationMessage}");
 
-				AdditionalRunsRequested = Math.Max(additionalRunsCount, AdditionalRunsRequested);
+				RunsLeft = Math.Max(additionalRunsCount, RunsLeft);
 			}
 		}
+		#endregion
+
+		#region Messages
+		public IMessage[] GetMessages() => _messages.ToArray();
+
+		public void WriteMessage(
+			MessageSource messageSource, MessageSeverity messageSeverity,
+			string message)
+		{
+			MessagesInRun++;
+			_messages.Add(
+				new Message(
+					RunNumber,
+					MessagesInRun,
+					messageSource,
+					messageSeverity,
+					message));
+		}
+
+		public void WriteMessage(
+			MessageSource messageSource, MessageSeverity messageSeverity,
+			string messageFormat, params object[] args) =>
+				WriteMessage(messageSource, messageSeverity, string.Format(messageFormat, args));
 		#endregion
 	}
 }

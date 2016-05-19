@@ -122,8 +122,8 @@ namespace BenchmarkDotNet.Analysers
 		}
 		#endregion
 
-		public bool IgnoreExistingAnnotations { get; set; }
 		public bool AllowSlowBenchmarks { get; set; }
+		public bool IgnoreExistingAnnotations { get; set; }
 		public int MaxRuns { get; set; }
 
 		public CompetitionLimit DefaultCompetitionLimit { get; set; }
@@ -188,7 +188,7 @@ namespace BenchmarkDotNet.Analysers
 			if (targetResourceName == null)
 			{
 				if (IgnoreExistingAnnotations)
-					return new CompetitionTarget(target, fallbackLimit, false);
+					return new CompetitionTarget(target, fallbackLimit, false, false);
 
 				return GetCompetitionTargetFromAttribute(target, competitionAttribute);
 			}
@@ -202,7 +202,7 @@ namespace BenchmarkDotNet.Analysers
 			}
 
 			if (resourceDoc == null || IgnoreExistingAnnotations)
-				return new CompetitionTarget(target, fallbackLimit, true);
+				return new CompetitionTarget(target, fallbackLimit, true, false);
 
 			return GetCompetitionTargetFromResource(target, resourceDoc);
 		}
@@ -228,7 +228,7 @@ namespace BenchmarkDotNet.Analysers
 			}
 
 			var competitionState = CompetitionCore.RunState[summary];
-			if (!validated && MaxRuns > competitionState.RunCount)
+			if (!validated && MaxRuns > competitionState.RunNumber)
 			{
 				// TODO: detailed message???
 				competitionState.RequestReruns(1, "Competition validation failed.");

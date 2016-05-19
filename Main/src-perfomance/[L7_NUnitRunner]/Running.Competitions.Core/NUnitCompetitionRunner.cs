@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading;
 
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Exporters;
@@ -15,31 +16,54 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 	[SuppressMessage("ReSharper", "ConvertToExpressionBodyWhenPossible")]
 	internal class NUnitCompetitionRunner : CompetitionRunnerBase
 	{
-		private class FakeConsoleLogger : AccumulationLogger { }
-
-		private static FakeConsoleLogger InitFakeConsoleLogger()
+		protected class NUnitHostLogger : HostLogger
 		{
-			var logger = new FakeConsoleLogger();
-			logger.WriteLine();
-			logger.WriteLine();
-			logger.WriteLine(new string('=', 40));
-			logger.WriteLine();
-			return logger;
+			private readonly AccumulationLogger _logger = new AccumulationLogger();
+
+			public NUnitHostLogger(bool detailedLogging)
+				: base(new AccumulationLogger(), detailedLogging)
+			{
+			}
+
+			protected new AccumulationLogger WrappedLogger => (AccumulationLogger)base.WrappedLogger;
+
+			public string GetLog() => WrappedLogger.GetLog();
 		}
 
-		private static void DumpOutputSummaryAtTop(Summary summary, FakeConsoleLogger logger)
+		#region Host-related logic
+		protected override HostLogger CreateHostLogger(ICompetitionConfig competitionConfig) => 
+			new NUnitHostLogger(competitionConfig.DetailedLogging);
+
+		protected override void ReportHostLogger(HostLogger logger, Summary summary)
 		{
+			var outLogger = ConsoleLogger.Default;
 			if (summary != null)
 			{
 				// Dumping the benchmark results to console
-				MarkdownExporter.Console.ExportToLog(summary, ConsoleLogger.Default);
+				MarkdownExporter.Console.ExportToLog(summary, outLogger);
+				outLogger.WriteLine();
+				outLogger.WriteLine();
+				outLogger.WriteLine(new string('=', 40));
+				outLogger.WriteLine();
 			}
 
 			// Dumping all captured output below the benchmark results
-			ConsoleLogger.Default.WriteLine(logger.GetLog());
+			var nUnitLogger = (NUnitHostLogger)logger;
+			outLogger.WriteLine(nUnitLogger.GetLog());
 		}
 
-		#region Override config
+		protected override void ReportAsError(string messages)
+		{
+			throw new AssertionException(messages);
+		}
+
+		protected override void ReportAsWarning(string messages)
+		{
+			throw new IgnoreException(messages);
+		}
+		#endregion
+
+		#region Override config parameters
 		// TODO: do not filter the exporters?
 		protected override List<IExporter> OverrideExporters(ICompetitionConfig baseConfig)
 		{
@@ -54,29 +78,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			var result = base.OverrideLoggers(baseConfig);
 			result.RemoveAll(l => l is ConsoleLogger);
 
-			result.Insert(0, InitFakeConsoleLogger());
-
 			return result;
-		}
-		#endregion
-
-		#region Core logic
-		protected override void OnAfterRun(bool runSucceed, IConfig competitionConfig, Summary summary)
-		{
-			base.OnAfterRun(runSucceed, competitionConfig, summary);
-
-			var fakeConsoleLogger = competitionConfig.GetLoggers().OfType<FakeConsoleLogger>().Single();
-			DumpOutputSummaryAtTop(summary, fakeConsoleLogger);
-		}
-
-		protected override void ReportAsError(string messages)
-		{
-			throw new AssertionException(messages);
-		}
-
-		protected override void ReportAsWarning(string messages)
-		{
-			throw new IgnoreException(messages);
 		}
 		#endregion
 	}

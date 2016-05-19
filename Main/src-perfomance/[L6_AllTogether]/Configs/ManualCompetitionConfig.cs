@@ -51,27 +51,36 @@ namespace BenchmarkDotNet.Configs
 		{
 			Add((IConfig)config);
 
-			MaxRunCount = config.MaxRunCount;
+			// Runner config
+			DetailedLogging = config.DetailedLogging;
+			DisableValidation = config.DisableValidation;
+			MaxRunsAllowed = config.MaxRunsAllowed;
+
+			// Validation config
 			AllowSlowBenchmarks = config.AllowSlowBenchmarks;
 			DefaultCompetitionLimit = config.DefaultCompetitionLimit;
-			DisableValidation = config.DisableValidation;
-			RerunIfValidationFailed = config.RerunIfValidationFailed;
+			EnableReruns = config.EnableReruns;
+
+			// Annotation config
 			AnnotateOnRun = config.AnnotateOnRun;
 			IgnoreExistingAnnotations = config.IgnoreExistingAnnotations;
+			LogAnnotationResults = config.LogAnnotationResults;
 		}
 		#endregion
 
 		// Runner config
-		public int MaxRunCount { get; set; } = 10;
-		public bool AllowSlowBenchmarks { get; set; }
-		public CompetitionLimit DefaultCompetitionLimit { get; set; }
+		public bool DetailedLogging { get; set; }
+		public bool DisableValidation { get; set; }
+		public int MaxRunsAllowed { get; set; } = 10;
 
 		// Validation config
-		public bool DisableValidation { get; set; }
-		public bool RerunIfValidationFailed { get; set; }
+		public bool AllowSlowBenchmarks { get; set; }
+		public CompetitionLimit DefaultCompetitionLimit { get; set; }
+		public bool EnableReruns { get; set; }
 
 		// Annotation config
 		public bool AnnotateOnRun { get; set; }
 		public bool IgnoreExistingAnnotations { get; set; }
+		public bool LogAnnotationResults { get; set; }
 	}
 }

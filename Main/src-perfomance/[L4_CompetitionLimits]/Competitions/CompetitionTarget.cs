@@ -10,11 +10,14 @@ namespace BenchmarkDotNet.Competitions
 		#region Fields & .ctor
 		public CompetitionTarget() : base(0, 0) { }
 
-		public CompetitionTarget(Target target, CompetitionLimit other, bool usesResourceAnnotation) :
+		public CompetitionTarget(Target target, 
+			CompetitionLimit other,
+			bool usesResourceAnnotation, bool wasUpdated) :
 			this(target, other.Min, other.Max, usesResourceAnnotation)
 		{
 			Target = target;
 			UsesResourceAnnotation = usesResourceAnnotation;
+			WasUpdated = wasUpdated;
 		}
 
 		public CompetitionTarget(
@@ -29,7 +32,9 @@ namespace BenchmarkDotNet.Competitions
 		#region Properties
 		public Target Target { get; }
 		public bool UsesResourceAnnotation { get; }
+		public bool WasUpdated { get; protected set; }
 
+		public string CompetitionFullName => Target.Type.FullName + ", " + Target.Type.Assembly.GetName().Name;
 		public string CompetitionName => Target.Type.Name;
 		public string CandidateName => Target.Method.Name;
 
@@ -41,7 +46,8 @@ namespace BenchmarkDotNet.Competitions
 			: Max.ToString(CompetitionLimitConstants.RatioFormat, EnvironmentInfo.MainCultureInfo);
 		#endregion
 
-		public CompetitionTarget Clone() => new CompetitionTarget(Target, this, UsesResourceAnnotation);
+		public CompetitionTarget Clone() => new CompetitionTarget(
+			Target, this, UsesResourceAnnotation, WasUpdated);
 
 		public bool UnionWithMin(double newMin)
 		{
@@ -51,6 +57,7 @@ namespace BenchmarkDotNet.Competitions
 			if (MinIsEmpty || newMin < Min)
 			{
 				Min = newMin;
+				WasUpdated = true;
 				return true;
 			}
 
@@ -65,6 +72,7 @@ namespace BenchmarkDotNet.Competitions
 			if (MaxIsEmpty || newMax > Max)
 			{
 				Max = newMax;
+				WasUpdated = true;
 				return true;
 			}
 
