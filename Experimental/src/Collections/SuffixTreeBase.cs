@@ -13,8 +13,10 @@ namespace CodeJam.Collections
 
 		/// <summary>Tree nodes</summary>
 		private readonly List<Node> nodes_;
+
 		/// <summary>The root node</summary>
 		protected Node Root => nodes_[0];
+
 		/// <summary>Adds a new node</summary>
 		/// <param name="node">A node to add</param>
 		/// <returns>Index of the node</returns>
@@ -24,14 +26,18 @@ namespace CodeJam.Collections
 			nodes_.Add(node);
 		    return index;
 	    }
+
 		/// <summary>Gets a node at the index</summary>
 		/// <param name="index">The index of the node</param>
 		/// <returns>The node</returns>
 	    protected Node GetNode(int index) => nodes_[index];
+
 	    /// <summary>Source string with terminal added (if needed)</summary>
 		protected string InternalData { get; }
+
 		/// <summary>Source string</summary>
 		protected string Data { get; }
+
 		/// <summary>Constructs a base for a suffix tree</summary>
 		/// <param name="data">The string to build the suffix tree for</param>
 		/// <param name="terminal">
