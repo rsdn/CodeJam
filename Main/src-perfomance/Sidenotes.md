@@ -1,5 +1,8 @@
-﻿## TODO
- * COnditional logger (high priority only).
+﻿## TODO:
+ * Design flaw? The run state SHOULD NOT be reused across multiple benchmarks.
+
+ * loose limits on each run, not on last?
+ * Conditional logger (high priority only).
  * No rerun on validation failed.
  * All xml annotation methods (read & update) into single class.
  * Do we need it? Annotate sources only on last run. Use competitionTarget.WasUpdated property.
@@ -8,6 +11,7 @@
  * Fix diagnoser support in in-process toolchain
  * validate culture usage
  * validate null values on percentiles
+ * Tests!!!!
 
 ## layered design: Bench.NET part
 

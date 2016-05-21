@@ -20,5 +20,6 @@ namespace BenchmarkDotNet.Configs
 		bool AnnotateOnRun { get; }
 		bool IgnoreExistingAnnotations { get; }
 		bool LogAnnotationResults { get; }
+		string PreviousLogUri { get; }
 	}
 }

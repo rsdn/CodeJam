@@ -252,6 +252,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 					AnnotateOnRun = competitionConfig.AnnotateOnRun,
 					IgnoreExistingAnnotations = competitionConfig.IgnoreExistingAnnotations,
 					LogAnnotationResults = competitionConfig.LogAnnotationResults,
+					PreviousLogUri = competitionConfig.PreviousLogUri
 				};
 
 				if (competitionConfig.EnableReruns)

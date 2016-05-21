@@ -65,6 +65,7 @@ namespace BenchmarkDotNet.Configs
 			AnnotateOnRun = config.AnnotateOnRun;
 			IgnoreExistingAnnotations = config.IgnoreExistingAnnotations;
 			LogAnnotationResults = config.LogAnnotationResults;
+			PreviousLogUri = config.PreviousLogUri;
 		}
 		#endregion
 
@@ -82,5 +83,6 @@ namespace BenchmarkDotNet.Configs
 		public bool AnnotateOnRun { get; set; }
 		public bool IgnoreExistingAnnotations { get; set; }
 		public bool LogAnnotationResults { get; set; }
+		public string PreviousLogUri { get; set; }
 	}
 }

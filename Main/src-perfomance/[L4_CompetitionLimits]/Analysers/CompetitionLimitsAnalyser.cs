@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
@@ -11,9 +10,8 @@ using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Running.Competitions.Core;
+using BenchmarkDotNet.Running.Competitions.SourceAnnotations;
 using BenchmarkDotNet.Running.Messages;
-
-using static BenchmarkDotNet.Competitions.CompetitionLimitConstants;
 
 namespace BenchmarkDotNet.Analysers
 {
@@ -21,117 +19,27 @@ namespace BenchmarkDotNet.Analysers
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	internal class CompetitionLimitsAnalyser : IAnalyser
 	{
-		// TODO: to readonly dict + api to update the targets
+		#region Competition targets
+		// TODO: to readonly dict + api to update the targets?
 		protected class CompetitionTargets : Dictionary<MethodInfo, CompetitionTarget> { }
 
 		protected static readonly RunState<CompetitionTargets> TargetsSlot =
 			new RunState<CompetitionTargets>();
-
-		#region Parse competition targets helpers
-		private static string TryGetTargetResourceName(Target target)
-		{
-			string targetResourceName = null;
-			var targetType = target.Type;
-			while (targetType != null && targetResourceName == null)
-			{
-				targetResourceName = targetType
-					.GetCustomAttribute<CompetitionMetadataAttribute>()
-					?.MetadataResourceName;
-
-				targetType = targetType.DeclaringType;
-			}
-			return targetResourceName;
-		}
-
-		private static XDocument TryLoadResourceDoc(
-			Target target, string targetResourceName, List<IWarning> warnings)
-		{
-			var resourceStream = target.Type.Assembly.GetManifestResourceStream(targetResourceName);
-
-			if (resourceStream == null)
-			{
-				warnings.AddWarning(
-					MessageSeverity.SetupError,
-					$"Method {target.Method.Name}: resource stream {targetResourceName} not found");
-
-				return null;
-			}
-
-			var resourceDoc = XDocument.Load(resourceStream);
-			var rootNode = resourceDoc.Element(CompetitionBenchmarksRootNode);
-			if (rootNode == null)
-			{
-				warnings.AddWarning(
-					MessageSeverity.SetupError,
-					$"Resource {targetResourceName}: root node {CompetitionBenchmarksRootNode} not found.");
-
-				return null;
-			}
-
-			return resourceDoc;
-		}
-
-		private static CompetitionTarget GetCompetitionTargetFromAttribute(
-			Target target, CompetitionBenchmarkAttribute competitionAttribute) =>
-				new CompetitionTarget(
-					target,
-					competitionAttribute.MinRatio,
-					competitionAttribute.MaxRatio,
-					false);
-
-		private static CompetitionTarget GetCompetitionTargetFromResource(
-			Target target, XDocument resourceDoc)
-		{
-			var competitionName = target.Type.Name;
-			var candidateName = target.Method.Name;
-
-			var matchingNodes =
-				// ReSharper disable once PossibleNullReferenceException
-				from competition in resourceDoc.Root.Elements(CompetitionNode)
-				where competition.Attribute(TargetAttribute)?.Value == competitionName
-				from candidate in competition.Elements(CandidateNode)
-				where candidate.Attribute(TargetAttribute)?.Value == candidateName
-				select candidate;
-
-			var resultNode = matchingNodes.SingleOrDefault();
-			var minText = resultNode?.Attribute(MinRatioAttribute)?.Value;
-			var maxText = resultNode?.Attribute(MaxRatioAttribute)?.Value;
-
-			double min;
-			double max;
-			var culture = EnvironmentInfo.MainCultureInfo;
-			double.TryParse(minText, NumberStyles.Any, culture, out min);
-			double.TryParse(maxText, NumberStyles.Any, culture, out max);
-
-			// Only one attribute set
-			if (minText == null && maxText != null)
-			{
-				min = IgnoreValue;
-			}
-			else if (maxText == null && minText != null)
-			{
-				max = IgnoreValue;
-			}
-			else
-			{
-				min = EmptyValue;
-				max = EmptyValue;
-			}
-
-			return new CompetitionTarget(target, min, max, true);
-		}
 		#endregion
 
+		#region Properties
 		public bool AllowSlowBenchmarks { get; set; }
 		public bool IgnoreExistingAnnotations { get; set; }
 		public int MaxRuns { get; set; }
 
 		public CompetitionLimit DefaultCompetitionLimit { get; set; }
+		#endregion
 
 		public IEnumerable<IWarning> Analyse(Summary summary)
 		{
 			var warnings = new List<IWarning>();
 			ValidatePreconditions(summary, warnings);
+
 			if (warnings.Count == 0)
 			{
 				var competitionTargets = TargetsSlot[summary];
@@ -151,7 +59,7 @@ namespace BenchmarkDotNet.Analysers
 		}
 
 		#region Parsing competition target info
-		private void InitCompetitionTargets(
+		protected virtual void InitCompetitionTargets(
 			CompetitionTargets competitionTargets,
 			Summary summary,
 			List<IWarning> warnings)
@@ -184,30 +92,34 @@ namespace BenchmarkDotNet.Analysers
 			List<IWarning> warnings)
 		{
 			var fallbackLimit = DefaultCompetitionLimit ?? CompetitionLimit.Empty;
-			var targetResourceName = TryGetTargetResourceName(target);
+
+			var targetResourceName = AttributeAnnotations.TryGetTargetResourceName(target);
 			if (targetResourceName == null)
 			{
 				if (IgnoreExistingAnnotations)
-					return new CompetitionTarget(target, fallbackLimit, false, false);
+					return new CompetitionTarget(target, fallbackLimit, false);
 
-				return GetCompetitionTargetFromAttribute(target, competitionAttribute);
+				return AttributeAnnotations.ParseCompetitionTarget(target, competitionAttribute);
 			}
 
 			// DONTTOUCH: the doc should be loaded for validation even if IgnoreExistingAnnotations = true
 			XDocument resourceDoc;
 			if (!resourceCache.TryGetValue(targetResourceName, out resourceDoc))
 			{
-				resourceDoc = TryLoadResourceDoc(target, targetResourceName, warnings);
+				resourceDoc = XmlAnnotations.TryLoadResourceDoc(target, targetResourceName, warnings);
 				resourceCache[targetResourceName] = resourceDoc;
 			}
 
 			if (resourceDoc == null || IgnoreExistingAnnotations)
-				return new CompetitionTarget(target, fallbackLimit, true, false);
+				return new CompetitionTarget(target, fallbackLimit, true);
 
-			return GetCompetitionTargetFromResource(target, resourceDoc);
+			var result = XmlAnnotations.TryParseCompetitionTarget(target, resourceDoc);
+			return result ??
+				new CompetitionTarget(target, fallbackLimit, true);
 		}
 		#endregion
 
+		#region Validation
 		protected virtual void ValidateSummary(
 			Summary summary, CompetitionTargets competitionTargets,
 			List<IWarning> warnings)
@@ -235,10 +147,13 @@ namespace BenchmarkDotNet.Analysers
 			}
 		}
 
-		private static bool ValidateBenchmark(
+		private bool ValidateBenchmark(
 			Summary summary, Benchmark benchmark,
-			CompetitionTarget competitionLimit, List<IWarning> warnings)
+			CompetitionLimit competitionLimit, List<IWarning> warnings)
 		{
+			if (benchmark.Target.Baseline)
+				return true;
+
 			const int percentile = 95;
 
 			var targetMethodName = benchmark.Target.Method.Name;
@@ -256,7 +171,7 @@ namespace BenchmarkDotNet.Analysers
 			bool validated = true;
 
 			var actualRatioText = actualRatio.GetValueOrDefault().ToString(
-				ActualRatioFormat,
+				CompetitionLimitConstants.ActualRatioFormat,
 				EnvironmentInfo.MainCultureInfo);
 
 			if (!competitionLimit.IgnoreMin)
@@ -291,39 +206,21 @@ namespace BenchmarkDotNet.Analysers
 		{
 			if (summary.HasCriticalValidationErrors)
 			{
-				var messages = summary.ValidationErrors
-					.Where(err => err.IsCritical)
-					.Select(
-						err =>
-							(err.Benchmark == null ? null : err.Benchmark.ShortInfo + ": ") +
-								err.Message)
-					.ToArray();
-
-				if (messages.Length > 0)
-				{
-					var messageText = string.Join(Environment.NewLine + "\t", messages);
-					warnings.AddWarning(
-						MessageSeverity.ExecutionError,
-						$"Validation failed:{Environment.NewLine}\t{messageText}");
-				}
-				else
-				{
-					warnings.AddWarning(
-						MessageSeverity.ExecutionError,
-						"Summary has validation errors.",
-						null);
-				}
+				warnings.AddWarning(
+					MessageSeverity.ExecutionError,
+					"Summary has validation errors.",
+					null);
 			}
 
 			if (warnings.Count == 0)
 			{
-				var runnedBenchmarks = new HashSet<Benchmark>(
+				var reportedBenchmarks = new HashSet<Benchmark>(
 					summary.Reports
 						.Where(r => r.ExecuteResults.Any())
 						.Select(r => r.Benchmark));
 
 				var benchMissing = summary.Benchmarks
-					.Where(b => !runnedBenchmarks.Contains(b))
+					.Where(b => !reportedBenchmarks.Contains(b))
 					.Select(b => b.Target.Method.Name)
 					.Distinct()
 					.ToArray();
@@ -340,9 +237,7 @@ namespace BenchmarkDotNet.Analysers
 		private void ValidatePostconditions(Summary summary, List<IWarning> warnings)
 		{
 			var tooFastReports = summary.Reports
-				.Where(
-					rp => rp.GetResultRuns().Any(
-						r => r.GetAverageNanoseconds() < 400))
+				.Where(rp => rp.GetResultRuns().Any(r => r.GetAverageNanoseconds() < 400))
 				.Select(rp => rp.Benchmark.Target.Method.Name)
 				.ToArray();
 			if (tooFastReports.Length > 0)
@@ -356,9 +251,7 @@ namespace BenchmarkDotNet.Analysers
 			if (!AllowSlowBenchmarks)
 			{
 				var tooSlowReports = summary.Reports
-					.Where(
-						rp => rp.GetResultRuns().Any(
-							r => r.GetAverageNanoseconds() > 500 * 1000 * 1000))
+					.Where(rp => rp.GetResultRuns().Any(r => r.GetAverageNanoseconds() > 500 * 1000 * 1000))
 					.Select(rp => rp.Benchmark.Target.Method.Name)
 					.ToArray();
 
@@ -373,5 +266,6 @@ namespace BenchmarkDotNet.Analysers
 				}
 			}
 		}
+		#endregion
 	}
 }

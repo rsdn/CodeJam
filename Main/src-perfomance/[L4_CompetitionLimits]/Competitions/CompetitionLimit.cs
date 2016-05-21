@@ -1,5 +1,7 @@
 ﻿using System;
 
+using BenchmarkDotNet.Helpers;
+
 using JetBrains.Annotations;
 
 using static BenchmarkDotNet.Competitions.CompetitionLimitConstants;
@@ -34,6 +36,13 @@ namespace BenchmarkDotNet.Competitions
 
 		public bool IgnoreMin => Min < 0;
 		public bool IgnoreMax => Max < 0;
+
+		public string MinText => IgnoreMin
+			? Min.ToString(EnvironmentInfo.MainCultureInfo)
+			: Min.ToString(RatioFormat, EnvironmentInfo.MainCultureInfo);
+		public string MaxText => IgnoreMax
+			? Max.ToString(EnvironmentInfo.MainCultureInfo)
+			: Max.ToString(RatioFormat, EnvironmentInfo.MainCultureInfo);
 
 		public bool IsEmpty => MinIsEmpty && MaxIsEmpty;
 	}

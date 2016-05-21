@@ -7,7 +7,6 @@ using System.Xml;
 using System.Xml.Linq;
 
 using BenchmarkDotNet.Analysers;
-using BenchmarkDotNet.Competitions;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running.Competitions.Core;
@@ -21,6 +20,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 	/// </summary>
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
+	[SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
 	internal static partial class AnnotateSourceHelper
 	{
 		#region Helper types
@@ -91,14 +91,13 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 					}
 				}
 
-				var saveSettings = GetXmlWriterSettings();
 				foreach (var pair in _xmlAnnotations)
 				{
 					if (_changedFiles.Contains(pair.Key))
 					{
-						using (var writer = XmlWriter.Create(pair.Key, saveSettings))
+						using (var writer = new StreamWriter(pair.Key))
 						{
-							pair.Value.Save(writer);
+							XmlAnnotations.SaveTo(writer, pair.Value);
 						}
 					}
 				}
@@ -169,6 +168,18 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 
 			annContext.Save();
 			return annotatedTargets.ToArray();
+		}
+
+		private static bool TryFixBenchmarkResource(
+			AnnotateContext annotateContext, string xmlFileName,
+			CompetitionTarget competitionTarget)
+		{
+			var xDoc = annotateContext.GetXmlAnnotation(xmlFileName);
+			XmlAnnotations.SaveCompetitionTarget(competitionTarget, xDoc);
+
+			annotateContext.MarkAsChanged(xmlFileName);
+
+			return true;
 		}
 	}
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
@@ -11,7 +10,6 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
-using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Running.Competitions.Core;
 using BenchmarkDotNet.Running.Competitions.SourceAnnotations;
 
@@ -20,12 +18,41 @@ namespace BenchmarkDotNet.Analysers
 	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 	internal class CompetitionLimitsAnnotateAnalyser : CompetitionLimitsAnalyser
 	{
+
 		public int AdditionalRunsOnAnnotate { get; set; }
 		public bool AnnotateOnRun { get; set; }
 		public bool LogAnnotationResults { get; set; }
+		public string PreviousLogUri { get; set; }
+
+		#region Overrides of CompetitionLimitsAnalyser
+		protected override void InitCompetitionTargets(CompetitionTargets competitionTargets, Summary summary, List<IWarning> warnings)
+		{
+			base.InitCompetitionTargets(competitionTargets, summary, warnings);
+
+			if (!AnnotateOnRun || string.IsNullOrEmpty(PreviousLogUri))
+				return;
+
+			var docs = XmlAnnotations.GetDocumentsFromLog(PreviousLogUri);
+
+			foreach (var resourceDoc in docs)
+			{
+				foreach (var competitionTarget in competitionTargets.Values)
+				{
+					var target2 = XmlAnnotations.TryParseCompetitionTarget(
+						competitionTarget.Target,
+						resourceDoc);
+					if (target2 != null)
+					{
+						competitionTarget.MergeWith(target2);
+					}
+				}
+			}
+		}
+		#endregion
 
 		protected override void ValidateSummary(
-			Summary summary, CompetitionTargets competitionTargets, List<IWarning> warnings)
+			Summary summary, CompetitionTargets competitionTargets,
+			List<IWarning> warnings)
 		{
 			base.ValidateSummary(summary, competitionTargets, warnings);
 
@@ -35,42 +62,57 @@ namespace BenchmarkDotNet.Analysers
 			var competitionState = CompetitionCore.RunState[summary];
 			var logger = summary.Config.GetCompositeLogger();
 
-			var targetsToAnnotate = GetTargetsToAnnotate(summary, competitionTargets);
-			if (targetsToAnnotate.Length != 0)
-			{
-				targetsToAnnotate = AnnotateSourceHelper.TryAnnotateBenchmarkFiles(
-					targetsToAnnotate, warnings, logger);
-
-				foreach (var competitionTarget in targetsToAnnotate)
-				{
-					competitionTargets[competitionTarget.Target.Method] = competitionTarget;
-				}
-			}
+			bool updated = MergeTargetsToAnnotate(summary, competitionTargets);
 
 			if (AdditionalRunsOnAnnotate > 0)
 			{
-				if (targetsToAnnotate.Length == 0)
-				{
-					competitionState.RequestReruns(
-						0,
-						"All competition benchmarks do not require annotation.");
-				}
-				else
+				if (updated)
 				{
 					// TODO: detailed message???
 					competitionState.RequestReruns(
 						AdditionalRunsOnAnnotate,
 						"Annotations updated.");
 				}
+				else
+				{
+					competitionState.RequestReruns(
+						0,
+						"All competition benchmarks do not require annotation.");
+				}
 			}
 
-			if (competitionState.LooksLikeLastRun && LogAnnotationResults)
+			if (competitionState.LooksLikeLastRun)
 			{
-				ExportAnnotationResultsCore(competitionTargets, logger);
+				AnnotateResultsCore(competitionTargets, logger, warnings);
+
+				if (LogAnnotationResults)
+				{
+					ExportAnnotationResultsCore(competitionTargets, logger, warnings);
+				}
 			}
 		}
 
-		private void ExportAnnotationResultsCore(CompetitionTargets competitionTargets, ILogger logger)
+		private void AnnotateResultsCore(
+			CompetitionTargets competitionTargets, ILogger logger,
+			List<IWarning> warnings)
+		{
+			const int looseByPercent = 3;
+
+			var targetsToAnnotate = competitionTargets.Values
+				.Where(t => t.WasUpdated)
+				.ToArray();
+			foreach (var competitionTarget in targetsToAnnotate)
+			{
+				competitionTarget.LooseLimits(looseByPercent);
+			}
+
+			AnnotateSourceHelper.TryAnnotateBenchmarkFiles(
+			   targetsToAnnotate, warnings, logger);
+		}
+
+		private void ExportAnnotationResultsCore(
+			CompetitionTargets competitionTargets, ILogger logger,
+			List<IWarning> warnings)
 		{
 			var targets = competitionTargets.Values
 				.Where(t => t.WasUpdated)
@@ -82,36 +124,31 @@ namespace BenchmarkDotNet.Analysers
 				return;
 			}
 
-			var xDoc = AnnotateSourceHelper.CreateXmlAnnotationDoc(true);
+			var xDoc = XmlAnnotations.CreateEmptyResourceDoc(true);
 			foreach (var competitionTarget in targets)
 			{
-				AnnotateSourceHelper.UpdateXmlAnnotation(competitionTarget, xDoc);
+				XmlAnnotations.SaveCompetitionTarget(competitionTarget, xDoc);
 			}
 
-			logger.WriteLineInfo(CompetitionLimitConstants.LogAnnotationStart);
-
-			var tmp = new StringBuilder();
-			var writerSettings = AnnotateSourceHelper.GetXmlWriterSettings();
-			using (var writer = XmlWriter.Create(tmp, writerSettings))
-			{
-				xDoc.Save(writer);
-			}
+			logger.WriteLineInfo(XmlAnnotations.LogAnnotationStart);
+			var tmp = XmlAnnotations.SaveToString(xDoc);
 			logger.WriteLineInfo(tmp.ToString());
 
-			logger.WriteLineInfo(CompetitionLimitConstants.LogAnnotationEnd);
+			logger.WriteLineInfo(XmlAnnotations.LogAnnotationEnd);
 		}
 
-		private static CompetitionTarget[] GetTargetsToAnnotate(
+		private static bool MergeTargetsToAnnotate(
 			Summary summary, CompetitionTargets competitionTargets)
 		{
-			var fixedMinTargets = new HashSet<CompetitionTarget>();
-			var fixedMaxTargets = new HashSet<CompetitionTarget>();
-			var newTargets = new Dictionary<Target, CompetitionTarget>();
+			bool result = false;
 
 			foreach (var benchGroup in summary.SameConditionBenchmarks())
 			{
 				foreach (var benchmark in benchGroup)
 				{
+					if (benchmark.Target.Baseline)
+						continue;
+
 					CompetitionTarget competitionTarget;
 					if (!competitionTargets.TryGetValue(benchmark.Target.Method, out competitionTarget))
 						continue;
@@ -130,39 +167,12 @@ namespace BenchmarkDotNet.Analysers
 						maxRatio = temp;
 					}
 
-					CompetitionTarget newTarget;
-					if (!newTargets.TryGetValue(competitionTarget.Target, out newTarget))
-					{
-						newTarget = competitionTarget.Clone();
-					}
-
-					if (newTarget.UnionWithMin(minRatio.Value))
-					{
-						fixedMinTargets.Add(newTarget);
-						newTargets[newTarget.Target] = newTarget;
-					}
-					if (newTarget.UnionWithMax(maxRatio.Value))
-					{
-						fixedMaxTargets.Add(newTarget);
-						newTargets[newTarget.Target] = newTarget;
-					}
+					var limit = new CompetitionLimit(minRatio.Value, maxRatio.Value);
+					result |= competitionTarget.MergeWith(limit);
 				}
 			}
 
-			foreach (var competitionTarget in fixedMinTargets)
-			{
-				// min = 0.95x;
-				competitionTarget.UnionWithMin(
-					Math.Floor(competitionTarget.Min * 95) / 100);
-			}
-			foreach (var competitionTarget in fixedMaxTargets)
-			{
-				// max = 1.05x;
-				competitionTarget.UnionWithMax(
-					Math.Ceiling(competitionTarget.Max * 105) / 100);
-			}
-
-			return newTargets.Values.ToArray();
+			return result;
 		}
 	}
 }

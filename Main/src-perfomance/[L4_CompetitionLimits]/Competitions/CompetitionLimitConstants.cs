@@ -11,16 +11,5 @@ namespace BenchmarkDotNet.Competitions
 
 		public const string RatioFormat = "0.00";
 		public const string ActualRatioFormat = "0.00#";
-
-		#region XML metadata constants
-		public const string LogAnnotationStart = LogImportantAreaStart + "------xml_annotation_begin------";
-		public const string LogAnnotationEnd = LogImportantAreaEnd + "------xml_annotation_end------";
-		public const string CompetitionBenchmarksRootNode = "CompetitionBenchmarks";
-		public const string CompetitionNode = "Competition";
-		public const string CandidateNode = "Candidate";
-		public const string TargetAttribute = "Target";
-		public const string MinRatioAttribute = "MinRatio";
-		public const string MaxRatioAttribute = "MaxRatio";
-		#endregion
 	}
 }
