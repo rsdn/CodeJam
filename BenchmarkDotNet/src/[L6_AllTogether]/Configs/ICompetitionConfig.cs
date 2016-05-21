@@ -7,7 +7,7 @@ namespace BenchmarkDotNet.Configs
 	public interface ICompetitionConfig : IConfig
 	{
 		// Runner config
-		bool DetailedLogging { get; }
+		bool DebugMode { get; }
 		bool DisableValidation { get; }
 		int MaxRunsAllowed { get; }
 

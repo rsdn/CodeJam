@@ -105,8 +105,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src-perfomance\CodeJam.BenchmarkDotNet.csproj">
-      <Project>{31fb3174-858c-4cf8-8d56-b74cb5294af0}</Project>
+    <ProjectReference Include="..\..\BenchmarkDotNet\src\CodeJam.BenchmarkDotNet.csproj">
+      <Project>{1d650545-a151-4211-8c29-c38a939403a6}</Project>
       <Name>CodeJam.BenchmarkDotNet</Name>
     </ProjectReference>
     <ProjectReference Include="..\src\CodeJam.Main.csproj">

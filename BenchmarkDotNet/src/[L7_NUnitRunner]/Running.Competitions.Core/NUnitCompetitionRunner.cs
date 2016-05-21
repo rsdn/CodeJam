@@ -32,7 +32,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 
 		#region Host-related logic
 		protected override HostLogger CreateHostLogger(ICompetitionConfig competitionConfig) => 
-			new NUnitHostLogger(competitionConfig.DetailedLogging);
+			new NUnitHostLogger(competitionConfig.DebugMode);
 
 		protected override void ReportHostLogger(HostLogger logger, Summary summary)
 		{

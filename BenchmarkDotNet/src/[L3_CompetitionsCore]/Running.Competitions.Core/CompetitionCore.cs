@@ -53,13 +53,12 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			}
 		}
 
-		private static void FillMessagesAfterLastRun(Summary summary)
+		private static void FillMessagesAfterLastRun(CompetitionState competitionState)
 		{
-			if (summary == null)
+			if (competitionState.LastRunSummary == null)
 				return;
 
-			var competitionState = RunState[summary];
-			foreach (var validationError in summary.ValidationErrors)
+			foreach (var validationError in competitionState.LastRunSummary.ValidationErrors)
 			{
 				var severity = validationError.IsCritical ? MessageSeverity.TestError : MessageSeverity.Warning;
 				var message = validationError.Benchmark == null
@@ -102,7 +101,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			{
 				competitionState.WriteMessage(MessageSource.BenchmarkRunner, MessageSeverity.ExecutionError, ex.ToString());
 			}
-			FillMessagesAfterLastRun(competitionState.LastRunSummary);
+			FillMessagesAfterLastRun(competitionState);
 
 			return competitionState;
 		}

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 
 using BenchmarkDotNet.Competitions;
+using BenchmarkDotNet.Portability;
 
 using JetBrains.Annotations;
 
@@ -9,7 +11,27 @@ namespace BenchmarkDotNet.Configs
 	[PublicAPI]
 	public class ManualCompetitionConfig : ManualConfig, ICompetitionConfig
 	{
-		public static ManualCompetitionConfig Union(ICompetitionConfig globalConfig, ICompetitionConfig localConfig)
+		public static readonly ICompetitionConfig Default = new ManualCompetitionConfig();
+
+		public static ICompetitionConfig GetFullConfig(
+			Type type,
+			ICompetitionConfig config)
+		{
+			config = config ?? Default;
+			if (type != null)
+			{
+				var typeAttributes = type.GetCustomAttributes(true).OfType<IConfigSource>();
+				var assemblyAttributes = type.Assembly().GetCustomAttributes<IConfigSource>(false);
+				var allAttributes = typeAttributes.Concat(assemblyAttributes);
+				foreach (var configSource in allAttributes)
+					config = Union(config, configSource.Config);
+			}
+			return config;
+		}
+
+
+		public static ManualCompetitionConfig Union(
+			ICompetitionConfig globalConfig, IConfig localConfig)
 		{
 			var competitionConfig = new ManualCompetitionConfig();
 			switch (localConfig.UnionRule)
@@ -35,24 +57,29 @@ namespace BenchmarkDotNet.Configs
 		{
 			if (config != null)
 			{
-				var competition = config as ICompetitionConfig;
-				if (competition != null)
-				{
-					Add(competition);
-				}
-				else
-				{
-					base.Add(config);
-				}
+				Add(config);
 			}
 		}
 
-		public void Add(ICompetitionConfig config)
+		// TODO: as override
+		public new void Add(IConfig config)
 		{
-			Add((IConfig)config);
+			var competitionConfig = config as ICompetitionConfig;
+			if (competitionConfig != null)
+			{
+				base.Add(config);
+				AddCompetitionProperties(competitionConfig);
+			}
+			else
+			{
+				base.Add(config);
+			}
+		}
 
+		private void AddCompetitionProperties(ICompetitionConfig config)
+		{
 			// Runner config
-			DetailedLogging = config.DetailedLogging;
+			DebugMode = config.DebugMode;
 			DisableValidation = config.DisableValidation;
 			MaxRunsAllowed = config.MaxRunsAllowed;
 
@@ -70,7 +97,7 @@ namespace BenchmarkDotNet.Configs
 		#endregion
 
 		// Runner config
-		public bool DetailedLogging { get; set; }
+		public bool DebugMode { get; set; }
 		public bool DisableValidation { get; set; }
 		public int MaxRunsAllowed { get; set; } = 10;
 

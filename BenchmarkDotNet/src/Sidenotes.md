@@ -1,6 +1,6 @@
 ﻿## TODO:
  * Design flaw? The run state SHOULD NOT be reused across multiple benchmarks.
-
+ * ManualConfig.Add to virtual
  * loose limits on each run, not on last?
  * Conditional logger (high priority only).
  * No rerun on validation failed.

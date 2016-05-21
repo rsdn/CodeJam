@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 
 using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running.Competitions.Core;
 
 using JetBrains.Annotations;
@@ -20,21 +20,25 @@ namespace BenchmarkDotNet.Competitions
 		/// <summary>
 		/// Runs the competition benchmark from a type of a callee
 		/// </summary>
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		public static void Run<T>(T thisReference) where T : class =>
+		public static Summary Run<T>() where T : class =>
+			RunCompetition(typeof(T), null);
+
+		/// <summary>
+		/// Runs the competition benchmark from a type of a callee
+		/// </summary>
+		public static Summary Run<T>(T thisReference) where T : class =>
 			RunCompetition(thisReference.GetType(), null);
 
 		/// <summary>
 		/// Runs the competition benchmark from a type of a callee
 		/// </summary>
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		public static void Run<T>(T thisReference, ICompetitionConfig config) where T : class =>
+		public static Summary Run<T>(T thisReference, ICompetitionConfig config) where T : class =>
 			RunCompetition(thisReference.GetType(), config);
 
 		/// <summary>
 		/// Runs the competition benchmark
 		/// </summary>
-		public static void Run<T>(ICompetitionConfig config) where T : class =>
+		public static Summary Run<T>(ICompetitionConfig config) where T : class =>
 			RunCompetition(typeof(T), config);
 		#endregion
 
@@ -42,7 +46,7 @@ namespace BenchmarkDotNet.Competitions
 		/// <summary>
 		/// Runs the competition benchmark
 		/// </summary>
-		public static void RunCompetition(
+		public static Summary RunCompetition(
 			Type benchmarkType, ICompetitionConfig config)
 		{
 			var currentDirectory = Environment.CurrentDirectory;
@@ -55,7 +59,7 @@ namespace BenchmarkDotNet.Competitions
 				}
 
 				var runner = new NUnitCompetitionRunner();
-				runner.RunCompetition(benchmarkType, config);
+				return runner.RunCompetition(benchmarkType, config);
 			}
 			finally
 			{

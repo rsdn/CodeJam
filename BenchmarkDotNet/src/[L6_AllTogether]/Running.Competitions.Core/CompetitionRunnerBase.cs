@@ -12,6 +12,7 @@ using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
+using BenchmarkDotNet.Portability;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running.Messages;
 using BenchmarkDotNet.Toolchains.InProcess;
@@ -32,11 +33,14 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 				: base(wrappedLogger, detailedLogging) { }
 		}
 
-		public void RunCompetition(Type benchmarkType, ICompetitionConfig competitionConfig)
+		// TODO: return CompetitionState instead?
+		public Summary RunCompetition(Type benchmarkType, ICompetitionConfig competitionConfig)
 		{
-			competitionConfig = competitionConfig ?? new ManualCompetitionConfig();
+			competitionConfig = ManualCompetitionConfig.GetFullConfig(
+				benchmarkType,
+				competitionConfig);
 
-			ValidateCompetitionSetup(benchmarkType);
+			ValidateCompetitionSetup(benchmarkType, competitionConfig);
 			OnBeforeRun(benchmarkType, competitionConfig);
 
 			var benchmarkConfig = CreateBenchmarkConfig(competitionConfig);
@@ -62,12 +66,17 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 				OnAfterRun(runSucceed, benchmarkConfig, summary);
 			}
 
-			ReportMessagesToUser(messages);
+			if (!competitionConfig.DebugMode)
+			{
+				ReportMessagesToUser(messages);
+			}
+
+			return summary;
 		}
 
-		private void ValidateCompetitionSetup(Type benchmarkType)
+		private void ValidateCompetitionSetup(Type benchmarkType, ICompetitionConfig competitionConfig)
 		{
-			if (!EnvironmentInfo.GetCurrent().HasAttachedDebugger)
+			if (!competitionConfig.DebugMode && !EnvironmentInfo.GetCurrent().HasAttachedDebugger)
 			{
 				var assembly = benchmarkType.Assembly;
 				if (assembly.IsDebugAssembly())
@@ -221,7 +230,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 				}
 			}
 
-			if (EnvironmentInfo.GetCurrent().HasAttachedDebugger)
+			if (competitionConfig.DebugMode || EnvironmentInfo.GetCurrent().HasAttachedDebugger)
 			{
 				result.RemoveAll(v => v is JitOptimizationsValidator);
 			}
