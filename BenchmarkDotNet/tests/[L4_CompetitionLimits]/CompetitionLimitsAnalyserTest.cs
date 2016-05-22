@@ -45,7 +45,7 @@ namespace CodeJam.BenchmarkDotNet
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
 
 			Interlocked.Exchange(ref _testCount, 0);
-			var summary = CompetitionBenchmarkRunner.Run<CompetitionLimitsXmlOkBenchmark>(config);
+			summary = CompetitionBenchmarkRunner.Run<CompetitionLimitsXmlOkBenchmark>(config);
 			Assert.AreEqual(_testCount, expectedRunCount);
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
 
@@ -83,14 +83,14 @@ namespace CodeJam.BenchmarkDotNet
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _testCount);
-				Thread.Sleep(10);
+				Thread.Sleep(30);
 			}
 
 			[CompetitionBenchmark(9, 11)]
 			public  void WithinLimits()
 			{
 				Interlocked.Increment(ref _testCount);
-				Thread.Sleep(100);
+				Thread.Sleep(300);
 			}
 		}
 
@@ -101,14 +101,14 @@ namespace CodeJam.BenchmarkDotNet
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _testCount);
-				Thread.Sleep(10);
+				Thread.Sleep(30);
 			}
 
 			[CompetitionBenchmark]
 			public void WithinLimits()
 			{
 				Interlocked.Increment(ref _testCount);
-				Thread.Sleep(200);
+				Thread.Sleep(600);
 			}
 		}
 
@@ -118,14 +118,14 @@ namespace CodeJam.BenchmarkDotNet
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _testCount);
-				Thread.Sleep(10);
+				Thread.Sleep(30);
 			}
 
 			[CompetitionBenchmark(1, 1)]
 			public void OutOfLimits()
 			{
 				Interlocked.Increment(ref _testCount);
-				Thread.Sleep(100);
+				Thread.Sleep(300);
 			}
 		}
 		#endregion
