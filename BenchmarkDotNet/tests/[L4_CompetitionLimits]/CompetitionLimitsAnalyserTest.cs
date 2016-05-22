@@ -83,14 +83,14 @@ namespace CodeJam.BenchmarkDotNet
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _testCount);
-				Thread.Sleep(30);
+				Thread.Sleep(20);
 			}
 
-			[CompetitionBenchmark(9, 11)]
+			[CompetitionBenchmark(5, 15)]
 			public  void WithinLimits()
 			{
 				Interlocked.Increment(ref _testCount);
-				Thread.Sleep(300);
+				Thread.Sleep(200);
 			}
 		}
 
@@ -101,14 +101,14 @@ namespace CodeJam.BenchmarkDotNet
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _testCount);
-				Thread.Sleep(30);
+				Thread.Sleep(20);
 			}
 
 			[CompetitionBenchmark]
 			public void WithinLimits()
 			{
 				Interlocked.Increment(ref _testCount);
-				Thread.Sleep(600);
+				Thread.Sleep(400);
 			}
 		}
 
@@ -118,14 +118,14 @@ namespace CodeJam.BenchmarkDotNet
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _testCount);
-				Thread.Sleep(30);
+				Thread.Sleep(20);
 			}
 
 			[CompetitionBenchmark(1, 1)]
 			public void OutOfLimits()
 			{
 				Interlocked.Increment(ref _testCount);
-				Thread.Sleep(300);
+				Thread.Sleep(200);
 			}
 		}
 		#endregion
