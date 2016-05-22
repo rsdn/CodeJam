@@ -1,7 +1,5 @@
 ﻿using System;
 
-using BenchmarkDotNet.Competitions;
-
 namespace BenchmarkDotNet.Configs
 {
 	public interface ICompetitionConfig : IConfig
@@ -13,7 +11,6 @@ namespace BenchmarkDotNet.Configs
 
 		// Validation config
 		bool AllowSlowBenchmarks { get; }
-		CompetitionLimit DefaultCompetitionLimit { get; }
 		bool EnableReruns { get; }
 
 		// Annotation config

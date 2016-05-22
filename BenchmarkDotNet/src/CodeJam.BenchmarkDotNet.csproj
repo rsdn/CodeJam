@@ -97,7 +97,6 @@
     <Compile Include="[L4_CompetitionLimits]\Competitions\[Attributes]\CompetitionBaselineAttribute.cs" />
     <Compile Include="[L4_CompetitionLimits]\Competitions\[Attributes]\CompetitionBenchmarkAttribute.cs" />
     <Compile Include="[L4_CompetitionLimits]\Competitions\[Attributes]\CompetitionMetadataAttribute.cs" />
-    <Compile Include="[L4_CompetitionLimits]\Running.Competitions.SourceAnnotations\CompetitionTargetHelpers.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.Competitions.SourceAnnotations\AttributeAnnotations.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.Competitions.SourceAnnotations\XmlAnnotations.cs" />
     <Compile Include="[L5_Annotations]\Analysers\CompetitionLimitsAnnotateAnalyser.cs" />

@@ -22,7 +22,6 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			return targetResourceName;
 		}
 
-
 		public static CompetitionTarget ParseCompetitionTarget(
 			Target target, CompetitionBenchmarkAttribute competitionAttribute) =>
 				new CompetitionTarget(

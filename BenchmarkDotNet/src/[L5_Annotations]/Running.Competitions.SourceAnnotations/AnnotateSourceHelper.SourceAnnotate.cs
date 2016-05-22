@@ -2,8 +2,6 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-using BenchmarkDotNet.Competitions;
-
 namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 {
 	internal static partial class AnnotateSourceHelper

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -16,10 +17,10 @@ using BenchmarkDotNet.Running.Messages;
 
 using JetBrains.Annotations;
 
-using static BenchmarkDotNet.Competitions.CompetitionLimitConstants;
-
 namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 {
+	// TODO: needs code review
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	internal static class XmlAnnotations
 	{
 		private class UseFullNameAnnotation
@@ -29,8 +30,8 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 		}
 
 		#region XML metadata constants
-		public const string LogAnnotationStart = HostLogger.LogImportantAreaStart + "------xml_annotation_begin------";
-		public const string LogAnnotationEnd = HostLogger.LogImportantAreaEnd + "------xml_annotation_end------";
+		private const string LogAnnotationStart = HostLogger.LogImportantAreaStart + "------xml_annotation_begin------";
+		private const string LogAnnotationEnd = HostLogger.LogImportantAreaEnd + "------xml_annotation_end------";
 
 		private const string CompetitionBenchmarksRootNode = "CompetitionBenchmarks";
 		private const string CompetitionNode = "Competition";
@@ -131,7 +132,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 				{
 					if (buffer.Length > 0)
 					{
-						result.Add(Parse(buffer, true));
+						result.Add(Parse(buffer.ToString(), true));
 					}
 					buffer.Length = 0;
 					append = false;
@@ -143,26 +144,26 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			}
 			if (buffer.Length > 0)
 			{
-				result.Add(Parse(buffer, true));
+				result.Add(Parse(buffer.ToString(), true));
 			}
 
 			return result.ToArray();
 		}
 
-		private static XDocument Parse(StringBuilder buffer, bool competitionFullName)
+		private static XDocument Parse(string xDocText, bool useFullCompetitionName)
 		{
-			var result = XDocument.Parse(buffer.ToString());
-			if (competitionFullName)
+			var result = XDocument.Parse(xDocText);
+			if (useFullCompetitionName)
 			{
 				result.AddAnnotation(UseFullNameAnnotation.Instance);
 			}
 			return result;
 		}
 
-		public static XDocument CreateEmptyResourceDoc(bool competitionFullName)
+		private static XDocument CreateEmptyResourceDoc(bool useFullCompetitionName)
 		{
 			var result = new XDocument(new XElement(CompetitionBenchmarksRootNode));
-			if (competitionFullName)
+			if (useFullCompetitionName)
 			{
 				result.AddAnnotation(UseFullNameAnnotation.Instance);
 			}
@@ -229,11 +230,11 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			// Only one attribute set
 			if (minText == null && maxText != null)
 			{
-				min = IgnoreValue;
+				min = CompetitionLimitConstants.IgnoreValue;
 			}
 			else if (maxText == null && minText != null)
 			{
-				max = IgnoreValue;
+				max = CompetitionLimitConstants.IgnoreValue;
 			}
 
 			return new CompetitionTarget(target, min, max, true);
@@ -266,7 +267,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 				NewLineChars = "\r\n"
 			};
 
-		public static StringBuilder SaveToString(XDocument resourceDoc)
+		private static StringBuilder SaveToString(XDocument resourceDoc)
 		{
 			var tmp = new StringWriter();
 			SaveTo(tmp, resourceDoc);
@@ -279,6 +280,35 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			using (var writer = XmlWriter.Create(output, writerSettings))
 			{
 				resourceDoc.Save(writer);
+			}
+		}
+
+		public static void LogAdjustedCompetitionTargets(
+			IEnumerable<CompetitionTarget> competitionTargets,
+			ILogger logger)
+		{
+
+			bool updated = false;
+			var xDoc = CreateEmptyResourceDoc(true);
+			foreach (var competitionTarget in competitionTargets)
+			{
+				SaveCompetitionTarget(competitionTarget, xDoc);
+				updated = true;
+			}
+
+			if (updated)
+			{
+				logger.WriteLineInfo(LogAnnotationStart);
+
+				var tmp = SaveToString(xDoc);
+				logger.WriteLineInfo(tmp.ToString());
+
+				logger.WriteLineInfo(LogAnnotationEnd);
+			}
+			else
+			{
+				logger.WriteLineInfo(
+					"// No competition annotations were updated, nothing to export.");
 			}
 		}
 	}

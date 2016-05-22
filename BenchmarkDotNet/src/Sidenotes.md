@@ -1,13 +1,17 @@
-﻿## TODO:
- * Design flaw? The run state SHOULD NOT be reused across multiple benchmarks.
- * ManualConfig.Add to virtual
- * loose limits on each run, not on last?
- * Conditional logger (high priority only).
+﻿## TODO, Bench.Net:
+* ValidationError - make public, https://github.com/PerfDotNet/BenchmarkDotNet/issues/183
+* ManualConfig.Add to virtual?
+* remove calls instance.setupAction(), instance.targetAction() from BenchmarkProgram.txt
+  https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
+
+## TODO:
+ * Naming: Annotate <> Adjust?
+ * ability to pass ICompetitionConfig via attrubute?
+ * validate summary after run
+ * Design flaw? The run state DOES NOT SUPPORT reuse across multiple benchmarks.
  * No rerun on validation failed.
- * All xml annotation methods (read & update) into single class.
- * Do we need it? Annotate sources only on last run. Use competitionTarget.WasUpdated property.
  * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion
- * Memory limits + analyser
+ * Memory limits + diagnoser
  * Fix diagnoser support in in-process toolchain
  * validate culture usage
  * validate null values on percentiles

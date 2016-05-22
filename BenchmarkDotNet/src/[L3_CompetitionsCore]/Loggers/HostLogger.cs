@@ -62,6 +62,7 @@ namespace BenchmarkDotNet.Loggers
 			{
 				shouldWrite = true;
 			}
+
 			return shouldWrite;
 		}
 

@@ -12,7 +12,6 @@ using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
-using BenchmarkDotNet.Portability;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running.Messages;
 using BenchmarkDotNet.Toolchains.InProcess;
@@ -36,9 +35,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 		// TODO: return CompetitionState instead?
 		public Summary RunCompetition(Type benchmarkType, ICompetitionConfig competitionConfig)
 		{
-			competitionConfig = ManualCompetitionConfig.GetFullConfig(
-				benchmarkType,
-				competitionConfig);
+			competitionConfig = competitionConfig ?? ManualCompetitionConfig.Default;
 
 			ValidateCompetitionSetup(benchmarkType, competitionConfig);
 			OnBeforeRun(benchmarkType, competitionConfig);
@@ -256,7 +253,6 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 				var annotator = new CompetitionLimitsAnnotateAnalyser
 				{
 					AllowSlowBenchmarks = competitionConfig.AllowSlowBenchmarks,
-					DefaultCompetitionLimit = competitionConfig.DefaultCompetitionLimit,
 
 					AnnotateOnRun = competitionConfig.AnnotateOnRun,
 					IgnoreExistingAnnotations = competitionConfig.IgnoreExistingAnnotations,

@@ -97,7 +97,9 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 		public void WriteMessage(
 			MessageSource messageSource, MessageSeverity messageSeverity,
 			string messageFormat, params object[] args) =>
-				WriteMessage(messageSource, messageSeverity, string.Format(messageFormat, args));
+				WriteMessage(
+					messageSource, messageSeverity,
+					string.Format(messageFormat, args));
 		#endregion
 	}
 }

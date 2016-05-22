@@ -31,8 +31,6 @@ namespace BenchmarkDotNet.Analysers
 		public bool AllowSlowBenchmarks { get; set; }
 		public bool IgnoreExistingAnnotations { get; set; }
 		public int MaxRuns { get; set; }
-
-		public CompetitionLimit DefaultCompetitionLimit { get; set; }
 		#endregion
 
 		public IEnumerable<IWarning> Analyse(Summary summary)
@@ -40,14 +38,14 @@ namespace BenchmarkDotNet.Analysers
 			var warnings = new List<IWarning>();
 			ValidatePreconditions(summary, warnings);
 
+			var competitionTargets = TargetsSlot[summary];
+			if (warnings.Count == 0 && competitionTargets.Count == 0)
+			{
+				InitCompetitionTargets(competitionTargets, summary, warnings);
+			}
+
 			if (warnings.Count == 0)
 			{
-				var competitionTargets = TargetsSlot[summary];
-				if (competitionTargets.Count == 0)
-				{
-					InitCompetitionTargets(competitionTargets, summary, warnings);
-				}
-
 				ValidateSummary(summary, competitionTargets, warnings);
 
 				ValidatePostconditions(summary, warnings);
@@ -67,10 +65,12 @@ namespace BenchmarkDotNet.Analysers
 			competitionTargets.Clear();
 
 			var resourceCache = new Dictionary<string, XDocument>();
+			bool hasBaseline = false;
 			foreach (var target in summary.GetTargets())
 			{
 				if (warnings.Count > 0)
 					break;
+				hasBaseline |= target.Baseline;
 
 				var competitionAttribute = target.Method.GetCustomAttribute<CompetitionBenchmarkAttribute>();
 				if (competitionAttribute != null &&
@@ -84,6 +84,12 @@ namespace BenchmarkDotNet.Analysers
 					competitionTargets.Add(target.Method, competitionTarget);
 				}
 			}
+
+			if (competitionTargets.Count > 0 && !hasBaseline)
+			{
+				warnings.AddWarning(
+					MessageSeverity.SetupError, "The competition has no baseline", null);
+			}
 		}
 
 		private CompetitionTarget GetCompetitionTarget(
@@ -91,13 +97,13 @@ namespace BenchmarkDotNet.Analysers
 			IDictionary<string, XDocument> resourceCache,
 			List<IWarning> warnings)
 		{
-			var fallbackLimit = DefaultCompetitionLimit ?? CompetitionLimit.Empty;
+			var emptyLimit = CompetitionLimit.Empty;
 
 			var targetResourceName = AttributeAnnotations.TryGetTargetResourceName(target);
 			if (targetResourceName == null)
 			{
 				if (IgnoreExistingAnnotations)
-					return new CompetitionTarget(target, fallbackLimit, false);
+					return new CompetitionTarget(target, emptyLimit, false);
 
 				return AttributeAnnotations.ParseCompetitionTarget(target, competitionAttribute);
 			}
@@ -111,11 +117,11 @@ namespace BenchmarkDotNet.Analysers
 			}
 
 			if (resourceDoc == null || IgnoreExistingAnnotations)
-				return new CompetitionTarget(target, fallbackLimit, true);
+				return new CompetitionTarget(target, emptyLimit, true);
 
 			var result = XmlAnnotations.TryParseCompetitionTarget(target, resourceDoc);
 			return result ??
-				new CompetitionTarget(target, fallbackLimit, true);
+				new CompetitionTarget(target, emptyLimit, true);
 		}
 		#endregion
 

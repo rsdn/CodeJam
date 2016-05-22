@@ -125,6 +125,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 				logger.WriteLineInfo(runMessage);
 				logger.WriteLine();
 
+				// TODO: validate summary after run.
 				// Running the benchmark
 				var summary = BenchmarkRunner.Run(benchmarkType, competitionConfig);
 				competitionState.RunCompleted(summary);

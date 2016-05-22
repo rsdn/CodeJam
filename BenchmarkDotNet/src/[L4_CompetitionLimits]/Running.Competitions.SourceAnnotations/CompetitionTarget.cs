@@ -1,7 +1,6 @@
 ﻿using System;
 
 using BenchmarkDotNet.Competitions;
-using BenchmarkDotNet.Helpers;
 
 namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 {
@@ -38,7 +37,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 		#region Properties
 		public Target Target { get; }
 		public bool UsesResourceAnnotation { get; }
-		public bool WasUpdated => _changedProperties != CompetitionTargetProperties.None;
+		public bool HasUnsavedChanges => _changedProperties != CompetitionTargetProperties.None;
 
 		public string CompetitionFullName => Target.Type.FullName + ", " + Target.Type.Assembly.GetName().Name;
 		public string CompetitionName => Target.Type.Name;
@@ -50,12 +49,26 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 		private void MarkAsChanged(CompetitionTargetProperties property) =>
 			_changedProperties |= property;
 
-		public bool UnionWithMin(double newMin)
+		private bool IsLessThanCore(double current, double newValue)
 		{
-			if (IgnoreMin || newMin <= 0 || double.IsInfinity(newMin))
+			if (current < 0 || newValue <= 0 || double.IsInfinity(newValue))
 				return false;
 
-			if (MinIsEmpty || newMin < Min)
+			// ReSharper disable once CompareOfFloatsByEqualityOperator
+			return current == 0 || current < newValue;
+		}
+		private bool IsGreaterThanCore(double current, double newValue)
+		{
+			if (current < 0 || newValue <= 0 || double.IsInfinity(newValue))
+				return false;
+
+			// ReSharper disable once CompareOfFloatsByEqualityOperator
+			return current == 0 || current > newValue;
+		}
+
+		private bool UnionWithMin(double newMin)
+		{
+			if (IsGreaterThanCore(Min, newMin))
 			{
 				Min = newMin;
 				MarkAsChanged(CompetitionTargetProperties.MinRatio);
@@ -64,13 +77,9 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 
 			return false;
 		}
-
-		public bool UnionWithMax(double newMax)
+		private bool UnionWithMax(double newMax)
 		{
-			if (IgnoreMax || newMax <= 0 || double.IsInfinity(newMax))
-				return false;
-
-			if (MaxIsEmpty || newMax > Max)
+			if (IsLessThanCore(Max, newMax))
 			{
 				Max = newMax;
 				MarkAsChanged(CompetitionTargetProperties.MaxRatio);
@@ -78,6 +87,37 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			}
 
 			return false;
+		}
+
+		public bool UnionWith(CompetitionLimit newProperties)
+		{
+			bool result = false;
+			result |= UnionWithMin(newProperties.Min);
+			result |= UnionWithMax(newProperties.Max);
+			return result;
+		}
+
+		// TODO:  propertiesToLoose
+		public void LooseLimitsAndMarkAsSaved(int percent)
+		{
+			if (percent < 0 || percent >= 100)
+			{
+				throw new ArgumentOutOfRangeException(
+					nameof(percent), percent,
+					$"The {nameof(percent)} should be in range (0..100).");
+			}
+
+			if (IsChanged(CompetitionTargetProperties.MinRatio))
+			{
+				var newValue = Math.Floor(Min * (100 - percent)) / 100;
+				UnionWithMin(newValue);
+			}
+			if (IsChanged(CompetitionTargetProperties.MaxRatio))
+			{
+				var newValue = Math.Ceiling(Max * (100 + percent)) / 100;
+				UnionWithMax(newValue);
+			}
+			_changedProperties = CompetitionTargetProperties.None;
 		}
 	}
 }

@@ -125,8 +125,6 @@ namespace BenchmarkDotNet.Toolchains
 			{
 				Console.SetOut(output);
 				SetupProperties(instance, benchmark);
-				setupAction();
-				runCallback();
 
 				output.WriteLine();
 				foreach (var infoLine in EnvironmentInfo.GetCurrent().ToFormattedString())

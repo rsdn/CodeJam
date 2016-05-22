@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Linq;
-
-using BenchmarkDotNet.Competitions;
-using BenchmarkDotNet.Portability;
 
 using JetBrains.Annotations;
 
@@ -12,23 +8,6 @@ namespace BenchmarkDotNet.Configs
 	public class ManualCompetitionConfig : ManualConfig, ICompetitionConfig
 	{
 		public static readonly ICompetitionConfig Default = new ManualCompetitionConfig();
-
-		public static ICompetitionConfig GetFullConfig(
-			Type type,
-			ICompetitionConfig config)
-		{
-			config = config ?? Default;
-			if (type != null)
-			{
-				var typeAttributes = type.GetCustomAttributes(true).OfType<IConfigSource>();
-				var assemblyAttributes = type.Assembly().GetCustomAttributes<IConfigSource>(false);
-				var allAttributes = typeAttributes.Concat(assemblyAttributes);
-				foreach (var configSource in allAttributes)
-					config = Union(config, configSource.Config);
-			}
-			return config;
-		}
-
 
 		public static ManualCompetitionConfig Union(
 			ICompetitionConfig globalConfig, IConfig localConfig)
@@ -85,7 +64,6 @@ namespace BenchmarkDotNet.Configs
 
 			// Validation config
 			AllowSlowBenchmarks = config.AllowSlowBenchmarks;
-			DefaultCompetitionLimit = config.DefaultCompetitionLimit;
 			EnableReruns = config.EnableReruns;
 
 			// Annotation config
@@ -103,7 +81,6 @@ namespace BenchmarkDotNet.Configs
 
 		// Validation config
 		public bool AllowSlowBenchmarks { get; set; }
-		public CompetitionLimit DefaultCompetitionLimit { get; set; }
 		public bool EnableReruns { get; set; }
 
 		// Annotation config
