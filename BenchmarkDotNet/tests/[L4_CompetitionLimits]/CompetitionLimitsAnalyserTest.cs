@@ -23,26 +23,26 @@ namespace CodeJam.BenchmarkDotNet
 			var config = PerfTestConfig.NoWarmup;
 			var expectedRunCount = 2 * PerfTestConfig.ExpectedRunCountNoWarmup;
 
-			//Interlocked.Exchange(ref _testCount, 0);
-			//var summary = CompetitionBenchmarkRunner.Run<EmptyBenchmark>(config);
-			//Assert.AreEqual(_testCount, 0);
-			//Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			Interlocked.Exchange(ref _testCount, 0);
+			var summary = CompetitionBenchmarkRunner.Run<EmptyBenchmark>(config);
+			Assert.AreEqual(_testCount, 0);
+			Assert.AreEqual(summary.ValidationErrors.Length, 0);
 
-			//Interlocked.Exchange(ref _testCount, 0);
-			//summary = CompetitionBenchmarkRunner.Run<NoBaselineOkBenchmark>(config);
-			//Assert.AreEqual(_testCount, expectedRunCount);
-			//Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			Interlocked.Exchange(ref _testCount, 0);
+			summary = CompetitionBenchmarkRunner.Run<NoBaselineOkBenchmark>(config);
+			Assert.AreEqual(_testCount, expectedRunCount);
+			Assert.AreEqual(summary.ValidationErrors.Length, 0);
 
-			//// TODO: check analyser warnings
-			//Interlocked.Exchange(ref _testCount, 0);
-			//summary = CompetitionBenchmarkRunner.Run<NoBaselineFailBenchmark>(config);
-			//Assert.AreEqual(_testCount, expectedRunCount);
-			//Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			// TODO: check analyser warnings
+			Interlocked.Exchange(ref _testCount, 0);
+			summary = CompetitionBenchmarkRunner.Run<NoBaselineFailBenchmark>(config);
+			Assert.AreEqual(_testCount, expectedRunCount);
+			Assert.AreEqual(summary.ValidationErrors.Length, 0);
 
-			//Interlocked.Exchange(ref _testCount, 0);
-			//summary = CompetitionBenchmarkRunner.Run<CompetitionLimitsOkBenchmark>(config);
-			//Assert.AreEqual(_testCount, expectedRunCount);
-			//Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			Interlocked.Exchange(ref _testCount, 0);
+			summary = CompetitionBenchmarkRunner.Run<CompetitionLimitsOkBenchmark>(config);
+			Assert.AreEqual(_testCount, expectedRunCount);
+			Assert.AreEqual(summary.ValidationErrors.Length, 0);
 
 			Interlocked.Exchange(ref _testCount, 0);
 			var summary = CompetitionBenchmarkRunner.Run<CompetitionLimitsXmlOkBenchmark>(config);
