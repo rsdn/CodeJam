@@ -121,7 +121,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			var result = new List<XDocument>();
 
 			var buffer = new StringBuilder();
-			bool append = false;
+			var append = false;
 			foreach (var logLine in File.ReadLines(previousLogUri))
 			{
 				if (logLine.StartsWith(LogAnnotationStart, StringComparison.OrdinalIgnoreCase))
@@ -288,7 +288,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			ILogger logger)
 		{
 
-			bool updated = false;
+			var updated = false;
 			var xDoc = CreateEmptyResourceDoc(true);
 			foreach (var competitionTarget in competitionTargets)
 			{

@@ -21,7 +21,7 @@ namespace CodeJam.BenchmarkDotNet
 		public static void TestCompetitionLimitsAnalyser()
 		{
 			var config = PerfTestConfig.NoWarmup;
-			var expectedRunCount = 2 * PerfTestConfig.ExpectedRunCountNoWarmup;
+			const int expectedRunCount = 2 * PerfTestConfig.ExpectedRunCountNoWarmup;
 
 			Interlocked.Exchange(ref _testCount, 0);
 			var summary = CompetitionBenchmarkRunner.Run<EmptyBenchmark>(config);

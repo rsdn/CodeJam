@@ -1,6 +1,5 @@
 ﻿using System;
 
-using BenchmarkDotNet.Competitions;
 using BenchmarkDotNet.Configs;
 
 using JetBrains.Annotations;

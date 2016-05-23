@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 
-using BenchmarkDotNet.Helpers;
-
 using JetBrains.Annotations;
 
 namespace CodeJam

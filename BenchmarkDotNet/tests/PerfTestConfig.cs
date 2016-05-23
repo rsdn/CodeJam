@@ -23,7 +23,7 @@ namespace CodeJam.BenchmarkDotNet
 
 		private PerfTestConfig(Platform platform, bool noWarmup)
 		{
-			var job = new Job()
+			var job = new Job
 			{
 				LaunchCount = 1,
 				Mode = Mode.SingleRun,

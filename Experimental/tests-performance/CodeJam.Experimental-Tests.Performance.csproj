@@ -72,7 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\BenchmarkDotNet\src\CodeJam.BenchmarkDotNet.csproj">
-      <Project>{1D650545-A151-4211-8C29-C38A939403A6}</Project>
+      <Project>{1d650545-a151-4211-8c29-c38a939403a6}</Project>
       <Name>CodeJam.BenchmarkDotNet</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj">

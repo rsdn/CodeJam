@@ -91,7 +91,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 
 		public bool UnionWith(CompetitionLimit newProperties)
 		{
-			bool result = false;
+			var result = false;
 			result |= UnionWithMin(newProperties.Min);
 			result |= UnionWithMax(newProperties.Max);
 			return result;

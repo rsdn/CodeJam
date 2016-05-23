@@ -1,7 +1,5 @@
 ﻿using System;
 
-using static BenchmarkDotNet.Loggers.HostLogger;
-
 namespace BenchmarkDotNet.Competitions
 {
 	internal static class CompetitionLimitConstants
