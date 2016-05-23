@@ -72,10 +72,10 @@ namespace CodeJam
 			{
 				var some = this as Some;
 
-				if (some != null)
-					return some.Value;
+				if (ReferenceEquals(some, null))
+					throw CodeExceptions.InvalidOperation("Option has no value.");
 
-				throw CodeExceptions.InvalidOperation("Option has no value.");
+				return some.Value;
 			}
 		}
 
@@ -136,10 +136,10 @@ namespace CodeJam
 			var thisSome  = this as Some;
 			var otherSome = other as Some;
 
-			if (thisSome == null)
-				return otherSome == null;
+			if (ReferenceEquals(thisSome, null))
+				return ReferenceEquals(otherSome, null);
 
-			if (otherSome == null)
+			if (ReferenceEquals(otherSome, null))
 				return false;
 
 			return EqualityComparer<T>.Default.Equals(Value, other.Value);
