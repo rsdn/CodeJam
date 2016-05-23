@@ -33,7 +33,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNull<T>(
-			[CanBeNull, NoEnumeration] T arg,
+			[CanBeNull, NoEnumeration, AssertionCondition(AssertionConditionType.IS_NOT_NULL)] T arg,
 			[NotNull, InvokerParameterName] string argName) where T : class
 		{
 			if (arg == null)
@@ -47,7 +47,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNull<T>(
-			[CanBeNull] T? arg,
+			[CanBeNull, AssertionCondition(AssertionConditionType.IS_NOT_NULL)] T? arg,
 			[NotNull, InvokerParameterName] string argName) where T : struct
 		{
 			if (arg == null)
@@ -87,7 +87,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void AssertArgument(
-			bool condition,
+			[AssertionCondition(AssertionConditionType.IS_TRUE)] bool condition,
 			[NotNull, InvokerParameterName] string argName,
 			[NotNull] string message)
 		{
@@ -103,7 +103,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		public static void AssertArgument(
-			bool condition,
+			[AssertionCondition(AssertionConditionType.IS_TRUE)] bool condition,
 			[NotNull, InvokerParameterName] string argName,
 			[NotNull] string messageFormat,
 			[CanBeNull] params object[] args)
@@ -228,7 +228,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void AssertState(
-			bool condition,
+			[AssertionCondition(AssertionConditionType.IS_TRUE)] bool condition,
 			[NotNull] string message)
 		{
 			if (!condition)
@@ -242,7 +242,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		public static void AssertState(
-			bool condition,
+			[AssertionCondition(AssertionConditionType.IS_TRUE)] bool condition,
 			[NotNull] string messageFormat,
 			[CanBeNull] params object[] args)
 		{

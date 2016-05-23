@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
@@ -77,7 +76,7 @@ namespace CodeJam.RangesV2Alternatives
 		public bool IsEmpty => From.IsEmpty;
 		public bool IsNotEmpty => From.IsNotEmpty;
 
-		public RangeStub<T> CreateRange(RangeBoundaryFrom<T> @from, RangeBoundaryTo<T> to) =>
+		public RangeStub<T> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new RangeStub<T>(from, to);
 
 		public RangeStub<T> TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
@@ -122,7 +121,7 @@ namespace CodeJam.RangesV2Alternatives
 		public bool IsEmpty => From.IsEmpty;
 		public bool IsNotEmpty => From.IsNotEmpty;
 
-		public RangeStubCompact<T> CreateRange(RangeBoundaryFrom<T> @from, RangeBoundaryTo<T> to) =>
+		public RangeStubCompact<T> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new RangeStubCompact<T>(from, to);
 
 		public RangeStubCompact<T> TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
@@ -154,7 +153,7 @@ namespace CodeJam.RangesV2Alternatives
 		public bool IsEmpty => From.IsEmpty;
 		public bool IsNotEmpty => From.IsNotEmpty;
 
-		public RangeStub<T, TKey> CreateRange(RangeBoundaryFrom<T> @from, RangeBoundaryTo<T> to) =>
+		public RangeStub<T, TKey> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new RangeStub<T, TKey>(from, to, Key);
 
 		public RangeStub<T, TKey> TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>

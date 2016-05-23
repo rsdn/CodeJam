@@ -71,6 +71,10 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BenchmarkDotNet\src\CodeJam.BenchmarkDotNet.csproj">
+      <Project>{1d650545-a151-4211-8c29-c38a939403a6}</Project>
+      <Name>CodeJam.BenchmarkDotNet</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj">
       <Project>{2f2046cc-fb47-4318-b335-5a82b04b6c40}</Project>
       <Name>CodeJam.Main</Name>

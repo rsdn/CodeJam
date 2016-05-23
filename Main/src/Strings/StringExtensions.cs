@@ -172,6 +172,15 @@ namespace CodeJam.Strings
 		/// Returns size in bytes string representation.
 		/// </summary>
 		/// <param name="value">Value to represent.</param>
+		/// <returns>Value as size in bytes</returns>
+		[NotNull]
+		[Pure]
+		public static string ToByteSizeString(this int value) => ToByteSizeString(value, null);
+
+		/// <summary>
+		/// Returns size in bytes string representation.
+		/// </summary>
+		/// <param name="value">Value to represent.</param>
 		/// <param name="provider">Format provider for number part of value</param>
 		/// <returns>Value as size in bytes</returns>
 		[NotNull]
@@ -194,6 +203,17 @@ namespace CodeJam.Strings
 
 			return string.Format(provider, "{0:#.##} {1}", d, _sizeSuffixes[i]);
 		}
+
+		/// <summary>
+		/// Returns size in bytes string representation.
+		/// </summary>
+		/// <param name="value">Value to represent.</param>
+		/// <param name="provider">Format provider for number part of value</param>
+		/// <returns>Value as size in bytes</returns>
+		[NotNull]
+		[Pure]
+		public static string ToByteSizeString(this int value, [CanBeNull] IFormatProvider provider) =>
+			ToByteSizeString((long)value, provider);
 
 		/// <summary>
 		/// Splits <paramref name="source"/> and returns whitespace trimmed parts.

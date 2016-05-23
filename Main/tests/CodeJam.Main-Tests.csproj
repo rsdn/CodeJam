@@ -61,6 +61,7 @@
       <DependentUpon>OperatorsTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Assertions\CodeTests.cs" />
+    <Compile Include="Collections\EnumerableExtensionTests.TopoSort.cs" />
     <Compile Include="Collections\MinMaxByTests.cs" />
     <Compile Include="Collections\ArrayExtensionsTest.cs" />
     <Compile Include="Collections\ComparerBuilderTests.cs" />

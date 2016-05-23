@@ -41,7 +41,6 @@
     <AssemblyOriginatorKeyFile>..\..\CodeJam.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Build.Tasks.v4.0" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
@@ -150,6 +149,8 @@
     <Compile Include="Metadata\MetaMemberInfo.cs" />
     <Compile Include="Metadata\MetaTypeInfo.cs" />
     <Compile Include="Metadata\XmlAttributeReader.cs" />
+    <Compile Include="Lazy.cs" />
+    <Compile Include="NullableHelper.cs" />
     <Compile Include="Objects.cs" />
     <Compile Include="Reflection\MemberAccessor.cs" />
     <Compile Include="Reflection\NamespaceDoc.cs" />

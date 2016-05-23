@@ -151,11 +151,12 @@ namespace CodeJam.Collections
 		}
 
 		[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-		class IdentifierAttribute : Attribute
+		private class IdentifierAttribute : Attribute
 		{
 		}
 
-		class TestClass2
+		[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+		private class TestClass2
 		{
 			[Identifier]
 			public int    EntityType { get; set; }
@@ -165,7 +166,7 @@ namespace CodeJam.Collections
 			public string Name       { get; set; }
 		}
 
-		IEnumerable<MemberAccessor> GetIdentifiers(TypeAccessor typeAccessor)
+		private static IEnumerable<MemberAccessor> GetIdentifiers(TypeAccessor typeAccessor)
 		{
 			foreach (var member in typeAccessor.Members)
 				if (member.MemberInfo.GetCustomAttribute<IdentifierAttribute>() != null)
