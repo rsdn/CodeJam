@@ -145,12 +145,14 @@
       <DependentUpon>StringExtensions.CharInfix.tt</DependentUpon>
     </Compile>
     <Compile Include="Structures\Option.cs" />
+    <Compile Include="Structures\ValueOption.cs" />
     <Compile Include="Reflection\InfoOf`1.cs" />
     <Compile Include="Reflection\ParamInfo.cs" />
     <Compile Include="Services\IServicePublisher.cs" />
     <Compile Include="Services\ServiceContainer.cs" />
     <Compile Include="Services\ServiceProviderHelper.cs" />
     <Compile Include="Structures\IValueTuple.cs" />
+    <Compile Include="Structures\Option`1.cs" />
     <Compile Include="TableData\CsvFormat.cs" />
     <Compile Include="TableData\DataLine.cs" />
     <Compile Include="TableData\FixedWidthFormat.cs" />
@@ -205,7 +207,7 @@
     <Compile Include="Structures\ObjectPools\SharedPoolExtensions.cs" />
     <Compile Include="Structures\ObjectPools\PooledObject.cs" />
     <Compile Include="Structures\ObjectPools\ObjectPool.cs" />
-    <Compile Include="Structures\Option`1.cs" />
+    <Compile Include="Structures\ValueOption`1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\ReflectionEnumHelper.cs" />
     <Compile Include="Expressions\ExpressionExtensions.GetMembers.cs" />
