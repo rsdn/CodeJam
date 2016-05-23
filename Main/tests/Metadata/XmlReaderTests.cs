@@ -50,10 +50,14 @@ namespace CodeJam.Metadata
 			new XmlAttributeReader(new MemoryStream(Encoding.UTF8.GetBytes(Data)));
 		}
 
+#pragma warning disable 649
+
 		class TableAttribute : Attribute
 		{
 			public string Name;
 		}
+
+#pragma warning restore 649
 
 		public class ColumnAttribute : Attribute
 		{
