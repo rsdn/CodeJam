@@ -10,48 +10,14 @@ namespace CodeJam
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	[PublicAPI]
-	public abstract class Option<T> : IEquatable<Option<T>>
+	public abstract class Option<T> : IOption<T>, IEquatable<Option<T>>
 	{
 		internal static None NoneValue = new None();
 
 		/// <summary>
-		/// Represents an Option without value.
-		/// </summary>
-		public class None : Option<T>
-		{
-			/// <summary>Returns the hash code for this instance.</summary>
-			/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
-			public override int GetHashCode() => 0;
-		}
-
-		/// <summary>
-		/// Represents an Option with value.
-		/// </summary>
-		public class Some : Option<T>
-		{
-			/// <summary>
-			/// Initializes a new instance to the specified value.
-			/// </summary>
-			/// <param name="value">The value.</param>
-			public Some(T value)
-			{
-				Value = value;
-			}
-
-			/// <summary>
-			/// Gets the value of the current object.
-			/// </summary>
-			public new T Value { get; }
-
-			/// <summary>Returns the hash code for this instance.</summary>
-			/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
-			public override int GetHashCode() => EqualityComparer<T>.Default.GetHashCode(Value);
-		}
-
-		/// <summary>
 		/// Gets a value indicating whether the current object has a value.
 		/// </summary>
-		public bool HasValue => this is Some;
+		public bool HasValue => IsSome;
 
 		/// <summary>
 		/// Gets a value indicating whether the current object has a value.
@@ -71,10 +37,7 @@ namespace CodeJam
 			get
 			{
 				var some = this as Some;
-
-				if (ReferenceEquals(some, null))
-					throw CodeExceptions.InvalidOperation("Option has no value.");
-
+				Code.AssertState(!ReferenceEquals(some, null), "Option has no value.");
 				return some.Value;
 			}
 		}
@@ -124,7 +87,6 @@ namespace CodeJam
 		}
 
 		#region Equality members
-
 		/// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
 		/// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
 		/// <param name="other">An object to compare with this object.</param>
@@ -146,7 +108,10 @@ namespace CodeJam
 		}
 
 		/// <summary>Indicates whether this instance and a specified object are equal.</summary>
-		/// <returns>true if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, false. </returns>
+		/// <returns>
+		/// true if <paramref name="obj" /> and this instance are the same type and represent the same value;
+		/// otherwise, false.
+		/// </returns>
 		/// <param name="obj">The object to compare with the current instance. </param>
 		public override bool Equals(object obj)
 		{
@@ -157,11 +122,46 @@ namespace CodeJam
 		/// <summary>Returns the hash code for this instance.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
 		public override int GetHashCode() => HasValue ? 0 : EqualityComparer<T>.Default.GetHashCode(Value);
-
 		#endregion
 
 		/// <summary>Returns the fully qualified type name of this instance.</summary>
 		/// <returns>A <see cref="T:System.String" /> containing a fully qualified type name.</returns>
-		public override string ToString() => HasValue ? $"Some({Value})" : "None";
+		public override string ToString() => Option.ToString(this);
+
+		#region Some&None classes
+		/// <summary>
+		/// Represents an Option with value.
+		/// </summary>
+		public class Some : Option<T>
+		{
+			/// <summary>
+			/// Initializes a new instance to the specified value.
+			/// </summary>
+			/// <param name="value">The value.</param>
+			public Some(T value)
+			{
+				Value = value;
+			}
+
+			/// <summary>
+			/// Gets the value of the current object.
+			/// </summary>
+			public new T Value { get; }
+
+			/// <summary>Returns the hash code for this instance.</summary>
+			/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+			public override int GetHashCode() => EqualityComparer<T>.Default.GetHashCode(Value);
+		}
+
+		/// <summary>
+		/// Represents an Option without value.
+		/// </summary>
+		public class None : Option<T>
+		{
+			/// <summary>Returns the hash code for this instance.</summary>
+			/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+			public override int GetHashCode() => 0;
+		}
+		#endregion
 	}
 }

@@ -10,7 +10,7 @@ namespace CodeJam
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	[PublicAPI]
-	public struct ValueOption<T> : IEquatable<ValueOption<T>>
+	public struct ValueOption<T> : IOption<T>, IEquatable<ValueOption<T>>
 	{
 		private readonly T _value;
 
@@ -99,6 +99,6 @@ namespace CodeJam
 
 		/// <summary>Returns the fully qualified type name of this instance.</summary>
 		/// <returns>A <see cref="T:System.String" /> containing a fully qualified type name.</returns>
-		public override string ToString() => HasValue ? $"Some({Value})" : "None";
+		public override string ToString() => Option.ToString(this);
 	}
 }

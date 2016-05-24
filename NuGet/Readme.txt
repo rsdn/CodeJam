@@ -11,6 +11,7 @@ What's new in 1.1.0-beta4
 * NullableHelper.GetValueOrDefault method with default value factory
 * ToByteSizeString overloads for Int32
 * Fix Resharper markup in Code class
+* Option struct split into Option class and ValueOption struct
 * Fixes and code cleanup
 
 What's new in 1.1.0-beta3
