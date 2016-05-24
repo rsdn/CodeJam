@@ -144,6 +144,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringExtensions.CharInfix.tt</DependentUpon>
     </Compile>
+    <Compile Include="Structures\Option\IOption.cs" />
     <Compile Include="Structures\Option\Option.cs" />
     <Compile Include="Structures\Option\ValueOption.cs" />
     <Compile Include="Reflection\InfoOf`1.cs" />
