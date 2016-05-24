@@ -7,7 +7,7 @@ namespace CodeJam.Mapping
 {
 	using Metadata;
 
-	class MappingSchemaInfo
+	internal class MappingSchemaInfo
 	{
 		public MappingSchemaInfo(string configuration)
 		{
@@ -18,8 +18,7 @@ namespace CodeJam.Mapping
 		public IMetadataReader MetadataReader;
 
 		#region Default Values
-
-		volatile ConcurrentDictionary<Type,object> _defaultValues;
+		private volatile ConcurrentDictionary<Type,object> _defaultValues;
 
 		public Option<object> GetDefaultValue(Type type)
 		{
@@ -43,8 +42,7 @@ namespace CodeJam.Mapping
 		#endregion
 
 		#region GenericConvertProvider
-
-		volatile ConcurrentDictionary<Type,List<Type[]>> _genericConvertProviders;
+		private volatile ConcurrentDictionary<Type,List<Type[]>> _genericConvertProviders;
 
 		public bool InitGenericConvertProvider(Type[] types, MappingSchema mappingSchema)
 		{
@@ -93,8 +91,7 @@ namespace CodeJam.Mapping
 		#endregion
 
 		#region ConvertInfo
-
-		ConvertInfo _convertInfo;
+		private ConvertInfo _convertInfo;
 
 		public void SetConvertInfo(Type from, Type to, ConvertInfo.LambdaInfo expr)
 		{
@@ -104,7 +101,7 @@ namespace CodeJam.Mapping
 		}
 
 		public ConvertInfo.LambdaInfo GetConvertInfo(Type from, Type to)
-			=> _convertInfo?.Get(@from, to);
+			=> _convertInfo?.Get(from, to);
 
 		private ConcurrentDictionary<object,Func<object,object>> _converters;
 		public  ConcurrentDictionary<object,Func<object,object>>  Converters
@@ -113,8 +110,7 @@ namespace CodeJam.Mapping
 		#endregion
 
 		#region Scalar Types
-
-		volatile ConcurrentDictionary<Type,bool> _scalarTypes;
+		private volatile ConcurrentDictionary<Type,bool> _scalarTypes;
 
 		public Option<bool> GetScalarType(Type type)
 		{

@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Metadata
 {
-	class AttributeReader : IMetadataReader
+	internal class AttributeReader : IMetadataReader
 	{
 		[NotNull]
 		public T[] GetAttributes<T>(Type type, bool inherit = true)

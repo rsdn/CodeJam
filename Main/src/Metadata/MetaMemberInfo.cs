@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 
-using JetBrains.Annotations;
+using CodeJam.Strings;
 
 namespace CodeJam.Metadata
 {
-	class MetaMemberInfo
+	internal class MetaMemberInfo
 	{
 		public MetaMemberInfo(string name, params AttributeInfo[] attributes)
 		{
@@ -17,12 +17,15 @@ namespace CodeJam.Metadata
 		public readonly AttributeInfo[] Attributes;
 
 		public AttributeInfo[] GetAttribute(Type type)
-			=>
-				Attributes.Where(a => a.Name == type.FullName).Concat(
-				Attributes.Where(a => a.Name == type.Name)).   Concat(
-					type.Name.EndsWith("Attribute") ?
-						Attributes.Where(a => a.Name == type.Name.Substring(0, type.Name.Length - "Attribute".Length)) :
-						Enumerable.Empty<AttributeInfo>()
-				).ToArray();
+		{
+			var attrs =
+				Attributes
+					.Where(a => a.Name == type.FullName)
+					.Concat(Attributes.Where(a => a.Name == type.Name));
+			var typeName = type.Name.TrimSuffix("Attribute");
+			if (typeName.Length != type.Name.Length)
+				attrs = attrs.Concat(Attributes.Where(a => a.Name == typeName));
+			return attrs.ToArray();
+		}
 	}
 }

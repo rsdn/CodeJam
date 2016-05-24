@@ -91,8 +91,8 @@ namespace CodeJam.Mapping
 		#endregion
 
 		#region Default Values
-
-		const FieldAttributes EnumLookup = FieldAttributes.Public | FieldAttributes.Static | FieldAttributes.Literal;
+		private const FieldAttributes _enumLookup =
+			FieldAttributes.Public | FieldAttributes.Static | FieldAttributes.Literal;
 
 		/// <summary>
 		/// Gets default value for provided <see cref="Type"/>.
@@ -152,13 +152,12 @@ namespace CodeJam.Mapping
 
 		// Should be public.
 		//
-		void InitGenericConvertProvider<T>()
-			=> InitGenericConvertProvider(typeof(T));
+		private void InitGenericConvertProvider<T>() => InitGenericConvertProvider(typeof(T));
 
-		bool InitGenericConvertProvider(params Type[] types)
-			=> Schemas.Aggregate(false, (cur, info) => cur || info.InitGenericConvertProvider(types, this));
+		private bool InitGenericConvertProvider(params Type[] types) =>
+			Schemas.Aggregate(false, (cur, info) => cur || info.InitGenericConvertProvider(types, this));
 
-		void SetGenericConvertProvider(Type type)
+		private void SetGenericConvertProvider(Type type)
 		{
 			if (!type.IsGenericTypeDefinition)
 				throw new CodeJamMappingException($"'{type}' must be a generic type.");
@@ -205,8 +204,7 @@ namespace CodeJam.Mapping
 		/// <param name="from"></param>
 		/// <param name="to"></param>
 		/// <returns></returns>
-		protected internal virtual LambdaExpression TryGetConvertExpression(Type from, Type to)
-			=> null;
+		protected internal virtual LambdaExpression TryGetConvertExpression(Type from, Type to) => null;
 
 		internal ConcurrentDictionary<object,Func<object,object>> Converters
 			=> Schemas[0].Converters;
@@ -340,7 +338,7 @@ namespace CodeJam.Mapping
 			Schemas[0].SetConvertInfo(typeof(TFrom), typeof(TTo), new ConvertInfo.LambdaInfo(ex, null, func, false));
 		}
 
-		LambdaExpression AddNullCheck(LambdaExpression expr)
+		private LambdaExpression AddNullCheck(LambdaExpression expr)
 		{
 			var p = expr.Parameters[0];
 
@@ -363,12 +361,12 @@ namespace CodeJam.Mapping
 			return expr;
 		}
 
-		ConvertInfo.LambdaInfo GetConverter(Type from, Type to, bool create)
+		private ConvertInfo.LambdaInfo GetConverter(Type from, Type to, bool create)
 		{
 			for (var i = 0; i < Schemas.Length; i++)
 			{
 				var info = Schemas[i];
-				var li   = info.GetConvertInfo(@from, to);
+				var li   = info.GetConvertInfo(from, to);
 
 				if (li != null && (i == 0 || !li.IsSchemaSpecific))
 					return i == 0 ? li : new ConvertInfo.LambdaInfo(li.CheckNullLambda, li.CheckNullLambda, null, false);
@@ -395,7 +393,7 @@ namespace CodeJam.Mapping
 				var uto   = to.ToNullableUnderlying();
 
 				LambdaExpression ex;
-				bool             ss = false;
+				var             ss = false;
 
 				if (from != ufrom)
 				{
@@ -475,12 +473,11 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
-		Expression ReduceDefaultValue(Expression expr)
-			=>
-				expr.Transform(e =>
-					Converter.IsDefaultValuePlaceHolder(e) ?
-						Expression.Constant(GetDefaultValue(e.Type), e.Type) :
-						e);
+		private Expression ReduceDefaultValue(Expression expr) =>
+			expr.Transform(e =>
+				Converter.IsDefaultValuePlaceHolder(e)
+					? Expression.Constant(GetDefaultValue(e.Type), e.Type)
+					: e);
 
 		/// <summary>
 		/// Initializes culture specific converters.
@@ -490,60 +487,60 @@ namespace CodeJam.Mapping
 		{
 			Code.NotNull(info, nameof(info));
 
-			SetConvertExpression((SByte     v) =>           v.      ToString(info.NumberFormat));
-			SetConvertExpression((SByte?    v) =>           v.Value.ToString(info.NumberFormat));
-			SetConvertExpression((string    s) =>             SByte.Parse(s, info.NumberFormat));
-			SetConvertExpression((string    s) =>     (SByte?)SByte.Parse(s, info.NumberFormat));
+			SetConvertExpression((sbyte     v) =>           v.      ToString(info.NumberFormat));
+			SetConvertExpression((sbyte?    v) =>           v.Value.ToString(info.NumberFormat));
+			SetConvertExpression((string    s) =>             sbyte.Parse(s, info.NumberFormat));
+			SetConvertExpression((string    s) =>     (sbyte?)sbyte.Parse(s, info.NumberFormat));
 
-			SetConvertExpression((Int16     v) =>           v.      ToString(info.NumberFormat));
-			SetConvertExpression((Int16?    v) =>           v.Value.ToString(info.NumberFormat));
-			SetConvertExpression((string    s) =>             Int16.Parse(s, info.NumberFormat));
-			SetConvertExpression((string    s) =>     (Int16?)Int16.Parse(s, info.NumberFormat));
+			SetConvertExpression((short     v) =>           v.      ToString(info.NumberFormat));
+			SetConvertExpression((short?    v) =>           v.Value.ToString(info.NumberFormat));
+			SetConvertExpression((string    s) =>             short.Parse(s, info.NumberFormat));
+			SetConvertExpression((string    s) =>     (short?)short.Parse(s, info.NumberFormat));
 
-			SetConvertExpression((Int32     v) =>           v.      ToString(info.NumberFormat));
-			SetConvertExpression((Int32?    v) =>           v.Value.ToString(info.NumberFormat));
-			SetConvertExpression((string    s) =>             Int32.Parse(s, info.NumberFormat));
-			SetConvertExpression((string    s) =>     (Int32?)Int32.Parse(s, info.NumberFormat));
+			SetConvertExpression((int       v) =>           v.      ToString(info.NumberFormat));
+			SetConvertExpression((int?      v) =>           v.Value.ToString(info.NumberFormat));
+			SetConvertExpression((string    s) =>               int.Parse(s, info.NumberFormat));
+			SetConvertExpression((string    s) =>         (int?)int.Parse(s, info.NumberFormat));
 
-			SetConvertExpression((Int64     v) =>           v.      ToString(info.NumberFormat));
-			SetConvertExpression((Int64?    v) =>           v.Value.ToString(info.NumberFormat));
-			SetConvertExpression((string    s) =>             Int64.Parse(s, info.NumberFormat));
-			SetConvertExpression((string    s) =>     (Int64?)Int64.Parse(s, info.NumberFormat));
+			SetConvertExpression((long      v) =>           v.      ToString(info.NumberFormat));
+			SetConvertExpression((long?     v) =>           v.Value.ToString(info.NumberFormat));
+			SetConvertExpression((string    s) =>              long.Parse(s, info.NumberFormat));
+			SetConvertExpression((string    s) =>       (long?)long.Parse(s, info.NumberFormat));
 
-			SetConvertExpression((Byte      v) =>           v.      ToString(info.NumberFormat));
-			SetConvertExpression((Byte?     v) =>           v.Value.ToString(info.NumberFormat));
-			SetConvertExpression((string    s) =>              Byte.Parse(s, info.NumberFormat));
-			SetConvertExpression((string    s) =>       (Byte?)Byte.Parse(s, info.NumberFormat));
+			SetConvertExpression((byte      v) =>           v.      ToString(info.NumberFormat));
+			SetConvertExpression((byte?     v) =>           v.Value.ToString(info.NumberFormat));
+			SetConvertExpression((string    s) =>              byte.Parse(s, info.NumberFormat));
+			SetConvertExpression((string    s) =>       (byte?)byte.Parse(s, info.NumberFormat));
 
-			SetConvertExpression((UInt16    v) =>           v.      ToString(info.NumberFormat));
-			SetConvertExpression((UInt16?   v) =>           v.Value.ToString(info.NumberFormat));
-			SetConvertExpression((string    s) =>            UInt16.Parse(s, info.NumberFormat));
-			SetConvertExpression((string    s) =>   (UInt16?)UInt16.Parse(s, info.NumberFormat));
+			SetConvertExpression((ushort    v) =>           v.      ToString(info.NumberFormat));
+			SetConvertExpression((ushort?   v) =>           v.Value.ToString(info.NumberFormat));
+			SetConvertExpression((string    s) =>            ushort.Parse(s, info.NumberFormat));
+			SetConvertExpression((string    s) =>   (ushort?)ushort.Parse(s, info.NumberFormat));
 
-			SetConvertExpression((UInt32    v) =>           v.      ToString(info.NumberFormat));
-			SetConvertExpression((UInt32?   v) =>           v.Value.ToString(info.NumberFormat));
-			SetConvertExpression((string    s) =>            UInt32.Parse(s, info.NumberFormat));
-			SetConvertExpression((string    s) =>   (UInt32?)UInt32.Parse(s, info.NumberFormat));
+			SetConvertExpression((uint      v) =>           v.      ToString(info.NumberFormat));
+			SetConvertExpression((uint?     v) =>           v.Value.ToString(info.NumberFormat));
+			SetConvertExpression((string    s) =>              uint.Parse(s, info.NumberFormat));
+			SetConvertExpression((string    s) =>       (uint?)uint.Parse(s, info.NumberFormat));
 
-			SetConvertExpression((UInt64    v) =>           v.      ToString(info.NumberFormat));
-			SetConvertExpression((UInt64?   v) =>           v.Value.ToString(info.NumberFormat));
-			SetConvertExpression((string    s) =>            UInt64.Parse(s, info.NumberFormat));
-			SetConvertExpression((string    s) =>   (UInt64?)UInt64.Parse(s, info.NumberFormat));
+			SetConvertExpression((ulong     v) =>           v.      ToString(info.NumberFormat));
+			SetConvertExpression((ulong?    v) =>           v.Value.ToString(info.NumberFormat));
+			SetConvertExpression((string    s) =>             ulong.Parse(s, info.NumberFormat));
+			SetConvertExpression((string    s) =>     (ulong?)ulong.Parse(s, info.NumberFormat));
 
-			SetConvertExpression((Single    v) =>           v.      ToString(info.NumberFormat));
-			SetConvertExpression((Single?   v) =>           v.Value.ToString(info.NumberFormat));
-			SetConvertExpression((string    s) =>            Single.Parse(s, info.NumberFormat));
-			SetConvertExpression((string    s) =>   (Single?)Single.Parse(s, info.NumberFormat));
+			SetConvertExpression((float     v) =>           v.      ToString(info.NumberFormat));
+			SetConvertExpression((float?    v) =>           v.Value.ToString(info.NumberFormat));
+			SetConvertExpression((string    s) =>             float.Parse(s, info.NumberFormat));
+			SetConvertExpression((string    s) =>     (float?)float.Parse(s, info.NumberFormat));
 
-			SetConvertExpression((Double    v) =>           v.      ToString(info.NumberFormat));
-			SetConvertExpression((Double?   v) =>           v.Value.ToString(info.NumberFormat));
-			SetConvertExpression((string    s) =>            Double.Parse(s, info.NumberFormat));
-			SetConvertExpression((string    s) =>   (Double?)Double.Parse(s, info.NumberFormat));
+			SetConvertExpression((double    v) =>           v.      ToString(info.NumberFormat));
+			SetConvertExpression((double?   v) =>           v.Value.ToString(info.NumberFormat));
+			SetConvertExpression((string    s) =>            double.Parse(s, info.NumberFormat));
+			SetConvertExpression((string    s) =>   (double?)double.Parse(s, info.NumberFormat));
 
-			SetConvertExpression((Decimal   v) =>           v.      ToString(info.NumberFormat));
-			SetConvertExpression((Decimal?  v) =>           v.Value.ToString(info.NumberFormat));
-			SetConvertExpression((string    s) =>           Decimal.Parse(s, info.NumberFormat));
-			SetConvertExpression((string    s) => (Decimal?)Decimal.Parse(s, info.NumberFormat));
+			SetConvertExpression((decimal   v) =>           v.      ToString(info.NumberFormat));
+			SetConvertExpression((decimal?  v) =>           v.Value.ToString(info.NumberFormat));
+			SetConvertExpression((string    s) =>           decimal.Parse(s, info.NumberFormat));
+			SetConvertExpression((string    s) => (decimal?)decimal.Parse(s, info.NumberFormat));
 
 			SetConvertExpression((DateTime  v) =>                       v.      ToString(info.DateTimeFormat));
 			SetConvertExpression((DateTime? v) =>                       v.Value.ToString(info.DateTimeFormat));
@@ -584,8 +581,8 @@ namespace CodeJam.Mapping
 			MetadataReader = MetadataReader == null ? reader : new MetadataReader(reader, MetadataReader);
 		}
 
-		IMetadataReader[] _metadataReaders;
-		IMetadataReader[]  MetadataReaders
+		private IMetadataReader[] _metadataReaders;
+		private IMetadataReader[] MetadataReaders
 		{
 			get
 			{
@@ -793,7 +790,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		public static MappingSchema Default = new DefaultMappingSchema();
 
-		class DefaultMappingSchema : MappingSchema
+		private class DefaultMappingSchema : MappingSchema
 		{
 			public DefaultMappingSchema()
 				: base(new MappingSchemaInfo("") { MetadataReader = Metadata.MetadataReader.Default })
@@ -835,7 +832,7 @@ namespace CodeJam.Mapping
 			{
 				type = type.ToNullableUnderlying();
 
-				if (type.IsEnum || type.IsPrimitive || (IsStructIsScalarType && type.IsValueType))
+				if (type.IsEnum || type.IsPrimitive || IsStructIsScalarType && type.IsValueType)
 					ret = true;
 			}
 
@@ -866,8 +863,7 @@ namespace CodeJam.Mapping
 		#endregion
 
 		#region GetMapValues
-
-		ConcurrentDictionary<Type,MapValue[]> _mapValues;
+		private ConcurrentDictionary<Type,MapValue[]> _mapValues;
 
 		/// <summary>
 		/// Returns mapping values for provided enum type.
@@ -894,7 +890,7 @@ namespace CodeJam.Mapping
 				var fields =
 				(
 					from f in underlyingType.GetFields()
-					where (f.Attributes & EnumLookup) == EnumLookup
+					where (f.Attributes & _enumLookup) == _enumLookup
 					let attrs = GetAttributes<MapValueAttribute>(f, a => a.Configuration)
 					select new MapValue(Enum.Parse(underlyingType, f.Name, false), attrs)
 				).ToArray();

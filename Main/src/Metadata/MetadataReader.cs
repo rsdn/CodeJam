@@ -6,11 +6,10 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Metadata
 {
-	class MetadataReader : IMetadataReader
+	internal class MetadataReader : IMetadataReader
 	{
-		public static MetadataReader Default = new MetadataReader(
-			new AttributeReader()
-		);
+		public static readonly MetadataReader Default =
+			new MetadataReader(new AttributeReader());
 
 		public MetadataReader([NotNull] params IMetadataReader[] readers)
 		{
@@ -19,18 +18,12 @@ namespace CodeJam.Metadata
 			_readers = readers;
 		}
 
-		readonly IMetadataReader[] _readers;
+		private readonly IMetadataReader[] _readers;
 
-		public T[] GetAttributes<T>(Type type, bool inherit)
-			where T : Attribute
-		{
-			return _readers.SelectMany(r => r.GetAttributes<T>(type, inherit)).ToArray();
-		}
+		public T[] GetAttributes<T>(Type type, bool inherit) where T : Attribute =>
+			_readers.SelectMany(r => r.GetAttributes<T>(type, inherit)).ToArray();
 
-		public T[] GetAttributes<T>(MemberInfo memberInfo, bool inherit)
-			where T : Attribute
-		{
-			return _readers.SelectMany(r => r.GetAttributes<T>(memberInfo, inherit)).ToArray();
-		}
+		public T[] GetAttributes<T>(MemberInfo memberInfo, bool inherit) where T : Attribute =>
+			_readers.SelectMany(r => r.GetAttributes<T>(memberInfo, inherit)).ToArray();
 	}
 }

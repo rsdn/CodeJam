@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace CodeJam.Mapping
 {
-	class ConvertInfo
+	internal class ConvertInfo
 	{
 		public static readonly ConvertInfo Default = new ConvertInfo();
 
@@ -28,13 +28,16 @@ namespace CodeJam.Mapping
 			public readonly bool             IsSchemaSpecific;
 		}
 
-		readonly ConcurrentDictionary<Type,ConcurrentDictionary<Type,LambdaInfo>> _expressions =
+		private readonly ConcurrentDictionary<Type,ConcurrentDictionary<Type,LambdaInfo>> _expressions =
 			new ConcurrentDictionary<Type,ConcurrentDictionary<Type,LambdaInfo>>();
 
-		public void Set(Type from, Type to, LambdaInfo expr)
-			=> Set(_expressions, @from, to, expr);
+		public void Set(Type from, Type to, LambdaInfo expr) => Set(_expressions, from, to, expr);
 
-		static void Set(ConcurrentDictionary<Type,ConcurrentDictionary<Type,LambdaInfo>> expressions, Type from, Type to, LambdaInfo expr)
+		private static void Set(
+			ConcurrentDictionary<Type,ConcurrentDictionary<Type,LambdaInfo>> expressions,
+			Type from,
+			Type to,
+			LambdaInfo expr)
 		{
 			ConcurrentDictionary<Type,LambdaInfo> dic;
 
@@ -49,7 +52,7 @@ namespace CodeJam.Mapping
 			ConcurrentDictionary<Type,LambdaInfo> dic;
 			LambdaInfo li;
 
-			return _expressions.TryGetValue(@from, out dic) && dic.TryGetValue(to, out li) ? li : null;
+			return _expressions.TryGetValue(from, out dic) && dic.TryGetValue(to, out li) ? li : null;
 		}
 
 		public LambdaInfo Create(MappingSchema mappingSchema, Type from, Type to)

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CodeJam.Metadata
 {
-	class MetaTypeInfo
+	internal class MetaTypeInfo
 	{
 		public MetaTypeInfo(string name, Dictionary<string,MetaMemberInfo> members, params AttributeInfo[] attributes)
 		{

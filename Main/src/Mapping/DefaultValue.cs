@@ -15,7 +15,7 @@ namespace CodeJam.Mapping
 	[PublicAPI]
 	public static class DefaultValue
 	{
-		static readonly ConcurrentDictionary<Type,object> _defaultValues = new ConcurrentDictionary<Type,object>
+		private static readonly ConcurrentDictionary<Type,object> _defaultValues = new ConcurrentDictionary<Type,object>
 		{
 			[typeof(int)]            = default(int),
 			[typeof(uint)]           = default(uint),
@@ -34,7 +34,7 @@ namespace CodeJam.Mapping
 			[typeof(TimeSpan)]       = default(TimeSpan),
 			[typeof(DateTimeOffset)] = default(DateTimeOffset),
 			[typeof(Guid)]           = default(Guid),
-			[typeof(string)]         = default(string),
+			[typeof(string)]         = default(string)
 		};
 
 		/// <summary>

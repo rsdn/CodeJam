@@ -1,6 +1,8 @@
 using System;
 using System.Runtime.Serialization;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Mapping
 {
 	/// <summary>
@@ -11,6 +13,7 @@ namespace CodeJam.Mapping
 	/// execution of the namespace members.
 	/// </remarks>
 	[Serializable]
+	[PublicAPI]
 	public class CodeJamMappingException : Exception
 	{
 		/// <summary>
@@ -22,8 +25,7 @@ namespace CodeJam.Mapping
 		/// </remarks>
 		public CodeJamMappingException()
 			: base("A Build Type exception has occurred.")
-		{
-		}
+		{}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CodeJamMappingException"/> class
@@ -34,8 +36,7 @@ namespace CodeJam.Mapping
 		/// <seealso cref="Exception.Message"/>
 		public CodeJamMappingException(string message)
 			: base(message)
-		{
-		}
+		{}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CodeJamMappingException"/> class
@@ -49,8 +50,7 @@ namespace CodeJam.Mapping
 		/// <seealso cref="Exception.InnerException"/>
 		public CodeJamMappingException(string message, Exception innerException) 
 			: base(message, innerException)
-		{
-		}
+		{}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CodeJamMappingException"/> class

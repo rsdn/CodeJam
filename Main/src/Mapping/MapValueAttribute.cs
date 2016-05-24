@@ -8,6 +8,7 @@ namespace CodeJam.Mapping
 	/// Uses to define <seealso cref="MapValue"/> for enumtype.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Field, AllowMultiple=true)]
+	[PublicAPI]
 	public class MapValueAttribute : Attribute
 	{
 		/// <summary>

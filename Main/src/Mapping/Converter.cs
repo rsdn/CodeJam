@@ -16,7 +16,8 @@ namespace CodeJam.Mapping
 	[PublicAPI]
 	public static class Converter
 	{
-		static readonly ConcurrentDictionary<object,LambdaExpression> _expressions = new ConcurrentDictionary<object,LambdaExpression>();
+		private static readonly ConcurrentDictionary<object,LambdaExpression> _expressions =
+			new ConcurrentDictionary<object,LambdaExpression>();
 
 		static Converter()
 		{
@@ -36,14 +37,14 @@ namespace CodeJam.Mapping
 			SetConverter<string,         bool>       (v => v.Length == 1 ? ToBoolean(v[0]) : bool.Parse(v));
 		}
 
-		static XmlDocument CreateXmlDocument(string str)
+		private static XmlDocument CreateXmlDocument(string str)
 		{
 			var xml = new XmlDocument();
 			xml.LoadXml(str);
 			return xml;
 		}
 
-		static bool ToBoolean(char ch)
+		private static bool ToBoolean(char ch)
 		{
 			switch (ch)
 			{
@@ -81,7 +82,8 @@ namespace CodeJam.Mapping
 			return l;
 		}
 
-		static readonly ConcurrentDictionary<object,Func<object,object>> _converters = new ConcurrentDictionary<object,Func<object,object>>();
+		private static readonly ConcurrentDictionary<object,Func<object,object>> _converters =
+			new ConcurrentDictionary<object,Func<object,object>>();
 
 		/// <summary>
 		/// Returns an object of a specified type whose value is equivalent to a specified object.
@@ -137,9 +139,10 @@ namespace CodeJam.Mapping
 			return l(value);
 		}
 
-		static class ExprHolder<T>
+		private static class ExprHolder<T>
 		{
-			public static readonly ConcurrentDictionary<Type,Func<object,T>> Converters = new ConcurrentDictionary<Type,Func<object,T>>();
+			public static readonly ConcurrentDictionary<Type,Func<object,T>> Converters =
+				new ConcurrentDictionary<Type,Func<object,T>>();
 		}
 
 		/// <summary>

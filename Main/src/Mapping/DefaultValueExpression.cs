@@ -3,18 +3,17 @@ using System.Linq.Expressions;
 
 namespace CodeJam.Mapping
 {
-	class DefaultValueExpression : Expression
+	internal class DefaultValueExpression : Expression
 	{
 		public DefaultValueExpression(MappingSchema mappingSchema, Type type)
 		{
 			_mappingSchema = mappingSchema;
-			_type          = type;
+			Type          = type;
 		}
 
-		readonly MappingSchema _mappingSchema;
-		readonly Type          _type;
+		private readonly MappingSchema _mappingSchema;
 
-		public override Type           Type => _type;
+		public override Type           Type { get; }
 		public override ExpressionType NodeType => ExpressionType.Extension;
 		public override bool           CanReduce => true;
 

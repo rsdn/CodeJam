@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
 
+using CodeJam.Xml;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Metadata
@@ -12,9 +14,9 @@ namespace CodeJam.Metadata
 	using Collections;
 	using Mapping;
 
-	class XmlAttributeReader : IMetadataReader
+	internal class XmlAttributeReader : IMetadataReader
 	{
-		readonly Dictionary<string,MetaTypeInfo> _types;
+		private readonly Dictionary<string,MetaTypeInfo> _types;
 
 		public XmlAttributeReader(string xmlFile)
 			: this(xmlFile, Assembly.GetCallingAssembly())
@@ -72,7 +74,12 @@ namespace CodeJam.Metadata
 			_types = LoadStream(xmlDocStream, "");
 		}
 
-		static AttributeInfo[] GetAttrs(string fileName, XElement el, string exclude, string typeName, string memberName)
+		private static AttributeInfo[] GetAttrs(
+			string fileName,
+			XElement el,
+			string exclude,
+			string typeName,
+			string memberName)
 		{
 			var attrs = el.Elements().Where(e => e.Name.LocalName != exclude).Select(a =>
 			{
@@ -103,34 +110,40 @@ namespace CodeJam.Metadata
 			return attrs.ToArray();
 		}
 
-		static Dictionary<string,MetaTypeInfo> LoadStream(Stream xmlDocStream, string fileName)
+		private static Dictionary<string,MetaTypeInfo> LoadStream(Stream xmlDocStream, string fileName)
 		{
 			var doc = XDocument.Load(new StreamReader(xmlDocStream));
 
-			return doc.Root.Elements().Where(e => e.Name.LocalName == "Type").Select(t =>
-			{
-				var aname = t.Attribute("Name");
+			return
+				doc
+					.RequiredRoot()
+					.Elements()
+					.Where(e => e.Name.LocalName == "Type")
+					.Select(
+						t =>
+						{
+							var aname = t.Attribute("Name");
 
-				if (aname == null)
-					throw new MetadataException($"'{fileName}': Element 'Type' has to have 'Name' attribute.");
+							if (aname == null)
+								throw new MetadataException($"'{fileName}': Element 'Type' has to have 'Name' attribute.");
 
-				var tname = aname.Value;
+							var tname = aname.Value;
 
-				var members = t.Elements().Where(e => e.Name.LocalName == "Member").Select(m =>
-				{
-					var maname = m.Attribute("Name");
+							var members = t.Elements().Where(e => e.Name.LocalName == "Member").Select(m =>
+							{
+								var maname = m.Attribute("Name");
 
-					if (maname == null)
-						throw new MetadataException($"'{fileName}': Element <Type Name='{tname}'><Member /> has to have 'Name' attribute.");
+								if (maname == null)
+									throw new MetadataException($"'{fileName}': Element <Type Name='{tname}'><Member /> has to have 'Name' attribute.");
 
-					var mname = maname.Value;
+								var mname = maname.Value;
 
-					return new MetaMemberInfo(mname, GetAttrs(fileName, m, null, tname, mname));
-				});
+								return new MetaMemberInfo(mname, GetAttrs(fileName, m, null, tname, mname));
+							});
 
-				return new MetaTypeInfo(tname, members.ToDictionary(m => m.Name), GetAttrs(fileName, t, "Member", tname, null));
-			})
-			.ToDictionary(t => t.Name);
+							return new MetaTypeInfo(tname, members.ToDictionary(m => m.Name), GetAttrs(fileName, t, "Member", tname, null));
+						})
+					.ToDictionary(t => t.Name);
 		}
 
 		public T[] GetAttributes<T>(Type type, bool inherit = true)
@@ -151,14 +164,17 @@ namespace CodeJam.Metadata
 
 			MetaTypeInfo t;
 
+			DebugCode.AssertState(type != null, "type != null");
 			if (_types.TryGetValue(type.FullName, out t) || _types.TryGetValue(type.Name, out t))
 			{
 				MetaMemberInfo m;
 
 				if (t.Members.TryGetValue(memberInfo.Name, out m))
-				{
-					return m.GetAttribute(typeof(T)).Select(a => (T)a.MakeAttribute(typeof(T))).ToArray();
-				}
+					return
+						m
+							.GetAttribute(typeof(T))
+							.Select(a => (T)a.MakeAttribute(typeof(T)))
+							.ToArray();
 			}
 
 			return Array<T>.Empty;

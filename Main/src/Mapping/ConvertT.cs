@@ -20,7 +20,7 @@ namespace CodeJam.Mapping
 			Init();
 		}
 
-		static void Init()
+		private static void Init()
 		{
 			var expr = ConvertBuilder.GetConverter(null, typeof(TFrom), typeof(TTo));
 

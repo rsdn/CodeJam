@@ -8,7 +8,7 @@ namespace CodeJam.Metadata
 	using Mapping;
 	using Reflection;
 
-	class AttributeInfo
+	internal class AttributeInfo
 	{
 		public AttributeInfo(string name, Dictionary<string,object> values)
 		{
@@ -16,10 +16,10 @@ namespace CodeJam.Metadata
 			Values = values;
 		}
 
-		public string                    Name;
-		public Dictionary<string,object> Values;
+		public readonly string                    Name;
+		public readonly Dictionary<string,object> Values;
 
-		Func<Attribute> _func;
+		private Func<Attribute> _func;
 
 		public Attribute MakeAttribute(Type type)
 		{
