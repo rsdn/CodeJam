@@ -123,7 +123,7 @@ namespace BenchmarkDotNet.Analysers
 			if (resourceDoc == null || IgnoreExistingAnnotations)
 				return new CompetitionTarget(target, emptyLimit, true);
 
-			var result = XmlAnnotations.TryParseCompetitionTarget(resourceDoc, target);
+			var result = XmlAnnotations.TryParseCompetitionTarget(resourceDoc, target, competitionState);
 			return result ??
 				new CompetitionTarget(target, emptyLimit, true);
 		}

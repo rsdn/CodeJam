@@ -52,13 +52,14 @@ namespace BenchmarkDotNet.Analysers
 			{
 				foreach (var competitionTarget in competitionTargets.Values)
 				{
-					var target2 = XmlAnnotations.TryParseCompetitionTarget(resourceDoc, competitionTarget.Target);
+					var target2 = XmlAnnotations.TryParseCompetitionTarget(resourceDoc, competitionTarget.Target, competitionState);
 					if (target2 != null)
 					{
 						updated |= competitionTarget.UnionWith(target2);
 					}
 				}
 			}
+
 			if (updated)
 			{
 				competitionState.WriteMessage(

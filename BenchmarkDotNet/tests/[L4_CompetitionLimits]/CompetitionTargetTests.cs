@@ -13,7 +13,7 @@ namespace CodeJam.BenchmarkDotNet
 	public static class CompetitionTargetTests
 	{
 		[Test]
-		public static void TestEmptyCompetitionLimits()
+		public static void TestCompetitionLimitsEmpty()
 		{
 			var result = new CompetitionTarget();
 
@@ -54,7 +54,7 @@ namespace CodeJam.BenchmarkDotNet
 		}
 
 		[Test]
-		public static void TestNoLimitCompetitionLimits()
+		public static void TestCompetitionLimitsNoLimit()
 		{
 			var result = new CompetitionTarget(null, CompetitionLimit.NoLimit, false);
 			Assert.IsFalse(result.IsEmpty);
@@ -80,7 +80,7 @@ namespace CodeJam.BenchmarkDotNet
 		}
 
 		[Test]
-		public static void TestRealCompetitionLimits()
+		public static void TestCompetitionLimitsWithValues()
 		{
 			var result = new CompetitionTarget(null, 1, 2, false);
 			Assert.IsFalse(result.IsEmpty);

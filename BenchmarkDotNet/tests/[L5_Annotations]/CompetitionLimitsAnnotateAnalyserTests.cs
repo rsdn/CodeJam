@@ -52,6 +52,7 @@ namespace CodeJam.BenchmarkDotNet
 
 		[Test]
 		[Explicit("Temporary disabled, fails on buildserver")]
+		// TODO: troubleshoot using https://www.appveyor.com/docs/how-to/rdp-to-build-worker
 		public static void TestAnnotateFromLocalLog()
 		{
 			var stopwatch = Stopwatch.StartNew();

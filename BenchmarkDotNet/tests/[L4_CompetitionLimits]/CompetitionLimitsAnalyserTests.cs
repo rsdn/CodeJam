@@ -19,7 +19,7 @@ namespace CodeJam.BenchmarkDotNet
 	public static class CompetitionLimitsAnalyserTests
 	{
 		[Test]
-		public static void TestCompetitionLimitsEmptyBenchmark()
+		public static void TestCompetitionLimitsAnalyserEmptyBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			var summary = CompetitionBenchmarkRunner.Run<EmptyBenchmark>(_config);
@@ -36,7 +36,7 @@ namespace CodeJam.BenchmarkDotNet
 		}
 
 		[Test]
-		public static void TestCompetitionLimitsNoBaselineOkBenchmark()
+		public static void TestCompetitionLimitsAnalyserNoBaselineOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			var summary = CompetitionBenchmarkRunner.Run<NoBaselineOkBenchmark>(_config);
@@ -53,10 +53,10 @@ namespace CodeJam.BenchmarkDotNet
 		}
 
 		[Test]
-		public static void TestCompetitionLimitsOkBenchmark()
+		public static void TestCompetitionLimitsAnalyserOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var summary = CompetitionBenchmarkRunner.Run<CompetitionLimitsOkBenchmark>(_config);
+			var summary = CompetitionBenchmarkRunner.Run<OkBenchmark>(_config);
 			var runState = CompetitionCore.RunState[summary];
 			var messages = runState.GetMessages();
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -70,10 +70,10 @@ namespace CodeJam.BenchmarkDotNet
 		}
 
 		[Test]
-		public static void TestCompetitionLimitsXmlOkBenchmark()
+		public static void TestCompetitionLimitsAnalyserXmlOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var summary = CompetitionBenchmarkRunner.Run<CompetitionLimitsXmlOkBenchmark>(_config);
+			var summary = CompetitionBenchmarkRunner.Run<XmlOkBenchmark>(_config);
 			var runState = CompetitionCore.RunState[summary];
 			var messages = runState.GetMessages();
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -87,7 +87,7 @@ namespace CodeJam.BenchmarkDotNet
 		}
 
 		[Test]
-		public static void TestHighAccuracyCompetitionLimitsAnalyser()
+		public static void TestCompetitionLimitsAnalyserHighAccuracyBenchmark()
 		{
 			var config = new ManualCompetitionConfig(FastRunConfig.Instance)
 			{
@@ -107,7 +107,7 @@ namespace CodeJam.BenchmarkDotNet
 		}
 
 		[Test]
-		public static void TestCompetitionLimitsNoBaselineFailBenchmark()
+		public static void TestCompetitionLimitsAnalyserNoBaselineFailBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			var summary = CompetitionBenchmarkRunner.Run<NoBaselineFailBenchmark>(_config);
@@ -128,7 +128,7 @@ namespace CodeJam.BenchmarkDotNet
 		}
 
 		[Test]
-		public static void TestCompetitionLimitsAnalyserFail()
+		public static void TestCompetitionLimitsAnalyserFailBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			var summary = CompetitionBenchmarkRunner.Run<CompetitionLimitsFailBenchmark>(_config);
@@ -203,7 +203,7 @@ namespace CodeJam.BenchmarkDotNet
 			public void WillRun2() => Interlocked.Increment(ref _callCounter);
 		}
 
-		public class CompetitionLimitsOkBenchmark : EmptyBenchmark
+		public class OkBenchmark : EmptyBenchmark
 		{
 			[CompetitionBaseline]
 			public void Baseline()
@@ -221,7 +221,7 @@ namespace CodeJam.BenchmarkDotNet
 		}
 
 		[CompetitionMetadata("CodeJam.BenchmarkDotNet._L4_CompetitionLimits_.CompetitionLimitsAnalyserTests.xml")]
-		public class CompetitionLimitsXmlOkBenchmark : EmptyBenchmark
+		public class XmlOkBenchmark : EmptyBenchmark
 		{
 			[CompetitionBaseline]
 			public void Baseline()
@@ -243,7 +243,7 @@ namespace CodeJam.BenchmarkDotNet
 			[CompetitionBaseline]
 			public void Baseline() => Thread.SpinWait(SpinCount);
 
-			[CompetitionBenchmark(8.8, 11.2)]
+			[CompetitionBenchmark(8.5, 11.5)]
 			public void SlowerX10() => Thread.SpinWait(10 * SpinCount);
 		}
 

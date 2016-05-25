@@ -234,7 +234,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			return resourceDoc;
 		}
 
-		public static CompetitionTarget TryParseCompetitionTarget(XDocument resourceDoc, Target target)
+		public static CompetitionTarget TryParseCompetitionTarget(XDocument resourceDoc, Target target, CompetitionState competitionState)
 		{
 			if (resourceDoc.Element(CompetitionBenchmarksRootNode) == null)
 				return null;
@@ -253,6 +253,10 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			var resultNode = matchingNodes.SingleOrDefault();
 			if (resultNode == null)
 			{
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.Informational,
+					$"Xml anotations for {candidateName}: no annotation exists.");
+
 				return null;
 			}
 

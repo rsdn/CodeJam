@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
-	<Competition Target="CompetitionLimitsXmlOkBenchmark">
+	<Competition Target="XmlOkBenchmark">
 		<Candidate Target="SlowerX20" MinRatio="15" MaxRatio="25" />
 	</Competition>
 </CompetitionBenchmarks>
