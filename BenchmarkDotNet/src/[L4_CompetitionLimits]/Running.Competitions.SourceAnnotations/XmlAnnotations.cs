@@ -236,12 +236,15 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 
 		public static CompetitionTarget TryParseCompetitionTarget(XDocument resourceDoc, Target target)
 		{
+			if (resourceDoc.Element(CompetitionBenchmarksRootNode) == null)
+				return null;
+
 			var competitionName = target.GetCompetitionName(resourceDoc);
 			var candidateName = target.GetCandidateName();
 
 			var matchingNodes =
 				// ReSharper disable once PossibleNullReferenceException
-				from competition in resourceDoc.Root.Elements(CompetitionNode)
+				from competition in resourceDoc.Element(CompetitionBenchmarksRootNode).Elements(CompetitionNode)
 				where competition.Attribute(TargetAttribute)?.Value == competitionName
 				from candidate in competition.Elements(CandidateNode)
 				where candidate.Attribute(TargetAttribute)?.Value == candidateName
@@ -280,7 +283,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			var competitionName = competitionTarget.Target.GetCompetitionName(resourceDoc);
 			var candidateName = competitionTarget.Target.GetCandidateName();
 
-			var competition = resourceDoc.Root.GetOrAddElement(CompetitionNode, competitionName);
+			var competition = resourceDoc.Element(CompetitionBenchmarksRootNode).GetOrAddElement(CompetitionNode, competitionName);
 			var candidate = competition.GetOrAddElement(CandidateNode, candidateName);
 
 			var minText = !competitionTarget.IgnoreMin ? competitionTarget.MinText : null;

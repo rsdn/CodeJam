@@ -20,10 +20,10 @@ namespace BenchmarkDotNet.Analysers
 	internal class CompetitionLimitsAnnotateAnalyser : CompetitionLimitsAnalyser
 	{
 		#region Adjusted targets
-		private class AdjustedCompetitionTargets : HashSet<CompetitionTarget> { }
+		private class UpdatedCompetitionTargets : HashSet<CompetitionTarget> { }
 
-		private static readonly RunState<AdjustedCompetitionTargets> _adjustedTargets =
-			new RunState<AdjustedCompetitionTargets>();
+		private static readonly RunState<UpdatedCompetitionTargets> _updatedTargets =
+			new RunState<UpdatedCompetitionTargets>();
 		#endregion
 
 		public bool UpdateSourceAnnotations { get; set; }
@@ -41,7 +41,6 @@ namespace BenchmarkDotNet.Analysers
 
 			var competitionState = CompetitionCore.RunState[summary];
 
-			var adjustedTargets = _adjustedTargets[summary];
 			var docs = XmlAnnotations.GetDocumentsFromLog(PreviousLogUri);
 
 			competitionState.WriteMessage(
@@ -56,11 +55,7 @@ namespace BenchmarkDotNet.Analysers
 					var target2 = XmlAnnotations.TryParseCompetitionTarget(resourceDoc, competitionTarget.Target);
 					if (target2 != null)
 					{
-						if (competitionTarget.UnionWith(target2))
-						{
-							updated = true;
-							adjustedTargets.Add(competitionTarget);
-						}
+						updated |= competitionTarget.UnionWith(target2);
 					}
 				}
 			}
@@ -88,19 +83,21 @@ namespace BenchmarkDotNet.Analysers
 				return;
 
 			var competitionState = CompetitionCore.RunState[summary];
-			var adjustedTargets = _adjustedTargets[summary];
 			var logger = summary.Config.GetCompositeLogger();
 
-			var targetsToAnnotate = AdjustCompetitionTargets(summary, competitionTargets);
+			var hasAdjustedTargets = TryAdjustCompetitionTargets(summary, competitionTargets);
 
+			var targetsToAnnotate = competitionTargets.Values.Where(t => t.HasUnsavedChanges).ToArray();
 			AnnotateResultsCore(competitionState, targetsToAnnotate, logger);
-			RequestReruns(competitionState, targetsToAnnotate.Any());
 
-			adjustedTargets.UnionWith(targetsToAnnotate);
+			RequestReruns(competitionState, hasAdjustedTargets);
+
+			var allUpdatedTargets = _updatedTargets[summary];
+			allUpdatedTargets.UnionWith(targetsToAnnotate);
 
 			if (competitionState.LooksLikeLastRun && LogAnnotationResults)
 			{
-				XmlAnnotations.LogAdjustedCompetitionTargets(adjustedTargets, logger);
+				XmlAnnotations.LogAdjustedCompetitionTargets(allUpdatedTargets, logger);
 			}
 		}
 
@@ -137,10 +134,11 @@ namespace BenchmarkDotNet.Analysers
 			AnnotateSourceHelper.TryAnnotateBenchmarkFiles(competitionState, targetsToAnnotate, logger);
 		}
 
-		private static CompetitionTarget[] AdjustCompetitionTargets(
+		// ReSharper disable once UnusedMethodReturnValue.Local
+		private bool TryAdjustCompetitionTargets(
 			Summary summary, CompetitionTargets competitionTargets)
 		{
-			var result = new List<CompetitionTarget>();
+			bool result = false;
 
 			foreach (var benchGroup in summary.SameConditionBenchmarks())
 			{
@@ -168,14 +166,12 @@ namespace BenchmarkDotNet.Analysers
 					}
 
 					var limit = new CompetitionLimit(minRatio.Value, maxRatio.Value);
-					if (competitionTarget.UnionWith(limit))
-					{
-						result.Add(competitionTarget);
-					}
+					result |= competitionTarget.UnionWith(limit);
+
 				}
 			}
 
-			return result.ToArray();
+			return result;
 		}
 	}
 }

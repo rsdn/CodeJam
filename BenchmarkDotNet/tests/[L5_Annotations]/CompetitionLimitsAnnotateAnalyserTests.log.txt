@@ -4,7 +4,7 @@ some log text
 // !<--------xml_annotation_begin------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
-	<Competition Target="HighAccuracyBenchmark">
+	<Competition Target="CodeJam.BenchmarkDotNet.CompetitionLimitsAnnotateAnalyserTests+HighAccuracyBenchmark, CodeJam.BenchmarkDotNet-Tests">
 		<Candidate Target="SlowerX10" MinRatio="20" MaxRatio="20" />
 	</Competition>
 </CompetitionBenchmarks>
@@ -14,7 +14,7 @@ some log text
 // !<--------xml_annotation_begin------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
-	<Competition Target="HighAccuracyBenchmark">
+	<Competition Target="CodeJam.BenchmarkDotNet.CompetitionLimitsAnnotateAnalyserTests+HighAccuracyBenchmark, CodeJam.BenchmarkDotNet-Tests">
 		<Candidate Target="SlowerX10" MinRatio="15" MaxRatio="25" />
 	</Competition>
 </CompetitionBenchmarks>
@@ -24,7 +24,7 @@ some log text
 // !<--------xml_annotation_begin------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
-	<Competition Target="HighAccuracyBenchmark">
+	<Competition Target="CodeJam.BenchmarkDotNet.CompetitionLimitsAnnotateAnalyserTests+HighAccuracyBenchmark, CodeJam.BenchmarkDotNet-Tests">
 		<Candidate Target="SlowerX10" MinRatio="10" MaxRatio="30" />
 	</Competition>
 </CompetitionBenchmarks>
@@ -34,7 +34,7 @@ some log text
 // !<--------xml_annotation_begin------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
-	<Competition Target="HighAccuracyBenchmark">
+	<Competition Target="CodeJam.BenchmarkDotNet.CompetitionLimitsAnnotateAnalyserTests+HighAccuracyBenchmark, CodeJam.BenchmarkDotNet-Tests">
 		<Candidate Target="SlowerX10" MinRatio="12" MaxRatio="28" />
 	</Competition>
 </CompetitionBenchmarks>
@@ -55,7 +55,7 @@ some log text
 // !<--------xml_annotation_begin1------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
-	<Competition Target="HighAccuracyBenchmark">
+	<Competition Target="CodeJam.BenchmarkDotNet.CompetitionLimitsAnnotateAnalyserTests+HighAccuracyBenchmark, CodeJam.BenchmarkDotNet-Tests">
 		<Candidate Target="SlowerX10" MinRatio="1" MaxRatio="100" />
 	</Competition>
 </CompetitionBenchmarks>
@@ -63,7 +63,7 @@ some log text
 // !<--------xml_annotation_begin------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks2>
-	<Competition Target="HighAccuracyBenchmark">
+	<Competition Target="CodeJam.BenchmarkDotNet.CompetitionLimitsAnnotateAnalyserTests+HighAccuracyBenchmark, CodeJam.BenchmarkDotNet-Tests">
 		<Candidate Target="SlowerX10" MinRatio="1" MaxRatio="100" />
 	</Competition>
 </CompetitionBenchmarks2>
@@ -71,7 +71,7 @@ some log text
 // !<--------xml_annotation_begin------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
-	<Competition Target="HighAccuracyBenchmark">
+	<Competition Target="CodeJam.BenchmarkDotNet.CompetitionLimitsAnnotateAnalyserTests+HighAccuracyBenchmark, CodeJam.BenchmarkDotNet-Tests">
 		<Candidate Target="SlowerX10" MinRatio="1" MaxRatio="100" />
 	</Competition>
 // !-->-------xml_annotation_end-------
