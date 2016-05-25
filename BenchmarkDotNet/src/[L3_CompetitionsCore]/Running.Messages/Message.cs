@@ -6,9 +6,10 @@ namespace BenchmarkDotNet.Running.Messages
 {
 	// DONTTOUCH: DO NOT change the order of the enum values.
 	// It is used to compare the severities.
+	// DO Check usages before  changing the enum values
+	[PublicAPI]
 	public enum MessageSeverity
 	{
-		[UsedImplicitly]
 		Verbose,
 		Informational,
 		Warning,
@@ -18,13 +19,14 @@ namespace BenchmarkDotNet.Running.Messages
 	}
 
 	// TODO: define more sources.
+	[PublicAPI]
 	public enum MessageSource
 	{
-		[UsedImplicitly]
 		Other,
-		Validator,
 		BenchmarkRunner,
-		Analyser
+		Validator,
+		Analyser,
+		Diagnoser
 	}
 
 	public interface IMessage
@@ -34,6 +36,7 @@ namespace BenchmarkDotNet.Running.Messages
 		MessageSource MessageSource { get; }
 		MessageSeverity MessageSeverity { get; }
 		string MessageText { get; }
+		string ToString();
 	}
 
 	public class Message : IMessage
@@ -55,5 +58,7 @@ namespace BenchmarkDotNet.Running.Messages
 		public MessageSource MessageSource { get; }
 		public MessageSeverity MessageSeverity { get; }
 		public string MessageText { get; }
+
+		public override string ToString() => $"#{RunNumber}.{RunMessageNumber}, {MessageSeverity}@{MessageSource}: {MessageText}";
 	}
 }

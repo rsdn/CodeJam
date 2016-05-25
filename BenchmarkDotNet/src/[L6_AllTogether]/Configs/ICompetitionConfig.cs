@@ -14,7 +14,7 @@ namespace BenchmarkDotNet.Configs
 		bool EnableReruns { get; }
 
 		// Annotation config
-		bool AnnotateOnRun { get; }
+		bool UpdateSourceAnnotations { get; }
 		bool IgnoreExistingAnnotations { get; }
 		bool LogAnnotationResults { get; }
 		string PreviousLogUri { get; }

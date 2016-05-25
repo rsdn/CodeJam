@@ -42,8 +42,6 @@ namespace BenchmarkDotNet.Toolchains
 			operationsPerInvoke = target.OperationsPerInvoke;
 			job = benchmark.Job;
 			output = textualOutput;
-
-			SetupProperties(instance, benchmarkToRun);
 		}
 
 		public void Run()

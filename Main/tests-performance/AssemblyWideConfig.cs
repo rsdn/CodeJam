@@ -17,7 +17,7 @@ namespace CodeJam
 		/// OPTIONAL: Set AssemblyWideConfig.AnnotateOnRun=true in app.config
 		/// to enable auto-annotation of benchmark methods
 		/// </summary>
-		public static readonly new bool AnnotateOnRun = AppSwitch.GetAssemblySwitch(() => AnnotateOnRun);
+		public static readonly bool AnnotateOnRun = AppSwitch.GetAssemblySwitch(() => AnnotateOnRun);
 
 		/// <summary>
 		/// OPTIONAL: Set AssemblyWideConfig.IgnoreAnnotatedLimits=true in app.config
@@ -49,7 +49,7 @@ namespace CodeJam
 			EnableReruns = true;
 			if (AnnotateOnRun)
 			{
-				base.AnnotateOnRun = true;
+				UpdateSourceAnnotations = true;
 				base.IgnoreExistingAnnotations = IgnoreExistingAnnotations;
 				LogAnnotationResults = true;
 			}

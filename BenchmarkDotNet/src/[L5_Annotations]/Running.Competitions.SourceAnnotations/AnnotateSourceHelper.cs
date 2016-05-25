@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 
-using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running.Competitions.Core;
@@ -96,7 +95,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 					{
 						using (var writer = new StreamWriter(pair.Key))
 						{
-							XmlAnnotations.SaveTo(writer, pair.Value);
+							XmlAnnotations.Save(pair.Value, writer);
 						}
 					}
 				}
@@ -106,7 +105,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 
 		// ReSharper disable once ParameterTypeCanBeEnumerable.Global
 		public static CompetitionTarget[] TryAnnotateBenchmarkFiles(
-			CompetitionTarget[] targetsToAnnotate, List<IWarning> warnings, ILogger logger)
+			CompetitionState competitionState, CompetitionTarget[] targetsToAnnotate, ILogger logger)
 		{
 			var annotatedTargets = new List<CompetitionTarget>();
 
@@ -129,8 +128,8 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 				if (!hasSource)
 				{
 					validationMessage = validationMessage ?? "Source file not found.";
-					warnings.AddWarning(
-						MessageSeverity.SetupError,
+					competitionState.WriteMessage(
+						MessageSource.Analyser, MessageSeverity.Warning,
 						$"Method {targetMethodName}: could not annotate. {validationMessage}");
 					continue;
 				}
@@ -142,8 +141,8 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 					var annotated = TryFixBenchmarkResource(annContext, resourceFileName, targetToAnnotate);
 					if (!annotated)
 					{
-						warnings.AddWarning(
-							MessageSeverity.SetupError,
+						competitionState.WriteMessage(
+							MessageSource.Analyser, MessageSeverity.Warning,
 							$"Method {targetMethodName}: could not annotate resource file {resourceFileName}.", null);
 						continue;
 					}
@@ -154,8 +153,8 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 					var annotated = TryFixBenchmarkAttribute(annContext, fileName, firstCodeLine, targetToAnnotate);
 					if (!annotated)
 					{
-						warnings.AddWarning(
-							MessageSeverity.SetupError,
+						competitionState.WriteMessage(
+							MessageSource.Analyser, MessageSeverity.Warning,
 							$"Method {targetMethodName}: could not annotate source file {fileName}.");
 						continue;
 					}
@@ -174,7 +173,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			CompetitionTarget competitionTarget)
 		{
 			var xDoc = annotateContext.GetXmlAnnotation(xmlFileName);
-			XmlAnnotations.SaveCompetitionTarget(competitionTarget, xDoc);
+			XmlAnnotations.AddOrUpdateCompetitionTarget(xDoc, competitionTarget);
 
 			annotateContext.MarkAsChanged(xmlFileName);
 

@@ -67,7 +67,7 @@ namespace BenchmarkDotNet.Configs
 			EnableReruns = config.EnableReruns;
 
 			// Annotation config
-			AnnotateOnRun = config.AnnotateOnRun;
+			UpdateSourceAnnotations = config.UpdateSourceAnnotations;
 			IgnoreExistingAnnotations = config.IgnoreExistingAnnotations;
 			LogAnnotationResults = config.LogAnnotationResults;
 			PreviousLogUri = config.PreviousLogUri;
@@ -84,7 +84,7 @@ namespace BenchmarkDotNet.Configs
 		public bool EnableReruns { get; set; }
 
 		// Annotation config
-		public bool AnnotateOnRun { get; set; }
+		public bool UpdateSourceAnnotations { get; set; }
 		public bool IgnoreExistingAnnotations { get; set; }
 		public bool LogAnnotationResults { get; set; }
 		public string PreviousLogUri { get; set; }

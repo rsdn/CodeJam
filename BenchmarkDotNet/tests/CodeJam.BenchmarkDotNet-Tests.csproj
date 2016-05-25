@@ -55,7 +55,8 @@
     <Compile Include="PerfTestConfig.cs" />
     <Compile Include="[L1_InProcess]\InProcessToolchainTest.cs" />
     <Compile Include="[L4_CompetitionLimits]\CompetitionTargetTests.cs" />
-    <Compile Include="[L4_CompetitionLimits]\CompetitionLimitsAnalyserTest.cs" />
+    <Compile Include="[L4_CompetitionLimits]\CompetitionLimitsAnalyserTests.cs" />
+    <Compile Include="[L5_Annotations]\CompetitionLimitsAnnotateAnalyserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -70,7 +71,12 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="[L4_CompetitionLimits]\CompetitionLimitsAnalyserTest.xml" />
+    <EmbeddedResource Include="[L4_CompetitionLimits]\CompetitionLimitsAnalyserTests.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="[L5_Annotations]\CompetitionLimitsAnnotateAnalyserTests.log.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

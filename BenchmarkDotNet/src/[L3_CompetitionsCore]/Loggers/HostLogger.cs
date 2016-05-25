@@ -13,6 +13,7 @@ namespace BenchmarkDotNet.Loggers
 		// DONTTOUCH: Verify that all code uses these constants before changing
 		// DONTTOUCH: Check that PreprocessLine works after changing
 		// TODO: unittest for that
+		public const string LogInfoPrefix = "// ?";
 		public const string LogImportantInfoPrefix = "// !";
 		public const string LogImportantAreaStart = "// !<--";
 		public const string LogImportantAreaEnd = "// !-->";

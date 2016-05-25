@@ -10,6 +10,7 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running.Competitions.Core;
 using BenchmarkDotNet.Running.Competitions.SourceAnnotations;
+using BenchmarkDotNet.Running.Messages;
 
 namespace BenchmarkDotNet.Analysers
 {
@@ -24,37 +25,57 @@ namespace BenchmarkDotNet.Analysers
 			new RunState<AdjustedCompetitionTargets>();
 		#endregion
 
-		public int AdditionalRunsOnAnnotate { get; set; }
-		public bool AnnotateOnRun { get; set; }
+		public bool UpdateSourceAnnotations { get; set; }
+		public int RequestRerunsOnAnnotate { get; set; }
 		public bool LogAnnotationResults { get; set; }
 		public string PreviousLogUri { get; set; }
 
-		#region Overrides of CompetitionLimitsAnalyser
 		protected override void InitCompetitionTargets(
-			CompetitionTargets competitionTargets, Summary summary, List<IWarning> warnings)
+			CompetitionTargets competitionTargets, Summary summary)
 		{
-			base.InitCompetitionTargets(competitionTargets, summary, warnings);
+			base.InitCompetitionTargets(competitionTargets, summary);
 
-			if (!AnnotateOnRun || string.IsNullOrEmpty(PreviousLogUri))
+			if (!UpdateSourceAnnotations || string.IsNullOrEmpty(PreviousLogUri))
 				return;
 
+			var competitionState = CompetitionCore.RunState[summary];
+
+			var adjustedTargets = _adjustedTargets[summary];
 			var docs = XmlAnnotations.GetDocumentsFromLog(PreviousLogUri);
 
+			competitionState.WriteMessage(
+				MessageSource.Analyser, MessageSeverity.Informational,
+				$"Parsing previous results ({docs.Length} doc(s)) from log file {PreviousLogUri}.");
+
+			bool updated = false;
 			foreach (var resourceDoc in docs)
 			{
 				foreach (var competitionTarget in competitionTargets.Values)
 				{
-					var target2 = XmlAnnotations.TryParseCompetitionTarget(
-						competitionTarget.Target,
-						resourceDoc);
+					var target2 = XmlAnnotations.TryParseCompetitionTarget(resourceDoc, competitionTarget.Target);
 					if (target2 != null)
 					{
-						competitionTarget.UnionWith(target2);
+						if (competitionTarget.UnionWith(target2))
+						{
+							updated = true;
+							adjustedTargets.Add(competitionTarget);
+						}
 					}
 				}
 			}
+			if (updated)
+			{
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.Informational, 
+					$"Benchmark limits was updated from log file {PreviousLogUri}.");
+			}
+			else
+			{
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.Warning,
+					$"No benchmark limits found. Log file: {PreviousLogUri}.");
+			}
 		}
-		#endregion
 
 		protected override void ValidateSummary(
 			Summary summary, CompetitionTargets competitionTargets,
@@ -62,7 +83,7 @@ namespace BenchmarkDotNet.Analysers
 		{
 			base.ValidateSummary(summary, competitionTargets, warnings);
 
-			if (!AnnotateOnRun)
+			if (!UpdateSourceAnnotations)
 				return;
 
 			var competitionState = CompetitionCore.RunState[summary];
@@ -71,8 +92,8 @@ namespace BenchmarkDotNet.Analysers
 
 			var targetsToAnnotate = AdjustCompetitionTargets(summary, competitionTargets);
 
-			AnnotateResultsCore(targetsToAnnotate, logger, warnings);
-			RequestReruns(targetsToAnnotate.Any(), competitionState);
+			AnnotateResultsCore(competitionState, targetsToAnnotate, logger);
+			RequestReruns(competitionState, targetsToAnnotate.Any());
 
 			adjustedTargets.UnionWith(targetsToAnnotate);
 
@@ -82,15 +103,15 @@ namespace BenchmarkDotNet.Analysers
 			}
 		}
 
-		private void RequestReruns(bool updated, CompetitionState competitionState)
+		private void RequestReruns(CompetitionState competitionState, bool updated)
 		{
-			if (AdditionalRunsOnAnnotate > 0)
+			if (RequestRerunsOnAnnotate > 0)
 			{
 				if (updated)
 				{
 					// TODO: detailed message???
 					competitionState.RequestReruns(
-						AdditionalRunsOnAnnotate,
+						RequestRerunsOnAnnotate,
 						"Annotations updated.");
 				}
 				else
@@ -103,8 +124,7 @@ namespace BenchmarkDotNet.Analysers
 		}
 
 		private void AnnotateResultsCore(
-			CompetitionTarget[] targetsToAnnotate, ILogger logger,
-			List<IWarning> warnings)
+			CompetitionState competitionState, CompetitionTarget[] targetsToAnnotate, ILogger logger)
 		{
 			const int looseByPercent = 3;
 
@@ -113,7 +133,7 @@ namespace BenchmarkDotNet.Analysers
 				competitionTarget.LooseLimitsAndMarkAsSaved(looseByPercent);
 			}
 
-			AnnotateSourceHelper.TryAnnotateBenchmarkFiles(targetsToAnnotate, warnings, logger);
+			AnnotateSourceHelper.TryAnnotateBenchmarkFiles(competitionState, targetsToAnnotate, logger);
 		}
 		
 

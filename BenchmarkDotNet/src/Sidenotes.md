@@ -1,11 +1,14 @@
 ﻿## TODO, Bench.Net:
 * ValidationError - make public, https://github.com/PerfDotNet/BenchmarkDotNet/issues/183
 * ManualConfig.Add to virtual?
+* Validators: access to config?
 * remove calls instance.setupAction(), instance.targetAction() from BenchmarkProgram.txt
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
 ## TODO:
+ * Logging: write validator messages immediately?
  * Naming: Annotate <> Adjust?
+ * Naming: Runs -> Reruns?
  * ability to pass ICompetitionConfig via attrubute?
  * validate summary after run
  * Design flaw? The run state DOES NOT SUPPORT reuse across multiple benchmarks.

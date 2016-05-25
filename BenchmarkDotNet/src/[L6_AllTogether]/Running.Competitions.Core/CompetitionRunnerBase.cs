@@ -22,8 +22,9 @@ using JetBrains.Annotations;
 namespace BenchmarkDotNet.Running.Competitions.Core
 {
 	[PublicAPI]
-	[SuppressMessage("ReSharper", "VirtualMemberNeverOverriden.Global")]
+	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
+	[SuppressMessage("ReSharper", "VirtualMemberNeverOverriden.Global")]
 	public abstract class CompetitionRunnerBase
 	{
 		protected abstract class HostLogger : Loggers.HostLogger
@@ -43,30 +44,28 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			var benchmarkConfig = CreateBenchmarkConfig(competitionConfig);
 
 			bool runSucceed = false;
-			IMessage[] messages;
 			Summary summary = null;
+			CompetitionState competitionState;
 			try
 			{
-				var competitionState = CompetitionCore.Run(
+				competitionState = CompetitionCore.Run(
 					benchmarkType,
-					benchmarkConfig, 
+					benchmarkConfig,
 					competitionConfig.MaxRunsAllowed);
-				messages = competitionState.GetMessages();
 				summary = competitionState.LastRunSummary;
 				runSucceed = true;
+
+				ProcessRunComplete(competitionState, competitionConfig);
 			}
 			finally
 			{
+				OnAfterRun(runSucceed, benchmarkConfig, summary);
+
 				var hostLogger = benchmarkConfig.GetLoggers().OfType<HostLogger>().Single();
 				ReportHostLogger(hostLogger, summary);
-
-				OnAfterRun(runSucceed, benchmarkConfig, summary);
 			}
 
-			if (!competitionConfig.DebugMode)
-			{
-				ReportMessagesToUser(messages);
-			}
+			ReportMessagesToUser(competitionState, competitionConfig);
 
 			return summary;
 		}
@@ -90,39 +89,80 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			}
 		}
 
-		private void ReportMessagesToUser(IMessage[] messages)
+		private void ProcessRunComplete(CompetitionState competitionState, ICompetitionConfig competitionConfig)
 		{
-			if (messages == null)
+			if (competitionConfig.DebugMode && competitionState?.Logger != null)
+			{
+				var logger = competitionState.Logger;
+				var messages = competitionState.GetMessages();
+
+				if (messages.Length == 0)
+				{
+					logger.WriteLine();
+					logger.WriteLineInfo("// No messages in run.");
+				}
+				else
+				{
+					logger.WriteLine();
+					logger.WriteLineInfo("// All messages:");
+					foreach (var message in messages)
+					{
+						logger.LogMessage(message);
+					}
+
+				}
+			}
+		}
+
+		private void ReportMessagesToUser(CompetitionState competitionState, ICompetitionConfig competitionConfig)
+		{
+			if (competitionState == null || competitionConfig.DebugMode)
 				return;
 
-			var errorMessages = GetMessageLines(messages, m => m.MessageSeverity > MessageSeverity.Warning);
-			var warningMessages = GetMessageLines(messages, m => m.MessageSeverity == MessageSeverity.Warning);
-			var infoMessages = GetMessageLines(messages, m => m.MessageSeverity < MessageSeverity.Warning);
+			var criticalErrorMessages = GetMessageLines(
+				competitionState, m => m.MessageSeverity > MessageSeverity.TestError, false);
+			bool hasCriticalMessages = criticalErrorMessages.Length > 0;
 
-			var allMessages = new List<string>(errorMessages.Length + warningMessages.Length + infoMessages.Length + 3);
+			var testFailedMessages = GetMessageLines(
+				competitionState, m => m.MessageSeverity == MessageSeverity.TestError, hasCriticalMessages);
+			bool hasTestFailedMessages = testFailedMessages.Length > 0;
 
-			bool hasErrors = errorMessages.Length > 0;
+			var warningMessages = GetMessageLines(
+				competitionState, m => m.MessageSeverity == MessageSeverity.Warning, hasCriticalMessages);
 			bool hasWarnings = warningMessages.Length > 0;
+
+			var infoMessages = GetMessageLines(
+				competitionState, m => m.MessageSeverity < MessageSeverity.Warning, hasCriticalMessages);
 			bool hasInfo = infoMessages.Length > 0;
 
-			if (!hasErrors && !hasWarnings)
+			if (!(hasCriticalMessages || hasTestFailedMessages || hasWarnings))
 				return;
 
+			var allMessages = new List<string>();
+
 			// TODO: simplify
-			// ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
-			if (hasErrors)
+			if (hasCriticalMessages)
 			{
 				allMessages.Add("Execution failed, details below.");
+			}
+			else if (hasTestFailedMessages)
+			{
+				allMessages.Add("Test failed, details below.");
 			}
 			else
 			{
 				allMessages.Add("Test completed with warnings, details below.");
 			}
 
-			if (hasErrors)
+			if (hasCriticalMessages)
 			{
 				allMessages.Add("Errors:");
-				allMessages.AddRange(errorMessages);
+				allMessages.AddRange(criticalErrorMessages);
+			}
+			if (hasTestFailedMessages)
+			{
+				allMessages.Add("Failed assertions:");
+				allMessages.AddRange(testFailedMessages);
 			}
 			if (hasWarnings)
 			{
@@ -135,20 +175,32 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 				allMessages.AddRange(infoMessages);
 			}
 
-			if (hasErrors)
+			var messageText = string.Join(Environment.NewLine, allMessages);
+			if (hasCriticalMessages)
 			{
-				ReportAsError(string.Join(Environment.NewLine, allMessages));
+				ReportExecutionErrors(messageText);
+			}
+			else if (hasTestFailedMessages)
+			{
+				ReportAssertionsFailed(messageText);
 			}
 			else
 			{
-				ReportAsWarning(string.Join(Environment.NewLine, allMessages));
+				ReportWarnings(messageText);
 			}
 		}
 
-		private string[] GetMessageLines(IMessage[] messages, Func<IMessage, bool> filter)
+		private bool ShouldReport(IMessage message, CompetitionState competitionState) =>
+			message.RunNumber == competitionState.RunNumber ||
+			(message.MessageSource != MessageSource.Analyser && message.MessageSource != MessageSource.Diagnoser);
+
+		private string[] GetMessageLines(CompetitionState competitionState, Func<IMessage, bool> filter, bool fromAllRuns)
 		{
+			// TODO: 
 			var result =
-				from message in messages.Where(filter)
+				from message in competitionState.GetMessages()
+				where fromAllRuns || ShouldReport(message, competitionState)
+				where filter(message)
 				orderby
 					message.MessageSource,
 					(int)message.MessageSeverity descending,
@@ -164,10 +216,11 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 		protected virtual void OnAfterRun(bool runSucceed, IConfig benchmarkConfig, Summary summary) { }
 
 		protected abstract HostLogger CreateHostLogger(ICompetitionConfig competitionConfig);
-		protected abstract void ReportHostLogger(HostLogger logger, [CanBeNull]Summary summary);
+		protected abstract void ReportHostLogger(HostLogger logger, [CanBeNull] Summary summary);
 
-		protected abstract void ReportAsError(string messages);
-		protected abstract void ReportAsWarning(string messages);
+		protected abstract void ReportExecutionErrors(string messages);
+		protected abstract void ReportAssertionsFailed(string messages);
+		protected abstract void ReportWarnings(string messages);
 		#endregion
 
 		#region Create benchark config
@@ -217,7 +270,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			if (competitionConfig.GetJobs().Any(j => j.Toolchain is InProcessToolchain))
 			{
 				// ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
-				if (competitionConfig.AnnotateOnRun)
+				if (competitionConfig.UpdateSourceAnnotations && !competitionConfig.DebugMode)
 				{
 					result.Insert(0, InProcessValidator.FailOnError);
 				}
@@ -253,8 +306,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 				var annotator = new CompetitionLimitsAnnotateAnalyser
 				{
 					AllowSlowBenchmarks = competitionConfig.AllowSlowBenchmarks,
-
-					AnnotateOnRun = competitionConfig.AnnotateOnRun,
+					UpdateSourceAnnotations = competitionConfig.UpdateSourceAnnotations,
 					IgnoreExistingAnnotations = competitionConfig.IgnoreExistingAnnotations,
 					LogAnnotationResults = competitionConfig.LogAnnotationResults,
 					PreviousLogUri = competitionConfig.PreviousLogUri
@@ -262,8 +314,8 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 
 				if (competitionConfig.EnableReruns)
 				{
-					annotator.MaxRuns = 3;
-					annotator.AdditionalRunsOnAnnotate = 2;
+					annotator.MaxRerunsIfValidationFailed = 3;
+					annotator.RequestRerunsOnAnnotate = 2;
 				}
 
 				result.Add(annotator);

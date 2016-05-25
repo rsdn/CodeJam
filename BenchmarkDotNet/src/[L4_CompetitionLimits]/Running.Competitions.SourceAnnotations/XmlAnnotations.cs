@@ -30,8 +30,10 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 		}
 
 		#region XML metadata constants
-		private const string LogAnnotationStart = HostLogger.LogImportantAreaStart + "------xml_annotation_begin------";
-		private const string LogAnnotationEnd = HostLogger.LogImportantAreaEnd + "------xml_annotation_end------";
+		private const string LogAnnotationStart = HostLogger.LogImportantAreaStart +
+			"------xml_annotation_begin------";
+		private const string LogAnnotationEnd = HostLogger.LogImportantAreaEnd +
+			"-------xml_annotation_end-------";
 
 		private const string CompetitionBenchmarksRootNode = "CompetitionBenchmarks";
 		private const string CompetitionNode = "Competition";
@@ -120,44 +122,66 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 		{
 			var result = new List<XDocument>();
 
-			var buffer = new StringBuilder();
-			var append = false;
-			foreach (var logLine in File.ReadLines(previousLogUri))
+			using (var reader = BenchmarkHelpers.TryGetTextFromUri(previousLogUri))
 			{
-				if (logLine.StartsWith(LogAnnotationStart, StringComparison.OrdinalIgnoreCase))
+				if (reader == null)
+					return new XDocument[0];
+
+				var buffer = new StringBuilder();
+				var append = false;
+				string logLine;
+				while ((logLine = reader.ReadLine()) != null)
 				{
-					append = true;
-				}
-				else if (logLine.StartsWith(LogAnnotationEnd, StringComparison.OrdinalIgnoreCase))
-				{
-					if (buffer.Length > 0)
+					if (logLine.StartsWith(LogAnnotationStart, StringComparison.OrdinalIgnoreCase))
 					{
-						result.Add(Parse(buffer.ToString(), true));
+						append = true;
 					}
-					buffer.Length = 0;
-					append = false;
+					else if (logLine.StartsWith(LogAnnotationEnd, StringComparison.OrdinalIgnoreCase))
+					{
+						if (buffer.Length > 0)
+						{
+							var xDoc = TryParse(buffer.ToString(), true);
+							if (xDoc != null)
+							{
+								result.Add(xDoc);
+							}
+						}
+						buffer.Length = 0;
+						append = false;
+					}
+					else if (append)
+					{
+						buffer.Append(logLine);
+					}
 				}
-				else if (append)
+				if (buffer.Length > 0)
 				{
-					buffer.Append(logLine);
+					var xDoc = TryParse(buffer.ToString(), true);
+					if (xDoc != null)
+					{
+						result.Add(xDoc);
+					}
 				}
-			}
-			if (buffer.Length > 0)
-			{
-				result.Add(Parse(buffer.ToString(), true));
 			}
 
 			return result.ToArray();
 		}
 
-		private static XDocument Parse(string xDocText, bool useFullCompetitionName)
+		private static XDocument TryParse(string xDocText, bool useFullCompetitionName)
 		{
-			var result = XDocument.Parse(xDocText);
-			if (useFullCompetitionName)
+			try
 			{
-				result.AddAnnotation(UseFullNameAnnotation.Instance);
+				var result = XDocument.Parse(xDocText);
+				if (useFullCompetitionName)
+				{
+					result.AddAnnotation(UseFullNameAnnotation.Instance);
+				}
+				return result;
 			}
-			return result;
+			catch (XmlException)
+			{
+				return null;
+			}
 		}
 
 		private static XDocument CreateEmptyResourceDoc(bool useFullCompetitionName)
@@ -171,25 +195,36 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 		}
 
 		public static XDocument TryLoadResourceDoc(
-			Target target, string targetResourceName, List<IWarning> warnings)
+			Type targetType,  string targetResourceName, CompetitionState competitionState)
 		{
-			var resourceStream = target.Type.Assembly.GetManifestResourceStream(targetResourceName);
+			var resourceStream = targetType.Assembly.GetManifestResourceStream(targetResourceName);
 
 			if (resourceStream == null)
 			{
-				warnings.AddWarning(
-					MessageSeverity.SetupError,
-					$"Method {target.Method.Name}: resource stream {targetResourceName} not found");
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.SetupError,
+					$"Benchmark {targetType.Name}: resource stream {targetResourceName} not found");
 
 				return null;
 			}
+			XDocument resourceDoc;
+			try
+			{
+				resourceDoc = XDocument.Load(resourceStream);
+			}
+			catch (XmlException ex)
+			{
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.SetupError,
+					$"Benchmark {targetType.Name}: could not parse resource stream {targetResourceName} not found. Exception: {ex}.");
+				return null;
+			}
 
-			var resourceDoc = XDocument.Load(resourceStream);
 			var rootNode = resourceDoc.Element(CompetitionBenchmarksRootNode);
 			if (rootNode == null)
 			{
-				warnings.AddWarning(
-					MessageSeverity.SetupError,
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.SetupError,
 					$"Resource {targetResourceName}: root node {CompetitionBenchmarksRootNode} not found.");
 
 				return null;
@@ -198,8 +233,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			return resourceDoc;
 		}
 
-		public static CompetitionTarget TryParseCompetitionTarget(
-			Target target, XDocument resourceDoc)
+		public static CompetitionTarget TryParseCompetitionTarget(XDocument resourceDoc, Target target)
 		{
 			var competitionName = target.GetCompetitionName(resourceDoc);
 			var candidateName = target.GetCandidateName();
@@ -240,9 +274,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			return new CompetitionTarget(target, min, max, true);
 		}
 
-		public static void SaveCompetitionTarget(
-			CompetitionTarget competitionTarget,
-			XDocument resourceDoc)
+		public static void AddOrUpdateCompetitionTarget(XDocument resourceDoc, CompetitionTarget competitionTarget)
 		{
 			var competitionName = competitionTarget.Target.GetCompetitionName(resourceDoc);
 			var candidateName = competitionTarget.Target.GetCandidateName();
@@ -270,11 +302,11 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 		private static StringBuilder SaveToString(XDocument resourceDoc)
 		{
 			var tmp = new StringWriter();
-			SaveTo(tmp, resourceDoc);
+			Save(resourceDoc, tmp);
 			return tmp.GetStringBuilder();
 		}
 
-		public static void SaveTo(TextWriter output, XDocument resourceDoc)
+		public static void Save(XDocument resourceDoc, TextWriter output)
 		{
 			var writerSettings = GetXmlWriterSettings();
 			using (var writer = XmlWriter.Create(output, writerSettings))
@@ -287,12 +319,11 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			IEnumerable<CompetitionTarget> competitionTargets,
 			ILogger logger)
 		{
-
 			var updated = false;
 			var xDoc = CreateEmptyResourceDoc(true);
 			foreach (var competitionTarget in competitionTargets)
 			{
-				SaveCompetitionTarget(competitionTarget, xDoc);
+				AddOrUpdateCompetitionTarget(xDoc, competitionTarget);
 				updated = true;
 			}
 
@@ -312,5 +343,4 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			}
 		}
 	}
-
 }

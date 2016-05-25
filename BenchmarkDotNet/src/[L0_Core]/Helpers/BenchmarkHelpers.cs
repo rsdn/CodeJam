@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 
 using BenchmarkDotNet.Jobs;
@@ -20,6 +22,7 @@ namespace BenchmarkDotNet.Helpers
 	/// Helper methods for benchmark infrastructure
 	/// </summary>
 	[PublicAPI]
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	public static class BenchmarkHelpers
 	{
 		#region Benchmark-related
@@ -190,6 +193,30 @@ namespace BenchmarkDotNet.Helpers
 					writer.Write(lines[lines.Length - 1]);
 				}
 			}
+		}
+
+		public static TextReader TryGetTextFromUri(string uri)
+		{
+			var uriInst = new Uri(uri, UriKind.RelativeOrAbsolute);
+			if (uriInst.IsAbsoluteUri && !uriInst.IsFile)
+			{
+				try
+				{
+					using (var webClient = new WebClient())
+					{
+						return new StringReader(webClient.DownloadString(uriInst));
+					}
+				}
+				catch (WebException)
+				{
+					return null;
+				}
+			}
+
+			if (!File.Exists(uri))
+				return null;
+
+			return File.OpenText(uriInst.IsAbsoluteUri ? uriInst.LocalPath : uri);
 		}
 		#endregion
 	}

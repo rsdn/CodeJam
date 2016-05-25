@@ -50,12 +50,17 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			outLogger.WriteLine(nUnitLogger.GetLog());
 		}
 
-		protected override void ReportAsError(string messages)
+		protected override void ReportExecutionErrors(string messages)
 		{
 			throw new AssertionException(messages);
 		}
 
-		protected override void ReportAsWarning(string messages)
+		protected override void ReportAssertionsFailed(string messages)
+		{
+			throw new AssertionException(messages);
+		}
+
+		protected override void ReportWarnings(string messages)
 		{
 			throw new IgnoreException(messages);
 		}

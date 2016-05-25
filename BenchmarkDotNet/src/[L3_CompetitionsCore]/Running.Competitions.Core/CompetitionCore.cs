@@ -25,12 +25,19 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 		#region API to use during the run
 		public static readonly RunState<CompetitionState> RunState = new RunState<CompetitionState>();
 
-		public static void AddWarning(
-			this List<IWarning> warnings,
-			MessageSeverity severity, string message,
-			BenchmarkReport report = null) =>
-				warnings.Add(
-					new Warning(severity.ToString(), message, report));
+		public static bool IsWarningOrHigher(this MessageSeverity severity) => severity >= MessageSeverity.Warning;
+		public static bool IsCriticalError(this MessageSeverity severity) => severity > MessageSeverity.TestError;
+
+		public static void AddAnalyserWarning(
+			this CompetitionState competitionState,
+			List<IWarning> warnings,
+			MessageSeverity severity,
+			string message,
+			BenchmarkReport report = null)
+		{
+			competitionState.WriteMessage(MessageSource.Analyser, severity, message);
+			warnings.Add(new Warning(severity.ToString(), message, report));
+		}
 
 		public static void FillAnalyserMessages(Summary summary, IEnumerable<IWarning> warnings)
 		{
@@ -38,18 +45,17 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 				return;
 
 			var competitionState = RunState[summary];
-			if (competitionState.LooksLikeLastRun)
+			foreach (var warning in warnings)
 			{
-				foreach (var warning in warnings)
+				MessageSeverity severity;
+				// TODO: another way to mark warnings as logged???
+				if (Enum.TryParse(warning.Kind, out severity))
 				{
-					MessageSeverity severity;
-					if (!Enum.TryParse(warning.Kind, out severity))
-					{
-						severity = MessageSeverity.Warning;
-					}
-
-					competitionState.WriteMessage(MessageSource.Analyser, severity, warning.Message);
+					// Skipping as these should be logged already.
+					continue;
 				}
+
+				competitionState.WriteMessage(MessageSource.Analyser, MessageSeverity.Warning, warning.Message);
 			}
 		}
 
@@ -60,12 +66,28 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 
 			foreach (var validationError in competitionState.LastRunSummary.ValidationErrors)
 			{
-				var severity = validationError.IsCritical ? MessageSeverity.TestError : MessageSeverity.Warning;
+				var severity = validationError.IsCritical ? MessageSeverity.SetupError : MessageSeverity.Warning;
 				var message = validationError.Benchmark == null
 					? validationError.Message
 					: $"Benchmark {validationError.Benchmark.ShortInfo}:{Environment.NewLine}\t{validationError.Message}";
 
 				competitionState.WriteMessage(MessageSource.Validator, severity, message);
+			}
+		}
+
+		internal static void LogMessage(this ILogger logger, IMessage message)
+		{
+			if (message.MessageSeverity.IsCriticalError())
+			{
+				logger.WriteLineError($"{LogImportantInfoPrefix} {message.ToString()}");
+			}
+			else if (message.MessageSeverity.IsWarningOrHigher())
+			{
+				logger.WriteLineInfo($"{LogImportantInfoPrefix} {message.ToString()}");
+			}
+			else
+			{
+				logger.WriteLineInfo($"{LogInfoPrefix} {message.ToString()}");
 			}
 		}
 		#endregion
@@ -100,6 +122,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			catch (Exception ex)
 			{
 				competitionState.WriteMessage(MessageSource.BenchmarkRunner, MessageSeverity.ExecutionError, ex.ToString());
+				competitionConfig.GetCompositeLogger().WriteLineError(ex.ToString());
 			}
 			FillMessagesAfterLastRun(competitionState);
 
@@ -111,14 +134,15 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			Type benchmarkType, IConfig competitionConfig)
 		{
 			var logger = competitionConfig.GetCompositeLogger();
-			competitionState.FirstTimeInit(maxRunsAllowed);
+			competitionState.FirstTimeInit(maxRunsAllowed, logger);
+
 			while (competitionState.RunsLeft > 0)
 			{
 				competitionState.PrepareForRun();
 
 				var run = competitionState.RunNumber;
 				var runsExpected = competitionState.RunNumber + competitionState.RunsLeft;
-				var runMessage = competitionState.LastRun
+				var runMessage = competitionState.RunLimitExceeded
 					? $"{LogImportantInfoPrefix}Run {run}, total runs (expected): {runsExpected} (rerun limit exceeded, last run)."
 					: $"{LogImportantInfoPrefix}Run {run}, total runs (expected): {runsExpected}.";
 				logger.WriteLine();
@@ -130,8 +154,14 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 				var summary = BenchmarkRunner.Run(benchmarkType, competitionConfig);
 				competitionState.RunCompleted(summary);
 
-				if (competitionState.LastRun)
+				if (competitionState.RunLimitExceeded)
 					break;
+
+				if (competitionState.GetMessages().Any(m => m.MessageSeverity.IsCriticalError()))
+				{
+					logger.WriteLineInfo($"{LogImportantInfoPrefix}Breaking the run. High severity error occured.");
+					break;
+				}
 
 				if (competitionState.RunsLeft > 0)
 				{
@@ -140,7 +170,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			}
 
 			// TODO: move to somewhere else?
-			if (competitionState.LastRun)
+			if (competitionState.RunLimitExceeded)
 			{
 				competitionState.WriteMessage(
 					MessageSource.BenchmarkRunner, MessageSeverity.TestError,
