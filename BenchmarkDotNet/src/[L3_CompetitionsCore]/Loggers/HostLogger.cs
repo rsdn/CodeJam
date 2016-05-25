@@ -37,8 +37,8 @@ namespace BenchmarkDotNet.Loggers
 		// ReSharper disable once VirtualMemberNeverOverriden.Global
 		protected virtual bool ShouldWrite(LogKind kind) =>
 			_importantAreaCount > 0 ||
-			DetailedLogging ||
-			kind == LogKind.Error;
+				DetailedLogging ||
+				kind == LogKind.Error;
 
 		// ReSharper disable once VirtualMemberNeverOverriden.Global
 		protected virtual bool PreprocessLine(string text)

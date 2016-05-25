@@ -39,7 +39,7 @@ namespace CodeJam.BenchmarkDotNet
 			Assert.Throws<ArgumentOutOfRangeException>(() => result.LooseLimitsAndMarkAsSaved(-1));
 			Assert.Throws<ArgumentOutOfRangeException>(() => result.LooseLimitsAndMarkAsSaved(100));
 
-			result.UnionWith(new CompetitionLimit(1,2));
+			result.UnionWith(new CompetitionLimit(1, 2));
 			Assert.AreEqual(result.Min, 1);
 			Assert.AreEqual(result.Max, 2);
 			Assert.IsFalse(result.IsEmpty);
@@ -78,7 +78,6 @@ namespace CodeJam.BenchmarkDotNet
 			result.UnionWith(new CompetitionLimit(1, 2));
 			Assert.IsFalse(result.HasUnsavedChanges);
 		}
-
 
 		[Test]
 		public static void TestRealCompetitionLimits()

@@ -59,6 +59,7 @@ namespace BenchmarkDotNet.Running.Messages
 		public MessageSeverity MessageSeverity { get; }
 		public string MessageText { get; }
 
-		public override string ToString() => $"#{RunNumber}.{RunMessageNumber}, {MessageSeverity}@{MessageSource}: {MessageText}";
+		public override string ToString()
+			=> $"#{RunNumber}.{RunMessageNumber}, {MessageSeverity}@{MessageSource}: {MessageText}";
 	}
 }

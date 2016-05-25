@@ -16,6 +16,7 @@ namespace BenchmarkDotNet.Analysers
 {
 	// TODO: needs code review
 	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	internal class CompetitionLimitsAnnotateAnalyser : CompetitionLimitsAnalyser
 	{
 		#region Adjusted targets
@@ -66,7 +67,7 @@ namespace BenchmarkDotNet.Analysers
 			if (updated)
 			{
 				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.Informational, 
+					MessageSource.Analyser, MessageSeverity.Informational,
 					$"Benchmark limits was updated from log file {PreviousLogUri}.");
 			}
 			else
@@ -123,7 +124,7 @@ namespace BenchmarkDotNet.Analysers
 			}
 		}
 
-		private void AnnotateResultsCore(
+		private static void AnnotateResultsCore(
 			CompetitionState competitionState, CompetitionTarget[] targetsToAnnotate, ILogger logger)
 		{
 			const int looseByPercent = 3;
@@ -135,7 +136,6 @@ namespace BenchmarkDotNet.Analysers
 
 			AnnotateSourceHelper.TryAnnotateBenchmarkFiles(competitionState, targetsToAnnotate, logger);
 		}
-		
 
 		private static CompetitionTarget[] AdjustCompetitionTargets(
 			Summary summary, CompetitionTargets competitionTargets)

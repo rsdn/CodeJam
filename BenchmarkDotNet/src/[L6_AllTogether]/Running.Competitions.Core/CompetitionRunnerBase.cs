@@ -109,7 +109,6 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 					{
 						logger.LogMessage(message);
 					}
-
 				}
 			}
 		}
@@ -192,7 +191,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 
 		private bool ShouldReport(IMessage message, CompetitionState competitionState) =>
 			message.RunNumber == competitionState.RunNumber ||
-			(message.MessageSource != MessageSource.Analyser && message.MessageSource != MessageSource.Diagnoser);
+				(message.MessageSource != MessageSource.Analyser && message.MessageSource != MessageSource.Diagnoser);
 
 		private string[] GetMessageLines(CompetitionState competitionState, Func<IMessage, bool> filter, bool fromAllRuns)
 		{

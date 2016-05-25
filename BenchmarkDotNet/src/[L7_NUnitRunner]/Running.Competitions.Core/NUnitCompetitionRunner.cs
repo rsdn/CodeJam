@@ -19,9 +19,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 			private readonly AccumulationLogger _logger = new AccumulationLogger();
 
 			public NUnitHostLogger(bool detailedLogging)
-				: base(new AccumulationLogger(), detailedLogging)
-			{
-			}
+				: base(new AccumulationLogger(), detailedLogging) { }
 
 			protected new AccumulationLogger WrappedLogger => (AccumulationLogger)base.WrappedLogger;
 
@@ -29,7 +27,7 @@ namespace BenchmarkDotNet.Running.Competitions.Core
 		}
 
 		#region Host-related logic
-		protected override HostLogger CreateHostLogger(ICompetitionConfig competitionConfig) => 
+		protected override HostLogger CreateHostLogger(ICompetitionConfig competitionConfig) =>
 			new NUnitHostLogger(competitionConfig.DebugMode);
 
 		protected override void ReportHostLogger(HostLogger logger, Summary summary)

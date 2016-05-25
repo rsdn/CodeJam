@@ -136,7 +136,8 @@ namespace CodeJam.BenchmarkDotNet
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[0].MessageText, Does.StartWith("Method SlowerX10 runs slower than 1.00x baseline. Actual ratio: "));
+			Assert.That(
+				messages[0].MessageText, Does.StartWith("Method SlowerX10 runs slower than 1.00x baseline. Actual ratio: "));
 
 			Assert.AreEqual(messages[1].RunNumber, 1);
 			Assert.AreEqual(messages[1].RunMessageNumber, 2);
@@ -148,7 +149,8 @@ namespace CodeJam.BenchmarkDotNet
 			Assert.AreEqual(messages[2].RunMessageNumber, 1);
 			Assert.AreEqual(messages[2].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[2].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[2].MessageText, Does.StartWith("Method SlowerX10 runs slower than 1.00x baseline. Actual ratio: "));
+			Assert.That(
+				messages[2].MessageText, Does.StartWith("Method SlowerX10 runs slower than 1.00x baseline. Actual ratio: "));
 
 			Assert.AreEqual(messages[3].RunNumber, 2);
 			Assert.AreEqual(messages[3].RunMessageNumber, 2);
@@ -160,13 +162,16 @@ namespace CodeJam.BenchmarkDotNet
 			Assert.AreEqual(messages[4].RunMessageNumber, 1);
 			Assert.AreEqual(messages[4].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[4].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[4].MessageText, Does.StartWith("Method SlowerX10 runs slower than 1.00x baseline. Actual ratio: "));
+			Assert.That(
+				messages[4].MessageText, Does.StartWith("Method SlowerX10 runs slower than 1.00x baseline. Actual ratio: "));
 
 			Assert.AreEqual(messages[5].RunNumber, 3);
 			Assert.AreEqual(messages[5].RunMessageNumber, 2);
 			Assert.AreEqual(messages[5].MessageSeverity, MessageSeverity.Warning);
 			Assert.AreEqual(messages[5].MessageSource, MessageSource.BenchmarkRunner);
-			Assert.AreEqual(messages[5].MessageText, "The benchmark was run 3 times (read log for details). Consider to adjust competition setup.");
+			Assert.AreEqual(
+				messages[5].MessageText,
+				"The benchmark was run 3 times (read log for details). Consider to adjust competition setup.");
 		}
 
 		#region Benchmark classes
@@ -174,9 +179,7 @@ namespace CodeJam.BenchmarkDotNet
 
 		private static int _callCounter;
 
-		public class EmptyBenchmark
-		{
-		}
+		public class EmptyBenchmark { }
 
 		public class NoBaselineOkBenchmark : EmptyBenchmark
 		{

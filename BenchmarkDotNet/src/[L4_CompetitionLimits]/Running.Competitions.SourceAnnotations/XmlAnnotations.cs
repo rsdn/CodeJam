@@ -8,7 +8,6 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 
-using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Competitions;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
@@ -32,6 +31,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 		#region XML metadata constants
 		private const string LogAnnotationStart = HostLogger.LogImportantAreaStart +
 			"------xml_annotation_begin------";
+
 		private const string LogAnnotationEnd = HostLogger.LogImportantAreaEnd +
 			"-------xml_annotation_end-------";
 
@@ -45,6 +45,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 
 		#region Helpers
 		[NotNull]
+		// ReSharper disable once SuggestBaseTypeForParameter
 		private static string GetCompetitionName(this Target target, XDocument document) =>
 			document.Annotations<UseFullNameAnnotation>().Any()
 				? target.Type.FullName + ", " + target.Type.Assembly.GetName().Name
@@ -195,7 +196,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 		}
 
 		public static XDocument TryLoadResourceDoc(
-			Type targetType,  string targetResourceName, CompetitionState competitionState)
+			Type targetType, string targetResourceName, CompetitionState competitionState)
 		{
 			var resourceStream = targetType.Assembly.GetManifestResourceStream(targetResourceName);
 
@@ -289,7 +290,6 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			candidate.SetAttribute(MinRatioAttribute, minText);
 			candidate.SetAttribute(MaxRatioAttribute, maxText);
 		}
-
 
 		private static XmlWriterSettings GetXmlWriterSettings() =>
 			new XmlWriterSettings

@@ -47,6 +47,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			return result;
 		}
 
+		// ReSharper disable once SuggestBaseTypeForParameter
 		private static string FixAttributeContent(Match m, CompetitionTarget competitionTarget)
 		{
 			var attributeStartText = m.Groups[1].Value;
@@ -78,6 +79,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			return result.ToString();
 		}
 
+		// ReSharper disable once SuggestBaseTypeForParameter
 		private static void AppendMinMax(StringBuilder result, CompetitionTarget competitionTarget)
 		{
 			if (!competitionTarget.IgnoreMin)

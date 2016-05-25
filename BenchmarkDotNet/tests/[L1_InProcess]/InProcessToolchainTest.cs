@@ -5,6 +5,7 @@ using System.Threading;
 
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Competitions;
+
 using NUnit.Framework;
 
 namespace CodeJam.BenchmarkDotNet

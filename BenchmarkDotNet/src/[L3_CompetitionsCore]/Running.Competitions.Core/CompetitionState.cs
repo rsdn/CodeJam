@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
@@ -11,6 +12,7 @@ using JetBrains.Annotations;
 namespace BenchmarkDotNet.Running.Competitions.Core
 {
 	[PublicAPI]
+	[SuppressMessage("ReSharper", "ArrangeBraces_lock")]
 	public class CompetitionState
 	{
 		private readonly List<IMessage> _messages = new List<IMessage>();

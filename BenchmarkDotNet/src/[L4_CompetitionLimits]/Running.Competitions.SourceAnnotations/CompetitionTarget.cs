@@ -29,9 +29,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 
 		public CompetitionTarget(
 			Target target, CompetitionLimit other, bool usesResourceAnnotation) :
-				this(target, other.Min, other.Max, usesResourceAnnotation)
-		{
-		}
+				this(target, other.Min, other.Max, usesResourceAnnotation) { }
 		#endregion
 
 		#region Properties
@@ -46,6 +44,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 
 		public bool IsChanged(CompetitionTargetProperties property) =>
 			(_changedProperties & property) == property;
+
 		private void MarkAsChanged(CompetitionTargetProperties property) =>
 			_changedProperties |= property;
 
@@ -57,6 +56,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 			// ReSharper disable once CompareOfFloatsByEqualityOperator
 			return current == 0 || current < newValue;
 		}
+
 		private bool IsGreaterThanCore(double current, double newValue)
 		{
 			if (current < 0 || newValue <= 0 || double.IsInfinity(newValue))
@@ -77,6 +77,7 @@ namespace BenchmarkDotNet.Running.Competitions.SourceAnnotations
 
 			return false;
 		}
+
 		private bool UnionWithMax(double newMax)
 		{
 			if (IsLessThanCore(Max, newMax))

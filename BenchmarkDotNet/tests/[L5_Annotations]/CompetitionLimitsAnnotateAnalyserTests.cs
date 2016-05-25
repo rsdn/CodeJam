@@ -24,9 +24,11 @@ namespace CodeJam.BenchmarkDotNet
 			EnableReruns = true,
 			IgnoreExistingAnnotations = true,
 			LogAnnotationResults = true,
-			PreviousLogUri = "https://gist.githubusercontent.com/ig-sinicyn/075a36130b83b398ede5052d04d54f71/raw/78dbdfc79dc76a702026645eccf73705e9c52462/bench.net.log",
+			PreviousLogUri =
+				"https://gist.githubusercontent.com/ig-sinicyn/075a36130b83b398ede5052d04d54f71/raw/78dbdfc79dc76a702026645eccf73705e9c52462/bench.net.log"
 			//PreviousLogUri = "CompetitionLimitsAnnotateAnalyserTests.log.txt",
 		};
+
 		[Test]
 		public static void TestAnnotateFromLog()
 		{

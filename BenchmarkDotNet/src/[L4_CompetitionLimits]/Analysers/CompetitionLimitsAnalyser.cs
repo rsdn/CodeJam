@@ -157,6 +157,7 @@ namespace BenchmarkDotNet.Analysers
 			}
 		}
 
+		// ReSharper disable once MemberCanBeMadeStatic.Local
 		private bool ValidateBenchmark(
 			Summary summary, Benchmark benchmark,
 			CompetitionLimit competitionLimit, List<IWarning> warnings)
@@ -268,8 +269,8 @@ namespace BenchmarkDotNet.Analysers
 				if (tooSlowReports.Length > 0)
 				{
 					competitionState.AddAnalyserWarning(
-							warnings, MessageSeverity.Warning,
-							"The benchmarks " + string.Join(", ", tooSlowReports) +
+						warnings, MessageSeverity.Warning,
+						"The benchmarks " + string.Join(", ", tooSlowReports) +
 							" runs longer than half a second. Consider to rewrite the test as the peek timings will be hidden by averages" +
 							$" or set the {nameof(AllowSlowBenchmarks)} to true.");
 				}
