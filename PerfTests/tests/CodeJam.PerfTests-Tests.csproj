@@ -54,6 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PerfTestConfig.cs" />
     <Compile Include="[L1_InProcess]\InProcessToolchainTest.cs" />
+    <Compile Include="[L3_CompetitionsCore]\HostLoggerTests.cs" />
     <Compile Include="[L4_CompetitionLimits]\CompetitionTargetTests.cs" />
     <Compile Include="[L4_CompetitionLimits]\CompetitionLimitsAnalyserTests.cs" />
     <Compile Include="[L5_Annotations]\CompetitionLimitsAnnotateAnalyserTests.cs" />
