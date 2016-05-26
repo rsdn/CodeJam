@@ -30,7 +30,7 @@ namespace CodeJam.PerfTests
 				Mode = Mode.SingleRun,
 				TargetCount = 1,
 				Platform = platform,
-				Toolchain = InProcessToolchain.Default,
+				Toolchain = InProcessToolchain.Instance,
 				WarmupCount = noWarmup ? 0 : 1
 			};
 			Add(job);

@@ -21,9 +21,8 @@ namespace BenchmarkDotNet.Helpers
 {
 	// TODO: move to different classes
 	/// <summary>
-	/// Helper methods for benchmark infrastructure
+	/// Helper methods for benchmark infrastructure.
 	/// </summary>
-	[PublicAPI]
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	public static class BenchmarkHelpers
 	{
@@ -31,40 +30,41 @@ namespace BenchmarkDotNet.Helpers
 
 		#region Selects
 		/// <summary>
-		/// Returns the baseline for the benchmark
+		/// Returns the baseline for the benchmark.
 		/// </summary>
-		public static Benchmark TryGetBaseline(this Summary summary, Benchmark benchmark) =>
-			summary.Benchmarks.Where(b => b.Job == benchmark.Job && b.Parameters == benchmark.Parameters)
+		public static Benchmark TryGetBaseline([NotNull] this Summary summary, Benchmark benchmark) =>
+			summary.Benchmarks
+				.Where(b => b.Job == benchmark.Job && b.Parameters == benchmark.Parameters)
 				.FirstOrDefault(b => b.Target.Baseline);
 
 		/// <summary>
-		/// Returns the report for the benchmark
+		/// Returns the report for the benchmark.
 		/// </summary>
-		public static BenchmarkReport TryGetBenchmarkReport(this Summary summary, Benchmark benchmark) =>
+		public static BenchmarkReport TryGetBenchmarkReport([NotNull] this Summary summary, Benchmark benchmark) =>
 			summary.Reports.SingleOrDefault(r => r.Benchmark == benchmark);
 
 		/// <summary>
-		/// Groups benchmarks being run under same conditions (job+parameters)
+		/// Groups benchmarks being run under same conditions (job+parameters).
 		/// </summary>
 		public static ILookup<KeyValuePair<IJob, ParameterInstances>, Benchmark> SameConditionBenchmarks(
-			this Summary summary) =>
+			[NotNull] this Summary summary) =>
 				summary.Benchmarks.ToLookup(b => new KeyValuePair<IJob, ParameterInstances>(b.Job, b.Parameters));
 
 		/// <summary>
-		/// Returns targets for the summary
+		/// Returns targets for the summary.
 		/// </summary>
 		// ReSharper disable once ReturnTypeCanBeEnumerable.Global
-		public static IOrderedEnumerable<Target> GetTargets(this Summary summary) =>
+		public static IOrderedEnumerable<Target> GetTargets([NotNull] this Summary summary) =>
 			summary.Benchmarks
 				.Select(d => d.Target)
 				.Distinct()
 				.OrderBy(d => d.FullInfo);
 
 		/// <summary>
-		/// Returns jobs usede in the benchmarks
+		/// Returns jobs usede in the benchmarks.
 		/// </summary>
 		// ReSharper disable once ReturnTypeCanBeEnumerable.Global
-		public static IOrderedEnumerable<IJob> GetJobs(this IEnumerable<Benchmark> benchmarks) =>
+		public static IOrderedEnumerable<IJob> GetJobs([NotNull] this IEnumerable<Benchmark> benchmarks) =>
 			benchmarks
 				.Select(d => d.Job)
 				.Distinct()
@@ -73,9 +73,10 @@ namespace BenchmarkDotNet.Helpers
 
 		#region Percentiles
 		/// <summary>
-		/// Calculates the Nth percentile for the benchmark
+		/// Calculates the Nth percentile for the benchmark.
 		/// </summary>
-		public static double? TryGetPercentile(this Summary summary, Benchmark benchmark, int percentile)
+		// ReSharper disable once UnusedMember.Global
+		public static double? TryGetPercentile([NotNull] this Summary summary, Benchmark benchmark, int percentile)
 		{
 			var benchmarkReport = summary.Reports.SingleOrDefault(r => r.Benchmark == benchmark);
 
@@ -83,17 +84,21 @@ namespace BenchmarkDotNet.Helpers
 		}
 
 		/// <summary>
-		/// Calculates the Nth percentile for the benchmark
+		/// Calculates the Nth percentile for the benchmark.
 		/// </summary>
 		public static double? TryGetScaledPercentile(
-			this Summary summary, Benchmark benchmark, int percentile) =>
+			[NotNull] this Summary summary,
+			Benchmark benchmark,
+			int percentile) =>
 				TryGetScaledPercentile(summary, benchmark, percentile, percentile);
 
 		/// <summary>
-		/// Calculates the Nth percentile for the benchmark
+		/// Calculates the Nth percentile for the benchmark.
 		/// </summary>
 		private static double? TryGetScaledPercentile(
-			this Summary summary, Benchmark benchmark, int baselinePercentile, int benchmarkPercentile)
+			[NotNull] this Summary summary,
+			Benchmark benchmark,
+			int baselinePercentile, int benchmarkPercentile)
 		{
 			var baselineBenchmark = summary.TryGetBaseline(benchmark);
 			if (baselineBenchmark == null)
@@ -124,7 +129,7 @@ namespace BenchmarkDotNet.Helpers
 		/// <summary>
 		/// Checks that the assembly is build in debug mode.
 		/// </summary>
-		public static bool IsDebugAssembly(this Assembly assembly)
+		public static bool IsDebugAssembly([NotNull] this Assembly assembly)
 		{
 			var optAtt = (DebuggableAttribute)Attribute.GetCustomAttribute(assembly, typeof(DebuggableAttribute));
 			return optAtt != null && optAtt.IsJITOptimizerDisabled;
@@ -133,10 +138,12 @@ namespace BenchmarkDotNet.Helpers
 
 		#region Process
 		/// <summary>
-		/// Tries to change the priority of the process
+		/// Tries to change the priority of the process.
 		/// </summary>
 		public static void SetPriority(
-			this Process process, ProcessPriorityClass priority, ILogger logger)
+			[NotNull] this Process process,
+			ProcessPriorityClass priority,
+			ILogger logger)
 		{
 			try
 			{
@@ -146,16 +153,18 @@ namespace BenchmarkDotNet.Helpers
 			{
 				logger.WriteLineError(
 					string.Format(
-						"Failed to set up priority {1}. Make sure you have the right permissions. Message: {0}", ex.Message,
+						"// !Failed to set up priority {1}. Make sure you have the right permissions. Message: {0}", ex.Message,
 						priority));
 			}
 		}
 
 		/// <summary>
-		/// Tries to change the priority of the process
+		/// Tries to change the cpu affinity of the process.
 		/// </summary>
 		public static void SetAffinity(
-			this Process process, IntPtr processorAffinity, ILogger logger)
+			[NotNull] this Process process,
+			IntPtr processorAffinity,
+			ILogger logger)
 		{
 			try
 			{
@@ -165,7 +174,7 @@ namespace BenchmarkDotNet.Helpers
 			{
 				logger.WriteLineError(
 					string.Format(
-						"Failed to set up processor affinity 0x{1:X}. Make sure you have the right permissions. Message: {0}",
+						"// !Failed to set up processor affinity 0x{1:X}. Make sure you have the right permissions. Message: {0}",
 						ex.Message,
 						(long)processorAffinity));
 			}
@@ -174,7 +183,7 @@ namespace BenchmarkDotNet.Helpers
 
 		#region IO
 		/// <summary>
-		/// Writes file content without empty line at the end
+		/// Writes file content without empty line at the end.
 		/// </summary>
 		// THANKSTO: http://stackoverflow.com/a/11689630
 		public static void WriteFileContent(string path, string[] lines)
@@ -197,8 +206,14 @@ namespace BenchmarkDotNet.Helpers
 			}
 		}
 
+		/// <summary>Tries to obtain text from the given URI.</summary>
+		/// <param name="uri">The URI to geth the text from.</param>
+		/// <returns>The text.</returns>
 		public static TextReader TryGetTextFromUri(string uri)
 		{
+			if (uri == null)
+				throw new ArgumentNullException(nameof(uri));
+
 			var uriInst = new Uri(uri, UriKind.RelativeOrAbsolute);
 			if (uriInst.IsAbsoluteUri && !uriInst.IsFile)
 			{

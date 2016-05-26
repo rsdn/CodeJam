@@ -113,7 +113,7 @@ namespace CodeJam
 		private const int Count = 100 * 1000;
 
 		[Test]
-		public void RunCallCostPerfTests() => 
+		public void RunCallCostPerfTests() =>
 			CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		[CompetitionBaseline]

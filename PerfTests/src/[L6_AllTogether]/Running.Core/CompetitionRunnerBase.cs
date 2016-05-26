@@ -198,7 +198,6 @@ namespace CodeJam.PerfTests.Running.Core
 
 		private string[] GetMessageLines(CompetitionState competitionState, Func<IMessage, bool> filter, bool fromAllRuns)
 		{
-			// TODO: 
 			var result =
 				from message in competitionState.GetMessages()
 				where fromAllRuns || ShouldReport(message, competitionState)

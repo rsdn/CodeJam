@@ -117,7 +117,12 @@
     <None Include="sidenotes.md" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj">
+      <Project>{2f2046cc-fb47-4318-b335-5a82b04b6c40}</Project>
+      <Name>CodeJam.Main</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

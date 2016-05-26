@@ -8,10 +8,19 @@ using BenchmarkDotNet.Running;
 
 namespace BenchmarkDotNet.Toolchains
 {
+	/// <summary>
+	/// Helper class to create <seealso cref="IRunnableBenchmark"/> from <seealso cref="Benchmark"/> instance.
+	/// </summary>
 	public static class RunnableBenchmarkFactory
 	{
+		/// <summary>Creates the runnable benchmark.</summary>
+		/// <param name="benchmark">Benchmark metadata.</param>
+		/// <returns>An instance of runnable benchmark.</returns>
 		public static IRunnableBenchmark Create(Benchmark benchmark)
 		{
+			if (benchmark == null)
+				throw new ArgumentNullException(nameof(benchmark));
+
 			var target = benchmark.Target;
 			var targetMethodReturnType = target.Method.ReturnType;
 			if (targetMethodReturnType == typeof(void))
@@ -31,7 +40,7 @@ namespace BenchmarkDotNet.Toolchains
 		}
 
 		#region RunnableBenchmark helpers
-		// DONTTOUCH: 'out TDelegate' used to enable type inference;
+		// DONTTOUCH: 'out TDelegate' used to enable type inference.
 		private static void CreateCallback<TDelegate>(
 			object instance, MethodInfo method, out TDelegate result)
 			where TDelegate : class
@@ -52,7 +61,11 @@ namespace BenchmarkDotNet.Toolchains
 			}
 		}
 
-		// DONTTOUCH: 'out TDelegate' used to enable type inference;
+		// DONTTOUCH: 'out TDelegate' used to enable type inference.
+		/// <summary>Factory method for the setup action.</summary>
+		/// <param name="instance">The instance.</param>
+		/// <param name="targetInfo">The target information.</param>
+		/// <param name="result">The setup action callback.</param>
 		internal static void CreateSetupAction(
 			object instance, Target targetInfo, out Action result)
 		{
@@ -64,7 +77,11 @@ namespace BenchmarkDotNet.Toolchains
 			}
 		}
 
-		// DONTTOUCH: 'out TDelegate' used to enable type inference;
+		// DONTTOUCH: 'out TDelegate' used to enable type inference.
+		/// <summary>Factory method for the run callback.</summary>
+		/// <param name="instance">The instance.</param>
+		/// <param name="targetInfo">The target information.</param>
+		/// <param name="result">The run callback.</param>
 		internal static void CreateRunCallback(
 			object instance, Target targetInfo, out Action result)
 		{
@@ -77,6 +94,11 @@ namespace BenchmarkDotNet.Toolchains
 		}
 
 		// DONTTOUCH: 'out TDelegate' used to enable type inference;
+		/// <summary>Factory method for the run callback.</summary>
+		/// <typeparam name="TResult">The type of the result.</typeparam>
+		/// <param name="instance">The instance.</param>
+		/// <param name="targetInfo">The target information.</param>
+		/// <param name="result">The run callback.</param>
 		internal static void CreateRunCallback<TResult>(
 			object instance, Target targetInfo, out Func<TResult> result)
 		{
@@ -88,7 +110,10 @@ namespace BenchmarkDotNet.Toolchains
 			}
 		}
 
-		internal static void SetupProperties(object instance, Benchmark benchmark)
+		/// <summary>Fills the properties of the instance of the object used to run the benchmark.</summary>
+		/// <param name="instance">The instance.</param>
+		/// <param name="benchmark">The benchmark.</param>
+		internal static void FillProperties(object instance, Benchmark benchmark)
 		{
 			foreach (var parameter in benchmark.Parameters.Items)
 			{

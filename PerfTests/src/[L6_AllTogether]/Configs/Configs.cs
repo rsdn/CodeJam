@@ -33,7 +33,7 @@ namespace CodeJam.PerfTests.Configs
 					TargetCount = 10,
 					Platform = Platform.X64,
 					Jit = Jit.RyuJit,
-					Toolchain = InProcessToolchain.Default
+					Toolchain = InProcessToolchain.Instance
 				});
 		}
 	}

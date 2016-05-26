@@ -16,11 +16,20 @@ using BenchmarkDotNet.Toolchains.Results;
 
 namespace BenchmarkDotNet.Toolchains.InProcess
 {
+	/// <summary>
+	/// Implementation of <seealso cref="IExecutor"/> for in-process benchmarks.
+	/// </summary>
 	public class InProcessExecutor : IExecutor
 	{
 		// TODO: diagnoser support
 		// TODO: replace outputStream with something better?
 		// WAITINGFOR: https://github.com/PerfDotNet/BenchmarkDotNet/issues/177
+		/// <summary>Executes the specified benchmark.</summary>
+		/// <param name="buildResult">The build result.</param>
+		/// <param name="benchmark">The benchmark.</param>
+		/// <param name="logger">The logger.</param>
+		/// <param name="diagnoser">The diagnoser.</param>
+		/// <returns>Execution result.</returns>
 		public ExecuteResult Execute(
 			BuildResult buildResult,
 			Benchmark benchmark,
@@ -80,6 +89,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 						}
 					})
 				{
+					IsBackground = true,
 					Priority = ThreadPriority.Highest
 				};
 

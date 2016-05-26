@@ -13,6 +13,10 @@ using JetBrains.Annotations;
 
 namespace BenchmarkDotNet.Validators
 {
+	/// <summary>
+	/// Validator to be used together with <seealso cref="InProcessToolchain"/> to proof that the config matches the environment.
+	/// </summary>
+	/// <seealso cref="IValidator"/>
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public class InProcessValidator : IValidator
@@ -128,7 +132,10 @@ namespace BenchmarkDotNet.Validators
 				: "The toolchain should be set to InProcess";
 		#endregion
 
+		/// <summary>The instance of validator that does NOT fail on error.</summary>
 		public static readonly IValidator DontFailOnError = new InProcessValidator(false);
+
+		/// <summary>The instance of validator that DOES fail on error.</summary>
 		public static readonly IValidator FailOnError = new InProcessValidator(true);
 
 		private InProcessValidator(bool failOnErrors)
@@ -136,10 +143,17 @@ namespace BenchmarkDotNet.Validators
 			TreatsWarningsAsErrors = failOnErrors;
 		}
 
+		/// <summary>Gets a value indicating whether warnings are treated as errors.</summary>
+		/// <value>
+		/// <c>true</c> if treats warnings as errors; otherwise, <c>false</c>.
+		/// </value>
 		public bool TreatsWarningsAsErrors { get; }
 
 		// TODO: check that analysers can run in-process
 		// TODO: check that the target is not static class
+		/// <summary>Proofs that benchmarks' jobs match the environment.</summary>
+		/// <param name="benchmarks">The benchmarks to validate.</param>
+		/// <returns>Enumerable of validation errors.</returns>
 		public IEnumerable<IValidationError> Validate(IList<Benchmark> benchmarks)
 		{
 			var result = new List<IValidationError>();

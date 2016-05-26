@@ -64,6 +64,6 @@ It looks like a job for CompetitionLimitsAnnotateAnalyser
 CompetitionLimitsAnnotateAnalyser again
 3. After that all works like usual.
 
-The dump uses same format that xml anotations uses. The only difference is, 
+The dump uses same format that xml anotations uses. The only difference is,
 the Target uses full assembly qualified name of the type, not type name only.
 We should to it because there can be a multiple perftests with same type name but in different namespaces / assemblies in the log.
