@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-using BenchmarkDotNet.Competitions;
+using CodeJam.PerfTests;
 
 using NUnit.Framework;
 

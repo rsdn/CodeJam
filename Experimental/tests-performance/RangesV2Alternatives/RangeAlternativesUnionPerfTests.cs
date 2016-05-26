@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-using BenchmarkDotNet.Competitions;
-
+using CodeJam.PerfTests;
 using CodeJam.RangesV2;
 
 using JetBrains.Annotations;

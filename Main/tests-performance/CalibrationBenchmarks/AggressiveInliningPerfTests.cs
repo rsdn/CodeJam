@@ -1,9 +1,8 @@
 using System;
 using System.Runtime.CompilerServices;
 
-using BenchmarkDotNet.Competitions;
-
 using CodeJam.Arithmetic;
+using CodeJam.PerfTests;
 
 using NUnit.Framework;
 

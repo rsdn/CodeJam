@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-using BenchmarkDotNet.Competitions;
+using CodeJam.PerfTests;
 
 using NUnit.Framework;
 

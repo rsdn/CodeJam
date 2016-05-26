@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1D650545-A151-4211-8C29-C38A939403A6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CodeJam.PerfTests</RootNamespace>
+    <AssemblyName>CodeJam.PerfTests</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <DocumentationFile>bin\Debug\CodeJam.PerfTests.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\CodeJam.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BenchmarkDotNet, Version=0.9.6.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\BenchmarkDotNet.0.9.6\lib\net45\BenchmarkDotNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.DiaSymReader, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.DiaSymReader.1.0.7\lib\net20\Microsoft.DiaSymReader.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Jetbrains.Annotations.cs">
+      <Link>Jetbrains.Annotations.cs</Link>
+    </Compile>
+    <Compile Include="StubTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="[L0_Core]\Helpers\BenchmarkHelpers.cs" />
+    <Compile Include="[L0_Core]\Portability\AssemblyExtensions.cs" />
+    <Compile Include="[L0_Core]\Portability\FieldInfoExtensions.cs" />
+    <Compile Include="[L0_Core]\Portability\MemberInfoExtensions.cs" />
+    <Compile Include="[L0_Core]\Portability\PropertyInfoExtensions.cs" />
+    <Compile Include="[L0_Core]\Portability\TypeExtensions.cs" />
+    <Compile Include="[L0_Core]\Validators\ValidationError.cs" />
+    <Compile Include="[L1_InProcess]\Validators\InProcessValidator.cs" />
+    <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessBuilder.cs" />
+    <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessExecutor.cs" />
+    <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessGenerator.cs" />
+    <Compile Include="[L1_InProcess]\Toolchains\RunnableBenchmarkFactory.cs" />
+    <Compile Include="[L1_InProcess]\Toolchains\IRunnableBenchmark.cs" />
+    <Compile Include="[L1_InProcess]\Toolchains\RunnableBenchmark.cs" />
+    <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessToolchain.cs" />
+    <Compile Include="[L2_RunState]\Running.Core\RunStateSlots.cs" />
+    <Compile Include="[L2_RunState]\Running.Core\RunState`1.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Loggers\HostLogger.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Core\CompetitionCore.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Core\CompetitionState.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Messages\Message.cs" />
+    <Compile Include="[L4_CompetitionLimits]\CompetitionLimit.cs" />
+    <Compile Include="[L4_CompetitionLimits]\Analysers\CompetitionLimitsAnalyser.cs" />
+    <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\AttributeAnnotations.cs" />
+    <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\CompetitionTarget.cs" />
+    <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\XmlAnnotations.cs" />
+    <Compile Include="[L4_CompetitionLimits]\[Attributes]\CompetitionBaselineAttribute.cs" />
+    <Compile Include="[L4_CompetitionLimits]\[Attributes]\CompetitionBenchmarkAttribute.cs" />
+    <Compile Include="[L4_CompetitionLimits]\[Attributes]\CompetitionMetadataAttribute.cs" />
+    <Compile Include="[L5_Annotations]\Analysers\CompetitionLimitsAnnotateAnalyser.cs" />
+    <Compile Include="[L5_Annotations]\Running.SourceAnnotations\AnnotateSourceHelper.cs" />
+    <Compile Include="[L5_Annotations]\Running.SourceAnnotations\AnnotateSourceHelper.SourceAnnotate.cs" />
+    <Compile Include="[L5_Annotations]\Running.SourceAnnotations\AnnotateSourceHelper.SymbolHelpers.cs" />
+    <Compile Include="[L6_AllTogether]\Configs\ICompetitionConfig.cs" />
+    <Compile Include="[L6_AllTogether]\Configs\ManualCompetitionConfig.cs" />
+    <Compile Include="[L6_AllTogether]\Running.Core\CompetitionRunnerBase.cs" />
+    <Compile Include="[L7_NUnitRunner]\CompetitionBenchmarkRunner.cs" />
+    <Compile Include="[L6_AllTogether]\Configs\Configs.cs" />
+    <Compile Include="[L7_NUnitRunner]\Running.Core\NUnitCompetitionRunner.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sidenotes.md" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

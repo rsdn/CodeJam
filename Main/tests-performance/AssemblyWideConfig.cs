@@ -2,6 +2,8 @@
 
 using BenchmarkDotNet.Configs;
 
+using CodeJam.PerfTests.Configs;
+
 using JetBrains.Annotations;
 
 namespace CodeJam

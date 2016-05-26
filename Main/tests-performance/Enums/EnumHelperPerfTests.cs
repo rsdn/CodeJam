@@ -1,9 +1,8 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-using BenchmarkDotNet.Competitions;
-
 using CodeJam.Arithmetic;
+using CodeJam.PerfTests;
 
 using JetBrains.Annotations;
 

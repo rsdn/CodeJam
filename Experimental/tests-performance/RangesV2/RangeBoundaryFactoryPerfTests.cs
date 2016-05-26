@@ -1,6 +1,6 @@
 using System;
 
-using BenchmarkDotNet.Competitions;
+using CodeJam.PerfTests;
 
 using JetBrains.Annotations;
 
