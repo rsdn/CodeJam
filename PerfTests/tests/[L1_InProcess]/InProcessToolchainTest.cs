@@ -26,6 +26,7 @@ namespace CodeJam.PerfTests
 			var config = PerfTestConfig.Default;
 
 			Interlocked.Exchange(ref _callCounter, 0);
+			Interlocked.Exchange(ref _afterSetupCounter, 0);
 			var summary = CompetitionBenchmarkRunner.Run<InProcessBenchmark>(config);
 			Assert.AreEqual(_callCounter, PerfTestConfig.ExpectedRunCount);
 			Assert.AreEqual(_afterSetupCounter, 1);

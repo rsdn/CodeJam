@@ -9,10 +9,11 @@ namespace CodeJam.PerfTests
 {
 	public class PerfTestConfig : ManualCompetitionConfig
 	{
-		// Jitting = 1, TargetCount = 1
-		public const int ExpectedRunCountNoWarmup = 2;
-		// Jitting = 1, WarmupCount = 1, TargetCount = 1
-		public const int ExpectedRunCount = 3;
+		// BUG: Jitting performed twice, https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
+		// Jitting = 2, TargetCount = 1
+		public const int ExpectedRunCountNoWarmup = 3;
+		// Jitting = 2, WarmupCount = 1, TargetCount = 1
+		public const int ExpectedRunCount = 4;
 
 		public static readonly new ICompetitionConfig Default = new PerfTestConfig();
 		public static readonly ICompetitionConfig NoWarmup = new PerfTestConfig(Platform.Host, true);
