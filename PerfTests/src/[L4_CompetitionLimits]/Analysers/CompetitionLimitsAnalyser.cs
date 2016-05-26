@@ -54,7 +54,6 @@ namespace CodeJam.PerfTests.Analysers
 				ValidatePostconditions(summary, warnings);
 			}
 
-			CompetitionCore.FillAnalyserMessages(summary, warnings);
 			return warnings.ToArray();
 		}
 

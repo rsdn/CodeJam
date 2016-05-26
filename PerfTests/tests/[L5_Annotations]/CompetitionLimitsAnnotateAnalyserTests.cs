@@ -40,7 +40,7 @@ namespace CodeJam.PerfTests
 			stopwatch.Stop();
 			var runState = CompetitionCore.RunState[summary];
 			var messages = runState.GetMessages();
-			Assert.IsTrue(runState.MaxMessageSeverityInRun <= MessageSeverity.Warning);
+			Assert.IsTrue(runState.HighestMessageSeverityInRun <= MessageSeverity.Warning);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
@@ -59,7 +59,7 @@ namespace CodeJam.PerfTests
 			stopwatch.Stop();
 			var runState = CompetitionCore.RunState[summary];
 			var messages = runState.GetMessages();
-			Assert.IsTrue(runState.MaxMessageSeverityInRun <= MessageSeverity.Warning);
+			Assert.IsTrue(runState.HighestMessageSeverityInRun <= MessageSeverity.Warning);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);

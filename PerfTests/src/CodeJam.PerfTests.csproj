@@ -89,6 +89,9 @@
     <Compile Include="[L3_CompetitionsCore]\Loggers\HostLogger.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Core\CompetitionCore.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Core\CompetitionState.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Messages\IMessage.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Messages\MessageSource.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Messages\MessageSeverity.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\Message.cs" />
     <Compile Include="[L4_CompetitionLimits]\CompetitionLimit.cs" />
     <Compile Include="[L4_CompetitionLimits]\Analysers\CompetitionLimitsAnalyser.cs" />

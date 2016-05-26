@@ -17,7 +17,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>
 		/// Returns the value for the <seealso cref="RunState{T}"/>.
-		/// There can be only one value of each type stored so the slot serves as per-run singleton.
+		/// There can be only one value of each type stored as a run state so the slot works as per-run singleton.
 		/// </summary>
 		/// <typeparam name="T">The type of the running state instance.</typeparam>
 		/// <returns>The value for the <seealso cref="RunState{T}"/>.</returns>

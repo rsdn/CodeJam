@@ -8,8 +8,8 @@ namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>
 	/// The typed slot for the running state.
-	/// There can be only one value of each type stored in the run state
-	/// so the slot serves as per-run singleton.
+	/// There can be only one value of each type stored as a run state
+	/// so the slot works as per-run singleton.
 	/// </summary>
 	/// <typeparam name="T">The type of the running state instance.</typeparam>
 	public class RunState<T> where T : new()

@@ -18,67 +18,54 @@ using static CodeJam.PerfTests.Loggers.HostLogger;
 namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>
-	/// Reusable parts of competitions logic.
+	/// Helpers for performance testing infrastructure.
 	/// </summary>
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public static class CompetitionCore
 	{
 		#region API to use during the run
+		/// <summary>Run state slot.</summary>
 		public static readonly RunState<CompetitionState> RunState = new RunState<CompetitionState>();
 
+		/// <summary>The message severity is warning or higher.</summary>
+		/// <param name="severity">The severity to check.</param>
+		/// <returns><c>True</c> if the severity is warning or higher.</returns>
 		public static bool IsWarningOrHigher(this MessageSeverity severity) => severity >= MessageSeverity.Warning;
-		public static bool IsCriticalError(this MessageSeverity severity) => severity > MessageSeverity.TestError;
 
+		/// <summary>The message severity is setup error or higher.</summary>
+		/// <param name="severity">The severity to check.</param>
+		/// <returns><c>True</c> if the severity is setup error or higher.</returns>
+		public static bool IsCriticalError(this MessageSeverity severity) => severity >= MessageSeverity.SetupError;
+
+		/// <summary>Reports analyser warning.</summary>
+		/// <param name="competitionState">State of the run.</param>
+		/// <param name="warnings">The list the warnings will be added to.</param>
+		/// <param name="severity">Severity of the message.</param>
+		/// <param name="message">The message.</param>
+		/// <param name="report">The report the message belongs to.</param>
 		public static void AddAnalyserWarning(
-			this CompetitionState competitionState,
-			List<IWarning> warnings,
+			[NotNull] this CompetitionState competitionState,
+			[NotNull] List<IWarning> warnings,
 			MessageSeverity severity,
-			string message,
+			[NotNull] string message,
 			BenchmarkReport report = null)
 		{
+			Code.NotNull(competitionState, nameof(competitionState));
+			Code.NotNull(warnings, nameof(warnings));
+			Code.NotNullNorEmpty(message, nameof(message));
+
 			competitionState.WriteMessage(MessageSource.Analyser, severity, message);
 			warnings.Add(new Warning(severity.ToString(), message, report));
 		}
 
-		public static void FillAnalyserMessages(Summary summary, IEnumerable<IWarning> warnings)
+		/// <summary>Helper method to dump the content of the message into logger.</summary>
+		/// <param name="logger">The logger the message will be dumped to.</param>
+		/// <param name="message">The message to log.</param>
+		internal static void LogMessage([NotNull] this ILogger logger, IMessage message)
 		{
-			if (summary == null)
-				return;
+			Code.NotNull(logger, nameof(logger));
 
-			var competitionState = RunState[summary];
-			foreach (var warning in warnings)
-			{
-				MessageSeverity severity;
-				// TODO: another way to mark warnings as logged???
-				if (Enum.TryParse(warning.Kind, out severity))
-				{
-					// Skipping as these should be logged already.
-					continue;
-				}
-
-				competitionState.WriteMessage(MessageSource.Analyser, MessageSeverity.Warning, warning.Message);
-			}
-		}
-
-		private static void FillMessagesAfterLastRun(CompetitionState competitionState)
-		{
-			if (competitionState.LastRunSummary == null)
-				return;
-
-			foreach (var validationError in competitionState.LastRunSummary.ValidationErrors)
-			{
-				var severity = validationError.IsCritical ? MessageSeverity.SetupError : MessageSeverity.Warning;
-				var message = validationError.Benchmark == null
-					? validationError.Message
-					: $"Benchmark {validationError.Benchmark.ShortInfo}:{Environment.NewLine}\t{validationError.Message}";
-
-				competitionState.WriteMessage(MessageSource.Validator, severity, message);
-			}
-		}
-
-		internal static void LogMessage(this ILogger logger, IMessage message)
-		{
 			if (message.MessageSeverity.IsCriticalError())
 			{
 				logger.WriteLineError($"{LogImportantInfoPrefix} {message.ToString()}");
@@ -95,37 +82,44 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		#region Run logic
+		/// <summary>Runs the benchmark for specified benchmark type.</summary>
+		/// <param name="benchmarkType">The type of the benchmark.</param>
+		/// <param name="competitionConfig">The config for the benchmark.</param>
+		/// <param name="maxRunsAllowed">The maximum runs limit.</param>
+		/// <returns>A competition state for the run.</returns>
 		internal static CompetitionState Run(
-			Type benchmarkType,
-			IConfig competitionConfig,
+			[NotNull] Type benchmarkType,
+			[NotNull] IConfig competitionConfig,
 			int maxRunsAllowed)
 		{
-			if (benchmarkType == null)
-				throw new ArgumentNullException(nameof(benchmarkType));
-
-			if (competitionConfig == null)
-				throw new ArgumentNullException(nameof(competitionConfig));
+			Code.NotNull(benchmarkType, nameof(benchmarkType));
+			Code.NotNull(competitionConfig, nameof(competitionConfig));
 
 			var runStateSlots = competitionConfig.GetValidators().OfType<RunStateSlots>();
 			if (!runStateSlots.Any())
 			{
-				throw new ArgumentException(
-					$"The competition config should include {nameof(RunStateSlots)} validator",
-					nameof(competitionConfig));
+				throw CodeExceptions.Argument(
+					nameof(competitionConfig),
+					$"The competition config should include {nameof(RunStateSlots)} validator");
 			}
 
 			var competitionState = RunState[competitionConfig];
 			try
 			{
 				RunCore(
-					competitionState, maxRunsAllowed,
-					benchmarkType, competitionConfig);
+					competitionState,
+					maxRunsAllowed,
+					benchmarkType,
+					competitionConfig);
 			}
 			catch (Exception ex)
 			{
-				competitionState.WriteMessage(MessageSource.BenchmarkRunner, MessageSeverity.ExecutionError, ex.ToString());
-				competitionConfig.GetCompositeLogger().WriteLineError(ex.ToString());
+				competitionState.WriteMessage(
+					MessageSource.BenchmarkRunner,
+					MessageSeverity.ExecutionError,
+					ex.ToString());
 			}
+
 			FillMessagesAfterLastRun(competitionState);
 
 			return competitionState;
@@ -159,7 +153,7 @@ namespace CodeJam.PerfTests.Running.Core
 				if (competitionState.RunLimitExceeded)
 					break;
 
-				if (competitionState.GetMessages().Any(m => m.MessageSeverity.IsCriticalError()))
+				if (competitionState.HasCriticalErrorsInRun)
 				{
 					logger.WriteLineInfo($"{LogImportantInfoPrefix}Breaking the run. High severity error occured.");
 					break;
@@ -176,13 +170,29 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				competitionState.WriteMessage(
 					MessageSource.BenchmarkRunner, MessageSeverity.TestError,
-					"The benchmark run count exceeded max rerun limits (read log for details). Consider to adjust competition setup.");
+					$"The benchmark run count limit ({competitionState.MaxRunsAllowed} runs(s)) exceeded (read log for details). Consider to adjust competition setup.");
 			}
 			else if (competitionState.RunNumber > 1)
 			{
 				competitionState.WriteMessage(
 					MessageSource.BenchmarkRunner, MessageSeverity.Warning,
 					$"The benchmark was run {competitionState.RunNumber} times (read log for details). Consider to adjust competition setup.");
+			}
+		}
+
+		private static void FillMessagesAfterLastRun(CompetitionState competitionState)
+		{
+			if (competitionState.LastRunSummary == null)
+				return;
+
+			foreach (var validationError in competitionState.LastRunSummary.ValidationErrors)
+			{
+				var severity = validationError.IsCritical ? MessageSeverity.SetupError : MessageSeverity.Warning;
+				var message = validationError.Benchmark == null
+					? validationError.Message
+					: $"Benchmark {validationError.Benchmark.ShortInfo}:{Environment.NewLine}\t{validationError.Message}";
+
+				competitionState.WriteMessage(MessageSource.Validator, severity, message);
 			}
 		}
 		#endregion

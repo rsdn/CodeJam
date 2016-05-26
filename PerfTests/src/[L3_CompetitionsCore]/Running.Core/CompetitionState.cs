@@ -12,6 +12,9 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.Core
 {
+	/// <summary>
+	/// The class holding the state of the competition.
+	/// </summary>
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "ArrangeBraces_lock")]
 	public class CompetitionState
@@ -19,56 +22,94 @@ namespace CodeJam.PerfTests.Running.Core
 		private readonly List<IMessage> _messages = new List<IMessage>();
 
 		#region State properties
+		/// <summary>The competition has no additional runs requested.</summary>
+		/// <value><c>true</c> if the competition has no additional runs requested..</value>
 		public bool LooksLikeLastRun => RunsLeft <= 0;
-		public bool RunLimitExceeded => RunNumber >= MaxRunsAllowed;
-		public bool HasCriticalErrorsInRun => MaxMessageSeverityInRun > MessageSeverity.TestError;
 
-		public ILogger Logger { get; private set; }
+		/// <summary>The count of runs is out of limit.</summary>
+		/// <value><c>true</c> if count of runs is out of limit.</value>
+		public bool RunLimitExceeded => RunNumber >= MaxRunsAllowed;
+
+		/// <summary>There's a critical-severity messages for the current run.</summary>
+		/// <value><c>true</c> if there's a critical-severity messages for the current run.</value>
+		public bool HasCriticalErrorsInRun => HighestMessageSeverityInRun.IsCriticalError();
+
+		/// <summary>Max limit for competition reruns.</summary>
+		/// <value>Max count of runs allowed.</value>
 		public int MaxRunsAllowed { get; private set; }
 
+		/// <summary>The logger for the competition.</summary>
+		/// <value>The logger.</value>
+		public ILogger Logger { get; private set; }
+
+		/// <summary>The number of the current run.</summary>
+		/// <value>The number of the current run.</value>
 		public int RunNumber { get; private set; }
+
+		/// <summary>Expected count of runs left.</summary>
+		/// <value>Expected count of runs left.</value>
 		public int RunsLeft { get; private set; }
 
-		public MessageSeverity MaxMessageSeverityInRun { get; private set; }
+		/// <summary>The highest message severity for the run.</summary>
+		/// <value>The highest message severity for the run.</value>
+		public MessageSeverity HighestMessageSeverityInRun { get; private set; }
 
+		/// <summary>Count of messages for the current run.</summary>
+		/// <value>Count of messages for the current run.</value>
 		public int MessagesInRun { get; private set; }
+
+		/// <summary>
+		/// The summary for the last completed run.
+		/// Is null if the current run is not completed.
+		/// Can be null if the run was completed with errors.
+		/// </summary>
+		/// <value>The summary for the last completed run.</value>
 		public Summary LastRunSummary { get; private set; }
 		#endregion
 
 		#region State modification
-		internal void FirstTimeInit(int maxRunsAllowed, ILogger logger)
+		/// <summary>Init the competition state.</summary>
+		/// <param name="maxRunsAllowed">Max limit for competition reruns.</param>
+		/// <param name="logger">The logger for the competition.</param>
+		internal void FirstTimeInit(int maxRunsAllowed, [NotNull] ILogger logger)
 		{
-			Logger = logger;
+			Code.NotNull(logger, nameof(logger));
+
 			MaxRunsAllowed = maxRunsAllowed;
+			Logger = logger;
 
-			RunsLeft = 1;
 			RunNumber = 0;
+			RunsLeft = 1;
 
+			HighestMessageSeverityInRun = MessageSeverity.Verbose;
 			MessagesInRun = 0;
-			MaxMessageSeverityInRun = MessageSeverity.Verbose;
 			LastRunSummary = null;
 		}
 
+		/// <summary>Prepare for next run.</summary>
 		internal void PrepareForRun()
 		{
-			RunsLeft--;
 			RunNumber++;
+			RunsLeft--;
 
+			HighestMessageSeverityInRun = MessageSeverity.Verbose;
 			MessagesInRun = 0;
-			MaxMessageSeverityInRun = MessageSeverity.Verbose;
 			LastRunSummary = null;
 		}
 
+		/// <summary>Marks the run as completed.</summary>
+		/// <param name="summary">The summary for the run.</param>
 		internal void RunCompleted(Summary summary) => LastRunSummary = summary;
 
-		public void RequestReruns(int additionalRunsCount, string explanationMessage)
+		/// <summary>
+		/// Requests additional runs for the competition.
+		/// </summary>
+		/// <param name="additionalRunsCount">Count of additional runs.</param>
+		/// <param name="explanationMessage">The explanation message for therequest</param>
+		public void RequestReruns(int additionalRunsCount, [NotNull]string explanationMessage)
 		{
-			if (additionalRunsCount < 0)
-				throw new ArgumentOutOfRangeException(
-					nameof(additionalRunsCount), additionalRunsCount, null);
-
-			if (string.IsNullOrEmpty(explanationMessage))
-				throw new ArgumentNullException(nameof(explanationMessage));
+			Code.InRange(additionalRunsCount, nameof(additionalRunsCount), 0, 1000);
+			Code.NotNullNorEmpty(explanationMessage, nameof(explanationMessage));
 
 			if (additionalRunsCount == 0)
 			{
@@ -90,6 +131,8 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		#region Messages
+		/// <summary>Returns all messages for the competition.</summary>
+		/// <returns>All messages for the competition</returns>
 		public IMessage[] GetMessages()
 		{
 			lock (_messages)
@@ -98,6 +141,12 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 		}
 
+		/// <summary>Adds a message for the competition.</summary>
+		/// <param name="messageSource">The source of the message.</param>
+		/// <param name="messageSeverity">Severity of the message.</param>
+		/// <param name="messageFormat">Message string format.</param>
+		/// <param name="args">The arguments for message.</param>
+		[StringFormatMethod("messageFormat")]
 		public void WriteMessage(
 			MessageSource messageSource, MessageSeverity messageSeverity,
 			string messageFormat, params object[] args)
@@ -109,6 +158,10 @@ namespace CodeJam.PerfTests.Running.Core
 			WriteMessage(messageSource, messageSeverity, message);
 		}
 
+		/// <summary>Adds a message for the competition.</summary>
+		/// <param name="messageSource">The source of the message.</param>
+		/// <param name="messageSeverity">Severity of the message.</param>
+		/// <param name="messageText">Text of the message.</param>
 		public void WriteMessage(
 			MessageSource messageSource, MessageSeverity messageSeverity,
 			string messageText)
@@ -116,9 +169,9 @@ namespace CodeJam.PerfTests.Running.Core
 			lock (_messages)
 			{
 				MessagesInRun++;
-				if (MaxMessageSeverityInRun < messageSeverity)
+				if (HighestMessageSeverityInRun < messageSeverity)
 				{
-					MaxMessageSeverityInRun = messageSeverity;
+					HighestMessageSeverityInRun = messageSeverity;
 				}
 
 				var message = new Message(
