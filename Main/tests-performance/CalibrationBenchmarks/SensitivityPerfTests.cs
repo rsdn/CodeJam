@@ -17,7 +17,7 @@ namespace CodeJam
 	/// </summary>
 	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
 	[PublicAPI]
-	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+	//[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
 	public class SensitivityPerfTests
 	{
 		[Params(1000, 10 * 1000, 100 * 1000, 1000 * 1000)]
