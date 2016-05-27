@@ -28,6 +28,12 @@ namespace CodeJam
 		public static readonly new bool IgnoreExistingAnnotations = AppSwitch.GetAssemblySwitch(() => IgnoreExistingAnnotations);
 
 		/// <summary>
+		/// OPTIONAL: Set AssemblyWideConfig.ReportWarningsAsErrors=true in app.config
+		/// to enable reporting warnings as errors.
+		/// </summary>
+		public static readonly new bool ReportWarningsAsErrors = AppSwitch.GetAssemblySwitch(() => ReportWarningsAsErrors);
+
+		/// <summary>
 		/// Instance of the config
 		/// </summary>
 		public static ICompetitionConfig RunConfig => new AssemblyWideConfig(true);
@@ -49,6 +55,7 @@ namespace CodeJam
 			Add(FastRunConfig.Instance);
 
 			EnableReruns = true;
+			base.ReportWarningsAsErrors = ReportWarningsAsErrors;
 			if (AnnotateOnRun)
 			{
 				UpdateSourceAnnotations = true;

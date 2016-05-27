@@ -200,7 +200,7 @@ namespace CodeJam.PerfTests
 				Thread.SpinWait(SpinCount);
 			}
 
-			[CompetitionBenchmark(8, 12)]
+			[CompetitionBenchmark(6, 14)]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);

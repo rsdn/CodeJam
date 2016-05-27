@@ -9,6 +9,7 @@ namespace CodeJam.PerfTests.Configs
 		// Runner config
 		bool DebugMode { get; }
 		bool DisableValidation { get; }
+		bool ReportWarningsAsErrors { get; }
 		int MaxRunsAllowed { get; }
 
 		// Validation config

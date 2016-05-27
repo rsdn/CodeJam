@@ -3,6 +3,7 @@ using System;
 using BenchmarkDotNet.Attributes;
 
 using CodeJam.PerfTests;
+using CodeJam.PerfTests.Configs;
 
 using JetBrains.Annotations;
 
@@ -30,7 +31,15 @@ namespace CodeJam
 		private const int Count = 1000 * 1000;
 
 		[Test]
-		public void RunOpsCountNotSensitivePerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
+		public void RunOpsCountNotSensitivePerfTests()
+		{
+			// The test should fail with warning!
+			var overrideConfig = new ManualCompetitionConfig(RunConfig)
+			{
+				ReportWarningsAsErrors = false
+			};
+			CompetitionBenchmarkRunner.Run(this, overrideConfig);
+		}
 
 		[Benchmark(Baseline = true, OperationsPerInvoke = Count)]
 		public int Test00Baseline() => _result = ++_result;

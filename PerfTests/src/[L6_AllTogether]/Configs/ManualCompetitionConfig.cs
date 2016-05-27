@@ -62,6 +62,7 @@ namespace CodeJam.PerfTests.Configs
 			// Runner config
 			DebugMode = config.DebugMode;
 			DisableValidation = config.DisableValidation;
+			ReportWarningsAsErrors = config.ReportWarningsAsErrors;
 			MaxRunsAllowed = config.MaxRunsAllowed;
 
 			// Validation config
@@ -79,6 +80,7 @@ namespace CodeJam.PerfTests.Configs
 		// Runner config
 		public bool DebugMode { get; set; }
 		public bool DisableValidation { get; set; }
+		public bool ReportWarningsAsErrors { get; set; }
 		public int MaxRunsAllowed { get; set; } = 10;
 
 		// Validation config

@@ -182,7 +182,7 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				ReportExecutionErrors(messageText);
 			}
-			else if (hasTestFailedMessages)
+			else if (hasTestFailedMessages || competitionConfig.ReportWarningsAsErrors)
 			{
 				ReportAssertionsFailed(messageText);
 			}
