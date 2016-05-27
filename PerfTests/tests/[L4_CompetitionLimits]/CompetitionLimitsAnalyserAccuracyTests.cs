@@ -26,6 +26,7 @@ namespace CodeJam.PerfTests
 			EnableReruns = true
 		};
 
+		// TODO: the test takes too long time to complete. Speedup if possible.
 		[Test]
 		public static void TestCompetitionLimitsAnalyserTooFastTooSlowBenchmark()
 		{

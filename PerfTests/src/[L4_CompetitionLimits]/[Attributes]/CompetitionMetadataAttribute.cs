@@ -4,25 +4,21 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests
 {
-	/// <summary>
-	/// Specifies XML resource to be used as benchmark annotation.
-	/// </summary>
+	/// <summary>>Attribute for benchmark classes that stores competition limits as embedded XML resource.</summary>
 	// ReSharper disable once RedundantAttributeUsageProperty
 	[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
 	[PublicAPI, MeansImplicitUse]
 	public class CompetitionMetadataAttribute : Attribute
 	{
-		/// <summary>
-		/// Specifies XML resource to be used as benchmark annotation.
-		/// </summary>
+		/// <summary>Constructor for competition metadata attribute.</summary>
+		/// <param name="metadataResourceName">The name of the resource containing xml document with competition limits.</param>
 		public CompetitionMetadataAttribute(string metadataResourceName)
 		{
 			MetadataResourceName = metadataResourceName;
 		}
 
-		/// <summary>
-		/// Path to the XML resource to be used as benchmark limit data.
-		/// </summary>
+		/// <summary>The name of the resource containing xml document with competition limits.</summary>
+		/// <value>The name of the resource containing xml document with competition limits.</value>
 		public string MetadataResourceName { get; }
 	}
 }

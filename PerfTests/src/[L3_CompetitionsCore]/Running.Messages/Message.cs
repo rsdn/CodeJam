@@ -9,7 +9,7 @@ namespace CodeJam.PerfTests.Running.Messages
 	public class Message : IMessage
 	{
 		/// <summary>Initializes a new instance of the <see cref="Message"/> class.</summary>
-		/// <param name="runNumber">Number of the run the massage belongs to.</param>
+		/// <param name="runNumber">Number of the run the message belongs to.</param>
 		/// <param name="runMessageNumber">Number of the message in the run.</param>
 		/// <param name="messageSource">The source of the message.</param>
 		/// <param name="messageSeverity">Severity of the message.</param>
@@ -29,8 +29,8 @@ namespace CodeJam.PerfTests.Running.Messages
 			MessageSource = messageSource;
 		}
 
-		/// <summary>Number of the run the massage belongs to.</summary>
-		/// <value>The number of the run the massage belongs to.</value>
+		/// <summary>Number of the run the message belongs to.</summary>
+		/// <value>The number of the run the message belongs to.</value>
 		public int RunNumber { get; }
 
 		/// <summary>Number of the message in the run.</summary>

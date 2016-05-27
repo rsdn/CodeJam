@@ -185,26 +185,26 @@ namespace CodeJam.PerfTests.Analysers
 				CompetitionLimit.ActualRatioFormat,
 				EnvironmentInfo.MainCultureInfo);
 
-			if (!competitionLimit.IgnoreMin)
-			{
-				if (actualRatio < competitionLimit.Min)
-				{
-					validated = false;
-					competitionState.AddAnalyserWarning(
-						warnings, MessageSeverity.TestError,
-						$"Method {targetMethodName} runs faster than {competitionLimit.MinText}x baseline. Actual ratio: {actualRatioText}x",
-						summary.TryGetBenchmarkReport(benchmark));
-				}
-			}
-
 			if (!competitionLimit.IgnoreMax)
 			{
-				if (actualRatio > competitionLimit.Max)
+				if (competitionLimit.MaxIsEmpty || actualRatio > competitionLimit.Max)
 				{
 					validated = false;
 					competitionState.AddAnalyserWarning(
 						warnings, MessageSeverity.TestError,
 						$"Method {targetMethodName} runs slower than {competitionLimit.MaxText}x baseline. Actual ratio: {actualRatioText}x",
+						summary.TryGetBenchmarkReport(benchmark));
+				}
+			}
+
+			if (!competitionLimit.IgnoreMin)
+			{
+				if (competitionLimit.MinIsEmpty || actualRatio < competitionLimit.Min)
+				{
+					validated = false;
+					competitionState.AddAnalyserWarning(
+						warnings, MessageSeverity.TestError,
+						$"Method {targetMethodName} runs faster than {competitionLimit.MinText}x baseline. Actual ratio: {actualRatioText}x",
 						summary.TryGetBenchmarkReport(benchmark));
 				}
 			}

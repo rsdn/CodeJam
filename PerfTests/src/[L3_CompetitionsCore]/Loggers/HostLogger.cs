@@ -73,7 +73,7 @@ namespace CodeJam.PerfTests.Loggers
 
 		/// <summary>
 		/// Detailed logging mode.
-		/// If set to <c>false</c> only messages with LogImportant* prefixes wil be written.
+		/// If disabled, only messages with LogImportant* prefixes are logged.
 		/// </summary>
 		/// <value><c>true</c> if detailed logging mode is enabled.</value>
 		public bool DetailedLogging { get; }
@@ -88,7 +88,7 @@ namespace CodeJam.PerfTests.Loggers
 				_importantAreaCount > 0 ||
 				logKind == LogKind.Error;
 
-		/// <summary>Handles the well-known prefixes for the line.</summary>
+		/// <summary>Handles well-known prefixes for the line.</summary>
 		/// <param name="text">The text of the log line.</param>
 		/// <returns><c>true</c> if the line should be written.</returns>
 		// ReSharper disable once VirtualMemberNeverOverriden.Global
@@ -110,7 +110,7 @@ namespace CodeJam.PerfTests.Loggers
 			else if (text.StartsWith(LogImportantAreaEnd, StringComparison.Ordinal))
 			{
 				shouldWrite = true;
-				// Decrements if value > 0
+				// Decrement if value > 0
 				InterlockedOperations.Update(ref _importantAreaCount, i => Math.Max(i - 1, 0));
 			}
 #pragma warning restore 420
@@ -127,7 +127,7 @@ namespace CodeJam.PerfTests.Loggers
 			return shouldWrite;
 		}
 
-		/// <summary>Writes the empty line.</summary>
+		/// <summary>Write the empty line.</summary>
 		public virtual void WriteLine()
 		{
 			if (ShouldWrite(LogKind.Default))
@@ -136,7 +136,7 @@ namespace CodeJam.PerfTests.Loggers
 			}
 		}
 
-		/// <summary>Writes the line.</summary>
+		/// <summary>Write the line.</summary>
 		/// <param name="logKind">Kind of text.</param>
 		/// <param name="text">The text to write.</param>
 		public virtual void WriteLine(LogKind logKind, string text)
@@ -148,7 +148,7 @@ namespace CodeJam.PerfTests.Loggers
 			}
 		}
 
-		/// <summary>Writes the test.</summary>
+		/// <summary>Write the test.</summary>
 		/// <param name="logKind">Kind of text.</param>
 		/// <param name="text">The text to write.</param>
 		public virtual void Write(LogKind logKind, string text)

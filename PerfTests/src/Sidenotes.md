@@ -1,7 +1,7 @@
 ﻿## TODO, Bench.Net:
 * ValidationError - make public, https://github.com/PerfDotNet/BenchmarkDotNet/issues/183
-* ManualConfig.Add to virtual?
-* Validators: access to config?
+* ManualConfig.Add - make virtual?
+* Validators: access to config, in-process validators, naming: ThreatsWarnings -> ThreatWarnings
 * remove calls instance.setupAction(), instance.targetAction() from BenchmarkProgram.txt
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
@@ -12,7 +12,6 @@
  * ability to pass ICompetitionConfig via attrubute?
  * validate summary after run
  * Design flaw? The run state DOES NOT SUPPORT reuse across multiple benchmarks.
- * No rerun on validation failed.
  * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion
  * Memory limits + diagnoser
  * Fix diagnoser support in in-process toolchain
@@ -67,3 +66,5 @@ CompetitionLimitsAnnotateAnalyser again
 The dump uses same format that xml anotations uses. The only difference is,
 the Target uses full assembly qualified name of the type, not type name only.
 We should to it because there can be a multiple perftests with same type name but in different namespaces / assemblies in the log.
+
+UPD: Done just as planned

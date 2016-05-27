@@ -6,50 +6,61 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests
 {
-	/// <summary>
-	/// Marks the competition benchmark
-	/// </summary>
+	/// <summary>Attribute for competition benchmark</summary>
+	/// <seealso cref="BenchmarkDotNet.Attributes.BenchmarkAttribute" />
 	// ReSharper disable once RedundantAttributeUsageProperty
 	[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
 	[PublicAPI, MeansImplicitUse]
 	public class CompetitionBenchmarkAttribute : BenchmarkAttribute
 	{
-		/// <summary>
-		/// Marks the competition benchmark
-		/// </summary>
+		/// <summary>Constructor for competition benchmark attribute.</summary>
 		public CompetitionBenchmarkAttribute() { }
 
-		/// <summary>
-		/// Marks the competition benchmark
-		/// </summary>
+		/// <summary>Marks the competition benchmark</summary>
+		/// <param name="maxRatio">
+		/// The maximum timing ratio relative to the baseline.
+		/// Set to <seealso cref="CompetitionLimit.IgnoreValue"/> to ignore the limit.
+		/// Set to <seealso cref="CompetitionLimit.Empty"/> to force limit checking failure.
+		/// </param>
 		public CompetitionBenchmarkAttribute(double maxRatio)
 		{
 			MinRatio = -1;
 			MaxRatio = maxRatio;
 		}
 
-		/// <summary>
-		/// Marks the competition benchmark
-		/// </summary>
+		/// <summary>Marks the competition benchmark</summary>
+		/// <param name="minRatio">
+		/// The minimum timing ratio relative to the baseline.
+		/// Set to <seealso cref="CompetitionLimit.IgnoreValue"/> to ignore the limit.
+		/// Set to <seealso cref="CompetitionLimit.Empty"/> to force limit checking failure.
+		/// </param>
+		/// <param name="maxRatio">
+		/// The maximum timing ratio relative to the baseline.
+		/// Set to <seealso cref="CompetitionLimit.IgnoreValue"/> to ignore the limit.
+		/// Set to <seealso cref="CompetitionLimit.Empty"/> to force limit checking failure.
+		/// </param>
 		public CompetitionBenchmarkAttribute(double minRatio, double maxRatio)
 		{
 			MinRatio = minRatio;
 			MaxRatio = maxRatio;
 		}
 
-		/// <summary>
-		/// Exclude the benchmark from competition
-		/// </summary>
+		/// <summary>Exclude the benchmark from competition</summary>
+		/// <value><c>true</c> if the benchmark does not take part in competition and should not be validated.</value>
 		public bool DoesNotCompete { get; set; }
 
 		/// <summary>
-		/// Max timing ratio (relative to the baseline benchmark)
-		/// </summary>
-		public double MaxRatio { get; private set; }
-
-		/// <summary>
-		/// Min timing ratio (relative to the baseline benchmark)
+		/// The minimum timing ratio relative to the baseline.
+		/// Set to <seealso cref="CompetitionLimit.IgnoreValue"/> to ignore the limit.
+		/// Set to <seealso cref="CompetitionLimit.Empty"/> to force limit checking failure.
 		/// </summary>
 		public double MinRatio { get; private set; }
+
+		/// <summary>
+		/// The maximum timing ratio relative to the baseline.
+		/// Set to <seealso cref="CompetitionLimit.IgnoreValue"/> to ignore the limit.
+		/// Set to <seealso cref="CompetitionLimit.Empty"/> to force limit checking failure.
+		/// </summary>
+		public double MaxRatio { get; private set; }
 	}
 }

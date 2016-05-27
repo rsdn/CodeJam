@@ -7,8 +7,8 @@ namespace CodeJam.PerfTests.Running.Messages
 	/// </summary>
 	public interface IMessage
 	{
-		/// <summary>Number of the run the massage belongs to.</summary>
-		/// <value>The number of the run the massage belongs to.</value>
+		/// <summary>Number of the run the message belongs to.</summary>
+		/// <value>The number of the run the message belongs to.</value>
 		int RunNumber { get; }
 
 		/// <summary>Number of the message in the run.</summary>
