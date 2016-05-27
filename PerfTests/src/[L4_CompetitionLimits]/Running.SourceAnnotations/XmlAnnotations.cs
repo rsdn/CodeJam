@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -104,24 +105,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		}
 		#endregion
 
-		// TODO: ConcurrentDictionary?
-		private static readonly Dictionary<string, XDocument[]> _previousLogData = new Dictionary<string, XDocument[]>();
-
 		public static XDocument[] GetDocumentsFromLog(string previousLogUri)
-		{
-			lock (_previousLogData)
-			{
-				XDocument[] result;
-				if (!_previousLogData.TryGetValue(previousLogUri, out result))
-				{
-					result = GetDocumentsFromLogCore(previousLogUri);
-					_previousLogData.Add(previousLogUri, result);
-				}
-				return result.ToArray();
-			}
-		}
-
-		private static XDocument[] GetDocumentsFromLogCore(string previousLogUri)
 		{
 			var result = new List<XDocument>();
 

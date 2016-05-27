@@ -8,6 +8,7 @@ using System.Xml.Linq;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 
+using CodeJam.Collections;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 
@@ -20,6 +21,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	[SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
+	[SuppressMessage("ReSharper", "ConvertClosureToMethodGroup")]
 	internal static partial class AnnotateSourceHelper
 	{
 		#region Helper types
@@ -34,30 +36,18 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			public IReadOnlyList<string> GetFileLines(string file)
 			{
-				if (_xmlAnnotations.ContainsKey(file))
+				if (_sourceLines.ContainsKey(file))
 					throw new InvalidOperationException($"File {file} already loaded as XML annotation");
 
-				string[] result;
-				if (!_sourceLines.TryGetValue(file, out result))
-				{
-					result = File.ReadAllLines(file);
-					_sourceLines[file] = result;
-				}
-				return result;
+				return _sourceLines.GetOrAdd(file, f=> File.ReadAllLines(f));
 			}
 
 			public XDocument GetXmlAnnotation(string file)
 			{
-				if (_sourceLines.ContainsKey(file))
+				if (_xmlAnnotations.ContainsKey(file))
 					throw new InvalidOperationException($"File {file} already loaded as source lines");
 
-				XDocument result;
-				if (!_xmlAnnotations.TryGetValue(file, out result))
-				{
-					result = XDocument.Load(file);
-					_xmlAnnotations[file] = result;
-				}
-				return result;
+				return _xmlAnnotations.GetOrAdd(file, f => XDocument.Load(f));
 			}
 
 			public void MarkAsChanged(string file)

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Xml.Linq;
 
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Configs;
@@ -9,6 +11,7 @@ using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
+using CodeJam.Collections;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.PerfTests.Running.SourceAnnotations;
@@ -18,13 +21,18 @@ namespace CodeJam.PerfTests.Analysers
 	// TODO: needs code review
 	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
+	[SuppressMessage("ReSharper", "ConvertClosureToMethodGroup")]
 	internal class CompetitionLimitsAnnotateAnalyser : CompetitionLimitsAnalyser
 	{
 		#region Adjusted targets
 		private class UpdatedCompetitionTargets : HashSet<CompetitionTarget> { }
+		private class PreviousLogDocuments : Dictionary<string, XDocument[]> { }
 
 		private static readonly RunState<UpdatedCompetitionTargets> _updatedTargets =
 			new RunState<UpdatedCompetitionTargets>();
+
+		private static readonly RunState<PreviousLogDocuments> _previousLogDocuments =
+			new RunState<PreviousLogDocuments>();
 		#endregion
 
 		public bool UpdateSourceAnnotations { get; set; }
@@ -42,7 +50,8 @@ namespace CodeJam.PerfTests.Analysers
 
 			var competitionState = CompetitionCore.RunState[summary];
 
-			var docs = XmlAnnotations.GetDocumentsFromLog(PreviousLogUri);
+			var docs = _previousLogDocuments[summary]
+				.GetOrAdd(PreviousLogUri, uri=> XmlAnnotations.GetDocumentsFromLog(uri));
 
 			competitionState.WriteMessage(
 				MessageSource.Analyser, MessageSeverity.Informational,

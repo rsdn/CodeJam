@@ -106,7 +106,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// </summary>
 		/// <param name="additionalRunsCount">Count of additional runs.</param>
 		/// <param name="explanationMessage">The explanation message for therequest</param>
-		public void RequestReruns(int additionalRunsCount, [NotNull]string explanationMessage)
+		public void RequestReruns(int additionalRunsCount, [NotNull] string explanationMessage)
 		{
 			Code.InRange(additionalRunsCount, nameof(additionalRunsCount), 0, 1000);
 			Code.NotNullNorEmpty(explanationMessage, nameof(explanationMessage));
@@ -166,6 +166,8 @@ namespace CodeJam.PerfTests.Running.Core
 			MessageSource messageSource, MessageSeverity messageSeverity,
 			string messageText)
 		{
+			Message message;
+
 			lock (_messages)
 			{
 				MessagesInRun++;
@@ -174,16 +176,14 @@ namespace CodeJam.PerfTests.Running.Core
 					HighestMessageSeverityInRun = messageSeverity;
 				}
 
-				var message = new Message(
-					RunNumber,
-					MessagesInRun,
-					messageSource,
-					messageSeverity,
-					messageText);
-				_messages.Add(message);
+				message = new Message(
+					RunNumber, MessagesInRun,
+					messageSource, messageSeverity, messageText);
 
-				Logger?.LogMessage(message);
+				_messages.Add(message);
 			}
+
+			Logger?.LogMessage(message);
 		}
 		#endregion
 	}

@@ -16,12 +16,12 @@ namespace CodeJam.PerfTests
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
 	public static class InProcessToolchainTest
 	{
-		#region TestInProcess
+		#region TestInProcessBenchmark
 		private static int _callCounter;
 		private static int _afterSetupCounter;
 
 		[Test]
-		public static void TestInProcess()
+		public static void TestInProcessBenchmark()
 		{
 			var config = PerfTestConfig.Default;
 
@@ -44,14 +44,14 @@ namespace CodeJam.PerfTests
 			{
 				Interlocked.Increment(ref _callCounter);
 				Interlocked.Increment(ref _afterSetupCounter);
-				Thread.Sleep(1);
+				Thread.Sleep(10);
 			}
 		}
 		#endregion
 
-		#region TestInProcessWithValidation
+		#region TestInProcessWithValidationBenchmark
 		[Test]
-		public static void TestInProcessWithValidation()
+		public static void TestInProcessWithValidationBenchmark()
 		{
 			// DONTTOUCH: config SHOULD NOT match the platform.
 			var config = IntPtr.Size == 8
@@ -67,7 +67,7 @@ namespace CodeJam.PerfTests
 		public class InProcessWithValidationBenchmark
 		{
 			[Benchmark]
-			public void InvokeOnce() => Thread.Sleep(1);
+			public void InvokeOnce() => Thread.Sleep(10);
 		}
 		#endregion
 	}

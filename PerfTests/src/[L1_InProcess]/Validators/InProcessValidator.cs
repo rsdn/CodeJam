@@ -23,8 +23,8 @@ namespace BenchmarkDotNet.Validators
 	{
 		#region Validation rules
 		// ReSharper disable HeapView.DelegateAllocation
-		private static readonly IReadOnlyDictionary<string, Func<IJob, EnvironmentInfo, string>> _validationRules = new Dictionary
-			<string, Func<IJob, EnvironmentInfo, string>>
+		private static readonly IReadOnlyDictionary<string, Func<IJob, EnvironmentInfo, string>> _validationRules = 
+			new Dictionary<string, Func<IJob, EnvironmentInfo, string>>
 		{
 			{ nameof(IJob.Affinity), NoValidation },
 			{ nameof(IJob.Framework), ValidateFramework },
@@ -48,7 +48,7 @@ namespace BenchmarkDotNet.Validators
 
 		private static string NoValidation(IJob job, EnvironmentInfo env) => null;
 
-		// TODO: Detect framework
+		// TODO: detect framework
 		private static string ValidateFramework(IJob job, EnvironmentInfo env)
 		{
 			switch (job.Framework)
@@ -109,7 +109,7 @@ namespace BenchmarkDotNet.Validators
 			}
 		}
 
-		// TODO: Detect runtime
+		// TODO: detect runtime
 		private static string ValidateRuntime(IJob job, EnvironmentInfo env)
 		{
 			switch (job.Runtime)
@@ -149,8 +149,7 @@ namespace BenchmarkDotNet.Validators
 		/// </value>
 		public bool TreatsWarningsAsErrors { get; }
 
-		// TODO: check that analysers can run in-process
-		// TODO: check that the target is not static class
+		// TODO: check that all diagnosers can be run in-process
 		/// <summary>Proofs that benchmarks' jobs match the environment.</summary>
 		/// <param name="benchmarks">The benchmarks to validate.</param>
 		/// <returns>Enumerable of validation errors.</returns>

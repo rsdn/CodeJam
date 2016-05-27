@@ -22,6 +22,11 @@ namespace BenchmarkDotNet.Toolchains
 				throw new ArgumentNullException(nameof(benchmark));
 
 			var target = benchmark.Target;
+			if (target.Type.IsAbstract || target.Type.IsValueType)
+				throw new ArgumentException(
+					$"The benchmark target type {target.Type.FullName} should be instantiable (not abstract and not static) class.",
+					nameof(benchmark));
+
 			var targetMethodReturnType = target.Method.ReturnType;
 			if (targetMethodReturnType == typeof(void))
 			{

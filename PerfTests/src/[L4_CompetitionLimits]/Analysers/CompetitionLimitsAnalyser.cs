@@ -10,6 +10,7 @@ using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
+using CodeJam.Collections;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.PerfTests.Running.SourceAnnotations;
@@ -113,12 +114,9 @@ namespace CodeJam.PerfTests.Analysers
 			}
 
 			// DONTTOUCH: the doc should be loaded for validation even if IgnoreExistingAnnotations = true
-			XDocument resourceDoc;
-			if (!resourceCache.TryGetValue(targetResourceName, out resourceDoc))
-			{
-				resourceDoc = XmlAnnotations.TryLoadResourceDoc(target.Type, targetResourceName, competitionState);
-				resourceCache[targetResourceName] = resourceDoc;
-			}
+			var resourceDoc = resourceCache.GetOrAdd(
+				targetResourceName,
+				r => XmlAnnotations.TryLoadResourceDoc(target.Type, r, competitionState));
 
 			if (resourceDoc == null || IgnoreExistingAnnotations)
 				return new CompetitionTarget(target, emptyLimit, true);
@@ -256,7 +254,7 @@ namespace CodeJam.PerfTests.Analysers
 				competitionState.AddAnalyserWarning(
 					warnings, MessageSeverity.Warning,
 					"The benchmarks " + string.Join(", ", tooFastReports) +
-						" runs faster than 400 nanoseconds. Results cannot be trusted.");
+						" run faster than 400 nanoseconds. Results cannot be trusted.");
 			}
 
 			if (!AllowSlowBenchmarks)
@@ -271,7 +269,7 @@ namespace CodeJam.PerfTests.Analysers
 					competitionState.AddAnalyserWarning(
 						warnings, MessageSeverity.Warning,
 						"The benchmarks " + string.Join(", ", tooSlowReports) +
-							" runs longer than half a second. Consider to rewrite the test as the peek timings will be hidden by averages" +
+							" run longer than half a second. Consider to rewrite the test as the peek timings will be hidden by averages" +
 							$" or set the {nameof(AllowSlowBenchmarks)} to true.");
 				}
 			}

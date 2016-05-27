@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -134,48 +136,42 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				Sha1
 			}
 
-			private static readonly Dictionary<string, byte[]> _md5Hashes = new Dictionary<string, byte[]>();
-			private static readonly Dictionary<string, byte[]> _sha1Hashes = new Dictionary<string, byte[]>();
+			private static readonly ConcurrentDictionary<string, byte[]> _md5Hashes = new ConcurrentDictionary<string, byte[]>();
+			private static readonly ConcurrentDictionary<string, byte[]> _sha1Hashes = new ConcurrentDictionary<string, byte[]>();
 
 			private const string Sha1AlgName = "SHA1";
 			private const string Md5AlgName = "Md5";
 
-			// ReSharper disable once ParameterTypeCanBeEnumerable.Local
-			private static string ToHexString([NotNull] byte[] data) =>
-				string.Concat(data.Select(b => b.ToString("X2")));
-
-			// TODO: To ConcurrentDictionary if supported by all targets
 			private static string ValidateCore(
 				string file,
-				IDictionary<string, byte[]> fileHashes,
+				ConcurrentDictionary<string, byte[]> fileHashes,
 				string hashAlgName,
 				byte[] expectedChecksum)
 			{
-				byte[] actualChecksum;
-				lock (fileHashes)
-				{
-					if (!fileHashes.TryGetValue(file, out actualChecksum))
-					{
-						using (var f = File.OpenRead(file))
-						using (var h = HashAlgorithm.Create(hashAlgName))
-						{
-							// ReSharper disable once PossibleNullReferenceException
-							actualChecksum = h.ComputeHash(f);
-						}
-						fileHashes[file] = actualChecksum;
-					}
-				}
-
+				var actualChecksum = fileHashes.GetOrAdd(file, f => TryGetChecksum(f, hashAlgName));
 				if (expectedChecksum.SequenceEqual(actualChecksum))
 				{
 					// ReSharper disable once RedundantAssignment
 					return null;
 				}
 
-				var expected = ToHexString(expectedChecksum);
-				var actual = ToHexString(actualChecksum);
+				var expected = expectedChecksum.ToHexString();
+				var actual = actualChecksum.ToHexString();
 
 				return $"{hashAlgName} checksum validation failed. File '{file}'.\r\nActual: 0x{actual}\r\nExpected: 0x{expected}";
+			}
+
+			private static byte[] TryGetChecksum(string file, string hashAlgName)
+			{
+				if (!File.Exists(file))
+					return null;
+
+				using (var f = File.OpenRead(file))
+				using (var h = HashAlgorithm.Create(hashAlgName))
+				{
+					// ReSharper disable once PossibleNullReferenceException
+					return h.ComputeHash(f);
+				}
 			}
 
 			private static string ValidateFileHash(

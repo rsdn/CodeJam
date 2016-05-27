@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,8 +13,7 @@ namespace CodeJam.PerfTests.Running.Core
 	/// </summary>
 	internal class RunStateSlots : IValidator
 	{
-		// TODO: To ConcurrentDictionary if supported by all targets
-		private readonly IDictionary<Type, object> _stateSlots = new Dictionary<Type, object>();
+		private readonly ConcurrentDictionary<Type, object> _stateSlots = new ConcurrentDictionary<Type, object>();
 
 		/// <summary>
 		/// Returns the value for the <seealso cref="RunState{T}"/>.
@@ -21,26 +21,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// </summary>
 		/// <typeparam name="T">The type of the running state instance.</typeparam>
 		/// <returns>The value for the <seealso cref="RunState{T}"/>.</returns>
-		public T GetSlot<T>()
-			where T : new()
-		{
-			T result;
-			lock (_stateSlots)
-			{
-				var key = typeof(T);
-				object temp;
-				if (_stateSlots.TryGetValue(key, out temp))
-				{
-					result = (T)temp;
-				}
-				else
-				{
-					result = new T();
-					_stateSlots.Add(key, result);
-				}
-			}
-			return result;
-		}
+		public T GetSlot<T>() where T : new() => (T)_stateSlots.GetOrAdd(typeof(T), t => new T());
 
 		#region IValidator stub implementation
 		/// <summary>Gets a value indicating whether warnings are treated as errors.</summary>
