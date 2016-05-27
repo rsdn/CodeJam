@@ -56,7 +56,7 @@ namespace CodeJam.Threading
 		#endregion
 
 		#region Implementation of IReadOnlyCollection<out KeyValuePair<TKey,TValue>>
-		int IReadOnlyCollection<KeyValuePair<TKey, TValue>>.Count { get; }
+		int IReadOnlyCollection<KeyValuePair<TKey, TValue>>.Count => _map.Count;
 		#endregion
 
 		#region Implementation of IReadOnlyDictionary<TKey,TValue>
