@@ -246,7 +246,7 @@ namespace CodeJam.PerfTests.Analysers
 		{
 			var competitionState = CompetitionCore.RunState[summary];
 			var tooFastReports = summary.Reports
-				.Where(rp => rp.GetResultRuns().Any(r => r.GetAverageNanoseconds() < 400))
+				.Where(rp => rp.GetResultRuns().Any(r => r.GetAverageNanoseconds() < 1000))
 				.Select(rp => rp.Benchmark.Target.Method.Name)
 				.ToArray();
 			if (tooFastReports.Length > 0)
@@ -254,7 +254,7 @@ namespace CodeJam.PerfTests.Analysers
 				competitionState.AddAnalyserWarning(
 					warnings, MessageSeverity.Warning,
 					"The benchmarks " + string.Join(", ", tooFastReports) +
-						" run faster than 400 nanoseconds. Results cannot be trusted.");
+						" run faster than 1 microsecond. Results cannot be trusted.");
 			}
 
 			if (!AllowSlowBenchmarks)
@@ -269,7 +269,7 @@ namespace CodeJam.PerfTests.Analysers
 					competitionState.AddAnalyserWarning(
 						warnings, MessageSeverity.Warning,
 						"The benchmarks " + string.Join(", ", tooSlowReports) +
-							" run longer than half a second. Consider to rewrite the test as the peek timings will be hidden by averages" +
+							" run longer than 0.5 sec. Consider to rewrite the test as the peek timings will be hidden by averages" +
 							$" or set the {nameof(AllowSlowBenchmarks)} to true.");
 				}
 			}
