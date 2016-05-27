@@ -3,6 +3,7 @@ using System;
 using BenchmarkDotNet.Attributes;
 
 using CodeJam.PerfTests;
+using CodeJam.PerfTests.Configs;
 
 using JetBrains.Annotations;
 
@@ -24,7 +25,15 @@ namespace CodeJam
 		public int Count { get; set; }
 
 		[Test]
-		public void RunSensitivityPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
+		public void RunSensitivityPerfTests()
+		{
+			// The test could fail with "too fast" warning, it's ok
+			var overrideConfig = new ManualCompetitionConfig(RunConfig)
+			{
+				ReportWarningsAsErrors = false
+			};
+			CompetitionBenchmarkRunner.Run(this, overrideConfig);
+		}
 
 		[CompetitionBaseline]
 		public int Test00Baseline()
@@ -38,7 +47,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(1.42, 3.2)]
+		[CompetitionBenchmark(1.42, 5.2)]
 		public int Test01PlusOne()
 		{
 			var a = 0;
