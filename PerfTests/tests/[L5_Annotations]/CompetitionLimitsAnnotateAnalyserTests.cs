@@ -9,6 +9,8 @@ using CodeJam.PerfTests.Running.Messages;
 
 using NUnit.Framework;
 
+using static CodeJam.PerfTests.PerfTestConfig;
+
 namespace CodeJam.PerfTests
 {
 	[TestFixture(Category = "BenchmarkDotNet")]
@@ -69,8 +71,6 @@ namespace CodeJam.PerfTests
 		}
 
 		#region Benchmark classes
-		private const int SpinCount = 100 * 1000;
-
 		public class HighAccuracyBenchmark
 		{
 			[CompetitionBaseline]

@@ -23,11 +23,9 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestInProcessBenchmark()
 		{
-			var config = PerfTestConfig.Default;
-
 			Interlocked.Exchange(ref _callCounter, 0);
 			Interlocked.Exchange(ref _afterSetupCounter, 0);
-			var summary = CompetitionBenchmarkRunner.Run<InProcessBenchmark>(config);
+			var summary = CompetitionBenchmarkRunner.Run<InProcessBenchmark>(PerfTestConfig.SingleRunConfig);
 			Assert.AreEqual(_callCounter, PerfTestConfig.ExpectedRunCount);
 			Assert.AreEqual(_afterSetupCounter, 1);
 

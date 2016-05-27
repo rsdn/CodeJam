@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 
@@ -8,9 +7,10 @@ using BenchmarkDotNet.Attributes;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
-using CodeJam.Threading;
 
 using NUnit.Framework;
+
+using static CodeJam.PerfTests.PerfTestConfig;
 
 namespace CodeJam.PerfTests
 {
@@ -23,7 +23,7 @@ namespace CodeJam.PerfTests
 		public static void TestCompetitionLimitsAnalyserEmptyBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var summary = CompetitionBenchmarkRunner.Run<EmptyBenchmark>(_config);
+			var summary = CompetitionBenchmarkRunner.Run<EmptyBenchmark>(SingleRunConfig);
 			var runState = CompetitionCore.RunState[summary];
 			var messages = runState.GetMessages();
 			Assert.AreEqual(_callCounter, 0);
@@ -37,10 +37,10 @@ namespace CodeJam.PerfTests
 		}
 
 		[Test]
-		public static void TestCompetitionLimitsAnalyserNoBaselineTooFastTooSlowBenchmark()
+		public static void TestCompetitionLimitsAnalyserNoBaselineOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var summary = CompetitionBenchmarkRunner.Run<NoBaselineTooFastTooSlowBenchmark>(_config);
+			var summary = CompetitionBenchmarkRunner.Run<NoBaselineOkBenchmark>(SingleRunConfig);
 			var runState = CompetitionCore.RunState[summary];
 			var messages = runState.GetMessages();
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -49,32 +49,15 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
-			Assert.AreEqual(messages.Length, 2);
-
-			Assert.AreEqual(messages[0].RunNumber, 1);
-			Assert.AreEqual(messages[0].RunMessageNumber, 1);
-			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Warning);
-			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.AreEqual(
-				messages[0].MessageText,
-				"The benchmarks TooFast, TooFast2 run faster than 1 microsecond. Results cannot be trusted.");
-
-			Assert.AreEqual(messages[1].RunNumber, 1);
-			Assert.AreEqual(messages[1].RunMessageNumber, 2);
-			Assert.AreEqual(messages[1].MessageSeverity, MessageSeverity.Warning);
-			Assert.AreEqual(messages[1].MessageSource, MessageSource.Analyser);
-			Assert.AreEqual(
-				messages[1].MessageText,
-				"The benchmarks TooSlow run longer than 0.5 sec." +
-					" Consider to rewrite the test as the peek timings will be hidden by averages" +
-					" or set the AllowSlowBenchmarks to true.");
+			Assert.AreEqual(messages.Length, 1);
+			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionLimitsAnnotateAnalyser: no warnings.");
 		}
 
 		[Test]
 		public static void TestCompetitionLimitsAnalyserOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var summary = CompetitionBenchmarkRunner.Run<OkBenchmark>(_config);
+			var summary = CompetitionBenchmarkRunner.Run<OkBenchmark>(SingleRunConfig);
 			var runState = CompetitionCore.RunState[summary];
 			var messages = runState.GetMessages();
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -91,7 +74,7 @@ namespace CodeJam.PerfTests
 		public static void TestCompetitionLimitsAnalyserXmlOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var summary = CompetitionBenchmarkRunner.Run<XmlOkBenchmark>(_config);
+			var summary = CompetitionBenchmarkRunner.Run<XmlOkBenchmark>(SingleRunConfig);
 			var runState = CompetitionCore.RunState[summary];
 			var messages = runState.GetMessages();
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -105,30 +88,10 @@ namespace CodeJam.PerfTests
 		}
 
 		[Test]
-		public static void TestCompetitionLimitsAnalyserHighAccuracyBenchmark()
-		{
-			var config = new ManualCompetitionConfig(FastRunConfig.Instance)
-			{
-				DebugMode = true,
-				EnableReruns = true
-			};
-
-			var stopwatch = Stopwatch.StartNew();
-			var summary = CompetitionBenchmarkRunner.Run<HighAccuracyBenchmark>(config);
-			stopwatch.Stop();
-			var runState = CompetitionCore.RunState[summary];
-			Assert.AreEqual(runState.RunNumber, 1);
-			Assert.AreEqual(runState.RunsLeft, 0);
-			Assert.AreEqual(runState.RunLimitExceeded, false);
-			Assert.AreEqual(runState.LooksLikeLastRun, true);
-			Assert.LessOrEqual(stopwatch.Elapsed.TotalSeconds, 3);
-		}
-
-		[Test]
 		public static void TestCompetitionLimitsAnalyserNoBaselineFailBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var summary = CompetitionBenchmarkRunner.Run<NoBaselineFailBenchmark>(_config);
+			var summary = CompetitionBenchmarkRunner.Run<NoBaselineFailBenchmark>(SingleRunConfig);
 			var runState = CompetitionCore.RunState[summary];
 			var messages = runState.GetMessages();
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -149,7 +112,7 @@ namespace CodeJam.PerfTests
 		public static void TestCompetitionLimitsAnalyserFailBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var summary = CompetitionBenchmarkRunner.Run<CompetitionLimitsFailBenchmark>(_config);
+			var summary = CompetitionBenchmarkRunner.Run<CompetitionLimitsFailBenchmark>(SingleRunConfig);
 			var runState = CompetitionCore.RunState[summary];
 			var messages = runState.GetMessages();
 			Assert.AreEqual(_callCounter, 3 * ExpectedRunCount); // 3x rerun
@@ -205,31 +168,26 @@ namespace CodeJam.PerfTests
 		#region Benchmark classes
 		// two methods in each benchmark
 		private const int ExpectedRunCount = 2 * PerfTestConfig.ExpectedRunCount;
-		private static readonly ICompetitionConfig _config = PerfTestConfig.Default;
 
-		private const int SpinCount = 100 * 1000;
 		private static int _callCounter;
 
 		public class EmptyBenchmark { }
 
-		public class NoBaselineTooFastTooSlowBenchmark : EmptyBenchmark
+
+		public class NoBaselineOkBenchmark : EmptyBenchmark
 		{
-			// ReSharper disable once NotAccessedField.Local
-			private int _i;
-
 			[Benchmark]
-			public int TooFast() => _i++;
-
-			[Benchmark]
-			public int TooFast2() => _i++;
+			public void WillRun()
+			{
+				Interlocked.Increment(ref _callCounter);
+				Thread.SpinWait(SpinCount);
+			}
 
 			[CompetitionBenchmark(DoesNotCompete = true)]
-			public void TooSlow()
+			public void WillRun2()
 			{
-				// DONTTOUCH:  _callCounter should be incremented twice
-				// Other methods cannot use interlocked operations, they become too slow.
-				InterlockedOperations.Update(ref _callCounter, i => i + 2);
-				Thread.Sleep(550);
+				Interlocked.Increment(ref _callCounter);
+				Thread.SpinWait(SpinCount);
 			}
 		}
 
