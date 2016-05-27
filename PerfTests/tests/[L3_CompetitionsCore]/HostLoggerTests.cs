@@ -187,6 +187,7 @@ TST6
 // !TST9
 TST10");
 
+			// ReSharper disable once StringLiteralTypo
 			const string expected = @"ABCDEFGH
 TST0
 // !TST1

@@ -8,6 +8,7 @@ using BenchmarkDotNet.Attributes;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
+using CodeJam.Threading;
 
 using NUnit.Framework;
 
@@ -56,7 +57,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"The benchmarks WillRun run faster than 400 nanoseconds. Results cannot be trusted.");
+				"The benchmarks TooFast, TooFast2 run faster than 400 nanoseconds. Results cannot be trusted.");
 
 			Assert.AreEqual(messages[1].RunNumber, 1);
 			Assert.AreEqual(messages[1].RunMessageNumber, 2);
@@ -64,7 +65,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[1].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[1].MessageText,
-				"The benchmarks WillRun2 run longer than half a second." +
+				"The benchmarks TooSlow run longer than half a second." +
 					" Consider to rewrite the test as the peek timings will be hidden by averages" +
 					" or set the AllowSlowBenchmarks to true.");
 		}
@@ -213,13 +214,33 @@ namespace CodeJam.PerfTests
 
 		public class NoBaselineTooFastTooSlowBenchmark : EmptyBenchmark
 		{
+			// ReSharper disable once NotAccessedField.Local
+			private volatile int _i;
+
 			[Benchmark]
-			public void WillRun() => Interlocked.Increment(ref _callCounter);
+			public void TooFast()
+			{
+				for (var i = 0; i < 10; i++)
+				{
+					_i++;
+				}
+			}
+
+			[Benchmark]
+			public void TooFast2()
+			{
+				for (var i = 0; i < 10; i++)
+				{
+					_i++;
+				}
+			}
 
 			[CompetitionBenchmark(DoesNotCompete = true)]
-			public void WillRun2()
+			public void TooSlow()
 			{
-				Interlocked.Increment(ref _callCounter);
+				// DONTTOUCH:  _callCounter should be incremented twice
+				// Other methods cannot use interlocked operations, they become too slow.
+				InterlockedOperations.Update(ref _callCounter, i=>i+2);
 				Thread.Sleep(600);
 			}
 		}

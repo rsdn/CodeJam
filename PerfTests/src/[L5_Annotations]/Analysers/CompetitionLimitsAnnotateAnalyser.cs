@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -26,6 +25,7 @@ namespace CodeJam.PerfTests.Analysers
 	{
 		#region Adjusted targets
 		private class UpdatedCompetitionTargets : HashSet<CompetitionTarget> { }
+
 		private class PreviousLogDocuments : Dictionary<string, XDocument[]> { }
 
 		private static readonly RunState<UpdatedCompetitionTargets> _updatedTargets =
@@ -51,7 +51,7 @@ namespace CodeJam.PerfTests.Analysers
 			var competitionState = CompetitionCore.RunState[summary];
 
 			var docs = _previousLogDocuments[summary]
-				.GetOrAdd(PreviousLogUri, uri=> XmlAnnotations.GetDocumentsFromLog(uri));
+				.GetOrAdd(PreviousLogUri, uri => XmlAnnotations.GetDocumentsFromLog(uri));
 
 			competitionState.WriteMessage(
 				MessageSource.Analyser, MessageSeverity.Informational,

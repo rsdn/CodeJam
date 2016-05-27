@@ -27,8 +27,8 @@ namespace CodeJam.PerfTests.Running.Messages
 		/// <value>The text of the message.</value>
 		string MessageText { get; }
 
-		/// <summary>Returns a <see cref="string" /> that represents this instance.</summary>
-		/// <returns>A <see cref="string" /> that represents this instance.</returns>
+		/// <summary>Returns a <see cref="string"/> that represents this instance.</summary>
+		/// <returns>A <see cref="string"/> that represents this instance.</returns>
 		string ToString();
 	}
 }

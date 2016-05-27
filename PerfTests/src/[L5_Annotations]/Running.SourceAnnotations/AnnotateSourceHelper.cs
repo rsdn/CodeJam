@@ -39,7 +39,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				if (_sourceLines.ContainsKey(file))
 					throw new InvalidOperationException($"File {file} already loaded as XML annotation");
 
-				return _sourceLines.GetOrAdd(file, f=> File.ReadAllLines(f));
+				return _sourceLines.GetOrAdd(file, f => File.ReadAllLines(f));
 			}
 
 			public XDocument GetXmlAnnotation(string file)

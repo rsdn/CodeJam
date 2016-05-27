@@ -23,26 +23,26 @@ namespace BenchmarkDotNet.Validators
 	{
 		#region Validation rules
 		// ReSharper disable HeapView.DelegateAllocation
-		private static readonly IReadOnlyDictionary<string, Func<IJob, EnvironmentInfo, string>> _validationRules = 
+		private static readonly IReadOnlyDictionary<string, Func<IJob, EnvironmentInfo, string>> _validationRules =
 			new Dictionary<string, Func<IJob, EnvironmentInfo, string>>
-		{
-			{ nameof(IJob.Affinity), NoValidation },
-			{ nameof(IJob.Framework), ValidateFramework },
-			{ nameof(IJob.IterationTime), NoValidation },
-			{ nameof(IJob.Jit), ValidateJit },
-			{ nameof(IJob.LaunchCount), NoValidation },
-			{ nameof(IJob.Mode), NoValidation },
-			{ nameof(IJob.Platform), ValidatePlatform },
-			{ nameof(IJob.Runtime), ValidateRuntime },
-			{ nameof(IJob.TargetCount), NoValidation },
-			{ nameof(IJob.Toolchain), ValidateToolchain },
-			{ nameof(IJob.WarmupCount), NoValidation },
-			// WAITINGFOR: https://github.com/PerfDotNet/BenchmarkDotNet/issues/179
-			// TODO: remove as fixed
-			{ "Warmup", NoValidation },
-			{ "Target", NoValidation },
-			{ "Process", NoValidation }
-		};
+			{
+				{ nameof(IJob.Affinity), NoValidation },
+				{ nameof(IJob.Framework), ValidateFramework },
+				{ nameof(IJob.IterationTime), NoValidation },
+				{ nameof(IJob.Jit), ValidateJit },
+				{ nameof(IJob.LaunchCount), NoValidation },
+				{ nameof(IJob.Mode), NoValidation },
+				{ nameof(IJob.Platform), ValidatePlatform },
+				{ nameof(IJob.Runtime), ValidateRuntime },
+				{ nameof(IJob.TargetCount), NoValidation },
+				{ nameof(IJob.Toolchain), ValidateToolchain },
+				{ nameof(IJob.WarmupCount), NoValidation },
+				// WAITINGFOR: https://github.com/PerfDotNet/BenchmarkDotNet/issues/179
+				// TODO: remove as fixed
+				{ "Warmup", NoValidation },
+				{ "Target", NoValidation },
+				{ "Process", NoValidation }
+			};
 
 		// ReSharper restore HeapView.DelegateAllocation
 
