@@ -45,7 +45,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"The benchmarks TooFast, TooFast2 run faster than 1 microsecond. Results cannot be trusted.");
+				"The benchmarks TooFast, TooFast2 run faster than 400 nanoseconds. Results cannot be trusted.");
 
 			Assert.AreEqual(messages[1].RunNumber, 1);
 			Assert.AreEqual(messages[1].RunMessageNumber, 2);
@@ -75,14 +75,27 @@ namespace CodeJam.PerfTests
 		#region Benchmark classes
 		public class TooFastTooSlowBenchmark
 		{
-			// ReSharper disable once NotAccessedField.Local
-			private int _i;
+			[Benchmark]
+			public int TooFast()
+			{
+				var a = 0;
+				for (var i = 0; i < 10; i++)
+				{
+					a = a + i;
+				}
+				return a;
+			}
 
 			[Benchmark]
-			public int TooFast() => _i++;
-
-			[Benchmark]
-			public int TooFast2() => _i++;
+			public int TooFast2()
+			{
+				var a = 0;
+				for (var i = 0; i < 100; i++)
+				{
+					a = a + i;
+				}
+				return a;
+			}
 
 			[CompetitionBenchmark(DoesNotCompete = true)]
 			public void TooSlow() => Thread.Sleep(550);
@@ -93,7 +106,7 @@ namespace CodeJam.PerfTests
 			[CompetitionBaseline]
 			public void Baseline() => Thread.SpinWait(SpinCount);
 
-			[CompetitionBenchmark(9.5, 10.5)]
+			[CompetitionBenchmark(9.4, 10.6)]
 			public void SlowerX10() => Thread.SpinWait(10 * SpinCount);
 		}
 		#endregion
