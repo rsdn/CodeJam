@@ -70,7 +70,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
-			Assert.LessOrEqual(stopwatch.Elapsed.TotalSeconds, 5);
+			Assert.LessOrEqual(stopwatch.Elapsed.TotalSeconds, 8);
 		}
 
 		#region Benchmark classes
