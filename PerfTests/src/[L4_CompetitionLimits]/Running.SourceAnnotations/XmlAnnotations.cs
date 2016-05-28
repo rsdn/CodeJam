@@ -255,6 +255,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			double.TryParse(minText, NumberStyles.Any, culture, out min);
 			double.TryParse(maxText, NumberStyles.Any, culture, out max);
 
+			// TODO: check the logic
 			// Only one attribute set
 			if (minText == null && maxText != null)
 			{

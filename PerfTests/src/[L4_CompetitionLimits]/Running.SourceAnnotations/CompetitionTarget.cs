@@ -17,8 +17,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#region Fields & .ctor
 		private CompetitionTargetProperties _changedProperties;
 
-		public CompetitionTarget() : base(0, 0) { }
-
 		public CompetitionTarget(
 			Target target, double minRatio, double maxRatio, bool usesResourceAnnotation) :
 				base(minRatio, maxRatio)
@@ -29,7 +27,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		public CompetitionTarget(
 			Target target, CompetitionLimit other, bool usesResourceAnnotation) :
-				this(target, other.Min, other.Max, usesResourceAnnotation) { }
+				this(target, other.MinRatio, other.MaxRatio, usesResourceAnnotation) { }
 		#endregion
 
 		#region Properties
@@ -48,29 +46,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		private void MarkAsChanged(CompetitionTargetProperties property) =>
 			_changedProperties |= property;
 
-		private bool IsLessThanCore(double current, double newValue)
+		private bool UnionWithMinRatio(double newMin)
 		{
-			if (current < 0 || newValue <= 0 || double.IsInfinity(newValue))
-				return false;
-
-			// ReSharper disable once CompareOfFloatsByEqualityOperator
-			return current == 0 || current < newValue;
-		}
-
-		private bool IsGreaterThanCore(double current, double newValue)
-		{
-			if (current < 0 || newValue <= 0 || double.IsInfinity(newValue))
-				return false;
-
-			// ReSharper disable once CompareOfFloatsByEqualityOperator
-			return current == 0 || current > newValue;
-		}
-
-		private bool UnionWithMin(double newMin)
-		{
-			if (IsGreaterThanCore(Min, newMin))
+			if (ShouldBeUpdatedMin(MinRatio, newMin))
 			{
-				Min = newMin;
+				MinRatio = newMin;
 				MarkAsChanged(CompetitionTargetProperties.MinRatio);
 				return true;
 			}
@@ -78,11 +58,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return false;
 		}
 
-		private bool UnionWithMax(double newMax)
+		private bool UnionWithMaxRatio(double newMax)
 		{
-			if (IsLessThanCore(Max, newMax))
+			if (ShouldBeUpdatedMax(MaxRatio, newMax))
 			{
-				Max = newMax;
+				MaxRatio = newMax;
 				MarkAsChanged(CompetitionTargetProperties.MaxRatio);
 				return true;
 			}
@@ -93,8 +73,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		public bool UnionWith(CompetitionLimit newProperties)
 		{
 			var result = false;
-			result |= UnionWithMin(newProperties.Min);
-			result |= UnionWithMax(newProperties.Max);
+			result |= UnionWithMinRatio(newProperties.MinRatio);
+			result |= UnionWithMaxRatio(newProperties.MaxRatio);
 			return result;
 		}
 
@@ -110,13 +90,13 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			if (IsChanged(CompetitionTargetProperties.MinRatio))
 			{
-				var newValue = Math.Floor(Min * (100 - percent)) / 100;
-				UnionWithMin(newValue);
+				var newValue = Math.Floor(MinRatio * (100 - percent)) / 100;
+				UnionWithMinRatio(newValue);
 			}
 			if (IsChanged(CompetitionTargetProperties.MaxRatio))
 			{
-				var newValue = Math.Ceiling(Max * (100 + percent)) / 100;
-				UnionWithMax(newValue);
+				var newValue = Math.Ceiling(MaxRatio * (100 + percent)) / 100;
+				UnionWithMaxRatio(newValue);
 			}
 			_changedProperties = CompetitionTargetProperties.None;
 		}

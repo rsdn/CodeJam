@@ -102,13 +102,13 @@ namespace CodeJam.PerfTests.Analysers
 			Target target, CompetitionBenchmarkAttribute competitionAttribute,
 			IDictionary<string, XDocument> resourceCache)
 		{
-			var emptyLimit = CompetitionLimit.Empty;
+			var fallbackLimit = CompetitionLimit.Empty;
 
 			var targetResourceName = AttributeAnnotations.TryGetTargetResourceName(target);
 			if (targetResourceName == null)
 			{
 				if (IgnoreExistingAnnotations)
-					return new CompetitionTarget(target, emptyLimit, false);
+					return new CompetitionTarget(target, fallbackLimit, false);
 
 				return AttributeAnnotations.ParseCompetitionTarget(target, competitionAttribute);
 			}
@@ -119,11 +119,11 @@ namespace CodeJam.PerfTests.Analysers
 				r => XmlAnnotations.TryLoadResourceDoc(target.Type, r, competitionState));
 
 			if (resourceDoc == null || IgnoreExistingAnnotations)
-				return new CompetitionTarget(target, emptyLimit, true);
+				return new CompetitionTarget(target, fallbackLimit, true);
 
 			var result = XmlAnnotations.TryParseCompetitionTarget(resourceDoc, target, competitionState);
 			return result ??
-				new CompetitionTarget(target, emptyLimit, true);
+				new CompetitionTarget(target, fallbackLimit, true);
 		}
 		#endregion
 
@@ -181,32 +181,27 @@ namespace CodeJam.PerfTests.Analysers
 
 			bool validated = true;
 
-			var actualRatioText = actualRatio.GetValueOrDefault().ToString(
+			var actualRatioText = actualRatio.Value.ToString(
 				CompetitionLimit.ActualRatioFormat,
 				EnvironmentInfo.MainCultureInfo);
 
-			if (!competitionLimit.IgnoreMax)
+
+			if (!competitionLimit.MaxIsOk(actualRatio.Value))
 			{
-				if (competitionLimit.MaxIsEmpty || actualRatio > competitionLimit.Max)
-				{
-					validated = false;
-					competitionState.AddAnalyserWarning(
-						warnings, MessageSeverity.TestError,
-						$"Method {targetMethodName} runs slower than {competitionLimit.MaxText}x baseline. Actual ratio: {actualRatioText}x",
-						summary.TryGetBenchmarkReport(benchmark));
-				}
+				validated = false;
+				competitionState.AddAnalyserWarning(
+					warnings, MessageSeverity.TestError,
+					$"Method {targetMethodName} runs slower than {competitionLimit.MaxText}x baseline. Actual ratio: {actualRatioText}x",
+					summary.TryGetBenchmarkReport(benchmark));
 			}
 
-			if (!competitionLimit.IgnoreMin)
+			if (!competitionLimit.MinIsOk(actualRatio.Value))
 			{
-				if (competitionLimit.MinIsEmpty || actualRatio < competitionLimit.Min)
-				{
-					validated = false;
-					competitionState.AddAnalyserWarning(
-						warnings, MessageSeverity.TestError,
-						$"Method {targetMethodName} runs faster than {competitionLimit.MinText}x baseline. Actual ratio: {actualRatioText}x",
-						summary.TryGetBenchmarkReport(benchmark));
-				}
+				validated = false;
+				competitionState.AddAnalyserWarning(
+					warnings, MessageSeverity.TestError,
+					$"Method {targetMethodName} runs faster than {competitionLimit.MinText}x baseline. Actual ratio: {actualRatioText}x",
+					summary.TryGetBenchmarkReport(benchmark));
 			}
 
 			return validated;

@@ -1,4 +1,5 @@
 ﻿## TODO, Bench.Net:
+* Check competition limits parsing.
 * ValidationError - make public, https://github.com/PerfDotNet/BenchmarkDotNet/issues/183
 * ManualConfig.Add - make virtual?
 * Validators: access to config, in-process validators, naming: ThreatsWarnings -> ThreatWarnings
