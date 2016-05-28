@@ -1,5 +1,9 @@
-CodeJam 1.0.0-beta4 Release Notes
+CodeJam 1.0.0-beta5 Release Notes
 ---------------------------------
+
+What's new in 1.1.0-beta5
+------------------------
+* Option struct split into Option class and ValueOption struct
 
 What's new in 1.1.0-beta4
 ------------------------
@@ -10,7 +14,7 @@ What's new in 1.1.0-beta4
 * Enumerable.SelectMany overload with Fn<T>.Self as selector
 * NullableHelper.GetValueOrDefault method with default value factory
 * ToByteSizeString overloads for Int32
-* Fix resharper markup in Code class
+* Fix Resharper markup in Code class
 * Fixes and code cleanup
 
 What's new in 1.1.0-beta3

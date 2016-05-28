@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Competitions;
 
 using CodeJam.Collections;
+using CodeJam.PerfTests;
 
 using JetBrains.Annotations;
 

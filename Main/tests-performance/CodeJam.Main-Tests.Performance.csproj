@@ -29,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -105,9 +106,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BenchmarkDotNet\src\CodeJam.BenchmarkDotNet.csproj">
+    <ProjectReference Include="..\..\PerfTests\src\CodeJam.PerfTests.csproj">
       <Project>{1d650545-a151-4211-8c29-c38a939403a6}</Project>
-      <Name>CodeJam.BenchmarkDotNet</Name>
+      <Name>CodeJam.PerfTests</Name>
     </ProjectReference>
     <ProjectReference Include="..\src\CodeJam.Main.csproj">
       <Project>{2f2046cc-fb47-4318-b335-5a82b04b6c40}</Project>

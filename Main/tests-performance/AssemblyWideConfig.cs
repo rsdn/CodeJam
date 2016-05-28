@@ -2,6 +2,8 @@
 
 using BenchmarkDotNet.Configs;
 
+using CodeJam.PerfTests.Configs;
+
 using JetBrains.Annotations;
 
 namespace CodeJam
@@ -17,13 +19,19 @@ namespace CodeJam
 		/// OPTIONAL: Set AssemblyWideConfig.AnnotateOnRun=true in app.config
 		/// to enable auto-annotation of benchmark methods
 		/// </summary>
-		public static readonly new bool AnnotateOnRun = AppSwitch.GetAssemblySwitch(() => AnnotateOnRun);
+		public static readonly bool AnnotateOnRun = AppSwitch.GetAssemblySwitch(() => AnnotateOnRun);
 
 		/// <summary>
 		/// OPTIONAL: Set AssemblyWideConfig.IgnoreAnnotatedLimits=true in app.config
 		/// to enable ignoring existing limits on auto-annotation of benchmark methods
 		/// </summary>
 		public static readonly new bool IgnoreExistingAnnotations = AppSwitch.GetAssemblySwitch(() => IgnoreExistingAnnotations);
+
+		/// <summary>
+		/// OPTIONAL: Set AssemblyWideConfig.ReportWarningsAsErrors=true in app.config
+		/// to enable reporting warnings as errors.
+		/// </summary>
+		public static readonly new bool ReportWarningsAsErrors = AppSwitch.GetAssemblySwitch(() => ReportWarningsAsErrors);
 
 		/// <summary>
 		/// Instance of the config
@@ -47,9 +55,10 @@ namespace CodeJam
 			Add(FastRunConfig.Instance);
 
 			EnableReruns = true;
+			base.ReportWarningsAsErrors = ReportWarningsAsErrors;
 			if (AnnotateOnRun)
 			{
-				base.AnnotateOnRun = true;
+				UpdateSourceAnnotations = true;
 				base.IgnoreExistingAnnotations = IgnoreExistingAnnotations;
 				LogAnnotationResults = true;
 			}

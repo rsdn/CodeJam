@@ -1,0 +1,29 @@
+﻿using System;
+
+using JetBrains.Annotations;
+
+namespace CodeJam.PerfTests.Running.Messages
+{
+	/// <summary>
+	/// The source of the message
+	/// </summary>
+	// TODO: define more sources.
+	[PublicAPI]
+	public enum MessageSource
+	{
+		/// <summary>The origin of the message is unknown.</summary>
+		Unknown,
+
+		/// <summary>The message is reported by benchmark runner.</summary>
+		BenchmarkRunner,
+
+		/// <summary>The message is reported by validator.</summary>
+		Validator,
+
+		/// <summary>The message is reported by analyser.</summary>
+		Analyser,
+
+		/// <summary>The message is reported by diagnoser.</summary>
+		Diagnoser
+	}
+}

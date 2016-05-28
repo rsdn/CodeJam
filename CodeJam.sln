@@ -46,11 +46,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "T4.Reusable", "T4.Reusable"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.Experimental-Tests.Performance", "Experimental\tests-performance\CodeJam.Experimental-Tests.Performance.csproj", "{00E3881C-3D4D-4AE3-B1B4-CDCDC99F7E51}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BenchmarkDotNet", "BenchmarkDotNet", "{F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PerfTests", "PerfTests", "{F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.BenchmarkDotNet", "BenchmarkDotNet\src\CodeJam.BenchmarkDotNet.csproj", "{1D650545-A151-4211-8C29-C38A939403A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests", "PerfTests\src\CodeJam.PerfTests.csproj", "{1D650545-A151-4211-8C29-C38A939403A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.BenchmarkDotNet-Tests", "BenchmarkDotNet\tests\CodeJam.BenchmarkDotNet-Tests.csproj", "{15F5BFE8-8B7C-4DF6-9E31-48A4BF9FED1C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests-Tests", "PerfTests\tests\CodeJam.PerfTests-Tests.csproj", "{15F5BFE8-8B7C-4DF6-9E31-48A4BF9FED1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

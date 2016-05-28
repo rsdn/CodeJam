@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-using BenchmarkDotNet.Competitions;
+using CodeJam.PerfTests;
 
 using NUnit.Framework;
 
@@ -39,7 +39,7 @@ namespace CodeJam
 		private const int Count = 1000 * 1000;
 
 		[Test]
-		public void RunCallCostParamsPerfTests() => 
+		public void RunCallCostParamsPerfTests() =>
 			CompetitionBenchmarkRunner.Run(this, RunConfig);
 
 		[CompetitionBaseline]
