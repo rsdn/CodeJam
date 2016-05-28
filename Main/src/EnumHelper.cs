@@ -165,6 +165,24 @@ namespace CodeJam
 				}
 			}
 
+			public static bool IsFlagsEnum
+			{
+				get
+				{
+					AssertUsage();
+					return _isFlagsEnum;
+				}
+			}
+
+			public static TEnum FlagsMask
+			{
+				get
+				{
+					AssertUsage();
+					return _flagsMask;
+				}
+			}
+
 			[MethodImpl(AggressiveInlining)]
 			public static bool IsDefined(TEnum value)
 			{
@@ -173,7 +191,7 @@ namespace CodeJam
 			}
 
 			[MethodImpl(AggressiveInlining)]
-			public static bool IsFlagsDefined(TEnum flags)
+			public static bool AreFlagsDefined(TEnum flags)
 			{
 				AssertUsage();
 				return _values.Contains(flags) ||
@@ -244,7 +262,25 @@ namespace CodeJam
 		[MethodImpl(AggressiveInlining)]
 		public static bool AreFlagsDefined<TEnum>(TEnum flags)
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.IsFlagsDefined(flags);
+				Holder<TEnum>.AreFlagsDefined(flags);
+
+		/// <summary>Determines whether the enum has flags modifier.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <returns>True, if the enum is flags enum</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static bool IsFlagsEnum<TEnum>()
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.IsFlagsEnum;
+
+		/// <summary>Returns a combination of all flags declared in the enum.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <returns>
+		/// A combination of all flags declared in the enum, or <c>default(TEnum)</c> if <see cref="IsFlagsEnum{TEnum}"/> is false.
+		/// </returns>
+		[MethodImpl(AggressiveInlining)]
+		public static TEnum GetFlagsMask<TEnum>()
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.FlagsMask;
 
 		/// <summary>Try to parse the enum value.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
