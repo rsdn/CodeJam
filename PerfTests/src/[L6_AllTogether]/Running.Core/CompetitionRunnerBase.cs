@@ -301,10 +301,10 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			var result = OverrideAnalysers(competitionConfig);
 
-			// DONTTOUCH: the CompetitionLimitsAnnotateAnalyser should be last analyser in the chain.
+			// DONTTOUCH: the CompetitionAnnotateAnalyser should be last analyser in the chain.
 			if (!competitionConfig.DisableValidation)
 			{
-				var annotator = new CompetitionLimitsAnnotateAnalyser
+				var annotator = new CompetitionAnnotateAnalyser
 				{
 					AllowSlowBenchmarks = competitionConfig.AllowSlowBenchmarks,
 					UpdateSourceAnnotations = competitionConfig.UpdateSourceAnnotations,

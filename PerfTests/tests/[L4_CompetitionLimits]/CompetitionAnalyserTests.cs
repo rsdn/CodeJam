@@ -4,7 +4,6 @@ using System.Threading;
 
 using BenchmarkDotNet.Attributes;
 
-using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 
@@ -17,10 +16,10 @@ namespace CodeJam.PerfTests
 	[TestFixture(Category = "BenchmarkDotNet")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
-	public static class CompetitionLimitsAnalyserTests
+	public static class CompetitionAnalyserTests
 	{
 		[Test]
-		public static void TestCompetitionLimitsAnalyserEmptyBenchmark()
+		public static void TestCompetitionAnalyserEmptyBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			var summary = CompetitionBenchmarkRunner.Run<EmptyBenchmark>(SingleRunConfig);
@@ -33,11 +32,11 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionLimitsAnnotateAnalyser: no warnings.");
+			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionAnnotateAnalyser: no warnings.");
 		}
 
 		[Test]
-		public static void TestCompetitionLimitsAnalyserNoBaselineOkBenchmark()
+		public static void TestCompetitionAnalyserNoBaselineOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			var summary = CompetitionBenchmarkRunner.Run<NoBaselineOkBenchmark>(SingleRunConfig);
@@ -50,11 +49,11 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionLimitsAnnotateAnalyser: no warnings.");
+			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionAnnotateAnalyser: no warnings.");
 		}
 
 		[Test]
-		public static void TestCompetitionLimitsAnalyserOkBenchmark()
+		public static void TestCompetitionAnalyserOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			var summary = CompetitionBenchmarkRunner.Run<OkBenchmark>(SingleRunConfig);
@@ -67,11 +66,11 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionLimitsAnnotateAnalyser: no warnings.");
+			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionAnnotateAnalyser: no warnings.");
 		}
 
 		[Test]
-		public static void TestCompetitionLimitsAnalyserXmlOkBenchmark()
+		public static void TestCompetitionAnalyserXmlOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			var summary = CompetitionBenchmarkRunner.Run<XmlOkBenchmark>(SingleRunConfig);
@@ -84,11 +83,11 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionLimitsAnnotateAnalyser: no warnings.");
+			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionAnnotateAnalyser: no warnings.");
 		}
 
 		[Test]
-		public static void TestCompetitionLimitsAnalyserNoBaselineFailBenchmark()
+		public static void TestCompetitionAnalyserNoBaselineFailBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			var summary = CompetitionBenchmarkRunner.Run<NoBaselineFailBenchmark>(SingleRunConfig);
@@ -109,7 +108,7 @@ namespace CodeJam.PerfTests
 		}
 
 		[Test]
-		public static void TestCompetitionLimitsAnalyserFailBenchmark()
+		public static void TestCompetitionAnalyserFailBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			var summary = CompetitionBenchmarkRunner.Run<CompetitionLimitsFailBenchmark>(SingleRunConfig);
@@ -173,7 +172,6 @@ namespace CodeJam.PerfTests
 
 		public class EmptyBenchmark { }
 
-
 		public class NoBaselineOkBenchmark : EmptyBenchmark
 		{
 			[Benchmark]
@@ -208,7 +206,7 @@ namespace CodeJam.PerfTests
 			}
 		}
 
-		[CompetitionMetadata("CodeJam.PerfTests._L4_CompetitionLimits_.CompetitionLimitsAnalyserTests.xml")]
+		[CompetitionMetadata("CodeJam.PerfTests._L4_CompetitionLimits_.CompetitionAnalyserTests.xml")]
 		public class XmlOkBenchmark : EmptyBenchmark
 		{
 			[CompetitionBaseline]

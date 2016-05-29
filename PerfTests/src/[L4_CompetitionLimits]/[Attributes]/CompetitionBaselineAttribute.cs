@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests
 {
 	/// <summary>Attribute for baseline competition benchmark</summary>
-	/// <seealso cref="BenchmarkDotNet.Attributes.BenchmarkAttribute" />
+	/// <seealso cref="BenchmarkAttribute"/>
 	// ReSharper disable once RedundantAttributeUsageProperty
 	[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
 	[PublicAPI, MeansImplicitUse]

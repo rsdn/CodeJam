@@ -55,10 +55,10 @@
     <Compile Include="PerfTestConfig.cs" />
     <Compile Include="[L1_InProcess]\InProcessToolchainTest.cs" />
     <Compile Include="[L3_CompetitionsCore]\HostLoggerTests.cs" />
-    <Compile Include="[L4_CompetitionLimits]\CompetitionLimitsAnalyserAccuracyTests.cs" />
+    <Compile Include="[L4_CompetitionLimits]\CompetitionAnalyserAccuracyTests.cs" />
     <Compile Include="[L4_CompetitionLimits]\CompetitionTargetTests.cs" />
-    <Compile Include="[L4_CompetitionLimits]\CompetitionLimitsAnalyserTests.cs" />
-    <Compile Include="[L5_Annotations]\CompetitionLimitsAnnotateAnalyserTests.cs" />
+    <Compile Include="[L4_CompetitionLimits]\CompetitionAnalyserTests.cs" />
+    <Compile Include="[L5_Annotations]\CompetitionAnnotateAnalyserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -77,10 +77,10 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="[L4_CompetitionLimits]\CompetitionLimitsAnalyserTests.xml" />
+    <EmbeddedResource Include="[L4_CompetitionLimits]\CompetitionAnalyserTests.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="[L5_Annotations]\CompetitionLimitsAnnotateAnalyserTests.log.txt">
+    <None Include="[L5_Annotations]\CompetitionAnnotateAnalyserTests.log.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

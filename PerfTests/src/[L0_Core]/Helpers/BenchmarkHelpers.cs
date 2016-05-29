@@ -29,30 +29,36 @@ namespace BenchmarkDotNet.Helpers
 		#region Benchmark-related
 
 		#region Selects
-		/// <summary>
-		/// Returns the baseline for the benchmark.
-		/// </summary>
-		public static Benchmark TryGetBaseline([NotNull] this Summary summary, Benchmark benchmark) =>
-			summary.Benchmarks
-				.Where(b => b.Job == benchmark.Job && b.Parameters == benchmark.Parameters)
-				.FirstOrDefault(b => b.Target.Baseline);
+		/// <summary>Returns the baseline for the benchmark.</summary>
+		/// <param name="summary">The summary.</param>
+		/// <param name="benchmark">The benchmark.</param>
+		/// <returns>Baseline for the benchmark</returns>
+		public static Benchmark TryGetBaseline(
+			[NotNull] this Summary summary,
+			[NotNull] Benchmark benchmark) =>
+				summary.Benchmarks
+					.Where(b => b.Job == benchmark.Job && b.Parameters == benchmark.Parameters)
+					.FirstOrDefault(b => b.Target.Baseline);
 
-		/// <summary>
-		/// Returns the report for the benchmark.
-		/// </summary>
-		public static BenchmarkReport TryGetBenchmarkReport([NotNull] this Summary summary, Benchmark benchmark) =>
-			summary.Reports.SingleOrDefault(r => r.Benchmark == benchmark);
+		/// <summary>Returns the report for the benchmark or <c>null</c> if there's no report.</summary>
+		/// <param name="summary">The summary.</param>
+		/// <param name="benchmark">The benchmark.</param>
+		/// <returns>The report for the benchmark or <c>null</c> if there's no report.</returns>
+		public static BenchmarkReport TryGetBenchmarkReport(
+			[NotNull] this Summary summary,
+			[NotNull] Benchmark benchmark) =>
+				summary.Reports.SingleOrDefault(r => r.Benchmark == benchmark);
 
-		/// <summary>
-		/// Groups benchmarks being run under same conditions (job+parameters).
-		/// </summary>
-		public static ILookup<KeyValuePair<IJob, ParameterInstances>, Benchmark> SameConditionBenchmarks(
+		/// <summary>Groups benchmarks being run under same conditions (job+parameters).</summary>
+		/// <param name="summary">The summary.</param>
+		/// <returns>Benchmark grouped by run conditions</returns>
+		public static ILookup<KeyValuePair<IJob, ParameterInstances>, Benchmark> SameConditionsBenchmarks(
 			[NotNull] this Summary summary) =>
 				summary.Benchmarks.ToLookup(b => new KeyValuePair<IJob, ParameterInstances>(b.Job, b.Parameters));
 
-		/// <summary>
-		/// Returns targets for the summary.
-		/// </summary>
+		/// <summary>Returns targets for the summary.</summary>
+		/// <param name="summary">The summary.</param>
+		/// <returns>Targets for the summary.</returns>
 		// ReSharper disable once ReturnTypeCanBeEnumerable.Global
 		public static IOrderedEnumerable<Target> GetTargets([NotNull] this Summary summary) =>
 			summary.Benchmarks
@@ -60,9 +66,9 @@ namespace BenchmarkDotNet.Helpers
 				.Distinct()
 				.OrderBy(d => d.FullInfo);
 
-		/// <summary>
-		/// Returns jobs usede in the benchmarks.
-		/// </summary>
+		/// <summary>Returns jobs from the benchmarks.</summary>
+		/// <param name="benchmarks">Benchmarks to select jobs from.</param>
+		/// <returns>Jobs from the benchmarks.</returns>
 		// ReSharper disable once ReturnTypeCanBeEnumerable.Global
 		public static IOrderedEnumerable<IJob> GetJobs([NotNull] this IEnumerable<Benchmark> benchmarks) =>
 			benchmarks
@@ -72,48 +78,76 @@ namespace BenchmarkDotNet.Helpers
 		#endregion
 
 		#region Percentiles
-		/// <summary>
-		/// Calculates the Nth percentile for the benchmark.
-		/// </summary>
+		/// <summary>Calculates the Nth percentile for the benchmark.</summary>
+		/// <param name="summary">The summary.</param>
+		/// <param name="benchmark">The benchmark.</param>
+		/// <param name="percentile">The percentile rank.</param>
+		/// <returns>
+		/// Nth timing percentile for the benchmark or <c>null</c> if there's no results for the benchmark.
+		/// </returns>
 		// ReSharper disable once UnusedMember.Global
-		public static double? TryGetPercentile([NotNull] this Summary summary, Benchmark benchmark, int percentile)
+		public static double? TryGetPercentile(
+			[NotNull] this Summary summary,
+			[NotNull] Benchmark benchmark,
+			int percentile)
 		{
+			if (summary == null)
+				throw new ArgumentNullException(nameof(summary));
+
+			if (benchmark == null)
+				throw new ArgumentNullException(nameof(benchmark));
+
 			var benchmarkReport = summary.Reports.SingleOrDefault(r => r.Benchmark == benchmark);
 
 			return benchmarkReport?.ResultStatistics?.Percentiles?.Percentile(percentile);
 		}
 
-		/// <summary>
-		/// Calculates the Nth percentile for the benchmark.
-		/// </summary>
+		/// <summary>Calculates the Nth percentile for the benchmark scaled to the baseline value.</summary>
+		/// <param name="summary">The summary.</param>
+		/// <param name="benchmark">The benchmark.</param>
+		/// <param name="percentile">The percentile rank.</param>
+		/// <returns>
+		/// Nth timing percentile for the benchmark scaled to the baseline or <c>null</c> if there's no results for the benchmark.
+		/// </returns>
 		public static double? TryGetScaledPercentile(
 			[NotNull] this Summary summary,
-			Benchmark benchmark,
+			[NotNull] Benchmark benchmark,
 			int percentile) =>
 				TryGetScaledPercentile(summary, benchmark, percentile, percentile);
 
-		/// <summary>
-		/// Calculates the Nth percentile for the benchmark.
-		/// </summary>
+		/// <summary>Calculates the Nth percentile for the benchmark scaled to the baseline value.</summary>
+		/// <param name="summary">The summary.</param>
+		/// <param name="benchmark">The benchmark.</param>
+		/// <param name="baselinePercentile">The baseline percentile rank.</param>
+		/// <param name="benchmarkPercentile">The benchmark percentile rank.</param>
+		/// <returns>
+		/// Nth timing percentile for the benchmark scaled to the baseline or <c>null</c> if there's no results for the benchmark.
+		/// </returns>
 		private static double? TryGetScaledPercentile(
 			[NotNull] this Summary summary,
-			Benchmark benchmark,
+			[NotNull] Benchmark benchmark,
 			int baselinePercentile, int benchmarkPercentile)
 		{
+			if (summary == null)
+				throw new ArgumentNullException(nameof(summary));
+
+			if (benchmark == null)
+				throw new ArgumentNullException(nameof(benchmark));
+
 			var baselineBenchmark = summary.TryGetBaseline(benchmark);
 			if (baselineBenchmark == null)
 				return null;
 
-			var benchmarkReport = summary.TryGetBenchmarkReport(benchmark);
-			if (benchmarkReport?.ResultStatistics == null)
+			var baselineStatistics = summary.TryGetBenchmarkReport(baselineBenchmark)?.ResultStatistics;
+			if (baselineStatistics == null)
 				return null;
 
-			var baselineReport = summary.TryGetBenchmarkReport(baselineBenchmark);
-			if (baselineReport?.ResultStatistics == null)
+			var benchmarkStatistics = summary.TryGetBenchmarkReport(benchmark)?.ResultStatistics;
+			if (benchmarkStatistics == null)
 				return null;
 
-			var baselineMetric = baselineReport.ResultStatistics.Percentiles.Percentile(baselinePercentile);
-			var benchmarkMetric = benchmarkReport.ResultStatistics.Percentiles.Percentile(benchmarkPercentile);
+			var baselineMetric = baselineStatistics.Percentiles.Percentile(baselinePercentile);
+			var benchmarkMetric = benchmarkStatistics.Percentiles.Percentile(benchmarkPercentile);
 
 			// ReSharper disable once CompareOfFloatsByEqualityOperator
 			if (baselineMetric == 0)
@@ -126,25 +160,35 @@ namespace BenchmarkDotNet.Helpers
 		#endregion
 
 		#region Reflection
-		/// <summary>
-		/// Checks that the assembly is build in debug mode.
-		/// </summary>
+		/// <summary>Checks that the assembly is build in debug mode.</summary>
+		/// <param name="assembly">The assembly.</param>
+		/// <returns><c>true</c> if the assembly was build with optimizations disabled.</returns>
 		public static bool IsDebugAssembly([NotNull] this Assembly assembly)
 		{
+			if (assembly == null)
+				throw new ArgumentNullException(nameof(assembly));
+
 			var optAtt = (DebuggableAttribute)Attribute.GetCustomAttribute(assembly, typeof(DebuggableAttribute));
 			return optAtt != null && optAtt.IsJITOptimizerDisabled;
 		}
 		#endregion
 
 		#region Process
-		/// <summary>
-		/// Tries to change the priority of the process.
-		/// </summary>
+		/// <summary>Tries to change the priority of the process.</summary>
+		/// <param name="process">The target process.</param>
+		/// <param name="priority">The priority.</param>
+		/// <param name="logger">The logger.</param>
 		public static void SetPriority(
 			[NotNull] this Process process,
 			ProcessPriorityClass priority,
-			ILogger logger)
+			[NotNull] ILogger logger)
 		{
+			if (process == null)
+				throw new ArgumentNullException(nameof(process));
+
+			if (logger == null)
+				throw new ArgumentNullException(nameof(logger));
+
 			try
 			{
 				process.PriorityClass = priority;
@@ -158,14 +202,21 @@ namespace BenchmarkDotNet.Helpers
 			}
 		}
 
-		/// <summary>
-		/// Tries to change the cpu affinity of the process.
-		/// </summary>
+		/// <summary>Tries to change the cpu affinity of the process.</summary>
+		/// <param name="process">The target process.</param>
+		/// <param name="processorAffinity">The processor affinity.</param>
+		/// <param name="logger">The logger.</param>
 		public static void SetAffinity(
 			[NotNull] this Process process,
 			IntPtr processorAffinity,
-			ILogger logger)
+			[NotNull] ILogger logger)
 		{
+			if (process == null)
+				throw new ArgumentNullException(nameof(process));
+
+			if (logger == null)
+				throw new ArgumentNullException(nameof(logger));
+
 			try
 			{
 				process.ProcessorAffinity = processorAffinity;
@@ -182,6 +233,7 @@ namespace BenchmarkDotNet.Helpers
 		#endregion
 
 		#region IO
+		// TODO: test for it
 		/// <summary>
 		/// Writes file content without empty line at the end.
 		/// </summary>
@@ -206,6 +258,7 @@ namespace BenchmarkDotNet.Helpers
 			}
 		}
 
+		// TODO: test for it
 		/// <summary>Tries to obtain text from the given URI.</summary>
 		/// <param name="uri">The URI to geth the text from.</param>
 		/// <returns>The text.</returns>
@@ -230,10 +283,9 @@ namespace BenchmarkDotNet.Helpers
 				}
 			}
 
-			if (!File.Exists(uri))
-				return null;
+			var path = uriInst.IsAbsoluteUri ? uriInst.LocalPath : uri;
 
-			return File.OpenText(uriInst.IsAbsoluteUri ? uriInst.LocalPath : uri);
+			return File.Exists(path) ? File.OpenText(path) : null;
 		}
 		#endregion
 	}
