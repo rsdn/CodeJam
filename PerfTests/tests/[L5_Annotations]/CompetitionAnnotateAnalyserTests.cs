@@ -16,7 +16,7 @@ namespace CodeJam.PerfTests
 	[TestFixture(Category = "BenchmarkDotNet")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
-	public static class CompetitionLimitsAnnotateAnalyserTests
+	public static class CompetitionAnnotateAnalyserTests
 	{
 		private static readonly ICompetitionConfig _remoteLogConfig = new ManualCompetitionConfig(FastRunConfig.Instance)
 		{
@@ -26,12 +26,12 @@ namespace CodeJam.PerfTests
 			IgnoreExistingAnnotations = true,
 			LogAnnotationResults = true,
 			PreviousLogUri =
-				"https://gist.github.com/ig-sinicyn/ceeef64a6d91f22499bc05f388bb4b48/raw/97e4465db14c1f90b4d81181044a6a5ad3b816f5/CompetitionLimitsAnnotateAnalyserTests.log.txt"
+				"https://gist.githubusercontent.com/ig-sinicyn/ceeef64a6d91f22499bc05f388bb4b48/raw/74012e12059a096c76db5d2241ee080dd4221243/CompetitionAnnotateAnalyserTests.log.txt"
 		};
 
 		private static readonly ICompetitionConfig _localLogConfig = new ManualCompetitionConfig(_remoteLogConfig)
 		{
-			PreviousLogUri = @"[L5_Annotations]\CompetitionLimitsAnnotateAnalyserTests.log.txt"
+			PreviousLogUri = @"[L5_Annotations]\CompetitionAnnotateAnalyserTests.log.txt"
 		};
 
 		[Test]

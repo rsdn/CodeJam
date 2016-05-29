@@ -15,8 +15,8 @@ namespace CodeJam.PerfTests
 		public static void TestCompetitionLimitEmpty()
 		{
 			var result = new CompetitionTarget(null, CompetitionLimit.Empty, false);
-			Assert.AreEqual(result.MinRatio, CompetitionLimit.NotSetValue);
-			Assert.AreEqual(result.MaxRatio, CompetitionLimit.NotSetValue);
+			Assert.AreEqual(result.MinRatio, CompetitionLimit.EmptyValue);
+			Assert.AreEqual(result.MaxRatio, CompetitionLimit.EmptyValue);
 			Assert.IsTrue(result.IsEmpty);
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
@@ -53,8 +53,8 @@ namespace CodeJam.PerfTests
 			Assert.IsFalse(result.IsEmpty);
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsTrue(result.HasUnsavedChanges);
-			Assert.IsTrue(result.IsChanged(CompetitionTargetProperties.MinRatio));
-			Assert.IsTrue(result.IsChanged(CompetitionTargetProperties.MaxRatio));
+			Assert.IsTrue(result.IsChanged(CompetitionLimitProperties.MinRatio));
+			Assert.IsTrue(result.IsChanged(CompetitionLimitProperties.MaxRatio));
 
 			result.LooseLimitsAndMarkAsSaved(5);
 			Assert.AreEqual(result.MinRatio, 0.95); // -5%
@@ -158,17 +158,35 @@ namespace CodeJam.PerfTests
 			Assert.IsFalse(result.IsEmpty);
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsTrue(result.HasUnsavedChanges);
-			Assert.IsTrue(result.IsChanged(CompetitionTargetProperties.MinRatio));
-			Assert.IsTrue(result.IsChanged(CompetitionTargetProperties.MaxRatio));
+			Assert.IsTrue(result.IsChanged(CompetitionLimitProperties.MinRatio));
+			Assert.IsTrue(result.IsChanged(CompetitionLimitProperties.MaxRatio));
+			Assert.IsTrue(
+				result.IsChanged(
+					CompetitionLimitProperties.MinRatio | CompetitionLimitProperties.MaxRatio));
 
-			result.LooseLimitsAndMarkAsSaved(10);
+			result.LooseLimitsAndMarkAsSaved(10, CompetitionLimitProperties.MinRatio);
 			Assert.AreEqual(result.MinRatio, 0.45); // -10%
+			Assert.AreEqual(result.MaxRatio, 3); // not changed
+			Assert.IsFalse(result.IsEmpty);
+			Assert.IsFalse(result.IgnoreAll);
+			Assert.IsTrue(result.HasUnsavedChanges);
+			Assert.IsFalse(result.IsChanged(CompetitionLimitProperties.MinRatio));
+			Assert.IsTrue(result.IsChanged(CompetitionLimitProperties.MaxRatio));
+			Assert.IsFalse(
+				result.IsChanged(
+					CompetitionLimitProperties.MinRatio | CompetitionLimitProperties.MaxRatio));
+
+			result.LooseLimitsAndMarkAsSaved(10, CompetitionLimitProperties.MaxRatio);
+			Assert.AreEqual(result.MinRatio, 0.45); // updated earlier
 			Assert.AreEqual(result.MaxRatio, 3.3); // + 10%
 			Assert.IsFalse(result.IsEmpty);
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
-			Assert.IsFalse(result.IsChanged(CompetitionTargetProperties.MinRatio));
-			Assert.IsFalse(result.IsChanged(CompetitionTargetProperties.MaxRatio));
+			Assert.IsFalse(result.IsChanged(CompetitionLimitProperties.MinRatio));
+			Assert.IsFalse(result.IsChanged(CompetitionLimitProperties.MaxRatio));
+			Assert.IsFalse(
+				result.IsChanged(
+					CompetitionLimitProperties.MinRatio | CompetitionLimitProperties.MaxRatio));
 		}
 	}
 }

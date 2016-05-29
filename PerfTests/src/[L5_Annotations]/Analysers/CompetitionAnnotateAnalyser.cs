@@ -5,9 +5,7 @@ using System.Linq;
 using System.Xml.Linq;
 
 using BenchmarkDotNet.Analysers;
-using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Helpers;
-using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
 using CodeJam.Collections;
@@ -21,7 +19,7 @@ namespace CodeJam.PerfTests.Analysers
 	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "ConvertClosureToMethodGroup")]
-	internal class CompetitionLimitsAnnotateAnalyser : CompetitionLimitsAnalyser
+	internal class CompetitionAnnotateAnalyser : CompetitionAnalyser
 	{
 		#region Adjusted targets
 		private class UpdatedCompetitionTargets : HashSet<CompetitionTarget> { }
@@ -51,18 +49,18 @@ namespace CodeJam.PerfTests.Analysers
 			var competitionState = CompetitionCore.RunState[summary];
 
 			var docs = _previousLogDocuments[summary]
-				.GetOrAdd(PreviousLogUri, uri => XmlAnnotations.GetDocumentsFromLog(uri));
+				.GetOrAdd(PreviousLogUri, uri => XmlAnnotations.TryParseBenchmarkDocsFromLog(uri, competitionState));
 
 			competitionState.WriteMessage(
 				MessageSource.Analyser, MessageSeverity.Informational,
-				$"Parsing previous results ({docs.Length} doc(s)) from log file {PreviousLogUri}.");
+				$"Parsing previous results ({docs.Length} doc(s)) from log {PreviousLogUri}.");
 
 			bool updated = false;
 			foreach (var resourceDoc in docs)
 			{
 				foreach (var competitionTarget in competitionTargets.Values)
 				{
-					var target2 = XmlAnnotations.TryParseCompetitionTarget(resourceDoc, competitionTarget.Target, competitionState);
+					var target2 = XmlAnnotations.TryParseCompetitionTarget(competitionTarget.Target, resourceDoc, competitionState);
 					if (target2 != null)
 					{
 						updated |= competitionTarget.UnionWith(target2);
@@ -84,22 +82,20 @@ namespace CodeJam.PerfTests.Analysers
 			}
 		}
 
-		protected override void ValidateSummary(
-			Summary summary, CompetitionTargets competitionTargets,
-			List<IWarning> warnings)
+		protected override void ValidateSummary(Summary summary, List<IWarning> warnings)
 		{
-			base.ValidateSummary(summary, competitionTargets, warnings);
+			base.ValidateSummary(summary, warnings);
 
 			if (!UpdateSourceAnnotations)
 				return;
 
 			var competitionState = CompetitionCore.RunState[summary];
-			var logger = summary.Config.GetCompositeLogger();
+			var competitionTargets = TargetsSlot[summary];
 
 			var hasAdjustedTargets = TryAdjustCompetitionTargets(summary, competitionTargets);
 
 			var targetsToAnnotate = competitionTargets.Values.Where(t => t.HasUnsavedChanges).ToArray();
-			AnnotateResultsCore(competitionState, targetsToAnnotate, logger);
+			AnnotateResultsCore(competitionState, targetsToAnnotate);
 
 			RequestReruns(competitionState, hasAdjustedTargets);
 
@@ -108,7 +104,7 @@ namespace CodeJam.PerfTests.Analysers
 
 			if (competitionState.LooksLikeLastRun && LogAnnotationResults)
 			{
-				XmlAnnotations.LogAdjustedCompetitionTargets(allUpdatedTargets, logger);
+				XmlAnnotations.LogCompetitionTargets(allUpdatedTargets, competitionState);
 			}
 		}
 
@@ -133,7 +129,7 @@ namespace CodeJam.PerfTests.Analysers
 		}
 
 		private static void AnnotateResultsCore(
-			CompetitionState competitionState, CompetitionTarget[] targetsToAnnotate, ILogger logger)
+			CompetitionState competitionState, CompetitionTarget[] targetsToAnnotate)
 		{
 			const int looseByPercent = 3;
 
@@ -142,7 +138,7 @@ namespace CodeJam.PerfTests.Analysers
 				competitionTarget.LooseLimitsAndMarkAsSaved(looseByPercent);
 			}
 
-			AnnotateSourceHelper.TryAnnotateBenchmarkFiles(competitionState, targetsToAnnotate, logger);
+			AnnotateSourceHelper.TryAnnotateBenchmarkFiles(competitionState, targetsToAnnotate);
 		}
 
 		private static bool TryAdjustCompetitionTargets(
@@ -150,7 +146,7 @@ namespace CodeJam.PerfTests.Analysers
 		{
 			bool result = false;
 
-			foreach (var benchGroup in summary.SameConditionBenchmarks())
+			foreach (var benchGroup in summary.SameConditionsBenchmarks())
 			{
 				foreach (var benchmark in benchGroup)
 				{
@@ -164,7 +160,7 @@ namespace CodeJam.PerfTests.Analysers
 					var minRatio = summary.TryGetScaledPercentile(benchmark, 85);
 					var maxRatio = summary.TryGetScaledPercentile(benchmark, 95);
 
-					// No warnings required. Missing values should be checked by CompetitionLimitsAnalyser.
+					// No warnings required. Missing values should be checked by CompetitionAnalyser.
 					if (minRatio == null || maxRatio == null)
 						continue;
 

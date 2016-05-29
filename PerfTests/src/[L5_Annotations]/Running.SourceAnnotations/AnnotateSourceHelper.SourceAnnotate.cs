@@ -82,14 +82,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		// ReSharper disable once SuggestBaseTypeForParameter
 		private static void AppendMinMax(StringBuilder result, CompetitionTarget competitionTarget)
 		{
-			if (!competitionTarget.IgnoreMin)
+			if (!competitionTarget.IgnoreMinRatio)
 			{
-				result.Append(competitionTarget.MinText);
+				result.Append(competitionTarget.MinRatioText);
 				result.Append(", ");
 			}
 
 			// MaxText should be specified even if ignored.
-			result.Append(competitionTarget.MaxText);
+			result.Append(competitionTarget.MaxRatioText);
 		}
 	}
 }

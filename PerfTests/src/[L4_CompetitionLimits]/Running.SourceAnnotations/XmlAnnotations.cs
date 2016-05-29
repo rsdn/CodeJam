@@ -21,12 +21,16 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
 	// TODO: needs code review
+	/// <summary>
+	/// Helper class for XML annotations
+	/// </summary>
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	internal static class XmlAnnotations
 	{
-		private class UseFullNameAnnotation
+		private sealed class UseFullNameAnnotation
 		{
 			public static readonly UseFullNameAnnotation Instance = new UseFullNameAnnotation();
+
 			private UseFullNameAnnotation() { }
 		}
 
@@ -41,15 +45,13 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		private const string CompetitionNode = "Competition";
 		private const string CandidateNode = "Candidate";
 		private const string TargetAttribute = "Target";
-		private const string MinRatioAttribute = "MinRatio";
-		private const string MaxRatioAttribute = "MaxRatio";
 		#endregion
 
-		#region Helpers
+		#region Core logic for XML annotations
 		[NotNull]
 		// ReSharper disable once SuggestBaseTypeForParameter
-		private static string GetCompetitionName(this Target target, XDocument document) =>
-			document.Annotations<UseFullNameAnnotation>().Any()
+		private static string GetCompetitionName(this Target target, XDocument benchmarksDoc) =>
+			benchmarksDoc.Annotations<UseFullNameAnnotation>().Any()
 				? target.Type.FullName + ", " + target.Type.Assembly.GetName().Name
 				: target.Type.Name;
 
@@ -57,20 +59,20 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		private static string GetCandidateName(this Target target) =>
 			target.Method.Name;
 
-		// ReSharper disable once SuggestBaseTypeForParameter
 		[NotNull]
-		private static XElement GetOrAddElement(this XElement element, XName name, string targetName)
+		// ReSharper disable once SuggestBaseTypeForParameter
+		private static XElement GetOrAddElement(this XElement element, XName elementName, string targetName)
 		{
 			if (targetName == null)
 				throw new ArgumentNullException(nameof(targetName));
 
 			var result = element
-				.Elements(name)
+				.Elements(elementName)
 				.SingleOrDefault(e => e.Attribute(TargetAttribute)?.Value == targetName);
 
 			if (result == null)
 			{
-				result = new XElement(name);
+				result = new XElement(elementName);
 				result.SetAttribute(TargetAttribute, targetName);
 				element.Add(result);
 			}
@@ -102,47 +104,162 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			return result;
 		}
+
+		private static XmlWriterSettings GetXmlWriterSettings(bool omitXmlDeclaration = false) =>
+			new XmlWriterSettings
+			{
+				OmitXmlDeclaration = omitXmlDeclaration,
+				Indent = true,
+				IndentChars = "\t",
+				NewLineChars = "\r\n"
+			};
+
+		private static XDocument CreateEmptyBenchmarksDoc(bool useFullCompetitionName)
+		{
+			var benchmarksDoc = new XDocument(new XElement(CompetitionBenchmarksRootNode));
+			if (useFullCompetitionName)
+			{
+				benchmarksDoc.AddAnnotation(UseFullNameAnnotation.Instance);
+			}
+			return benchmarksDoc;
+		}
 		#endregion
 
-		public static XDocument[] GetDocumentsFromLog(string previousLogUri)
+		[CanBeNull]
+		private static XDocument TryParseBenchmarksDoc(
+			TextReader source,
+			CompetitionState competitionState,
+			bool useFullCompetitionName,
+			string origin)
 		{
+			XDocument benchmarksDoc;
+			try
+			{
+				benchmarksDoc = XDocument.Load(source);
+				if (useFullCompetitionName)
+				{
+					benchmarksDoc.AddAnnotation(UseFullNameAnnotation.Instance);
+				}
+			}
+			catch (ArgumentException ex)
+			{
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.SetupError,
+					$"{origin}: Could not parse annotation from log. Exception: {ex}.");
+				return null;
+			}
+			catch (XmlException ex)
+			{
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.SetupError,
+					$"{origin}: Could not parse annotation from log. Exception: {ex}.");
+				return null;
+			}
+
+			var rootNode = benchmarksDoc.Element(CompetitionBenchmarksRootNode);
+			if (rootNode == null)
+			{
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.SetupError,
+					$"origin: root node {CompetitionBenchmarksRootNode} not found.");
+
+				return null;
+			}
+
+			return benchmarksDoc;
+		}
+
+		#region Logging & xml annotations
+		public static void LogCompetitionTargets(
+			[NotNull] IEnumerable<CompetitionTarget> competitionTargets,
+			[NotNull] CompetitionState competitionState)
+		{
+			Code.NotNull(competitionTargets, nameof(competitionTargets));
+			Code.NotNull(competitionState, nameof(competitionState));
+
+			var hasData = false;
+			var benchmarksDoc = CreateEmptyBenchmarksDoc(true);
+			foreach (var competitionTarget in competitionTargets)
+			{
+				AddOrUpdateCompetitionTarget(benchmarksDoc, competitionTarget);
+				hasData = true;
+			}
+
+			var logger = competitionState.Logger;
+			if (hasData)
+			{
+				logger.WriteLineInfo(LogAnnotationStart);
+
+				var tmp = new StringBuilder();
+				using (var writer = XmlWriter.Create(tmp, GetXmlWriterSettings(true)))
+				{
+					benchmarksDoc.Save(writer);
+				}
+				logger.WriteLineInfo(tmp.ToString());
+
+				logger.WriteLineInfo(LogAnnotationEnd);
+			}
+			else
+			{
+				logger.WriteLineInfo(
+					"// No competition annotations were updated, nothing to export.");
+			}
+		}
+
+		public static XDocument[] TryParseBenchmarkDocsFromLog(
+			[NotNull] string logUri,
+			[NotNull] CompetitionState competitionState)
+		{
+			Code.NotNullNorEmpty(logUri, nameof(logUri));
+			Code.NotNull(competitionState, nameof(competitionState));
+
 			var result = new List<XDocument>();
 
-			using (var reader = BenchmarkHelpers.TryGetTextFromUri(previousLogUri))
+			using (var reader = BenchmarkHelpers.TryGetTextFromUri(logUri))
 			{
 				if (reader == null)
-					return new XDocument[0];
+				{
+					competitionState.WriteMessage(
+						MessageSource.Analyser, MessageSeverity.SetupError,
+						$"Could not load log from {logUri}.");
+					return null;
+				}
 
 				var buffer = new StringBuilder();
-				var append = false;
 				string logLine;
+				int lineNumber = 0, xmlStartLineNumber = -1;
 				while ((logLine = reader.ReadLine()) != null)
 				{
+					lineNumber++;
+
 					if (logLine.StartsWith(LogAnnotationStart, StringComparison.OrdinalIgnoreCase))
 					{
-						append = true;
+						xmlStartLineNumber = lineNumber;
 					}
 					else if (logLine.StartsWith(LogAnnotationEnd, StringComparison.OrdinalIgnoreCase))
 					{
 						if (buffer.Length > 0)
 						{
-							var xDoc = TryParse(buffer.ToString(), true);
-							if (xDoc != null)
+							var benchmarksDoc = TryParseBenchmarksDocFromLogCore(
+								buffer.ToString(), competitionState, logUri, xmlStartLineNumber);
+							if (benchmarksDoc != null)
 							{
-								result.Add(xDoc);
+								result.Add(benchmarksDoc);
 							}
 						}
 						buffer.Length = 0;
-						append = false;
+
+						xmlStartLineNumber = -1;
 					}
-					else if (append)
+					else if (xmlStartLineNumber >= 0)
 					{
 						buffer.Append(logLine);
 					}
 				}
+
 				if (buffer.Length > 0)
 				{
-					var xDoc = TryParse(buffer.ToString(), true);
+					var xDoc = TryParseBenchmarksDocFromLogCore(buffer.ToString(), competitionState, logUri, xmlStartLineNumber);
 					if (xDoc != null)
 					{
 						result.Add(xDoc);
@@ -153,189 +270,151 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return result.ToArray();
 		}
 
-		private static XDocument TryParse(string xDocText, bool useFullCompetitionName)
+		private static XDocument TryParseBenchmarksDocFromLogCore(
+			string logXmlText,
+			CompetitionState competitionState,
+			string logUri, int logLine)
 		{
-			try
+			using (var reader = new StringReader(logXmlText))
 			{
-				var result = XDocument.Parse(xDocText);
-				if (useFullCompetitionName)
+				return TryParseBenchmarksDoc(
+					reader, competitionState, true,
+					$"Log {logUri}, line {logLine}");
+			}
+		}
+		#endregion
+
+		public static XDocument TryParseBenchmarksDocFromResource(
+			[NotNull] Target target,
+			[NotNull] string targetResourceName,
+			[NotNull] CompetitionState competitionState)
+		{
+			Code.NotNull(target, nameof(target));
+			Code.NotNullNorEmpty(targetResourceName, nameof(targetResourceName));
+			Code.NotNull(competitionState, nameof(competitionState));
+
+			using (var resourceStream = target.Type.Assembly.GetManifestResourceStream(targetResourceName))
+			{
+				if (resourceStream == null)
 				{
-					result.AddAnnotation(UseFullNameAnnotation.Instance);
+					competitionState.WriteMessage(
+						MessageSource.Analyser, MessageSeverity.SetupError,
+						$"Benchmark {target.Type.Name}: resource stream {targetResourceName} not found");
+
+					return null;
 				}
-				return result;
-			}
-			catch (XmlException)
-			{
-				return null;
-			}
-		}
 
-		private static XDocument CreateEmptyResourceDoc(bool useFullCompetitionName)
-		{
-			var result = new XDocument(new XElement(CompetitionBenchmarksRootNode));
-			if (useFullCompetitionName)
-			{
-				result.AddAnnotation(UseFullNameAnnotation.Instance);
+				using (var reader = new StreamReader(resourceStream))
+				{
+					return TryParseBenchmarksDoc(
+						reader, competitionState, false,
+						$"Resource {targetResourceName}");
+				}
 			}
-			return result;
-		}
-
-		public static XDocument TryLoadResourceDoc(
-			Type targetType, string targetResourceName, CompetitionState competitionState)
-		{
-			var resourceStream = targetType.Assembly.GetManifestResourceStream(targetResourceName);
-
-			if (resourceStream == null)
-			{
-				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.SetupError,
-					$"Benchmark {targetType.Name}: resource stream {targetResourceName} not found");
-
-				return null;
-			}
-			XDocument resourceDoc;
-			try
-			{
-				resourceDoc = XDocument.Load(resourceStream);
-			}
-			catch (XmlException ex)
-			{
-				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.SetupError,
-					$"Benchmark {targetType.Name}: could not parse resource stream {targetResourceName} not found. Exception: {ex}.");
-				return null;
-			}
-
-			var rootNode = resourceDoc.Element(CompetitionBenchmarksRootNode);
-			if (rootNode == null)
-			{
-				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.SetupError,
-					$"Resource {targetResourceName}: root node {CompetitionBenchmarksRootNode} not found.");
-
-				return null;
-			}
-
-			return resourceDoc;
 		}
 
 		public static CompetitionTarget TryParseCompetitionTarget(
-			XDocument resourceDoc, Target target, CompetitionState competitionState)
+			[NotNull] Target target,
+			[NotNull] XDocument benchmarksDoc,
+			[NotNull] CompetitionState competitionState)
 		{
-			if (resourceDoc.Element(CompetitionBenchmarksRootNode) == null)
-				return null;
+			Code.NotNull(target, nameof(target));
+			Code.NotNull(benchmarksDoc, nameof(benchmarksDoc));
+			Code.NotNull(competitionState, nameof(competitionState));
 
-			var competitionName = target.GetCompetitionName(resourceDoc);
+			var competitionName = target.GetCompetitionName(benchmarksDoc);
 			var candidateName = target.GetCandidateName();
 
 			var matchingNodes =
 				// ReSharper disable once PossibleNullReferenceException
-				from competition in resourceDoc.Element(CompetitionBenchmarksRootNode).Elements(CompetitionNode)
+				from competition in benchmarksDoc.Element(CompetitionBenchmarksRootNode).Elements(CompetitionNode)
 				where competition.Attribute(TargetAttribute)?.Value == competitionName
 				from candidate in competition.Elements(CandidateNode)
 				where candidate.Attribute(TargetAttribute)?.Value == candidateName
 				select candidate;
 
-			var resultNode = matchingNodes.SingleOrDefault();
-			if (resultNode == null)
+			var competitionNode = matchingNodes.SingleOrDefault();
+			if (competitionNode == null)
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.Informational,
-					$"Xml anotations for {candidateName}: no annotation exists.");
+					$"Xml anotations for {competitionName}.{candidateName}: no annotation exists.");
 
 				return null;
 			}
 
-			var minText = resultNode.Attribute(MinRatioAttribute)?.Value;
-			var maxText = resultNode.Attribute(MaxRatioAttribute)?.Value;
+			var minRatio = TryParseLimitValue(
+				target, competitionNode,
+				CompetitionLimitProperties.MinRatio,
+				competitionState);
+			var maxRatio = TryParseLimitValue(
+				target, competitionNode,
+				CompetitionLimitProperties.MaxRatio,
+				competitionState);
 
-			double min;
-			double max;
-			var culture = EnvironmentInfo.MainCultureInfo;
-			double.TryParse(minText, NumberStyles.Any, culture, out min);
-			double.TryParse(maxText, NumberStyles.Any, culture, out max);
-
-			// TODO: check the logic
-			// Only one attribute set
-			if (minText == null && maxText != null)
+			if (minRatio == null && maxRatio != null)
 			{
-				min = CompetitionLimit.IgnoreValue;
+				minRatio = CompetitionLimit.IgnoreValue;
 			}
-			else if (maxText == null && minText != null)
+			else if (maxRatio == null && minRatio != null)
 			{
-				max = CompetitionLimit.IgnoreValue;
+				maxRatio = CompetitionLimit.IgnoreValue;
 			}
 
-			return new CompetitionTarget(target, min, max, true);
+			return new CompetitionTarget(target, minRatio ?? 0, maxRatio ?? 0, true);
 		}
 
-		public static void AddOrUpdateCompetitionTarget(XDocument resourceDoc, CompetitionTarget competitionTarget)
+		private static double? TryParseLimitValue(
+			Target target, XElement competitionNode,
+			CompetitionLimitProperties limitProperty,
+			CompetitionState competitionState)
 		{
-			var competitionName = competitionTarget.Target.GetCompetitionName(resourceDoc);
+			double? result = 0;
+
+			var limitText = competitionNode.Attribute(limitProperty.ToString())?.Value;
+			if (limitText != null)
+			{
+				var culture = EnvironmentInfo.MainCultureInfo;
+				double parsed;
+				if (double.TryParse(limitText, NumberStyles.Any, culture, out parsed))
+				{
+					result = parsed;
+				}
+				else
+				{
+					competitionState.WriteMessage(
+						MessageSource.Analyser, MessageSeverity.Informational,
+						$"Xml anotations for {target.Type.Name}.{target.Method.Name}: could not parse {limitProperty}.");
+				}
+			}
+
+			return result;
+		}
+
+		public static void AddOrUpdateCompetitionTarget(XDocument benchmarksDoc, CompetitionTarget competitionTarget)
+		{
+			var competitionName = competitionTarget.Target.GetCompetitionName(benchmarksDoc);
 			var candidateName = competitionTarget.Target.GetCandidateName();
 
-			var competition = resourceDoc
+			var competition = benchmarksDoc
 				.Element(CompetitionBenchmarksRootNode)
 				.GetOrAddElement(CompetitionNode, competitionName);
 			var candidate = competition.GetOrAddElement(CandidateNode, candidateName);
 
-			var minText = !competitionTarget.IgnoreMin ? competitionTarget.MinText : null;
+			var minText = !competitionTarget.IgnoreMinRatio ? competitionTarget.MinRatioText : null;
 			// MaxText should be specified even if ignored.
-			var maxText = competitionTarget.MaxText;
+			var maxText = competitionTarget.MaxRatioText;
 
-			candidate.SetAttribute(MinRatioAttribute, minText);
-			candidate.SetAttribute(MaxRatioAttribute, maxText);
+			candidate.SetAttribute(CompetitionLimitProperties.MinRatio.ToString(), minText);
+			candidate.SetAttribute(CompetitionLimitProperties.MaxRatio.ToString(), maxText);
 		}
 
-		private static XmlWriterSettings GetXmlWriterSettings() =>
-			new XmlWriterSettings
-			{
-				Indent = true,
-				IndentChars = "\t",
-				NewLineChars = "\r\n"
-			};
-
-		private static StringBuilder SaveToString(XDocument resourceDoc)
-		{
-			var tmp = new StringWriter();
-			Save(resourceDoc, tmp);
-			return tmp.GetStringBuilder();
-		}
-
-		public static void Save(XDocument resourceDoc, TextWriter output)
+		public static void Save(XDocument benchmarksDoc, TextWriter output)
 		{
 			var writerSettings = GetXmlWriterSettings();
 			using (var writer = XmlWriter.Create(output, writerSettings))
 			{
-				resourceDoc.Save(writer);
-			}
-		}
-
-		public static void LogAdjustedCompetitionTargets(
-			IEnumerable<CompetitionTarget> competitionTargets,
-			ILogger logger)
-		{
-			var updated = false;
-			var xDoc = CreateEmptyResourceDoc(true);
-			foreach (var competitionTarget in competitionTargets)
-			{
-				AddOrUpdateCompetitionTarget(xDoc, competitionTarget);
-				updated = true;
-			}
-
-			if (updated)
-			{
-				logger.WriteLineInfo(LogAnnotationStart);
-
-				var tmp = SaveToString(xDoc);
-				logger.WriteLineInfo(tmp.ToString());
-
-				logger.WriteLineInfo(LogAnnotationEnd);
-			}
-			else
-			{
-				logger.WriteLineInfo(
-					"// No competition annotations were updated, nothing to export.");
+				benchmarksDoc.Save(writer);
 			}
 		}
 	}

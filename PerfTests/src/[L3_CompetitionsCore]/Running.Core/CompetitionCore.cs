@@ -108,9 +108,8 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				RunCore(
 					competitionState,
-					maxRunsAllowed,
-					benchmarkType,
-					competitionConfig);
+					benchmarkType, competitionConfig,
+					maxRunsAllowed);
 			}
 			catch (Exception ex)
 			{
@@ -126,8 +125,9 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		private static void RunCore(
-			CompetitionState competitionState, int maxRunsAllowed,
-			Type benchmarkType, IConfig competitionConfig)
+			CompetitionState competitionState,
+			Type benchmarkType, IConfig competitionConfig,
+			int maxRunsAllowed)
 		{
 			var logger = competitionConfig.GetCompositeLogger();
 			competitionState.FirstTimeInit(maxRunsAllowed, logger);

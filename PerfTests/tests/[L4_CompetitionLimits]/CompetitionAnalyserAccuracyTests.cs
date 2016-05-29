@@ -18,7 +18,7 @@ namespace CodeJam.PerfTests
 	[TestFixture(Category = "BenchmarkDotNet")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
-	public static class CompetitionLimitsAnalyserAccuracyTests
+	public static class CompetitionAnalyserAccuracyTests
 	{
 		private static readonly ICompetitionConfig _accurateConfig = new ManualCompetitionConfig(FastRunConfig.Instance)
 		{
@@ -28,7 +28,7 @@ namespace CodeJam.PerfTests
 
 		// TODO: the test takes too long time to complete. Speedup if possible.
 		[Test]
-		public static void TestCompetitionLimitsAnalyserTooFastTooSlowBenchmark()
+		public static void TestCompetitionAnalyserTooFastTooSlowBenchmark()
 		{
 			var summary = CompetitionBenchmarkRunner.Run<TooFastTooSlowBenchmark>(_accurateConfig);
 			var runState = CompetitionCore.RunState[summary];
@@ -60,7 +60,7 @@ namespace CodeJam.PerfTests
 		}
 
 		[Test]
-		public static void TestCompetitionLimitsAnalyserHighAccuracyBenchmark()
+		public static void TestCompetitionAnalyserHighAccuracyBenchmark()
 		{
 			var stopwatch = Stopwatch.StartNew();
 			var summary = CompetitionBenchmarkRunner.Run<HighAccuracyBenchmark>(_accurateConfig);
