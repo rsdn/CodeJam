@@ -4,6 +4,8 @@ CodeJam 1.0.0-beta5 Release Notes
 What's new in 1.1.0-beta5
 ------------------------
 * Option struct split into Option class and ValueOption struct
+* NullableHelper.AsNullable method
+* Fixes and code cleanup
 
 What's new in 1.1.0-beta4
 ------------------------

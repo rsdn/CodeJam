@@ -25,7 +25,7 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="T">The type of object that is being lazily initialized.</typeparam>
 		/// <param name="isThreadSafe">
-		/// <c>true</c> to make this instance usable concurrently by multiple threads; <c>falsce</c> to make the instance
+		/// <c>true</c> to make this instance usable concurrently by multiple threads; <c>false</c> to make the instance
 		/// usable by only one thread at a time.
 		/// </param>
 		/// <returns>New <see cref="Lazy{T}"/> instance.</returns>
@@ -60,7 +60,7 @@ namespace CodeJam
 		/// The delegate that is invoked to produce the lazily initialized value when it is needed.
 		/// </param>
 		/// <param name="isThreadSafe">
-		/// <c>true</c> to make this instance usable concurrently by multiple threads; <c>falsce</c> to make the instance
+		/// <c>true</c> to make this instance usable concurrently by multiple threads; <c>false</c> to make the instance
 		/// usable by only one thread at a time.
 		/// </param>
 		/// <returns>New <see cref="Lazy{T}"/> instance.</returns>

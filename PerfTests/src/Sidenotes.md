@@ -1,5 +1,4 @@
 ﻿## TODO, Bench.Net:
-* Check competition limits parsing.
 * ValidationError - make public, https://github.com/PerfDotNet/BenchmarkDotNet/issues/183
 * ManualConfig.Add - make virtual?
 * Validators: access to config, in-process validators, naming: ThreatsWarnings -> ThreatWarnings
@@ -7,6 +6,8 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
 ## TODO:
+ * Tests for broken log annotations.
+ * Check competition limits parsing.
  * Logging: write validator messages immediately?
  * Naming: Annotate <> Adjust?
  * Naming: Runs -> Reruns?
@@ -59,9 +60,9 @@ And of course, the perftests' results are depend on hardware. So, we need a way 
 Initial plan looks like this:
 
 1. Dump the CompetitionTargets on last run. Dump only ones that have been updated and dump only on last run.
-It looks like a job for CompetitionLimitsAnnotateAnalyser
+It looks like a job for CompetitionAnnotateAnalyser
 2. On the run - add ability to specify log source to merge annotations from
-CompetitionLimitsAnnotateAnalyser again
+CompetitionAnnotateAnalyser again
 3. After that all works like usual.
 
 The dump uses same format that xml anotations uses. The only difference is,

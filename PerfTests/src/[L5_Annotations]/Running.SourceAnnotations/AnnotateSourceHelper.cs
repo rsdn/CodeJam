@@ -96,17 +96,18 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		// ReSharper disable once ParameterTypeCanBeEnumerable.Global
 		public static CompetitionTarget[] TryAnnotateBenchmarkFiles(
-			CompetitionState competitionState, CompetitionTarget[] targetsToAnnotate, ILogger logger)
+			CompetitionState competitionState, CompetitionTarget[] targetsToAnnotate)
 		{
 			var annotatedTargets = new List<CompetitionTarget>();
 
 			var annContext = new AnnotateContext();
+			var logger = competitionState.Logger;
 			foreach (var targetToAnnotate in targetsToAnnotate)
 			{
-				var targetMethodName = targetToAnnotate.CandidateName;
+				var targetMethodName = targetToAnnotate.Target.Method.Name;
 
 				logger.WriteLineInfo(
-					$"// Method {targetMethodName}: new relative time limits [{targetToAnnotate.MinText}, {targetToAnnotate.MaxText}].");
+					$"// Method {targetMethodName}: new relative time limits [{targetToAnnotate.MinRatioText}, {targetToAnnotate.MaxRatioText}].");
 
 				// DONTTOUCH: the source should be loaded for checksum validation even if target uses resource annotation
 				int firstCodeLine;
@@ -125,7 +126,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					continue;
 				}
 
-				if (targetToAnnotate.UsesResourceAnnotation)
+				if (targetToAnnotate.FromResourceMetadata)
 				{
 					var resourceFileName = Path.ChangeExtension(fileName, ".xml");
 					logger.WriteLineInfo($"// Method {targetMethodName}: annotating resource file {resourceFileName}.");

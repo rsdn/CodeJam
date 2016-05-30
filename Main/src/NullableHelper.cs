@@ -22,10 +22,20 @@ namespace CodeJam
 		/// The value of the <see cref="Nullable{T}.Value"/> property if the <see cref="Nullable{T}.HasValue"/> property is
 		/// <c>true</c>; otherwise, the value returned by <paramref name="defaultFactory"/> parameter.
 		/// </returns>
+		[Pure]
 		public static T GetValueOrDefault<T>(T? value, [NotNull, InstantHandle] Func<T> defaultFactory) where T : struct
 		{
 			Code.NotNull(defaultFactory, nameof (defaultFactory));
 			return value ?? defaultFactory();
 		}
+
+		/// <summary>
+		/// Returns nullable of specified value.
+		/// </summary>
+		/// <typeparam name="T">Type of value</typeparam>
+		/// <param name="value">THe value</param>
+		/// <returns><paramref name="value"/> wrapped in nullabe.</returns>
+		[Pure]
+		public static T? AsNullable<T>(this T value) where T : struct => value;
 	}
 }

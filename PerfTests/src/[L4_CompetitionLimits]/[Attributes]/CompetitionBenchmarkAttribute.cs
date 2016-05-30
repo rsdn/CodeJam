@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests
 {
 	/// <summary>Attribute for competition benchmark</summary>
-	/// <seealso cref="BenchmarkDotNet.Attributes.BenchmarkAttribute" />
+	/// <seealso cref="BenchmarkAttribute"/>
 	// ReSharper disable once RedundantAttributeUsageProperty
 	[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
 	[PublicAPI, MeansImplicitUse]
@@ -19,8 +19,9 @@ namespace CodeJam.PerfTests
 		/// <summary>Marks the competition benchmark</summary>
 		/// <param name="maxRatio">
 		/// The maximum timing ratio relative to the baseline.
+		/// Set to <seealso cref="CompetitionLimit.Empty"/> (used by default)
+		/// to mark the limit as unset but updateable during the annotation.
 		/// Set to <seealso cref="CompetitionLimit.IgnoreValue"/> to ignore the limit.
-		/// Set to <seealso cref="CompetitionLimit.Empty"/> to force limit checking failure.
 		/// </param>
 		public CompetitionBenchmarkAttribute(double maxRatio)
 		{
@@ -31,13 +32,15 @@ namespace CodeJam.PerfTests
 		/// <summary>Marks the competition benchmark</summary>
 		/// <param name="minRatio">
 		/// The minimum timing ratio relative to the baseline.
+		/// Set to <seealso cref="CompetitionLimit.Empty"/> (used by default)
+		/// to mark the limit as unset but updateable during the annotation.
 		/// Set to <seealso cref="CompetitionLimit.IgnoreValue"/> to ignore the limit.
-		/// Set to <seealso cref="CompetitionLimit.Empty"/> to force limit checking failure.
 		/// </param>
 		/// <param name="maxRatio">
 		/// The maximum timing ratio relative to the baseline.
+		/// Set to <seealso cref="CompetitionLimit.Empty"/> (used by default)
+		/// to mark the limit as unset but updateable during the annotation.
 		/// Set to <seealso cref="CompetitionLimit.IgnoreValue"/> to ignore the limit.
-		/// Set to <seealso cref="CompetitionLimit.Empty"/> to force limit checking failure.
 		/// </param>
 		public CompetitionBenchmarkAttribute(double minRatio, double maxRatio)
 		{
@@ -46,21 +49,28 @@ namespace CodeJam.PerfTests
 		}
 
 		/// <summary>Exclude the benchmark from competition</summary>
-		/// <value><c>true</c> if the benchmark does not take part in competition and should not be validated.</value>
+		/// <value>
+		/// <c>true</c> if the benchmark does not take part in competition
+		/// and should not be validated.
+		/// </value>
 		public bool DoesNotCompete { get; set; }
 
 		/// <summary>
 		/// The minimum timing ratio relative to the baseline.
+		/// Set to <seealso cref="CompetitionLimit.Empty"/> (used by default)
+		/// to mark the limit as unset but updateable during the annotation.
 		/// Set to <seealso cref="CompetitionLimit.IgnoreValue"/> to ignore the limit.
-		/// Set to <seealso cref="CompetitionLimit.Empty"/> to force limit checking failure.
 		/// </summary>
+		/// <value>The minimum timing ratio relative to the baseline.</value>
 		public double MinRatio { get; private set; }
 
 		/// <summary>
 		/// The maximum timing ratio relative to the baseline.
+		/// Set to <seealso cref="CompetitionLimit.Empty"/> (used by default)
+		/// to mark the limit as unset but updateable during the annotation.
 		/// Set to <seealso cref="CompetitionLimit.IgnoreValue"/> to ignore the limit.
-		/// Set to <seealso cref="CompetitionLimit.Empty"/> to force limit checking failure.
 		/// </summary>
+		/// <value>The maximum timing ratio relative to the baseline.</value>
 		public double MaxRatio { get; private set; }
 	}
 }

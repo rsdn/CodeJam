@@ -94,14 +94,15 @@
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\MessageSeverity.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\Message.cs" />
     <Compile Include="[L4_CompetitionLimits]\CompetitionLimit.cs" />
-    <Compile Include="[L4_CompetitionLimits]\Analysers\CompetitionLimitsAnalyser.cs" />
+    <Compile Include="[L4_CompetitionLimits]\Analysers\CompetitionAnalyser.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\AttributeAnnotations.cs" />
+    <Compile Include="[L4_CompetitionLimits]\CompetitionLimitProperties.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\CompetitionTarget.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\XmlAnnotations.cs" />
     <Compile Include="[L4_CompetitionLimits]\[Attributes]\CompetitionBaselineAttribute.cs" />
     <Compile Include="[L4_CompetitionLimits]\[Attributes]\CompetitionBenchmarkAttribute.cs" />
     <Compile Include="[L4_CompetitionLimits]\[Attributes]\CompetitionMetadataAttribute.cs" />
-    <Compile Include="[L5_Annotations]\Analysers\CompetitionLimitsAnnotateAnalyser.cs" />
+    <Compile Include="[L5_Annotations]\Analysers\CompetitionAnnotateAnalyser.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\AnnotateSourceHelper.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\AnnotateSourceHelper.SourceAnnotate.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\AnnotateSourceHelper.SymbolHelpers.cs" />

@@ -1,5 +1,7 @@
 ﻿using System;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.PerfTests.Running.Messages
 {
 	/// <summary>
@@ -18,7 +20,7 @@ namespace CodeJam.PerfTests.Running.Messages
 			int runNumber,
 			int runMessageNumber,
 			MessageSource messageSource, MessageSeverity messageSeverity,
-			string messageText)
+			[NotNull] string messageText)
 		{
 			Code.NotNullNorEmpty(messageText, nameof(messageText));
 
