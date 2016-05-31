@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -6,6 +8,8 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Expressions
 {
+	using Reflection;
+
 	public static partial class ExpressionExtensions
 	{
 		/// <summary>
@@ -136,5 +140,99 @@ namespace CodeJam.Expressions
 				? (MemberExpression)unary.Operand
 				: (MemberExpression)body;
 		}
+
+		/// <summary>
+		/// Gets the <see cref="MemberInfo"/>.
+		/// </summary>
+		/// <param name="expression">The expression to analyze.</param>
+		/// <returns>
+		/// The <see cref="MemberInfo"/> instance.
+		/// </returns>
+		[NotNull, Pure]
+		public static MemberInfo[] GetMembersInfo([NotNull] this LambdaExpression expression)
+		{
+			Code.NotNull(expression, nameof(expression));
+
+			var body = expression.Body;
+			var unary = body as UnaryExpression;
+			if (unary != null)
+				body = unary.Operand;
+
+			return GetMembers(body).Reverse().ToArray();
+		}
+
+		static IEnumerable<MemberInfo> GetMembers(Expression expression, bool passIndexer = true)
+		{
+			MemberInfo lastMember = null;
+
+			for (;;)
+			{
+				switch (expression.NodeType)
+				{
+					case ExpressionType.Parameter:
+						if (lastMember == null)
+							goto default;
+						yield break;
+
+					case ExpressionType.Call:
+					{
+						if (lastMember == null)
+							goto default;
+
+						var cexpr = (MethodCallExpression)expression;
+						var expr  = cexpr.Object;
+
+						if (expr == null)
+						{
+							if (cexpr.Arguments.Count == 0)
+								goto default;
+
+							expr = cexpr.Arguments[0];
+						}
+
+						if (expr.NodeType != ExpressionType.MemberAccess)
+							goto default;
+
+						var member = ((MemberExpression)expr).Member;
+						var mtype  = member.GetMemberType();
+
+						if (lastMember.ReflectedType != mtype.GetItemType())
+							goto default;
+
+						expression = expr;
+
+						break;
+					}
+
+					case ExpressionType.MemberAccess:
+					{
+						var mexpr = (MemberExpression)expression;
+						var member = lastMember = mexpr.Member;
+
+						yield return member;
+
+						expression = mexpr.Expression;
+
+						break;
+					}
+
+					case ExpressionType.ArrayIndex:
+					{
+						if (passIndexer)
+						{
+							expression = ((BinaryExpression)expression).Left;
+							break;
+						}
+
+						goto default;
+					}
+
+					default:
+						throw new InvalidOperationException($"Expression '{expression}' is not an association.");
+				}
+			}
+		}
+
+
 	}
 }

@@ -199,12 +199,16 @@ namespace CodeJam.Mapping
 		}
 
 		/// <summary>
-		/// 
+		/// Returns an expression that converts a value of type <i>TFrom</i> to <i>TTo</i> or null.
 		/// </summary>
-		/// <param name="from"></param>
-		/// <param name="to"></param>
-		/// <returns></returns>
-		protected internal virtual LambdaExpression TryGetConvertExpression(Type from, Type to) => null;
+		/// <param name="from">Type to convert from.</param>
+		/// <param name="to">Type to convert to.</param>
+		/// <returns>Convert expression.</returns>
+		protected internal virtual LambdaExpression TryGetConvertExpression(Type from, Type to)
+		{
+			var li = GetConverter(from, to, false);
+			return li == null ? null : (LambdaExpression)ReduceDefaultValue(li.CheckNullLambda);
+		}
 
 		internal ConcurrentDictionary<object,Func<object,object>> Converters
 			=> Schemas[0].Converters;
@@ -795,6 +799,7 @@ namespace CodeJam.Mapping
 			public DefaultMappingSchema()
 				: base(new MappingSchemaInfo("") { MetadataReader = Metadata.MetadataReader.Default })
 			{
+				SetScalarType(typeof(string), true);
 			}
 		}
 

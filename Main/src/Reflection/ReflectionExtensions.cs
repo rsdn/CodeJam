@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -321,17 +322,64 @@ namespace CodeJam.Reflection
 		/// Returns default constructor.
 		/// </summary>
 		/// <param name="type">A <see cref="System.Type"/> instance. </param>
-		/// <returns></returns>
+		/// <param name="exceptionIfNotExists">if true, throws an exception if type does not exists default constructor.
+		/// Otherwise returns null.</param>
+		/// <returns>Returns <see cref="ConstructorInfo"/> or null.</returns>
 		[Pure]
-		public static ConstructorInfo GetDefaultConstructor([NotNull] this Type type)
+		public static ConstructorInfo GetDefaultConstructor([NotNull] this Type type, bool exceptionIfNotExists = false)
 		{
 			if (type == null) throw new ArgumentNullException(nameof(type));
 
-			return type.GetConstructor(
+			var info = type.GetConstructor(
 				BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public,
 				null,
 				Type.EmptyTypes,
 				null);
+
+			if (info == null && exceptionIfNotExists)
+			{
+				throw new InvalidOperationException($"The '{type.FullName}' type must have default or init constructor.");
+			}
+
+			return info;
+		}
+
+		/// <summary>
+		/// Gets a value indicating whether the current <i>Type</i> encompasses or refers to another type;
+		/// that is, whether the provided Type is an array, a pointer, or is passed by reference.
+		/// </summary>
+		/// <param name="type">Type to get item type.</param>
+		/// <returns>Returns item type or null.</returns>
+		public static Type GetItemType([CanBeNull] this Type type)
+		{
+			if (type == null)
+				return null;
+
+			if (type.HasElementType || type.IsArray)
+				return type.GetElementType();
+
+			if (type == typeof(object))
+				return null;
+
+			if (type.IsGenericType)
+				foreach (var aType in type.GetGenericArguments())
+					if (typeof(IEnumerable<>).MakeGenericType(new[] { aType }).IsAssignableFrom(type))
+						return aType;
+
+			var interfaces = type.GetInterfaces();
+
+			if (interfaces != null && interfaces.Length > 0)
+			{
+				foreach (var iType in interfaces)
+				{
+					var eType = iType.GetItemType();
+
+					if (eType != null)
+						return eType;
+				}
+			}
+
+			return type.BaseType.GetItemType();
 		}
 	}
 }
