@@ -26,11 +26,10 @@ namespace CodeJam.PerfTests
 			EnableReruns = true
 		};
 
-		// TODO: the test takes too long time to complete. Speedup if possible.
 		[Test]
-		public static void TestCompetitionAnalyserTooFastTooSlowBenchmark()
+		public static void TestCompetitionAnalyserTooFastBenchmark()
 		{
-			var summary = CompetitionBenchmarkRunner.Run<TooFastTooSlowBenchmark>(_accurateConfig);
+			var summary = CompetitionBenchmarkRunner.Run<TooFastBenchmark>(_accurateConfig);
 			var runState = CompetitionCore.RunState[summary];
 			var messages = runState.GetMessages();
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
@@ -38,7 +37,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
-			Assert.AreEqual(messages.Length, 2);
+			Assert.AreEqual(messages.Length, 1);
 
 			Assert.AreEqual(messages[0].RunNumber, 1);
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
@@ -47,13 +46,27 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(
 				messages[0].MessageText,
 				"The benchmarks TooFast, TooFast2 run faster than 400 nanoseconds. Results cannot be trusted.");
+		}
 
-			Assert.AreEqual(messages[1].RunNumber, 1);
-			Assert.AreEqual(messages[1].RunMessageNumber, 2);
-			Assert.AreEqual(messages[1].MessageSeverity, MessageSeverity.Warning);
-			Assert.AreEqual(messages[1].MessageSource, MessageSource.Analyser);
+		[Test]
+		public static void TestCompetitionAnalyserTooSlowBenchmark()
+		{
+			var summary = CompetitionBenchmarkRunner.Run<TooSlowBenchmark>(SingleRunConfig);
+			var runState = CompetitionCore.RunState[summary];
+			var messages = runState.GetMessages();
+			Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			Assert.AreEqual(runState.RunNumber, 1);
+			Assert.AreEqual(runState.RunsLeft, 0);
+			Assert.AreEqual(runState.RunLimitExceeded, false);
+			Assert.AreEqual(runState.LooksLikeLastRun, true);
+			Assert.AreEqual(messages.Length, 1);
+
+			Assert.AreEqual(messages[0].RunNumber, 1);
+			Assert.AreEqual(messages[0].RunMessageNumber, 1);
+			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Warning);
+			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
-				messages[1].MessageText,
+				messages[0].MessageText,
 				"The benchmarks TooSlow run longer than 0.5 sec." +
 					" Consider to rewrite the test as the peek timings will be hidden by averages" +
 					" or set the AllowSlowBenchmarks to true.");
@@ -74,7 +87,7 @@ namespace CodeJam.PerfTests
 		}
 
 		#region Benchmark classes
-		public class TooFastTooSlowBenchmark
+		public class TooFastBenchmark
 		{
 			[Benchmark]
 			public int TooFast()
@@ -97,11 +110,12 @@ namespace CodeJam.PerfTests
 				}
 				return a;
 			}
-
+		}
+		public class TooSlowBenchmark
+		{
 			[CompetitionBenchmark(DoesNotCompete = true)]
 			public void TooSlow() => Thread.Sleep(550);
 		}
-
 		public class HighAccuracyBenchmark
 		{
 			[CompetitionBaseline]

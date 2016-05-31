@@ -29,7 +29,7 @@ namespace CodeJam.PerfTests.Configs
 				{
 					IterationTime = 10,
 					LaunchCount = 1,
-					WarmupCount = 3,
+					WarmupCount = 10,
 					TargetCount = 10,
 					Platform = Platform.X64,
 					Jit = Jit.RyuJit,
