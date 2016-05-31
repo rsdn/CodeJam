@@ -48,6 +48,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#endregion
 
 		#region Core logic for XML annotations
+		// ReSharper disable once SuggestBaseTypeForParameter
+		private static void MarkAsUsesFullTargetName(this XDocument benchmarksDoc) =>
+			benchmarksDoc.AddAnnotation(UseFullNameAnnotation.Instance);
+
 		[NotNull]
 		// ReSharper disable once SuggestBaseTypeForParameter
 		private static string GetCompetitionName(this Target target, XDocument benchmarksDoc) =>
@@ -105,6 +109,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return result;
 		}
 
+		private static XmlReaderSettings GetXmlReaderSettings() =>
+			new XmlReaderSettings
+			{
+				DtdProcessing = DtdProcessing.Prohibit
+			};
+
 		private static XmlWriterSettings GetXmlWriterSettings(bool omitXmlDeclaration = false) =>
 			new XmlWriterSettings
 			{
@@ -113,46 +123,45 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				IndentChars = "\t",
 				NewLineChars = "\r\n"
 			};
-
-		private static XDocument CreateEmptyBenchmarksDoc(bool useFullCompetitionName)
-		{
-			var benchmarksDoc = new XDocument(new XElement(CompetitionBenchmarksRootNode));
-			if (useFullCompetitionName)
-			{
-				benchmarksDoc.AddAnnotation(UseFullNameAnnotation.Instance);
-			}
-			return benchmarksDoc;
-		}
 		#endregion
 
+		/// <summary>Tries to parse xml document with competition limits.</summary>
+		/// <param name="source">The source to parse from.</param>
+		/// <param name="competitionState">State of the run.</param>
+		/// <param name="origin">The prefix to be used in messages.</param>
+		/// <returns>Parsed XML document or <c>null</c> if parsing failed.</returns>
 		[CanBeNull]
-		private static XDocument TryParseBenchmarksDoc(
-			TextReader source,
-			CompetitionState competitionState,
-			bool useFullCompetitionName,
-			string origin)
+		public static XDocument TryParseBenchmarksDoc(
+			[NotNull] TextReader source,
+			[NotNull] CompetitionState competitionState,
+			[NotNull] string origin)
 		{
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(competitionState, nameof(competitionState));
+			Code.NotNullNorEmpty(origin, nameof(origin));
+
 			XDocument benchmarksDoc;
 			try
 			{
-				benchmarksDoc = XDocument.Load(source);
-				if (useFullCompetitionName)
+				using (var reader = XmlReader.Create(source, GetXmlReaderSettings()))
 				{
-					benchmarksDoc.AddAnnotation(UseFullNameAnnotation.Instance);
+					benchmarksDoc = XDocument.Load(reader);
 				}
 			}
 			catch (ArgumentException ex)
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.SetupError,
-					$"{origin}: Could not parse annotation from log. Exception: {ex}.");
+					$"{origin}: Could not parse annotation. Exception: {ex.Message}.");
+				competitionState.Logger.WriteLineError(ex.ToString());
 				return null;
 			}
 			catch (XmlException ex)
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.SetupError,
-					$"{origin}: Could not parse annotation from log. Exception: {ex}.");
+					$"{origin}: Could not parse annotation. Exception: {ex.Message}.");
+				competitionState.Logger.WriteLineError(ex.ToString());
 				return null;
 			}
 
@@ -161,7 +170,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.SetupError,
-					$"origin: root node {CompetitionBenchmarksRootNode} not found.");
+					$"{origin}: root node {CompetitionBenchmarksRootNode} not found.");
 
 				return null;
 			}
@@ -170,6 +179,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		}
 
 		#region Logging & xml annotations
+		/// <summary>Writes the competition targets to the log.</summary>
+		/// <param name="competitionTargets">The competition targets to log.</param>
+		/// <param name="competitionState">State of the run.</param>
 		public static void LogCompetitionTargets(
 			[NotNull] IEnumerable<CompetitionTarget> competitionTargets,
 			[NotNull] CompetitionState competitionState)
@@ -178,7 +190,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			Code.NotNull(competitionState, nameof(competitionState));
 
 			var hasData = false;
-			var benchmarksDoc = CreateEmptyBenchmarksDoc(true);
+			var benchmarksDoc = new XDocument(new XElement(CompetitionBenchmarksRootNode));
+			benchmarksDoc.MarkAsUsesFullTargetName();
 			foreach (var competitionTarget in competitionTargets)
 			{
 				AddOrUpdateCompetitionTarget(benchmarksDoc, competitionTarget);
@@ -201,11 +214,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			}
 			else
 			{
-				logger.WriteLineInfo(
-					"// No competition annotations were updated, nothing to export.");
+				logger.WriteLineInfo("// No competition annotations were updated, nothing to export.");
 			}
 		}
 
+		/// <summary>Tries to parse xml documents with competition limits from the log.</summary>
+		/// <param name="logUri">The URI the log will be obtained from.</param>
+		/// <param name="competitionState">State of the run.</param>
+		/// <returns>Parsed XML documents, if any.</returns>
 		public static XDocument[] TryParseBenchmarkDocsFromLog(
 			[NotNull] string logUri,
 			[NotNull] CompetitionState competitionState)
@@ -221,7 +237,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				{
 					competitionState.WriteMessage(
 						MessageSource.Analyser, MessageSeverity.SetupError,
-						$"Could not load log from {logUri}.");
+						$"Could not load log content from {logUri}.");
 					return null;
 				}
 
@@ -277,13 +293,21 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		{
 			using (var reader = new StringReader(logXmlText))
 			{
-				return TryParseBenchmarksDoc(
-					reader, competitionState, true,
+				var benchmarksDoc = TryParseBenchmarksDoc(
+					reader, competitionState,
 					$"Log {logUri}, line {logLine}");
+
+				benchmarksDoc?.MarkAsUsesFullTargetName();
+				return benchmarksDoc;
 			}
 		}
 		#endregion
 
+		/// <summary>Tries to parse xml documents with competition limits from the resource.</summary>
+		/// <param name="target">The target that describes resource location.</param>
+		/// <param name="targetResourceName">Name of the XML resource with competition limits.</param>
+		/// <param name="competitionState">State of the run.</param>
+		/// <returns>Parsed XML document or <c>null</c> if parsing failed.</returns>
 		public static XDocument TryParseBenchmarksDocFromResource(
 			[NotNull] Target target,
 			[NotNull] string targetResourceName,
@@ -307,12 +331,17 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				using (var reader = new StreamReader(resourceStream))
 				{
 					return TryParseBenchmarksDoc(
-						reader, competitionState, false,
+						reader, competitionState,
 						$"Resource {targetResourceName}");
 				}
 			}
 		}
 
+		/// <summary>Tries to parse competition target from the XML doc.</summary>
+		/// <param name="target">The benchmark target.</param>
+		/// <param name="benchmarksDoc">The document with competition limits for the benchmark.</param>
+		/// <param name="competitionState">State of the run.</param>
+		/// <returns>Parsed competition target or <c>null</c> if there is no XML annotation for the target.</returns>
 		public static CompetitionTarget TryParseCompetitionTarget(
 			[NotNull] Target target,
 			[NotNull] XDocument benchmarksDoc,
@@ -352,6 +381,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				CompetitionLimitProperties.MaxRatio,
 				competitionState);
 
+			// If only one limit set, the other should be ignored
 			if (minRatio == null && maxRatio != null)
 			{
 				minRatio = CompetitionLimit.IgnoreValue;
@@ -391,8 +421,16 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return result;
 		}
 
-		public static void AddOrUpdateCompetitionTarget(XDocument benchmarksDoc, CompetitionTarget competitionTarget)
+		/// <summary>Adds or update the XML doc from the competition target.</summary>
+		/// <param name="benchmarksDoc">The document that will be updated.</param>
+		/// <param name="competitionTarget">The competition target.</param>
+		public static void AddOrUpdateCompetitionTarget(
+			[NotNull] XDocument benchmarksDoc,
+			[NotNull] CompetitionTarget competitionTarget)
 		{
+			Code.NotNull(benchmarksDoc, nameof(benchmarksDoc));
+			Code.NotNull(competitionTarget, nameof(competitionTarget));
+
 			var competitionName = competitionTarget.Target.GetCompetitionName(benchmarksDoc);
 			var candidateName = competitionTarget.Target.GetCandidateName();
 
@@ -409,10 +447,17 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			candidate.SetAttribute(CompetitionLimitProperties.MaxRatio.ToString(), maxText);
 		}
 
-		public static void Save(XDocument benchmarksDoc, TextWriter output)
+		/// <summary>Saves the specified benchmarks document.</summary>
+		/// <param name="benchmarksDoc">The benchmarks document.</param>
+		/// <param name="output">The output.</param>
+		public static void Save(
+			[NotNull] XDocument benchmarksDoc,
+			[NotNull] TextWriter output)
 		{
-			var writerSettings = GetXmlWriterSettings();
-			using (var writer = XmlWriter.Create(output, writerSettings))
+			Code.NotNull(benchmarksDoc, nameof(benchmarksDoc));
+			Code.NotNull(output, nameof(output));
+
+			using (var writer = XmlWriter.Create(output, GetXmlWriterSettings()))
 			{
 				benchmarksDoc.Save(writer);
 			}

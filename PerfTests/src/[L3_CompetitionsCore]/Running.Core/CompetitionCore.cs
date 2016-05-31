@@ -104,19 +104,22 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 
 			var competitionState = RunState[competitionConfig];
+			var logger = competitionConfig.GetCompositeLogger();
+			competitionState.FirstTimeInit(maxRunsAllowed, logger);
+
 			try
 			{
 				RunCore(
-					competitionState,
 					benchmarkType, competitionConfig,
-					maxRunsAllowed);
+					competitionState, maxRunsAllowed);
 			}
 			catch (Exception ex)
 			{
+				competitionState.Logger.WriteLineError(ex.ToString());
 				competitionState.WriteMessage(
 					MessageSource.BenchmarkRunner,
 					MessageSeverity.ExecutionError,
-					ex.ToString());
+					ex.Message);
 			}
 
 			FillMessagesAfterLastRun(competitionState);
@@ -125,12 +128,10 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		private static void RunCore(
-			CompetitionState competitionState,
 			Type benchmarkType, IConfig competitionConfig,
-			int maxRunsAllowed)
+			CompetitionState competitionState, int maxRunsAllowed)
 		{
-			var logger = competitionConfig.GetCompositeLogger();
-			competitionState.FirstTimeInit(maxRunsAllowed, logger);
+			var logger = competitionState.Logger;
 
 			while (competitionState.RunsLeft > 0)
 			{

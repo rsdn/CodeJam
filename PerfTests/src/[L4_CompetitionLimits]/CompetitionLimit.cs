@@ -25,6 +25,12 @@ namespace CodeJam.PerfTests
 		/// <summary>Default format for actual value for ratio (relative) limits.</summary>
 		public const string ActualRatioFormat = "0.000";
 
+		/// <summary>Returns string representation for the actual ratio (relative) value.</summary>
+		/// <param name="actualRatio">The actual ratio (relative) value.</param>
+		/// <returns>String representation for actual ratio.</returns>
+		public static string GetActualRatioText(double actualRatio) =>
+			actualRatio.ToString(ActualRatioFormat, EnvironmentInfo.MainCultureInfo);
+
 		#region Core logic for competition limits
 		[AssertionMethod]
 		private static void AssertLimitArgument(double value, [InvokerParameterName] string argName)
@@ -39,15 +45,15 @@ namespace CodeJam.PerfTests
 		{
 			AssertLimitArgument(value, argName);
 
-			return IsIgnored(value) ? IgnoreValue : value;
+			return IsIgnoredValue(value) ? IgnoreValue : value;
 		}
 
 		private static bool IsInvalidValue(double value) => double.IsInfinity(value) || double.IsNaN(value);
 
-		private static bool IsIgnored(double value) => value < EmptyValue;
+		private static bool IsIgnoredValue(double value) => value < EmptyValue;
 
 		// ReSharper disable once CompareOfFloatsByEqualityOperator
-		private static bool IsUnset(double value) => value == EmptyValue;
+		private static bool IsEmptyValue(double value) => value == EmptyValue;
 		#endregion
 
 		#region Limit helper methods (reusable methods for memory and timing limits)
@@ -61,13 +67,13 @@ namespace CodeJam.PerfTests
 		{
 			AssertLimitArgument(minLimit, nameof(minLimit));
 
-			if (IsInvalidValue(value) || IsIgnored(value) || IsUnset(value))
+			if (IsInvalidValue(value) || IsIgnoredValue(value) || IsEmptyValue(value))
 				return true;
 
-			if (IsIgnored(minLimit))
+			if (IsIgnoredValue(minLimit))
 				return true;
 
-			if (IsUnset(minLimit))
+			if (IsEmptyValue(minLimit))
 				return false;
 
 			return value >= minLimit;
@@ -83,13 +89,13 @@ namespace CodeJam.PerfTests
 		{
 			AssertLimitArgument(maxLimit, nameof(maxLimit));
 
-			if (IsInvalidValue(value) || IsIgnored(value) || IsUnset(value))
+			if (IsInvalidValue(value) || IsIgnoredValue(value) || IsEmptyValue(value))
 				return true;
 
-			if (IsIgnored(maxLimit))
+			if (IsIgnoredValue(maxLimit))
 				return true;
 
-			if (IsUnset(maxLimit))
+			if (IsEmptyValue(maxLimit))
 				return false;
 
 			return value <= maxLimit;
@@ -147,7 +153,7 @@ namespace CodeJam.PerfTests
 
 		/// <summary>All limits are is empty.</summary>
 		/// <value><c>true</c> if all limits are is empty; otherwise, <c>false</c>.</value>
-		public bool IsEmpty => IsUnset(MinRatio) && IsUnset(MaxRatio);
+		public bool IsEmpty => IsEmptyValue(MinRatio) && IsEmptyValue(MaxRatio);
 
 		/// <summary>All limits are ignored.</summary>
 		/// <value><c>true</c> if all limits are ignored; otherwise, <c>false</c>.</value>
@@ -163,11 +169,11 @@ namespace CodeJam.PerfTests
 
 		/// <summary>The minimum timing ratio limit is ignored.</summary>
 		/// <value><c>true</c> if the minimum timing ratio limit is ignored; otherwise, <c>false</c>.</value>
-		public bool IgnoreMinRatio => IsIgnored(MinRatio);
+		public bool IgnoreMinRatio => IsIgnoredValue(MinRatio);
 
 		/// <summary>The maximum timing ratio limit is ignored.</summary>
 		/// <value><c>true</c> if the maximum timing ratio limit is ignored; otherwise, <c>false</c>.</value>
-		public bool IgnoreMaxRatio => IsIgnored(MaxRatio);
+		public bool IgnoreMaxRatio => IsIgnoredValue(MaxRatio);
 
 		/// <summary>The the value fits into minimum timing ratio limit.</summary>
 		/// <param name="value">The value.</param>

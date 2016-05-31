@@ -22,8 +22,12 @@ namespace CodeJam.PerfTests.Running.Core
 		private readonly List<IMessage> _messages = new List<IMessage>();
 
 		#region State properties
+		/// <summary>The competition is in it's first run.</summary>
+		/// <value><c>true</c> if the competition is in it's first run.</value>
+		public bool InFirstRun => RunNumber == 1;
+
 		/// <summary>The competition has no additional runs requested.</summary>
-		/// <value><c>true</c> if the competition has no additional runs requested..</value>
+		/// <value><c>true</c> if the competition has no additional runs requested.</value>
 		public bool LooksLikeLastRun => RunsLeft <= 0;
 
 		/// <summary>The count of runs is out of limit.</summary>
@@ -98,7 +102,7 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		/// <summary>Marks the run as completed.</summary>
-		/// <param name="summary">The summary for the run.</param>
+		/// <param name="summary">Summary for the run.</param>
 		internal void RunCompleted(Summary summary) => LastRunSummary = summary;
 
 		/// <summary>

@@ -16,8 +16,12 @@ using CodeJam.PerfTests.Running.Messages;
 using CodeJam.PerfTests.Running.SourceAnnotations;
 using CodeJam.Strings;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.PerfTests.Analysers
 {
+	/// <summary>Analyser class that enables limits validation for competition benchmarks.</summary>
+	/// <seealso cref="BenchmarkDotNet.Analysers.IAnalyser"/>
 	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	internal class CompetitionAnalyser : IAnalyser
@@ -31,18 +35,35 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		#region Properties
+		/// <summary>The analyser should warn on benchmarks that take too much time to complete.</summary>
+		/// <value>True if the analyser should warn on benchmarks that take too much time to complete.</value>
 		public bool AllowSlowBenchmarks { get; set; }
+
+		/// <summary>The analyser should ignore existing annotations.</summary>
+		/// <value><c>true</c> if the analyser should ignore existing annotations.</value>
 		public bool IgnoreExistingAnnotations { get; set; }
+
+		/// <summary>
+		/// Total count of retries performed if the validation failed.
+		/// Used to detect the case when limits are too tight and the benchmark fails them occasionally.
+		/// </summary>
+		/// <value>Total count of retries performed if the validation failed.</value>
 		public int MaxRerunsIfValidationFailed { get; set; }
 		#endregion
 
-		public IEnumerable<IWarning> Analyse(Summary summary)
+		/// <summary>Performs limit validation for competition benchmarks.</summary>
+		/// <param name="summary">Summary for the run.</param>
+		/// <returns>Enumerable with warnings for the benchmarks.</returns>
+		public IEnumerable<IWarning> Analyse([NotNull] Summary summary)
 		{
+			Code.NotNull(summary, nameof(summary));
+
 			ValidatePreconditions(summary);
 
 			var competitionState = CompetitionCore.RunState[summary];
 			var competitionTargets = TargetsSlot[summary];
-			if (competitionTargets.Count == 0 && !competitionState.HasCriticalErrorsInRun)
+			if (competitionTargets.Count == 0 &&
+				!competitionState.HasCriticalErrorsInRun)
 			{
 				InitCompetitionTargets(competitionTargets, summary);
 			}
@@ -59,6 +80,9 @@ namespace CodeJam.PerfTests.Analysers
 		}
 
 		#region Parsing competition target info
+		/// <summary>Refills the competition targets collection.</summary>
+		/// <param name="competitionTargets">The  collection to be filled with competition targets.</param>
+		/// <param name="summary">Summary for the run.</param>
 		protected virtual void InitCompetitionTargets(
 			CompetitionTargets competitionTargets,
 			Summary summary)
@@ -66,6 +90,9 @@ namespace CodeJam.PerfTests.Analysers
 			competitionTargets.Clear();
 
 			var competitionState = CompetitionCore.RunState[summary];
+
+			// DONTTOUCH: DO NOT add return into the if clause.
+			// The competitionTargets should be filled with empty limits if IgnoreExistingAnnotations set to false
 			if (IgnoreExistingAnnotations)
 			{
 				competitionState.WriteMessage(
@@ -85,7 +112,8 @@ namespace CodeJam.PerfTests.Analysers
 					!competitionAttribute.DoesNotCompete)
 				{
 					var competitionTarget = GetCompetitionTarget(
-						target, competitionAttribute, competitionState, resourceCache);
+						target, competitionAttribute,
+						competitionState, resourceCache);
 
 					competitionTargets.Add(target.Method, competitionTarget);
 				}
@@ -128,11 +156,15 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		#region Validation
+		/// <summary>Performs limit validation for competition benchmarks.</summary>
+		/// <param name="summary">Summary for the run.</param>
+		/// <param name="warnings">List of warnings for the benchmarks.</param>
 		protected virtual void ValidateSummary(Summary summary, List<IWarning> warnings)
 		{
 			var competitionState = CompetitionCore.RunState[summary];
 			var competitionTargets = TargetsSlot[summary];
-			var validated = true;
+
+			bool validated = true;
 			foreach (var benchmarkGroup in summary.SameConditionsBenchmarks())
 			{
 				foreach (var benchmark in benchmarkGroup)
@@ -141,7 +173,7 @@ namespace CodeJam.PerfTests.Analysers
 					if (!competitionTargets.TryGetValue(benchmark.Target.Method, out competitionTarget))
 						continue;
 
-					validated &= ValidateBenchmark(
+					validated &= ValidateBenchmarkCore(
 						summary, benchmark,
 						competitionTarget, warnings);
 				}
@@ -155,7 +187,7 @@ namespace CodeJam.PerfTests.Analysers
 		}
 
 		// ReSharper disable once MemberCanBeMadeStatic.Local
-		private bool ValidateBenchmark(
+		private bool ValidateBenchmarkCore(
 			Summary summary, Benchmark benchmark,
 			CompetitionLimit competitionLimit, List<IWarning> warnings)
 		{
@@ -180,9 +212,7 @@ namespace CodeJam.PerfTests.Analysers
 
 			bool validated = true;
 
-			var actualRatioText = actualRatio.Value.ToString(
-				CompetitionLimit.ActualRatioFormat,
-				EnvironmentInfo.MainCultureInfo);
+			var actualRatioText = CompetitionLimit.GetActualRatioText(actualRatio.Value);
 
 			if (!competitionLimit.MinRatioIsOk(actualRatio.Value))
 			{

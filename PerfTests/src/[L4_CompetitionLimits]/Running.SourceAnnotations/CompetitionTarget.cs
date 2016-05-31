@@ -25,7 +25,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <param name="maxRatio">The maximum timing ratio relative to the baseline.</param>
 		/// <param name="fromResourceMetadata"><c>True</c> if the limits are obtained from XML resource.</param>
 		public CompetitionTarget(
-			[CanBeNull] Target target, double minRatio, double maxRatio, bool fromResourceMetadata) :
+			[CanBeNull] Target target,
+			double minRatio, double maxRatio,
+			bool fromResourceMetadata) :
 				base(minRatio, maxRatio)
 		{
 			Target = target;
@@ -37,7 +39,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <param name="other">Competition limits source.</param>
 		/// <param name="fromResourceMetadata"><c>True</c> if the limits are obtained from XML resource.</param>
 		public CompetitionTarget(
-			[CanBeNull] Target target, CompetitionLimit other, bool fromResourceMetadata) :
+			[CanBeNull] Target target,
+			[NotNull] CompetitionLimit other,
+			bool fromResourceMetadata) :
 				this(target, other.MinRatio, other.MaxRatio, fromResourceMetadata) { }
 		#endregion
 
@@ -63,7 +67,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		public bool IsChanged(CompetitionLimitProperties property) =>
 			property != CompetitionLimitProperties.None && _changedProperties.IsFlagSet(property);
 
-		#region Core logic for adjustiong the limits
+		#region Core logic for adjusting the limits
 		private void MarkAsChanged(CompetitionLimitProperties property) =>
 			_changedProperties = _changedProperties.SetFlag(property);
 
