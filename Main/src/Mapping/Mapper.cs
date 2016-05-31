@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 
 using CodeJam.Expressions;
+using CodeJam.Reflection;
 
 using JetBrains.Annotations;
 
@@ -19,6 +20,7 @@ namespace CodeJam.Mapping
 	{
 		MappingSchema                                  _mappingSchema;
 		List<Tuple<LambdaExpression,LambdaExpression>> _memberMappers;
+		Func<MemberAccessor,bool>                      _memberFilter = _ => true;
 
 		/// <summary>
 		/// Sets mapping schema.
@@ -33,6 +35,17 @@ namespace CodeJam.Mapping
 		}
 
 		/// <summary>
+		/// Adds a predicate to filter target members to map.
+		/// </summary>
+		/// <param name="predicate">Predicate to filter members to map.</param>
+		/// <returns>Returns this mapper.</returns>
+		public Mapper<TFrom,TTo> MemberFilter(Func<MemberAccessor,bool> predicate)
+		{
+			_memberFilter = predicate;
+			return this;
+		}
+
+		/// <summary>
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
@@ -42,6 +55,7 @@ namespace CodeJam.Mapping
 			{
 				MappingSchema = _mappingSchema ?? MappingSchema.Default,
 				MemberMappers = _memberMappers?.Select(mm => Tuple.Create(mm.Item1.GetMembersInfo(), mm.Item2)).ToArray(),
+				MemberFilter  = _memberFilter,
 			}
 			.GetExpression();
 
@@ -51,6 +65,26 @@ namespace CodeJam.Mapping
 		/// <returns>Mapping expression.</returns>
 		[Pure]
 		public Func<TFrom,TTo> GetMapper() => GetMapperExpression().Compile();
+
+		/// <summary>
+		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
+		/// </summary>
+		/// <returns>Mapping expression.</returns>
+		[Pure]
+		public Expression<Action<TFrom,TTo>> GetActionMapperExpression()
+			=> new ExpressionMapper<TFrom,TTo>
+			{
+				MappingSchema = _mappingSchema ?? MappingSchema.Default,
+				MemberMappers = _memberMappers?.Select(mm => Tuple.Create(mm.Item1.GetMembersInfo(), mm.Item2)).ToArray(),
+			}
+			.GetActionExpression();
+
+		/// <summary>
+		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
+		/// </summary>
+		/// <returns>Mapping expression.</returns>
+		[Pure]
+		public Action<TFrom,TTo> GetActionMapper() => GetActionMapperExpression().Compile();
 
 		/// <summary>
 		/// Adds member mapper.

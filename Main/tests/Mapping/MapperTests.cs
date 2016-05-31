@@ -165,6 +165,38 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
+		public void MapActionObjects()
+		{
+			var mapper = new Mapper<Source,Dest>()
+				.MapMember(_ => _.Field3,  _ => _.Field2)
+				.MapMember(_ => _.Field4,  _ => _.Field5)
+				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12) : 12)
+				.MapMember(_ => _.Field13, _ => _.Field13 ?? 13)
+				.MapMember(_ => _.Field14, _ => _.Field14 ?? 14)
+				.GetActionMapper();
+
+			var src  = new Source();
+			var dest = new Dest();
+			mapper(src, dest);
+
+			Assert.That(dest.Field1,             Is.EqualTo(1));
+			Assert.That(dest.Field3,             Is.EqualTo(2));
+			Assert.That(dest.Field4,             Is.EqualTo(src.Field5));
+			Assert.That(dest.Field6,             Is.EqualTo(src.Field6));
+			Assert.That(dest.Field7,             Is.EqualTo(src.Field7));
+			Assert.That(dest.Field8,             Is.EqualTo(src.Field8 ?? 0));
+			Assert.That(dest.Field9,             Is.EqualTo(src.Field9 ?? 0));
+			Assert.That(dest.Field10,            Is.EqualTo(src.Field10.ToString()));
+			Assert.That(dest.Field11.ToString(), Is.EqualTo(src.Field11));
+			Assert.That(dest.Field12,            Is.EqualTo(12));
+			Assert.That(dest.Field13,            Is.EqualTo(13));
+			Assert.That(dest.Field14,            Is.EqualTo(14));
+			Assert.That(dest.Field15,            Is.EqualTo(Gender.Female));
+			Assert.That(dest.Field16,            Is.EqualTo("M"));
+			Assert.That(dest.Field17,            Is.EqualTo(Enum2.Value2));
+		}
+
+		[Test]
 		public void MapObject()
 		{
 			var mapper = Map.GetMapper<Source,Source>();
@@ -189,6 +221,19 @@ namespace CodeJam.Mapping
 			Assert.That(dest.Field17, Is.EqualTo(src.Field17));
 		}
 
+		[Test]
+		public void MapFilterObjects()
+		{
+			var mapper = new Mapper<Source,Dest>()
+				.MemberFilter(m => m.Name != nameof(Source.Field7))
+				.GetMapper();
+
+			var src  = new Source();
+			var dest = mapper(src);
+
+			Assert.That(dest.Field7, Is.Not.EqualTo(src.Field7));
+		}
+
 		class Class1 { public int Field = 1; }
 		class Class2 { public int Field = 2; }
 		class Class3 { public Class1 Class = new Class1(); }
@@ -201,7 +246,7 @@ namespace CodeJam.Mapping
 			var src    = new Class3();
 			var dest   = mapper(src);
 
-			Assert.That(dest.Class.Field, Is.EqualTo(src.Class.Field));
+			Assert.That(dest.Class.Field, Is.Not.EqualTo(src.Class.Field));
 		}
 	}
 }
