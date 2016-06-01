@@ -6,6 +6,8 @@ using NUnit.Framework;
 
 namespace CodeJam.Mapping
 {
+	using System.Collections.Generic;
+
 	[TestFixture]
 	public class MapperTests
 	{
@@ -161,7 +163,7 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
-		public void MapObjects([Values(true,false)] bool useAction)
+		public void MapObjects1([Values(true,false)] bool useAction)
 		{
 			var map = new MapHelper<Source,Dest>().Map(useAction, m => m
 				.MapMember(_ => _.Field3,  _ => _.Field2)
@@ -169,6 +171,33 @@ namespace CodeJam.Mapping
 				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12) : 12)
 				.MapMember(_ => _.Field13, _ => _.Field13 ?? 13)
 				.MapMember(_ => _.Field14, _ => _.Field14 ?? 14));
+
+			Assert.That(map.To.Field1,             Is.EqualTo(1));
+			Assert.That(map.To.Field3,             Is.EqualTo(2));
+			Assert.That(map.To.Field4,             Is.EqualTo(map.From.Field5));
+			Assert.That(map.To.Field6,             Is.EqualTo(map.From.Field6));
+			Assert.That(map.To.Field7,             Is.EqualTo(map.From.Field7));
+			Assert.That(map.To.Field8,             Is.EqualTo(map.From.Field8 ?? 0));
+			Assert.That(map.To.Field9,             Is.EqualTo(map.From.Field9 ?? 0));
+			Assert.That(map.To.Field10,            Is.EqualTo(map.From.Field10.ToString()));
+			Assert.That(map.To.Field11.ToString(), Is.EqualTo(map.From.Field11));
+			Assert.That(map.To.Field12,            Is.EqualTo(12));
+			Assert.That(map.To.Field13,            Is.EqualTo(13));
+			Assert.That(map.To.Field14,            Is.EqualTo(14));
+			Assert.That(map.To.Field15,            Is.EqualTo(Gender.Female));
+			Assert.That(map.To.Field16,            Is.EqualTo("M"));
+			Assert.That(map.To.Field17,            Is.EqualTo(Enum2.Value2));
+		}
+
+		[Test]
+		public void MapObjects2([Values(true,false)] bool useAction)
+		{
+			var map = new MapHelper<Source,Dest>().Map(useAction, m => m
+				.ToMapping  ("Field3", "Field2")
+				.FromMapping(new Dictionary<string,string> { ["Field5"] = "Field4" })
+				.MapMember  (_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12) : 12)
+				.MapMember  (_ => _.Field13, _ => _.Field13 ?? 13)
+				.MapMember  (_ => _.Field14, _ => _.Field14 ?? 14));
 
 			Assert.That(map.To.Field1,             Is.EqualTo(1));
 			Assert.That(map.To.Field3,             Is.EqualTo(2));
@@ -242,7 +271,8 @@ namespace CodeJam.Mapping
 
 			src.Class2 = src.Class1;
 
-			var map = new MapHelper<Class5,Class6>().Map(useAction, src, m => m);
+			var map = new MapHelper<Class5,Class6>().Map(useAction, src, m => m
+				.ProcessCrossReferences(true));
 
 			Assert.That(map.To.Class1, Is.Not.Null);
 			Assert.That(map.To.Class2, Is.SameAs(map.To.Class1));

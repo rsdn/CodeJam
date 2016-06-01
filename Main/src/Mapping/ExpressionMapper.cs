@@ -54,6 +54,16 @@ namespace CodeJam.Mapping
 		/// </summary>
 		public Func<MemberAccessor,bool> MemberFilter { get; set; } = _ => true;
 
+		/// <summary>
+		/// Defines member name mapping for source types.
+		/// </summary>
+		public Dictionary<Type,Dictionary<string,string>> FromMapping { get; set; }
+
+		/// <summary>
+		/// Defines member name mapping for destination types.
+		/// </summary>
+		public Dictionary<Type,Dictionary<string,string>> ToMapping { get; set; }
+
 		#region GetExpression
 
 		/// <summary>
@@ -106,7 +116,19 @@ namespace CodeJam.Mapping
 						continue;
 				}
 
-				var fromMember = fromAccessor.Members.FirstOrDefault(mi => mi.Name == toMember.Name);
+				Dictionary<string,string> mapDic;
+				string toName;
+
+				if (ToMapping == null || !ToMapping.TryGetValue(toType, out mapDic) || !mapDic.TryGetValue(toMember.Name, out toName))
+					toName = toMember.Name;
+
+				var fromMember = fromAccessor.Members.FirstOrDefault(mi =>
+				{
+					string fromName;
+					if (FromMapping == null || !FromMapping.TryGetValue(fromExpression.Type, out mapDic) || !mapDic.TryGetValue(mi.Name, out fromName))
+						fromName = mi.Name;
+					return fromName == toName;
+				});
 
 				if (fromMember == null || !fromMember.HasGetter)
 					continue;
@@ -217,7 +239,19 @@ namespace CodeJam.Mapping
 						continue;
 				}
 
-				var fromMember = fromAccessor.Members.FirstOrDefault(mi => mi.Name == toMember.Name);
+				Dictionary<string,string> mapDic;
+				string toName;
+
+				if (ToMapping == null || !ToMapping.TryGetValue(toExpression.Type, out mapDic) || !mapDic.TryGetValue(toMember.Name, out toName))
+					toName = toMember.Name;
+
+				var fromMember = fromAccessor.Members.FirstOrDefault(mi =>
+				{
+					string fromName;
+					if (FromMapping == null || !FromMapping.TryGetValue(fromExpression.Type, out mapDic) || !mapDic.TryGetValue(mi.Name, out fromName))
+						fromName = mi.Name;
+					return fromName == toName;
+				});
 
 				if (fromMember == null || !fromMember.HasGetter)
 					continue;
