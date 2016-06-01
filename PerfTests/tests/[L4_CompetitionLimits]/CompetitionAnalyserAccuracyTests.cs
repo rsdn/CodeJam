@@ -73,17 +73,50 @@ namespace CodeJam.PerfTests
 		}
 
 		[Test]
+		public static void TestCompetitionAnalyserTooSlowOk()
+		{
+			var overrideConfig = new ManualCompetitionConfig(SingleRunConfig)
+			{
+				AllowSlowBenchmarks = true
+			};
+
+			var summary = CompetitionBenchmarkRunner.Run<TooSlowBenchmark>(overrideConfig);
+			var runState = CompetitionCore.RunState[summary];
+			var messages = runState.GetMessages();
+			Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			Assert.AreEqual(runState.RunNumber, 1);
+			Assert.AreEqual(runState.RunsLeft, 0);
+			Assert.AreEqual(runState.RunLimitExceeded, false);
+			Assert.AreEqual(runState.LooksLikeLastRun, true);
+			Assert.AreEqual(messages.Length, 1);
+
+			Assert.AreEqual(messages[0].RunNumber, 1);
+			Assert.AreEqual(messages[0].RunMessageNumber, 1);
+			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Informational);
+			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
+			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionAnnotateAnalyser: no warnings.");
+		}
+
+		[Test]
 		public static void TestCompetitionAnalyserHighAccuracyBenchmark()
 		{
 			var stopwatch = Stopwatch.StartNew();
 			var summary = CompetitionBenchmarkRunner.Run<HighAccuracyBenchmark>(_accurateConfig);
 			stopwatch.Stop();
 			var runState = CompetitionCore.RunState[summary];
+			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
-			Assert.LessOrEqual(stopwatch.Elapsed.TotalSeconds, 8);
+			Assert.AreEqual(messages.Length, 1);
+
+			Assert.AreEqual(messages[0].RunNumber, 1);
+			Assert.AreEqual(messages[0].RunMessageNumber, 1);
+			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Informational);
+			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
+			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionAnnotateAnalyser: no warnings.");
+			Assert.LessOrEqual(stopwatch.Elapsed.TotalSeconds, 8, "Timeout failed");
 		}
 
 		#region Benchmark classes
