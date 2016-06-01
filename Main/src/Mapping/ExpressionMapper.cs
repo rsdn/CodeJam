@@ -43,9 +43,18 @@ namespace CodeJam.Mapping
 		public Tuple<MemberInfo[],LambdaExpression>[] MemberMappers { get; set; }
 
 		/// <summary>
+		/// If true, processes object cross references. 
+		/// if default (null), the <see cref="GetExpression"/> method does not process cross references,
+		/// however the <see cref="GetActionExpression"/> method does.
+		/// </summary>
+		public bool? ProcessCrossReferences { get; set; }
+
+		/// <summary>
 		/// Filters target members to map.
 		/// </summary>
 		public Func<MemberAccessor,bool> MemberFilter { get; set; } = _ => true;
+
+		#region GetExpression
 
 		/// <summary>
 		/// Returns an expression that maps an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
@@ -58,49 +67,26 @@ namespace CodeJam.Mapping
 				return MappingSchema.GetConvertExpression<TFrom, TTo>();
 
 			var pFrom = Expression.Parameter(typeof(TFrom), "from");
-			var expr  = GetExpression(pFrom, null, typeof(TTo));
+
+			var expr = ProcessCrossReferences == true ?
+				GetActionExpressionImpl(pFrom, Expression.Constant(null, typeof(TTo))) :
+				GetExpressionImpl      (pFrom, typeof(TTo));
 
 			var l = Expression.Lambda<Func<TFrom,TTo>>(expr, pFrom);
 
 			return l;
 		}
 
-		/// <summary>
-		/// Returns an expression that maps an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
-		/// </summary>
-		/// <returns>Mapping expression.</returns>
-		[Pure]
-		public Expression<Action<TFrom,TTo>> GetActionExpression()
-		{
-			if (MappingSchema.IsScalarType(typeof(TFrom)))
-				throw new ArgumentException($"Type {typeof(TFrom).FullName} cannot be a scalar type. To convert scalar types use ConvertTo<TTo>.From(TFrom value).");
-
-			if (MappingSchema.IsScalarType(typeof(TTo)))
-				throw new ArgumentException($"Type {typeof(TTo).FullName} cannot be a scalar type. To convert scalar types use ConvertTo<TTo>.From(TFrom value).");
-
-			var pFrom = Expression.Parameter(typeof(TFrom), "from");
-			var pTo   = Expression.Parameter(typeof(TTo),   "to");
-			var expr  = GetExpression(pFrom, pTo, pTo.Type);
-
-			var l = Expression.Lambda<Action<TFrom,TTo>>(expr, pFrom, pTo);
-
-			return l;
-		}
-
-		Expression GetExpression(Expression fromExpression, Expression toExpression, Type toType)
+		Expression GetExpressionImpl(Expression fromExpression, Type toType)
 		{
 			var fromAccessor = TypeAccessor.GetAccessor(fromExpression.Type);
 			var toAccessor   = TypeAccessor.GetAccessor(toType);
-
-			var expressions = new List<Expression>();
-			var binds       = new List<MemberAssignment>();
+			var binds        = new List<MemberAssignment>();
 
 			foreach (var toMember in toAccessor.Members.Where(MemberFilter))
 			{
 				if (!toMember.HasSetter)
 					continue;
-
-				var setter = toMember.SetterExpression;
 
 				if (MemberMappers != null)
 				{
@@ -110,8 +96,9 @@ namespace CodeJam.Mapping
 					{
 						if (item.Item1.Length == 1 && item.Item1[0] == toMember.MemberInfo)
 						{
-							BuildAssign(expressions, binds, item.Item2, setter, fromExpression, item.Item2.Type, toExpression, toMember);
+							binds.Add(BuildAssignment(item.Item2, fromExpression, item.Item2.Type, toMember));
 							processed = true;
+							break;
 						}
 					}
 
@@ -128,26 +115,146 @@ namespace CodeJam.Mapping
 
 				if (MappingSchema.IsScalarType(fromMember.Type) || MappingSchema.IsScalarType(toMember.Type))
 				{
-					BuildAssign(expressions, binds, getter, setter, fromExpression, fromMember.Type, toExpression, toMember);
+					binds.Add(BuildAssignment(getter, fromExpression, fromMember.Type, toMember));
+				}
+				else if (fromMember.Type == toMember.Type)
+				{
+					binds.Add(Expression.Bind(toMember.MemberInfo, getter.ReplaceParameters(fromExpression)));
+				}
+				else
+				{
+					var getValue = getter.ReplaceParameters(fromExpression);
+					var expr     = Expression.Condition(
+						Expression.Equal(getValue, Expression.Constant(null, getValue.Type)),
+						Expression.Constant(MappingSchema.GetDefaultValue(toMember.Type), toMember.Type),
+						GetExpressionImpl(getValue, toMember.Type));
+
+					binds.Add(Expression.Bind(toMember.MemberInfo, expr));
 				}
 			}
 
-			if (toExpression == null)
-			{
-				var newExpression = Expression.New(toType.GetDefaultConstructor());
-				toExpression = binds.Count > 0 ? (Expression)Expression.MemberInit(newExpression, binds) : newExpression;
-			}
+			var newExpression  = Expression.New(toType.GetDefaultConstructor());
+			var initExpression = binds.Count > 0 ? (Expression)Expression.MemberInit(newExpression, binds) : newExpression;
 
-			expressions.Add(toExpression);
-
-			return expressions.Count > 1 ? Expression.Block(expressions) : expressions[0];
+			return initExpression;
 		}
 
-		void BuildAssign(
-			List<Expression>       expressions,
-			List<MemberAssignment> binds,
-			LambdaExpression       getter,
-			LambdaExpression       setter,
+		MemberAssignment BuildAssignment(LambdaExpression getter, Expression fromExpression, Type fromMemberType, MemberAccessor toMember)
+		{
+			var getValue = getter.ReplaceParameters(fromExpression);
+			var expr     = MappingSchema.GetConvertExpression(fromMemberType, toMember.Type);
+			var convert  = expr.ReplaceParameters(getValue);
+
+			return Expression.Bind(toMember.MemberInfo, convert);
+		}
+
+		#endregion
+
+		#region GetActionExpression
+
+		/// <summary>
+		/// Returns an expression that maps an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
+		/// </summary>
+		/// <returns>Mapping expression.</returns>
+		[Pure]
+		public Expression<Func<TFrom,TTo,TTo>> GetActionExpression()
+		{
+			if (MappingSchema.IsScalarType(typeof(TFrom)))
+				throw new ArgumentException($"Type {typeof(TFrom).FullName} cannot be a scalar type. To convert scalar types use ConvertTo<TTo>.From(TFrom value).");
+
+			if (MappingSchema.IsScalarType(typeof(TTo)))
+				throw new ArgumentException($"Type {typeof(TTo).FullName} cannot be a scalar type. To convert scalar types use ConvertTo<TTo>.From(TFrom value).");
+
+			var pFrom = Expression.Parameter(typeof(TFrom), "from");
+			var pTo   = Expression.Parameter(typeof(TTo),   "to");
+			var expr  = GetActionExpressionImpl(pFrom, pTo);
+
+			var l = Expression.Lambda<Func<TFrom,TTo,TTo>>(expr, pFrom, pTo);
+
+			return l;
+		}
+
+		Expression GetActionExpressionImpl(Expression fromExpression, Expression toExpression)
+		{
+			var fromAccessor = TypeAccessor.GetAccessor(fromExpression.Type);
+			var toAccessor   = TypeAccessor.GetAccessor(toExpression.  Type);
+
+			var expressions = new List<Expression>();
+			var locals      = new List<ParameterExpression>();
+			var localObject = Expression.Parameter(toExpression.Type, "obj");
+
+			locals.Add(localObject);
+
+			expressions.Add(Expression.Assign(
+				localObject,
+				Expression.Condition(
+					Expression.Equal(toExpression, Expression.Constant(null, toExpression.Type)),
+					Expression.New(toExpression.Type.GetDefaultConstructor()),
+					toExpression)));
+
+			foreach (var toMember in toAccessor.Members.Where(MemberFilter))
+			{
+				if (!toMember.HasSetter)
+					continue;
+
+				var setter = toMember.SetterExpression;
+
+				if (MemberMappers != null)
+				{
+					var processed = false;
+
+					foreach (var item in MemberMappers)
+					{
+						if (item.Item1.Length == 1 && item.Item1[0] == toMember.MemberInfo)
+						{
+							expressions.Add(BuildAssignment(item.Item2, setter, fromExpression, item.Item2.Type, localObject, toMember));
+							processed = true;
+							break;
+						}
+					}
+
+					if (processed)
+						continue;
+				}
+
+				var fromMember = fromAccessor.Members.FirstOrDefault(mi => mi.Name == toMember.Name);
+
+				if (fromMember == null || !fromMember.HasGetter)
+					continue;
+
+				var getter = fromMember.GetterExpression;
+
+				if (MappingSchema.IsScalarType(fromMember.Type) || MappingSchema.IsScalarType(toMember.Type))
+				{
+					expressions.Add(BuildAssignment(getter, setter, fromExpression, fromMember.Type, localObject, toMember));
+				}
+				else if (fromMember.Type == toMember.Type)
+				{
+					expressions.Add(setter.ReplaceParameters(localObject, getter.ReplaceParameters(fromExpression)));
+				}
+				else
+				{
+					var getValue = getter.ReplaceParameters(fromExpression);
+					var expr     = Expression.Condition(
+						Expression.Equal(getValue, Expression.Constant(null, getValue.Type)),
+						Expression.Constant(MappingSchema.GetDefaultValue(toMember.Type), toMember.Type),
+						toMember.HasGetter ?
+							GetActionExpressionImpl(getValue, toMember.GetterExpression.ReplaceParameters(localObject)) :
+							GetExpressionImpl      (getValue, toMember.Type));
+
+					expressions.Add(setter.ReplaceParameters(localObject, expr));
+				}
+			}
+
+			expressions.Add(localObject);
+
+			return Expression.Block(locals, expressions);
+
+		}
+
+		Expression BuildAssignment(
+			LambdaExpression getter,
+			LambdaExpression setter,
 			Expression fromExpression, Type fromMemberType,
 			Expression toExpression,   MemberAccessor toMember)
 		{
@@ -155,16 +262,9 @@ namespace CodeJam.Mapping
 			var expr     = MappingSchema.GetConvertExpression(fromMemberType, toMember.Type);
 			var convert  = expr.ReplaceParameters(getValue);
 
-			if (toExpression != null)
-			{
-				var setValue = setter.ReplaceParameters(toExpression, convert);
-				expressions.Add(setValue);
-			}
-			else
-			{
-				var setValue = Expression.Bind(toMember.MemberInfo, convert);
-				binds.Add(setValue);
-			}
+			return setter.ReplaceParameters(toExpression, convert);
 		}
+
+		#endregion
 	}
 }

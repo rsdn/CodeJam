@@ -51,13 +51,7 @@ namespace CodeJam.Mapping
 		/// <returns>Mapping expression.</returns>
 		[Pure]
 		public Expression<Func<TFrom,TTo>> GetMapperExpression()
-			=> new ExpressionMapper<TFrom,TTo>
-			{
-				MappingSchema = _mappingSchema ?? MappingSchema.Default,
-				MemberMappers = _memberMappers?.Select(mm => Tuple.Create(mm.Item1.GetMembersInfo(), mm.Item2)).ToArray(),
-				MemberFilter  = _memberFilter,
-			}
-			.GetExpression();
+			=> GetExpressionMapper().GetExpression();
 
 		/// <summary>
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
@@ -71,20 +65,15 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
 		[Pure]
-		public Expression<Action<TFrom,TTo>> GetActionMapperExpression()
-			=> new ExpressionMapper<TFrom,TTo>
-			{
-				MappingSchema = _mappingSchema ?? MappingSchema.Default,
-				MemberMappers = _memberMappers?.Select(mm => Tuple.Create(mm.Item1.GetMembersInfo(), mm.Item2)).ToArray(),
-			}
-			.GetActionExpression();
+		public Expression<Func<TFrom,TTo,TTo>> GetActionMapperExpression()
+			=> GetExpressionMapper().GetActionExpression();
 
 		/// <summary>
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
 		[Pure]
-		public Action<TFrom,TTo> GetActionMapper() => GetActionMapperExpression().Compile();
+		public Func<TFrom,TTo,TTo> GetActionMapper() => GetActionMapperExpression().Compile();
 
 		/// <summary>
 		/// Adds member mapper.
@@ -102,5 +91,13 @@ namespace CodeJam.Mapping
 
 			return this;
 		}
+
+		ExpressionMapper<TFrom,TTo> GetExpressionMapper()
+			=> new ExpressionMapper<TFrom,TTo>
+			{
+				MappingSchema = _mappingSchema ?? MappingSchema.Default,
+				MemberMappers = _memberMappers?.Select(mm => Tuple.Create(mm.Item1.GetMembersInfo(), mm.Item2)).ToArray(),
+				MemberFilter  = _memberFilter,
+			};
 	}
 }

@@ -9,9 +9,36 @@ namespace CodeJam.Mapping
 	[TestFixture]
 	public class MapperTests
 	{
-		class TestMap
+		class MapHelper<TFrom,TTo>
+			where TFrom : new()
+			where TTo   : new()
 		{
+			public MapHelper<TFrom,TTo> Map(bool action, Func<Mapper<TFrom,TTo>,Mapper<TFrom,TTo>> setter)
+				=> Map(action, new TFrom(), setter);
+
+			public MapHelper<TFrom,TTo> Map(bool action, TFrom fromObj, Func<Mapper<TFrom,TTo>,Mapper<TFrom,TTo>> setter)
+			{
+				var mapper = setter(new Mapper<TFrom,TTo>());
+
+				From = fromObj;
+
+				if (action)
+				{
+					To = mapper.GetActionMapper()(From, new TTo());
+				}
+				else
+				{
+					To = mapper.GetMapper()(From);
+				}
+
+				return this;
+			}
+
+			public TFrom From;
+			public TTo   To;
 		}
+
+		class TestMap {}
 
 		[Test]
 		public void ActionExpressionTest()
@@ -134,104 +161,62 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
-		public void MapObjects()
+		public void MapObjects([Values(true,false)] bool useAction)
 		{
-			var mapper = new Mapper<Source,Dest>()
+			var map = new MapHelper<Source,Dest>().Map(useAction, m => m
 				.MapMember(_ => _.Field3,  _ => _.Field2)
 				.MapMember(_ => _.Field4,  _ => _.Field5)
 				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12) : 12)
 				.MapMember(_ => _.Field13, _ => _.Field13 ?? 13)
-				.MapMember(_ => _.Field14, _ => _.Field14 ?? 14)
-				.GetMapper();
+				.MapMember(_ => _.Field14, _ => _.Field14 ?? 14));
 
-			var src  = new Source();
-			var dest = mapper(src);
-
-			Assert.That(dest.Field1,             Is.EqualTo(1));
-			Assert.That(dest.Field3,             Is.EqualTo(2));
-			Assert.That(dest.Field4,             Is.EqualTo(src.Field5));
-			Assert.That(dest.Field6,             Is.EqualTo(src.Field6));
-			Assert.That(dest.Field7,             Is.EqualTo(src.Field7));
-			Assert.That(dest.Field8,             Is.EqualTo(src.Field8 ?? 0));
-			Assert.That(dest.Field9,             Is.EqualTo(src.Field9 ?? 0));
-			Assert.That(dest.Field10,            Is.EqualTo(src.Field10.ToString()));
-			Assert.That(dest.Field11.ToString(), Is.EqualTo(src.Field11));
-			Assert.That(dest.Field12,            Is.EqualTo(12));
-			Assert.That(dest.Field13,            Is.EqualTo(13));
-			Assert.That(dest.Field14,            Is.EqualTo(14));
-			Assert.That(dest.Field15,            Is.EqualTo(Gender.Female));
-			Assert.That(dest.Field16,            Is.EqualTo("M"));
-			Assert.That(dest.Field17,            Is.EqualTo(Enum2.Value2));
+			Assert.That(map.To.Field1,             Is.EqualTo(1));
+			Assert.That(map.To.Field3,             Is.EqualTo(2));
+			Assert.That(map.To.Field4,             Is.EqualTo(map.From.Field5));
+			Assert.That(map.To.Field6,             Is.EqualTo(map.From.Field6));
+			Assert.That(map.To.Field7,             Is.EqualTo(map.From.Field7));
+			Assert.That(map.To.Field8,             Is.EqualTo(map.From.Field8 ?? 0));
+			Assert.That(map.To.Field9,             Is.EqualTo(map.From.Field9 ?? 0));
+			Assert.That(map.To.Field10,            Is.EqualTo(map.From.Field10.ToString()));
+			Assert.That(map.To.Field11.ToString(), Is.EqualTo(map.From.Field11));
+			Assert.That(map.To.Field12,            Is.EqualTo(12));
+			Assert.That(map.To.Field13,            Is.EqualTo(13));
+			Assert.That(map.To.Field14,            Is.EqualTo(14));
+			Assert.That(map.To.Field15,            Is.EqualTo(Gender.Female));
+			Assert.That(map.To.Field16,            Is.EqualTo("M"));
+			Assert.That(map.To.Field17,            Is.EqualTo(Enum2.Value2));
 		}
 
 		[Test]
-		public void MapActionObjects()
+		public void MapObject([Values(true,false)] bool useAction)
 		{
-			var mapper = new Mapper<Source,Dest>()
-				.MapMember(_ => _.Field3,  _ => _.Field2)
-				.MapMember(_ => _.Field4,  _ => _.Field5)
-				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12) : 12)
-				.MapMember(_ => _.Field13, _ => _.Field13 ?? 13)
-				.MapMember(_ => _.Field14, _ => _.Field14 ?? 14)
-				.GetActionMapper();
+			var map = new MapHelper<Source,Source>().Map(useAction, m => m);
 
-			var src  = new Source();
-			var dest = new Dest();
-			mapper(src, dest);
-
-			Assert.That(dest.Field1,             Is.EqualTo(1));
-			Assert.That(dest.Field3,             Is.EqualTo(2));
-			Assert.That(dest.Field4,             Is.EqualTo(src.Field5));
-			Assert.That(dest.Field6,             Is.EqualTo(src.Field6));
-			Assert.That(dest.Field7,             Is.EqualTo(src.Field7));
-			Assert.That(dest.Field8,             Is.EqualTo(src.Field8 ?? 0));
-			Assert.That(dest.Field9,             Is.EqualTo(src.Field9 ?? 0));
-			Assert.That(dest.Field10,            Is.EqualTo(src.Field10.ToString()));
-			Assert.That(dest.Field11.ToString(), Is.EqualTo(src.Field11));
-			Assert.That(dest.Field12,            Is.EqualTo(12));
-			Assert.That(dest.Field13,            Is.EqualTo(13));
-			Assert.That(dest.Field14,            Is.EqualTo(14));
-			Assert.That(dest.Field15,            Is.EqualTo(Gender.Female));
-			Assert.That(dest.Field16,            Is.EqualTo("M"));
-			Assert.That(dest.Field17,            Is.EqualTo(Enum2.Value2));
+			Assert.That(map.To,         Is.Not.SameAs(map.From));
+			Assert.That(map.To.Field1,  Is.EqualTo(map.From.Field1));
+			Assert.That(map.To.Field2,  Is.EqualTo(map.From.Field2));
+			Assert.That(map.To.Field5,  Is.EqualTo(map.From.Field5));
+			Assert.That(map.To.Field6,  Is.EqualTo(map.From.Field6));
+			Assert.That(map.To.Field7,  Is.EqualTo(map.From.Field7));
+			Assert.That(map.To.Field8,  Is.EqualTo(map.From.Field8));
+			Assert.That(map.To.Field9,  Is.EqualTo(map.From.Field9));
+			Assert.That(map.To.Field10, Is.EqualTo(map.From.Field10));
+			Assert.That(map.To.Field11, Is.EqualTo(map.From.Field11));
+			Assert.That(map.To.Field12, Is.EqualTo(map.From.Field12));
+			Assert.That(map.To.Field13, Is.EqualTo(map.From.Field13));
+			Assert.That(map.To.Field14, Is.EqualTo(map.From.Field14));
+			Assert.That(map.To.Field15, Is.EqualTo(map.From.Field15));
+			Assert.That(map.To.Field16, Is.EqualTo(map.From.Field16));
+			Assert.That(map.To.Field17, Is.EqualTo(map.From.Field17));
 		}
 
 		[Test]
-		public void MapObject()
+		public void MapFilterObjects([Values(true,false)] bool useAction)
 		{
-			var mapper = Map.GetMapper<Source,Source>();
-			var src    = new Source();
-			var dest   = mapper(src);
+			var map = new MapHelper<Source,Dest>().Map(useAction, mm => mm
+				.MemberFilter(m => m.Name != nameof(Source.Field7)));
 
-			Assert.That(src,          Is.Not.SameAs(dest));
-			Assert.That(dest.Field1,  Is.EqualTo(src.Field1));
-			Assert.That(dest.Field2,  Is.EqualTo(src.Field2));
-			Assert.That(dest.Field5,  Is.EqualTo(src.Field5));
-			Assert.That(dest.Field6,  Is.EqualTo(src.Field6));
-			Assert.That(dest.Field7,  Is.EqualTo(src.Field7));
-			Assert.That(dest.Field8,  Is.EqualTo(src.Field8));
-			Assert.That(dest.Field9,  Is.EqualTo(src.Field9));
-			Assert.That(dest.Field10, Is.EqualTo(src.Field10));
-			Assert.That(dest.Field11, Is.EqualTo(src.Field11));
-			Assert.That(dest.Field12, Is.EqualTo(src.Field12));
-			Assert.That(dest.Field13, Is.EqualTo(src.Field13));
-			Assert.That(dest.Field14, Is.EqualTo(src.Field14));
-			Assert.That(dest.Field15, Is.EqualTo(src.Field15));
-			Assert.That(dest.Field16, Is.EqualTo(src.Field16));
-			Assert.That(dest.Field17, Is.EqualTo(src.Field17));
-		}
-
-		[Test]
-		public void MapFilterObjects()
-		{
-			var mapper = new Mapper<Source,Dest>()
-				.MemberFilter(m => m.Name != nameof(Source.Field7))
-				.GetMapper();
-
-			var src  = new Source();
-			var dest = mapper(src);
-
-			Assert.That(dest.Field7, Is.Not.EqualTo(src.Field7));
+			Assert.That(map.To.Field7, Is.Not.EqualTo(map.From.Field7));
 		}
 
 		class Class1 { public int Field = 1; }
@@ -239,14 +224,28 @@ namespace CodeJam.Mapping
 		class Class3 { public Class1 Class = new Class1(); }
 		class Class4 { public Class2 Class = new Class2(); }
 
-		//[Test]
-		public void MapInnerObject1()
+		[Test]
+		public void MapInnerObject1([Values(true,false)] bool useAction)
 		{
-			var mapper = Map.GetMapper<Class3,Class4>();
-			var src    = new Class3();
-			var dest   = mapper(src);
+			var map = new MapHelper<Class3,Class4>().Map(useAction, m => m);
 
-			Assert.That(dest.Class.Field, Is.Not.EqualTo(src.Class.Field));
+			Assert.That(map.To.Class.Field, Is.EqualTo(map.From.Class.Field));
+		}
+
+		class Class5 { public Class1 Class1 = new Class1(); public Class1 Class2; }
+		class Class6 { public Class2 Class1 = new Class2(); public Class2 Class2 = null; }
+
+		//[Test]
+		public void MapInnerObject2([Values(true,false)] bool useAction)
+		{
+			var src = new Class5();
+
+			src.Class2 = src.Class1;
+
+			var map = new MapHelper<Class5,Class6>().Map(useAction, src, m => m);
+
+			Assert.That(map.To.Class1, Is.Not.Null);
+			Assert.That(map.To.Class2, Is.SameAs(map.To.Class1));
 		}
 	}
 }

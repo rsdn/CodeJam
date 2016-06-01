@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace CodeJam.Reflection
 	/// <summary>
 	/// Provides fast access to a type member.
 	/// </summary>
-
+	[DebuggerDisplay("Name = {Name}, Type = {Type}")]
 	[PublicAPI]
 	public class MemberAccessor
 	{
