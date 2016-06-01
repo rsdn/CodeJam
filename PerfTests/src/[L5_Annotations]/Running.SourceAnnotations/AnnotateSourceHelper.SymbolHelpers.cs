@@ -7,6 +7,9 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 
+using CodeJam.Collections;
+using CodeJam.PerfTests.Running.Core;
+using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Strings;
 
 using JetBrains.Annotations;
@@ -32,40 +35,44 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			// BASEDON: http://stackoverflow.com/questions/36649271/check-that-pdb-file-matches-to-the-source
 			public static bool TryGetSourceInfo(
 				MethodBase method,
+				CompetitionState competitionState,
 				out string sourceFileName,
-				out int firstCodeLine,
-				out string validationMessage)
+				out int firstCodeLine)
 			{
 				firstCodeLine = -1;
 				sourceFileName = null;
-				validationMessage = null;
 
-				var methodSymbols = TryGetMethodSymbols(method);
+				var methodSymbols = TryGetMethodSymbols(method, competitionState);
 				if (methodSymbols != null)
 				{
 					int[] startLines;
 					ISymUnmanagedDocument[] documents;
-					GetDocsAndLines(methodSymbols, out documents, out startLines);
 
-					if (documents.Length == 0)
-						throw new InvalidOperationException($"Method {method}, no PDB data available");
-
-					Array.Sort(startLines, documents);
-					var doc = new SymDocument(documents[0]);
-
-					validationMessage = ValidateFileHash(doc);
-					if (validationMessage == null)
+					if (TryGetDocsAndLines(methodSymbols, competitionState, out documents, out startLines))
 					{
-						sourceFileName = doc.Url;
-						firstCodeLine = startLines[0];
+						Array.Sort(startLines, documents);
+						var doc = new SymDocument(documents[0]);
+
+						if (TryValidateFileHash(doc, competitionState))
+						{
+							sourceFileName = doc.Url;
+							firstCodeLine = startLines[0];
+						}
+					}
+					else
+					{
+						// ReSharper disable once PossibleNullReferenceException
+						competitionState.WriteMessage(
+							MessageSource.Analyser, MessageSeverity.SetupError,
+							$"Method {method.DeclaringType.Name}.{method.Name}, no PDB data available");
 					}
 				}
 
-				return validationMessage == null;
+				return sourceFileName != null;
 			}
 
 			// ReSharper disable once SuggestBaseTypeForParameter
-			private static ISymUnmanagedMethod TryGetMethodSymbols(MethodBase method)
+			private static ISymUnmanagedMethod TryGetMethodSymbols(MethodBase method, CompetitionState competitionState)
 			{
 				try
 				{
@@ -79,52 +86,74 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					var binder = (ISymUnmanagedBinder)new CorSymBinder();
 
 					ISymUnmanagedReader reader;
-					var hr2 = binder.GetReaderForFile(import, codeBase, codeBaseDirectory, out reader);
-					ThrowExceptionForHR(hr2);
+					var hr = binder.GetReaderForFile(import, codeBase, codeBaseDirectory, out reader);
+					ThrowExceptionForHR(hr);
 
 					ISymUnmanagedMethod methodSymbols;
-					hr2 = reader.GetMethod(method.MetadataToken, out methodSymbols);
-					ThrowExceptionForHR(hr2);
+					hr = reader.GetMethod(method.MetadataToken, out methodSymbols);
+					ThrowExceptionForHR(hr);
 					return methodSymbols;
 				}
-				catch (COMException)
+				catch (COMException ex)
 				{
+					// ReSharper disable once PossibleNullReferenceException
+					competitionState.WriteExceptionMessage(
+						MessageSource.Analyser, MessageSeverity.ExecutionError,
+						$"{method.DeclaringType.Name}.{method.Name}: Could not load annotation", ex);
+
 					return null;
 				}
 			}
 
-			private static void GetDocsAndLines(
+			private static bool TryGetDocsAndLines(
 				ISymUnmanagedMethod methodSymbols,
+				CompetitionState competitionState,
 				out ISymUnmanagedDocument[] documents,
 				out int[] startLines)
 			{
-				int numAvailable;
-				var hr = methodSymbols.GetSequencePointCount(out numAvailable);
-				ThrowExceptionForHR(hr);
-
-				documents = new ISymUnmanagedDocument[numAvailable];
-				startLines = new int[numAvailable];
-
-				if (numAvailable > 0)
+				documents = Array<ISymUnmanagedDocument>.Empty;
+				startLines = Array<int>.Empty;
+				try
 				{
-					var offsets = new int[numAvailable];
-					var startColumns = new int[numAvailable];
-					var endLines = new int[numAvailable];
-					var endColumns = new int[numAvailable];
-
-					int numRead;
-					hr = methodSymbols.GetSequencePoints(
-						numAvailable, out numRead,
-						offsets, documents,
-						startLines, startColumns,
-						endLines, endColumns);
+					int numAvailable;
+					var hr = methodSymbols.GetSequencePointCount(out numAvailable);
 					ThrowExceptionForHR(hr);
 
-					if (numRead != numAvailable)
+					documents = new ISymUnmanagedDocument[numAvailable];
+					startLines = new int[numAvailable];
+
+					if (numAvailable > 0)
 					{
-						throw new InvalidOperationException($"Read only {numRead} of {numAvailable} sequence points.");
+						var offsets = new int[numAvailable];
+						var startColumns = new int[numAvailable];
+						var endLines = new int[numAvailable];
+						var endColumns = new int[numAvailable];
+
+						int numRead;
+						hr = methodSymbols.GetSequencePoints(
+							numAvailable, out numRead,
+							offsets, documents,
+							startLines, startColumns,
+							endLines, endColumns);
+						ThrowExceptionForHR(hr);
+
+						if (numRead != numAvailable)
+						{
+							throw new COMException($"Read only {numRead} of {numAvailable} sequence points.");
+						}
 					}
 				}
+				catch (COMException ex)
+				{
+					// ReSharper disable once PossibleNullReferenceException
+					competitionState.WriteExceptionMessage(
+						MessageSource.Analyser, MessageSeverity.ExecutionError,
+						"Could not parse methodSymbols", ex);
+
+					return false;
+				}
+
+				return startLines.Length > 0;
 			}
 
 			#region Validate checksum
@@ -142,23 +171,41 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			private const string Sha1AlgName = "SHA1";
 			private const string Md5AlgName = "Md5";
 
-			private static string ValidateCore(
+			private static bool TryValidateFileHash(SymDocument doc, CompetitionState competitionState)
+			{
+				switch (doc.ChecksumAlgorithm)
+				{
+					case ChecksumAlgorithmKind.Md5:
+						return ValidateCore(doc.Url, _md5Hashes, Md5AlgName, doc.Checksum, competitionState);
+					case ChecksumAlgorithmKind.Sha1:
+						return ValidateCore(doc.Url, _sha1Hashes, Sha1AlgName, doc.Checksum, competitionState);
+					default:
+						throw CodeExceptions.UnexpectedArgumentValue(nameof(doc.ChecksumAlgorithm), doc.ChecksumAlgorithm);
+				}
+			}
+
+			private static bool ValidateCore(
 				string file,
 				ConcurrentDictionary<string, byte[]> fileHashes,
 				string hashAlgName,
-				byte[] expectedChecksum)
+				byte[] expectedChecksum, CompetitionState competitionState)
 			{
 				var actualChecksum = fileHashes.GetOrAdd(file, f => TryGetChecksum(f, hashAlgName));
 				if (expectedChecksum.SequenceEqual(actualChecksum))
 				{
-					// ReSharper disable once RedundantAssignment
-					return null;
+					return true;
 				}
 
 				var expected = expectedChecksum.ToHexString();
 				var actual = actualChecksum.ToHexString();
 
-				return $"{hashAlgName} checksum validation failed. File '{file}'.\r\nActual: 0x{actual}\r\nExpected: 0x{expected}";
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.SetupError,
+					$"{hashAlgName} checksum validation failed. File '{file}'." +
+						$"{Environment.NewLine}\tActual: 0x{actual}" +
+						$"{Environment.NewLine}\tExpected: 0x{expected}");
+
+				return false;
 			}
 
 			private static byte[] TryGetChecksum(string file, string hashAlgName)
@@ -171,20 +218,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				{
 					// ReSharper disable once PossibleNullReferenceException
 					return h.ComputeHash(f);
-				}
-			}
-
-			private static string ValidateFileHash(
-				SymDocument doc)
-			{
-				switch (doc.ChecksumAlgorithm)
-				{
-					case ChecksumAlgorithmKind.Md5:
-						return ValidateCore(doc.Url, _md5Hashes, Md5AlgName, doc.Checksum);
-					case ChecksumAlgorithmKind.Sha1:
-						return ValidateCore(doc.Url, _sha1Hashes, Sha1AlgName, doc.Checksum);
-					default:
-						throw new ArgumentOutOfRangeException(nameof(doc.ChecksumAlgorithm), doc.ChecksumAlgorithm, null);
 				}
 			}
 			#endregion

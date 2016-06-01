@@ -76,7 +76,7 @@ namespace CodeJam.PerfTests
 			[CompetitionBaseline]
 			public void Baseline() => Thread.SpinWait(SpinCount);
 
-			[CompetitionBenchmark(9.70, 30.90)]
+			[CompetitionBenchmark(9.50, 31.50)]
 			public void SlowerX10() => Thread.SpinWait(20 * SpinCount);
 		}
 		#endregion

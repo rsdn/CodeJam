@@ -6,9 +6,11 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
 ## TODO:
+ * Check if we're doing double loosing for logged benchmark limits.
  * Tests for broken log annotations.
  * Check competition limits parsing.
  * Logging: write validator messages immediately?
+ * Naming: Annotations <> Limits?
  * Naming: Annotate <> Adjust?
  * Naming: Runs -> Reruns?
  * ability to pass ICompetitionConfig via attrubute?

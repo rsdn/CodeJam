@@ -59,6 +59,28 @@ namespace CodeJam.PerfTests.Running.Core
 			warnings.Add(new Warning(severity.ToString(), message, report));
 		}
 
+		/// <summary>Writes the setup exception message.</summary>
+		/// <param name="competitionState">State of the run.</param>
+		/// <param name="messageSource">The source of the message.</param>
+		/// <param name="messageSeverity">Severity of the message.</param>
+		/// <param name="origin">The prefix to be used in message.</param>
+		/// <param name="ex">The exception to write.</param>
+		public static void WriteExceptionMessage(
+			[NotNull] this CompetitionState competitionState,
+			MessageSource messageSource, MessageSeverity messageSeverity,
+			[NotNull] string origin,
+			[NotNull] Exception ex)
+		{
+			Code.NotNull(competitionState, nameof(competitionState));
+			Code.NotNullNorEmpty(origin, nameof(origin));
+			Code.NotNull(ex, nameof(ex));
+
+			competitionState.WriteMessage(
+				messageSource, messageSeverity,
+				$"{origin}. Exception: {ex.Message}.");
+			competitionState.Logger.WriteLineError(ex.ToString());
+		}
+
 		/// <summary>Helper method to dump the content of the message into logger.</summary>
 		/// <param name="logger">The logger the message will be dumped to.</param>
 		/// <param name="message">The message to log.</param>
@@ -115,11 +137,9 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 			catch (Exception ex)
 			{
-				competitionState.Logger.WriteLineError(ex.ToString());
-				competitionState.WriteMessage(
-					MessageSource.BenchmarkRunner,
-					MessageSeverity.ExecutionError,
-					ex.Message);
+				competitionState.WriteExceptionMessage(
+					MessageSource.BenchmarkRunner, MessageSeverity.ExecutionError,
+					$"Benchmark {benchmarkType.Name}", ex);
 			}
 
 			FillMessagesAfterLastRun(competitionState);

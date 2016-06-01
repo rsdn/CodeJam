@@ -9,6 +9,8 @@ using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 
+using JetBrains.Annotations;
+
 using NUnit.Framework;
 
 using static CodeJam.PerfTests.PerfTestConfig;
@@ -120,6 +122,7 @@ namespace CodeJam.PerfTests
 		}
 
 		#region Benchmark classes
+		[PublicAPI]
 		public class TooFastBenchmark
 		{
 			[Benchmark]
@@ -144,11 +147,13 @@ namespace CodeJam.PerfTests
 				return a;
 			}
 		}
+
 		public class TooSlowBenchmark
 		{
 			[CompetitionBenchmark(DoesNotCompete = true)]
 			public void TooSlow() => Thread.Sleep(550);
 		}
+
 		public class HighAccuracyBenchmark
 		{
 			[CompetitionBaseline]

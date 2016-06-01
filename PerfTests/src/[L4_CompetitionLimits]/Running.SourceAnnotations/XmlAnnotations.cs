@@ -150,18 +150,16 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			}
 			catch (ArgumentException ex)
 			{
-				competitionState.WriteMessage(
+				competitionState.WriteExceptionMessage(
 					MessageSource.Analyser, MessageSeverity.SetupError,
-					$"{origin}: Could not parse annotation. Exception: {ex.Message}.");
-				competitionState.Logger.WriteLineError(ex.ToString());
+					$"{origin}: Could not parse annotation", ex);
 				return null;
 			}
 			catch (XmlException ex)
 			{
-				competitionState.WriteMessage(
+				competitionState.WriteExceptionMessage(
 					MessageSource.Analyser, MessageSeverity.SetupError,
-					$"{origin}: Could not parse annotation. Exception: {ex.Message}.");
-				competitionState.Logger.WriteLineError(ex.ToString());
+					$"{origin}: Could not parse annotation", ex);
 				return null;
 			}
 
@@ -275,10 +273,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 				if (buffer.Length > 0)
 				{
-					var xDoc = TryParseBenchmarksDocFromLogCore(buffer.ToString(), competitionState, logUri, xmlStartLineNumber);
-					if (xDoc != null)
+					var benchmarksDoc = TryParseBenchmarksDocFromLogCore(
+						buffer.ToString(), competitionState, logUri, xmlStartLineNumber);
+					if (benchmarksDoc != null)
 					{
-						result.Add(xDoc);
+						result.Add(benchmarksDoc);
 					}
 				}
 			}
@@ -365,10 +364,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			var competitionNode = matchingNodes.SingleOrDefault();
 			if (competitionNode == null)
 			{
-				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.Informational,
-					$"Xml anotations for {competitionName}.{candidateName}: no annotation exists.");
-
 				return null;
 			}
 
@@ -413,7 +408,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				else
 				{
 					competitionState.WriteMessage(
-						MessageSource.Analyser, MessageSeverity.Informational,
+						MessageSource.Analyser, MessageSeverity.SetupError,
 						$"Xml anotations for {target.Type.Name}.{target.Method.Name}: could not parse {limitProperty}.");
 				}
 			}
@@ -421,7 +416,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return result;
 		}
 
-		/// <summary>Adds or update the XML doc from the competition target.</summary>
+		/// <summary>Adds or updates the XML doc from the competition target.</summary>
 		/// <param name="benchmarksDoc">The document that will be updated.</param>
 		/// <param name="competitionTarget">The competition target.</param>
 		public static void AddOrUpdateCompetitionTarget(

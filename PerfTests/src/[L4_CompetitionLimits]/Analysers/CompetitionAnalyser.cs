@@ -49,6 +49,10 @@ namespace CodeJam.PerfTests.Analysers
 		/// </summary>
 		/// <value>Total count of retries performed if the validation failed.</value>
 		public int MaxRerunsIfValidationFailed { get; set; }
+
+		/// <summary>Log competition limits.</summary>
+		/// <value><c>true</c> if competition limits should be logged; otherwise, <c>false</c>.</value>
+		public bool LogAnnotationResults { get; set; }
 		#endregion
 
 		/// <summary>Performs limit validation for competition benchmarks.</summary>
@@ -76,12 +80,17 @@ namespace CodeJam.PerfTests.Analysers
 				ValidatePostconditions(summary, warnings);
 			}
 
+			if (competitionState.LooksLikeLastRun && LogAnnotationResults)
+			{
+				XmlAnnotations.LogCompetitionTargets(competitionTargets.Values, competitionState);
+			}
+
 			return warnings.ToArray();
 		}
 
 		#region Parsing competition target info
 		/// <summary>Refills the competition targets collection.</summary>
-		/// <param name="competitionTargets">The  collection to be filled with competition targets.</param>
+		/// <param name="competitionTargets">The collection to be filled with competition targets.</param>
 		/// <param name="summary">Summary for the run.</param>
 		protected virtual void InitCompetitionTargets(
 			CompetitionTargets competitionTargets,
@@ -150,8 +159,17 @@ namespace CodeJam.PerfTests.Analysers
 				return new CompetitionTarget(target, fallbackLimit, true);
 
 			var result = XmlAnnotations.TryParseCompetitionTarget(target, resourceDoc, competitionState);
-			return result ??
-				new CompetitionTarget(target, fallbackLimit, true);
+
+			if (result == null)
+			{
+				// TODO: reusable target.ToString() ?
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.Informational,
+					$"Xml anotations for {target.Type.Name}.{target.Method.Name}: no annotation exists.");
+
+				return new CompetitionTarget(target, fallbackLimit, true);
+			}
+			return result;
 		}
 		#endregion
 
