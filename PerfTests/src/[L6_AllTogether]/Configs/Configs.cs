@@ -27,7 +27,7 @@ namespace CodeJam.PerfTests.Configs
 			Add(
 				new Job
 				{
-					IterationTime = 10,
+					IterationTime = 20,
 					LaunchCount = 1,
 					WarmupCount = 10,
 					TargetCount = 10,
