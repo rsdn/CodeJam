@@ -11,6 +11,7 @@ namespace CodeJam.PerfTests
 	[TestFixture(Category = "BenchmarkDotNet")]
 	public class HostLoggerTests
 	{
+#region Test helpers
 		private const string LogInput = @"
 not logged
 not logged
@@ -87,22 +88,8 @@ logged
 // !--> logged
 ";
 
-		[Test]
-		public void TestHostLoggerAllMessages()
+		private static void LogMessages(HostLogger logger)
 		{
-			var lines = LogInput.Split(new[] { "\r\n" }, StringSplitOptions.None);
-			var output = new AccumulationLogger();
-			var logger = new HostLogger(output, HostLogMode.AllMessages);
-			foreach (var line in lines)
-			{
-				logger.WriteLine(line);
-			}
-
-			Assert.AreEqual(output.GetLog(), LogInput + "\r\n");
-
-			output = new AccumulationLogger();
-			logger = new HostLogger(output, HostLogMode.AllMessages);
-
 			logger.Write(LogKind.Error, "A");
 			logger.Write(LogKind.Default, "B");
 			logger.Write(LogKind.Header, "C");
@@ -128,6 +115,26 @@ logged
 			logger.WriteLine(LogKind.Default, @"TST8
 // !TST9
 TST10");
+		} 
+#endregion
+
+		[Test]
+		public void TestHostLoggerAllMessages()
+		{
+			var lines = LogInput.Split(new[] { "\r\n" }, StringSplitOptions.None);
+			var output = new AccumulationLogger();
+			var logger = new HostLogger(output, HostLogMode.AllMessages);
+			foreach (var line in lines)
+			{
+				logger.WriteLine(line);
+			}
+
+			Assert.AreEqual(output.GetLog(), LogInput + "\r\n");
+
+			output = new AccumulationLogger();
+			logger = new HostLogger(output, HostLogMode.AllMessages);
+
+			LogMessages(logger);
 
 			// ReSharper disable once StringLiteralTypo
 			const string expected = @"ABCDEFGH
@@ -150,7 +157,6 @@ TST10
 ";
 			Assert.AreEqual(output.GetLog(), expected);
 		}
-
 		[Test]
 		public void TestHostLoggerPrefixedAndErrors()
 		{
@@ -167,31 +173,7 @@ TST10
 			output = new AccumulationLogger();
 			logger = new HostLogger(output, HostLogMode.PrefixedAndErrors);
 
-			logger.Write(LogKind.Error, "A");
-			logger.Write(LogKind.Default, "B");
-			logger.Write(LogKind.Header, "C");
-			logger.Write(LogKind.Help, "D");
-			logger.Write(LogKind.Info, "E");
-			logger.Write(LogKind.Result, "F");
-			logger.Write(LogKind.Statistic, "G");
-			logger.Write(LogKind.Error, "H");
-			logger.WriteLine(LogKind.Error, "");
-			logger.WriteLine(LogKind.Error, "TST0");
-			logger.WriteLine(LogKind.Info, "// !TST1");
-			logger.WriteLine(LogKind.Info, "TST2");
-			logger.WriteLine(LogKind.Error, "// !<--");
-			logger.WriteLine(LogKind.Info, "TST3");
-			logger.WriteLine(LogKind.Info, "// !<--");
-			logger.WriteLine(LogKind.Info, "TST4");
-			logger.WriteLine();
-			logger.WriteLine(LogKind.Error, "TST5");
-			logger.WriteLine(LogKind.Default, "// !-->");
-			logger.WriteLine(LogKind.Default, "TST6");
-			logger.WriteLine(LogKind.Default, "// !-->");
-			logger.WriteLine(LogKind.Default, "TST7");
-			logger.WriteLine(LogKind.Default, @"TST8
-// !TST9
-TST10");
+			LogMessages(logger);
 
 			const string expected = @"AH
 TST0
@@ -226,31 +208,7 @@ TST6
 			output = new AccumulationLogger();
 			logger = new HostLogger(output, HostLogMode.PrefixedOnly);
 
-			logger.Write(LogKind.Error, "A");
-			logger.Write(LogKind.Default, "B");
-			logger.Write(LogKind.Header, "C");
-			logger.Write(LogKind.Help, "D");
-			logger.Write(LogKind.Info, "E");
-			logger.Write(LogKind.Result, "F");
-			logger.Write(LogKind.Statistic, "G");
-			logger.Write(LogKind.Error, "H");
-			logger.WriteLine(LogKind.Error, "");
-			logger.WriteLine(LogKind.Error, "TST0");
-			logger.WriteLine(LogKind.Info, "// !TST1");
-			logger.WriteLine(LogKind.Info, "TST2");
-			logger.WriteLine(LogKind.Error, "// !<--");
-			logger.WriteLine(LogKind.Info, "TST3");
-			logger.WriteLine(LogKind.Info, "// !<--");
-			logger.WriteLine(LogKind.Info, "TST4");
-			logger.WriteLine();
-			logger.WriteLine(LogKind.Error, "TST5");
-			logger.WriteLine(LogKind.Default, "// !-->");
-			logger.WriteLine(LogKind.Default, "TST6");
-			logger.WriteLine(LogKind.Default, "// !-->");
-			logger.WriteLine(LogKind.Default, "TST7");
-			logger.WriteLine(LogKind.Default, @"TST8
-// !TST9
-TST10");
+			LogMessages(logger);
 
 			const string expected = @"// !TST1
 // !<--

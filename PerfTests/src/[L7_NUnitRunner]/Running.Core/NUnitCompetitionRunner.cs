@@ -18,8 +18,6 @@ namespace CodeJam.PerfTests.Running.Core
 	{
 		protected class NUnitHostLogger : HostLogger
 		{
-			private readonly AccumulationLogger _logger = new AccumulationLogger();
-
 			public NUnitHostLogger(HostLogMode logMode)
 				: base(new AccumulationLogger(), logMode) { }
 
@@ -28,9 +26,32 @@ namespace CodeJam.PerfTests.Running.Core
 			public string GetLog() => WrappedLogger.GetLog();
 		}
 
+		#region Overrides of CompetitionRunnerBase
+		public override CompetitionState RunCompetition(Type benchmarkType, ICompetitionConfig competitionConfig)
+		{
+			var currentDirectory = Environment.CurrentDirectory;
+			try
+			{
+				// WORKAROUND: https://github.com/nunit/nunit3-vs-adapter/issues/38
+				// NUnit 3.0 does not alter current directory at all.
+				// So, we had to do it ourselves.
+				if (TestContext.CurrentContext.WorkDirectory != null)
+				{
+					Environment.CurrentDirectory = TestContext.CurrentContext.WorkDirectory;
+				}
+
+				return base.RunCompetition(benchmarkType, competitionConfig);
+			}
+			finally
+			{
+				Environment.CurrentDirectory = currentDirectory;
+			}
+		}
+		#endregion
+
 		#region Host-related logic
-		protected override HostLogger CreateHostLogger(ICompetitionConfig competitionConfig) =>
-			new NUnitHostLogger(competitionConfig.DebugMode? HostLogMode.AllMessages: HostLogMode.PrefixedOnly);
+		protected override HostLogger CreateHostLogger(HostLogMode hostLogMode) =>
+			new NUnitHostLogger(hostLogMode);
 
 		protected override void ReportHostLogger(HostLogger logger, Summary summary)
 		{
@@ -47,7 +68,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			// Dumping all captured output below the benchmark results
 			var nUnitLogger = (NUnitHostLogger)logger;
-			outLogger.WriteLine(nUnitLogger.GetLog());
+			outLogger.Write(nUnitLogger.GetLog());
 		}
 
 		protected override void ReportExecutionErrors(string messages)

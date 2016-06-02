@@ -22,9 +22,9 @@ namespace CodeJam.PerfTests
 		public static void TestCompetitionAnalyserEmptyBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var summary = CompetitionBenchmarkRunner.Run<EmptyBenchmark>(SingleRunConfig);
-			var runState = CompetitionCore.RunState[summary];
+			var runState = new PerfTestRunner().Run<EmptyBenchmark>(SingleRunConfig);
 			var messages = runState.GetMessages();
+			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, 0);
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
 			Assert.AreEqual(runState.RunNumber, 1);
@@ -39,9 +39,9 @@ namespace CodeJam.PerfTests
 		public static void TestCompetitionAnalyserNoBaselineOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var summary = CompetitionBenchmarkRunner.Run<NoBaselineOkBenchmark>(SingleRunConfig);
-			var runState = CompetitionCore.RunState[summary];
+			var runState = new PerfTestRunner().Run<NoBaselineOkBenchmark>(SingleRunConfig);
 			var messages = runState.GetMessages();
+			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
 			Assert.AreEqual(runState.RunNumber, 1);
@@ -56,9 +56,9 @@ namespace CodeJam.PerfTests
 		public static void TestCompetitionAnalyserOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var summary = CompetitionBenchmarkRunner.Run<OkBenchmark>(SingleRunConfig);
-			var runState = CompetitionCore.RunState[summary];
+			var runState = new PerfTestRunner().Run<OkBenchmark>(SingleRunConfig);
 			var messages = runState.GetMessages();
+			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
 			Assert.AreEqual(runState.RunNumber, 1);
@@ -73,9 +73,9 @@ namespace CodeJam.PerfTests
 		public static void TestCompetitionAnalyserXmlOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var summary = CompetitionBenchmarkRunner.Run<XmlOkBenchmark>(SingleRunConfig);
-			var runState = CompetitionCore.RunState[summary];
+			var runState = new PerfTestRunner().Run<XmlOkBenchmark>(SingleRunConfig);
 			var messages = runState.GetMessages();
+			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
 			Assert.AreEqual(runState.RunNumber, 1);
@@ -90,9 +90,9 @@ namespace CodeJam.PerfTests
 		public static void TestCompetitionAnalyserNoBaselineFailBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var summary = CompetitionBenchmarkRunner.Run<NoBaselineFailBenchmark>(SingleRunConfig);
-			var runState = CompetitionCore.RunState[summary];
+			var runState = new PerfTestRunner().Run<NoBaselineFailBenchmark>(SingleRunConfig);
 			var messages = runState.GetMessages();
+			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
 			Assert.AreEqual(runState.RunNumber, 1);
@@ -111,9 +111,9 @@ namespace CodeJam.PerfTests
 		public static void TestCompetitionAnalyserFailBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var summary = CompetitionBenchmarkRunner.Run<CompetitionLimitsFailBenchmark>(SingleRunConfig);
-			var runState = CompetitionCore.RunState[summary];
+			var runState = new PerfTestRunner().Run<CompetitionLimitsFailBenchmark>(SingleRunConfig);
 			var messages = runState.GetMessages();
+			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, 3 * ExpectedRunCount); // 3x rerun
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
 			Assert.AreEqual(runState.RunNumber, 3);

@@ -58,9 +58,9 @@ namespace CodeJam
 			base.ReportWarningsAsErrors = ReportWarningsAsErrors;
 			if (AnnotateOnRun)
 			{
+				LogAnnotationResults = true;
 				UpdateSourceAnnotations = true;
 				base.IgnoreExistingAnnotations = IgnoreExistingAnnotations;
-				LogAnnotationResults = true;
 			}
 		}
 	}

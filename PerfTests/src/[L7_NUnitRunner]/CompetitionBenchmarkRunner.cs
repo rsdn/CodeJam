@@ -38,24 +38,9 @@ namespace CodeJam.PerfTests
 		public static Summary RunCompetition(
 			Type benchmarkType, ICompetitionConfig config)
 		{
-			var currentDirectory = Environment.CurrentDirectory;
-			try
-			{
-				// WORKAROUND: https://github.com/nunit/nunit3-vs-adapter/issues/38
-				// NUnit 3.0 does not alter current directory at all.
-				// So, we had to do it ourselves.
-				if (TestContext.CurrentContext.WorkDirectory != null)
-				{
-					Environment.CurrentDirectory = TestContext.CurrentContext.WorkDirectory;
-				}
-
-				var runner = new NUnitCompetitionRunner();
-				return runner.RunCompetition(benchmarkType, config);
-			}
-			finally
-			{
-				Environment.CurrentDirectory = currentDirectory;
-			}
+			var runner = new NUnitCompetitionRunner();
+			return runner.RunCompetition(benchmarkType, config)
+				?.LastRunSummary;
 		}
 		#endregion
 	}

@@ -31,9 +31,9 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestCompetitionAnalyserTooFastBenchmark()
 		{
-			var summary = CompetitionBenchmarkRunner.Run<TooFastBenchmark>(_accurateConfig);
-			var runState = CompetitionCore.RunState[summary];
+			var runState = new PerfTestRunner().Run<TooFastBenchmark>(_accurateConfig);
 			var messages = runState.GetMessages();
+			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
@@ -53,9 +53,9 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestCompetitionAnalyserTooSlowBenchmark()
 		{
-			var summary = CompetitionBenchmarkRunner.Run<TooSlowBenchmark>(SingleRunConfig);
-			var runState = CompetitionCore.RunState[summary];
+			var runState = new PerfTestRunner().Run<TooSlowBenchmark>(SingleRunConfig);
 			var messages = runState.GetMessages();
+			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
@@ -82,9 +82,9 @@ namespace CodeJam.PerfTests
 				AllowSlowBenchmarks = true
 			};
 
-			var summary = CompetitionBenchmarkRunner.Run<TooSlowBenchmark>(overrideConfig);
-			var runState = CompetitionCore.RunState[summary];
+			var runState = new PerfTestRunner().Run<TooSlowBenchmark>(overrideConfig);
 			var messages = runState.GetMessages();
+			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
@@ -103,9 +103,8 @@ namespace CodeJam.PerfTests
 		public static void TestCompetitionAnalyserHighAccuracyBenchmark()
 		{
 			var stopwatch = Stopwatch.StartNew();
-			var summary = CompetitionBenchmarkRunner.Run<HighAccuracyBenchmark>(_accurateConfig);
+			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_accurateConfig);
 			stopwatch.Stop();
-			var runState = CompetitionCore.RunState[summary];
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);

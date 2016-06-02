@@ -68,11 +68,11 @@ namespace CodeJam.PerfTests.Configs
 			// Validation config
 			AllowSlowBenchmarks = config.AllowSlowBenchmarks;
 			EnableReruns = config.EnableReruns;
+			LogAnnotationResults = config.LogAnnotationResults;
 
 			// Annotation config
 			UpdateSourceAnnotations = config.UpdateSourceAnnotations;
 			IgnoreExistingAnnotations = config.IgnoreExistingAnnotations;
-			LogAnnotationResults = config.LogAnnotationResults;
 			PreviousLogUri = config.PreviousLogUri;
 		}
 		#endregion
@@ -86,11 +86,11 @@ namespace CodeJam.PerfTests.Configs
 		// Validation config
 		public bool AllowSlowBenchmarks { get; set; }
 		public bool EnableReruns { get; set; }
+		public bool LogAnnotationResults { get; set; }
 
 		// Annotation config
 		public bool UpdateSourceAnnotations { get; set; }
 		public bool IgnoreExistingAnnotations { get; set; }
-		public bool LogAnnotationResults { get; set; }
 		public string PreviousLogUri { get; set; }
 	}
 }

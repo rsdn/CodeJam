@@ -4,6 +4,8 @@ using BenchmarkDotNet.Configs;
 
 namespace CodeJam.PerfTests.Configs
 {
+
+	/// <summary>Competition config.</summary>
 	public interface ICompetitionConfig : IConfig
 	{
 		// Runner config
@@ -15,11 +17,11 @@ namespace CodeJam.PerfTests.Configs
 		// Validation config
 		bool AllowSlowBenchmarks { get; }
 		bool EnableReruns { get; }
+		bool LogAnnotationResults { get; }
 
 		// Annotation config
 		bool UpdateSourceAnnotations { get; }
 		bool IgnoreExistingAnnotations { get; }
-		bool LogAnnotationResults { get; }
 		string PreviousLogUri { get; }
 	}
 }

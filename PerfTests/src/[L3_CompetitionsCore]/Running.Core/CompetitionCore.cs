@@ -43,7 +43,7 @@ namespace CodeJam.PerfTests.Running.Core
 		public static string ToLogString(this IMessage message)
 		{
 			var m = message;
-			return $"#{m.RunNumber}.{m.RunMessageNumber,-2} {m.Elapsed.TotalSeconds:00.000}s, {m.MessageSeverity + "@" + m.MessageSource + ":",-21} {m.MessageText}";
+			return $"#{m.RunNumber}.{m.RunMessageNumber,-2} {m.Elapsed.TotalSeconds:00.000}s, {m.MessageSeverity + "@" + m.MessageSource + ":",-23} {m.MessageText}";
 		}
 
 		/// <summary>Reports analyser warning.</summary>

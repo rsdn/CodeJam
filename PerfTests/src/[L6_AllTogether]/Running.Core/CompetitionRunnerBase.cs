@@ -37,8 +37,11 @@ namespace CodeJam.PerfTests.Running.Core
 				: base(wrappedLogger, logMode) { }
 		}
 
+		public CompetitionState Run<T>(ICompetitionConfig competitionConfig) where T : class =>
+			RunCompetition(typeof(T), competitionConfig);
+
 		// TODO: return CompetitionState instead?
-		public Summary RunCompetition(Type benchmarkType, ICompetitionConfig competitionConfig)
+		public virtual CompetitionState RunCompetition(Type benchmarkType, ICompetitionConfig competitionConfig)
 		{
 			competitionConfig = competitionConfig ?? ManualCompetitionConfig.Default;
 
@@ -71,7 +74,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			ReportMessagesToUser(competitionState, competitionConfig);
 
-			return summary;
+			return competitionState;
 		}
 
 		private void ValidateCompetitionSetup(Type benchmarkType, ICompetitionConfig competitionConfig)
@@ -119,7 +122,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 		private void ReportMessagesToUser(CompetitionState competitionState, ICompetitionConfig competitionConfig)
 		{
-			if (competitionState == null || competitionConfig.DebugMode)
+			if (competitionState == null)
 				return;
 
 			var criticalErrorMessages = GetMessageLines(
@@ -217,7 +220,7 @@ namespace CodeJam.PerfTests.Running.Core
 		protected virtual void OnBeforeRun(Type benchmarkType, ICompetitionConfig config) { }
 		protected virtual void OnAfterRun(bool runSucceed, IConfig benchmarkConfig, Summary summary) { }
 
-		protected abstract HostLogger CreateHostLogger(ICompetitionConfig competitionConfig);
+		protected abstract HostLogger CreateHostLogger(HostLogMode hostLogMode);
 		protected abstract void ReportHostLogger(HostLogger logger, [CanBeNull] Summary summary);
 
 		protected abstract void ReportExecutionErrors(string messages);
@@ -245,7 +248,8 @@ namespace CodeJam.PerfTests.Running.Core
 		private List<ILogger> GetLoggers(ICompetitionConfig competitionConfig)
 		{
 			var result = OverrideLoggers(competitionConfig);
-			var hostLogger = CreateHostLogger(competitionConfig);
+			var hostLogger = CreateHostLogger(
+				competitionConfig.DebugMode ? HostLogMode.AllMessages : HostLogMode.PrefixedOnly);
 			result.Insert(0, hostLogger);
 			return result;
 		}
@@ -272,13 +276,13 @@ namespace CodeJam.PerfTests.Running.Core
 			if (competitionConfig.GetJobs().Any(j => j.Toolchain is InProcessToolchain))
 			{
 				// ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
-				if (competitionConfig.UpdateSourceAnnotations && !competitionConfig.DebugMode)
+				if (competitionConfig.DebugMode || !competitionConfig.UpdateSourceAnnotations)
 				{
-					result.Insert(0, InProcessValidator.FailOnError);
+					result.Insert(0, InProcessValidator.DontFailOnError);
 				}
 				else
 				{
-					result.Insert(0, InProcessValidator.DontFailOnError);
+					result.Insert(0, InProcessValidator.FailOnError);
 				}
 			}
 

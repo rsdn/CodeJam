@@ -5,6 +5,8 @@ using System.Threading;
 
 using BenchmarkDotNet.Attributes;
 
+using CodeJam.PerfTests.Running.Core;
+
 using NUnit.Framework;
 
 namespace CodeJam.PerfTests
@@ -25,7 +27,9 @@ namespace CodeJam.PerfTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			Interlocked.Exchange(ref _afterSetupCounter, 0);
-			var summary = CompetitionBenchmarkRunner.Run<InProcessBenchmark>(PerfTestConfig.SingleRunConfig);
+			var summary = new PerfTestRunner()
+				.Run<InProcessBenchmark>(PerfTestConfig.SingleRunConfig)
+				.LastRunSummary;
 			Assert.AreEqual(_callCounter, PerfTestConfig.ExpectedRunCount);
 			Assert.AreEqual(_afterSetupCounter, 1);
 
@@ -56,7 +60,9 @@ namespace CodeJam.PerfTests
 				? PerfTestConfig.X86
 				: PerfTestConfig.X64;
 
-			var summary = CompetitionBenchmarkRunner.Run<InProcessWithValidationBenchmark>(config);
+			var summary = new PerfTestRunner()
+				.Run<InProcessWithValidationBenchmark>(config)
+				.LastRunSummary;
 			Assert.AreEqual(summary.ValidationErrors.Length, 1);
 			Assert.IsFalse(summary.ValidationErrors[0].IsCritical);
 			Assert.That(summary.ValidationErrors[0].Message, Does.Contain(", property Platform:"));

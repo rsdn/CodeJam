@@ -20,11 +20,11 @@ namespace CodeJam.PerfTests
 	{
 		private static readonly ICompetitionConfig _remoteLogConfig = new ManualCompetitionConfig(FastRunConfig.Instance)
 		{
-			UpdateSourceAnnotations = true,
 			DebugMode = true,
 			EnableReruns = true,
-			IgnoreExistingAnnotations = true,
 			LogAnnotationResults = true,
+			UpdateSourceAnnotations = true,
+			IgnoreExistingAnnotations = true,
 			PreviousLogUri =
 				"https://gist.githubusercontent.com/ig-sinicyn/ceeef64a6d91f22499bc05f388bb4b48/raw/74012e12059a096c76db5d2241ee080dd4221243/CompetitionAnnotateAnalyserTests.log.txt"
 		};
@@ -38,9 +38,8 @@ namespace CodeJam.PerfTests
 		public static void TestAnnotateFromRemoteLog()
 		{
 			var stopwatch = Stopwatch.StartNew();
-			var summary = CompetitionBenchmarkRunner.Run<HighAccuracyBenchmark>(_remoteLogConfig);
+			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_remoteLogConfig);
 			stopwatch.Stop();
-			var runState = CompetitionCore.RunState[summary];
 			var messages = runState.GetMessages();
 			Assert.IsTrue(runState.HighestMessageSeverityInRun <= MessageSeverity.Warning);
 			Assert.AreEqual(runState.RunNumber, 1);
@@ -57,9 +56,8 @@ namespace CodeJam.PerfTests
 		public static void TestAnnotateFromLocalLog()
 		{
 			var stopwatch = Stopwatch.StartNew();
-			var summary = CompetitionBenchmarkRunner.Run<HighAccuracyBenchmark>(_localLogConfig);
+			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_localLogConfig);
 			stopwatch.Stop();
-			var runState = CompetitionCore.RunState[summary];
 			var messages = runState.GetMessages();
 			Assert.IsTrue(runState.HighestMessageSeverityInRun <= MessageSeverity.Warning);
 			Assert.AreEqual(runState.RunNumber, 1);

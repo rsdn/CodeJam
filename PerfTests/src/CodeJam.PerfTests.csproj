@@ -86,6 +86,7 @@
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessToolchain.cs" />
     <Compile Include="[L2_RunState]\Running.Core\RunStateSlots.cs" />
     <Compile Include="[L2_RunState]\Running.Core\RunState`1.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Loggers\HostLogMode.cs" />
     <Compile Include="[L3_CompetitionsCore]\Loggers\HostLogger.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Core\CompetitionCore.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Core\CompetitionState.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\AnnotateSourceHelper.SymbolHelpers.cs" />
     <Compile Include="[L6_AllTogether]\Configs\ICompetitionConfig.cs" />
     <Compile Include="[L6_AllTogether]\Configs\ManualCompetitionConfig.cs" />
+    <Compile Include="[L6_AllTogether]\Running.Core\SimpleCompetitionRunner.cs" />
     <Compile Include="[L6_AllTogether]\Running.Core\CompetitionRunnerBase.cs" />
     <Compile Include="[L7_NUnitRunner]\CompetitionBenchmarkRunner.cs" />
     <Compile Include="[L6_AllTogether]\Configs\Configs.cs" />
