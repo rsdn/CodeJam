@@ -9,9 +9,9 @@ namespace CodeJam.Mapping
 	using Expressions;
 	using Reflection;
 
-	class ExpressionMapper<TFrom,TTo>
+	class ExpressionBuilder<TFrom,TTo>
 	{
-		public ExpressionMapper(Mapper<TFrom,TTo> mapper, Tuple<MemberInfo[],LambdaExpression>[] memberMappers)
+		public ExpressionBuilder(Mapper<TFrom,TTo> mapper, Tuple<MemberInfo[],LambdaExpression>[] memberMappers)
 		{
 			_mapper        = mapper;
 			_memberMappers = memberMappers;

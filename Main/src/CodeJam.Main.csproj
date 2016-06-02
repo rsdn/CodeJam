@@ -137,7 +137,7 @@
     <Compile Include="Mapping\DefaultValueT.cs" />
     <Compile Include="Mapping\IGenericInfoProvider.cs" />
     <Compile Include="Mapping\Map.cs" />
-    <Compile Include="Mapping\ExpressionMapper.cs" />
+    <Compile Include="Mapping\ExpressionBuilder.cs" />
     <Compile Include="Mapping\Mapper.cs" />
     <Compile Include="Mapping\MappingSchema.cs" />
     <Compile Include="Mapping\MappingSchemaInfo.cs" />

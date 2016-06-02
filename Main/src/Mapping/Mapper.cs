@@ -367,10 +367,10 @@ namespace CodeJam.Mapping
 		}
 
 		/// <summary>
-		/// Gets an instance of <see cref="ExpressionMapper{TFrom,TTo}"/> class.
+		/// Gets an instance of <see cref="ExpressionBuilder{TFrom,TTo}"/> class.
 		/// </summary>
-		/// <returns><see cref="ExpressionMapper{TFrom,TTo}"/>.</returns>
-		ExpressionMapper<TFrom,TTo> GetExpressionMapper()
-			=> new ExpressionMapper<TFrom,TTo>(this, MemberMappers?.Select(mm => Tuple.Create(mm.Item1.GetMembersInfo(), mm.Item2)).ToArray());
+		/// <returns><see cref="ExpressionBuilder{TFrom,TTo}"/>.</returns>
+		ExpressionBuilder<TFrom,TTo> GetExpressionMapper()
+			=> new ExpressionBuilder<TFrom,TTo>(this, MemberMappers?.Select(mm => Tuple.Create(mm.Item1.GetMembersInfo(), mm.Item2)).ToArray());
 	}
 }
