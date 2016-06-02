@@ -18,12 +18,55 @@ namespace CodeJam.Mapping
 	[PublicAPI]
 	public class Mapper<TFrom,TTo>
 	{
-		MappingSchema                                  _mappingSchema;
-		List<Tuple<LambdaExpression,LambdaExpression>> _memberMappers;
-		Func<MemberAccessor,bool>                      _memberFilter = _ => true;
-		bool?                                          _processCrossReferences;
-		Dictionary<Type,Dictionary<string,string>>     _fromMapping;
-		Dictionary<Type,Dictionary<string,string>>     _toMapping;
+		MappingSchema _mappingSchema = MappingSchema.Default;
+
+		/// <summary>
+		/// Mapping schema.
+		/// </summary>
+		[NotNull]
+		public MappingSchema MappingSchema
+		{
+			get { return _mappingSchema; }
+			set
+			{
+				if (value == null)
+					throw new ArgumentNullException(nameof(value), "MappingSchema cannot be null.");
+
+				_mappingSchema = value;
+			}
+		}
+
+		/// <summary>
+		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
+		/// </summary>
+		/// <returns>Mapping expression.</returns>
+		[Pure]
+		public Expression<Func<TFrom,TTo>> GetMapperExpression()
+			=> GetExpressionMapper().GetExpression();
+
+		/// <summary>
+		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
+		/// </summary>
+		/// <returns>Mapping expression.</returns>
+		[Pure]
+		public Func<TFrom,TTo> GetMapper()
+			=> GetMapperExpression().Compile();
+
+		/// <summary>
+		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
+		/// </summary>
+		/// <returns>Mapping expression.</returns>
+		[Pure]
+		public Expression<Func<TFrom,TTo,TTo>> GetActionMapperExpression()
+			=> GetExpressionMapper().GetActionExpression();
+
+		/// <summary>
+		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
+		/// </summary>
+		/// <returns>Mapping expression.</returns>
+		[Pure]
+		public Func<TFrom,TTo,TTo> GetActionMapper()
+			=> GetActionMapperExpression().Compile();
 
 		/// <summary>
 		/// Sets mapping schema.
@@ -39,17 +82,27 @@ namespace CodeJam.Mapping
 		}
 
 		/// <summary>
+		/// Filters target members to map.
+		/// </summary>
+		public Func<MemberAccessor,bool> MemberFilter { get; set; } = _ => true;
+
+		/// <summary>
 		/// Adds a predicate to filter target members to map.
 		/// </summary>
 		/// <param name="predicate">Predicate to filter members to map.</param>
 		/// <returns>Returns this mapper.</returns>
-		public Mapper<TFrom,TTo> MemberFilter([NotNull] Func<MemberAccessor,bool> predicate)
+		public Mapper<TFrom,TTo> SetMemberFilter([NotNull] Func<MemberAccessor,bool> predicate)
 		{
 			Code.NotNull(predicate, nameof(predicate));
 
-			_memberFilter = predicate;
+			MemberFilter = predicate;
 			return this;
 		}
+
+		/// <summary>
+		/// Defines member name mapping for source types.
+		/// </summary>
+		public Dictionary<Type,Dictionary<string,string>> FromMappingDictionary { get; set; }
 
 		/// <summary>
 		/// Defines member name mapping for source types.
@@ -64,13 +117,13 @@ namespace CodeJam.Mapping
 			Code.NotNull(memberName, nameof(memberName));
 			Code.NotNull(mapName,    nameof(mapName));
 
-			if (_fromMapping == null)
-				_fromMapping = new Dictionary<Type,Dictionary<string,string>>();
+			if (FromMappingDictionary == null)
+				FromMappingDictionary = new Dictionary<Type,Dictionary<string,string>>();
 
 			Dictionary<string,string> dic;
 
-			if (!_fromMapping.TryGetValue(type, out dic))
-				_fromMapping[type] = dic = new Dictionary<string,string>();
+			if (!FromMappingDictionary.TryGetValue(type, out dic))
+				FromMappingDictionary[type] = dic = new Dictionary<string,string>();
 
 			dic[memberName] = mapName;
 
@@ -109,6 +162,7 @@ namespace CodeJam.Mapping
 
 			foreach (var item in mapping)
 				FromMapping(type, item.Key, item.Value);
+
 			return this;
 		}
 
@@ -132,19 +186,24 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Defines member name mapping for destination types.
 		/// </summary>
+		public Dictionary<Type,Dictionary<string,string>> ToMappingDictionary { get; set; }
+
+		/// <summary>
+		/// Defines member name mapping for destination types.
+		/// </summary>
 		/// <param name="type">Type to map.</param>
 		/// <param name="memberName">Type member name.</param>
 		/// <param name="mapName">Mapping name.</param>
 		/// <returns>Returns this mapper.</returns>
 		public Mapper<TFrom,TTo> ToMapping(Type type, string memberName, string mapName)
 		{
-			if (_toMapping == null)
-				_toMapping = new Dictionary<Type,Dictionary<string,string>>();
+			if (ToMappingDictionary == null)
+				ToMappingDictionary = new Dictionary<Type,Dictionary<string,string>>();
 
 			Dictionary<string,string> dic;
 
-			if (!_toMapping.TryGetValue(type, out dic))
-				_toMapping[type] = dic = new Dictionary<string,string>();
+			if (!ToMappingDictionary.TryGetValue(type, out dic))
+				ToMappingDictionary[type] = dic = new Dictionary<string,string>();
 
 			dic[memberName] = mapName;
 
@@ -183,6 +242,7 @@ namespace CodeJam.Mapping
 
 			foreach (var item in mapping)
 				ToMapping(type, item.Key, item.Value);
+
 			return this;
 		}
 
@@ -245,6 +305,7 @@ namespace CodeJam.Mapping
 
 			foreach (var item in mapping)
 				Mapping(type, item.Key, item.Value);
+
 			return this;
 		}
 
@@ -266,34 +327,9 @@ namespace CodeJam.Mapping
 			=> Mapping(typeof(TFrom), mapping).Mapping(typeof(TFrom), mapping);
 
 		/// <summary>
-		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
+		/// Member mappers.
 		/// </summary>
-		/// <returns>Mapping expression.</returns>
-		[Pure]
-		public Expression<Func<TFrom,TTo>> GetMapperExpression()
-			=> GetExpressionMapper().GetExpression();
-
-		/// <summary>
-		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
-		/// </summary>
-		/// <returns>Mapping expression.</returns>
-		[Pure]
-		public Func<TFrom,TTo> GetMapper() => GetMapperExpression().Compile();
-
-		/// <summary>
-		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
-		/// </summary>
-		/// <returns>Mapping expression.</returns>
-		[Pure]
-		public Expression<Func<TFrom,TTo,TTo>> GetActionMapperExpression()
-			=> GetExpressionMapper().GetActionExpression();
-
-		/// <summary>
-		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
-		/// </summary>
-		/// <returns>Mapping expression.</returns>
-		[Pure]
-		public Func<TFrom,TTo,TTo> GetActionMapper() => GetActionMapperExpression().Compile();
+		public List<Tuple<LambdaExpression,LambdaExpression>> MemberMappers { get; set; }
 
 		/// <summary>
 		/// Adds member mapper.
@@ -304,34 +340,37 @@ namespace CodeJam.Mapping
 		/// <returns>Returns this mapper.</returns>
 		public Mapper<TFrom,TTo> MapMember<T>(Expression<Func<TTo,T>> toMember, Expression<Func<TFrom,T>> setter)
 		{
-			if (_memberMappers == null)
-				_memberMappers = new List<Tuple<LambdaExpression,LambdaExpression>>();
+			if (MemberMappers == null)
+				MemberMappers = new List<Tuple<LambdaExpression,LambdaExpression>>();
 
-			_memberMappers.Add(Tuple.Create((LambdaExpression)toMember, (LambdaExpression)setter));
+			MemberMappers.Add(Tuple.Create((LambdaExpression)toMember, (LambdaExpression)setter));
 
 			return this;
 		}
+
+		/// <summary>
+		/// If true, processes object cross references. 
+		/// if default (null), the <see cref="GetMapperExpression"/> method does not process cross references,
+		/// however the <see cref="GetActionMapperExpression"/> method does.
+		/// </summary>
+		public bool? ProcessCrossReferences { get; set; }
 
 		/// <summary>
 		/// If true, processes object cross references.
 		/// </summary>
 		/// <param name="doProcess">If true, processes object cross references.</param>
 		/// <returns>Returns this mapper.</returns>
-		public Mapper<TFrom,TTo> ProcessCrossReferences(bool? doProcess)
+		public Mapper<TFrom,TTo> SetProcessCrossReferences(bool? doProcess)
 		{
-			_processCrossReferences = doProcess;
+			ProcessCrossReferences = doProcess;
 			return this;
 		}
 
+		/// <summary>
+		/// Gets an instance of <see cref="ExpressionMapper{TFrom,TTo}"/> class.
+		/// </summary>
+		/// <returns><see cref="ExpressionMapper{TFrom,TTo}"/>.</returns>
 		ExpressionMapper<TFrom,TTo> GetExpressionMapper()
-			=> new ExpressionMapper<TFrom,TTo>
-			{
-				MappingSchema          = _mappingSchema ?? MappingSchema.Default,
-				MemberMappers          = _memberMappers?.Select(mm => Tuple.Create(mm.Item1.GetMembersInfo(), mm.Item2)).ToArray(),
-				MemberFilter           = _memberFilter,
-				ProcessCrossReferences = _processCrossReferences,
-				ToMapping              = _toMapping,
-				FromMapping            = _fromMapping,
-			};
+			=> new ExpressionMapper<TFrom,TTo>(this, MemberMappers?.Select(mm => Tuple.Create(mm.Item1.GetMembersInfo(), mm.Item2)).ToArray());
 	}
 }
