@@ -38,6 +38,7 @@ namespace CodeJam.Mapping
 
 		/// <summary>
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
+		/// Returned expression is compatible to IQueriable.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
 		[Pure]
