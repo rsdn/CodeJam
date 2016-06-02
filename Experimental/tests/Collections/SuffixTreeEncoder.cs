@@ -21,7 +21,7 @@ namespace CodeJam.Collections
 			getRoot_ = tree => (Node)getRootMethod_.Invoke(tree, null);
 			getNodeMethod_ = typeof(SuffixTreeBase).GetMethod("GetNode", BindingFlags.Instance | BindingFlags.NonPublic);
 			getNode_ = (tree, index) => (Node)getNodeMethod_.Invoke(tree, new object[] { index });
-			getDataMethod_ = typeof(SuffixTreeBase).GetProperty("Data", BindingFlags.Instance | BindingFlags.NonPublic).GetMethod;
+			getDataMethod_ = typeof(SuffixTreeBase).GetProperty("InternalData", BindingFlags.Instance | BindingFlags.NonPublic).GetMethod;
 			getData_ = tree => (string)getDataMethod_.Invoke(tree, null);
 		}
 
@@ -62,6 +62,6 @@ namespace CodeJam.Collections
 			}
 		}
 
-		private SuffixTreeEncoder(string data, char terminal = Char.MaxValue) : base(data, terminal) { }
+		private SuffixTreeEncoder() { }
 	}
 }

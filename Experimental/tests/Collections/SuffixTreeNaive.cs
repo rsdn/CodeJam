@@ -4,45 +4,23 @@ using System.Diagnostics;
 namespace CodeJam.Collections
 {
 	/// <summary>Naive implementation of the suffix tree</summary>
+	/// see http://felix-halim.net/pg/suffix-tree/ for sample builder
 	[DebuggerDisplay("{Print()}")]
 	public class SuffixTreeNaive : SuffixTreeBase
 	{
 		/// <summary>Constructs a new suffix tree</summary>
 		/// <param name="data">The string to build the suffix tree for</param>
-		/// <param name="terminal">
-		/// The terminal character
-		/// <remarks>
-		/// Used if the last character of the string is present in it more than once.
-		/// Should be different from any character in the string
-		/// </remarks>
-		/// </param>
-		protected SuffixTreeNaive(string data, char terminal) : base(data, terminal)
-		{
-		}
+		/// <returns>The suffix tree</returns>
+		public static SuffixTreeNaive Build(string data) => Builder<SuffixTreeNaive>.Build(data);
 
-		/// <summary>Constructs a new suffix tree</summary>
-		/// <param name="data">The string to build the suffix tree for</param>
-		/// <param name="terminal">
-		/// The terminal character
-		/// <remarks>
-		/// Used if the last character of the string is present in it more than once.
-		/// Should be different from any character in the string
-		/// </remarks>
-		/// </param>
-		public static SuffixTreeNaive Create(string data, char terminal = char.MaxValue)
-		{
-			var t = new SuffixTreeNaive(data, terminal);
-			t.Construct();
-			return t;
-		}
+		public static Builder<SuffixTreeNaive> CreateBuilder() => new Builder<SuffixTreeNaive>();
 
-		protected override void Build()
+		protected override void BuildFor(int start, int end)
 		{
 			var root = Root;
 			var data = InternalData;
-			var end = data.Length;
 			var childComparer = GetComparer();
-			for (var i = InternalData.Length - 1; i >= 0; --i)
+			for (var i = end - 1; i >= start; --i)
 			{
 				var currentNode = root;
 				var begin = i;

@@ -33,50 +33,37 @@ namespace CodeJam.Collections
 	    protected Node GetNode(int index) => nodes_[index];
 
 	    /// <summary>Source string with terminal added (if needed)</summary>
-		protected string InternalData { get; }
+		protected string InternalData { get; private set; }
 
-		/// <summary>Source string</summary>
-		protected string Data { get; }
+		/// <summary>
+		/// List of end positions of added strings inside the InternalData
+		/// </summary>
+		protected List<int> EndPositions { get; }
 
 		/// <summary>Constructs a base for a suffix tree</summary>
-		/// <param name="data">The string to build the suffix tree for</param>
-		/// <param name="terminal">
-		/// The terminal character
-		/// <remarks>
-		/// Used if the last character of the string is present in it more than once.
-		/// Should be different from any character in the string
-		/// </remarks>
+		protected SuffixTreeBase()
+		{
+			InternalData = string.Empty;
+			var root = new Node(0, 0);
+			nodes_ = new List<Node> { root };
+			EndPositions = new List<int>();
+		}
+
+		/// <summary>Adds a new string to the tree</summary>
+		/// <param name="data">
+		/// The string to add
+		/// <remarks>The last string character should be unique among all added strings</remarks>
 		/// </param>
-		protected SuffixTreeBase(string data, char terminal = char.MaxValue)
-	    {
-			Data = data;
-			if (data.Length != 0)
-		    {
-				var lastChar = data[data.Length - 1];
-				if (data.IndexOf(lastChar) != data.Length - 1)
-				{
-					// last char is not unique, need to add a terminal character
-					if (data.IndexOf(terminal) != -1)
-					{
-						throw new ArgumentException("Terminal character is already present in the string. Please, provide a new termanal character that is not present in the string");
-					}
-					data += terminal;
-				}
-			}
-		    InternalData = data;
-		    var root = new Node(0, 0);
-			nodes_ = new List<Node>(InternalData.Length + 1) {root};
-	    }
+		private void Add(string data)
+		{
+			var begin = InternalData.Length;
+			InternalData = InternalData + data;
+			EndPositions.Add(InternalData.Length);
+			BuildFor(begin, InternalData.Length);
+		}
 
-		/// <summary>Constructs the tree</summary>
-	    protected void Construct()
-	    {
-		    Build();
-			RemoveTerminal();
-	    }
-
-		/// <summary>Implementation of the tree building algorithm</summary>
-	    protected abstract void Build();
+		/// <summary>Appends suffixes for the last added string</summary>
+	    protected abstract void BuildFor(int begin, int end);
 
 		/// <summary>Creates a comparer for nodes against a char</summary>
 		/// <returns>The comparer</returns>
@@ -86,31 +73,42 @@ namespace CodeJam.Collections
 		    return firstChar - c;
 	    };
 
-	    /// <summary>Removes a terminal character if present</summary>
-		private void RemoveTerminal()
+	    /// <summary>Finalizes the tree construction by removal of terminal characters</summary>
+		protected void RemoveTerminals(ISet<char> terminals)
 		{
-			if (Data.Length == InternalData.Length)
-			{
-				// no terminal was added
-				return;
-			}
-
-			var end = InternalData.Length;
-			// Drop terminal node from Root children
-			if (!Root.IsLeaf)
-			{
-				var childComparer = GetComparer();
-				var terminalNodeIndex = Root.Children.LowerBound(InternalData[end - 1], childComparer);
-				DebugCode.AssertState(terminalNodeIndex > end, "Terminal node should be present");
-				Root.Children.RemoveAt(terminalNodeIndex);
-			}
+		    if (terminals.Count == 0)
+		    {
+			    return;
+		    }
+		    if (Root.IsLeaf) // no child nodes
+		    {
+			    return;
+		    }
+			var positionsToRemove = new HashSet<int>();
+		    foreach (var p in EndPositions)
+		    {
+			    if (terminals.Contains(InternalData[p - 1]))
+			    {
+				    positionsToRemove.Add(p);
+			    }
+		    }
+		    if (positionsToRemove.Count == 0)
+		    {
+			    return;
+		    }
 			foreach (var n in nodes_)
 			{
-				if (n.End == end)
+				if (n.IsLeaf && positionsToRemove.Contains(n.End))
 				{
-					n.End = end - 1;
+					n.End = n.End - 1;
 				}
 			}
+			// Drop empty nodes from Root children
+		    Root.Children.RemoveAll(_ =>
+			    {
+				    var n = nodes_[_];
+				    return n.Begin == n.End;
+			    });
 		}
 
 		[Pure]
@@ -196,6 +194,109 @@ namespace CodeJam.Collections
 			public int Begin { get; }
 			/// <summary>Index after the last character of a substring corresponding to the node</summary>
 			public int End { get; set; }
+		}
+
+		/// <summary>Builder for the suffix tree</summary>
+	    public class Builder<T> where T: SuffixTreeBase, new()
+		{
+			private T tree_;
+			private readonly HashSet<char> usedChars_ = new HashSet<char>();
+			private int nextTerminalCandidate_ = char.MaxValue;
+			private readonly HashSet<char> terminals_ = new HashSet<char>();
+
+			public Builder()
+			{
+				tree_ = new T();
+			}
+
+			/// <summary>Builds a suffix tree for a single string</summary>
+			/// <param name="data">The string</param>
+			/// <returns>The suffix tree</returns>
+			public static T Build([NotNull] string data)
+			{
+				Code.NotNull(data, nameof(data));
+				var length = data.Length;
+				var lastChar = data[length - 1];
+				if (data.IndexOf(lastChar) == length - 1)
+				{
+					// no terminal needed				
+					var tree = new T();
+					tree.Add(data);
+					return tree;
+				}
+				const char terminal = char.MaxValue;
+				if (data.IndexOf(terminal) == -1)
+				{
+					var tree = new T();
+					tree.Add(data + terminal);
+					tree.RemoveTerminals(new HashSet<char> { terminal });
+					return tree;
+				}
+				// fallback to the complex way
+				var builder = new Builder<T>();
+				builder.Add(data);
+				return builder.Complete();
+			}
+
+			/// <summary>Builds a suffix tree for a collection of strings</summary>
+			/// <param name="data">A collection of strings</param>
+			public void Add([NotNull] string data)
+			{
+				EnsureNotFinalized();
+				Code.NotNull(data, nameof(data));
+				var lastCharIndex = data.Length - 1;
+				if (lastCharIndex < 0)
+				{
+					return;
+				}
+				for (var i = 0; i < lastCharIndex; ++i)
+				{
+					usedChars_.Add(data[i]);
+				}
+				var needsTerminal = !usedChars_.Add(data[lastCharIndex]);
+				if (needsTerminal)
+				{
+					char candidate;
+					for (;;)
+					{
+						if (nextTerminalCandidate_ < 0)
+						{
+							throw new ArgumentException("Impossible to find a free terminal character for the given string"
+								, nameof(data));
+						}
+						candidate = (char)nextTerminalCandidate_--;
+						if (usedChars_.Add(candidate))
+						{
+							break;
+						}
+					}
+					terminals_.Add(candidate);
+					data += candidate;
+				}
+				tree_.Add(data);
+			}
+
+			/// <summary>Finishes the suffix tree construction and returns the resulting tree</summary>
+			/// <returns>The suffix tree</returns>
+			public T Complete()
+			{
+				EnsureNotFinalized();
+				if (terminals_.Count > 0)
+				{
+					tree_.RemoveTerminals(terminals_);
+				}
+				var t = tree_;
+				tree_ = null;
+				return t;
+			}
+
+			private void EnsureNotFinalized()
+			{
+				if (tree_ == null)
+				{
+					throw new InvalidOperationException("The suffix tree construction has been completed already");
+				}
+			}
 		}
 	}
 }
