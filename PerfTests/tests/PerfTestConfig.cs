@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
@@ -13,13 +14,7 @@ namespace CodeJam.PerfTests
 	{
 		public const int SpinCount = 100 * 1000;
 
-		public static int Delay(int cycles)
-		{
-			int a = 0;
-			for (int i = 0; i < cycles; i++)
-				a = a + 1;
-			return a;
-		}
+		public static void Delay(int cycles) => Thread.SpinWait(cycles);
 
 		// BUG: Jitting performed twice, https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 		// Jitting = 2, WarmupCount = 2, TargetCount = 1

@@ -28,9 +28,9 @@ namespace CodeJam.PerfTests.Configs
 				new Job
 				{
 					IterationTime = 10,
-					LaunchCount = 1,
-					WarmupCount = 10,
-					TargetCount = 20,
+					LaunchCount = 2,
+					WarmupCount = 5,
+					TargetCount = 10,
 					Platform = Platform.X64,
 					Jit = Jit.RyuJit,
 					Toolchain = InProcessToolchain.Instance
