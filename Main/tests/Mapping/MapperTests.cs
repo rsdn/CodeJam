@@ -1,6 +1,7 @@
 ﻿using System;
 
 using NUnit.Framework;
+using NUnit.Framework.Compatibility;
 
 #pragma warning disable 649
 
@@ -26,11 +27,11 @@ namespace CodeJam.Mapping
 
 				if (action)
 				{
-					To = mapper.GetActionMapper()(From, new TTo());
+					To = mapper.GetMapper()(From, new TTo());
 				}
 				else
 				{
-					To = mapper.GetMapper()(From);
+					To = mapper.GetMapperEx()(From);
 				}
 
 				return this;
@@ -45,7 +46,7 @@ namespace CodeJam.Mapping
 		[Test]
 		public void ActionExpressionTest()
 		{
-			var mapper = new Mapper<TestMap,TestMap>().GetActionMapperExpression().Compile();
+			var mapper = new Mapper<TestMap,TestMap>().GetMapperExpression().Compile();
 
 			mapper(new TestMap(), new TestMap());
 		}
@@ -53,7 +54,7 @@ namespace CodeJam.Mapping
 		[Test]
 		public void FuncExpressionTest()
 		{
-			var mapper = new Mapper<TestMap,TestMap>().GetMapperExpression().Compile();
+			var mapper = new Mapper<TestMap,TestMap>().GetMapperExpressionEx().Compile();
 
 			var value = mapper(new TestMap());
 
@@ -62,7 +63,7 @@ namespace CodeJam.Mapping
 
 		[Test]
 		public void ExceptionTest() =>
-			Assert.Throws<ArgumentException>(() => new Mapper<string,TestMap>().GetActionMapperExpression().Compile());
+			Assert.Throws<ArgumentException>(() => new Mapper<string,TestMap>().GetMapperExpression().Compile());
 
 		[Test]
 		public void MapIntToString()
@@ -163,9 +164,9 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
-		public void MapObjects1([Values(true,false)] bool useAction)
+		public void MapObjects1([Values(true,false)] bool useEx)
 		{
-			var map = new MapHelper<Source,Dest>().Map(useAction, m => m
+			var map = new MapHelper<Source,Dest>().Map(useEx, m => m
 				.MapMember(_ => _.Field3,  _ => _.Field2)
 				.MapMember(_ => _.Field4,  _ => _.Field5)
 				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12) : 12)
@@ -189,10 +190,50 @@ namespace CodeJam.Mapping
 			Assert.That(map.To.Field17,            Is.EqualTo(Enum2.Value2));
 		}
 
+
 		[Test]
-		public void MapObjects2([Values(true,false)] bool useAction)
+		public void PerfTest()
 		{
-			var map = new MapHelper<Source,Dest>().Map(useAction, m => m
+			var map = new Mapper<Source,Dest>()
+				.MapMember(_ => _.Field3,  _ => _.Field2)
+				.MapMember(_ => _.Field4,  _ => _.Field5)
+				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12) : 12)
+				.MapMember(_ => _.Field13, _ => _.Field13 ?? 13)
+				.MapMember(_ => _.Field14, _ => _.Field14 ?? 14);
+
+			var src  = new Source();
+			var sw   = new Stopwatch();
+			var map1 = map.GetMapperEx();
+
+			map1(src);
+
+			const int n = 100000;
+
+			for (var i = 0; i < n; i++)
+			{
+				sw.Start(); map1(src); sw.Stop();
+			}
+
+			Console.WriteLine(sw.Elapsed);
+
+			sw.Reset();
+
+			var map2 = map.GetMapperEx();
+
+			map2(src);
+
+			for (var i = 0; i < n; i++)
+			{
+				sw.Start(); map2(src); sw.Stop();
+			}
+
+			Console.WriteLine(sw.Elapsed);
+		}
+
+		[Test]
+		public void MapObjects2([Values(true,false)] bool useEx)
+		{
+			var map = new MapHelper<Source,Dest>().Map(useEx, m => m
 				.ToMapping      ("Field3", "Field2")
 				.ToMapping<Dest>("Field6", "Field7")
 				.FromMapping    (new Dictionary<string,string> { ["Field5"] = "Field4" }));
@@ -212,9 +253,9 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
-		public void MapObject([Values(true,false)] bool useAction)
+		public void MapObject([Values(true,false)] bool useEx)
 		{
-			var map = new MapHelper<Source,Source>().Map(useAction, m => m);
+			var map = new MapHelper<Source,Source>().Map(useEx, m => m);
 
 			Assert.That(map.To,         Is.Not.SameAs(map.From));
 			Assert.That(map.To.Field1,  Is.EqualTo(map.From.Field1));
@@ -235,9 +276,9 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
-		public void MapFilterObjects([Values(true,false)] bool useAction)
+		public void MapFilterObjects([Values(true,false)] bool useEx)
 		{
-			var map = new MapHelper<Source,Dest>().Map(useAction, mm => mm
+			var map = new MapHelper<Source,Dest>().Map(useEx, mm => mm
 				.SetMemberFilter(m => m.Name != nameof(Source.Field7)));
 
 			Assert.That(map.To.Field7, Is.Not.EqualTo(map.From.Field7));
@@ -249,9 +290,9 @@ namespace CodeJam.Mapping
 		class Class4 { public Class2 Class = new Class2(); }
 
 		[Test]
-		public void MapInnerObject1([Values(true,false)] bool useAction)
+		public void MapInnerObject1([Values(true,false)] bool useEx)
 		{
-			var map = new MapHelper<Class3,Class4>().Map(useAction, m => m);
+			var map = new MapHelper<Class3,Class4>().Map(useEx, m => m);
 
 			Assert.That(map.To.Class.Field, Is.EqualTo(map.From.Class.Field));
 		}
@@ -259,14 +300,14 @@ namespace CodeJam.Mapping
 		class Class5 { public Class1 Class1 = new Class1(); public Class1 Class2; }
 		class Class6 { public Class2 Class1 = new Class2(); public Class2 Class2 = null; }
 
-		//[Test]
-		public void MapInnerObject2([Values(true,false)] bool useAction)
+		[Test]
+		public void MapInnerObject2([Values(true,false)] bool useEx)
 		{
 			var src = new Class5();
 
 			src.Class2 = src.Class1;
 
-			var map = new MapHelper<Class5,Class6>().Map(useAction, src, m => m
+			var map = new MapHelper<Class5,Class6>().Map(useEx, src, m => m
 				.SetProcessCrossReferences(true));
 
 			Assert.That(map.To.Class1, Is.Not.Null);

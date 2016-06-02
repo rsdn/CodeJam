@@ -20,9 +20,9 @@ namespace CodeJam.Mapping
 		readonly Mapper<TFrom,TTo>                      _mapper;
 		readonly Tuple<MemberInfo[],LambdaExpression>[] _memberMappers;
 
-		#region GetExpression
+		#region GetExpressionEx
 
-		public Expression<Func<TFrom,TTo>> GetExpression()
+		public Expression<Func<TFrom,TTo>> GetExpressionEx()
 		{
 			if (_mapper.MappingSchema.IsScalarType(typeof(TFrom)) || _mapper.MappingSchema.IsScalarType(typeof(TTo)))
 				return _mapper.MappingSchema.GetConvertExpression<TFrom, TTo>();
@@ -30,15 +30,15 @@ namespace CodeJam.Mapping
 			var pFrom = Expression.Parameter(typeof(TFrom), "from");
 
 			var expr = _mapper.ProcessCrossReferences == true ?
-				GetActionExpressionImpl(pFrom, Expression.Constant(null, typeof(TTo))) :
-				GetExpressionImpl      (pFrom, typeof(TTo));
+				GetExpressionImpl  (pFrom, Expression.Constant(null, typeof(TTo))) :
+				GetExpressionExImpl(pFrom, typeof(TTo));
 
 			var l = Expression.Lambda<Func<TFrom,TTo>>(expr, pFrom);
 
 			return l;
 		}
 
-		Expression GetExpressionImpl(Expression fromExpression, Type toType)
+		Expression GetExpressionExImpl(Expression fromExpression, Type toType)
 		{
 			var fromAccessor = TypeAccessor.GetAccessor(fromExpression.Type);
 			var toAccessor   = TypeAccessor.GetAccessor(toType);
@@ -104,7 +104,7 @@ namespace CodeJam.Mapping
 					var expr     = Expression.Condition(
 						Expression.Equal(getValue, Expression.Constant(null, getValue.Type)),
 						Expression.Constant(_mapper.MappingSchema.GetDefaultValue(toMember.Type), toMember.Type),
-						GetExpressionImpl(getValue, toMember.Type));
+						GetExpressionExImpl(getValue, toMember.Type));
 
 					binds.Add(Expression.Bind(toMember.MemberInfo, expr));
 				}
@@ -127,9 +127,9 @@ namespace CodeJam.Mapping
 
 		#endregion
 
-		#region GetActionExpression
+		#region GetExpression
 
-		public Expression<Func<TFrom,TTo,TTo>> GetActionExpression()
+		public Expression<Func<TFrom,TTo,TTo>> GetExpression()
 		{
 			if (_mapper.MappingSchema.IsScalarType(typeof(TFrom)))
 				throw new ArgumentException($"Type {typeof(TFrom).FullName} cannot be a scalar type. To convert scalar types use ConvertTo<TTo>.From(TFrom value).");
@@ -139,14 +139,14 @@ namespace CodeJam.Mapping
 
 			var pFrom = Expression.Parameter(typeof(TFrom), "from");
 			var pTo   = Expression.Parameter(typeof(TTo),   "to");
-			var expr  = GetActionExpressionImpl(pFrom, pTo);
+			var expr  = GetExpressionImpl(pFrom, pTo);
 
 			var l = Expression.Lambda<Func<TFrom,TTo,TTo>>(expr, pFrom, pTo);
 
 			return l;
 		}
 
-		Expression GetActionExpressionImpl(Expression fromExpression, Expression toExpression)
+		Expression GetExpressionImpl(Expression fromExpression, Expression toExpression)
 		{
 			var fromAccessor = TypeAccessor.GetAccessor(fromExpression.Type);
 			var toAccessor   = TypeAccessor.GetAccessor(toExpression.  Type);
@@ -227,8 +227,8 @@ namespace CodeJam.Mapping
 						Expression.Equal(getValue, Expression.Constant(null, getValue.Type)),
 						Expression.Constant(_mapper.MappingSchema.GetDefaultValue(toMember.Type), toMember.Type),
 						toMember.HasGetter ?
-							GetActionExpressionImpl(getValue, toMember.GetterExpression.ReplaceParameters(localObject)) :
-							GetExpressionImpl      (getValue, toMember.Type));
+							GetExpressionImpl(getValue, toMember.GetterExpression.ReplaceParameters(localObject)) :
+							GetExpressionExImpl      (getValue, toMember.Type));
 
 					expressions.Add(setter.ReplaceParameters(localObject, expr));
 				}

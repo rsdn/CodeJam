@@ -41,7 +41,23 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
 		[Pure]
-		public Expression<Func<TFrom,TTo>> GetMapperExpression()
+		public Expression<Func<TFrom,TTo>> GetMapperExpressionEx()
+			=> GetExpressionMapper().GetExpressionEx();
+
+		/// <summary>
+		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
+		/// </summary>
+		/// <returns>Mapping expression.</returns>
+		[Pure]
+		public Func<TFrom,TTo> GetMapperEx()
+			=> GetMapperExpressionEx().Compile();
+
+		/// <summary>
+		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
+		/// </summary>
+		/// <returns>Mapping expression.</returns>
+		[Pure]
+		public Expression<Func<TFrom,TTo,TTo>> GetMapperExpression()
 			=> GetExpressionMapper().GetExpression();
 
 		/// <summary>
@@ -49,24 +65,8 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
 		[Pure]
-		public Func<TFrom,TTo> GetMapper()
+		public Func<TFrom,TTo,TTo> GetMapper()
 			=> GetMapperExpression().Compile();
-
-		/// <summary>
-		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
-		/// </summary>
-		/// <returns>Mapping expression.</returns>
-		[Pure]
-		public Expression<Func<TFrom,TTo,TTo>> GetActionMapperExpression()
-			=> GetExpressionMapper().GetActionExpression();
-
-		/// <summary>
-		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
-		/// </summary>
-		/// <returns>Mapping expression.</returns>
-		[Pure]
-		public Func<TFrom,TTo,TTo> GetActionMapper()
-			=> GetActionMapperExpression().Compile();
 
 		/// <summary>
 		/// Sets mapping schema.
@@ -350,8 +350,8 @@ namespace CodeJam.Mapping
 
 		/// <summary>
 		/// If true, processes object cross references. 
-		/// if default (null), the <see cref="GetMapperExpression"/> method does not process cross references,
-		/// however the <see cref="GetActionMapperExpression"/> method does.
+		/// if default (null), the <see cref="GetMapperExpressionEx"/> method does not process cross references,
+		/// however the <see cref="GetMapperExpression"/> method does.
 		/// </summary>
 		public bool? ProcessCrossReferences { get; set; }
 
