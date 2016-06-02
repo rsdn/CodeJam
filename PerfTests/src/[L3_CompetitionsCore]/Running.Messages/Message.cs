@@ -13,12 +13,14 @@ namespace CodeJam.PerfTests.Running.Messages
 		/// <summary>Initializes a new instance of the <see cref="Message"/> class.</summary>
 		/// <param name="runNumber">Number of the run the message belongs to.</param>
 		/// <param name="runMessageNumber">Number of the message in the run.</param>
+		/// <param name="elapsed">Time elapsed from the start of the benchmark.</param>
 		/// <param name="messageSource">The source of the message.</param>
 		/// <param name="messageSeverity">Severity of the message.</param>
 		/// <param name="messageText">>Text of the message.</param>
 		public Message(
 			int runNumber,
 			int runMessageNumber,
+			TimeSpan elapsed,
 			MessageSource messageSource, MessageSeverity messageSeverity,
 			[NotNull] string messageText)
 		{
@@ -26,6 +28,7 @@ namespace CodeJam.PerfTests.Running.Messages
 
 			RunNumber = runNumber;
 			RunMessageNumber = runMessageNumber;
+			Elapsed = elapsed;
 			MessageSeverity = messageSeverity;
 			MessageText = messageText;
 			MessageSource = messageSource;
@@ -39,6 +42,10 @@ namespace CodeJam.PerfTests.Running.Messages
 		/// <value>The number of the message in the run.</value>
 		public int RunMessageNumber { get; }
 
+		/// <summary>Time elapsed since start of the competition.</summary>
+		/// <value>Time elapsed since start of the competition.</value>
+		public TimeSpan Elapsed { get; }
+
 		/// <summary>The source of the message.</summary>
 		/// <value>The source of the message.</value>
 		public MessageSource MessageSource { get; }
@@ -50,10 +57,5 @@ namespace CodeJam.PerfTests.Running.Messages
 		/// <summary>Text of the message.</summary>
 		/// <value>The text of the message.</value>
 		public string MessageText { get; }
-
-		/// <summary>Returns a <see cref="string"/> that represents this instance.</summary>
-		/// <returns>A <see cref="string"/> that represents this instance.</returns>
-		public override string ToString() =>
-			$"#{RunNumber}.{RunMessageNumber}, {MessageSeverity}@{MessageSource}: {MessageText}";
 	}
 }

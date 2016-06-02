@@ -18,6 +18,7 @@ using BenchmarkDotNet.Validators;
 
 using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Configs;
+using CodeJam.PerfTests.Loggers;
 using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
@@ -32,8 +33,8 @@ namespace CodeJam.PerfTests.Running.Core
 	{
 		protected abstract class HostLogger : Loggers.HostLogger
 		{
-			protected HostLogger(ILogger wrappedLogger, bool detailedLogging)
-				: base(wrappedLogger, detailedLogging) { }
+			protected HostLogger(ILogger wrappedLogger, HostLogMode logMode)
+				: base(wrappedLogger, logMode) { }
 		}
 
 		// TODO: return CompetitionState instead?

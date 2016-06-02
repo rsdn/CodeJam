@@ -15,7 +15,7 @@ namespace CodeJam.PerfTests.Running.Messages
 		Unknown,
 
 		/// <summary>The message is reported by benchmark runner.</summary>
-		BenchmarkRunner,
+		Runner,
 
 		/// <summary>The message is reported by validator.</summary>
 		Validator,

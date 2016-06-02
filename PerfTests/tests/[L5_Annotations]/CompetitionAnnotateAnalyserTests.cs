@@ -48,7 +48,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.GreaterOrEqual(messages.Length, 5);
-			Assert.LessOrEqual(stopwatch.Elapsed.TotalSeconds, 7);
+			Assert.LessOrEqual(stopwatch.Elapsed.TotalSeconds, 7, "Timeout failed");
 		}
 
 		[Test]

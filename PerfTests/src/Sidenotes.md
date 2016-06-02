@@ -6,6 +6,7 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
 ## TODO:
+ * Loggers: file logger does not write messages, two empty lines at HostLogger
  * Check if we're doing double loosing for logged benchmark limits.
  * Tests for broken log annotations.
  * Check competition limits parsing.

@@ -229,6 +229,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			var result = new List<XDocument>();
 
+			competitionState.WriteMessage(
+				MessageSource.Analyser, MessageSeverity.Informational,
+				$"Downloading {logUri}.");
+
 			using (var reader = BenchmarkHelpers.TryGetTextFromUri(logUri))
 			{
 				if (reader == null)
@@ -238,6 +242,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 						$"Could not load log content from {logUri}.");
 					return null;
 				}
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.Informational,
+					$"Downloaded {logUri}.");
 
 				var buffer = new StringBuilder();
 				string logLine;

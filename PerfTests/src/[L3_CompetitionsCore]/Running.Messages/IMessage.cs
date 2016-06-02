@@ -15,6 +15,10 @@ namespace CodeJam.PerfTests.Running.Messages
 		/// <value>The number of the message in the run.</value>
 		int RunMessageNumber { get; }
 
+		/// <summary>Time elapsed since start of the competition.</summary>
+		/// <value>Time elapsed since start of the competition.</value>
+		TimeSpan Elapsed { get; }
+
 		/// <summary>The source of the message.</summary>
 		/// <value>The source of the message.</value>
 		MessageSource MessageSource { get; }
@@ -26,9 +30,5 @@ namespace CodeJam.PerfTests.Running.Messages
 		/// <summary>Text of the message.</summary>
 		/// <value>The text of the message.</value>
 		string MessageText { get; }
-
-		/// <summary>Returns a <see cref="string"/> that represents this instance.</summary>
-		/// <returns>A <see cref="string"/> that represents this instance.</returns>
-		string ToString();
 	}
 }

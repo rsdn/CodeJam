@@ -65,6 +65,9 @@ namespace CodeJam.PerfTests.Analysers
 				return;
 
 			var competitionState = CompetitionCore.RunState[summary];
+			competitionState.WriteMessage(
+				MessageSource.Analyser, MessageSeverity.Informational,
+				$"Reading annotations from log {PreviousLogUri}.");
 
 			var benchmarkDocs = _documentsFromLog[summary]
 				.GetOrAdd(PreviousLogUri, uri => XmlAnnotations.TryParseBenchmarkDocsFromLog(uri, competitionState));
@@ -98,7 +101,7 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.Informational,
-					$"Benchmark limits was updated from log file {PreviousLogUri}.");
+					$"Benchmark limits were updated from log file {PreviousLogUri}.");
 			}
 			else
 			{

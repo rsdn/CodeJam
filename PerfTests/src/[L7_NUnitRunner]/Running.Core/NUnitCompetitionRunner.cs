@@ -7,6 +7,7 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
 using CodeJam.PerfTests.Configs;
+using CodeJam.PerfTests.Loggers;
 
 using NUnit.Framework;
 
@@ -19,8 +20,8 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			private readonly AccumulationLogger _logger = new AccumulationLogger();
 
-			public NUnitHostLogger(bool detailedLogging)
-				: base(new AccumulationLogger(), detailedLogging) { }
+			public NUnitHostLogger(HostLogMode logMode)
+				: base(new AccumulationLogger(), logMode) { }
 
 			protected new AccumulationLogger WrappedLogger => (AccumulationLogger)base.WrappedLogger;
 
@@ -29,7 +30,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 		#region Host-related logic
 		protected override HostLogger CreateHostLogger(ICompetitionConfig competitionConfig) =>
-			new NUnitHostLogger(competitionConfig.DebugMode);
+			new NUnitHostLogger(competitionConfig.DebugMode? HostLogMode.AllMessages: HostLogMode.PrefixedOnly);
 
 		protected override void ReportHostLogger(HostLogger logger, Summary summary)
 		{

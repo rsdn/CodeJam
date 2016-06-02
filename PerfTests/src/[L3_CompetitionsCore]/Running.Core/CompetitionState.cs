@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.Helpers;
@@ -20,6 +21,7 @@ namespace CodeJam.PerfTests.Running.Core
 	public class CompetitionState
 	{
 		private readonly List<IMessage> _messages = new List<IMessage>();
+		private readonly Stopwatch _stopwatch = new Stopwatch();
 
 		#region State properties
 		/// <summary>The competition is in it's first run.</summary>
@@ -37,6 +39,10 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>There's a critical-severity messages for the current run.</summary>
 		/// <value><c>true</c> if there's a critical-severity messages for the current run.</value>
 		public bool HasCriticalErrorsInRun => HighestMessageSeverityInRun.IsCriticalError();
+
+		/// <summary>Time elapsed since start of the competition.</summary>
+		/// <value>Time elapsed since start of the competition.</value>
+		public TimeSpan Elapsed => _stopwatch.Elapsed;
 
 		/// <summary>Max limit for competition reruns.</summary>
 		/// <value>Max count of runs allowed.</value>
@@ -78,6 +84,7 @@ namespace CodeJam.PerfTests.Running.Core
 		internal void FirstTimeInit(int maxRunsAllowed, [NotNull] ILogger logger)
 		{
 			Code.NotNull(logger, nameof(logger));
+			_stopwatch.Restart();
 
 			MaxRunsAllowed = maxRunsAllowed;
 			Logger = logger;
@@ -105,6 +112,9 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="summary">Summary for the run.</param>
 		internal void RunCompleted(Summary summary) => LastRunSummary = summary;
 
+		/// <summary>Marks competition state as completed.</summary>
+		internal void AllRunsCompleted() => _stopwatch.Stop();
+
 		/// <summary>
 		/// Requests additional runs for the competition.
 		/// </summary>
@@ -118,14 +128,14 @@ namespace CodeJam.PerfTests.Running.Core
 			if (additionalRunsCount == 0)
 			{
 				WriteMessage(
-					MessageSource.BenchmarkRunner,
+					MessageSource.Runner,
 					MessageSeverity.Informational,
 					$"No reruns requested: {explanationMessage}");
 			}
 			else
 			{
 				WriteMessage(
-					MessageSource.BenchmarkRunner,
+					MessageSource.Runner,
 					MessageSeverity.Informational,
 					$"Requesting {additionalRunsCount} run(s): {explanationMessage}");
 
@@ -182,6 +192,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 				message = new Message(
 					RunNumber, MessagesInRun,
+					Elapsed,
 					messageSource, messageSeverity, messageText);
 
 				_messages.Add(message);

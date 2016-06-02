@@ -132,7 +132,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[1].RunNumber, 1);
 			Assert.AreEqual(messages[1].RunMessageNumber, 2);
 			Assert.AreEqual(messages[1].MessageSeverity, MessageSeverity.Informational);
-			Assert.AreEqual(messages[1].MessageSource, MessageSource.BenchmarkRunner);
+			Assert.AreEqual(messages[1].MessageSource, MessageSource.Runner);
 			Assert.AreEqual(messages[1].MessageText, "Requesting 1 run(s): Competition validation failed.");
 
 			Assert.AreEqual(messages[2].RunNumber, 2);
@@ -145,7 +145,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[3].RunNumber, 2);
 			Assert.AreEqual(messages[3].RunMessageNumber, 2);
 			Assert.AreEqual(messages[3].MessageSeverity, MessageSeverity.Informational);
-			Assert.AreEqual(messages[3].MessageSource, MessageSource.BenchmarkRunner);
+			Assert.AreEqual(messages[3].MessageSource, MessageSource.Runner);
 			Assert.AreEqual(messages[3].MessageText, "Requesting 1 run(s): Competition validation failed.");
 
 			Assert.AreEqual(messages[4].RunNumber, 3);
@@ -158,7 +158,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[5].RunNumber, 3);
 			Assert.AreEqual(messages[5].RunMessageNumber, 2);
 			Assert.AreEqual(messages[5].MessageSeverity, MessageSeverity.Warning);
-			Assert.AreEqual(messages[5].MessageSource, MessageSource.BenchmarkRunner);
+			Assert.AreEqual(messages[5].MessageSource, MessageSource.Runner);
 			Assert.AreEqual(
 				messages[5].MessageText,
 				"The benchmark was run 3 times (read log for details). Consider to adjust competition setup.");

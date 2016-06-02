@@ -38,6 +38,14 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <returns><c>True</c> if the severity is setup error or higher.</returns>
 		public static bool IsCriticalError(this MessageSeverity severity) => severity >= MessageSeverity.SetupError;
 
+		/// <summary>Log format for the message.</summary>
+		/// <returns>Log format for the message.</returns>
+		public static string ToLogString(this IMessage message)
+		{
+			var m = message;
+			return $"#{m.RunNumber}.{m.RunMessageNumber,-2} {m.Elapsed.TotalSeconds:00.000}s, {m.MessageSeverity + "@" + m.MessageSource + ":",-21} {m.MessageText}";
+		}
+
 		/// <summary>Reports analyser warning.</summary>
 		/// <param name="competitionState">State of the run.</param>
 		/// <param name="warnings">The list the warnings will be added to.</param>
@@ -90,15 +98,15 @@ namespace CodeJam.PerfTests.Running.Core
 
 			if (message.MessageSeverity.IsCriticalError())
 			{
-				logger.WriteLineError($"{LogImportantInfoPrefix} {message.ToString()}");
+				logger.WriteLineError($"{LogImportantInfoPrefix} {message.ToLogString()}");
 			}
 			else if (message.MessageSeverity.IsWarningOrHigher())
 			{
-				logger.WriteLineInfo($"{LogImportantInfoPrefix} {message.ToString()}");
+				logger.WriteLineInfo($"{LogImportantInfoPrefix} {message.ToLogString()}");
 			}
 			else
 			{
-				logger.WriteLineInfo($"{LogInfoPrefix} {message.ToString()}");
+				logger.WriteLineInfo($"{LogInfoPrefix} {message.ToLogString()}");
 			}
 		}
 		#endregion
@@ -138,11 +146,13 @@ namespace CodeJam.PerfTests.Running.Core
 			catch (Exception ex)
 			{
 				competitionState.WriteExceptionMessage(
-					MessageSource.BenchmarkRunner, MessageSeverity.ExecutionError,
+					MessageSource.Runner, MessageSeverity.ExecutionError,
 					$"Benchmark {benchmarkType.Name}", ex);
 			}
 
 			FillMessagesAfterLastRun(competitionState);
+
+			competitionState.AllRunsCompleted();
 
 			return competitionState;
 		}
@@ -191,13 +201,13 @@ namespace CodeJam.PerfTests.Running.Core
 			if (competitionState.RunLimitExceeded)
 			{
 				competitionState.WriteMessage(
-					MessageSource.BenchmarkRunner, MessageSeverity.TestError,
+					MessageSource.Runner, MessageSeverity.TestError,
 					$"The benchmark run count limit ({competitionState.MaxRunsAllowed} runs(s)) exceeded (read log for details). Consider to adjust competition setup.");
 			}
 			else if (competitionState.RunNumber > 1)
 			{
 				competitionState.WriteMessage(
-					MessageSource.BenchmarkRunner, MessageSeverity.Warning,
+					MessageSource.Runner, MessageSeverity.Warning,
 					$"The benchmark was run {competitionState.RunNumber} times (read log for details). Consider to adjust competition setup.");
 			}
 		}
