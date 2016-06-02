@@ -13,6 +13,14 @@ namespace CodeJam.PerfTests
 	{
 		public const int SpinCount = 100 * 1000;
 
+		public static int Delay(int cycles)
+		{
+			int a = 0;
+			for (int i = 0; i < cycles; i++)
+				a = a + 1;
+			return a;
+		}
+
 		// BUG: Jitting performed twice, https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 		// Jitting = 2, WarmupCount = 2, TargetCount = 1
 		public const int ExpectedRunCount = 6;

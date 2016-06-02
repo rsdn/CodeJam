@@ -178,14 +178,14 @@ namespace CodeJam.PerfTests
 			public void WillRun()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Thread.SpinWait(SpinCount);
+				Delay(SpinCount);
 			}
 
 			[CompetitionBenchmark(DoesNotCompete = true)]
 			public void WillRun2()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Thread.SpinWait(SpinCount);
+				Delay(SpinCount);
 			}
 		}
 
@@ -195,14 +195,14 @@ namespace CodeJam.PerfTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Thread.SpinWait(SpinCount);
+				Delay(SpinCount);
 			}
 
 			[CompetitionBenchmark(5, 15)]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Thread.SpinWait(10 * SpinCount);
+				Delay(10 * SpinCount);
 			}
 		}
 
@@ -213,24 +213,24 @@ namespace CodeJam.PerfTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Thread.SpinWait(SpinCount);
+				Delay(SpinCount);
 			}
 
 			[CompetitionBenchmark]
 			public void SlowerX20()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Thread.SpinWait(20 * SpinCount);
+				Delay(20 * SpinCount);
 			}
 		}
 
 		public class HighAccuracyBenchmark
 		{
 			[CompetitionBaseline]
-			public void Baseline() => Thread.SpinWait(SpinCount);
+			public void Baseline() => Delay(SpinCount);
 
 			[CompetitionBenchmark(9.5, 10.5)]
-			public void SlowerX10() => Thread.SpinWait(10 * SpinCount);
+			public void SlowerX10() => Delay(10 * SpinCount);
 		}
 
 		public class NoBaselineFailBenchmark : EmptyBenchmark
@@ -248,14 +248,14 @@ namespace CodeJam.PerfTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Thread.SpinWait(SpinCount);
+				Delay(SpinCount);
 			}
 
 			[CompetitionBenchmark(1, 1)]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Thread.SpinWait(10 * SpinCount);
+				Delay(10 * SpinCount);
 			}
 		}
 		#endregion

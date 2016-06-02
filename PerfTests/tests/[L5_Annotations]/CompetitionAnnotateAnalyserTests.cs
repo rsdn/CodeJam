@@ -74,10 +74,10 @@ namespace CodeJam.PerfTests
 		public class HighAccuracyBenchmark
 		{
 			[CompetitionBaseline]
-			public void Baseline() => Thread.SpinWait(SpinCount);
+			public void Baseline() => Delay(SpinCount);
 
 			[CompetitionBenchmark(9.50, 31.50)]
-			public void SlowerX10() => Thread.SpinWait(20 * SpinCount);
+			public void SlowerX10() => Delay(20 * SpinCount);
 		}
 		#endregion
 	}
