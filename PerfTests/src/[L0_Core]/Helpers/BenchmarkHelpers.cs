@@ -287,6 +287,11 @@ namespace BenchmarkDotNet.Helpers
 
 			return File.Exists(path) ? File.OpenText(path) : null;
 		}
+
+		/// <summary>Gets the value of the current TimeSpan structure expressed in nanoseconds.</summary>
+		/// <param name="timeSpan">The timespan.</param>
+		/// <returns>The total number of nanoseconds represented by this instance.</returns>
+		public static double TotalNanoseconds(this TimeSpan timeSpan) => timeSpan.Ticks * (1.0e9 / TimeSpan.TicksPerSecond);
 		#endregion
 	}
 }

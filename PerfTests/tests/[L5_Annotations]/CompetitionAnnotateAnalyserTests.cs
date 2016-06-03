@@ -1,10 +1,8 @@
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Threading;
 
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 
 using NUnit.Framework;
@@ -20,18 +18,19 @@ namespace CodeJam.PerfTests
 	{
 		private static readonly ICompetitionConfig _remoteLogConfig = new ManualCompetitionConfig(FastRunConfig.Instance)
 		{
-			DebugMode = true,
-			EnableReruns = true,
-			LogAnnotationResults = true,
+			AllowDebugBuilds = true,
+			DetailedLogging = true,
+			RerunIfLimitsFailed = true,
+			LogCompetitionLimits = true,
 			UpdateSourceAnnotations = true,
 			IgnoreExistingAnnotations = true,
-			PreviousLogUri =
+			PreviousRunLogUri =
 				"https://gist.githubusercontent.com/ig-sinicyn/ceeef64a6d91f22499bc05f388bb4b48/raw/74012e12059a096c76db5d2241ee080dd4221243/CompetitionAnnotateAnalyserTests.log.txt"
 		};
 
 		private static readonly ICompetitionConfig _localLogConfig = new ManualCompetitionConfig(_remoteLogConfig)
 		{
-			PreviousLogUri = @"[L5_Annotations]\CompetitionAnnotateAnalyserTests.log.txt"
+			PreviousRunLogUri = @"[L5_Annotations]\CompetitionAnnotateAnalyserTests.log.txt"
 		};
 
 		[Test]

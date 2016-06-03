@@ -11,7 +11,7 @@ namespace CodeJam.PerfTests
 	[TestFixture(Category = "BenchmarkDotNet")]
 	public class HostLoggerTests
 	{
-#region Test helpers
+		#region Test helpers
 		private const string LogInput = @"
 not logged
 not logged
@@ -88,7 +88,7 @@ logged
 // !--> logged
 ";
 
-		private static void LogMessages(HostLogger logger)
+		private static void LogMessages(ILogger logger)
 		{
 			logger.Write(LogKind.Error, "A");
 			logger.Write(LogKind.Default, "B");
@@ -115,8 +115,8 @@ logged
 			logger.WriteLine(LogKind.Default, @"TST8
 // !TST9
 TST10");
-		} 
-#endregion
+		}
+		#endregion
 
 		[Test]
 		public void TestHostLoggerAllMessages()
@@ -157,6 +157,7 @@ TST10
 ";
 			Assert.AreEqual(output.GetLog(), expected);
 		}
+
 		[Test]
 		public void TestHostLoggerPrefixedAndErrors()
 		{
@@ -194,7 +195,6 @@ TST6
 		[Test]
 		public void TestHostLoggerPrefixedOnly()
 		{
-
 			var lines = LogInput.Split(new[] { "\r\n" }, StringSplitOptions.None);
 			var output = new AccumulationLogger();
 			var logger = new HostLogger(output, HostLogMode.PrefixedOnly);

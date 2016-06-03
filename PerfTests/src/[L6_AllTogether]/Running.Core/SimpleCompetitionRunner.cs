@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Reflection;
 
 using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
+
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Loggers;
 
@@ -25,7 +23,7 @@ namespace CodeJam.PerfTests.Running.Core
 			public new ConsoleLogger WrappedLogger => (ConsoleLogger)base.WrappedLogger;
 		}
 
-		protected override HostLogger CreateHostLogger(HostLogMode hostLogMode) => 
+		protected override HostLogger CreateHostLogger(HostLogMode hostLogMode) =>
 			new SimpleHostLogger(hostLogMode);
 
 		protected override void ReportWarnings(string messages) => ConsoleLogger.Default.WriteLineInfo(messages);
@@ -34,7 +32,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 		protected override void ReportAssertionsFailed(string messages) => ConsoleLogger.Default.WriteLineError(messages);
 
-		protected override void ReportHostLogger(HostLogger logger, [CanBeNull] Summary summary)
+		protected override void ReportHostLogger(HostLogger logger, Summary summary)
 		{
 			// Do nothing.
 		}

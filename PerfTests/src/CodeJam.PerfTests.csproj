@@ -107,12 +107,12 @@
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\AnnotateSourceHelper.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\AnnotateSourceHelper.SourceAnnotate.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\AnnotateSourceHelper.SymbolHelpers.cs" />
+    <Compile Include="[L6_AllTogether]\Configs\Configs.cs" />
     <Compile Include="[L6_AllTogether]\Configs\ICompetitionConfig.cs" />
     <Compile Include="[L6_AllTogether]\Configs\ManualCompetitionConfig.cs" />
     <Compile Include="[L6_AllTogether]\Running.Core\SimpleCompetitionRunner.cs" />
     <Compile Include="[L6_AllTogether]\Running.Core\CompetitionRunnerBase.cs" />
     <Compile Include="[L7_NUnitRunner]\CompetitionBenchmarkRunner.cs" />
-    <Compile Include="[L6_AllTogether]\Configs\Configs.cs" />
     <Compile Include="[L7_NUnitRunner]\Running.Core\NUnitCompetitionRunner.cs" />
   </ItemGroup>
   <ItemGroup>

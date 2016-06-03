@@ -35,13 +35,17 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		#region Properties
-		/// <summary>The analyser should warn on benchmarks that take too much time to complete.</summary>
-		/// <value>True if the analyser should warn on benchmarks that take too much time to complete.</value>
-		public bool AllowSlowBenchmarks { get; set; }
-
 		/// <summary>The analyser should ignore existing annotations.</summary>
 		/// <value><c>true</c> if the analyser should ignore existing annotations.</value>
 		public bool IgnoreExistingAnnotations { get; set; }
+
+		/// <summary>Timing limit to detect too fast benchmarks.</summary>
+		/// <value>The timing limit to detect too fast benchmarks></value>
+		public TimeSpan TooFastBenchmarkLimit { get; set; }
+
+		/// <summary>Timing limit to detect long-running benchmarks.</summary>
+		/// <value>The timing limit to detect long-running benchmarks.</value>
+		public TimeSpan LongRunningBenchmarkLimit { get; set; }
 
 		/// <summary>
 		/// Total count of retries performed if the validation failed.
@@ -52,7 +56,7 @@ namespace CodeJam.PerfTests.Analysers
 
 		/// <summary>Log competition limits.</summary>
 		/// <value><c>true</c> if competition limits should be logged; otherwise, <c>false</c>.</value>
-		public bool LogAnnotationResults { get; set; }
+		public bool LogCompetitionLimits { get; set; }
 		#endregion
 
 		/// <summary>Performs limit validation for competition benchmarks.</summary>
@@ -80,7 +84,7 @@ namespace CodeJam.PerfTests.Analysers
 				ValidatePostconditions(summary, warnings);
 			}
 
-			if (competitionState.LooksLikeLastRun && LogAnnotationResults)
+			if (competitionState.LooksLikeLastRun && LogCompetitionLimits)
 			{
 				XmlAnnotations.LogCompetitionTargets(competitionTargets.Values, competitionState);
 			}
@@ -285,23 +289,27 @@ namespace CodeJam.PerfTests.Analysers
 
 		private void ValidatePostconditions(Summary summary, List<IWarning> warnings)
 		{
+			var culture = EnvironmentInfo.MainCultureInfo;
 			var competitionState = CompetitionCore.RunState[summary];
-			var tooFastReports = summary.Reports
-				.Where(rp => rp.GetResultRuns().Any(r => r.GetAverageNanoseconds() < 400))
-				.Select(rp => rp.Benchmark.Target.Method.Name)
-				.ToArray();
-			if (tooFastReports.Length > 0)
+			if (TooFastBenchmarkLimit > TimeSpan.Zero)
 			{
-				competitionState.AddAnalyserWarning(
-					warnings, MessageSeverity.Warning,
-					"The benchmarks " + string.Join(", ", tooFastReports) +
-						" run faster than 400 nanoseconds. Results cannot be trusted.");
+				var tooFastReports = summary.Reports
+					.Where(rp => rp.GetResultRuns().Any(r => r.GetAverageNanoseconds() < TooFastBenchmarkLimit.TotalNanoseconds()))
+					.Select(rp => rp.Benchmark.Target.Method.Name)
+					.ToArray();
+				if (tooFastReports.Length > 0)
+				{
+					competitionState.AddAnalyserWarning(
+						warnings, MessageSeverity.Warning,
+						"The benchmarks " + string.Join(", ", tooFastReports) +
+							$" run faster than {TooFastBenchmarkLimit.TotalMilliseconds.ToString(culture)}ms. Results cannot be trusted.");
+				}
 			}
 
-			if (!AllowSlowBenchmarks)
+			if (LongRunningBenchmarkLimit > TimeSpan.Zero)
 			{
 				var tooSlowReports = summary.Reports
-					.Where(rp => rp.GetResultRuns().Any(r => r.GetAverageNanoseconds() > 500 * 1000 * 1000))
+					.Where(rp => rp.GetResultRuns().Any(r => r.GetAverageNanoseconds() > LongRunningBenchmarkLimit.TotalNanoseconds()))
 					.Select(rp => rp.Benchmark.Target.Method.Name)
 					.ToArray();
 
@@ -310,8 +318,9 @@ namespace CodeJam.PerfTests.Analysers
 					competitionState.AddAnalyserWarning(
 						warnings, MessageSeverity.Warning,
 						"The benchmarks " + string.Join(", ", tooSlowReports) +
-							" run longer than 0.5 sec. Consider to rewrite the test as the peek timings will be hidden by averages" +
-							$" or set the {nameof(AllowSlowBenchmarks)} to true.");
+							$" run longer than {LongRunningBenchmarkLimit.TotalSeconds.ToString(culture)}s." + 
+							" Consider to rewrite the test as the peek timings will be hidden by averages" +
+							" or enable long running benchmarks support in the config.");
 				}
 			}
 
@@ -319,7 +328,7 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.Informational,
-					$"Analyser {GetType().Name}: no warnings.");
+					$"{GetType().Name}: All competition limits are ok.");
 			}
 		}
 		#endregion

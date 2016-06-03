@@ -59,38 +59,82 @@ namespace CodeJam.PerfTests.Configs
 
 		private void AddCompetitionProperties(ICompetitionConfig config)
 		{
+			//Runner config - troubleshooting
+			AllowDebugBuilds = config.AllowDebugBuilds;
+			DetailedLogging = config.DetailedLogging;
+
 			// Runner config
-			DebugMode = config.DebugMode;
-			DisableValidation = config.DisableValidation;
-			ReportWarningsAsErrors = config.ReportWarningsAsErrors;
 			MaxRunsAllowed = config.MaxRunsAllowed;
+			ReportWarningsAsErrors = config.ReportWarningsAsErrors;
 
 			// Validation config
-			AllowSlowBenchmarks = config.AllowSlowBenchmarks;
-			EnableReruns = config.EnableReruns;
-			LogAnnotationResults = config.LogAnnotationResults;
+			DontCheckAnnotations = config.DontCheckAnnotations;
+			IgnoreExistingAnnotations = config.IgnoreExistingAnnotations;
+			AllowLongRunningBenchmarks = config.AllowLongRunningBenchmarks;
+			RerunIfLimitsFailed = config.RerunIfLimitsFailed;
+			LogCompetitionLimits = config.LogCompetitionLimits;
 
 			// Annotation config
 			UpdateSourceAnnotations = config.UpdateSourceAnnotations;
-			IgnoreExistingAnnotations = config.IgnoreExistingAnnotations;
-			PreviousLogUri = config.PreviousLogUri;
+			PreviousRunLogUri = config.PreviousRunLogUri;
 		}
 		#endregion
 
-		// Runner config
-		public bool DebugMode { get; set; }
-		public bool DisableValidation { get; set; }
+		#region Runner config - troubleshooting
+		/// <summary>Allow debug builds to be used in competitions.</summary>
+		/// <value><c>true</c> if debug builds allowed; otherwise, <c>false</c>.</value>
+		public bool AllowDebugBuilds { get; set; }
+
+		/// <summary>Enable detailed logging.</summary>
+		/// <value><c>true</c> if detailed logging enabled.</value>
+		public bool DetailedLogging { get; set; }
+		#endregion
+
+		#region Runner config
+		/// <summary>Total count of reruns allowed. Set this to zero to use default limit (10 runs).</summary>
+		/// <value>The upper limits of rerun count.</value>
+		public int MaxRunsAllowed { get; set; }
+
+		/// <summary>Report warnings as errors.</summary>
+		/// <value><c>true</c> if competition warnings should be reported as errors; otherwise, <c>false</c>.</value>
 		public bool ReportWarningsAsErrors { get; set; }
-		public int MaxRunsAllowed { get; set; } = 10;
+		#endregion
 
-		// Validation config
-		public bool AllowSlowBenchmarks { get; set; }
-		public bool EnableReruns { get; set; }
-		public bool LogAnnotationResults { get; set; }
+		#region Validation config
+		/// <summary>Do not validate competition limits.</summary>
+		/// <value><c>true</c> if competition limits should not be validated.</value>
+		public bool DontCheckAnnotations { get; set; }
 
-		// Annotation config
-		public bool UpdateSourceAnnotations { get; set; }
+		/// <summary>The analyser should ignore existing annotations.</summary>
+		/// <value><c>true</c> if the analyser should ignore existing annotations.</value>
 		public bool IgnoreExistingAnnotations { get; set; }
-		public string PreviousLogUri { get; set; }
+
+		/// <summary>The analyser should warn on benchmarks that take longer than 0.5 sec to complete.</summary>
+		/// <value>True if the analyser should warn on benchmarks that take longer than 0.5 sec to complete.</value>
+		public bool AllowLongRunningBenchmarks { get; set; }
+
+		/// <summary>Perform reruns if competition limits failed or updated.</summary>
+		/// <value><c>true</c> if reruns should be performed if competition limits failed or updated.</value>
+		public bool RerunIfLimitsFailed { get; set; }
+
+		/// <summary>Log competition limits.</summary>
+		/// <value><c>true</c> if competition limits should be logged; otherwise, <c>false</c>.</value>
+		public bool LogCompetitionLimits { get; set; }
+		#endregion
+
+		#region Annotation config
+		/// <summary>Try to annotate source with actual competition limits.</summary>
+		/// <value><c>true</c> if the analyser should update source annotations; otherwise, <c>false</c>. </value>
+		public bool UpdateSourceAnnotations { get; set; }
+
+		/// <summary>
+		/// URI of the log that contains competition limits from previous run(s).
+		/// Relative paths, file paths and web URLs are supported.
+		/// If <see cref="UpdateSourceAnnotations"/> set to <c>true</c>, the annotations will be updated with limits from the log.
+		/// Set <seealso cref="LogCompetitionLimits"/> <c>true</c> to log the limits.
+		/// </summary>
+		/// <value>The URI of the log that contains competition limits from previous run(s).</value>
+		public string PreviousRunLogUri { get; set; }
+		#endregion
 	}
 }

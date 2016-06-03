@@ -37,6 +37,17 @@ namespace CodeJam.PerfTests.Running.Core
 				: base(wrappedLogger, logMode) { }
 		}
 
+		#region Defaults
+		// DONTTOUCH: update xml docs for ICompetitionConfig.MaxRunsAllowed after changing the constant.
+		private const int DefaultMaxRunsAllowed = 10;
+
+		private static readonly TimeSpan _tooFastRunLimit = new TimeSpan(4); // 400 ns
+
+		// DONTTOUCH: update xml docs for ICompetitionConfig.AllowLongRunningBenchmarks after changing the value.
+		private static readonly TimeSpan _longRunLimit = TimeSpan.FromMilliseconds(500); // 500 ms
+		private static readonly TimeSpan _allowLongRunLimit = TimeSpan.FromDays(1);
+		#endregion
+
 		public CompetitionState Run<T>(ICompetitionConfig competitionConfig) where T : class =>
 			RunCompetition(typeof(T), competitionConfig);
 
@@ -49,16 +60,18 @@ namespace CodeJam.PerfTests.Running.Core
 			OnBeforeRun(benchmarkType, competitionConfig);
 
 			var benchmarkConfig = CreateBenchmarkConfig(competitionConfig);
+			var maxRunsAllowed = competitionConfig.MaxRunsAllowed;
+			if (maxRunsAllowed <= 0)
+			{
+				maxRunsAllowed = DefaultMaxRunsAllowed;
+			}
 
 			bool runSucceed = false;
 			Summary summary = null;
 			CompetitionState competitionState;
 			try
 			{
-				competitionState = CompetitionCore.Run(
-					benchmarkType,
-					benchmarkConfig,
-					competitionConfig.MaxRunsAllowed);
+				competitionState = CompetitionCore.Run(benchmarkType, benchmarkConfig, maxRunsAllowed);
 				summary = competitionState.LastRunSummary;
 				runSucceed = true;
 
@@ -79,7 +92,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 		private void ValidateCompetitionSetup(Type benchmarkType, ICompetitionConfig competitionConfig)
 		{
-			if (!competitionConfig.DebugMode && !EnvironmentInfo.GetCurrent().HasAttachedDebugger)
+			if (!competitionConfig.AllowDebugBuilds && !EnvironmentInfo.GetCurrent().HasAttachedDebugger)
 			{
 				var assembly = benchmarkType.Assembly;
 				if (assembly.IsDebugAssembly())
@@ -98,7 +111,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 		private void ProcessRunComplete(CompetitionState competitionState, ICompetitionConfig competitionConfig)
 		{
-			if (competitionConfig.DebugMode && competitionState?.Logger != null)
+			if (competitionConfig.DetailedLogging && competitionState?.Logger != null)
 			{
 				var logger = competitionState.Logger;
 				var messages = competitionState.GetMessages();
@@ -249,7 +262,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			var result = OverrideLoggers(competitionConfig);
 			var hostLogger = CreateHostLogger(
-				competitionConfig.DebugMode ? HostLogMode.AllMessages : HostLogMode.PrefixedOnly);
+				competitionConfig.DetailedLogging ? HostLogMode.AllMessages : HostLogMode.PrefixedOnly);
 			result.Insert(0, hostLogger);
 			return result;
 		}
@@ -276,7 +289,7 @@ namespace CodeJam.PerfTests.Running.Core
 			if (competitionConfig.GetJobs().Any(j => j.Toolchain is InProcessToolchain))
 			{
 				// ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
-				if (competitionConfig.DebugMode || !competitionConfig.UpdateSourceAnnotations)
+				if (competitionConfig.AllowDebugBuilds || !competitionConfig.UpdateSourceAnnotations)
 				{
 					result.Insert(0, InProcessValidator.DontFailOnError);
 				}
@@ -286,7 +299,7 @@ namespace CodeJam.PerfTests.Running.Core
 				}
 			}
 
-			if (competitionConfig.DebugMode || EnvironmentInfo.GetCurrent().HasAttachedDebugger)
+			if (competitionConfig.AllowDebugBuilds || EnvironmentInfo.GetCurrent().HasAttachedDebugger)
 			{
 				result.RemoveAll(v => v is JitOptimizationsValidator);
 			}
@@ -307,21 +320,22 @@ namespace CodeJam.PerfTests.Running.Core
 			var result = OverrideAnalysers(competitionConfig);
 
 			// DONTTOUCH: the CompetitionAnnotateAnalyser should be last analyser in the chain.
-			if (!competitionConfig.DisableValidation)
+			if (!competitionConfig.DontCheckAnnotations)
 			{
 				var annotator = new CompetitionAnnotateAnalyser
 				{
-					AllowSlowBenchmarks = competitionConfig.AllowSlowBenchmarks,
-					UpdateSourceAnnotations = competitionConfig.UpdateSourceAnnotations,
+					TooFastBenchmarkLimit = _tooFastRunLimit,
+					LongRunningBenchmarkLimit = competitionConfig.AllowLongRunningBenchmarks ? _allowLongRunLimit : _longRunLimit,
 					IgnoreExistingAnnotations = competitionConfig.IgnoreExistingAnnotations,
-					LogAnnotationResults = competitionConfig.LogAnnotationResults,
-					PreviousLogUri = competitionConfig.PreviousLogUri
+					LogCompetitionLimits = competitionConfig.LogCompetitionLimits,
+					UpdateSourceAnnotations = competitionConfig.UpdateSourceAnnotations,
+					PreviousRunLogUri = competitionConfig.PreviousRunLogUri
 				};
 
-				if (competitionConfig.EnableReruns)
+				if (competitionConfig.RerunIfLimitsFailed)
 				{
 					annotator.MaxRerunsIfValidationFailed = 3;
-					annotator.RequestRerunsOnAnnotate = 2;
+					annotator.AdditionalRerunsOnAnnotate = 2;
 				}
 
 				result.Add(annotator);

@@ -14,6 +14,7 @@ namespace CodeJam.PerfTests.Loggers
 	/// Basic logger implementation for unit test runners
 	/// </summary>
 	[PublicAPI]
+	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public class HostLogger : ILogger
 	{

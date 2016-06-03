@@ -41,8 +41,9 @@ namespace CodeJam.PerfTests
 				Toolchain = InProcessToolchain.Instance
 			};
 			Add(job);
-			DebugMode = true;
-			EnableReruns = true;
+			AllowDebugBuilds = true;
+			DetailedLogging = true;
+			RerunIfLimitsFailed = true;
 		}
 	}
 }

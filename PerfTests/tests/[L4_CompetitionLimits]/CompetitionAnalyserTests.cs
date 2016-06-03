@@ -4,7 +4,6 @@ using System.Threading;
 
 using BenchmarkDotNet.Attributes;
 
-using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 
 using NUnit.Framework;
@@ -32,7 +31,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionAnnotateAnalyser: no warnings.");
+			Assert.AreEqual(messages[0].MessageText, "CompetitionAnnotateAnalyser: All competition limits are ok.");
 		}
 
 		[Test]
@@ -49,7 +48,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionAnnotateAnalyser: no warnings.");
+			Assert.AreEqual(messages[0].MessageText, "CompetitionAnnotateAnalyser: All competition limits are ok.");
 		}
 
 		[Test]
@@ -66,7 +65,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionAnnotateAnalyser: no warnings.");
+			Assert.AreEqual(messages[0].MessageText, "CompetitionAnnotateAnalyser: All competition limits are ok.");
 		}
 
 		[Test]
@@ -83,7 +82,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionAnnotateAnalyser: no warnings.");
+			Assert.AreEqual(messages[0].MessageText, "CompetitionAnnotateAnalyser: All competition limits are ok.");
 		}
 
 		[Test]

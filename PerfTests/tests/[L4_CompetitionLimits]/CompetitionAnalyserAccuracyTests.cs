@@ -6,7 +6,6 @@ using System.Threading;
 using BenchmarkDotNet.Attributes;
 
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
@@ -24,8 +23,9 @@ namespace CodeJam.PerfTests
 	{
 		private static readonly ICompetitionConfig _accurateConfig = new ManualCompetitionConfig(FastRunConfig.Instance)
 		{
-			DebugMode = true,
-			EnableReruns = true
+			AllowDebugBuilds = true,
+			DetailedLogging = true,
+			RerunIfLimitsFailed = true
 		};
 
 		[Test]
@@ -47,7 +47,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"The benchmarks TooFast, TooFast2 run faster than 400 nanoseconds. Results cannot be trusted.");
+				"The benchmarks TooFast, TooFast2 run faster than 0.0004ms. Results cannot be trusted.");
 		}
 
 		[Test]
@@ -69,9 +69,9 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"The benchmarks TooSlow run longer than 0.5 sec." +
+				"The benchmarks TooSlow run longer than 0.5s." +
 					" Consider to rewrite the test as the peek timings will be hidden by averages" +
-					" or set the AllowSlowBenchmarks to true.");
+					" or enable long running benchmarks support in the config.");
 		}
 
 		[Test]
@@ -79,7 +79,7 @@ namespace CodeJam.PerfTests
 		{
 			var overrideConfig = new ManualCompetitionConfig(SingleRunConfig)
 			{
-				AllowSlowBenchmarks = true
+				AllowLongRunningBenchmarks = true
 			};
 
 			var runState = new PerfTestRunner().Run<TooSlowBenchmark>(overrideConfig);
@@ -96,7 +96,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionAnnotateAnalyser: no warnings.");
+			Assert.AreEqual(messages[0].MessageText, "CompetitionAnnotateAnalyser: All competition limits are ok.");
 		}
 
 		[Test]
@@ -116,7 +116,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.AreEqual(messages[0].MessageText, "Analyser CompetitionAnnotateAnalyser: no warnings.");
+			Assert.AreEqual(messages[0].MessageText, "CompetitionAnnotateAnalyser: All competition limits are ok.");
 			Assert.LessOrEqual(stopwatch.Elapsed.TotalSeconds, 8, "Timeout failed");
 		}
 

@@ -7,8 +7,6 @@ using CodeJam.PerfTests.Running.Core;
 
 using JetBrains.Annotations;
 
-using NUnit.Framework;
-
 namespace CodeJam.PerfTests
 {
 	/// <summary>

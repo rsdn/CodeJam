@@ -5,8 +5,6 @@ using System.Threading;
 
 using BenchmarkDotNet.Attributes;
 
-using CodeJam.PerfTests.Running.Core;
-
 using NUnit.Framework;
 
 namespace CodeJam.PerfTests

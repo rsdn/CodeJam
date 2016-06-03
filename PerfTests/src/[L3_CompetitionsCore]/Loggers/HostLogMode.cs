@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading;
-
-using BenchmarkDotNet.Loggers;
-
-using CodeJam.Threading;
 
 using JetBrains.Annotations;
 
@@ -18,9 +12,11 @@ namespace CodeJam.PerfTests.Loggers
 	{
 		/// <summary>Log all messages.</summary>
 		AllMessages,
+
 		/// <summary>Log error messages and messages with HostLogger.Log*Prefix prefixes.</summary>
 		PrefixedAndErrors,
+
 		/// <summary>Log messages with HostLogger.Log*Prefix prefixes only.</summary>
 		PrefixedOnly
-	}	
+	}
 }

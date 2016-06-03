@@ -38,21 +38,21 @@ namespace CodeJam.PerfTests.Analysers
 		/// URI of the log that contains competition limits from previous run(s).
 		/// Relative paths, file paths and web URLs are supported.
 		/// If <see cref="UpdateSourceAnnotations"/> set to <c>true</c>, the annotations will be updated with limits from the log.
-		/// Enable the <seealso cref="CompetitionAnalyser.LogAnnotationResults"/> to log the limits.
+		/// Enable the <seealso cref="CompetitionAnalyser.LogCompetitionLimits"/> to log the limits.
 		/// </summary>
 		/// <value>The URI of the log that contains competition limits from previous run(s).</value>
-		public string PreviousLogUri { get; set; }
+		public string PreviousRunLogUri { get; set; }
 
 		/// <summary>
 		/// Count of additional runs performed after updating the limits annotations.
 		/// Set this to non-zero positive value to proof that the benchmark fits into updated limits.
 		/// </summary>
 		/// <value>The count of additional runs performed after updating the limits annotations.</value>
-		public int RequestRerunsOnAnnotate { get; set; }
+		public int AdditionalRerunsOnAnnotate { get; set; }
 		#endregion
 
 		/// <summary>
-		/// Refills the competition targets collection and fills competition limits from the <seealso cref="PreviousLogUri"/>.
+		/// Refills the competition targets collection and fills competition limits from the <seealso cref="PreviousRunLogUri"/>.
 		/// </summary>
 		/// <param name="competitionTargets">The collection to be filled with competition targets.</param>
 		/// <param name="summary">Summary for the run.</param>
@@ -61,20 +61,20 @@ namespace CodeJam.PerfTests.Analysers
 		{
 			base.InitCompetitionTargets(competitionTargets, summary);
 
-			if (!UpdateSourceAnnotations || string.IsNullOrEmpty(PreviousLogUri))
+			if (!UpdateSourceAnnotations || string.IsNullOrEmpty(PreviousRunLogUri))
 				return;
 
 			var competitionState = CompetitionCore.RunState[summary];
 			competitionState.WriteMessage(
 				MessageSource.Analyser, MessageSeverity.Informational,
-				$"Reading annotations from log {PreviousLogUri}.");
+				$"Reading annotations from log {PreviousRunLogUri}.");
 
 			var benchmarkDocs = _documentsFromLog[summary]
-				.GetOrAdd(PreviousLogUri, uri => XmlAnnotations.TryParseBenchmarkDocsFromLog(uri, competitionState));
+				.GetOrAdd(PreviousRunLogUri, uri => XmlAnnotations.TryParseBenchmarkDocsFromLog(uri, competitionState));
 
 			competitionState.WriteMessage(
 				MessageSource.Analyser, MessageSeverity.Informational,
-				$"Parsing previous results ({benchmarkDocs.Length} doc(s)) from log {PreviousLogUri}.");
+				$"Parsing previous results ({benchmarkDocs.Length} doc(s)) from log {PreviousRunLogUri}.");
 
 			bool updated = false;
 			foreach (var competitionTarget in competitionTargets.Values)
@@ -101,13 +101,13 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.Informational,
-					$"Benchmark limits were updated from log file {PreviousLogUri}.");
+					$"Benchmark limits were updated from log file {PreviousRunLogUri}.");
 			}
 			else
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.Warning,
-					$"No benchmark limits found. Log file: {PreviousLogUri}.");
+					$"No benchmark limits found. Log file: {PreviousRunLogUri}.");
 			}
 		}
 
@@ -183,11 +183,11 @@ namespace CodeJam.PerfTests.Analysers
 
 		private void RequestReruns(bool updated, CompetitionState competitionState)
 		{
-			if (RequestRerunsOnAnnotate > 0)
+			if (AdditionalRerunsOnAnnotate > 0)
 			{
 				if (updated)
 				{
-					competitionState.RequestReruns(RequestRerunsOnAnnotate, "Annotations were updated.");
+					competitionState.RequestReruns(AdditionalRerunsOnAnnotate, "Annotations were updated.");
 				}
 				else
 				{

@@ -54,13 +54,13 @@ namespace CodeJam
 
 			Add(FastRunConfig.Instance);
 
-			EnableReruns = true;
+			RerunIfLimitsFailed = true;
 			base.ReportWarningsAsErrors = ReportWarningsAsErrors;
 			if (AnnotateOnRun)
 			{
-				LogAnnotationResults = true;
-				UpdateSourceAnnotations = true;
 				base.IgnoreExistingAnnotations = IgnoreExistingAnnotations;
+				UpdateSourceAnnotations = true;
+				LogCompetitionLimits = true;
 			}
 		}
 	}
