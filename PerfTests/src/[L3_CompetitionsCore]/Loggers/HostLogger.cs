@@ -51,7 +51,7 @@ namespace CodeJam.PerfTests.Loggers
 
 		/// <summary>Initializes a new instance of the <see cref="HostLogger"/> class.</summary>
 		/// <param name="wrappedLogger">The logger to redirect the output. Cannot be null.</param>
-		/// <param name="logMode">Log filtering.</param>
+		/// <param name="logMode">Host logging mode.</param>
 		public HostLogger([NotNull] ILogger wrappedLogger, HostLogMode logMode)
 		{
 			Code.NotNull(wrappedLogger, nameof(wrappedLogger));

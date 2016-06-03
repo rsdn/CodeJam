@@ -25,19 +25,25 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.Core
 {
+	/// <summary>Base class for competition benchmark runners</summary>
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "VirtualMemberNeverOverriden.Global")]
 	public abstract class CompetitionRunnerBase
 	{
+		/// <summary>Basic host logger implementation</summary>
+		/// <seealso cref="CodeJam.PerfTests.Loggers.HostLogger" />
 		protected abstract class HostLogger : Loggers.HostLogger
 		{
+			/// <summary>Initializes a new instance of the <see cref="HostLogger"/> class.</summary>
+			/// <param name="wrappedLogger">The logger to redirect the output. Cannot be null.</param>
+			/// <param name="logMode">Host logging mode.</param>
 			protected HostLogger(ILogger wrappedLogger, HostLogMode logMode)
 				: base(wrappedLogger, logMode) { }
 		}
 
-		#region Defaults
+		#region Default values
 		// DONTTOUCH: update xml docs for ICompetitionConfig.MaxRunsAllowed after changing the constant.
 		private const int DefaultMaxRunsAllowed = 10;
 
@@ -48,13 +54,21 @@ namespace CodeJam.PerfTests.Running.Core
 		private static readonly TimeSpan _allowLongRunLimit = TimeSpan.FromDays(1);
 		#endregion
 
+		/// <summary>Runs the benchmark.</summary>
+		/// <typeparam name="T">Type of the benchmark class.</typeparam>
+		/// <param name="thisReference">Reference used to enable type inference.</param>
+		/// <param name="competitionConfig">The competition config.</param>
+		/// <returns>State of the competition.</returns>
+		public CompetitionState Run<T>(T thisReference, ICompetitionConfig competitionConfig) where T : class =>
+			RunCompetition(thisReference.GetType(), competitionConfig);
+
+		/// <returns>State of the competition.</returns>
 		public CompetitionState Run<T>(ICompetitionConfig competitionConfig) where T : class =>
 			RunCompetition(typeof(T), competitionConfig);
 
-		// TODO: return CompetitionState instead?
 		public virtual CompetitionState RunCompetition(Type benchmarkType, ICompetitionConfig competitionConfig)
 		{
-			competitionConfig = competitionConfig ?? ManualCompetitionConfig.Default;
+			competitionConfig = competitionConfig ?? DefaultCompetitionConfig.Instance;
 
 			ValidateCompetitionSetup(benchmarkType, competitionConfig);
 			OnBeforeRun(benchmarkType, competitionConfig);
@@ -86,6 +100,8 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 
 			ReportMessagesToUser(competitionState, competitionConfig);
+
+			DebugCode.AssertState(competitionState.Completed, "Bug: competition state does not mark as completed.");
 
 			return competitionState;
 		}
@@ -255,7 +271,7 @@ namespace CodeJam.PerfTests.Running.Core
 			result.Add(GetValidators(competitionConfig).ToArray());
 			result.Add(GetAnalysers(competitionConfig).ToArray());
 
-			return result;
+			return result.AsReadOnly();
 		}
 
 		private List<ILogger> GetLoggers(ICompetitionConfig competitionConfig)

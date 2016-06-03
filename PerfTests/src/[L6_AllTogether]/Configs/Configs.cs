@@ -12,15 +12,21 @@ namespace CodeJam.PerfTests.Configs
 
 	/// <summary>Use this to run fast but inaccurate competitions.</summary>
 	[PublicAPI]
-	public class FastRunConfig : ManualConfig
+	public sealed class FastRunConfig : ReadOnlyConfig
 	{
 		/// <summary>Instance of the config.</summary>
 		public static readonly IConfig Instance = new FastRunConfig();
 
 		/// <summary>Constructor.</summary>
-		public FastRunConfig()
+		public FastRunConfig(): base(Create())
 		{
-			Add(
+		}
+
+		private static ManualConfig Create()
+		{
+			var result = new ManualConfig();
+
+			result.Add(
 				new Job
 				{
 					IterationTime = 10,
@@ -31,24 +37,34 @@ namespace CodeJam.PerfTests.Configs
 					Jit = Jit.RyuJit,
 					Toolchain = InProcessToolchain.Instance
 				});
+
+			return result;
 		}
 	}
 
 	/// <summary>Use this to run very slow but proven-to-be-accurate perf tests.</summary>
 	[PublicAPI]
-	public class TestProofConfig : ManualConfig
+	public sealed class TestProofConfig : ReadOnlyConfig
 	{
 		/// <summary>Instance of the config.</summary>
 		public static readonly IConfig Instance = new TestProofConfig();
 
 		/// <summary>Constructor.</summary>
-		public TestProofConfig()
+		public TestProofConfig() : base(Create())
 		{
-			Add(
+		}
+
+		private static ManualConfig Create()
+		{
+			var result = new ManualConfig();
+
+			result.Add(
 				new Job
 				{
 					TargetCount = 10
 				});
+
+			return result;
 		}
 	}
 }

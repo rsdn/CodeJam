@@ -75,7 +75,15 @@ namespace CodeJam.PerfTests.Running.Core
 		/// </summary>
 		/// <value>The summary for the last completed run.</value>
 		public Summary LastRunSummary { get; private set; }
+
+		/// <summary>The competition was completed.</summary>
+		/// <value><c>true</c> if the competition was completed.</value>
+		public bool Completed { get; private set; }
 		#endregion
+
+		[AssertionMethod]
+		private void AssertIsInCompetition() => 
+			Code.AssertState(!Completed, "Could not update the state as the competition was completed.");
 
 		#region State modification
 		/// <summary>Init the competition state.</summary>
@@ -83,6 +91,8 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="logger">The logger for the competition.</param>
 		internal void FirstTimeInit(int maxRunsAllowed, [NotNull] ILogger logger)
 		{
+			AssertIsInCompetition();
+
 			Code.NotNull(logger, nameof(logger));
 			_stopwatch.Restart();
 
@@ -100,6 +110,8 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Prepare for next run.</summary>
 		internal void PrepareForRun()
 		{
+			AssertIsInCompetition();
+
 			RunNumber++;
 			RunsLeft--;
 
@@ -110,10 +122,21 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Marks the run as completed.</summary>
 		/// <param name="summary">Summary for the run.</param>
-		internal void RunCompleted(Summary summary) => LastRunSummary = summary;
+		internal void RunCompleted(Summary summary)
+		{
+			AssertIsInCompetition();
+
+			LastRunSummary = summary;
+		}
 
 		/// <summary>Marks competition state as completed.</summary>
-		internal void AllRunsCompleted() => _stopwatch.Stop();
+		internal void MarkAsCompleted()
+		{
+			AssertIsInCompetition();
+
+			_stopwatch.Stop();
+			Completed = true;
+		}
 
 		/// <summary>
 		/// Requests additional runs for the competition.
@@ -122,6 +145,8 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="explanationMessage">The explanation message for therequest</param>
 		public void RequestReruns(int additionalRunsCount, [NotNull] string explanationMessage)
 		{
+			AssertIsInCompetition();
+
 			Code.InRange(additionalRunsCount, nameof(additionalRunsCount), 0, 1000);
 			Code.NotNullNorEmpty(explanationMessage, nameof(explanationMessage));
 
@@ -180,6 +205,8 @@ namespace CodeJam.PerfTests.Running.Core
 			MessageSource messageSource, MessageSeverity messageSeverity,
 			string messageText)
 		{
+			AssertIsInCompetition();
+
 			Message message;
 
 			lock (_messages)

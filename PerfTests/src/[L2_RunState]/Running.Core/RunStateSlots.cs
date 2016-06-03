@@ -6,6 +6,8 @@ using System.Linq;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Validators;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>
@@ -21,7 +23,8 @@ namespace CodeJam.PerfTests.Running.Core
 		/// </summary>
 		/// <typeparam name="T">The type of the running state instance.</typeparam>
 		/// <returns>The value for the <seealso cref="RunState{T}"/>.</returns>
-		public T GetSlot<T>() where T : new() => (T)_stateSlots.GetOrAdd(typeof(T), t => new T());
+		[NotNull]
+		public T GetSlot<T>() where T : class, new() => (T)_stateSlots.GetOrAdd(typeof(T), t => new T());
 
 		#region IValidator stub implementation
 		/// <summary>Gets a value indicating whether warnings are treated as errors.</summary>

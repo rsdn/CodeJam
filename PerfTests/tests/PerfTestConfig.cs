@@ -10,7 +10,7 @@ using CodeJam.PerfTests.Configs;
 
 namespace CodeJam.PerfTests
 {
-	public class PerfTestConfig : ManualCompetitionConfig
+	public sealed class PerfTestConfig : ReadOnlyCompetitionConfig
 	{
 		public const int SpinCount = 100 * 1000;
 
@@ -27,11 +27,16 @@ namespace CodeJam.PerfTests
 
 		public PerfTestConfig() : this(Platform.Host) { }
 
-		private PerfTestConfig(Platform platform)
+		private PerfTestConfig(Platform platform) : base(Create(platform))
 		{
-			Add(DefaultConfig.Instance.GetColumns().ToArray());
+		}
 
-			var job = new Job
+		private static ManualCompetitionConfig Create(Platform platform)
+		{
+			var result = new ManualCompetitionConfig();
+
+			result.Add(DefaultConfig.Instance.GetColumns().ToArray());
+			result.Add(new Job
 			{
 				LaunchCount = 1,
 				Mode = Mode.SingleRun,
@@ -39,11 +44,12 @@ namespace CodeJam.PerfTests
 				TargetCount = 2,
 				Platform = platform,
 				Toolchain = InProcessToolchain.Instance
-			};
-			Add(job);
-			AllowDebugBuilds = true;
-			DetailedLogging = true;
-			RerunIfLimitsFailed = true;
+			});
+			result.AllowDebugBuilds = true;
+			result.DetailedLogging = true;
+			result.RerunIfLimitsFailed = true;
+
+			return result;
 		}
 	}
 }

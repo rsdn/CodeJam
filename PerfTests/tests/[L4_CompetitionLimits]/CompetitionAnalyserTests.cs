@@ -26,6 +26,7 @@ namespace CodeJam.PerfTests
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, 0);
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			Assert.IsTrue(runState.Completed);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
@@ -43,6 +44,7 @@ namespace CodeJam.PerfTests
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			Assert.IsTrue(runState.Completed);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
@@ -60,6 +62,7 @@ namespace CodeJam.PerfTests
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			Assert.IsTrue(runState.Completed);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
@@ -77,6 +80,7 @@ namespace CodeJam.PerfTests
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			Assert.IsTrue(runState.Completed);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
@@ -94,6 +98,7 @@ namespace CodeJam.PerfTests
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			Assert.IsTrue(runState.Completed);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
@@ -115,6 +120,7 @@ namespace CodeJam.PerfTests
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, 3 * ExpectedRunCount); // 3x rerun
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			Assert.IsTrue(runState.Completed);
 			Assert.AreEqual(runState.RunNumber, 3);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);

@@ -7,11 +7,14 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 
+using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Parameters;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
+
+using CodeJam.PerfTests.Configs;
 
 using JetBrains.Annotations;
 
@@ -27,6 +30,10 @@ namespace BenchmarkDotNet.Helpers
 	public static class BenchmarkHelpers
 	{
 		#region Benchmark-related
+		/// <summary>Creates read-only wrapper for the config.</summary>
+		/// <param name="config">The config to wrap.</param>
+		/// <returns>Read-only wrapper for the config.</returns>
+		public static IConfig AsReadOnly(this IConfig config) => new ReadOnlyConfig(config);
 
 		#region Selects
 		/// <summary>Returns the baseline for the benchmark.</summary>

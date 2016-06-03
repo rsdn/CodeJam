@@ -4,9 +4,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Loggers
 {
-	/// <summary>
-	/// Host logging mode
-	/// </summary>
+	/// <summary>Host logging mode.</summary>
 	[PublicAPI]
 	public enum HostLogMode
 	{

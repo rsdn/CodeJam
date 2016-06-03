@@ -118,6 +118,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="competitionConfig">The config for the benchmark.</param>
 		/// <param name="maxRunsAllowed">Total count of reruns allowed.</param>
 		/// <returns>A competition state for the run.</returns>
+		[NotNull]
 		internal static CompetitionState Run(
 			[NotNull] Type benchmarkType,
 			[NotNull] IConfig competitionConfig,
@@ -153,7 +154,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			FillMessagesAfterLastRun(competitionState);
 
-			competitionState.AllRunsCompleted();
+			competitionState.MarkAsCompleted();
 
 			return competitionState;
 		}

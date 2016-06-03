@@ -6,11 +6,14 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Configs
 {
+	/// <summary>Class for competition config config creation</summary>
 	[PublicAPI]
-	public class ManualCompetitionConfig : ManualConfig, ICompetitionConfig
+	public sealed class ManualCompetitionConfig : ManualConfig, ICompetitionConfig
 	{
-		public static readonly ICompetitionConfig Default = new ManualCompetitionConfig();
-
+		/// <summary>Merges two configs.</summary>
+		/// <param name="globalConfig">The global config.</param>
+		/// <param name="localConfig">The local config.</param>
+		/// <returns>Merged config instance.</returns>
 		public static ManualCompetitionConfig Union(
 			ICompetitionConfig globalConfig, IConfig localConfig)
 		{
@@ -32,9 +35,12 @@ namespace CodeJam.PerfTests.Configs
 		}
 
 		#region Ctor & Add()
+		/// <summary>Initializes a new instance of the <see cref="ManualCompetitionConfig"/> class.</summary>
 		public ManualCompetitionConfig() { }
 
-		public ManualCompetitionConfig(IConfig config)
+		/// <summary>Initializes a new instance of the <see cref="ManualCompetitionConfig"/> class.</summary>
+		/// <param name="config">The config to init from.</param>
+		public ManualCompetitionConfig([CanBeNull] IConfig config)
 		{
 			if (config != null)
 			{
@@ -43,6 +49,8 @@ namespace CodeJam.PerfTests.Configs
 		}
 
 		// TODO: as override
+		/// <summary>Fills properties from the specified config.</summary>
+		/// <param name="config">The config to init from.</param>
 		public new void Add(IConfig config)
 		{
 			var competitionConfig = config as ICompetitionConfig;
@@ -136,5 +144,9 @@ namespace CodeJam.PerfTests.Configs
 		/// <value>The URI of the log that contains competition limits from previous run(s).</value>
 		public string PreviousRunLogUri { get; set; }
 		#endregion
+
+		/// <summary>Returns read-only wrapper for the config.</summary>
+		/// <returns>Read-only wrapper for the config</returns>
+		public ICompetitionConfig AsReadOnly() => new ReadOnlyCompetitionConfig(this);
 	}
 }

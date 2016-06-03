@@ -13,7 +13,7 @@ namespace CodeJam
 	/// OPTIONAL: Updates source files with actual min..max ratio for [CompetitionBenchmark]
 	/// </summary>
 	[PublicAPI]
-	public class AssemblyWideConfig : ManualCompetitionConfig
+	public sealed class AssemblyWideConfig : ReadOnlyCompetitionConfig
 	{
 		/// <summary>
 		/// OPTIONAL: Set AssemblyWideConfig.AnnotateOnRun=true in app.config
@@ -47,21 +47,29 @@ namespace CodeJam
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public AssemblyWideConfig(bool asRunConfig)
+		public AssemblyWideConfig(bool asRunConfig): base(Create(asRunConfig))
 		{
+		}
+
+		private static ManualCompetitionConfig Create(bool asRunConfig)
+		{
+			var result = new ManualCompetitionConfig();
+
 			if (asRunConfig)
-				Add(DefaultConfig.Instance);
+				result.Add(DefaultConfig.Instance);
 
-			Add(FastRunConfig.Instance);
+			result.Add(FastRunConfig.Instance);
 
-			RerunIfLimitsFailed = true;
-			base.ReportWarningsAsErrors = ReportWarningsAsErrors;
+			result.RerunIfLimitsFailed = true;
+			result.ReportWarningsAsErrors = ReportWarningsAsErrors;
 			if (AnnotateOnRun)
 			{
-				base.IgnoreExistingAnnotations = IgnoreExistingAnnotations;
-				UpdateSourceAnnotations = true;
-				LogCompetitionLimits = true;
+				result.IgnoreExistingAnnotations = IgnoreExistingAnnotations;
+				result.UpdateSourceAnnotations = true;
+				result.LogCompetitionLimits = true;
 			}
+
+			return result;
 		}
 	}
 }
