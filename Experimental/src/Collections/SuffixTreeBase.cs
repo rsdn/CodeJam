@@ -244,35 +244,32 @@ namespace CodeJam.Collections
 			{
 				EnsureNotFinalized();
 				Code.NotNull(data, nameof(data));
-				var lastCharIndex = data.Length - 1;
-				if (lastCharIndex < 0)
+				var length = data.Length;
+				if (length == 0)
 				{
 					return;
 				}
-				for (var i = 0; i < lastCharIndex; ++i)
+				for (var i = 0; i < length; ++i)
 				{
 					usedChars_.Add(data[i]);
 				}
-				var needsTerminal = !usedChars_.Add(data[lastCharIndex]);
-				if (needsTerminal)
+				// find new terminal char
+				char candidate;
+				for (;;)
 				{
-					char candidate;
-					for (;;)
+					if (nextTerminalCandidate_ < 0)
 					{
-						if (nextTerminalCandidate_ < 0)
-						{
-							throw new ArgumentException("Impossible to find a free terminal character for the given string"
-								, nameof(data));
-						}
-						candidate = (char)nextTerminalCandidate_--;
-						if (usedChars_.Add(candidate))
-						{
-							break;
-						}
+						throw new ArgumentException("Impossible to find a free terminal character for the given string"
+							, nameof(data));
 					}
-					terminals_.Add(candidate);
-					data += candidate;
+					candidate = (char)nextTerminalCandidate_--;
+					if (usedChars_.Add(candidate))
+					{
+						break;
+					}
 				}
+				terminals_.Add(candidate);
+				data += candidate;
 				tree_.Add(data);
 			}
 

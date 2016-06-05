@@ -38,10 +38,34 @@ namespace CodeJam.Collections
 			Assert.That(SuffixTreeEncoder.Encode(st), Is.EqualTo(expected));
 		}
 
-		[Test]
-		public void Test06Builder()
+		private static void Check(string[] data, string expected)
 		{
-			//TODO: test multiple strings
+			var builder = SuffixTreeNaive.CreateBuilder();
+			foreach (var s in data)
+			{
+				builder.Add(s);
+			}
+			var st = builder.Complete();
+			Console.Write(st.Print());
+			Console.WriteLine(SuffixTreeEncoder.Encode(st));
+			Console.WriteLine(expected);
+			Assert.That(SuffixTreeEncoder.Encode(st), Is.EqualTo(expected));
 		}
+
+		[Test]
+		public void Test06TwoStrings1() => Check(new [] { "ABRA", "CADABRA" }
+			, "[{A}[{},{},{BRA}[{},{}],{DABRA}],{BRA}[{},{}],{CADABRA},{DABRA},{RA}[{},{}]]");
+
+		[Test]
+		public void Test07TwoStrings2() => Check(new[] { "AAAAA", "BAAAAA" }
+			, "[{A}[{},{},{A}[{},{},{A}[{},{},{A}[{},{},{A}[{},{}]]]]],{BAAAAA}]");
+
+		[Test]
+		public void Test08ThreeStrings() => Check(new[] { "THATS", "ALL", "FOLKS" }
+			, "[{A}[{LL},{TS}],{FOLKS},{HATS},{KS},{L}[{},{KS},{L}],{OLKS},{S}[{},{}],{T}[{HATS},{S}]]");
+
+		[Test]		
+		public void Test09FourStrings() => Check(new[] { "ABRA", "BRA", "BRA", "BRA" }
+			, "[{A}[{},{},{},{},{BRA}],{BRA}[{},{},{},{}],{RA}[{},{},{},{}]]");
 	}
 }
