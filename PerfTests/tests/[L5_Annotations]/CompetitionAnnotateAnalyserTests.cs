@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 using CodeJam.PerfTests.Configs;
@@ -36,9 +35,7 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestAnnotateFromRemoteLog()
 		{
-			var stopwatch = Stopwatch.StartNew();
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_remoteLogConfig);
-			stopwatch.Stop();
 			var messages = runState.GetMessages();
 			Assert.IsTrue(runState.HighestMessageSeverityInRun <= MessageSeverity.Warning);
 			Assert.IsTrue(runState.Completed);
@@ -47,7 +44,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.GreaterOrEqual(messages.Length, 5);
-			Assert.LessOrEqual(stopwatch.Elapsed.TotalSeconds, 7, "Timeout failed");
+			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 7, "Timeout failed");
 		}
 
 		[Test]
@@ -55,9 +52,7 @@ namespace CodeJam.PerfTests
 		// TODO: troubleshoot using https://www.appveyor.com/docs/how-to/rdp-to-build-worker
 		public static void TestAnnotateFromLocalLog()
 		{
-			var stopwatch = Stopwatch.StartNew();
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_localLogConfig);
-			stopwatch.Stop();
 			var messages = runState.GetMessages();
 			Assert.IsTrue(runState.HighestMessageSeverityInRun <= MessageSeverity.Warning);
 			Assert.IsTrue(runState.Completed);
@@ -66,7 +61,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.GreaterOrEqual(messages.Length, 5);
-			Assert.LessOrEqual(stopwatch.Elapsed.TotalSeconds, 12, "Timeout failed");
+			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 7, "Timeout failed");
 		}
 
 		#region Benchmark classes

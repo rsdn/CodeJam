@@ -1,4 +1,5 @@
 ﻿## TODO, Bench.Net:
+* No file logger for tests https://github.com/PerfDotNet/BenchmarkDotNet/issues/198
 * Run state for issues like this. https://github.com/PerfDotNet/BenchmarkDotNet/issues/180
 * ReadOnlyConfig
 * ManualConfig.Add - make virtual?
@@ -7,7 +8,6 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
 ## TODO:
- * Loggers: file logger does not write messages
  * Loggers: two empty lines at HostLogger
  * Check if we're doing double loosing for logged benchmark limits.
  * Tests for broken log annotations.

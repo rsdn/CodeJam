@@ -132,7 +132,6 @@
     <EmbeddedResource Include="Arithmetic\OperatorsNumPerfTests.generated.xml">
       <DependentUpon>OperatorsNumPerfTests.tt</DependentUpon>
     </EmbeddedResource>
-    <None Include="app.config" />
     <None Include="Arithmetic\OperatorsPerfTests.ttinclude" />
     <Content Include="Arithmetic\OperatorsLessOrGreaterPerfTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

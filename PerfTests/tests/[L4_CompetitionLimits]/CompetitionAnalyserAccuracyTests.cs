@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 
@@ -102,9 +101,7 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestCompetitionAnalyserHighAccuracyBenchmark()
 		{
-			var stopwatch = Stopwatch.StartNew();
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_accurateConfig);
-			stopwatch.Stop();
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
@@ -117,7 +114,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnnotateAnalyser: All competition limits are ok.");
-			Assert.LessOrEqual(stopwatch.Elapsed.TotalSeconds, 11, "Timeout failed");
+			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 7, "Timeout failed");
 		}
 
 		#region Benchmark classes
