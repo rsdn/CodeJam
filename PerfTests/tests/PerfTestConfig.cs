@@ -27,24 +27,23 @@ namespace CodeJam.PerfTests
 
 		public PerfTestConfig() : this(Platform.Host) { }
 
-		private PerfTestConfig(Platform platform) : base(Create(platform))
-		{
-		}
+		private PerfTestConfig(Platform platform) : base(Create(platform)) { }
 
 		private static ManualCompetitionConfig Create(Platform platform)
 		{
 			var result = new ManualCompetitionConfig();
 
 			result.Add(DefaultConfig.Instance.GetColumns().ToArray());
-			result.Add(new Job
-			{
-				LaunchCount = 1,
-				Mode = Mode.SingleRun,
-				WarmupCount = 2,
-				TargetCount = 2,
-				Platform = platform,
-				Toolchain = InProcessToolchain.Instance
-			});
+			result.Add(
+				new Job
+				{
+					LaunchCount = 1,
+					Mode = Mode.SingleRun,
+					WarmupCount = 2,
+					TargetCount = 2,
+					Platform = platform,
+					Toolchain = InProcessToolchain.Instance
+				});
 			result.AllowDebugBuilds = true;
 			result.DetailedLogging = true;
 			result.RerunIfLimitsFailed = true;

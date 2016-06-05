@@ -30,16 +30,17 @@ namespace CodeJam.PerfTests.Running.Core
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "VirtualMemberNeverOverriden.Global")]
+	[SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
 	public abstract class CompetitionRunnerBase
 	{
 		/// <summary>Basic host logger implementation</summary>
-		/// <seealso cref="CodeJam.PerfTests.Loggers.HostLogger" />
+		/// <seealso cref="CodeJam.PerfTests.Loggers.HostLogger"/>
 		protected abstract class HostLogger : Loggers.HostLogger
 		{
 			/// <summary>Initializes a new instance of the <see cref="HostLogger"/> class.</summary>
 			/// <param name="wrappedLogger">The logger to redirect the output. Cannot be null.</param>
 			/// <param name="logMode">Host logging mode.</param>
-			protected HostLogger(ILogger wrappedLogger, HostLogMode logMode)
+			protected HostLogger([NotNull] ILogger wrappedLogger, HostLogMode logMode)
 				: base(wrappedLogger, logMode) { }
 		}
 
@@ -55,19 +56,32 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		/// <summary>Runs the benchmark.</summary>
-		/// <typeparam name="T">Type of the benchmark class.</typeparam>
-		/// <param name="thisReference">Reference used to enable type inference.</param>
+		/// <typeparam name="T">Benchmark class to run.</typeparam>
+		/// <param name="thisReference">Reference used to infer type of the benchmark.</param>
 		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>State of the competition.</returns>
-		public CompetitionState Run<T>(T thisReference, ICompetitionConfig competitionConfig) where T : class =>
-			RunCompetition(thisReference.GetType(), competitionConfig);
+		/// <returns>State of the run.</returns>
+		public CompetitionState Run<T>([NotNull] T thisReference, [CanBeNull] ICompetitionConfig competitionConfig)
+			where T : class =>
+				RunCompetition(thisReference.GetType(), competitionConfig);
 
-		/// <returns>State of the competition.</returns>
-		public CompetitionState Run<T>(ICompetitionConfig competitionConfig) where T : class =>
-			RunCompetition(typeof(T), competitionConfig);
+		/// <summary>Runs the benchmark.</summary>
+		/// <typeparam name="T">Benchmark class to run.</typeparam>
+		/// <param name="competitionConfig">The competition config.</param>
+		/// <returns>State of the run.</returns>
+		public CompetitionState Run<T>([CanBeNull] ICompetitionConfig competitionConfig)
+			where T : class =>
+				RunCompetition(typeof(T), competitionConfig);
 
-		public virtual CompetitionState RunCompetition(Type benchmarkType, ICompetitionConfig competitionConfig)
+		/// <summary>Runs the benchmark.</summary>
+		/// <param name="benchmarkType">Benchmark class to run.</param>
+		/// <param name="competitionConfig">The competition config.</param>
+		/// <returns>State of the run.</returns>
+		public virtual CompetitionState RunCompetition(
+			[NotNull] Type benchmarkType,
+			[CanBeNull] ICompetitionConfig competitionConfig)
 		{
+			Code.NotNull(benchmarkType, nameof(benchmarkType));
+
 			competitionConfig = competitionConfig ?? DefaultCompetitionConfig.Instance;
 
 			ValidateCompetitionSetup(benchmarkType, competitionConfig);
@@ -81,53 +95,61 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 
 			bool runSucceed = false;
-			Summary summary = null;
-			CompetitionState competitionState;
+			CompetitionState competitionState = null;
 			try
 			{
 				competitionState = CompetitionCore.Run(benchmarkType, benchmarkConfig, maxRunsAllowed);
-				summary = competitionState.LastRunSummary;
 				runSucceed = true;
 
-				ProcessRunComplete(competitionState, competitionConfig);
+				Code.AssertState(
+					competitionState.Completed,
+					"Bug: compettion state not marked as completed.");
+
+				ProcessRunComplete(competitionConfig, competitionState);
 			}
 			finally
 			{
-				OnAfterRun(runSucceed, benchmarkConfig, summary);
+				Code.AssertState(
+					runSucceed == (competitionState != null),
+					"Bug: compettion state does not match runSucceed flag.");
+
+				OnAfterRun(runSucceed, benchmarkConfig, competitionState);
 
 				var hostLogger = benchmarkConfig.GetLoggers().OfType<HostLogger>().Single();
-				ReportHostLogger(hostLogger, summary);
+				ReportHostLogger(hostLogger, competitionState?.LastRunSummary);
 			}
 
-			ReportMessagesToUser(competitionState, competitionConfig);
-
-			DebugCode.AssertState(competitionState.Completed, "Bug: competition state does not mark as completed.");
+			ReportMessagesToUser(competitionConfig, competitionState);
 
 			return competitionState;
 		}
 
-		private void ValidateCompetitionSetup(Type benchmarkType, ICompetitionConfig competitionConfig)
+		private void ValidateCompetitionSetup(
+			[NotNull] Type benchmarkType,
+			[NotNull] ICompetitionConfig competitionConfig)
 		{
 			if (!competitionConfig.AllowDebugBuilds && !EnvironmentInfo.GetCurrent().HasAttachedDebugger)
 			{
 				var assembly = benchmarkType.Assembly;
 				if (assembly.IsDebugAssembly())
-					throw new InvalidOperationException(
+					throw CodeExceptions.InvalidOperation(
 						$"Set the solution configuration into Release mode. Assembly {assembly.GetName().Name} was build as debug.");
 
 				foreach (var referencedAssemblyName in assembly.GetReferencedAssemblies())
 				{
 					var refAssembly = Assembly.Load(referencedAssemblyName);
 					if (refAssembly.IsDebugAssembly())
-						throw new InvalidOperationException(
+						throw CodeExceptions.InvalidOperation(
 							$"Set the solution configuration into Release mode. Assembly {refAssembly.GetName().Name} was build as debug.");
 				}
 			}
 		}
 
-		private void ProcessRunComplete(CompetitionState competitionState, ICompetitionConfig competitionConfig)
+		private void ProcessRunComplete(
+			[NotNull] ICompetitionConfig competitionConfig,
+			[NotNull] CompetitionState competitionState)
 		{
-			if (competitionConfig.DetailedLogging && competitionState?.Logger != null)
+			if (competitionConfig.DetailedLogging && competitionState.Logger != null)
 			{
 				var logger = competitionState.Logger;
 				var messages = competitionState.GetMessages();
@@ -149,25 +171,28 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 		}
 
-		private void ReportMessagesToUser(CompetitionState competitionState, ICompetitionConfig competitionConfig)
+		private void ReportMessagesToUser(
+			[NotNull] ICompetitionConfig competitionConfig,
+			[NotNull] CompetitionState competitionState)
 		{
-			if (competitionState == null)
-				return;
-
 			var criticalErrorMessages = GetMessageLines(
-				competitionState, m => m.MessageSeverity > MessageSeverity.TestError, false);
+				competitionState,
+				m => m.MessageSeverity > MessageSeverity.TestError, false);
 			bool hasCriticalMessages = criticalErrorMessages.Length > 0;
 
 			var testFailedMessages = GetMessageLines(
-				competitionState, m => m.MessageSeverity == MessageSeverity.TestError, hasCriticalMessages);
+				competitionState,
+				m => m.MessageSeverity == MessageSeverity.TestError, hasCriticalMessages);
 			bool hasTestFailedMessages = testFailedMessages.Length > 0;
 
 			var warningMessages = GetMessageLines(
-				competitionState, m => m.MessageSeverity == MessageSeverity.Warning, hasCriticalMessages);
+				competitionState,
+				m => m.MessageSeverity == MessageSeverity.Warning, hasCriticalMessages);
 			bool hasWarnings = warningMessages.Length > 0;
 
 			var infoMessages = GetMessageLines(
-				competitionState, m => m.MessageSeverity < MessageSeverity.Warning, hasCriticalMessages);
+				competitionState,
+				m => m.MessageSeverity < MessageSeverity.Warning, hasCriticalMessages);
 			bool hasInfo = infoMessages.Length > 0;
 
 			if (!(hasCriticalMessages || hasTestFailedMessages || hasWarnings))
@@ -225,10 +250,6 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 		}
 
-		private bool ShouldReport(IMessage message, CompetitionState competitionState) =>
-			message.RunNumber == competitionState.RunNumber ||
-				(message.MessageSource != MessageSource.Analyser && message.MessageSource != MessageSource.Diagnoser);
-
 		private string[] GetMessageLines(CompetitionState competitionState, Func<IMessage, bool> filter, bool fromAllRuns)
 		{
 			var result =
@@ -245,22 +266,61 @@ namespace CodeJam.PerfTests.Running.Core
 			return result.ToArray();
 		}
 
+		private bool ShouldReport(IMessage message, CompetitionState competitionState) =>
+			message.RunNumber == competitionState.RunNumber ||
+				(message.MessageSource != MessageSource.Analyser && message.MessageSource != MessageSource.Diagnoser);
+
 		#region Host-related logic
-		protected virtual void OnBeforeRun(Type benchmarkType, ICompetitionConfig config) { }
-		protected virtual void OnAfterRun(bool runSucceed, IConfig benchmarkConfig, Summary summary) { }
+		/// <summary>Called before competition run.</summary>
+		/// <param name="benchmarkType">Benchmark class to run.</param>
+		/// <param name="competitionConfig">The competition config.</param>
+		protected virtual void OnBeforeRun(
+			[NotNull] Type benchmarkType,
+			[NotNull] ICompetitionConfig competitionConfig) { }
 
+		/// <summary>Called after competiton run.</summary>
+		/// <param name="runSucceed">If set to <c>true</c> the run was succeed.</param>
+		/// <param name="benchmarkConfig">The benchmark configuration.</param>
+		/// <param name="competitionState">State of the run.</param>
+		protected virtual void OnAfterRun(
+			bool runSucceed,
+			[NotNull] IConfig benchmarkConfig,
+			[CanBeNull] CompetitionState competitionState) { }
+
+		/// <summary>Creates a host logger.</summary>
+		/// <param name="hostLogMode">The host log mode.</param>
+		/// <returns>An instance of <seealso cref="HostLogger"/></returns>
+		[NotNull]
 		protected abstract HostLogger CreateHostLogger(HostLogMode hostLogMode);
-		protected abstract void ReportHostLogger(HostLogger logger, [CanBeNull] Summary summary);
 
-		protected abstract void ReportExecutionErrors(string messages);
-		protected abstract void ReportAssertionsFailed(string messages);
-		protected abstract void ReportWarnings(string messages);
+		/// <summary>Reports content of the host logger to user.</summary>
+		/// <param name="logger">The host logger.</param>
+		/// <param name="summary">The summary to report.</param>
+		protected abstract void ReportHostLogger([NotNull] HostLogger logger, [CanBeNull] Summary summary);
+
+		/// <summary>Reports the execution errors to user.</summary>
+		/// <param name="messages">The messages to report.</param>
+		protected abstract void ReportExecutionErrors([NotNull] string messages);
+
+		/// <summary>Reports failed assertions to user.</summary>
+		/// <param name="messages">The messages to report.</param>
+		protected abstract void ReportAssertionsFailed([NotNull] string messages);
+
+		/// <summary>Reports warnings to user.</summary>
+		/// <param name="messages">The messages to report.</param>
+		protected abstract void ReportWarnings([NotNull] string messages);
 		#endregion
 
 		#region Create benchark config
 		private IConfig CreateBenchmarkConfig(ICompetitionConfig competitionConfig)
 		{
+			// ReSharper disable once UseObjectOrCollectionInitializer
 			var result = new ManualConfig();
+
+			// TODO: to overridable methods?
+			result.KeepBenchmarkFiles = competitionConfig.KeepBenchmarkFiles;
+			result.UnionRule = competitionConfig.UnionRule;
+			result.Set(competitionConfig.GetOrderProvider());
 
 			result.Add(OverrideJobs(competitionConfig).ToArray());
 			result.Add(OverrideExporters(competitionConfig).ToArray());
@@ -361,26 +421,47 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		#region Override config parameters
-		protected virtual List<IJob> OverrideJobs(ICompetitionConfig baseConfig) =>
-			baseConfig.GetJobs().ToList();
+		/// <summary>Override competition jobs.</summary>
+		/// <param name="competitionConfig">The competition config.</param>
+		/// <returns>The jobs for the competition</returns>
+		protected virtual List<IJob> OverrideJobs([NotNull] ICompetitionConfig competitionConfig) =>
+			competitionConfig.GetJobs().ToList();
 
-		protected virtual List<IExporter> OverrideExporters(ICompetitionConfig baseConfig) =>
-			baseConfig.GetExporters().ToList();
+		/// <summary>Override competition exporters.</summary>
+		/// <param name="competitionConfig">The competition config.</param>
+		/// <returns>The jobs for the competition</returns>
+		protected virtual List<IExporter> OverrideExporters([NotNull] ICompetitionConfig competitionConfig) =>
+			competitionConfig.GetExporters().ToList();
 
-		protected virtual List<IDiagnoser> OverrideDiagnosers(ICompetitionConfig baseConfig) =>
-			baseConfig.GetDiagnosers().ToList();
+		/// <summary>Override competition diagnosers.</summary>
+		/// <param name="competitionConfig">The competition config.</param>
+		/// <returns>The diagnosers for the competition</returns>
+		protected virtual List<IDiagnoser> OverrideDiagnosers([NotNull] ICompetitionConfig competitionConfig) =>
+			competitionConfig.GetDiagnosers().ToList();
 
-		protected virtual List<ILogger> OverrideLoggers(ICompetitionConfig baseConfig) =>
-			baseConfig.GetLoggers().ToList();
+		/// <summary>Override competition loggers.</summary>
+		/// <param name="competitionConfig">The competition config.</param>
+		/// <returns>The loggers for the competition</returns>
+		protected virtual List<ILogger> OverrideLoggers([NotNull] ICompetitionConfig competitionConfig) =>
+			competitionConfig.GetLoggers().ToList();
 
-		protected virtual List<IColumn> OverrideColumns(ICompetitionConfig baseConfig) =>
-			baseConfig.GetColumns().ToList();
+		/// <summary>Override competition columns.</summary>
+		/// <param name="competitionConfig">The competition config.</param>
+		/// <returns>The columns for the competition</returns>
+		protected virtual List<IColumn> OverrideColumns([NotNull] ICompetitionConfig competitionConfig) =>
+			competitionConfig.GetColumns().ToList();
 
-		protected virtual List<IValidator> OverrideValidators(ICompetitionConfig baseConfig) =>
-			baseConfig.GetValidators().ToList();
+		/// <summary>Override competition validators.</summary>
+		/// <param name="competitionConfig">The competition config.</param>
+		/// <returns>The validators for the competition</returns>
+		protected virtual List<IValidator> OverrideValidators([NotNull] ICompetitionConfig competitionConfig) =>
+			competitionConfig.GetValidators().ToList();
 
-		protected virtual List<IAnalyser> OverrideAnalysers(ICompetitionConfig baseConfig) =>
-			baseConfig.GetAnalysers().ToList();
+		/// <summary>Override competition analysers.</summary>
+		/// <param name="competitionConfig">The competition config.</param>
+		/// <returns>The analysers for the competition</returns>
+		protected virtual List<IAnalyser> OverrideAnalysers([NotNull] ICompetitionConfig competitionConfig) =>
+			competitionConfig.GetAnalysers().ToList();
 		#endregion
 
 		#endregion

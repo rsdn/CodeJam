@@ -7,8 +7,8 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Wrapper class for readonly competition config.</summary>
-	/// <seealso cref="BenchmarkDotNet.Configs.ReadOnlyConfig" />
-	/// <seealso cref="CodeJam.PerfTests.Configs.ICompetitionConfig" />
+	/// <seealso cref="BenchmarkDotNet.Configs.ReadOnlyConfig"/>
+	/// <seealso cref="CodeJam.PerfTests.Configs.ICompetitionConfig"/>
 	public class ReadOnlyCompetitionConfig : ReadOnlyConfig, ICompetitionConfig
 	{
 		#region Fields & .ctor
@@ -16,10 +16,10 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Initializes a new instance of the <see cref="ReadOnlyCompetitionConfig"/> class.</summary>
 		/// <param name="config">The config to wrap.</param>
-		public ReadOnlyCompetitionConfig([NotNull] ICompetitionConfig config): base(config)
+		public ReadOnlyCompetitionConfig([NotNull] ICompetitionConfig config) : base(config)
 		{
 			_config = config;
-		} 
+		}
 		#endregion
 
 		#region Runner config - troubleshooting

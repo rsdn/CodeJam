@@ -157,7 +157,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		/// <summary>Tries to annotate source files with competition limits.</summary>
 		/// <param name="targetsToAnnotate">Benchmarks to annotate.</param>
-		/// <param name="competitionState">State of the competition.</param>
+		/// <param name="competitionState">State of the run.</param>
 		/// <returns>Successfully annotated benchmarks.</returns>
 		// ReSharper disable ParameterTypeCanBeEnumerable.Global
 		public static CompetitionTarget[] TryAnnotateBenchmarkFiles(

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Diagnosers;
@@ -8,6 +9,7 @@ using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Validators;
+
 using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace
@@ -15,7 +17,7 @@ using JetBrains.Annotations;
 namespace BenchmarkDotNet.Configs
 {
 	/// <summary>Wrapper class for readonly config.</summary>
-	/// <seealso cref="IConfig" />
+	/// <seealso cref="IConfig"/>
 	[PublicAPI]
 	public class ReadOnlyConfig : IConfig
 	{
@@ -30,7 +32,7 @@ namespace BenchmarkDotNet.Configs
 				throw new ArgumentNullException(nameof(config));
 
 			_config = config;
-		} 
+		}
 		#endregion
 
 		#region IConfig implementation

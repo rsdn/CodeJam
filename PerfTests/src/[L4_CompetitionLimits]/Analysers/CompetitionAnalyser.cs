@@ -318,7 +318,7 @@ namespace CodeJam.PerfTests.Analysers
 					competitionState.AddAnalyserWarning(
 						warnings, MessageSeverity.Warning,
 						"The benchmarks " + string.Join(", ", tooSlowReports) +
-							$" run longer than {LongRunningBenchmarkLimit.TotalSeconds.ToString(culture)}s." + 
+							$" run longer than {LongRunningBenchmarkLimit.TotalSeconds.ToString(culture)}s." +
 							" Consider to rewrite the test as the peek timings will be hidden by averages" +
 							" or enable long running benchmarks support in the config.");
 				}

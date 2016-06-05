@@ -9,7 +9,6 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Configs
 {
 	// TODO: tune job settings
-
 	/// <summary>Use this to run fast but inaccurate competitions.</summary>
 	[PublicAPI]
 	public sealed class FastRunConfig : ReadOnlyConfig
@@ -18,9 +17,7 @@ namespace CodeJam.PerfTests.Configs
 		public static readonly IConfig Instance = new FastRunConfig();
 
 		/// <summary>Constructor.</summary>
-		public FastRunConfig(): base(Create())
-		{
-		}
+		public FastRunConfig() : base(Create()) { }
 
 		private static ManualConfig Create()
 		{
@@ -50,9 +47,7 @@ namespace CodeJam.PerfTests.Configs
 		public static readonly IConfig Instance = new TestProofConfig();
 
 		/// <summary>Constructor.</summary>
-		public TestProofConfig() : base(Create())
-		{
-		}
+		public TestProofConfig() : base(Create()) { }
 
 		private static ManualConfig Create()
 		{

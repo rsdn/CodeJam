@@ -16,6 +16,7 @@ namespace CodeJam.PerfTests.Loggers
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
+	[SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
 	public class HostLogger : ILogger
 	{
 		// DONTTOUCH: Check that all code does not hardcode content of the constants before changing
@@ -61,7 +62,7 @@ namespace CodeJam.PerfTests.Loggers
 		}
 
 		/// <summary>The logger to redirect the output.</summary>
-		/// <value>TThe logger to redirect the output.</value>
+		/// <value>The logger to redirect the output.</value>
 		protected ILogger WrappedLogger { get; }
 
 		public HostLogMode LogMode { get; }

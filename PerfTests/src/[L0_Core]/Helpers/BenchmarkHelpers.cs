@@ -14,8 +14,6 @@ using BenchmarkDotNet.Parameters;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
-using CodeJam.PerfTests.Configs;
-
 using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace

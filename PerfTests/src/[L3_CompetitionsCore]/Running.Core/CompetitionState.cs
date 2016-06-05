@@ -82,7 +82,7 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		[AssertionMethod]
-		private void AssertIsInCompetition() => 
+		private void AssertIsInCompetition() =>
 			Code.AssertState(!Completed, "Could not update the state as the competition was completed.");
 
 		#region State modification

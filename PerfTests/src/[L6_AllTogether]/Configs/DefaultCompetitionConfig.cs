@@ -9,7 +9,6 @@ namespace CodeJam.PerfTests.Configs
 		public static readonly ICompetitionConfig Instance = new DefaultCompetitionConfig();
 
 		/// <summary>Initializes a new instance of the <see cref="DefaultCompetitionConfig"/> class.</summary>
-		public DefaultCompetitionConfig() : base(new ManualCompetitionConfig())
-		{ }
+		public DefaultCompetitionConfig() : base(new ManualCompetitionConfig()) { }
 	}
 }
