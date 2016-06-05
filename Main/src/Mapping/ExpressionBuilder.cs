@@ -30,7 +30,7 @@ namespace CodeJam.Mapping
 			var pFrom = Expression.Parameter(typeof(TFrom), "from");
 
 			var expr = _mapper.ProcessCrossReferences == true ?
-				GetExpressionImpl  (pFrom, Expression.Constant(null, typeof(TTo))) :
+				new MappingImpl(this, pFrom, Expression.Constant(null, typeof(TTo))).GetExpression() :
 				GetExpressionExImpl(pFrom, typeof(TTo));
 
 			var l = Expression.Lambda<Func<TFrom,TTo>>(expr, pFrom);
@@ -139,117 +139,149 @@ namespace CodeJam.Mapping
 
 			var pFrom = Expression.Parameter(typeof(TFrom), "from");
 			var pTo   = Expression.Parameter(typeof(TTo),   "to");
-			var expr  = GetExpressionImpl(pFrom, pTo);
+			var expr  = new MappingImpl(this, pFrom, pTo).GetExpression();
 
 			var l = Expression.Lambda<Func<TFrom,TTo,TTo>>(expr, pFrom, pTo);
 
 			return l;
 		}
 
-		Expression GetExpressionImpl(Expression fromExpression, Expression toExpression)
+		class MappingImpl
 		{
-			var fromAccessor = TypeAccessor.GetAccessor(fromExpression.Type);
-			var toAccessor   = TypeAccessor.GetAccessor(toExpression.  Type);
-
-			var expressions = new List<Expression>();
-			var locals      = new List<ParameterExpression>();
-			var localObject = Expression.Parameter(toExpression.Type, "obj");
-
-			locals.Add(localObject);
-
-			expressions.Add(Expression.Assign(
-				localObject,
-				Expression.Condition(
-					Expression.Equal(toExpression, Expression.Constant(null, toExpression.Type)),
-					Expression.New(toExpression.Type.GetDefaultConstructor()),
-					toExpression)));
-
-			foreach (var toMember in toAccessor.Members.Where(_mapper.MemberFilter))
+			public MappingImpl(ExpressionBuilder<TFrom,TTo> builder, Expression fromExpression, Expression toExpression)
 			{
-				if (!toMember.HasSetter)
-					continue;
-
-				var setter = toMember.SetterExpression;
-
-				if (_memberMappers != null)
-				{
-					var processed = false;
-
-					foreach (var item in _memberMappers)
-					{
-						if (item.Item1.Length == 1 && item.Item1[0] == toMember.MemberInfo)
-						{
-							expressions.Add(BuildAssignment(item.Item2, setter, fromExpression, item.Item2.Type, localObject, toMember));
-							processed = true;
-							break;
-						}
-					}
-
-					if (processed)
-						continue;
-				}
-
-				Dictionary<string,string> mapDic;
-				string toName;
-
-				if (_mapper.ToMappingDictionary == null ||
-					!_mapper.ToMappingDictionary.TryGetValue(toExpression.Type, out mapDic) ||
-					!mapDic.TryGetValue(toMember.Name, out toName))
-					toName = toMember.Name;
-
-				var fromMember = fromAccessor.Members.FirstOrDefault(mi =>
-				{
-					string fromName;
-					if (_mapper.FromMappingDictionary == null ||
-						!_mapper.FromMappingDictionary.TryGetValue(fromExpression.Type, out mapDic) ||
-						!mapDic.TryGetValue(mi.Name, out fromName))
-						fromName = mi.Name;
-					return fromName == toName;
-				});
-
-				if (fromMember == null || !fromMember.HasGetter)
-					continue;
-
-				var getter = fromMember.GetterExpression;
-
-				if (_mapper.MappingSchema.IsScalarType(fromMember.Type) || _mapper.MappingSchema.IsScalarType(toMember.Type))
-				{
-					expressions.Add(BuildAssignment(getter, setter, fromExpression, fromMember.Type, localObject, toMember));
-				}
-				else if (fromMember.Type == toMember.Type)
-				{
-					expressions.Add(setter.ReplaceParameters(localObject, getter.ReplaceParameters(fromExpression)));
-				}
-				else
-				{
-					var getValue = getter.ReplaceParameters(fromExpression);
-					var expr     = Expression.Condition(
-						Expression.Equal(getValue, Expression.Constant(null, getValue.Type)),
-						Expression.Constant(_mapper.MappingSchema.GetDefaultValue(toMember.Type), toMember.Type),
-						toMember.HasGetter ?
-							GetExpressionImpl(getValue, toMember.GetterExpression.ReplaceParameters(localObject)) :
-							GetExpressionExImpl      (getValue, toMember.Type));
-
-					expressions.Add(setter.ReplaceParameters(localObject, expr));
-				}
+				_builder        = builder;
+				_fromExpression = fromExpression;
+				_toExpression   = toExpression;
+				_localObject    = Expression.Parameter(_toExpression.Type, "obj");
+				_fromAccessor   = TypeAccessor.GetAccessor(_fromExpression.Type);
+				_toAccessor     = TypeAccessor.GetAccessor(_toExpression.  Type);
 			}
 
-			expressions.Add(localObject);
+			readonly ExpressionBuilder<TFrom,TTo> _builder;
+			readonly Expression                   _fromExpression;
+			readonly Expression                   _toExpression;
+			readonly ParameterExpression          _localObject;
+			readonly TypeAccessor                 _fromAccessor;
+			readonly TypeAccessor                 _toAccessor;
+			readonly List<Expression>             _expressions = new List<Expression>();
+			readonly List<ParameterExpression>    _locals      = new List<ParameterExpression>();
 
-			return Expression.Block(locals, expressions);
-		}
+			public Expression GetExpression()
+			{
+				_locals.Add(_localObject);
 
-		Expression BuildAssignment(
-			LambdaExpression getter,
-			LambdaExpression setter,
-			Expression fromExpression, Type fromMemberType,
-			Expression toExpression,   MemberAccessor toMember)
-		{
-			var getValue = getter.ReplaceParameters(fromExpression);
-			var expr     = _mapper.MappingSchema.GetConvertExpression(fromMemberType, toMember.Type);
-			var convert  = expr.ReplaceParameters(getValue);
+				_expressions.Add(Expression.Assign(
+					_localObject,
+					Expression.Condition(
+						Expression.Equal(_toExpression, Expression.Constant(null, _toExpression.Type)),
+						Expression.New(_toExpression.Type.GetDefaultConstructor()),
+						_toExpression)));
 
-			return setter.ReplaceParameters(toExpression, convert);
+				foreach (var toMember in _toAccessor.Members.Where(_builder._mapper.MemberFilter))
+				{
+					if (!toMember.HasSetter)
+						continue;
+
+					var setter = toMember.SetterExpression;
+
+					if (_builder._memberMappers != null)
+					{
+						var processed = false;
+
+						foreach (var item in _builder._memberMappers)
+						{
+							if (item.Item1.Length == 1 && item.Item1[0] == toMember.MemberInfo)
+							{
+								_expressions.Add(BuildAssignment(item.Item2, setter, item.Item2.Type, _localObject, toMember));
+								processed = true;
+								break;
+							}
+						}
+
+						if (processed)
+							continue;
+					}
+
+					Dictionary<string,string> mapDic;
+					string toName;
+
+					if (_builder._mapper.ToMappingDictionary == null ||
+						!_builder._mapper.ToMappingDictionary.TryGetValue(_toExpression.Type, out mapDic) ||
+						!mapDic.TryGetValue(toMember.Name, out toName))
+						toName = toMember.Name;
+
+					var fromMember = _fromAccessor.Members.FirstOrDefault(mi =>
+					{
+						string fromName;
+						if (_builder._mapper.FromMappingDictionary == null ||
+							!_builder._mapper.FromMappingDictionary.TryGetValue(_fromExpression.Type, out mapDic) ||
+							!mapDic.TryGetValue(mi.Name, out fromName))
+							fromName = mi.Name;
+						return fromName == toName;
+					});
+
+					if (fromMember == null || !fromMember.HasGetter)
+						continue;
+
+					var getter = fromMember.GetterExpression;
+
+					if (_builder._mapper.MappingSchema.IsScalarType(fromMember.Type) || _builder._mapper.MappingSchema.IsScalarType(toMember.Type))
+					{
+						_expressions.Add(BuildAssignment(getter, setter, fromMember.Type, _localObject, toMember));
+					}
+					else if (fromMember.Type == toMember.Type)
+					{
+						_expressions.Add(setter.ReplaceParameters(_localObject, getter.ReplaceParameters(_fromExpression)));
+					}
+					else
+					{
+						var getValue = getter.ReplaceParameters(_fromExpression);
+						var expr     = Expression.IfThenElse(
+							// if (from == null)
+							Expression.Equal(getValue, Expression.Constant(null, getValue.Type)),
+							//   localObject = null;
+							setter.ReplaceParameters(
+								_localObject,
+								Expression.Constant(_builder._mapper.MappingSchema.GetDefaultValue(toMember.Type), toMember.Type)),
+							// else
+							setter.ReplaceParameters(_localObject, 
+								toMember.HasGetter ? BuildClassMapper(getValue, toMember) : _builder.GetExpressionExImpl(getValue, toMember.Type)));
+
+						_expressions.Add(expr);
+					}
+				}
+
+				_expressions.Add(_localObject);
+
+				return Expression.Block(_locals, _expressions);
+			}
+
+			Expression BuildClassMapper(Expression getValue, MemberAccessor toMember)
+			{
+				var expr = new MappingImpl(_builder, getValue, toMember.GetterExpression.ReplaceParameters(_localObject)).GetExpression();
+
+				if (_builder._mapper.ProcessCrossReferences != false)
+				{
+					
+				}
+
+				return expr;
+			}
+
+			Expression BuildAssignment(
+				LambdaExpression getter,
+				LambdaExpression setter,
+				Type fromMemberType,
+				Expression toExpression,
+				MemberAccessor toMember)
+			{
+				var getValue = getter.ReplaceParameters(_fromExpression);
+				var expr     = _builder._mapper.MappingSchema.GetConvertExpression(fromMemberType, toMember.Type);
+				var convert  = expr.ReplaceParameters(getValue);
+
+				return setter.ReplaceParameters(toExpression, convert);
+			}
 		}
 
 		#endregion
