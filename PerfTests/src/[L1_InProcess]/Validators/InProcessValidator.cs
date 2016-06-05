@@ -36,12 +36,7 @@ namespace BenchmarkDotNet.Validators
 				{ nameof(IJob.Runtime), ValidateRuntime },
 				{ nameof(IJob.TargetCount), NoValidation },
 				{ nameof(IJob.Toolchain), ValidateToolchain },
-				{ nameof(IJob.WarmupCount), NoValidation },
-				// WAITINGFOR: https://github.com/PerfDotNet/BenchmarkDotNet/issues/179
-				// TODO: remove as fixed
-				{ "Warmup", NoValidation },
-				{ "Target", NoValidation },
-				{ "Process", NoValidation }
+				{ nameof(IJob.WarmupCount), NoValidation }
 			};
 
 		// ReSharper restore HeapView.DelegateAllocation
@@ -153,9 +148,9 @@ namespace BenchmarkDotNet.Validators
 		/// <summary>Proofs that benchmarks' jobs match the environment.</summary>
 		/// <param name="benchmarks">The benchmarks to validate.</param>
 		/// <returns>Enumerable of validation errors.</returns>
-		public IEnumerable<IValidationError> Validate(IList<Benchmark> benchmarks)
+		public IEnumerable<ValidationError> Validate(IList<Benchmark> benchmarks)
 		{
-			var result = new List<IValidationError>();
+			var result = new List<ValidationError>();
 
 			var env = EnvironmentInfo.GetCurrent();
 			foreach (var job in benchmarks.GetJobs())

@@ -1,5 +1,6 @@
 ﻿using System;
 
+using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.Results;
@@ -17,8 +18,11 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 		/// <param name="benchmark">The benchmark.</param>
 		/// <param name="logger">The logger.</param>
 		/// <param name="rootArtifactsFolderPath">The root artifacts folder path.</param>
+		/// <param name="config">The config for benchmark.</param>
 		/// <returns>Generation result.</returns>
-		public GenerateResult GenerateProject(Benchmark benchmark, ILogger logger, string rootArtifactsFolderPath) =>
-			new GenerateResult(null, true, null);
+		public GenerateResult GenerateProject(
+			Benchmark benchmark, ILogger logger,
+			string rootArtifactsFolderPath, IConfig config) =>
+				new GenerateResult(null, true, null);
 	}
 }

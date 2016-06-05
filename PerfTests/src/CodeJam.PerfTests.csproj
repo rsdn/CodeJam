@@ -43,8 +43,8 @@
     <AssemblyOriginatorKeyFile>..\..\CodeJam.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BenchmarkDotNet, Version=0.9.6.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\BenchmarkDotNet.0.9.6\lib\net45\BenchmarkDotNet.dll</HintPath>
+    <Reference Include="BenchmarkDotNet, Version=0.9.7.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\BenchmarkDotNet.0.9.7\lib\net40\BenchmarkDotNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Build.Tasks.v4.0" />
@@ -75,7 +75,6 @@
     <Compile Include="[L0_Core]\Portability\MemberInfoExtensions.cs" />
     <Compile Include="[L0_Core]\Portability\PropertyInfoExtensions.cs" />
     <Compile Include="[L0_Core]\Portability\TypeExtensions.cs" />
-    <Compile Include="[L0_Core]\Validators\ValidationError.cs" />
     <Compile Include="[L1_InProcess]\Validators\InProcessValidator.cs" />
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessBuilder.cs" />
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessExecutor.cs" />

@@ -1,16 +1,16 @@
 ﻿## TODO, Bench.Net:
+* Run state for issues like this. https://github.com/PerfDotNet/BenchmarkDotNet/issues/180
 * ReadOnlyConfig
-* ValidationError - make public, https://github.com/PerfDotNet/BenchmarkDotNet/issues/183
 * ManualConfig.Add - make virtual?
 * Validators: access to config, in-process validators, naming: ThreatsWarnings -> ThreatWarnings
 * remove calls instance.setupAction(), instance.targetAction() from BenchmarkProgram.txt
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
 ## TODO:
- * Loggers: file logger does not write messages, two empty lines at HostLogger
+ * Loggers: file logger does not write messages
+ * Loggers: two empty lines at HostLogger
  * Check if we're doing double loosing for logged benchmark limits.
  * Tests for broken log annotations.
- * Check competition limits parsing.
  * Logging: write validator messages immediately?
  * Naming: Annotations <> Limits?
  * Naming: Annotate <> Adjust?

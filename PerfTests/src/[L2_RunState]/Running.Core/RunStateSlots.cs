@@ -36,8 +36,8 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Validates the specified benchmarks (stub implementation, does nothing).</summary>
 		/// <param name="benchmarks">The benchmarks to validate.</param>
 		/// <returns>Enumerable of validation errors.</returns>
-		IEnumerable<IValidationError> IValidator.Validate(IList<Benchmark> benchmarks) =>
-			Enumerable.Empty<IValidationError>();
+		IEnumerable<ValidationError> IValidator.Validate(IList<Benchmark> benchmarks) =>
+			Enumerable.Empty<ValidationError>();
 		#endregion
 	}
 }
