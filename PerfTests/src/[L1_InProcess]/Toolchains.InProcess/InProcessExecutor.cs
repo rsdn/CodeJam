@@ -42,7 +42,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 			var outputWriter = new StreamWriter(outputStream);
 			runnableBenchmark.Init(benchmark, outputWriter);
 
-			var runThread = PrepareRunThread(runnableBenchmark, outputWriter, outputStream);
+			var runThread = PrepareRunThread(benchmark, runnableBenchmark, outputWriter, outputStream, diagnoser);
 			RunWithPriority(
 				ProcessPriorityClass.RealTime, benchmark.Job.Affinity,
 				logger,
@@ -74,16 +74,26 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 		}
 
 		private static Thread PrepareRunThread(
-			IRunnableBenchmark program, TextWriter outputWriter, BlockingStream outputStream) =>
+			Benchmark benchmark,
+			IRunnableBenchmark program,
+			TextWriter outputWriter, BlockingStream outputStream,
+			IDiagnoser diagnoser) =>
 				new Thread(
 					() =>
 					{
+						var process = Process.GetCurrentProcess();
+						diagnoser?.ProcessStarted(process);
+
 						try
 						{
 							program.Run();
+
+							diagnoser?.AfterBenchmarkHasRun(benchmark,process);
 						}
 						finally
 						{
+							diagnoser?.ProcessStopped(process);
+
 							outputWriter.Flush();
 							outputStream.CompleteWriting();
 						}
