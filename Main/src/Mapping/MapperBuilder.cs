@@ -11,7 +11,7 @@ namespace CodeJam.Mapping
 	using Reflection;
 
 	/// <summary>
-	/// Maps an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
+	/// Builds a mapper that maps an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 	/// </summary>
 	/// <typeparam name="TFrom">Type to map from.</typeparam>
 	/// <typeparam name="TTo">Type to map to.</typeparam>
@@ -45,6 +45,7 @@ namespace CodeJam.Mapping
 		public Expression<Func<TFrom,TTo>> GetMapperExpressionEx()
 			=> GetExpressionMapper().GetExpressionEx();
 
+		/*
 		/// <summary>
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
@@ -52,13 +53,14 @@ namespace CodeJam.Mapping
 		[Pure]
 		public Func<TFrom,TTo> GetMapperEx()
 			=> GetMapperExpressionEx().Compile();
+		*/
 
 		/// <summary>
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
 		[Pure]
-		public Expression<Func<TFrom,TTo,TTo>> GetMapperExpression()
+		public Expression<Func<TFrom,TTo,IDictionary<object,object>,TTo>> GetMapperExpression()
 			=> GetExpressionMapper().GetExpression();
 
 		/// <summary>
@@ -66,8 +68,8 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
 		[Pure]
-		public Func<TFrom,TTo,TTo> GetMapper()
-			=> GetMapperExpression().Compile();
+		public Mapper<TFrom,TTo> GetMapper()
+			=> new Mapper<TFrom,TTo>(this);
 
 		/// <summary>
 		/// Sets mapping schema.

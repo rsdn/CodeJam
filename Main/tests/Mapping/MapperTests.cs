@@ -21,17 +21,17 @@ namespace CodeJam.Mapping
 
 			public MapHelper<TFrom,TTo> Map(bool action, TFrom fromObj, Func<MapperBuilder<TFrom,TTo>,MapperBuilder<TFrom,TTo>> setter)
 			{
-				var mapper = setter(new MapperBuilder<TFrom,TTo>());
+				var mapper = setter(new MapperBuilder<TFrom,TTo>()).GetMapper();
 
 				From = fromObj;
 
 				if (action)
 				{
-					To = mapper.GetMapper()(From, new TTo());
+					To = mapper.Map(From, new TTo());
 				}
 				else
 				{
-					To = mapper.GetMapperEx()(From);
+					To = mapper.Map(From);
 				}
 
 				return this;
@@ -48,7 +48,7 @@ namespace CodeJam.Mapping
 		{
 			var mapper = new MapperBuilder<TestMap,TestMap>().GetMapperExpression().Compile();
 
-			mapper(new TestMap(), new TestMap());
+			mapper(new TestMap(), new TestMap(), null);
 		}
 
 		[Test]
@@ -63,13 +63,13 @@ namespace CodeJam.Mapping
 
 		[Test]
 		public void ExceptionTest() =>
-			Assert.Throws<ArgumentException>(() => new MapperBuilder<string,TestMap>().GetMapperExpression().Compile());
+			Assert.Throws<ArgumentException>(() => new MapperBuilder<string,TestMap>().GetMapperExpression().Compile()("", null, null));
 
 		[Test]
 		public void MapIntToString()
 		{
 			var mapper = Map.GetMapper<int,string>();
-			var dest   = mapper(42);
+			var dest   = mapper.Map(42);
 
 			Assert.That(dest, Is.EqualTo("42"));
 		}
@@ -78,7 +78,7 @@ namespace CodeJam.Mapping
 		public void MapStringToInt()
 		{
 			var mapper = Map.GetMapper<string,int>();
-			var dest   = mapper("42");
+			var dest   = mapper.Map("42");
 
 			Assert.That(dest, Is.EqualTo(42));
 		}
@@ -95,7 +95,7 @@ namespace CodeJam.Mapping
 		public void MapGenderToString()
 		{
 			var mapper = Map.GetMapper<Gender,string>();
-			var dest   = mapper(Gender.Male);
+			var dest   = mapper.Map(Gender.Male);
 
 			Assert.That(dest, Is.EqualTo("M"));
 		}
@@ -104,7 +104,7 @@ namespace CodeJam.Mapping
 		public void MapStringToGender()
 		{
 			var mapper = Map.GetMapper<string,Gender>();
-			var dest   = mapper("M");
+			var dest   = mapper.Map("M");
 
 			Assert.That(dest, Is.EqualTo(Gender.Male));
 		}
@@ -190,8 +190,7 @@ namespace CodeJam.Mapping
 			Assert.That(map.To.Field17,            Is.EqualTo(Enum2.Value2));
 		}
 
-
-		[Test]
+		[Explicit, Test]
 		public void PerfTest()
 		{
 			var map = new MapperBuilder<Source,Dest>()
@@ -199,32 +198,53 @@ namespace CodeJam.Mapping
 				.MapMember(_ => _.Field4,  _ => _.Field5)
 				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12) : 12)
 				.MapMember(_ => _.Field13, _ => _.Field13 ?? 13)
-				.MapMember(_ => _.Field14, _ => _.Field14 ?? 14);
+				.MapMember(_ => _.Field14, _ => _.Field14 ?? 14)
+				.GetMapper();
 
 			var src  = new Source();
 			var sw   = new Stopwatch();
-			var map1 = map.GetMapperEx();
 
-			map1(src);
+			map.Map(src);
+			map.Map(src, null);
+			map.GetMapperEx()(src);
+			map.GetMapper()(src, null, null);
 
-			const int n = 100000;
+			const int n = 1000000;
 
 			for (var i = 0; i < n; i++)
 			{
-				sw.Start(); map1(src); sw.Stop();
+				sw.Start(); map.Map(src); sw.Stop();
 			}
 
 			Console.WriteLine(sw.Elapsed);
 
 			sw.Reset();
 
-			var map2 = map.GetMapperEx();
+			for (var i = 0; i < n; i++)
+			{
+				sw.Start(); map.Map(src, null); sw.Stop();
+			}
 
-			map2(src);
+			Console.WriteLine(sw.Elapsed);
+
+			sw.Reset();
+
+			var map3 = map.GetMapperEx();
 
 			for (var i = 0; i < n; i++)
 			{
-				sw.Start(); map2(src); sw.Stop();
+				sw.Start(); map3(src); sw.Stop();
+			}
+
+			Console.WriteLine(sw.Elapsed);
+
+			sw.Reset();
+
+			var map4 = map.GetMapper();
+
+			for (var i = 0; i < n; i++)
+			{
+				sw.Start(); map4(src, null, null); sw.Stop();
 			}
 
 			Console.WriteLine(sw.Elapsed);
@@ -301,7 +321,6 @@ namespace CodeJam.Mapping
 		class Class6 { public Class2 Class1 = new Class2(); public Class2 Class2 = null; }
 
 		[Test]
-		[Explicit("Fails")]
 		public void MapInnerObject2([Values(true,false)] bool useEx)
 		{
 			var src = new Class5();

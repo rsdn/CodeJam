@@ -17,7 +17,7 @@ namespace CodeJam.Mapping
 		/// <typeparam name="TTo">Type to map to.</typeparam>
 		/// <returns>Mapping expression.</returns>
 		[Pure]
-		public static Func<TFrom,TTo> GetMapper<TFrom,TTo>()
-			=> new MapperBuilder<TFrom,TTo>().GetMapperEx();
+		public static Mapper<TFrom,TTo> GetMapper<TFrom,TTo>()
+			=> new Mapper<TFrom,TTo>(new MapperBuilder<TFrom,TTo>());
 	}
 }

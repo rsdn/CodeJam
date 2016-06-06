@@ -31,9 +31,19 @@ namespace CodeJam.Mapping
 
 			var pFrom = Expression.Parameter(typeof(TFrom), "from");
 
-			var expr = _mapperBuilder.ProcessCrossReferences == true ?
-				new MappingImpl(this, pFrom, Expression.Constant(null, typeof(TTo))).GetExpression() :
-				GetExpressionExImpl(pFrom, typeof(TTo));
+			Expression expr;
+
+			if (_mapperBuilder.MappingSchema.IsScalarType(typeof(TFrom)) || _mapperBuilder.MappingSchema.IsScalarType(typeof(TTo)))
+				expr = GetExpressionExImpl(pFrom, typeof(TTo));
+			else if (_mapperBuilder.ProcessCrossReferences == true)
+				expr = new MappingImpl(
+					this,
+					pFrom,
+					Expression.Constant(null, typeof(TTo)),
+					Expression.Parameter(typeof(IDictionary<object,object>), "dic"))
+					.GetExpressionWithDic();
+			else
+				expr = GetExpressionExImpl(pFrom, typeof(TTo));
 
 			var l = Expression.Lambda<Func<TFrom,TTo>>(expr, pFrom);
 
@@ -131,30 +141,42 @@ namespace CodeJam.Mapping
 
 		#region GetExpression
 
-		public Expression<Func<TFrom,TTo,TTo>> GetExpression()
+		public Expression<Func<TFrom,TTo,IDictionary<object,object>,TTo>> GetExpression()
 		{
-			if (_mapperBuilder.MappingSchema.IsScalarType(typeof(TFrom)))
-				throw new ArgumentException($"Type {typeof(TFrom).FullName} cannot be a scalar type. To convert scalar types use ConvertTo<TTo>.From(TFrom value).");
-
-			if (_mapperBuilder.MappingSchema.IsScalarType(typeof(TTo)))
-				throw new ArgumentException($"Type {typeof(TTo).FullName} cannot be a scalar type. To convert scalar types use ConvertTo<TTo>.From(TFrom value).");
-
 			var pFrom = Expression.Parameter(typeof(TFrom), "from");
 			var pTo   = Expression.Parameter(typeof(TTo),   "to");
-			var expr  = new MappingImpl(this, pFrom, pTo).GetExpression();
+			var pDic  = Expression.Parameter(typeof(IDictionary<object,object>), "dic");
 
-			var l = Expression.Lambda<Func<TFrom,TTo,TTo>>(expr, pFrom, pTo);
+			if (_mapperBuilder.MappingSchema.IsScalarType(typeof(TFrom)) || _mapperBuilder.MappingSchema.IsScalarType(typeof(TTo)))
+			{
+				var type = _mapperBuilder.MappingSchema.IsScalarType(typeof(TFrom)) ? typeof(TFrom) : typeof(TTo);
+
+				return Expression.Lambda<Func<TFrom,TTo,IDictionary<object,object>,TTo>>(
+					Expression.Throw(
+						Expression.New(
+							InfoOf.Constructor(() => new ArgumentException("")),
+							Expression.Constant($"Type {type.FullName} cannot be a scalar type. To convert scalar types use ConvertTo<TTo>.From(TFrom value).")),
+						typeof(TTo)),
+					pFrom,
+					pTo,
+					pDic);
+			}
+
+			var expr = new MappingImpl(this, pFrom, pTo, pDic).GetExpression();
+
+			var l = Expression.Lambda<Func<TFrom,TTo,IDictionary<object,object>,TTo>>(expr, pFrom, pTo, pDic);
 
 			return l;
 		}
 
 		class MappingImpl
 		{
-			public MappingImpl(ExpressionBuilder<TFrom,TTo> builder, Expression fromExpression, Expression toExpression)
+			public MappingImpl(ExpressionBuilder<TFrom,TTo> builder, Expression fromExpression, Expression toExpression, ParameterExpression pDic)
 			{
 				_builder        = builder;
 				_fromExpression = fromExpression;
 				_toExpression   = toExpression;
+				_pDic           = pDic;
 				_localObject    = Expression.Parameter(_toExpression.Type, "obj");
 				_fromAccessor   = TypeAccessor.GetAccessor(_fromExpression.Type);
 				_toAccessor     = TypeAccessor.GetAccessor(_toExpression.  Type);
@@ -163,11 +185,23 @@ namespace CodeJam.Mapping
 			readonly ExpressionBuilder<TFrom,TTo> _builder;
 			readonly Expression                   _fromExpression;
 			readonly Expression                   _toExpression;
+			readonly ParameterExpression          _pDic;
 			readonly ParameterExpression          _localObject;
 			readonly TypeAccessor                 _fromAccessor;
 			readonly TypeAccessor                 _toAccessor;
 			readonly List<Expression>             _expressions = new List<Expression>();
 			readonly List<ParameterExpression>    _locals      = new List<ParameterExpression>();
+
+			public Expression GetExpressionWithDic()
+			{
+				_locals.Add(_pDic);
+
+				_expressions.Add(Expression.Assign(
+					_pDic,
+					Expression.New(InfoOf.Constructor(() => new Dictionary<object,object>()))));
+
+				return GetExpression();
+			}
 
 			public Expression GetExpression()
 			{
@@ -177,7 +211,7 @@ namespace CodeJam.Mapping
 					_localObject,
 					Expression.Condition(
 						Expression.Equal(_toExpression, Expression.Constant(null, _toExpression.Type)),
-						Expression.New(_toExpression.Type.GetDefaultConstructor()),
+						Expression.New(_toExpression.Type.GetDefaultConstructor(true)),
 						_toExpression)));
 
 				foreach (var toMember in _toAccessor.Members.Where(_builder._mapperBuilder.MemberFilter))
@@ -261,10 +295,33 @@ namespace CodeJam.Mapping
 
 			Expression BuildClassMapper(Expression getValue, MemberAccessor toMember)
 			{
-				var expr = new MappingImpl(_builder, getValue, toMember.GetterExpression.ReplaceParameters(_localObject)).GetExpression();
+				var expr = new MappingImpl(_builder, getValue, toMember.GetterExpression.ReplaceParameters(_localObject), _pDic).GetExpression();
 
 				if (_builder._mapperBuilder.ProcessCrossReferences != false)
 				{
+					var res = Expression.Parameter(toMember.Type);
+
+					var assign =
+						Expression.Assign(res,
+							Expression.Convert(
+								Expression.Coalesce(
+									Expression.Call(
+										InfoOf<IDictionary<object,object>>.Method(_ => _.GetValueOrDefault(null, (object)null)),
+										_pDic,
+										getValue,
+										Expression.Constant(null, typeof(object))),
+									expr),
+								toMember.Type));
+
+					expr = Expression.Block(
+						new[] { res },
+						assign,
+						Expression.Call(
+							InfoOf.Method(() => ExpressionBuilderHelper.Add(null, null, null)),
+							_pDic,
+							getValue,
+							res),
+						res);
 				}
 
 				return expr;
@@ -288,14 +345,9 @@ namespace CodeJam.Mapping
 		#endregion
 	}
 
-//	static class ExpressionImplHelper
-//	{
-//		public static object GetObject(Dictionary<object,object> dic, object source)
-//		{
-//			object target;
-//
-//			dic.GetValueOrDefault().TryGetValue(source, out target);
-//			return target;
-//		}
-//	}
+	static class ExpressionBuilderHelper
+	{
+		public static void Add(IDictionary<object,object> dic, object key, object value)
+			=> dic[key] = value;
+	}
 }
