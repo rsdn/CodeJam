@@ -18,6 +18,6 @@ namespace CodeJam.Mapping
 		/// <returns>Mapping expression.</returns>
 		[Pure]
 		public static Func<TFrom,TTo> GetMapper<TFrom,TTo>()
-			=> new Mapper<TFrom,TTo>().GetMapperEx();
+			=> new MapperBuilder<TFrom,TTo>().GetMapperEx();
 	}
 }

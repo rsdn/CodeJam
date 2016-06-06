@@ -16,12 +16,12 @@ namespace CodeJam.Mapping
 			where TFrom : new()
 			where TTo   : new()
 		{
-			public MapHelper<TFrom,TTo> Map(bool action, Func<Mapper<TFrom,TTo>,Mapper<TFrom,TTo>> setter)
+			public MapHelper<TFrom,TTo> Map(bool action, Func<MapperBuilder<TFrom,TTo>,MapperBuilder<TFrom,TTo>> setter)
 				=> Map(action, new TFrom(), setter);
 
-			public MapHelper<TFrom,TTo> Map(bool action, TFrom fromObj, Func<Mapper<TFrom,TTo>,Mapper<TFrom,TTo>> setter)
+			public MapHelper<TFrom,TTo> Map(bool action, TFrom fromObj, Func<MapperBuilder<TFrom,TTo>,MapperBuilder<TFrom,TTo>> setter)
 			{
-				var mapper = setter(new Mapper<TFrom,TTo>());
+				var mapper = setter(new MapperBuilder<TFrom,TTo>());
 
 				From = fromObj;
 
@@ -46,7 +46,7 @@ namespace CodeJam.Mapping
 		[Test]
 		public void ActionExpressionTest()
 		{
-			var mapper = new Mapper<TestMap,TestMap>().GetMapperExpression().Compile();
+			var mapper = new MapperBuilder<TestMap,TestMap>().GetMapperExpression().Compile();
 
 			mapper(new TestMap(), new TestMap());
 		}
@@ -54,7 +54,7 @@ namespace CodeJam.Mapping
 		[Test]
 		public void FuncExpressionTest()
 		{
-			var mapper = new Mapper<TestMap,TestMap>().GetMapperExpressionEx().Compile();
+			var mapper = new MapperBuilder<TestMap,TestMap>().GetMapperExpressionEx().Compile();
 
 			var value = mapper(new TestMap());
 
@@ -63,7 +63,7 @@ namespace CodeJam.Mapping
 
 		[Test]
 		public void ExceptionTest() =>
-			Assert.Throws<ArgumentException>(() => new Mapper<string,TestMap>().GetMapperExpression().Compile());
+			Assert.Throws<ArgumentException>(() => new MapperBuilder<string,TestMap>().GetMapperExpression().Compile());
 
 		[Test]
 		public void MapIntToString()
@@ -194,7 +194,7 @@ namespace CodeJam.Mapping
 		[Test]
 		public void PerfTest()
 		{
-			var map = new Mapper<Source,Dest>()
+			var map = new MapperBuilder<Source,Dest>()
 				.MapMember(_ => _.Field3,  _ => _.Field2)
 				.MapMember(_ => _.Field4,  _ => _.Field5)
 				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12) : 12)
