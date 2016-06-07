@@ -19,8 +19,11 @@ namespace CodeJam.Mapping
 			_memberMappers = memberMappers;
 		}
 
-		readonly MapperBuilder<TFrom,TTo>                      _mapperBuilder;
-		readonly Tuple<MemberInfo[],LambdaExpression>[] _memberMappers;
+		readonly MapperBuilder<TFrom,TTo>                         _mapperBuilder;
+		readonly Tuple<MemberInfo[],LambdaExpression>[]           _memberMappers;
+		readonly Dictionary<Tuple<Type,Type>,ParameterExpression> _mappers = new Dictionary<Tuple<Type,Type>,ParameterExpression>();
+		readonly List<Expression>                                 _expressions = new List<Expression>();
+		readonly List<ParameterExpression>                        _locals      = new List<ParameterExpression>();
 
 		#region GetExpressionEx
 
@@ -45,7 +48,11 @@ namespace CodeJam.Mapping
 			else
 				expr = GetExpressionExImpl(pFrom, typeof(TTo));
 
-			var l = Expression.Lambda<Func<TFrom,TTo>>(expr, pFrom);
+			var l = Expression.Lambda<Func<TFrom,TTo>>(
+				_locals.Count > 0 || _expressions.Count > 0 ?
+					Expression.Block(_locals, _expressions.Concat(expr)) :
+					expr,
+				pFrom);
 
 			return l;
 		}
@@ -164,7 +171,11 @@ namespace CodeJam.Mapping
 
 			var expr = new MappingImpl(this, pFrom, pTo, pDic).GetExpression();
 
-			var l = Expression.Lambda<Func<TFrom,TTo,IDictionary<object,object>,TTo>>(expr, pFrom, pTo, pDic);
+			var l = Expression.Lambda<Func<TFrom,TTo,IDictionary<object,object>,TTo>>(
+				_locals.Count > 0 || _expressions.Count > 0 ?
+					Expression.Block(_locals, _expressions.Concat(expr)) :
+					expr,
+				pFrom, pTo, pDic);
 
 			return l;
 		}
@@ -177,10 +188,12 @@ namespace CodeJam.Mapping
 				_fromExpression = fromExpression;
 				_toExpression   = toExpression;
 				_pDic           = pDic;
-				_localObject    = Expression.Parameter(_toExpression.Type, "obj");
+				_localObject    = Expression.Parameter(_toExpression.Type, "obj" + ++_nameCounter);
 				_fromAccessor   = TypeAccessor.GetAccessor(_fromExpression.Type);
 				_toAccessor     = TypeAccessor.GetAccessor(_toExpression.  Type);
 			}
+
+			static int _nameCounter;
 
 			readonly ExpressionBuilder<TFrom,TTo> _builder;
 			readonly Expression                   _fromExpression;
@@ -213,6 +226,16 @@ namespace CodeJam.Mapping
 						Expression.Equal(_toExpression, Expression.Constant(null, _toExpression.Type)),
 						Expression.New(_toExpression.Type.GetDefaultConstructor(true)),
 						_toExpression)));
+
+				if (_builder._mapperBuilder.ProcessCrossReferences != false)
+				{
+					_expressions.Add(
+						Expression.Call(
+							InfoOf.Method(() => ExpressionBuilderHelper.Add(null, null, null)),
+							_pDic,
+							_fromExpression,
+							_localObject));
+				}
 
 				foreach (var toMember in _toAccessor.Members.Where(_builder._mapperBuilder.MemberFilter))
 				{
@@ -295,33 +318,52 @@ namespace CodeJam.Mapping
 
 			Expression BuildClassMapper(Expression getValue, MemberAccessor toMember)
 			{
-				var expr = new MappingImpl(_builder, getValue, toMember.GetterExpression.ReplaceParameters(_localObject), _pDic).GetExpression();
+				var makeLambda = _builder._mapperBuilder.ProcessCrossReferences != false;
+				var key        = Tuple.Create(_fromExpression.Type, toMember.Type);
 
-				if (_builder._mapperBuilder.ProcessCrossReferences != false)
+				var pFrom = Expression.Parameter(getValue.Type,     "pFrom");
+				var pTo   = Expression.Parameter(_localObject.Type, "pTo");
+
+				var toObj = toMember.GetterExpression.ReplaceParameters(makeLambda ? pTo :_localObject);
+				ParameterExpression l = null;
+
+				if (makeLambda)
 				{
-					var res = Expression.Parameter(toMember.Type);
+					if (_builder._mappers.TryGetValue(key, out l))
+						return Expression.Invoke(l, getValue, _localObject, _pDic);
 
-					var assign =
-						Expression.Assign(res,
+					l = Expression.Parameter(Expression.Lambda(Expression.Constant(null, toMember.Type), pFrom, pTo, _pDic).Type);
+
+					_builder._mappers.Add(key, l);
+					_builder._locals.Add(l);
+				}
+
+				var expr = new MappingImpl(
+					_builder,
+					makeLambda? pFrom : getValue,
+					toObj,
+					_pDic).GetExpression();
+
+				if (makeLambda)
+				{
+					var lex =
+						Expression.Lambda(
 							Expression.Convert(
 								Expression.Coalesce(
 									Expression.Call(
 										InfoOf<IDictionary<object,object>>.Method(_ => _.GetValueOrDefault(null, (object)null)),
 										_pDic,
-										getValue,
+										pFrom,
 										Expression.Constant(null, typeof(object))),
 									expr),
-								toMember.Type));
+								toMember.Type),
+							pFrom,
+							pTo,
+							_pDic);
 
-					expr = Expression.Block(
-						new[] { res },
-						assign,
-						Expression.Call(
-							InfoOf.Method(() => ExpressionBuilderHelper.Add(null, null, null)),
-							_pDic,
-							getValue,
-							res),
-						res);
+					_builder._expressions.Add(Expression.Assign(l, lex));
+
+					expr = Expression.Invoke(l, getValue, _localObject, _pDic);
 				}
 
 				return expr;
@@ -348,6 +390,9 @@ namespace CodeJam.Mapping
 	static class ExpressionBuilderHelper
 	{
 		public static void Add(IDictionary<object,object> dic, object key, object value)
-			=> dic[key] = value;
+		{
+			if (key != null)
+				dic[key] = value;
+		}
 	}
 }

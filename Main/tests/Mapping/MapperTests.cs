@@ -46,7 +46,10 @@ namespace CodeJam.Mapping
 		[Test]
 		public void ActionExpressionTest()
 		{
-			var mapper = new MapperBuilder<TestMap,TestMap>().GetMapperExpression().Compile();
+			var mapper = new MapperBuilder<TestMap,TestMap>()
+				.SetProcessCrossReferences(false)
+				.GetMapperExpression()
+				.Compile();
 
 			mapper(new TestMap(), new TestMap(), null);
 		}
@@ -332,6 +335,38 @@ namespace CodeJam.Mapping
 
 			Assert.That(map.To.Class1, Is.Not.Null);
 			Assert.That(map.To.Class2, Is.SameAs(map.To.Class1));
+		}
+
+		[Test]
+		public void MapInnerObject3([Values(true,false)] bool useEx)
+		{
+			var src = new Class5();
+
+			src.Class2 = src.Class1;
+
+			var map = new MapHelper<Class5,Class6>().Map(useEx, src, m => m
+				.SetProcessCrossReferences(false));
+
+			Assert.That(map.To.Class1, Is.Not.Null);
+			Assert.That(map.To.Class2, Is.Not.SameAs(map.To.Class1));
+		}
+
+		class Class7  { public Class9  Class; }
+		class Class8  { public Class10 Class = null; }
+		class Class9  { public Class7  Class = new Class7(); }
+		class Class10 { public Class8  Class = new Class8(); }
+
+		[Test]
+		public void SelfReference1([Values(true,false)] bool useEx)
+		{
+			var src = new Class9();
+
+			src.Class.Class = src;
+
+			var map = new MapHelper<Class9,Class10>().Map(useEx, src, m => m
+				.SetProcessCrossReferences(true));
+
+			Assert.That(map.To, Is.SameAs(map.To.Class.Class));
 		}
 	}
 }
