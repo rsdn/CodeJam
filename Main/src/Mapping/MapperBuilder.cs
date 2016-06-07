@@ -352,7 +352,7 @@ namespace CodeJam.Mapping
 		}
 
 		/// <summary>
-		/// If true, processes object cross references. 
+		/// If true, processes object cross references.
 		/// if default (null), the <see cref="GetMapperExpressionEx"/> method does not process cross references,
 		/// however the <see cref="GetMapperExpression"/> method does.
 		/// </summary>
@@ -366,6 +366,24 @@ namespace CodeJam.Mapping
 		public MapperBuilder<TFrom,TTo> SetProcessCrossReferences(bool? doProcess)
 		{
 			ProcessCrossReferences = doProcess;
+			return this;
+		}
+
+		/// <summary>
+		/// If true, performs deep copy.
+		/// if default (null), the <see cref="GetMapperExpressionEx"/> method does not do deep copy,
+		/// however the <see cref="GetMapperExpression"/> method does.
+		/// </summary>
+		public bool? DeepCopy { get; set; }
+
+		/// <summary>
+		/// If true, performs deep copy.
+		/// </summary>
+		/// <param name="deepCopy">If true, performs deep copy.</param>
+		/// <returns>Returns this mapper.</returns>
+		public MapperBuilder<TFrom,TTo> SetDeepCopy(bool? deepCopy)
+		{
+			DeepCopy = deepCopy;
 			return this;
 		}
 

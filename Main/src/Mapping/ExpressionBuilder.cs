@@ -15,7 +15,7 @@ namespace CodeJam.Mapping
 	{
 		public ExpressionBuilder(MapperBuilder<TFrom,TTo> mapperBuilder, Tuple<MemberInfo[],LambdaExpression>[] memberMappers)
 		{
-			_mapperBuilder        = mapperBuilder;
+			_mapperBuilder = mapperBuilder;
 			_memberMappers = memberMappers;
 		}
 
@@ -113,7 +113,7 @@ namespace CodeJam.Mapping
 				{
 					binds.Add(BuildAssignment(getter, fromExpression, fromMember.Type, toMember));
 				}
-				else if (fromMember.Type == toMember.Type)
+				else if (fromMember.Type == toMember.Type && _mapperBuilder.DeepCopy == false)
 				{
 					binds.Add(Expression.Bind(toMember.MemberInfo, getter.ReplaceParameters(fromExpression)));
 				}
@@ -289,7 +289,7 @@ namespace CodeJam.Mapping
 					{
 						_expressions.Add(BuildAssignment(getter, setter, fromMember.Type, _localObject, toMember));
 					}
-					else if (fromMember.Type == toMember.Type)
+					else if (fromMember.Type == toMember.Type && _builder._mapperBuilder.DeepCopy == false)
 					{
 						_expressions.Add(setter.ReplaceParameters(_localObject, getter.ReplaceParameters(_fromExpression)));
 					}
@@ -321,16 +321,16 @@ namespace CodeJam.Mapping
 				var makeLambda = _builder._mapperBuilder.ProcessCrossReferences != false;
 				var key        = Tuple.Create(_fromExpression.Type, toMember.Type);
 
-				var pFrom = Expression.Parameter(getValue.Type,     "pFrom");
-				var pTo   = Expression.Parameter(_localObject.Type, "pTo");
+				var pFrom = Expression.Parameter(getValue.Type, "pFrom");
+				var pTo   = Expression.Parameter(toMember.Type, "pTo");
+				var toObj = toMember.GetterExpression.ReplaceParameters(_localObject);
 
-				var toObj = toMember.GetterExpression.ReplaceParameters(makeLambda ? pTo :_localObject);
 				ParameterExpression l = null;
 
 				if (makeLambda)
 				{
 					if (_builder._mappers.TryGetValue(key, out l))
-						return Expression.Invoke(l, getValue, _localObject, _pDic);
+						return Expression.Invoke(l, getValue, toObj, _pDic);
 
 					l = Expression.Parameter(Expression.Lambda(Expression.Constant(null, toMember.Type), pFrom, pTo, _pDic).Type);
 
@@ -341,7 +341,7 @@ namespace CodeJam.Mapping
 				var expr = new MappingImpl(
 					_builder,
 					makeLambda? pFrom : getValue,
-					toObj,
+					makeLambda? pTo   : toObj,
 					_pDic).GetExpression();
 
 				if (makeLambda)
@@ -363,7 +363,7 @@ namespace CodeJam.Mapping
 
 					_builder._expressions.Add(Expression.Assign(l, lex));
 
-					expr = Expression.Invoke(l, getValue, _localObject, _pDic);
+					expr = Expression.Invoke(l, getValue, toObj, _pDic);
 				}
 
 				return expr;

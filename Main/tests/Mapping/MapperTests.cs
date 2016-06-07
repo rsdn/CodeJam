@@ -368,5 +368,73 @@ namespace CodeJam.Mapping
 
 			Assert.That(map.To, Is.SameAs(map.To.Class.Class));
 		}
+
+		class Class11 { public Class9  Class = new Class9();  }
+		class Class12 { public Class10 Class = new Class10(); }
+
+		[Test]
+		public void SelfReference2([Values(true,false)] bool useEx)
+		{
+			var src = new Class11();
+
+			src.Class.Class.Class = src.Class;
+
+			var map = new MapHelper<Class11,Class12>().Map(useEx, src, m => m
+				.SetProcessCrossReferences(true));
+
+			Assert.That(map.To.Class, Is.SameAs(map.To.Class.Class.Class));
+		}
+
+		class Cl1 {}
+		class Cl2 { public Cl1 Class1 = new Cl1(); }
+		class Cl3 { public Cl1 Class1 = new Cl1(); }
+		class Cl4 { public Cl1 Class1 = new Cl1(); public Cl2 Class2 = new Cl2(); public Cl3 Class3 = new Cl3(); }
+		class Cl21 { public Cl1 Class1; }
+		class Cl31 { public Cl1 Class1; }
+		class Cl41 { public Cl1 Class1; public Cl21 Class2; public Cl31 Class3; }
+
+		[Test]
+		public void SelfReference3([Values(true,false)] bool useEx)
+		{
+			var src = new Cl4();
+
+			var map = new MapHelper<Cl4,Cl41>().Map(useEx, src, m => m
+				.SetProcessCrossReferences(true));
+		}
+
+		[Test]
+		public void NullTest([Values(true,false)] bool useEx)
+		{
+			var src = new Cl4 { Class2 = null, };
+
+			var map = new MapHelper<Cl4,Cl41>().Map(useEx, src, m => m
+				.SetProcessCrossReferences(true));
+
+			Assert.That(map.To.Class2, Is.Null);
+		}
+
+		class Class13 { public Class1 Class = new Class1();  }
+		class Class14 { public Class1 Class = new Class1();  }
+
+		[Test]
+		public void DeepCopy1([Values(true,false)] bool useEx)
+		{
+			var src = new Class13();
+
+			var map = new MapHelper<Class13,Class14>().Map(useEx, src, m => m);
+
+			Assert.That(map.To.Class, Is.Not.SameAs(src.Class));
+		}
+
+		[Test]
+		public void DeepCopy12([Values(true,false)] bool useEx)
+		{
+			var src = new Class13();
+
+			var map = new MapHelper<Class13,Class14>().Map(useEx, src, m => m
+				.SetDeepCopy(false));
+
+			Assert.That(map.To.Class, Is.SameAs(src.Class));
+		}
 	}
 }
