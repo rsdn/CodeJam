@@ -209,6 +209,7 @@ namespace CodeJam.Mapping
 
 			map.Map(src);
 			map.Map(src, null);
+			map.Map(src, null, null);
 			map.GetMapperEx()(src);
 			map.GetMapper()(src, null, null);
 
@@ -226,6 +227,15 @@ namespace CodeJam.Mapping
 			for (var i = 0; i < n; i++)
 			{
 				sw.Start(); map.Map(src, null); sw.Stop();
+			}
+
+			Console.WriteLine(sw.Elapsed);
+
+			sw.Reset();
+
+			for (var i = 0; i < n; i++)
+			{
+				sw.Start(); map.Map(src, null, null); sw.Stop();
 			}
 
 			Console.WriteLine(sw.Elapsed);

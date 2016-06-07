@@ -34,7 +34,7 @@ namespace CodeJam.Mapping
 		/// Returned expression is compatible to IQueriable.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure]
+		[Pure, NotNull]
 		public Expression<Func<TFrom,TTo>> GetMapperExpressionEx()
 			=> _mapperExpressionEx;
 
@@ -42,7 +42,7 @@ namespace CodeJam.Mapping
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure]
+		[Pure, NotNull]
 		public Expression<Func<TFrom,TTo,IDictionary<object,object>,TTo>> GetMapperExpression()
 			=> _mapperExpression;
 
@@ -50,7 +50,7 @@ namespace CodeJam.Mapping
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure]
+		[Pure, NotNull]
 		public Func<TFrom,TTo> GetMapperEx()
 			=> _mapperEx;
 
@@ -58,7 +58,7 @@ namespace CodeJam.Mapping
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure]
+		[Pure, NotNull]
 		public Func<TFrom,TTo,IDictionary<object,object>,TTo> GetMapper()
 			=> _mapper;
 

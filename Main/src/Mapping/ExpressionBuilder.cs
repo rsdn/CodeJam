@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 using CodeJam.Collections;
 
@@ -351,10 +352,9 @@ namespace CodeJam.Mapping
 							Expression.Convert(
 								Expression.Coalesce(
 									Expression.Call(
-										InfoOf<IDictionary<object,object>>.Method(_ => _.GetValueOrDefault(null, (object)null)),
+										InfoOf<IDictionary<object,object>>.Method(_ => ExpressionBuilderHelper.GetValue(null, null)),
 										_pDic,
-										pFrom,
-										Expression.Constant(null, typeof(object))),
+										pFrom),
 									expr),
 								toMember.Type),
 							pFrom,
@@ -389,9 +389,15 @@ namespace CodeJam.Mapping
 
 	static class ExpressionBuilderHelper
 	{
+		public static object GetValue(IDictionary<object,object> dic, object key)
+		{
+			object result;
+			return dic != null && dic.TryGetValue(key, out result) ? result : null;
+		}
+
 		public static void Add(IDictionary<object,object> dic, object key, object value)
 		{
-			if (key != null)
+			if (key != null && dic != null)
 				dic[key] = value;
 		}
 	}
