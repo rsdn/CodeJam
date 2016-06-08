@@ -7,65 +7,50 @@ namespace CodeJam.Collections
 	public class SuffixTreeNaiveTest
 	{
 		[Test]
-		public void Test01() => Check("ABRABRABRABRA"
-			, "[{A}[{},{BRA}[{},{BRA}[{},{BRA}[{},{BRA}]]]],{BRA}[{},{BRA}[{},{BRA}[{},{BRA}]]],{RA}[{},{BRA}[{},{BRA}[{},{BRA}]]]]");
+		public void Test01() => Check("[{A}[{},{BRA}[{},{BRA}[{},{BRA}[{},{BRA}]]]],{BRA}[{},{BRA}[{},{BRA}[{},{BRA}]]],{RA}[{},{BRA}[{},{BRA}[{},{BRA}]]]]"
+			, "ABRABRABRABRA");
 
 		[Test]
-		public void Test02() => Check("MISSISSIPPI"
-			, "[{I}[{},{PPI},{SSI}[{PPI},{SSIPPI}]],{MISSISSIPPI},{P}[{I},{PI}],{S}[{I}[{PPI},{SSIPPI}],{SI}[{PPI},{SSIPPI}]]]");
+		public void Test02() => Check("[{I}[{},{PPI},{SSI}[{PPI},{SSIPPI}]],{MISSISSIPPI},{P}[{I},{PI}],{S}[{I}[{PPI},{SSIPPI}],{SI}[{PPI},{SSIPPI}]]]"
+			, "MISSISSIPPI");
 
 		[Test]
-		public void Test03() => Check("AAAAABAAAAA"
-			, "[{A}[{},{A}[{},{A}[{},{A}[{},{A}[{},{BAAAAA}],{BAAAAA}],{BAAAAA}],{BAAAAA}],{BAAAAA}],{BAAAAA}]");
+		public void Test03() => Check("[{A}[{},{A}[{},{A}[{},{A}[{},{A}[{},{BAAAAA}],{BAAAAA}],{BAAAAA}],{BAAAAA}],{BAAAAA}],{BAAAAA}]"
+			, "AAAAABAAAAA");
 
 		[Test]
-		public void Test04() => Check("ASTALAVISTABABY"
-			, "[{A}[{B}[{ABY},{Y}],{LAVISTABABY},{STALAVISTABABY},{VISTABABY}],{B}[{ABY},{Y}],{ISTABABY},{LAVISTABABY},{STA}[{BABY},{LAVISTABABY}],{TA}[{BABY},{LAVISTABABY}],{VISTABABY},{Y}]");
+		public void Test04() => Check("[{A}[{B}[{ABY},{Y}],{LAVISTABABY},{STALAVISTABABY},{VISTABABY}],{B}[{ABY},{Y}],{ISTABABY},{LAVISTABABY},{STA}[{BABY},{LAVISTABABY}],{TA}[{BABY},{LAVISTABABY}],{VISTABABY},{Y}]"
+			, "ASTALAVISTABABY");
 
 		[Test]
-		public void Test05() => Check("ABRACADABRA"
-			,"[{A}[{},{BRA}[{},{CADABRA}],{CADABRA},{DABRA}],{BRA}[{},{CADABRA}],{CADABRA},{DABRA},{RA}[{},{CADABRA}]]");
+		public void Test05() => Check("[{A}[{},{BRA}[{},{CADABRA}],{CADABRA},{DABRA}],{BRA}[{},{CADABRA}],{CADABRA},{DABRA},{RA}[{},{CADABRA}]]"
+			, "ABRACADABRA");
 
-		private static void Check(string data, string expected)
+		private static void Check(string expected, params string[] data)
 		{
-			var st = SuffixTreeNaive.Build(data);
-			Console.Write(st.Print());
-			Assert.That(SuffixTreeEncoder.Encode(st), Is.EqualTo(expected));
-
-			var builder = SuffixTreeNaive.CreateBuilder();
-			builder.Add(data);
-			st = builder.Complete();
-			Assert.That(SuffixTreeEncoder.Encode(st), Is.EqualTo(expected));
-		}
-
-		private static void Check(string[] data, string expected)
-		{
-			var builder = SuffixTreeNaive.CreateBuilder();
+			var st = new SuffixTreeNaive();
 			foreach (var s in data)
 			{
-				builder.Add(s);
+				st.Add(s);
 			}
-			var st = builder.Complete();
 			Console.Write(st.Print());
-			Console.WriteLine(SuffixTreeEncoder.Encode(st));
-			Console.WriteLine(expected);
 			Assert.That(SuffixTreeEncoder.Encode(st), Is.EqualTo(expected));
 		}
 
 		[Test]
-		public void Test06TwoStrings1() => Check(new [] { "ABRA", "CADABRA" }
-			, "[{A}[{},{},{BRA}[{},{}],{DABRA}],{BRA}[{},{}],{CADABRA},{DABRA},{RA}[{},{}]]");
+		public void Test06TwoStrings1() => Check("[{A}[{},{},{BRA}[{},{}],{DABRA}],{BRA}[{},{}],{CADABRA},{DABRA},{RA}[{},{}]]"
+			, "ABRA", "CADABRA");
 
 		[Test]
-		public void Test07TwoStrings2() => Check(new[] { "AAAAA", "BAAAAA" }
-			, "[{A}[{},{},{A}[{},{},{A}[{},{},{A}[{},{},{A}[{},{}]]]]],{BAAAAA}]");
+		public void Test07TwoStrings2() => Check("[{A}[{},{},{A}[{},{},{A}[{},{},{A}[{},{},{A}[{},{}]]]]],{BAAAAA}]"
+			, "AAAAA", "BAAAAA");
 
 		[Test]
-		public void Test08ThreeStrings() => Check(new[] { "THATS", "ALL", "FOLKS" }
-			, "[{A}[{LL},{TS}],{FOLKS},{HATS},{KS},{L}[{},{KS},{L}],{OLKS},{S}[{},{}],{T}[{HATS},{S}]]");
+		public void Test08ThreeStrings() => Check("[{A}[{LL},{TS}],{FOLKS},{HATS},{KS},{L}[{},{KS},{L}],{OLKS},{S}[{},{}],{T}[{HATS},{S}]]"
+			, "THATS", "ALL", "FOLKS");
 
 		[Test]		
-		public void Test09FourStrings() => Check(new[] { "ABRA", "BRA", "BRA", "BRA" }
-			, "[{A}[{},{},{},{},{BRA}],{BRA}[{},{},{},{}],{RA}[{},{},{},{}]]");
+		public void Test09FourStrings() => Check("[{A}[{},{},{},{},{BRA}],{BRA}[{},{},{},{}],{RA}[{},{},{},{}]]"
+			, "ABRA", "BRA", "BRA", "BRA");
 	}
 }

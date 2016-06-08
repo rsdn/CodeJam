@@ -8,13 +8,6 @@ namespace CodeJam.Collections
 	[DebuggerDisplay("{Print()}")]
 	public class SuffixTreeNaive : SuffixTreeBase
 	{
-		/// <summary>Constructs a new suffix tree</summary>
-		/// <param name="data">The string to build the suffix tree for</param>
-		/// <returns>The suffix tree</returns>
-		public static SuffixTreeNaive Build(string data) => Builder<SuffixTreeNaive>.Build(data);
-
-		public static Builder<SuffixTreeNaive> CreateBuilder() => new Builder<SuffixTreeNaive>();
-
 		protected override void BuildFor(int start, int end)
 		{
 			var root = Root;
@@ -28,25 +21,45 @@ namespace CodeJam.Collections
 				{
 					var children = currentNode.Children;
 					int nextNodeIndex;
+					var forceNew = false;
 					if (children == null)
 					{
 						children = new List<int>();
 						currentNode.Children = children;
-						// force first child addition
-						nextNodeIndex = 0;
+						if (currentNode.IsTerminal)
+						{
+							// add new empty terminal node
+							var terminalEnd = currentNode.End;
+							var newTerminal = new Node(terminalEnd, terminalEnd, true);
+							var index = AddNode(newTerminal);
+							children.Add(index);
+							currentNode.MakeNonTerminal();
+						}
+						// force new child addition
+						nextNodeIndex = children.Count;
+						forceNew = true;
 					}
 					else
 					{
-						nextNodeIndex = children.LowerBound(data[begin], childComparer);
+						if (begin == end)
+						{
+							nextNodeIndex = 0;
+							forceNew = true;
+						}
+						else
+						{
+							nextNodeIndex = children.LowerBound(data[begin], childComparer);
+						}
 					}
 
-					if (nextNodeIndex == children.Count
+					if (forceNew
+						|| nextNodeIndex == children.Count
 						|| data[GetNode(children[nextNodeIndex]).Begin] != data[begin])
 					{
 						// add new child
-						var node = new Node(begin, end);
+						var node = new Node(begin, end, true);
 						var index = AddNode(node);
-						currentNode.Children.Insert(nextNodeIndex, index);
+						children.Insert(nextNodeIndex, index);
 						break;
 					}
 					// there is already a suffix which starts from the same char
@@ -56,7 +69,9 @@ namespace CodeJam.Collections
 					var nextEnd = nextNode.End;
 					var diffIndex = nextBegin + 1;
 					++begin;
-					while (diffIndex < nextEnd && data[diffIndex] == data[begin])
+					while (diffIndex < nextEnd
+						&& begin < end
+						&& data[diffIndex] == data[begin])
 					{
 						++diffIndex;
 						++begin;
@@ -64,7 +79,7 @@ namespace CodeJam.Collections
 					if (diffIndex != nextEnd)
 					{
 						// split the nextNode
-						var splitNode = new Node(diffIndex, nextEnd) { Children = nextNode.Children };
+						var splitNode = new Node(diffIndex, nextEnd, nextNode.IsTerminal) { Children = nextNode.Children };
 						var splitIndex = AddNode(splitNode);
 						nextNode.End = diffIndex;
 						nextNode.Children = new List<int> { splitIndex };
