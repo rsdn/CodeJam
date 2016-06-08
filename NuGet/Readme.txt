@@ -5,6 +5,8 @@ What's new in 1.1.0-beta5
 ------------------------
 * Option struct split into Option class and ValueOption struct
 * NullableHelper.AsNullable method
+* Set of classes to build fast mapper
+* EnumerableExtensions.ToHashSet overloads
 * Fixes and code cleanup
 
 What's new in 1.1.0-beta4

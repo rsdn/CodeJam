@@ -137,9 +137,42 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, NotNull]
 		public static HashSet<T> ToHashSet<T>(
-			[NotNull] this IEnumerable<T> source,
-			[NotNull] IEqualityComparer<T> comparer) =>
-				new HashSet<T>(source, comparer);
+				[NotNull] this IEnumerable<T> source,
+				[NotNull] IEqualityComparer<T> comparer) =>
+			new HashSet<T>(source, comparer);
+
+		/// <summary>
+		/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/>.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
+		/// <typeparam name="TKey">The type of the key returned by <paramref name="keySelector"/>.</typeparam>
+		/// <param name="source">The <see cref="IEnumerable{T}"/> to create a <see cref="HashSet{T}"/> from.</param>
+		/// <param name="keySelector">A function to extract a key from each element.</param>
+		/// <returns>
+		/// A <see cref="HashSet{T}"/> that contains keys from the input sequence.
+		/// </returns>
+		[Pure, NotNull]
+		public static HashSet<TKey> ToHashSet<T, TKey>([NotNull] this IEnumerable<T> source, Func<T, TKey> keySelector) =>
+			new HashSet<TKey>(source.Select(keySelector));
+
+		/// <summary>
+		/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/> with the specified equality comparer.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
+		/// <typeparam name="TKey">The type of the key returned by <paramref name="keySelector"/>.</typeparam>
+		/// <param name="source">The <see cref="IEnumerable{T}"/> to create a <see cref="HashSet{T}"/> from.</param>
+		/// <param name="comparer">The <see cref="IEqualityComparer{T}"/> implementation to use
+		/// to comparing values in the set, or <c>null</c> to use the default implementation for the set type.</param>
+		/// <param name="keySelector">A function to extract a key from each element.</param>
+		/// <returns>
+		/// A <see cref="HashSet{T}"/> that contains keys from the input sequence.
+		/// </returns>
+		[Pure, NotNull]
+		public static HashSet<TKey> ToHashSet<T, TKey>(
+				[NotNull] this IEnumerable<T> source,
+				Func<T, TKey> keySelector,
+				[NotNull] IEqualityComparer<TKey> comparer) =>
+			new HashSet<TKey>(source.Select(keySelector), comparer);
 
 		/// <summary>
 		/// Sorts the elements of a sequence in ascending order.
