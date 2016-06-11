@@ -10,12 +10,14 @@ namespace CodeJam.Collections
     {
 		/// <summary>Node alignment in Print output</summary>
 		private const int Align = 6;
+		/// <summary>Root node index</summary>
+	    protected const int RootNodeIndex = 0;
 
 		/// <summary>Tree nodes</summary>
 		private readonly List<Node> nodes_;
 
 		/// <summary>The root node</summary>
-		protected Node Root => nodes_[0];
+		protected Node Root => nodes_[RootNodeIndex];
 
 		/// <summary>Adds a new node</summary>
 		/// <param name="node">A node to add</param>
@@ -31,6 +33,9 @@ namespace CodeJam.Collections
 		/// <param name="index">The index of the node</param>
 		/// <returns>The node</returns>
 	    protected Node GetNode(int index) => nodes_[index];
+
+		/// <summary>Number of nodes</summary>
+	    protected int NodesCount => nodes_.Count;
 
 	    /// <summary>Source string with terminal added (if needed)</summary>
 		protected string InternalData { get; private set; }
@@ -82,7 +87,7 @@ namespace CodeJam.Collections
 		public string Print()
 	    {
 		    var sb = new StringBuilder();
-		    var currentIndex = 0;
+		    var currentIndex = RootNodeIndex;
 		    var stack = new List<ValueTuple<int, int>>();
 		    for (;;)
 		    {
@@ -174,6 +179,8 @@ namespace CodeJam.Collections
 			} 
 			/// <summary>Clear terminal flag</summary>
 			public void MakeNonTerminal() => _end = End;
+			/// <summary>Length of the corresponding substring</summary>
+			public int Length => End - Begin;
 		}
 	}
 }

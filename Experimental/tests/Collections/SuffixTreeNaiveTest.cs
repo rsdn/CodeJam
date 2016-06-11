@@ -26,6 +26,10 @@ namespace CodeJam.Collections
 		public void Test05() => Check("[{A}[{},{BRA}[{},{CADABRA}],{CADABRA},{DABRA}],{BRA}[{},{CADABRA}],{CADABRA},{DABRA},{RA}[{},{CADABRA}]]"
 			, "ABRACADABRA");
 
+		[Test]
+		public void Test06() => Check("[{AB}[{CBDEABDF},{DF}],{B}[{CBDEABDF},{D}[{EABDF},{F}]],{CBDEABDF},{D}[{EABDF},{F}],{EABDF},{F}]"
+			, "ABCBDEABDF");
+
 		private static void Check(string expected, params string[] data)
 		{
 			var st = new SuffixTreeNaive();
@@ -38,19 +42,19 @@ namespace CodeJam.Collections
 		}
 
 		[Test]
-		public void Test06TwoStrings1() => Check("[{A}[{},{},{BRA}[{},{}],{DABRA}],{BRA}[{},{}],{CADABRA},{DABRA},{RA}[{},{}]]"
+		public void Test07TwoStrings1() => Check("[{A}[{},{},{BRA}[{},{}],{DABRA}],{BRA}[{},{}],{CADABRA},{DABRA},{RA}[{},{}]]"
 			, "ABRA", "CADABRA");
 
 		[Test]
-		public void Test07TwoStrings2() => Check("[{A}[{},{},{A}[{},{},{A}[{},{},{A}[{},{},{A}[{},{}]]]]],{BAAAAA}]"
+		public void Test08TwoStrings2() => Check("[{A}[{},{},{A}[{},{},{A}[{},{},{A}[{},{},{A}[{},{}]]]]],{BAAAAA}]"
 			, "AAAAA", "BAAAAA");
 
 		[Test]
-		public void Test08ThreeStrings() => Check("[{A}[{LL},{TS}],{FOLKS},{HATS},{KS},{L}[{},{KS},{L}],{OLKS},{S}[{},{}],{T}[{HATS},{S}]]"
+		public void Test09ThreeStrings() => Check("[{A}[{LL},{TS}],{FOLKS},{HATS},{KS},{L}[{},{KS},{L}],{OLKS},{S}[{},{}],{T}[{HATS},{S}]]"
 			, "THATS", "ALL", "FOLKS");
 
 		[Test]		
-		public void Test09FourStrings() => Check("[{A}[{},{},{},{},{BRA}],{BRA}[{},{},{},{}],{RA}[{},{},{},{}]]"
+		public void Test10FourStrings() => Check("[{A}[{},{},{},{},{BRA}],{BRA}[{},{},{},{}],{RA}[{},{},{},{}]]"
 			, "ABRA", "BRA", "BRA", "BRA");
 	}
 }
