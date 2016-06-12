@@ -51,7 +51,7 @@ namespace CodeJam.PerfTests.Running.Core
 				// So, we had to do it ourselves.
 				if (TestContext.CurrentContext.WorkDirectory != null)
 				{
-					Environment.CurrentDirectory = TestContext.CurrentContext.WorkDirectory;
+					Environment.CurrentDirectory = TestContext.CurrentContext.TestDirectory;
 				}
 
 				return base.RunCompetition(benchmarkType, competitionConfig);

@@ -58,6 +58,9 @@ namespace CodeJam.PerfTests
 			Console.WriteLine("!!! " + 
 				File.Exists(TestContext.CurrentContext.TestDirectory + "\\" + 
 				_localLogConfig.PreviousRunLogUri));
+			Console.WriteLine("!!! " +
+				File.Exists(TestContext.CurrentContext.WorkDirectory + "\\" +
+				_localLogConfig.PreviousRunLogUri));
 
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_localLogConfig);
 			var messages = runState.GetMessages();
