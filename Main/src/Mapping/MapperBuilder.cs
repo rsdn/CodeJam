@@ -16,7 +16,7 @@ namespace CodeJam.Mapping
 	/// <typeparam name="TFrom">Type to map from.</typeparam>
 	/// <typeparam name="TTo">Type to map to.</typeparam>
 	[PublicAPI]
-	public class MapperBuilder<TFrom,TTo>
+	public class MapperBuilder<TFrom,TTo> : IMapperBuilder
 	{
 		MappingSchema _mappingSchema = MappingSchema.Default;
 
@@ -45,6 +45,9 @@ namespace CodeJam.Mapping
 		public Expression<Func<TFrom,TTo>> GetMapperExpressionEx()
 			=> GetExpressionMapper().GetExpressionEx();
 
+		LambdaExpression IMapperBuilder.GetMapperLambdaExpressionEx()
+			=> GetExpressionMapper().GetExpressionEx();
+
 		/*
 		/// <summary>
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
@@ -62,6 +65,9 @@ namespace CodeJam.Mapping
 		[Pure]
 		public Expression<Func<TFrom,TTo,IDictionary<object,object>,TTo>> GetMapperExpression()
 			=> GetExpressionMapper().GetExpression();
+
+		LambdaExpression IMapperBuilder.GetMapperLambdaExpression()
+			=> GetExpressionMapper().GetExpressionEx();
 
 		/// <summary>
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.

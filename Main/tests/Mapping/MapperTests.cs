@@ -437,7 +437,7 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
-		public void DeepCopy12([Values(true,false)] bool useEx)
+		public void DeepCopy2([Values(true,false)] bool useEx)
 		{
 			var src = new Class13();
 
@@ -445,6 +445,26 @@ namespace CodeJam.Mapping
 				.SetDeepCopy(false));
 
 			Assert.That(map.To.Class, Is.SameAs(src.Class));
+		}
+
+		class Class15 { public List<Class1> List = new List<Class1> { new Class1(), new Class1() }; }
+		class Class16 { public List<Class2> List = null; }
+
+		[Test]
+		public void ObjectList([Values(true,false)] bool useEx)
+		{
+			var src = new Class15();
+
+			src.List.Add(src.List[0]);
+
+			var map = new MapHelper<Class15,Class16>().Map(useEx, src, m => m);
+
+			Assert.That(map.To.List.Count, Is.EqualTo(3));
+			Assert.That(map.To.List[0],    Is.Not.Null);
+			Assert.That(map.To.List[1],    Is.Not.Null);
+			Assert.That(map.To.List[2],    Is.Not.Null);
+			Assert.That(map.To.List[0],    Is.Not.SameAs(map.To.List[1]));
+			Assert.That(map.To.List[0],    Is.    SameAs(map.To.List[2]));
 		}
 	}
 }

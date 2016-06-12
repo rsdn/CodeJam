@@ -21,7 +21,7 @@ namespace CodeJam.Mapping
 
 		readonly MapperBuilder<TFrom,TTo>                         _mapperBuilder;
 		readonly Tuple<MemberInfo[],LambdaExpression>[]           _memberMappers;
-		readonly Dictionary<Tuple<Type,Type>,ParameterExpression> _mappers = new Dictionary<Tuple<Type,Type>,ParameterExpression>();
+		readonly Dictionary<Tuple<Type,Type>,ParameterExpression> _mappers     = new Dictionary<Tuple<Type,Type>,ParameterExpression>();
 		readonly List<Expression>                                 _expressions = new List<Expression>();
 		readonly List<ParameterExpression>                        _locals      = new List<ParameterExpression>();
 
@@ -123,7 +123,7 @@ namespace CodeJam.Mapping
 					var expr     = Expression.Condition(
 						Expression.Equal(getValue, Expression.Constant(null, getValue.Type)),
 						Expression.Constant(_mapperBuilder.MappingSchema.GetDefaultValue(toMember.Type), toMember.Type),
-						GetExpressionExImpl(getValue, toMember.Type));
+						BuildClassMapper(getValue, toMember));
 
 					binds.Add(Expression.Bind(toMember.MemberInfo, expr));
 				}
@@ -133,6 +133,30 @@ namespace CodeJam.Mapping
 			var initExpression = binds.Count > 0 ? (Expression)Expression.MemberInit(newExpression, binds) : newExpression;
 
 			return initExpression;
+		}
+
+		Expression BuildClassMapper(Expression getValue, MemberAccessor toMember)
+		{
+			var fromType = getValue.Type;
+			var toType   = toMember.Type;
+
+			if (toType.IsSubClass(typeof(IEnumerable<>)) && fromType.IsSubClass(typeof(IEnumerable<>)))
+			{
+				var fromItemType = fromType.GetItemType();
+				var toItemType   = toType.  GetItemType();
+
+				if (toType.IsGenericType && !toType.IsGenericTypeDefinition)
+				{
+					var toDefinition = toType.GetGenericTypeDefinition();
+
+					if (toDefinition == typeof(List<>))
+					{
+						return ExpressionBuilderHelper.ToList(_mapperBuilder, getValue, fromItemType, toItemType);
+					}
+				}
+			}
+
+			return GetExpressionExImpl(getValue, toMember.Type);
 		}
 
 		MemberAssignment BuildAssignment(LambdaExpression getter, Expression fromExpression, Type fromMemberType, MemberAccessor toMember)
@@ -304,8 +328,7 @@ namespace CodeJam.Mapping
 								_localObject,
 								Expression.Constant(_builder._mapperBuilder.MappingSchema.GetDefaultValue(toMember.Type), toMember.Type)),
 							// else
-							setter.ReplaceParameters(_localObject, 
-								toMember.HasGetter ? BuildClassMapper(getValue, toMember) : _builder.GetExpressionExImpl(getValue, toMember.Type)));
+							toMember.HasGetter ? BuildClassMapper(setter, getValue, toMember) : setter.ReplaceParameters(_builder.GetExpressionExImpl(getValue, toMember.Type)));
 
 						_expressions.Add(expr);
 					}
@@ -316,10 +339,47 @@ namespace CodeJam.Mapping
 				return Expression.Block(_locals, _expressions);
 			}
 
-			Expression BuildClassMapper(Expression getValue, MemberAccessor toMember)
+			Expression BuildClassMapper(LambdaExpression setter, Expression getValue, MemberAccessor toMember)
 			{
-				var makeLambda = _builder._mapperBuilder.ProcessCrossReferences != false;
-				var key        = Tuple.Create(_fromExpression.Type, toMember.Type);
+				var cacheMapper = _builder._mapperBuilder.ProcessCrossReferences != false;
+				var key         = Tuple.Create(_fromExpression.Type, toMember.Type);
+
+
+				var expr = BuildListMapper(setter, getValue, toMember);
+
+				if (expr == null)
+					expr = BuildObjectMapper(getValue, toMember, cacheMapper);
+
+				return setter.ReplaceParameters(_localObject, expr);
+			}
+
+			Expression BuildListMapper(LambdaExpression setter, Expression getValue, MemberAccessor toMember)
+			{
+				var fromType = getValue.Type;
+				var toType   = toMember.Type;
+
+				if (toType.IsSubClass(typeof(IEnumerable<>)) && fromType.IsSubClass(typeof(IEnumerable<>)))
+				{
+					var fromItemType = fromType.GetItemType();
+					var toItemType   = toType.  GetItemType();
+
+					if (toType.IsGenericType && !toType.IsGenericTypeDefinition)
+					{
+						var toDefinition = toType.GetGenericTypeDefinition();
+
+						if (toDefinition == typeof(List<>))
+						{
+							return ExpressionBuilderHelper.ToList(_builder._mapperBuilder, getValue, fromItemType, toItemType);
+						}
+					}
+				}
+
+				return null;
+			}
+
+			Expression BuildObjectMapper(Expression getValue, MemberAccessor toMember, bool cacheMapper)
+			{
+				var key   = Tuple.Create(_fromExpression.Type, toMember.Type);
 
 				var pFrom = Expression.Parameter(getValue.Type, "pFrom");
 				var pTo   = Expression.Parameter(toMember.Type, "pTo");
@@ -327,7 +387,7 @@ namespace CodeJam.Mapping
 
 				ParameterExpression l = null;
 
-				if (makeLambda)
+				if (cacheMapper)
 				{
 					if (_builder._mappers.TryGetValue(key, out l))
 						return Expression.Invoke(l, getValue, toObj, _pDic);
@@ -335,16 +395,16 @@ namespace CodeJam.Mapping
 					l = Expression.Parameter(Expression.Lambda(Expression.Constant(null, toMember.Type), pFrom, pTo, _pDic).Type);
 
 					_builder._mappers.Add(key, l);
-					_builder._locals.Add(l);
+					_builder._locals. Add(l);
 				}
 
 				var expr = new MappingImpl(
 					_builder,
-					makeLambda? pFrom : getValue,
-					makeLambda? pTo   : toObj,
+					cacheMapper? pFrom : getValue,
+					cacheMapper? pTo   : toObj,
 					_pDic).GetExpression();
 
-				if (makeLambda)
+				if (cacheMapper)
 				{
 					var lex =
 						Expression.Lambda(
@@ -398,6 +458,53 @@ namespace CodeJam.Mapping
 		{
 			if (key != null && dic != null)
 				dic[key] = value;
+		}
+
+		static IMapperBuilder GetBuilder<TFrom,TTo>(IMapperBuilder builder)
+			=> new MapperBuilder<TFrom,TTo>
+			{
+				MappingSchema          = builder.MappingSchema,
+				MemberMappers          = builder.MemberMappers,
+				FromMappingDictionary  = builder.FromMappingDictionary,
+				ToMappingDictionary    = builder.ToMappingDictionary,
+				MemberFilter           = builder.MemberFilter,
+				ProcessCrossReferences = builder.ProcessCrossReferences,
+				DeepCopy               = builder.DeepCopy,
+			};
+
+		public static Expression ToList(IMapperBuilder builder, Expression getValue, Type fromItemType, Type toItemType)
+		{
+			var toListInfo = InfoOf.Method(() => Enumerable.ToList<int>(null)).GetGenericMethodDefinition();
+			var expr       = Select(builder, getValue, fromItemType, toItemType);
+
+			return Expression.Call(toListInfo.MakeGenericMethod(toItemType), expr);
+		}
+
+		public static Expression ToArray(IMapperBuilder builder, Expression getValue, Type fromItemType, Type toItemType)
+		{
+			var toListInfo = InfoOf.Method(() => Enumerable.ToArray<int>(null)).GetGenericMethodDefinition();
+			var expr       = Select(builder, getValue, fromItemType, toItemType);
+
+			return Expression.Call(toListInfo.MakeGenericMethod(toItemType), expr);
+		}
+
+		public static Expression Select(IMapperBuilder builder, Expression getValue, Type fromItemType, Type toItemType)
+		{
+			var getBuilderInfo = InfoOf.Method(() => GetBuilder<int,int>(null)).               GetGenericMethodDefinition();
+			var selectInfo     = InfoOf.Method(() => Enumerable.Select<int,int>(null, _ => _)).GetGenericMethodDefinition();
+			var itemBuilder    = (IMapperBuilder)getBuilderInfo.MakeGenericMethod(fromItemType, toItemType).Invoke(null, new object[] { builder });
+
+			var expr = getValue;
+
+			if (builder.DeepCopy != false || fromItemType != toItemType)
+			{
+				expr = Expression.Call(
+					selectInfo.MakeGenericMethod(fromItemType, toItemType),
+					getValue,
+					itemBuilder.GetMapperLambdaExpressionEx());
+			}
+
+			return expr;
 		}
 	}
 }
