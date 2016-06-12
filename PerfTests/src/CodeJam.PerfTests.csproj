@@ -93,8 +93,12 @@
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\MessageSource.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\MessageSeverity.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\Message.cs" />
+    <Compile Include="[L4_CompetitionLimits]\Columns\MetricProviderColumn.cs" />
     <Compile Include="[L4_CompetitionLimits]\CompetitionLimit.cs" />
     <Compile Include="[L4_CompetitionLimits]\Analysers\CompetitionAnalyser.cs" />
+    <Compile Include="[L4_CompetitionLimits]\Metrics\ILimitMetricProvider.cs" />
+    <Compile Include="[L4_CompetitionLimits]\Metrics\MetricProviderBase.cs" />
+    <Compile Include="[L4_CompetitionLimits]\Metrics\PercentileMetricProvider.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\AttributeAnnotations.cs" />
     <Compile Include="[L4_CompetitionLimits]\CompetitionLimitProperties.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\CompetitionTarget.cs" />

@@ -37,6 +37,10 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <value><c>true</c> if count of runs is out of limit.</value>
 		public bool RunLimitExceeded => RunNumber >= MaxRunsAllowed;
 
+		/// <summary>There's a error-severity messages for the current run.</summary>
+		/// <value><c>true</c> if there's a error-severity messages for the current run.</value>
+		public bool HasTestErrorsInRun => HighestMessageSeverityInRun.IsTestErrorOrHigher();
+
 		/// <summary>There's a critical-severity messages for the current run.</summary>
 		/// <value><c>true</c> if there's a critical-severity messages for the current run.</value>
 		public bool HasCriticalErrorsInRun => HighestMessageSeverityInRun.IsCriticalError();

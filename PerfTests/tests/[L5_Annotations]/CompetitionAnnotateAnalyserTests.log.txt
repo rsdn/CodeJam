@@ -5,7 +5,7 @@ some log text
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="CodeJam.PerfTests.CompetitionAnnotateAnalyserTests+HighAccuracyBenchmark, CodeJam.PerfTests-Tests">
-		<Candidate Target="SlowerX10" MinRatio="20" MaxRatio="20" />
+		<Candidate Target="SlowerX20" MinRatio="20" MaxRatio="20" />
 	</Competition>
 </CompetitionBenchmarks>
 // !-->-------xml_annotation_end-------
@@ -15,7 +15,7 @@ some log text
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="CodeJam.PerfTests.CompetitionAnnotateAnalyserTests+HighAccuracyBenchmark, CodeJam.PerfTests-Tests">
-		<Candidate Target="SlowerX10" MinRatio="15" MaxRatio="25" />
+		<Candidate Target="SlowerX20" MinRatio="15" MaxRatio="25" />
 	</Competition>
 </CompetitionBenchmarks>
 // !-->-------xml_annotation_end-------
@@ -25,7 +25,7 @@ some log text
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="CodeJam.PerfTests.CompetitionAnnotateAnalyserTests+HighAccuracyBenchmark, CodeJam.PerfTests-Tests">
-		<Candidate Target="SlowerX10" MinRatio="10" MaxRatio="30" />
+		<Candidate Target="SlowerX20" MinRatio="10" MaxRatio="30" />
 	</Competition>
 </CompetitionBenchmarks>
 // !-->-------xml_annotation_end-------
@@ -35,7 +35,7 @@ some log text
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="CodeJam.PerfTests.CompetitionAnnotateAnalyserTests+HighAccuracyBenchmark, CodeJam.PerfTests-Tests">
-		<Candidate Target="SlowerX10" MinRatio="12" MaxRatio="28" />
+		<Candidate Target="SlowerX20" MinRatio="12" MaxRatio="28" />
 	</Competition>
 </CompetitionBenchmarks>
 // !-->-------xml_annotation_end-------
@@ -48,7 +48,7 @@ some log text
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="OTHERTARGET">
-		<Candidate Target="SlowerX10" MinRatio="1" MaxRatio="100" />
+		<Candidate Target="SlowerX20" MinRatio="1" MaxRatio="100" />
 	</Competition>
 </CompetitionBenchmarks>
 // !-->-------xml_annotation_end-------
@@ -56,7 +56,7 @@ some log text
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="CodeJam.PerfTests.CompetitionAnnotateAnalyserTests+HighAccuracyBenchmark, CodeJam.PerfTests-Tests">
-		<Candidate Target="SlowerX10" MinRatio="1" MaxRatio="100" />
+		<Candidate Target="SlowerX20" MinRatio="1" MaxRatio="100" />
 	</Competition>
 </CompetitionBenchmarks>
 // !-->-------xml_annotation_end1-------

@@ -2,6 +2,8 @@
 
 using BenchmarkDotNet.Configs;
 
+using CodeJam.PerfTests.Metrics;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Configs
@@ -62,6 +64,10 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Log competition limits.</summary>
 		/// <value><c>true</c> if competition limits should be logged; otherwise, <c>false</c>.</value>
 		public bool LogCompetitionLimits => _config.LogCompetitionLimits;
+
+		/// <summary>Provider for benchmark limit metrics.</summary>
+		/// <value>The provider for benchmark limit metrics.</value>
+		public ILimitMetricProvider LimitMetricProvider => _config.LimitMetricProvider;
 		#endregion
 
 		#region Annotation config

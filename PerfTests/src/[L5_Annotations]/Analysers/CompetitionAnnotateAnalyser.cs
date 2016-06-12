@@ -103,6 +103,7 @@ namespace CodeJam.PerfTests.Analysers
 				}
 			}
 
+			// ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
 			if (updated)
 			{
 				competitionState.WriteMessage(
@@ -126,35 +127,63 @@ namespace CodeJam.PerfTests.Analysers
 		{
 			base.ValidateSummary(summary, warnings);
 
-			if (!UpdateSourceAnnotations)
-				return;
-
 			var competitionState = CompetitionCore.RunState[summary];
 			var competitionTargets = TargetsSlot[summary];
+
+			if (!UpdateSourceAnnotations)
+			{
+				if (competitionState.HasTestErrorsInRun)
+				{
+					competitionState.WriteMessage(
+						MessageSource.Analyser, MessageSeverity.Informational,
+						$"Skipping source annotation: {nameof(UpdateSourceAnnotations)} setting is disabled.");
+				}
+				return;
+			}
+
+			if (competitionState.HasCriticalErrorsInRun)
+			{
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.Informational,
+					"Skipping source annotation: there are critical errors in run.");
+				return;
+			}
+
+			var targetsToAnnotate =
+				competitionTargets.Values.Where(t => t.HasUnsavedChanges)
+				.ToHashSet();
+			foreach (var competitionTarget in competitionTargets.Values)
+			{
+				competitionTarget.MarkAsSaved();
+			}
 
 			var adjustedTargets = TryAdjustCompetitionTargets(competitionTargets, summary);
 			foreach (var competitionTarget in adjustedTargets)
 			{
 				competitionTarget.LooseLimits(LooseByPercent);
+				competitionTarget.MarkAsSaved();
+				targetsToAnnotate.Add(competitionTarget);
 			}
-			RequestReruns(adjustedTargets.Any(), competitionState);
 
-			var targetsToAnnotate = competitionTargets.Values.Where(t => t.HasUnsavedChanges).ToArray();
-			var annotatedTargets = AnnotateSourceHelper.TryAnnotateBenchmarkFiles(targetsToAnnotate, competitionState);
+			if (adjustedTargets.Any() && AdditionalRerunsOnAnnotate > 0)
+			{
+				competitionState.RequestReruns(
+					AdditionalRerunsOnAnnotate, 
+					"Annotations were updated.");
+			}
+
+			var annotatedTargets = AnnotateSourceHelper.TryAnnotateBenchmarkFiles(
+				targetsToAnnotate.ToArray(), competitionState);
 			if (annotatedTargets.Any())
 			{
-				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.Warning,
+				competitionState.AddAnalyserWarning(
+					warnings,
+					MessageSeverity.Warning,
 					"The sources were updated with a new annotations. Please check them before commiting the changes.");
-			}
-
-			foreach (var competitionTarget in targetsToAnnotate)
-			{
-				competitionTarget.MarkAsSaved();
 			}
 		}
 
-		private static CompetitionTarget[] TryAdjustCompetitionTargets(CompetitionTargets competitionTargets, Summary summary)
+		private CompetitionTarget[] TryAdjustCompetitionTargets(CompetitionTargets competitionTargets, Summary summary)
 		{
 			var adjusted = new List<CompetitionTarget>();
 
@@ -169,21 +198,17 @@ namespace CodeJam.PerfTests.Analysers
 					if (!competitionTargets.TryGetValue(benchmark.Target.Method, out competitionTarget))
 						continue;
 
-					// TODO: metric provider
-					var actualRatioMin = summary.TryGetScaledConfidenceIntervalLower(benchmark);
-					var actualRatioMax = summary.TryGetScaledConfidenceIntervalLower(benchmark);
+					double actualRatioMin, actualRatioMax;
 
-					// No warnings required. Missing values should be checked by base class.
-					if (actualRatioMin == null || actualRatioMax == null)
-						continue;
-
-					if (actualRatioMin > actualRatioMax)
+					if (!LimitMetricProvider.TryGetMetrics(
+						benchmark, summary,
+						out actualRatioMin, out actualRatioMax))
 					{
-						Algorithms.Swap(ref actualRatioMin, ref actualRatioMax);
+						// No warnings required. Missing values should be checked by base class.
+						continue;
 					}
 
-					var limit = new CompetitionLimit(actualRatioMin.Value, actualRatioMax.Value);
-
+					var limit = new CompetitionLimit(actualRatioMin, actualRatioMax);
 					if (competitionTarget.UnionWith(limit))
 					{
 						adjusted.Add(competitionTarget);
@@ -192,21 +217,6 @@ namespace CodeJam.PerfTests.Analysers
 			}
 
 			return adjusted.ToArray();
-		}
-
-		private void RequestReruns(bool updated, CompetitionState competitionState)
-		{
-			if (AdditionalRerunsOnAnnotate > 0)
-			{
-				if (updated)
-				{
-					competitionState.RequestReruns(AdditionalRerunsOnAnnotate, "Annotations were updated.");
-				}
-				else
-				{
-					competitionState.RequestReruns(0, "All competition benchmarks do not require annotation.");
-				}
-			}
 		}
 	}
 }

@@ -11,6 +11,7 @@ using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
 using CodeJam.Collections;
+using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.PerfTests.Running.SourceAnnotations;
@@ -23,6 +24,7 @@ namespace CodeJam.PerfTests.Analysers
 	/// <summary>Analyser class that enables limits validation for competition benchmarks.</summary>
 	/// <seealso cref="IAnalyser"/>
 	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+	[SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	internal class CompetitionAnalyser : IAnalyser
 	{
@@ -57,6 +59,10 @@ namespace CodeJam.PerfTests.Analysers
 		/// <summary>Log competition limits.</summary>
 		/// <value><c>true</c> if competition limits should be logged; otherwise, <c>false</c>.</value>
 		public bool LogCompetitionLimits { get; set; }
+
+		/// <summary>Provider for benchmark limit metrics.</summary>
+		/// <value>The provider for benchmark limit metrics.</value>
+		public ILimitMetricProvider LimitMetricProvider { get; set; }
 		#endregion
 
 		/// <summary>Performs limit validation for competition benchmarks.</summary>
@@ -186,6 +192,14 @@ namespace CodeJam.PerfTests.Analysers
 			var competitionState = CompetitionCore.RunState[summary];
 			var competitionTargets = TargetsSlot[summary];
 
+			if (LimitMetricProvider == null)
+			{
+				competitionState.AddAnalyserWarning(
+					warnings, MessageSeverity.SetupError,
+					$"The {nameof(LimitMetricProvider)} should be not null.");
+				return;
+			}
+
 			bool validated = true;
 			foreach (var benchmarkGroup in summary.SameConditionsBenchmarks())
 			{
@@ -218,29 +232,25 @@ namespace CodeJam.PerfTests.Analysers
 
 			var competitionState = CompetitionCore.RunState[summary];
 
-			var targetMethodName = benchmark.Target.Method.Name;
-			var actualRatioMin = summary.TryGetScaledConfidenceIntervalLower(benchmark);
-			var actualRatioMax = summary.TryGetScaledConfidenceIntervalLower(benchmark);
-			if (actualRatioMin == null || actualRatioMax == null)
+			double actualRatioMin, actualRatioMax;
+			if (!LimitMetricProvider.TryGetMetrics(
+				benchmark, summary,
+				out actualRatioMin, out actualRatioMax))
 			{
 				var baselineBenchmark = summary.TryGetBaseline(benchmark);
 				competitionState.AddAnalyserWarning(
 					warnings, MessageSeverity.TestError,
-					$"Baseline benchmark {baselineBenchmark?.ShortInfo} does not compute",
+					$"Baseline benchmark {baselineBenchmark?.ShortInfo} does not compute.",
 					summary.TryGetBenchmarkReport(benchmark));
 				return false;
 			}
 
-			if (actualRatioMin > actualRatioMax)
-			{
-				Algorithms.Swap(ref actualRatioMin, ref actualRatioMax);
-			}
-
 			bool validated = true;
+			var targetMethodName = benchmark.Target.Method.Name;
 
-			if (!competitionLimit.MinRatioIsOk(actualRatioMin.Value))
+			if (!competitionLimit.MinRatioIsOk(actualRatioMin))
 			{
-				var actualRatioText = CompetitionLimit.GetActualRatioText(actualRatioMin.Value);
+				var actualRatioText = CompetitionLimit.GetActualRatioText(actualRatioMin);
 				validated = false;
 				competitionState.AddAnalyserWarning(
 					warnings, MessageSeverity.TestError,
@@ -248,9 +258,9 @@ namespace CodeJam.PerfTests.Analysers
 					summary.TryGetBenchmarkReport(benchmark));
 			}
 
-			if (!competitionLimit.MaxRatioIsOk(actualRatioMax.Value))
+			if (!competitionLimit.MaxRatioIsOk(actualRatioMax))
 			{
-				var actualRatioText = CompetitionLimit.GetActualRatioText(actualRatioMax.Value);
+				var actualRatioText = CompetitionLimit.GetActualRatioText(actualRatioMax);
 				validated = false;
 				competitionState.AddAnalyserWarning(
 					warnings, MessageSeverity.TestError,

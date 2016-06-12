@@ -24,7 +24,7 @@ namespace CodeJam.PerfTests
 			UpdateSourceAnnotations = true,
 			IgnoreExistingAnnotations = true,
 			PreviousRunLogUri =
-				"https://gist.githubusercontent.com/ig-sinicyn/ceeef64a6d91f22499bc05f388bb4b48/raw/74012e12059a096c76db5d2241ee080dd4221243/CompetitionAnnotateAnalyserTests.log.txt"
+				"https://gist.githubusercontent.com/ig-sinicyn/ceeef64a6d91f22499bc05f388bb4b48/raw/84e23d5478c941cd924076d7039eee6e63072fea/CompetitionAnnotateAnalyserTests.log.txt"
 		};
 
 		private static readonly ICompetitionConfig _localLogConfig = new ManualCompetitionConfig(_remoteLogConfig)
@@ -48,8 +48,6 @@ namespace CodeJam.PerfTests
 		}
 
 		[Test]
-		[Explicit("Temporary disabled, fails on buildserver")]
-		// TODO: troubleshoot using https://www.appveyor.com/docs/how-to/rdp-to-build-worker
 		public static void TestAnnotateFromLocalLog()
 		{
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_localLogConfig);
@@ -71,7 +69,7 @@ namespace CodeJam.PerfTests
 			public void Baseline() => Delay(SpinCount);
 
 			[CompetitionBenchmark(10.00, 30.00)]
-			public void SlowerX10() => Delay(20 * SpinCount);
+			public void SlowerX20() => Delay(20 * SpinCount);
 		}
 		#endregion
 	}

@@ -72,7 +72,7 @@ namespace BenchmarkDotNet.Helpers
 				.OrderBy(d => d.FullInfo);
 
 		/// <summary>Returns jobs from the benchmarks.</summary>
-		/// <param name="benchmarks">Benchmarks to select jobs from.</param>
+		/// <param name="benchmarks">The benchmarks to select jobs from.</param>
 		/// <returns>Jobs from the benchmarks.</returns>
 		// ReSharper disable once ReturnTypeCanBeEnumerable.Global
 		public static IOrderedEnumerable<IJob> GetJobs([NotNull] this IEnumerable<Benchmark> benchmarks) =>
@@ -82,152 +82,14 @@ namespace BenchmarkDotNet.Helpers
 				.OrderBy(d => d.GetShortInfo());
 		#endregion
 
-		#region Percentiles
-		/// <summary>Calculates the Nth percentile for the benchmark.</summary>
-		/// <param name="summary">The summary.</param>
-		/// <param name="benchmark">The benchmark.</param>
-		/// <param name="percentile">The percentile rank.</param>
-		/// <returns>
-		/// Nth timing percentile for the benchmark or <c>null</c> if there's no results for the benchmark.
-		/// </returns>
-		// ReSharper disable once UnusedMember.Global
-		public static double? TryGetPercentile(
-			[NotNull] this Summary summary,
-			[NotNull] Benchmark benchmark,
-			int percentile)
+		/// <summary>Helper method that writes separator log line.</summary>
+		/// <param name="logger">The logger.</param>
+		public static void WriteSeparatorLine([NotNull] this ILogger logger)
 		{
-			if (summary == null)
-				throw new ArgumentNullException(nameof(summary));
-
-			if (benchmark == null)
-				throw new ArgumentNullException(nameof(benchmark));
-
-			var benchmarkReport = summary.Reports.SingleOrDefault(r => r.Benchmark == benchmark);
-
-			return benchmarkReport?.ResultStatistics?.Percentiles?.Percentile(percentile);
+			logger.WriteLine();
+			logger.WriteLine(LogKind.Header, new string('=', 40));
+			logger.WriteLine();
 		}
-
-		public static double? TryGetScaledConfidenceIntervalLower(
-			[NotNull] this Summary summary,
-			[NotNull] Benchmark benchmark)
-		{
-
-			if (summary == null)
-				throw new ArgumentNullException(nameof(summary));
-
-			if (benchmark == null)
-				throw new ArgumentNullException(nameof(benchmark));
-
-			var baselineBenchmark = summary.TryGetBaseline(benchmark);
-			if (baselineBenchmark == null)
-				return null;
-
-			var baselineStatistics = summary.TryGetBenchmarkReport(baselineBenchmark)?.ResultStatistics;
-			if (baselineStatistics == null)
-				return null;
-
-			var benchmarkStatistics = summary.TryGetBenchmarkReport(benchmark)?.ResultStatistics;
-			if (benchmarkStatistics == null)
-				return null;
-
-			var baselineMetric = baselineStatistics.ConfidenceInterval.Lower;
-			var benchmarkMetric = benchmarkStatistics.ConfidenceInterval.Lower;
-
-			// ReSharper disable once CompareOfFloatsByEqualityOperator
-			if (baselineMetric == 0)
-				return null;
-
-			return benchmarkMetric / baselineMetric;
-		}
-
-		public static double? TryGetScaledConfidenceIntervalUpper(
-			[NotNull] this Summary summary,
-			[NotNull] Benchmark benchmark)
-		{
-
-			if (summary == null)
-				throw new ArgumentNullException(nameof(summary));
-
-			if (benchmark == null)
-				throw new ArgumentNullException(nameof(benchmark));
-
-			var baselineBenchmark = summary.TryGetBaseline(benchmark);
-			if (baselineBenchmark == null)
-				return null;
-
-			var baselineStatistics = summary.TryGetBenchmarkReport(baselineBenchmark)?.ResultStatistics;
-			if (baselineStatistics == null)
-				return null;
-
-			var benchmarkStatistics = summary.TryGetBenchmarkReport(benchmark)?.ResultStatistics;
-			if (benchmarkStatistics == null)
-				return null;
-
-			var baselineMetric = baselineStatistics.ConfidenceInterval.Upper;
-			var benchmarkMetric = benchmarkStatistics.ConfidenceInterval.Upper;
-
-			// ReSharper disable once CompareOfFloatsByEqualityOperator
-			if (baselineMetric == 0)
-				return null;
-
-			return benchmarkMetric / baselineMetric;
-		}
-
-		/// <summary>Calculates the Nth percentile for the benchmark scaled to the baseline value.</summary>
-		/// <param name="summary">The summary.</param>
-		/// <param name="benchmark">The benchmark.</param>
-		/// <param name="percentile">The percentile rank.</param>
-		/// <returns>
-		/// Nth timing percentile for the benchmark scaled to the baseline or <c>null</c> if there's no results for the benchmark.
-		/// </returns>
-		public static double? TryGetScaledPercentile(
-			[NotNull] this Summary summary,
-			[NotNull] Benchmark benchmark,
-			int percentile) =>
-				TryGetScaledPercentile(summary, benchmark, percentile, percentile);
-
-		/// <summary>Calculates the Nth percentile for the benchmark scaled to the baseline value.</summary>
-		/// <param name="summary">The summary.</param>
-		/// <param name="benchmark">The benchmark.</param>
-		/// <param name="baselinePercentile">The baseline percentile rank.</param>
-		/// <param name="benchmarkPercentile">The benchmark percentile rank.</param>
-		/// <returns>
-		/// Nth timing percentile for the benchmark scaled to the baseline or <c>null</c> if there's no results for the benchmark.
-		/// </returns>
-		private static double? TryGetScaledPercentile(
-			[NotNull] this Summary summary,
-			[NotNull] Benchmark benchmark,
-			int baselinePercentile, int benchmarkPercentile)
-		{
-			if (summary == null)
-				throw new ArgumentNullException(nameof(summary));
-
-			if (benchmark == null)
-				throw new ArgumentNullException(nameof(benchmark));
-
-			var baselineBenchmark = summary.TryGetBaseline(benchmark);
-			if (baselineBenchmark == null)
-				return null;
-
-			var baselineStatistics = summary.TryGetBenchmarkReport(baselineBenchmark)?.ResultStatistics;
-			if (baselineStatistics == null)
-				return null;
-
-			var benchmarkStatistics = summary.TryGetBenchmarkReport(benchmark)?.ResultStatistics;
-			if (benchmarkStatistics == null)
-				return null;
-
-			var baselineMetric = baselineStatistics.Percentiles.Percentile(baselinePercentile);
-			var benchmarkMetric = benchmarkStatistics.Percentiles.Percentile(benchmarkPercentile);
-
-			// ReSharper disable once CompareOfFloatsByEqualityOperator
-			if (baselineMetric == 0)
-				return null;
-
-			return benchmarkMetric / baselineMetric;
-		}
-		#endregion
-
 		#endregion
 
 		#region Reflection

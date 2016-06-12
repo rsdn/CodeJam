@@ -63,7 +63,7 @@ namespace CodeJam.PerfTests.Loggers
 
 		/// <summary>The logger to redirect the output.</summary>
 		/// <value>The logger to redirect the output.</value>
-		protected ILogger WrappedLogger { get; }
+		public ILogger WrappedLogger { get; }
 
 		public HostLogMode LogMode { get; }
 

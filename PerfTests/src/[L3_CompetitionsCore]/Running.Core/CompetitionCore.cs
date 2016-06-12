@@ -5,6 +5,7 @@ using System.Linq;
 
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
@@ -32,6 +33,12 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="severity">The severity to check.</param>
 		/// <returns><c>True</c> if the severity is warning or higher.</returns>
 		public static bool IsWarningOrHigher(this MessageSeverity severity) => severity >= MessageSeverity.Warning;
+
+
+		/// <summary>The message severity is test error or higher.</summary>
+		/// <param name="severity">The severity to check.</param>
+		/// <returns><c>True</c> if the severity is test error or higher.</returns>
+		public static bool IsTestErrorOrHigher(this MessageSeverity severity) => severity >= MessageSeverity.TestError;
 
 		/// <summary>The message severity is setup error or higher.</summary>
 		/// <param name="severity">The severity to check.</param>
@@ -174,6 +181,8 @@ namespace CodeJam.PerfTests.Running.Core
 				var runMessage = competitionState.RunLimitExceeded
 					? $"{LogImportantInfoPrefix}Run {run}, total runs (expected): {runsExpected} (rerun limit exceeded, last run)."
 					: $"{LogImportantInfoPrefix}Run {run}, total runs (expected): {runsExpected}.";
+				logger.WriteLine();
+				logger.WriteLine($"{LogImportantInfoPrefix}{new string('=', 40 - LogImportantInfoPrefix.Length)}");
 				logger.WriteLine();
 				logger.WriteLineInfo(runMessage);
 				logger.WriteLine();

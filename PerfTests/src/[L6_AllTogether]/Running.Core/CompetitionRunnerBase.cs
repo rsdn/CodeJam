@@ -17,8 +17,10 @@ using BenchmarkDotNet.Toolchains.InProcess;
 using BenchmarkDotNet.Validators;
 
 using CodeJam.PerfTests.Analysers;
+using CodeJam.PerfTests.Columns;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Loggers;
+using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
@@ -82,7 +84,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			Code.NotNull(benchmarkType, nameof(benchmarkType));
 
-			competitionConfig = competitionConfig ?? DefaultCompetitionConfig.Instance;
+			competitionConfig = PrepareCompetitionConfig(competitionConfig);
 
 			ValidateCompetitionSetup(benchmarkType, competitionConfig);
 			OnBeforeRun(benchmarkType, competitionConfig);
@@ -122,6 +124,17 @@ namespace CodeJam.PerfTests.Running.Core
 			ReportMessagesToUser(competitionConfig, competitionState);
 
 			return competitionState;
+		}
+
+		private ICompetitionConfig PrepareCompetitionConfig(ICompetitionConfig competitionConfig)
+		{
+			var temp = new ManualCompetitionConfig(competitionConfig);
+			if (temp.LimitMetricProvider == null)
+			{
+				temp.LimitMetricProvider = PercentileMetricProvider.P95;
+			}
+			competitionConfig = temp.AsReadOnly();
+			return competitionConfig;
 		}
 
 		private void ValidateCompetitionSetup(
@@ -276,7 +289,8 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="competitionConfig">The competition config.</param>
 		protected virtual void OnBeforeRun(
 			[NotNull] Type benchmarkType,
-			[NotNull] ICompetitionConfig competitionConfig) { }
+			[NotNull] ICompetitionConfig competitionConfig)
+		{ }
 
 		/// <summary>Called after competiton run.</summary>
 		/// <param name="runSucceed">If set to <c>true</c> the run was succeed.</param>
@@ -285,7 +299,8 @@ namespace CodeJam.PerfTests.Running.Core
 		protected virtual void OnAfterRun(
 			bool runSucceed,
 			[NotNull] IConfig benchmarkConfig,
-			[CanBeNull] CompetitionState competitionState) { }
+			[CanBeNull] CompetitionState competitionState)
+		{ }
 
 		/// <summary>Creates a host logger.</summary>
 		/// <param name="hostLogMode">The host log mode.</param>
@@ -350,6 +365,8 @@ namespace CodeJam.PerfTests.Running.Core
 				new[]
 				{
 					StatisticColumn.Min,
+					new MetricProviderColumn(competitionConfig.LimitMetricProvider, false),
+					new MetricProviderColumn(competitionConfig.LimitMetricProvider, true),
 					BaselineDiffColumn.Scaled50,
 					BaselineDiffColumn.Scaled85,
 					BaselineDiffColumn.Scaled95,
@@ -404,6 +421,7 @@ namespace CodeJam.PerfTests.Running.Core
 					LongRunningBenchmarkLimit = competitionConfig.AllowLongRunningBenchmarks ? _allowLongRunLimit : _longRunLimit,
 					IgnoreExistingAnnotations = competitionConfig.IgnoreExistingAnnotations,
 					LogCompetitionLimits = competitionConfig.LogCompetitionLimits,
+					LimitMetricProvider = competitionConfig.LimitMetricProvider,
 					UpdateSourceAnnotations = competitionConfig.UpdateSourceAnnotations,
 					PreviousRunLogUri = competitionConfig.PreviousRunLogUri
 				};

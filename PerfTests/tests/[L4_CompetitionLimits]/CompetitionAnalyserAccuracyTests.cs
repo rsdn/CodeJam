@@ -5,6 +5,7 @@ using System.Threading;
 using BenchmarkDotNet.Attributes;
 
 using CodeJam.PerfTests.Configs;
+using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
@@ -98,7 +99,12 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestCompetitionAnalyserHighAccuracyBenchmark()
 		{
-			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(HighAccuracyConfig);
+			var overrideConfig = new ManualCompetitionConfig(HighAccuracyConfig);
+			overrideConfig.LimitMetricProvider = PercentileMetricProvider.P20To80;
+			overrideConfig.IgnoreExistingAnnotations = false;
+			overrideConfig.UpdateSourceAnnotations = true;
+
+			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(overrideConfig);
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
@@ -152,7 +158,7 @@ namespace CodeJam.PerfTests
 			[CompetitionBaseline]
 			public void Baseline() => Delay(SpinCount);
 
-			[CompetitionBenchmark(8.2, 11.8)]
+			[CompetitionBenchmark(8.58, 10.59)]
 			public void SlowerX10() => Delay(10 * SpinCount);
 		}
 		#endregion
