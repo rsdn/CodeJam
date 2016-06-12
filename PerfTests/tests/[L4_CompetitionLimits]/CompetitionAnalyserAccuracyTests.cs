@@ -44,7 +44,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"The benchmarks TooFast, TooFast2 run faster than 0.0005ms. Results cannot be trusted.");
+				"The benchmarks TooFast, TooFast2 run faster than 0.0015ms. Results cannot be trusted.");
 		}
 
 		[Test]

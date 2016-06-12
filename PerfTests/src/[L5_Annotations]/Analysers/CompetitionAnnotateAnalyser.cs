@@ -6,9 +6,11 @@ using System.Xml.Linq;
 
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Helpers;
+using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
 using CodeJam.Collections;
+using CodeJam.PerfTests.Loggers;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.PerfTests.Running.SourceAnnotations;
@@ -134,18 +136,18 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				if (competitionState.HasTestErrorsInRun)
 				{
-					competitionState.WriteMessage(
-						MessageSource.Analyser, MessageSeverity.Informational,
-						$"Skipping source annotation: {nameof(UpdateSourceAnnotations)} setting is disabled.");
+					competitionState.Logger.WriteLine(
+						LogKind.Info,
+						$"{HostLogger.LogInfoPrefix}Skipping source annotation: {nameof(UpdateSourceAnnotations)} setting is disabled.");
 				}
 				return;
 			}
 
 			if (competitionState.HasCriticalErrorsInRun)
 			{
-				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.Informational,
-					"Skipping source annotation: there are critical errors in run.");
+				competitionState.Logger.WriteLine(
+					LogKind.Info,
+					$"{HostLogger.LogInfoPrefix}Skipping source annotation: there are critical errors in run.");
 				return;
 			}
 

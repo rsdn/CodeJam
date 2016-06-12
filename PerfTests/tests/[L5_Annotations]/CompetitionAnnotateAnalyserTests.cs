@@ -37,14 +37,14 @@ namespace CodeJam.PerfTests
 		{
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_remoteLogConfig);
 			var messages = runState.GetMessages();
-			Assert.IsTrue(runState.HighestMessageSeverityInRun <= MessageSeverity.Warning);
-			Assert.IsTrue(runState.Completed);
-			Assert.AreEqual(runState.RunNumber, 1);
-			Assert.AreEqual(runState.RunsLeft, 0);
-			Assert.AreEqual(runState.RunLimitExceeded, false);
-			Assert.AreEqual(runState.LooksLikeLastRun, true);
-			Assert.GreaterOrEqual(messages.Length, 5);
-			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 10, "Timeout failed");
+			Assert.AreEqual(runState.HighestMessageSeverityInRun, MessageSeverity.Warning, "#01");
+			Assert.IsTrue(runState.Completed, "#02");
+			Assert.AreEqual(runState.RunNumber, 1, "#03");
+			Assert.AreEqual(runState.RunsLeft, 0, "#04");
+			Assert.AreEqual(runState.RunLimitExceeded, false, "#05");
+			Assert.AreEqual(runState.LooksLikeLastRun, true, "#06");
+			Assert.GreaterOrEqual(messages.Length, 7, "#07");
+			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 12, "Timeout failed");
 		}
 
 		[Test]
@@ -52,14 +52,14 @@ namespace CodeJam.PerfTests
 		{
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_localLogConfig);
 			var messages = runState.GetMessages();
-			Assert.IsTrue(runState.HighestMessageSeverityInRun <= MessageSeverity.Warning);
-			Assert.IsTrue(runState.Completed);
-			Assert.AreEqual(runState.RunNumber, 1);
-			Assert.AreEqual(runState.RunsLeft, 0);
-			Assert.AreEqual(runState.RunLimitExceeded, false);
-			Assert.AreEqual(runState.LooksLikeLastRun, true);
-			Assert.GreaterOrEqual(messages.Length, 5);
-			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 7, "Timeout failed");
+			Assert.AreEqual(runState.HighestMessageSeverityInRun, MessageSeverity.Warning, "#01");
+			Assert.IsTrue(runState.Completed, "#02");
+			Assert.AreEqual(runState.RunNumber, 1, "#03");
+			Assert.AreEqual(runState.RunsLeft, 0, "#04");
+			Assert.AreEqual(runState.RunLimitExceeded, false, "#05");
+			Assert.AreEqual(runState.LooksLikeLastRun, true, "#06");
+			Assert.GreaterOrEqual(messages.Length, 7, "#07");
+			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 12, "Timeout failed");
 		}
 
 		#region Benchmark classes

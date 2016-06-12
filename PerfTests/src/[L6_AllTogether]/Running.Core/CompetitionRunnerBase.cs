@@ -50,7 +50,7 @@ namespace CodeJam.PerfTests.Running.Core
 		// DONTTOUCH: update xml docs for ICompetitionConfig.MaxRunsAllowed after changing the constant.
 		private const int DefaultMaxRunsAllowed = 10;
 
-		private static readonly TimeSpan _tooFastRunLimit = new TimeSpan(5); // 500 ns
+		private static readonly TimeSpan _tooFastRunLimit = new TimeSpan(15); // 1500 ns
 
 		// DONTTOUCH: update xml docs for ICompetitionConfig.AllowLongRunningBenchmarks after changing the value.
 		private static readonly TimeSpan _longRunLimit = TimeSpan.FromMilliseconds(500); // 500 ms
