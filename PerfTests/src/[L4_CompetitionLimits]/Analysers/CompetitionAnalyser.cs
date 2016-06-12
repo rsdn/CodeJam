@@ -21,7 +21,7 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Analysers
 {
 	/// <summary>Analyser class that enables limits validation for competition benchmarks.</summary>
-	/// <seealso cref="BenchmarkDotNet.Analysers.IAnalyser"/>
+	/// <seealso cref="IAnalyser"/>
 	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	internal class CompetitionAnalyser : IAnalyser

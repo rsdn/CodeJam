@@ -12,7 +12,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 	/// <summary>
 	/// A toolchain to run the benchmarks in-process.
 	/// </summary>
-	/// <seealso cref="BenchmarkDotNet.Toolchains.IToolchain"/>
+	/// <seealso cref="IToolchain"/>
 	[PublicAPI]
 	public sealed class InProcessToolchain : IToolchain
 	{

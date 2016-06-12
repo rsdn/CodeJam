@@ -34,7 +34,7 @@ namespace CodeJam.PerfTests.Running.Core
 	public abstract class CompetitionRunnerBase
 	{
 		/// <summary>Basic host logger implementation</summary>
-		/// <seealso cref="CodeJam.PerfTests.Loggers.HostLogger"/>
+		/// <seealso cref="Loggers.HostLogger"/>
 		protected abstract class HostLogger : Loggers.HostLogger
 		{
 			/// <summary>Initializes a new instance of the <see cref="HostLogger"/> class.</summary>

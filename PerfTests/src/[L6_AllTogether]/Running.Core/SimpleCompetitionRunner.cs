@@ -13,7 +13,7 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>Competiton runner that does not support integration with unit tests.</summary>
-	/// <seealso cref="CodeJam.PerfTests.Running.Core.CompetitionRunnerBase"/>
+	/// <seealso cref="CompetitionRunnerBase"/>
 	[PublicAPI]
 	public class SimpleCompetitionRunner : CompetitionRunnerBase
 	{

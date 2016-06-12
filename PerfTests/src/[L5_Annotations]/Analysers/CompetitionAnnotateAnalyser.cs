@@ -16,7 +16,7 @@ using CodeJam.PerfTests.Running.SourceAnnotations;
 namespace CodeJam.PerfTests.Analysers
 {
 	/// <summary>Analyser class that enables limits validation and annotation for competition benchmarks.</summary>
-	/// <seealso cref="CodeJam.PerfTests.Analysers.CompetitionAnalyser"/>
+	/// <seealso cref="CompetitionAnalyser"/>
 	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "ConvertClosureToMethodGroup")]
@@ -29,6 +29,7 @@ namespace CodeJam.PerfTests.Analysers
 			new RunState<PreviousRunDocuments>();
 		#endregion
 
+		/// <summary>The percent by which te limits will be loosed on limit adjustment.</summary>
 		protected const int LooseByPercent = 3;
 
 		#region Properties
@@ -168,7 +169,7 @@ namespace CodeJam.PerfTests.Analysers
 					if (!competitionTargets.TryGetValue(benchmark.Target.Method, out competitionTarget))
 						continue;
 
-					// todo: single ratio
+					// TODO: metric provider
 					var actualRatioMin = summary.TryGetScaledConfidenceIntervalLower(benchmark);
 					var actualRatioMax = summary.TryGetScaledConfidenceIntervalLower(benchmark);
 

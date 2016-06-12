@@ -17,7 +17,6 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
 	/// <summary>Core logic for limit annotation for competition benchmarks.</summary>
-	/// <seealso cref="BenchmarkDotNet.Analysers.IAnalyser"/>
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	[SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
