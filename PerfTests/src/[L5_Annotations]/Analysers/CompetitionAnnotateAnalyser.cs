@@ -29,6 +29,8 @@ namespace CodeJam.PerfTests.Analysers
 			new RunState<PreviousRunDocuments>();
 		#endregion
 
+		protected const int LooseByPercent = 3;
+
 		#region Properties
 		/// <summary>Try to annotate source with actual competition limits.</summary>
 		/// <value><c>true</c> if the analyser should update source annotations; otherwise, <c>false</c>. </value>
@@ -72,6 +74,9 @@ namespace CodeJam.PerfTests.Analysers
 			var benchmarkDocs = _documentsFromLog[summary]
 				.GetOrAdd(PreviousRunLogUri, uri => XmlAnnotations.TryParseBenchmarkDocsFromLog(uri, competitionState));
 
+			if (benchmarkDocs.IsNullOrEmpty())
+				return;
+
 			competitionState.WriteMessage(
 				MessageSource.Analyser, MessageSeverity.Informational,
 				$"Parsing previous results ({benchmarkDocs.Length} doc(s)) from log {PreviousRunLogUri}.");
@@ -106,8 +111,8 @@ namespace CodeJam.PerfTests.Analysers
 			else
 			{
 				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.Warning,
-					$"No benchmark limits found. Log file: {PreviousRunLogUri}.");
+					MessageSource.Analyser, MessageSeverity.Informational,
+					$"All benchmnarks are in log limits. Log file: {PreviousRunLogUri}.");
 			}
 		}
 
@@ -126,17 +131,31 @@ namespace CodeJam.PerfTests.Analysers
 			var competitionState = CompetitionCore.RunState[summary];
 			var competitionTargets = TargetsSlot[summary];
 
-			var hasAdjustedTargets = TryAdjustCompetitionTargets(competitionTargets, summary);
+			var adjustedTargets = TryAdjustCompetitionTargets(competitionTargets, summary);
+			foreach (var competitionTarget in adjustedTargets)
+			{
+				competitionTarget.LooseLimits(LooseByPercent);
+			}
+			RequestReruns(adjustedTargets.Any(), competitionState);
 
 			var targetsToAnnotate = competitionTargets.Values.Where(t => t.HasUnsavedChanges).ToArray();
-			AnnotateResultsCore(targetsToAnnotate, competitionState);
+			var annotatedTargets = AnnotateSourceHelper.TryAnnotateBenchmarkFiles(targetsToAnnotate, competitionState);
+			if (annotatedTargets.Any())
+			{
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.Warning,
+					"The sources were updated with a new annotations. Please check them before commiting the changes.");
+			}
 
-			RequestReruns(hasAdjustedTargets, competitionState);
+			foreach (var competitionTarget in targetsToAnnotate)
+			{
+				competitionTarget.MarkAsSaved();
+			}
 		}
 
-		private static bool TryAdjustCompetitionTargets(CompetitionTargets competitionTargets, Summary summary)
+		private static CompetitionTarget[] TryAdjustCompetitionTargets(CompetitionTargets competitionTargets, Summary summary)
 		{
-			bool adjusted = false;
+			var adjusted = new List<CompetitionTarget>();
 
 			foreach (var benchGroup in summary.SameConditionsBenchmarks())
 			{
@@ -149,36 +168,29 @@ namespace CodeJam.PerfTests.Analysers
 					if (!competitionTargets.TryGetValue(benchmark.Target.Method, out competitionTarget))
 						continue;
 
-					var minRatio = summary.TryGetScaledPercentile(benchmark, 85);
-					var maxRatio = summary.TryGetScaledPercentile(benchmark, 95);
+					// todo: single ratio
+					var actualRatioMin = summary.TryGetScaledConfidenceIntervalLower(benchmark);
+					var actualRatioMax = summary.TryGetScaledConfidenceIntervalLower(benchmark);
 
 					// No warnings required. Missing values should be checked by base class.
-					if (minRatio == null || maxRatio == null)
+					if (actualRatioMin == null || actualRatioMax == null)
 						continue;
 
-					if (minRatio > maxRatio)
+					if (actualRatioMin > actualRatioMax)
 					{
-						Algorithms.Swap(ref minRatio, ref maxRatio);
+						Algorithms.Swap(ref actualRatioMin, ref actualRatioMax);
 					}
 
-					var limit = new CompetitionLimit(minRatio ?? 0, maxRatio ?? 0);
-					adjusted |= competitionTarget.UnionWith(limit);
+					var limit = new CompetitionLimit(actualRatioMin.Value, actualRatioMax.Value);
+
+					if (competitionTarget.UnionWith(limit))
+					{
+						adjusted.Add(competitionTarget);
+					}
 				}
 			}
 
-			return adjusted;
-		}
-
-		private static void AnnotateResultsCore(CompetitionTarget[] targetsToAnnotate, CompetitionState competitionState)
-		{
-			const int looseByPercent = 5;
-
-			foreach (var competitionTarget in targetsToAnnotate)
-			{
-				competitionTarget.LooseLimitsAndMarkAsSaved(looseByPercent);
-			}
-
-			AnnotateSourceHelper.TryAnnotateBenchmarkFiles(targetsToAnnotate, competitionState);
+			return adjusted.ToArray();
 		}
 
 		private void RequestReruns(bool updated, CompetitionState competitionState)

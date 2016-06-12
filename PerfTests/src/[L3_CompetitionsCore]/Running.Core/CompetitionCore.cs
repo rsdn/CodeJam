@@ -200,7 +200,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			// TODO: notify analysers for last run? // Will need to define custom interface, of course.
 			// TODO: move to somewhere else?
-			if (competitionState.RunLimitExceeded)
+			if (competitionState.RunLimitExceeded && competitionState.RunsLeft > 0)
 			{
 				competitionState.WriteMessage(
 					MessageSource.Runner, MessageSeverity.TestError,

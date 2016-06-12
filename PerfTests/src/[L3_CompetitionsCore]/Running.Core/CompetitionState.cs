@@ -7,6 +7,7 @@ using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
+using CodeJam.Collections;
 using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
@@ -28,9 +29,9 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <value><c>true</c> if the competition is in it's first run.</value>
 		public bool InFirstRun => RunNumber == 1;
 
-		/// <summary>The competition has no additional runs requested.</summary>
-		/// <value><c>true</c> if the competition has no additional runs requested.</value>
-		public bool LooksLikeLastRun => RunsLeft <= 0;
+		/// <summary>The competition has no additional runs requested or the count of runs is out of limit.</summary>
+		/// <value><c>true</c> if the competition has no additional runs requested or the count of runs is out of limit.</value>
+		public bool LooksLikeLastRun => RunsLeft <= 0 || RunLimitExceeded;
 
 		/// <summary>The count of runs is out of limit.</summary>
 		/// <value><c>true</c> if count of runs is out of limit.</value>
@@ -190,7 +191,7 @@ namespace CodeJam.PerfTests.Running.Core
 			MessageSource messageSource, MessageSeverity messageSeverity,
 			string messageFormat, params object[] args)
 		{
-			var message = args == null || args.Length == 0
+			var message = args.IsNullOrEmpty()
 				? messageFormat
 				: string.Format(EnvironmentInfo.MainCultureInfo, messageFormat, args);
 

@@ -48,7 +48,7 @@ namespace CodeJam.PerfTests.Running.Core
 		// DONTTOUCH: update xml docs for ICompetitionConfig.MaxRunsAllowed after changing the constant.
 		private const int DefaultMaxRunsAllowed = 10;
 
-		private static readonly TimeSpan _tooFastRunLimit = new TimeSpan(4); // 400 ns
+		private static readonly TimeSpan _tooFastRunLimit = new TimeSpan(5); // 500 ns
 
 		// DONTTOUCH: update xml docs for ICompetitionConfig.AllowLongRunningBenchmarks after changing the value.
 		private static readonly TimeSpan _longRunLimit = TimeSpan.FromMilliseconds(500); // 500 ms
@@ -154,12 +154,7 @@ namespace CodeJam.PerfTests.Running.Core
 				var logger = competitionState.Logger;
 				var messages = competitionState.GetMessages();
 
-				if (messages.Length == 0)
-				{
-					logger.WriteLine();
-					logger.WriteLineInfo("// No messages in run.");
-				}
-				else
+				if (messages.Any())
 				{
 					logger.WriteLine();
 					logger.WriteLineInfo("// All messages:");
@@ -167,6 +162,11 @@ namespace CodeJam.PerfTests.Running.Core
 					{
 						logger.LogMessage(message);
 					}
+				}
+				else
+				{
+					logger.WriteLine();
+					logger.WriteLineInfo("// No messages in run.");
 				}
 			}
 		}

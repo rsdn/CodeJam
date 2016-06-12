@@ -11,7 +11,7 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.PerfTests.PerfTestConfig;
+using static CodeJam.PerfTests.PerfTestHelpers;
 
 namespace CodeJam.PerfTests
 {
@@ -20,17 +20,14 @@ namespace CodeJam.PerfTests
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
 	public static class CompetitionAnalyserAccuracyTests
 	{
-		private static readonly ICompetitionConfig _accurateConfig = new ManualCompetitionConfig(FastRunConfig.Instance)
-		{
-			AllowDebugBuilds = true,
-			DetailedLogging = true,
-			RerunIfLimitsFailed = true
-		};
 
 		[Test]
 		public static void TestCompetitionAnalyserTooFastBenchmark()
 		{
-			var runState = new PerfTestRunner().Run<TooFastBenchmark>(_accurateConfig);
+			var config = CreateHighAccuracyConfig();
+			config.DetailedLogging = true;
+
+			var runState = new PerfTestRunner().Run<TooFastBenchmark>(config);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
@@ -46,7 +43,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"The benchmarks TooFast, TooFast2 run faster than 0.0004ms. Results cannot be trusted.");
+				"The benchmarks TooFast, TooFast2 run faster than 0.0005ms. Results cannot be trusted.");
 		}
 
 		[Test]
@@ -101,7 +98,7 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestCompetitionAnalyserHighAccuracyBenchmark()
 		{
-			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_accurateConfig);
+			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(HighAccuracyConfig);
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);

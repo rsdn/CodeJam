@@ -11,7 +11,7 @@ namespace CodeJam.PerfTests
 	{
 		[Test]
 		[Explicit("To fool Appveyor")]
-		public static void TestTooFoolAppveyor()
+		public static void TestToFoolAppveyor()
 		{
 			Assert.That(1, Is.EqualTo(1));
 		}

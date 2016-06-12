@@ -26,9 +26,9 @@ namespace CodeJam.PerfTests
 			Interlocked.Exchange(ref _callCounter, 0);
 			Interlocked.Exchange(ref _afterSetupCounter, 0);
 			var summary = new PerfTestRunner()
-				.Run<InProcessBenchmark>(PerfTestConfig.SingleRunConfig)
+				.Run<InProcessBenchmark>(PerfTestHelpers.SingleRunConfig)
 				.LastRunSummary;
-			Assert.AreEqual(_callCounter, PerfTestConfig.ExpectedRunCount);
+			Assert.AreEqual(_callCounter, PerfTestHelpers.ExpectedSingleRunCount);
 			Assert.AreEqual(_afterSetupCounter, 1);
 
 			Assert.IsFalse(summary.ValidationErrors.Any());
@@ -54,9 +54,7 @@ namespace CodeJam.PerfTests
 		public static void TestInProcessWithValidationBenchmark()
 		{
 			// DONTTOUCH: config SHOULD NOT match the platform.
-			var config = IntPtr.Size == 8
-				? PerfTestConfig.X86
-				: PerfTestConfig.X64;
+			var config = PerfTestHelpers.OtherPlatformSingleRunConfig;
 
 			var summary = new PerfTestRunner()
 				.Run<InProcessWithValidationBenchmark>(config)

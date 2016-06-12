@@ -240,7 +240,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					competitionState.WriteMessage(
 						MessageSource.Analyser, MessageSeverity.SetupError,
 						$"Could not load log content from {logUri}.");
-					return null;
+					return new XDocument[0];
 				}
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.Informational,

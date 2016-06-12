@@ -218,11 +218,10 @@ namespace CodeJam.PerfTests.Analysers
 
 			var competitionState = CompetitionCore.RunState[summary];
 
-			const int percentile = 95;
-
 			var targetMethodName = benchmark.Target.Method.Name;
-			var actualRatio = summary.TryGetScaledPercentile(benchmark, percentile);
-			if (actualRatio == null)
+			var actualRatioMin = summary.TryGetScaledConfidenceIntervalLower(benchmark);
+			var actualRatioMax = summary.TryGetScaledConfidenceIntervalLower(benchmark);
+			if (actualRatioMin == null || actualRatioMax == null)
 			{
 				var baselineBenchmark = summary.TryGetBaseline(benchmark);
 				competitionState.AddAnalyserWarning(
@@ -232,12 +231,16 @@ namespace CodeJam.PerfTests.Analysers
 				return false;
 			}
 
+			if (actualRatioMin > actualRatioMax)
+			{
+				Algorithms.Swap(ref actualRatioMin, ref actualRatioMax);
+			}
+
 			bool validated = true;
 
-			var actualRatioText = CompetitionLimit.GetActualRatioText(actualRatio.Value);
-
-			if (!competitionLimit.MinRatioIsOk(actualRatio.Value))
+			if (!competitionLimit.MinRatioIsOk(actualRatioMin.Value))
 			{
+				var actualRatioText = CompetitionLimit.GetActualRatioText(actualRatioMin.Value);
 				validated = false;
 				competitionState.AddAnalyserWarning(
 					warnings, MessageSeverity.TestError,
@@ -245,8 +248,9 @@ namespace CodeJam.PerfTests.Analysers
 					summary.TryGetBenchmarkReport(benchmark));
 			}
 
-			if (!competitionLimit.MaxRatioIsOk(actualRatio.Value))
+			if (!competitionLimit.MaxRatioIsOk(actualRatioMax.Value))
 			{
+				var actualRatioText = CompetitionLimit.GetActualRatioText(actualRatioMax.Value);
 				validated = false;
 				competitionState.AddAnalyserWarning(
 					warnings, MessageSeverity.TestError,
@@ -279,7 +283,7 @@ namespace CodeJam.PerfTests.Analysers
 				.Distinct()
 				.ToArray();
 
-			if (benchMissing.Length > 0)
+			if (benchMissing.Any())
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.ExecutionError,
@@ -297,7 +301,7 @@ namespace CodeJam.PerfTests.Analysers
 					.Where(rp => rp.GetResultRuns().Any(r => r.GetAverageNanoseconds() < TooFastBenchmarkLimit.TotalNanoseconds()))
 					.Select(rp => rp.Benchmark.Target.Method.Name)
 					.ToArray();
-				if (tooFastReports.Length > 0)
+				if (tooFastReports.Any())
 				{
 					competitionState.AddAnalyserWarning(
 						warnings, MessageSeverity.Warning,
@@ -313,7 +317,7 @@ namespace CodeJam.PerfTests.Analysers
 					.Select(rp => rp.Benchmark.Target.Method.Name)
 					.ToArray();
 
-				if (tooSlowReports.Length > 0)
+				if (tooSlowReports.Any())
 				{
 					competitionState.AddAnalyserWarning(
 						warnings, MessageSeverity.Warning,

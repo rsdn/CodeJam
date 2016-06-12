@@ -8,7 +8,6 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
 ## TODO:
- * Loggers: two empty lines at HostLogger
  * Check if we're doing double loosing for logged benchmark limits.
  * Tests for broken log annotations.
  * Logging: write validator messages immediately?
@@ -17,10 +16,8 @@
  * Naming: Runs -> Reruns?
  * ability to pass ICompetitionConfig via attrubute?
  * validate summary after run
- * Design flaw? The run state DOES NOT SUPPORT reuse across multiple benchmarks.
  * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion
- * Memory limits + diagnoser
- * Fix diagnoser support in in-process toolchain
+ * Memory limits + diagnoser - whoops, https://github.com/PerfDotNet/BenchmarkDotNet/issues/200 . Will need to replace MethodInvoker, delayed.
  * validate culture usage
  * validate null values on percentiles
  * Tests!!!!

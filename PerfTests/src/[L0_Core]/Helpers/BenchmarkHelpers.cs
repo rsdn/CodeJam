@@ -107,6 +107,72 @@ namespace BenchmarkDotNet.Helpers
 			return benchmarkReport?.ResultStatistics?.Percentiles?.Percentile(percentile);
 		}
 
+		public static double? TryGetScaledConfidenceIntervalLower(
+			[NotNull] this Summary summary,
+			[NotNull] Benchmark benchmark)
+		{
+
+			if (summary == null)
+				throw new ArgumentNullException(nameof(summary));
+
+			if (benchmark == null)
+				throw new ArgumentNullException(nameof(benchmark));
+
+			var baselineBenchmark = summary.TryGetBaseline(benchmark);
+			if (baselineBenchmark == null)
+				return null;
+
+			var baselineStatistics = summary.TryGetBenchmarkReport(baselineBenchmark)?.ResultStatistics;
+			if (baselineStatistics == null)
+				return null;
+
+			var benchmarkStatistics = summary.TryGetBenchmarkReport(benchmark)?.ResultStatistics;
+			if (benchmarkStatistics == null)
+				return null;
+
+			var baselineMetric = baselineStatistics.ConfidenceInterval.Lower;
+			var benchmarkMetric = benchmarkStatistics.ConfidenceInterval.Lower;
+
+			// ReSharper disable once CompareOfFloatsByEqualityOperator
+			if (baselineMetric == 0)
+				return null;
+
+			return benchmarkMetric / baselineMetric;
+		}
+
+		public static double? TryGetScaledConfidenceIntervalUpper(
+			[NotNull] this Summary summary,
+			[NotNull] Benchmark benchmark)
+		{
+
+			if (summary == null)
+				throw new ArgumentNullException(nameof(summary));
+
+			if (benchmark == null)
+				throw new ArgumentNullException(nameof(benchmark));
+
+			var baselineBenchmark = summary.TryGetBaseline(benchmark);
+			if (baselineBenchmark == null)
+				return null;
+
+			var baselineStatistics = summary.TryGetBenchmarkReport(baselineBenchmark)?.ResultStatistics;
+			if (baselineStatistics == null)
+				return null;
+
+			var benchmarkStatistics = summary.TryGetBenchmarkReport(benchmark)?.ResultStatistics;
+			if (benchmarkStatistics == null)
+				return null;
+
+			var baselineMetric = baselineStatistics.ConfidenceInterval.Upper;
+			var benchmarkMetric = benchmarkStatistics.ConfidenceInterval.Upper;
+
+			// ReSharper disable once CompareOfFloatsByEqualityOperator
+			if (baselineMetric == 0)
+				return null;
+
+			return benchmarkMetric / baselineMetric;
+		}
+
 		/// <summary>Calculates the Nth percentile for the benchmark scaled to the baseline value.</summary>
 		/// <param name="summary">The summary.</param>
 		/// <param name="benchmark">The benchmark.</param>

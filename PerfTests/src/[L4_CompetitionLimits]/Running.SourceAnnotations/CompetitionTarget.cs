@@ -109,17 +109,16 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return result;
 		}
 
-		/// <summary>Looses the limits and marks loosed limits as saved.</summary>
+		/// <summary>Looses the limits.</summary>
 		/// <param name="percent">Percent to loose by.</param>
 		/// <exception cref="ArgumentOutOfRangeException">The percent is not in range 0..99</exception>
-		public void LooseLimitsAndMarkAsSaved(int percent) =>
-			LooseLimitsAndMarkAsSaved(percent, _allPropertiesMask);
+		public void LooseLimits(int percent) => LooseLimits(percent, _allPropertiesMask);
 
-		/// <summary>Looses the limits and marks loosed limits as saved.</summary>
+		/// <summary>Looses the limits.</summary>
 		/// <param name="percent">Percent to loose by.</param>
 		/// <param name="propertiesToLoose">The properties to loose.</param>
 		/// <exception cref="ArgumentOutOfRangeException">The percent is not in range 0..99</exception>
-		public void LooseLimitsAndMarkAsSaved(int percent, CompetitionLimitProperties propertiesToLoose)
+		public void LooseLimits(int percent, CompetitionLimitProperties propertiesToLoose)
 		{
 			Code.InRange(percent, nameof(percent), 0, 99);
 
@@ -135,7 +134,16 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				var newValue = Math.Ceiling(MaxRatio * (100 + percent)) / 100;
 				UnionWithMaxRatio(newValue);
 			}
+		}
 
+		/// <summary>Marks limits as saved.</summary>
+		public void MarkAsSaved() => MarkAsSaved(_allPropertiesMask);
+
+		/// <summary>Marks limits as saved.</summary>
+		/// <param name="propertiesToLoose">The properties to loose.</param>
+		public void MarkAsSaved(CompetitionLimitProperties propertiesToLoose)
+		{
+			propertiesToLoose &= _allPropertiesMask;
 			_changedProperties = _changedProperties.ClearFlag(propertiesToLoose);
 		}
 	}

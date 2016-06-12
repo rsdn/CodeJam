@@ -31,12 +31,14 @@ namespace CodeJam.PerfTests
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
 
-			result.LooseLimitsAndMarkAsSaved(0);
+			result.LooseLimits(0);
+			result.MarkAsSaved();
 			Assert.IsTrue(result.IsEmpty);
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
 
-			result.LooseLimitsAndMarkAsSaved(99);
+			result.LooseLimits(99);
+			result.MarkAsSaved();
 			Assert.IsTrue(result.IsEmpty);
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
@@ -44,8 +46,8 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(result.MinRatio, 0);
 			Assert.AreEqual(result.MaxRatio, 0);
 
-			Assert.Throws<ArgumentOutOfRangeException>(() => result.LooseLimitsAndMarkAsSaved(-1));
-			Assert.Throws<ArgumentOutOfRangeException>(() => result.LooseLimitsAndMarkAsSaved(100));
+			Assert.Throws<ArgumentOutOfRangeException>(() => result.LooseLimits(-1));
+			Assert.Throws<ArgumentOutOfRangeException>(() => result.LooseLimits(100));
 
 			result.UnionWith(new CompetitionLimit(1, 2));
 			Assert.AreEqual(result.MinRatio, 1);
@@ -56,7 +58,8 @@ namespace CodeJam.PerfTests
 			Assert.IsTrue(result.IsChanged(CompetitionLimitProperties.MinRatio));
 			Assert.IsTrue(result.IsChanged(CompetitionLimitProperties.MaxRatio));
 
-			result.LooseLimitsAndMarkAsSaved(5);
+			result.LooseLimits(5);
+			result.MarkAsSaved();
 			Assert.AreEqual(result.MinRatio, 0.95); // -5%
 			Assert.AreEqual(result.MaxRatio, 2.1); // + 5%
 			Assert.IsFalse(result.IsEmpty);
@@ -84,12 +87,14 @@ namespace CodeJam.PerfTests
 			Assert.IsTrue(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
 
-			result.LooseLimitsAndMarkAsSaved(0);
+			result.LooseLimits(0);
+			result.MarkAsSaved();
 			Assert.IsFalse(result.IsEmpty);
 			Assert.IsTrue(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
 
-			result.LooseLimitsAndMarkAsSaved(99);
+			result.LooseLimits(99);
+			result.MarkAsSaved();
 			Assert.IsFalse(result.IsEmpty);
 			Assert.IsTrue(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
@@ -97,8 +102,8 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(result.MinRatio, -1);
 			Assert.AreEqual(result.MaxRatio, -1);
 
-			Assert.Throws<ArgumentOutOfRangeException>(() => result.LooseLimitsAndMarkAsSaved(-1));
-			Assert.Throws<ArgumentOutOfRangeException>(() => result.LooseLimitsAndMarkAsSaved(100));
+			Assert.Throws<ArgumentOutOfRangeException>(() => result.LooseLimits(-1));
+			Assert.Throws<ArgumentOutOfRangeException>(() => result.LooseLimits(100));
 
 			result.UnionWith(new CompetitionLimit(1, 2));
 			Assert.IsFalse(result.IsEmpty);
@@ -136,12 +141,14 @@ namespace CodeJam.PerfTests
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
 
-			result.LooseLimitsAndMarkAsSaved(0);
+			result.LooseLimits(0);
+			result.MarkAsSaved();
 			Assert.IsFalse(result.IsEmpty);
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
 
-			result.LooseLimitsAndMarkAsSaved(10);
+			result.LooseLimits(10);
+			result.MarkAsSaved();
 			Assert.IsFalse(result.IsEmpty);
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
@@ -149,8 +156,8 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(result.MinRatio, 1);
 			Assert.AreEqual(result.MaxRatio, 2);
 
-			Assert.Throws<ArgumentOutOfRangeException>(() => result.LooseLimitsAndMarkAsSaved(-1));
-			Assert.Throws<ArgumentOutOfRangeException>(() => result.LooseLimitsAndMarkAsSaved(100));
+			Assert.Throws<ArgumentOutOfRangeException>(() => result.LooseLimits(-1));
+			Assert.Throws<ArgumentOutOfRangeException>(() => result.LooseLimits(100));
 
 			result.UnionWith(new CompetitionLimit(0.5, 3));
 			Assert.AreEqual(result.MinRatio, 0.5);
@@ -164,7 +171,8 @@ namespace CodeJam.PerfTests
 				result.IsChanged(
 					CompetitionLimitProperties.MinRatio | CompetitionLimitProperties.MaxRatio));
 
-			result.LooseLimitsAndMarkAsSaved(10, CompetitionLimitProperties.MinRatio);
+			result.LooseLimits(10, CompetitionLimitProperties.MinRatio);
+			result.MarkAsSaved(CompetitionLimitProperties.MinRatio);
 			Assert.AreEqual(result.MinRatio, 0.45); // -10%
 			Assert.AreEqual(result.MaxRatio, 3); // not changed
 			Assert.IsFalse(result.IsEmpty);
@@ -176,7 +184,8 @@ namespace CodeJam.PerfTests
 				result.IsChanged(
 					CompetitionLimitProperties.MinRatio | CompetitionLimitProperties.MaxRatio));
 
-			result.LooseLimitsAndMarkAsSaved(10, CompetitionLimitProperties.MaxRatio);
+			result.LooseLimits(10, CompetitionLimitProperties.MaxRatio);
+			result.MarkAsSaved(CompetitionLimitProperties.MaxRatio);
 			Assert.AreEqual(result.MinRatio, 0.45); // updated earlier
 			Assert.AreEqual(result.MaxRatio, 3.3); // + 10%
 			Assert.IsFalse(result.IsEmpty);

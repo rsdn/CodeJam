@@ -8,7 +8,7 @@ using CodeJam.PerfTests.Running.Messages;
 
 using NUnit.Framework;
 
-using static CodeJam.PerfTests.PerfTestConfig;
+using static CodeJam.PerfTests.PerfTestHelpers;
 
 namespace CodeJam.PerfTests
 {
@@ -171,7 +171,7 @@ namespace CodeJam.PerfTests
 
 		#region Benchmark classes
 		// two methods in each benchmark
-		private const int ExpectedRunCount = 2 * PerfTestConfig.ExpectedRunCount;
+		private const int ExpectedRunCount = 2 * ExpectedSingleRunCount;
 
 		private static int _callCounter;
 

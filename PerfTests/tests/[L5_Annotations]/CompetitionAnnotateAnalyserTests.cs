@@ -6,7 +6,7 @@ using CodeJam.PerfTests.Running.Messages;
 
 using NUnit.Framework;
 
-using static CodeJam.PerfTests.PerfTestConfig;
+using static CodeJam.PerfTests.PerfTestHelpers;
 
 namespace CodeJam.PerfTests
 {
@@ -15,7 +15,7 @@ namespace CodeJam.PerfTests
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
 	public static class CompetitionAnnotateAnalyserTests
 	{
-		private static readonly ICompetitionConfig _remoteLogConfig = new ManualCompetitionConfig(FastRunConfig.Instance)
+		private static readonly ICompetitionConfig _remoteLogConfig = new ManualCompetitionConfig(HighAccuracyConfig)
 		{
 			AllowDebugBuilds = true,
 			DetailedLogging = true,
@@ -44,7 +44,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.GreaterOrEqual(messages.Length, 5);
-			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 7, "Timeout failed");
+			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 10, "Timeout failed");
 		}
 
 		[Test]
@@ -70,7 +70,7 @@ namespace CodeJam.PerfTests
 			[CompetitionBaseline]
 			public void Baseline() => Delay(SpinCount);
 
-			[CompetitionBenchmark(9.50, 31.50)]
+			[CompetitionBenchmark(10.00, 30.00)]
 			public void SlowerX10() => Delay(20 * SpinCount);
 		}
 		#endregion
