@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Messages;
@@ -37,28 +38,36 @@ namespace CodeJam.PerfTests
 		{
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_remoteLogConfig);
 			var messages = runState.GetMessages();
-			Assert.AreEqual(runState.HighestMessageSeverityInRun, MessageSeverity.Warning, "#01");
-			Assert.IsTrue(runState.Completed, "#02");
-			Assert.AreEqual(runState.RunNumber, 1, "#03");
-			Assert.AreEqual(runState.RunsLeft, 0, "#04");
-			Assert.AreEqual(runState.RunLimitExceeded, false, "#05");
-			Assert.AreEqual(runState.LooksLikeLastRun, true, "#06");
-			Assert.GreaterOrEqual(messages.Length, 7, "#07");
+			Assert.AreEqual(runState.HighestMessageSeverityInRun, MessageSeverity.Warning);
+			Assert.IsTrue(runState.Completed);
+			Assert.AreEqual(runState.RunNumber, 1);
+			Assert.AreEqual(runState.RunsLeft, 0);
+			Assert.AreEqual(runState.RunLimitExceeded, false);
+			Assert.AreEqual(runState.LooksLikeLastRun, true);
+			Assert.GreaterOrEqual(messages.Length, 7);
 			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 12, "Timeout failed");
 		}
 
 		[Test]
 		public static void TestAnnotateFromLocalLog()
 		{
+			Console.WriteLine("!!! " + Environment.CurrentDirectory);
+			Console.WriteLine("!!! " + TestContext.CurrentContext.TestDirectory);
+			Console.WriteLine("!!! " + TestContext.CurrentContext.WorkDirectory);
+			Console.WriteLine("!!! " + File.Exists(_localLogConfig.PreviousRunLogUri));
+			Console.WriteLine("!!! " + 
+				File.Exists(TestContext.CurrentContext.TestDirectory + "\\" + 
+				_localLogConfig.PreviousRunLogUri));
+
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_localLogConfig);
 			var messages = runState.GetMessages();
-			Assert.AreEqual(runState.HighestMessageSeverityInRun, MessageSeverity.Warning, "#01");
-			Assert.IsTrue(runState.Completed, "#02");
-			Assert.AreEqual(runState.RunNumber, 1, "#03");
-			Assert.AreEqual(runState.RunsLeft, 0, "#04");
-			Assert.AreEqual(runState.RunLimitExceeded, false, "#05");
-			Assert.AreEqual(runState.LooksLikeLastRun, true, "#06");
-			Assert.GreaterOrEqual(messages.Length, 7, "#07");
+			Assert.AreEqual(runState.HighestMessageSeverityInRun, MessageSeverity.Warning);
+			Assert.IsTrue(runState.Completed);
+			Assert.AreEqual(runState.RunNumber, 1);
+			Assert.AreEqual(runState.RunsLeft, 0);
+			Assert.AreEqual(runState.RunLimitExceeded, false);
+			Assert.AreEqual(runState.LooksLikeLastRun, true);
+			Assert.GreaterOrEqual(messages.Length, 7);
 			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 12, "Timeout failed");
 		}
 
