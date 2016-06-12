@@ -450,7 +450,7 @@ namespace CodeJam.Mapping
 		class Class15 { public List<Class1> List = new List<Class1> { new Class1(), new Class1() }; }
 		class Class16 { public List<Class2> List = null; }
 
-		[Test]
+		[Test, Explicit]
 		public void ObjectList([Values(true,false)] bool useEx)
 		{
 			var src = new Class15();
