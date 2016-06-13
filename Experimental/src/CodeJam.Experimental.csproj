@@ -66,6 +66,8 @@
     <Compile Include="Collections\DisjointSets.cs" />
     <Compile Include="Collections\DisjointSetsBase.cs" />
     <Compile Include="Collections\DisjointSetsT.cs" />
+    <Compile Include="Collections\SuffixTreeBase.cs" />
+    <Compile Include="Collections\SuffixTree.cs" />
     <Compile Include="Parsing\BinaryOperator.cs" />
     <Compile Include="Parsing\CharReader.cs" />
     <Compile Include="Parsing\Operator.cs" />
