@@ -8,11 +8,11 @@ namespace CodeJam.Collections
 	[TestFixture]
 	public class SuffixTreeTest : SuffixTreeNaiveTest
 	{
-		private static readonly char[] alpha_ = Enumerable.Range('A', 26).Select(_ => (char)_).ToArray();
-		private static readonly Random rnd_ = new Random();
+		private static readonly char[] _alphabet = Enumerable.Range('A', 26).Select(_ => (char)_).ToArray();
+		private static readonly Random _rnd = new Random();
 
 		private static string MakeRandomString(int length)
-			=> new string(Enumerable.Range(0, length).Select(_ => alpha_[rnd_.Next(0, alpha_.Length)]).ToArray());
+			=> new string(Enumerable.Range(0, length).Select(_ => _alphabet[_rnd.Next(0, _alphabet.Length)]).ToArray());
 
 		[Test]
 		public void Test14RandomSingle()
@@ -37,7 +37,7 @@ namespace CodeJam.Collections
 			const int length = 100;
 			for (var i = 0; i < 1000; ++i)
 			{
-				var strings = Enumerable.Range(0, rnd_.Next(2, 10))
+				var strings = Enumerable.Range(0, _rnd.Next(2, 10))
 					.Select(_ => MakeRandomString(length)).ToArray();
 				var nst = new SuffixTreeNaive();
 				var st = new SuffixTree();

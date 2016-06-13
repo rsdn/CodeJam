@@ -8,26 +8,26 @@ namespace CodeJam.Collections
 {
 	public abstract class SuffixTreeEncoder : SuffixTreeBase
 	{
-		private static readonly MethodInfo getRootMethod_;
-		private static readonly MethodInfo getNodeMethod_;
-		private static readonly MethodInfo getDataMethod_;
-		private static readonly Func<SuffixTreeBase, Node> getRoot_;
-		private static readonly Func<SuffixTreeBase, int, Node> getNode_;
-		private static readonly Func<SuffixTreeBase, string> getData_;
+		private static readonly MethodInfo _getRootMethod;
+		private static readonly MethodInfo _getNodeMethod;
+		private static readonly MethodInfo _getDataMethod;
+		private static readonly Func<SuffixTreeBase, Node> _getRoot;
+		private static readonly Func<SuffixTreeBase, int, Node> _getNode;
+		private static readonly Func<SuffixTreeBase, string> _getData;
 
 		static SuffixTreeEncoder()
 		{
-			getRootMethod_ = typeof(SuffixTreeBase).GetProperty("Root", BindingFlags.Instance | BindingFlags.NonPublic).GetMethod;
-			getRoot_ = tree => (Node)getRootMethod_.Invoke(tree, null);
-			getNodeMethod_ = typeof(SuffixTreeBase).GetMethod("GetNode", BindingFlags.Instance | BindingFlags.NonPublic);
-			getNode_ = (tree, index) => (Node)getNodeMethod_.Invoke(tree, new object[] { index });
-			getDataMethod_ = typeof(SuffixTreeBase).GetProperty("InternalData", BindingFlags.Instance | BindingFlags.NonPublic).GetMethod;
-			getData_ = tree => (string)getDataMethod_.Invoke(tree, null);
+			_getRootMethod = typeof(SuffixTreeBase).GetProperty("Root", BindingFlags.Instance | BindingFlags.NonPublic).GetMethod;
+			_getRoot = tree => (Node)_getRootMethod.Invoke(tree, null);
+			_getNodeMethod = typeof(SuffixTreeBase).GetMethod("GetNode", BindingFlags.Instance | BindingFlags.NonPublic);
+			_getNode = (tree, index) => (Node)_getNodeMethod.Invoke(tree, new object[] { index });
+			_getDataMethod = typeof(SuffixTreeBase).GetProperty("InternalData", BindingFlags.Instance | BindingFlags.NonPublic).GetMethod;
+			_getData = tree => (string)_getDataMethod.Invoke(tree, null);
 		}
 
 		public static string Encode<T>(T tree) where T : SuffixTreeBase
 		{
-			var root = getRoot_(tree);
+			var root = _getRoot(tree);
 			var children = root.Children;
 			var sb = new StringBuilder();
 			sb.Append('[');
@@ -42,8 +42,8 @@ namespace CodeJam.Collections
 		private static void AppendChildren<T>(StringBuilder sb, T tree, IEnumerable<int> children) where T : SuffixTreeBase
 		{
 			var first = true;
-			var data = getData_(tree);
-			foreach (var v in children.Select(_ => getNode_(tree, _))
+			var data = _getData(tree);
+			foreach (var v in children.Select(_ => _getNode(tree, _))
 				.Select(_ => new { value = data.Substring(_.Begin, _.End - _.Begin), children = _.Children })
 				.OrderBy(_ => _.value))
 			{

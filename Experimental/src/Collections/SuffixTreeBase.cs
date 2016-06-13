@@ -13,33 +13,33 @@ namespace CodeJam.Collections
 	    protected const int RootNodeIndex = 0;
 
 		/// <summary>Tree nodes</summary>
-		private readonly List<Node> nodes_;
+		private readonly List<Node> _nodes;
 
 		/// <summary>The root node</summary>
-		protected Node Root => nodes_[RootNodeIndex];
+		protected Node Root => _nodes[RootNodeIndex];
 
 		/// <summary>Adds a new node</summary>
 		/// <param name="node">A node to add</param>
 		/// <returns>Index of the node</returns>
 	    protected int AddNode(Node node)
 	    {
-		    var index = nodes_.Count;
-			nodes_.Add(node);
+		    var index = _nodes.Count;
+			_nodes.Add(node);
 		    return index;
 	    }
 
 		/// <summary>Updates the node at the index</summary>
 		/// <param name="index">The index to update</param>
 		/// <param name="node">The new node value</param>
-	    protected void UpdateNode(int index, Node node) => nodes_[index] = node;
+	    protected void UpdateNode(int index, Node node) => _nodes[index] = node;
 
 	    /// <summary>Gets a node at the index</summary>
 		/// <param name="index">The index of the node</param>
 		/// <returns>The node</returns>
-	    protected Node GetNode(int index) => nodes_[index];
+	    protected Node GetNode(int index) => _nodes[index];
 
 		/// <summary>Number of nodes</summary>
-	    protected int NodesCount => nodes_.Count;
+	    protected int NodesCount => _nodes.Count;
 
 	    /// <summary>Concatenated input strings</summary>
 		protected string InternalData { get; private set; }
@@ -52,7 +52,7 @@ namespace CodeJam.Collections
 		{
 			InternalData = string.Empty;
 			var root = new Node(0, 0, false);
-			nodes_ = new List<Node> { root };
+			_nodes = new List<Node> { root };
 			EndPositions = new List<int>();
 		}
 
