@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
 using JetBrains.Annotations;
 
 namespace CodeJam.Collections
@@ -29,7 +28,12 @@ namespace CodeJam.Collections
 		    return index;
 	    }
 
-		/// <summary>Gets a node at the index</summary>
+		/// <summary>Updates the node at the index</summary>
+		/// <param name="index">The index to update</param>
+		/// <param name="node">The new node value</param>
+	    protected void UpdateNode(int index, Node node) => nodes_[index] = node;
+
+	    /// <summary>Gets a node at the index</summary>
 		/// <param name="index">The index of the node</param>
 		/// <returns>The node</returns>
 	    protected Node GetNode(int index) => nodes_[index];
@@ -37,12 +41,10 @@ namespace CodeJam.Collections
 		/// <summary>Number of nodes</summary>
 	    protected int NodesCount => nodes_.Count;
 
-	    /// <summary>Source string with terminal added (if needed)</summary>
+	    /// <summary>Concatenated input strings</summary>
 		protected string InternalData { get; private set; }
 
-		/// <summary>
-		/// List of end positions of added strings inside the InternalData
-		/// </summary>
+		/// <summary>List of end positions of added strings inside the InternalData</summary>
 		protected List<int> EndPositions { get; }
 
 		/// <summary>Constructs a base for a suffix tree</summary>
@@ -89,6 +91,8 @@ namespace CodeJam.Collections
 		    return firstChar - c;
 	    };
 
+		/// <summary>Prints the tree structure to the string for the debugging purposes</summary>
+		/// <returns>The tree structure as a string</returns>
 		[Pure]
 		public string Print()
 	    {
@@ -127,6 +131,10 @@ namespace CodeJam.Collections
 			return sb.ToString();
 	    }
 
+		/// <summary>Prints a single node representation along with the path prefix</summary>
+		/// <param name="sb">The builder to print to</param>
+		/// <param name="nodeIndex">THe index of the node</param>
+		/// <param name="stack">The stack of nodes to process</param>
 	    private void PrintNodeWithPath([NotNull] StringBuilder sb, int nodeIndex
 			, [NotNull] IReadOnlyList<ValueTuple<int, int>> stack)
 	    {
@@ -149,47 +157,52 @@ namespace CodeJam.Collections
 			PrintNodeText(sb, nodeIndex);
 	    }
 
+		/// <summary>Prints a single node information</summary>
+		/// <param name="sb">The builder to print to</param>
+		/// <param name="nodeIndex">The node index</param>
 	    protected virtual void PrintNodeText([NotNull] StringBuilder sb, int nodeIndex)
 	    {
 			var n = GetNode(nodeIndex);
-			sb.AppendLine($"({nodeIndex}, [{n.Begin}-{n.End}), {InternalData.Substring(n.Begin, n.End - n.Begin)})");
+			sb.AppendLine($"({nodeIndex}, [{n.Begin}-{n.End}), {InternalData.Substring(n.Begin, n.Length)})");
 		}
 
-		/// <summary>A suffix tree node</summary>
-		protected class Node
+		/// <summary>A suffix tree edge combined with the end node</summary>
+		protected struct Node
 		{
-			private int _end;
+			private readonly int _end;
 
-			public Node(int begin, int end, bool terminal)
+			/// <summary>Constructs a new node</summary>
+			/// <param name="begin">An edge start offset</param>
+			/// <param name="end">An edge end offset</param>
+			/// <param name="terminal">Is the edge terminates the string or not</param>
+			public Node(int begin, int end, bool terminal) : this(begin, end, terminal, null) {}
+
+			/// <summary>Constructs a new node</summary>
+			/// <param name="begin">An edge start offset</param>
+			/// <param name="end">An edge end offset</param>
+			/// <param name="terminal">Is the edge terminates the string or not</param>
+			/// <param name="children">A list of child nodes (edges)</param>
+			public Node(int begin, int end, bool terminal, List<int> children)
 			{
 				DebugCode.AssertArgument(end >= 0, nameof(end), "end should be nonnegative");
 				Begin = begin;
 				_end = terminal ? -end : end;
+				Children = children;
 			}
 
 			/// <summary>
-			/// List of child nodes
+			/// A list of child nodes
 			/// <remarks>null for leaf nodes</remarks>
 			/// </summary>
-			public List<int> Children { get; set; }
+			public List<int> Children { get; }
 			/// <summary>Shows whether it is a leaf or an internal node</summary>
 			public bool IsLeaf => Children == null;
 			/// <summary>Shows whether it is a terminal (ending at a string end) node or not</summary>
 			public bool IsTerminal => _end < 0;
 			/// <summary>Index of the first character of a substring corresponding to the node</summary>
-			public int Begin { get; set; }
+			public int Begin { get; }
 			/// <summary>Index after the last character of a substring corresponding to the node</summary>
-			public int End
-			{
-				get { return Math.Abs(_end); }
-				set
-				{
-					DebugCode.AssertArgument(value >= 0, nameof(value), "value should be nonnegative");
-					_end = value;
-				}
-			} 
-			/// <summary>Clear terminal flag</summary>
-			public void MakeNonTerminal() => _end = End;
+			public int End => Math.Abs(_end);
 			/// <summary>Length of the corresponding substring</summary>
 			public int Length => End - Begin;
 		}

@@ -10,82 +10,87 @@ namespace CodeJam.Collections
 	{
 		protected override void BuildFor(int start, int end)
 		{
-			var root = Root;
-			var data = InternalData;
 			var childComparer = GetComparer();
 			for (var i = end - 1; i >= start; --i)
 			{
-				var currentNode = root;
+				var currentNodeIndex = RootNodeIndex;
+				var currentNode = Root;
 				var begin = i;
 				for (;;)
 				{
 					var children = currentNode.Children;
-					int nextNodeIndex;
+					int childIndex;
 					var forceNew = false;
 					if (children == null)
 					{
+						var currentNodeEnd = currentNode.End;
 						children = new List<int>();
-						currentNode.Children = children;
+						var updatedNode = new Node(currentNode.Begin, currentNodeEnd, false, children);
 						if (currentNode.IsTerminal)
 						{
 							// add new empty terminal node
-							var terminalEnd = currentNode.End;
-							var newTerminal = new Node(terminalEnd, terminalEnd, true);
+							var newTerminal = new Node(currentNodeEnd, currentNodeEnd, true);
 							var index = AddNode(newTerminal);
 							children.Add(index);
-							currentNode.MakeNonTerminal();
 						}
-						// force new child addition
-						nextNodeIndex = children.Count;
+						UpdateNode(currentNodeIndex, updatedNode);
+						// currentNode = updatedNode is not needed since we will not use currentNode value anymore
+						childIndex = children.Count;
 						forceNew = true;
 					}
 					else
 					{
 						if (begin == end)
 						{
-							nextNodeIndex = 0;
+							childIndex = 0;
 							forceNew = true;
 						}
 						else
 						{
-							nextNodeIndex = children.LowerBound(data[begin], childComparer);
+							childIndex = children.LowerBound(InternalData[begin], childComparer);
 						}
 					}
 
 					if (forceNew
-						|| nextNodeIndex == children.Count
-						|| data[GetNode(children[nextNodeIndex]).Begin] != data[begin])
+						|| childIndex == children.Count
+						|| InternalData[GetNode(children[childIndex]).Begin] != InternalData[begin])
 					{
 						// add new child
 						var node = new Node(begin, end, true);
 						var index = AddNode(node);
-						children.Insert(nextNodeIndex, index);
+						children.Insert(childIndex, index);
 						break;
 					}
 					// there is already a suffix which starts from the same char
 					// find the match length
-					var nextNode = GetNode(children[nextNodeIndex]);
-					var nextBegin = nextNode.Begin;
-					var nextEnd = nextNode.End;
-					var diffIndex = nextBegin + 1;
+					var childNodeIndex = children[childIndex];
+					var childNode = GetNode(childNodeIndex);
+					var childBegin = childNode.Begin;
+					var childEnd = childNode.End;
+					var diffIndex = childBegin + 1;
 					++begin;
-					while (diffIndex < nextEnd
+					while (diffIndex < childEnd
 						&& begin < end
-						&& data[diffIndex] == data[begin])
+						&& InternalData[diffIndex] == InternalData[begin])
 					{
 						++diffIndex;
 						++begin;
 					}
-					if (diffIndex != nextEnd)
+					if (diffIndex != childEnd)
 					{
 						// split the nextNode
-						var splitNode = new Node(diffIndex, nextEnd, nextNode.IsTerminal) { Children = nextNode.Children };
+						var splitNode = new Node(diffIndex, childEnd, childNode.IsTerminal, childNode.Children);
 						var splitIndex = AddNode(splitNode);
-						nextNode.End = diffIndex;
-						nextNode.Children = new List<int> { splitIndex };
+						var updatedChildNode = new Node(childBegin, diffIndex, false, new List<int> { splitIndex });
+						UpdateNode(childNodeIndex, updatedChildNode);
+						currentNode = updatedChildNode;
 					}
-					// continue search from the next node
-					currentNode = nextNode;
+					else
+					{
+						currentNode = childNode;
+					}
+					currentNodeIndex = childNodeIndex;
+					// continue search from the child node
 				}
 			}
 		}

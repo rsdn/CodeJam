@@ -111,11 +111,11 @@ namespace CodeJam.Collections
 			else
 			{
 				childNodeIndex = InvalidNodeIndex;
-				activeEdge = null;
+				activeEdge = default(Node);
 			}
 			for(;;)
 			{
-				if (activeEdge == null)
+				if (activeEdgeIndex_ == InvalidNodeIndex)
 				{					
 					DebugCode.AssertState(activeLength_ == 0, "Invalid active state");
 					if (currentOffset_ == end_)
@@ -157,7 +157,7 @@ namespace CodeJam.Collections
 						branchNode = GetNode(branchNodeIndex_);
 						children = branchNode.Children;
 						activeEdgeIndex_ = InvalidNodeIndex;
-						activeEdge = null;
+						activeEdge = default(Node);
 						activeLength_ = 0;
 						break;
 					}
@@ -256,12 +256,12 @@ namespace CodeJam.Collections
 				// need to create a new internal node
 				var edgeNode = GetNode(edgeNodeIndex);
 				DebugCode.AssertState(activeLength_ < edgeNode.Length, "Invalid active state");
-				var newEdgeNode = new Node(edgeNode.Begin, edgeNode.Begin + activeLength_, false)
-				{
-					Children = new List<int> { edgeNodeIndex }
-				};
+				var newEdgeNode = new Node(edgeNode.Begin, edgeNode.Begin + activeLength_, false
+					, new List<int> { edgeNodeIndex });
 				var newEdgeNodeIndex = AddNode(newEdgeNode);
-				edgeNode.Begin = newEdgeNode.End;
+				var updatedEdgeNode = new Node(newEdgeNode.End, edgeNode.End, edgeNode.IsTerminal
+					, edgeNode.Children);
+				UpdateNode(edgeNodeIndex, updatedEdgeNode);
 				branchChildren[activeEdgeIndex_] = newEdgeNodeIndex;
 				insertionNode = newEdgeNode;
 				insertionNodeIndex = newEdgeNodeIndex;
@@ -278,16 +278,17 @@ namespace CodeJam.Collections
 			if (children == null)
 			{
 				children = new List<int>();
-				insertionNode.Children = children;
+				var insertionNodeEnd = insertionNode.End;
+				var updatedNode = new Node(insertionNode.Begin, insertionNodeEnd, false, children);
 				if (insertionNode.IsTerminal)
 				{
 					// Do a split. New children: an empty terminal node and a new suffix node (will be added later)
-					var terminalEnd = insertionNode.End;
-					var newTerminal = new Node(terminalEnd, terminalEnd, true);
+					var newTerminal = new Node(insertionNodeEnd, insertionNodeEnd, true);
 					var newTerminalIndex = AddNode(newTerminal);
 					children.Add(newTerminalIndex);
-					insertionNode.MakeNonTerminal();
 				}
+				UpdateNode(insertionNodeIndex, updatedNode);
+				// insertionNode = updatedNode not needed since insertionNode value is not used later
 				childNodeIndex = children.Count;
 			}
 			else
@@ -300,7 +301,7 @@ namespace CodeJam.Collections
 			// just do an insert
 			var newNode = new Node(currentOffset_, end_, true);
 			var newIndex = AddNode(newNode);
-			insertionNode.Children.Insert(childNodeIndex, newIndex);
+			children.Insert(childNodeIndex, newIndex);
 			// create a link if needed
 			if (LinkPending)
 			{
