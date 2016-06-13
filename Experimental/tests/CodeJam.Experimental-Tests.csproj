@@ -51,6 +51,7 @@
     <Compile Include="Collections\DisjointSetsTest.cs" />
     <Compile Include="Collections\SuffixTreeEncoder.cs" />
     <Compile Include="Collections\SuffixTreeNaive.cs" />
+    <Compile Include="Collections\SuffixTreeTest.cs" />
     <Compile Include="Collections\SuffixTreeNaiveTest.cs" />
     <Compile Include="Parsing\ParseHelperTests.cs" />
     <Compile Include="RangesV2\RangeTests.ExtensionsWithKey.generated.cs">

@@ -59,8 +59,14 @@ namespace CodeJam.Collections
 		/// The string to add
 		/// <remarks>The last string character should be unique among all added strings</remarks>
 		/// </param>
-		public void Add(string data)
+		[PublicAPI]
+		public void Add([NotNull]string data)
 		{
+			Code.NotNull(data, nameof(data));
+			if (data.Length == 0)
+			{
+				return;
+			}
 			var begin = InternalData.Length;
 			InternalData = InternalData + data;
 			EndPositions.Add(InternalData.Length);
@@ -91,7 +97,7 @@ namespace CodeJam.Collections
 		    var stack = new List<ValueTuple<int, int>>();
 		    for (;;)
 		    {
-			    PrintNode(sb, currentIndex, stack);
+			    PrintNodeWithPath(sb, currentIndex, stack);
 			    var node = GetNode(currentIndex);
 			    if (node.Children != null)
 			    {
@@ -121,7 +127,7 @@ namespace CodeJam.Collections
 			return sb.ToString();
 	    }
 
-	    private void PrintNode([NotNull] StringBuilder sb, int nodeIndex
+	    private void PrintNodeWithPath([NotNull] StringBuilder sb, int nodeIndex
 			, [NotNull] IReadOnlyList<ValueTuple<int, int>> stack)
 	    {
 		    if (stack.Count > 0)
@@ -140,9 +146,14 @@ namespace CodeJam.Collections
 				sb.Append('|');
 				sb.Append('_', Align - 1);
 			}
-		    var n = GetNode(nodeIndex);
-		    sb.AppendLine($"({nodeIndex}, [{n.Begin}-{n.End}), {InternalData.Substring(n.Begin, n.End - n.Begin)})");
+			PrintNodeText(sb, nodeIndex);
 	    }
+
+	    protected virtual void PrintNodeText([NotNull] StringBuilder sb, int nodeIndex)
+	    {
+			var n = GetNode(nodeIndex);
+			sb.AppendLine($"({nodeIndex}, [{n.Begin}-{n.End}), {InternalData.Substring(n.Begin, n.End - n.Begin)})");
+		}
 
 		/// <summary>A suffix tree node</summary>
 		protected class Node
@@ -166,7 +177,7 @@ namespace CodeJam.Collections
 			/// <summary>Shows whether it is a terminal (ending at a string end) node or not</summary>
 			public bool IsTerminal => _end < 0;
 			/// <summary>Index of the first character of a substring corresponding to the node</summary>
-			public int Begin { get; }
+			public int Begin { get; set; }
 			/// <summary>Index after the last character of a substring corresponding to the node</summary>
 			public int End
 			{

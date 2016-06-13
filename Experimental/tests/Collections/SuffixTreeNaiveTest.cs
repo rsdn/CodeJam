@@ -30,9 +30,37 @@ namespace CodeJam.Collections
 		public void Test06() => Check("[{AB}[{CBDEABDF},{DF}],{B}[{CBDEABDF},{D}[{EABDF},{F}]],{CBDEABDF},{D}[{EABDF},{F}],{EABDF},{F}]"
 			, "ABCBDEABDF");
 
-		private static void Check(string expected, params string[] data)
+		[Test]
+		public void Test07() => Check("[{a}[{abbabb},{b}[{abbabbaabbabb},{b}[{},{a}[{abbabb},{bb}[{},{aabbabb}]]]]],{b}[{},{a}[{abbabb},{bb}[{},{a}[{abbabb},{bbaabbabb}]]],{b}[{},{a}[{abbabb},{bb}[{},{aabbabb}]]]]]"
+			, "ababbabbaabbabb");
+
+		[Test]
+		public void Test08() => Check("[{ab}[{c}[{abxabcd},{d}],{xabcd}],{b}[{c}[{abxabcd},{d}],{xabcd}],{c}[{abxabcd},{d}],{d},{xabcd}]"
+			, "abcabxabcd");
+
+		[Test]
+		public void Test09() => Check("[{c}[{},{d}[{c},{ddcdc}]],{d}[{c}[{},{dc}],{d}[{cdc},{dcdc}]]]"
+			, "cdddcdc");
+
+		[Test]
+		public void Test10TwoStrings1() => Check("[{A}[{},{},{BRA}[{},{}],{DABRA}],{BRA}[{},{}],{CADABRA},{DABRA},{RA}[{},{}]]"
+			, "ABRA", "CADABRA");
+
+		[Test]
+		public void Test11TwoStrings2() => Check("[{A}[{},{},{A}[{},{},{A}[{},{},{A}[{},{},{A}[{},{}]]]]],{BAAAAA}]"
+			, "AAAAA", "BAAAAA");
+
+		[Test]
+		public void Test12ThreeStrings() => Check("[{A}[{LL},{TS}],{FOLKS},{HATS},{KS},{L}[{},{KS},{L}],{OLKS},{S}[{},{}],{T}[{HATS},{S}]]"
+			, "THATS", "ALL", "FOLKS");
+
+		[Test]		
+		public void Test13FourStrings() => Check("[{A}[{},{},{},{},{BRA}],{BRA}[{},{},{},{}],{RA}[{},{},{},{}]]"
+			, "ABRA", "BRA", "BRA", "BRA");
+
+		protected virtual void Check(string expected, params string[] data)
 		{
-			var st = new SuffixTreeNaive();
+			var st = CreateSt();
 			foreach (var s in data)
 			{
 				st.Add(s);
@@ -41,20 +69,6 @@ namespace CodeJam.Collections
 			Assert.That(SuffixTreeEncoder.Encode(st), Is.EqualTo(expected));
 		}
 
-		[Test]
-		public void Test07TwoStrings1() => Check("[{A}[{},{},{BRA}[{},{}],{DABRA}],{BRA}[{},{}],{CADABRA},{DABRA},{RA}[{},{}]]"
-			, "ABRA", "CADABRA");
-
-		[Test]
-		public void Test08TwoStrings2() => Check("[{A}[{},{},{A}[{},{},{A}[{},{},{A}[{},{},{A}[{},{}]]]]],{BAAAAA}]"
-			, "AAAAA", "BAAAAA");
-
-		[Test]
-		public void Test09ThreeStrings() => Check("[{A}[{LL},{TS}],{FOLKS},{HATS},{KS},{L}[{},{KS},{L}],{OLKS},{S}[{},{}],{T}[{HATS},{S}]]"
-			, "THATS", "ALL", "FOLKS");
-
-		[Test]		
-		public void Test10FourStrings() => Check("[{A}[{},{},{},{},{BRA}],{BRA}[{},{},{},{}],{RA}[{},{},{},{}]]"
-			, "ABRA", "BRA", "BRA", "BRA");
+		protected virtual SuffixTreeBase CreateSt() => new SuffixTreeNaive();
 	}
 }
