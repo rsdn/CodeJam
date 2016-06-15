@@ -101,7 +101,7 @@ namespace CodeJam.PerfTests.Analysers
 				{
 					competitionState.WriteMessage(
 						MessageSource.Analyser, MessageSeverity.Informational,
-						$"Logged anotations for {competitionTarget.Target.Type.Name}.{competitionTarget.Target.Method.Name}: no annotation exists.");
+						$"Logged anotations for {competitionTarget.Target.MethodTitle}: no annotation exists.");
 				}
 			}
 

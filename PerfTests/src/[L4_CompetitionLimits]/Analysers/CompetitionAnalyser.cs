@@ -122,7 +122,8 @@ namespace CodeJam.PerfTests.Analysers
 
 			var resourceCache = new Dictionary<string, XDocument>();
 			bool hasBaseline = false;
-			foreach (var target in summary.GetTargets())
+
+			foreach (var target in summary.GetExecutionOrderTargets())
 			{
 				hasBaseline |= target.Baseline;
 
@@ -175,7 +176,7 @@ namespace CodeJam.PerfTests.Analysers
 				// TODO: reusable target.ToString() ?
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.Informational,
-					$"Xml anotations for {target.Type.Name}.{target.Method.Name}: no annotation exists.");
+					$"Xml anotations for {target.MethodTitle}: no annotation exists.");
 
 				return new CompetitionTarget(target, fallbackLimit, true);
 			}
@@ -246,7 +247,7 @@ namespace CodeJam.PerfTests.Analysers
 			}
 
 			bool validated = true;
-			var targetMethodName = benchmark.Target.Method.Name;
+			var targetMethodTitle = benchmark.Target.MethodTitle;
 
 			if (!competitionLimit.MinRatioIsOk(actualRatioMin))
 			{
@@ -254,7 +255,7 @@ namespace CodeJam.PerfTests.Analysers
 				validated = false;
 				competitionState.AddAnalyserWarning(
 					warnings, MessageSeverity.TestError,
-					$"Method {targetMethodName} runs faster than {competitionLimit.MinRatioText}x baseline. Actual ratio: {actualRatioText}x",
+					$"Method {targetMethodTitle} runs faster than {competitionLimit.MinRatioText}x baseline. Actual ratio: {actualRatioText}x",
 					summary.TryGetBenchmarkReport(benchmark));
 			}
 
@@ -264,7 +265,7 @@ namespace CodeJam.PerfTests.Analysers
 				validated = false;
 				competitionState.AddAnalyserWarning(
 					warnings, MessageSeverity.TestError,
-					$"Method {targetMethodName} runs slower than {competitionLimit.MaxRatioText}x baseline. Actual ratio: {actualRatioText}x",
+					$"Method {targetMethodTitle} runs slower than {competitionLimit.MaxRatioText}x baseline. Actual ratio: {actualRatioText}x",
 					summary.TryGetBenchmarkReport(benchmark));
 			}
 
@@ -289,7 +290,7 @@ namespace CodeJam.PerfTests.Analysers
 
 			var benchMissing = summary.Benchmarks
 				.Where(b => !reportedBenchmarks.Contains(b))
-				.Select(b => b.Target.Method.Name)
+				.Select(b => b.Target.MethodTitle)
 				.Distinct()
 				.ToArray();
 
@@ -309,7 +310,7 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				var tooFastReports = summary.Reports
 					.Where(rp => rp.GetResultRuns().Any(r => r.GetAverageNanoseconds() < TooFastBenchmarkLimit.TotalNanoseconds()))
-					.Select(rp => rp.Benchmark.Target.Method.Name)
+					.Select(rp => rp.Benchmark.Target.MethodTitle)
 					.ToArray();
 				if (tooFastReports.Any())
 				{
@@ -324,7 +325,7 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				var tooSlowReports = summary.Reports
 					.Where(rp => rp.GetResultRuns().Any(r => r.GetAverageNanoseconds() > LongRunningBenchmarkLimit.TotalNanoseconds()))
-					.Select(rp => rp.Benchmark.Target.Method.Name)
+					.Select(rp => rp.Benchmark.Target.MethodTitle)
 					.ToArray();
 
 				if (tooSlowReports.Any())

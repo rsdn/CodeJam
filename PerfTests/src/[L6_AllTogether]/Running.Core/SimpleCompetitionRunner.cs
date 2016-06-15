@@ -77,17 +77,6 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		#region Override config parameters
-		/// <summary>Override competition exporters.</summary>
-		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>The jobs for the competition</returns>
-		protected override List<IExporter> OverrideExporters(ICompetitionConfig competitionConfig)
-		{
-			var result = base.OverrideExporters(competitionConfig);
-			result.RemoveAll(l => l != MarkdownExporter.Default);
-
-			return result;
-		}
-
 		/// <summary>Override competition loggers.</summary>
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>The loggers for the competition</returns>

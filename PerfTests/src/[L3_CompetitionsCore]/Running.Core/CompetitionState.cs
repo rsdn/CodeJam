@@ -22,7 +22,16 @@ namespace CodeJam.PerfTests.Running.Core
 	public class CompetitionState
 	{
 		private readonly List<IMessage> _messages = new List<IMessage>();
+		private readonly List<Summary> _summaries = new List<Summary>();
 		private readonly Stopwatch _stopwatch = new Stopwatch();
+
+		private readonly IReadOnlyList<Summary> _summariesRO;
+
+		/// <summary>Initializes a new instance of the <see cref="CompetitionState"/> class.</summary>
+		public CompetitionState()
+		{
+			_summariesRO = _summaries.AsReadOnly();
+		}
 
 		#region State properties
 		/// <summary>The competition is in it's first run.</summary>
@@ -81,6 +90,11 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <value>The summary for the last completed run.</value>
 		public Summary LastRunSummary { get; private set; }
 
+
+		/// <summary>Summaries from all runs.</summary>
+		/// <value>The list of summary from all runs.</value>
+		public IReadOnlyList<Summary> SummaryFromAllRuns => _summariesRO;
+
 		/// <summary>The competition was completed.</summary>
 		/// <value><c>true</c> if the competition was completed.</value>
 		public bool Completed { get; private set; }
@@ -127,11 +141,13 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Marks the run as completed.</summary>
 		/// <param name="summary">Summary for the run.</param>
-		internal void RunCompleted(Summary summary)
+		internal void RunCompleted([NotNull] Summary summary)
 		{
+			Code.NotNull(summary, nameof(summary));
 			AssertIsInCompetition();
 
 			LastRunSummary = summary;
+			_summaries.Add(summary);
 		}
 
 		/// <summary>Marks competition state as completed.</summary>

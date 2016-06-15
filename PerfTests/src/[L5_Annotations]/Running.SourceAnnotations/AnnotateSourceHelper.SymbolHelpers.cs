@@ -99,7 +99,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					// ReSharper disable once PossibleNullReferenceException
 					competitionState.WriteExceptionMessage(
 						MessageSource.Analyser, MessageSeverity.ExecutionError,
-						$"{method.DeclaringType.Name}.{method.Name}: Could not load annotation", ex);
+						$"Method {method.DeclaringType.Name}.{method.Name}, no PDB data available", ex);
 
 					return null;
 				}

@@ -5,6 +5,7 @@ using System.Threading;
 using BenchmarkDotNet.Attributes;
 
 using CodeJam.PerfTests.Configs;
+using CodeJam.PerfTests.Exporters;
 using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Messages;
 
@@ -100,9 +101,12 @@ namespace CodeJam.PerfTests
 		public static void TestCompetitionAnalyserHighAccuracyBenchmark()
 		{
 			var overrideConfig = new ManualCompetitionConfig(HighAccuracyConfig);
-			overrideConfig.LimitMetricProvider = PercentileMetricProvider.P20To80;
-			overrideConfig.IgnoreExistingAnnotations = false;
-			overrideConfig.UpdateSourceAnnotations = true;
+			//overrideConfig.DetailedLogging = true;
+			overrideConfig.MaxRunsAllowed = 10;
+			overrideConfig.LimitMetricProvider = PercentileMetricProvider.P95;
+			overrideConfig.IgnoreExistingAnnotations = true;
+			overrideConfig.UpdateSourceAnnotations = false;
+			overrideConfig.Add(new TimingsExporter());
 
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(overrideConfig);
 			var messages = runState.GetMessages();
@@ -155,11 +159,23 @@ namespace CodeJam.PerfTests
 
 		public class HighAccuracyBenchmark
 		{
-			[CompetitionBaseline]
-			public void Baseline() => Delay(SpinCount);
+			//[Params(SpinCount / 10, SpinCount)]
+			public int Count { get; set; } = SpinCount;
 
-			[CompetitionBenchmark(8.58, 10.59)]
-			public void SlowerX10() => Delay(10 * SpinCount);
+			[CompetitionBaseline]
+			public void Baseline() => Delay(Count);
+
+			[CompetitionBenchmark(1, 10)]
+			public void SlowerX2_1() => Delay(2 * Count);
+
+			[CompetitionBenchmark(1, 10)]
+			public void SlowerX2_2() => Delay(2 * Count);
+
+			[CompetitionBenchmark(1, 10)]
+			public void SlowerX2_3() => Delay(2 * Count);
+
+			[CompetitionBenchmark(1, 10)]
+			public void SlowerX5() => Delay(5 * Count);
 		}
 		#endregion
 	}

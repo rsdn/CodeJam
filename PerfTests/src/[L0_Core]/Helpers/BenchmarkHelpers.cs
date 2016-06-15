@@ -10,6 +10,7 @@ using System.Reflection;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
+using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Parameters;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
@@ -64,12 +65,23 @@ namespace BenchmarkDotNet.Helpers
 		/// <summary>Returns targets for the summary.</summary>
 		/// <param name="summary">The summary.</param>
 		/// <returns>Targets for the summary.</returns>
-		// ReSharper disable once ReturnTypeCanBeEnumerable.Global
-		public static IOrderedEnumerable<Target> GetTargets([NotNull] this Summary summary) =>
-			summary.Benchmarks
+		public static IEnumerable<Target> GetExecutionOrderTargets([NotNull] this Summary summary)
+		{
+			var orderProvider = summary.Config.GetOrderProvider() ?? DefaultOrderProvider.Instance;
+			return orderProvider.GetExecutionOrder(summary.Benchmarks)
 				.Select(d => d.Target)
-				.Distinct()
-				.OrderBy(d => d.FullInfo);
+				.Distinct();
+		}
+		/// <summary>Returns targets for the summary.</summary>
+		/// <param name="summary">The summary.</param>
+		/// <returns>Targets for the summary.</returns>
+		public static IEnumerable<Target> GetSummaryOrderTargets([NotNull] this Summary summary)
+		{
+			var orderProvider = summary.Config.GetOrderProvider() ?? DefaultOrderProvider.Instance;
+			return orderProvider.GetSummaryOrder(summary.Benchmarks, summary)
+				.Select(d => d.Target)
+				.Distinct();
+		}
 
 		/// <summary>Returns jobs from the benchmarks.</summary>
 		/// <param name="benchmarks">The benchmarks to select jobs from.</param>

@@ -61,7 +61,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		[NotNull]
 		private static string GetCandidateName(this Target target) =>
-			target.Method.Name;
+			target.MethodTitle;
 
 		[NotNull]
 		// ReSharper disable once SuggestBaseTypeForParameter
@@ -416,7 +416,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				{
 					competitionState.WriteMessage(
 						MessageSource.Analyser, MessageSeverity.SetupError,
-						$"Xml anotations for {target.Type.Name}.{target.Method.Name}: could not parse {limitProperty}.");
+						$"Xml anotation for {target.MethodTitle}: could not parse {limitProperty}.");
 				}
 			}
 

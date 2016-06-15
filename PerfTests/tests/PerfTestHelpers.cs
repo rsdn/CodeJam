@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 
 using BenchmarkDotNet.Configs;
@@ -35,7 +36,7 @@ namespace CodeJam.PerfTests
 		{
 			var result = new ManualCompetitionConfig();
 
-			result.Add(DefaultConfig.Instance);
+			result.Add(DefaultConfig.Instance.GetColumns().ToArray());
 			result.Add(
 				new Job
 				{
@@ -56,14 +57,14 @@ namespace CodeJam.PerfTests
 		{
 			var result = new ManualCompetitionConfig();
 
-			result.Add(DefaultConfig.Instance);
+			result.Add(DefaultConfig.Instance.GetColumns().ToArray());
 			result.Add(
 				new Job
 				{
 					LaunchCount = 1,
 					Mode = Mode.SingleRun,
 					WarmupCount = 50,
-					TargetCount = 100,
+					TargetCount = 200,
 					Platform = Platform.X64,
 					Jit = Jit.RyuJit,
 					Toolchain = InProcessToolchain.Instance

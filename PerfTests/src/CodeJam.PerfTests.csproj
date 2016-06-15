@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="StubTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Exporters\TimingsExporter.cs" />
     <Compile Include="[L0_Core]\Helpers\BenchmarkHelpers.cs" />
     <Compile Include="[L0_Core]\Portability\AssemblyExtensions.cs" />
     <Compile Include="[L0_Core]\Portability\FieldInfoExtensions.cs" />

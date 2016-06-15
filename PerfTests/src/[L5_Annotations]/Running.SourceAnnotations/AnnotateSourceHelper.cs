@@ -170,10 +170,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			foreach (var targetToAnnotate in targetsToAnnotate)
 			{
 				var target = targetToAnnotate.Target;
-				var targetMethodName = target.Method.Name;
+				var targetMethodTitle = target.MethodTitle;
 
 				logger.WriteLineInfo(
-					$"// Method {targetMethodName}: updating time limits [{targetToAnnotate.MinRatioText}, {targetToAnnotate.MaxRatioText}].");
+					$"// Method {targetMethodTitle}: updating time limits [{targetToAnnotate.MinRatioText}, {targetToAnnotate.MaxRatioText}].");
 
 				// DONTTOUCH: the source should be loaded for checksum validation even if target uses resource annotation
 				int firstCodeLine;
@@ -189,31 +189,31 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				{
 					var resourceFileName = Path.ChangeExtension(fileName, ".xml");
 
-					logger.WriteLineInfo($"// Method {targetMethodName}: annotating resource file {resourceFileName}.");
+					logger.WriteLineInfo($"// Method {targetMethodTitle}: annotating resource file {resourceFileName}.");
 					var annotated = TryFixBenchmarkXmlAnnotation(annContext, resourceFileName, targetToAnnotate, competitionState);
 					if (!annotated)
 					{
 						competitionState.WriteMessage(
 							MessageSource.Analyser, MessageSeverity.Warning,
-							$"Method {targetMethodName}: could not annotate resource file {resourceFileName}.", null);
+							$"Method {targetMethodTitle}: could not annotate resource file {resourceFileName}.", null);
 						continue;
 					}
 				}
 				else
 				{
-					logger.WriteLineInfo($"// Method {targetMethodName}: annotating file {fileName}, line {firstCodeLine}.");
+					logger.WriteLineInfo($"// Method {targetMethodTitle}: annotating file {fileName}, line {firstCodeLine}.");
 					var annotated = TryFixBenchmarkAttribute(annContext, fileName, firstCodeLine, targetToAnnotate, competitionState);
 					if (!annotated)
 					{
 						competitionState.WriteMessage(
 							MessageSource.Analyser, MessageSeverity.Warning,
-							$"Method {targetMethodName}: could not annotate source file {fileName}.");
+							$"Method {targetMethodTitle}: could not annotate source file {fileName}.");
 						continue;
 					}
 				}
 
 				logger.WriteLineInfo(
-					$"// !Method {targetMethodName} updated time limits: [{targetToAnnotate.MinRatioText}, {targetToAnnotate.MaxRatioText}].");
+					$"// !Method {targetMethodTitle} updated time limits: [{targetToAnnotate.MinRatioText}, {targetToAnnotate.MaxRatioText}].");
 				annotatedTargets.Add(targetToAnnotate);
 			}
 
