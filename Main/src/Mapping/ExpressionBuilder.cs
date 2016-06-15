@@ -328,7 +328,9 @@ namespace CodeJam.Mapping
 								_localObject,
 								Expression.Constant(_builder._mapperBuilder.MappingSchema.GetDefaultValue(toMember.Type), toMember.Type)),
 							// else
-							toMember.HasGetter ? BuildClassMapper(setter, getValue, toMember) : setter.ReplaceParameters(_builder.GetExpressionExImpl(getValue, toMember.Type)));
+							toMember.HasGetter ?
+								setter.ReplaceParameters(_localObject, BuildClassMapper(setter, getValue, toMember)) :
+								setter.ReplaceParameters(_localObject, _builder.GetExpressionExImpl(getValue, toMember.Type)));
 
 						_expressions.Add(expr);
 					}
@@ -343,47 +345,9 @@ namespace CodeJam.Mapping
 			{
 				var cacheMapper = _builder._mapperBuilder.ProcessCrossReferences != false;
 				var key         = Tuple.Create(_fromExpression.Type, toMember.Type);
-
-
-				var expr = BuildListMapper(setter, getValue, toMember);
-
-				if (expr == null)
-					expr = BuildObjectMapper(getValue, toMember, cacheMapper);
-
-				return setter.ReplaceParameters(_localObject, expr);
-			}
-
-			Expression BuildListMapper(LambdaExpression setter, Expression getValue, MemberAccessor toMember)
-			{
-				var fromType = getValue.Type;
-				var toType   = toMember.Type;
-
-				if (toType.IsSubClass(typeof(IEnumerable<>)) && fromType.IsSubClass(typeof(IEnumerable<>)))
-				{
-					var fromItemType = fromType.GetItemType();
-					var toItemType   = toType.  GetItemType();
-
-					if (toType.IsGenericType && !toType.IsGenericTypeDefinition)
-					{
-						var toDefinition = toType.GetGenericTypeDefinition();
-
-						if (toDefinition == typeof(List<>))
-						{
-							return ExpressionBuilderHelper.ToList(_builder._mapperBuilder, getValue, fromItemType, toItemType);
-						}
-					}
-				}
-
-				return null;
-			}
-
-			Expression BuildObjectMapper(Expression getValue, MemberAccessor toMember, bool cacheMapper)
-			{
-				var key   = Tuple.Create(_fromExpression.Type, toMember.Type);
-
-				var pFrom = Expression.Parameter(getValue.Type, "pFrom");
-				var pTo   = Expression.Parameter(toMember.Type, "pTo");
-				var toObj = toMember.GetterExpression.ReplaceParameters(_localObject);
+				var pFrom       = Expression.Parameter(getValue.Type, "pFrom");
+				var pTo         = Expression.Parameter(toMember.Type, "pTo");
+				var toObj       = toMember.GetterExpression.ReplaceParameters(_localObject);
 
 				ParameterExpression l = null;
 
@@ -398,11 +362,10 @@ namespace CodeJam.Mapping
 					_builder._locals. Add(l);
 				}
 
-				var expr = new MappingImpl(
-					_builder,
-					cacheMapper? pFrom : getValue,
-					cacheMapper? pTo   : toObj,
-					_pDic).GetExpression();
+				var expr = BuildListMapper(cacheMapper, getValue, toMember);
+
+				if (expr == null)
+					expr = new MappingImpl(_builder, cacheMapper? pFrom : getValue, cacheMapper? pTo : toObj, _pDic).GetExpression();
 
 				if (cacheMapper)
 				{
@@ -423,6 +386,43 @@ namespace CodeJam.Mapping
 					_builder._expressions.Add(Expression.Assign(l, lex));
 
 					expr = Expression.Invoke(l, getValue, toObj, _pDic);
+				}
+
+				return expr;
+			}
+
+			Expression BuildListMapper(bool cacheMapper, Expression getValue, MemberAccessor toMember)
+			{
+				var fromListType = getValue.Type;
+				var toListType   = toMember.Type;
+
+				Expression expr = null;
+
+				if (toListType.IsSubClass(typeof(IEnumerable<>)) && fromListType.IsSubClass(typeof(IEnumerable<>)))
+				{
+					var fromItemType = fromListType.GetItemType();
+					var toItemType   = toListType.  GetItemType();
+
+					if (toListType.IsGenericType && !toListType.IsGenericTypeDefinition)
+					{
+						var toDefinition = toListType.GetGenericTypeDefinition();
+
+						if (toDefinition == typeof(List<>))
+						{
+							expr = ExpressionBuilderHelper.ToList(_builder._mapperBuilder, getValue, fromItemType, toItemType);
+						}
+					}
+				}
+
+				if (expr != null && cacheMapper)
+				{
+					expr = Expression.IfThenElse(
+						// if (from == null)
+						Expression.Equal(getValue, Expression.Constant(null, getValue.Type)),
+						//   localObject = null;
+						Expression.Constant(_builder._mapperBuilder.MappingSchema.GetDefaultValue(expr.Type), expr.Type),
+						// else
+						expr);
 				}
 
 				return expr;
