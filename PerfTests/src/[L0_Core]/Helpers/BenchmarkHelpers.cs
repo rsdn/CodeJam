@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Text;
 
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
@@ -14,6 +15,8 @@ using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Parameters;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
+
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -72,6 +75,7 @@ namespace BenchmarkDotNet.Helpers
 				.Select(d => d.Target)
 				.Distinct();
 		}
+
 		/// <summary>Returns targets for the summary.</summary>
 		/// <param name="summary">The summary.</param>
 		/// <returns>Targets for the summary.</returns>
@@ -94,14 +98,33 @@ namespace BenchmarkDotNet.Helpers
 				.OrderBy(d => d.GetShortInfo());
 		#endregion
 
+		/// <summary>Gets the value of the current TimeSpan structure expressed in nanoseconds.</summary>
+		/// <param name="timeSpan">The timespan.</param>
+		/// <returns>The total number of nanoseconds represented by this instance.</returns>
+		public static double TotalNanoseconds(this TimeSpan timeSpan) => timeSpan.Ticks * (1.0e9 / TimeSpan.TicksPerSecond);
+		#endregion
+
+		#region Loggers
 		/// <summary>Helper method that writes separator log line.</summary>
 		/// <param name="logger">The logger.</param>
-		public static void WriteSeparatorLine([NotNull] this ILogger logger)
+		public static void WriteSeparatorLine([NotNull] this ILogger logger) =>
+			WriteSeparatorLine(logger, null);
+
+		/// <summary>Helper method that writes separator log line.</summary>
+		/// <param name="logger">The logger.</param>
+		/// <param name="prefix">The separator line prefix.</param>
+		public static void WriteSeparatorLine([NotNull] this ILogger logger, [CanBeNull] string prefix)
 		{
 			logger.WriteLine();
-			logger.WriteLine(LogKind.Header, new string('=', 40));
-			logger.WriteLine();
-		}
+			if (prefix.IsNullOrEmpty())
+			{
+				logger.WriteLine(LogKind.Header, new string('=', 40));
+			}
+			else
+			{
+				logger.WriteLine($"{prefix}{new string('=', 40 - prefix.Length)}");
+			}
+		} 
 		#endregion
 
 		#region Reflection
@@ -179,9 +202,9 @@ namespace BenchmarkDotNet.Helpers
 
 		#region IO
 		// TODO: test for it
-		/// <summary>
-		/// Writes file content without empty line at the end.
-		/// </summary>
+		/// <summary>Writes file content without empty line at the end.</summary>
+		/// <param name="path">The path.</param>
+		/// <param name="lines">The lines to write.</param>
 		// THANKSTO: http://stackoverflow.com/a/11689630
 		public static void WriteFileContent(string path, string[] lines)
 		{
@@ -202,8 +225,7 @@ namespace BenchmarkDotNet.Helpers
 				}
 			}
 		}
-
-		// TODO: test for it
+		
 		/// <summary>Tries to obtain text from the given URI.</summary>
 		/// <param name="uri">The URI to geth the text from.</param>
 		/// <returns>The text.</returns>
@@ -219,7 +241,7 @@ namespace BenchmarkDotNet.Helpers
 				{
 					using (var webClient = new WebClient())
 					{
-						return new StringReader(webClient.DownloadString(uriInst));
+						return new StreamReader(new MemoryStream(webClient.DownloadData(uriInst)));
 					}
 				}
 				catch (WebException)
@@ -232,11 +254,6 @@ namespace BenchmarkDotNet.Helpers
 
 			return File.Exists(path) ? File.OpenText(path) : null;
 		}
-
-		/// <summary>Gets the value of the current TimeSpan structure expressed in nanoseconds.</summary>
-		/// <param name="timeSpan">The timespan.</param>
-		/// <returns>The total number of nanoseconds represented by this instance.</returns>
-		public static double TotalNanoseconds(this TimeSpan timeSpan) => timeSpan.Ticks * (1.0e9 / TimeSpan.TicksPerSecond);
 		#endregion
 	}
 }

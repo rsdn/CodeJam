@@ -347,8 +347,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <param name="target">The benchmark target.</param>
 		/// <param name="benchmarksDoc">The document with competition limits for the benchmark.</param>
 		/// <param name="competitionState">State of the run.</param>
-		/// <returns>Parsed competition target or <c>null</c> if there is no XML annotation for the target.</returns>
-		public static CompetitionTarget TryParseCompetitionTarget(
+		/// <returns>Parsed competition limit or <c>null</c> if there is no XML annotation for the target.</returns>
+		public static CompetitionLimit TryParseAnnotation(
 			[NotNull] Target target,
 			[NotNull] XDocument benchmarksDoc,
 			[NotNull] CompetitionState competitionState)
@@ -393,7 +393,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				maxRatio = CompetitionLimit.IgnoreValue;
 			}
 
-			return new CompetitionTarget(target, minRatio ?? 0, maxRatio ?? 0, true);
+			return new CompetitionLimit(minRatio ?? 0, maxRatio ?? 0);
 		}
 
 		private static double? TryParseLimitValue(

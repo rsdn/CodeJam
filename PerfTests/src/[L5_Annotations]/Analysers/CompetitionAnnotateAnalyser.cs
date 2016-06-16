@@ -90,11 +90,11 @@ namespace CodeJam.PerfTests.Analysers
 				bool hasAnnotations = false;
 				foreach (var resourceDoc in benchmarkDocs)
 				{
-					var target2 = XmlAnnotations.TryParseCompetitionTarget(competitionTarget.Target, resourceDoc, competitionState);
-					if (target2 != null)
+					var parsedLimit = XmlAnnotations.TryParseAnnotation(competitionTarget.Target, resourceDoc, competitionState);
+					if (parsedLimit != null)
 					{
 						hasAnnotations = true;
-						updated |= competitionTarget.UnionWith(target2);
+						updated |= competitionTarget.UnionWith(parsedLimit);
 					}
 				}
 				if (!hasAnnotations)
@@ -170,7 +170,7 @@ namespace CodeJam.PerfTests.Analysers
 			if (adjustedTargets.Any() && AdditionalRerunsOnAnnotate > 0)
 			{
 				competitionState.RequestReruns(
-					AdditionalRerunsOnAnnotate, 
+					AdditionalRerunsOnAnnotate,
 					"Annotations were updated.");
 			}
 

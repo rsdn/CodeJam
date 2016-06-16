@@ -19,30 +19,34 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#region Fields & .ctor
 		private CompetitionLimitProperties _changedProperties;
 
+		// TODO: check .ctor usages
 		/// <summary>Initializes a new instance of the <see cref="CompetitionTarget"/> class.</summary>
 		/// <param name="target">The target.</param>
 		/// <param name="minRatio">The minimum timing ratio relative to the baseline.</param>
 		/// <param name="maxRatio">The maximum timing ratio relative to the baseline.</param>
-		/// <param name="fromResourceMetadata"><c>True</c> if the limits are obtained from XML resource.</param>
+		/// <param name="fromMetadataResource"><c>True</c> if the limits are obtained from XML resource.</param>
+		/// <param name="metadataResourcePath">The relative path to the resource containing xml document with competition limits.</param>
 		public CompetitionTarget(
 			[CanBeNull] Target target,
 			double minRatio, double maxRatio,
-			bool fromResourceMetadata) :
+			bool fromMetadataResource, string metadataResourcePath) :
 				base(minRatio, maxRatio)
 		{
 			Target = target;
-			FromResourceMetadata = fromResourceMetadata;
+			FromMetadataResource = fromMetadataResource;
+			MetadataResourcePath = metadataResourcePath;
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionTarget"/> class.</summary>
 		/// <param name="target">The target.</param>
 		/// <param name="other">Competition limits source.</param>
-		/// <param name="fromResourceMetadata"><c>True</c> if the limits are obtained from XML resource.</param>
+		/// <param name="fromMetadataResource"><c>True</c> if the limits are obtained from XML resource.</param>
+		/// <param name="metadataResourcePath">The relative path to the resource containing xml document with competition limits.</param>
 		public CompetitionTarget(
 			[CanBeNull] Target target,
 			[NotNull] CompetitionLimit other,
-			bool fromResourceMetadata) :
-				this(target, other.MinRatio, other.MaxRatio, fromResourceMetadata) { }
+			bool fromMetadataResource, string metadataResourcePath) :
+				this(target, other.MinRatio, other.MaxRatio, fromMetadataResource, metadataResourcePath) { }
 		#endregion
 
 		#region Properties
@@ -54,7 +58,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <value>
 		/// <c>true</c> if benchmark limits are obtained from XML resource.; otherwise, <c>false</c>.
 		/// </value>
-		public bool FromResourceMetadata { get; }
+		public bool FromMetadataResource { get; }
+
+		/// <summary>The relative path to the resource containing xml document with competition limits.</summary>
+		/// <value>The relative path to the resource containing xml document with competition limits.</value>
+		public string MetadataResourcePath { get; }
 
 		/// <summary>The limit properties are updated but not saved.</summary>
 		/// <value><c>true</c> if this instance has unsaved changes; otherwise, <c>false</c>.</value>

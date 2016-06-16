@@ -12,6 +12,8 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.Results;
 
+using JetBrains.Annotations;
+
 // ReSharper disable once CheckNamespace
 
 namespace BenchmarkDotNet.Toolchains.InProcess
@@ -19,9 +21,20 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 	/// <summary>
 	/// Implementation of <seealso cref="IExecutor"/> for in-process benchmarks.
 	/// </summary>
+	[PublicAPI]
 	public class InProcessExecutor : IExecutor
 	{
-		// TODO: diagnoser support
+		/// <summary>Initializes a new instance of the <see cref="InProcessExecutor"/> class.</summary>
+		/// <param name="logOutput"><c>true</c> if the output should be logged.</param>
+		public InProcessExecutor(bool logOutput)
+		{
+			LogOutput = logOutput;
+		}
+
+		/// <summary>Gets a value indicating whether the output should be logged.</summary>
+		/// <value><c>true</c> if the output should be logged; otherwise, <c>false</c>.</value>
+		public bool LogOutput { get; }
+
 		// TODO: replace outputStream with something better?
 		// WAITINGFOR: https://github.com/PerfDotNet/BenchmarkDotNet/issues/177
 		/// <summary>Executes the specified benchmark.</summary>
@@ -37,23 +50,19 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 			IDiagnoser diagnoser = null)
 		{
 			var runnableBenchmark = RunnableBenchmarkFactory.Create(benchmark);
-			var outputStream = new BlockingStream(1000);
+			var outputStream = new BlockingStream(10000);
 
-			var outputWriter = new StreamWriter(outputStream);
-			runnableBenchmark.Init(benchmark, outputWriter);
-
-			var runThread = PrepareRunThread(
-				benchmark, runnableBenchmark,
-				outputWriter, outputStream, 
-				logger, diagnoser);
+			var runThread = new Thread(
+				() => RunCore(benchmark, runnableBenchmark, logger, diagnoser, outputStream));
 
 			RunWithPriority(
-				ProcessPriorityClass.RealTime, benchmark.Job.Affinity,
+				ProcessPriorityClass.RealTime,
+				benchmark.Job.Affinity,
 				logger,
 				() =>
 				{
+					runThread.Priority = ThreadPriority.Highest;
 					runThread.Start();
-					// TODO: notify diagnoser?
 					// TODO: configurable timeout?
 					if (!runThread.Join(TimeSpan.FromMinutes(5)))
 						throw new InvalidOperationException(
@@ -66,7 +75,10 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 			string line;
 			while ((line = outputReader.ReadLine()) != null)
 			{
-				logger.WriteLine(LogKind.Default, line);
+				if (LogOutput)
+				{
+					logger.WriteLine(LogKind.Default, line);
+				}
 
 				if (!line.StartsWith("//") && !string.IsNullOrEmpty(line))
 				{
@@ -77,41 +89,36 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 			return new ExecuteResult(true, lines.ToArray());
 		}
 
-		private Thread PrepareRunThread(
-			Benchmark benchmark,
-			IRunnableBenchmark program,
-			TextWriter outputWriter, BlockingStream outputStream,
-			ILogger logger,
-			IDiagnoser diagnoser) =>
-				new Thread(
-					() =>
-					{
-						var process = Process.GetCurrentProcess();
-						diagnoser?.ProcessStarted(process);
+		private void RunCore(
+			Benchmark benchmark, IRunnableBenchmark runnableBenchmark,
+			ILogger logger, IDiagnoser diagnoser,
+			BlockingStream outputStream)
+		{
+			var outputWriter = new StreamWriter(outputStream);
+			var process = Process.GetCurrentProcess();
+			try
+			{
+				runnableBenchmark.Init(benchmark, outputWriter);
 
-						try
-						{
-							program.Run();
+				diagnoser?.ProcessStarted(process);
 
-							diagnoser?.AfterBenchmarkHasRun(benchmark, process);
-						}
-						catch(Exception ex)
-						{
-							logger.WriteLineError($"// ! {GetType().Name}, exception: {ex}");
-							//throw;
-						}
-						finally
-						{
-							diagnoser?.ProcessStopped(process);
+				runnableBenchmark.Run();
 
-							outputWriter.Flush();
-							outputStream.CompleteWriting();
-						}
-					})
-				{
-					IsBackground = true,
-					Priority = ThreadPriority.Highest
-				};
+				diagnoser?.AfterBenchmarkHasRun(benchmark, process);
+			}
+			catch (Exception ex)
+			{
+				logger.WriteLineError($"// ! {GetType().Name}, exception: {ex}");
+				throw;
+			}
+			finally
+			{
+				diagnoser?.ProcessStopped(process);
+
+				outputWriter.Flush();
+				outputStream.CompleteWriting();
+			}
+		}
 
 		private static void RunWithPriority(
 			ProcessPriorityClass priority, Count affinity, ILogger logger,

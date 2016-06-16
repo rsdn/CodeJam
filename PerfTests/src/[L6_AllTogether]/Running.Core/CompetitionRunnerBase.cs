@@ -353,7 +353,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			var result = OverrideLoggers(competitionConfig);
 			var hostLogger = CreateHostLogger(
-				competitionConfig.DetailedLogging ? HostLogMode.AllMessages : HostLogMode.PrefixedOnly);
+				competitionConfig.DetailedLogging ? HostLogMode.AllMessages : HostLogMode.PrefixedAndErrors);
 			result.Insert(0, hostLogger);
 			return result;
 		}

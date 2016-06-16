@@ -17,7 +17,19 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 	public sealed class InProcessToolchain : IToolchain
 	{
 		/// <summary>The default toolchain instance.</summary>
-		public static readonly IToolchain Instance = new InProcessToolchain();
+		public static readonly IToolchain Instance = new InProcessToolchain(true);
+
+		/// <summary>The default toolchain instance.</summary>
+		public static readonly IToolchain DontLogOutput = new InProcessToolchain(false);
+
+		/// <summary>Initializes a new instance of the <see cref="InProcessToolchain"/> class.</summary>
+		/// <param name="logOutput"><c>true</c> if the output should be logged.</param>
+		public InProcessToolchain(bool logOutput)
+		{
+			Generator = new InProcessGenerator();
+			Builder = new InProcessBuilder();
+			Executor = new InProcessExecutor(logOutput);
+		}
 
 		/// <summary>Determines whether the specified benchmark is supported.</summary>
 		/// <param name="benchmark">The benchmark.</param>
@@ -28,14 +40,17 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 		/// <summary>Name of the toolchain.</summary>
 		/// <value>The name of the toolchain.</value>
 		public string Name => nameof(InProcessToolchain);
+
 		/// <summary>The generator.</summary>
 		/// <value>The generator.</value>
-		public IGenerator Generator { get; } = new InProcessGenerator();
+		public IGenerator Generator { get; }
+
 		/// <summary>The builder.</summary>
 		/// <value>The builder.</value>
-		public IBuilder Builder { get; } = new InProcessBuilder();
+		public IBuilder Builder { get; }
+
 		/// <summary>The executor.</summary>
 		/// <value>The executor.</value>
-		public IExecutor Executor { get; } = new InProcessExecutor();
+		public IExecutor Executor { get; }
 	}
 }

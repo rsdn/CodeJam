@@ -67,7 +67,7 @@ namespace CodeJam.PerfTests
 					TargetCount = 100,
 					Platform = Platform.X64,
 					Jit = Jit.RyuJit,
-					Toolchain = InProcessToolchain.Instance
+					Toolchain = InProcessToolchain.DontLogOutput
 				});
 			result.AllowDebugBuilds = true;
 			result.DetailedLogging = false;

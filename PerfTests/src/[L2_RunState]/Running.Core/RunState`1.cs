@@ -26,6 +26,7 @@ namespace CodeJam.PerfTests.Running.Core
 			get
 			{
 				Code.NotNull(summary, nameof(summary));
+
 				return this[summary.Config];
 			}
 		}

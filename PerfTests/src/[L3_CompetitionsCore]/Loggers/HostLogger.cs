@@ -65,14 +65,9 @@ namespace CodeJam.PerfTests.Loggers
 		/// <value>The logger to redirect the output.</value>
 		public ILogger WrappedLogger { get; }
 
+		/// <summary>Host logging mode.</summary>
+		/// <value>The host logging mode.</value>
 		public HostLogMode LogMode { get; }
-
-		/// <summary>
-		/// Detailed logging mode.
-		/// If disabled, only messages with LogImportant* prefixes are logged.
-		/// </summary>
-		/// <value><c>true</c> if detailed logging mode is enabled.</value>
-		public bool PrefixesOnly { get; }
 		#endregion
 
 		/// <summary>Checks if the line should be written.</summary>
@@ -100,14 +95,14 @@ namespace CodeJam.PerfTests.Loggers
 #pragma warning disable 420
 			if (text.StartsWith(LogImportantAreaStart, StringComparison.Ordinal))
 			{
-				shouldWrite = true;
 				Interlocked.Increment(ref _importantAreaCount);
+				shouldWrite = true;
 			}
 			else if (text.StartsWith(LogImportantAreaEnd, StringComparison.Ordinal))
 			{
-				shouldWrite = true;
 				// Decrement if value > 0
 				InterlockedOperations.Update(ref _importantAreaCount, i => Math.Max(i - 1, 0));
+				shouldWrite = true;
 			}
 #pragma warning restore 420
 			else if (text.StartsWith(LogImportantInfoPrefix, StringComparison.Ordinal) ||

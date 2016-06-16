@@ -11,6 +11,7 @@ using BenchmarkDotNet.Loggers;
 using CodeJam.Collections;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -185,9 +186,16 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					continue;
 				}
 
-				if (targetToAnnotate.FromResourceMetadata)
+				if (targetToAnnotate.FromMetadataResource)
 				{
 					var resourceFileName = Path.ChangeExtension(fileName, ".xml");
+					if (targetToAnnotate.MetadataResourcePath.NotNullNorEmpty())
+					{
+						resourceFileName = Path.Combine(
+							// ReSharper disable once AssignNullToNotNullAttribute
+							Path.GetDirectoryName(resourceFileName),
+							targetToAnnotate.MetadataResourcePath);
+					}
 
 					logger.WriteLineInfo($"// Method {targetMethodTitle}: annotating resource file {resourceFileName}.");
 					var annotated = TryFixBenchmarkXmlAnnotation(annContext, resourceFileName, targetToAnnotate, competitionState);

@@ -25,12 +25,10 @@ namespace CodeJam.PerfTests.Running.Core
 		private readonly List<Summary> _summaries = new List<Summary>();
 		private readonly Stopwatch _stopwatch = new Stopwatch();
 
-		private readonly IReadOnlyList<Summary> _summariesRO;
-
 		/// <summary>Initializes a new instance of the <see cref="CompetitionState"/> class.</summary>
 		public CompetitionState()
 		{
-			_summariesRO = _summaries.AsReadOnly();
+			SummaryFromAllRuns = _summaries.AsReadOnly();
 		}
 
 		#region State properties
@@ -90,14 +88,13 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <value>The summary for the last completed run.</value>
 		public Summary LastRunSummary { get; private set; }
 
-
-		/// <summary>Summaries from all runs.</summary>
-		/// <value>The list of summary from all runs.</value>
-		public IReadOnlyList<Summary> SummaryFromAllRuns => _summariesRO;
-
 		/// <summary>The competition was completed.</summary>
 		/// <value><c>true</c> if the competition was completed.</value>
 		public bool Completed { get; private set; }
+
+		/// <summary>Summaries from all runs.</summary>
+		/// <value>The list of summary from all runs.</value>
+		public IReadOnlyList<Summary> SummaryFromAllRuns { get; }
 		#endregion
 
 		[AssertionMethod]
@@ -232,18 +229,17 @@ namespace CodeJam.PerfTests.Running.Core
 
 			lock (_messages)
 			{
+				message = new Message(
+					RunNumber, MessagesInRun + 1,
+					Elapsed,
+					messageSource, messageSeverity, messageText);
+
+				_messages.Add(message);
 				MessagesInRun++;
 				if (HighestMessageSeverityInRun < messageSeverity)
 				{
 					HighestMessageSeverityInRun = messageSeverity;
 				}
-
-				message = new Message(
-					RunNumber, MessagesInRun,
-					Elapsed,
-					messageSource, messageSeverity, messageText);
-
-				_messages.Add(message);
 			}
 
 			Logger?.LogMessage(message);

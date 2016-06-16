@@ -14,7 +14,7 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestCompetitionLimitEmpty()
 		{
-			var result = new CompetitionTarget(null, CompetitionLimit.Empty, false);
+			var result = new CompetitionTarget(null, CompetitionLimit.Empty, false, null);
 			Assert.AreEqual(result.MinRatio, CompetitionLimit.EmptyValue);
 			Assert.AreEqual(result.MaxRatio, CompetitionLimit.EmptyValue);
 			Assert.IsTrue(result.IsEmpty);
@@ -70,7 +70,7 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestCompetitionLimitIgnored()
 		{
-			var result = new CompetitionTarget(null, CompetitionLimit.Ignored, false);
+			var result = new CompetitionTarget(null, CompetitionLimit.Ignored, false, null);
 			Assert.AreEqual(result.MinRatio, CompetitionLimit.IgnoreValue);
 			Assert.AreEqual(result.MaxRatio, CompetitionLimit.IgnoreValue);
 			Assert.IsFalse(result.IsEmpty);
@@ -114,7 +114,7 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestCompetitionLimitWithValues()
 		{
-			var result = new CompetitionTarget(null, 1, 2, false);
+			var result = new CompetitionTarget(null, 1, 2, false, null);
 			Assert.AreEqual(result.MinRatio, 1);
 			Assert.AreEqual(result.MaxRatio, 2);
 			Assert.IsFalse(result.IsEmpty);

@@ -181,8 +181,8 @@ namespace CodeJam.PerfTests.Running.Core
 				var runMessage = competitionState.RunLimitExceeded
 					? $"{LogImportantInfoPrefix}Run {run}, total runs (expected): {runsExpected} (rerun limit exceeded, last run)."
 					: $"{LogImportantInfoPrefix}Run {run}, total runs (expected): {runsExpected}.";
-				logger.WriteLine();
-				logger.WriteLine($"{LogImportantInfoPrefix}{new string('=', 40 - LogImportantInfoPrefix.Length)}");
+
+				logger.WriteSeparatorLine(LogImportantInfoPrefix);
 				logger.WriteLine();
 				logger.WriteLineInfo(runMessage);
 				logger.WriteLine();

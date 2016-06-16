@@ -24,6 +24,9 @@ namespace CodeJam.PerfTests.Running.Messages
 		Analyser,
 
 		/// <summary>The message is reported by diagnoser.</summary>
-		Diagnoser
+		Diagnoser,
+
+		/// <summary>The message is reported by exporter.</summary>
+		Exporter
 	}
 }

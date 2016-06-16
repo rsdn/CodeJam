@@ -51,17 +51,6 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestAnnotateFromLocalLog()
 		{
-			Console.WriteLine("!!! " + Environment.CurrentDirectory);
-			Console.WriteLine("!!! " + TestContext.CurrentContext.TestDirectory);
-			Console.WriteLine("!!! " + TestContext.CurrentContext.WorkDirectory);
-			Console.WriteLine("!!! " + File.Exists(_localLogConfig.PreviousRunLogUri));
-			Console.WriteLine("!!! " + 
-				File.Exists(TestContext.CurrentContext.TestDirectory + "\\" + 
-				_localLogConfig.PreviousRunLogUri));
-			Console.WriteLine("!!! " +
-				File.Exists(TestContext.CurrentContext.WorkDirectory + "\\" +
-				_localLogConfig.PreviousRunLogUri));
-
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_localLogConfig);
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.HighestMessageSeverityInRun, MessageSeverity.Warning);

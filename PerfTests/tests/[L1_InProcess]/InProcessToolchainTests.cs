@@ -14,7 +14,7 @@ namespace CodeJam.PerfTests
 	[SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
 	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
-	public static class InProcessToolchainTest
+	public static class InProcessToolchainTests
 	{
 		#region TestInProcessBenchmark
 		private static int _callCounter;

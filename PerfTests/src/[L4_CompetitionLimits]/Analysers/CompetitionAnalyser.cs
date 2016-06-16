@@ -15,7 +15,6 @@ using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.PerfTests.Running.SourceAnnotations;
-using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -152,35 +151,40 @@ namespace CodeJam.PerfTests.Analysers
 		{
 			var fallbackLimit = CompetitionLimit.Empty;
 
-			var targetResourceName = AttributeAnnotations.TryGetTargetResourceName(target);
-			if (targetResourceName.IsNullOrEmpty())
+			var competitionMetadata = AttributeAnnotations.TryGetCompetitionMetadata(target);
+			if (competitionMetadata == null)
 			{
-				if (IgnoreExistingAnnotations)
-					return new CompetitionTarget(target, fallbackLimit, false);
+				var limit = IgnoreExistingAnnotations
+					? fallbackLimit
+					: AttributeAnnotations.ParseAnnotation(competitionAttribute);
 
-				return AttributeAnnotations.ParseCompetitionTarget(target, competitionAttribute);
+				return new CompetitionTarget(target, limit, false, null);
 			}
-
-			// DONTTOUCH: the doc should be loaded for validation even if IgnoreExistingAnnotations = true
-			var resourceDoc = resourceCache.GetOrAdd(
-				targetResourceName,
-				r => XmlAnnotations.TryParseBenchmarksDocFromResource(target, r, competitionState));
-
-			if (resourceDoc == null || IgnoreExistingAnnotations)
-				return new CompetitionTarget(target, fallbackLimit, true);
-
-			var result = XmlAnnotations.TryParseCompetitionTarget(target, resourceDoc, competitionState);
-
-			if (result == null)
+			else
 			{
-				// TODO: reusable target.ToString() ?
-				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.Informational,
-					$"Xml anotations for {target.MethodTitle}: no annotation exists.");
+				// DONTTOUCH: the doc should be loaded for validation even if IgnoreExistingAnnotations = true
+				var resourceDoc = resourceCache.GetOrAdd(
+					competitionMetadata.MetadataResourceName,
+					r => XmlAnnotations.TryParseBenchmarksDocFromResource(target, r, competitionState));
 
-				return new CompetitionTarget(target, fallbackLimit, true);
+				var limit = fallbackLimit;
+
+				if (resourceDoc != null && !IgnoreExistingAnnotations)
+				{
+					var parsedLimit = XmlAnnotations.TryParseAnnotation(target, resourceDoc, competitionState);
+					if (parsedLimit == null)
+					{
+						competitionState.WriteMessage(
+							MessageSource.Analyser, MessageSeverity.Informational,
+							$"Xml anotations for {target.MethodTitle}: no annotation exists.");
+					}
+					else
+					{
+						limit = parsedLimit;
+					}
+				}
+				return new CompetitionTarget(target, limit, true, competitionMetadata.MetadataResourcePath);
 			}
-			return result;
 		}
 		#endregion
 
@@ -201,6 +205,7 @@ namespace CodeJam.PerfTests.Analysers
 				return;
 			}
 
+			// TODO: remove grouping
 			bool validated = true;
 			foreach (var benchmarkGroup in summary.SameConditionsBenchmarks())
 			{

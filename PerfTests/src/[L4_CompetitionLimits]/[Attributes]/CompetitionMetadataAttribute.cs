@@ -6,6 +6,7 @@ namespace CodeJam.PerfTests
 {
 	/// <summary>Attribute for benchmark classes that stores competition limits as embedded XML resource.</summary>
 	/// <remarks>
+	/// In case the <see cref="MetadataResourcePath"/> is not set:
 	/// Let's say there's benchmark class named MyNamespace.MyBenchmark
 	/// and it's located at
 	/// <code>%project_root%\Some Dir\AnotherDir\Benchmarks.cs</code>.
@@ -26,8 +27,8 @@ namespace CodeJam.PerfTests
 		/// <summary>Constructor for competition metadata attribute.</summary>
 		/// <param name="metadataResourceName">
 		/// The name of the resource containing xml document with competition limits.
-		/// The resource file should be placed in the direcory with the source file for the benchmark.
-		/// Path to the resource should be same as path to the source file (file ext should be '.xml').
+		/// If the <see cref="MetadataResourcePath"/> is not set
+		/// the resource file should be placed in the direcory with the source file for the benchmark.
 		/// See remarks section at attribute documentation for detailed example.
 		/// </param>
 		public CompetitionMetadataAttribute([NotNull] string metadataResourceName)
@@ -37,8 +38,15 @@ namespace CodeJam.PerfTests
 			MetadataResourceName = metadataResourceName;
 		}
 
-		/// <summary>The name of the resource containing xml document with competition limits.</summary>
+		/// <summary>
+		/// The name of the resource containing xml document with competition limits.
+		/// If not set then path to the resource should be same as path to the source file (resource's extension should be '.xml').
+		/// </summary>
 		/// <value>The name of the resource containing xml document with competition limits.</value>
 		public string MetadataResourceName { get; }
+
+		/// <summary>The relative path to the resource containing xml document with competition limits.</summary>
+		/// <value>The relative path to the resource containing xml document with competition limits.</value>
+		public string MetadataResourcePath { get; set; }
 	}
 }

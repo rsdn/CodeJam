@@ -7,6 +7,8 @@ using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.InProcess;
 
+using CodeJam.Strings;
+
 using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace
@@ -38,7 +40,6 @@ namespace BenchmarkDotNet.Validators
 				{ nameof(IJob.Toolchain), ValidateToolchain },
 				{ nameof(IJob.WarmupCount), NoValidation }
 			};
-
 		// ReSharper restore HeapView.DelegateAllocation
 
 		private static string NoValidation(IJob job, EnvironmentInfo env) => null;
@@ -73,7 +74,7 @@ namespace BenchmarkDotNet.Validators
 				case Jit.LegacyJit:
 					return !isX64 || !env.HasRyuJit
 						? null
-						: "The current setup does not support legacy jit.";
+						: "The current setup does not support legacy Jit.";
 				case Jit.RyuJit:
 					return env.HasRyuJit
 						? null
@@ -94,11 +95,11 @@ namespace BenchmarkDotNet.Validators
 				case Platform.X86:
 					return !isX64
 						? null
-						: "The current process is not run as x86.";
+						: "The current process should be run as x86.";
 				case Platform.X64:
 					return isX64
 						? null
-						: "The current process is not run as x64.";
+						: "The current process should be run as x64.";
 				default:
 					throw new ArgumentOutOfRangeException(nameof(job.Platform), job.Platform, null);
 			}
@@ -124,7 +125,7 @@ namespace BenchmarkDotNet.Validators
 		private static string ValidateToolchain(IJob job, EnvironmentInfo env) =>
 			job.Toolchain is InProcessToolchain
 				? null
-				: "The toolchain should be set to InProcess";
+				: $"Should be instance of {nameof(InProcessToolchain)}.";
 		#endregion
 
 		/// <summary>The instance of validator that does NOT fail on error.</summary>
@@ -158,19 +159,23 @@ namespace BenchmarkDotNet.Validators
 				foreach (var jobProperty in job.AllProperties)
 				{
 					Func<IJob, EnvironmentInfo, string> validationRule;
-					if (!_validationRules.TryGetValue(jobProperty.Name, out validationRule))
+					if (_validationRules.TryGetValue(jobProperty.Name, out validationRule))
 					{
-						var prefix = $"Job {job.GetShortInfo()}, property {jobProperty.Name}: ";
-						result.Add(new ValidationError(false, prefix + "no validation rule specified"));
+						var message = validationRule(job, env);
+						if (message.NotNullNorEmpty())
+						{
+							result.Add(
+								new ValidationError(
+									TreatsWarningsAsErrors,
+									$"Job {job.GetShortInfo()}, property {jobProperty.Name}: {message}"));
+						}
 					}
 					else
 					{
-						var message = validationRule(job, env);
-						if (!string.IsNullOrEmpty(message))
-						{
-							var prefix = $"Job {job.GetShortInfo()}, property {jobProperty.Name}: ";
-							result.Add(new ValidationError(TreatsWarningsAsErrors, prefix + message));
-						}
+						result.Add(
+							new ValidationError(
+								false,
+								$"Job {job.GetShortInfo()}, property {jobProperty.Name}: no validation rule specified."));
 					}
 				}
 			}

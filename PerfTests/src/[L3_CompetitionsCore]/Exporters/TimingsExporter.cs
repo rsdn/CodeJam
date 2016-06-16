@@ -1,69 +1,84 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 
 using BenchmarkDotNet.Exporters;
-using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
+using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Reports;
-using BenchmarkDotNet.Running;
 
-using CodeJam.Collections;
 using CodeJam.PerfTests.Running.Core;
+using CodeJam.Collections;
 
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Exporters
 {
-	public class TimingsExporter : IExporter
+	/// <summary>Exporter that creates .csv files with timings for all runs in the competition.</summary>
+	/// <seealso cref="BenchmarkDotNet.Exporters.IExporter" />
+	[PublicAPI]
+	public class TimingsExporter : ExporterBase
 	{
-		public void ExportToLog([NotNull] Summary summary, [NotNull] ILogger logger)
-		{
-			// do nothing;
-		}
+		/// <summary>The default instance of the exporter.</summary>
+		public static readonly TimingsExporter Instance = new TimingsExporter();
 
-		public IEnumerable<string> ExportToFiles([NotNull] Summary summary)
+		/// <summary>File extension.</summary>
+		/// <value>The file extension.</value>
+		protected override string FileExtension => "csv";
+
+		/// <summary>File caption.</summary>
+		/// <value>The file caption.</value>
+		protected override string FileCaption => "timings";
+
+		/// <summary>Exports to log.</summary>
+		/// <param name="summary">The summary.</param>
+		/// <param name="logger">The logger.</param>
+		public override void ExportToLog([NotNull] Summary summary, [NotNull] ILogger logger)
 		{
 			Code.NotNull(summary, nameof(summary));
+			Code.NotNull(logger, nameof(logger));
 
-			var summaries = CompetitionCore.RunState[summary].SummaryFromAllRuns;
+			var competitionState = CompetitionCore.RunState[summary];
+			var summaries = competitionState.SummaryFromAllRuns;
+			if (competitionState.Completed)
+			{
+				Code.AssertState(summaries.LastOrDefault() == summary, "Exporter bug");
+			}
+			else
+			{
+				Code.AssertState(summaries.LastOrDefault() != summary, "Exporter bug");
+				summaries = summaries.Concat(summary).ToArray();
+			}
 
-			var summaryIdx = summaries.Select((s, i) => new { s, i }).ToDictionary(p => p.s, p => p.i);
+			var orderProvider = summary.Config.GetOrderProvider() ?? DefaultOrderProvider.Instance;
 
 			var data =
 				from sWithIndex in summaries.Select((s, i) => new { s, i })
-				from benchmark in sWithIndex.s.Benchmarks
+				from benchmark in orderProvider.GetSummaryOrder(sWithIndex.s.Benchmarks, sWithIndex.s)
 				from measurement in sWithIndex.s[benchmark].AllMeasurements.Select((m, i) => new { m, i })
 				select new
 				{
-					SummaryNum = sWithIndex.i + 1,
-					Summary = sWithIndex.s,
+					RunNumber = sWithIndex.i + 1,
+					RunSummary = sWithIndex.s,
 					Benchmark = benchmark,
-					Target = benchmark.Target,
-					Job = benchmark.Job,
-					Parameters = benchmark.Parameters,
+					benchmark.Target,
+					benchmark.Job,
+					benchmark.Parameters,
 					MeasurementType = measurement.m.IterationMode,
 					MeasurementNum = measurement.i,
 					MeasurementLaunch = measurement.m.LaunchIndex,
 					MeasurementIteration = measurement.m.IterationIndex,
-					MeasurementNs = measurement.m.Nanoseconds
+					MeasurementNs = measurement.m.GetAverageNanoseconds()
 				};
 
-			var fileName = summary.Benchmarks[0].Target.Type.Name + "-timings.csv";
-
-			using (var writer = File.CreateText(fileName))
+			logger.WriteLine(
+				"RunNumber;Job;Target;Parameters;" +
+					"LaunchNumber;MeasurementNumber;MeasurementType;MeasurementIteration;MeasurementNs");
+			foreach (var d in data)
 			{
-				writer.WriteLine("RunNumber;Target;Job;Parameters;MNum;MType;MLaunch;MIteration;MNs");
-				foreach (var d in data)
-				{
-					writer.WriteLine(
-						$"{d.SummaryNum};{d.Target.MethodTitle};{d.Job.ToString()};{d.Parameters.FullInfo};"+
-						$"{d.MeasurementNum};{d.MeasurementType};{d.MeasurementLaunch};{d.MeasurementIteration};{d.MeasurementNs}");
-				}
+				logger.WriteLine(
+					$"{d.RunNumber};{d.Job};{d.Target.MethodTitle};{d.Parameters.FullInfo};" +
+						$"{d.MeasurementLaunch};{d.MeasurementNum};{d.MeasurementType};{d.MeasurementIteration};{d.MeasurementNs}");
 			}
-			yield return fileName;
 		}
 	}
 }

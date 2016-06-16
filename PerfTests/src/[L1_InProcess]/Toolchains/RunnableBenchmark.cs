@@ -96,7 +96,6 @@ namespace BenchmarkDotNet.Toolchains
 	/// </summary>
 	/// <typeparam name="TTarget">The type of the target.</typeparam>
 	/// <seealso cref="IRunnableBenchmark"/>
-	[SuppressMessage("ReSharper", "InconsistentNaming")]
 	[SuppressMessage("ReSharper", "PassStringInterpolation")]
 	public class RunnableBenchmark<TTarget> : IRunnableBenchmark where TTarget : new()
 	{

@@ -101,7 +101,9 @@ namespace CodeJam.PerfTests
 		public static void TestCompetitionAnalyserHighAccuracyBenchmark()
 		{
 			var overrideConfig = new ManualCompetitionConfig(HighAccuracyConfig);
+			overrideConfig.DetailedLogging = true;
 			overrideConfig.LimitMetricProvider = RatioCIMetricProvider.Instance;
+			overrideConfig.Add(TimingsExporter.Instance);
 
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(overrideConfig);
 			var messages = runState.GetMessages();
@@ -161,13 +163,13 @@ namespace CodeJam.PerfTests
 			public void Baseline() => Delay(Count);
 
 			[CompetitionBenchmark(1.93, 2.08)]
-			public void SlowerX2_1() => Delay(2 * Count);
+			public void SlowerX2Run1() => Delay(2 * Count);
 
 			[CompetitionBenchmark(1.91, 2.06)]
-			public void SlowerX2_2() => Delay(2 * Count);
+			public void SlowerX2Run2() => Delay(2 * Count);
 
 			[CompetitionBenchmark(1.92, 2.06)]
-			public void SlowerX2_3() => Delay(2 * Count);
+			public void SlowerX2Run3() => Delay(2 * Count);
 
 			[CompetitionBenchmark(4.81, 5.15)]
 			public void SlowerX5() => Delay(5 * Count);

@@ -21,46 +21,37 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// Name of the resource containing xml document with competition limits
 		/// or <c>null</c> if the target is not annotated with <seealso cref="CompetitionMetadataAttribute"/>
 		/// </returns>
-		public static string TryGetTargetResourceName([NotNull] Target target)
+		public static CompetitionMetadataAttribute TryGetCompetitionMetadata([NotNull] Target target)
 		{
 			Code.NotNull(target, nameof(target));
 
-			string targetResourceName = null;
+			CompetitionMetadataAttribute result = null;
 
 			var targetType = target.Type;
-			while (targetType != null && targetResourceName == null)
+			while (result == null && targetType != null)
 			{
-				targetResourceName = targetType
-					.GetCustomAttribute<CompetitionMetadataAttribute>()
-					?.MetadataResourceName;
+				result = targetType.GetCustomAttribute<CompetitionMetadataAttribute>();
 
 				targetType = targetType.DeclaringType;
 			}
 
-			return targetResourceName;
+			return result;
 		}
 
 		/// <summary>
-		/// Creates <seealso cref="CompetitionTarget"/> from <seealso cref="CompetitionBenchmarkAttribute"/>.
+		/// Creates <seealso cref="CompetitionLimit"/> from <seealso cref="CompetitionBenchmarkAttribute"/>.
 		/// </summary>
-		/// <param name="target">The target.</param>
 		/// <param name="competitionAttribute">The attribute with competition limits.</param>
 		/// <returns>
-		/// A new instance of the <see cref="CompetitionTarget"/> class
+		/// A new instance of the <see cref="CompetitionLimit"/> class
 		/// filled with the properties from <seealso cref="CompetitionBenchmarkAttribute"/>
 		/// </returns>
-		public static CompetitionTarget ParseCompetitionTarget(
-			[NotNull] Target target,
+		public static CompetitionLimit ParseAnnotation(
 			[NotNull] CompetitionBenchmarkAttribute competitionAttribute)
 		{
-			Code.NotNull(target, nameof(target));
 			Code.NotNull(competitionAttribute, nameof(competitionAttribute));
 
-			return new CompetitionTarget(
-				target,
-				competitionAttribute.MinRatio,
-				competitionAttribute.MaxRatio,
-				false);
+			return new CompetitionLimit(competitionAttribute.MinRatio,competitionAttribute.MaxRatio);
 		}
 	}
 }
