@@ -68,5 +68,15 @@ namespace CodeJam.Mapping
 		/// however the <see cref="GetMapperLambdaExpression"/> method does.
 		/// </summary>
 		bool? DeepCopy { get; set; }
+
+		/// <summary>
+		/// Type to map from.
+		/// </summary>
+		Type FromType { get; }
+
+		/// <summary>
+		/// Type to map to.
+		/// </summary>
+		Type ToType { get; }
 	}
 }

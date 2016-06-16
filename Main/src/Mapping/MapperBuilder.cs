@@ -23,7 +23,6 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Mapping schema.
 		/// </summary>
-		[NotNull]
 		public MappingSchema MappingSchema
 		{
 			get { return _mappingSchema; }
@@ -43,7 +42,7 @@ namespace CodeJam.Mapping
 		/// <returns>Mapping expression.</returns>
 		[Pure]
 		public Expression<Func<TFrom,TTo>> GetMapperExpressionEx()
-			=> GetExpressionMapper().GetExpressionEx();
+			=> (Expression<Func<TFrom,TTo>>)GetExpressionMapper().GetExpressionEx();
 
 		LambdaExpression IMapperBuilder.GetMapperLambdaExpressionEx()
 			=> GetExpressionMapper().GetExpressionEx();
@@ -64,10 +63,10 @@ namespace CodeJam.Mapping
 		/// <returns>Mapping expression.</returns>
 		[Pure]
 		public Expression<Func<TFrom,TTo,IDictionary<object,object>,TTo>> GetMapperExpression()
-			=> GetExpressionMapper().GetExpression();
+			=> (Expression<Func<TFrom,TTo,IDictionary<object,object>,TTo>>)GetExpressionMapper().GetExpression();
 
 		LambdaExpression IMapperBuilder.GetMapperLambdaExpression()
-			=> GetExpressionMapper().GetExpressionEx();
+			=> GetExpressionMapper().GetExpression();
 
 		/// <summary>
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
@@ -383,6 +382,16 @@ namespace CodeJam.Mapping
 		public bool? DeepCopy { get; set; }
 
 		/// <summary>
+		/// Type to map from.
+		/// </summary>
+		public Type FromType => typeof(TFrom);
+
+		/// <summary>
+		/// Type to map to.
+		/// </summary>
+		public Type ToType => typeof(TTo);
+
+		/// <summary>
 		/// If true, performs deep copy.
 		/// </summary>
 		/// <param name="deepCopy">If true, performs deep copy.</param>
@@ -394,10 +403,10 @@ namespace CodeJam.Mapping
 		}
 
 		/// <summary>
-		/// Gets an instance of <see cref="ExpressionBuilder{TFrom,TTo}"/> class.
+		/// Gets an instance of <see cref="ExpressionBuilder"/> class.
 		/// </summary>
-		/// <returns><see cref="ExpressionBuilder{TFrom,TTo}"/>.</returns>
-		ExpressionBuilder<TFrom,TTo> GetExpressionMapper()
-			=> new ExpressionBuilder<TFrom,TTo>(this, MemberMappers?.Select(mm => Tuple.Create(mm.Item1.GetMembersInfo(), mm.Item2)).ToArray());
+		/// <returns><see cref="ExpressionBuilder"/>.</returns>
+		ExpressionBuilder GetExpressionMapper()
+			=> new ExpressionBuilder(this, MemberMappers?.Select(mm => Tuple.Create(mm.Item1.GetMembersInfo(), mm.Item2)).ToArray());
 	}
 }
