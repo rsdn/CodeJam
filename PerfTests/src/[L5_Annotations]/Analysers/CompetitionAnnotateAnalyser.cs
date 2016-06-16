@@ -202,7 +202,7 @@ namespace CodeJam.PerfTests.Analysers
 
 					double actualRatioMin, actualRatioMax;
 
-					if (!LimitMetricProvider.TryGetMetrics(
+					if (!LimitMetricProvider.TryGetBoundaryMetrics(
 						benchmark, summary,
 						out actualRatioMin, out actualRatioMax))
 					{

@@ -64,7 +64,7 @@ namespace CodeJam.PerfTests
 					LaunchCount = 1,
 					Mode = Mode.SingleRun,
 					WarmupCount = 50,
-					TargetCount = 200,
+					TargetCount = 100,
 					Platform = Platform.X64,
 					Jit = Jit.RyuJit,
 					Toolchain = InProcessToolchain.Instance

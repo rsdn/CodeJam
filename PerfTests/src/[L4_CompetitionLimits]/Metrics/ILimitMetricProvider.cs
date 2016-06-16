@@ -19,5 +19,13 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="upperBoundary">The upper boundary of the metric.</param>
 		/// <returns><c>true</c> if <paramref name="summary"/> contains metrics for the benchmark.</returns>
 		bool TryGetMetrics(Benchmark benchmark, Summary summary, out double lowerBoundary, out double upperBoundary);
+
+		/// <summary>Tries to obtain metric that can be used to describ boundaries of the value.</summary>
+		/// <param name="benchmark">The benchmark.</param>
+		/// <param name="summary">The summary.</param>
+		/// <param name="lowerBoundary">The lower boundary of the metric.</param>
+		/// <param name="upperBoundary">The upper boundary of the metric.</param>
+		/// <returns><c>true</c> if <paramref name="summary"/> contains metrics for the benchmark.</returns>
+		bool TryGetBoundaryMetrics(Benchmark benchmark, Summary summary, out double lowerBoundary, out double upperBoundary);
 	}
 }

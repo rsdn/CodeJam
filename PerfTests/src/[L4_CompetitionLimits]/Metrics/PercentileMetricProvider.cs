@@ -1,6 +1,7 @@
 ﻿using System;
 
 using BenchmarkDotNet.Reports;
+using BenchmarkDotNet.Running;
 
 using JetBrains.Annotations;
 
@@ -60,22 +61,31 @@ namespace CodeJam.PerfTests.Metrics
 		/// <value>The upper boundary percentile.</value>
 		public int UpperBoundaryPercentile { get; }
 
-		/// <summary>Tries the get lower metric for the benchmark.</summary>
-		/// <param name="benchmarkReport">The benchmark report.</param>
-		/// <param name="baselineReport">The baseline report.</param>
-		/// <returns>The lower metric for the benchmark or <c>null</c> if none.</returns>
-		protected override double? TryGetMetricLower(
-			BenchmarkReport benchmarkReport,
-			BenchmarkReport baselineReport) =>
-				TryGetPercentileMetric(benchmarkReport, baselineReport, LowerBoundaryPercentile);
 
-		/// <summary>Tries the get upper metric for the benchmark.</summary>
-		/// <param name="benchmarkReport">The benchmark report.</param>
-		/// <param name="baselineReport">The baseline report.</param>
-		/// <returns>The upper metric for the benchmark or <c>null</c> if none.</returns>
-		protected override double? TryGetMetricUpper(
-			BenchmarkReport benchmarkReport,
-			BenchmarkReport baselineReport) =>
-				TryGetPercentileMetric(benchmarkReport, baselineReport, UpperBoundaryPercentile);
+		protected override bool TryGetMetricsImpl(
+			BenchmarkReport benchmarkReport, BenchmarkReport baselineReport,
+			out double lowerBoundary, out double upperBoundary)
+		{
+			var lower = TryGetPercentileMetric(benchmarkReport, baselineReport, LowerBoundaryPercentile);
+			var upper = TryGetPercentileMetric(benchmarkReport, baselineReport, UpperBoundaryPercentile);
+
+			lowerBoundary = lower.GetValueOrDefault();
+			upperBoundary = upper.GetValueOrDefault();
+
+			return lower != null && upper != null;
+		}
+
+		protected override bool TryGetBoundaryMetricsImpl(
+			BenchmarkReport benchmarkReport, BenchmarkReport baselineReport,
+			out double lowerBoundary, out double upperBoundary)
+		{
+			var lower = TryGetPercentileMetric(benchmarkReport, baselineReport, LowerBoundaryPercentile);
+			var upper = TryGetPercentileMetric(benchmarkReport, baselineReport, UpperBoundaryPercentile);
+
+			lowerBoundary = lower.GetValueOrDefault();
+			upperBoundary = upper.GetValueOrDefault();
+
+			return lower != null && upper != null;
+		}
 	}
 }
