@@ -6,15 +6,15 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Reports;
 
-using CodeJam.PerfTests.Running.Core;
 using CodeJam.Collections;
+using CodeJam.PerfTests.Running.Core;
 
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Exporters
 {
 	/// <summary>Exporter that creates .csv files with timings for all runs in the competition.</summary>
-	/// <seealso cref="BenchmarkDotNet.Exporters.IExporter" />
+	/// <seealso cref="BenchmarkDotNet.Exporters.IExporter"/>
 	[PublicAPI]
 	public class TimingsExporter : ExporterBase
 	{

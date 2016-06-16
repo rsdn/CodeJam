@@ -105,7 +105,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 				Code.AssertState(
 					competitionState.Completed,
-					"Bug: compettion state not marked as completed.");
+					"Bug: competition state not marked as completed.");
 
 				ProcessRunComplete(competitionConfig, competitionState);
 			}
@@ -113,7 +113,7 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				Code.AssertState(
 					runSucceed == (competitionState != null),
-					"Bug: compettion state does not match runSucceed flag.");
+					"Bug: competition state does not match runSucceed flag.");
 
 				OnAfterRun(runSucceed, benchmarkConfig, competitionState);
 
@@ -289,18 +289,16 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="competitionConfig">The competition config.</param>
 		protected virtual void OnBeforeRun(
 			[NotNull] Type benchmarkType,
-			[NotNull] ICompetitionConfig competitionConfig)
-		{ }
+			[NotNull] ICompetitionConfig competitionConfig) { }
 
-		/// <summary>Called after competiton run.</summary>
+		/// <summary>Called after competition run.</summary>
 		/// <param name="runSucceed">If set to <c>true</c> the run was succeed.</param>
 		/// <param name="benchmarkConfig">The benchmark configuration.</param>
 		/// <param name="competitionState">State of the run.</param>
 		protected virtual void OnAfterRun(
 			bool runSucceed,
 			[NotNull] IConfig benchmarkConfig,
-			[CanBeNull] CompetitionState competitionState)
-		{ }
+			[CanBeNull] CompetitionState competitionState) { }
 
 		/// <summary>Creates a host logger.</summary>
 		/// <param name="hostLogMode">The host log mode.</param>
@@ -353,7 +351,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			var result = OverrideLoggers(competitionConfig);
 			var hostLogger = CreateHostLogger(
-				competitionConfig.DetailedLogging ? HostLogMode.AllMessages : HostLogMode.PrefixedAndErrors);
+				competitionConfig.DetailedLogging ? HostLogMode.AllMessages : HostLogMode.PrefixedOrErrors);
 			result.Insert(0, hostLogger);
 			return result;
 		}

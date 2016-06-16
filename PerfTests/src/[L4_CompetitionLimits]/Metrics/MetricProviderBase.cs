@@ -7,7 +7,7 @@ using BenchmarkDotNet.Running;
 namespace CodeJam.PerfTests.Metrics
 {
 	/// <summary>Base class for metrics providers.</summary>
-	/// <seealso cref="CodeJam.PerfTests.Metrics.ILimitMetricProvider" />
+	/// <seealso cref="CodeJam.PerfTests.Metrics.ILimitMetricProvider"/>
 	public abstract class MetricProviderBase : ILimitMetricProvider
 	{
 		/// <summary>Short description for the provider.</summary>
@@ -35,7 +35,7 @@ namespace CodeJam.PerfTests.Metrics
 				return false;
 
 			if (!TryGetMetricsImpl(benchmarkReport, baselineReport, out lowerBoundary, out upperBoundary))
-				return false;			
+				return false;
 
 			if (lowerBoundary > upperBoundary)
 			{
@@ -77,7 +77,7 @@ namespace CodeJam.PerfTests.Metrics
 		}
 
 		private static bool TryGetReports(
-			Benchmark benchmark, Summary summary, 
+			Benchmark benchmark, Summary summary,
 			out BenchmarkReport baselineReport, out BenchmarkReport benchmarkReport)
 		{
 			baselineReport = null;

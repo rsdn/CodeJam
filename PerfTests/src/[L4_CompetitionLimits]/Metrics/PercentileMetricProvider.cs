@@ -1,14 +1,13 @@
 ﻿using System;
 
 using BenchmarkDotNet.Reports;
-using BenchmarkDotNet.Running;
 
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Metrics
 {
 	/// <summary>Percentile metric provider.</summary>
-	/// <seealso cref="CodeJam.PerfTests.Metrics.ILimitMetricProvider" />
+	/// <seealso cref="CodeJam.PerfTests.Metrics.ILimitMetricProvider"/>
 	[PublicAPI]
 	public class PercentileMetricProvider : MetricProviderBase
 	{
@@ -60,7 +59,6 @@ namespace CodeJam.PerfTests.Metrics
 		/// <summary>Upper boundary percentile.</summary>
 		/// <value>The upper boundary percentile.</value>
 		public int UpperBoundaryPercentile { get; }
-
 
 		protected override bool TryGetMetricsImpl(
 			BenchmarkReport benchmarkReport, BenchmarkReport baselineReport,

@@ -122,21 +122,26 @@ TST10");
 		public void TestHostLoggerAllMessages()
 		{
 			var lines = LogInput.Split(new[] { "\r\n" }, StringSplitOptions.None);
+
 			var output = new AccumulationLogger();
 			var logger = new HostLogger(output, HostLogMode.AllMessages);
 			foreach (var line in lines)
 			{
 				logger.WriteLine(line);
 			}
-
 			Assert.AreEqual(output.GetLog(), LogInput + "\r\n");
 
 			output = new AccumulationLogger();
 			logger = new HostLogger(output, HostLogMode.AllMessages);
+			foreach (var line in lines)
+			{
+				logger.WriteLineError(line);
+			}
+			Assert.AreEqual(output.GetLog(), LogInput + "\r\n");
 
+			output = new AccumulationLogger();
+			logger = new HostLogger(output, HostLogMode.AllMessages);
 			LogMessages(logger);
-
-			// ReSharper disable once StringLiteralTypo
 			const string expected = @"ABCDEFGH
 TST0
 // !TST1
@@ -159,23 +164,28 @@ TST10
 		}
 
 		[Test]
-		public void TestHostLoggerPrefixedAndErrors()
+		public void TestHostLoggerPrefixedOrErrors()
 		{
 			var lines = LogInput.Split(new[] { "\r\n" }, StringSplitOptions.None);
 			var output = new AccumulationLogger();
-			var logger = new HostLogger(output, HostLogMode.PrefixedAndErrors);
+			var logger = new HostLogger(output, HostLogMode.PrefixedOrErrors);
 			foreach (var line in lines)
 			{
 				logger.WriteLine(line);
 			}
-
 			Assert.AreEqual(output.GetLog(), PrefixedLogOutput);
 
 			output = new AccumulationLogger();
-			logger = new HostLogger(output, HostLogMode.PrefixedAndErrors);
+			logger = new HostLogger(output, HostLogMode.PrefixedOrErrors);
+			foreach (var line in lines)
+			{
+				logger.WriteLineError(line);
+			}
+			Assert.AreEqual(output.GetLog(), LogInput + "\r\n");
 
+			output = new AccumulationLogger();
+			logger = new HostLogger(output, HostLogMode.PrefixedOrErrors);
 			LogMessages(logger);
-
 			const string expected = @"AH
 TST0
 // !TST1
@@ -202,14 +212,19 @@ TST6
 			{
 				logger.WriteLine(line);
 			}
-
 			Assert.AreEqual(output.GetLog(), PrefixedLogOutput);
 
 			output = new AccumulationLogger();
 			logger = new HostLogger(output, HostLogMode.PrefixedOnly);
+			foreach (var line in lines)
+			{
+				logger.WriteLineError(line);
+			}
+			Assert.AreEqual(output.GetLog(), PrefixedLogOutput);
 
+			output = new AccumulationLogger();
+			logger = new HostLogger(output, HostLogMode.PrefixedOnly);
 			LogMessages(logger);
-
 			const string expected = @"// !TST1
 // !<--
 TST3

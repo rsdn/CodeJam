@@ -99,7 +99,7 @@
     <Compile Include="[L4_CompetitionLimits]\Analysers\CompetitionAnalyser.cs" />
     <Compile Include="[L4_CompetitionLimits]\Metrics\ILimitMetricProvider.cs" />
     <Compile Include="[L4_CompetitionLimits]\Metrics\MetricProviderBase.cs" />
-    <Compile Include="[L4_CompetitionLimits]\Metrics\RatioCIMetricProvider.cs" />
+    <Compile Include="[L4_CompetitionLimits]\Metrics\RatioConfidenceIntervalMetricProvider.cs" />
     <Compile Include="[L4_CompetitionLimits]\Metrics\PercentileMetricProvider.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\AttributeAnnotations.cs" />
     <Compile Include="[L4_CompetitionLimits]\CompetitionLimitProperties.cs" />

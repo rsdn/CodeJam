@@ -12,7 +12,7 @@ namespace CodeJam.PerfTests.Loggers
 		AllMessages,
 
 		/// <summary>Log error messages and messages with HostLogger.LogXyz prefixes.</summary>
-		PrefixedAndErrors,
+		PrefixedOrErrors,
 
 		/// <summary>Log messages with HostLogger.LogXyz prefixes only.</summary>
 		PrefixedOnly

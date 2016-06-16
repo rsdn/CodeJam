@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Helpers;
@@ -7,8 +8,11 @@ using BenchmarkDotNet.Running;
 
 using CodeJam.PerfTests.Metrics;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.PerfTests.Columns
 {
+	[PublicAPI]
 	public class MetricProviderColumn : IColumn
 	{
 		public MetricProviderColumn(ILimitMetricProvider metricProvider, bool useUpperBoundary)

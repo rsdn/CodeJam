@@ -3,23 +3,21 @@ using System.Linq;
 
 using BenchmarkDotNet.Mathematics;
 using BenchmarkDotNet.Reports;
-using BenchmarkDotNet.Running;
 
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Metrics
 {
 	/// <summary>Percentile metric provider.</summary>
-	/// <seealso cref="CodeJam.PerfTests.Metrics.ILimitMetricProvider" />
+	/// <seealso cref="CodeJam.PerfTests.Metrics.ILimitMetricProvider"/>
 	[PublicAPI]
-	public class RatioCIMetricProvider : MetricProviderBase
+	public class RatioConfidenceIntervalMetricProvider : MetricProviderBase
 	{
-		public static readonly ILimitMetricProvider Instance = new RatioCIMetricProvider();
-		
+		public static readonly ILimitMetricProvider Instance = new RatioConfidenceIntervalMetricProvider();
+
 		/// <summary>Short description for the provider.</summary>
 		/// <value>The short description for the provider.</value>
 		public override string ShortInfo => "CI";
-
 
 		protected override bool TryGetMetricsImpl(
 			BenchmarkReport benchmarkReport, BenchmarkReport baselineReport,
@@ -32,7 +30,6 @@ namespace CodeJam.PerfTests.Metrics
 					(r1, r2) => r1.GetAverageNanoseconds() / r2.GetAverageNanoseconds());
 
 			var ci = new Statistics(samples).ConfidenceInterval;
-
 
 			lowerBoundary = ci.Mean;
 			upperBoundary = ci.Mean;

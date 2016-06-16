@@ -40,6 +40,7 @@ namespace BenchmarkDotNet.Validators
 				{ nameof(IJob.Toolchain), ValidateToolchain },
 				{ nameof(IJob.WarmupCount), NoValidation }
 			};
+
 		// ReSharper restore HeapView.DelegateAllocation
 
 		private static string NoValidation(IJob job, EnvironmentInfo env) => null;

@@ -153,7 +153,7 @@ namespace CodeJam.PerfTests.Analysers
 
 			var targetsToAnnotate =
 				competitionTargets.Values.Where(t => t.HasUnsavedChanges)
-				.ToHashSet();
+					.ToHashSet();
 			foreach (var competitionTarget in competitionTargets.Values)
 			{
 				competitionTarget.MarkAsSaved();

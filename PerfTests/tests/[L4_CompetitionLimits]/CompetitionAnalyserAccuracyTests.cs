@@ -102,7 +102,7 @@ namespace CodeJam.PerfTests
 		{
 			var overrideConfig = new ManualCompetitionConfig(HighAccuracyConfig);
 			overrideConfig.DetailedLogging = true;
-			overrideConfig.LimitMetricProvider = RatioCIMetricProvider.Instance;
+			overrideConfig.LimitMetricProvider = RatioConfidenceIntervalMetricProvider.Instance;
 			overrideConfig.Add(TimingsExporter.Instance);
 
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(overrideConfig);

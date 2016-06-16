@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
-using System.Text;
 
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
@@ -124,7 +123,7 @@ namespace BenchmarkDotNet.Helpers
 			{
 				logger.WriteLine($"{prefix}{new string('=', 40 - prefix.Length)}");
 			}
-		} 
+		}
 		#endregion
 
 		#region Reflection
@@ -225,7 +224,7 @@ namespace BenchmarkDotNet.Helpers
 				}
 			}
 		}
-		
+
 		/// <summary>Tries to obtain text from the given URI.</summary>
 		/// <param name="uri">The URI to geth the text from.</param>
 		/// <returns>The text.</returns>

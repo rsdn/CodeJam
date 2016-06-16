@@ -77,7 +77,7 @@ namespace CodeJam.PerfTests.Loggers
 		protected virtual bool ShouldWrite(LogKind logKind) =>
 			LogMode == HostLogMode.AllMessages ||
 				_importantAreaCount > 0 ||
-				(logKind == LogKind.Error && LogMode == HostLogMode.PrefixedAndErrors);
+				(logKind == LogKind.Error && LogMode == HostLogMode.PrefixedOrErrors);
 
 		/// <summary>Handles well-known prefixes for the line.</summary>
 		/// <param name="text">The text of the log line.</param>

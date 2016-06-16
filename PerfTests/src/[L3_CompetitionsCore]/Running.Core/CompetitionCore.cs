@@ -25,15 +25,11 @@ namespace CodeJam.PerfTests.Running.Core
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public static class CompetitionCore
 	{
-		#region API to use during the run
-		/// <summary>Run state slot.</summary>
-		public static readonly RunState<CompetitionState> RunState = new RunState<CompetitionState>();
-
+		#region Extension methods
 		/// <summary>The message severity is warning or higher.</summary>
 		/// <param name="severity">The severity to check.</param>
 		/// <returns><c>True</c> if the severity is warning or higher.</returns>
 		public static bool IsWarningOrHigher(this MessageSeverity severity) => severity >= MessageSeverity.Warning;
-
 
 		/// <summary>The message severity is test error or higher.</summary>
 		/// <param name="severity">The severity to check.</param>
@@ -53,6 +49,11 @@ namespace CodeJam.PerfTests.Running.Core
 			return $"#{m.RunNumber}.{m.RunMessageNumber,-2} {m.Elapsed.TotalSeconds:00.000}s" +
 				$", {m.MessageSeverity + "@" + m.MessageSource + ":",-23} {m.MessageText}";
 		}
+		#endregion
+
+		#region API to use during the run
+		/// <summary>Run state slot.</summary>
+		public static readonly RunState<CompetitionState> RunState = new RunState<CompetitionState>();
 
 		/// <summary>Reports analyser warning.</summary>
 		/// <param name="competitionState">State of the run.</param>
@@ -135,11 +136,11 @@ namespace CodeJam.PerfTests.Running.Core
 			Code.NotNull(competitionConfig, nameof(competitionConfig));
 
 			var runStateSlots = competitionConfig.GetValidators().OfType<RunStateSlots>();
-			if (!runStateSlots.Any())
+			if (runStateSlots.Count() != 1)
 			{
 				throw CodeExceptions.Argument(
 					nameof(competitionConfig),
-					$"The competition config should include {nameof(RunStateSlots)} validator");
+					$"The competition config should include single instance of {nameof(RunStateSlots)} validator");
 			}
 
 			var competitionState = RunState[competitionConfig];
@@ -158,8 +159,6 @@ namespace CodeJam.PerfTests.Running.Core
 					MessageSource.Runner, MessageSeverity.ExecutionError,
 					$"Benchmark {benchmarkType.Name}", ex);
 			}
-
-			FillMessagesAfterLastRun(competitionState);
 
 			competitionState.MarkAsCompleted();
 
@@ -187,17 +186,18 @@ namespace CodeJam.PerfTests.Running.Core
 				logger.WriteLineInfo(runMessage);
 				logger.WriteLine();
 
-				// TODO: validate summary after run.
 				// Running the benchmark
 				var summary = BenchmarkRunner.Run(benchmarkType, competitionConfig);
 				competitionState.RunCompleted(summary);
+
+				WriteValidationMessges(competitionState);
 
 				if (competitionState.RunLimitExceeded)
 					break;
 
 				if (competitionState.HasCriticalErrorsInRun)
 				{
-					logger.WriteLineInfo($"{LogImportantInfoPrefix}Breaking the run. High severity error occured.");
+					logger.WriteLineInfo($"{LogImportantInfoPrefix}Breaking competition execution. High severity error occured.");
 					break;
 				}
 
@@ -213,17 +213,17 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				competitionState.WriteMessage(
 					MessageSource.Runner, MessageSeverity.TestError,
-					$"The benchmark run count limit ({competitionState.MaxRunsAllowed} runs(s)) exceeded (read log for details). Consider to adjust competition setup.");
+					$"The benchmark run limit ({competitionState.MaxRunsAllowed} runs(s)) exceeded (read log for details). Consider to adjust competition setup.");
 			}
 			else if (competitionState.RunNumber > 1)
 			{
 				competitionState.WriteMessage(
 					MessageSource.Runner, MessageSeverity.Warning,
-					$"The benchmark was run {competitionState.RunNumber} times (read log for details). Consider to adjust competition setup.");
+					$"The benchmark was run {competitionState.RunNumber} time(s) (read log for details). Consider to adjust competition setup.");
 			}
 		}
 
-		private static void FillMessagesAfterLastRun(CompetitionState competitionState)
+		private static void WriteValidationMessges(CompetitionState competitionState)
 		{
 			if (competitionState.LastRunSummary == null)
 				return;

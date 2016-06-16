@@ -44,7 +44,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 				var slots = config.GetValidators()
 					.OfType<RunStateSlots>()
-					.Single();
+					.First();
 				return slots.GetSlot<T>();
 			}
 		}

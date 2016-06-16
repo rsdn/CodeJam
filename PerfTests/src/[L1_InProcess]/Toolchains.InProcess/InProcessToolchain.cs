@@ -28,7 +28,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 		{
 			Generator = new InProcessGenerator();
 			Builder = new InProcessBuilder();
-			Executor = new InProcessExecutor(logOutput);
+			Executor = new InProcessExecutor(TimeSpan.FromMinutes(5), logOutput);
 		}
 
 		/// <summary>Determines whether the specified benchmark is supported.</summary>

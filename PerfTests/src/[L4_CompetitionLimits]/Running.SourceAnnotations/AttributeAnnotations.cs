@@ -51,7 +51,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		{
 			Code.NotNull(competitionAttribute, nameof(competitionAttribute));
 
-			return new CompetitionLimit(competitionAttribute.MinRatio,competitionAttribute.MaxRatio);
+			return new CompetitionLimit(competitionAttribute.MinRatio, competitionAttribute.MaxRatio);
 		}
 	}
 }

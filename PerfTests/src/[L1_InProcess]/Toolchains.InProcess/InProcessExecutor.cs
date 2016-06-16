@@ -25,11 +25,17 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 	public class InProcessExecutor : IExecutor
 	{
 		/// <summary>Initializes a new instance of the <see cref="InProcessExecutor"/> class.</summary>
+		/// <param name="timeout">Timeout for the run.</param>
 		/// <param name="logOutput"><c>true</c> if the output should be logged.</param>
-		public InProcessExecutor(bool logOutput)
+		public InProcessExecutor(TimeSpan timeout, bool logOutput)
 		{
+			ExecutionTimeout = timeout;
 			LogOutput = logOutput;
 		}
+
+		/// <summary>Timeout for the run.</summary>
+		/// <value>The timeout for the run.</value>
+		public TimeSpan ExecutionTimeout { get; }
 
 		/// <summary>Gets a value indicating whether the output should be logged.</summary>
 		/// <value><c>true</c> if the output should be logged; otherwise, <c>false</c>.</value>
@@ -61,13 +67,13 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 				logger,
 				() =>
 				{
+					runThread.IsBackground = true;
 					runThread.Priority = ThreadPriority.Highest;
 					runThread.Start();
-					// TODO: configurable timeout?
-					if (!runThread.Join(TimeSpan.FromMinutes(5)))
+					if (!runThread.Join(ExecutionTimeout))
 						throw new InvalidOperationException(
 							"Benchmark takes to long to run. " +
-								"Prefer to use out-of process toolchains for long-running benchmarks.");
+								"Prefer to use out-of-process toolchains for long-running benchmarks.");
 				});
 
 			var outputReader = new StreamReader(outputStream);
@@ -109,7 +115,6 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 			catch (Exception ex)
 			{
 				logger.WriteLineError($"// ! {GetType().Name}, exception: {ex}");
-				throw;
 			}
 			finally
 			{

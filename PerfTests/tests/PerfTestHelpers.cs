@@ -40,6 +40,7 @@ namespace CodeJam.PerfTests
 			result.Add(
 				new Job
 				{
+					Affinity = -1,
 					LaunchCount = 1,
 					Mode = Mode.SingleRun,
 					WarmupCount = 2,

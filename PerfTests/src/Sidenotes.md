@@ -8,7 +8,7 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
 ## TODO:
- * Check if we're doing double loosing for logged benchmark limits.
+ * Annotations exporter?
  * Tests for broken log annotations.
  * Logging: write validator messages immediately?
  * Naming: Annotations <> Limits?

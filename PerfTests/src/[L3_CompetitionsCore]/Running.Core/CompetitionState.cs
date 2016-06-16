@@ -37,7 +37,9 @@ namespace CodeJam.PerfTests.Running.Core
 		public bool InFirstRun => RunNumber == 1;
 
 		/// <summary>The competition has no additional runs requested or the count of runs is out of limit.</summary>
-		/// <value><c>true</c> if the competition has no additional runs requested or the count of runs is out of limit.</value>
+		/// <value>
+		/// <c>true</c> if the competition has no additional runs requested or the count of runs is out of limit.
+		/// </value>
 		public bool LooksLikeLastRun => RunsLeft <= 0 || RunLimitExceeded;
 
 		/// <summary>The count of runs is out of limit.</summary>
@@ -88,13 +90,13 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <value>The summary for the last completed run.</value>
 		public Summary LastRunSummary { get; private set; }
 
+		/// <summary>List of summaries from all runs.</summary>
+		/// <value>The list of summaries from all runs.</value>
+		public IReadOnlyList<Summary> SummaryFromAllRuns { get; }
+
 		/// <summary>The competition was completed.</summary>
 		/// <value><c>true</c> if the competition was completed.</value>
 		public bool Completed { get; private set; }
-
-		/// <summary>Summaries from all runs.</summary>
-		/// <value>The list of summary from all runs.</value>
-		public IReadOnlyList<Summary> SummaryFromAllRuns { get; }
 		#endregion
 
 		[AssertionMethod]
@@ -121,6 +123,7 @@ namespace CodeJam.PerfTests.Running.Core
 			HighestMessageSeverityInRun = MessageSeverity.Verbose;
 			MessagesInRun = 0;
 			LastRunSummary = null;
+			_summaries.Clear();
 		}
 
 		/// <summary>Prepare for next run.</summary>
@@ -165,7 +168,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			AssertIsInCompetition();
 
-			Code.InRange(additionalRunsCount, nameof(additionalRunsCount), 0, 1000);
+			Code.InRange(additionalRunsCount, nameof(additionalRunsCount), 0, 100);
 			Code.NotNullNorEmpty(explanationMessage, nameof(explanationMessage));
 
 			if (additionalRunsCount == 0)
