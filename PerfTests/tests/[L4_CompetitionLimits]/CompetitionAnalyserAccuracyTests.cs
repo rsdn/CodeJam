@@ -118,7 +118,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnnotateAnalyser: All competition limits are ok.");
-			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 14, "Timeout failed");
+			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 34, "Timeout failed");
 		}
 
 		#region Benchmark classes
