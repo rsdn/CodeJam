@@ -20,7 +20,7 @@ using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Columns;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Loggers;
-using CodeJam.PerfTests.Running.CompetitionLimits;
+using CodeJam.PerfTests.Running.CompetitionLimitProviders;
 using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
@@ -131,7 +131,7 @@ namespace CodeJam.PerfTests.Running.Core
 			var temp = new ManualCompetitionConfig(competitionConfig);
 			if (temp.CompetitionLimitProvider == null)
 			{
-				temp.CompetitionLimitProvider = PercentileCompetitionLimitProvider.P90;
+				temp.CompetitionLimitProvider = PercentileLimitProvider.P90;
 			}
 			competitionConfig = temp.AsReadOnly();
 			return competitionConfig;
@@ -363,8 +363,8 @@ namespace CodeJam.PerfTests.Running.Core
 				new[]
 				{
 					StatisticColumn.Min,
-					new CompetitionLimitColumn(competitionConfig.CompetitionLimitProvider, false), 
-					new CompetitionLimitColumn(competitionConfig.CompetitionLimitProvider, true), 
+					new CompetitionLimitColumn(competitionConfig.CompetitionLimitProvider, false),
+					new CompetitionLimitColumn(competitionConfig.CompetitionLimitProvider, true),
 					BaselineDiffColumn.Scaled50,
 					BaselineDiffColumn.Scaled85,
 					BaselineDiffColumn.Scaled95,

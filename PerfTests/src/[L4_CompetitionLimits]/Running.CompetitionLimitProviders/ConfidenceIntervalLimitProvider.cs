@@ -4,15 +4,15 @@ using BenchmarkDotNet.Mathematics;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.CompetitionLimits
+namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 {
 	/// <summary>Confidence interval-based competition limit provider..</summary>
 	/// <seealso cref="ICompetitionLimitProvider"/>
 	[PublicAPI]
-	public class ConfidenceIntervalMetricProvider : CompetitionLimitProviderBase
+	public class ConfidenceIntervalLimitProvider : CompetitionLimitProviderBase
 	{
-		/// <summary>The default instance of <see cref="ConfidenceIntervalMetricProvider"/></summary>
-		public static readonly ICompetitionLimitProvider Instance = new ConfidenceIntervalMetricProvider();
+		/// <summary>The default instance of <see cref="ConfidenceIntervalLimitProvider"/></summary>
+		public static readonly ICompetitionLimitProvider Instance = new ConfidenceIntervalLimitProvider();
 
 		/// <summary>Short description for the provider.</summary>
 		/// <value>The short description for the provider.</value>
@@ -32,7 +32,7 @@ namespace CodeJam.PerfTests.Running.CompetitionLimits
 				? ci.Upper
 				: ci.Mean;
 
-			return new CompetitionLimit(minRatio,maxRatio);
+			return new CompetitionLimit(minRatio, maxRatio);
 		}
 	}
 }

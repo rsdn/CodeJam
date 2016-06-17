@@ -5,20 +5,22 @@ using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
-using CodeJam.PerfTests.Running.CompetitionLimits;
+using CodeJam.PerfTests.Running.CompetitionLimitProviders;
 
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Columns
 {
 	/// <summary>Displays metric (upper or lower boundary) for the benchmark to baseline comparison.</summary>
-	/// <seealso cref="BenchmarkDotNet.Columns.IColumn" />
+	/// <seealso cref="BenchmarkDotNet.Columns.IColumn"/>
 	[PublicAPI]
 	public class CompetitionLimitColumn : IColumn
 	{
 		/// <summary>Initializes a new instance of the <see cref="CompetitionLimitColumn"/> class.</summary>
 		/// <param name="competitionLimitProvider">The competition limit provider.</param>
-		/// <param name="useMaxRatio">Use maximum timing ratio relative to the baseline. if set to <c>false</c> the minimum one used.</param>
+		/// <param name="useMaxRatio">
+		/// Use maximum timing ratio relative to the baseline. if set to <c>false</c> the minimum one used.
+		/// </param>
 		public CompetitionLimitColumn(ICompetitionLimitProvider competitionLimitProvider, bool useMaxRatio)
 		{
 			Code.NotNull(competitionLimitProvider, nameof(competitionLimitProvider));
@@ -27,8 +29,12 @@ namespace CodeJam.PerfTests.Columns
 			UseMaxRatio = useMaxRatio;
 		}
 
-		/// <summary>Use maximum timing ratio relative to the baseline. if set to <c>false</c> the minimum one used.</summary>
-		/// <value>If <c>true</c>: use maximum timing ratio relative to the baseline. if set to <c>false</c> the minimum one used.</value>
+		/// <summary>
+		/// Use maximum timing ratio relative to the baseline. if set to <c>false</c> the minimum one used.
+		/// </summary>
+		/// <value>
+		/// If <c>true</c>: use maximum timing ratio relative to the baseline. if set to <c>false</c> the minimum one used.
+		/// </value>
 		public bool UseMaxRatio { get; }
 
 		/// <summary>Instance of competition limit provider.</summary>
@@ -66,8 +72,8 @@ namespace CodeJam.PerfTests.Columns
 		/// <value>The category of the column.</value>
 		public ColumnCategory Category => ColumnCategory.Statistics;
 
-		/// <summary>Returns a <see cref="string" /> that represents this instance.</summary>
-		/// <returns>A <see cref="string" /> that represents this instance.</returns>
+		/// <summary>Returns a <see cref="string"/> that represents this instance.</summary>
+		/// <returns>A <see cref="string"/> that represents this instance.</returns>
 		public override string ToString() => ColumnName;
 	}
 }

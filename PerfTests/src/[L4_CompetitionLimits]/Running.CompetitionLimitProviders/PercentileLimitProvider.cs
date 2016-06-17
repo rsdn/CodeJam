@@ -4,25 +4,27 @@ using BenchmarkDotNet.Mathematics;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.CompetitionLimits
+namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 {
 	// TODO: something better than BoundaryLoosedBy?
 	/// <summary>Percentile-based competition limit provider.</summary>
 	/// <seealso cref="ICompetitionLimitProvider"/>
 	[PublicAPI]
-	public class PercentileCompetitionLimitProvider : CompetitionLimitProviderBase
+	public class PercentileLimitProvider : CompetitionLimitProviderBase
 	{
 		/// <summary> Metric is based on 90th percentile.</summary>
-		public static readonly ICompetitionLimitProvider P90 = new PercentileCompetitionLimitProvider(85, 95, 5);
+		public static readonly ICompetitionLimitProvider P90 = new PercentileLimitProvider(85, 95, 5);
 
 		/// <summary> Metric is based on 20 (lower boundary) and 80 (upper boundary) percentiles.</summary>
-		public static readonly ICompetitionLimitProvider P20To80 = new PercentileCompetitionLimitProvider(20, 80, 10);
+		public static readonly ICompetitionLimitProvider P20To80 = new PercentileLimitProvider(20, 80, 10);
 
-		/// <summary>Initializes a new instance of the <see cref="PercentileCompetitionLimitProvider"/> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="PercentileLimitProvider"/> class.</summary>
 		/// <param name="minRatioPercentile">The percentile for the minimum timing ratio.</param>
 		/// <param name="maxRatioPercentile">>The percentile for the maximum timing ratio.</param>
-		/// <param name="limitModeDelta">Delta to loose percentiles by. Used for <see cref="ICompetitionLimitProvider.TryGetLimitForActualValues "/>.</param>
-		public PercentileCompetitionLimitProvider(
+		/// <param name="limitModeDelta">
+		/// Delta to loose percentiles by. Used for <see cref="ICompetitionLimitProvider.TryGetLimitForActualValues "/>.
+		/// </param>
+		public PercentileLimitProvider(
 			int minRatioPercentile,
 			int maxRatioPercentile,
 			int limitModeDelta)
@@ -47,7 +49,6 @@ namespace CodeJam.PerfTests.Running.CompetitionLimits
 				? $"P{MinRatioPercentile}(±{LimitModeDelta})"
 				: $"P{MinRatioPercentile - LimitModeDelta}..{MaxRatioPercentile + LimitModeDelta}";
 
-
 		/// <summary>Percentile for the minimum timing ratio.</summary>
 		/// <value>The percentile for the minimum timing ratio.</value>
 		public int MinRatioPercentile { get; }
@@ -59,7 +60,6 @@ namespace CodeJam.PerfTests.Running.CompetitionLimits
 		/// <summary>Delta to loose percentiles by.</summary>
 		/// <value>The delta to loose percentiles by.</value>
 		public int LimitModeDelta { get; }
-
 
 		/// <summary>Limits for the benchmark.</summary>
 		/// <param name="timingRatios">Timing ratios relative to the baseline.</param>

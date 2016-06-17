@@ -6,7 +6,7 @@ using BenchmarkDotNet.Attributes;
 
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Exporters;
-using CodeJam.PerfTests.Running.CompetitionLimits;
+using CodeJam.PerfTests.Running.CompetitionLimitProviders;
 using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
@@ -22,7 +22,6 @@ namespace CodeJam.PerfTests
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
 	public static class CompetitionAnalyserAccuracyTests
 	{
-
 		[Test]
 		public static void TestCompetitionAnalyserTooFastBenchmark()
 		{
@@ -102,7 +101,7 @@ namespace CodeJam.PerfTests
 		{
 			var overrideConfig = new ManualCompetitionConfig(HighAccuracyConfig);
 			overrideConfig.DetailedLogging = true;
-			overrideConfig.CompetitionLimitProvider = ConfidenceIntervalMetricProvider.Instance;
+			overrideConfig.CompetitionLimitProvider = ConfidenceIntervalLimitProvider.Instance;
 			overrideConfig.Add(TimingsExporter.Instance);
 
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(overrideConfig);

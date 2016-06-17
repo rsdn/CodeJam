@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-using CodeJam.PerfTests.Running.CompetitionLimits;
 using CodeJam.PerfTests.Running.SourceAnnotations;
 
 using NUnit.Framework;

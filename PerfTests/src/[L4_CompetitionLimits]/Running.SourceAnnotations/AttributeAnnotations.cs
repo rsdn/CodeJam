@@ -3,8 +3,6 @@ using System.Reflection;
 
 using BenchmarkDotNet.Running;
 
-using CodeJam.PerfTests.Running.CompetitionLimits;
-
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations

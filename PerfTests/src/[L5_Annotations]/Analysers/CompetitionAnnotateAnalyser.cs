@@ -199,7 +199,7 @@ namespace CodeJam.PerfTests.Analysers
 					CompetitionTarget competitionTarget;
 					if (!competitionTargets.TryGetValue(benchmark.Target.Method, out competitionTarget))
 						continue;
-					
+
 					var limit = CompetitionLimitProvider.TryGetLimitForActualValues(benchmark, summary);
 					if (limit == null)
 					{
