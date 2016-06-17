@@ -157,19 +157,19 @@ namespace CodeJam.PerfTests
 		public class HighAccuracyBenchmark
 		{
 			[CompetitionBaseline]
-			public void Baseline() => Delay(LoopCount);
+			public void Baseline() => Delay(SpinCount);
 
-			[CompetitionBenchmark(1.93, 2.08)]
-			public void SlowerX2Run1() => Delay(2 * LoopCount);
+			[CompetitionBenchmark(1.8, 2.2)]
+			public void SlowerX2Run1() => Delay(2 * SpinCount);
 
-			[CompetitionBenchmark(1.91, 2.06)]
-			public void SlowerX2Run2() => Delay(2 * LoopCount);
+			[CompetitionBenchmark(1.8, 2.2)]
+			public void SlowerX2Run2() => Delay(2 * SpinCount);
 
-			[CompetitionBenchmark(1.92, 2.06)]
-			public void SlowerX2Run3() => Delay(2 * LoopCount);
+			[CompetitionBenchmark(1.8, 2.2)]
+			public void SlowerX2Run3() => Delay(2 * SpinCount);
 
-			[CompetitionBenchmark(4.81, 5.15)]
-			public void SlowerX5() => Delay(5 * LoopCount);
+			[CompetitionBenchmark(4.5, 5.5)]
+			public void SlowerX5() => Delay(5 * SpinCount);
 		}
 		#endregion
 	}
