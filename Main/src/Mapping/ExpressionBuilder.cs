@@ -144,12 +144,32 @@ namespace CodeJam.Mapping
 				}
 			}
 
-			var newExpression = Expression.New(toType.GetDefaultConstructor());
+			var newExpression = GetNewExpression(toType);
 
-			initExpression = binds.Count > 0 ? (Expression)Expression.MemberInit(newExpression, binds) : newExpression;
+			initExpression = Convert(binds.Count > 0 ? (Expression)Expression.MemberInit(newExpression, binds) : newExpression, toType);
 
 			return initExpression;
 		}
+
+		NewExpression GetNewExpression(Type originalType)
+		{
+			var type = originalType;
+
+			if (type.IsInterface && type.IsGenericType)
+			{
+				var definition = type.GetGenericTypeDefinition();
+
+				if (definition == typeof(IList<>) || definition == typeof(IEnumerable<>))
+				{
+					type = typeof(List<>).MakeGenericType(type.GetGenericArguments()[0]);
+				}
+			}
+
+			return Expression.New(type);
+		}
+
+		Expression Convert(Expression expr, Type toType)
+			=> expr.Type == toType ? expr : Expression.Convert(expr, toType);
 
 		Expression BuildCollectionMapper(Expression fromExpression, Type toType)
 		{
@@ -164,11 +184,13 @@ namespace CodeJam.Mapping
 				{
 					var toDefinition = toType.GetGenericTypeDefinition();
 
-					if (toDefinition == typeof(List<>))
+					if (toDefinition == typeof(List<>) || typeof(List<>).IsSubClass(toDefinition))
 					{
-						return ExpressionBuilderHelper.ToList(_mapperBuilder, null, fromExpression, fromItemType, toItemType);
+						return Convert(ExpressionBuilderHelper.ToList(_mapperBuilder, null, fromExpression, fromItemType, toItemType), toType);
 					}
 				}
+
+				throw new NotImplementedException();
 			}
 
 			return null;
@@ -198,11 +220,12 @@ namespace CodeJam.Mapping
 				var type = _mapperBuilder.MappingSchema.IsScalarType(_fromType) ? _fromType : _toType;
 
 				return Expression.Lambda(
-					Expression.Throw(
-						Expression.New(
-							InfoOf.Constructor(() => new ArgumentException("")),
-							Expression.Constant($"Type {type.FullName} cannot be a scalar type. To convert scalar types use ConvertTo<TTo>.From(TFrom value).")),
-						_toType),
+					//Expression.Throw(
+					//	Expression.New(
+					//		InfoOf.Constructor(() => new ArgumentException("")),
+					//		Expression.Constant($"Type {type.FullName} cannot be a scalar type. To convert scalar types use ConvertTo<TTo>.From(TFrom value).")),
+					//	_toType),
+					_mapperBuilder.MappingSchema.GetConvertExpression(_fromType, _toType).ReplaceParameters(pFrom),
 					pFrom,
 					pTo,
 					pDic);
@@ -263,7 +286,7 @@ namespace CodeJam.Mapping
 					_localObject,
 					Expression.Condition(
 						Expression.Equal(_toExpression, Expression.Constant(null, _toExpression.Type)),
-						Expression.New(_toExpression.Type.GetDefaultConstructor(true)),
+						_builder.Convert(_builder.GetNewExpression(_toExpression.Type), _toExpression.Type),
 						_toExpression)));
 
 				if (_builder._mapperBuilder.ProcessCrossReferences != false)
@@ -443,10 +466,18 @@ namespace CodeJam.Mapping
 					{
 						var toDefinition = toListType.GetGenericTypeDefinition();
 
-						if (toDefinition == typeof(List<>))
+						if (toDefinition == typeof(List<>) || typeof(List<>).IsSubClass(toDefinition))
 						{
 							expr = ExpressionBuilderHelper.ToList(_builder._mapperBuilder, _cacheMapper ? _pDic : null, _fromExpression, fromItemType, toItemType);
 						}
+						else
+						{
+							throw new NotImplementedException();
+						}
+					}
+					else
+					{
+						throw new NotImplementedException();
 					}
 				}
 
