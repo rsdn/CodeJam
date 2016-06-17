@@ -3,6 +3,8 @@ using System.Reflection;
 
 using BenchmarkDotNet.Running;
 
+using CodeJam.PerfTests.Running.CompetitionLimits;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations
@@ -13,13 +15,13 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	internal static class AttributeAnnotations
 	{
 		/// <summary>
-		/// Returns the name of target resource if defined in <seealso cref="CompetitionMetadataAttribute"/>.
+		/// Returns the name of target resource if defined in <see cref="CompetitionMetadataAttribute"/>.
 		/// If the target type is nested all container types are checked too.
 		/// </summary>
 		/// <param name="target">The target to get resource name for.</param>
 		/// <returns>
 		/// Name of the resource containing xml document with competition limits
-		/// or <c>null</c> if the target is not annotated with <seealso cref="CompetitionMetadataAttribute"/>
+		/// or <c>null</c> if the target is not annotated with <see cref="CompetitionMetadataAttribute"/>
 		/// </returns>
 		public static CompetitionMetadataAttribute TryGetCompetitionMetadata([NotNull] Target target)
 		{
@@ -39,12 +41,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		}
 
 		/// <summary>
-		/// Creates <seealso cref="CompetitionLimit"/> from <seealso cref="CompetitionBenchmarkAttribute"/>.
+		/// Creates <see cref="CompetitionLimit"/> from <see cref="CompetitionBenchmarkAttribute"/>.
 		/// </summary>
 		/// <param name="competitionAttribute">The attribute with competition limits.</param>
 		/// <returns>
 		/// A new instance of the <see cref="CompetitionLimit"/> class
-		/// filled with the properties from <seealso cref="CompetitionBenchmarkAttribute"/>
+		/// filled with the properties from <see cref="CompetitionBenchmarkAttribute"/>
 		/// </returns>
 		public static CompetitionLimit ParseAnnotation(
 			[NotNull] CompetitionBenchmarkAttribute competitionAttribute)

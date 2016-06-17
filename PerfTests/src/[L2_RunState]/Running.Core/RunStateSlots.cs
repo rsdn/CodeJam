@@ -11,18 +11,18 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>
-	/// Helper type to store the values for the <seealso cref="RunState{T}"/>.
+	/// Helper type to store the values for the <see cref="RunState{T}"/>.
 	/// </summary>
 	internal class RunStateSlots : IValidator
 	{
 		private readonly ConcurrentDictionary<Type, object> _stateSlots = new ConcurrentDictionary<Type, object>();
 
 		/// <summary>
-		/// Returns the value for the <seealso cref="RunState{T}"/>.
+		/// Returns the value for the <see cref="RunState{T}"/>.
 		/// There can be only one value of each type stored as a run state so the slot works as per-run singleton.
 		/// </summary>
 		/// <typeparam name="T">The type of the running state instance.</typeparam>
-		/// <returns>The value for the <seealso cref="RunState{T}"/>.</returns>
+		/// <returns>The value for the <see cref="RunState{T}"/>.</returns>
 		[NotNull]
 		public T GetSlot<T>() where T : class, new() => (T)_stateSlots.GetOrAdd(typeof(T), t => new T());
 

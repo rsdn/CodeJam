@@ -66,7 +66,7 @@ namespace CodeJam.PerfTests.Running.Core
 		#region Host-related logic
 		/// <summary>Creates a host logger.</summary>
 		/// <param name="hostLogMode">The host log mode.</param>
-		/// <returns>An instance of <seealso cref="CompetitionRunnerBase.HostLogger"/></returns>
+		/// <returns>An instance of <see cref="CompetitionRunnerBase.HostLogger"/></returns>
 		protected override HostLogger CreateHostLogger(HostLogMode hostLogMode) =>
 			new NUnitHostLogger(hostLogMode);
 

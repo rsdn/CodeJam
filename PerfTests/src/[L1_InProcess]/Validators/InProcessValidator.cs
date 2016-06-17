@@ -16,7 +16,7 @@ using JetBrains.Annotations;
 namespace BenchmarkDotNet.Validators
 {
 	/// <summary>
-	/// Validator to be used together with <seealso cref="InProcessToolchain"/> to proof that the config matches the environment.
+	/// Validator to be used together with <see cref="InProcessToolchain"/> to proof that the config matches the environment.
 	/// </summary>
 	/// <seealso cref="IValidator"/>
 	[PublicAPI]

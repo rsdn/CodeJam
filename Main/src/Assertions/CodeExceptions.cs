@@ -83,8 +83,8 @@ namespace CodeJam
 		/// <summary>Creates <seealso cref="ArgumentOutOfRangeException"/></summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
-		/// <param name="fromValue">From value.</param>
-		/// <param name="toValue">To value.</param>
+		/// <param name="fromValue">From value (inclusive).</param>
+		/// <param name="toValue">To value (inclusive).</param>
 		/// <returns>Initialized instance of <seealso cref="ArgumentOutOfRangeException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
@@ -103,8 +103,8 @@ namespace CodeJam
 		/// <typeparam name="T"></typeparam>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
-		/// <param name="fromValue">From value.</param>
-		/// <param name="toValue">To value.</param>
+		/// <param name="fromValue">From value (inclusive).</param>
+		/// <param name="toValue">To value (inclusive).</param>
 		/// <returns>Initialized instance of <seealso cref="ArgumentOutOfRangeException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]

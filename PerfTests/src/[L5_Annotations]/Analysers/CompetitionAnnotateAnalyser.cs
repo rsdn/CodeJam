@@ -43,7 +43,7 @@ namespace CodeJam.PerfTests.Analysers
 		/// URI of the log that contains competition limits from previous run(s).
 		/// Relative paths, file paths and web URLs are supported.
 		/// If <see cref="UpdateSourceAnnotations"/> set to <c>true</c>, the annotations will be updated with limits from the log.
-		/// Enable the <seealso cref="CompetitionAnalyser.LogCompetitionLimits"/> to log the limits.
+		/// Enable the <see cref="CompetitionAnalyser.LogCompetitionLimits"/> to log the limits.
 		/// </summary>
 		/// <value>The URI of the log that contains competition limits from previous run(s).</value>
 		public string PreviousRunLogUri { get; set; }
@@ -57,7 +57,7 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		/// <summary>
-		/// Refills the competition targets collection and fills competition limits from the <seealso cref="PreviousRunLogUri"/>.
+		/// Refills the competition targets collection and fills competition limits from the <see cref="PreviousRunLogUri"/>.
 		/// </summary>
 		/// <param name="competitionTargets">The collection to be filled with competition targets.</param>
 		/// <param name="summary">Summary for the run.</param>
@@ -199,18 +199,14 @@ namespace CodeJam.PerfTests.Analysers
 					CompetitionTarget competitionTarget;
 					if (!competitionTargets.TryGetValue(benchmark.Target.Method, out competitionTarget))
 						continue;
-
-					double actualRatioMin, actualRatioMax;
-
-					if (!LimitMetricProvider.TryGetBoundaryMetrics(
-						benchmark, summary,
-						out actualRatioMin, out actualRatioMax))
+					
+					var limit = CompetitionLimitProvider.TryGetLimitForActualValues(benchmark, summary);
+					if (limit == null)
 					{
 						// No warnings required. Missing values should be checked by base class.
 						continue;
 					}
 
-					var limit = new CompetitionLimit(actualRatioMin, actualRatioMax);
 					if (competitionTarget.UnionWith(limit))
 					{
 						adjusted.Add(competitionTarget);

@@ -9,7 +9,7 @@ using BenchmarkDotNet.Toolchains.Results;
 namespace BenchmarkDotNet.Toolchains.InProcess
 {
 	/// <summary>
-	/// Implementation of <seealso cref="IBuilder"/> for in-process benchmarks.
+	/// Implementation of <see cref="IBuilder"/> for in-process benchmarks.
 	/// </summary>
 	public class InProcessBuilder : IBuilder
 	{

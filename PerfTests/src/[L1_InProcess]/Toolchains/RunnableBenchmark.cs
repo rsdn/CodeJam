@@ -16,7 +16,7 @@ namespace BenchmarkDotNet.Toolchains
 
 	// Copy of the code generated for each benchmark
 	/// <summary>
-	/// Implementation of <seealso cref="IRunnableBenchmark"/> for methods with return values.
+	/// Implementation of <see cref="IRunnableBenchmark"/> for methods with return values.
 	/// </summary>
 	/// <typeparam name="TTarget">The type of the target.</typeparam>
 	/// <typeparam name="TResult">The type of the result.</typeparam>
@@ -92,7 +92,7 @@ namespace BenchmarkDotNet.Toolchains
 
 	// Copy of the InProcessProgram<TTarget, TResult>. Func<TResult> => Action.
 	/// <summary>
-	/// Implementation of <seealso cref="IRunnableBenchmark"/> for methods that DO NOT return value.
+	/// Implementation of <see cref="IRunnableBenchmark"/> for methods that DO NOT return value.
 	/// </summary>
 	/// <typeparam name="TTarget">The type of the target.</typeparam>
 	/// <seealso cref="IRunnableBenchmark"/>

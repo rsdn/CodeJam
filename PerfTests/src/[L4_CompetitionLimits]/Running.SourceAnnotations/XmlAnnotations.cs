@@ -13,6 +13,7 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 
 using CodeJam.PerfTests.Loggers;
+using CodeJam.PerfTests.Running.CompetitionLimits;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 

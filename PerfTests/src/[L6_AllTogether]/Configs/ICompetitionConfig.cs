@@ -2,7 +2,7 @@
 
 using BenchmarkDotNet.Configs;
 
-using CodeJam.PerfTests.Metrics;
+using CodeJam.PerfTests.Running.CompetitionLimits;
 
 namespace CodeJam.PerfTests.Configs
 {
@@ -50,9 +50,9 @@ namespace CodeJam.PerfTests.Configs
 		/// <value><c>true</c> if competition limits should be logged; otherwise, <c>false</c>.</value>
 		bool LogCompetitionLimits { get; }
 
-		/// <summary>Provider for benchmark limit metrics.</summary>
-		/// <value>The provider for benchmark limit metrics.</value>
-		ILimitMetricProvider LimitMetricProvider { get; }
+		/// <summary>Competition limit provider.</summary>
+		/// <value>The competition limit provider.</value>
+		ICompetitionLimitProvider CompetitionLimitProvider { get; }
 		#endregion
 
 		#region Annotation config
@@ -64,7 +64,7 @@ namespace CodeJam.PerfTests.Configs
 		/// URI of the log that contains competition limits from previous run(s).
 		/// Relative paths, file paths and web URLs are supported.
 		/// If <see cref="UpdateSourceAnnotations"/> set to <c>true</c>, the annotations will be updated with limits from the log.
-		/// Set <seealso cref="LogCompetitionLimits"/> <c>true</c> to log the limits.
+		/// Set <see cref="LogCompetitionLimits"/> <c>true</c> to log the limits.
 		/// </summary>
 		/// <value>The URI of the log that contains competition limits from previous run(s).</value>
 		string PreviousRunLogUri { get; }

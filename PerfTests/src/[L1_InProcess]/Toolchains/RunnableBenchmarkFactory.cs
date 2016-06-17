@@ -9,7 +9,7 @@ using BenchmarkDotNet.Running;
 namespace BenchmarkDotNet.Toolchains
 {
 	/// <summary>
-	/// Helper class to create <seealso cref="IRunnableBenchmark"/> from <seealso cref="Benchmark"/> instance.
+	/// Helper class to create <see cref="IRunnableBenchmark"/> from <see cref="Benchmark"/> instance.
 	/// </summary>
 	public static class RunnableBenchmarkFactory
 	{

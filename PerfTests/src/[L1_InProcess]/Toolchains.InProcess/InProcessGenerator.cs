@@ -10,7 +10,7 @@ using BenchmarkDotNet.Toolchains.Results;
 namespace BenchmarkDotNet.Toolchains.InProcess
 {
 	/// <summary>
-	/// Implementation of <seealso cref="IGenerator"/> for in-process benchmarks.
+	/// Implementation of <see cref="IGenerator"/> for in-process benchmarks.
 	/// </summary>
 	public class InProcessGenerator : IGenerator
 	{

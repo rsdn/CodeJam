@@ -19,7 +19,7 @@ using JetBrains.Annotations;
 namespace BenchmarkDotNet.Toolchains.InProcess
 {
 	/// <summary>
-	/// Implementation of <seealso cref="IExecutor"/> for in-process benchmarks.
+	/// Implementation of <see cref="IExecutor"/> for in-process benchmarks.
 	/// </summary>
 	[PublicAPI]
 	public class InProcessExecutor : IExecutor

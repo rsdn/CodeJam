@@ -20,7 +20,7 @@ using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Columns;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Loggers;
-using CodeJam.PerfTests.Metrics;
+using CodeJam.PerfTests.Running.CompetitionLimits;
 using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
@@ -129,9 +129,9 @@ namespace CodeJam.PerfTests.Running.Core
 		private ICompetitionConfig PrepareCompetitionConfig(ICompetitionConfig competitionConfig)
 		{
 			var temp = new ManualCompetitionConfig(competitionConfig);
-			if (temp.LimitMetricProvider == null)
+			if (temp.CompetitionLimitProvider == null)
 			{
-				temp.LimitMetricProvider = PercentileMetricProvider.P95;
+				temp.CompetitionLimitProvider = PercentileCompetitionLimitProvider.P90;
 			}
 			competitionConfig = temp.AsReadOnly();
 			return competitionConfig;
@@ -302,7 +302,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Creates a host logger.</summary>
 		/// <param name="hostLogMode">The host log mode.</param>
-		/// <returns>An instance of <seealso cref="HostLogger"/></returns>
+		/// <returns>An instance of <see cref="HostLogger"/></returns>
 		[NotNull]
 		protected abstract HostLogger CreateHostLogger(HostLogMode hostLogMode);
 
@@ -363,8 +363,8 @@ namespace CodeJam.PerfTests.Running.Core
 				new[]
 				{
 					StatisticColumn.Min,
-					new MetricProviderColumn(competitionConfig.LimitMetricProvider, false),
-					new MetricProviderColumn(competitionConfig.LimitMetricProvider, true),
+					new CompetitionLimitColumn(competitionConfig.CompetitionLimitProvider, false), 
+					new CompetitionLimitColumn(competitionConfig.CompetitionLimitProvider, true), 
 					BaselineDiffColumn.Scaled50,
 					BaselineDiffColumn.Scaled85,
 					BaselineDiffColumn.Scaled95,
@@ -419,7 +419,7 @@ namespace CodeJam.PerfTests.Running.Core
 					LongRunningBenchmarkLimit = competitionConfig.AllowLongRunningBenchmarks ? _allowLongRunLimit : _longRunLimit,
 					IgnoreExistingAnnotations = competitionConfig.IgnoreExistingAnnotations,
 					LogCompetitionLimits = competitionConfig.LogCompetitionLimits,
-					LimitMetricProvider = competitionConfig.LimitMetricProvider,
+					CompetitionLimitProvider = competitionConfig.CompetitionLimitProvider,
 					UpdateSourceAnnotations = competitionConfig.UpdateSourceAnnotations,
 					PreviousRunLogUri = competitionConfig.PreviousRunLogUri
 				};

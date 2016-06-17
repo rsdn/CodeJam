@@ -106,8 +106,8 @@ namespace CodeJam
 		/// <summary>Assertion for the argument in range</summary>
 		/// <param name="value">The value.</param>
 		/// <param name="argName">Name of the argument.</param>
-		/// <param name="fromValue">From value.</param>
-		/// <param name="toValue">To value.</param>
+		/// <param name="fromValue">From value (inclusive).</param>
+		/// <param name="toValue">To value (inclusive).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void InRange(
@@ -124,8 +124,8 @@ namespace CodeJam
 		/// <typeparam name="T">Type of the value</typeparam>
 		/// <param name="value">The value.</param>
 		/// <param name="argName">Name of the argument.</param>
-		/// <param name="fromValue">From value.</param>
-		/// <param name="toValue">To value.</param>
+		/// <param name="fromValue">From value (inclusive).</param>
+		/// <param name="toValue">To value (inclusive).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void InRange<T>(

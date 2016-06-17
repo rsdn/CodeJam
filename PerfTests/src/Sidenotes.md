@@ -8,6 +8,7 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
 ## TODO:
+ * BUG: no output for RunSensitivityPerfTests
  * Annotations exporter?
  * Tests for broken log annotations.
  * Logging: write validator messages immediately?

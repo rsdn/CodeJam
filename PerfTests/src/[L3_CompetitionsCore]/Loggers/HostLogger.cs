@@ -10,9 +10,8 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Loggers
 {
-	/// <summary>
-	/// Basic logger implementation for unit test runners
-	/// </summary>
+	/// <summary>Basic logger implementation for unit test runners</summary>
+	/// <seealso cref="BenchmarkDotNet.Loggers.ILogger" />
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
@@ -24,25 +23,25 @@ namespace CodeJam.PerfTests.Loggers
 		#region Log line prefixes (constants)
 		/// <summary>
 		/// The prefix for informational log lines.
-		/// Lines with this prefix will be written even if <seealso cref="HostLogMode"/> filter applied.
+		/// Lines with this prefix will be written even if <see cref="HostLogMode"/> filter applied.
 		/// </summary>
 		public const string LogInfoPrefix = "// ?";
 
 		/// <summary>
 		/// The prefix for important log lines.
-		/// Lines with this prefix will be written even if <seealso cref="HostLogMode"/> filter applied.
+		/// Lines with this prefix will be written even if <see cref="HostLogMode"/> filter applied.
 		/// </summary>
 		public const string LogImportantInfoPrefix = "// !";
 
 		/// <summary>
 		/// The start prefix for important log area.
-		/// Lines between start and end prefixes will be written even if <seealso cref="HostLogMode"/> filter applied.
+		/// Lines between start and end prefixes will be written even if <see cref="HostLogMode"/> filter applied.
 		/// </summary>
 		public const string LogImportantAreaStart = "// !<--";
 
 		/// <summary>
 		/// The end prefix for important log area.
-		/// Lines between start and end prefixes will be written even if <seealso cref="HostLogMode"/> filter applied.
+		/// Lines between start and end prefixes will be written even if <see cref="HostLogMode"/> filter applied.
 		/// </summary>
 		public const string LogImportantAreaEnd = "// !-->";
 		#endregion

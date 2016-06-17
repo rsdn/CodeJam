@@ -11,7 +11,7 @@ using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
 using CodeJam.Collections;
-using CodeJam.PerfTests.Metrics;
+using CodeJam.PerfTests.Running.CompetitionLimits;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.PerfTests.Running.SourceAnnotations;
@@ -59,9 +59,9 @@ namespace CodeJam.PerfTests.Analysers
 		/// <value><c>true</c> if competition limits should be logged; otherwise, <c>false</c>.</value>
 		public bool LogCompetitionLimits { get; set; }
 
-		/// <summary>Provider for benchmark limit metrics.</summary>
-		/// <value>The provider for benchmark limit metrics.</value>
-		public ILimitMetricProvider LimitMetricProvider { get; set; }
+		/// <summary>Competition limit provider.</summary>
+		/// <value>The competition limit provider..</value>
+		public ICompetitionLimitProvider CompetitionLimitProvider { get; set; }
 		#endregion
 
 		/// <summary>Performs limit validation for competition benchmarks.</summary>
@@ -197,11 +197,11 @@ namespace CodeJam.PerfTests.Analysers
 			var competitionState = CompetitionCore.RunState[summary];
 			var competitionTargets = TargetsSlot[summary];
 
-			if (LimitMetricProvider == null)
+			if (CompetitionLimitProvider == null)
 			{
 				competitionState.AddAnalyserWarning(
 					warnings, MessageSeverity.SetupError,
-					$"The {nameof(LimitMetricProvider)} should be not null.");
+					$"The {nameof(CompetitionLimitProvider)} should be not null.");
 				return;
 			}
 
@@ -238,39 +238,27 @@ namespace CodeJam.PerfTests.Analysers
 
 			var competitionState = CompetitionCore.RunState[summary];
 
-			double actualRatioMin, actualRatioMax;
-			if (!LimitMetricProvider.TryGetMetrics(
-				benchmark, summary,
-				out actualRatioMin, out actualRatioMax))
+			var actualValues = CompetitionLimitProvider.TryGetActualValues(benchmark, summary);
+			if (actualValues == null)
 			{
-				var baselineBenchmark = summary.TryGetBaseline(benchmark);
 				competitionState.AddAnalyserWarning(
 					warnings, MessageSeverity.TestError,
-					$"Baseline benchmark {baselineBenchmark?.ShortInfo} does not compute.",
+					$"Could not obtain competition limits for {benchmark.ShortInfo}.",
 					summary.TryGetBenchmarkReport(benchmark));
+
 				return false;
 			}
 
 			bool validated = true;
 			var targetMethodTitle = benchmark.Target.MethodTitle;
 
-			if (!competitionLimit.MinRatioIsOk(actualRatioMin))
+			// TODO: detailed message.
+			if (!competitionLimit.CheckLimitsFor(actualValues))
 			{
-				var actualRatioText = CompetitionLimit.GetActualRatioText(actualRatioMin);
 				validated = false;
 				competitionState.AddAnalyserWarning(
 					warnings, MessageSeverity.TestError,
-					$"Method {targetMethodTitle} runs faster than {competitionLimit.MinRatioText}x baseline. Actual ratio: {actualRatioText}x",
-					summary.TryGetBenchmarkReport(benchmark));
-			}
-
-			if (!competitionLimit.MaxRatioIsOk(actualRatioMax))
-			{
-				var actualRatioText = CompetitionLimit.GetActualRatioText(actualRatioMax);
-				validated = false;
-				competitionState.AddAnalyserWarning(
-					warnings, MessageSeverity.TestError,
-					$"Method {targetMethodTitle} runs slower than {competitionLimit.MaxRatioText}x baseline. Actual ratio: {actualRatioText}x",
+					$"Method {targetMethodTitle} {actualValues} does not fit into limits {competitionLimit}",
 					summary.TryGetBenchmarkReport(benchmark));
 			}
 
