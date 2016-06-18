@@ -12,8 +12,9 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 	[PublicAPI]
 	public class PercentileLimitProvider : CompetitionLimitProviderBase
 	{
+		// TODO: better default instances.
 		/// <summary> Metric is based on 90th percentile.</summary>
-		public static readonly ICompetitionLimitProvider P90 = new PercentileLimitProvider(85, 95, 5);
+		public static readonly ICompetitionLimitProvider P90 = new PercentileLimitProvider(90, 90, 5);
 
 		/// <summary> Metric is based on 20 (lower boundary) and 80 (upper boundary) percentiles.</summary>
 		public static readonly ICompetitionLimitProvider P20To80 = new PercentileLimitProvider(20, 80, 10);
@@ -29,13 +30,9 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 			int maxRatioPercentile,
 			int limitModeDelta)
 		{
-			Code.ValidIndexPair(
-				minRatioPercentile,
-				nameof(minRatioPercentile),
-				maxRatioPercentile,
-				nameof(maxRatioPercentile),
-				100);
-			Code.InRange(limitModeDelta, nameof(limitModeDelta), 0, 20);
+			Code.InRange(minRatioPercentile, nameof(minRatioPercentile), 0, maxRatioPercentile);
+			Code.InRange(maxRatioPercentile, nameof(maxRatioPercentile), minRatioPercentile, 99);
+			Code.InRange(limitModeDelta, nameof(limitModeDelta), 0, 99);
 
 			MinRatioPercentile = minRatioPercentile;
 			MaxRatioPercentile = maxRatioPercentile;
@@ -57,7 +54,7 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 		/// <value>The percentile for the maximum timing ratio.</value>
 		public int MaxRatioPercentile { get; }
 
-		/// <summary>Delta to loose percentiles by.</summary>
+		/// <summary>Delta to loose percentiles by. Used for <see cref="ICompetitionLimitProvider.TryGetLimitForActualValues "/>.</summary>
 		/// <value>The delta to loose percentiles by.</value>
 		public int LimitModeDelta { get; }
 

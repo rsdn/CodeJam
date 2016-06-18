@@ -2,8 +2,8 @@
 using System.Linq;
 
 using BenchmarkDotNet.Exporters;
+using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
-using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Reports;
 
 using CodeJam.Collections;
@@ -30,7 +30,7 @@ namespace CodeJam.PerfTests.Exporters
 		protected override string FileCaption => "timings";
 
 		/// <summary>Exports to log.</summary>
-		/// <param name="summary">The summary.</param>
+		/// <param name="summary">Summary for the run.</param>
 		/// <param name="logger">The logger.</param>
 		public override void ExportToLog([NotNull] Summary summary, [NotNull] ILogger logger)
 		{
@@ -49,11 +49,9 @@ namespace CodeJam.PerfTests.Exporters
 				summaries = summaries.Concat(summary).ToArray();
 			}
 
-			var orderProvider = summary.Config.GetOrderProvider() ?? DefaultOrderProvider.Instance;
-
 			var data =
 				from sWithIndex in summaries.Select((s, i) => new { s, i })
-				from benchmark in orderProvider.GetSummaryOrder(sWithIndex.s.Benchmarks, sWithIndex.s)
+				from benchmark in sWithIndex.s.GetSummaryOrderBenchmarks()
 				from measurement in sWithIndex.s[benchmark].AllMeasurements.Select((m, i) => new { m, i })
 				select new
 				{

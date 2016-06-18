@@ -46,7 +46,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// A new instance of the <see cref="CompetitionLimit"/> class
 		/// filled with the properties from <see cref="CompetitionBenchmarkAttribute"/>
 		/// </returns>
-		public static CompetitionLimit ParseAnnotation(
+		public static CompetitionLimit ParseCompetitionLimit(
 			[NotNull] CompetitionBenchmarkAttribute competitionAttribute)
 		{
 			Code.NotNull(competitionAttribute, nameof(competitionAttribute));

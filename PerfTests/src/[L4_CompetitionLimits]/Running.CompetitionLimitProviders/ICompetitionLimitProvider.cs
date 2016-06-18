@@ -13,14 +13,14 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 		string ShortInfo { get; }
 
 		/// <summary>Actual values for the benchmark.</summary>
-		/// <param name="summary">The summary.</param>
+		/// <param name="summary">Summary for the run.</param>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns>Actual values for the benchmark or <c>null</c> if none.</returns>
 		CompetitionLimit TryGetActualValues(Benchmark benchmark, Summary summary);
 
 		/// <summary>Limits for the benchmark.</summary>
 		/// <param name="benchmark">The benchmark.</param>
-		/// <param name="summary">The summary.</param>
+		/// <param name="summary">Summary for the run.</param>
 		/// <returns>Limits for the benchmark or <c>null</c> if none.</returns>
 		CompetitionLimit TryGetLimitForActualValues(Benchmark benchmark, Summary summary);
 	}

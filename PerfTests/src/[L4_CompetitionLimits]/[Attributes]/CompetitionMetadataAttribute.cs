@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests
 {
-	/// <summary>Attribute for benchmark classes that stores competition limits as embedded XML resource.</summary>
+	/// <summary>Attribute for benchmark classes that stores competition limits as embedded xml resource.</summary>
 	/// <remarks>
 	/// In case the <see cref="MetadataResourcePath"/> is not set:
 	/// Let's say there's benchmark class named MyNamespace.MyBenchmark

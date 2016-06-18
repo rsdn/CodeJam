@@ -37,8 +37,43 @@ namespace BenchmarkDotNet.Helpers
 		public static IConfig AsReadOnly(this IConfig config) => new ReadOnlyConfig(config);
 
 		#region Selects
+		/// <summary>Returns jobs from the benchmarks.</summary>
+		/// <param name="benchmarks">The benchmarks to select jobs from.</param>
+		/// <returns>Jobs from the benchmarks.</returns>
+		// ReSharper disable once ReturnTypeCanBeEnumerable.Global
+		public static IOrderedEnumerable<IJob> GetJobs([NotNull] this IEnumerable<Benchmark> benchmarks) =>
+			benchmarks
+				.Select(d => d.Job)
+				.Distinct()
+				.OrderBy(d => d.GetShortInfo());
+
+		/// <summary>Groups benchmarks being run under same conditions (job+parameters).</summary>
+		/// <param name="summary">Summary for the run.</param>
+		/// <returns>Benchmark grouped by run conditions</returns>
+		public static ILookup<KeyValuePair<IJob, ParameterInstances>, Benchmark> SameConditionsBenchmarks(
+			[NotNull] this Summary summary) =>
+				summary.Benchmarks.ToLookup(b => new KeyValuePair<IJob, ParameterInstances>(b.Job, b.Parameters));
+
+		/// <summary>Returns benchmarks for the summary sorted by execution order.</summary>
+		/// <param name="summary">Summary for the run.</param>
+		/// <returns>Benchmarks for the summary.</returns>
+		public static IEnumerable<Benchmark> GetExecutionOrderBenchmarks([NotNull] this Summary summary)
+		{
+			var orderProvider = summary.Config.GetOrderProvider() ?? DefaultOrderProvider.Instance;
+			return orderProvider.GetExecutionOrder(summary.Benchmarks);
+		}
+
+		/// <summary>Returns benchmarks for the summary sorted by display order.</summary>
+		/// <param name="summary">Summary for the run.</param>
+		/// <returns>Benchmarks for the summary.</returns>
+		public static IEnumerable<Benchmark> GetSummaryOrderBenchmarks([NotNull] this Summary summary)
+		{
+			var orderProvider = summary.Config.GetOrderProvider() ?? DefaultOrderProvider.Instance;
+			return orderProvider.GetSummaryOrder(summary.Benchmarks, summary);
+		}
+
 		/// <summary>Returns the baseline for the benchmark.</summary>
-		/// <param name="summary">The summary.</param>
+		/// <param name="summary">Summary for the run.</param>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns>Baseline for the benchmark</returns>
 		public static Benchmark TryGetBaseline(
@@ -49,52 +84,13 @@ namespace BenchmarkDotNet.Helpers
 					.FirstOrDefault(b => b.Target.Baseline);
 
 		/// <summary>Returns the report for the benchmark or <c>null</c> if there's no report.</summary>
-		/// <param name="summary">The summary.</param>
+		/// <param name="summary">Summary for the run.</param>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns>The report for the benchmark or <c>null</c> if there's no report.</returns>
 		public static BenchmarkReport TryGetBenchmarkReport(
 			[NotNull] this Summary summary,
 			[NotNull] Benchmark benchmark) =>
 				summary.Reports.SingleOrDefault(r => r.Benchmark == benchmark);
-
-		/// <summary>Groups benchmarks being run under same conditions (job+parameters).</summary>
-		/// <param name="summary">The summary.</param>
-		/// <returns>Benchmark grouped by run conditions</returns>
-		public static ILookup<KeyValuePair<IJob, ParameterInstances>, Benchmark> SameConditionsBenchmarks(
-			[NotNull] this Summary summary) =>
-				summary.Benchmarks.ToLookup(b => new KeyValuePair<IJob, ParameterInstances>(b.Job, b.Parameters));
-
-		/// <summary>Returns targets for the summary.</summary>
-		/// <param name="summary">The summary.</param>
-		/// <returns>Targets for the summary.</returns>
-		public static IEnumerable<Target> GetExecutionOrderTargets([NotNull] this Summary summary)
-		{
-			var orderProvider = summary.Config.GetOrderProvider() ?? DefaultOrderProvider.Instance;
-			return orderProvider.GetExecutionOrder(summary.Benchmarks)
-				.Select(d => d.Target)
-				.Distinct();
-		}
-
-		/// <summary>Returns targets for the summary.</summary>
-		/// <param name="summary">The summary.</param>
-		/// <returns>Targets for the summary.</returns>
-		public static IEnumerable<Target> GetSummaryOrderTargets([NotNull] this Summary summary)
-		{
-			var orderProvider = summary.Config.GetOrderProvider() ?? DefaultOrderProvider.Instance;
-			return orderProvider.GetSummaryOrder(summary.Benchmarks, summary)
-				.Select(d => d.Target)
-				.Distinct();
-		}
-
-		/// <summary>Returns jobs from the benchmarks.</summary>
-		/// <param name="benchmarks">The benchmarks to select jobs from.</param>
-		/// <returns>Jobs from the benchmarks.</returns>
-		// ReSharper disable once ReturnTypeCanBeEnumerable.Global
-		public static IOrderedEnumerable<IJob> GetJobs([NotNull] this IEnumerable<Benchmark> benchmarks) =>
-			benchmarks
-				.Select(d => d.Job)
-				.Distinct()
-				.OrderBy(d => d.GetShortInfo());
 		#endregion
 
 		/// <summary>Gets the value of the current TimeSpan structure expressed in nanoseconds.</summary>
@@ -141,7 +137,7 @@ namespace BenchmarkDotNet.Helpers
 		#endregion
 
 		#region Process
-		/// <summary>Tries to change the priority of the process.</summary>
+		/// <summary>Changes the priority of the process.</summary>
 		/// <param name="process">The target process.</param>
 		/// <param name="priority">The priority.</param>
 		/// <param name="logger">The logger.</param>
@@ -169,7 +165,7 @@ namespace BenchmarkDotNet.Helpers
 			}
 		}
 
-		/// <summary>Tries to change the cpu affinity of the process.</summary>
+		/// <summary>Changes the cpu affinity of the process.</summary>
 		/// <param name="process">The target process.</param>
 		/// <param name="processorAffinity">The processor affinity.</param>
 		/// <param name="logger">The logger.</param>
@@ -227,7 +223,7 @@ namespace BenchmarkDotNet.Helpers
 
 		/// <summary>Tries to obtain text from the given URI.</summary>
 		/// <param name="uri">The URI to geth the text from.</param>
-		/// <returns>The text.</returns>
+		/// <returns>The text reader or <c>null</c> if none.</returns>
 		public static TextReader TryGetTextFromUri(string uri)
 		{
 			if (uri == null)

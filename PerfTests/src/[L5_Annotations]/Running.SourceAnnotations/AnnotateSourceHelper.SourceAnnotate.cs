@@ -31,7 +31,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			CompetitionState competitionState)
 		{
 			var sourceFileLines = annotateContext.TryGetFileLines(fileName, competitionState);
-			if (sourceFileLines == null)
+			if (sourceFileLines.Count == 0)
 				return false;
 
 			bool attributeFixed = false;

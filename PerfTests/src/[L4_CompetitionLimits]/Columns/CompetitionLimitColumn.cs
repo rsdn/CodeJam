@@ -43,7 +43,7 @@ namespace CodeJam.PerfTests.Columns
 		public ICompetitionLimitProvider CompetitionLimitProvider { get; }
 
 		/// <summary>Returns value for the column.</summary>
-		/// <param name="summary">The summary.</param>
+		/// <param name="summary">Summary for the run.</param>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns>Metric value (upper or lower boundary) for the benchmark.</returns>
 		public string GetValue(Summary summary, Benchmark benchmark)
@@ -59,9 +59,9 @@ namespace CodeJam.PerfTests.Columns
 		/// <value>The name of the column.</value>
 		public string ColumnName => CompetitionLimitProvider.ShortInfo + (UseMaxRatio ? "(max)" : "(min)");
 
-		/// <summary>Has value for the specified summary.</summary>
-		/// <param name="summary">The summary.</param>
-		/// <returns><c>True</c> if has a value.</returns>
+		/// <summary>Can provide values for the specified summary.</summary>
+		/// <param name="summary">Summary for the run.</param>
+		/// <returns><c>true</c> if can provide values for the specified summary.</returns>
 		public bool IsAvailable(Summary summary) => summary.Benchmarks.Any(b => b.Target.Baseline);
 
 		/// <summary>Should be shown anyway.</summary>

@@ -49,8 +49,8 @@ namespace CodeJam.PerfTests.Configs
 		/// <value><c>true</c> if competition limits should not be validated.</value>
 		public bool DontCheckAnnotations => _config.DontCheckAnnotations;
 
-		/// <summary>The analyser should ignore existing annotations.</summary>
-		/// <value><c>true</c> if the analyser should ignore existing annotations.</value>
+		/// <summary>The analyser should ignore existing limit annotations.</summary>
+		/// <value><c>true</c> if the analyser should ignore existing limit annotations.</value>
 		public bool IgnoreExistingAnnotations => _config.IgnoreExistingAnnotations;
 
 		/// <summary>The analyser should warn on benchmarks that take longer than 0.5 sec to complete.</summary>

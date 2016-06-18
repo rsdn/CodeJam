@@ -61,36 +61,36 @@ namespace CodeJam.PerfTests.Analysers
 		/// </summary>
 		/// <param name="competitionTargets">The collection to be filled with competition targets.</param>
 		/// <param name="summary">Summary for the run.</param>
-		protected override void InitCompetitionTargets(
+		protected override bool FillCompetitionTargets(
 			CompetitionTargets competitionTargets, Summary summary)
 		{
-			base.InitCompetitionTargets(competitionTargets, summary);
+			var result = base.FillCompetitionTargets(competitionTargets, summary);
 
 			if (!UpdateSourceAnnotations || string.IsNullOrEmpty(PreviousRunLogUri))
-				return;
+				return result;
 
 			var competitionState = CompetitionCore.RunState[summary];
 			competitionState.WriteMessage(
 				MessageSource.Analyser, MessageSeverity.Informational,
 				$"Reading annotations from log {PreviousRunLogUri}.");
 
-			var benchmarkDocs = _documentsFromLog[summary]
-				.GetOrAdd(PreviousRunLogUri, uri => XmlAnnotations.TryParseBenchmarkDocsFromLog(uri, competitionState));
+			var xmlAnnotationDocs = _documentsFromLog[summary]
+				.GetOrAdd(PreviousRunLogUri, uri => XmlAnnotations.TryParseXmlAnnotationDocsFromLog(uri, competitionState));
 
-			if (benchmarkDocs.IsNullOrEmpty())
-				return;
+			if (xmlAnnotationDocs.IsNullOrEmpty())
+				return result;
 
 			competitionState.WriteMessage(
 				MessageSource.Analyser, MessageSeverity.Informational,
-				$"Parsing previous results ({benchmarkDocs.Length} doc(s)) from log {PreviousRunLogUri}.");
+				$"Parsing previous results ({xmlAnnotationDocs.Length} doc(s)) from log {PreviousRunLogUri}.");
 
 			bool updated = false;
 			foreach (var competitionTarget in competitionTargets.Values)
 			{
 				bool hasAnnotations = false;
-				foreach (var resourceDoc in benchmarkDocs)
+				foreach (var resourceDoc in xmlAnnotationDocs)
 				{
-					var parsedLimit = XmlAnnotations.TryParseAnnotation(competitionTarget.Target, resourceDoc, competitionState);
+					var parsedLimit = XmlAnnotations.TryParseCompetitionLimit(competitionTarget.Target, resourceDoc, competitionState);
 					if (parsedLimit != null)
 					{
 						hasAnnotations = true;
@@ -118,6 +118,8 @@ namespace CodeJam.PerfTests.Analysers
 					MessageSource.Analyser, MessageSeverity.Informational,
 					$"All benchmnarks are in log limits. Log file: {PreviousRunLogUri}.");
 			}
+
+			return result;
 		}
 
 		/// <summary>
@@ -125,9 +127,9 @@ namespace CodeJam.PerfTests.Analysers
 		/// </summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <param name="warnings">List of warnings for the benchmarks.</param>
-		protected override void ValidateSummary(Summary summary, List<IWarning> warnings)
+		protected override void CheckCompetitionLimits(Summary summary, List<IWarning> warnings)
 		{
-			base.ValidateSummary(summary, warnings);
+			base.CheckCompetitionLimits(summary, warnings);
 
 			var competitionState = CompetitionCore.RunState[summary];
 			var competitionTargets = TargetsSlot[summary];

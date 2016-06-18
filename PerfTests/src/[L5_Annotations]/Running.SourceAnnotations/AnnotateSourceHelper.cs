@@ -36,10 +36,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			private bool HasChanges => _changedFiles.Any();
 
-			/// <summary>Tries the get the lines of the source file.</summary>
+			/// <summary>Tries to get the lines of the source file.</summary>
 			/// <param name="file">The sources file.</param>
 			/// <param name="competitionState">State of the run.</param>
-			/// <returns>Lines of the source file.</returns>
+			/// <returns>Lines of the source file or <c>null</c> if none.</returns>
+			[NotNull]
 			public IReadOnlyList<string> TryGetFileLines(
 				[NotNull] string file,
 				[NotNull] CompetitionState competitionState)
@@ -62,15 +63,15 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 								MessageSource.Analyser, MessageSeverity.SetupError,
 								$"Could not access file {file}.", ex);
 
-							return null;
+							return Array<string>.Empty;
 						}
 					});
 			}
 
-			/// <summary>Tries lo load the XML annotation document.</summary>
+			/// <summary>Tries lo load the xml annotation document.</summary>
 			/// <param name="file">The file with xml annotation.</param>
 			/// <param name="competitionState">State of the run.</param>
-			/// <returns>The document with competition limits for the benchmark.</returns>
+			/// <returns>The document with competition limits for the benchmark or <c>null</c> if none.</returns>
 			public XDocument TryGetXmlAnnotation(
 				[NotNull] string file,
 				[NotNull] CompetitionState competitionState)
@@ -86,9 +87,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 						{
 							using (var reader = File.OpenText(f))
 							{
-								return XmlAnnotations.TryParseBenchmarksDoc(
+								return XmlAnnotations.TryParseXmlAnnotationDoc(
 									reader, competitionState,
-									$"Xml annotation {file}");
+									$"XML annotation {file}");
 							}
 						}
 						catch (IOException ex)
@@ -234,11 +235,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			CompetitionTarget competitionTarget,
 			CompetitionState competitionState)
 		{
-			var benchmarksDoc = annotateContext.TryGetXmlAnnotation(xmlFileName, competitionState);
-			if (benchmarksDoc == null)
+			var xmlAnnotationDoc = annotateContext.TryGetXmlAnnotation(xmlFileName, competitionState);
+			if (xmlAnnotationDoc == null)
 				return false;
 
-			XmlAnnotations.AddOrUpdateCompetitionTarget(benchmarksDoc, competitionTarget);
+			XmlAnnotations.AddOrUpdateXmlAnnotation(xmlAnnotationDoc, competitionTarget);
 			annotateContext.MarkAsChanged(xmlFileName);
 
 			return true;

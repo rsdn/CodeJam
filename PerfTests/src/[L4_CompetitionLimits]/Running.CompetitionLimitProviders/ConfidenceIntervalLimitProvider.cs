@@ -24,6 +24,8 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 		/// <returns>Limits for the benchmark or <c>null</c> if none.</returns>
 		protected override CompetitionLimit TryGetCompetitionLimitImpl(double[] timingRatios, bool limitMode)
 		{
+			// TODO: better limits for limitMode == false;
+
 			var ci = new Statistics(timingRatios).ConfidenceInterval;
 			var minRatio = limitMode
 				? ci.Lower
