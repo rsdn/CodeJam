@@ -169,31 +169,35 @@ namespace CodeJam.Mapping
 		}
 
 		Expression Convert(Expression expr, Type toType)
-			=> expr.Type == toType ? expr : Expression.Convert(expr, toType);
+			=> expr == null ? null : expr.Type == toType ? expr : Expression.Convert(expr, toType);
 
 		Expression BuildCollectionMapper(Expression fromExpression, Type toType)
 		{
 			var fromType = fromExpression.Type;
 
 			if (toType.IsSubClass(typeof(IEnumerable<>)) && fromType.IsSubClass(typeof(IEnumerable<>)))
-			{
-				var fromItemType = fromType.GetItemType();
-				var toItemType   = toType.  GetItemType();
-
-				if (toType.IsGenericType && !toType.IsGenericTypeDefinition)
-				{
-					var toDefinition = toType.GetGenericTypeDefinition();
-
-					if (toDefinition == typeof(List<>) || typeof(List<>).IsSubClass(toDefinition))
-					{
-						return Convert(ExpressionBuilderHelper.ToList(_mapperBuilder, null, fromExpression, fromItemType, toItemType), toType);
-					}
-				}
-
-				throw new NotImplementedException();
-			}
+				return Convert(ConvertCollection(null, fromExpression, toType), toType);
 
 			return null;
+		}
+
+		Expression ConvertCollection(ParameterExpression dic, Expression fromExpression, Type toType)
+		{
+			var fromType     = fromExpression.Type;
+			var fromItemType = fromType.GetItemType();
+			var toItemType   = toType.  GetItemType();
+
+			if (toType.IsGenericType && !toType.IsGenericTypeDefinition)
+			{
+				var toDefinition = toType.GetGenericTypeDefinition();
+
+				if (toDefinition == typeof(List<>) || typeof(List<>).IsSubClass(toDefinition))
+				{
+					return Convert(ExpressionBuilderHelper.ToList(_mapperBuilder, dic, fromExpression, fromItemType, toItemType), toType);
+				}
+			}
+
+			throw new NotImplementedException();
 		}
 
 		MemberAssignment BuildAssignment(LambdaExpression getter, Expression fromExpression, Type fromMemberType, MemberAccessor toMember)
@@ -267,6 +271,8 @@ namespace CodeJam.Mapping
 			readonly List<ParameterExpression> _locals      = new List<ParameterExpression>();
 			readonly bool                      _cacheMapper;
 
+			Type _actualLocalObjectType;
+
 			public Expression GetExpressionWithDic()
 			{
 				_locals.Add(_pDic);
@@ -282,14 +288,18 @@ namespace CodeJam.Mapping
 			{
 				_locals.Add(_localObject);
 
+				var newLocalObjectExpr = _builder.GetNewExpression(_toExpression.Type);
+
+				_actualLocalObjectType = newLocalObjectExpr.Type;
+
 				_expressions.Add(Expression.Assign(
 					_localObject,
 					Expression.Condition(
 						Expression.Equal(_toExpression, Expression.Constant(null, _toExpression.Type)),
-						_builder.Convert(_builder.GetNewExpression(_toExpression.Type), _toExpression.Type),
+						_builder.Convert(newLocalObjectExpr, _toExpression.Type),
 						_toExpression)));
 
-				if (_builder._mapperBuilder.ProcessCrossReferences != false)
+				if (_cacheMapper)
 				{
 					_expressions.Add(
 						Expression.Call(
@@ -299,11 +309,11 @@ namespace CodeJam.Mapping
 							_localObject));
 				}
 
-				var expr = GetObjectExpression();
+				GetObjectExpression();
 
-				_expressions.Add(expr);
+				_expressions.Add(_localObject);
 
-				expr = Expression.Block(_locals, _expressions);
+				var expr = Expression.Block(_locals, _expressions) as Expression;
 
 				if (_cacheMapper)
 					expr = Expression.Convert(
@@ -318,12 +328,10 @@ namespace CodeJam.Mapping
 				return expr;
 			}
 
-			Expression GetObjectExpression()
+			void GetObjectExpression()
 			{
-				var listExpr = BuildListMapper();
-
-				if (listExpr != null)
-					return listExpr;
+				if (BuildListMapper())
+					return;
 
 				foreach (var toMember in _toAccessor.Members.Where(_builder._mapperBuilder.MemberFilter))
 				{
@@ -399,8 +407,6 @@ namespace CodeJam.Mapping
 						_expressions.Add(expr);
 					}
 				}
-
-				return _localObject;
 			}
 
 			Expression BuildClassMapper(Expression getValue, MemberAccessor toMember)
@@ -437,51 +443,42 @@ namespace CodeJam.Mapping
 				return expr;
 			}
 
-			Expression BuildListMapper()
+			bool BuildListMapper()
 			{
 				var fromListType = _fromExpression.Type;
 				var toListType   = _localObject.Type;
 
-				Expression expr = null;
+				if (!toListType.IsSubClass(typeof(IEnumerable<>)) || !fromListType.IsSubClass(typeof(IEnumerable<>)))
+					return false;
 
-				if (toListType.IsSubClass(typeof(IEnumerable<>)) && fromListType.IsSubClass(typeof(IEnumerable<>)))
+				var clearMethodInfo = toListType.GetMethod("Clear");
+
+				if (clearMethodInfo != null)
+					_expressions.Add(Expression.Call(_localObject, clearMethodInfo));
+
+				var fromItemType = fromListType.GetItemType();
+				var toItemType   = toListType.  GetItemType();
+
+				var addRangeMethodInfo = toListType.GetMethod("AddRange");
+
+				if (addRangeMethodInfo != null)
 				{
-					var clearMethodInfo = toListType.GetMethod("Clear");
-
-					if (clearMethodInfo != null)
-						_expressions.Add(Expression.Call(_localObject, clearMethodInfo));
-
-					var fromItemType = fromListType.GetItemType();
-					var toItemType   = toListType.  GetItemType();
-
-					var addRangeMethodInfo = toListType.GetMethod("AddRange");
-
-					if (addRangeMethodInfo != null)
-					{
-						var selectExpr = ExpressionBuilderHelper.Select(_builder._mapperBuilder, _cacheMapper ? _pDic : null, _fromExpression, fromItemType, toItemType);
-						_expressions.Add(Expression.Call(_localObject, addRangeMethodInfo, selectExpr));
-						expr = _localObject;
-					}
-					else if (toListType.IsGenericType && !toListType.IsGenericTypeDefinition)
-					{
-						var toDefinition = toListType.GetGenericTypeDefinition();
-
-						if (toDefinition == typeof(List<>) || typeof(List<>).IsSubClass(toDefinition))
-						{
-							expr = ExpressionBuilderHelper.ToList(_builder._mapperBuilder, _cacheMapper ? _pDic : null, _fromExpression, fromItemType, toItemType);
-						}
-						else
-						{
-							throw new NotImplementedException();
-						}
-					}
-					else
-					{
-						throw new NotImplementedException();
-					}
+					var selectExpr = ExpressionBuilderHelper.Select(_builder._mapperBuilder, _cacheMapper ? _pDic : null, _fromExpression, fromItemType, toItemType);
+					_expressions.Add(Expression.Call(_localObject, addRangeMethodInfo, selectExpr));
+				}
+				else if (toListType.IsGenericType && !toListType.IsGenericTypeDefinition)
+				{
+					_expressions.Add(
+						Expression.Assign(
+							_localObject,
+							_builder.ConvertCollection(_cacheMapper ? _pDic : null, _fromExpression, toListType)));
+				}
+				else
+				{
+					throw new NotImplementedException();
 				}
 
-				return expr;
+				return true;
 			}
 
 			Expression BuildAssignment(

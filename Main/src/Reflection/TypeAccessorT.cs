@@ -57,7 +57,7 @@ namespace CodeJam.Reflection
 			// Add explicit interface implementation properties support
 			// Or maybe we should support all private fields/properties?
 			//
-			if (!type.IsInterface)
+			if (!type.IsInterface && !type.IsArray)
 			{
 				var interfaceMethods = type.GetInterfaces().SelectMany(ti => type.GetInterfaceMap(ti).TargetMethods).ToList();
 

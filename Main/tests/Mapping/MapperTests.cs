@@ -472,14 +472,30 @@ namespace CodeJam.Mapping
 		public void ScalarList()
 		{
 			var mapper = Map.GetMapper<List<int>,IList<string>>();
-
-			var dest = mapper.Map(new List<int> { 1, 2, 3});
+			var dest   = mapper.Map(new List<int> { 1, 2, 3 });
 
 			Assert.AreEqual("1", dest[0]);
 			Assert.AreEqual("2", dest[1]);
 			Assert.AreEqual("3", dest[2]);
 
 			dest = mapper.Map(new List<int> { 1, 2, 3}, null);
+
+			Assert.AreEqual("1", dest[0]);
+			Assert.AreEqual("2", dest[1]);
+			Assert.AreEqual("3", dest[2]);
+		}
+
+		[Test, Explicit]
+		public void ScalarArray()
+		{
+			var mapper = Map.GetMapper<int[],string[]>();
+			var dest   = mapper.Map(new[] { 1, 2, 3 });
+
+			Assert.AreEqual("1", dest[0]);
+			Assert.AreEqual("2", dest[1]);
+			Assert.AreEqual("3", dest[2]);
+
+			dest   = mapper.Map(new[] { 1, 2, 3 }, null);
 
 			Assert.AreEqual("1", dest[0]);
 			Assert.AreEqual("2", dest[1]);
