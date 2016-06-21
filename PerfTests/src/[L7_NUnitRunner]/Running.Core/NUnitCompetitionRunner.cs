@@ -15,7 +15,7 @@ using NUnit.Framework;
 namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>Nunit competition performance tests runner.</summary>
-	/// <seealso cref="CodeJam.PerfTests.Running.Core.CompetitionRunnerBase"/>
+	/// <seealso cref="CompetitionRunnerBase"/>
 	[SuppressMessage("ReSharper", "ConvertToExpressionBodyWhenPossible")]
 	internal class NUnitCompetitionRunner : CompetitionRunnerBase
 	{
@@ -24,16 +24,11 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			/// <summary>Initializes a new instance of the <see cref="NUnitHostLogger"/> class.</summary>
 			/// <param name="logMode">Host logging mode.</param>
-			public NUnitHostLogger(HostLogMode logMode)
-				: base(new AccumulationLogger(), logMode) { }
-
-			/// <summary>The logger to redirect the output.</summary>
-			/// <value>The logger to redirect the output.</value>
-			protected new AccumulationLogger WrappedLogger => (AccumulationLogger)base.WrappedLogger;
+			public NUnitHostLogger(HostLogMode logMode) : base(new AccumulationLogger(), logMode) { }
 
 			/// <summary>Get string with the log content.</summary>
 			/// <returns>String with the log content.</returns>
-			public string GetLog() => WrappedLogger.GetLog();
+			public string GetLog() => ((AccumulationLogger)WrappedLogger).GetLog();
 		}
 
 		#region Overrides of CompetitionRunnerBase
@@ -93,15 +88,18 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Reports the execution errors to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		protected override void ReportExecutionErrors(string messages) => Assert.Fail(messages);
+		/// <param name="hostLogger">The host logger.</param>
+		protected override void ReportExecutionErrors(string messages, HostLogger hostLogger) => Assert.Fail(messages);
 
 		/// <summary>Reports failed assertions to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		protected override void ReportAssertionsFailed(string messages) => Assert.Fail(messages);
+		/// <param name="hostLogger">The host logger.</param>
+		protected override void ReportAssertionsFailed(string messages, HostLogger hostLogger) => Assert.Fail(messages);
 
 		/// <summary>Reports warnings to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		protected override void ReportWarnings(string messages) => Assert.Ignore(messages);
+		/// <param name="hostLogger">The host logger.</param>
+		protected override void ReportWarnings(string messages, HostLogger hostLogger) => Assert.Ignore(messages);
 		#endregion
 
 		#region Override config parameters

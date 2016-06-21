@@ -7,6 +7,7 @@ using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Toolchains.InProcess;
 
 using CodeJam.PerfTests.Configs;
+using CodeJam.PerfTests.Running.CompetitionLimitProviders;
 
 using JetBrains.Annotations;
 
@@ -16,27 +17,36 @@ namespace CodeJam.PerfTests
 	public static class PerfTestHelpers
 	{
 		public const int SpinCount = 100 * 1000;
-		public const int LoopCount = 10 * 1000;
 
-		public static void Delay(int cycles) => Thread.SpinWait(cycles);
 		// BUG: Jitting performed twice, https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 		// Jitting = 2, WarmupCount = 2, TargetCount = 1
-
-		public static readonly ICompetitionConfig SingleRunConfig =
-			CreateSingleRunConfig(IntPtr.Size == 4 ? Platform.X86 : Platform.X64).AsReadOnly();
-
-		public static readonly ICompetitionConfig OtherPlatformSingleRunConfig =
-			CreateSingleRunConfig(IntPtr.Size == 8 ? Platform.X86 : Platform.X64).AsReadOnly();
-
-		public static readonly ICompetitionConfig HighAccuracyConfig = CreateHighAccuracyConfig().AsReadOnly();
-
 		public const int ExpectedSingleRunCount = 6;
+
+		public static void Delay(int cycles) => Thread.SpinWait(cycles);
+
+		public static readonly ICompetitionConfig SingleRunConfig = CreateSingleRunConfig(Platform.X64).AsReadOnly();
+
+		public static readonly ICompetitionConfig HighAccuracyConfig = CreateHighAccuracyConfig(true).AsReadOnly();
+
+		private static ManualCompetitionConfig CreateConfigCore()
+		{
+			var result = new ManualCompetitionConfig
+			{
+				AllowDebugBuilds = true,
+				LogCompetitionLimits = true,
+				RerunIfLimitsFailed = true,
+				CompetitionLimitProvider = ConfidenceIntervalLimitProvider.Instance
+			};
+
+			result.Add(DefaultConfig.Instance.GetColumns().ToArray());
+
+			return result;
+		}
 
 		public static ManualCompetitionConfig CreateSingleRunConfig(Platform platform)
 		{
-			var result = new ManualCompetitionConfig();
+			var result = CreateConfigCore();
 
-			result.Add(DefaultConfig.Instance.GetColumns().ToArray());
 			result.Add(
 				new Job
 				{
@@ -48,17 +58,14 @@ namespace CodeJam.PerfTests
 					Platform = platform,
 					Toolchain = InProcessToolchain.Instance
 				});
-			result.AllowDebugBuilds = true;
-			result.RerunIfLimitsFailed = true;
 
 			return result;
 		}
 
-		public static ManualCompetitionConfig CreateHighAccuracyConfig()
-		{
-			var result = new ManualCompetitionConfig();
 
-			result.Add(DefaultConfig.Instance.GetColumns().ToArray());
+		public static ManualCompetitionConfig CreateHighAccuracyConfig(bool inProcess)
+		{
+			var result = CreateConfigCore();
 			result.Add(
 				new Job
 				{
@@ -68,12 +75,8 @@ namespace CodeJam.PerfTests
 					TargetCount = 100,
 					Platform = Platform.X64,
 					Jit = Jit.RyuJit,
-					Toolchain = InProcessToolchain.DontLogOutput
+					Toolchain = inProcess ? InProcessToolchain.DontLogOutput : null
 				});
-			result.AllowDebugBuilds = true;
-			result.DetailedLogging = false;
-			result.LogCompetitionLimits = true;
-			result.RerunIfLimitsFailed = true;
 
 			return result;
 		}

@@ -23,12 +23,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			/// <summary>Initializes a new instance of the <see cref="SimpleHostLogger"/> class.</summary>
 			/// <param name="logMode">Host logging mode.</param>
-			public SimpleHostLogger(HostLogMode logMode)
-				: base(ConsoleLogger.Default, logMode) { }
-
-			/// <summary>The logger to redirect the output.</summary>
-			/// <value>The logger to redirect the output.</value>
-			public new ConsoleLogger WrappedLogger => (ConsoleLogger)base.WrappedLogger;
+			public SimpleHostLogger(HostLogMode logMode) : base(ConsoleLogger.Default, logMode) { }
 		}
 
 		/// <summary>Creates a host logger.</summary>
@@ -37,28 +32,31 @@ namespace CodeJam.PerfTests.Running.Core
 		protected override HostLogger CreateHostLogger(HostLogMode hostLogMode) =>
 			new SimpleHostLogger(hostLogMode);
 
-		/// <summary>Reports warnings to user.</summary>
-		/// <param name="messages">The messages to report.</param>
-		protected override void ReportWarnings(string messages)
-		{
-			ConsoleLogger.Default.WriteSeparatorLine();
-			ConsoleLogger.Default.WriteLineInfo(messages);
-		}
-
 		/// <summary>Reports the execution errors to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		protected override void ReportExecutionErrors(string messages)
+		/// <param name="hostLogger">The host logger.</param>
+		protected override void ReportExecutionErrors(string messages, HostLogger hostLogger)
 		{
-			ConsoleLogger.Default.WriteSeparatorLine();
-			ConsoleLogger.Default.WriteLineError(messages);
+			hostLogger.WrappedLogger.WriteSeparatorLine();
+			hostLogger.WrappedLogger.WriteLineError(messages);
 		}
 
 		/// <summary>Reports failed assertions to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		protected override void ReportAssertionsFailed(string messages)
+		/// <param name="hostLogger">The host logger.</param>
+		protected override void ReportAssertionsFailed(string messages, HostLogger hostLogger)
 		{
-			ConsoleLogger.Default.WriteSeparatorLine();
-			ConsoleLogger.Default.WriteLineError(messages);
+			hostLogger.WrappedLogger.WriteSeparatorLine();
+			hostLogger.WrappedLogger.WriteLineError(messages);
+		}
+
+		/// <summary>Reports warnings to user.</summary>
+		/// <param name="messages">The messages to report.</param>
+		/// <param name="hostLogger">The host logger.</param>
+		protected override void ReportWarnings(string messages, HostLogger hostLogger)
+		{
+			hostLogger.WrappedLogger.WriteSeparatorLine();
+			hostLogger.WrappedLogger.WriteLineInfo(messages);
 		}
 
 		/// <summary>Reports content of the host logger to user.</summary>

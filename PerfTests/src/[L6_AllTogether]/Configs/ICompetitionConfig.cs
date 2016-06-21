@@ -30,19 +30,17 @@ namespace CodeJam.PerfTests.Configs
 		#endregion
 
 		#region Validation config
-		/// <summary>Do not validate competition limits.</summary>
-		/// <value><c>true</c> if competition limits should not be validated.</value>
-		bool DontCheckAnnotations { get; }
-
 		/// <summary>The analyser should ignore existing limit annotations.</summary>
 		/// <value><c>true</c> if the analyser should ignore existing limit annotations.</value>
 		bool IgnoreExistingAnnotations { get; }
 
-		/// <summary>The analyser should warn on benchmarks that take longer than 0.5 sec to complete.</summary>
-		/// <value>True if the analyser should warn on benchmarks that take longer than 0.5 sec to complete.</value>
+		/// <summary>The analyser should not warn on benchmark runs that take longer than 0.5 sec to complete.</summary>
+		/// <value>
+		/// True if the analyser should not warn on benchmark runs that take longer than 0.5 sec to complete.
+		/// </value>
 		bool AllowLongRunningBenchmarks { get; }
 
-		/// <summary>Perform reruns if competition limits check failed.</summary>
+		/// <summary>Rerun competition if competition limits check failed.</summary>
 		/// <value><c>true</c> if reruns should be performed if competition limits check failed.</value>
 		bool RerunIfLimitsFailed { get; }
 
@@ -64,7 +62,7 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>
 		/// URI of the log that contains competition limits from previous run(s).
-		/// Relative paths, file paths and web URLs are supported.
+		/// Relative paths, absolute paths and web URLs are supported.
 		/// If <see cref="UpdateSourceAnnotations"/> set to <c>true</c>, the annotations will be updated with limits from the log.
 		/// Set <see cref="LogCompetitionLimits"/> <c>true</c> to log the limits.
 		/// </summary>

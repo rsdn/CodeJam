@@ -32,10 +32,9 @@ namespace CodeJam.PerfTests.Running.Core
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "VirtualMemberNeverOverriden.Global")]
-	[SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
 	public abstract class CompetitionRunnerBase
 	{
-		/// <summary>Basic host logger implementation</summary>
+		/// <summary>Base class for competition runner's host logger.</summary>
 		/// <seealso cref="Loggers.HostLogger"/>
 		protected abstract class HostLogger : Loggers.HostLogger
 		{
@@ -44,6 +43,10 @@ namespace CodeJam.PerfTests.Running.Core
 			/// <param name="logMode">Host logging mode.</param>
 			protected HostLogger([NotNull] ILogger wrappedLogger, HostLogMode logMode)
 				: base(wrappedLogger, logMode) { }
+
+			/// <summary>The logger to redirect the output.</summary>
+			/// <value>The logger to redirect the output.</value>
+			public new ILogger WrappedLogger => base.WrappedLogger;
 		}
 
 		#region Default values
@@ -57,11 +60,13 @@ namespace CodeJam.PerfTests.Running.Core
 		private static readonly TimeSpan _allowLongRunLimit = TimeSpan.FromDays(1);
 		#endregion
 
+		#region Public API
 		/// <summary>Runs the benchmark.</summary>
 		/// <typeparam name="T">Benchmark class to run.</typeparam>
 		/// <param name="thisReference">Reference used to infer type of the benchmark.</param>
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>State of the run.</returns>
+		[NotNull]
 		public CompetitionState Run<T>([NotNull] T thisReference, [CanBeNull] ICompetitionConfig competitionConfig)
 			where T : class =>
 				RunCompetition(thisReference.GetType(), competitionConfig);
@@ -70,6 +75,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <typeparam name="T">Benchmark class to run.</typeparam>
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>State of the run.</returns>
+		[NotNull]
 		public CompetitionState Run<T>([CanBeNull] ICompetitionConfig competitionConfig)
 			where T : class =>
 				RunCompetition(typeof(T), competitionConfig);
@@ -78,6 +84,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="benchmarkType">Benchmark class to run.</param>
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>State of the run.</returns>
+		[NotNull]
 		public virtual CompetitionState RunCompetition(
 			[NotNull] Type benchmarkType,
 			[CanBeNull] ICompetitionConfig competitionConfig)
@@ -85,59 +92,48 @@ namespace CodeJam.PerfTests.Running.Core
 			Code.NotNull(benchmarkType, nameof(benchmarkType));
 
 			competitionConfig = PrepareCompetitionConfig(competitionConfig);
-
-			ValidateCompetitionSetup(benchmarkType, competitionConfig);
-			OnBeforeRun(benchmarkType, competitionConfig);
+			CheckCompetitionSetup(benchmarkType, competitionConfig);
 
 			var benchmarkConfig = CreateBenchmarkConfig(competitionConfig);
-			var maxRunsAllowed = competitionConfig.MaxRunsAllowed;
-			if (maxRunsAllowed <= 0)
-			{
-				maxRunsAllowed = DefaultMaxRunsAllowed;
-			}
+			var hostLogger = benchmarkConfig.GetLoggers().OfType<HostLogger>().Single();
 
-			bool runSucceed = false;
 			CompetitionState competitionState = null;
 			try
 			{
-				competitionState = CompetitionCore.Run(benchmarkType, benchmarkConfig, maxRunsAllowed);
-				runSucceed = true;
-
-				Code.AssertState(
-					competitionState.Completed,
-					"Bug: competition state not marked as completed.");
+				competitionState = CompetitionCore.Run(benchmarkType, benchmarkConfig, competitionConfig.MaxRunsAllowed);
 
 				ProcessRunComplete(competitionConfig, competitionState);
 			}
 			finally
 			{
-				Code.AssertState(
-					runSucceed == (competitionState != null),
-					"Bug: competition state does not match runSucceed flag.");
-
-				OnAfterRun(runSucceed, benchmarkConfig, competitionState);
-
-				var hostLogger = benchmarkConfig.GetLoggers().OfType<HostLogger>().Single();
 				ReportHostLogger(hostLogger, competitionState?.LastRunSummary);
 			}
 
-			ReportMessagesToUser(competitionConfig, competitionState);
+			ReportMessagesToUser(hostLogger, competitionConfig, competitionState);
 
 			return competitionState;
 		}
+		#endregion
 
-		private ICompetitionConfig PrepareCompetitionConfig(ICompetitionConfig competitionConfig)
+		#region Prepare & run completed logic
+		[NotNull]
+		private ICompetitionConfig PrepareCompetitionConfig([CanBeNull] ICompetitionConfig competitionConfig)
 		{
-			var temp = new ManualCompetitionConfig(competitionConfig);
-			if (temp.CompetitionLimitProvider == null)
+			var result = new ManualCompetitionConfig(competitionConfig);
+
+			if (result.CompetitionLimitProvider == null)
 			{
-				temp.CompetitionLimitProvider = PercentileLimitProvider.P90;
+				result.CompetitionLimitProvider = PercentileLimitProvider.P90;
 			}
-			competitionConfig = temp.AsReadOnly();
-			return competitionConfig;
+			if (result.MaxRunsAllowed <= 0)
+			{
+				result.MaxRunsAllowed = DefaultMaxRunsAllowed;
+			}
+
+			return result.AsReadOnly();
 		}
 
-		private void ValidateCompetitionSetup(
+		private void CheckCompetitionSetup(
 			[NotNull] Type benchmarkType,
 			[NotNull] ICompetitionConfig competitionConfig)
 		{
@@ -169,7 +165,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 				if (messages.Any())
 				{
-					logger.WriteLine();
+					logger.WriteSeparatorLine();
 					logger.WriteLineInfo("// All messages:");
 					foreach (var message in messages)
 					{
@@ -178,19 +174,22 @@ namespace CodeJam.PerfTests.Running.Core
 				}
 				else
 				{
-					logger.WriteLine();
+					logger.WriteSeparatorLine();
 					logger.WriteLineInfo("// No messages in run.");
 				}
 			}
 		}
+		#endregion
 
+		#region Messages
 		private void ReportMessagesToUser(
+			HostLogger hostLogger,
 			[NotNull] ICompetitionConfig competitionConfig,
 			[NotNull] CompetitionState competitionState)
 		{
 			var criticalErrorMessages = GetMessageLines(
 				competitionState,
-				m => m.MessageSeverity > MessageSeverity.TestError, false);
+				m => m.MessageSeverity > MessageSeverity.TestError, true);
 			bool hasCriticalMessages = criticalErrorMessages.Length > 0;
 
 			var testFailedMessages = GetMessageLines(
@@ -200,12 +199,12 @@ namespace CodeJam.PerfTests.Running.Core
 
 			var warningMessages = GetMessageLines(
 				competitionState,
-				m => m.MessageSeverity == MessageSeverity.Warning, hasCriticalMessages);
+				m => m.MessageSeverity == MessageSeverity.Warning, true);
 			bool hasWarnings = warningMessages.Length > 0;
 
 			var infoMessages = GetMessageLines(
 				competitionState,
-				m => m.MessageSeverity < MessageSeverity.Warning, hasCriticalMessages);
+				m => m.MessageSeverity < MessageSeverity.Warning, true);
 			bool hasInfo = infoMessages.Length > 0;
 
 			if (!(hasCriticalMessages || hasTestFailedMessages || hasWarnings))
@@ -251,15 +250,15 @@ namespace CodeJam.PerfTests.Running.Core
 			var messageText = string.Join(Environment.NewLine, allMessages);
 			if (hasCriticalMessages)
 			{
-				ReportExecutionErrors(messageText);
+				ReportExecutionErrors(messageText, hostLogger);
 			}
 			else if (hasTestFailedMessages || competitionConfig.ReportWarningsAsErrors)
 			{
-				ReportAssertionsFailed(messageText);
+				ReportAssertionsFailed(messageText, hostLogger);
 			}
 			else
 			{
-				ReportWarnings(messageText);
+				ReportWarnings(messageText, hostLogger);
 			}
 		}
 
@@ -282,24 +281,9 @@ namespace CodeJam.PerfTests.Running.Core
 		private bool ShouldReport(IMessage message, CompetitionState competitionState) =>
 			message.RunNumber == competitionState.RunNumber ||
 				(message.MessageSource != MessageSource.Analyser && message.MessageSource != MessageSource.Diagnoser);
+		#endregion
 
-		#region Host-related logic
-		/// <summary>Called before competition run.</summary>
-		/// <param name="benchmarkType">Benchmark class to run.</param>
-		/// <param name="competitionConfig">The competition config.</param>
-		protected virtual void OnBeforeRun(
-			[NotNull] Type benchmarkType,
-			[NotNull] ICompetitionConfig competitionConfig) { }
-
-		/// <summary>Called after competition run.</summary>
-		/// <param name="runSucceed">If set to <c>true</c> the run was succeed.</param>
-		/// <param name="benchmarkConfig">The benchmark configuration.</param>
-		/// <param name="competitionState">State of the run.</param>
-		protected virtual void OnAfterRun(
-			bool runSucceed,
-			[NotNull] IConfig benchmarkConfig,
-			[CanBeNull] CompetitionState competitionState) { }
-
+		#region Host-related abstract methods
 		/// <summary>Creates a host logger.</summary>
 		/// <param name="hostLogMode">The host log mode.</param>
 		/// <returns>An instance of <see cref="HostLogger"/></returns>
@@ -313,15 +297,18 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Reports the execution errors to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		protected abstract void ReportExecutionErrors([NotNull] string messages);
+		/// <param name="hostLogger">The host logger.</param>
+		protected abstract void ReportExecutionErrors([NotNull] string messages, HostLogger hostLogger);
 
 		/// <summary>Reports failed assertions to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		protected abstract void ReportAssertionsFailed([NotNull] string messages);
+		/// <param name="hostLogger">The host logger.</param>
+		protected abstract void ReportAssertionsFailed([NotNull] string messages, HostLogger hostLogger);
 
 		/// <summary>Reports warnings to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		protected abstract void ReportWarnings([NotNull] string messages);
+		/// <param name="hostLogger">The host logger.</param>
+		protected abstract void ReportWarnings([NotNull] string messages, HostLogger hostLogger);
 		#endregion
 
 		#region Create benchark config
@@ -350,14 +337,16 @@ namespace CodeJam.PerfTests.Running.Core
 		private List<ILogger> GetLoggers(ICompetitionConfig competitionConfig)
 		{
 			var result = OverrideLoggers(competitionConfig);
-			var hostLogger = CreateHostLogger(
-				competitionConfig.DetailedLogging ? HostLogMode.AllMessages : HostLogMode.PrefixedOrErrors);
-			result.Insert(0, hostLogger);
+
+			var hostLogMode = competitionConfig.DetailedLogging ? HostLogMode.AllMessages : HostLogMode.PrefixedOrErrors;
+			result.Insert(0, CreateHostLogger(hostLogMode));
+
 			return result;
 		}
 
 		private List<IColumn> GetColumns(ICompetitionConfig competitionConfig)
 		{
+			// TODO: better columns.
 			var result = OverrideColumns(competitionConfig);
 			result.AddRange(
 				new[]
@@ -377,30 +366,29 @@ namespace CodeJam.PerfTests.Running.Core
 		private List<IValidator> GetValidators(ICompetitionConfig competitionConfig)
 		{
 			var result = OverrideValidators(competitionConfig);
-			if (competitionConfig.GetJobs().Any(j => j.Toolchain is InProcessToolchain))
+
+			bool debugMode = competitionConfig.AllowDebugBuilds || EnvironmentInfo.GetCurrent().HasAttachedDebugger;
+
+			if (result.Any(v => v is JitOptimizationsValidator))
 			{
-				// ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
-				if (competitionConfig.AllowDebugBuilds || !competitionConfig.UpdateSourceAnnotations)
+				if (debugMode)
 				{
-					result.Insert(0, InProcessValidator.DontFailOnError);
+					result.RemoveAll(v => v is JitOptimizationsValidator && v.TreatsWarningsAsErrors);
 				}
-				else
-				{
-					result.Insert(0, InProcessValidator.FailOnError);
-				}
+			}
+			else if (competitionConfig.UpdateSourceAnnotations && !debugMode)
+			{
+				result.Insert(0, JitOptimizationsValidator.FailOnError);
 			}
 
-			if (competitionConfig.AllowDebugBuilds || EnvironmentInfo.GetCurrent().HasAttachedDebugger)
+			if (competitionConfig.GetJobs().Any(j => j.Toolchain is InProcessToolchain))
 			{
-				result.RemoveAll(v => v is JitOptimizationsValidator);
+				result.Insert(
+					0,
+					debugMode ? InProcessValidator.DontFailOnError : InProcessValidator.FailOnError);
 			}
-			else
-			{
-				if (result.All(v => !(v is JitOptimizationsValidator)))
-				{
-					result.Insert(0, JitOptimizationsValidator.FailOnError);
-				}
-			}
+
+			// DONTTOUCH: the RunStateSlots should be first in the chain.
 			result.Insert(0, new RunStateSlots());
 
 			return result;
@@ -411,34 +399,35 @@ namespace CodeJam.PerfTests.Running.Core
 			var result = OverrideAnalysers(competitionConfig);
 
 			// DONTTOUCH: the CompetitionAnnotateAnalyser should be last analyser in the chain.
-			if (!competitionConfig.DontCheckAnnotations)
-			{
-				var competitionAnalyser = competitionConfig.UpdateSourceAnnotations
-					? new CompetitionAnnotateAnalyser
-					{
-						PreviousRunLogUri = competitionConfig.PreviousRunLogUri,
-						AdditionalRerunsIfAnnotationsUpdated = competitionConfig.RerunIfLimitsFailed ? 2 : 0
-					}
-					: new CompetitionAnalyser();
-
-				competitionAnalyser.TooFastBenchmarkLimit = _tooFastRunLimit;
-				competitionAnalyser.LongRunningBenchmarkLimit = competitionConfig.AllowLongRunningBenchmarks
-					? _allowLongRunLimit
-					: _longRunLimit;
-
-				competitionAnalyser.IgnoreExistingAnnotations = competitionConfig.IgnoreExistingAnnotations;
-				competitionAnalyser.LogCompetitionLimits = competitionConfig.LogCompetitionLimits;
-				competitionAnalyser.CompetitionLimitProvider = competitionConfig.CompetitionLimitProvider;
-
-				if (competitionConfig.RerunIfLimitsFailed)
-				{
-					competitionAnalyser.MaxRerunsIfValidationFailed = 3;
-				}
-
-				result.Add(competitionAnalyser);
-			}
+			result.Add(GetCompetitionAnalyser(competitionConfig));
 
 			return result;
+		}
+
+		private static CompetitionAnalyser GetCompetitionAnalyser(ICompetitionConfig competitionConfig)
+		{
+			var competitionAnalyser = competitionConfig.UpdateSourceAnnotations
+				? new CompetitionAnnotateAnalyser
+				{
+					PreviousRunLogUri = competitionConfig.PreviousRunLogUri,
+					AdditionalRerunsIfAnnotationsUpdated = competitionConfig.RerunIfLimitsFailed ? 2 : 0
+				}
+				: new CompetitionAnalyser();
+
+			competitionAnalyser.TooFastBenchmarkLimit = _tooFastRunLimit;
+			competitionAnalyser.LongRunningBenchmarkLimit = competitionConfig.AllowLongRunningBenchmarks
+				? _allowLongRunLimit
+				: _longRunLimit;
+
+			competitionAnalyser.IgnoreExistingAnnotations = competitionConfig.IgnoreExistingAnnotations;
+			competitionAnalyser.LogCompetitionLimits = competitionConfig.LogCompetitionLimits;
+			competitionAnalyser.CompetitionLimitProvider = competitionConfig.CompetitionLimitProvider;
+
+			competitionAnalyser.MaxRerunsIfValidationFailed = competitionConfig.RerunIfLimitsFailed
+				? 3
+				: 0;
+
+			return competitionAnalyser;
 		}
 
 		#region Override config parameters
