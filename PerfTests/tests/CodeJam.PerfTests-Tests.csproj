@@ -82,7 +82,7 @@
     <EmbeddedResource Include="Resources\CompetitionTests.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\CompetitionAnnotateTests.log">
+    <None Include="Resources\CompetitionAnnotateTests.log.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
