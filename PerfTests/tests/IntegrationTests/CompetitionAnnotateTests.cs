@@ -6,16 +6,16 @@ using CodeJam.PerfTests.Running.Messages;
 
 using NUnit.Framework;
 
-using static CodeJam.PerfTests.PerfTestHelpers;
+using static CodeJam.PerfTests.IntegrationTests.PerfTestHelpers;
 
-namespace CodeJam.PerfTests
+namespace CodeJam.PerfTests.IntegrationTests
 {
 	[TestFixture(Category = "BenchmarkDotNet")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
-	public static class CompetitionAnnotateAnalyserTests
+	public static class CompetitionAnnotateTests
 	{
-		private static readonly ICompetitionConfig _remoteLogConfig = new ManualCompetitionConfig(SingleRunConfig)
+		private static readonly ICompetitionConfig _remoteLogConfig = new ManualCompetitionConfig(HighAccuracyConfig)
 		{
 			AllowDebugBuilds = true,
 			DetailedLogging = true,
@@ -24,18 +24,18 @@ namespace CodeJam.PerfTests
 			UpdateSourceAnnotations = true,
 			IgnoreExistingAnnotations = true,
 			PreviousRunLogUri =
-				"https://gist.githubusercontent.com/ig-sinicyn/ceeef64a6d91f22499bc05f388bb4b48/raw/84e23d5478c941cd924076d7039eee6e63072fea/CompetitionAnnotateAnalyserTests.log.txt"
+				"https://gist.githubusercontent.com/ig-sinicyn/91ac0badca95b19fc7de6f683a51b9d2/raw/fd760290009a92c372ae872de6b3906e4ef5d0ec/CompetitionAnnotateTests.log"
 		};
 
 		private static readonly ICompetitionConfig _localLogConfig = new ManualCompetitionConfig(_remoteLogConfig)
 		{
-			PreviousRunLogUri = @"[L5_Annotations]\CompetitionAnnotateAnalyserTests.log.txt"
+			PreviousRunLogUri = @"Resources\CompetitionAnnotateTests.log"
 		};
 
 		[Test]
 		public static void TestAnnotateFromRemoteLog()
 		{
-			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_remoteLogConfig);
+			var runState = new PerfTestRunner().Run<AnnotatedBenchmark>(_remoteLogConfig);
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.HighestMessageSeverityInRun, MessageSeverity.Warning);
 			Assert.IsTrue(runState.Completed);
@@ -44,14 +44,15 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 4);
-			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 12, "Timeout failed");
+			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 20, "Timeout failed");
 		}
 
 		[Test]
 		public static void TestAnnotateFromLocalLog()
 		{
+			// TODO: message if no XML annotation
 			// TODO: exact message validation
-			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_localLogConfig);
+			var runState = new PerfTestRunner().Run<AnnotatedBenchmark>(_localLogConfig);
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.HighestMessageSeverityInRun, MessageSeverity.Warning);
 			Assert.IsTrue(runState.Completed);
@@ -60,11 +61,11 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 4);
-			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 12, "Timeout failed");
+			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 20, "Timeout failed");
 		}
 
 		#region Benchmark classes
-		public class HighAccuracyBenchmark
+		public class AnnotatedBenchmark
 		{
 			[CompetitionBaseline]
 			public void Baseline() => Delay(SpinCount);

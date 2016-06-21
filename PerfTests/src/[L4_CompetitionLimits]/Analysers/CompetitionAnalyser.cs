@@ -32,7 +32,15 @@ namespace CodeJam.PerfTests.Analysers
 	{
 		#region Competition targets
 		/// <summary>Storage class for competition targets.</summary>
-		protected class CompetitionTargets : Dictionary<MethodInfo, CompetitionTarget> { }
+		protected class CompetitionTargets : Dictionary<MethodInfo, CompetitionTarget>
+		{
+			/// <summary>Gets a value indicating whether the targets are initialized.</summary>
+			/// <value><c>true</c> if initialized; otherwise, <c>false</c>.</value>
+			public bool Initialized { get; private set; }
+
+			/// <summary>Marks as initialized.</summary>
+			public void SetInitialized() => Initialized = true;
+		}
 
 		/// <summary>Run state slot for the competition targets.</summary>
 		protected static readonly RunState<CompetitionTargets> TargetsSlot =
@@ -86,30 +94,7 @@ namespace CodeJam.PerfTests.Analysers
 
 			if (CheckPreconditions(summary, competitionState))
 			{
-				FillCompetitionTargets(competitionTargets, summary, competitionState);
-
-				if (!competitionState.HasCriticalErrorsInRun)
-				{
-					if (competitionTargets.Any())
-					{
-						CheckCompetitionLimits(summary, competitionState, warnings);
-
-						CheckPostconditions(summary, competitionState, warnings);
-
-						OnLimitsChecked(summary, competitionState, warnings);
-
-						if (warnings.Count == 0)
-						{
-							competitionState.WriteMessage(
-								MessageSource.Analyser, MessageSeverity.Informational,
-								$"{GetType().Name}: All competition limits are ok.");
-						}
-					}
-					else
-					{
-						CheckPostconditions(summary, competitionState, warnings);
-					}
-				}
+				AnalyseCore(summary, competitionTargets, competitionState, warnings);
 			}
 
 			if (competitionState.LooksLikeLastRun && LogCompetitionLimits)
@@ -118,6 +103,42 @@ namespace CodeJam.PerfTests.Analysers
 			}
 
 			return warnings.ToArray();
+		}
+
+		private void AnalyseCore(
+			Summary summary, CompetitionTargets competitionTargets,
+			CompetitionState competitionState, List<IWarning> warnings)
+		{
+			if (competitionState.HasCriticalErrorsInRun)
+				return;
+
+			if (!competitionTargets.Initialized)
+			{
+				FillCompetitionTargets(competitionTargets, summary, competitionState);
+				competitionTargets.SetInitialized();
+			}
+
+			if (competitionState.HasCriticalErrorsInRun)
+				return;
+
+			if (competitionTargets.Count == 0)
+			{
+				CheckPostconditions(summary, competitionState, warnings);
+				return;
+			}
+
+			CheckCompetitionLimits(summary, competitionState, warnings);
+
+			CheckPostconditions(summary, competitionState, warnings);
+
+			OnLimitsChecked(summary, competitionState, warnings);
+
+			if (warnings.Count == 0)
+			{
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.Informational,
+					$"{GetType().Name}: All competition limits are ok.");
+			}
 		}
 
 		#region Pre- & postconditions
@@ -150,7 +171,7 @@ namespace CodeJam.PerfTests.Analysers
 			if (CompetitionLimitProvider == null)
 			{
 				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.ExecutionError,
+					MessageSource.Analyser, MessageSeverity.SetupError,
 					$"The {nameof(CompetitionLimitProvider)} should be not null.");
 			}
 

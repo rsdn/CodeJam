@@ -129,6 +129,18 @@ namespace CodeJam.PerfTests
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
 
+			result.UnionWith(new CompetitionLimit(1, 3));
+			Assert.AreEqual(result.MinRatio, 1);
+			Assert.AreEqual(result.MaxRatio, 3);
+			Assert.IsFalse(result.IsEmpty);
+			Assert.IsFalse(result.IgnoreAll);
+			Assert.IsTrue(result.HasUnsavedChanges);
+			Assert.IsFalse(result.IsChanged(CompetitionLimitProperties.MinRatio));
+			Assert.IsTrue(result.IsChanged(CompetitionLimitProperties.MaxRatio));
+			Assert.IsFalse(
+				result.IsChanged(
+					CompetitionLimitProperties.MinRatio | CompetitionLimitProperties.MaxRatio));
+
 			result.UnionWith(new CompetitionLimit(0.5, 3));
 			Assert.AreEqual(result.MinRatio, 0.5);
 			Assert.AreEqual(result.MaxRatio, 3);

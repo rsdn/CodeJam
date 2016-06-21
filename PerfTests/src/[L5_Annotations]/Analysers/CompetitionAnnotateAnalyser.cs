@@ -64,7 +64,7 @@ namespace CodeJam.PerfTests.Analysers
 		{
 			base.FillCompetitionTargets(competitionTargets, summary, competitionState);
 
-			if (competitionState.HasCriticalErrorsInRun || string.IsNullOrEmpty(PreviousRunLogUri))
+			if (string.IsNullOrEmpty(PreviousRunLogUri))
 				return;
 
 			var xmlAnnotationDocs = ReadXmlAnnotationDocsFromLog(summary, competitionState);

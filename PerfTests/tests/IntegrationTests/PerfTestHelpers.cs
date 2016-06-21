@@ -11,7 +11,7 @@ using CodeJam.PerfTests.Running.CompetitionLimitProviders;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests
+namespace CodeJam.PerfTests.IntegrationTests
 {
 	[PublicAPI]
 	public static class PerfTestHelpers
@@ -33,7 +33,6 @@ namespace CodeJam.PerfTests
 			var result = new ManualCompetitionConfig
 			{
 				AllowDebugBuilds = true,
-				LogCompetitionLimits = true,
 				RerunIfLimitsFailed = true,
 				CompetitionLimitProvider = ConfidenceIntervalLimitProvider.Instance
 			};
@@ -66,6 +65,7 @@ namespace CodeJam.PerfTests
 		public static ManualCompetitionConfig CreateHighAccuracyConfig(bool inProcess)
 		{
 			var result = CreateConfigCore();
+			result.LogCompetitionLimits = true;
 			result.Add(
 				new Job
 				{

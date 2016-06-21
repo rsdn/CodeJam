@@ -7,7 +7,11 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Validators;
 
+using CodeJam.PerfTests.IntegrationTests;
+
 using NUnit.Framework;
+
+using static CodeJam.PerfTests.IntegrationTests.PerfTestHelpers;
 
 namespace CodeJam.PerfTests
 {
@@ -24,14 +28,14 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestInProcessBenchmark()
 		{
-			var config = PerfTestHelpers.SingleRunConfig;
+			var config = SingleRunConfig;
 
 			Interlocked.Exchange(ref _callCounter, 0);
 			Interlocked.Exchange(ref _afterSetupCounter, 0);
 			var summary = new PerfTestRunner()
 				.Run<InProcessBenchmark>(config)
 				.LastRunSummary;
-			Assert.AreEqual(_callCounter, PerfTestHelpers.ExpectedSingleRunCount);
+			Assert.AreEqual(_callCounter, ExpectedSingleRunCount);
 			Assert.AreEqual(_afterSetupCounter, 1);
 
 			Assert.IsFalse(summary.ValidationErrors.Any());
@@ -41,7 +45,7 @@ namespace CodeJam.PerfTests
 		public static void TestInProcessBenchmarkWithValidation()
 		{
 			// DONTTOUCH: config SHOULD NOT match the default platform (x64).
-			var config = PerfTestHelpers.CreateSingleRunConfig(Platform.X86);
+			var config = CreateSingleRunConfig(Platform.X86);
 			config.Add(InProcessValidator.FailOnError);
 
 			Interlocked.Exchange(ref _callCounter, 0);

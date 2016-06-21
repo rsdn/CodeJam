@@ -13,17 +13,17 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.PerfTests.PerfTestHelpers;
+using static CodeJam.PerfTests.IntegrationTests.PerfTestHelpers;
 
-namespace CodeJam.PerfTests
+namespace CodeJam.PerfTests.IntegrationTests
 {
 	[TestFixture(Category = "BenchmarkDotNet")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
-	public static class CompetitionAnalyserAccuracyTests
+	public static class CompetitionAccuracyTests
 	{
 		[Test]
-		public static void TestCompetitionAnalyserTooFastBenchmark()
+		public static void CompetitionTooFastBenchmark()
 		{
 			var runState = new PerfTestRunner().Run<TooFastBenchmark>(HighAccuracyConfig);
 			var messages = runState.GetMessages();
@@ -45,7 +45,7 @@ namespace CodeJam.PerfTests
 		}
 
 		[Test]
-		public static void TestCompetitionAnalyserTooSlowBenchmark()
+		public static void CompetitionTooSlowBenchmark()
 		{
 			var runState = new PerfTestRunner().Run<TooSlowBenchmark>(SingleRunConfig);
 			var messages = runState.GetMessages();
@@ -69,7 +69,7 @@ namespace CodeJam.PerfTests
 		}
 
 		[Test]
-		public static void TestCompetitionAnalyserTooSlowOk()
+		public static void CompetitionTooSlowOk()
 		{
 			var overrideConfig = new ManualCompetitionConfig(SingleRunConfig)
 			{
@@ -88,7 +88,7 @@ namespace CodeJam.PerfTests
 		}
 
 		[Test]
-		public static void TestCompetitionAnalyserHighAccuracyBenchmark()
+		public static void CompetitionHighAccuracyBenchmark()
 		{
 			var overrideConfig = CreateHighAccuracyConfig(true);
 
@@ -108,7 +108,7 @@ namespace CodeJam.PerfTests
 			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 34, "Timeout failed");
 		}
 		[Test]
-		public static void TestCompetitionAnalyserHighAccuracyBenchmarkOutOfProc()
+		public static void CompetitionHighAccuracyBenchmarkOutOfProcess()
 		{
 			var overrideConfig = new ManualCompetitionConfig(CreateHighAccuracyConfig(false))
 			{

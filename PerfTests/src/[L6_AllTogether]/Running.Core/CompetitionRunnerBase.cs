@@ -338,7 +338,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			var result = OverrideLoggers(competitionConfig);
 
-			var hostLogMode = competitionConfig.DetailedLogging ? HostLogMode.AllMessages : HostLogMode.PrefixedOrErrors;
+			var hostLogMode = competitionConfig.DetailedLogging ? HostLogMode.AllMessages : HostLogMode.PrefixedOnly;
 			result.Insert(0, CreateHostLogger(hostLogMode));
 
 			return result;

@@ -8,17 +8,17 @@ using CodeJam.PerfTests.Running.Messages;
 
 using NUnit.Framework;
 
-using static CodeJam.PerfTests.PerfTestHelpers;
+using static CodeJam.PerfTests.IntegrationTests.PerfTestHelpers;
 
-namespace CodeJam.PerfTests
+namespace CodeJam.PerfTests.IntegrationTests
 {
 	[TestFixture(Category = "BenchmarkDotNet")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
-	public static class CompetitionAnalyserTests
+	public static class CompetitionTests
 	{
 		[Test]
-		public static void TestCompetitionAnalyserEmptyBenchmark()
+		public static void CompetitionEmptyBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			var runState = new PerfTestRunner().Run<EmptyBenchmark>(SingleRunConfig);
@@ -35,7 +35,7 @@ namespace CodeJam.PerfTests
 		}
 
 		[Test]
-		public static void TestCompetitionAnalyserNoBaselineOkBenchmark()
+		public static void CompetitionNoBaselineOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			var runState = new PerfTestRunner().Run<NoBaselineOkBenchmark>(SingleRunConfig);
@@ -52,7 +52,7 @@ namespace CodeJam.PerfTests
 		}
 
 		[Test]
-		public static void TestCompetitionAnalyserOkBenchmark()
+		public static void CompetitionOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			var runState = new PerfTestRunner().Run<OkBenchmark>(SingleRunConfig);
@@ -70,7 +70,7 @@ namespace CodeJam.PerfTests
 		}
 
 		[Test]
-		public static void TestCompetitionAnalyserXmlOkBenchmark()
+		public static void CompetitionXmlOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			var runState = new PerfTestRunner().Run<XmlOkBenchmark>(SingleRunConfig);
@@ -88,7 +88,7 @@ namespace CodeJam.PerfTests
 		}
 
 		[Test]
-		public static void TestCompetitionAnalyserNoBaselineFailBenchmark()
+		public static void CompetitionNoBaselineFailBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			var runState = new PerfTestRunner().Run<NoBaselineFailBenchmark>(SingleRunConfig);
@@ -110,10 +110,10 @@ namespace CodeJam.PerfTests
 		}
 
 		[Test]
-		public static void TestCompetitionAnalyserFailBenchmark()
+		public static void CompetitionLimitsFailBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var runState = new PerfTestRunner().Run<CompetitionLimitsFailBenchmark>(SingleRunConfig);
+			var runState = new PerfTestRunner().Run<LimitsFailBenchmark>(SingleRunConfig);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, 3 * ExpectedRunCount); // 3x rerun
@@ -178,14 +178,14 @@ namespace CodeJam.PerfTests
 		public class NoBaselineOkBenchmark : EmptyBenchmark
 		{
 			[Benchmark]
-			public void WillRun()
+			public void Benchmark1()
 			{
 				Interlocked.Increment(ref _callCounter);
 				Delay(SpinCount);
 			}
 
 			[CompetitionBenchmark(DoesNotCompete = true)]
-			public void WillRun2()
+			public void Benchmark2()
 			{
 				Interlocked.Increment(ref _callCounter);
 				Delay(SpinCount);
@@ -209,7 +209,9 @@ namespace CodeJam.PerfTests
 			}
 		}
 
-		[CompetitionMetadata("CodeJam.PerfTests._L4_CompetitionLimits_.CompetitionAnalyserTests.xml")]
+		[CompetitionMetadata(
+			"CodeJam.PerfTests.Resources.CompetitionTests.xml",
+			MetadataResourcePath = @"..\Resources\CompetitionTests.xml")]
 		public class XmlOkBenchmark : EmptyBenchmark
 		{
 			[CompetitionBaseline]
@@ -227,25 +229,16 @@ namespace CodeJam.PerfTests
 			}
 		}
 
-		public class HighAccuracyBenchmark
-		{
-			[CompetitionBaseline]
-			public void Baseline() => Delay(SpinCount);
-
-			[CompetitionBenchmark(9.5, 10.5)]
-			public void SlowerX10() => Delay(10 * SpinCount);
-		}
-
 		public class NoBaselineFailBenchmark : EmptyBenchmark
 		{
 			[Benchmark]
-			public void WillNotRun() => Interlocked.Increment(ref _callCounter);
+			public void Benchmark1() => Interlocked.Increment(ref _callCounter);
 
 			[CompetitionBenchmark]
-			public void WillNotRun2() => Interlocked.Increment(ref _callCounter);
+			public void Benchmark2() => Interlocked.Increment(ref _callCounter);
 		}
 
-		public class CompetitionLimitsFailBenchmark : EmptyBenchmark
+		public class LimitsFailBenchmark : EmptyBenchmark
 		{
 			[CompetitionBaseline]
 			public void Baseline()
