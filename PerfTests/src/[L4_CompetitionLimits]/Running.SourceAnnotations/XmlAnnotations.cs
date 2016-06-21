@@ -14,11 +14,12 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 
 using CodeJam.Collections;
-using CodeJam.PerfTests.Loggers;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
+
+using static CodeJam.PerfTests.Loggers.HostLogger;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
@@ -36,10 +37,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		}
 
 		#region XML metadata constants
-		private const string LogAnnotationStart = HostLogger.LogImportantAreaStart +
+		private const string LogAnnotationStart = LogImportantAreaStart +
 			"------xml_annotation_begin------";
 
-		private const string LogAnnotationEnd = HostLogger.LogImportantAreaEnd +
+		private const string LogAnnotationEnd = LogImportantAreaEnd +
 			"-------xml_annotation_end-------";
 
 		private const string CompetitionBenchmarksRootNode = "CompetitionBenchmarks";
@@ -49,6 +50,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#endregion
 
 		#region XML doc loading
+
 		#region Core logic for XML annotations
 		// ReSharper disable once SuggestBaseTypeForParameter
 		private static void MarkAsUsesFullTargetName(this XDocument xmlAnnotationDoc) =>
@@ -228,9 +230,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			var result = new List<XDocument>();
 
-			competitionState.WriteMessage(
-				MessageSource.Analyser, MessageSeverity.Informational,
-				$"Downloading {logUri}.");
+			var logger = competitionState.Logger;
+
+			logger.WriteLineInfo(
+				$"{LogInfoPrefix}Downloading {logUri}.");
 
 			using (var reader = BenchmarkHelpers.TryGetTextFromUri(logUri))
 			{
@@ -241,9 +244,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 						$"Could not load log content from {logUri}.");
 					return Array<XDocument>.Empty;
 				}
-				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.Informational,
-					$"Downloaded {logUri}.");
+
+				logger.WriteLineInfo(
+					$"{LogInfoPrefix}Downloaded {logUri}.");
 
 				var buffer = new StringBuilder();
 				int lineNumber = 0, xmlStartLineNumber = -1;
@@ -343,7 +346,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			logger.WriteLineInfo(tmp.ToString());
 
 			logger.WriteLineInfo(LogAnnotationEnd);
-
 		}
 		#endregion
 
@@ -463,13 +465,13 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				.GetOrAddElement(CompetitionNode, competitionName);
 			var candidate = competition.GetOrAddElement(CandidateNode, candidateName);
 
-			var minText = !competitionTarget.IgnoreMinRatio ? competitionTarget.MinRatioText : null;
+			var minText = competitionTarget.IgnoreMinRatio ? null : competitionTarget.MinRatioText;
 			// MaxText should be specified even if ignored.
 			var maxText = competitionTarget.MaxRatioText;
 
 			candidate.SetAttribute(CompetitionLimitProperties.MinRatio.ToString(), minText);
 			candidate.SetAttribute(CompetitionLimitProperties.MaxRatio.ToString(), maxText);
-		} 
+		}
 		#endregion
 	}
 }

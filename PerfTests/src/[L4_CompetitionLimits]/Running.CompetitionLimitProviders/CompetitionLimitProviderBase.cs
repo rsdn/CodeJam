@@ -57,7 +57,7 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 		/// <param name="benchmark">The benchmark.</param>
 		/// <param name="summary">Summary for the run.</param>
 		/// <returns>Limits for the benchmark or <c>null</c> if none.</returns>
-		public CompetitionLimit TryGetLimitForActualValues(Benchmark benchmark, Summary summary) =>
+		public CompetitionLimit TryGetCompetitionLimit(Benchmark benchmark, Summary summary) =>
 			TryGetCompetitionLimit(benchmark, summary, true);
 
 		/// <summary>Limits for the benchmark.</summary>

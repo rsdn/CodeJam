@@ -413,24 +413,29 @@ namespace CodeJam.PerfTests.Running.Core
 			// DONTTOUCH: the CompetitionAnnotateAnalyser should be last analyser in the chain.
 			if (!competitionConfig.DontCheckAnnotations)
 			{
-				var annotator = new CompetitionAnnotateAnalyser
-				{
-					TooFastBenchmarkLimit = _tooFastRunLimit,
-					LongRunningBenchmarkLimit = competitionConfig.AllowLongRunningBenchmarks ? _allowLongRunLimit : _longRunLimit,
-					IgnoreExistingAnnotations = competitionConfig.IgnoreExistingAnnotations,
-					LogCompetitionLimits = competitionConfig.LogCompetitionLimits,
-					CompetitionLimitProvider = competitionConfig.CompetitionLimitProvider,
-					UpdateSourceAnnotations = competitionConfig.UpdateSourceAnnotations,
-					PreviousRunLogUri = competitionConfig.PreviousRunLogUri
-				};
+				var competitionAnalyser = competitionConfig.UpdateSourceAnnotations
+					? new CompetitionAnnotateAnalyser
+					{
+						PreviousRunLogUri = competitionConfig.PreviousRunLogUri,
+						AdditionalRerunsIfAnnotationsUpdated = competitionConfig.RerunIfLimitsFailed ? 2 : 0
+					}
+					: new CompetitionAnalyser();
+
+				competitionAnalyser.TooFastBenchmarkLimit = _tooFastRunLimit;
+				competitionAnalyser.LongRunningBenchmarkLimit = competitionConfig.AllowLongRunningBenchmarks
+					? _allowLongRunLimit
+					: _longRunLimit;
+
+				competitionAnalyser.IgnoreExistingAnnotations = competitionConfig.IgnoreExistingAnnotations;
+				competitionAnalyser.LogCompetitionLimits = competitionConfig.LogCompetitionLimits;
+				competitionAnalyser.CompetitionLimitProvider = competitionConfig.CompetitionLimitProvider;
 
 				if (competitionConfig.RerunIfLimitsFailed)
 				{
-					annotator.MaxRerunsIfValidationFailed = 3;
-					annotator.AdditionalRerunsOnAnnotate = 2;
+					competitionAnalyser.MaxRerunsIfValidationFailed = 3;
 				}
 
-				result.Add(annotator);
+				result.Add(competitionAnalyser);
 			}
 
 			return result;

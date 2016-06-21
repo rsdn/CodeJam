@@ -31,8 +31,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
-			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnnotateAnalyser: All competition limits are ok.");
+			Assert.AreEqual(messages.Length, 0);
 		}
 
 		[Test]
@@ -49,8 +48,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
-			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnnotateAnalyser: All competition limits are ok.");
+			Assert.AreEqual(messages.Length, 0);
 		}
 
 		[Test]
@@ -68,7 +66,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnnotateAnalyser: All competition limits are ok.");
+			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
 		}
 
 		[Test]
@@ -86,7 +84,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnnotateAnalyser: All competition limits are ok.");
+			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
 		}
 
 		[Test]
@@ -108,7 +106,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.SetupError);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.AreEqual(messages[0].MessageText, "The competition has no baseline");
+			Assert.AreEqual(messages[0].MessageText, "The benchmark NoBaselineFailBenchmark has no baseline.");
 		}
 
 		[Test]
@@ -138,7 +136,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[1].RunMessageNumber, 2);
 			Assert.AreEqual(messages[1].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[1].MessageSource, MessageSource.Runner);
-			Assert.AreEqual(messages[1].MessageText, "Requesting 1 run(s): Competition validation failed.");
+			Assert.AreEqual(messages[1].MessageText, "Requesting 1 run(s): Limit checking failed.");
 
 			Assert.AreEqual(messages[2].RunNumber, 2);
 			Assert.AreEqual(messages[2].RunMessageNumber, 1);
@@ -151,7 +149,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[3].RunMessageNumber, 2);
 			Assert.AreEqual(messages[3].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[3].MessageSource, MessageSource.Runner);
-			Assert.AreEqual(messages[3].MessageText, "Requesting 1 run(s): Competition validation failed.");
+			Assert.AreEqual(messages[3].MessageText, "Requesting 1 run(s): Limit checking failed.");
 
 			Assert.AreEqual(messages[4].RunNumber, 3);
 			Assert.AreEqual(messages[4].RunMessageNumber, 1);

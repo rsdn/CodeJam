@@ -17,12 +17,12 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
-	/// <summary>Core logic for limit annotation for competition benchmarks.</summary>
+	/// <summary>Core logic for source annotations.</summary>
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	[SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
 	[SuppressMessage("ReSharper", "ConvertClosureToMethodGroup")]
-	internal static partial class AnnotateSourceHelper
+	internal static partial class SourceAnnotationsHelper
 	{
 		#region Helper types
 		/// <summary>
@@ -39,7 +39,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			/// <summary>Tries to get the lines of the source file.</summary>
 			/// <param name="file">The sources file.</param>
 			/// <param name="competitionState">State of the run.</param>
-			/// <returns>Lines of the source file or <c>null</c> if none.</returns>
+			/// <returns>Lines of the source file or empty collection if none.</returns>
 			[NotNull]
 			public IReadOnlyList<string> TryGetFileLines(
 				[NotNull] string file,
@@ -47,8 +47,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				Code.NotNullNorEmpty(file, nameof(file));
 				Code.NotNull(competitionState, nameof(competitionState));
-				if (_xmlAnnotations.ContainsKey(file))
-					throw CodeExceptions.InvalidOperation($"File {file} already loaded as XML annotation");
+				Code.AssertState(!_xmlAnnotations.ContainsKey(file), $"File {file} already loaded as XML annotation");
 
 				return _sourceLines.GetOrAdd(
 					file, f =>
@@ -128,7 +127,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				MarkAsChanged(file);
 			}
 
-			/// <summary>Saves m0dified files.</summary>
+			/// <summary>Saves modified files.</summary>
 			public void Save()
 			{
 				if (!HasChanges)
@@ -159,27 +158,30 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <summary>Tries to annotate source files with competition limits.</summary>
 		/// <param name="targetsToAnnotate">Benchmarks to annotate.</param>
 		/// <param name="competitionState">State of the run.</param>
-		/// <returns>Successfully annotated benchmarks.</returns>
-		// ReSharper disable ParameterTypeCanBeEnumerable.Global
+		/// <returns>Array of successfully annotated benchmarks.</returns>
+		[NotNull]
 		public static CompetitionTarget[] TryAnnotateBenchmarkFiles(
-			CompetitionTarget[] targetsToAnnotate, CompetitionState competitionState)
-			// ReSharper restore ParameterTypeCanBeEnumerable.Global
+			[NotNull] CompetitionTarget[] targetsToAnnotate,
+			[NotNull] CompetitionState competitionState)
 		{
-			var annotatedTargets = new List<CompetitionTarget>();
+			Code.NotNull(targetsToAnnotate, nameof(targetsToAnnotate));
+			Code.NotNull(competitionState, nameof(competitionState));
 
+			var annotatedTargets = new List<CompetitionTarget>();
 			var annContext = new AnnotateContext();
 			var logger = competitionState.Logger;
+
 			foreach (var targetToAnnotate in targetsToAnnotate)
 			{
 				var target = targetToAnnotate.Target;
 				var targetMethodTitle = target.MethodTitle;
 
 				logger.WriteLineInfo(
-					$"// Method {targetMethodTitle}: updating time limits [{targetToAnnotate.MinRatioText}, {targetToAnnotate.MaxRatioText}].");
+					$"// Method {targetMethodTitle}: updating time limits {targetToAnnotate}.");
 
-				// DONTTOUCH: the source should be loaded for checksum validation even if target uses resource annotation
-				int firstCodeLine;
+				// DONTTOUCH: the source should be loaded for checksum validation even if target uses resource annotation.
 				string fileName;
+				int firstCodeLine;
 				bool hasSource = SymbolHelpers.TryGetSourceInfo(target.Method, competitionState, out fileName, out firstCodeLine);
 
 				if (!hasSource)
@@ -189,14 +191,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 				if (targetToAnnotate.FromMetadataResource)
 				{
-					var resourceFileName = Path.ChangeExtension(fileName, ".xml");
-					if (targetToAnnotate.MetadataResourcePath.NotNullNorEmpty())
-					{
-						resourceFileName = Path.Combine(
-							// ReSharper disable once AssignNullToNotNullAttribute
-							Path.GetDirectoryName(resourceFileName),
-							targetToAnnotate.MetadataResourcePath);
-					}
+					var resourceFileName = GetResourceFileName(fileName, targetToAnnotate);
 
 					logger.WriteLineInfo($"// Method {targetMethodTitle}: annotating resource file {resourceFileName}.");
 					var annotated = TryFixBenchmarkXmlAnnotation(annContext, resourceFileName, targetToAnnotate, competitionState);
@@ -228,6 +223,19 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			annContext.Save();
 			return annotatedTargets.ToArray();
+		}
+
+		private static string GetResourceFileName(string fileName, CompetitionTarget targetToAnnotate)
+		{
+			if (targetToAnnotate.MetadataResourcePath.NotNullNorEmpty())
+			{
+				return Path.Combine(
+					// ReSharper disable once AssignNullToNotNullAttribute
+					Path.GetDirectoryName(fileName),
+					targetToAnnotate.MetadataResourcePath);
+			}
+
+			return Path.ChangeExtension(fileName, ".xml");
 		}
 
 		private static bool TryFixBenchmarkXmlAnnotation(

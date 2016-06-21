@@ -11,7 +11,6 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Order;
-using BenchmarkDotNet.Parameters;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
@@ -46,13 +45,6 @@ namespace BenchmarkDotNet.Helpers
 				.Select(d => d.Job)
 				.Distinct()
 				.OrderBy(d => d.GetShortInfo());
-
-		/// <summary>Groups benchmarks being run under same conditions (job+parameters).</summary>
-		/// <param name="summary">Summary for the run.</param>
-		/// <returns>Benchmark grouped by run conditions</returns>
-		public static ILookup<KeyValuePair<IJob, ParameterInstances>, Benchmark> SameConditionsBenchmarks(
-			[NotNull] this Summary summary) =>
-				summary.Benchmarks.ToLookup(b => new KeyValuePair<IJob, ParameterInstances>(b.Job, b.Parameters));
 
 		/// <summary>Returns benchmarks for the summary sorted by execution order.</summary>
 		/// <param name="summary">Summary for the run.</param>

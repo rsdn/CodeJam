@@ -43,13 +43,14 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
-			Assert.GreaterOrEqual(messages.Length, 7);
+			Assert.AreEqual(messages.Length, 4);
 			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 12, "Timeout failed");
 		}
 
 		[Test]
 		public static void TestAnnotateFromLocalLog()
 		{
+			// TODO: exact message validation
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_localLogConfig);
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.HighestMessageSeverityInRun, MessageSeverity.Warning);
@@ -58,7 +59,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
-			Assert.GreaterOrEqual(messages.Length, 7);
+			Assert.AreEqual(messages.Length, 4);
 			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 12, "Timeout failed");
 		}
 

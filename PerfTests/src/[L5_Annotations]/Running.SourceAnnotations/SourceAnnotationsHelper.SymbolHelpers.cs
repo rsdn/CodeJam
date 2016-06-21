@@ -19,7 +19,7 @@ using Microsoft.DiaSymReader;
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
-	internal static partial class AnnotateSourceHelper
+	internal static partial class SourceAnnotationsHelper
 	{
 		/// <summary>
 		/// BASEDON:

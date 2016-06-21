@@ -57,8 +57,8 @@ namespace CodeJam.PerfTests.Configs
 		/// <value>True if the analyser should warn on benchmarks that take longer than 0.5 sec to complete.</value>
 		public bool AllowLongRunningBenchmarks => _config.AllowLongRunningBenchmarks;
 
-		/// <summary>Perform reruns if competition limits failed or updated.</summary>
-		/// <value><c>true</c> if reruns should be performed if competition limits failed or updated.</value>
+		/// <summary>Perform reruns if competition limits check failed.</summary>
+		/// <value><c>true</c> if reruns should be performed if competition limits check failed.</value>
 		public bool RerunIfLimitsFailed => _config.RerunIfLimitsFailed;
 
 		/// <summary>Log competition limits.</summary>
@@ -71,8 +71,10 @@ namespace CodeJam.PerfTests.Configs
 		#endregion
 
 		#region Annotation config
-		/// <summary>Try to annotate source with actual competition limits.</summary>
-		/// <value><c>true</c> if the analyser should update source annotations; otherwise, <c>false</c>. </value>
+		/// <summary>Try to update source annotations if competition limits check failed.</summary>
+		/// <value>
+		/// <c>true</c> if the analyser should update source annotations if competition limits check failed; otherwise, <c>false</c>.
+		/// </value>
 		public bool UpdateSourceAnnotations => _config.UpdateSourceAnnotations;
 
 		/// <summary>

@@ -191,7 +191,7 @@ namespace CodeJam.PerfTests.Running.Core
 				var summary = BenchmarkRunner.Run(benchmarkType, competitionConfig);
 				competitionState.RunCompleted(summary);
 
-				WriteValidationMessges(competitionState);
+				WriteValidationMessages(competitionState);
 
 				if (competitionState.RunLimitExceeded)
 					break;
@@ -224,7 +224,7 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 		}
 
-		private static void WriteValidationMessges(CompetitionState competitionState)
+		private static void WriteValidationMessages(CompetitionState competitionState)
 		{
 			if (competitionState.LastRunSummary == null)
 				return;

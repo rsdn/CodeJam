@@ -23,7 +23,7 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 		/// <param name="minRatioPercentile">The percentile for the minimum timing ratio.</param>
 		/// <param name="maxRatioPercentile">>The percentile for the maximum timing ratio.</param>
 		/// <param name="limitModeDelta">
-		/// Delta to loose percentiles by. Used for <see cref="ICompetitionLimitProvider.TryGetLimitForActualValues "/>.
+		/// Delta to loose percentiles by. Used for <see cref="ICompetitionLimitProvider.TryGetCompetitionLimit "/>.
 		/// </param>
 		public PercentileLimitProvider(
 			int minRatioPercentile,
@@ -54,7 +54,9 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 		/// <value>The percentile for the maximum timing ratio.</value>
 		public int MaxRatioPercentile { get; }
 
-		/// <summary>Delta to loose percentiles by. Used for <see cref="ICompetitionLimitProvider.TryGetLimitForActualValues "/>.</summary>
+		/// <summary>
+		/// Delta to loose percentiles by. Used for <see cref="ICompetitionLimitProvider.TryGetCompetitionLimit "/>.
+		/// </summary>
 		/// <value>The delta to loose percentiles by.</value>
 		public int LimitModeDelta { get; }
 

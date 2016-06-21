@@ -114,7 +114,7 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestCompetitionLimitWithValues()
 		{
-			var result = new CompetitionTarget(null, new CompetitionLimit(1,2));
+			var result = new CompetitionTarget(null, new CompetitionLimit(1, 2));
 			Assert.AreEqual(result.MinRatio, 1);
 			Assert.AreEqual(result.MaxRatio, 2);
 			Assert.IsFalse(result.IsEmpty);

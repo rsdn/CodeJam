@@ -87,13 +87,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
-			Assert.AreEqual(messages.Length, 1);
-
-			Assert.AreEqual(messages[0].RunNumber, 1);
-			Assert.AreEqual(messages[0].RunMessageNumber, 1);
-			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Informational);
-			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnnotateAnalyser: All competition limits are ok.");
+			Assert.AreEqual(messages.Length, 0);
 		}
 
 		[Test]
@@ -116,7 +110,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnnotateAnalyser: All competition limits are ok.");
+			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
 			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 34, "Timeout failed");
 		}
 
