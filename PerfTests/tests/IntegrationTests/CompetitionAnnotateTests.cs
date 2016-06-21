@@ -29,7 +29,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		private static readonly ICompetitionConfig _localLogConfig = new ManualCompetitionConfig(_remoteLogConfig)
 		{
-			PreviousRunLogUri = @"Resources\CompetitionAnnotateTests.log"
+			PreviousRunLogUri = @"Resources\CompetitionAnnotateTests.log.txt"
 		};
 
 		[Test]
