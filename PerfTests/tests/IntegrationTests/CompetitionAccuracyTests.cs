@@ -90,7 +90,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionHighAccuracyBenchmark()
 		{
-			var overrideConfig = CreateHighAccuracyConfig(true);
+			var overrideConfig = CreateHighAccuracyConfig();
+			overrideConfig.DetailedLogging = true;
 
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(overrideConfig);
 			var messages = runState.GetMessages();
@@ -110,7 +111,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionHighAccuracyBenchmarkOutOfProcess()
 		{
-			var overrideConfig = new ManualCompetitionConfig(CreateHighAccuracyConfig(false))
+			var overrideConfig = new ManualCompetitionConfig(
+				CreateHighAccuracyConfig(outOfProcess: true))
 			{
 				DetailedLogging = true,
 				CompetitionLimitProvider = ConfidenceIntervalLimitProvider.Instance

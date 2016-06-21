@@ -26,7 +26,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		public static readonly ICompetitionConfig SingleRunConfig = CreateSingleRunConfig(Platform.X64).AsReadOnly();
 
-		public static readonly ICompetitionConfig HighAccuracyConfig = CreateHighAccuracyConfig(true).AsReadOnly();
+		public static readonly ICompetitionConfig HighAccuracyConfig = CreateHighAccuracyConfig().AsReadOnly();
 
 		private static ManualCompetitionConfig CreateConfigCore()
 		{
@@ -62,7 +62,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		}
 
 
-		public static ManualCompetitionConfig CreateHighAccuracyConfig(bool inProcess)
+		public static ManualCompetitionConfig CreateHighAccuracyConfig(bool outOfProcess = false)
 		{
 			var result = CreateConfigCore();
 			result.LogCompetitionLimits = true;
@@ -75,7 +75,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 					TargetCount = 100,
 					Platform = Platform.X64,
 					Jit = Jit.RyuJit,
-					Toolchain = inProcess ? InProcessToolchain.DontLogOutput : null
+					Toolchain = outOfProcess ? null : InProcessToolchain.Instance
 				});
 
 			return result;
