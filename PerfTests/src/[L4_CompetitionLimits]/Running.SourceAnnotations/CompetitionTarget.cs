@@ -15,9 +15,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	[SuppressMessage("ReSharper", "IntroduceOptionalParameters.Global")]
 	internal class CompetitionTarget : CompetitionLimit
 	{
-		private static readonly CompetitionLimitProperties _allPropertiesMask =
-			EnumHelper.GetFlagsMask<CompetitionLimitProperties>();
-
 		#region Fields & .ctor
 		private CompetitionLimitProperties _changedProperties;
 
@@ -115,44 +112,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return result;
 		}
 
-		// TODO: remove Loose feature
-
-		/// <summary>Looses the limits.</summary>
-		/// <param name="percent">Percent to loose by.</param>
-		/// <exception cref="ArgumentOutOfRangeException">The percent is not in range 0..99</exception>
-		public void LooseLimits(int percent) => LooseLimits(percent, _allPropertiesMask);
-
-		/// <summary>Looses the limits.</summary>
-		/// <param name="percent">Percent to loose by.</param>
-		/// <param name="propertiesToLoose">The properties to loose.</param>
-		/// <exception cref="ArgumentOutOfRangeException">The percent is not in range 0..99</exception>
-		public void LooseLimits(int percent, CompetitionLimitProperties propertiesToLoose)
-		{
-			Code.InRange(percent, nameof(percent), 0, 99);
-
-			propertiesToLoose &= _allPropertiesMask;
-
-			if (IsChanged(CompetitionLimitProperties.MinRatio & propertiesToLoose))
-			{
-				var newValue = Math.Floor(MinRatio * (100 - percent)) / 100;
-				UnionWithMinRatio(newValue);
-			}
-			if (IsChanged(CompetitionLimitProperties.MaxRatio & propertiesToLoose))
-			{
-				var newValue = Math.Ceiling(MaxRatio * (100 + percent)) / 100;
-				UnionWithMaxRatio(newValue);
-			}
-		}
-
 		/// <summary>Marks limits as saved.</summary>
-		public void MarkAsSaved() => MarkAsSaved(_allPropertiesMask);
-
-		/// <summary>Marks limits as saved.</summary>
-		/// <param name="propertiesToLoose">The properties to loose.</param>
-		public void MarkAsSaved(CompetitionLimitProperties propertiesToLoose)
-		{
-			propertiesToLoose &= _allPropertiesMask;
-			_changedProperties = _changedProperties.ClearFlag(propertiesToLoose);
-		}
+		public void MarkAsSaved() => _changedProperties = CompetitionLimitProperties.None;
 	}
 }
