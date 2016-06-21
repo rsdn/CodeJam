@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -181,3 +182,4 @@ namespace CodeJam.Metadata
 		}
 	}
 }
+#endif

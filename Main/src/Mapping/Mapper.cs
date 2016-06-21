@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
@@ -93,3 +94,4 @@ namespace CodeJam.Mapping
 			=> _mapper(source, destination, crossReferenceDictionary);
 	}
 }
+#endif

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Collections.Concurrent;
 using System.Globalization;
 using System.Linq.Expressions;
@@ -208,3 +209,4 @@ namespace CodeJam.Mapping
 //			=> ConvertBuilder.GetDefaultMappingFromEnumType(mappingSchema, enumType);
 	}
 }
+#endif

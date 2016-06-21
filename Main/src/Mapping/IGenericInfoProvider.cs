@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 
 namespace CodeJam.Mapping
 {
@@ -7,3 +8,4 @@ namespace CodeJam.Mapping
 		void SetInfo(MappingSchema mappingSchema);
 	}
 }
+#endif

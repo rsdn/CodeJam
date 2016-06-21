@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Collections.Concurrent;
 using System.Linq;
 
@@ -188,3 +189,4 @@ namespace CodeJam.Services
 		#endregion
 	}
 }
+#endif

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -337,7 +338,7 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Member mappers.
 		/// </summary>
-		public List<Tuple<LambdaExpression,LambdaExpression>> MemberMappers { get; set; }
+		public List<ValueTuple<LambdaExpression,LambdaExpression>> MemberMappers { get; set; }
 
 		/// <summary>
 		/// Adds member mapper.
@@ -349,9 +350,9 @@ namespace CodeJam.Mapping
 		public MapperBuilder<TFrom,TTo> MapMember<T>(Expression<Func<TTo,T>> toMember, Expression<Func<TFrom,T>> setter)
 		{
 			if (MemberMappers == null)
-				MemberMappers = new List<Tuple<LambdaExpression,LambdaExpression>>();
+				MemberMappers = new List<ValueTuple<LambdaExpression,LambdaExpression>>();
 
-			MemberMappers.Add(Tuple.Create((LambdaExpression)toMember, (LambdaExpression)setter));
+			MemberMappers.Add(ValueTuple.Create((LambdaExpression)toMember, (LambdaExpression)setter));
 
 			return this;
 		}
@@ -406,7 +407,8 @@ namespace CodeJam.Mapping
 		/// Gets an instance of <see cref="ExpressionBuilder"/> class.
 		/// </summary>
 		/// <returns><see cref="ExpressionBuilder"/>.</returns>
-		ExpressionBuilder GetExpressionMapper()
-			=> new ExpressionBuilder(this, MemberMappers?.Select(mm => Tuple.Create(mm.Item1.GetMembersInfo(), mm.Item2)).ToArray());
+		private ExpressionBuilder GetExpressionMapper()
+			=> new ExpressionBuilder(this, MemberMappers?.Select(mm => ValueTuple.Create(mm.Item1.GetMembersInfo(), mm.Item2)).ToArray());
 	}
 }
+#endif

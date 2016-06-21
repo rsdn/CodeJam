@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Linq.Expressions;
 
 namespace CodeJam.Mapping
@@ -25,3 +26,4 @@ namespace CodeJam.Mapping
 				Type);
 	}
 }
+#endif

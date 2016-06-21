@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -425,31 +426,31 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
-		private static Tuple<Expression,bool> GetConverter(
+		private static ValueTuple<Expression,bool>? GetConverter(
 			MappingSchema mappingSchema,
 			Expression expr,
 			Type from,
 			Type to)
 		{
 			if (from == to)
-				return Tuple.Create(expr, false);
+				return ValueTuple.Create(expr, false);
 
 			var le = Converter.GetConverter(from, to);
 
 			if (le != null)
-				return Tuple.Create(le.ReplaceParameters(expr), false);
+				return ValueTuple.Create(le.ReplaceParameters(expr), false);
 
 			var lex = mappingSchema.TryGetConvertExpression(from, to);
 
 			if (lex != null)
-				return Tuple.Create(lex.ReplaceParameters(expr), true);
+				return ValueTuple.Create(lex.ReplaceParameters(expr), true);
 
 			var ex =
 				GetFromEnum  (from, to, expr, mappingSchema) ??
 				GetToEnum    (from, to, expr, mappingSchema);
 
 			if (ex != null)
-				return Tuple.Create(ex, true);
+				return ValueTuple.Create(ex, true);
 
 			ex =
 				GetConvertion(from, to, expr) ??
@@ -460,16 +461,16 @@ namespace CodeJam.Mapping
 				GetToString  (from, to, expr) ??
 				GetParseEnum (from, to, expr);
 
-			return ex != null ? Tuple.Create(ex, false) : null;
+			return ex != null ? ValueTuple.Create(ex, false) : (ValueTuple<Expression, bool>?)null;
 		}
 
-		private static Tuple<Expression,bool> ConvertUnderlying(
+		private static ValueTuple<Expression,bool>? ConvertUnderlying(
 			MappingSchema mappingSchema,
 			Expression    expr,
 			Type from, Type ufrom,
 			Type to,   Type uto)
 		{
-			Tuple<Expression,bool> ex = null;
+			ValueTuple<Expression,bool>? ex = null;
 
 			if (from != ufrom)
 			{
@@ -482,7 +483,7 @@ namespace CodeJam.Mapping
 					ex = GetConverter(mappingSchema, cp, ufrom, uto);
 
 					if (ex != null)
-						ex = Tuple.Create(Expression.Convert(ex.Item1, to) as Expression, ex.Item2);
+						ex = ValueTuple.Create(Expression.Convert(ex.Value.Item1, to) as Expression, ex.Value.Item2);
 				}
 			}
 
@@ -491,13 +492,16 @@ namespace CodeJam.Mapping
 				ex = GetConverter(mappingSchema, expr, from, uto);
 
 				if (ex != null)
-					ex = Tuple.Create(Expression.Convert(ex.Item1, to) as Expression, ex.Item2);
+					ex = ValueTuple.Create(Expression.Convert(ex.Value.Item1, to) as Expression, ex.Value.Item2);
 			}
 
 			return ex;
 		}
 
-		public static Tuple<LambdaExpression,LambdaExpression,bool> GetConverter(MappingSchema mappingSchema, Type from, Type to)
+		public static ValueTuple<LambdaExpression,LambdaExpression,bool> GetConverter(
+			MappingSchema mappingSchema,
+			Type from,
+			Type to)
 		{
 			if (mappingSchema == null)
 				mappingSchema = MappingSchema.Default;
@@ -506,10 +510,10 @@ namespace CodeJam.Mapping
 			var ne = null as LambdaExpression;
 
 			if (from == to)
-				return Tuple.Create(Expression.Lambda(p, p), ne, false);
+				return ValueTuple.Create(Expression.Lambda(p, p), ne, false);
 
 			if (to == typeof(object))
-				return Tuple.Create(Expression.Lambda(Expression.Convert(p, typeof(object)), p), ne, false);
+				return ValueTuple.Create(Expression.Lambda(Expression.Convert(p, typeof(object)), p), ne, false);
 
 			var ex =
 				GetConverter     (mappingSchema, p, from, to) ??
@@ -518,20 +522,23 @@ namespace CodeJam.Mapping
 
 			if (ex != null)
 			{
-				ne = Expression.Lambda(ex.Item1, p);
+				ne = Expression.Lambda(ex.Value.Item1, p);
 
 				if (from.IsNullable())
-					ex = Tuple.Create(
-						Expression.Condition(Expression.PropertyOrField(p, "HasValue"), ex.Item1, new DefaultValueExpression(mappingSchema, to)) as Expression,
-						ex.Item2);
+					ex = ValueTuple.Create(
+						Expression.Condition(
+							Expression.PropertyOrField(p, "HasValue"),
+							ex.Value.Item1,
+							new DefaultValueExpression(mappingSchema, to)) as Expression,
+						ex.Value.Item2);
 				else if (from.IsClass)
-					ex = Tuple.Create(
-						Expression.Condition(Expression.NotEqual(p, Expression.Constant(null, from)), ex.Item1, new DefaultValueExpression(mappingSchema, to)) as Expression,
-						ex.Item2);
+					ex = ValueTuple.Create(
+						Expression.Condition(Expression.NotEqual(p, Expression.Constant(null, from)), ex.Value.Item1, new DefaultValueExpression(mappingSchema, to)) as Expression,
+						ex.Value.Item2);
 			}
 
 			if (ex != null)
-				return Tuple.Create(Expression.Lambda(ex.Item1, p), ne, ex.Item2);
+				return ValueTuple.Create(Expression.Lambda(ex.Value.Item1, p), ne, ex.Value.Item2);
 
 			if (to.IsNullable())
 			{
@@ -546,7 +553,7 @@ namespace CodeJam.Mapping
 
 				defex = GetCtor(uto, to, defex);
 
-				return Tuple.Create(Expression.Lambda(defex, p), ne, false);
+				return ValueTuple.Create(Expression.Lambda(defex, p), ne, false);
 			}
 			else
 			{
@@ -557,7 +564,7 @@ namespace CodeJam.Mapping
 				if (defex.Type != to)
 					defex = Expression.Convert(defex, to);
 
-				return Tuple.Create(Expression.Lambda(defex, p), ne, false);
+				return ValueTuple.Create(Expression.Lambda(defex, p), ne, false);
 			}
 		}
 
@@ -611,3 +618,4 @@ namespace CodeJam.Mapping
 		#endregion
 	}
 }
+#endif

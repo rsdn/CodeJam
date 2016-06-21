@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Linq.Expressions;
 
 using JetBrains.Annotations;
@@ -104,3 +105,4 @@ namespace CodeJam.Mapping
 		public static Func<TFrom,TTo> From => _lambda;
 	}
 }
+#endif

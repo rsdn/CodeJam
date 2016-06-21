@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -362,3 +363,4 @@ namespace CodeJam.Reflection
 		#endregion
 	}
 }
+#endif

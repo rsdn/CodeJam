@@ -7,6 +7,7 @@
 
 	var projects = new[]
 	{
+		new ProjectInfo("3.5",   "v3.5",   "FW461;FW46;FW452;FW451;FW45;FW40;FW35"),
 		new ProjectInfo("4.0",   "v4.0",   "FW461;FW46;FW452;FW451;FW45;FW40", "%ProgramFiles(x86)%\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.0"),
 		new ProjectInfo("4.5",   "v4.5",   "FW461;FW46;FW452;FW451;FW45"),
 		new ProjectInfo("4.5.1", "v4.5.1", "FW461;FW46;FW452;FW451"),

@@ -24,7 +24,11 @@ namespace System.Collections.Generic
 	/// </summary>
 	/// <typeparam name="T">The type of the elements.</typeparam>
 	[PublicAPI]
-	public interface IReadOnlyCollection<out T> : IEnumerable<T>
+	public interface IReadOnlyCollection<
+#if !FW35
+	out
+#endif
+	T> : IEnumerable<T>
 	{
 		/// <summary>
 		/// Gets the number of elements in the collection.

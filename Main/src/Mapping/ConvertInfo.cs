@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Collections.Concurrent;
 using System.Linq.Expressions;
 
@@ -67,3 +68,4 @@ namespace CodeJam.Mapping
 		}
 	}
 }
+#endif

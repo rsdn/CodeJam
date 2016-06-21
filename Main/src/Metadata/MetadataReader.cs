@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Linq;
 using System.Reflection;
 
@@ -27,3 +28,4 @@ namespace CodeJam.Metadata
 			_readers.SelectMany(r => r.GetAttributes<T>(memberInfo, inherit)).ToArray();
 	}
 }
+#endif

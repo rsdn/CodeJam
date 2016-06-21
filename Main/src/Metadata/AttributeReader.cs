@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Reflection;
 
 using JetBrains.Annotations;
@@ -34,3 +35,4 @@ namespace CodeJam.Metadata
 		}
 	}
 }
+#endif

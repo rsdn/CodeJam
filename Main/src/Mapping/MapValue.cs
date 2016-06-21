@@ -1,3 +1,4 @@
+#if !FW35
 using System;
 
 namespace CodeJam.Mapping
@@ -29,3 +30,4 @@ namespace CodeJam.Mapping
 		public MapValueAttribute[] MapValues { get; }
 	}
 }
+#endif

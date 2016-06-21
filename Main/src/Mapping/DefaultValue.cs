@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Linq.Expressions;
@@ -114,3 +115,4 @@ namespace CodeJam.Mapping
 			=> _defaultValues[typeof(T)] = value;
 	}
 }
+#endif

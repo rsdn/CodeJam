@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -11,9 +12,9 @@ namespace CodeJam.Mapping
 	using Expressions;
 	using Reflection;
 
-	class ExpressionBuilder
+	internal class ExpressionBuilder
 	{
-		public ExpressionBuilder(IMapperBuilder mapperBuilder, Tuple<MemberInfo[],LambdaExpression>[] memberMappers)
+		public ExpressionBuilder(IMapperBuilder mapperBuilder, ValueTuple<MemberInfo[],LambdaExpression>[] memberMappers)
 		{
 			_mapperBuilder = mapperBuilder;
 			_memberMappers = memberMappers;
@@ -21,15 +22,15 @@ namespace CodeJam.Mapping
 			_toType        = mapperBuilder.ToType;
 		}
 
-		readonly IMapperBuilder                                   _mapperBuilder;
-		readonly Type                                             _fromType;
-		readonly Type                                             _toType;
-		readonly Tuple<MemberInfo[],LambdaExpression>[]           _memberMappers;
-		readonly Dictionary<Tuple<Type,Type>,ParameterExpression> _mappers     = new Dictionary<Tuple<Type,Type>,ParameterExpression>();
-		readonly List<Expression>                                 _expressions = new List<Expression>();
-		readonly List<ParameterExpression>                        _locals      = new List<ParameterExpression>();
+		private readonly IMapperBuilder                                   _mapperBuilder;
+		private readonly Type                                             _fromType;
+		private readonly Type                                             _toType;
+		private readonly ValueTuple<MemberInfo[],LambdaExpression>[]      _memberMappers;
+		private readonly Dictionary<ValueTuple<Type,Type>,ParameterExpression> _mappers     = new Dictionary<ValueTuple<Type,Type>,ParameterExpression>();
+		private readonly List<Expression>                                      _expressions = new List<Expression>();
+		private readonly List<ParameterExpression>                             _locals      = new List<ParameterExpression>();
 
-		static int _nameCounter;
+		private static int _nameCounter;
 
 		#region GetExpressionEx
 
@@ -411,7 +412,7 @@ namespace CodeJam.Mapping
 
 			Expression BuildClassMapper(Expression getValue, MemberAccessor toMember)
 			{
-				var key   = Tuple.Create(_fromExpression.Type, toMember.Type);
+				var key   = ValueTuple.Create(_fromExpression.Type, toMember.Type);
 				var pFrom = Expression.Parameter(getValue.Type, "pFrom");
 				var pTo   = Expression.Parameter(toMember.Type, "pTo");
 				var toObj = toMember.GetterExpression.ReplaceParameters(_localObject);
@@ -572,3 +573,4 @@ namespace CodeJam.Mapping
 		}
 	}
 }
+#endif

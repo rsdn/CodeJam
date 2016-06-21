@@ -191,7 +191,13 @@
     <Compile Include="TableData\TableDataParser.cs" />
     <Compile Include="TableData\TableDataPrinter.cs" />
     <Compile Include="Targeting\CustomAttributeExtensions.cs" />
-    <Compile Include="Targeting\DictionaryWithReadOnly.cs" />
+    <Compile Include="Targeting\FW35\Action.cs" />
+    <Compile Include="Targeting\FW35\Func.cs" />
+    <Compile Include="Targeting\FW35\IStructuralComparable.cs" />
+    <Compile Include="Targeting\FW35\IStructuralEquatable.cs" />
+    <Compile Include="Targeting\FW35\Lazy.cs" />
+    <Compile Include="Targeting\FW35\LazyThreadSafetyMode.cs" />
+    <Compile Include="Targeting\FW40\DictionaryWithReadOnly.cs" />
     <Compile Include="Targeting\PlatformDependent.cs" />
     <Compile Include="Collections\ArrayExtensions.cs" />
     <Compile Include="Collections\ArrayExtensions.generated.cs">
@@ -211,8 +217,8 @@
       <DependentUpon>EnumerableExtensions.MinMaxBy.tt</DependentUpon>
     </Compile>
     <Compile Include="Collections\ILazyDictionary.cs" />
-    <Compile Include="Targeting\IReadOnlyCollection.cs" />
-    <Compile Include="Targeting\IReadOnlyDictionary.cs" />
+    <Compile Include="Targeting\FW40\IReadOnlyCollection.cs" />
+    <Compile Include="Targeting\FW40\IReadOnlyDictionary.cs" />
     <Compile Include="IO\TempData.cs" />
     <Compile Include="Reflection\AssemblyExtensions.cs" />
     <Compile Include="Structures\ValueTuple.generated.cs">

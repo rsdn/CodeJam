@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
@@ -53,7 +54,7 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Member mappers.
 		/// </summary>
-		List<Tuple<LambdaExpression,LambdaExpression>> MemberMappers { get; set; }
+		List<ValueTuple<LambdaExpression,LambdaExpression>> MemberMappers { get; set; }
 
 		/// <summary>
 		/// If true, processes object cross references.
@@ -80,3 +81,4 @@ namespace CodeJam.Mapping
 		Type ToType { get; }
 	}
 }
+#endif

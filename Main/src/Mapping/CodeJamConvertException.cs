@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Runtime.Serialization;
 
 using JetBrains.Annotations;
@@ -81,3 +82,4 @@ namespace CodeJam.Mapping
 		}
 	}
 }
+#endif

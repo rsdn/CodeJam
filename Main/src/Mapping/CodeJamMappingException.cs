@@ -1,3 +1,4 @@
+#if !FW35
 using System;
 using System.Runtime.Serialization;
 
@@ -83,3 +84,4 @@ namespace CodeJam.Mapping
 #endif
 	}
 }
+#endif

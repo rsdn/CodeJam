@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 
 using JetBrains.Annotations;
 
@@ -24,3 +25,4 @@ namespace CodeJam.Mapping
 		public static TTo From<TFrom>(TFrom o) => Convert<TFrom,TTo>.From(o);
 	}
 }
+#endif

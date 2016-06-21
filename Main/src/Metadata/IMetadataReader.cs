@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Reflection;
 
 namespace CodeJam.Metadata
@@ -27,3 +28,4 @@ namespace CodeJam.Metadata
 		T[] GetAttributes<T>(MemberInfo memberInfo, bool inherit = true) where T : Attribute;
 	}
 }
+#endif

@@ -7,6 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#if !FW35
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -663,3 +664,5 @@ namespace CodeJam.Collections
 
 	}
 }
+#endif
+
