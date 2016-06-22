@@ -117,7 +117,11 @@ namespace CodeJam.ObjectPools
 		public static StringBuilder AllocateAndClear([NotNull] this ObjectPool<StringBuilder> pool)
 		{
 			var sb = pool.Allocate();
+#if FW35
+			sb.Length = 0;
+#else
 			sb.Clear();
+#endif
 
 			return sb;
 		}
@@ -212,7 +216,11 @@ namespace CodeJam.ObjectPools
 			if (sb == null)
 				return;
 
+#if FW35
+			sb.Length = 0;
+#else
 			sb.Clear();
+#endif
 
 			if (sb.Capacity > Threshold)
 				sb.Capacity = Threshold;

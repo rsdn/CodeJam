@@ -45,6 +45,11 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Threading, Version=1.0.2856.102, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
+      Condition="$(DefineConstants.Contains('FW35'))">
+      <HintPath>..\..\packages\TaskParallelLibrary.1.0.2856.0\lib\Net35\System.Threading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Jetbrains.Annotations.cs">
@@ -192,11 +197,14 @@
     <Compile Include="TableData\TableDataPrinter.cs" />
     <Compile Include="Targeting\CustomAttributeExtensions.cs" />
     <Compile Include="Targeting\FW35\Action.cs" />
+    <Compile Include="Targeting\FW35\EnumerableTargeting.cs" />
     <Compile Include="Targeting\FW35\Func.cs" />
     <Compile Include="Targeting\FW35\IStructuralComparable.cs" />
     <Compile Include="Targeting\FW35\IStructuralEquatable.cs" />
     <Compile Include="Targeting\FW35\Lazy.cs" />
     <Compile Include="Targeting\FW35\LazyThreadSafetyMode.cs" />
+    <Compile Include="Targeting\FW35\StringTargeting.cs" />
+    <Compile Include="Targeting\FW35\Volatile.cs" />
     <Compile Include="Targeting\FW40\DictionaryWithReadOnly.cs" />
     <Compile Include="Targeting\PlatformDependent.cs" />
     <Compile Include="Collections\ArrayExtensions.cs" />

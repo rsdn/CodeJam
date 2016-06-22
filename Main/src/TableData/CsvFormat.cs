@@ -10,6 +10,14 @@ using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
+using EnumerableClass =
+#if FW35
+	CodeJam.Targeting.FW35.EnumerableTargeting
+#else
+	System.Linq.Enumerable
+#endif
+	;
+
 namespace CodeJam.TableData
 {
 	/// <summary>
@@ -18,7 +26,7 @@ namespace CodeJam.TableData
 	[PublicAPI]
 	public static class CsvFormat
 	{
-		#region Parser
+#region Parser
 		/// <summary>
 		/// Creates RFC4180 compliant CSV parser.
 		/// </summary>
@@ -177,7 +185,7 @@ namespace CodeJam.TableData
 			return parts;
 		}
 
-		#region CharReader struct
+#region CharReader struct
 		private struct CharReader
 		{
 			private const int s_Eof = -1;
@@ -220,9 +228,9 @@ namespace CodeJam.TableData
 
 			public CharReader Peek() => new CharReader(m_Reader, m_Reader.Peek());
 		}
-		#endregion
+#endregion
 
-		#region ParserState enum
+#region ParserState enum
 		private enum ParserState
 		{
 			ExpectField,
@@ -230,10 +238,10 @@ namespace CodeJam.TableData
 			QuotedField,
 			AfterField
 		}
-		#endregion
-		#endregion
+#endregion
+#endregion
 
-		#region Formatter
+#region Formatter
 		/// <summary>
 		/// Creates formatter for CSV.
 		/// </summary>
@@ -282,16 +290,18 @@ namespace CodeJam.TableData
 					"columnWidth array to short");
 
 				return
-					values
-						.Select(EscapeValue)
-						.Zip(columnWidths, (s, w) => s.PadLeft(w))
+					EnumerableClass
+						.Zip(
+							values.Select(EscapeValue),
+							columnWidths,
+							(s, w) => s.PadLeft(w))
 						.Join(", ");
 			}
 		}
 
 		private class CsvNoEscapeFormatter : ITableDataFormatter
 		{
-		#region Implementation of ITableDataFormatter
+#region Implementation of ITableDataFormatter
 			/// <summary>
 			/// Returns length of formatted value.
 			/// </summary>
@@ -306,11 +316,14 @@ namespace CodeJam.TableData
 			/// <param name="columnWidths">Array of column widths. If null - value is ignored.</param>
 			/// <returns>String representation of values</returns>
 			public string FormatLine(string[] values, int[] columnWidths) =>
-				values
-					.Zip(columnWidths, (s, w) => s.PadLeft(w))
+				EnumerableClass
+					.Zip(
+						values,
+						columnWidths,
+						(s, w) => s.PadLeft(w))
 					.Join(", ");
 #endregion
 		}
-		#endregion
+#endregion
 	}
 }
