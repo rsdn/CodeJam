@@ -197,11 +197,10 @@
     <Compile Include="Targeting\CustomAttributeExtensions.cs" />
     <Compile Include="Targeting\FW35\Action.cs" />
     <Compile Include="Targeting\FW35\EnumerableTargeting.cs" />
+    <Compile Include="Targeting\FW35\EnumTargeting.cs" />
     <Compile Include="Targeting\FW35\Func.cs" />
     <Compile Include="Targeting\FW35\IStructuralComparable.cs" />
     <Compile Include="Targeting\FW35\IStructuralEquatable.cs" />
-    <Compile Include="Targeting\FW35\Lazy.cs" />
-    <Compile Include="Targeting\FW35\LazyThreadSafetyMode.cs" />
     <Compile Include="Targeting\FW35\StringTargeting.cs" />
     <Compile Include="Targeting\FW35\Volatile.cs" />
     <Compile Include="Targeting\FW40\DictionaryWithReadOnly.cs" />

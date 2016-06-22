@@ -135,7 +135,17 @@ namespace CodeJam.Mapping
 		{
 			if (to == typeof(string) && !from.IsNullable())
 			{
-				var mi = from.GetMethod("ToString", MethodLookup, null, Array<Type>.Empty, null);
+				var mi =
+					from.GetMethod(
+						"ToString",
+						MethodLookup,
+						null,
+#if (!FW452)
+						Array.Empty<Type>(),
+#else
+						Array<Type>.Empty,
+#endif
+						null);
 				return mi != null ? Expression.Call(p, mi) : null;
 			}
 
@@ -568,7 +578,7 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		#region Default Enum Mapping Type
+#region Default Enum Mapping Type
 
 		public static Type GetDefaultMappingFromEnumType(MappingSchema mappingSchema, Type enumType)
 		{
@@ -615,7 +625,7 @@ namespace CodeJam.Mapping
 			return defaultType;
 		}
 
-		#endregion
+#endregion
 	}
 }
 #endif

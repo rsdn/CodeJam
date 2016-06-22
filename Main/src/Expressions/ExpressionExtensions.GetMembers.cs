@@ -10,6 +10,10 @@ namespace CodeJam.Expressions
 {
 	using Reflection;
 
+	/// <summary>
+	/// <see cref="Expression"/> Extensions.
+	/// </summary>
+	[PublicAPI]
 	public static partial class ExpressionExtensions
 	{
 		/// <summary>

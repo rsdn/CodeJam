@@ -1,1 +1,0 @@
-"%ProgramFiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" CodeJam.Main.csproj /target:ReBuild /property:Configuration=Debug   /property:OutputPath=bin\Debug.3.5\   /property:TargetFrameworkVersion=v3.5 /p:DefineConstants="FW461;FW46;FW452;FW451;FW45;FW40;FW35"

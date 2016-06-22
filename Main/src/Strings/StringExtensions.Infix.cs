@@ -36,7 +36,7 @@ namespace CodeJam.Strings
 		public static bool NotNullNorEmpty([CanBeNull] this string str) => !string.IsNullOrEmpty(str);
 
 		/// <summary>
-		/// Infix form of <see cref="string.IsNullOrWhiteSpace"/>.
+		/// Infix form of string.IsNullOrWhiteSpace.
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <returns>
@@ -142,7 +142,7 @@ namespace CodeJam.Strings
 		/// using the specified separator between each member.
 		/// </summary>
 		/// <remarks>
-		/// Infix form of <see cref="string.Join(string,IEnumerable{string})"/>.
+		/// Infix form of string.Join(string,IEnumerable{string}).
 		/// </remarks>
 		/// <param name="values">A collection that contains the strings to concatenate.</param>
 		/// <param name="separator">

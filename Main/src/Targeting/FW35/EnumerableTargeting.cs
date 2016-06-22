@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CodeJam.Targeting.FW35
+namespace CodeJam.Targeting
 {
 	/// <summary>
 	/// Targeting methods for <see cref="Enumerable"/>

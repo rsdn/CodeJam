@@ -16,8 +16,7 @@ namespace CodeJam.Arithmetic
 	{
 		private const LazyThreadSafetyMode LazyMode = LazyThreadSafetyMode.PublicationOnly;
 
-		private static readonly Lazy<Func<T, T, int>> _compare =
-			new Lazy<Func<T, T, int>>(OperatorsFactory.Comparison<T>, LazyMode);
+		private static readonly Lazy<Func<T, T, int>> _compare = Lazy.Create(OperatorsFactory.Comparison<T>, LazyMode);
 
 		/// <summary>
 		/// Comparison callback
@@ -25,7 +24,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, int> Compare => _compare.Value;
 
-		#region Infinity values
+#region Infinity values
 		private static readonly Lazy<bool> _hasNegativeInfinity =
 			new Lazy<bool>(OperatorsFactory.HasNegativeInfinity<T>, LazyMode);
 
@@ -59,6 +58,6 @@ namespace CodeJam.Arithmetic
 		/// </summary>
 		[NotNull]
 		public static T PositiveInfinity => _positiveInfinity.Value;
-		#endregion
+#endregion
 	}
 }

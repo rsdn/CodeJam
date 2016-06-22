@@ -13,6 +13,14 @@ using JetBrains.Annotations;
 
 using static CodeJam.PlatformDependent;
 
+using EnumClass =
+#if FW35
+	CodeJam.Targeting.EnumTargeting
+#else
+	System.Enum
+#endif
+	;
+
 namespace CodeJam
 {
 	/// <summary>
@@ -24,7 +32,7 @@ namespace CodeJam
 		private static class Holder<TEnum>
 			where TEnum : struct
 		{
-			#region Static fields
+#region Static fields
 			// DONTTOUCH: the ordering of the fields represents the dependencies between them.
 			// DO NOT change it until the initialization logic is changed.
 
@@ -47,9 +55,9 @@ namespace CodeJam
 			private static readonly IReadOnlyDictionary<TEnum, string> _valueNames = GetValueNamesCore(_enumType);
 
 			private static readonly TEnum _flagsMask = _isFlagsEnum ? GetFlagsMaskCore(_values.ToArray()) : default(TEnum);
-			#endregion
+#endregion
 
-			#region Flag operations emit
+#region Flag operations emit
 			[CanBeNull]
 			private static readonly Func<TEnum, TEnum, bool> _isFlagSetCallback = _isEnum || _isNullableEnum
 				? OperatorsFactory.IsFlagSetOperator<TEnum>()
@@ -69,9 +77,9 @@ namespace CodeJam
 			private static readonly Func<TEnum, TEnum, TEnum> _clearFlagCallback = _isEnum || _isNullableEnum
 				? OperatorsFactory.ClearFlagOperator<TEnum>()
 				: null;
-			#endregion
+#endregion
 
-			#region Init helpers
+#region Init helpers
 			private static IReadOnlyDictionary<string, TEnum> GetNameValuesCore(Type enumType, bool ignoreCase)
 			{
 				var result =
@@ -147,9 +155,9 @@ namespace CodeJam
 						$"The {typeof(TEnum).Name} type is not enum type");
 				}
 			}
-			#endregion
+#endregion
 
-			#region API
+#region API
 			public static IReadOnlyDictionary<string, TEnum> GetNameValues(bool ignoreCase)
 			{
 				AssertUsage();
@@ -242,10 +250,10 @@ namespace CodeJam
 					return _clearFlagCallback;
 				}
 			}
-			#endregion
+#endregion
 		}
 
-		#region Metadata checks
+#region Metadata checks
 		/// <summary>Determines whether the specified value is defined</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value to check.</param>
@@ -302,7 +310,7 @@ namespace CodeJam
 		public static bool TryParse<TEnum>(string name, bool ignoreCase, out TEnum result)
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				Holder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out result) ||
-					Enum.TryParse(name, ignoreCase, out result);
+					EnumClass.TryParse(name, ignoreCase, out result);
 
 		/// <summary>Try to parse the enum value.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
@@ -372,9 +380,9 @@ namespace CodeJam
 		public static string GetName<TEnum>(TEnum value)
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				Holder<TEnum>.ValueNames.GetValueOrDefault(value);
-		#endregion
+#endregion
 
-		#region Flag checks
+#region Flag checks
 		/// <summary>Determines whether the specified flag is set.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value.</param>
@@ -414,9 +422,9 @@ namespace CodeJam
 		public static bool IsFlagNotMatch<TEnum>(this TEnum value, TEnum flags)
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				!Holder<TEnum>.IsFlagMatchCallback(value, flags);
-		#endregion
+#endregion
 
-		#region Flag operations
+#region Flag operations
 		/// <summary>Sets the flag.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value.</param>
@@ -436,6 +444,6 @@ namespace CodeJam
 		public static TEnum ClearFlag<TEnum>(this TEnum value, TEnum flag)
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				Holder<TEnum>.ClearFlagCallback(value, flag);
-		#endregion
+#endregion
 	}
 }

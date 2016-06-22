@@ -12,7 +12,7 @@ using JetBrains.Annotations;
 
 using EnumerableClass =
 #if FW35
-	CodeJam.Targeting.FW35.EnumerableTargeting
+	CodeJam.Targeting.EnumerableTargeting
 #else
 	System.Linq.Enumerable
 #endif

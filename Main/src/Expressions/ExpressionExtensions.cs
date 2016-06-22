@@ -9,11 +9,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Expressions
 {
-	/// <summary>
-	/// <see cref="Expression"/> Extensions.
-	/// </summary>
-	[PublicAPI]
-	public static partial class ExpressionExtensions
+	static partial class ExpressionExtensions
 	{
 		#region VisitInternal
 		private static void VisitInternal<T>(IEnumerable<T> source, Action<T> func)

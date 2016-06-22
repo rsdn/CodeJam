@@ -382,8 +382,15 @@ namespace CodeJam.Mapping
 
 			if (isFromGeneric || isToGeneric)
 			{
-				var fromGenericArgs = isFromGeneric ? from.GetGenericArguments() : Array<Type>.Empty;
-				var toGenericArgs   = isToGeneric   ? to.  GetGenericArguments() : Array<Type>.Empty;
+				var empty =
+#if (!FW452)
+						Array.Empty<Type>()
+#else
+					Array<Type>.Empty
+#endif
+					;
+				var fromGenericArgs = isFromGeneric ? from.GetGenericArguments() : empty;
+				var toGenericArgs   = isToGeneric   ? to.  GetGenericArguments() : empty;
 
 				var args = fromGenericArgs.SequenceEqual(toGenericArgs) ?
 					fromGenericArgs : fromGenericArgs.Concat(toGenericArgs).ToArray();

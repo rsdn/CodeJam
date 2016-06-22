@@ -155,7 +155,13 @@ namespace CodeJam.Metadata
 			if (_types.TryGetValue(type.FullName, out t) || _types.TryGetValue(type.Name, out t))
 				return t.GetAttribute(typeof(T)).Select(a => (T) a.MakeAttribute(typeof(T))).ToArray();
 
-			return Array<T>.Empty;
+			return
+#if (!FW452)
+						Array.Empty<T>()
+#else
+						Array<T>.Empty
+#endif
+				;
 		}
 
 		public T[] GetAttributes<T>(MemberInfo memberInfo, bool inherit = true)
@@ -178,7 +184,13 @@ namespace CodeJam.Metadata
 							.ToArray();
 			}
 
-			return Array<T>.Empty;
+			return
+#if (!FW452)
+						Array.Empty<T>()
+#else
+						Array<T>.Empty
+#endif
+				;
 		}
 	}
 }

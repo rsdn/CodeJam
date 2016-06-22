@@ -7,6 +7,8 @@
 using System.Runtime.ConstrainedExecution;
 using System.Security;
 
+using JetBrains.Annotations;
+
 namespace System.Threading
 {
 	//
@@ -20,8 +22,17 @@ namespace System.Threading
 	// not allow us to express a volatile read/write from/to a byref arg.
 	// See getILIntrinsicImplementationForVolatile() in jitinterface.cpp.
 	//
+	/// <summary>
+	/// Contains methods for performing volatile memory operations.
+	/// </summary>
+	[PublicAPI]
 	public static class Volatile
 	{
+		/// <summary>
+		/// Reads the value of the specified field. On systems that require it, inserts a memory barrier that prevents the
+		/// processor from reordering memory operations as follows: If a read or write appears after this method in the code,
+		/// the processor cannot move it before this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static bool Read(ref bool location)
 		{
@@ -33,8 +44,12 @@ namespace System.Threading
 			return value;
 		}
 
+		/// <summary>
+		/// Reads the value of the specified field. On systems that require it, inserts a memory barrier that prevents the
+		/// processor from reordering memory operations as follows: If a read or write appears after this method in the code,
+		/// the processor cannot move it before this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
-		[CLSCompliant(false)]
 		public static sbyte Read(ref sbyte location)
 		{
 			// 
@@ -45,6 +60,11 @@ namespace System.Threading
 			return value;
 		}
 
+		/// <summary>
+		/// Reads the value of the specified field. On systems that require it, inserts a memory barrier that prevents the
+		/// processor from reordering memory operations as follows: If a read or write appears after this method in the code,
+		/// the processor cannot move it before this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static byte Read(ref byte location)
 		{
@@ -56,6 +76,11 @@ namespace System.Threading
 			return value;
 		}
 
+		/// <summary>
+		/// Reads the value of the specified field. On systems that require it, inserts a memory barrier that prevents the
+		/// processor from reordering memory operations as follows: If a read or write appears after this method in the code,
+		/// the processor cannot move it before this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static short Read(ref short location)
 		{
@@ -67,8 +92,12 @@ namespace System.Threading
 			return value;
 		}
 
+		/// <summary>
+		/// Reads the value of the specified field. On systems that require it, inserts a memory barrier that prevents the
+		/// processor from reordering memory operations as follows: If a read or write appears after this method in the code,
+		/// the processor cannot move it before this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
-		[CLSCompliant(false)]
 		public static ushort Read(ref ushort location)
 		{
 			// 
@@ -79,6 +108,11 @@ namespace System.Threading
 			return value;
 		}
 
+		/// <summary>
+		/// Reads the value of the specified field. On systems that require it, inserts a memory barrier that prevents the
+		/// processor from reordering memory operations as follows: If a read or write appears after this method in the code,
+		/// the processor cannot move it before this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static int Read(ref int location)
 		{
@@ -90,8 +124,12 @@ namespace System.Threading
 			return value;
 		}
 
+		/// <summary>
+		/// Reads the value of the specified field. On systems that require it, inserts a memory barrier that prevents the
+		/// processor from reordering memory operations as follows: If a read or write appears after this method in the code,
+		/// the processor cannot move it before this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
-		[CLSCompliant(false)]
 		public static uint Read(ref uint location)
 		{
 			// 
@@ -102,6 +140,11 @@ namespace System.Threading
 			return value;
 		}
 
+		/// <summary>
+		/// Reads the value of the specified field. On systems that require it, inserts a memory barrier that prevents the
+		/// processor from reordering memory operations as follows: If a read or write appears after this method in the code,
+		/// the processor cannot move it before this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static long Read(ref long location)
 		{
@@ -114,8 +157,12 @@ namespace System.Threading
 			return Interlocked.CompareExchange(ref location, 0, 0);
 		}
 
+		/// <summary>
+		/// Reads the value of the specified field. On systems that require it, inserts a memory barrier that prevents the
+		/// processor from reordering memory operations as follows: If a read or write appears after this method in the code,
+		/// the processor cannot move it before this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
-		[CLSCompliant(false)]
 		[SecuritySafeCritical] // contains unsafe code
 		public static ulong Read(ref ulong location)
 		{
@@ -132,6 +179,11 @@ namespace System.Threading
 			}
 		}
 
+		/// <summary>
+		/// Reads the value of the specified field. On systems that require it, inserts a memory barrier that prevents the
+		/// processor from reordering memory operations as follows: If a read or write appears after this method in the code,
+		/// the processor cannot move it before this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static IntPtr Read(ref IntPtr location)
 		{
@@ -143,8 +195,12 @@ namespace System.Threading
 			return value;
 		}
 
+		/// <summary>
+		/// Reads the value of the specified field. On systems that require it, inserts a memory barrier that prevents the
+		/// processor from reordering memory operations as follows: If a read or write appears after this method in the code,
+		/// the processor cannot move it before this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
-		[CLSCompliant(false)]
 		public static UIntPtr Read(ref UIntPtr location)
 		{
 			// 
@@ -155,6 +211,11 @@ namespace System.Threading
 			return value;
 		}
 
+		/// <summary>
+		/// Reads the value of the specified field. On systems that require it, inserts a memory barrier that prevents the
+		/// processor from reordering memory operations as follows: If a read or write appears after this method in the code,
+		/// the processor cannot move it before this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static float Read(ref float location)
 		{
@@ -166,6 +227,11 @@ namespace System.Threading
 			return value;
 		}
 
+		/// <summary>
+		/// Reads the value of the specified field. On systems that require it, inserts a memory barrier that prevents the
+		/// processor from reordering memory operations as follows: If a read or write appears after this method in the code,
+		/// the processor cannot move it before this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static double Read(ref double location)
 		{
@@ -178,6 +244,11 @@ namespace System.Threading
 			return Interlocked.CompareExchange(ref location, 0, 0);
 		}
 
+		/// <summary>
+		/// Reads the value of the specified field. On systems that require it, inserts a memory barrier that prevents the
+		/// processor from reordering memory operations as follows: If a read or write appears after this method in the code,
+		/// the processor cannot move it before this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		[SecuritySafeCritical] //the intrinsic implementation of this method contains unverifiable code
 		public static T Read<T>(ref T location) where T : class
@@ -190,9 +261,11 @@ namespace System.Threading
 			return value;
 		}
 
-
-
-
+		/// <summary>
+		/// Writes the specified value to the specified field. On systems that require it, inserts a memory barrier that
+		/// prevents the processor from reordering memory operations as follows: If a read or write appears before this
+		/// method in the code, the processor cannot move it after this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static void Write(ref bool location, bool value)
 		{
@@ -203,8 +276,12 @@ namespace System.Threading
 			location = value;
 		}
 
+		/// <summary>
+		/// Writes the specified value to the specified field. On systems that require it, inserts a memory barrier that
+		/// prevents the processor from reordering memory operations as follows: If a read or write appears before this
+		/// method in the code, the processor cannot move it after this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
-		[CLSCompliant(false)]
 		public static void Write(ref sbyte location, sbyte value)
 		{
 			// 
@@ -214,6 +291,11 @@ namespace System.Threading
 			location = value;
 		}
 
+		/// <summary>
+		/// Writes the specified value to the specified field. On systems that require it, inserts a memory barrier that
+		/// prevents the processor from reordering memory operations as follows: If a read or write appears before this
+		/// method in the code, the processor cannot move it after this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static void Write(ref byte location, byte value)
 		{
@@ -224,6 +306,11 @@ namespace System.Threading
 			location = value;
 		}
 
+		/// <summary>
+		/// Writes the specified value to the specified field. On systems that require it, inserts a memory barrier that
+		/// prevents the processor from reordering memory operations as follows: If a read or write appears before this
+		/// method in the code, the processor cannot move it after this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static void Write(ref short location, short value)
 		{
@@ -234,8 +321,12 @@ namespace System.Threading
 			location = value;
 		}
 
+		/// <summary>
+		/// Writes the specified value to the specified field. On systems that require it, inserts a memory barrier that
+		/// prevents the processor from reordering memory operations as follows: If a read or write appears before this
+		/// method in the code, the processor cannot move it after this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
-		[CLSCompliant(false)]
 		public static void Write(ref ushort location, ushort value)
 		{
 			// 
@@ -245,6 +336,11 @@ namespace System.Threading
 			location = value;
 		}
 
+		/// <summary>
+		/// Writes the specified value to the specified field. On systems that require it, inserts a memory barrier that
+		/// prevents the processor from reordering memory operations as follows: If a read or write appears before this
+		/// method in the code, the processor cannot move it after this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static void Write(ref int location, int value)
 		{
@@ -255,8 +351,12 @@ namespace System.Threading
 			location = value;
 		}
 
+		/// <summary>
+		/// Writes the specified value to the specified field. On systems that require it, inserts a memory barrier that
+		/// prevents the processor from reordering memory operations as follows: If a read or write appears before this
+		/// method in the code, the processor cannot move it after this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
-		[CLSCompliant(false)]
 		public static void Write(ref uint location, uint value)
 		{
 			// 
@@ -266,6 +366,11 @@ namespace System.Threading
 			location = value;
 		}
 
+		/// <summary>
+		/// Writes the specified value to the specified field. On systems that require it, inserts a memory barrier that
+		/// prevents the processor from reordering memory operations as follows: If a read or write appears before this
+		/// method in the code, the processor cannot move it after this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static void Write(ref long location, long value)
 		{
@@ -278,8 +383,12 @@ namespace System.Threading
 			Interlocked.Exchange(ref location, value);
 		}
 
+		/// <summary>
+		/// Writes the specified value to the specified field. On systems that require it, inserts a memory barrier that
+		/// prevents the processor from reordering memory operations as follows: If a read or write appears before this
+		/// method in the code, the processor cannot move it after this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
-		[CLSCompliant(false)]
 		[SecuritySafeCritical] // contains unsafe code
 		public static void Write(ref ulong location, ulong value)
 		{
@@ -302,6 +411,11 @@ namespace System.Threading
 			}
 		}
 
+		/// <summary>
+		/// Writes the specified value to the specified field. On systems that require it, inserts a memory barrier that
+		/// prevents the processor from reordering memory operations as follows: If a read or write appears before this
+		/// method in the code, the processor cannot move it after this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static void Write(ref IntPtr location, IntPtr value)
 		{
@@ -312,8 +426,12 @@ namespace System.Threading
 			location = value;
 		}
 
+		/// <summary>
+		/// Writes the specified value to the specified field. On systems that require it, inserts a memory barrier that
+		/// prevents the processor from reordering memory operations as follows: If a read or write appears before this
+		/// method in the code, the processor cannot move it after this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
-		[CLSCompliant(false)]
 		public static void Write(ref UIntPtr location, UIntPtr value)
 		{
 			// 
@@ -323,6 +441,11 @@ namespace System.Threading
 			location = value;
 		}
 
+		/// <summary>
+		/// Writes the specified value to the specified field. On systems that require it, inserts a memory barrier that
+		/// prevents the processor from reordering memory operations as follows: If a read or write appears before this
+		/// method in the code, the processor cannot move it after this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static void Write(ref float location, float value)
 		{
@@ -333,6 +456,11 @@ namespace System.Threading
 			location = value;
 		}
 
+		/// <summary>
+		/// Writes the specified value to the specified field. On systems that require it, inserts a memory barrier that
+		/// prevents the processor from reordering memory operations as follows: If a read or write appears before this
+		/// method in the code, the processor cannot move it after this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static void Write(ref double location, double value)
 		{
@@ -345,6 +473,11 @@ namespace System.Threading
 			Interlocked.Exchange(ref location, value);
 		}
 
+		/// <summary>
+		/// Writes the specified value to the specified field. On systems that require it, inserts a memory barrier that
+		/// prevents the processor from reordering memory operations as follows: If a read or write appears before this
+		/// method in the code, the processor cannot move it after this method.
+		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		[SecuritySafeCritical] //the intrinsic implementation of this method contains unverifiable code
 		public static void Write<T>(ref T location, T value) where T : class
