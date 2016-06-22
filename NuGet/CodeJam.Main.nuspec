@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>CodeJam</id>
-		<version>1.1.0-beta4</version>
+		<version>1.1.0-beta5</version>
 		<title>CodeJam .NET Library</title>
 		<authors>andrewvk</authors>
 		<licenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</licenseUrl>
@@ -11,9 +11,18 @@
 		<description>CodeJam is a set of handy reusable .NET components that can simplify your daily work and save your time when you copy and paste your favorite helper methods and classes from one project to another.</description>
 		<copyright>RSDN.ru, 2016</copyright>
 		<tags>list string collection threading xml reflection async assertion IO extension algorithms structures utilities</tags>
+		<dependencies>
+			<group targetFramework="net35">
+				<dependency id="TaskParallelLibrary" version="1.0.2856.0" />
+			</group>
+		</dependencies>
 	</metadata>
 	<files>
 		<file src="Readme.txt"                              target="" />
+
+		<file src="..\Main\src\bin\Release.3.5\CodeJam.dll" target="lib\net35" />
+		<file src="..\Main\src\bin\Release.3.5\CodeJam.pdb" target="lib\net35" />
+		<file src="..\Main\src\bin\Release.3.5\CodeJam.xml" target="lib\net35" />
 
 		<file src="..\Main\src\bin\Release.4.0\CodeJam.dll" target="lib\net40" />
 		<file src="..\Main\src\bin\Release.4.0\CodeJam.pdb" target="lib\net40" />

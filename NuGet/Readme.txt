@@ -8,6 +8,7 @@ What's new in 1.1.0-beta5
 * Set of classes to build fast mapper
 * EnumerableExtensions.ToHashSet overloads
 * Fixes and code cleanup
+* Experimental .NET Framework 3.5 support
 
 What's new in 1.1.0-beta4
 ------------------------
