@@ -7,7 +7,7 @@
 		new []
 		{
 			new OpInfo("UnaryMinus", "-", ExpressionType.Negate),
-			new OpInfo("OnesComplement", "~", ExpressionType.OnesComplement),
+			new OpInfo("OnesComplement", "~", ExpressionType.Not),
 
 			new OpInfo("AreEqual", "==", ExpressionType.Equal),
 			new OpInfo("AreNotEqual", "!=", ExpressionType.NotEqual),
@@ -55,6 +55,7 @@
 				switch (Type)
 				{
 					case ExpressionType.OnesComplement:
+					case ExpressionType.Not:
 					case ExpressionType.Modulo:
 					case ExpressionType.ExclusiveOr:
 					case ExpressionType.And:
@@ -77,6 +78,7 @@
 					case ExpressionType.Equal:
 					case ExpressionType.NotEqual:
 					case ExpressionType.OnesComplement:
+					case ExpressionType.Not:
 					case ExpressionType.ExclusiveOr:
 					case ExpressionType.And:
 					case ExpressionType.Or:
@@ -109,6 +111,7 @@
 				{
 					case ExpressionType.Negate:
 					case ExpressionType.OnesComplement:
+					case ExpressionType.Not:
 					case ExpressionType.UnaryPlus:
 						return OpType.Unary;
 					case ExpressionType.Equal:

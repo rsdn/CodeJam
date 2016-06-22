@@ -32,7 +32,7 @@ namespace CodeJam.Arithmetic
 			var result = argType;
 			if (temp.IsEnum)
 			{
-				result = temp.GetEnumUnderlyingType();
+				result = Enum.GetUnderlyingType(temp);
 				if (nullable)
 				{
 					result = typeof(Nullable<>).MakeGenericType(result);
@@ -78,8 +78,11 @@ namespace CodeJam.Arithmetic
 			}
 
 			body = PrepareResult(body, args[0].Type, resultTupe);
+#if FW35
+			var result = Lambda<TDelegate>(body, args);
+#else
 			var result = Lambda<TDelegate>(body, methodName, args);
-
+#endif
 			try
 			{
 				return result.Compile();
@@ -241,14 +244,12 @@ namespace CodeJam.Arithmetic
 			{
 				underlyingType = underlyingType.ToNullableUnderlying();
 			}
-			underlyingType = underlyingType.GetEnumUnderlyingType();
+			underlyingType = Enum.GetUnderlyingType(underlyingType);
 
 			const string compareMethodName = nameof(int.CompareTo);
 			var compareMethod = underlyingType.GetMethod(compareMethodName, new[] { underlyingType });
 			if (compareMethod == null)
 				throw MethodNotSupported(underlyingType, compareMethodName, null);
-
-			const string compareToName = nameof(int.CompareTo);
 
 			// returns (a,b)=> a_Underlying.CompareTo(b_Underlying)
 
@@ -267,8 +268,12 @@ namespace CodeJam.Arithmetic
 				throw MethodNotSupported(compareMethod.DeclaringType, compareMethod.Name, ex);
 			}
 
+#if FW35
+			var result = Lambda<Func<T, T, int>>(body, new[] { argA, argB });
+#else
+			const string compareToName = nameof(int.CompareTo);
 			var result = Lambda<Func<T, T, int>>(body, compareToName, new[] { argA, argB });
-
+#endif
 			try
 			{
 				return result.Compile();
@@ -330,7 +335,7 @@ namespace CodeJam.Arithmetic
 				caseIfAIsNull,
 				caseIfAIsNotNull);
 		}
-		#endregion
+#endregion
 
 		/// <summary>Compare operator factory method..</summary>
 		/// <typeparam name="T">The type of the operands</typeparam>
@@ -391,9 +396,9 @@ namespace CodeJam.Arithmetic
 					throw CodeExceptions.UnexpectedArgumentValue(nameof(comparisonType), comparisonType);
 			}
 		}
-		#endregion
+#endregion
 
-		#region Flag operators
+#region Flag operators
 		/// <summary>Emits code for (value &amp; flag) == flag check.</summary>
 		/// <typeparam name="T">The type of the operands</typeparam>
 		/// <returns>Callback for (value &amp; flag) == flag check</returns>
@@ -442,12 +447,12 @@ namespace CodeJam.Arithmetic
 		/// <returns>Callback for (value &amp; ~flag) operator.</returns>
 		public static Func<T, T, T> ClearFlagOperator<T>() =>
 			CompileOperatorCore<Func<T, T, T>>(
-				args => And(args[0], OnesComplement(args[1])),
+				args => And(args[0], Not(args[1])),
 				ex => NotSupported<T>(ExpressionType.And, ex),
 				"ClearFlag",
 				typeof(T),
 				Parameter(typeof(T), "value"),
 				Parameter(typeof(T), "flag"));
-		#endregion
+#endregion
 	}
 }

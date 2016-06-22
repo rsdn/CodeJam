@@ -34,7 +34,7 @@ namespace CodeJam.Arithmetic
 
 		/// <summary>OnesComplement operator factory.</summary>
 		private static readonly Lazy<Func<T, T>> _onesComplement =
-			new Lazy<Func<T, T>>(() => UnaryOperator<T>(ExpressionType.OnesComplement), LazyMode);
+			new Lazy<Func<T, T>>(() => UnaryOperator<T>(ExpressionType.Not), LazyMode);
 
 		/// <summary>OnesComplement operator.</summary>
 		/// <value>The OnesComplement operator.</value>
