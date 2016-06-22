@@ -142,6 +142,7 @@ TST10");
 			output = new AccumulationLogger();
 			logger = new HostLogger(output, HostLogMode.AllMessages);
 			LogMessages(logger);
+			// ReSharper disable once StringLiteralTypo
 			const string expected = @"ABCDEFGH
 TST0
 // !TST1

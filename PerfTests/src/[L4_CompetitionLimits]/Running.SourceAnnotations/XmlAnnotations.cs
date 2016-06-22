@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
@@ -12,18 +13,18 @@ using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 
-using CodeJam.PerfTests.Loggers;
-using CodeJam.PerfTests.Running.CompetitionLimits;
+using CodeJam.Collections;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
 
+using static CodeJam.PerfTests.Loggers.HostLogger;
+
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
-	// TODO: needs code review
 	/// <summary>
-	/// Helper class for XML annotations
+	/// Helper class for xml annotations
 	/// </summary>
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	internal static class XmlAnnotations
@@ -36,10 +37,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		}
 
 		#region XML metadata constants
-		private const string LogAnnotationStart = HostLogger.LogImportantAreaStart +
+		private const string LogAnnotationStart = LogImportantAreaStart +
 			"------xml_annotation_begin------";
 
-		private const string LogAnnotationEnd = HostLogger.LogImportantAreaEnd +
+		private const string LogAnnotationEnd = LogImportantAreaEnd +
 			"-------xml_annotation_end-------";
 
 		private const string CompetitionBenchmarksRootNode = "CompetitionBenchmarks";
@@ -48,15 +49,17 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		private const string TargetAttribute = "Target";
 		#endregion
 
+		#region XML doc loading
+
 		#region Core logic for XML annotations
 		// ReSharper disable once SuggestBaseTypeForParameter
-		private static void MarkAsUsesFullTargetName(this XDocument benchmarksDoc) =>
-			benchmarksDoc.AddAnnotation(UseFullNameAnnotation.Instance);
+		private static void MarkAsUsesFullTargetName(this XDocument xmlAnnotationDoc) =>
+			xmlAnnotationDoc.AddAnnotation(UseFullNameAnnotation.Instance);
 
 		[NotNull]
 		// ReSharper disable once SuggestBaseTypeForParameter
-		private static string GetCompetitionName(this Target target, XDocument benchmarksDoc) =>
-			benchmarksDoc.Annotations<UseFullNameAnnotation>().Any()
+		private static string GetCompetitionName(this Target target, XDocument xmlAnnotationDoc) =>
+			xmlAnnotationDoc.Annotations<UseFullNameAnnotation>().Any()
 				? target.Type.FullName + ", " + target.Type.Assembly.GetName().Name
 				: target.Type.Name;
 
@@ -66,12 +69,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		[NotNull]
 		// ReSharper disable once SuggestBaseTypeForParameter
-		private static XElement GetOrAddElement(this XElement element, XName elementName, string targetName)
+		private static XElement GetOrAddElement(this XElement parent, XName elementName, string targetName)
 		{
 			if (targetName == null)
 				throw new ArgumentNullException(nameof(targetName));
 
-			var result = element
+			var result = parent
 				.Elements(elementName)
 				.SingleOrDefault(e => e.Attribute(TargetAttribute)?.Value == targetName);
 
@@ -79,7 +82,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				result = new XElement(elementName);
 				result.SetAttribute(TargetAttribute, targetName);
-				element.Add(result);
+				parent.Add(result);
 			}
 
 			return result;
@@ -87,20 +90,20 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		[CanBeNull]
 		// ReSharper disable once UnusedMethodReturnValue.Local
-		private static XAttribute SetAttribute(this XElement element, XName attributeName, string attributeValue)
+		private static XAttribute SetAttribute(this XElement parent, XName attributeName, string attributeValue)
 		{
 			if (attributeValue == null)
 			{
-				element.Attribute(attributeName)?.Remove();
+				parent.Attribute(attributeName)?.Remove();
 				return null;
 			}
 
-			var result = element.Attribute(attributeName);
+			var result = parent.Attribute(attributeName);
 
 			if (result == null)
 			{
 				result = new XAttribute(attributeName, attributeValue);
-				element.Add(result);
+				parent.Add(result);
 			}
 			else
 			{
@@ -110,12 +113,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return result;
 		}
 
+		[NotNull]
 		private static XmlReaderSettings GetXmlReaderSettings() =>
 			new XmlReaderSettings
 			{
 				DtdProcessing = DtdProcessing.Prohibit
 			};
 
+		[NotNull]
 		private static XmlWriterSettings GetXmlWriterSettings(bool omitXmlDeclaration = false) =>
 			new XmlWriterSettings
 			{
@@ -126,102 +131,97 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			};
 		#endregion
 
-		/// <summary>Tries to parse xml document with competition limits.</summary>
+		#region XML annotations
+		/// <summary>Parses xml annotation document.</summary>
 		/// <param name="source">The source to parse from.</param>
 		/// <param name="competitionState">State of the run.</param>
-		/// <param name="origin">The prefix to be used in messages.</param>
-		/// <returns>Parsed XML document or <c>null</c> if parsing failed.</returns>
+		/// <param name="sourceDescription">Source description to be used in messages.</param>
+		/// <returns>XML annotation document or <c>null</c> if parsing failed.</returns>
 		[CanBeNull]
-		public static XDocument TryParseBenchmarksDoc(
+		public static XDocument TryParseXmlAnnotationDoc(
 			[NotNull] TextReader source,
 			[NotNull] CompetitionState competitionState,
-			[NotNull] string origin)
+			[NotNull] string sourceDescription)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(competitionState, nameof(competitionState));
-			Code.NotNullNorEmpty(origin, nameof(origin));
+			Code.NotNullNorEmpty(sourceDescription, nameof(sourceDescription));
 
-			XDocument benchmarksDoc;
+			XDocument xmlAnnotationDoc;
 			try
 			{
 				using (var reader = XmlReader.Create(source, GetXmlReaderSettings()))
 				{
-					benchmarksDoc = XDocument.Load(reader);
+					xmlAnnotationDoc = XDocument.Load(reader);
 				}
 			}
 			catch (ArgumentException ex)
 			{
 				competitionState.WriteExceptionMessage(
 					MessageSource.Analyser, MessageSeverity.SetupError,
-					$"{origin}: Could not parse annotation", ex);
+					$"{sourceDescription}: Could not parse annotation", ex);
 				return null;
 			}
 			catch (XmlException ex)
 			{
 				competitionState.WriteExceptionMessage(
 					MessageSource.Analyser, MessageSeverity.SetupError,
-					$"{origin}: Could not parse annotation", ex);
+					$"{sourceDescription}: Could not parse annotation", ex);
 				return null;
 			}
 
-			var rootNode = benchmarksDoc.Element(CompetitionBenchmarksRootNode);
+			var rootNode = xmlAnnotationDoc.Element(CompetitionBenchmarksRootNode);
 			if (rootNode == null)
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.SetupError,
-					$"{origin}: root node {CompetitionBenchmarksRootNode} not found.");
+					$"{sourceDescription}: root node {CompetitionBenchmarksRootNode} not found.");
 
 				return null;
 			}
 
-			return benchmarksDoc;
+			return xmlAnnotationDoc;
 		}
 
-		#region Logging & xml annotations
-		/// <summary>Writes the competition targets to the log.</summary>
-		/// <param name="competitionTargets">The competition targets to log.</param>
+		/// <summary>Parses xml annotation document from the resource.</summary>
+		/// <param name="assembly">Assembly that contains resource.</param>
+		/// <param name="resourceName">Name of the xml resource with competition limits.</param>
 		/// <param name="competitionState">State of the run.</param>
-		public static void LogCompetitionTargets(
-			[NotNull] IEnumerable<CompetitionTarget> competitionTargets,
+		/// <returns>XML annotation document or <c>null</c> if parsing failed.</returns>
+		public static XDocument TryParseXmlAnnotationDoc(
+			[NotNull] Assembly assembly,
+			[NotNull] string resourceName,
 			[NotNull] CompetitionState competitionState)
 		{
-			Code.NotNull(competitionTargets, nameof(competitionTargets));
+			Code.NotNull(assembly, nameof(assembly));
+			Code.NotNullNorEmpty(resourceName, nameof(resourceName));
 			Code.NotNull(competitionState, nameof(competitionState));
 
-			var hasData = false;
-			var benchmarksDoc = new XDocument(new XElement(CompetitionBenchmarksRootNode));
-			benchmarksDoc.MarkAsUsesFullTargetName();
-			foreach (var competitionTarget in competitionTargets)
+			using (var resourceStream = assembly.GetManifestResourceStream(resourceName))
 			{
-				AddOrUpdateCompetitionTarget(benchmarksDoc, competitionTarget);
-				hasData = true;
-			}
-
-			var logger = competitionState.Logger;
-			if (hasData)
-			{
-				logger.WriteLineInfo(LogAnnotationStart);
-
-				var tmp = new StringBuilder();
-				using (var writer = XmlWriter.Create(tmp, GetXmlWriterSettings(true)))
+				if (resourceStream == null)
 				{
-					benchmarksDoc.Save(writer);
-				}
-				logger.WriteLineInfo(tmp.ToString());
+					competitionState.WriteMessage(
+						MessageSource.Analyser, MessageSeverity.SetupError,
+						$"Benchmark {assembly.FullName}: resource stream {resourceName} not found");
 
-				logger.WriteLineInfo(LogAnnotationEnd);
-			}
-			else
-			{
-				logger.WriteLineInfo("// No competition annotations were updated, nothing to export.");
+					return null;
+				}
+
+				using (var reader = new StreamReader(resourceStream))
+				{
+					return TryParseXmlAnnotationDoc(
+						reader, competitionState,
+						$"Resource {resourceName}");
+				}
 			}
 		}
 
-		/// <summary>Tries to parse xml documents with competition limits from the log.</summary>
+		/// <summary>Parses xml annotation documents from the log.</summary>
 		/// <param name="logUri">The URI the log will be obtained from.</param>
 		/// <param name="competitionState">State of the run.</param>
-		/// <returns>Parsed XML documents, if any.</returns>
-		public static XDocument[] TryParseBenchmarkDocsFromLog(
+		/// <returns>Parsed xml annotation documents, if any.</returns>
+		public static XDocument[] TryParseXmlAnnotationDocsFromLog(
 			[NotNull] string logUri,
 			[NotNull] CompetitionState competitionState)
 		{
@@ -230,9 +230,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			var result = new List<XDocument>();
 
-			competitionState.WriteMessage(
-				MessageSource.Analyser, MessageSeverity.Informational,
-				$"Downloading {logUri}.");
+			var logger = competitionState.Logger;
+
+			logger.WriteLineInfo(
+				$"{LogInfoPrefix}Downloading {logUri}.");
 
 			using (var reader = BenchmarkHelpers.TryGetTextFromUri(logUri))
 			{
@@ -241,15 +242,15 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					competitionState.WriteMessage(
 						MessageSource.Analyser, MessageSeverity.SetupError,
 						$"Could not load log content from {logUri}.");
-					return new XDocument[0];
+					return Array<XDocument>.Empty;
 				}
-				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.Informational,
-					$"Downloaded {logUri}.");
+
+				logger.WriteLineInfo(
+					$"{LogInfoPrefix}Downloaded {logUri}.");
 
 				var buffer = new StringBuilder();
-				string logLine;
 				int lineNumber = 0, xmlStartLineNumber = -1;
+				string logLine;
 				while ((logLine = reader.ReadLine()) != null)
 				{
 					lineNumber++;
@@ -262,11 +263,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					{
 						if (buffer.Length > 0)
 						{
-							var benchmarksDoc = TryParseBenchmarksDocFromLogCore(
+							var xmlAnnotationDoc = TryParseXmlAnnotationDocFromLogCore(
 								buffer.ToString(), competitionState, logUri, xmlStartLineNumber);
-							if (benchmarksDoc != null)
+							if (xmlAnnotationDoc != null)
 							{
-								result.Add(benchmarksDoc);
+								result.Add(xmlAnnotationDoc);
 							}
 						}
 						buffer.Length = 0;
@@ -281,11 +282,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 				if (buffer.Length > 0)
 				{
-					var benchmarksDoc = TryParseBenchmarksDocFromLogCore(
+					var xmlAnnotationDoc = TryParseXmlAnnotationDocFromLogCore(
 						buffer.ToString(), competitionState, logUri, xmlStartLineNumber);
-					if (benchmarksDoc != null)
+					if (xmlAnnotationDoc != null)
 					{
-						result.Add(benchmarksDoc);
+						result.Add(xmlAnnotationDoc);
 					}
 				}
 			}
@@ -293,77 +294,99 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return result.ToArray();
 		}
 
-		private static XDocument TryParseBenchmarksDocFromLogCore(
+		private static XDocument TryParseXmlAnnotationDocFromLogCore(
 			string logXmlText,
 			CompetitionState competitionState,
 			string logUri, int logLine)
 		{
 			using (var reader = new StringReader(logXmlText))
 			{
-				var benchmarksDoc = TryParseBenchmarksDoc(
-					reader, competitionState,
+				var xmlAnnotationDoc = TryParseXmlAnnotationDoc(
+					reader,
+					competitionState,
 					$"Log {logUri}, line {logLine}");
+				xmlAnnotationDoc?.MarkAsUsesFullTargetName();
 
-				benchmarksDoc?.MarkAsUsesFullTargetName();
-				return benchmarksDoc;
+				return xmlAnnotationDoc;
+			}
+		}
+
+		/// <summary>Writes xml annotation document for the competition targets to the log.</summary>
+		/// <param name="competitionTargets">The competition targets to log.</param>
+		/// <param name="competitionState">State of the run.</param>
+		public static void LogCompetitionTargets(
+			[NotNull] IReadOnlyCollection<CompetitionTarget> competitionTargets,
+			[NotNull] CompetitionState competitionState)
+		{
+			Code.NotNull(competitionTargets, nameof(competitionTargets));
+			Code.NotNull(competitionState, nameof(competitionState));
+
+			if (competitionTargets.Count == 0)
+			{
+				return;
+			}
+
+			// Create xml annotation doc
+			var xmlAnnotationDoc = new XDocument(new XElement(CompetitionBenchmarksRootNode));
+			xmlAnnotationDoc.MarkAsUsesFullTargetName();
+			foreach (var competitionTarget in competitionTargets)
+			{
+				AddOrUpdateXmlAnnotation(xmlAnnotationDoc, competitionTarget);
+			}
+
+			// Dump it
+			var logger = competitionState.Logger;
+			logger.WriteLineInfo(LogAnnotationStart);
+
+			var tmp = new StringBuilder();
+			using (var writer = XmlWriter.Create(tmp, GetXmlWriterSettings(true)))
+			{
+				xmlAnnotationDoc.Save(writer);
+			}
+			logger.WriteLineInfo(tmp.ToString());
+
+			logger.WriteLineInfo(LogAnnotationEnd);
+		}
+		#endregion
+
+		/// <summary>Saves the specified xml annotation document.</summary>
+		/// <param name="xmlAnnotationDoc">The xml annotation document.</param>
+		/// <param name="output">The writer the document will be saved to.</param>
+		public static void Save(
+			[NotNull] XDocument xmlAnnotationDoc,
+			[NotNull] TextWriter output)
+		{
+			Code.NotNull(xmlAnnotationDoc, nameof(xmlAnnotationDoc));
+			Code.NotNull(output, nameof(output));
+
+			using (var writer = XmlWriter.Create(output, GetXmlWriterSettings()))
+			{
+				xmlAnnotationDoc.Save(writer);
 			}
 		}
 		#endregion
 
-		/// <summary>Tries to parse xml documents with competition limits from the resource.</summary>
-		/// <param name="target">The target that describes resource location.</param>
-		/// <param name="targetResourceName">Name of the XML resource with competition limits.</param>
+		#region CompetitionLimit-related
+		/// <summary>Parses competition limit from the xml annotation document.</summary>
+		/// <param name="target">The target.</param>
+		/// <param name="xmlAnnotationDoc">The xml annotation document.</param>
 		/// <param name="competitionState">State of the run.</param>
-		/// <returns>Parsed XML document or <c>null</c> if parsing failed.</returns>
-		public static XDocument TryParseBenchmarksDocFromResource(
+		/// <returns>Parsed competition limit or <c>null</c> if there is no xml annotation for the target.</returns>
+		public static CompetitionLimit TryParseCompetitionLimit(
 			[NotNull] Target target,
-			[NotNull] string targetResourceName,
+			[NotNull] XDocument xmlAnnotationDoc,
 			[NotNull] CompetitionState competitionState)
 		{
 			Code.NotNull(target, nameof(target));
-			Code.NotNullNorEmpty(targetResourceName, nameof(targetResourceName));
+			Code.NotNull(xmlAnnotationDoc, nameof(xmlAnnotationDoc));
 			Code.NotNull(competitionState, nameof(competitionState));
 
-			using (var resourceStream = target.Type.Assembly.GetManifestResourceStream(targetResourceName))
-			{
-				if (resourceStream == null)
-				{
-					competitionState.WriteMessage(
-						MessageSource.Analyser, MessageSeverity.SetupError,
-						$"Benchmark {target.Type.Name}: resource stream {targetResourceName} not found");
-
-					return null;
-				}
-
-				using (var reader = new StreamReader(resourceStream))
-				{
-					return TryParseBenchmarksDoc(
-						reader, competitionState,
-						$"Resource {targetResourceName}");
-				}
-			}
-		}
-
-		/// <summary>Tries to parse competition target from the XML doc.</summary>
-		/// <param name="target">The benchmark target.</param>
-		/// <param name="benchmarksDoc">The document with competition limits for the benchmark.</param>
-		/// <param name="competitionState">State of the run.</param>
-		/// <returns>Parsed competition limit or <c>null</c> if there is no XML annotation for the target.</returns>
-		public static CompetitionLimit TryParseAnnotation(
-			[NotNull] Target target,
-			[NotNull] XDocument benchmarksDoc,
-			[NotNull] CompetitionState competitionState)
-		{
-			Code.NotNull(target, nameof(target));
-			Code.NotNull(benchmarksDoc, nameof(benchmarksDoc));
-			Code.NotNull(competitionState, nameof(competitionState));
-
-			var competitionName = target.GetCompetitionName(benchmarksDoc);
+			var competitionName = target.GetCompetitionName(xmlAnnotationDoc);
 			var candidateName = target.GetCandidateName();
 
 			var matchingNodes =
 				// ReSharper disable once PossibleNullReferenceException
-				from competition in benchmarksDoc.Element(CompetitionBenchmarksRootNode).Elements(CompetitionNode)
+				from competition in xmlAnnotationDoc.Element(CompetitionBenchmarksRootNode).Elements(CompetitionNode)
 				where competition.Attribute(TargetAttribute)?.Value == competitionName
 				from candidate in competition.Elements(CandidateNode)
 				where candidate.Attribute(TargetAttribute)?.Value == candidateName
@@ -394,7 +417,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				maxRatio = CompetitionLimit.IgnoreValue;
 			}
 
-			return new CompetitionLimit(minRatio ?? 0, maxRatio ?? 0);
+			return new CompetitionLimit(minRatio.GetValueOrDefault(), maxRatio.GetValueOrDefault());
 		}
 
 		private static double? TryParseLimitValue(
@@ -402,7 +425,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			CompetitionLimitProperties limitProperty,
 			CompetitionState competitionState)
 		{
-			double? result = 0;
+			double? result = null;
 
 			var limitText = competitionNode.Attribute(limitProperty.ToString())?.Value;
 			if (limitText != null)
@@ -417,53 +440,38 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				{
 					competitionState.WriteMessage(
 						MessageSource.Analyser, MessageSeverity.SetupError,
-						$"Xml anotation for {target.MethodTitle}: could not parse {limitProperty}.");
+						$"XML anotation for {target.MethodTitle}: could not parse {limitProperty}.");
 				}
 			}
 
 			return result;
 		}
 
-		/// <summary>Adds or updates the XML doc from the competition target.</summary>
-		/// <param name="benchmarksDoc">The document that will be updated.</param>
+		/// <summary>Adds or updates xml annotation for the competition target.</summary>
+		/// <param name="xmlAnnotationDoc">The xml annotation document that will be updated.</param>
 		/// <param name="competitionTarget">The competition target.</param>
-		public static void AddOrUpdateCompetitionTarget(
-			[NotNull] XDocument benchmarksDoc,
+		public static void AddOrUpdateXmlAnnotation(
+			[NotNull] XDocument xmlAnnotationDoc,
 			[NotNull] CompetitionTarget competitionTarget)
 		{
-			Code.NotNull(benchmarksDoc, nameof(benchmarksDoc));
+			Code.NotNull(xmlAnnotationDoc, nameof(xmlAnnotationDoc));
 			Code.NotNull(competitionTarget, nameof(competitionTarget));
 
-			var competitionName = competitionTarget.Target.GetCompetitionName(benchmarksDoc);
+			var competitionName = competitionTarget.Target.GetCompetitionName(xmlAnnotationDoc);
 			var candidateName = competitionTarget.Target.GetCandidateName();
 
-			var competition = benchmarksDoc
+			var competition = xmlAnnotationDoc
 				.Element(CompetitionBenchmarksRootNode)
 				.GetOrAddElement(CompetitionNode, competitionName);
 			var candidate = competition.GetOrAddElement(CandidateNode, candidateName);
 
-			var minText = !competitionTarget.IgnoreMinRatio ? competitionTarget.MinRatioText : null;
+			var minText = competitionTarget.IgnoreMinRatio ? null : competitionTarget.MinRatioText;
 			// MaxText should be specified even if ignored.
 			var maxText = competitionTarget.MaxRatioText;
 
 			candidate.SetAttribute(CompetitionLimitProperties.MinRatio.ToString(), minText);
 			candidate.SetAttribute(CompetitionLimitProperties.MaxRatio.ToString(), maxText);
 		}
-
-		/// <summary>Saves the specified benchmarks document.</summary>
-		/// <param name="benchmarksDoc">The benchmarks document.</param>
-		/// <param name="output">The output.</param>
-		public static void Save(
-			[NotNull] XDocument benchmarksDoc,
-			[NotNull] TextWriter output)
-		{
-			Code.NotNull(benchmarksDoc, nameof(benchmarksDoc));
-			Code.NotNull(output, nameof(output));
-
-			using (var writer = XmlWriter.Create(output, GetXmlWriterSettings()))
-			{
-				benchmarksDoc.Save(writer);
-			}
-		}
+		#endregion
 	}
 }

@@ -8,7 +8,7 @@ using CodeJam.PerfTests.Running.Core;
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
-	internal static partial class AnnotateSourceHelper
+	internal static partial class SourceAnnotationsHelper
 	{
 		private static readonly Regex _breakIfRegex = new Regex(
 			@"///|\sclass\s|\}|\;",
@@ -31,7 +31,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			CompetitionState competitionState)
 		{
 			var sourceFileLines = annotateContext.TryGetFileLines(fileName, competitionState);
-			if (sourceFileLines == null)
+			if (sourceFileLines.Count == 0)
 				return false;
 
 			bool attributeFixed = false;

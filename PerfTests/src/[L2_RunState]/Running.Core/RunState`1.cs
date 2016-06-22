@@ -8,18 +8,14 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.Core
 {
-	/// <summary>
-	/// The typed slot for the running state.
-	/// There can be only one value of each type stored as a run state
-	/// so the slot works as per-run singleton.
-	/// </summary>
-	/// <typeparam name="T">The type of the running state instance.</typeparam>
+	/// <summary>Typed slot for run state object.</summary>
+	/// <typeparam name="T">The type of run state object.</typeparam>
 	public class RunState<T> where T : class, new()
 	{
-		/// <summary>Returns the running state for the current run.</summary>
-		/// <value>The instance that stores the state.</value>
+		/// <summary>Returns run state object for the current run.</summary>
+		/// <value>Run state object for the current run.</value>
 		/// <param name="summary">The summary for the current run.</param>
-		/// <returns>Running state for the current run.</returns>
+		/// <returns>Run state object for the current run..</returns>
 		[NotNull]
 		public T this[[NotNull] Summary summary]
 		{
@@ -32,9 +28,9 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		/// <summary>Returns the running state for the current run.</summary>
-		/// <value>The instance that stores the state.</value>
+		/// <value>Run state object for the current run.</value>
 		/// <param name="config">The config for the current run.</param>
-		/// <returns>Running state for the current run.</returns>
+		/// <returns>Run state object for the current run.</returns>
 		[NotNull]
 		public T this[[NotNull] IConfig config]
 		{

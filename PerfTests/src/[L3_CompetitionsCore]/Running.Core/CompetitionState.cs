@@ -36,23 +36,27 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <value><c>true</c> if the competition is in it's first run.</value>
 		public bool InFirstRun => RunNumber == 1;
 
-		/// <summary>The competition has no additional runs requested or the count of runs is out of limit.</summary>
+		/// <summary>
+		/// The competition has no additional runs requested
+		/// or the count of runs is out of limit
+		/// or there are critical errors in the run.
+		/// </summary>
 		/// <value>
-		/// <c>true</c> if the competition has no additional runs requested or the count of runs is out of limit.
+		/// <c>true</c> if the run is about to finish.
 		/// </value>
-		public bool LooksLikeLastRun => RunsLeft <= 0 || RunLimitExceeded;
+		public bool LooksLikeLastRun => RunsLeft <= 0 || RunLimitExceeded || HasCriticalErrorsInRun;
 
 		/// <summary>The count of runs is out of limit.</summary>
 		/// <value><c>true</c> if count of runs is out of limit.</value>
 		public bool RunLimitExceeded => RunNumber >= MaxRunsAllowed;
 
-		/// <summary>There's a error-severity messages for the current run.</summary>
-		/// <value><c>true</c> if there's a error-severity messages for the current run.</value>
-		public bool HasTestErrorsInRun => HighestMessageSeverityInRun.IsTestErrorOrHigher();
-
 		/// <summary>There's a critical-severity messages for the current run.</summary>
 		/// <value><c>true</c> if there's a critical-severity messages for the current run.</value>
 		public bool HasCriticalErrorsInRun => HighestMessageSeverityInRun.IsCriticalError();
+
+		/// <summary>There's a error-severity messages for the current run.</summary>
+		/// <value><c>true</c> if there's a error-severity messages for the current run.</value>
+		public bool HasTestErrorsInRun => HighestMessageSeverityInRun.IsTestErrorOrHigher();
 
 		/// <summary>Time elapsed since start of the competition.</summary>
 		/// <value>Time elapsed since start of the competition.</value>

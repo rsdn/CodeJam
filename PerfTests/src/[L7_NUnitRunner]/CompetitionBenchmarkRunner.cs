@@ -9,7 +9,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests
 {
-	/// <summary>NUnit runner for competition performance tests</summary>
+	/// <summary>NUnit runner for competition performance tests.</summary>
 	[PublicAPI]
 	public static class CompetitionBenchmarkRunner
 	{
@@ -42,8 +42,7 @@ namespace CodeJam.PerfTests
 			[CanBeNull] ICompetitionConfig competitionConfig)
 		{
 			var runner = new NUnitCompetitionRunner();
-			return runner.RunCompetition(benchmarkType, competitionConfig)
-				?.LastRunSummary;
+			return runner.RunCompetition(benchmarkType, competitionConfig).LastRunSummary;
 		}
 	}
 }

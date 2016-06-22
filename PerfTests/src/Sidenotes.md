@@ -8,6 +8,10 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
 ## TODO:
+ * .Any() vs > 0 - same style everywhere.
+ * LoggedXmlAnnotations etc - memoise???
+ * Instances - private .ctor?
+ * Logging: messages -> log writes (e.g for xml doc dowloading).
  * BUG: no output for RunSensitivityPerfTests
  * Annotations exporter?
  * Tests for broken log annotations.

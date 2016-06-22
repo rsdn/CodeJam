@@ -8,7 +8,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Configs
 {
-	// TODO: tune job settings
+	// TODO: to throughput mode
 	/// <summary>Use this to run fast but inaccurate competitions.</summary>
 	[PublicAPI]
 	public sealed class FastRunConfig : ReadOnlyConfig

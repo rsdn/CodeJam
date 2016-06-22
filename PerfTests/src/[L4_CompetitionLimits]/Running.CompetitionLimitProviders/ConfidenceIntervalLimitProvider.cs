@@ -4,15 +4,15 @@ using BenchmarkDotNet.Mathematics;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.CompetitionLimits
+namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 {
 	/// <summary>Confidence interval-based competition limit provider..</summary>
 	/// <seealso cref="ICompetitionLimitProvider"/>
 	[PublicAPI]
-	public class ConfidenceIntervalMetricProvider : CompetitionLimitProviderBase
+	public class ConfidenceIntervalLimitProvider : CompetitionLimitProviderBase
 	{
-		/// <summary>The default instance of <see cref="ConfidenceIntervalMetricProvider"/></summary>
-		public static readonly ICompetitionLimitProvider Instance = new ConfidenceIntervalMetricProvider();
+		/// <summary>The default instance of <see cref="ConfidenceIntervalLimitProvider"/></summary>
+		public static readonly ICompetitionLimitProvider Instance = new ConfidenceIntervalLimitProvider();
 
 		/// <summary>Short description for the provider.</summary>
 		/// <value>The short description for the provider.</value>
@@ -24,7 +24,9 @@ namespace CodeJam.PerfTests.Running.CompetitionLimits
 		/// <returns>Limits for the benchmark or <c>null</c> if none.</returns>
 		protected override CompetitionLimit TryGetCompetitionLimitImpl(double[] timingRatios, bool limitMode)
 		{
-			var ci = new Statistics(timingRatios).ConfidenceInterval;
+			// TODO: better limits for limitMode == false;
+			var stat = new Statistics(timingRatios);
+			var ci = new ConfidenceInterval(stat.Mean, stat.StandardError, ConfidenceLevel.L90);
 			var minRatio = limitMode
 				? ci.Lower
 				: ci.Mean;
@@ -32,7 +34,7 @@ namespace CodeJam.PerfTests.Running.CompetitionLimits
 				? ci.Upper
 				: ci.Mean;
 
-			return new CompetitionLimit(minRatio,maxRatio);
+			return new CompetitionLimit(minRatio, maxRatio);
 		}
 	}
 }

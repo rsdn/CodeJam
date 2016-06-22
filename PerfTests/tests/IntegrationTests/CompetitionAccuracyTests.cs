@@ -6,30 +6,26 @@ using BenchmarkDotNet.Attributes;
 
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Exporters;
-using CodeJam.PerfTests.Running.CompetitionLimits;
+using CodeJam.PerfTests.Running.CompetitionLimitProviders;
 using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.PerfTests.PerfTestHelpers;
+using static CodeJam.PerfTests.IntegrationTests.PerfTestHelpers;
 
-namespace CodeJam.PerfTests
+namespace CodeJam.PerfTests.IntegrationTests
 {
 	[TestFixture(Category = "BenchmarkDotNet")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
-	public static class CompetitionAnalyserAccuracyTests
+	public static class CompetitionAccuracyTests
 	{
-
 		[Test]
-		public static void TestCompetitionAnalyserTooFastBenchmark()
+		public static void CompetitionTooFastBenchmark()
 		{
-			var config = CreateHighAccuracyConfig();
-			config.DetailedLogging = true;
-
-			var runState = new PerfTestRunner().Run<TooFastBenchmark>(config);
+			var runState = new PerfTestRunner().Run<TooFastBenchmark>(HighAccuracyConfig);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
@@ -49,7 +45,7 @@ namespace CodeJam.PerfTests
 		}
 
 		[Test]
-		public static void TestCompetitionAnalyserTooSlowBenchmark()
+		public static void CompetitionTooSlowBenchmark()
 		{
 			var runState = new PerfTestRunner().Run<TooSlowBenchmark>(SingleRunConfig);
 			var messages = runState.GetMessages();
@@ -73,7 +69,7 @@ namespace CodeJam.PerfTests
 		}
 
 		[Test]
-		public static void TestCompetitionAnalyserTooSlowOk()
+		public static void CompetitionTooSlowOk()
 		{
 			var overrideConfig = new ManualCompetitionConfig(SingleRunConfig)
 			{
@@ -88,21 +84,39 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
+			Assert.AreEqual(messages.Length, 0);
+		}
+
+		[Test]
+		public static void CompetitionHighAccuracyBenchmark()
+		{
+			var overrideConfig = CreateHighAccuracyConfig();
+			overrideConfig.DetailedLogging = true;
+
+			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(overrideConfig);
+			var messages = runState.GetMessages();
+			Assert.AreEqual(runState.RunNumber, 1);
+			Assert.AreEqual(runState.RunsLeft, 0);
+			Assert.AreEqual(runState.RunLimitExceeded, false);
+			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 1);
 
 			Assert.AreEqual(messages[0].RunNumber, 1);
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnnotateAnalyser: All competition limits are ok.");
+			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
+			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 34, "Timeout failed");
 		}
-
 		[Test]
-		public static void TestCompetitionAnalyserHighAccuracyBenchmark()
+		public static void CompetitionHighAccuracyBenchmarkOutOfProcess()
 		{
-			var overrideConfig = new ManualCompetitionConfig(HighAccuracyConfig);
-			overrideConfig.DetailedLogging = true;
-			overrideConfig.CompetitionLimitProvider = ConfidenceIntervalMetricProvider.Instance;
+			var overrideConfig = new ManualCompetitionConfig(
+				CreateHighAccuracyConfig(outOfProcess: true))
+			{
+				DetailedLogging = true,
+				CompetitionLimitProvider = ConfidenceIntervalLimitProvider.Instance
+			};
 			overrideConfig.Add(TimingsExporter.Instance);
 
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(overrideConfig);
@@ -117,7 +131,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnnotateAnalyser: All competition limits are ok.");
+			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
 			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 34, "Timeout failed");
 		}
 

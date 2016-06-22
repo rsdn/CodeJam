@@ -26,20 +26,20 @@ namespace CodeJam.PerfTests.Running.Core
 	public static class CompetitionCore
 	{
 		#region Extension methods
-		/// <summary>The message severity is warning or higher.</summary>
+		/// <summary>The message severity is setup error or higher.</summary>
 		/// <param name="severity">The severity to check.</param>
-		/// <returns><c>True</c> if the severity is warning or higher.</returns>
-		public static bool IsWarningOrHigher(this MessageSeverity severity) => severity >= MessageSeverity.Warning;
+		/// <returns><c>true</c> if the severity is setup error or higher.</returns>
+		public static bool IsCriticalError(this MessageSeverity severity) => severity >= MessageSeverity.SetupError;
 
 		/// <summary>The message severity is test error or higher.</summary>
 		/// <param name="severity">The severity to check.</param>
-		/// <returns><c>True</c> if the severity is test error or higher.</returns>
+		/// <returns><c>true</c> if the severity is test error or higher.</returns>
 		public static bool IsTestErrorOrHigher(this MessageSeverity severity) => severity >= MessageSeverity.TestError;
 
-		/// <summary>The message severity is setup error or higher.</summary>
+		/// <summary>The message severity is warning or higher.</summary>
 		/// <param name="severity">The severity to check.</param>
-		/// <returns><c>True</c> if the severity is setup error or higher.</returns>
-		public static bool IsCriticalError(this MessageSeverity severity) => severity >= MessageSeverity.SetupError;
+		/// <returns><c>true</c> if the severity is warning or higher.</returns>
+		public static bool IsWarningOrHigher(this MessageSeverity severity) => severity >= MessageSeverity.Warning;
 
 		/// <summary>Log format for the message.</summary>
 		/// <returns>Log format for the message.</returns>
@@ -101,9 +101,10 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Helper method to dump the content of the message into logger.</summary>
 		/// <param name="logger">The logger the message will be dumped to.</param>
 		/// <param name="message">The message to log.</param>
-		internal static void LogMessage([NotNull] this ILogger logger, IMessage message)
+		internal static void LogMessage([NotNull] this ILogger logger, [NotNull] IMessage message)
 		{
 			Code.NotNull(logger, nameof(logger));
+			Code.NotNull(message, nameof(message));
 
 			if (message.MessageSeverity.IsCriticalError())
 			{
@@ -190,7 +191,7 @@ namespace CodeJam.PerfTests.Running.Core
 				var summary = BenchmarkRunner.Run(benchmarkType, competitionConfig);
 				competitionState.RunCompleted(summary);
 
-				WriteValidationMessges(competitionState);
+				WriteValidationMessages(competitionState);
 
 				if (competitionState.RunLimitExceeded)
 					break;
@@ -223,7 +224,7 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 		}
 
-		private static void WriteValidationMessges(CompetitionState competitionState)
+		private static void WriteValidationMessages(CompetitionState competitionState)
 		{
 			if (competitionState.LastRunSummary == null)
 				return;

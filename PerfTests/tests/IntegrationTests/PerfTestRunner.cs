@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-namespace CodeJam.PerfTests
+namespace CodeJam.PerfTests.IntegrationTests
 {
 	[PublicAPI]
 	public class PerfTestRunner : SimpleCompetitionRunner

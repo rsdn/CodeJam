@@ -4,8 +4,14 @@ using System.Linq;
 using System.Threading;
 
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Validators;
+
+using CodeJam.PerfTests.IntegrationTests;
 
 using NUnit.Framework;
+
+using static CodeJam.PerfTests.IntegrationTests.PerfTestHelpers;
 
 namespace CodeJam.PerfTests
 {
@@ -16,22 +22,43 @@ namespace CodeJam.PerfTests
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
 	public static class InProcessToolchainTests
 	{
-		#region TestInProcessBenchmark
 		private static int _callCounter;
 		private static int _afterSetupCounter;
 
 		[Test]
 		public static void TestInProcessBenchmark()
 		{
+			var config = SingleRunConfig;
+
 			Interlocked.Exchange(ref _callCounter, 0);
 			Interlocked.Exchange(ref _afterSetupCounter, 0);
 			var summary = new PerfTestRunner()
-				.Run<InProcessBenchmark>(PerfTestHelpers.SingleRunConfig)
+				.Run<InProcessBenchmark>(config)
 				.LastRunSummary;
-			Assert.AreEqual(_callCounter, PerfTestHelpers.ExpectedSingleRunCount);
+			Assert.AreEqual(_callCounter, ExpectedSingleRunCount);
 			Assert.AreEqual(_afterSetupCounter, 1);
 
 			Assert.IsFalse(summary.ValidationErrors.Any());
+		}
+
+		[Test]
+		public static void TestInProcessBenchmarkWithValidation()
+		{
+			// DONTTOUCH: config SHOULD NOT match the default platform (x64).
+			var config = CreateSingleRunConfig(Platform.X86);
+			config.Add(InProcessValidator.FailOnError);
+
+			Interlocked.Exchange(ref _callCounter, 0);
+			Interlocked.Exchange(ref _afterSetupCounter, 0);
+			var summary = new PerfTestRunner()
+				.Run<InProcessBenchmark>(config)
+				.LastRunSummary;
+			Assert.AreEqual(_callCounter, 0);
+			Assert.AreEqual(_afterSetupCounter, 0);
+
+			Assert.AreEqual(summary.ValidationErrors.Length, 1);
+			Assert.IsTrue(summary.ValidationErrors[0].IsCritical);
+			Assert.That(summary.ValidationErrors[0].Message, Does.Contain(", property Platform:"));
 		}
 
 		public class InProcessBenchmark
@@ -47,28 +74,5 @@ namespace CodeJam.PerfTests
 				Thread.Sleep(10);
 			}
 		}
-		#endregion
-
-		#region TestInProcessWithValidationBenchmark
-		[Test]
-		public static void TestInProcessWithValidationBenchmark()
-		{
-			// DONTTOUCH: config SHOULD NOT match the platform.
-			var config = PerfTestHelpers.OtherPlatformSingleRunConfig;
-
-			var summary = new PerfTestRunner()
-				.Run<InProcessWithValidationBenchmark>(config)
-				.LastRunSummary;
-			Assert.AreEqual(summary.ValidationErrors.Length, 1);
-			Assert.IsFalse(summary.ValidationErrors[0].IsCritical);
-			Assert.That(summary.ValidationErrors[0].Message, Does.Contain(", property Platform:"));
-		}
-
-		public class InProcessWithValidationBenchmark
-		{
-			[Benchmark]
-			public void InvokeOnce() => Thread.Sleep(10);
-		}
-		#endregion
 	}
 }

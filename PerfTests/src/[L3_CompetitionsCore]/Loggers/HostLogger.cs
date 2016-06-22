@@ -11,7 +11,7 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Loggers
 {
 	/// <summary>Basic logger implementation for unit test runners</summary>
-	/// <seealso cref="BenchmarkDotNet.Loggers.ILogger" />
+	/// <seealso cref="BenchmarkDotNet.Loggers.ILogger"/>
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
@@ -62,7 +62,7 @@ namespace CodeJam.PerfTests.Loggers
 
 		/// <summary>The logger to redirect the output.</summary>
 		/// <value>The logger to redirect the output.</value>
-		public ILogger WrappedLogger { get; }
+		protected ILogger WrappedLogger { get; }
 
 		/// <summary>Host logging mode.</summary>
 		/// <value>The host logging mode.</value>

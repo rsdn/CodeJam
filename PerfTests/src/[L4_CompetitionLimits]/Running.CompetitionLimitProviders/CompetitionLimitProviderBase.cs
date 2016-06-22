@@ -7,16 +7,16 @@ using BenchmarkDotNet.Running;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.CompetitionLimits
+namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 {
 	/// <summary>Base class for metrics providers.</summary>
 	/// <seealso cref="ICompetitionLimitProvider"/>
 	[PublicAPI]
 	public abstract class CompetitionLimitProviderBase : ICompetitionLimitProvider
 	{
-		/// <summary>Tries to get reports for the benchmark and the baseline.</summary>
+		/// <summary>Reports for the benchmark and the baseline.</summary>
 		/// <param name="benchmark">The benchmark.</param>
-		/// <param name="summary">The summary.</param>
+		/// <param name="summary">Summary for the run.</param>
 		/// <param name="baselineReport">The baseline report.</param>
 		/// <param name="benchmarkReport">The benchmark report.</param>
 		/// <returns><c>true</c> if all is ok.</returns>
@@ -47,29 +47,27 @@ namespace CodeJam.PerfTests.Running.CompetitionLimits
 		public abstract string ShortInfo { get; }
 
 		/// <summary>Actual values for the benchmark.</summary>
-		/// <param name="summary">The summary.</param>
+		/// <param name="summary">Summary for the run.</param>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns>Actual values for the benchmark or <c>null</c> if none.</returns>
 		public CompetitionLimit TryGetActualValues(Benchmark benchmark, Summary summary) =>
-				TryGetCompetitionLimit(benchmark, summary, false);
+			TryGetCompetitionLimit(benchmark, summary, false);
 
 		/// <summary>Limits for the benchmark.</summary>
 		/// <param name="benchmark">The benchmark.</param>
-		/// <param name="summary">The summary.</param>
+		/// <param name="summary">Summary for the run.</param>
 		/// <returns>Limits for the benchmark or <c>null</c> if none.</returns>
-		public CompetitionLimit TryGetLimitForActualValues(Benchmark benchmark, Summary summary) =>
-				TryGetCompetitionLimit(benchmark, summary, true);
-
+		public CompetitionLimit TryGetCompetitionLimit(Benchmark benchmark, Summary summary) =>
+			TryGetCompetitionLimit(benchmark, summary, true);
 
 		/// <summary>Limits for the benchmark.</summary>
 		/// <param name="benchmark">The benchmark.</param>
-		/// <param name="summary">The summary.</param>
+		/// <param name="summary">Summary for the run.</param>
 		/// <param name="limitMode">If <c>true</c> limit values should be returned. Actual values returned otherwise.</param>
 		/// <returns>Limits for the benchmark or <c>null</c> if none.</returns>
 		// ReSharper disable once VirtualMemberNeverOverriden.Global
 		protected virtual CompetitionLimit TryGetCompetitionLimit(Benchmark benchmark, Summary summary, bool limitMode)
 		{
-
 			Code.NotNull(benchmark, nameof(benchmark));
 			Code.NotNull(summary, nameof(summary));
 
@@ -90,6 +88,7 @@ namespace CodeJam.PerfTests.Running.CompetitionLimits
 
 			return TryGetCompetitionLimitImpl(timingRatios, limitMode);
 		}
+
 		/// <summary>Limits for the benchmark.</summary>
 		/// <param name="timingRatios">Timing ratios relative to the baseline.</param>
 		/// <param name="limitMode">If <c>true</c> limit values should be returned. Actual values returned otherwise.</param>

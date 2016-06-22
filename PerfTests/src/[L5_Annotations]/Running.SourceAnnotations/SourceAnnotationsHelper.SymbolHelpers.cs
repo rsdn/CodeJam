@@ -19,7 +19,7 @@ using Microsoft.DiaSymReader;
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
-	internal static partial class AnnotateSourceHelper
+	internal static partial class SourceAnnotationsHelper
 	{
 		/// <summary>
 		/// BASEDON:
@@ -208,10 +208,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				return false;
 			}
 
+			[NotNull]
 			private static byte[] TryGetChecksum(string file, string hashAlgName)
 			{
 				if (!File.Exists(file))
-					return null;
+					return Array<byte>.Empty;
 
 				using (var f = File.OpenRead(file))
 				using (var h = HashAlgorithm.Create(hashAlgName))

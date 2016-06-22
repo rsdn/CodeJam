@@ -5,6 +5,7 @@ using System.IO;
 using BenchmarkDotNet.Helpers;
 
 using NUnit.Framework;
+
 using static NUnit.Framework.Assert;
 
 namespace CodeJam.PerfTests
@@ -36,7 +37,7 @@ line3";
 			{
 				"line1",
 				"line2",
-				"line3",
+				"line3"
 			};
 
 			BenchmarkHelpers.WriteFileContent("deleteme.txt", lines);
@@ -57,7 +58,8 @@ line3";
 		{
 			Environment.CurrentDirectory = TestContext.CurrentContext.TestDirectory;
 
-			var webUrl = "https://gist.githubusercontent.com/ig-sinicyn/813e44fa231410892e480c717532bb77/raw/17537a4823e110460b02bf0de4ac11dbd8dcb763/SampleFile.txt";
+			var webUrl =
+				"https://gist.githubusercontent.com/ig-sinicyn/813e44fa231410892e480c717532bb77/raw/17537a4823e110460b02bf0de4ac11dbd8dcb763/SampleFile.txt";
 			var relativePath = @"[L0_Core]\SampleFile.txt";
 			var fullPath = Path.GetFullPath(relativePath);
 			var fullPathUri = new Uri(fullPath).ToString();
@@ -78,8 +80,10 @@ line3";
 		{
 			Environment.CurrentDirectory = TestContext.CurrentContext.TestDirectory;
 
-			var webUrl = "https://gist.githubusercontent.com/ig-sinicyn/813e44fa231410892e480c717532bb77/raw/17537a4823e110460b02bf0de4ac11dbd8dcb763/SampleFile.badfile.txt";
-			var webUrl2 = "https://gist.githubusercontent.baddomain/ig-sinicyn/813e44fa231410892e480c717532bb77/raw/17537a4823e110460b02bf0de4ac11dbd8dcb763/SampleFile.txt";
+			var webUrl =
+				"https://gist.githubusercontent.com/ig-sinicyn/813e44fa231410892e480c717532bb77/raw/17537a4823e110460b02bf0de4ac11dbd8dcb763/SampleFile.badfile.txt";
+			var webUrl2 =
+				"https://gist.githubusercontent.baddomain/ig-sinicyn/813e44fa231410892e480c717532bb77/raw/17537a4823e110460b02bf0de4ac11dbd8dcb763/SampleFile.txt";
 			var relativePath = "BadFile.txt";
 			var fullPath = Path.GetFullPath(relativePath);
 			var fullPathUri = new Uri(fullPath).ToString();

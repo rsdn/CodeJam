@@ -4,7 +4,7 @@ using BenchmarkDotNet.Helpers;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.CompetitionLimits
+namespace CodeJam.PerfTests
 {
 	/// <summary>Class that describes limits for benchmarks participating in competition.</summary>
 	[PublicAPI]
@@ -28,7 +28,6 @@ namespace CodeJam.PerfTests.Running.CompetitionLimits
 
 		/// <summary>The ignored (will not be checked) competition limit.</summary>
 		public static readonly CompetitionLimit Ignored = new CompetitionLimit(IgnoreValue, IgnoreValue);
-
 
 		/// <summary>Returns string representation for the boundary ratio value.</summary>
 		/// <param name="boundaryRatio">The boundary ratio value.</param>
@@ -74,7 +73,7 @@ namespace CodeJam.PerfTests.Running.CompetitionLimits
 		/// <param name="minLimit">The limit.</param>
 		/// <param name="value">The value to check.</param>
 		/// <returns><c>true</c> if the value fits into limit.</returns>
-		protected bool IsMinLimitOk(double minLimit, double value)
+		protected static bool IsMinLimitOk(double minLimit, double value)
 		{
 			AssertLimitArgument(minLimit, nameof(minLimit));
 
@@ -96,7 +95,7 @@ namespace CodeJam.PerfTests.Running.CompetitionLimits
 		/// <param name="maxLimit">The limit.</param>
 		/// <param name="value">The value to check.</param>
 		/// <returns><c>true</c> if the value fits into limit.</returns>
-		protected bool IsMaxLimitOk(double maxLimit, double value)
+		protected static bool IsMaxLimitOk(double maxLimit, double value)
 		{
 			AssertLimitArgument(maxLimit, nameof(maxLimit));
 
@@ -120,7 +119,7 @@ namespace CodeJam.PerfTests.Running.CompetitionLimits
 		/// <param name="minLimit">The minimum limit.</param>
 		/// <param name="newMinLimit">The new minimum limit.</param>
 		/// <returns><c>true</c> if the current limit should be replaced with new one.</returns>
-		protected bool ShouldBeUpdatedMin(double minLimit, double newMinLimit) =>
+		protected static bool ShouldBeUpdatedMin(double minLimit, double newMinLimit) =>
 			!IsMinLimitOk(minLimit, newMinLimit);
 
 		/// <summary>
@@ -131,9 +130,10 @@ namespace CodeJam.PerfTests.Running.CompetitionLimits
 		/// <param name="maxLimit">The maximum limit.</param>
 		/// <param name="newMaxLimit">The new maximum limit.</param>
 		/// <returns><c>true</c> if the current limit should be replaced with new one.</returns>
-		protected bool ShouldBeUpdatedMax(double maxLimit, double newMaxLimit) =>
+		protected static bool ShouldBeUpdatedMax(double maxLimit, double newMaxLimit) =>
 			!IsMaxLimitOk(maxLimit, newMaxLimit);
 		#endregion
+
 		#endregion
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionLimit"/> class.</summary>
@@ -180,17 +180,6 @@ namespace CodeJam.PerfTests.Running.CompetitionLimits
 		/// <value><c>true</c> if the maximum timing ratio limit is ignored; otherwise, <c>false</c>.</value>
 		public bool IgnoreMaxRatio => IsIgnoredValue(MaxRatio);
 
-		/// <summary>Checks if actual values fits into limits represented by this instance.</summary>
-		/// <param name="actualValues">The limits for actual values.</param>
-		/// <returns><c>true</c> if the the actual values fits into limits.</returns>
-		public bool CheckLimitsFor([NotNull] CompetitionLimit actualValues)
-		{
-			Code.NotNull(actualValues, nameof(actualValues));
-
-			return IsMinLimitOk(MinRatio, actualValues.MinRatio) && 
-				IsMaxLimitOk(MaxRatio, actualValues.MaxRatio);
-		}
-
 		/// <summary>The string representation of minimum timing ratio limit.</summary>
 		/// <value>The string representation of minimum timing ratio limit.</value>
 		public string MinRatioText => IgnoreMinRatio
@@ -203,9 +192,19 @@ namespace CodeJam.PerfTests.Running.CompetitionLimits
 			? MaxRatio.ToString(EnvironmentInfo.MainCultureInfo)
 			: MaxRatio.ToString(RatioFormat, EnvironmentInfo.MainCultureInfo);
 
+		/// <summary>Checks if actual values fits into limits represented by this instance.</summary>
+		/// <param name="actualValues">The limits for actual values.</param>
+		/// <returns><c>true</c> if the the actual values fits into limits.</returns>
+		public bool CheckLimitsFor([NotNull] CompetitionLimit actualValues)
+		{
+			Code.NotNull(actualValues, nameof(actualValues));
 
-		/// <summary>Returns a <see cref="string" /> that represents this instance.</summary>
-		/// <returns>A <see cref="string" /> that represents this instance.</returns>
+			return IsMinLimitOk(MinRatio, actualValues.MinRatio) &&
+				IsMaxLimitOk(MaxRatio, actualValues.MaxRatio);
+		}
+
+		/// <summary>Returns a <see cref="string"/> that represents this instance.</summary>
+		/// <returns>A <see cref="string"/> that represents this instance.</returns>
 		public override string ToString() => $"[{MinRatioText}..{MaxRatioText}]";
 	}
 }

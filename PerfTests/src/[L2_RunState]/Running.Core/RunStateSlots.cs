@@ -18,8 +18,8 @@ namespace CodeJam.PerfTests.Running.Core
 		private readonly ConcurrentDictionary<Type, object> _stateSlots = new ConcurrentDictionary<Type, object>();
 
 		/// <summary>
-		/// Returns the value for the <see cref="RunState{T}"/>.
-		/// There can be only one value of each type stored as a run state so the slot works as per-run singleton.
+		/// Value for the <see cref="RunState{T}"/>.
+		/// There can be only one value of each type stored as a run state so typed slot works as an singleton storage.
 		/// </summary>
 		/// <typeparam name="T">The type of the running state instance.</typeparam>
 		/// <returns>The value for the <see cref="RunState{T}"/>.</returns>
