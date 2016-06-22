@@ -5,6 +5,14 @@ using System.Text;
 
 using JetBrains.Annotations;
 
+using StringClass =
+#if FW35
+	CodeJam.Targeting.StringTargeting
+#else
+	System.String
+#endif
+	;
+
 namespace CodeJam.Strings
 {
 	static partial class StringExtensions
@@ -36,7 +44,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		[ContractAnnotation("str:null => true")]
-		public static bool IsNullOrWhiteSpace([CanBeNull] this string str) => string.IsNullOrWhiteSpace(str);
+		public static bool IsNullOrWhiteSpace([CanBeNull] this string str) => StringClass.IsNullOrWhiteSpace(str);
 
 		/// <summary>
 		/// Returns true if argument is not null nor whitespace.
@@ -48,7 +56,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		[ContractAnnotation("str:null => false")]
-		public static bool NotNullNorWhiteSpace([CanBeNull] this string str) => !string.IsNullOrWhiteSpace(str);
+		public static bool NotNullNorWhiteSpace([CanBeNull] this string str) => !StringClass.IsNullOrWhiteSpace(str);
 
 		/// <summary>
 		/// Replaces one or more format items in a specified string with the string representation of a specified object.
@@ -148,14 +156,11 @@ namespace CodeJam.Strings
 		/// </returns>
 		[NotNull, Pure]
 		public static string Join([NotNull, InstantHandle] this IEnumerable<string> values, [CanBeNull] string separator) =>
-			string.Join(separator, values);
+			StringClass.Join(separator, values);
 
 		/// <summary>
 		/// Concatenates the members of a collection, using the specified separator between each member.
 		/// </summary>
-		/// <remarks>
-		/// Infix form of <see cref="string.Join{T}(string, IEnumerable{T})"/>.
-		/// </remarks>
 		/// <param name="values">A collection that contains the strings to concatenate.</param>
 		/// <param name="separator">
 		/// The string to use as a separator. <paramref name="separator"/> is included in the returned string only
@@ -168,7 +173,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[NotNull, Pure]
 		public static string Join<T>([NotNull, InstantHandle] this IEnumerable<T> values, [CanBeNull] string separator) =>
-			string.Join(separator, values);
+			StringClass.Join(separator, values);
 
 		/// <summary>
 		/// Concatenates the members of a collection.
@@ -180,7 +185,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[NotNull, Pure]
 		public static string Join<T>([NotNull, InstantHandle] this IEnumerable<T> values) =>
-			string.Join("", values);
+			StringClass.Join("", values);
 
 		/// <summary>
 		/// Returns length of argument, even if argument is null.

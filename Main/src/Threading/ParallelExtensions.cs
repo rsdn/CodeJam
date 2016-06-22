@@ -1,5 +1,4 @@
-﻿#if !FW35
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 using JetBrains.Annotations;
@@ -180,4 +179,3 @@ namespace CodeJam.Threading
 			=> RunInParallel(source, Environment.ProcessorCount, action, processName);
 	}
 }
-#endif

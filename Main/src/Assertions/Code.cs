@@ -1,8 +1,8 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -65,7 +65,7 @@ namespace CodeJam
 			[CanBeNull] string arg,
 			[NotNull, InvokerParameterName] string argName)
 		{
-			if (string.IsNullOrWhiteSpace(arg))
+			if (arg.IsNullOrWhiteSpace())
 				throw CodeExceptions.ArgumentNullOrWhiteSpace(argName);
 		}
 

@@ -112,7 +112,11 @@ namespace CodeJam.Collections
 				[NotNull] this IEnumerable<T> source,
 				[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
 				[NotNull] IEqualityComparer<T> equalityComparer) =>
-			GroupTopoSort(source, dependsOnGetter, equalityComparer).SelectMany();
+			GroupTopoSort(source, dependsOnGetter, equalityComparer)
+#if FW35
+				.Select(g => g.AsEnumerable())
+#endif
+				.SelectMany();
 
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
@@ -127,7 +131,11 @@ namespace CodeJam.Collections
 				[NotNull] this ICollection<T> source,
 				[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
 				[NotNull] IEqualityComparer<T> equalityComparer) =>
-			GroupTopoSort(source, dependsOnGetter, equalityComparer).SelectMany();
+			GroupTopoSort(source, dependsOnGetter, equalityComparer)
+#if FW35
+				.Select(g => g.AsEnumerable())
+#endif
+				.SelectMany();
 		#endregion
 
 		#region GroupTopoSort
