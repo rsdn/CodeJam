@@ -19,6 +19,14 @@ We welcome participation from all who are interested, at all skill levels. Codin
 development process itself are all critical parts of the software development process. If you are interested in
 contribute in any of these aspects, please join us!
 
+### .NET Framework 3.5 support
+.NET Framework 3.5 support is limited. Functionality not supported:
+
+* Mapping - all mapping related classes not supported due to expression tree incompatibility
+* ExpressionExtensions - all visitor related functionalyty excluded due to expression tree incompatibility
+* MemberAccessor/TypeAccessor - excluded due to expression tree incompatibility
+* ComparerBuilder - excluded due to absence of TypeAccessor and MemberAccessor classes
+
 ### Contribute!
 Some of the best ways to contribute are to try things out, report bugs, and join in design conversations.
 

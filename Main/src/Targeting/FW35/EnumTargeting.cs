@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if FW35
+using System;
 
 namespace CodeJam.Targeting
 {
@@ -39,3 +40,4 @@ namespace CodeJam.Targeting
 		}
 	}
 }
+#endif
