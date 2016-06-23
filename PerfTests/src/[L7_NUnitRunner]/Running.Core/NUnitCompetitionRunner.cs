@@ -70,7 +70,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="summary">The summary to report.</param>
 		protected override void ReportHostLogger(HostLogger logger, Summary summary)
 		{
-			var outLogger = logger.WrappedLogger;
+			var outLogger = ConsoleLogger.Default;
 			if (summary != null)
 			{
 				// Dumping the benchmark results to console

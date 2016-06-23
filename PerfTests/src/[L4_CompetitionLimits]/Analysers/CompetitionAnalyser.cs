@@ -190,8 +190,8 @@ namespace CodeJam.PerfTests.Analysers
 
 				if (tooFastReports.Any())
 				{
-					competitionState.AddAnalyserWarning(
-						warnings, MessageSeverity.Warning,
+					competitionState.WriteMessage(
+						MessageSource.Analyser, MessageSeverity.Warning,
 						"The benchmarks " + string.Join(", ", tooFastReports) +
 							$" run faster than {TooFastBenchmarkLimit.TotalMilliseconds.ToString(culture)}ms. Results cannot be trusted.");
 				}
@@ -205,8 +205,8 @@ namespace CodeJam.PerfTests.Analysers
 
 				if (tooSlowReports.Any())
 				{
-					competitionState.AddAnalyserWarning(
-						warnings, MessageSeverity.Warning,
+					competitionState.WriteMessage(
+						MessageSource.Analyser, MessageSeverity.Warning,
 						"The benchmarks " + string.Join(", ", tooSlowReports) +
 							$" run longer than {LongRunningBenchmarkLimit.TotalSeconds.ToString(culture)}s." +
 							" Consider to rewrite the test as the peek timings will be hidden by averages" +

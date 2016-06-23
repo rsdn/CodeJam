@@ -107,8 +107,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			Code.NotNull(limitsForTarget, nameof(limitsForTarget));
 
 			var result = false;
-			result |= UnionWithMinRatio(limitsForTarget.MinRatio);
-			result |= UnionWithMaxRatio(limitsForTarget.MaxRatio);
+			result |= UnionWithMinRatio(limitsForTarget.MinRatioRounded);
+			result |= UnionWithMaxRatio(limitsForTarget.MaxRatioRounded);
 			return result;
 		}
 

@@ -5,8 +5,6 @@ using System.Threading;
 using BenchmarkDotNet.Attributes;
 
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Exporters;
-using CodeJam.PerfTests.Running.CompetitionLimitProviders;
 using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
@@ -25,7 +23,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionTooFastBenchmark()
 		{
-			var runState = new PerfTestRunner().Run<TooFastBenchmark>(HighAccuracyConfig);
+			var runState = new PerfTestRunner().Run<TooFastBenchmark>(DefaultRunConfig);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
@@ -90,10 +88,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionHighAccuracyBenchmark()
 		{
-			var overrideConfig = CreateHighAccuracyConfig();
-			overrideConfig.DetailedLogging = true;
-
-			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(overrideConfig);
+			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(DefaultRunConfig);
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
@@ -111,13 +106,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionHighAccuracyBenchmarkOutOfProcess()
 		{
-			var overrideConfig = new ManualCompetitionConfig(
-				CreateHighAccuracyConfig(outOfProcess: true))
-			{
-				DetailedLogging = true,
-				CompetitionLimitProvider = ConfidenceIntervalLimitProvider.Instance
-			};
-			overrideConfig.Add(TimingsExporter.Instance);
+			var overrideConfig = CreateRunConfig(outOfProcess: true);
 
 			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(overrideConfig);
 			var messages = runState.GetMessages();

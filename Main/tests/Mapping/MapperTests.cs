@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+
+using CodeJam.Collections;
 
 using NUnit.Framework;
 using NUnit.Framework.Compatibility;
@@ -485,7 +488,7 @@ namespace CodeJam.Mapping
 			Assert.AreEqual("3", dest[2]);
 		}
 
-		[Test, Explicit]
+		[Test]
 		public void ScalarArray()
 		{
 			var mapper = Map.GetMapper<int[],string[]>();
@@ -500,6 +503,96 @@ namespace CodeJam.Mapping
 			Assert.AreEqual("1", dest[0]);
 			Assert.AreEqual("2", dest[1]);
 			Assert.AreEqual("3", dest[2]);
+		}
+
+		class Class17
+		{
+			public IEnumerable<Class9> Arr => GetEnumerable();
+
+			static IEnumerable<Class9> GetEnumerable()
+			{
+				var c = new Class9();
+
+				yield return c;
+				yield return new Class9();
+				yield return c;
+			}
+		}
+
+		class Class18 { public Class9[] Arr = null; }
+
+		[Test]
+		public void ObjectArray1([Values(true,false)] bool useEx)
+		{
+			var mapper = new MapHelper<Class17,Class18>().Map(useEx, new Class17(), m =>
+				m.SetProcessCrossReferences(true));
+
+			Assert.That(mapper.To.Arr.Length, Is.EqualTo(3));
+			Assert.That(mapper.To.Arr[0], Is.Not.Null);
+			Assert.That(mapper.To.Arr[1], Is.Not.Null);
+			Assert.That(mapper.To.Arr[2], Is.Not.Null);
+			Assert.That(mapper.To.Arr[0], Is.Not.SameAs(mapper.To.Arr[1]));
+			Assert.That(mapper.To.Arr[0], Is.SameAs(mapper.To.Arr[2]));
+		}
+
+		class Class19
+		{
+			public Class9[] Arr => new Class17().Arr.ToArray();
+		}
+
+		[Test]
+		public void ObjectArray2([Values(true,false)] bool useEx)
+		{
+			var mapper = new MapHelper<Class19,Class18>().Map(useEx, new Class19(), m =>
+				m.SetProcessCrossReferences(true));
+
+			Assert.That(mapper.To.Arr.Length, Is.EqualTo(3));
+			Assert.That(mapper.To.Arr[0], Is.Not.Null);
+			Assert.That(mapper.To.Arr[1], Is.Not.Null);
+			Assert.That(mapper.To.Arr[2], Is.Not.Null);
+			Assert.That(mapper.To.Arr[0], Is.Not.SameAs(mapper.To.Arr[1]));
+			Assert.That(mapper.To.Arr[0], Is.SameAs(mapper.To.Arr[2]));
+		}
+
+		class Class20 { public Source Class1 = new Source(); public Source Class2; }
+		class Class21 { public Dest   Class1 = null;         public Dest   Class2 = null; }
+
+		[Test]
+		public void NoCrossRef([Values(true,false)] bool useEx)
+		{
+			var source = new Class20();
+
+			source.Class2 = source.Class1;
+
+			var mapper = new MapHelper<Class20,Class21>().Map(useEx, source, m =>
+				m.SetProcessCrossReferences(false));
+
+
+			Assert.That(mapper.To.Class1, Is.Not.Null);
+			Assert.That(mapper.To.Class2, Is.Not.Null);
+			Assert.That(mapper.To.Class1, Is.Not.SameAs(mapper.To.Class2));
+		}
+
+		public class Object3
+		{
+			public HashSet<string> HashSet = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
+		}
+
+		[Test]
+		public void CollectionTest([Values(true,false)] bool useEx)
+		{
+			var src = new Object3();
+			src.HashSet.Add(Guid.NewGuid().ToString());
+			src.HashSet.Add(Guid.NewGuid().ToString());
+
+			var mapper = new MapHelper<Object3,Object3>().Map(useEx, src, m => m);
+
+			Assert.That(mapper.To, Is.Not.Null);
+
+			foreach (var str in src.HashSet)
+			{
+				Assert.That(mapper.To.HashSet.Contains(str));
+			}
 		}
 	}
 }

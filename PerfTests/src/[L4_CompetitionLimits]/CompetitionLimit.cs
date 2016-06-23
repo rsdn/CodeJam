@@ -20,26 +20,11 @@ namespace CodeJam.PerfTests
 		/// <summary>Default format for ratio (relative) limits.</summary>
 		private const string RatioFormat = "0.00";
 
-		/// <summary>Default format for actual value for ratio (relative) limits.</summary>
-		private const string ActualRatioFormat = "0.000";
-
 		/// <summary>The empty competition limit.</summary>
 		public static readonly CompetitionLimit Empty = new CompetitionLimit(EmptyValue, EmptyValue);
 
 		/// <summary>The ignored (will not be checked) competition limit.</summary>
 		public static readonly CompetitionLimit Ignored = new CompetitionLimit(IgnoreValue, IgnoreValue);
-
-		/// <summary>Returns string representation for the boundary ratio value.</summary>
-		/// <param name="boundaryRatio">The boundary ratio value.</param>
-		/// <returns>String representation for actual ratio.</returns>
-		public static string GetRatioText(double boundaryRatio) =>
-			boundaryRatio.ToString(ActualRatioFormat, EnvironmentInfo.MainCultureInfo);
-
-		/// <summary>Returns string representation for the actual ratio (relative) value.</summary>
-		/// <param name="actualRatio">The actual ratio (relative) value.</param>
-		/// <returns>String representation for actual ratio.</returns>
-		public static string GetActualRatioText(double actualRatio) =>
-			actualRatio.ToString(ActualRatioFormat, EnvironmentInfo.MainCultureInfo);
 
 		#region Core logic for competition limits
 		[AssertionMethod]
@@ -172,6 +157,14 @@ namespace CodeJam.PerfTests
 		/// <value>The maximum timing ratio relative to the baseline.</value>
 		public double MaxRatio { get; protected set; }
 
+		/// <summary>The minimum timing ratio (rounded, two digits).</summary>
+		/// <value>The minimum timing ratio (rounded, two digits).</value>
+		public double MinRatioRounded => Math.Round(MinRatio, 2);
+
+		/// <summary>The maximum timing ratio (rounded, two digits).</summary>
+		/// <value>The maximum timing ratio (rounded, two digits).</value>
+		public double MaxRatioRounded => Math.Round(MaxRatio, 2);
+
 		/// <summary>The minimum timing ratio limit is ignored.</summary>
 		/// <value><c>true</c> if the minimum timing ratio limit is ignored; otherwise, <c>false</c>.</value>
 		public bool IgnoreMinRatio => IsIgnoredValue(MinRatio);
@@ -183,14 +176,14 @@ namespace CodeJam.PerfTests
 		/// <summary>The string representation of minimum timing ratio limit.</summary>
 		/// <value>The string representation of minimum timing ratio limit.</value>
 		public string MinRatioText => IgnoreMinRatio
-			? MinRatio.ToString(EnvironmentInfo.MainCultureInfo)
-			: MinRatio.ToString(RatioFormat, EnvironmentInfo.MainCultureInfo);
+			? MinRatioRounded.ToString(EnvironmentInfo.MainCultureInfo)
+			: MinRatioRounded.ToString(RatioFormat, EnvironmentInfo.MainCultureInfo);
 
 		/// <summary>The string representation of maximum timing ratio limit.</summary>
 		/// <value>The string representation of maximum timing ratio limit.</value>
 		public string MaxRatioText => IgnoreMaxRatio
-			? MaxRatio.ToString(EnvironmentInfo.MainCultureInfo)
-			: MaxRatio.ToString(RatioFormat, EnvironmentInfo.MainCultureInfo);
+			? MaxRatioRounded.ToString(EnvironmentInfo.MainCultureInfo)
+			: MaxRatioRounded.ToString(RatioFormat, EnvironmentInfo.MainCultureInfo);
 
 		/// <summary>Checks if actual values fits into limits represented by this instance.</summary>
 		/// <param name="actualValues">The limits for actual values.</param>
@@ -199,8 +192,8 @@ namespace CodeJam.PerfTests
 		{
 			Code.NotNull(actualValues, nameof(actualValues));
 
-			return IsMinLimitOk(MinRatio, actualValues.MinRatio) &&
-				IsMaxLimitOk(MaxRatio, actualValues.MaxRatio);
+			return IsMinLimitOk(MinRatio, actualValues.MinRatioRounded) &&
+				IsMaxLimitOk(MaxRatio, actualValues.MaxRatioRounded);
 		}
 
 		/// <summary>Returns a <see cref="string"/> that represents this instance.</summary>

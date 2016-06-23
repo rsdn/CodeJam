@@ -15,7 +15,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
 	public static class CompetitionAnnotateTests
 	{
-		private static readonly ICompetitionConfig _remoteLogConfig = new ManualCompetitionConfig(HighAccuracyConfig)
+		private static readonly ICompetitionConfig _remoteLogConfig = new ManualCompetitionConfig(DefaultRunConfig)
 		{
 			AllowDebugBuilds = true,
 			DetailedLogging = true,

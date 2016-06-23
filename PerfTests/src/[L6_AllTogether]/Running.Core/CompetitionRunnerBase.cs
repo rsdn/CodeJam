@@ -123,7 +123,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			if (result.CompetitionLimitProvider == null)
 			{
-				result.CompetitionLimitProvider = PercentileLimitProvider.P90;
+				result.CompetitionLimitProvider = PercentileLimitProvider.P20To80;
 			}
 			if (result.MaxRunsAllowed <= 0)
 			{
@@ -269,8 +269,6 @@ namespace CodeJam.PerfTests.Running.Core
 				where fromAllRuns || ShouldReport(message, competitionState)
 				where filter(message)
 				orderby
-					message.MessageSource,
-					(int)message.MessageSeverity descending,
 					message.RunNumber,
 					message.RunMessageNumber
 				select $"    * Run #{message.RunNumber}: {message.MessageText}";

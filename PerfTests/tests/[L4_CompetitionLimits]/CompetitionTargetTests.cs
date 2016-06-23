@@ -35,14 +35,22 @@ namespace CodeJam.PerfTests
 
 			result.MarkAsSaved();
 			Assert.AreEqual(result.MinRatio, 0);
+			Assert.AreEqual(result.MinRatioRounded, 0);
+			Assert.AreEqual(result.MinRatioText, "0.00");
 			Assert.AreEqual(result.MaxRatio, 0);
+			Assert.AreEqual(result.MaxRatioRounded, 0);
+			Assert.AreEqual(result.MaxRatioText, "0.00");
 			Assert.IsTrue(result.IsEmpty);
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
 
 			result.UnionWith(new CompetitionLimit(1, 2));
 			Assert.AreEqual(result.MinRatio, 1);
+			Assert.AreEqual(result.MinRatioRounded, 1);
+			Assert.AreEqual(result.MinRatioText, "1.00");
 			Assert.AreEqual(result.MaxRatio, 2);
+			Assert.AreEqual(result.MaxRatioRounded, 2);
+			Assert.AreEqual(result.MaxRatioText, "2.00");
 			Assert.IsFalse(result.IsEmpty);
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsTrue(result.HasUnsavedChanges);
@@ -51,7 +59,11 @@ namespace CodeJam.PerfTests
 
 			result.MarkAsSaved();
 			Assert.AreEqual(result.MinRatio, 1);
+			Assert.AreEqual(result.MinRatioRounded, 1);
+			Assert.AreEqual(result.MinRatioText, "1.00");
 			Assert.AreEqual(result.MaxRatio, 2);
+			Assert.AreEqual(result.MaxRatioRounded, 2);
+			Assert.AreEqual(result.MaxRatioText, "2.00");
 			Assert.IsFalse(result.IsEmpty);
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
@@ -86,7 +98,11 @@ namespace CodeJam.PerfTests
 
 			result.UnionWith(new CompetitionLimit(1, 2));
 			Assert.AreEqual(result.MinRatio, -1);
+			Assert.AreEqual(result.MinRatioRounded, -1);
+			Assert.AreEqual(result.MinRatioText, "-1");
 			Assert.AreEqual(result.MaxRatio, -1);
+			Assert.AreEqual(result.MaxRatioRounded, -1);
+			Assert.AreEqual(result.MaxRatioText, "-1");
 			Assert.IsFalse(result.IsEmpty);
 			Assert.IsTrue(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
@@ -95,9 +111,9 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestCompetitionLimitWithValues()
 		{
-			var result = new CompetitionTarget(null, new CompetitionLimit(1, 2));
-			Assert.AreEqual(result.MinRatio, 1);
-			Assert.AreEqual(result.MaxRatio, 2);
+			var result = new CompetitionTarget(null, new CompetitionLimit(1.005, 2.015));
+			Assert.AreEqual(result.MinRatio, 1.005);
+			Assert.AreEqual(result.MaxRatio, 2.015);
 			Assert.IsFalse(result.IsEmpty);
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
@@ -117,33 +133,40 @@ namespace CodeJam.PerfTests
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
 
-			result.UnionWith(new CompetitionLimit(1, 2));
-			Assert.IsFalse(result.IsEmpty);
-			Assert.IsFalse(result.IgnoreAll);
-			Assert.IsFalse(result.HasUnsavedChanges);
-
 			result.MarkAsSaved();
-			Assert.AreEqual(result.MinRatio, 1);
-			Assert.AreEqual(result.MaxRatio, 2);
+			Assert.AreEqual(result.MinRatio, 1.005);
+			Assert.AreEqual(result.MinRatioRounded, 1.00, 0.0001);
+			Assert.AreEqual(result.MinRatioText, "1.00");
+			Assert.AreEqual(result.MaxRatio, 2.015);
+			Assert.AreEqual(result.MaxRatioRounded, 2.02, 0.0001);
+			Assert.AreEqual(result.MaxRatioText, "2.02");
 			Assert.IsFalse(result.IsEmpty);
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsFalse(result.HasUnsavedChanges);
 
-			result.UnionWith(new CompetitionLimit(1, 3));
+			result.UnionWith(new CompetitionLimit(1.005, 3));
 			Assert.AreEqual(result.MinRatio, 1);
+			Assert.AreEqual(result.MinRatioRounded, 1);
+			Assert.AreEqual(result.MinRatioText, "1.00");
 			Assert.AreEqual(result.MaxRatio, 3);
+			Assert.AreEqual(result.MaxRatioRounded, 3);
+			Assert.AreEqual(result.MaxRatioText, "3.00");
 			Assert.IsFalse(result.IsEmpty);
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsTrue(result.HasUnsavedChanges);
-			Assert.IsFalse(result.IsChanged(CompetitionLimitProperties.MinRatio));
+			Assert.IsTrue(result.IsChanged(CompetitionLimitProperties.MinRatio));
 			Assert.IsTrue(result.IsChanged(CompetitionLimitProperties.MaxRatio));
-			Assert.IsFalse(
+			Assert.IsTrue(
 				result.IsChanged(
 					CompetitionLimitProperties.MinRatio | CompetitionLimitProperties.MaxRatio));
 
-			result.UnionWith(new CompetitionLimit(0.5, 3));
-			Assert.AreEqual(result.MinRatio, 0.5);
+			result.UnionWith(new CompetitionLimit(0.555, 3));
+			Assert.AreEqual(result.MinRatioRounded, 0.56, 0.0001);
+			Assert.AreEqual(result.MinRatioRounded, 0.56, 0.0001);
+			Assert.AreEqual(result.MinRatioText, "0.56");
 			Assert.AreEqual(result.MaxRatio, 3);
+			Assert.AreEqual(result.MaxRatioRounded, 3);
+			Assert.AreEqual(result.MaxRatioText, "3.00");
 			Assert.IsFalse(result.IsEmpty);
 			Assert.IsFalse(result.IgnoreAll);
 			Assert.IsTrue(result.HasUnsavedChanges);

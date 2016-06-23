@@ -26,7 +26,7 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 		{
 			// TODO: better limits for limitMode == false;
 			var stat = new Statistics(timingRatios);
-			var ci = new ConfidenceInterval(stat.Mean, stat.StandardError, ConfidenceLevel.L90);
+			var ci = new ConfidenceInterval(stat.Mean, stat.StandardError, ConfidenceLevel.L85);
 			var minRatio = limitMode
 				? ci.Lower
 				: ci.Mean;
