@@ -485,7 +485,7 @@ namespace CodeJam.Mapping
 			Assert.AreEqual("3", dest[2]);
 		}
 
-		[Test, Explicit]
+		[Test]
 		public void ScalarArray()
 		{
 			var mapper = Map.GetMapper<int[],string[]>();
