@@ -155,9 +155,6 @@ namespace CodeJam.Mapping
 		{
 			var type = originalType;
 
-
-
-
 			if (type.IsInterface && type.IsGenericType)
 			{
 				var definition = type.GetGenericTypeDefinition();
@@ -197,6 +194,11 @@ namespace CodeJam.Mapping
 				if (toDefinition == typeof(List<>) || typeof(List<>).IsSubClass(toDefinition))
 				{
 					return Convert(ExpressionBuilderHelper.ToList(_mapperBuilder, dic, fromExpression, fromItemType, toItemType), toType);
+				}
+
+				if (toDefinition == typeof(HashSet<>) || typeof(HashSet<>).IsSubClass(toDefinition))
+				{
+					return Convert(ExpressionBuilderHelper.ToHashSet(_mapperBuilder, dic, fromExpression, fromItemType, toItemType), toType);
 				}
 			}
 
@@ -497,10 +499,25 @@ namespace CodeJam.Mapping
 				}
 				else if (toListType.IsGenericType && !toListType.IsGenericTypeDefinition)
 				{
-					_expressions.Add(
-						Expression.Assign(
-							_localObject,
-							_builder.ConvertCollection(_cacheMapper ? _pDic : null, _fromExpression, toListType)));
+					if (toListType.IsSubClass(typeof(ICollection<>)))
+					{
+						var selectExpr = ExpressionBuilderHelper.Select(_builder._mapperBuilder, _cacheMapper ? _pDic : null, _fromExpression, fromItemType, toItemType);
+
+						_expressions.Add(
+							Expression.Call(
+								InfoOf.Method(() => ((ICollection<int>)null).AddRange((IEnumerable<int>)null))
+									.GetGenericMethodDefinition()
+									.MakeGenericMethod(toItemType),
+								_localObject,
+								selectExpr));
+					}
+					else
+					{
+						_expressions.Add(
+							Expression.Assign(
+								_localObject,
+								_builder.ConvertCollection(_cacheMapper ? _pDic : null, _fromExpression, toListType)));
+					}
 				}
 				else
 				{
@@ -557,6 +574,14 @@ namespace CodeJam.Mapping
 		public static Expression ToList(IMapperBuilder builder, ParameterExpression dic, Expression fromExpression, Type fromItemType, Type toItemType)
 		{
 			var toListInfo = InfoOf.Method(() => Enumerable.ToList<int>(null)).GetGenericMethodDefinition();
+			var expr       = Select(builder, dic, fromExpression, fromItemType, toItemType);
+
+			return Expression.Call(toListInfo.MakeGenericMethod(toItemType), expr);
+		}
+
+		public static Expression ToHashSet(IMapperBuilder builder, ParameterExpression dic, Expression fromExpression, Type fromItemType, Type toItemType)
+		{
+			var toListInfo = InfoOf.Method(() => EnumerableExtensions.ToHashSet<int>(null)).GetGenericMethodDefinition();
 			var expr       = Select(builder, dic, fromExpression, fromItemType, toItemType);
 
 			return Expression.Call(toListInfo.MakeGenericMethod(toItemType), expr);
