@@ -317,7 +317,7 @@ namespace CodeJam.Expressions
 		/// Visits expression tree.
 		/// </summary>
 		/// <param name="expr"><see cref="Expression"/> to visit.</param>
-		/// <param name="func">Visit function. Return false to stop.</param>
+		/// <param name="func">Visit function. Return true to stop.</param>
 		public static void Visit([CanBeNull] this Expression expr, [NotNull] Func<Expression,bool> func)
 		{
 			if (func == null) throw new ArgumentNullException(nameof(func));
