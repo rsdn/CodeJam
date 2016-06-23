@@ -7,6 +7,8 @@ What's new in 1.1.0-beta5
 * NullableHelper.AsNullable method
 * Set of classes to build fast mapper
 * EnumerableExtensions.ToHashSet overloads
+* Lazy<T> factory methods
+* Suffix tree implementation
 * Fixes and code cleanup
 * Experimental .NET Framework 3.5 support
 

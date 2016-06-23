@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Same functionality already exists in TPL for 3.5 used in FW 3.5 targeting, so we exclude it from FW3.5 version
+#if !FW35
+using System;
 using System.Threading;
 
 using JetBrains.Annotations;
@@ -79,3 +81,4 @@ namespace CodeJam
 		public static Lazy<T> Create<T>(Func<T> valueFactory, LazyThreadSafetyMode mode) => new Lazy<T>(valueFactory, mode);
 	}
 }
+#endif
