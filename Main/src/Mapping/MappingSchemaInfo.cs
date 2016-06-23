@@ -90,7 +90,6 @@ namespace CodeJam.Mapping
 			// ReSharper disable once InconsistentlySynchronizedField
 			_genericConvertProviders.AddOrUpdate(type, t => new List<Type[]>());
 		}
-
 		#endregion
 
 		#region ConvertInfo
