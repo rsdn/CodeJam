@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 using JetBrains.Annotations;
@@ -158,6 +159,52 @@ namespace CodeJam.Collections
 			var newAddValue = addValueFactory(key);
 			dictionary.Add(key, newAddValue);
 			return newAddValue;
+		}
+
+		/// <summary>
+		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist,
+		///   or updates a key/value pair <see cref="IDictionary{TKey,TValue}"/> by using the specified function
+		///   if the key already exists.
+		/// </summary>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key to be added or whose value should be updated</param>
+		/// <param name="valueFactory">The function used to generate a value.</param>
+		/// <returns>The new value for the key.</returns>
+		public static TValue AddOrUpdate<TKey, TValue>(
+			[NotNull] this IDictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue> valueFactory)
+		{
+			Code.NotNull(dictionary, nameof(dictionary));
+			Code.NotNull(valueFactory, nameof(valueFactory));
+
+			if (dictionary.ContainsKey(key))
+			{
+				var newValue = valueFactory(key);
+				dictionary[key] = newValue;
+				return newValue;
+			}
+			var newAddValue = valueFactory(key);
+			dictionary.Add(key, newAddValue);
+			return newAddValue;
+		}
+
+		/// <summary>
+		///   Adds a key/value pair to the <see cref="ConcurrentDictionary{TKey,TValue}"/> if the key does not already exist,
+		///   or updates a key/value pair <see cref="ConcurrentDictionary{TKey,TValue}"/> by using the specified function
+		///   if the key already exists.
+		/// </summary>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key to be added or whose value should be updated</param>
+		/// <param name="valueFactory">The function used to generate a value.</param>
+		/// <returns>The new value for the key.</returns>
+		public static TValue AddOrUpdate<TKey, TValue>(
+			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
+			TKey key,
+			[NotNull, InstantHandle] Func<TKey, TValue> valueFactory)
+		{
+			Code.NotNull(dictionary, nameof(dictionary));
+			return dictionary.AddOrUpdate(key, valueFactory, (k, oldValue) => valueFactory(k));
 		}
 		#endregion
 	}

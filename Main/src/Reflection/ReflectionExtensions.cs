@@ -352,34 +352,35 @@ namespace CodeJam.Reflection
 		/// <returns>Returns item type or null.</returns>
 		public static Type GetItemType([CanBeNull] this Type type)
 		{
-			if (type == null)
-				return null;
-
-			if (type.HasElementType || type.IsArray)
-				return type.GetElementType();
-
-			if (type == typeof(object))
-				return null;
-
-			if (type.IsGenericType)
-				foreach (var aType in type.GetGenericArguments())
-					if (typeof(IEnumerable<>).MakeGenericType(new[] { aType }).IsAssignableFrom(type))
-						return aType;
-
-			var interfaces = type.GetInterfaces();
-
-			if (interfaces != null && interfaces.Length > 0)
+			while (true)
 			{
-				foreach (var iType in interfaces)
-				{
-					var eType = iType.GetItemType();
+				if (type == null)
+					return null;
 
-					if (eType != null)
-						return eType;
-				}
+				if (type.HasElementType || type.IsArray)
+					return type.GetElementType();
+
+				if (type == typeof(object))
+					return null;
+
+				if (type.IsGenericType)
+					foreach (var aType in type.GetGenericArguments())
+						if (typeof(IEnumerable<>).MakeGenericType(aType).IsAssignableFrom(type))
+							return aType;
+
+				var interfaces = type.GetInterfaces();
+
+				if (interfaces.Length > 0)
+					foreach (var iType in interfaces)
+					{
+						var eType = iType.GetItemType();
+
+						if (eType != null)
+							return eType;
+					}
+
+				type = type.BaseType;
 			}
-
-			return type.BaseType.GetItemType();
 		}
 	}
 }

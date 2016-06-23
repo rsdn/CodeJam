@@ -291,6 +291,7 @@ namespace CodeJam.TableData
 
 				return
 					EnumerableClass
+						// ReSharper disable once InvokeAsExtensionMethod
 						.Zip(
 							values.Select(EscapeValue),
 							columnWidths,
@@ -317,6 +318,7 @@ namespace CodeJam.TableData
 			/// <returns>String representation of values</returns>
 			public string FormatLine(string[] values, int[] columnWidths) =>
 				EnumerableClass
+					// ReSharper disable once InvokeAsExtensionMethod
 					.Zip(
 						values,
 						columnWidths,

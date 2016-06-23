@@ -21,8 +21,7 @@ namespace CodeJam.Metadata
 
 		public XmlAttributeReader(string xmlFile)
 			: this(xmlFile, Assembly.GetCallingAssembly())
-		{
-		}
+		{}
 
 		public XmlAttributeReader([NotNull] string xmlFile, [NotNull] Assembly assembly)
 		{
@@ -77,6 +76,7 @@ namespace CodeJam.Metadata
 
 		private static AttributeInfo[] GetAttrs(
 			string fileName,
+			// ReSharper disable once SuggestBaseTypeForParameter
 			XElement el,
 			string exclude,
 			string typeName,

@@ -44,6 +44,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		[ContractAnnotation("str:null => true")]
+		// ReSharper disable once BuiltInTypeReferenceStyle
 		public static bool IsNullOrWhiteSpace([CanBeNull] this string str) => StringClass.IsNullOrWhiteSpace(str);
 
 		/// <summary>
@@ -56,6 +57,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		[ContractAnnotation("str:null => false")]
+		// ReSharper disable once BuiltInTypeReferenceStyle
 		public static bool NotNullNorWhiteSpace([CanBeNull] this string str) => !StringClass.IsNullOrWhiteSpace(str);
 
 		/// <summary>
@@ -156,6 +158,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[NotNull, Pure]
 		public static string Join([NotNull, InstantHandle] this IEnumerable<string> values, [CanBeNull] string separator) =>
+			// ReSharper disable once BuiltInTypeReferenceStyle
 			StringClass.Join(separator, values);
 
 		/// <summary>
@@ -173,6 +176,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[NotNull, Pure]
 		public static string Join<T>([NotNull, InstantHandle] this IEnumerable<T> values, [CanBeNull] string separator) =>
+			// ReSharper disable once BuiltInTypeReferenceStyle
 			StringClass.Join(separator, values);
 
 		/// <summary>
@@ -185,6 +189,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[NotNull, Pure]
 		public static string Join<T>([NotNull, InstantHandle] this IEnumerable<T> values) =>
+			// ReSharper disable once BuiltInTypeReferenceStyle
 			StringClass.Join("", values);
 
 		/// <summary>

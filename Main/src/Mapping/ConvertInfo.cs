@@ -1,6 +1,7 @@
 ﻿#if !FW35
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace CodeJam.Mapping
@@ -35,7 +36,7 @@ namespace CodeJam.Mapping
 		public void Set(Type from, Type to, LambdaInfo expr) => Set(_expressions, from, to, expr);
 
 		private static void Set(
-			ConcurrentDictionary<Type,ConcurrentDictionary<Type,LambdaInfo>> expressions,
+			IDictionary<Type, ConcurrentDictionary<Type, LambdaInfo>> expressions,
 			Type from,
 			Type to,
 			LambdaInfo expr)

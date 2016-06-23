@@ -15,6 +15,14 @@ namespace CodeJam.Mapping
 	[PublicAPI]
 	public class Mapper<TFrom,TTo>
 	{
+		private Expression<Func<TFrom,TTo,IDictionary<object,object>,TTo>> _mapperExpression;
+
+		private Expression<Func<TFrom,TTo>> _mapperExpressionEx;
+
+		private Func<TFrom,TTo,IDictionary<object,object>,TTo> _mapper;
+
+		private Func<TFrom,TTo> _mapperEx;
+
 		internal Mapper(MapperBuilder<TFrom,TTo> mapperBuilder)
 		{
 			_mapperExpression   = mapperBuilder.GetMapperExpression();
@@ -23,12 +31,6 @@ namespace CodeJam.Mapping
 			_mapper   = _mapperExpression.  Compile();
 			_mapperEx = _mapperExpressionEx.Compile();
 		}
-
-		Expression<Func<TFrom,TTo,IDictionary<object,object>,TTo>> _mapperExpression;
-		Expression<Func<TFrom,TTo>> _mapperExpressionEx;
-
-		Func<TFrom,TTo,IDictionary<object,object>,TTo> _mapper;
-		Func<TFrom,TTo> _mapperEx;
 
 		/// <summary>
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.

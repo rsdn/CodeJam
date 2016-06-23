@@ -19,7 +19,7 @@ namespace CodeJam.Mapping
 	[PublicAPI]
 	public class MapperBuilder<TFrom,TTo> : IMapperBuilder
 	{
-		MappingSchema _mappingSchema = MappingSchema.Default;
+		private MappingSchema _mappingSchema = MappingSchema.Default;
 
 		/// <summary>
 		/// Mapping schema.

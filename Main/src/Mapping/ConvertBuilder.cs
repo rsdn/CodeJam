@@ -1,6 +1,7 @@
 ﻿#if !FW35
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -415,6 +416,7 @@ namespace CodeJam.Mapping
 
 					if (dic.Count > 0)
 					{
+						// ReSharper disable once ImplicitlyCapturedClosure
 						var cases = dic.Select(f => Expression.SwitchCase(
 							Expression.Constant(Enum.Parse(to,   f.Key.  Field.Name, false)),
 							Expression.Constant(Enum.Parse(from, f.Value.Field.Name, false))));
@@ -508,6 +510,7 @@ namespace CodeJam.Mapping
 			return ex;
 		}
 
+		[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
 		public static ValueTuple<LambdaExpression,LambdaExpression,bool> GetConverter(
 			MappingSchema mappingSchema,
 			Type from,
@@ -517,13 +520,13 @@ namespace CodeJam.Mapping
 				mappingSchema = MappingSchema.Default;
 
 			var p  = Expression.Parameter(from, "p");
-			var ne = null as LambdaExpression;
+			var nullLambda = null as LambdaExpression;
 
 			if (from == to)
-				return ValueTuple.Create(Expression.Lambda(p, p), ne, false);
+				return ValueTuple.Create(Expression.Lambda(p, p), nullLambda, false);
 
 			if (to == typeof(object))
-				return ValueTuple.Create(Expression.Lambda(Expression.Convert(p, typeof(object)), p), ne, false);
+				return ValueTuple.Create(Expression.Lambda(Expression.Convert(p, typeof(object)), p), nullLambda, false);
 
 			var ex =
 				GetConverter     (mappingSchema, p, from, to) ??
@@ -532,7 +535,7 @@ namespace CodeJam.Mapping
 
 			if (ex != null)
 			{
-				ne = Expression.Lambda(ex.Value.Item1, p);
+				nullLambda = Expression.Lambda(ex.Value.Item1, p);
 
 				if (from.IsNullable())
 					ex = ValueTuple.Create(
@@ -548,7 +551,7 @@ namespace CodeJam.Mapping
 			}
 
 			if (ex != null)
-				return ValueTuple.Create(Expression.Lambda(ex.Value.Item1, p), ne, ex.Value.Item2);
+				return ValueTuple.Create(Expression.Lambda(ex.Value.Item1, p), nullLambda, ex.Value.Item2);
 
 			if (to.IsNullable())
 			{
@@ -563,7 +566,7 @@ namespace CodeJam.Mapping
 
 				defex = GetCtor(uto, to, defex);
 
-				return ValueTuple.Create(Expression.Lambda(defex, p), ne, false);
+				return ValueTuple.Create(Expression.Lambda(defex, p), nullLambda, false);
 			}
 			else
 			{
@@ -574,7 +577,7 @@ namespace CodeJam.Mapping
 				if (defex.Type != to)
 					defex = Expression.Convert(defex, to);
 
-				return ValueTuple.Create(Expression.Lambda(defex, p), ne, false);
+				return ValueTuple.Create(Expression.Lambda(defex, p), nullLambda, false);
 			}
 		}
 

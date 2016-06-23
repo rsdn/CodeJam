@@ -4,6 +4,8 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
+using CodeJam.Collections;
+
 namespace CodeJam.Mapping
 {
 	using Metadata;
@@ -85,8 +87,8 @@ namespace CodeJam.Mapping
 					if (_genericConvertProviders == null)
 						_genericConvertProviders = new ConcurrentDictionary<Type,List<Type[]>>();
 
-			if (!_genericConvertProviders.ContainsKey(type))
-				_genericConvertProviders[type] = new List<Type[]>();
+			// ReSharper disable once InconsistentlySynchronizedField
+			_genericConvertProviders.AddOrUpdate(type, t => new List<Type[]>());
 		}
 
 		#endregion

@@ -205,6 +205,7 @@ namespace CodeJam.Mapping
 		/// <param name="from">Type to convert from.</param>
 		/// <param name="to">Type to convert to.</param>
 		/// <returns>Convert expression.</returns>
+		// ReSharper disable once VirtualMemberNeverOverriden.Global
 		protected internal virtual LambdaExpression TryGetConvertExpression(Type from, Type to)
 		{
 			var li = GetConverter(from, to, false);
@@ -396,6 +397,7 @@ namespace CodeJam.Mapping
 					fromGenericArgs : fromGenericArgs.Concat(toGenericArgs).ToArray();
 
 				if (InitGenericConvertProvider(args))
+					// ReSharper disable once TailRecursiveCall
 					return GetConverter(from, to, create);
 			}
 
@@ -884,6 +886,7 @@ namespace CodeJam.Mapping
 		/// <param name="type">Type to get mapping values.</param>
 		/// <returns>Array of mapping values.</returns>
 		/// <exception cref="ArgumentNullException"><paramref name="type" /> is null.</exception>
+		// ReSharper disable once VirtualMemberNeverOverriden.Global
 		public virtual MapValue[] GetMapValues([NotNull] Type type)
 		{
 			Code.NotNull(type, nameof(type));

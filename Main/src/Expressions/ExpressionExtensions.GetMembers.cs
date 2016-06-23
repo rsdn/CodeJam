@@ -165,7 +165,7 @@ namespace CodeJam.Expressions
 			return GetMembers(body).Reverse().ToArray();
 		}
 
-		static IEnumerable<MemberInfo> GetMembers(Expression expression, bool passIndexer = true)
+		private static IEnumerable<MemberInfo> GetMembers(Expression expression, bool passIndexer = true)
 		{
 			MemberInfo lastMember = null;
 
