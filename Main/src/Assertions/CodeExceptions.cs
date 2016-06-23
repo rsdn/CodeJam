@@ -54,6 +54,17 @@ namespace CodeJam
 			return new ArgumentNullException(argumentName);
 		}
 
+		/// <summary>Creates <seealso cref="ArgumentNullException"/>.</summary>
+		/// <param name="argumentName">Name of the argument.</param>
+		/// <returns>Initialized instance of <seealso cref="ArgumentNullException"/></returns>
+		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
+		[MustUseReturnValue]
+		public static ArgumentException ArgumentItemNull([NotNull, InvokerParameterName] string argumentName)
+		{
+			BreakIfAttached();
+			return new ArgumentException(argumentName, $"All items in '{argumentName}' should not be null.");
+		}
+
 		/// <summary>Creates <seealso cref="ArgumentException"/> for empty string</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <seealso cref="ArgumentException"/></returns>

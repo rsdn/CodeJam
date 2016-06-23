@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
@@ -27,6 +28,36 @@ namespace CodeJam
 		{
 			if (arg == null)
 				throw CodeExceptions.ArgumentNull(argName);
+		}
+
+		/// <summary>Ensures that all items in <paramref name="arg"/> != <c>null</c></summary>
+		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
+		/// <param name="arg">The argument.</param>
+		/// <param name="argName">Name of the argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void ItemNotNull<T>(
+			[NotNull] IEnumerable<T> arg,
+			[NotNull, InvokerParameterName] string argName) where T : class
+		{
+			foreach (var item in arg)
+				if (item == null)
+					throw CodeExceptions.ArgumentItemNull(argName);
+		}
+
+		/// <summary>Ensures that <paramref name="arg"/> and its all items != <c>null</c></summary>
+		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
+		/// <param name="arg">The argument.</param>
+		/// <param name="argName">Name of the argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void NotNullAndItemNotNull<T>(
+			[CanBeNull, AssertionCondition(AssertionConditionType.IS_NOT_NULL)] IEnumerable<T> arg,
+			[NotNull, InvokerParameterName] string argName) where T : class
+		{
+			if (arg == null)
+				throw CodeExceptions.ArgumentNull(argName);
+			ItemNotNull(arg, argName);
 		}
 
 		/// <summary>Ensures that <paramref name="arg"/> != <c>null</c></summary>

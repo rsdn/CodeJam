@@ -1,6 +1,8 @@
 #if !FW35
 using System;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Mapping
 {
 	/// <summary>
@@ -15,6 +17,8 @@ namespace CodeJam.Mapping
 		/// <param name="mapValues">Mapping value.</param>
 		public MapValue(object origValue, params MapValueAttribute[] mapValues)
 		{
+			Code.NotNullAndItemNotNull(mapValues, nameof(mapValues));
+
 			OrigValue = origValue;
 			MapValues = mapValues;
 		}
@@ -27,6 +31,8 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Mapping value.
 		/// </summary>
+		[NotNull]
+		[ItemNotNull]
 		public MapValueAttribute[] MapValues { get; }
 	}
 }

@@ -15,10 +15,8 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Creates an instance of <see cref="MapValueAttribute"/> attribute.
 		/// </summary>
-		[PublicAPI]
 		public MapValueAttribute()
-		{
-		}
+		{}
 
 		/// <summary>
 		/// Creates an instance of <see cref="MapValueAttribute"/> attribute.
@@ -34,7 +32,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="configuration">Active configuration.</param>
 		/// <param name="value">Mapping value.</param>
-		public MapValueAttribute(string configuration, object value)
+		public MapValueAttribute([CanBeNull] string configuration, [CanBeNull] object value)
 		{
 			Configuration = configuration;
 			Value         = value;
@@ -45,7 +43,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="value">Mapping value.</param>
 		/// <param name="isDefault"><i>true</i> if default.</param>
-		public MapValueAttribute(object value, bool isDefault)
+		public MapValueAttribute([CanBeNull] object value, bool isDefault)
 		{
 			Value     = value;
 			IsDefault = isDefault;
@@ -57,7 +55,7 @@ namespace CodeJam.Mapping
 		/// <param name="configuration">Active configuration.</param>
 		/// <param name="value">Mapping value.</param>
 		/// <param name="isDefault"><i>true</i> if default.</param>
-		public MapValueAttribute(string configuration, object value, bool isDefault)
+		public MapValueAttribute([CanBeNull] string configuration, [CanBeNull] object value, bool isDefault)
 		{
 			Configuration = configuration;
 			Value         = value;
@@ -67,11 +65,13 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Active configuration.
 		/// </summary>
+		[CanBeNull]
 		public string Configuration { get; set; }
 
 		/// <summary>
 		/// Mapping value.
 		/// </summary>
+		[CanBeNull]
 		public object Value { get; set; }
 
 		/// <summary>

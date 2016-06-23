@@ -236,7 +236,10 @@ namespace CodeJam.Mapping
 		/// <param name="createDefault">If <i>true</i>, new expression is created.</param>
 		/// <returns>Convert expression.</returns>
 		public LambdaExpression GetConvertExpression(
-			[NotNull] Type from, [NotNull] Type to, bool checkNull = true, bool createDefault = true)
+			[NotNull] Type from,
+			[NotNull] Type to,
+			bool checkNull = true,
+			bool createDefault = true)
 		{
 			Code.NotNull(from, nameof(from));
 			Code.NotNull(to,   nameof(to));
