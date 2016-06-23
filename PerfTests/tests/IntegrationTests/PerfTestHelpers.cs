@@ -32,8 +32,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			var result = new ManualCompetitionConfig
 			{
-				AllowDebugBuilds = true,
-				RerunIfLimitsFailed = true
+				RerunIfLimitsFailed = true,
+				ReportWarningsAsErrors = true
 			};
 
 			result.Add(DefaultConfig.Instance.GetColumns().ToArray());
