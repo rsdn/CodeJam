@@ -10,7 +10,7 @@ namespace CodeJam.Mapping
 	/// <summary>
 	/// The <see cref="Mapping"/> namespace contains type converters and object mappers.
 	/// </summary>
-	/// <include file='Examples.xml' path='doc/Example[@name="MapTest"]/*'/>
+	/// <include file='Examples.xml' path='doc/Example[@name="MapTests"]/*'/>
 	[UsedImplicitly]
 	[CompilerGenerated]
 	internal class NamespaceDoc

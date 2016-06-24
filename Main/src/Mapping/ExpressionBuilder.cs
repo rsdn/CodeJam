@@ -33,7 +33,7 @@ namespace CodeJam.Mapping
 		private readonly List<Expression>                                      _expressions = new List<Expression>();
 		private readonly List<ParameterExpression>                             _locals      = new List<ParameterExpression>();
 
-		private static int _nameCounter;
+		private int _nameCounter;
 
 		#region GetExpressionEx
 
@@ -278,7 +278,7 @@ namespace CodeJam.Mapping
 				_fromExpression = fromExpression;
 				_toExpression   = toExpression;
 				_pDic           = pDic;
-				_localObject    = Parameter(_toExpression.Type, "obj" + ++_nameCounter);
+				_localObject    = Parameter(_toExpression.Type, "obj" + ++_builder._nameCounter);
 				_fromAccessor   = TypeAccessor.GetAccessor(_fromExpression.Type);
 				_toAccessor     = TypeAccessor.GetAccessor(_toExpression.  Type);
 				_cacheMapper    = _builder._mapperBuilder.ProcessCrossReferences != false;

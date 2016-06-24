@@ -1,9 +1,13 @@
 ﻿<doc>
-<Example name="MapTest">
+	
+<Example name="MapTests">
 <example>
 This example shows how to map one object to another.
 <code>
 using System;
+
+using CodeJam.Expressions;
+using CodeJam.Strings;
 
 using NUnit.Framework;
 
@@ -11,21 +15,21 @@ using NUnit.Framework;
 
 namespace CodeJam.Mapping.Examples
 {
-	class Class1
-	{
-		public int    Prop1 { get; set; }
-		public string Field1;
-	}
-
-	class Class2
-	{
-		public string    Prop1 { get; set; }
-		public DateTime? Field1;
-	}
-
 	[TestFixture]
 	public class MapTest
 	{
+		class Class1
+		{
+			public int    Prop1 { get; set; }
+			public string Field1;
+		}
+
+		class Class2
+		{
+			public string    Prop1 { get; set; }
+			public DateTime? Field1;
+		}
+
 		static readonly Mapper&lt;Class1,Class2&gt; _class1ToClass2Mapper = Map.GetMapper&lt;Class1,Class2&gt;();
 
 		[Test]
@@ -42,6 +46,28 @@ namespace CodeJam.Mapping.Examples
 
 			Assert.That(c2.Prop1,        Is.EqualTo("41"));
 			Assert.That(c2.Field1?.Year, Is.EqualTo(2016));
+
+			var expr = _class1ToClass2Mapper.GetMapperExpressionEx();
+
+			Assert.That(
+				expr.GetDebugView().Remove(" ", "\t", "\r", "\n", "CodeJam.Mapping.Examples."),
+				Is.EqualTo(@"
+					.Lambda #Lambda1&lt;System.Func`2[Class1,Class2]&gt;(Class1 $from)
+					{
+						.New Class2()
+						{
+							Prop1  = .Call ($from.Prop1).ToString(),
+							Field1 = .If ($from.Field1 != null)
+							{
+								(System.Nullable`1[System.DateTime]).Call System.DateTime.Parse(
+									$from.Field1,
+									null,
+									.Constant&lt;System.Globalization.DateTimeStyles&gt;(NoCurrentDateDefault))
+							} .Else {
+								null
+							}
+						}
+					}".Remove(" ", "\t", "\r", "\n")));
 		}
 
 		[Test]
@@ -60,10 +86,104 @@ namespace CodeJam.Mapping.Examples
 
 			Assert.That(c2.Prop1,        Is.EqualTo("41"));
 			Assert.That(c2.Field1?.Year, Is.EqualTo(2016));
+
+			var expr = _class1ToClass2Mapper.GetMapperExpression();
+
+			Assert.That(
+				expr.GetDebugView().Remove(" ", "\t", "\r", "\n", "CodeJam.Mapping.Examples."),
+				Is.EqualTo(@"
+					.Lambda #Lambda1&lt;System.Func
+						Class1,
+						Class2,
+						System.Collections.Generic.IDictionary`2=``[System.Object,System.Object],
+						Class2]&gt;
+						(
+							Class1 $from,
+							Class2 $to,
+							System.Collections.Generic.IDictionary`2[System.Object,System.Object] $dic1
+						)
+					{
+						(Class2)(.Call CodeJam.Mapping.ExpressionBuilderHelper.GetValue($dic1,$from)
+						??
+						.Block(Class2 $obj2)
+						{
+							$obj2 = .If ($to == null) { .New Class2() } .Else { $to };
+
+							.Call CodeJam.Mapping.ExpressionBuilderHelper.Add($dic1, $from, $obj2);
+
+							$obj2.Prop1  = .Call ($from.Prop1).ToString();
+
+							$obj2.Field1 = .If ($from.Field1 != null)
+							{
+								(System.Nullable`1[System.DateTime]).Call System.DateTime.Parse(
+									$from.Field1,
+									null,
+									.Constant&lt;System.Globalization.DateTimeStyles&gt;(NoCurrentDateDefault))
+							}
+							.Else
+							{
+								null
+							};
+
+							$obj2
+						})
+					}".Remove(" ", "\t", "\r", "\n")));
 		}
 	}
 }
 </code>
 </example>
 </Example>
+
+<Example name="MapMemberTests">
+<example>
+This example shows how to explicitly convert one value to another.
+<code>
+using System;
+
+using NUnit.Framework;
+
+#pragma warning disable 649
+
+namespace CodeJam.Mapping.Examples
+{
+	[TestFixture]
+	public class MapMemberTests
+	{
+		class Class1
+		{
+			public int    Prop1 { get; set; }
+			public string Field1;
+		}
+
+		class Class2
+		{
+			public string    Prop1 { get; set; }
+			public DateTime? Field1;
+		}
+
+		static readonly Mapper&lt;Class1,Class2&gt; _class1ToClass2Mapper =
+			Map.GetMapper&lt;Class1,Class2&gt;(m =&gt;
+				m.MapMember(c2 =&gt; c2.Field1, c1 =&gt; DateTime.Parse(c1.Field1).AddDays(1)));
+
+		[Test]
+		public void Test1()
+		{
+			var c2 = _class1ToClass2Mapper.Map(
+				new Class1
+				{
+					Prop1  = 41,
+					Field1 = "2016-01-01"
+				});
+
+			Assert.That(c2.Prop1,        Is.EqualTo("41"));
+			Assert.That(c2.Field1?.Year, Is.EqualTo(2016));
+			Assert.That(c2.Field1?.Day,  Is.EqualTo(2));
+		}
+	}
+}
+</code>
+</example>
+</Example>
+	
 </doc>

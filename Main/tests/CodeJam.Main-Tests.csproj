@@ -87,7 +87,8 @@
     <Compile Include="Mapping\ChangeTypeTests.cs" />
     <Compile Include="Mapping\ConvertTests.cs" />
     <Compile Include="Mapping\DefaultValueTests.cs" />
-    <Compile Include="Mapping\Examples\MapTest.cs" />
+    <Compile Include="Mapping\Examples\MapMemberTests.cs" />
+    <Compile Include="Mapping\Examples\MapTests.cs" />
     <Compile Include="Mapping\MapperTests.cs" />
     <Compile Include="Mapping\MappingSchemaTests.cs" />
     <Compile Include="Metadata\AttributeReaderTests.cs" />

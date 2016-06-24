@@ -368,5 +368,22 @@ namespace CodeJam.Strings
 			quoted = false;
 			return arg;
 		}
+
+		/// <summary>
+		/// Removes substring from provided strings.
+		/// </summary>
+		/// <param name="str">String to remove.</param>
+		/// <param name="toRemoveStrings">Substrings to remove.</param>
+		/// <returns>New string without provided substrings.</returns>
+		public static string Remove([NotNull] this string str, [NotNull] params string[] toRemoveStrings)
+		{
+			Code.NotNull(str,             nameof(str));
+			Code.NotNull(toRemoveStrings, nameof(toRemoveStrings));
+
+			foreach (var removeString in toRemoveStrings)
+				str = str.Replace(removeString, "");
+
+			return str;
+		}
 	}
 }

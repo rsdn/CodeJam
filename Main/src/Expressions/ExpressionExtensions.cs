@@ -5,13 +5,15 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 
+using CodeJam.Reflection;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Expressions
 {
 	static partial class ExpressionExtensions
 	{
-		#region VisitInternal
+		#region Visit
 		private static void VisitInternal<T>(IEnumerable<T> source, Action<T> func)
 		{
 			foreach (var item in source)
@@ -1263,6 +1265,42 @@ namespace CodeJam.Expressions
 		}
 
 		#endregion
+
+		static Func<Expression,string> _getDebugView;
+
+		/// <summary>
+		/// Gets the DebugView internal property value of provided expression.
+		/// </summary>
+		/// <param name="expression">Expression to get DebugView.</param>
+		/// <returns>DebugView value.</returns>
+		public static string GetDebugView([NotNull] this Expression expression)
+		{
+			Code.NotNull(expression, nameof(expression));
+
+			if (_getDebugView == null)
+			{
+				var p = Expression.Parameter(typeof(Expression));
+
+				try
+				{
+					var l = Expression.Lambda<Func<Expression,string>>(
+						Expression.PropertyOrField(p, "DebugView"),
+						p);
+
+					_getDebugView = l.Compile();
+				}
+				catch (ArgumentException)
+				{
+					var l = Expression.Lambda<Func<Expression,string>>(
+						Expression.Call(p, InfoOf<Expression>.Method(e => e.ToString())),
+						p);
+
+					_getDebugView = l.Compile();
+				}
+			}
+
+			return _getDebugView(expression);
+		}
 	}
 }
 #endif
