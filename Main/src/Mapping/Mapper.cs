@@ -12,6 +12,7 @@ namespace CodeJam.Mapping
 	/// </summary>
 	/// <typeparam name="TFrom">Type to map from.</typeparam>
 	/// <typeparam name="TTo">Type to map to.</typeparam>
+	/// <include file='Examples.xml' path='doc/Example[@name="MapTest"]/*'/>
 	[PublicAPI]
 	public class Mapper<TFrom,TTo>
 	{
@@ -80,7 +81,6 @@ namespace CodeJam.Mapping
 		/// <param name="source">Object to map.</param>
 		/// <param name="destination">Destination object.</param>
 		/// <returns>Destination object.</returns>
-		[Pure]
 		public TTo Map(TFrom source, TTo destination)
 			=> _mapper(source, destination, new Dictionary<object, object>());
 

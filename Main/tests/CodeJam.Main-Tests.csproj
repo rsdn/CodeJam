@@ -87,6 +87,7 @@
     <Compile Include="Mapping\ChangeTypeTests.cs" />
     <Compile Include="Mapping\ConvertTests.cs" />
     <Compile Include="Mapping\DefaultValueTests.cs" />
+    <Compile Include="Mapping\Examples\MapTest.cs" />
     <Compile Include="Mapping\MapperTests.cs" />
     <Compile Include="Mapping\MappingSchemaTests.cs" />
     <Compile Include="Metadata\AttributeReaderTests.cs" />
@@ -151,6 +152,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

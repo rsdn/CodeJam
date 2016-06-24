@@ -8,6 +8,7 @@ namespace CodeJam.Mapping
 	/// <summary>
 	/// Mapper helper class.
 	/// </summary>
+	/// <include file='Examples.xml' path='doc/Example[@name="MapTest"]/*'/>
 	[PublicAPI]
 	public static class Map
 	{

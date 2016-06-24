@@ -149,6 +149,7 @@
     <Compile Include="Mapping\MappingSchemaInfo.cs" />
     <Compile Include="Mapping\MapValue.cs" />
     <Compile Include="Mapping\MapValueAttribute.cs" />
+    <Compile Include="Mapping\NamespaceDoc.cs" />
     <Compile Include="Mapping\ScalarTypeAttribute.cs" />
     <Compile Include="Metadata\AttributeInfo.cs" />
     <Compile Include="Metadata\AttributeReader.cs" />
@@ -316,6 +317,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Expr.generated.cs</LastGenOutput>
     </Content>
+    <Content Include="Mapping\Examples.xml" />
     <Content Include="Strings\CharExtensions.Infix.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CharExtensions.Infix.generated.cs</LastGenOutput>

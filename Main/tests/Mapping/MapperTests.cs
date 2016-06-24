@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
 
-using CodeJam.Collections;
-
 using NUnit.Framework;
 using NUnit.Framework.Compatibility;
 
