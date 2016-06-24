@@ -35,7 +35,7 @@
 
 #>
 <Example name="<#= example #>">
-<code>
+<code language="c#">
 <#= code #>
 </code>
 </Example>

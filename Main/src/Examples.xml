@@ -9,7 +9,7 @@
 <doc>
 
 <Example name="Mapping\Examples\MapTests.cs">
-<code>
+<code language="c#">
 using System;
 
 using CodeJam.Expressions;
@@ -141,7 +141,7 @@ namespace CodeJam.Mapping.Examples
 </Example>
 
 <Example name="Mapping\Examples\MapMemberTests.cs">
-<code>
+<code language="c#">
 using System;
 
 using NUnit.Framework;
