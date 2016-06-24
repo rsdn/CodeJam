@@ -347,6 +347,10 @@ namespace CodeJam.Mapping
 		/// <param name="toMember">Expression that returns a member to map.</param>
 		/// <param name="setter">Expression to set the member.</param>
 		/// <returns>Returns this mapper.</returns>
+		/// <example>
+		/// This example shows how to explicitly convert one value to another.
+		/// <include file='..\Examples.xml' path='doc/Example[@name="Mapping\Examples\MapMemberTests.cs"]/*'/>
+		/// </example>
 		public MapperBuilder<TFrom,TTo> MapMember<T>(Expression<Func<TTo,T>> toMember, Expression<Func<TFrom,T>> setter)
 		{
 			if (MemberMappers == null)

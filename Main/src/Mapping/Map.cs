@@ -8,7 +8,10 @@ namespace CodeJam.Mapping
 	/// <summary>
 	/// Mapper helper class.
 	/// </summary>
-	/// <include file='Examples.xml' path='doc/Example[@name="MapTests"]/*'/>
+	/// <example>
+	/// This example shows how to map one object to another.
+	/// <include file='..\Examples.xml' path='doc/Example[@name="Mapping\Examples\MapTests.cs"]/*'/>
+	/// </example>
 	[PublicAPI]
 	public static class Map
 	{

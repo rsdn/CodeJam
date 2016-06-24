@@ -12,7 +12,10 @@ namespace CodeJam.Mapping
 	/// </summary>
 	/// <typeparam name="TFrom">Type to map from.</typeparam>
 	/// <typeparam name="TTo">Type to map to.</typeparam>
-	/// <include file='Examples.xml' path='doc/Example[@name="MapTests"]/*'/>
+	/// <example>
+	/// This example shows how to map one object to another.
+	/// <include file='..\Examples.xml' path='doc/Example[@name="Mapping\Examples\MapTests.cs"]/*'/>
+	/// </example>
 	[PublicAPI]
 	public class Mapper<TFrom,TTo>
 	{
