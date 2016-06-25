@@ -298,7 +298,9 @@ namespace CodeJam.ObjectPools
 			// if map grew too big, don't put it back to pool
 			if (map.Count > Threshold)
 			{
+#if DETECT_LEAKS
 				pool.ForgetTrackedObject(map);
+#endif
 				return;
 			}
 

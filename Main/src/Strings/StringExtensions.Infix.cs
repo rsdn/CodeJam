@@ -50,8 +50,8 @@ namespace CodeJam.Strings
 		/// <summary>
 		/// Returns true if argument is not null nor whitespace.
 		/// </summary>
-		/// <returns>
 		/// <param name="str">The string.</param>
+		/// <returns>
 		/// <c>true</c> if <paramref name="str"/> is not null, nor empty or contains not only whitespaces;
 		/// otherwise <c>false</c>.
 		/// </returns>

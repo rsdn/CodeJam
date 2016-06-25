@@ -117,6 +117,7 @@
     <Compile Include="Collections\QueryableExtensions.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="ExceptionExtensions.cs" />
+    <Compile Include="Expressions\NamespaceDoc.cs" />
     <Compile Include="Fn.generated.cs">
       <DependentUpon>Fn.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -129,6 +130,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Expr.tt</DependentUpon>
     </Compile>
+    <Compile Include="IO\NamespaceDoc.cs" />
     <Compile Include="Mapping\CodeJamConvertException.cs" />
     <Compile Include="Mapping\CodeJamMappingException.cs" />
     <Compile Include="Mapping\ConvertBuilder.cs" />
@@ -160,6 +162,7 @@
     <Compile Include="Metadata\MetaTypeInfo.cs" />
     <Compile Include="Metadata\XmlAttributeReader.cs" />
     <Compile Include="Lazy.cs" />
+    <Compile Include="NamespaceDoc.cs" />
     <Compile Include="NullableHelper.cs" />
     <Compile Include="Objects.cs" />
     <Compile Include="Reflection\MemberAccessor.cs" />
@@ -178,6 +181,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringExtensions.CharInfix.tt</DependentUpon>
     </Compile>
+    <Compile Include="Structures\ObjectPools\NamespaceDoc.cs" />
     <Compile Include="Structures\Option\IOption.cs" />
     <Compile Include="Structures\Option\Option.cs" />
     <Compile Include="Structures\Option\ValueOption.cs" />

@@ -10,7 +10,7 @@ namespace CodeJam.Mapping
 	/// </summary>
 	/// <example>
 	/// This example shows how to map one object to another.
-	/// <code source="Main\tests\Mapping\Examples\MapTests.cs" lang="C#"/>
+	/// <code source="Main\tests\Mapping\Examples\MapTests.cs" region="Example" lang="C#"/>
 	/// </example>
 	[PublicAPI]
 	public static class Map

@@ -22,12 +22,14 @@ namespace CodeJam.ObjectPools
 		/// <summary>
 		/// The pool that uses default constructor with 100 elements pooled
 		/// </summary>
+		/// <returns><see cref="ObjectPool{T}"/> instance.</returns>
 		[NotNull]
 		public static ObjectPool<T> BigDefault<T>() where T : class, new() => DefaultBigPool<T>.Instance;
 
 		/// <summary>
 		/// The pool that uses default constructor with 20 elements pooled
 		/// </summary>
+		/// <returns><see cref="ObjectPool{T}"/> instance.</returns>
 		[NotNull]
 		public static ObjectPool<T> Default<T>() where T : class, new() => DefaultNormalPool<T>.Instance;
 

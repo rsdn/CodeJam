@@ -50,12 +50,6 @@ namespace CodeJam.ObjectPools
 			public T Value;
 		}
 
-		/// <remarks>
-		/// Not using System.Func{T} because this file is linked into the (debugger) Formatter,
-		/// which does not have that type (since it compiles against .NET 2.0).
-		/// </remarks>
-		public delegate T Factory();
-
 		// Storage for the pool objects. The first item is stored in a dedicated field because we
 		// expect to be able to satisfy most requests from it.
 		private T _firstItem;
@@ -64,7 +58,7 @@ namespace CodeJam.ObjectPools
 		// factory is stored for the lifetime of the pool. We will call this only when pool needs to
 		// expand. compared to "new T()", Func gives more flexibility to implementers and faster
 		// than "new T()".
-		private readonly Factory _factory;
+		private readonly Func<T> _factory;
 
 #if DETECT_LEAKS
 		private static readonly ConditionalWeakTable<T, LeakTracker> leakTrackers = new ConditionalWeakTable<T, LeakTracker>();
@@ -111,7 +105,7 @@ namespace CodeJam.ObjectPools
 		/// Initializes a new instance of the <see cref="ObjectPool{T}"/> class.
 		/// </summary>
 		/// <param name="factory">The instance factory.</param>
-		public ObjectPool([NotNull] Factory factory)
+		public ObjectPool([NotNull] Func<T> factory)
 			: this(factory, Environment.ProcessorCount * 2)
 		{ }
 
@@ -120,7 +114,7 @@ namespace CodeJam.ObjectPools
 		/// </summary>
 		/// <param name="factory">The instance factory.</param>
 		/// <param name="size">The pool size.</param>
-		public ObjectPool(Factory factory, int size)
+		public ObjectPool(Func<T> factory, int size)
 		{
 			Debug.Assert(size >= 1);
 			_factory = factory;
@@ -136,6 +130,7 @@ namespace CodeJam.ObjectPools
 		/// <summary>
 		/// Produces an instance.
 		/// </summary>
+		/// <returns>Allocated instance.</returns>
 		/// <remarks>
 		/// Search strategy is a simple linear probing which is chosen for it cache-friendliness.
 		/// Note that Free will try to store recycled objects close to the start thus statistically 
@@ -186,6 +181,7 @@ namespace CodeJam.ObjectPools
 		/// <summary>
 		/// Returns objects to the pool.
 		/// </summary>
+		/// <param name="obj">The object</param>
 		/// <remarks>
 		/// Search strategy is a simple linear probing which is chosen for it cache-friendliness.
 		/// Note that Free will try to store recycled objects close to the start thus statistically 
@@ -194,7 +190,9 @@ namespace CodeJam.ObjectPools
 		public void Free([NotNull] T obj)
 		{
 			Validate(obj);
+#if DETECT_LEAKS
 			ForgetTrackedObject(obj);
+#endif
 
 			if (_firstItem == null)
 			{
@@ -225,6 +223,7 @@ namespace CodeJam.ObjectPools
 			}
 		}
 
+#if DETECT_LEAKS
 		/// <summary>
 		/// Removes an object from leak tracking.  
 		/// 
@@ -233,10 +232,11 @@ namespace CodeJam.ObjectPools
 		/// to the pool.  This can be of use with pooled arrays if the consumer wants to 
 		/// return a larger array to the pool than was originally allocated.
 		/// </summary>
+		/// <param name="old"></param>
+		/// <param name="replacement"></param>
 		[Conditional("DEBUG")]
 		public void ForgetTrackedObject(T old, T replacement = null)
 		{
-#if DETECT_LEAKS
 			LeakTracker tracker;
 			if (leakTrackers.TryGetValue(old, out tracker))
 			{
@@ -254,8 +254,8 @@ namespace CodeJam.ObjectPools
 				tracker = new LeakTracker();
 				leakTrackers.Add(replacement, tracker);
 			}
+	}
 #endif
-		}
 
 #if DETECT_LEAKS
 		private static Lazy<Type> _stackTraceType = new Lazy<Type>(() => Type.GetType("System.Diagnostics.StackTrace"));
