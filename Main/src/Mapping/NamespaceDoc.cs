@@ -1,6 +1,6 @@
-﻿using System;
+﻿#if DEBUG
+using System;
 
-#if DEBUG
 using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
@@ -12,7 +12,7 @@ namespace CodeJam.Mapping
 	/// </summary>
 	/// <example>
 	/// This example shows how to map one object to another.
-	/// <include file='..\Examples.xml' path='doc/Example[@name="Mapping\Examples\MapTests.cs"]/*'/>
+	/// <code source="Main\tests\Mapping\Examples\MapTests.cs" lang="C#"/>
 	/// </example>
 	[UsedImplicitly]
 	[CompilerGenerated]

@@ -309,15 +309,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DictionaryExtensions.GetValueOrDefault.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Examples.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Examples.xml</LastGenOutput>
-    </Content>
-    <Content Include="Examples.xml">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Examples.tt</DependentUpon>
-    </Content>
     <Content Include="Fn.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Fn.generated.cs</LastGenOutput>
