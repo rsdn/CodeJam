@@ -12,74 +12,36 @@ namespace CodeJam
 	/// </summary>
 	[PublicAPI]
 	[SecurityCritical]
-	public class HGlobal<T> : CriticalFinalizerObject, IDisposable where T : struct
+	public class HGlobalScope<T> : HGlobalScope where T : struct
 	{
-		private IntPtr _buffer;
-
 		/// <summary>
 		/// Default constructor, allocates memory with the size of <typeparam name="T"/>
 		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
-		public HGlobal() : this(Size) { }
+		internal HGlobalScope() : base(Size) { }
 
 		/// <summary>
 		/// Allocates memory from the unmanaged memory of the process by using the specified number of bytes.
 		/// </summary>
 		/// <param name="cb">The required number of bytes in memory.</param>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
-		public HGlobal(int cb)
+		internal HGlobalScope(int cb) : base(validateArguments(cb))
+		{
+		}
+
+		private static int validateArguments(int cb)
 		{
 			if (cb < Size)
 				throw new ArgumentException($"size is less than {Size}");
 
-			_buffer = Marshal.AllocHGlobal(cb);
-			Length = cb;
+			return cb;
 		}
-
-		/// <summary>
-		/// Finalizer.
-		/// </summary>
-		~HGlobal()
-		{
-			DisposeInternal();
-		}
-
-		/// <summary>
-		/// Dispose method to free all resources.
-		/// </summary>
-		public void Dispose()
-		{
-			DisposeInternal();
-			GC.SuppressFinalize(this);
-		}
-
-		/// <summary>
-		/// Length
-		///  </summary>
-		public int Length { get; }
-
-		/// <summary>
-		/// Pointer to data.
-		/// </summary>
-		public IntPtr Data => _buffer;
-
+		
 		/// <summary>
 		/// Value
 		/// </summary>
-		public T Value => (T)Marshal.PtrToStructure(_buffer, typeof(T));
-
-		/// <summary>
-		/// Internal Dispose method.
-		/// </summary>
-		private void DisposeInternal()
-		{
-			if (_buffer != IntPtr.Zero)
-			{
-				Marshal.FreeHGlobal(_buffer);
-				_buffer = IntPtr.Zero;
-			}
-		}
-
+		public T Value => (T)Marshal.PtrToStructure(Data, typeof(T));
+		
 		/// <summary>
 		/// Size of the of the generic parameter <typeparam name="T"/>.
 		/// </summary>
