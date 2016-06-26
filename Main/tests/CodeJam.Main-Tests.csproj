@@ -126,6 +126,8 @@
     <Compile Include="Strings\NaturalOrderStringComparerTests.cs" />
     <Compile Include="Strings\StringExtensionsTests.cs" />
     <Compile Include="Algorithms\MemoizeTests.cs" />
+    <Compile Include="Utilities\HGlobalScopeTests.cs" />
+    <Compile Include="Utilities\HGlobalScope`1Tests.cs" />
     <Compile Include="Utilities\MemoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
