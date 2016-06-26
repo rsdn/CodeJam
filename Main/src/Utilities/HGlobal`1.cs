@@ -8,13 +8,19 @@ using JetBrains.Annotations;
 namespace CodeJam
 {
 	/// <summary>
-	/// Wraps Mashal.AllocHGlobal and Marshal.FreeHGlobal.
+	/// Wraps Mashal.AllocHGlobal and Marshal.FreeHGlobal using generic.
 	/// </summary>
 	[PublicAPI]
 	[SecurityCritical]
-	public class HGlobal : CriticalFinalizerObject, IDisposable
+	public class HGlobal<T> : CriticalFinalizerObject, IDisposable where T : struct
 	{
 		private IntPtr _buffer;
+
+		/// <summary>
+		/// Default constructor, allocates memory with the size of <typeparam name="T"/>
+		/// </summary>
+		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
+		public HGlobal() : this(Size) { }
 
 		/// <summary>
 		/// Allocates memory from the unmanaged memory of the process by using the specified number of bytes.
@@ -23,18 +29,11 @@ namespace CodeJam
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
 		public HGlobal(int cb)
 		{
+			if (cb < Size)
+				throw new ArgumentException($"size is less than {Size}");
+
 			_buffer = Marshal.AllocHGlobal(cb);
 			Length = cb;
-		}
-
-		/// <summary>
-		/// Takes ownership over given pointer.
-		/// </summary>
-		/// <param name="ptr">Point to memory allocated by <see cref="Marshal.AllocHGlobal(System.IntPtr)"/></param>
-		public HGlobal(IntPtr ptr)
-		{
-			_buffer = ptr;
-			Length = 0;
 		}
 
 		/// <summary>
@@ -56,13 +55,18 @@ namespace CodeJam
 
 		/// <summary>
 		/// Length
-		/// </summary>
+		///  </summary>
 		public int Length { get; }
 
 		/// <summary>
 		/// Pointer to data.
 		/// </summary>
 		public IntPtr Data => _buffer;
+
+		/// <summary>
+		/// Value
+		/// </summary>
+		public T Value => (T)Marshal.PtrToStructure(_buffer, typeof(T));
 
 		/// <summary>
 		/// Internal Dispose method.
@@ -75,5 +79,10 @@ namespace CodeJam
 				_buffer = IntPtr.Zero;
 			}
 		}
+
+		/// <summary>
+		/// Size of the of the generic parameter <typeparam name="T"/>.
+		/// </summary>
+		private static readonly int Size = Marshal.SizeOf(typeof(T));
 	}
 }

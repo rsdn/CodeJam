@@ -275,6 +275,7 @@
     <Compile Include="Threading\ParallelQueue.cs" />
     <Compile Include="Threading\ReaderWriterLockSlimExtensions.cs" />
     <Compile Include="Utilities\HGlobal.cs" />
+    <Compile Include="Utilities\HGlobal`1.cs" />
     <Compile Include="Utilities\Memory.cs" />
     <Compile Include="Xml\NamespaceDoc.cs" />
     <Compile Include="Xml\XNodeExtensions.cs" />

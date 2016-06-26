@@ -1,8 +1,12 @@
-CodeJam 1.0.0-beta5 Release Notes
+CodeJam 1.1.0-beta6 Release Notes
 ---------------------------------
 
+What's new in 1.1.0-beta6
+-------------------------
+* HGlobal and HGlobal<T> helpers
+
 What's new in 1.1.0-beta5
-------------------------
+-------------------------
 * Option struct split into Option class and ValueOption struct
 * NullableHelper.AsNullable method
 * Set of classes to build fast mapper
@@ -13,7 +17,7 @@ What's new in 1.1.0-beta5
 * Experimental .NET Framework 3.5 support
 
 What's new in 1.1.0-beta4
-------------------------
+-------------------------
 * EnumerableExtensions.GroupTopoSort methods
 * EnumerableExtensions.TopoSort methods reimplemented using GroupTopoSort
 * EnumerableExtensions.TopoSort methods refactoring
@@ -25,14 +29,14 @@ What's new in 1.1.0-beta4
 * Fixes and code cleanup
 
 What's new in 1.1.0-beta3
-------------------------
+-------------------------
 * New ComparerBuilder.GetEqualityComparer overload
 * Option<T> improvements and refactoring
 * ReflectionExtensions.ToNullableUnderlying and ToEnumUnderlying methods
 * Fixes and code cleanup
 
 What's new in 1.1.0-beta2
-------------------------
+-------------------------
 * TypeAccessor class
 * Negative/PositiveInfinity generic operators
 * EnumerableExtensions.AggregateOrDefault methods
@@ -41,25 +45,25 @@ What's new in 1.1.0-beta2
 * Fixes and code cleanup
 
 What's new in 1.1.0-beta1
-------------------------
+-------------------------
 * Enum helpers and operators
 * Performance optimization
 * Refactoring
 * Fixes and code cleanup
 
 What's new in 1.0.0
-------------------
+-------------------
 * Small fixes
 
 What's new in 1.0.0-rc3
-----------------------
+-----------------------
 * Fixed MinBy/MaxBy behavior with NaN values
 * Expression visitor added
 * ExpressionHelper splitted into two parts - Expr and ExpressionExtensions
 * Fixes and code cleanup
 
 What's new in 1.0.0-rc2
-----------------------
+-----------------------
 * Additional overloads for char static methods
 * DictionaryExtensions.GetValueOrDefault additional overloads
 * AssertArgument with message factory overload removed
@@ -69,11 +73,11 @@ What's new in 1.0.0-rc2
 * Fixes, code cleanup, doccomments
 
 What's new in 1.0.0-rc1
-----------------------
+-----------------------
 * Cleanup
 
 What's new in 1.0.0-beta10
-------------------------
+--------------------------
 * InterlockedOperations.Initialize and Update methods
 * StringExtensions.Unquote methods
 * Add defaultValue parameter to all Min/MaxByOrDefault overloads
@@ -91,7 +95,7 @@ What's new in 1.0.0-beta10
 * Fixes and code cleanup
 
 What's new in 1.0.0-beta9
-------------------------
+-------------------------
 * ReflectionExtensions.IsAnonymous methods
 * string.ToInt and ToDouble methods
 * OptionalElementValue overload
@@ -102,13 +106,13 @@ What's new in 1.0.0-beta9
 * Fixes and code cleanup
 
 What's new in 1.0.0-beta8
-------------------------
+-------------------------
 * Unary generic operators for numeric types (-, ~)
 * DisjointSets and DisjointSets<T> collections
 * Fixes and code cleanup
 
 What's new in 1.0.0-beta7
-------------------------
+-------------------------
 * ServiceContainer disposes created by factory instances
 * Service provider chaining in ServiceContainer
 * ReflectionExtensions.IsNumeric and IsInteger methods
