@@ -87,7 +87,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="[L0_Core]\SampleFile.txt">
+    <None Include="Resources\SampleFile.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

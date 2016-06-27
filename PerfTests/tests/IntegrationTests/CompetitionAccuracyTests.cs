@@ -50,7 +50,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionTooSlowBenchmark()
 		{
-			var runState = new PerfTestRunner().Run<TooSlowBenchmark>(SingleRunConfigDebug);
+			var runState = new PerfTestRunner().Run<TooSlowBenchmark>(SingleRunTestConfig);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
@@ -74,7 +74,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionTooSlowOk()
 		{
-			var overrideConfig = new ManualCompetitionConfig(SingleRunConfigDebug)
+			var overrideConfig = new ManualCompetitionConfig(SingleRunTestConfig)
 			{
 				AllowLongRunningBenchmarks = true
 			};

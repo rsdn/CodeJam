@@ -60,7 +60,7 @@ line3";
 
 			var webUrl =
 				"https://gist.githubusercontent.com/ig-sinicyn/813e44fa231410892e480c717532bb77/raw/17537a4823e110460b02bf0de4ac11dbd8dcb763/SampleFile.txt";
-			var relativePath = @"[L0_Core]\SampleFile.txt";
+			var relativePath = @"Resources\SampleFile.txt";
 			var fullPath = Path.GetFullPath(relativePath);
 			var fullPathUri = new Uri(fullPath).ToString();
 

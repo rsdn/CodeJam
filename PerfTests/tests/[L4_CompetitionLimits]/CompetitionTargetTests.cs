@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+
+using BenchmarkDotNet.Running;
 
 using CodeJam.PerfTests.Running.SourceAnnotations;
 
@@ -14,7 +17,9 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestCompetitionLimitEmpty()
 		{
-			var result = new CompetitionTarget(null, CompetitionLimit.Empty);
+			var method = (MethodInfo)MethodBase.GetCurrentMethod();
+			var target = new Target(method.DeclaringType, method);
+			var result = new CompetitionTarget(target, CompetitionLimit.Empty);
 			Assert.AreEqual(result.MinRatio, CompetitionLimit.EmptyValue);
 			Assert.AreEqual(result.MaxRatio, CompetitionLimit.EmptyValue);
 			Assert.IsTrue(result.IsEmpty);
@@ -72,7 +77,9 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestCompetitionLimitIgnored()
 		{
-			var result = new CompetitionTarget(null, CompetitionLimit.Ignored);
+			var method = (MethodInfo)MethodBase.GetCurrentMethod();
+			var target = new Target(method.DeclaringType, method);
+			var result = new CompetitionTarget(target, CompetitionLimit.Ignored);
 			Assert.AreEqual(result.MinRatio, CompetitionLimit.IgnoreValue);
 			Assert.AreEqual(result.MaxRatio, CompetitionLimit.IgnoreValue);
 			Assert.IsFalse(result.IsEmpty);
@@ -111,7 +118,9 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestCompetitionLimitWithValues()
 		{
-			var result = new CompetitionTarget(null, new CompetitionLimit(1.005, 2.015));
+			var method = (MethodInfo)MethodBase.GetCurrentMethod();
+			var target = new Target(method.DeclaringType, method);
+			var result = new CompetitionTarget(target, new CompetitionLimit(1.005, 2.015));
 			Assert.AreEqual(result.MinRatio, 1.005);
 			Assert.AreEqual(result.MaxRatio, 2.015);
 			Assert.IsFalse(result.IsEmpty);

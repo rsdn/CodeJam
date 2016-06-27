@@ -24,7 +24,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public const int SpinCount = 10 * 1000;
 
 		// Jitting = 1, WarmupCount = 2, TargetCount = 2
-		public const int ExpectedSingleRunCount = 5;
+		public const int ExpectedSingleRunTestCount = 5;
 
 		public static void Delay(int cycles) => Thread.SpinWait(cycles);
 
@@ -47,7 +47,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 					: TestContext.CurrentContext.TestDirectory,
 				fileName);
 
-		public static readonly ICompetitionConfig SingleRunConfigDebug = CreateSingleRunConfigDebug(Platform.X64).AsReadOnly();
+		public static readonly ICompetitionConfig SingleRunTestConfig = CreateSingleRunTestConfig(Platform.X64).AsReadOnly();
 
 		public static readonly ICompetitionConfig DefaultRunConfig = CreateRunConfig().AsReadOnly();
 
@@ -65,7 +65,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			return result;
 		}
 
-		public static ManualCompetitionConfig CreateSingleRunConfigDebug(Platform platform)
+		public static ManualCompetitionConfig CreateSingleRunTestConfig(Platform platform)
 		{
 			var result = CreateRunConfigCore();
 			result.AllowDebugBuilds = true;
@@ -128,7 +128,6 @@ namespace CodeJam.PerfTests.IntegrationTests
 			result.RerunIfLimitsFailed = true;
 			result.UpdateSourceAnnotations = true;
 			result.MaxRunsAllowed = 6;
-			//result.PreviousRunLogUri = @"https://ci.appveyor.com/api/buildjobs/wc321iv14ssbn8p5/artifacts/CodeJam.PerfTests-Tests.Short.AllPerfTests.log";
 			return result;
 		}
 

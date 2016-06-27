@@ -3,4 +3,7 @@
 	<Competition Target="XmlOkBenchmark">
 		<Candidate Target="SlowerX20" MinRatio="12" MaxRatio="28" />
 	</Competition>
+	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionTests+XmlFullAnnotationBenchmark, CodeJam.PerfTests-Tests">
+		<Candidate Target="SlowerX20" MinRatio="12" MaxRatio="28" />
+	</Competition>
 </CompetitionBenchmarks>

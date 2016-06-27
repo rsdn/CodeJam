@@ -69,10 +69,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			/// <summary>Tries lo load the xml annotation document.</summary>
 			/// <param name="file">The file with xml annotation.</param>
+			/// <param name="useFullTypeName">Use full type name in XML annotations.</param>
 			/// <param name="competitionState">State of the run.</param>
 			/// <returns>The document with competition limits for the benchmark or <c>null</c> if none.</returns>
 			public XDocument TryGetXmlAnnotation(
 				[NotNull] string file,
+				bool useFullTypeName,
 				[NotNull] CompetitionState competitionState)
 			{
 				Code.NotNullNorEmpty(file, nameof(file));
@@ -87,7 +89,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 							using (var reader = File.OpenText(f))
 							{
 								return XmlAnnotations.TryParseXmlAnnotationDoc(
-									reader, competitionState,
+									reader, useFullTypeName, competitionState,
 									$"XML annotation {file}");
 							}
 						}
@@ -189,9 +191,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					continue;
 				}
 
-				if (targetToAnnotate.FromMetadataResource)
+				var competitionMetadata = targetToAnnotate.CompetitionMetadata;
+				if (competitionMetadata != null)
 				{
-					var resourceFileName = GetResourceFileName(fileName, targetToAnnotate);
+					var resourceFileName = GetResourceFileName(fileName, competitionMetadata);
 
 					logger.WriteLineInfo($"// Method {targetMethodTitle}: annotating resource file {resourceFileName}.");
 					var annotated = TryFixBenchmarkXmlAnnotation(annContext, resourceFileName, targetToAnnotate, competitionState);
@@ -225,14 +228,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return annotatedTargets.ToArray();
 		}
 
-		private static string GetResourceFileName(string fileName, CompetitionTarget targetToAnnotate)
+		private static string GetResourceFileName(string fileName, CompetitionMetadata competitionMetadata)
 		{
-			if (targetToAnnotate.MetadataResourcePath.NotNullNorEmpty())
+			if (competitionMetadata.MetadataResourcePath.NotNullNorEmpty())
 			{
 				return Path.Combine(
 					// ReSharper disable once AssignNullToNotNullAttribute
 					Path.GetDirectoryName(fileName),
-					targetToAnnotate.MetadataResourcePath);
+					competitionMetadata.MetadataResourcePath);
 			}
 
 			return Path.ChangeExtension(fileName, ".xml");
@@ -243,7 +246,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			CompetitionTarget competitionTarget,
 			CompetitionState competitionState)
 		{
-			var xmlAnnotationDoc = annotateContext.TryGetXmlAnnotation(xmlFileName, competitionState);
+			var xmlAnnotationDoc = annotateContext.TryGetXmlAnnotation(
+				xmlFileName,
+				competitionTarget.CompetitionMetadata?.UseFullTypeName ?? false,
+				competitionState);
 			if (xmlAnnotationDoc == null)
 				return false;
 

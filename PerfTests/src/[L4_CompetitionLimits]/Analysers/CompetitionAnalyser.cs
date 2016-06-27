@@ -21,7 +21,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Analysers
 {
-	using ResourceKey = ValueTuple<Assembly, string>;
+	using ResourceKey = ValueTuple<Assembly, string, bool>;
 
 	/// <summary>Basic competition analyser.</summary>
 	/// <seealso cref="IAnalyser"/>
@@ -246,25 +246,20 @@ namespace CodeJam.PerfTests.Analysers
 			}
 
 			bool hasBaseline = false;
+			competitionTargets.Clear();
 
 			var targets = summary.GetExecutionOrderBenchmarks()
 				.Select(b => b.Target)
-				.Distinct();
+				.ToHashSet();
 
-			competitionTargets.Clear();
+			var competitionMetadata = targets.FirstOrDefault()?.TryGetCompetitionMetadata();
 			foreach (var target in targets)
 			{
 				hasBaseline |= target.Baseline;
 
-				var competitionAttribute = target.Method.GetCustomAttribute<CompetitionBenchmarkAttribute>();
-				if (competitionAttribute != null &&
-					!competitionAttribute.DoesNotCompete)
+				var competitionTarget = TryParseCompetitionTarget(target, competitionMetadata, competitionState);
+				if (competitionTarget != null)
 				{
-					var competitionTarget = GetCompetitionTarget(
-						target,
-						competitionAttribute,
-						competitionState);
-
 					competitionTargets.Add(target.Method, competitionTarget);
 				}
 			}
@@ -278,34 +273,39 @@ namespace CodeJam.PerfTests.Analysers
 			}
 		}
 
-		private CompetitionTarget GetCompetitionTarget(
-			Target target,
-			CompetitionBenchmarkAttribute competitionAttribute,
+		private CompetitionTarget TryParseCompetitionTarget(
+			Target target, CompetitionMetadata competitionMetadata,
 			CompetitionState competitionState)
 		{
+			var competitionAttribute = target.Method.GetCustomAttribute<CompetitionBenchmarkAttribute>();
+			if (competitionAttribute == null || competitionAttribute.DoesNotCompete)
+				return null;
+
+			CompetitionTarget result;
 			var fallbackLimit = CompetitionLimit.Empty;
 
-			var resourceInfo = AttributeAnnotations.TryGetCompetitionMetadata(target);
-			if (resourceInfo == null)
+			if (competitionMetadata == null)
 			{
 				var limit = IgnoreExistingAnnotations
 					? fallbackLimit
 					: AttributeAnnotations.ParseCompetitionLimit(competitionAttribute);
 
-				return new CompetitionTarget(target, limit);
+				result = new CompetitionTarget(target, limit);
 			}
 			else
 			{
-				var limit = TryParseCompetitionLimit(target, resourceInfo, competitionState)
+				var limit = TryParseCompetitionLimit(target, competitionMetadata, competitionState)
 					?? fallbackLimit;
 
-				return new CompetitionTarget(target, limit, true, resourceInfo.MetadataResourcePath);
+				result = new CompetitionTarget(target, limit, competitionMetadata);
 			}
+
+			return result;
 		}
 
 		private CompetitionLimit TryParseCompetitionLimit(
 			Target target,
-			CompetitionMetadataAttribute resourceInfo,
+			CompetitionMetadata competitionMetadata,
 			CompetitionState competitionState)
 		{
 			CompetitionLimit result = null;
@@ -313,11 +313,12 @@ namespace CodeJam.PerfTests.Analysers
 			// DONTTOUCH: the doc should be loaded for validation even if IgnoreExistingAnnotations = true
 			var resourceKey = new ResourceKey(
 				target.Type.Assembly,
-				resourceInfo.MetadataResourceName);
+				competitionMetadata.MetadataResourceName,
+				competitionMetadata.UseFullTypeName);
 
 			var xmlAnnotationDoc = _xmlAnnotationResources.GetOrAdd(
 				resourceKey,
-				r => XmlAnnotations.TryParseXmlAnnotationDoc(r.Item1, r.Item2, competitionState));
+				r => XmlAnnotations.TryParseXmlAnnotationDoc(r.Item1, r.Item2, r.Item3, competitionState));
 
 			if (!IgnoreExistingAnnotations && xmlAnnotationDoc != null)
 			{

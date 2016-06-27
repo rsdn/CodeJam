@@ -21,7 +21,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// Name of the resource containing xml document with competition limits
 		/// or <c>null</c> if the target is not annotated with <see cref="CompetitionMetadataAttribute"/>
 		/// </returns>
-		public static CompetitionMetadataAttribute TryGetCompetitionMetadata([NotNull] Target target)
+		[CanBeNull]
+		public static CompetitionMetadata TryGetCompetitionMetadata([NotNull] this Target target)
 		{
 			Code.NotNull(target, nameof(target));
 
@@ -35,7 +36,13 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				targetType = targetType.DeclaringType;
 			}
 
-			return result;
+			if (result == null)
+				return null;
+
+			return new CompetitionMetadata(
+				result.MetadataResourceName,
+				result.MetadataResourcePath,
+				result.UseFullTypeName);
 		}
 
 		/// <summary>

@@ -91,13 +91,13 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.Informational,
-					$"Competiton limits were updated from log file {PreviousRunLogUri}.");
+					$"Competition limits were updated from log file {PreviousRunLogUri}.");
 			}
 			else
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.Informational,
-					$"Competiton limits do not require update. Log file: {PreviousRunLogUri}.");
+					$"Competition limits do not require update. Log file: {PreviousRunLogUri}.");
 			}
 		}
 

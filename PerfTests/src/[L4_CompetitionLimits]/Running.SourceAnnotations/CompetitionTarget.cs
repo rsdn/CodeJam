@@ -22,41 +22,35 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <param name="target">The target.</param>
 		/// <param name="limitsForTarget">Competition limits for the target.</param>
 		public CompetitionTarget(
-			[CanBeNull] Target target,
+			[NotNull] Target target,
 			[NotNull] CompetitionLimit limitsForTarget) :
-				this(target, limitsForTarget, false, null) { }
+				this(target, limitsForTarget, null) { }
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionTarget"/> class.</summary>
 		/// <param name="target">The target.</param>
 		/// <param name="limitsForTarget">Competition limits for the target.</param>
-		/// <param name="fromMetadataResource"><c>true</c> if the limits are obtained from xml resource.</param>
-		/// <param name="metadataResourcePath">The relative path to the resource containing xml document with competition limits.</param>
+		/// <param name="competitionMetadata">Description of embedded resource containing xml document with competition limits.</param>
 		public CompetitionTarget(
-			[CanBeNull] Target target,
+			[NotNull] Target target,
 			[NotNull] CompetitionLimit limitsForTarget,
-			bool fromMetadataResource, string metadataResourcePath) :
+			[CanBeNull] CompetitionMetadata competitionMetadata) :
 				base(limitsForTarget.MinRatio, limitsForTarget.MaxRatio)
 		{
 			Target = target;
-			FromMetadataResource = fromMetadataResource;
-			MetadataResourcePath = metadataResourcePath;
+			CompetitionMetadata = competitionMetadata;
 		}
 		#endregion
 
 		#region Properties
 		/// <summary>The benchmark target.</summary>
 		/// <value>The benchmark target.</value>
+		[NotNull]
 		public Target Target { get; }
 
-		/// <summary>Gets a value indicating whether benchmark limits are obtained from xml resource.</summary>
-		/// <value>
-		/// <c>true</c> if benchmark limits are obtained from xml resource; otherwise, <c>false</c>.
-		/// </value>
-		public bool FromMetadataResource { get; }
-
-		/// <summary>The relative path to the resource containing xml document with competition limits.</summary>
-		/// <value>The relative path to the resource containing xml document with competition limits.</value>
-		public string MetadataResourcePath { get; }
+		/// <summary>Description of embedded resource containing xml document with competition limits.</summary>
+		/// <value>Description of embedded resource containing xml document with competition limits.</value>
+		[CanBeNull]
+		public CompetitionMetadata CompetitionMetadata { get; }
 
 		/// <summary>The limit properties are updated but not saved.</summary>
 		/// <value><c>true</c> if this instance has unsaved changes; otherwise, <c>false</c>.</value>
