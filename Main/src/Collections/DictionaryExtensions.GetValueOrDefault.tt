@@ -36,7 +36,6 @@ foreach (var type in types) {#>
 <#}#>
 	}
 }
-
 <#+void Header1(string type) {#>
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in

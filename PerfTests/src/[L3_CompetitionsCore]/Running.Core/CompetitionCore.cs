@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading;
 
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Configs;
@@ -150,9 +151,20 @@ namespace CodeJam.PerfTests.Running.Core
 
 			try
 			{
-				RunCore(
-					benchmarkType, competitionConfig,
-					competitionState, maxRunsAllowed);
+				try
+				{
+					var runCount = Interlocked.Increment(ref _runCount);
+					if (runCount > 1)
+						throw CodeExceptions.InvalidOperation("Competitions should not be run in parallel.");
+
+					RunCore(
+						benchmarkType, competitionConfig,
+						competitionState, maxRunsAllowed);
+				}
+				finally
+				{
+					Interlocked.Decrement(ref _runCount);
+				}
 			}
 			catch (Exception ex)
 			{
@@ -160,11 +172,21 @@ namespace CodeJam.PerfTests.Running.Core
 					MessageSource.Runner, MessageSeverity.ExecutionError,
 					$"Benchmark {benchmarkType.Name}", ex);
 			}
+			finally
+			{
+				var loggers = competitionConfig.GetLoggers().OfType<IFlushableLogger>();
+				foreach (var flushable in loggers)
+				{
+					flushable.Flush();
+				}
+			}
 
 			competitionState.MarkAsCompleted();
 
 			return competitionState;
 		}
+
+		private static int _runCount;
 
 		private static void RunCore(
 			Type benchmarkType, IConfig competitionConfig,

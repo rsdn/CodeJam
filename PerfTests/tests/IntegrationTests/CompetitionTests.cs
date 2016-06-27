@@ -21,7 +21,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void CompetitionEmptyBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var runState = new PerfTestRunner().Run<EmptyBenchmark>(SingleRunConfig);
+			var runState = new PerfTestRunner().Run<EmptyBenchmark>(SingleRunConfigDebug);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, 0);
@@ -38,7 +38,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void CompetitionNoBaselineOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var runState = new PerfTestRunner().Run<NoBaselineOkBenchmark>(SingleRunConfig);
+			var runState = new PerfTestRunner().Run<NoBaselineOkBenchmark>(SingleRunConfigDebug);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -55,7 +55,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void CompetitionOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var runState = new PerfTestRunner().Run<OkBenchmark>(SingleRunConfig);
+			var runState = new PerfTestRunner().Run<OkBenchmark>(SingleRunConfigDebug);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -73,7 +73,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void CompetitionXmlOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var runState = new PerfTestRunner().Run<XmlOkBenchmark>(SingleRunConfig);
+			var runState = new PerfTestRunner().Run<XmlOkBenchmark>(SingleRunConfigDebug);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -91,7 +91,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void CompetitionNoBaselineFailBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var runState = new PerfTestRunner().Run<NoBaselineFailBenchmark>(SingleRunConfig);
+			var runState = new PerfTestRunner().Run<NoBaselineFailBenchmark>(SingleRunConfigDebug);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -113,7 +113,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void CompetitionLimitsFailBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var runState = new PerfTestRunner().Run<LimitsFailBenchmark>(SingleRunConfig);
+			var runState = new PerfTestRunner().Run<LimitsFailBenchmark>(SingleRunConfigDebug);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(_callCounter, 3 * ExpectedRunCount); // 3x rerun

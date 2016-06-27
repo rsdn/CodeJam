@@ -16,7 +16,7 @@ namespace CodeJam.PerfTests.Loggers
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
-	public class HostLogger : ILogger
+	public class HostLogger : IFlushableLogger
 	{
 		// DONTTOUCH: Check that all code does not hardcode content of the constants before changing
 
@@ -117,7 +117,7 @@ namespace CodeJam.PerfTests.Loggers
 			return shouldWrite;
 		}
 
-		/// <summary>Write the empty line.</summary>
+		/// <summary>Write empty line.</summary>
 		public virtual void WriteLine()
 		{
 			if (ShouldWrite(LogKind.Default))
@@ -138,7 +138,7 @@ namespace CodeJam.PerfTests.Loggers
 			}
 		}
 
-		/// <summary>Write the test.</summary>
+		/// <summary>Write the text.</summary>
 		/// <param name="logKind">Kind of text.</param>
 		/// <param name="text">The text to write.</param>
 		public virtual void Write(LogKind logKind, string text)
@@ -148,5 +148,9 @@ namespace CodeJam.PerfTests.Loggers
 				WrappedLogger.Write(logKind, text);
 			}
 		}
+
+		/// <summary>Flushes the log.</summary>
+		void IFlushableLogger.Flush() =>
+			(WrappedLogger as IFlushableLogger)?.Flush();
 	}
 }

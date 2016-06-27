@@ -1,15 +1,20 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading;
 
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Toolchains.InProcess;
 
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Exporters;
+using CodeJam.PerfTests.Loggers;
 
 using JetBrains.Annotations;
+
+using NUnit.Framework;
 
 namespace CodeJam.PerfTests.IntegrationTests
 {
@@ -18,13 +23,31 @@ namespace CodeJam.PerfTests.IntegrationTests
 	{
 		public const int SpinCount = 10 * 1000;
 
-		// BUG: Jitting performed twice, https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
-		// Jitting = 2, WarmupCount = 2, TargetCount = 1
-		public const int ExpectedSingleRunCount = 6;
+		// Jitting = 1, WarmupCount = 2, TargetCount = 2
+		public const int ExpectedSingleRunCount = 5;
 
 		public static void Delay(int cycles) => Thread.SpinWait(cycles);
 
-		public static readonly ICompetitionConfig SingleRunConfig = CreateSingleRunConfig(Platform.X64).AsReadOnly();
+		private static readonly ILogger _logger =
+			new FlushableStreamLogger(
+				PrepareNewLogPath("CodeJam.PerfTests-Tests.AllPerfTests.log"),
+				false);
+
+		private static readonly ILogger _shortLogger =
+			new HostLogger(
+				new FlushableStreamLogger(
+					PrepareNewLogPath("CodeJam.PerfTests-Tests.Short.AllPerfTests.log"),
+					false),
+				HostLogMode.PrefixedOnly);
+
+		private static string PrepareNewLogPath(string fileName) =>
+			Path.Combine(
+				TestContext.CurrentContext.WorkDirectory == null
+					? Path.GetTempPath()
+					: TestContext.CurrentContext.TestDirectory,
+				fileName);
+
+		public static readonly ICompetitionConfig SingleRunConfigDebug = CreateSingleRunConfigDebug(Platform.X64).AsReadOnly();
 
 		public static readonly ICompetitionConfig DefaultRunConfig = CreateRunConfig().AsReadOnly();
 
@@ -38,13 +61,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			result.Add(DefaultConfig.Instance.GetColumns().ToArray());
 			result.Add(TimingsExporter.Instance);
-
+			result.Add(_logger, _shortLogger);
 			return result;
 		}
 
-		public static ManualCompetitionConfig CreateSingleRunConfig(Platform platform)
+		public static ManualCompetitionConfig CreateSingleRunConfigDebug(Platform platform)
 		{
 			var result = CreateRunConfigCore();
+			result.AllowDebugBuilds = true;
 			result.Add(
 				new Job
 				{
@@ -73,48 +97,44 @@ namespace CodeJam.PerfTests.IntegrationTests
 					TargetCount = 50,
 					Platform = Platform.X64,
 					Jit = Jit.RyuJit,
-					Toolchain = InProcessToolchain.Instance
+					Toolchain = InProcessToolchain.DontLogOutput
 				});
 
 			return result;
 		}
 
-		public static ManualCompetitionConfig CreateRunConfig(bool detailedLogging = false, bool outOfProcess = false)
+		public static ManualCompetitionConfig CreateRunConfig(bool outOfProcess = false)
 		{
 			var result = CreateRunConfigCore();
-
-			result.DetailedLogging = detailedLogging;
-			result.LogCompetitionLimits = detailedLogging;
-
 			result.Add(
 				new Job
 				{
 					LaunchCount = 1,
 					Mode = Mode.SingleRun,
-					WarmupCount = 50,
-					TargetCount = 100,
+					WarmupCount = outOfProcess ? 100 : 50,
+					TargetCount = outOfProcess ? 300 : 100,
 					Platform = Platform.X64,
 					Jit = Jit.RyuJit,
-					Toolchain = outOfProcess
-						? null :
-						(detailedLogging ? InProcessToolchain.Instance : InProcessToolchain.DontLogOutput)
+					Toolchain = outOfProcess ? null : InProcessToolchain.DontLogOutput
 				});
 
 			return result;
 		}
 
-		public static ManualCompetitionConfig CreateRunConfigAnnotate(bool detailedLogging = false)
+		public static ManualCompetitionConfig CreateRunConfigAnnotate()
 		{
-			var result = CreateRunConfig(detailedLogging);
+			var result = CreateRunConfig();
+			result.LogCompetitionLimits = true;
 			result.RerunIfLimitsFailed = true;
 			result.UpdateSourceAnnotations = true;
 			result.MaxRunsAllowed = 6;
+			//result.PreviousRunLogUri = @"https://ci.appveyor.com/api/buildjobs/wc321iv14ssbn8p5/artifacts/CodeJam.PerfTests-Tests.Short.AllPerfTests.log";
 			return result;
 		}
 
-		public static ManualCompetitionConfig CreateRunConfigReAnnotate(bool detailedLogging = false)
+		public static ManualCompetitionConfig CreateRunConfigReAnnotate()
 		{
-			var result = CreateRunConfigAnnotate(detailedLogging);
+			var result = CreateRunConfigAnnotate();
 			result.IgnoreExistingAnnotations = true;
 			return result;
 		}

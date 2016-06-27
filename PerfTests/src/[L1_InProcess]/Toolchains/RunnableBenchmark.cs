@@ -65,8 +65,6 @@ namespace BenchmarkDotNet.Toolchains
 			{
 				Console.SetOut(_output);
 				FillProperties(_instance, _benchmark);
-				_setupAction();
-				_runCallback();
 
 				_output.WriteLine();
 				foreach (var infoLine in EnvironmentInfo.GetCurrent().ToFormattedString())
@@ -75,7 +73,7 @@ namespace BenchmarkDotNet.Toolchains
 				}
 				_output.WriteLine();
 
-				new MethodInvoker().Invoke(_job, _operationsPerInvoke, _setupAction, _runCallback, _idleCallback);
+				new MethodInvokerLight().Invoke(_job, _operationsPerInvoke, _setupAction, _runCallback, _idleCallback);
 			}
 			catch (Exception ex)
 			{
@@ -140,8 +138,6 @@ namespace BenchmarkDotNet.Toolchains
 			{
 				Console.SetOut(_output);
 				FillProperties(_instance, _benchmark);
-				_setupAction();
-				_runCallback();
 
 				_output.WriteLine();
 				foreach (var infoLine in EnvironmentInfo.GetCurrent().ToFormattedString())
@@ -150,7 +146,7 @@ namespace BenchmarkDotNet.Toolchains
 				}
 				_output.WriteLine();
 
-				new MethodInvoker().Invoke(_job, _operationsPerInvoke, _setupAction, _runCallback, _idleCallback);
+				new MethodInvokerLight().Invoke(_job, _operationsPerInvoke, _setupAction, _runCallback, _idleCallback);
 			}
 			catch (Exception ex)
 			{

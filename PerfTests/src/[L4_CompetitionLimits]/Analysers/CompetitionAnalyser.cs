@@ -127,11 +127,11 @@ namespace CodeJam.PerfTests.Analysers
 				return;
 			}
 
-			CheckCompetitionLimits(summary, competitionState, warnings);
+			var checkPassed = CheckCompetitionLimits(summary, competitionState, warnings);
 
 			CheckPostconditions(summary, competitionState, warnings);
 
-			OnLimitsChecked(summary, competitionState, warnings);
+			OnLimitsChecked(summary, competitionState, checkPassed);
 
 			if (warnings.Count == 0)
 			{
@@ -190,8 +190,8 @@ namespace CodeJam.PerfTests.Analysers
 
 				if (tooFastReports.Any())
 				{
-					competitionState.WriteMessage(
-						MessageSource.Analyser, MessageSeverity.Warning,
+					competitionState.AddAnalyserWarning(
+						warnings, MessageSeverity.Warning,
 						"The benchmarks " + string.Join(", ", tooFastReports) +
 							$" run faster than {TooFastBenchmarkLimit.TotalMilliseconds.ToString(culture)}ms. Results cannot be trusted.");
 				}
@@ -205,8 +205,8 @@ namespace CodeJam.PerfTests.Analysers
 
 				if (tooSlowReports.Any())
 				{
-					competitionState.WriteMessage(
-						MessageSource.Analyser, MessageSeverity.Warning,
+					competitionState.AddAnalyserWarning(
+						warnings, MessageSeverity.Warning,
 						"The benchmarks " + string.Join(", ", tooSlowReports) +
 							$" run longer than {LongRunningBenchmarkLimit.TotalSeconds.ToString(culture)}s." +
 							" Consider to rewrite the test as the peek timings will be hidden by averages" +
@@ -343,8 +343,9 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		#region Checking competition limits
-		private void CheckCompetitionLimits(Summary summary, CompetitionState competitionState, List<IWarning> warnings)
+		private bool CheckCompetitionLimits(Summary summary, CompetitionState competitionState, List<IWarning> warnings)
 		{
+			var result = true;
 			var competitionTargets = TargetsSlot[summary];
 
 			var benchmarksByTarget = summary.GetExecutionOrderBenchmarks()
@@ -358,11 +359,13 @@ namespace CodeJam.PerfTests.Analysers
 				if (!competitionTargets.TryGetValue(target.Method, out competitionTarget))
 					continue;
 
-				CheckCompetitionTargetLimits(
+				result &= CheckCompetitionTargetLimits(
 					competitionTarget, benchmarksForTarget,
 					summary, competitionState,
 					warnings);
 			}
+
+			return result;
 		}
 
 		/// <summary>Check competition target limits.</summary>
@@ -372,25 +375,27 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="competitionState">State of the run.</param>
 		/// <param name="warnings">The warnings.</param>
 		/// <returns><c>true</c> if competition limits are ok.</returns>
-		protected virtual void CheckCompetitionTargetLimits(
+		protected virtual bool CheckCompetitionTargetLimits(
 			CompetitionTarget competitionTarget,
 			Benchmark[] benchmarksForTarget,
 			Summary summary,
 			CompetitionState competitionState,
 			List<IWarning> warnings)
 		{
+			var result = true;
 			foreach (var benchmark in benchmarksForTarget)
 			{
-				CheckCompetitionLimitsCore(
+				result &= CheckCompetitionLimitsCore(
 					benchmark,
 					summary,
 					competitionTarget,
 					competitionState,
 					warnings);
 			}
+			return result;
 		}
 
-		private void CheckCompetitionLimitsCore(
+		private bool CheckCompetitionLimitsCore(
 			Benchmark benchmark,
 			Summary summary,
 			CompetitionLimit competitionLimit,
@@ -398,7 +403,7 @@ namespace CodeJam.PerfTests.Analysers
 			List<IWarning> warnings)
 		{
 			if (benchmark.Target.Baseline)
-				return;
+				return true;
 
 			var actualValues = CompetitionLimitProvider.TryGetActualValues(benchmark, summary);
 			if (actualValues == null)
@@ -408,7 +413,7 @@ namespace CodeJam.PerfTests.Analysers
 					$"Could not obtain competition limits for {benchmark.ShortInfo}.",
 					summary.TryGetBenchmarkReport(benchmark));
 
-				return;
+				return true;
 			}
 
 			if (!competitionLimit.CheckLimitsFor(actualValues))
@@ -418,21 +423,27 @@ namespace CodeJam.PerfTests.Analysers
 					warnings, MessageSeverity.TestError,
 					$"Method {targetMethodTitle} {actualValues} does not fit into limits {competitionLimit}",
 					summary.TryGetBenchmarkReport(benchmark));
+
+				return false;
 			}
+
+			return true;
 		}
 
 		/// <summary>Called after limits check completed.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <param name="competitionState">State of the run.</param>
-		/// <param name="warnings">The warnings.</param>
-		protected virtual void OnLimitsChecked(Summary summary, CompetitionState competitionState, List<IWarning> warnings)
+		/// <param name="checkPassed"><c>true</c> if competition check passed.</param>
+		protected virtual void OnLimitsChecked(
+			Summary summary,
+			CompetitionState competitionState, bool checkPassed)
 		{
-			if (warnings.Count > 0)
+			if (checkPassed)
+				return;
+
+			if (competitionState.RunNumber < MaxRerunsIfValidationFailed)
 			{
-				if (competitionState.RunNumber < MaxRerunsIfValidationFailed)
-				{
-					competitionState.RequestReruns(1, "Limit checking failed.");
-				}
+				competitionState.RequestReruns(1, "Limit checking failed.");
 			}
 		}
 		#endregion

@@ -45,6 +45,15 @@ namespace CodeJam.PerfTests.Analysers
 		public string PreviousRunLogUri { get; set; }
 
 		/// <summary>
+		/// Count of runs skipped before annotation performed.
+		/// Set this to non-zero positive value to skip some runs before first annotation applied.
+		/// Should be used together with <see cref="CompetitionAnalyser.MaxRerunsIfValidationFailed"/>
+		/// when run on unstable environments such as virtual machines or low-end notebooks.
+		/// </summary>
+		/// <value>The count of runs performed before updating the limits annotations.</value>
+		public int SkipAnnotationsUntilRun { get; set; }
+
+		/// <summary>
 		/// Count of additional runs performed after updating source annotations.
 		/// Set this to non-zero positive value to proof that the benchmark fits into updated limits.
 		/// </summary>
@@ -146,20 +155,23 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="competitionState">State of the run.</param>
 		/// <param name="warnings">The warnings.</param>
 		/// <returns><c>true</c> if competition limits are ok.</returns>
-		protected override void CheckCompetitionTargetLimits(
+		protected override bool CheckCompetitionTargetLimits(
 			CompetitionTarget competitionTarget,
 			Benchmark[] benchmarksForTarget,
 			Summary summary,
 			CompetitionState competitionState,
 			List<IWarning> warnings)
 		{
-			base.CheckCompetitionTargetLimits(
+			var checkPassed = base.CheckCompetitionTargetLimits(
 				competitionTarget, benchmarksForTarget,
 				summary, competitionState,
 				warnings);
 
-			if (warnings.Count == 0)
-				return;
+			if (checkPassed)
+				return true;
+
+			if (competitionState.RunNumber <= SkipAnnotationsUntilRun)
+				return false;
 
 			foreach (var benchmark in benchmarksForTarget)
 			{
@@ -175,21 +187,24 @@ namespace CodeJam.PerfTests.Analysers
 
 				competitionTarget.UnionWith(limit);
 			}
+
+			return false;
 		}
 
 		/// <summary>Called after limits check completed.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <param name="competitionState">State of the run.</param>
-		/// <param name="warnings">The warnings.</param>
-		protected override void OnLimitsChecked(Summary summary, CompetitionState competitionState, List<IWarning> warnings)
+		/// <param name="checkPassed"><c>true</c> if competition check passed.</param>
+		protected override void OnLimitsChecked(Summary summary, CompetitionState competitionState, bool checkPassed)
 		{
 			AnnotateTargets(summary, competitionState);
 
-			if (AdditionalRerunsIfAnnotationsUpdated <= 0)
+			if (AdditionalRerunsIfAnnotationsUpdated <= 0 ||
+				competitionState.RunNumber <= SkipAnnotationsUntilRun)
 			{
-				base.OnLimitsChecked(summary, competitionState, warnings);
+				base.OnLimitsChecked(summary, competitionState, checkPassed);
 			}
-			else if (warnings.Any())
+			else if (!checkPassed)
 			{
 				competitionState.RequestReruns(
 					AdditionalRerunsIfAnnotationsUpdated,

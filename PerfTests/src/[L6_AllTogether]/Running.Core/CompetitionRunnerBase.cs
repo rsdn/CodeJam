@@ -408,7 +408,8 @@ namespace CodeJam.PerfTests.Running.Core
 				? new CompetitionAnnotateAnalyser
 				{
 					PreviousRunLogUri = competitionConfig.PreviousRunLogUri,
-					AdditionalRerunsIfAnnotationsUpdated = competitionConfig.RerunIfLimitsFailed ? 2 : 0
+					AdditionalRerunsIfAnnotationsUpdated = competitionConfig.RerunIfLimitsFailed ? 2 : 0,
+					SkipAnnotationsUntilRun = competitionConfig.RerunIfLimitsFailed ? 1 : 0
 				}
 				: new CompetitionAnalyser();
 

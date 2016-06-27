@@ -20,10 +20,15 @@ namespace CodeJam.PerfTests.IntegrationTests
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
 	public static class CompetitionAccuracyTests
 	{
+		private static readonly ICompetitionConfig _debugConfig = new ManualCompetitionConfig(DefaultRunConfig)
+		{
+			AllowDebugBuilds = true
+		};
+
 		[Test]
 		public static void CompetitionTooFastBenchmark()
 		{
-			var runState = new PerfTestRunner().Run<TooFastBenchmark>(DefaultRunConfig);
+			var runState = new PerfTestRunner().Run<TooFastBenchmark>(_debugConfig);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
@@ -45,7 +50,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionTooSlowBenchmark()
 		{
-			var runState = new PerfTestRunner().Run<TooSlowBenchmark>(SingleRunConfig);
+			var runState = new PerfTestRunner().Run<TooSlowBenchmark>(SingleRunConfigDebug);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
@@ -69,7 +74,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionTooSlowOk()
 		{
-			var overrideConfig = new ManualCompetitionConfig(SingleRunConfig)
+			var overrideConfig = new ManualCompetitionConfig(SingleRunConfigDebug)
 			{
 				AllowLongRunningBenchmarks = true
 			};
@@ -88,7 +93,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionHighAccuracyBenchmark()
 		{
-			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(DefaultRunConfig);
+			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(_debugConfig);
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
@@ -101,14 +106,17 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
-			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 34, "Timeout failed");
+			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 40, "Timeout failed");
 		}
+
 		[Test]
 		public static void CompetitionHighAccuracyBenchmarkOutOfProcess()
 		{
+			// ReSharper disable once ArgumentsStyleLiteral
 			var overrideConfig = CreateRunConfig(outOfProcess: true);
+			overrideConfig.AllowDebugBuilds = true;
 
-			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(overrideConfig);
+			var runState = new PerfTestRunner().Run<HighAccuracyBenchmarkOutOfProcess>(overrideConfig);
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
@@ -121,7 +129,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
-			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 34, "Timeout failed");
+			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 40, "Timeout failed");
 		}
 
 		#region Benchmark classes
@@ -159,19 +167,37 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		public class HighAccuracyBenchmark
 		{
+			[CompetitionBenchmark(1.92, 2.08)]
+			public void SlowerX2Run1() => Delay(2 * SpinCount);
+
 			[CompetitionBaseline]
 			public void Baseline() => Delay(SpinCount);
 
-			[CompetitionBenchmark(1.8, 2.2)]
-			public void SlowerX2Run1() => Delay(2 * SpinCount);
-
-			[CompetitionBenchmark(1.8, 2.2)]
+			[CompetitionBenchmark(1.92, 2.08)]
 			public void SlowerX2Run2() => Delay(2 * SpinCount);
 
-			[CompetitionBenchmark(1.8, 2.2)]
+			[CompetitionBenchmark(1.92, 2.08)]
 			public void SlowerX2Run3() => Delay(2 * SpinCount);
 
-			[CompetitionBenchmark(4.5, 5.5)]
+			[CompetitionBenchmark(4.82, 5.18)]
+			public void SlowerX5() => Delay(5 * SpinCount);
+		}
+
+		public class HighAccuracyBenchmarkOutOfProcess
+		{
+			[CompetitionBenchmark(1.92, 2.08)]
+			public void SlowerX2Run1() => Delay(2 * SpinCount);
+
+			[CompetitionBaseline]
+			public void Baseline() => Delay(SpinCount);
+
+			[CompetitionBenchmark(1.92, 2.08)]
+			public void SlowerX2Run2() => Delay(2 * SpinCount);
+
+			[CompetitionBenchmark(1.92, 2.08)]
+			public void SlowerX2Run3() => Delay(2 * SpinCount);
+
+			[CompetitionBenchmark(4.82, 5.18)]
 			public void SlowerX5() => Delay(5 * SpinCount);
 		}
 		#endregion

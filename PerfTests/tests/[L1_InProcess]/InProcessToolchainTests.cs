@@ -28,7 +28,7 @@ namespace CodeJam.PerfTests
 		[Test]
 		public static void TestInProcessBenchmark()
 		{
-			var config = SingleRunConfig;
+			var config = SingleRunConfigDebug;
 
 			Interlocked.Exchange(ref _callCounter, 0);
 			Interlocked.Exchange(ref _afterSetupCounter, 0);
@@ -45,7 +45,7 @@ namespace CodeJam.PerfTests
 		public static void TestInProcessBenchmarkWithValidation()
 		{
 			// DONTTOUCH: config SHOULD NOT match the default platform (x64).
-			var config = CreateSingleRunConfig(Platform.X86);
+			var config = CreateSingleRunConfigDebug(Platform.X86);
 			config.Add(InProcessValidator.FailOnError);
 
 			Interlocked.Exchange(ref _callCounter, 0);

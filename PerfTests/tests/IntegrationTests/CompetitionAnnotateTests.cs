@@ -15,14 +15,9 @@ namespace CodeJam.PerfTests.IntegrationTests
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
 	public static class CompetitionAnnotateTests
 	{
-		private static readonly ICompetitionConfig _remoteLogConfig = new ManualCompetitionConfig(DefaultRunConfig)
+		private static readonly ICompetitionConfig _remoteLogConfig = new ManualCompetitionConfig(CreateRunConfigReAnnotate())
 		{
 			AllowDebugBuilds = true,
-			DetailedLogging = true,
-			RerunIfLimitsFailed = true,
-			LogCompetitionLimits = true,
-			UpdateSourceAnnotations = true,
-			IgnoreExistingAnnotations = true,
 			PreviousRunLogUri =
 				"https://gist.githubusercontent.com/ig-sinicyn/91ac0badca95b19fc7de6f683a51b9d2/raw/fd760290009a92c372ae872de6b3906e4ef5d0ec/CompetitionAnnotateTests.log"
 		};
@@ -44,7 +39,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 4);
-			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 20, "Timeout failed");
+			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 30, "Timeout failed");
 		}
 
 		[Test]
@@ -61,7 +56,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 4);
-			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 20, "Timeout failed");
+			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 30, "Timeout failed");
 		}
 
 		#region Benchmark classes
