@@ -612,6 +612,7 @@ namespace CodeJam.Mapping
 
 				if (attr != null)
 				{
+					DebugCode.AssertState(attr[0].Value != null, "attr[0].Value != null");
 					var valueType = attr[0].Value.GetType();
 
 					if (fields.All(attrs => attrs[0].Value == null || attrs[0].Value.GetType() == valueType))

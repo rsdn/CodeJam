@@ -1266,7 +1266,7 @@ namespace CodeJam.Expressions
 
 		#endregion
 
-		static Func<Expression,string> _getDebugView;
+		private static Func<Expression,string> _getDebugView;
 
 		/// <summary>
 		/// Gets the DebugView internal property value of provided expression.
