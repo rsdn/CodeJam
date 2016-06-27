@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 
 using NUnit.Framework;
-using NUnit.Framework.Compatibility;
 
 #pragma warning disable 649
 
