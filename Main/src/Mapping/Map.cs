@@ -30,6 +30,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <typeparam name="TFrom">Type to map from.</typeparam>
 		/// <typeparam name="TTo">Type to map to.</typeparam>
+		/// <param name="setter">MapperBuilder parameter setter.</param>
 		/// <returns>Mapping expression.</returns>
 		[Pure]
 		public static Mapper<TFrom,TTo> GetMapper<TFrom,TTo>(

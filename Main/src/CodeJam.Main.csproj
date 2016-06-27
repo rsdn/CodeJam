@@ -160,6 +160,7 @@
     <Compile Include="Metadata\MetadataReader.cs" />
     <Compile Include="Metadata\MetaMemberInfo.cs" />
     <Compile Include="Metadata\MetaTypeInfo.cs" />
+    <Compile Include="Metadata\NamespaceDoc.cs" />
     <Compile Include="Metadata\XmlAttributeReader.cs" />
     <Compile Include="Lazy.cs" />
     <Compile Include="NamespaceDoc.cs" />

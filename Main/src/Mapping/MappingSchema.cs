@@ -829,7 +829,7 @@ namespace CodeJam.Mapping
 		/// Returns <i>true</i> if provided type is considered as a scalar type.
 		/// </summary>
 		/// <param name="type">Type to check.</param>
-		/// <returns></returns>
+		/// <returns>True if provided type is a scalar type.</returns>
 		public bool IsScalarType(Type type)
 		{
 			foreach (var info in Schemas)
