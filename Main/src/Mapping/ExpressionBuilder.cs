@@ -590,19 +590,19 @@ namespace CodeJam.Mapping
 
 		#endregion
 
-		static object GetValue(IDictionary<object,object> dic, object key)
+		private static object GetValue(IDictionary<object,object> dic, object key)
 		{
 			object result;
 			return dic != null && dic.TryGetValue(key, out result) ? result : null;
 		}
 
-		static void Add(IDictionary<object,object> dic, object key, object value)
+		private static void Add(IDictionary<object,object> dic, object key, object value)
 		{
 			if (key != null && dic != null)
 				dic[key] = value;
 		}
 
-		static IMapperBuilder GetBuilder<TFrom,TTo>(IMapperBuilder builder) =>
+		private static IMapperBuilder GetBuilder<TFrom,TTo>(IMapperBuilder builder) =>
 			new MapperBuilder<TFrom,TTo>
 			{
 				MappingSchema          = builder.MappingSchema,
@@ -611,10 +611,10 @@ namespace CodeJam.Mapping
 				ToMappingDictionary    = builder.ToMappingDictionary,
 				MemberFilter           = builder.MemberFilter,
 				ProcessCrossReferences = builder.ProcessCrossReferences,
-				DeepCopy               = builder.DeepCopy,
+				DeepCopy               = builder.DeepCopy
 			};
 
-		static Expression ToList(
+		private static Expression ToList(
 			ExpressionBuilder builder,
 			ParameterExpression dic,
 			Expression fromExpression,
@@ -627,7 +627,7 @@ namespace CodeJam.Mapping
 			return Call(toListInfo.MakeGenericMethod(toItemType), expr);
 		}
 
-		Expression ToHashSet(
+		private static Expression ToHashSet(
 			ExpressionBuilder builder,
 			ParameterExpression dic,
 			Expression fromExpression,
@@ -640,7 +640,7 @@ namespace CodeJam.Mapping
 			return Call(toListInfo.MakeGenericMethod(toItemType), expr);
 		}
 
-		static Expression ToArray(
+		private static Expression ToArray(
 			ExpressionBuilder builder,
 			ParameterExpression dic,
 			Expression fromExpression,
@@ -653,7 +653,7 @@ namespace CodeJam.Mapping
 			return Call(toListInfo.MakeGenericMethod(toItemType), expr);
 		}
 
-		static Expression Select(
+		private static Expression Select(
 			ExpressionBuilder builder,
 			ParameterExpression dic,
 			Expression getValue,
@@ -677,7 +677,7 @@ namespace CodeJam.Mapping
 				{
 					_mappers        = builder._mappers,
 					_mapperTypes    = builder._mapperTypes,
-					_restartCounter = builder._restartCounter,
+					_restartCounter = builder._restartCounter
 				};
 
 				if (dic == null)
