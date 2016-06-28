@@ -592,5 +592,18 @@ namespace CodeJam.Mapping
 				Assert.That(mapper.To.HashSet.Contains(str));
 			}
 		}
+
+		public class RTest
+		{
+			public List<RTest> Depends { get; set; }
+		}
+
+		[Test, Explicit]
+		public void RecursionTest([Values(true,false)] bool useEx)
+		{
+			var mapper = new MapHelper<RTest,RTest>().Map(useEx, new RTest(), m => m);
+
+			Assert.That(mapper.To, Is.Not.Null);
+		}
 	}
 }

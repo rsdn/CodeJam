@@ -20,12 +20,9 @@ namespace CodeJam.Mapping
 	public class Mapper<TFrom,TTo>
 	{
 		private Expression<Func<TFrom,TTo,IDictionary<object,object>,TTo>> _mapperExpression;
-
-		private Expression<Func<TFrom,TTo>> _mapperExpressionEx;
-
-		private Func<TFrom,TTo,IDictionary<object,object>,TTo> _mapper;
-
-		private Func<TFrom,TTo> _mapperEx;
+		private Expression<Func<TFrom,TTo>>                                _mapperExpressionEx;
+		private Func<TFrom,TTo,IDictionary<object,object>,TTo>             _mapper;
+		private Func<TFrom,TTo>                                            _mapperEx;
 
 		internal Mapper(MapperBuilder<TFrom,TTo> mapperBuilder)
 		{
