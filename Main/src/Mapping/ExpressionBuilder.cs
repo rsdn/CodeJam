@@ -59,7 +59,7 @@ namespace CodeJam.Mapping
 				expr = Block(
 					new[] { pDic },
 					Assign(pDic, New(InfoOf.Constructor(() => new Dictionary<object,object>()))),
-					new MappingImpl(this, pFrom, Constant(null, _toType), pDic).GetExpressionWithDic());
+					new MappingImpl(this, pFrom, Constant(_mapperBuilder.MappingSchema.GetDefaultValue(_toType), _toType), pDic).GetExpressionWithDic());
 			}
 			else
 			{
@@ -167,7 +167,7 @@ namespace CodeJam.Mapping
 						return null;
 
 					var expr     = Condition(
-						Equal(getValue, Constant(null, getValue.Type)),
+						Equal(getValue, Constant(_mapperBuilder.MappingSchema.GetDefaultValue(getValue.Type), getValue.Type)),
 						Constant(_mapperBuilder.MappingSchema.GetDefaultValue(toMember.Type), toMember.Type),
 						exExpr);
 
@@ -348,7 +348,11 @@ namespace CodeJam.Mapping
 					_expressions.Add(Assign(
 						_localObject,
 						Condition(
-							Equal(_toExpression, Constant(null, _toExpression.Type)),
+							Equal(
+								_toExpression,
+								Constant(
+									_builder._mapperBuilder.MappingSchema.GetDefaultValue(_toExpression.Type),
+									_toExpression.Type)),
 							Convert(newLocalObjectExpr, _toExpression.Type),
 							_toExpression)));
 
@@ -433,7 +437,8 @@ namespace CodeJam.Mapping
 
 					var getter = fromMember.GetterExpression;
 
-					if (_builder._mapperBuilder.MappingSchema.IsScalarType(fromMember.Type) || _builder._mapperBuilder.MappingSchema.IsScalarType(toMember.Type))
+					if (_builder._mapperBuilder.MappingSchema.IsScalarType(fromMember.Type) ||
+						_builder._mapperBuilder.MappingSchema.IsScalarType(toMember.Type))
 					{
 						_expressions.Add(BuildAssignment(getter, setter, fromMember.Type, _localObject, toMember));
 					}
@@ -446,7 +451,7 @@ namespace CodeJam.Mapping
 						var getValue = getter.ReplaceParameters(_fromExpression);
 						var expr     = IfThenElse(
 							// if (from == null)
-							Equal(getValue, Constant(null, getValue.Type)),
+							Equal(getValue, Constant(_builder._mapperBuilder.MappingSchema.GetDefaultValue(getValue.Type), getValue.Type)),
 							//   localObject = null;
 							setter.ReplaceParameters(
 								_localObject,
@@ -476,7 +481,14 @@ namespace CodeJam.Mapping
 					if (_builder._mappers.TryGetValue(key, out nullPrm))
 						return Invoke(nullPrm, getValue, toObj, _pDic);
 
-					nullPrm = Parameter(Lambda(Constant(null, toMember.Type), pFrom, pTo, _pDic).Type);
+					nullPrm = Parameter(
+						Lambda(
+							Constant(
+								_builder._mapperBuilder.MappingSchema.GetDefaultValue(toMember.Type),
+								toMember.Type),
+							pFrom,
+							pTo,
+							_pDic).Type);
 
 					_builder._mappers.Add(key, nullPrm);
 					_builder._locals. Add(nullPrm);
@@ -627,7 +639,9 @@ namespace CodeJam.Mapping
 			return Call(toListInfo.MakeGenericMethod(toItemType), expr);
 		}
 
+		Expression ToHashSet(
 		private static Expression ToHashSet(
+		private Expression ToHashSet(
 			ExpressionBuilder builder,
 			ParameterExpression dic,
 			Expression fromExpression,
@@ -686,10 +700,11 @@ namespace CodeJam.Mapping
 				}
 				else
 				{
-					var p = Parameter(fromItemType);
+					var p  = Parameter(fromItemType);
+					var ex = call.GetExpression();
 
 					selector = Lambda(
-						Invoke(call.GetExpression(), p, Constant(null, toItemType), dic),
+						Invoke(ex, p, Constant(builder._mapperBuilder.MappingSchema.GetDefaultValue(toItemType), toItemType), dic),
 						p);
 				}
 

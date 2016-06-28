@@ -594,8 +594,7 @@ namespace CodeJam.Mapping
 		}
 
 		class RTest1
-		{
-			public List<RTest1> Depends { get; set; }
+		{public List<RTest1> Depends { get; set; }
 		}
 
 		[Test]
@@ -615,6 +614,19 @@ namespace CodeJam.Mapping
 		public void RecursionTest2([Values(true,false)] bool useEx)
 		{
 			var mapper = new MapHelper<RTest2,RTest2>().Map(useEx, new RTest2(), m => m);
+
+			Assert.That(mapper.To, Is.Not.Null);
+		}
+
+		public class ByteTestClass
+		{
+			public byte[] Image { get; set; }
+		}
+
+		[Test]
+		public void ByteArrayTest([Values(true,false)] bool useEx)
+		{
+			var mapper = new MapHelper<ByteTestClass,ByteTestClass>().Map(useEx, new ByteTestClass(), m => m);
 
 			Assert.That(mapper.To, Is.Not.Null);
 		}
