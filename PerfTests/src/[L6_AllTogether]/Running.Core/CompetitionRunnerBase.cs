@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Reflection;
 
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Columns;
@@ -92,15 +91,16 @@ namespace CodeJam.PerfTests.Running.Core
 			Code.NotNull(benchmarkType, nameof(benchmarkType));
 
 			competitionConfig = PrepareCompetitionConfig(competitionConfig);
-			CheckCompetitionSetup(benchmarkType, competitionConfig);
-
 			var benchmarkConfig = CreateBenchmarkConfig(competitionConfig);
 			var hostLogger = benchmarkConfig.GetLoggers().OfType<HostLogger>().Single();
 
 			CompetitionState competitionState = null;
 			try
 			{
-				competitionState = CompetitionCore.Run(benchmarkType, benchmarkConfig, competitionConfig.MaxRunsAllowed);
+				competitionState = CompetitionCore.Run(
+					benchmarkType, benchmarkConfig,
+					competitionConfig.MaxRunsAllowed,
+					competitionConfig.AllowDebugBuilds);
 
 				ProcessRunComplete(competitionConfig, competitionState);
 			}
@@ -125,33 +125,18 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				result.CompetitionLimitProvider = PercentileLimitProvider.P20To80;
 			}
+
 			if (result.MaxRunsAllowed <= 0)
 			{
 				result.MaxRunsAllowed = DefaultMaxRunsAllowed;
 			}
 
-			return result.AsReadOnly();
-		}
-
-		private void CheckCompetitionSetup(
-			[NotNull] Type benchmarkType,
-			[NotNull] ICompetitionConfig competitionConfig)
-		{
-			if (!competitionConfig.AllowDebugBuilds && !EnvironmentInfo.GetCurrent().HasAttachedDebugger)
+			if (EnvironmentInfo.GetCurrent().HasAttachedDebugger)
 			{
-				var assembly = benchmarkType.Assembly;
-				if (assembly.IsDebugAssembly())
-					throw CodeExceptions.InvalidOperation(
-						$"Set the solution configuration into Release mode. Assembly {assembly.GetName().Name} was build as debug.");
-
-				foreach (var referencedAssemblyName in assembly.GetReferencedAssemblies())
-				{
-					var refAssembly = Assembly.Load(referencedAssemblyName);
-					if (refAssembly.IsDebugAssembly())
-						throw CodeExceptions.InvalidOperation(
-							$"Set the solution configuration into Release mode. Assembly {refAssembly.GetName().Name} was build as debug.");
-				}
+				result.AllowDebugBuilds = true;
 			}
+
+			return result.AsReadOnly();
 		}
 
 		private void ProcessRunComplete(

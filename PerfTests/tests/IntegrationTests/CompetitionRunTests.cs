@@ -4,33 +4,46 @@ using System.Threading;
 
 using BenchmarkDotNet.Attributes;
 
+using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
+
+using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.PerfTests.IntegrationTests.PerfTestHelpers;
+using static CodeJam.PerfTests.PerfTestHelpers;
 
 namespace CodeJam.PerfTests.IntegrationTests
 {
+	[PublicAPI]
 	[TestFixture(Category = "BenchmarkDotNet")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
-	public static class CompetitionTests
+	[SuppressMessage("ReSharper", "ArgumentsStyleLiteral")]
+	public static class CompetitionRunTests
 	{
+		private static void AssertCompetitionCompleted(CompetitionState runState, int runNumber = 1)
+		{
+			var summary = runState.LastRunSummary;
+
+			Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			Assert.IsTrue(runState.Completed);
+			Assert.AreEqual(runState.RunNumber, runNumber);
+			Assert.AreEqual(runState.RunsLeft, 0);
+			Assert.AreEqual(runState.RunLimitExceeded, false);
+			Assert.AreEqual(runState.LooksLikeLastRun, true);
+		}
+
 		[Test]
 		public static void CompetitionEmptyBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var runState = new PerfTestRunner().Run<EmptyBenchmark>(SingleRunTestConfig);
+
+			var runState = new PerfTestRunner().Run<EmptyBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
-			var summary = runState.LastRunSummary;
+
 			Assert.AreEqual(_callCounter, 0);
-			Assert.AreEqual(summary.ValidationErrors.Length, 0);
-			Assert.IsTrue(runState.Completed);
-			Assert.AreEqual(runState.RunNumber, 1);
-			Assert.AreEqual(runState.RunsLeft, 0);
-			Assert.AreEqual(runState.RunLimitExceeded, false);
-			Assert.AreEqual(runState.LooksLikeLastRun, true);
+			AssertCompetitionCompleted(runState);
 			Assert.AreEqual(messages.Length, 0);
 		}
 
@@ -38,16 +51,13 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void CompetitionNoBaselineOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var runState = new PerfTestRunner().Run<NoBaselineOkBenchmark>(SingleRunTestConfig);
+
+			var runState = new PerfTestRunner().Run<NoBaselineOkBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
-			var summary = runState.LastRunSummary;
+
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			Assert.AreEqual(summary.ValidationErrors.Length, 0);
-			Assert.IsTrue(runState.Completed);
-			Assert.AreEqual(runState.RunNumber, 1);
-			Assert.AreEqual(runState.RunsLeft, 0);
-			Assert.AreEqual(runState.RunLimitExceeded, false);
-			Assert.AreEqual(runState.LooksLikeLastRun, true);
+			AssertCompetitionCompleted(runState);
+
 			Assert.AreEqual(messages.Length, 0);
 		}
 
@@ -55,17 +65,15 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void CompetitionOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var runState = new PerfTestRunner().Run<OkBenchmark>(SingleRunTestConfig);
+
+			var runState = new PerfTestRunner().Run<OkBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
-			var summary = runState.LastRunSummary;
+
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			Assert.AreEqual(summary.ValidationErrors.Length, 0);
-			Assert.IsTrue(runState.Completed);
-			Assert.AreEqual(runState.RunNumber, 1);
-			Assert.AreEqual(runState.RunsLeft, 0);
-			Assert.AreEqual(runState.RunLimitExceeded, false);
-			Assert.AreEqual(runState.LooksLikeLastRun, true);
+			AssertCompetitionCompleted(runState);
+
 			Assert.AreEqual(messages.Length, 1);
+
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
 		}
 
@@ -73,34 +81,31 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void CompetitionXmlOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var runState = new PerfTestRunner().Run<XmlOkBenchmark>(SingleRunTestConfig);
+
+			var runState = new PerfTestRunner().Run<XmlOkBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
-			var summary = runState.LastRunSummary;
+
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			Assert.AreEqual(summary.ValidationErrors.Length, 0);
-			Assert.IsTrue(runState.Completed);
-			Assert.AreEqual(runState.RunNumber, 1);
-			Assert.AreEqual(runState.RunsLeft, 0);
-			Assert.AreEqual(runState.RunLimitExceeded, false);
-			Assert.AreEqual(runState.LooksLikeLastRun, true);
+			AssertCompetitionCompleted(runState);
+
 			Assert.AreEqual(messages.Length, 1);
+
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
 		}
+
 		[Test]
 		public static void CompetitionXmlFullAnnotationBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var runState = new PerfTestRunner().Run<XmlFullAnnotationBenchmark>(SingleRunTestConfig);
+
+			var runState = new PerfTestRunner().Run<XmlFullAnnotationBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
-			var summary = runState.LastRunSummary;
+
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			Assert.AreEqual(summary.ValidationErrors.Length, 0);
-			Assert.IsTrue(runState.Completed);
-			Assert.AreEqual(runState.RunNumber, 1);
-			Assert.AreEqual(runState.RunsLeft, 0);
-			Assert.AreEqual(runState.RunLimitExceeded, false);
-			Assert.AreEqual(runState.LooksLikeLastRun, true);
+			AssertCompetitionCompleted(runState);
+
 			Assert.AreEqual(messages.Length, 1);
+
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
 		}
 
@@ -108,17 +113,15 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void CompetitionNoBaselineFailBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var runState = new PerfTestRunner().Run<NoBaselineFailBenchmark>(SingleRunTestConfig);
+
+			var runState = new PerfTestRunner().Run<NoBaselineFailBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
-			var summary = runState.LastRunSummary;
+
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			Assert.AreEqual(summary.ValidationErrors.Length, 0);
-			Assert.IsTrue(runState.Completed);
-			Assert.AreEqual(runState.RunNumber, 1);
-			Assert.AreEqual(runState.RunsLeft, 0);
-			Assert.AreEqual(runState.RunLimitExceeded, false);
-			Assert.AreEqual(runState.LooksLikeLastRun, true);
+			AssertCompetitionCompleted(runState);
+
 			Assert.AreEqual(messages.Length, 1);
+
 			Assert.AreEqual(messages[0].RunNumber, 1);
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.SetupError);
@@ -130,16 +133,13 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void CompetitionLimitsFailBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			var runState = new PerfTestRunner().Run<LimitsFailBenchmark>(SingleRunTestConfig);
+
+			var runState = new PerfTestRunner().Run<LimitsFailBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
-			var summary = runState.LastRunSummary;
+
 			Assert.AreEqual(_callCounter, 3 * ExpectedRunCount); // 3x rerun
-			Assert.AreEqual(summary.ValidationErrors.Length, 0);
-			Assert.IsTrue(runState.Completed);
-			Assert.AreEqual(runState.RunNumber, 3);
-			Assert.AreEqual(runState.RunsLeft, 0);
-			Assert.AreEqual(runState.RunLimitExceeded, false);
-			Assert.AreEqual(runState.LooksLikeLastRun, true);
+			AssertCompetitionCompleted(runState, runNumber: 3);
+
 			Assert.AreEqual(messages.Length, 6);
 
 			Assert.AreEqual(messages[0].RunNumber, 1);
@@ -184,90 +184,90 @@ namespace CodeJam.PerfTests.IntegrationTests
 				"The benchmark was run 3 time(s) (read log for details). Consider to adjust competition setup.");
 		}
 
-		#region Benchmark classes
+		#region Perf test helpers
 		// two methods in each benchmark
-		private const int ExpectedRunCount = 2 * ExpectedSingleRunTestCount;
+		private const int ExpectedRunCount = 2 * ExpectedSelfTestRunCount;
 
 		private static int _callCounter;
 
 		public class EmptyBenchmark { }
 
-		public class NoBaselineOkBenchmark : EmptyBenchmark
+		public class NoBaselineOkBenchmark
 		{
 			[Benchmark]
 			public void Benchmark1()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(SpinCount);
+				Delay(PerfTestCount);
 			}
 
 			[CompetitionBenchmark(DoesNotCompete = true)]
 			public void Benchmark2()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(SpinCount);
+				Delay(PerfTestCount);
 			}
 		}
 
-		public class OkBenchmark : EmptyBenchmark
+		public class OkBenchmark
 		{
 			[CompetitionBaseline]
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(SpinCount);
+				Delay(PerfTestCount);
 			}
 
 			[CompetitionBenchmark(5, 15)]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(10 * SpinCount);
+				Delay(10 * PerfTestCount);
 			}
 		}
 
 		[CompetitionMetadata(
-			"CodeJam.PerfTests.Resources.CompetitionTests.xml",
-			MetadataResourcePath = @"..\Resources\CompetitionTests.xml")]
-		public class XmlOkBenchmark : EmptyBenchmark
+			"CodeJam.PerfTests.Assets.CompetitionTests.xml",
+			MetadataResourcePath = @"..\Assets\CompetitionTests.xml")]
+		public class XmlOkBenchmark
 		{
 			[CompetitionBaseline]
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(SpinCount);
+				Delay(PerfTestCount);
 			}
 
 			[CompetitionBenchmark]
 			public void SlowerX20()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(20 * SpinCount);
+				Delay(20 * PerfTestCount);
 			}
 		}
 
 		[CompetitionMetadata(
-			"CodeJam.PerfTests.Resources.CompetitionTests.xml",
-			MetadataResourcePath = @"..\Resources\CompetitionTests.xml",
+			"CodeJam.PerfTests.Assets.CompetitionTests.xml",
+			MetadataResourcePath = @"..\Assets\CompetitionTests.xml",
 			UseFullTypeName = true)]
-		public class XmlFullAnnotationBenchmark : EmptyBenchmark
+		public class XmlFullAnnotationBenchmark
 		{
 			[CompetitionBaseline]
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(SpinCount);
+				Delay(PerfTestCount);
 			}
 
 			[CompetitionBenchmark]
 			public void SlowerX20()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(20 * SpinCount);
+				Delay(20 * PerfTestCount);
 			}
 		}
 
-		public class NoBaselineFailBenchmark : EmptyBenchmark
+		public class NoBaselineFailBenchmark
 		{
 			[Benchmark]
 			public void Benchmark1() => Interlocked.Increment(ref _callCounter);
@@ -276,20 +276,20 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Benchmark2() => Interlocked.Increment(ref _callCounter);
 		}
 
-		public class LimitsFailBenchmark : EmptyBenchmark
+		public class LimitsFailBenchmark
 		{
 			[CompetitionBaseline]
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(SpinCount);
+				Delay(PerfTestCount);
 			}
 
 			[CompetitionBenchmark(1, 1)]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(10 * SpinCount);
+				Delay(10 * PerfTestCount);
 			}
 		}
 		#endregion

@@ -123,16 +123,20 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		#region Run logic
+		private static int _runCount;
+
 		/// <summary>Runs the benchmark for specified benchmark type.</summary>
 		/// <param name="benchmarkType">The type of the benchmark.</param>
 		/// <param name="competitionConfig">The config for the benchmark.</param>
 		/// <param name="maxRunsAllowed">Total count of reruns allowed.</param>
+		/// <param name="allowDebugBuilds">Allow debug builds, If <c>false</c> the benchmark will be skipped on debug builds.</param>
 		/// <returns>A competition state for the run.</returns>
 		[NotNull]
 		internal static CompetitionState Run(
 			[NotNull] Type benchmarkType,
 			[NotNull] IConfig competitionConfig,
-			int maxRunsAllowed)
+			int maxRunsAllowed,
+			bool allowDebugBuilds)
 		{
 			Code.NotNull(benchmarkType, nameof(benchmarkType));
 			Code.NotNull(competitionConfig, nameof(competitionConfig));
@@ -155,11 +159,17 @@ namespace CodeJam.PerfTests.Running.Core
 				{
 					var runCount = Interlocked.Increment(ref _runCount);
 					if (runCount > 1)
-						throw CodeExceptions.InvalidOperation("Competitions should not be run in parallel.");
-
-					RunCore(
-						benchmarkType, competitionConfig,
-						competitionState, maxRunsAllowed);
+					{
+						competitionState.WriteMessage(
+							MessageSource.Runner, MessageSeverity.SetupError,
+							"Competitions cannot be run in parallel.");
+					}
+					else if (allowDebugBuilds || CheckReleaseBuilds(benchmarkType, competitionState))
+					{
+						RunCore(
+							benchmarkType, competitionConfig,
+							competitionState, maxRunsAllowed);
+					}
 				}
 				finally
 				{
@@ -186,7 +196,21 @@ namespace CodeJam.PerfTests.Running.Core
 			return competitionState;
 		}
 
-		private static int _runCount;
+		private static bool CheckReleaseBuilds(
+			[NotNull] Type benchmarkType,
+			CompetitionState competitionState)
+		{
+			var assembly = benchmarkType.Assembly;
+			if (benchmarkType.Assembly.IsDebugAssembly())
+			{
+				competitionState.WriteMessage(
+					MessageSource.Runner, MessageSeverity.Warning,
+					$"Please run as a release build. Assembly {assembly.GetName().Name} was build as debug.");
+				return false;
+			}
+
+			return true;
+		}
 
 		private static void RunCore(
 			Type benchmarkType, IConfig competitionConfig,

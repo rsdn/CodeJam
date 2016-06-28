@@ -43,7 +43,7 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				// WORKAROUND: https://github.com/nunit/nunit3-vs-adapter/issues/38
 				// NUnit 3.0 does not alter current directory at all.
-				// So, we had to do it ourselves.
+				// So we had to do it ourselves.
 				if (TestContext.CurrentContext.WorkDirectory != null)
 				{
 					Environment.CurrentDirectory = TestContext.CurrentContext.TestDirectory;

@@ -1,55 +1,68 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 
 using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Toolchains.InProcess;
 
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Exporters;
 using CodeJam.PerfTests.Loggers;
 
 using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-namespace CodeJam.PerfTests.IntegrationTests
+namespace CodeJam.PerfTests
 {
 	[PublicAPI]
 	public static class PerfTestHelpers
 	{
-		public const int SpinCount = 10 * 1000;
+		#region Benchmark-related
+		public const int PerfTestCount = 10 * 1000;
+
+		public static readonly bool RunUnderNUnit = TestContext.CurrentContext.WorkDirectory != null;
 
 		// Jitting = 1, WarmupCount = 2, TargetCount = 2
-		public const int ExpectedSingleRunTestCount = 5;
+		public const int ExpectedSelfTestRunCount = 5;
 
 		public static void Delay(int cycles) => Thread.SpinWait(cycles);
 
-		private static readonly ILogger _logger =
+		public static void IgnoreIfDebug()
+		{
+			var caller = Assembly.GetCallingAssembly();
+			if (caller.IsDebugAssembly())
+			{
+				Assert.Ignore("Please run as a release build");
+			}
+		}
+		#endregion
+
+		#region Configs core
+		private static readonly string _assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+
+		private static readonly ILogger _detailedLogger =
 			new FlushableStreamLogger(
-				PrepareNewLogPath("CodeJam.PerfTests-Tests.AllPerfTests.log"),
+				GetLogPath(_assemblyName + ".AllPerfTests.log"),
 				false);
 
-		private static readonly ILogger _shortLogger =
+		private static readonly ILogger _importantInfoLogger =
 			new HostLogger(
 				new FlushableStreamLogger(
-					PrepareNewLogPath("CodeJam.PerfTests-Tests.Short.AllPerfTests.log"),
+					GetLogPath(_assemblyName + ".Short.AllPerfTests.log"),
 					false),
 				HostLogMode.PrefixedOnly);
 
-		private static string PrepareNewLogPath(string fileName) =>
+		private static string GetLogPath(string fileName) =>
 			Path.Combine(
-				TestContext.CurrentContext.WorkDirectory == null
-					? Path.GetTempPath()
-					: TestContext.CurrentContext.TestDirectory,
+				RunUnderNUnit
+					? TestContext.CurrentContext.TestDirectory
+					: Path.GetTempPath(),
 				fileName);
-
-		public static readonly ICompetitionConfig SingleRunTestConfig = CreateSingleRunTestConfig(Platform.X64).AsReadOnly();
-
-		public static readonly ICompetitionConfig DefaultRunConfig = CreateRunConfig().AsReadOnly();
 
 		private static ManualCompetitionConfig CreateRunConfigCore()
 		{
@@ -60,19 +73,25 @@ namespace CodeJam.PerfTests.IntegrationTests
 			};
 
 			result.Add(DefaultConfig.Instance.GetColumns().ToArray());
-			result.Add(TimingsExporter.Instance);
-			result.Add(_logger, _shortLogger);
+			//result.Add(TimingsExporter.Instance);
+			//result.Add(_detailedLogger, _importantInfoLogger);
 			return result;
 		}
+		#endregion
 
-		public static ManualCompetitionConfig CreateSingleRunTestConfig(Platform platform)
+		#region Ready configs
+		public static readonly ICompetitionConfig DefaultRunConfig = CreateRunConfig().AsReadOnly();
+
+		internal static readonly ICompetitionConfig SelfTestConfig = CreateSelfTestConfig(Platform.X64).AsReadOnly();
+
+		internal static ManualCompetitionConfig CreateSelfTestConfig(Platform platform)
 		{
 			var result = CreateRunConfigCore();
 			result.AllowDebugBuilds = true;
 			result.Add(
 				new Job
 				{
-					Affinity = -1,
+					Affinity = -1, // DONTTOUCH: affinity option should be covered by the tests.
 					LaunchCount = 1,
 					Mode = Mode.SingleRun,
 					WarmupCount = 2,
@@ -80,26 +99,6 @@ namespace CodeJam.PerfTests.IntegrationTests
 					Platform = platform,
 					Toolchain = InProcessToolchain.Instance
 				});
-
-			return result;
-		}
-
-		public static ManualCompetitionConfig CreateAltConfig()
-		{
-			var result = CreateRunConfigCore();
-
-			result.Add(
-				new Job
-				{
-					LaunchCount = 1,
-					Mode = Mode.SingleRun,
-					WarmupCount = 20,
-					TargetCount = 50,
-					Platform = Platform.X64,
-					Jit = Jit.RyuJit,
-					Toolchain = InProcessToolchain.DontLogOutput
-				});
-
 			return result;
 		}
 
@@ -111,8 +110,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 				{
 					LaunchCount = 1,
 					Mode = Mode.SingleRun,
-					WarmupCount = outOfProcess ? 100 : 50,
-					TargetCount = outOfProcess ? 300 : 100,
+					WarmupCount = 50,
+					TargetCount = 100,
 					Platform = Platform.X64,
 					Jit = Jit.RyuJit,
 					Toolchain = outOfProcess ? null : InProcessToolchain.DontLogOutput
@@ -137,5 +136,6 @@ namespace CodeJam.PerfTests.IntegrationTests
 			result.IgnoreExistingAnnotations = true;
 			return result;
 		}
+		#endregion
 	}
 }

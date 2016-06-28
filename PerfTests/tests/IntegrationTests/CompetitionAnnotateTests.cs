@@ -6,7 +6,7 @@ using CodeJam.PerfTests.Running.Messages;
 
 using NUnit.Framework;
 
-using static CodeJam.PerfTests.IntegrationTests.PerfTestHelpers;
+using static CodeJam.PerfTests.PerfTestHelpers;
 
 namespace CodeJam.PerfTests.IntegrationTests
 {
@@ -24,7 +24,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		private static readonly ICompetitionConfig _localLogConfig = new ManualCompetitionConfig(_remoteLogConfig)
 		{
-			PreviousRunLogUri = @"Resources\CompetitionAnnotateTests.log.txt"
+			PreviousRunLogUri = @"Assets\CompetitionAnnotateTests.log.txt"
 		};
 
 		[Test]
@@ -63,10 +63,10 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public class AnnotatedBenchmark
 		{
 			[CompetitionBaseline]
-			public void Baseline() => Delay(SpinCount);
+			public void Baseline() => Delay(PerfTestCount);
 
 			[CompetitionBenchmark(10.00, 30.00)]
-			public void SlowerX20() => Delay(20 * SpinCount);
+			public void SlowerX20() => Delay(20 * PerfTestCount);
 		}
 		#endregion
 	}
