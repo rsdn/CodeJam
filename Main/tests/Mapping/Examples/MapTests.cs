@@ -100,13 +100,13 @@ namespace CodeJam.Mapping.Examples
 							System.Collections.Generic.IDictionary`2[System.Object,System.Object] $dic1
 						)
 					{
-						(Class2)(.Call CodeJam.Mapping.ExpressionBuilderHelper.GetValue($dic1,$from)
+						(Class2)(.Call CodeJam.Mapping.ExpressionBuilder.GetValue($dic1,$from)
 						??
 						.Block(Class2 $obj2)
 						{
 							$obj2 = .If ($to == null) { .New Class2() } .Else { $to };
 
-							.Call CodeJam.Mapping.ExpressionBuilderHelper.Add($dic1, $from, $obj2);
+							.Call CodeJam.Mapping.ExpressionBuilder.Add($dic1, $from, $obj2);
 
 							$obj2.Prop1  = .Call ($from.Prop1).ToString();
 

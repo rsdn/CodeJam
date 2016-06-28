@@ -598,7 +598,7 @@ namespace CodeJam.Mapping
 			public List<RTest> Depends { get; set; }
 		}
 
-		[Test, Explicit]
+		[Test]
 		public void RecursionTest([Values(true,false)] bool useEx)
 		{
 			var mapper = new MapHelper<RTest,RTest>().Map(useEx, new RTest(), m => m);

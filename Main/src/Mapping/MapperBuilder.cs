@@ -411,7 +411,7 @@ namespace CodeJam.Mapping
 		/// Gets an instance of <see cref="ExpressionBuilder"/> class.
 		/// </summary>
 		/// <returns><see cref="ExpressionBuilder"/>.</returns>
-		private ExpressionBuilder GetExpressionMapper()
+		internal ExpressionBuilder GetExpressionMapper()
 			=> new ExpressionBuilder(this, MemberMappers?.Select(mm => ValueTuple.Create(mm.Item1.GetMembersInfo(), mm.Item2)).ToArray());
 	}
 }
