@@ -593,15 +593,28 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		public class RTest
+		class RTest1
 		{
-			public List<RTest> Depends { get; set; }
+			public List<RTest1> Depends { get; set; }
 		}
 
 		[Test]
-		public void RecursionTest([Values(true,false)] bool useEx)
+		public void RecursionTest1([Values(true,false)] bool useEx)
 		{
-			var mapper = new MapHelper<RTest,RTest>().Map(useEx, new RTest(), m => m);
+			var mapper = new MapHelper<RTest1,RTest1>().Map(useEx, new RTest1(), m => m);
+
+			Assert.That(mapper.To, Is.Not.Null);
+		}
+
+		public class RTest2
+		{
+			public RTest2[] Depends { get; set; }
+		}
+
+		[Test]
+		public void RecursionTest2([Values(true,false)] bool useEx)
+		{
+			var mapper = new MapHelper<RTest2,RTest2>().Map(useEx, new RTest2(), m => m);
 
 			Assert.That(mapper.To, Is.Not.Null);
 		}
