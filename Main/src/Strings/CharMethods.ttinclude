@@ -1,4 +1,6 @@
-﻿<#var methods =
+﻿<#
+// ReSharper disable UnusedVariable
+var methods =
 	new[]
 	{
 		new {Name = "Control", NoIdx = false, NoChr = false},
@@ -15,6 +17,6 @@
 		new {Name = "Surrogate", NoIdx = false, NoChr = false},
 		new {Name = "SurrogatePair", NoIdx = false, NoChr = true},
 		new {Name = "Symbol", NoIdx = true, NoChr = false},
-		new {Name = "WhiteSpace", NoIdx = true, NoChr = false},
+		new {Name = "WhiteSpace", NoIdx = true, NoChr = false}
 	};
 #>

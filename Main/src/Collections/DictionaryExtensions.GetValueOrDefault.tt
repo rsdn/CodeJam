@@ -11,7 +11,9 @@ namespace CodeJam.Collections
 {
 	partial class DictionaryExtensions
 	{
-<#var types =
+<#
+// ReSharper disable UnusedMember.Local
+var types =
 new[]
 {
 	new {Name = "IDictionary", Conflict = false},
@@ -20,7 +22,7 @@ new[]
 	new {Name = "ConcurrentDictionary", Conflict = false}
 };
 var self = GetType();
-var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
 var methodCount = self.GetMethods(flags).Count(m => m.Name.StartsWith("Header"));
 foreach (var type in types) {#>
 		#region <#=type.Name#><TKey, TValue> overloads

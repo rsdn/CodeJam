@@ -21,17 +21,17 @@ namespace CodeJam.Arithmetic
 	{
 		WriteRegionLine(op.OpType.ToString());
 
-		if (op.OpType == OpType.Unary)
+		switch (op.OpType)
 		{
-			EmitUnary(op);
-		}
-		else if (op.OpType == OpType.Comparison)
-		{
-			EmitComparison(op);
-		}
-		else
-		{
-			EmitBinary(op);
+			case OpType.Unary:
+				EmitUnary(op);
+				break;
+			case OpType.Comparison:
+				EmitComparison(op);
+				break;
+			default:
+				EmitBinary(op);
+				break;
 		}
 	}
 	FlushRegions();

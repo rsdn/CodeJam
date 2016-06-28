@@ -2,8 +2,8 @@
 <#@ output extension=".cmd" #>
 <#
 
-	var msBuildExe      = @"%ProgramFiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe";
-	var projectName     = "CodeJam.Main";
+	const string msBuildExe = @"%ProgramFiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe";
+	const string projectName = "CodeJam.Main";
 
 	var projects = new[]
 	{

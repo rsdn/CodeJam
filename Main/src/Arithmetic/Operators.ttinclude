@@ -1,8 +1,6 @@
 ﻿<#@ assembly name="System.Core" #>
-<#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Linq.Expressions" #>
-<#@ import namespace="System.Text" #><#
+<#
 	var ops =
 		new []
 		{
@@ -127,9 +125,6 @@
 			}
 		}
 
-		public string LowerName
-		{
-			get { return Name.Substring(0, 1).ToLower() + Name.Substring(1); }
-		}
+		public string LowerName => Name.Substring(0, 1).ToLower() + Name.Substring(1);
 	}
 #>
