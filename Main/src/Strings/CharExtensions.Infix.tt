@@ -15,7 +15,8 @@ namespace CodeJam.Strings
 }#>
 	}
 }
-<#+ void GenerateMethod(string name) {#>
+<#+
+		private void GenerateMethod(string name) {#>
 		/// <summary>
 		/// Indicates whether a Unicode character is categorized as a <#=name.ToLower()#>.
 		/// </summary>

@@ -14,7 +14,7 @@ namespace CodeJam.Expressions
 	{
 <#
 	WriteRegionLine("Action<...>");
-	for (int i = 0; i < 8; i++)
+	for (var i = 0; i < 8; i++)
 	{
 		if (i > 0)
 			WriteLine("");
@@ -22,7 +22,7 @@ namespace CodeJam.Expressions
 	}
 
 	WriteRegionLine("Func<...>");
-	for (int i = 0; i < 8; i++)
+	for (var i = 0; i < 8; i++)
 	{
 		if (i > 0)
 			WriteLine("");
@@ -41,7 +41,7 @@ namespace CodeJam.Expressions
 			"<" + List(argCount, n => "T" + n, ", ") + ">";
 #>
 		/// <summary>Helper for type inference from the lambda expression.</summary>
-<#+		for (int i = 1; i <= argCount; i++) {#>
+<#+		for (var i = 1; i <= argCount; i++) {#>
 		/// <typeparam name="T<#=i#>">The type of argument #<#=i#>.</typeparam>
 <#+		}#>
 		/// <param name="actionExpression">The lambda expression.</param>
@@ -62,7 +62,7 @@ namespace CodeJam.Expressions
 			"<TResult>" :
 			"<" + List(argCount, n => "T" + n, ", ") + ", TResult" + ">";#>
 		/// <summary>Helper for type inference from the lambda expression.</summary>
-<#+		for (int i = 1; i <= argCount; i++) {#>
+<#+		for (var i = 1; i <= argCount; i++) {#>
 		/// <typeparam name="T<#=i#>">The type of argument #<#=i#>.</typeparam>
 <#+		}#>
 		/// <typeparam name="TResult">The result type.</typeparam>

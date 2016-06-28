@@ -16,7 +16,8 @@ namespace CodeJam.Strings
 }#>
 	}
 }
-<#+ void GenerateIdxMethod(string name) {#>
+<#+
+		private void GenerateIdxMethod(string name) {#>
 		/// <summary>
 		/// Indicates whether the character at the specified position in a specified string is categorized as a <#=name.ToLower()#>.
 		/// </summary>
@@ -30,7 +31,8 @@ namespace CodeJam.Strings
 		public static bool Is<#=name#>([NotNull] this string str, int index) => char.Is<#=name#>(str, index);
 
 <#+}#>
-<#+ void GenerateNoIdxMethod(string name) {#>
+<#+
+		private void GenerateNoIdxMethod(string name) {#>
 		/// <summary>
 		/// Indicates whether all characters in a specified string is categorized as a <#=name.ToLower()#>.
 		/// </summary>

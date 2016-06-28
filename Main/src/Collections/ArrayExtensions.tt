@@ -41,7 +41,7 @@ namespace CodeJam.Collections
 	}
 }
 <#+
-public void GenerateMethod(string type)
+private void GenerateMethod(string type)
 {
 #>
 		/// <summary>
@@ -72,7 +72,7 @@ public void GenerateMethod(string type)
 }
 #>
 <#+
-public void GenerateNullableMethod(string type)
+private void GenerateNullableMethod(string type)
 {
 #>
 
@@ -108,7 +108,7 @@ public void GenerateNullableMethod(string type)
 }
 #>
 <#+
-public void GenerateUnsafeMethod(string type)
+private void GenerateUnsafeMethod(string type)
 {
 #>
 		/// <summary>

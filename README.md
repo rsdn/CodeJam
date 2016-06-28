@@ -23,7 +23,7 @@ contribute in any of these aspects, please join us!
 .NET Framework 3.5 support is limited. Functionality not supported:
 
 * Mapping - all mapping related classes not supported due to expression tree incompatibility
-* ExpressionExtensions - all visitor related functionalyty excluded due to expression tree incompatibility
+* ExpressionExtensions - all visitor related functionality excluded due to expression tree incompatibility
 * MemberAccessor/TypeAccessor - excluded due to expression tree incompatibility
 * ComparerBuilder - excluded due to absence of TypeAccessor and MemberAccessor classes
 

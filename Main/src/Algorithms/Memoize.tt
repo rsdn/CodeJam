@@ -10,12 +10,12 @@ namespace CodeJam
 {
 	partial class Algorithms
 	{
-<#for (int i = 2; i <= 8; i++)
+<#for (var i = 2; i <= 8; i++)
 	GenerateMethod(i);#>
 	}
 }
 <#+
-void GenerateMethod(int argCount)
+private void GenerateMethod(int argCount)
 {
 	var typeArgs = List(argCount, i => "TArg" + i);
 	var args = List(argCount, i => "arg" + i);#>
@@ -24,7 +24,7 @@ void GenerateMethod(int argCount)
 		/// </summary>
 		/// <param name="func">Function to memoize.</param>
 		/// <param name="threadSafe">If true - returns thread safe implementation</param>
-<#+for (int i = 1; i <= argCount; i++) {#>
+<#+for (var i = 1; i <= argCount; i++) {#>
 		/// <typeparam name="TArg<#=i#>">Type of argument <#=i#></typeparam>
 <#+}#>
 		/// <typeparam name="TResult">Type of result</typeparam>

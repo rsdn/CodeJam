@@ -1,5 +1,6 @@
 ﻿<#@ output extension=".generated.cs" #>
 <#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
 <#@ assembly name="System.Xml.Linq" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Linq" #>
@@ -12,20 +13,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 <#+
-	private string EscapeXmlDocString(string xmlDocText)
-	{
-		return new System.Xml.Linq.XText(xmlDocText).ToString();
-	}
+	private string EscapeXmlDocString(string xmlDocText) =>
+		new System.Xml.Linq.XText(xmlDocText).ToString();
 
-	private string List(int count, Func<int, string> elem, string separator = ", ")
-	{
-		return string.Join(separator, Enumerable.Range(1, count).Select(elem));
-	}
+	private string List(int count, Func<int, string> elem, string separator = ", ") =>
+		string.Join(separator, Enumerable.Range(1, count).Select(elem));
 
-	private void WriteLine()
-	{
-		WriteLine("");
-	}
+	private void WriteLine() => WriteLine("");
 
 	private void WriteSeparatorLine(ref bool notFirstItem)
 	{
@@ -52,16 +46,15 @@
 
 		private readonly Stack<RegionData> _regions = new Stack<RegionData>();
 
-		private RegionData FindRegion(string regionLevelKey)
-		{
-			return _regions.FirstOrDefault(r => r.LevelKey == regionLevelKey);
-		}
+		private RegionData FindRegion(string regionLevelKey) =>
+			_regions.FirstOrDefault(r => r.LevelKey == regionLevelKey);
+
 		private RegionData[] PopRegions(RegionData region)
 		{
 			if (region == null) return new RegionData[0];
 
-			bool found = false;
-			int countToPop = 0;
+			var found = false;
+			var countToPop = 0;
 			foreach (var regionTest in _regions)
 			{
 				countToPop++;
@@ -76,16 +69,12 @@
 				return new RegionData[0];
 
 			var temp = new RegionData[countToPop];
-			for (int i = 0; i < countToPop; i++)
-			{
+			for (var i = 0; i < countToPop; i++)
 				temp[i] = _regions.Pop();
-			}
 			return temp;
 		}
-		private void PushRegion(string regionName, string regionLevelKey)
-		{
+		private void PushRegion(string regionName, string regionLevelKey) =>
 			_regions.Push(new RegionData(regionName, regionLevelKey));
-		}
 
 		public void WriteRegionLine(
 			Action<string> writeLineCallback,
@@ -129,14 +118,9 @@
 
 	private readonly RegionState _regions = new RegionState();
 
-	private void WriteRegionLine(string regionName, string regionLevelKey = "")
-	{
+	private void WriteRegionLine(string regionName, string regionLevelKey = "") =>
 		_regions.WriteRegionLine(WriteLine, regionName, regionLevelKey);
-	}
 
-	private void FlushRegions()
-	{
-		_regions.FlushRegions(WriteLine);
-	}
+	private void FlushRegions() => _regions.FlushRegions(WriteLine);
 	#endregion
 #>

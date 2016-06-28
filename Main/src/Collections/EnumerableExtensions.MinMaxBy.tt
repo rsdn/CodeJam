@@ -13,7 +13,7 @@ namespace CodeJam.Collections
 	foreach (var info in new[]
 	{
 		new { Method = "MinBy", Operator = "<", Name = "minimum" },
-		new { Method = "MaxBy", Operator = ">", Name = "maximum" },
+		new { Method = "MaxBy", Operator = ">", Name = "maximum" }
 	})
 	{
 #>

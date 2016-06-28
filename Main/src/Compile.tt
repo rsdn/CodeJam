@@ -13,7 +13,7 @@
 		new ProjectInfo("4.5.1", "v4.5.1", "FW461;FW46;FW452;FW451"),
 		new ProjectInfo("4.5.2", "v4.5.2", "FW461;FW46;FW452"),
 		new ProjectInfo("4.6",   "v4.6",   "FW461;FW46"),
-		new ProjectInfo("4.6.1", "v4.6.1", "FW461"),
+		new ProjectInfo("4.6.1", "v4.6.1", "FW461")
 	};
 
 #>
@@ -32,20 +32,21 @@
 	}
 #>
 <#+
-class ProjectInfo
-{
-	public ProjectInfo(string outputPath, string targetFramework, string defineConstants, string fwPathOverride = null)
-	{
-		OutputPath      = outputPath;
-		TargetFramework = targetFramework;
-		DefineConstants = defineConstants;
-		FWPathOverride  = fwPathOverride;
-	}
 
-	public string OutputPath;
-	public string TargetFramework;
-	public string DefineConstants;
-	public string FWPathOverride;
-}
+	private class ProjectInfo
+	{
+		public ProjectInfo(string outputPath, string targetFramework, string defineConstants, string fwPathOverride = null)
+		{
+			OutputPath      = outputPath;
+			TargetFramework = targetFramework;
+			DefineConstants = defineConstants;
+			FWPathOverride  = fwPathOverride;
+		}
+
+		public readonly string OutputPath;
+		public readonly string TargetFramework;
+		public readonly string DefineConstants;
+		public readonly string FWPathOverride;
+	}
 #>
 
