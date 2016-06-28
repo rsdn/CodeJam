@@ -47,7 +47,7 @@ namespace CodeJam.Mapping
 		#region GenericConvertProvider
 		private volatile ConcurrentDictionary<Type,List<Type[]>> _genericConvertProviders;
 
-		public bool InitGenericConvertProvider(Type[] types, MappingSchema mappingSchema)
+		public bool InitGenericConvertProvider(Type[] types)
 		{
 			var changed = false;
 

@@ -639,9 +639,7 @@ namespace CodeJam.Mapping
 			return Call(toListInfo.MakeGenericMethod(toItemType), expr);
 		}
 
-		Expression ToHashSet(
 		private static Expression ToHashSet(
-		private Expression ToHashSet(
 			ExpressionBuilder builder,
 			ParameterExpression dic,
 			Expression fromExpression,

@@ -9,21 +9,22 @@ namespace CodeJam.Metadata
 	{
 		public MetaTypeInfo(string name, Dictionary<string,MetaMemberInfo> members, params AttributeInfo[] attributes)
 		{
-			Name       = name;
-			Members    = members;
-			Attributes = attributes;
+			Name        = name;
+			Members     = members;
+			_attributes = attributes;
 		}
 
 		public readonly string                            Name;
 		public readonly Dictionary<string,MetaMemberInfo> Members;
-		public readonly AttributeInfo[]                   Attributes;
+
+		private readonly AttributeInfo[] _attributes;
 
 		public AttributeInfo[] GetAttribute(Type type)
 			=>
-				Attributes.Where(a => a.Name == type.FullName).Concat(
-				Attributes.Where(a => a.Name == type.Name).    Concat(
+				_attributes.Where(a => a.Name == type.FullName).Concat(
+				_attributes.Where(a => a.Name == type.Name).    Concat(
 					type.Name.EndsWith("Attribute") ?
-						Attributes.Where(a => a.Name == type.Name.Substring(0, type.Name.Length - "Attribute".Length)) :
+						_attributes.Where(a => a.Name == type.Name.Substring(0, type.Name.Length - "Attribute".Length)) :
 						Enumerable.Empty<AttributeInfo>())
 				).ToArray();
 	}

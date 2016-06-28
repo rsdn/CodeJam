@@ -156,7 +156,7 @@ namespace CodeJam.Mapping
 		private void InitGenericConvertProvider<T>() => InitGenericConvertProvider(typeof(T));
 
 		private bool InitGenericConvertProvider(params Type[] types) =>
-			Schemas.Aggregate(false, (cur, info) => cur || info.InitGenericConvertProvider(types, this));
+			Schemas.Aggregate(false, (cur, info) => cur || info.InitGenericConvertProvider(types));
 
 		private void SetGenericConvertProvider(Type type)
 		{

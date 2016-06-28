@@ -13,13 +13,13 @@ namespace CodeJam.Metadata
 	{
 		public AttributeInfo(string name, Dictionary<string,object> values)
 		{
-			Name   = name;
-			Values = values;
+			Name    = name;
+			_values = values;
 		}
 
-		public readonly string                    Name;
-		public readonly Dictionary<string,object> Values;
+		public readonly string Name;
 
+		private readonly Dictionary<string,object> _values;
 		private Func<Attribute> _func;
 
 		public Attribute MakeAttribute(Type type)
@@ -35,7 +35,7 @@ namespace CodeJam.Metadata
 						Expression.Convert(
 							Expression.MemberInit(
 								Expression.New(ctor),
-								Values.Select(k =>
+								_values.Select(k =>
 								{
 									var member = type.GetMember(k.Key)[0];
 									var mtype  = member.GetMemberType();
