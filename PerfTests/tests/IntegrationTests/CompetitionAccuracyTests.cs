@@ -103,7 +103,6 @@ namespace CodeJam.PerfTests.IntegrationTests
 			{
 				Assert.Ignore("The environment does not provide accurate timings. Test results cannot be trusted.");
 			}
-
 		}
 
 		[Test]
@@ -156,38 +155,42 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		public class HighAccuracyBenchmark
 		{
+			const int Count = 20 * 1000;
+
 			[CompetitionBaseline]
-			public void Baseline() => Delay(PerfTestCount);
+			public void Baseline() => Thread.SpinWait(Count);
 
-			[CompetitionBenchmark(1.92, 2.08)]
-			public void SlowerX2Run1() => Delay(2 * PerfTestCount);
+			[CompetitionBenchmark(1.85, 2.15)]
+			public void SlowerX2Run1() => Thread.SpinWait(2 * Count);
 
-			[CompetitionBenchmark(1.92, 2.08)]
-			public void SlowerX2Run2() => Delay(2 * PerfTestCount);
+			[CompetitionBenchmark(1.85, 2.15)]
+			public void SlowerX2Run2() => Thread.SpinWait(2 * Count);
 
-			[CompetitionBenchmark(1.92, 2.08)]
-			public void SlowerX2Run3() => Delay(2 * PerfTestCount);
+			[CompetitionBenchmark(1.85, 2.15)]
+			public void SlowerX2Run3() => Thread.SpinWait(2 * Count);
 
-			[CompetitionBenchmark(4.82, 5.18)]
-			public void SlowerX5() => Delay(5 * PerfTestCount);
+			[CompetitionBenchmark(4.65, 5.35)]
+			public void SlowerX5() => Thread.SpinWait(5 * Count);
 		}
 
 		public class HighAccuracyBenchmarkOutOfProcess
 		{
+			const int Count = 20 * 1000;
+
 			[CompetitionBaseline]
-			public void Baseline() => Delay(PerfTestCount);
+			public void Baseline() => Thread.SpinWait(Count);
 
-			[CompetitionBenchmark(1.92, 2.08)]
-			public void SlowerX2Run1() => Delay(2 * PerfTestCount);
+			[CompetitionBenchmark(1.85, 2.15)]
+			public void SlowerX2Run1() => Thread.SpinWait(2 * Count);
 
-			[CompetitionBenchmark(1.92, 2.08)]
-			public void SlowerX2Run2() => Delay(2 * PerfTestCount);
+			[CompetitionBenchmark(1.85, 2.15)]
+			public void SlowerX2Run2() => Thread.SpinWait(2 * Count);
 
-			[CompetitionBenchmark(1.92, 2.08)]
-			public void SlowerX2Run3() => Delay(2 * PerfTestCount);
+			[CompetitionBenchmark(1.85, 2.15)]
+			public void SlowerX2Run3() => Thread.SpinWait(2 * Count);
 
-			[CompetitionBenchmark(4.82, 5.18)]
-			public void SlowerX5() => Delay(5 * PerfTestCount);
+			[CompetitionBenchmark(4.65, 5.35)]
+			public void SlowerX5() => Thread.SpinWait(5 * Count);
 		}
 		#endregion
 	}

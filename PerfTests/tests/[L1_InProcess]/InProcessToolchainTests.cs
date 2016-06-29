@@ -34,7 +34,7 @@ namespace CodeJam.PerfTests
 				.LastRunSummary;
 
 			Assert.AreEqual(_callCounter, ExpectedSelfTestRunCount);
-			Assert.AreEqual(_afterSetupCounter, 1);
+			Assert.AreEqual(_afterSetupCounter, 2);
 
 			Assert.IsFalse(summary.ValidationErrors.Any());
 		}

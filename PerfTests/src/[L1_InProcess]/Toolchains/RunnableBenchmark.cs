@@ -73,7 +73,7 @@ namespace BenchmarkDotNet.Toolchains
 				}
 				_output.WriteLine();
 
-				new MethodInvokerLight().Invoke(_job, _operationsPerInvoke, _setupAction, _runCallback, _idleCallback);
+				new MethodInvokerLight2(_job).Invoke(_job, _operationsPerInvoke, _setupAction, _runCallback, _idleCallback);
 			}
 			catch (Exception ex)
 			{
@@ -146,7 +146,7 @@ namespace BenchmarkDotNet.Toolchains
 				}
 				_output.WriteLine();
 
-				new MethodInvokerLight().Invoke(_job, _operationsPerInvoke, _setupAction, _runCallback, _idleCallback);
+				new MethodInvokerLight2(_job).Invoke(_job, _operationsPerInvoke, _setupAction, _runCallback, _idleCallback);
 			}
 			catch (Exception ex)
 			{
