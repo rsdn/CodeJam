@@ -14,8 +14,8 @@ namespace CodeJam
 	/// Proof test: readonly struct fields ARE copied on write
 	/// as in http://blog.nodatime.org/2014/07/micro-optimization-surprising.html
 	/// </summary>
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
-	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Self-testing")]
+	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 	public class NestedStructAccessPerfTests
 	{
 		#region PerfTest helpers
@@ -60,7 +60,7 @@ namespace CodeJam
 		private const int Count = 100 * 1000;
 
 		[Test]
-		public void RunNestedStructAccessPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
+		public void RunNestedStructAccessPerfTests() => Competition.Run(this, RunConfig);
 
 		[CompetitionBaseline]
 		public decimal Test00Mutable()

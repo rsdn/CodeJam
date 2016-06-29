@@ -14,7 +14,7 @@ namespace CodeJam
 	/// <summary>
 	/// Proof test: JIT optimizations on static feature switches
 	/// </summary>
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
+	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Self-testing")]
 	[PublicAPI]
 	public class JitOptimizedFeatureSwitchPerfTests
 	{
@@ -43,8 +43,8 @@ namespace CodeJam
 		private const int Count = 1000 * 1000;
 
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
-		public void RunJitOptimizedFeatureSwitchPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
+		[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
+		public void RunJitOptimizedFeatureSwitchPerfTests() => Competition.Run(this, RunConfig);
 
 		[CompetitionBaseline]
 		public int Test0000Baseline()

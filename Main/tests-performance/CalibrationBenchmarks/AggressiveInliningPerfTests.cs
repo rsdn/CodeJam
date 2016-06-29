@@ -13,8 +13,8 @@ namespace CodeJam
 	/// <summary>
 	/// Proof test: Aggressive inlining can be used to boost the code.
 	/// </summary>
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
-	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Self-testing")]
+	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 	public class AggressiveInliningPerfTests
 	{
 		// Use case:
@@ -27,7 +27,7 @@ namespace CodeJam
 
 		[Test]
 		public void RunCaseAggInlineNoEffect() =>
-			CompetitionBenchmarkRunner.Run<CaseAggInlineNoEffect>(RunConfig);
+			Competition.Run<CaseAggInlineNoEffect>(RunConfig);
 
 		public class CaseAggInlineNoEffect
 		{
@@ -113,7 +113,7 @@ namespace CodeJam
 
 		[Test]
 		public void RunCaseAggInlineEffective() =>
-			CompetitionBenchmarkRunner.Run<CaseAggInlineEffective>(RunConfig);
+			Competition.Run<CaseAggInlineEffective>(RunConfig);
 
 		public class CaseAggInlineEffective
 		{

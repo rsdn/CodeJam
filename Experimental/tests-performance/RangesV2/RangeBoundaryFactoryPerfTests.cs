@@ -13,8 +13,8 @@ namespace CodeJam.RangesV2
 	/// <summary>
 	/// 1. Proofs that arg validation skipped when possible.
 	/// </summary>
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Ranges")]
-	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Ranges")]
+	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 	[PublicAPI]
 	public class RangeBoundaryFactoryPerfTests
 	{
@@ -22,7 +22,7 @@ namespace CodeJam.RangesV2
 
 		[Test]
 		public void RunRangeBoundaryFactoryPerfTests() =>
-			CompetitionBenchmarkRunner.Run(this, RunConfig);
+			Competition.Run(this, RunConfig);
 
 		[CompetitionBaseline]
 		public RangeBoundaryFrom<int> Test00Validated()

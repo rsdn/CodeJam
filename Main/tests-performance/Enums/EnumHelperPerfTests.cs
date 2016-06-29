@@ -1,5 +1,5 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
 using CodeJam.PerfTests;
@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using NUnit.Framework;
 
 using static CodeJam.AssemblyWideConfig;
+using static CodeJam.PerfTests.CompetitionHelpers;
 
 // ReSharper disable once CheckNamespace
 
@@ -18,10 +19,7 @@ namespace CodeJam
 	/// Proof test: <see cref="EnumHelper"/> methods are faster than their framework counterparts.
 	/// </summary>
 	[PublicAPI]
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": EnumHelper")]
-	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
-	[SuppressMessage("ReSharper", "ConvertToConstant.Local")]
+	[TestFixture(Category = PerfTestCategory + ": EnumHelper")]
 	public class EnumHelperPerfTests
 	{
 		#region PerfTest helpers
@@ -41,54 +39,52 @@ namespace CodeJam
 		private const string Fx = "X";
 		#endregion
 
-		private const int Count = 250 * 1000;
+		private const int Count = DefaultCount;
 
 		[Test]
-		public void RunIsDefinedCase() =>
-			CompetitionBenchmarkRunner.Run<IsDefinedCase>(RunConfig);
+		public void RunIsDefinedCase() => Competition.Run<IsDefinedCase>(RunConfig);
 
 		public class IsDefinedCase
 		{
 			[CompetitionBaseline]
 			public bool Test00IsDefined()
 			{
-				bool a = false;
-				for (int i = 0; i < Count; i++)
+				var a = false;
+				for (var i = 0; i < Count; i++)
 					a = EnumHelper.IsDefined(F.C | F.D);
 				return a;
 			}
 
-			[CompetitionBenchmark(0.69, 0.74)]
+			[CompetitionBenchmark(0.38, 1.12)]
 			public bool Test01IsDefinedUndefined()
 			{
-				bool a = false;
-				for (int i = 0; i < Count; i++)
+				var a = false;
+				for (var i = 0; i < Count; i++)
 					a = EnumHelper.IsDefined(F.B | F.C);
 				return a;
 			}
 
-			[CompetitionBenchmark(30.69, 32.61)]
+			[CompetitionBenchmark(20.17, 62.89)]
 			public bool Test02EnumIsDefined()
 			{
-				bool a = false;
-				for (int i = 0; i < Count; i++)
+				var a = false;
+				for (var i = 0; i < Count; i++)
 					a = Enum.IsDefined(typeof(F), F.C | F.D);
 				return a;
 			}
 
-			[CompetitionBenchmark(31.05, 33.10)]
+			[CompetitionBenchmark(19.48, 66.96)]
 			public bool Test03EnumIsDefinedUndefined()
 			{
-				bool a = false;
-				for (int i = 0; i < Count; i++)
+				var a = false;
+				for (var i = 0; i < Count; i++)
 					a = Enum.IsDefined(typeof(F), F.B | F.C);
 				return a;
 			}
 		}
 
 		[Test]
-		public void RunTryParseCase() =>
-			CompetitionBenchmarkRunner.Run<TryParseCase>(RunConfig);
+		public void RunTryParseCase() => Competition.Run<TryParseCase>(RunConfig);
 
 		public class TryParseCase
 		{
@@ -96,45 +92,47 @@ namespace CodeJam
 			public F Test00TryParse()
 			{
 				var a = F.Zero;
-				for (int i = 0; i < Count; i++)
+				for (var i = 0; i < Count; i++)
 					EnumHelper.TryParse(Fa, out a);
 				return a;
 			}
 
-			[CompetitionBenchmark(5.86, 6.25)]
+			[CompetitionBenchmark(4.40, 8.51)]
 			public F Test01TryParseUndefined()
 			{
 				var a = F.Zero;
-				for (int i = 0; i < Count; i++)
+				for (var i = 0; i < Count; i++)
 					EnumHelper.TryParse(Fx, out a);
 				return a;
 			}
 
-			[CompetitionBenchmark(8.29, 8.84)]
+			[CompetitionBenchmark(6.00, 19.82)]
 			public F Test02EnumTryParse()
 			{
 				var a = F.Zero;
-				for (int i = 0; i < Count; i++)
+				for (var i = 0; i < Count; i++)
 					Enum.TryParse(Fa, out a);
 				return a;
 			}
 
-			[CompetitionBenchmark(5.01, 5.36)]
+			[CompetitionBenchmark(3.77, 11.01)]
 			public F Test03EnumTryParseUndefined()
 			{
 				var a = F.Zero;
-				for (int i = 0; i < Count; i++)
+				for (var i = 0; i < Count; i++)
 					Enum.TryParse(Fx, out a);
 				return a;
 			}
 		}
 
 		[Test]
-		public void RunIsFlagSetCase() =>
-			CompetitionBenchmarkRunner.Run<IsFlagSetCase>(RunConfig);
+		public void RunIsFlagSetCase() => Competition.Run<IsFlagSetCase>(RunConfig);
 
 		public class IsFlagSetCase
 		{
+			[MethodImpl(MethodImplOptions.NoInlining)]
+			private static bool IsFlagSet(F value, F flag) => (value & flag) == flag;
+
 			private static readonly Func<F, F, bool> _isFlagSetEnumOp = OperatorsFactory.IsFlagSetOperator<F>();
 			private static readonly Func<int, int, bool> _isFlagSetIntOp = OperatorsFactory.IsFlagSetOperator<int>();
 
@@ -142,58 +140,56 @@ namespace CodeJam
 			public bool Test00Baseline()
 			{
 				var a = false;
-				var value = F.CD;
-				var flag = F.C;
-				for (int i = 0; i < Count; i++)
-				{
-					a = (value & flag) == flag;
-				}
+				for (var i = 0; i < Count; i++)
+					a = IsFlagSet(F.CD, F.C);
 				return a;
 			}
 
-			[CompetitionBenchmark(11.65, 12.38)]
+			[CompetitionBenchmark(0.93, 2.88)]
 			public bool Test01IsFlagSet()
 			{
 				var a = false;
-				for (int i = 0; i < Count; i++)
+				for (var i = 0; i < Count; i++)
 					a = F.CD.IsFlagSet(F.C);
 				return a;
 			}
 
-			[CompetitionBenchmark(6.64, 7.17)]
+			[CompetitionBenchmark(0.61, 1.33)]
 			public bool Test02IsFlagSetEnumOp()
 			{
 				var a = false;
-				for (int i = 0; i < Count; i++)
+				for (var i = 0; i < Count; i++)
 					a = _isFlagSetEnumOp(F.CD, F.C);
 				return a;
 			}
 
-			[CompetitionBenchmark(7.61, 8.16)]
+			[CompetitionBenchmark(0.64, 1.12)]
 			public bool Test03IsFlagSetIntOp()
 			{
 				var a = false;
-				for (int i = 0; i < Count; i++)
+				for (var i = 0; i < Count; i++)
 					a = _isFlagSetIntOp(8 | 4, 4);
 				return a;
 			}
 
-			[CompetitionBenchmark(76.44, 82.41)]
+			[CompetitionBenchmark(7.86, 18.57)]
 			public bool Test04EnumHasFlag()
 			{
 				var a = false;
-				for (int i = 0; i < Count; i++)
+				for (var i = 0; i < Count; i++)
 					a = F.CD.HasFlag(F.C);
 				return a;
 			}
 		}
 
 		[Test]
-		public void RunIsFlagMatchCase() =>
-			CompetitionBenchmarkRunner.Run<IsFlagMatchCase>(RunConfig);
+		public void RunIsFlagMatchCase() => Competition.Run<IsFlagMatchCase>(RunConfig);
 
 		public class IsFlagMatchCase
 		{
+			[MethodImpl(MethodImplOptions.NoInlining)]
+			private static bool IsFlagMatch(F value, F flag) => flag == 0 || (value & flag) != 0;
+
 			private static readonly Func<F, F, bool> _isFlagMatchEnumOp = OperatorsFactory.IsFlagMatchOperator<F>();
 			private static readonly Func<int, int, bool> _isFlagMatchIntOp = OperatorsFactory.IsFlagMatchOperator<int>();
 
@@ -201,36 +197,34 @@ namespace CodeJam
 			public bool Test00Baseline()
 			{
 				var a = false;
-				var value = F.CD;
-				var flag = F.B | F.C;
-				for (int i = 0; i < Count; i++)
-					a = flag == 0 || (value & flag) != 0;
+				for (var i = 0; i < Count; i++)
+					a = IsFlagMatch(F.CD, F.B | F.C);
 				return a;
 			}
 
-			[CompetitionBenchmark(10.26, 10.94)]
+			[CompetitionBenchmark(1.21, 1.64)]
 			public bool Test01IsFlagMatch()
 			{
 				var a = false;
-				for (int i = 0; i < Count; i++)
+				for (var i = 0; i < Count; i++)
 					a = F.CD.IsFlagSet(F.B | F.C);
 				return a;
 			}
 
-			[CompetitionBenchmark(5.81, 6.20)]
+			[CompetitionBenchmark(0.64, 1.36)]
 			public bool Test02IsFlagMatchEnumOp()
 			{
 				var a = false;
-				for (int i = 0; i < Count; i++)
+				for (var i = 0; i < Count; i++)
 					a = _isFlagMatchEnumOp(F.CD, F.B | F.C);
 				return a;
 			}
 
-			[CompetitionBenchmark(6.63, 7.09)]
+			[CompetitionBenchmark(0.65, 1.26)]
 			public bool Test03IsFlagMatchIntOp()
 			{
 				var a = false;
-				for (int i = 0; i < Count; i++)
+				for (var i = 0; i < Count; i++)
 					a = _isFlagMatchIntOp(8 | 4, 2 | 4);
 				return a;
 			}
@@ -238,10 +232,13 @@ namespace CodeJam
 
 		[Test]
 		public void RunSetFlagCase() =>
-			CompetitionBenchmarkRunner.Run<SetFlagCase>(RunConfig);
+			Competition.Run<SetFlagCase>(RunConfig);
 
 		public class SetFlagCase
 		{
+			[MethodImpl(MethodImplOptions.NoInlining)]
+			private static F SetFlag(F value, F flag) => value | flag;
+
 			private static readonly Func<F, F, F> _setFlagEnumOp = OperatorsFactory.SetFlagOperator<F>();
 			private static readonly Func<int, int, int> _setFlagIntOp = OperatorsFactory.SetFlagOperator<int>();
 
@@ -249,36 +246,34 @@ namespace CodeJam
 			public F Test00Baseline()
 			{
 				var a = F.A;
-				var value = F.CD;
-				var flag = F.B | F.C;
-				for (int i = 0; i < Count; i++)
-					a = value | flag;
+				for (var i = 0; i < Count; i++)
+					a = SetFlag(F.CD, F.B | F.C);
 				return a;
 			}
 
-			[CompetitionBenchmark(10.83, 11.57)]
-			public F Test01IsFlagMatch()
+			[CompetitionBenchmark(1.12, 1.97)]
+			public F Test01SetFlag()
 			{
 				var a = F.A;
-				for (int i = 0; i < Count; i++)
+				for (var i = 0; i < Count; i++)
 					a = F.CD.SetFlag(F.B | F.C);
 				return a;
 			}
 
-			[CompetitionBenchmark(6.84, 7.32)]
-			public F Test02IsFlagMatchEnumOp()
+			[CompetitionBenchmark(0.63, 1.13)]
+			public F Test02SetFlagEnumOp()
 			{
 				var a = F.A;
-				for (int i = 0; i < Count; i++)
+				for (var i = 0; i < Count; i++)
 					a = _setFlagEnumOp(F.CD, F.B | F.C);
 				return a;
 			}
 
-			[CompetitionBenchmark(6.81, 7.24)]
-			public int Test03IsFlagMatchIntOp()
+			[CompetitionBenchmark(0.65, 0.91)]
+			public int Test03SetFlagIntOp()
 			{
 				var a = 1;
-				for (int i = 0; i < Count; i++)
+				for (var i = 0; i < Count; i++)
 					a = _setFlagIntOp(8 | 4, 2 | 4);
 				return a;
 			}
@@ -286,48 +281,49 @@ namespace CodeJam
 
 		[Test]
 		public void RunClearFlagCase() =>
-			CompetitionBenchmarkRunner.Run<ClearFlagCase>(RunConfig);
+			Competition.Run<ClearFlagCase>(RunConfig);
 
 		public class ClearFlagCase
 		{
-			private static readonly Func<F, F, F> _setFlagEnumOp = OperatorsFactory.ClearFlagOperator<F>();
-			private static readonly Func<int, int, int> _setFlagIntOp = OperatorsFactory.ClearFlagOperator<int>();
+			[MethodImpl(MethodImplOptions.NoInlining)]
+			private static F ClearFlag(F value, F flag) => value & ~flag;
+
+			private static readonly Func<F, F, F> _clearFlagEnumOp = OperatorsFactory.ClearFlagOperator<F>();
+			private static readonly Func<int, int, int> _clearFlagIntOp = OperatorsFactory.ClearFlagOperator<int>();
 
 			[CompetitionBaseline]
 			public F Test00Baseline()
 			{
 				var a = F.A;
-				var value = F.CD;
-				var flag = F.B | F.C;
-				for (int i = 0; i < Count; i++)
-					a = value | flag;
+				for (var i = 0; i < Count; i++)
+					a = ClearFlag(F.CD, F.B | F.C);
 				return a;
 			}
 
-			[CompetitionBenchmark(10.43, 11.19)]
-			public F Test01IsFlagMatch()
+			[CompetitionBenchmark(1.02, 1.93)]
+			public F Test01ClearFlag()
 			{
 				var a = F.A;
-				for (int i = 0; i < Count; i++)
+				for (var i = 0; i < Count; i++)
 					a = F.CD.ClearFlag(F.B | F.C);
 				return a;
 			}
 
-			[CompetitionBenchmark(6.62, 7.09)]
-			public F Test02IsFlagMatchEnumOp()
+			[CompetitionBenchmark(0.68, 1.26)]
+			public F Test02ClearFlagEnumOp()
 			{
 				var a = F.A;
-				for (int i = 0; i < Count; i++)
-					a = _setFlagEnumOp(F.CD, F.B | F.C);
+				for (var i = 0; i < Count; i++)
+					a = _clearFlagEnumOp(F.CD, F.B | F.C);
 				return a;
 			}
 
-			[CompetitionBenchmark(6.59, 7.09)]
-			public int Test03IsFlagMatchIntOp()
+			[CompetitionBenchmark(0.56, 0.90)]
+			public int Test03ClearFlagIntOp()
 			{
 				var a = 1;
-				for (int i = 0; i < Count; i++)
-					a = _setFlagIntOp(8 | 4, 2 | 4);
+				for (var i = 0; i < Count; i++)
+					a = _clearFlagIntOp(8 | 4, 2 | 4);
 				return a;
 			}
 		}

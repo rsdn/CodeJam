@@ -16,15 +16,15 @@ namespace CodeJam.RangesV2Alternatives
 	/// <summary>
 	/// Test to choose valid Range(of T) implementation.
 	/// </summary>
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Ranges")]
+	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Ranges")]
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "PassStringInterpolation")]
 	public class RangeAlternativesPerfTests
 	{
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+		[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 		public void RunRangeAlternativesIntCase() =>
-			CompetitionBenchmarkRunner.Run<RangeAlternativesIntCase>(RunConfig);
+			Competition.Run<RangeAlternativesIntCase>(RunConfig);
 
 		[PublicAPI]
 		public class RangeAlternativesIntCase
@@ -157,9 +157,9 @@ namespace CodeJam.RangesV2Alternatives
 		}
 
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+		[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 		public void RunRangeAlternativesNullableIntCase() =>
-			CompetitionBenchmarkRunner.Run<RangeAlternativesNullableIntCase>(RunConfig);
+			Competition.Run<RangeAlternativesNullableIntCase>(RunConfig);
 
 		[PublicAPI]
 		public class RangeAlternativesNullableIntCase

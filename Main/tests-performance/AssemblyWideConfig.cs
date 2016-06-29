@@ -1,10 +1,13 @@
 ﻿using System;
 
-using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Loggers;
 
 using CodeJam.PerfTests.Configs;
+using CodeJam.PerfTests.Exporters;
 
 using JetBrains.Annotations;
+
+using static CodeJam.PerfTests.CompetitionHelpers;
 
 namespace CodeJam
 {
@@ -22,10 +25,16 @@ namespace CodeJam
 		public static readonly bool AnnotateOnRun = AppSwitch.GetAssemblySwitch(() => AnnotateOnRun);
 
 		/// <summary>
+		/// OPTIONAL: log timings fort troubleshooting
+		/// </summary>
+		public static readonly bool TroubleshootingMode = AppSwitch.GetAssemblySwitch(() => TroubleshootingMode);
+
+		/// <summary>
 		/// OPTIONAL: Set AssemblyWideConfig.IgnoreAnnotatedLimits=true in app.config
 		/// to enable ignoring existing limits on auto-annotation of benchmark methods
 		/// </summary>
-		public static readonly new bool IgnoreExistingAnnotations = AppSwitch.GetAssemblySwitch(() => IgnoreExistingAnnotations);
+		public static readonly new bool IgnoreExistingAnnotations =
+			AppSwitch.GetAssemblySwitch(() => IgnoreExistingAnnotations);
 
 		/// <summary>
 		/// OPTIONAL: Set AssemblyWideConfig.ReportWarningsAsErrors=true in app.config
@@ -36,37 +45,34 @@ namespace CodeJam
 		/// <summary>
 		/// Instance of the config
 		/// </summary>
-		public static ICompetitionConfig RunConfig => new AssemblyWideConfig(true);
+		public static ICompetitionConfig RunConfig => new AssemblyWideConfig();
+
+		private static readonly ILogger _detailedLogger = CreateDetailedLogger();
+		private static readonly ILogger _importantInfoLogger = CreateImportantInfoLogger();
 
 		/// <summary>
 		/// Constructor
 		/// </summary>
 		[UsedImplicitly]
-		public AssemblyWideConfig() : this(false) { }
+		public AssemblyWideConfig() : base(Create()) { }
 
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		public AssemblyWideConfig(bool asRunConfig): base(Create(asRunConfig))
+		private static ManualCompetitionConfig Create()
 		{
-		}
-
-		private static ManualCompetitionConfig Create(bool asRunConfig)
-		{
-			var result = new ManualCompetitionConfig();
-
-			if (asRunConfig)
-				result.Add(DefaultConfig.Instance);
-
-			result.Add(FastRunConfig.Instance);
-
-			result.RerunIfLimitsFailed = true;
-			result.ReportWarningsAsErrors = ReportWarningsAsErrors;
+			ManualCompetitionConfig result;
 			if (AnnotateOnRun)
 			{
-				result.IgnoreExistingAnnotations = IgnoreExistingAnnotations;
-				result.UpdateSourceAnnotations = true;
-				result.LogCompetitionLimits = true;
+				result = IgnoreExistingAnnotations ? CreateRunConfigReAnnotate() : CreateRunConfigAnnotate();
+			}
+			else
+			{
+				result = CreateRunConfig();
+			}
+
+			result.ReportWarningsAsErrors = ReportWarningsAsErrors;
+			if (TroubleshootingMode)
+			{
+				result.Add(TimingsExporter.Instance);
+				result.Add(_detailedLogger, _importantInfoLogger);
 			}
 
 			return result;

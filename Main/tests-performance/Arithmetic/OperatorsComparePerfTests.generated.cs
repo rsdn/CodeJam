@@ -18,15 +18,15 @@ using static CodeJam.AssemblyWideConfig;
 
 namespace CodeJam.Arithmetic
 {
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Operators<T>.Compare")]
+	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Operators<T>.Compare")]
 	[CompetitionMetadata("CodeJam.Arithmetic.OperatorsComparePerfTests.generated.xml")]
-	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 	public class OperatorsComparePerfTests
 	{
 		#region Compare
 		[Test]
 		public void RunIntCompareCase() =>
-			CompetitionBenchmarkRunner.Run<IntCompareCase>(RunConfig);
+			Competition.Run<IntCompareCase>(RunConfig);
 
 		public class IntCompareCase : IntOperatorsBaseCase
 		{
@@ -77,7 +77,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableIntCompareCase() =>
-			CompetitionBenchmarkRunner.Run<NullableIntCompareCase>(RunConfig);
+			Competition.Run<NullableIntCompareCase>(RunConfig);
 
 		public class NullableIntCompareCase : NullableIntOperatorsBaseCase
 		{
@@ -128,7 +128,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunEnumCompareCase() =>
-			CompetitionBenchmarkRunner.Run<EnumCompareCase>(RunConfig);
+			Competition.Run<EnumCompareCase>(RunConfig);
 
 		public class EnumCompareCase : EnumOperatorsBaseCase
 		{
@@ -179,7 +179,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableEnumCompareCase() =>
-			CompetitionBenchmarkRunner.Run<NullableEnumCompareCase>(RunConfig);
+			Competition.Run<NullableEnumCompareCase>(RunConfig);
 
 		public class NullableEnumCompareCase : NullableEnumOperatorsBaseCase
 		{
@@ -230,7 +230,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableDateTimeCompareCase() =>
-			CompetitionBenchmarkRunner.Run<NullableDateTimeCompareCase>(RunConfig);
+			Competition.Run<NullableDateTimeCompareCase>(RunConfig);
 
 		public class NullableDateTimeCompareCase : NullableDateTimeOperatorsBaseCase
 		{
@@ -281,7 +281,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunStringCompareCase() =>
-			CompetitionBenchmarkRunner.Run<StringCompareCase>(RunConfig);
+			Competition.Run<StringCompareCase>(RunConfig);
 
 		public class StringCompareCase : StringOperatorsBaseCase
 		{

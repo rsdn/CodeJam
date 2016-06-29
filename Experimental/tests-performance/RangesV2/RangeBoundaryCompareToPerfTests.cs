@@ -16,14 +16,14 @@ namespace CodeJam.RangesV2
 	/// Checks:
 	/// 1. Proofs that there's no way to make RangeBoundary (of T) faster.
 	/// </summary>
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Ranges")]
-	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Ranges")]
+	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 	[PublicAPI]
 	public class RangeBoundaryCompareToPerfTests
 	{
 		[Test]
 		public void RunIntRangeBoundaryCompareToCase() =>
-			CompetitionBenchmarkRunner.Run<IntRangeBoundaryCompareToCase>(RunConfig);
+			Competition.Run<IntRangeBoundaryCompareToCase>(RunConfig);
 
 		[PublicAPI]
 		public class IntRangeBoundaryCompareToCase : IntRangeBoundaryBaseCase
@@ -85,7 +85,7 @@ namespace CodeJam.RangesV2
 
 		[Test]
 		public void RunNullableIntRangeBoundaryCompareToCase() =>
-			CompetitionBenchmarkRunner.Run<NullableIntRangeBoundaryCompareToCase>(RunConfig);
+			Competition.Run<NullableIntRangeBoundaryCompareToCase>(RunConfig);
 
 		[PublicAPI]
 		public class NullableIntRangeBoundaryCompareToCase : NullableIntRangeBoundaryBaseCase

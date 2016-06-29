@@ -35,7 +35,7 @@
 #>
 		[Test]
 		public void Run<#=caseName#><#=operatorName#>Case() =>
-			CompetitionBenchmarkRunner.Run<<#=caseName#><#=operatorName#>Case>(RunConfig);
+			Competition.Run<<#=caseName#><#=operatorName#>Case>(RunConfig);
 
 		public class <#=caseName#><#=operatorName#>Case : <#=caseName#>OperatorsBaseCase
 		{
@@ -83,7 +83,7 @@
 #>
 		[Test]
 		public void Run<#=caseName#><#=operatorName#>Case() =>
-			CompetitionBenchmarkRunner.Run<<#=caseName#><#=operatorName#>Case>(RunConfig);
+			Competition.Run<<#=caseName#><#=operatorName#>Case>(RunConfig);
 
 		public class <#=caseName#><#=operatorName#>Case : <#=caseName#>OperatorsBaseCase
 		{

@@ -41,13 +41,13 @@ and one or more __competition methods__ (these should be marked with the `[Compe
 Each competition test should be run by its own __perftest runner method__. This one looks something alike
 ```
 		[Test]
-		public void RunCallCostPerfTests() => CompetitionBenchmarkRunner.Run(this, AssemblyWideConfig.RunConfig);
+		public void RunCallCostPerfTests() => Competition.Run(this, AssemblyWideConfig.RunConfig);
 ```
 or
 ```
 		[Test]
 		public void RunIsDefinedCase() =>
-			CompetitionBenchmarkRunner.Run<IsDefinedCase>(AssemblyWideConfig.RunConfig);
+			Competition.Run<IsDefinedCase>(AssemblyWideConfig.RunConfig);
 ```
 The first one covers the case when the test class contains only one perf test.
 In that case all competition methods are placed direcly in the perftest class after the test runner method.

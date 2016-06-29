@@ -175,22 +175,22 @@ namespace CodeJam.PerfTests.Running.Core
 			var criticalErrorMessages = GetMessageLines(
 				competitionState,
 				m => m.MessageSeverity > MessageSeverity.TestError, true);
-			bool hasCriticalMessages = criticalErrorMessages.Length > 0;
+			bool hasCriticalMessages = criticalErrorMessages.Any();
 
 			var testFailedMessages = GetMessageLines(
 				competitionState,
 				m => m.MessageSeverity == MessageSeverity.TestError, hasCriticalMessages);
-			bool hasTestFailedMessages = testFailedMessages.Length > 0;
+			bool hasTestFailedMessages = testFailedMessages.Any();
 
 			var warningMessages = GetMessageLines(
 				competitionState,
 				m => m.MessageSeverity == MessageSeverity.Warning, true);
-			bool hasWarnings = warningMessages.Length > 0;
+			bool hasWarnings = warningMessages.Any();
 
 			var infoMessages = GetMessageLines(
 				competitionState,
 				m => m.MessageSeverity < MessageSeverity.Warning, true);
-			bool hasInfo = infoMessages.Length > 0;
+			bool hasInfo = infoMessages.Any();
 
 			if (!(hasCriticalMessages || hasTestFailedMessages || hasWarnings))
 				return;
@@ -393,8 +393,7 @@ namespace CodeJam.PerfTests.Running.Core
 				? new CompetitionAnnotateAnalyser
 				{
 					PreviousRunLogUri = competitionConfig.PreviousRunLogUri,
-					AdditionalRerunsIfAnnotationsUpdated = competitionConfig.RerunIfLimitsFailed ? 2 : 0,
-					SkipAnnotationsUntilRun = competitionConfig.RerunIfLimitsFailed ? 1 : 0
+					AdditionalRerunsIfAnnotationsUpdated = competitionConfig.RerunIfLimitsFailed ? 2 : 0
 				}
 				: new CompetitionAnalyser();
 
