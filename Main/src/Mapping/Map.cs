@@ -39,6 +39,23 @@ namespace CodeJam.Mapping
 			if (setter == null) throw new ArgumentNullException(nameof(setter));
 			return new Mapper<TFrom, TTo>(setter(new MapperBuilder<TFrom, TTo>()));
 		}
+
+		private static class MapHolder<T>
+		{
+			public static readonly Mapper<T,T> Mapper =
+				GetMapper<T,T>(m => m
+					.SetProcessCrossReferences(true)
+					.SetDeepCopy(true));
+		}
+
+		/// <summary>
+		/// Performs deep copy.
+		/// </summary>
+		/// <param name="obj">An object to copy.</param>
+		/// <typeparam name="T">Type of object.</typeparam>
+		/// <returns>Created object.</returns>
+		[Pure]
+		public static T DeepCopy<T>(this T obj) => MapHolder<T>.Mapper.Map(obj);
 	}
 }
 #endif
