@@ -17,7 +17,7 @@ namespace CodeJam
 		private IntPtr _buffer;
 
 		/// <summary>
-		/// Default constructor, allocates memory with the size of <typeparam name="T"/>
+		/// Default constructor, allocates memory with the size of <typeparamref name="T"/>
 		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
 		public HGlobal() : this(Size) { }
@@ -81,7 +81,7 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Size of the of the generic parameter <typeparam name="T"/>.
+		/// Size of the of the generic parameter <typeparamref name="T"/>.
 		/// </summary>
 		private static readonly int Size = Marshal.SizeOf(typeof(T));
 	}
