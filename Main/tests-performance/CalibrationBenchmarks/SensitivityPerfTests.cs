@@ -47,7 +47,7 @@ namespace CodeJam
 			return a;
 		}
 
-		[CompetitionBenchmark(1.2, 2.0)]
+		[CompetitionBenchmark(1.2, 5.2)]
 		public int Test01PlusOne()
 		{
 			var a = 0;
