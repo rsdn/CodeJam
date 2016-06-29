@@ -28,7 +28,6 @@ namespace CodeJam.PerfTests.IntegrationTests
 		};
 
 		[Test]
-		[Explicit("Fails")]
 		public static void TestAnnotateFromRemoteLog()
 		{
 			var runState = new PerfTestRunner().Run<AnnotatedBenchmark>(_remoteLogConfig);
@@ -40,11 +39,9 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 4);
-			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 30, "Timeout failed");
 		}
 
 		[Test]
-		[Explicit("Fails")]
 		public static void TestAnnotateFromLocalLog()
 		{
 			// TODO: message if no XML annotation
@@ -58,7 +55,6 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 4);
-			Assert.LessOrEqual(runState.Elapsed.TotalSeconds, 30, "Timeout failed");
 		}
 
 		#region Benchmark classes

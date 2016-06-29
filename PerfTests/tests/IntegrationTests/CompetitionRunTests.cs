@@ -218,7 +218,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 				Delay(PerfTestCount);
 			}
 
-			[CompetitionBenchmark(5, 15)]
+			[CompetitionBenchmark(5, 20)]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
