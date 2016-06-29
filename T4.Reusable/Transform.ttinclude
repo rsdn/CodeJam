@@ -1,7 +1,9 @@
-﻿<#@ import namespace="System.IO" #>
+﻿<#@ template hostspecific="true"#>
+<#@ import namespace="System.IO" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Text.RegularExpressions" #><#+
 
+	// ReSharper disable UnusedMember.Local
 	private void Transform(string sourceFileName, ReplaceInfo[] additionalReplaces, params ReplaceInfo[] replaces)
 	{
 		var replaceList = new List<ReplaceInfo>(additionalReplaces);

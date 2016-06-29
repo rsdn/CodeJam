@@ -15,7 +15,7 @@ namespace CodeJam.Ranges
 #>
 }<#+
 
-	private void EmitForBoundary(string kind, OpInfo[] ops)
+	private void EmitForBoundary(string kind, IEnumerable<OpInfo> ops)
 	{
 #>
 	/// <summary>The <#=kind#> boundary of the range.</summary>
@@ -47,7 +47,7 @@ namespace CodeJam.Ranges
 	private void EmitEqualityOp(OpInfo op, string kind)
 	{
 		WriteRegionLine("Equality operators");
-		string notOp = op.Type == ExpressionType.NotEqual? "!" : "";
+		var notOp = op.Type == ExpressionType.NotEqual? "!" : "";
 #>
 		/// <summary>Implements the operator <#=op.Sign#>.</summary>
 		/// <param name="boundary1">The boundary1.</param>

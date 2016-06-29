@@ -326,7 +326,7 @@
       <DependentUpon>Compile.tt</DependentUpon>
     </None>
     <Compile Include="Reflection\ReflectionExtensions.CreateInstance.cs" />
-    <None Include="Ranges\RangesV2PlannedChanges.md" />
+    <None Include="Ranges\RangesPlannedChanges.md" />
     <None Include="Ranges\[Boundaries]\RangeBoundaryToReplacer.ttinclude" />
     <None Include="Ranges\[Ranges]\RangeWithTKeyReplacer.ttinclude" />
     <None Include="Strings\CharMethods.ttinclude" />

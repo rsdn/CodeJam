@@ -4,6 +4,7 @@ CodeJam 1.1.0-beta6 Release Notes
 What's new in 1.1.0-beta6
 -------------------------
 * HGlobal and HGlobal<T> helpers
+* Range struct with algorithms
 
 What's new in 1.1.0-beta5
 -------------------------
