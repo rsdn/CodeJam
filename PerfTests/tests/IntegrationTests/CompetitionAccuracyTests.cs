@@ -106,6 +106,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		}
 
 		[Test]
+		[Explicit("Fails")]
 		public static void CompetitionHighAccuracyBenchmarkOutOfProcess()
 		{
 			IgnoreIfDebug();

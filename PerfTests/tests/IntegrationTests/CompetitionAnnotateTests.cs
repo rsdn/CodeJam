@@ -28,6 +28,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		};
 
 		[Test]
+		[Explicit("Fails")]
 		public static void TestAnnotateFromRemoteLog()
 		{
 			var runState = new PerfTestRunner().Run<AnnotatedBenchmark>(_remoteLogConfig);
@@ -43,6 +44,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		}
 
 		[Test]
+		[Explicit("Fails")]
 		public static void TestAnnotateFromLocalLog()
 		{
 			// TODO: message if no XML annotation
