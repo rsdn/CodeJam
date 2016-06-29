@@ -76,80 +76,13 @@
     <Compile Include="Parsing\ParseHelper.cs" />
     <Compile Include="Parsing\PostfixUnaryOperator.cs" />
     <Compile Include="Parsing\PrefixUnaryOperator.cs" />
-    <Compile Include="RangesV2\Range.FactoryMethods.cs" />
-    <Compile Include="RangesV2\Range.FactoryMethods.generated.cs">
-      <DependentUpon>Range.FactoryMethods.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="RangesV2\[RangeExtensions]\RangeExtensions.ForRangeWithKey.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RangeExtensions.ForRangeWithKey.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RangesV2\[RangeExtensions]\RangeExtensions.ForRange.cs" />
-    <Compile Include="RangesV2\[Ranges]\Range`2.NonGenerated.cs" />
-    <Compile Include="RangesV2\[Ranges]\Range`2.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Range`2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RangesV2\[Boundaries]\RangeBoundaryFrom`1.cs" />
-    <Compile Include="RangesV2\[Boundaries]\RangeBoundaryTo`1.generated.cs">
-      <DependentUpon>RangeBoundaryTo`1.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="RangesV2\[Boundaries]\RangeBoundary.Operators.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RangeBoundary.Operators.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RangesV2\[Ranges]\IRangeFactory.cs" />
-    <Compile Include="RangesV2\[Ranges]\IRange`1.cs" />
-    <Compile Include="RangesV2\Range.cs" />
-    <Compile Include="RangesV2\RangeInternal.cs" />
-    <Compile Include="RangesV2\[RangeExtensions]\RangeExtensions.cs" />
-    <Compile Include="RangesV2\[Boundaries]\RangeBoundaryKind.cs" />
-    <Compile Include="RangesV2\[Ranges]\Range`1.NonGenerated.cs" />
-    <Compile Include="RangesV2\[Ranges]\Range`1.cs" />
-    <Compile Include="Ranges\ImmutableRangeList.cs" />
-    <Compile Include="Ranges\ImmutableRangeListExtensions.cs" />
-    <Compile Include="Ranges\Range%271.cs" />
-    <Compile Include="Ranges\Range.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ranges\RangeOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj">
       <Project>{2f2046cc-fb47-4318-b335-5a82b04b6c40}</Project>
       <Name>CodeJam.Main</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="RangesV2\RangesV2PlannedChanges.md" />
-    <None Include="RangesV2\[Ranges]\RangeWithTKeyReplacer.ttinclude" />
-    <None Include="RangesV2\[Boundaries]\RangeBoundaryToReplacer.ttinclude" />
-    <Content Include="RangesV2\Range.FactoryMethods.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Range.FactoryMethods.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="RangesV2\[RangeExtensions]\RangeExtensions.ForRangeWithKey.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RangeExtensions.ForRangeWithKey.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="RangesV2\[Ranges]\Range`2.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Range`2.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="RangesV2\[Boundaries]\RangeBoundaryTo`1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RangeBoundaryTo`1.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="RangesV2\[Boundaries]\RangeBoundary.Operators.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RangeBoundary.Operators.generated.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

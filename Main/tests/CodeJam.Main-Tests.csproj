@@ -93,6 +93,20 @@
     <Compile Include="Mapping\MappingSchemaTests.cs" />
     <Compile Include="Metadata\AttributeReaderTests.cs" />
     <Compile Include="Metadata\XmlReaderTests.cs" />
+    <Compile Include="Ranges\RangeBoundaryFromTests.cs" />
+    <Compile Include="Ranges\RangeBoundaryFromToTests.cs" />
+    <Compile Include="Ranges\RangeBoundaryToTests.generated.cs">
+      <DependentUpon>RangeBoundaryToTests.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ranges\RangeTests.cs" />
+    <Compile Include="Ranges\RangeTests.Extensions.cs" />
+    <Compile Include="Ranges\RangeTests.ExtensionsWithKey.generated.cs">
+      <DependentUpon>RangeTests.ExtensionsWithKey.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reflection\AssemblyExtensionsTest.cs" />
     <Compile Include="Reflection\CreateInstanceTests.cs" />
     <Compile Include="Expressions\ExprTests.cs" />
@@ -128,6 +142,14 @@
     <Content Include="Collections\MinMaxByTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MinMaxByTests.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Ranges\RangeBoundaryToTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RangeBoundaryToTests.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Ranges\RangeTests.ExtensionsWithKey.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RangeTests.ExtensionsWithKey.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Threading\InterlockedOperationsTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

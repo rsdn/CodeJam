@@ -1,0 +1,5 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ include file="$(SolutionDir)Main\src\Ranges\[Boundaries]\RangeBoundaryToReplacer.ttinclude" #>
+<#
+	Run();
+#>

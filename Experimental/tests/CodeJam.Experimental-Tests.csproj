@@ -54,22 +54,6 @@
     <Compile Include="Collections\SuffixTreeTest.cs" />
     <Compile Include="Collections\SuffixTreeNaiveTest.cs" />
     <Compile Include="Parsing\ParseHelperTests.cs" />
-    <Compile Include="RangesV2\RangeTests.ExtensionsWithKey.generated.cs">
-      <DependentUpon>RangeTests.ExtensionsWithKey.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="RangesV2\RangeTests.Extensions.cs" />
-    <Compile Include="RangesV2\RangeTests.cs" />
-    <Compile Include="RangesV2\RangeBoundaryFromToTests.cs" />
-    <Compile Include="RangesV2\RangeBoundaryFromTests.cs" />
-    <Compile Include="RangesV2\RangeBoundaryToTests.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RangeBoundaryToTests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Ranges\ImmutableRangeListTests.cs" />
-    <Compile Include="Ranges\RangeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -85,16 +69,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="RangesV2\RangeTests.ExtensionsWithKey.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RangeTests.ExtensionsWithKey.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="RangesV2\RangeBoundaryToTests.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RangeBoundaryToTests.generated.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

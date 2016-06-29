@@ -104,6 +104,12 @@
     <Compile Include="Enums\EnumHelperPerfTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RangesAlternatives\RangeAlternatives.cs" />
+    <Compile Include="RangesAlternatives\RangeAlternativesPerfTests.cs" />
+    <Compile Include="RangesAlternatives\RangeAlternativesUnionPerfTests.cs" />
+    <Compile Include="Ranges\RangeBoundaryBaseCase.cs" />
+    <Compile Include="Ranges\RangeBoundaryCompareToPerfTests.cs" />
+    <Compile Include="Ranges\RangeBoundaryFactoryPerfTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PerfTests\src\CodeJam.PerfTests.csproj">
