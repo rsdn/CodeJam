@@ -24,7 +24,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 
 		/// <summary>Initializes a new instance of the <see cref="InProcessToolchain"/> class.</summary>
 		/// <param name="logOutput"><c>true</c> if the output should be logged.</param>
-		public InProcessToolchain(bool logOutput)
+		private InProcessToolchain(bool logOutput)
 		{
 			Generator = new InProcessGenerator();
 			Builder = new InProcessBuilder();

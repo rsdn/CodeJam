@@ -18,15 +18,15 @@ using static CodeJam.AssemblyWideConfig;
 
 namespace CodeJam.Arithmetic
 {
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Operators<T>, equality")]
+	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Operators<T>, equality")]
 	[CompetitionMetadata("CodeJam.Arithmetic.OperatorsEqualityPerfTests.generated.xml")]
-	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 	public class OperatorsEqualityPerfTests
 	{
 		#region AreEqual
 		[Test]
 		public void RunIntAreEqualCase() =>
-			CompetitionBenchmarkRunner.Run<IntAreEqualCase>(RunConfig);
+			Competition.Run<IntAreEqualCase>(RunConfig);
 
 		public class IntAreEqualCase : IntOperatorsBaseCase
 		{
@@ -87,7 +87,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableIntAreEqualCase() =>
-			CompetitionBenchmarkRunner.Run<NullableIntAreEqualCase>(RunConfig);
+			Competition.Run<NullableIntAreEqualCase>(RunConfig);
 
 		public class NullableIntAreEqualCase : NullableIntOperatorsBaseCase
 		{
@@ -148,7 +148,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunEnumAreEqualCase() =>
-			CompetitionBenchmarkRunner.Run<EnumAreEqualCase>(RunConfig);
+			Competition.Run<EnumAreEqualCase>(RunConfig);
 
 		public class EnumAreEqualCase : EnumOperatorsBaseCase
 		{
@@ -209,7 +209,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableEnumAreEqualCase() =>
-			CompetitionBenchmarkRunner.Run<NullableEnumAreEqualCase>(RunConfig);
+			Competition.Run<NullableEnumAreEqualCase>(RunConfig);
 
 		public class NullableEnumAreEqualCase : NullableEnumOperatorsBaseCase
 		{
@@ -270,7 +270,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableDateTimeAreEqualCase() =>
-			CompetitionBenchmarkRunner.Run<NullableDateTimeAreEqualCase>(RunConfig);
+			Competition.Run<NullableDateTimeAreEqualCase>(RunConfig);
 
 		public class NullableDateTimeAreEqualCase : NullableDateTimeOperatorsBaseCase
 		{
@@ -331,7 +331,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunStringAreEqualCase() =>
-			CompetitionBenchmarkRunner.Run<StringAreEqualCase>(RunConfig);
+			Competition.Run<StringAreEqualCase>(RunConfig);
 
 		public class StringAreEqualCase : StringOperatorsBaseCase
 		{
@@ -394,7 +394,7 @@ namespace CodeJam.Arithmetic
 		#region AreNotEqual
 		[Test]
 		public void RunIntAreNotEqualCase() =>
-			CompetitionBenchmarkRunner.Run<IntAreNotEqualCase>(RunConfig);
+			Competition.Run<IntAreNotEqualCase>(RunConfig);
 
 		public class IntAreNotEqualCase : IntOperatorsBaseCase
 		{
@@ -455,7 +455,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableIntAreNotEqualCase() =>
-			CompetitionBenchmarkRunner.Run<NullableIntAreNotEqualCase>(RunConfig);
+			Competition.Run<NullableIntAreNotEqualCase>(RunConfig);
 
 		public class NullableIntAreNotEqualCase : NullableIntOperatorsBaseCase
 		{
@@ -516,7 +516,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunEnumAreNotEqualCase() =>
-			CompetitionBenchmarkRunner.Run<EnumAreNotEqualCase>(RunConfig);
+			Competition.Run<EnumAreNotEqualCase>(RunConfig);
 
 		public class EnumAreNotEqualCase : EnumOperatorsBaseCase
 		{
@@ -577,7 +577,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableEnumAreNotEqualCase() =>
-			CompetitionBenchmarkRunner.Run<NullableEnumAreNotEqualCase>(RunConfig);
+			Competition.Run<NullableEnumAreNotEqualCase>(RunConfig);
 
 		public class NullableEnumAreNotEqualCase : NullableEnumOperatorsBaseCase
 		{
@@ -638,7 +638,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableDateTimeAreNotEqualCase() =>
-			CompetitionBenchmarkRunner.Run<NullableDateTimeAreNotEqualCase>(RunConfig);
+			Competition.Run<NullableDateTimeAreNotEqualCase>(RunConfig);
 
 		public class NullableDateTimeAreNotEqualCase : NullableDateTimeOperatorsBaseCase
 		{
@@ -699,7 +699,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunStringAreNotEqualCase() =>
-			CompetitionBenchmarkRunner.Run<StringAreNotEqualCase>(RunConfig);
+			Competition.Run<StringAreNotEqualCase>(RunConfig);
 
 		public class StringAreNotEqualCase : StringOperatorsBaseCase
 		{

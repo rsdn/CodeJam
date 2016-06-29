@@ -14,8 +14,8 @@ namespace CodeJam.Assertions
 	/// Checks:
 	/// 1. Heavy DebugCode assertions has no impact on release build
 	/// </summary>
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory)]
-	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+	[TestFixture(Category = CompetitionHelpers.PerfTestCategory)]
+	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 	[PublicAPI]
 	public class DebugCodePerfTests
 	{
@@ -24,7 +24,7 @@ namespace CodeJam.Assertions
 
 		[Test]
 		public void RunDebugCodePerfTests() =>
-			CompetitionBenchmarkRunner.Run(this, RunConfig);
+			Competition.Run(this, RunConfig);
 
 		[CompetitionBaseline]
 		public string Test00RunWithoutAssertion()

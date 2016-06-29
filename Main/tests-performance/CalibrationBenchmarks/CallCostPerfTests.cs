@@ -15,7 +15,7 @@ namespace CodeJam
 	/// <summary>
 	/// Estimates average cost of calls
 	/// </summary>
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
+	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Self-testing")]
 	[SuppressMessage("ReSharper", "AccessToModifiedClosure")]
 	[SuppressMessage("ReSharper", "ClassCanBeSealed.Local")]
 	[SuppressMessage("ReSharper", "ConvertMethodToExpressionBody")]
@@ -25,7 +25,7 @@ namespace CodeJam
 	[SuppressMessage("ReSharper", "SuggestVarOrType_SimpleTypes")]
 	[SuppressMessage("ReSharper", "UnusedTypeParameter")]
 	// WAITINGFOR: https://github.com/PerfDotNet/BenchmarkDotNet/issues/126.
-	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 	[PublicAPI]
 	public class CallCostPerfTests
 	{
@@ -114,7 +114,7 @@ namespace CodeJam
 
 		[Test]
 		public void RunCallCostPerfTests() =>
-			CompetitionBenchmarkRunner.Run(this, RunConfig);
+			Competition.Run(this, RunConfig);
 
 		[CompetitionBaseline]
 		public int Test00Raw()

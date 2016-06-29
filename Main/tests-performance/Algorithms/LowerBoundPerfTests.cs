@@ -12,8 +12,8 @@ using NUnit.Framework;
 
 namespace CodeJam.Algorithms
 {
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory)]
-	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+	[TestFixture(Category = CompetitionHelpers.PerfTestCategory)]
+	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 	[PublicAPI]
 	public class LowerBoundPerfTests
 	{
@@ -81,7 +81,7 @@ namespace CodeJam.Algorithms
 		public int Count { get; set; }
 
 		[Test]
-		public void RunLowerBoundPerfTests() => CompetitionBenchmarkRunner.Run(this, AssemblyWideConfig.RunConfig);
+		public void RunLowerBoundPerfTests() => Competition.Run(this, AssemblyWideConfig.RunConfig);
 
 		[CompetitionBaseline]
 		public void Test00IComparable()

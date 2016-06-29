@@ -11,7 +11,7 @@ namespace CodeJam.PerfTests
 {
 	/// <summary>NUnit runner for competition performance tests.</summary>
 	[PublicAPI]
-	public static class CompetitionBenchmarkRunner
+	public static class Competition
 	{
 		/// <summary>Runs the benchmark.</summary>
 		/// <typeparam name="T">Benchmark class to run.</typeparam>
@@ -37,7 +37,7 @@ namespace CodeJam.PerfTests
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>The summary for the last completed run.</returns>
 		[CanBeNull]
-		public static Summary RunCompetition(
+		private static Summary RunCompetition(
 			[NotNull] Type benchmarkType,
 			[CanBeNull] ICompetitionConfig competitionConfig)
 		{

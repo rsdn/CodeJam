@@ -13,7 +13,7 @@ namespace CodeJam
 	/// <summary>
 	/// Proof test: JIT optimizations on handwritten method dispatching
 	/// </summary>
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
+	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Self-testing")]
 	public class JitOptimizedDispatchPerfTests
 	{
 		// Use case:
@@ -120,8 +120,8 @@ namespace CodeJam
 		private const int Count = 1000 * 1000;
 
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
-		public void RunJitOptimizedDispatchPerfTests() => CompetitionBenchmarkRunner.Run(this, RunConfig);
+		[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
+		public void RunJitOptimizedDispatchPerfTests() => Competition.Run(this, RunConfig);
 
 		[CompetitionBaseline]
 		public int Test00Baseline()

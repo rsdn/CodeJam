@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8EDF4429-251A-416D-BB68-93F227191BCF}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CodeJam</RootNamespace>
     <AssemblyName>CodeJam-Tests.Performance</AssemblyName>
@@ -93,7 +93,6 @@
     <Compile Include="Assertions\DebugCodePerfTests.cs" />
     <Compile Include="CalibrationBenchmarks\AggressiveInliningPerfTests.cs" />
     <Compile Include="CalibrationBenchmarks\JitOptimizedFeatureSwitchPerfTests.cs" />
-    <Compile Include="PerfTestsConstants.cs" />
     <Compile Include="CalibrationBenchmarks\NestedStructAccessPerfTests.cs" />
     <Compile Include="CalibrationBenchmarks\CallCostPerfTests.cs" />
     <Compile Include="CalibrationBenchmarks\CallCostParamsPerfTests.cs" />
@@ -102,7 +101,6 @@
     <Compile Include="CalibrationBenchmarks\OpsCountNotSensitivePerfTests.cs" />
     <Compile Include="CalibrationBenchmarks\SensitivityPerfTests.cs" />
     <Compile Include="Enums\EnumHelperPerfTests.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangesAlternatives\RangeAlternatives.cs" />
     <Compile Include="RangesAlternatives\RangeAlternativesPerfTests.cs" />
@@ -158,7 +156,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CodeJam-Tests.Performance.exe.config">
+    <None Include="CodeJam-Tests.Performance.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

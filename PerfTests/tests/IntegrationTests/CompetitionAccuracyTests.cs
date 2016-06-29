@@ -155,42 +155,42 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		public class HighAccuracyBenchmark
 		{
-			const int Count = 20 * 1000;
+			private const int Count = 4 * CompetitionHelpers.DefaultCount;
 
 			[CompetitionBaseline]
-			public void Baseline() => Thread.SpinWait(Count);
+			public void Baseline() => CompetitionHelpers.Delay(Count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run1() => Thread.SpinWait(2 * Count);
+			public void SlowerX2Run1() => CompetitionHelpers.Delay(2 * Count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run2() => Thread.SpinWait(2 * Count);
+			public void SlowerX2Run2() => CompetitionHelpers.Delay(2 * Count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run3() => Thread.SpinWait(2 * Count);
+			public void SlowerX2Run3() => CompetitionHelpers.Delay(2 * Count);
 
 			[CompetitionBenchmark(4.65, 5.35)]
-			public void SlowerX5() => Thread.SpinWait(5 * Count);
+			public void SlowerX5() => CompetitionHelpers.Delay(5 * Count);
 		}
 
 		public class HighAccuracyBenchmarkOutOfProcess
 		{
-			const int Count = 20 * 1000;
+			private const int Count = CompetitionHelpers.DefaultCount;
 
 			[CompetitionBaseline]
-			public void Baseline() => Thread.SpinWait(Count);
+			public void Baseline() => CompetitionHelpers.Delay(Count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run1() => Thread.SpinWait(2 * Count);
+			public void SlowerX2Run1() => CompetitionHelpers.Delay(2 * Count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run2() => Thread.SpinWait(2 * Count);
+			public void SlowerX2Run2() => CompetitionHelpers.Delay(2 * Count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run3() => Thread.SpinWait(2 * Count);
+			public void SlowerX2Run3() => CompetitionHelpers.Delay(2 * Count);
 
 			[CompetitionBenchmark(4.65, 5.35)]
-			public void SlowerX5() => Thread.SpinWait(5 * Count);
+			public void SlowerX5() => CompetitionHelpers.Delay(5 * Count);
 		}
 		#endregion
 	}

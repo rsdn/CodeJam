@@ -8,24 +8,11 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
 ## TODO:
- * .Any() vs > 0 - same style everywhere.
- * LoggedXmlAnnotations etc - memoise???
- * Instances - private .ctor?
- * Logging: messages -> log writes (e.g for xml doc dowloading).
- * BUG: no output for RunSensitivityPerfTests
- * Annotations exporter?
  * Tests for broken log annotations.
  * Logging: write validator messages immediately?
- * Naming: Annotations <> Limits?
- * Naming: Annotate <> Adjust?
- * Naming: Runs -> Reruns?
  * ability to pass ICompetitionConfig via attrubute?
- * validate summary after run
  * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion
  * Memory limits + diagnoser - whoops, https://github.com/PerfDotNet/BenchmarkDotNet/issues/200 . Will need to replace MethodInvoker, delayed.
- * validate culture usage
- * validate null values on percentiles
- * Tests!!!!
 
 ## layered design: Bench.NET part
 

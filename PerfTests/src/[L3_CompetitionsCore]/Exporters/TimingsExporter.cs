@@ -21,6 +21,10 @@ namespace CodeJam.PerfTests.Exporters
 		/// <summary>The default instance of the exporter.</summary>
 		public static readonly TimingsExporter Instance = new TimingsExporter();
 
+		/// <summary>Prevents a default instance of the <see cref="TimingsExporter"/> class from being created.</summary>
+		private TimingsExporter()
+		{ }
+
 		/// <summary>File extension.</summary>
 		/// <value>The file extension.</value>
 		protected override string FileExtension => "csv";

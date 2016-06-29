@@ -14,6 +14,11 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 		/// <summary>The default instance of <see cref="ConfidenceIntervalLimitProvider"/></summary>
 		public static readonly ICompetitionLimitProvider Instance = new ConfidenceIntervalLimitProvider();
 
+		/// <summary>
+		/// Prevents a default instance of the <see cref="ConfidenceIntervalLimitProvider"/> class from being created.
+		/// </summary>
+		private ConfidenceIntervalLimitProvider() { }
+
 		/// <summary>Short description for the provider.</summary>
 		/// <value>The short description for the provider.</value>
 		public override string ShortInfo => "CI";

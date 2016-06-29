@@ -198,14 +198,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Benchmark1()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(PerfTestCount);
+				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
 			}
 
 			[CompetitionBenchmark(DoesNotCompete = true)]
 			public void Benchmark2()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(PerfTestCount);
+				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
 			}
 		}
 
@@ -215,40 +215,40 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(PerfTestCount);
+				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
 			}
 
 			[CompetitionBenchmark(5, 20)]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(10 * PerfTestCount);
+				CompetitionHelpers.Delay(10 * CompetitionHelpers.DefaultCount);
 			}
 		}
 
 		[CompetitionMetadata(
-			"CodeJam.PerfTests.Assets.CompetitionTests.xml",
-			MetadataResourcePath = @"..\Assets\CompetitionTests.xml")]
+			"CodeJam.PerfTests.Assets.CompetitionRunTests.xml",
+			MetadataResourcePath = @"..\Assets\CompetitionRunTests.xml")]
 		public class XmlOkBenchmark
 		{
 			[CompetitionBaseline]
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(PerfTestCount);
+				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
 			}
 
 			[CompetitionBenchmark]
 			public void SlowerX20()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(20 * PerfTestCount);
+				CompetitionHelpers.Delay(20 * CompetitionHelpers.DefaultCount);
 			}
 		}
 
 		[CompetitionMetadata(
-			"CodeJam.PerfTests.Assets.CompetitionTests.xml",
-			MetadataResourcePath = @"..\Assets\CompetitionTests.xml",
+			"CodeJam.PerfTests.Assets.CompetitionRunTests.xml",
+			MetadataResourcePath = @"..\Assets\CompetitionRunTests.xml",
 			UseFullTypeName = true)]
 		public class XmlFullAnnotationBenchmark
 		{
@@ -256,14 +256,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(PerfTestCount);
+				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
 			}
 
 			[CompetitionBenchmark]
 			public void SlowerX20()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(20 * PerfTestCount);
+				CompetitionHelpers.Delay(20 * CompetitionHelpers.DefaultCount);
 			}
 		}
 
@@ -282,14 +282,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(PerfTestCount);
+				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
 			}
 
 			[CompetitionBenchmark(1, 1)]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Delay(10 * PerfTestCount);
+				CompetitionHelpers.Delay(10 * CompetitionHelpers.DefaultCount);
 			}
 		}
 		#endregion

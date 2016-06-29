@@ -12,8 +12,8 @@ namespace CodeJam
 	/// <summary>
 	/// Estimates average cost of params calls
 	/// </summary>
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
-	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Self-testing")]
+	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 	public class CallCostParamsPerfTests
 	{
 		#region PerfTest helpers
@@ -40,7 +40,7 @@ namespace CodeJam
 
 		[Test]
 		public void RunCallCostParamsPerfTests() =>
-			CompetitionBenchmarkRunner.Run(this, RunConfig);
+			Competition.Run(this, RunConfig);
 
 		[CompetitionBaseline]
 		public int Test00CallBaseline()

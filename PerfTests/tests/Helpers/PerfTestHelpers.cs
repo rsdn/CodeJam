@@ -1,8 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
 
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Helpers;
@@ -11,26 +9,21 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Toolchains.InProcess;
 
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Loggers;
 
 using JetBrains.Annotations;
 
 using NUnit.Framework;
+
+using static CodeJam.PerfTests.CompetitionHelpers;
 
 namespace CodeJam.PerfTests
 {
 	[PublicAPI]
 	public static class PerfTestHelpers
 	{
-		#region Benchmark-related
-		public const int PerfTestCount = 10 * 1000;
-
-		public static readonly bool RunUnderNUnit = TestContext.CurrentContext.WorkDirectory != null;
-
+		#region Benchmark tests-related
 		// Jitting = 1, WarmupCount = 2, TargetCount = 2
 		public const int ExpectedSelfTestRunCount = 5;
-
-		public static void Delay(int cycles) => Thread.SpinWait(cycles);
 
 		public static void IgnoreIfDebug()
 		{
@@ -43,26 +36,9 @@ namespace CodeJam.PerfTests
 		#endregion
 
 		#region Configs core
-		private static readonly string _assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+		private static readonly ILogger _detailedLogger = CreateDetailedLogger();
 
-		private static readonly ILogger _detailedLogger =
-			new FlushableStreamLogger(
-				GetLogPath(_assemblyName + ".AllPerfTests.log"),
-				false);
-
-		private static readonly ILogger _importantInfoLogger =
-			new HostLogger(
-				new FlushableStreamLogger(
-					GetLogPath(_assemblyName + ".Short.AllPerfTests.log"),
-					false),
-				HostLogMode.PrefixedOnly);
-
-		private static string GetLogPath(string fileName) =>
-			Path.Combine(
-				RunUnderNUnit
-					? TestContext.CurrentContext.TestDirectory
-					: Path.GetTempPath(),
-				fileName);
+		private static readonly ILogger _importantInfoLogger = CreateImportantInfoLogger();
 
 		private static ManualCompetitionConfig CreateRunConfigCore()
 		{

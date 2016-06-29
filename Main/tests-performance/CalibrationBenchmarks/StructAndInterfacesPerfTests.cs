@@ -14,8 +14,8 @@ namespace CodeJam
 	/// Used as a proof that the fluent API via extension methods will be effective enough
 	/// to see what I'm talking about: https://blogs.msdn.microsoft.com/alexj/2009/07/31/another-c-trick-fluents-inheritance-and-extension-methods/
 	/// </summary>
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Self-testing")]
-	[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Self-testing")]
+	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 	public class StructAndInterfacesPerfTests
 	{
 		#region PerfTest helpers
@@ -48,7 +48,7 @@ namespace CodeJam
 
 		[Test]
 		public void RunStructAndInterfacesPerfTests() =>
-			CompetitionBenchmarkRunner.Run(this, RunConfig);
+			Competition.Run(this, RunConfig);
 
 		[CompetitionBaseline]
 		public int Test00Baseline()

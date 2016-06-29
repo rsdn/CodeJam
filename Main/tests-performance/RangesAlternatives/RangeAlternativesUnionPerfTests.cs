@@ -16,15 +16,15 @@ namespace CodeJam.RangesAlternatives
 	/// <summary>
 	/// Test to choose valid Range(of T) implementation.
 	/// </summary>
-	[TestFixture(Category = PerfTestsConstants.PerfTestCategory + ": Ranges")]
+	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Ranges")]
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "PassStringInterpolation")]
 	public class RangeAlternativesUnionPerfTests
 	{
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+		[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 		public void RunRangeUnionIntCase() =>
-			CompetitionBenchmarkRunner.Run<RangeUnionIntCase>(RunConfig);
+			Competition.Run<RangeUnionIntCase>(RunConfig);
 
 		[PublicAPI]
 		public class RangeUnionIntCase
@@ -124,9 +124,9 @@ namespace CodeJam.RangesAlternatives
 		}
 
 		[Test]
-		[Explicit(PerfTestsConstants.ExplicitExcludeReason)]
+		[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 		public void RunRangeUnionNullableIntCase() =>
-			CompetitionBenchmarkRunner.Run<RangeUnionNIntCase>(RunConfig);
+			Competition.Run<RangeUnionNIntCase>(RunConfig);
 
 		[PublicAPI]
 		public class RangeUnionNIntCase

@@ -61,10 +61,10 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public class AnnotatedBenchmark
 		{
 			[CompetitionBaseline]
-			public void Baseline() => Delay(PerfTestCount);
+			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
 
 			[CompetitionBenchmark(10.00, 30.00)]
-			public void SlowerX20() => Delay(20 * PerfTestCount);
+			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.DefaultCount);
 		}
 		#endregion
 	}
