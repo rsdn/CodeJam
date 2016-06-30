@@ -22,20 +22,20 @@
 	<files>
 		<file src="Readme.txt"                              target="" />
 
-		<file src="..\Main\src\bin\Release.3.5\CodeJam.dll" target="lib\net35" />
-		<file src="..\Main\src\bin\Release.3.5\CodeJam.pdb" target="lib\net35" />
-		<file src="..\Main\src\bin\Release.3.5\CodeJam.xml" target="lib\net35" />
+		<file src="..\src\bin\Release.3.5\CodeJam.dll" target="lib\net35" />
+		<file src="..\src\bin\Release.3.5\CodeJam.pdb" target="lib\net35" />
+		<file src="..\src\bin\Release.3.5\CodeJam.xml" target="lib\net35" />
 
-		<file src="..\Main\src\bin\Release.4.0\CodeJam.dll" target="lib\net40" />
-		<file src="..\Main\src\bin\Release.4.0\CodeJam.pdb" target="lib\net40" />
-		<file src="..\Main\src\bin\Release.4.0\CodeJam.xml" target="lib\net40" />
+		<file src="..\src\bin\Release.4.0\CodeJam.dll" target="lib\net40" />
+		<file src="..\src\bin\Release.4.0\CodeJam.pdb" target="lib\net40" />
+		<file src="..\src\bin\Release.4.0\CodeJam.xml" target="lib\net40" />
 
-		<file src="..\Main\src\bin\Release.4.5\CodeJam.dll" target="lib\net45" />
-		<file src="..\Main\src\bin\Release.4.5\CodeJam.pdb" target="lib\net45" />
-		<file src="..\Main\src\bin\Release.4.5\CodeJam.xml" target="lib\net45" />
+		<file src="..\src\bin\Release.4.5\CodeJam.dll" target="lib\net45" />
+		<file src="..\src\bin\Release.4.5\CodeJam.pdb" target="lib\net45" />
+		<file src="..\src\bin\Release.4.5\CodeJam.xml" target="lib\net45" />
 
-		<file src="..\Main\src\bin\Release.4.6\CodeJam.dll" target="lib\net46" />
-		<file src="..\Main\src\bin\Release.4.6\CodeJam.pdb" target="lib\net46" />
-		<file src="..\Main\src\bin\Release.4.6\CodeJam.xml" target="lib\net46" />
+		<file src="..\src\bin\Release.4.6\CodeJam.dll" target="lib\net46" />
+		<file src="..\src\bin\Release.4.6\CodeJam.pdb" target="lib\net46" />
+		<file src="..\src\bin\Release.4.6\CodeJam.xml" target="lib\net46" />
 	</files>
 </package>

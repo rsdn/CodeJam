@@ -11,7 +11,7 @@
     <files>
 			<file src="Readme.txt"                              target="" />
 
-			<file src="..\Experimental\src\bin\Release\CodeJam.Experimental.dll" target="lib\net45" />
-			<file src="..\Experimental\src\bin\Release\CodeJam.Experimental.pdb" target="lib\net45" />
+			<file src="..\src\bin\Release\CodeJam.Experimental.dll" target="lib\net45" />
+			<file src="..\src\bin\Release\CodeJam.Experimental.pdb" target="lib\net45" />
     </files>
 </package>

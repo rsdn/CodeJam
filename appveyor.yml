@@ -36,8 +36,8 @@ after_build:
 - cmd: cd Main\src
 - cmd: Compile.cmd
 - cmd: cd ..\..
-- ps: nuget pack Nuget\CodeJam.Main.nuspec -version "$env:nugetVersion"
-- ps: nuget pack Nuget\CodeJam.Experimental.nuspec -version "$env:nugetVersion"
+- ps: nuget pack Main\nuget\CodeJam.Main.nuspec -version "$env:nugetVersion"
+- ps: nuget pack Experimental\nuget\CodeJam.Experimental.nuspec -version "$env:nugetVersion"
 - ps: Push-AppveyorArtifact CodeJam.$env:nugetVersion.nupkg
 - ps: Push-AppveyorArtifact CodeJam.Experimental.$env:nugetVersion.nupkg
 
