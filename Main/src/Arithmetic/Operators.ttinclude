@@ -5,7 +5,7 @@
 		new []
 		{
 			new OpInfo("UnaryMinus", "-", ExpressionType.Negate),
-			new OpInfo("OnesComplement", "~", ExpressionType.Not),
+			new OpInfo("OnesComplement", "~", ExpressionType.OnesComplement),
 
 			new OpInfo("AreEqual", "==", ExpressionType.Equal),
 			new OpInfo("AreNotEqual", "!=", ExpressionType.NotEqual),

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Threading;
 
 using JetBrains.Annotations;
@@ -24,7 +25,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, int> Compare => _compare.Value;
 
-#region Infinity values
+		#region Infinity values
 		private static readonly Lazy<bool> _hasNegativeInfinity =
 			new Lazy<bool>(OperatorsFactory.HasNegativeInfinity<T>, _lazyMode);
 
@@ -58,6 +59,21 @@ namespace CodeJam.Arithmetic
 		/// </summary>
 		[NotNull]
 		public static T PositiveInfinity => _positiveInfinity.Value;
-#endregion
+		#endregion
+
+		#region Custom impl for _onesComplement (FW 3.5 targeting)
+		/// <summary>OnesComplement operator factory.</summary>
+		private static readonly Lazy<Func<T, T>> _onesComplement =
+#if FW35
+			new Lazy<Func<T, T>>(() => OperatorsFactory.UnaryOperator<T>(ExpressionType.Not), _lazyMode);
+#else
+			new Lazy<Func<T, T>>(() => OperatorsFactory.UnaryOperator<T>(ExpressionType.OnesComplement), _lazyMode);
+#endif
+
+		/// <summary>OnesComplement operator.</summary>
+		/// <value>The OnesComplement operator.</value>
+		[NotNull]
+		public static Func<T, T> OnesComplement => _onesComplement.Value;
+		#endregion
 	}
 }

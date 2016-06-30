@@ -32,14 +32,6 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T> UnaryMinus => _unaryMinus.Value;
 
-		/// <summary>OnesComplement operator factory.</summary>
-		private static readonly Lazy<Func<T, T>> _onesComplement =
-			new Lazy<Func<T, T>>(() => UnaryOperator<T>(ExpressionType.Not), _lazyMode);
-
-		/// <summary>OnesComplement operator.</summary>
-		/// <value>The OnesComplement operator.</value>
-		[NotNull]
-		public static Func<T, T> OnesComplement => _onesComplement.Value;
 		#endregion
 
 		#region Comparison

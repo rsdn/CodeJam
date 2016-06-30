@@ -41,6 +41,8 @@ namespace CodeJam.Arithmetic
 
 	private void EmitUnary(OpInfo op)
 	{
+		if (op.Type == ExpressionType.OnesComplement)
+			return;
 #>
 		/// <summary><#=op.Name#> operator factory.</summary>
 		private static readonly Lazy<Func<T, T>> _<#=op.LowerName#> =
