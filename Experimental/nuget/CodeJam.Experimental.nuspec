@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-    <metadata>
-        <id>CodeJam.Experimental</id>
-        <version>1.0.0</version>
-        <title>CodeJam .NET library - experimental part</title>
-        <authors>andrewvk</authors>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>CodeJam .NET library - experimental part</description>
-    </metadata>
-    <files>
-			<file src="Readme.txt"                              target="" />
 
-			<file src="..\src\bin\Release\CodeJam.Experimental.dll" target="lib\net45" />
-			<file src="..\src\bin\Release\CodeJam.Experimental.pdb" target="lib\net45" />
-    </files>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<id>CodeJam.Experimental</id>
+		<version>1.0.0</version>
+		<title>CodeJam .NET library - experimental part</title>
+		<authors>andrewvk</authors>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>CodeJam .NET library - experimental part</description>
+	</metadata>
+	<files>
+		<file src="Readme.txt" target="" />
+
+		<file src="..\src\bin\Release\CodeJam.Experimental.dll" target="lib\net45" />
+		<file src="..\src\bin\Release\CodeJam.Experimental.pdb" target="lib\net45" />
+	</files>
 </package>

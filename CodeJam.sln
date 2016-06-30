@@ -44,10 +44,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests", "PerfTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests-Tests", "PerfTests\tests\CodeJam.PerfTests-Tests.csproj", "{15F5BFE8-8B7C-4DF6-9E31-48A4BF9FED1C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{E4C85029-ED32-46B6-863C-5BF2E04D4AFB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{E4C85029-ED32-46B6-863C-5BF2E04D4AFB}"
 	ProjectSection(SolutionItems) = preProject
 		Main\nuget\CodeJam.Main.nuspec = Main\nuget\CodeJam.Main.nuspec
 		Main\nuget\Readme.txt = Main\nuget\Readme.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{A33D991A-5E90-434F-BC8A-709ADD5DB0C2}"
+	ProjectSection(SolutionItems) = preProject
+		Experimental\nuget\CodeJam.Experimental.nuspec = Experimental\nuget\CodeJam.Experimental.nuspec
 	EndProjectSection
 EndProject
 Global
@@ -102,5 +107,6 @@ Global
 		{1D650545-A151-4211-8C29-C38A939403A6} = {F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}
 		{15F5BFE8-8B7C-4DF6-9E31-48A4BF9FED1C} = {F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}
 		{E4C85029-ED32-46B6-863C-5BF2E04D4AFB} = {C99F66F0-32AA-45EB-B112-D18498754A6B}
+		{A33D991A-5E90-434F-BC8A-709ADD5DB0C2} = {D56CF63D-0A29-4F5A-8E2C-0DAF338119EE}
 	EndGlobalSection
 EndGlobal
