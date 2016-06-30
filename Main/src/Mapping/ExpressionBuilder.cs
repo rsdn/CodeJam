@@ -10,6 +10,8 @@ using CodeJam.Collections;
 
 using static System.Linq.Expressions.Expression;
 
+// ReSharper disable TailRecursiveCall
+
 namespace CodeJam.Mapping
 {
 	using Expressions;
@@ -628,7 +630,7 @@ namespace CodeJam.Mapping
 
 		private static Expression ToList(
 			ExpressionBuilder builder,
-			ParameterExpression dic,
+			Expression dic,
 			Expression fromExpression,
 			Type fromItemType,
 			Type toItemType)
@@ -641,7 +643,7 @@ namespace CodeJam.Mapping
 
 		private static Expression ToHashSet(
 			ExpressionBuilder builder,
-			ParameterExpression dic,
+			Expression dic,
 			Expression fromExpression,
 			Type fromItemType,
 			Type toItemType)
@@ -654,7 +656,7 @@ namespace CodeJam.Mapping
 
 		private static Expression ToArray(
 			ExpressionBuilder builder,
-			ParameterExpression dic,
+			Expression dic,
 			Expression fromExpression,
 			Type fromItemType,
 			Type toItemType)
@@ -667,7 +669,7 @@ namespace CodeJam.Mapping
 
 		private static Expression Select(
 			ExpressionBuilder builder,
-			ParameterExpression dic,
+			Expression dic,
 			Expression getValue,
 			Type fromItemType,
 			Type toItemType)

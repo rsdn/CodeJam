@@ -1,5 +1,6 @@
 ﻿#if !FW35
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using CodeJam.Strings;
@@ -18,7 +19,7 @@ namespace CodeJam.Metadata
 
 		private readonly AttributeInfo[] _attributes;
 
-		public AttributeInfo[] GetAttribute(Type type)
+		public IEnumerable<AttributeInfo> GetAttribute(Type type)
 		{
 			var attrs = _attributes
 				.Where(a => a.Name == type.FullName)
@@ -29,7 +30,7 @@ namespace CodeJam.Metadata
 			if (typeName.Length != type.Name.Length)
 				attrs = attrs.Concat(_attributes.Where(a => a.Name == typeName));
 
-			return attrs.ToArray();
+			return attrs;
 		}
 	}
 }

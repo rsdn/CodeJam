@@ -15,14 +15,27 @@ namespace CodeJam.Metadata
 	using Collections;
 	using Mapping;
 
-	internal class XmlAttributeReader : IMetadataReader
+	/// <summary>
+	/// Reads type metadata such as type and members attributes from XML.
+	/// </summary>
+	[PublicAPI]
+	public class XmlAttributeReader : IMetadataReader
 	{
 		private readonly Dictionary<string,MetaTypeInfo> _types;
 
+		/// <summary>
+		/// Reads metadata from provided XML file or from calling assembly resource.
+		/// </summary>
+		/// <param name="xmlFile">Metadata file name.</param>
 		public XmlAttributeReader(string xmlFile)
 			: this(xmlFile, Assembly.GetCallingAssembly())
 		{}
 
+		/// <summary>
+		/// Reads metadata from provided XML file or from provided assembly resource.
+		/// </summary>
+		/// <param name="xmlFile">Metadata file name.</param>
+		/// <param name="assembly">Assembly to get resource stream.</param>
 		public XmlAttributeReader([NotNull] string xmlFile, [NotNull] Assembly assembly)
 		{
 			if (xmlFile  == null) throw new ArgumentNullException(nameof(xmlFile));
@@ -67,6 +80,11 @@ namespace CodeJam.Metadata
 			}
 		}
 
+		/// <summary>
+		/// Reads metadata from provided XML file or from provided stream.
+		/// </summary>
+		/// <param name="xmlDocStream">Stream to read metadata.</param>
+		/// <exception cref="ArgumentNullException"></exception>
 		public XmlAttributeReader([NotNull] Stream xmlDocStream)
 		{
 			if (xmlDocStream == null) throw new ArgumentNullException(nameof(xmlDocStream));
@@ -147,6 +165,13 @@ namespace CodeJam.Metadata
 					.ToDictionary(t => t.Name);
 		}
 
+		/// <summary>
+		/// Returns custom attributes applied to provided type.
+		/// </summary>
+		/// <param name="type">Object type</param>
+		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
+		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this type are returned.</typeparam>
+		/// <returns>Array of custom attributes.</returns>
 		public T[] GetAttributes<T>(Type type, bool inherit = true)
 			where T : Attribute
 		{
@@ -164,6 +189,13 @@ namespace CodeJam.Metadata
 				;
 		}
 
+		/// <summary>
+		/// Returns custom attributes applied to provided type member.
+		/// </summary>
+		/// <param name="memberInfo">Type member.</param>
+		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
+		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this member are returned.</typeparam>
+		/// <returns>Array of custom attributes.</returns>
 		public T[] GetAttributes<T>(MemberInfo memberInfo, bool inherit = true)
 			where T : Attribute
 		{

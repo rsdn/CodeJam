@@ -9,7 +9,7 @@ namespace CodeJam.Mapping
 	/// Defines target type as scalar type.
 	/// </summary>
 	[PublicAPI]
-	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = true, Inherited = true)]
+	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = true)]
 	public class ScalarTypeAttribute : Attribute
 	{
 		/// <summary>
