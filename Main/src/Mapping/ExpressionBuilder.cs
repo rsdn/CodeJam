@@ -32,7 +32,7 @@ namespace CodeJam.Mapping
 		private          Dictionary<ValueTuple<Type,Type>,ParameterExpression> _mappers     = new Dictionary<ValueTuple<Type,Type>,ParameterExpression>();
 		private          HashSet<ValueTuple<Type,Type>>                        _mapperTypes = new HashSet<ValueTuple<Type, Type>>();
 		private readonly List<Expression>                                      _expressions = new List<Expression>();
-		private readonly List<ParameterExpression>                             _locals      = new List<ParameterExpression>();
+		private          List<ParameterExpression>                             _locals      = new List<ParameterExpression>();
 
 		private int _nameCounter;
 		private int _restartCounter;
@@ -689,7 +689,8 @@ namespace CodeJam.Mapping
 				{
 					_mappers        = builder._mappers,
 					_mapperTypes    = builder._mapperTypes,
-					_restartCounter = builder._restartCounter
+					_restartCounter = builder._restartCounter,
+					_locals         = builder._locals,
 				};
 
 				if (dic == null)
