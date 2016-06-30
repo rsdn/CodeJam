@@ -71,7 +71,7 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 			return new StreamWriter(
 				new FileStream(
 					path,
-					FileMode.CreateNew, FileAccess.Write, FileShare.Read));
+					FileMode.Create, FileAccess.Write, FileShare.Read));
 		}
 		#endregion
 
@@ -103,7 +103,6 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 			result.LogCompetitionLimits = true;
 			result.RerunIfLimitsFailed = true;
 			result.UpdateSourceAnnotations = true;
-			result.MaxRunsAllowed = 6;
 			return result;
 		}
 
