@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Threading;
 
 using CodeJam.Metadata;
 using CodeJam.Reflection;
@@ -30,7 +31,7 @@ namespace CodeJam.Mapping
 			var ms1 = new MappingSchema();
 			var ms2 = new MappingSchema(ms1);
 
-			ms1.SetConvertExpression<int?,int>(i => i.HasValue ? i.Value * 2 : DefaultValue<int>.Value, false);
+			ms1.SetConvertExpression<int?,int>(i => i * 2 ?? DefaultValue<int>.Value, false);
 			ms2.SetDefaultValue(typeof(int), -1);
 
 			var c1 = ms1.GetConverter<int?,int>();
@@ -155,6 +156,8 @@ namespace CodeJam.Mapping
 		[Test]
 		public void CultureInfo()
 		{
+			Thread.CurrentThread.CurrentCulture = new CultureInfo("en");
+
 			var ms = new MappingSchema();
 
 			ms.SetCultureInfo(new CultureInfo("ru-RU", false));
@@ -171,13 +174,15 @@ namespace CodeJam.Mapping
 
 #pragma warning disable 649
 
-		class AttrTest
+		private class AttrTest
 		{
 			[MapValue(Value = 1)]
 			[MapValue(Value = 2, Configuration = "2")]
 			[MapValue(Value = 3, Configuration = "3")]
 			public int Field1;
 		}
+
+		private class AttrTestImpl : AttrTest { }
 
 		[Test]
 		public void AttributeTest1()
@@ -243,7 +248,7 @@ namespace CodeJam.Mapping
 			Assert.That(attrs[0].Value, Is.EqualTo(1));
 		}
 
-		const string Data =
+		private const string Data =
 			@"<?xml version='1.0' encoding='utf-8' ?>
 			<Types>
 				<Type Name='AttrTest'>
@@ -318,7 +323,7 @@ namespace CodeJam.Mapping
 			Assert.That(attrs[3].Value, Is.EqualTo(1));
 		}
 
-		enum Enum1
+		private enum Enum1
 		{
 			[MapValue("1", 1), MapValue(2)] Value1,
 			[MapValue(1), MapValue("1", 2)] Value2,
