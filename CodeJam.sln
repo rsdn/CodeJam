@@ -53,6 +53,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{A33D991A-5E90-434F-BC8A-709ADD5DB0C2}"
 	ProjectSection(SolutionItems) = preProject
 		Experimental\nuget\CodeJam.Experimental.nuspec = Experimental\nuget\CodeJam.Experimental.nuspec
+		Experimental\nuget\Readme.txt = Experimental\nuget\Readme.txt
 	EndProjectSection
 EndProject
 Global
