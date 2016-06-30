@@ -6,6 +6,8 @@ using System.Text;
 using CodeJam.Metadata;
 using CodeJam.Reflection;
 
+using JetBrains.Annotations;
+
 using NUnit.Framework;
 
 namespace CodeJam.Mapping
@@ -151,7 +153,6 @@ namespace CodeJam.Mapping
 			Assert.That(ms4.Schemas[4].GetHashCode(), Is.EqualTo(MappingSchema.Default.Schemas[0].GetHashCode()));
 		}
 
-#if DEBUG
 		[Test]
 		public void CultureInfo()
 		{
@@ -169,7 +170,6 @@ namespace CodeJam.Mapping
 			Assert.AreEqual("100000,999",                          ms.GetConverter<double,string>  ()(100000.999));
 			Assert.AreEqual(100000.999,                            ms.GetConverter<string,double>  ()("100000,999"));
 		}
-#endif
 
 #pragma warning disable 649
 
@@ -181,6 +181,7 @@ namespace CodeJam.Mapping
 			public int Field1;
 		}
 
+		[UsedImplicitly]
 		private class AttrTestImpl : AttrTest { }
 
 		[Test]
@@ -189,7 +190,7 @@ namespace CodeJam.Mapping
 			var ms = new MappingSchema("2");
 
 			var attrs = ms.GetAttributes<MapValueAttribute>(
-				InfoOf.Field<AttrTest>(a => a.Field1),
+				InfoOf.Field<AttrTestImpl>(a => a.Field1),
 				a => a.Configuration);
 
 			Assert.That(attrs.Length,   Is.EqualTo(2));
