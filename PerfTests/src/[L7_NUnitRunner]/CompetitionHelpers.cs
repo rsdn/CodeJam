@@ -52,22 +52,27 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 
 		public static ILogger CreateDetailedLogger() =>
 			new FlushableStreamLogger(
-				GetLogPath(Assembly.GetCallingAssembly().GetName().Name + ".AllPerfTests.log"),
-				false);
+				GetLogWriter(Assembly.GetCallingAssembly().GetName().Name + ".AllPerfTests.log"));
 
 		public static ILogger CreateImportantInfoLogger() =>
 			new HostLogger(
 				new FlushableStreamLogger(
-					GetLogPath(Assembly.GetCallingAssembly().GetName().Name + ".Short.AllPerfTests.log"),
-					false),
+					GetLogWriter(Assembly.GetCallingAssembly().GetName().Name + ".Short.AllPerfTests.log")),
 				HostLogMode.PrefixedOnly);
 
-		private static string GetLogPath(string fileName) =>
-			Path.Combine(
+		private static StreamWriter GetLogWriter(string fileName)
+		{
+			var path = Path.Combine(
 				RunUnderNUnit
 					? TestContext.CurrentContext.TestDirectory
 					: Path.GetTempPath(),
 				fileName);
+
+			return new StreamWriter(
+				new FileStream(
+					path,
+					FileMode.CreateNew, FileAccess.Write, FileShare.Read));
+		};
 		#endregion
 
 		#region Configs
