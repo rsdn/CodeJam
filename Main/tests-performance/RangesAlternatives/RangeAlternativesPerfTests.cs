@@ -81,7 +81,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(15.36, 19.87)]
+			[CompetitionBenchmark(15.36, 25.44)]
 			public RangeStub<int, string> Test02KeyRange()
 			{
 				var result = _rangeKeyData[0];

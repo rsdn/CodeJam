@@ -36,7 +36,7 @@ namespace CodeJam.PerfTests
 		#endregion
 
 		#region Configs core
-		private static readonly ILogger _detailedLogger = CreateDetailedLogger();
+		//private static readonly ILogger _detailedLogger = CreateDetailedLogger();
 
 		private static readonly ILogger _importantInfoLogger = CreateImportantInfoLogger();
 
@@ -51,6 +51,7 @@ namespace CodeJam.PerfTests
 			result.Add(DefaultConfig.Instance.GetColumns().ToArray());
 			//result.Add(TimingsExporter.Instance);
 			//result.Add(_detailedLogger, _importantInfoLogger);
+			result.Add(_importantInfoLogger);
 			return result;
 		}
 		#endregion

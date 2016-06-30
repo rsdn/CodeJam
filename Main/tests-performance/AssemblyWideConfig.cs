@@ -47,7 +47,7 @@ namespace CodeJam
 		/// </summary>
 		public static ICompetitionConfig RunConfig => new AssemblyWideConfig();
 
-		private static readonly ILogger _detailedLogger = CreateDetailedLogger();
+		//private static readonly ILogger _detailedLogger = CreateDetailedLogger();
 		private static readonly ILogger _importantInfoLogger = CreateImportantInfoLogger();
 
 		/// <summary>
@@ -78,7 +78,8 @@ namespace CodeJam
 			if (TroubleshootingMode)
 			{
 				result.Add(TimingsExporter.Instance);
-				result.Add(_detailedLogger, _importantInfoLogger);
+				//result.Add(_detailedLogger, _importantInfoLogger);
+				result.Add(_importantInfoLogger);
 			}
 
 			return result;
