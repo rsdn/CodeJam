@@ -40,3 +40,8 @@ after_build:
 - ps: nuget pack Nuget\CodeJam.Experimental.nuspec -version "$env:nugetVersion"
 - ps: Push-AppveyorArtifact CodeJam.$env:nugetVersion.nupkg
 - ps: Push-AppveyorArtifact CodeJam.Experimental.$env:nugetVersion.nupkg
+
+# artifacts for perftests
+on_finish:
+#  - ps: Get-ChildItem *.csv -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+  - ps: Get-ChildItem *AllPerfTests.log -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }

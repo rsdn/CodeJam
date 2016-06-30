@@ -192,7 +192,7 @@ namespace CodeJam.PerfTests.Analysers
 				{
 					competitionState.AddAnalyserWarning(
 						warnings, MessageSeverity.Warning,
-						"The benchmarks " + string.Join(", ", tooFastReports) +
+						"The benchmark(s) " + string.Join(", ", tooFastReports) +
 							$" run faster than {TooFastBenchmarkLimit.TotalMilliseconds.ToString(culture)}ms. Results cannot be trusted.");
 				}
 			}
@@ -207,7 +207,7 @@ namespace CodeJam.PerfTests.Analysers
 				{
 					competitionState.AddAnalyserWarning(
 						warnings, MessageSeverity.Warning,
-						"The benchmarks " + string.Join(", ", tooSlowReports) +
+						"The benchmark(s) " + string.Join(", ", tooSlowReports) +
 							$" run longer than {LongRunningBenchmarkLimit.TotalSeconds.ToString(culture)}s." +
 							" Consider to rewrite the test as the peek timings will be hidden by averages" +
 							" or enable long running benchmarks support in the config.");

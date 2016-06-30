@@ -46,7 +46,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"The benchmarks TooFast, TooFast2 run faster than 0.0015ms. Results cannot be trusted.");
+				"The benchmark(s) TooFast, TooFast2 run faster than 0.0015ms. Results cannot be trusted.");
 		}
 
 		[Test]
@@ -68,7 +68,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"The benchmarks TooSlow run longer than 0.5s." +
+				"The benchmark(s) TooSlow run longer than 0.5s." +
 					" Consider to rewrite the test as the peek timings will be hidden by averages" +
 					" or enable long running benchmarks support in the config.");
 		}

@@ -21,7 +21,7 @@ namespace CodeJam
 	//[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 	public class SensitivityPerfTests
 	{
-		[Params(3000, 10 * 1000, 100 * 1000, 1000 * 1000)]
+		[Params(5000, 10 * 1000, 100 * 1000, 1000 * 1000)]
 		public int Count { get; set; }
 
 		[Test]
