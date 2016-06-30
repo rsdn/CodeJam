@@ -97,7 +97,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(4.40, 8.51)]
+			[CompetitionBenchmark(4.40, 11.57)]
 			public F Test01TryParseUndefined()
 			{
 				var a = F.Zero;
