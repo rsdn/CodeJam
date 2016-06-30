@@ -37,7 +37,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(3.00, 7.28)]
+			[CompetitionBenchmark(2.57, 7.28)]
 			public int Test01Operators()
 			{
 				var result = 0;
@@ -46,7 +46,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(3.12, 7.15)]
+			[CompetitionBenchmark(2.93, 8.65)]
 			public int Test02BoundaryValuesOperators()
 			{
 				var result = 0;
@@ -55,7 +55,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(1.90, 3.19)]
+			[CompetitionBenchmark(1.69, 3.50)]
 			public int Test03BoundariesCompareFrom()
 			{
 				var result = 0;
@@ -64,7 +64,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(1.92, 5.38)]
+			[CompetitionBenchmark(1.75, 5.38)]
 			public int Test03BoundariesCompareFromTo()
 			{
 				var result = 0;
@@ -109,7 +109,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(2.38, 4.68)]
+			[CompetitionBenchmark(2.38, 5.06)]
 			public int Test02BoundaryValuesOperators()
 			{
 				var result = 0;
