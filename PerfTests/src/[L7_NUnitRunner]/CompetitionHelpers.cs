@@ -72,7 +72,7 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 				new FileStream(
 					path,
 					FileMode.CreateNew, FileAccess.Write, FileShare.Read));
-		};
+		}
 		#endregion
 
 		#region Configs

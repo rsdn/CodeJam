@@ -107,6 +107,12 @@ namespace CodeJam.PerfTests.Running.Core
 			finally
 			{
 				ReportHostLogger(hostLogger, competitionState?.LastRunSummary);
+
+				var loggers = benchmarkConfig.GetLoggers().OfType<IFlushableLogger>();
+				foreach (var flushable in loggers)
+				{
+					flushable.Flush();
+				}
 			}
 
 			ReportMessagesToUser(hostLogger, competitionConfig, competitionState);
