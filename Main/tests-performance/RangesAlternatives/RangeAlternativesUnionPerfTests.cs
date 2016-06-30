@@ -10,27 +10,27 @@ using JetBrains.Annotations;
 using NUnit.Framework;
 
 using static CodeJam.AssemblyWideConfig;
+using static CodeJam.PerfTests.CompetitionHelpers;
 
 namespace CodeJam.RangesAlternatives
 {
 	/// <summary>
 	/// Test to choose valid Range(of T) implementation.
 	/// </summary>
-	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Ranges")]
+	[TestFixture(Category = PerfTestCategory + ": Ranges")]
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "PassStringInterpolation")]
 	public class RangeAlternativesUnionPerfTests
 	{
 		[Test]
-		[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 		public void RunRangeUnionIntCase() =>
 			Competition.Run<RangeUnionIntCase>(RunConfig);
 
 		[PublicAPI]
 		public class RangeUnionIntCase
 		{
-			private const int Count = 100;
-			private const int RepeatCount = 10000;
+			private const int Count = DefaultCount;
+
 			private readonly KeyValuePair<int, int>[] _data;
 			private readonly KeyValuePair<int, int>[] _data2;
 			private readonly RangeStub<int>[] _rangeData;
@@ -64,75 +64,68 @@ namespace CodeJam.RangesAlternatives
 			public KeyValuePair<int, int> Test00DirectCompare()
 			{
 				var result = _data[0];
-				for (var j = 0; j < RepeatCount; j++)
-					for (var i = 1; i < _data.Length; i++)
-					{
-						result = new KeyValuePair<int, int>(
-							Math.Min(_data[i].Key, _data2[i].Key),
-							Math.Max(_data[i].Value, _data2[i].Value));
-					}
+				for (var i = 1; i < _data.Length; i++)
+				{
+					result = new KeyValuePair<int, int>(
+						Math.Min(_data[i].Key, _data2[i].Key),
+						Math.Max(_data[i].Value, _data2[i].Value));
+				}
 				return result;
 			}
 
-			[CompetitionBenchmark(14.02, 14.90)]
+			[CompetitionBenchmark(13.59, 18.23)]
 			public RangeStub<int> Test01RangeInstance()
 			{
 				var result = _rangeData[0];
-				for (var j = 0; j < RepeatCount; j++)
-					for (var i = 1; i < _rangeData.Length; i++)
-					{
-						result = _rangeData[i].UnionInstance(_rangeData2[i]);
-					}
+				for (var i = 1; i < _rangeData.Length; i++)
+				{
+					result = _rangeData[i].UnionInstance(_rangeData2[i]);
+				}
 				return result;
 			}
 
-			[CompetitionBenchmark(15.73, 16.73)]
+			[CompetitionBenchmark(15.91, 19.06)]
 			public RangeStub<int> Test02RangeExtension()
 			{
 				var result = _rangeData[0];
-				for (var j = 0; j < RepeatCount; j++)
-					for (var i = 1; i < _rangeData.Length; i++)
-					{
-						result = _rangeData[i].Union(_rangeData2[i]);
-					}
+				for (var i = 1; i < _rangeData.Length; i++)
+				{
+					result = _rangeData[i].Union(_rangeData2[i]);
+				}
 				return result;
 			}
 
-			[CompetitionBenchmark(15.11, 16.09)]
+			[CompetitionBenchmark(15.63, 23.75)]
 			public RangeStub<int> Test02RangeExtensionAlt()
 			{
 				var result = _rangeData[0];
-				for (var j = 0; j < RepeatCount; j++)
-					for (var i = 1; i < _rangeData.Length; i++)
-					{
-						result = _rangeData[i].UnionAlt(_rangeData2[i]);
-					}
+				for (var i = 1; i < _rangeData.Length; i++)
+				{
+					result = _rangeData[i].UnionAlt(_rangeData2[i]);
+				}
 				return result;
 			}
 
-			[CompetitionBenchmark(14.76, 15.74)]
+			[CompetitionBenchmark(15.00, 19.16)]
 			public RangeStub<int> Test03RangeImpl()
 			{
 				var result = _rangeData[0];
-				for (var j = 0; j < RepeatCount; j++)
-					for (var i = 1; i < _rangeData.Length; i++)
-					{
-						result = _rangeData[i].UnionAlt(_rangeData2[i]);
-					}
+				for (var i = 1; i < _rangeData.Length; i++)
+				{
+					result = _rangeData[i].UnionAlt(_rangeData2[i]);
+				}
 				return result;
 			}
 		}
 
 		[Test]
-		[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
 		public void RunRangeUnionNullableIntCase() =>
 			Competition.Run<RangeUnionNIntCase>(RunConfig);
 
 		[PublicAPI]
 		public class RangeUnionNIntCase
 		{
-			private const int Count = 100;
-			private const int RepeatCount = 10000;
+			private const int Count = DefaultCount;
 			private readonly KeyValuePair<int?, int?>[] _data;
 			private readonly KeyValuePair<int?, int?>[] _data2;
 			private readonly RangeStub<int?>[] _rangeData;
@@ -162,68 +155,64 @@ namespace CodeJam.RangesAlternatives
 				}
 			}
 
+			private static int? Min(int? a, int? b) => a < b ? a : b;
+			private static int? Max(int? a, int? b) => a < b ? b : a;
+
 			[CompetitionBaseline]
 			public KeyValuePair<int?, int?> Test00DirectCompare()
 			{
-				var minFn = Fn.Func((int? a, int? b) => a < b ? a : b);
-				var maxFn = Fn.Func((int? a, int? b) => a < b ? b : a);
 				var result = _data[0];
-				for (var j = 0; j < RepeatCount; j++)
-					for (var i = 1; i < _data.Length; i++)
-					{
-						result = new KeyValuePair<int?, int?>(
-							minFn(_data[i].Key, _data2[i].Key),
-							maxFn(_data[i].Value, _data2[i].Value));
-					}
+				for (var i = 1; i < _data.Length; i++)
+				{
+					result = new KeyValuePair<int?, int?>(
+						Min(_data[i].Key, _data2[i].Key),
+						Max(_data[i].Value, _data2[i].Value));
+				}
 
 				return result;
 			}
 
-			[CompetitionBenchmark(1.29, 1.38)]
+			[CompetitionBenchmark(1.28, 1.57)]
 			public RangeStub<int?> Test01RangeInstance()
 			{
 				var result = _rangeData[0];
-				for (var j = 0; j < RepeatCount; j++)
-					for (var i = 1; i < _rangeData.Length; i++)
-					{
-						result = _rangeData[i].UnionInstance(_rangeData2[i]);
-					}
+				for (var i = 1; i < _rangeData.Length; i++)
+				{
+					result = _rangeData[i].UnionInstance(_rangeData2[i]);
+				}
 				return result;
 			}
 
-			[CompetitionBenchmark(1.58, 1.71)]
+			[CompetitionBenchmark(1.56, 2.18)]
 			public RangeStub<int?> Test02RangeExtension()
 			{
 				var result = _rangeData[0];
-				for (var j = 0; j < RepeatCount; j++)
-					for (var i = 1; i < _rangeData.Length; i++)
-					{
-						result = _rangeData[i].Union(_rangeData2[i]);
-					}
+				for (var i = 1; i < _rangeData.Length; i++)
+				{
+					result = _rangeData[i].Union(_rangeData2[i]);
+				}
 				return result;
 			}
 
-			[CompetitionBenchmark(1.54, 1.65)]
+			[CompetitionBenchmark(1.50, 1.85)]
 			public RangeStub<int?> Test02RangeExtensionAlt()
 			{
 				var result = _rangeData[0];
-				for (var j = 0; j < RepeatCount; j++)
-					for (var i = 1; i < _rangeData.Length; i++)
-					{
-						result = _rangeData[i].UnionAlt(_rangeData2[i]);
-					}
+				for (var i = 1; i < _rangeData.Length; i++)
+				{
+					result = _rangeData[i].UnionAlt(_rangeData2[i]);
+				}
 				return result;
 			}
 
-			[CompetitionBenchmark(1.47, 1.58)]
+			[CompetitionBenchmark(1.49, 1.82)]
 			public RangeStub<int?> Test03RangeImpl()
 			{
 				var result = _rangeData[0];
-				for (var j = 0; j < RepeatCount; j++)
-					for (var i = 1; i < _rangeData.Length; i++)
-					{
-						result = _rangeData[i].UnionAlt(_rangeData2[i]);
-					}
+				for (var i = 1; i < _rangeData.Length; i++)
+				{
+					result = _rangeData[i].UnionAlt(_rangeData2[i]);
+				}
 				return result;
 			}
 		}

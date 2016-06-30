@@ -4,13 +4,13 @@
 <#
 		Transform(
 			"RangeTests.Extensions.cs",
-			new ReplaceInfo // Adds a range to a
+			new ReplaceInfo // Rename TestRange => TestRange
 			{
 				Pattern = "TestRange",
 				Replacement = "TestKeyedRange",
 				ThrowOnFail = true
 			},
-			new ReplaceInfo // Adds a range to a
+			new ReplaceInfo // Add RangeKey parameter to Create() calls
 			{
 				Pattern = @"(Range.Create.*?\([^,\)]+?,[^,\)]+?)\)",
 				Replacement = @"$1, RangeKey)",

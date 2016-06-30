@@ -8,7 +8,6 @@ using JetBrains.Annotations;
 
 namespace CodeJam.RangesAlternatives
 {
-
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	public static class RangeExtensions

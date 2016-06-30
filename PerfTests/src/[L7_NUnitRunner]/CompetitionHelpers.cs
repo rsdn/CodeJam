@@ -71,8 +71,6 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 		#endregion
 
 		#region Configs
-		public static readonly ICompetitionConfig DefaultRunConfig = CreateRunConfig().AsReadOnly();
-
 		public static ManualCompetitionConfig CreateRunConfig()
 		{
 			var result = new ManualCompetitionConfig(DefaultCompetitionConfig.Instance)

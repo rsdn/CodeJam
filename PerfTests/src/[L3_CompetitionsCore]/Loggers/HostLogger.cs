@@ -69,6 +69,15 @@ namespace CodeJam.PerfTests.Loggers
 		public HostLogMode LogMode { get; }
 		#endregion
 
+#pragma warning disable 420
+		private void IncrementAreaCount() =>
+			Interlocked.Increment(ref _importantAreaCount);
+
+		// Decrement if value > 0
+		private void DecrementAreaCount() =>
+			InterlockedOperations.Update(ref _importantAreaCount, i => Math.Max(i - 1, 0));
+#pragma warning restore 420
+
 		/// <summary>Checks if the line should be written.</summary>
 		/// <param name="logKind">The kind of log message.</param>
 		/// <returns><c>true</c> if the line should be written.</returns>
@@ -91,19 +100,17 @@ namespace CodeJam.PerfTests.Loggers
 				return false;
 
 			bool shouldWrite;
-#pragma warning disable 420
 			if (text.StartsWith(LogImportantAreaStart, StringComparison.Ordinal))
 			{
-				Interlocked.Increment(ref _importantAreaCount);
+				IncrementAreaCount();
 				shouldWrite = true;
 			}
 			else if (text.StartsWith(LogImportantAreaEnd, StringComparison.Ordinal))
 			{
 				// Decrement if value > 0
-				InterlockedOperations.Update(ref _importantAreaCount, i => Math.Max(i - 1, 0));
+				DecrementAreaCount();
 				shouldWrite = true;
 			}
-#pragma warning restore 420
 			else if (text.StartsWith(LogImportantInfoPrefix, StringComparison.Ordinal) ||
 				text.StartsWith(LogInfoPrefix, StringComparison.Ordinal))
 			{

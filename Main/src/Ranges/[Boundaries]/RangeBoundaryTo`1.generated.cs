@@ -64,6 +64,8 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="value">The value of the boundary.</param>
 		/// <param name="boundaryKind">The kind of the boundary.</param>
+		/// <returns>A new range boundary.</returns>
+		// DONTTOUCH: DO NOT make internal. Helper method for custom range implementations.
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[MethodImpl(AggressiveInlining)]
 		public static RangeBoundaryTo<T> AdjustAndCreate(T value, RangeBoundaryToKind boundaryKind)
@@ -93,6 +95,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="value">The value to check.</param>
 		/// <returns><c>true</c> if it is safe to pass the value as a boundary constructor parameter.</returns>
+		// DONTTOUCH: DO NOT make internal. Helper method for custom range implementations.
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[MethodImpl(AggressiveInlining)]
 		public static bool IsValid(T value)
@@ -223,8 +226,8 @@ namespace CodeJam.Ranges
 		/// </value>
 		public bool IsExclusiveBoundary => _kind == RangeBoundaryToKind.Exclusive;
 
-		/// <summary>The boundary has value.</summary>
-		/// <value><c>true</c> if the boundary has value; otherwise, <c>false</c>.</value>
+		/// <summary>The boundary has a value.</summary>
+		/// <value><c>true</c> if the boundary has a value; otherwise, <c>false</c>.</value>
 		public bool HasValue => _kind == RangeBoundaryToKind.Inclusive || _kind == RangeBoundaryToKind.Exclusive;
 
 		/// <summary>The value of the boundary.</summary>

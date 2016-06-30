@@ -2,7 +2,7 @@
 <#@ include file="[Ranges]\RangeWithTKeyReplacer.ttinclude" #>
 <#
 	Run("Range.FactoryMethods.cs",
-		new ReplaceInfo // Fix parameter passing #2
+		new ReplaceInfo // Add key parameter passing
 		{
 			Pattern = @"(toValue.+?)\);",
 			Replacement = @"$1, key);",

@@ -7,22 +7,21 @@ using JetBrains.Annotations;
 using NUnit.Framework;
 
 using static CodeJam.AssemblyWideConfig;
+using static CodeJam.PerfTests.CompetitionHelpers;
 
 namespace CodeJam.Ranges
 {
 	/// <summary>
 	/// 1. Proofs that arg validation skipped when possible.
 	/// </summary>
-	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Ranges")]
-	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
+	[TestFixture(Category = PerfTestCategory + ": Ranges")]
 	[PublicAPI]
 	public class RangeBoundaryFactoryPerfTests
 	{
-		private const int Count = 1000 * 1000;
+		private const int Count = DefaultCount;
 
 		[Test]
-		public void RunRangeBoundaryFactoryPerfTests() =>
-			Competition.Run(this, RunConfig);
+		public void RunRangeBoundaryFactoryPerfTests() => Competition.Run(this, RunConfig);
 
 		[CompetitionBaseline]
 		public RangeBoundaryFrom<int> Test00Validated()
@@ -33,7 +32,7 @@ namespace CodeJam.Ranges
 			return result;
 		}
 
-		[CompetitionBenchmark(0.83, 0.90)]
+		[CompetitionBenchmark(0.83, 0.93)]
 		public RangeBoundaryFrom<int> Test01NoValidation()
 		{
 			var result = RangeBoundaryFrom<int>.Empty;

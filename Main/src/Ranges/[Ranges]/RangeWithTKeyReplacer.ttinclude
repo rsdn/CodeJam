@@ -37,13 +37,13 @@
 				ThrowOnFail = false
 			});
 
-	private void RunRangeOperations(string sourceFileName, params ReplaceInfo[] additionalReplaces) =>
+	private void RunRangeExtensions(string sourceFileName, params ReplaceInfo[] additionalReplaces) =>
 		Transform(
 			sourceFileName,
 			additionalReplaces,
 			new ReplaceInfo // Range<T, TKey>
 			{
-				Pattern = @"Range<T>",
+				Pattern = "Range<T>",
 				Replacement = "Range<T, TKey>",
 				ThrowOnFail = true,
 				WholeWord = true

@@ -24,7 +24,7 @@ namespace CodeJam.Ranges
 		/// <param name="from">Boundary From.</param>
 		/// <param name="to">Boundary To.</param>
 		/// <param name="key">The value of the range key.</param>
-		/// <returns></returns>
+		/// <returns>A new range.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> Create<T, TKey>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, TKey key) =>
 			new Range<T, TKey>(from, to, key);

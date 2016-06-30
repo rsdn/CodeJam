@@ -13,7 +13,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="T">The type of the range values.</typeparam>
 		/// <param name="from">Boundary From.</param>
 		/// <param name="to">Boundary To.</param>
-		/// <returns></returns>
+		/// <returns>A new range.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static Range<T> Create<T>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new Range<T>(from, to);

@@ -1,4 +1,5 @@
 ﻿## List of optimizations to do:
+* Examples !!!!
 * DO WE NEED IT? Agressive inlining on struct constructors. Should measure first.
 * DO WE NEED IT? factory methods for Nullable<T> => Range<T>;
   Good part: ~2x speedup?

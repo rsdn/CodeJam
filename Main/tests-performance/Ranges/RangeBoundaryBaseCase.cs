@@ -2,6 +2,8 @@
 
 using BenchmarkDotNet.Attributes;
 
+using CodeJam.PerfTests;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Ranges
@@ -44,7 +46,7 @@ namespace CodeJam.Ranges
 		}
 
 		/// <summary> Count of items </summary>
-		protected int Count { get; set; } = 10 * 1000;
+		protected int Count { get; set; } = CompetitionHelpers.DefaultCount;
 		/// <summary> Repeat value A each </summary>
 		protected int ValueARepeats { get; set; } = 5;
 		/// <summary> Start offset for A index </summary>

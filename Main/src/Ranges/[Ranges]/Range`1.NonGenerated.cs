@@ -46,7 +46,7 @@ namespace CodeJam.Ranges
 
 		#region IEquatable<Range<T>>
 		/// <summary>Indicates whether the current range is equal to another.</summary>
-		/// <param name="other">An range to compare with this.</param>
+		/// <param name="other">A range to compare with this.</param>
 		/// <returns>
 		/// <c>True</c> if the current range is equal to the <paramref name="other"/> parameter;
 		/// otherwise, false.

@@ -10,7 +10,7 @@
 		Transform(
 			oldClassName + ".cs",
 			additionalReplaces,
-			new ReplaceInfo // Replace From <> To words
+			new ReplaceInfo // Swap From <> To words
 			{
 				Pattern = "From",
 				Replacement = "To",
@@ -18,7 +18,7 @@
 				WholeWord = true,
 				SwapMode = true
 			},
-			new ReplaceInfo // Replace BoundaryFrom <> BoundaryTo
+			new ReplaceInfo // Swap BoundaryFrom <> BoundaryTo
 			{
 				Pattern = "BoundaryFrom",
 				Replacement = "BoundaryTo",
@@ -26,7 +26,7 @@
 				WholeWord = false,
 				SwapMode = true
 			},
-			new ReplaceInfo // Replace Negative <> Negative
+			new ReplaceInfo // Swap Negative <> Negative
 			{
 				Pattern = "Negative",
 				Replacement = "Positive",
@@ -34,7 +34,7 @@
 				WholeWord = false,
 				SwapMode = true
 			},
-			new ReplaceInfo // Replace negative <> positive
+			new ReplaceInfo // Swap negative <> positive
 			{
 				Pattern = "negative",
 				Replacement = "positive",
@@ -42,7 +42,7 @@
 				WholeWord = false,
 				SwapMode = true
 			},
-			new ReplaceInfo // Replace -∞ <> +∞
+			new ReplaceInfo // Swap -∞ <> +∞
 			{
 				Pattern = "-∞",
 				Replacement = "+∞",

@@ -77,11 +77,10 @@ namespace CodeJam.PerfTests.Running.Core
 				MarkdownExporter.Console.ExportToLog(summary, outLogger);
 
 				outLogger.WriteLine();
-				outLogger.WriteSeparatorLine();
-				outLogger.WriteLine();
 			}
 
 			// Dumping all captured output below the benchmark results
+			outLogger.WriteLine();
 			var nUnitLogger = (NUnitHostLogger)logger;
 			outLogger.Write(nUnitLogger.GetLog());
 		}
