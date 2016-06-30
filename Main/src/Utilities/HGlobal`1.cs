@@ -20,7 +20,7 @@ namespace CodeJam
 		/// Default constructor, allocates memory with the size of <typeparamref name="T"/>
 		/// </summary>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
-		public HGlobal() : this(Size) { }
+		public HGlobal() : this(_size) { }
 
 		/// <summary>
 		/// Allocates memory from the unmanaged memory of the process by using the specified number of bytes.
@@ -29,8 +29,8 @@ namespace CodeJam
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
 		public HGlobal(int cb)
 		{
-			if (cb < Size)
-				throw new ArgumentException($"size is less than {Size}");
+			if (cb < _size)
+				throw new ArgumentException($"size is less than {_size}");
 
 			_buffer = Marshal.AllocHGlobal(cb);
 			Length = cb;
@@ -83,6 +83,6 @@ namespace CodeJam
 		/// <summary>
 		/// Size of the of the generic parameter <typeparamref name="T"/>.
 		/// </summary>
-		private static readonly int Size = Marshal.SizeOf(typeof(T));
+		private static readonly int _size = Marshal.SizeOf(typeof(T));
 	}
 }

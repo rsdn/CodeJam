@@ -246,7 +246,8 @@ namespace CodeJam.Reflection
 			Setter = setter.Compile();
 		}
 
-		private const FieldAttributes EnumField = FieldAttributes.Public | FieldAttributes.Static | FieldAttributes.Literal;
+		private const FieldAttributes _enumField =
+			FieldAttributes.Public | FieldAttributes.Static | FieldAttributes.Literal;
 
 		private static readonly ConcurrentDictionary<Type,object> _defaultValues = new ConcurrentDictionary<Type,object>();
 

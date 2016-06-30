@@ -33,7 +33,7 @@ namespace CodeJam.Ranges
 		IFormattable
 	{
 		#region Static members
-		private const int EqualResult = 0;
+		private const int _equalResult = 0;
 
 		private static readonly Func<T, T, bool> _equalsFunc = Operators<T>.AreEqual;
 		private static readonly Func<T, T, int> _compareFunc = Operators<T>.Compare;
@@ -147,7 +147,7 @@ namespace CodeJam.Ranges
 
 			if (boundaryKind != RangeBoundaryFromKind.Inclusive && boundaryKind != RangeBoundaryFromKind.Exclusive)
 			{
-				if (_compareFunc(value, default(T)) != EqualResult)
+				if (_compareFunc(value, default(T)) != _equalResult)
 				{
 					throw CodeExceptions.Argument(nameof(value), "Value of the infinite/empty boundary should be equal to default(T).");
 				}
@@ -394,7 +394,7 @@ namespace CodeJam.Ranges
 				result = _compareFunc(_value, other._value);
 
 				// Are same? compare kinds.
-				if (result == EqualResult)
+				if (result == _equalResult)
 				{
 					result = ((byte)_kind).CompareTo((byte)other._kind);
 				}
@@ -432,7 +432,7 @@ namespace CodeJam.Ranges
 
 				// Are same and any of is exclusive - compare kinds.
 				// ReSharper disable once BitwiseOperatorOnEnumWithoutFlags
-				if (result == EqualResult
+				if (result == _equalResult
 					&& (_kind == RangeBoundaryFromKind.Exclusive || other.Kind == RangeBoundaryToKind.Exclusive))
 				{
 					result = ((byte)_kind).CompareTo((byte)other.Kind);

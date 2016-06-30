@@ -15,7 +15,7 @@ namespace CodeJam.ObjectPools
 	[PublicAPI]
 	public static class SharedPoolExtensions
 	{
-		private const int Threshold = 512;
+		private const int _threshold = 512;
 
 		/// <summary>
 		/// Gets an <see cref="PooledObject{T}"/> from the specified pool that can be released automatically.
@@ -222,8 +222,8 @@ namespace CodeJam.ObjectPools
 			sb.Clear();
 #endif
 
-			if (sb.Capacity > Threshold)
-				sb.Capacity = Threshold;
+			if (sb.Capacity > _threshold)
+				sb.Capacity = _threshold;
 
 			pool.Free(sb);
 		}
@@ -241,7 +241,7 @@ namespace CodeJam.ObjectPools
 			var count = set.Count;
 			set.Clear();
 
-			if (count > Threshold)
+			if (count > _threshold)
 				set.TrimExcess();
 
 			pool.Free(set);
@@ -260,7 +260,7 @@ namespace CodeJam.ObjectPools
 			var count = stack.Count;
 			stack.Clear();
 
-			if (count > Threshold)
+			if (count > _threshold)
 				stack.TrimExcess();
 
 			pool.Free(stack);
@@ -279,7 +279,7 @@ namespace CodeJam.ObjectPools
 			var count = queue.Count;
 			queue.Clear();
 
-			if (count > Threshold)
+			if (count > _threshold)
 				queue.TrimExcess();
 
 			pool.Free(queue);
@@ -296,7 +296,7 @@ namespace CodeJam.ObjectPools
 				return;
 
 			// if map grew too big, don't put it back to pool
-			if (map.Count > Threshold)
+			if (map.Count > _threshold)
 			{
 #if DETECT_LEAKS
 				pool.ForgetTrackedObject(map);
@@ -320,8 +320,8 @@ namespace CodeJam.ObjectPools
 
 			list.Clear();
 
-			if (list.Capacity > Threshold)
-				list.Capacity = Threshold;
+			if (list.Capacity > _threshold)
+				list.Capacity = _threshold;
 
 			pool.Free(list);
 		}

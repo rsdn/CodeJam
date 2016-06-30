@@ -44,7 +44,7 @@ namespace CodeJam.Arithmetic
 #>
 		/// <summary><#=op.Name#> operator factory.</summary>
 		private static readonly Lazy<Func<T, T>> _<#=op.LowerName#> =
-			new Lazy<Func<T, T>>(() => UnaryOperator<T>(ExpressionType.<#=op.Type#>), LazyMode);
+			new Lazy<Func<T, T>>(() => UnaryOperator<T>(ExpressionType.<#=op.Type#>), _lazyMode);
 
 		/// <summary><#=op.Name#> operator.</summary>
 		/// <value>The <#=op.Name#> operator.</value>
@@ -58,7 +58,7 @@ namespace CodeJam.Arithmetic
 #>
 		/// <summary><#=op.Name#> operator factory.</summary>
 		private static readonly Lazy<Func<T, T, bool>> _<#=op.LowerName#> =
-			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.<#=op.Type#>), LazyMode);
+			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.<#=op.Type#>), _lazyMode);
 
 		/// <summary><#=op.Name#> operator.</summary>
 		/// <value>The <#=op.Name#> operator.</value>
@@ -72,7 +72,7 @@ namespace CodeJam.Arithmetic
 #>
 		/// <summary><#=op.Name#> operator factory.</summary>
 		private static readonly Lazy<Func<T, T, T>> _<#=op.LowerName#> =
-			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.<#=op.Type#>), LazyMode);
+			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.<#=op.Type#>), _lazyMode);
 
 		/// <summary><#=op.Name#> operator.</summary>
 		/// <value>The <#=op.Name#> operator.</value>

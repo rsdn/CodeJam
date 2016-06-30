@@ -188,27 +188,27 @@ namespace CodeJam.TableData
 #region CharReader struct
 		private struct CharReader
 		{
-			private const int s_Eof = -1;
-			private const int s_Eol = -2;
+			private const int _eof = -1;
+			private const int _eol = -2;
 
-			private readonly TextReader m_Reader;
-			private readonly int m_Code;
+			private readonly TextReader _reader;
+			private readonly int _code;
 
 			private CharReader(TextReader reader, int code)
 			{
-				m_Reader = reader;
-				m_Code = code;
+				_reader = reader;
+				_code = code;
 			}
 
-			public char Char => (char)m_Code;
+			public char Char => (char)_code;
 
-			public bool IsEof => m_Code == s_Eof;
+			public bool IsEof => _code == _eof;
 
-			public bool IsEol => m_Code == s_Eol;
+			public bool IsEol => _code == _eol;
 
 			public bool IsWhitespace => char.IsWhiteSpace(Char);
 
-			public bool IsDoubleQuota => m_Code == '"';
+			public bool IsDoubleQuota => _code == '"';
 
 			private static int Read(TextReader reader)
 			{
@@ -217,16 +217,16 @@ namespace CodeJam.TableData
 				{
 					if (code == '\r' && reader.Peek() == '\n')
 						reader.Read();
-					return s_Eol;
+					return _eol;
 				}
 				return code;
 			}
 
 			public static CharReader Create(TextReader reader) => new CharReader(reader, Read(reader));
 
-			public CharReader Next() => Create(m_Reader);
+			public CharReader Next() => Create(_reader);
 
-			public CharReader Peek() => new CharReader(m_Reader, m_Reader.Peek());
+			public CharReader Peek() => new CharReader(_reader, _reader.Peek());
 		}
 #endregion
 

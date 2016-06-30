@@ -62,14 +62,14 @@ namespace CodeJam.Mapping
 			return pi.PropertyType == to ? Expression.Property(p, pi) : null;
 		}
 
-		private const BindingFlags MethodLookup =
+		private const BindingFlags _methodLookup =
 			BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
 
 		private static Expression GetOperator(Type from, Type to, Expression p)
 		{
 			var op =
-				to.GetMethod("op_Implicit", MethodLookup, null, new[] { from }, null) ??
-				to.GetMethod("op_Explicit", MethodLookup, null, new[] { from }, null);
+				to.GetMethod("op_Implicit", _methodLookup, null, new[] { from }, null) ??
+				to.GetMethod("op_Explicit", _methodLookup, null, new[] { from }, null);
 
 			return op != null ? Expression.Convert(p, to, op) : null;
 		}
@@ -111,7 +111,7 @@ namespace CodeJam.Mapping
 		{
 			if (from == typeof(string))
 			{
-				var mi = to.GetMethod("Parse", MethodLookup, null, new [] { from }, null);
+				var mi = to.GetMethod("Parse", _methodLookup, null, new [] { from }, null);
 
 				if (mi != null)
 				{
@@ -139,7 +139,7 @@ namespace CodeJam.Mapping
 				var mi =
 					from.GetMethod(
 						"ToString",
-						MethodLookup,
+						_methodLookup,
 						null,
 #if (!FW452)
 						Array.Empty<Type>(),

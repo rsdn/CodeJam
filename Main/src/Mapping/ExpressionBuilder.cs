@@ -690,7 +690,7 @@ namespace CodeJam.Mapping
 					_mappers        = builder._mappers,
 					_mapperTypes    = builder._mapperTypes,
 					_restartCounter = builder._restartCounter,
-					_locals         = builder._locals,
+					_locals         = builder._locals
 				};
 
 				if (dic == null)

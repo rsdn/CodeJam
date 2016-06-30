@@ -14,9 +14,9 @@ namespace CodeJam.Arithmetic
 	[PublicAPI]
 	public static partial class Operators<T>
 	{
-		private const LazyThreadSafetyMode LazyMode = LazyThreadSafetyMode.PublicationOnly;
+		private const LazyThreadSafetyMode _lazyMode = LazyThreadSafetyMode.PublicationOnly;
 
-		private static readonly Lazy<Func<T, T, int>> _compare = Lazy.Create(OperatorsFactory.Comparison<T>, LazyMode);
+		private static readonly Lazy<Func<T, T, int>> _compare = Lazy.Create(OperatorsFactory.Comparison<T>, _lazyMode);
 
 		/// <summary>
 		/// Comparison callback
@@ -26,7 +26,7 @@ namespace CodeJam.Arithmetic
 
 #region Infinity values
 		private static readonly Lazy<bool> _hasNegativeInfinity =
-			new Lazy<bool>(OperatorsFactory.HasNegativeInfinity<T>, LazyMode);
+			new Lazy<bool>(OperatorsFactory.HasNegativeInfinity<T>, _lazyMode);
 
 		/// <summary>
 		/// Check for the negative infinity value.
@@ -34,7 +34,7 @@ namespace CodeJam.Arithmetic
 		public static bool HasNegativeInfinity => _hasNegativeInfinity.Value;
 
 		private static readonly Lazy<T> _negativeInfinity =
-			new Lazy<T>(OperatorsFactory.GetNegativeInfinity<T>, LazyMode);
+			new Lazy<T>(OperatorsFactory.GetNegativeInfinity<T>, _lazyMode);
 
 		/// <summary>
 		/// Negative infinity value
@@ -43,7 +43,7 @@ namespace CodeJam.Arithmetic
 		public static T NegativeInfinity => _negativeInfinity.Value;
 
 		private static readonly Lazy<bool> _hasPositiveInfinity =
-			new Lazy<bool>(OperatorsFactory.HasPositiveInfinity<T>, LazyMode);
+			new Lazy<bool>(OperatorsFactory.HasPositiveInfinity<T>, _lazyMode);
 
 		/// <summary>
 		/// Check for the positive infinity value.
@@ -51,7 +51,7 @@ namespace CodeJam.Arithmetic
 		public static bool HasPositiveInfinity => _hasPositiveInfinity.Value;
 
 		private static readonly Lazy<T> _positiveInfinity =
-			new Lazy<T>(OperatorsFactory.GetPositiveInfinity<T>, LazyMode);
+			new Lazy<T>(OperatorsFactory.GetPositiveInfinity<T>, _lazyMode);
 
 		/// <summary>
 		/// Positive infinity value
