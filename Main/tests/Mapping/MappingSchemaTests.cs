@@ -156,7 +156,7 @@ namespace CodeJam.Mapping
 		[Test]
 		public void CultureInfo()
 		{
-			Thread.CurrentThread.CurrentCulture = new CultureInfo("en");
+			MappingSchema.Default.SetCultureInfo(new CultureInfo("en", false));
 
 			var ms = new MappingSchema();
 
