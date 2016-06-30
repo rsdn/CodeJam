@@ -73,7 +73,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(7.18, 11.98)]
+			[CompetitionBenchmark(7.18, 12.65)]
 			public int Test04BoundaryToValueCompare()
 			{
 				var result = 0;

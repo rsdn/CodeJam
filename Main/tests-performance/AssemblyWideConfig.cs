@@ -59,13 +59,19 @@ namespace CodeJam
 		private static ManualCompetitionConfig Create()
 		{
 			ManualCompetitionConfig result;
-			if (AnnotateOnRun)
+			if (!AnnotateOnRun)
 			{
-				result = IgnoreExistingAnnotations ? CreateRunConfigReAnnotate() : CreateRunConfigAnnotate();
+				result = CreateRunConfig();
+			}
+			else if (IgnoreExistingAnnotations)
+			{
+				result = CreateRunConfigReAnnotate();
 			}
 			else
 			{
-				result = CreateRunConfig();
+				result = CreateRunConfigAnnotate();
+				result.PreviousRunLogUri =
+					@"https://ci.appveyor.com/api/projects/andrewvk/codejam/artifacts/CodeJam-Tests.Performance.Short.AllPerfTests.log";
 			}
 
 			result.ReportWarningsAsErrors = ReportWarningsAsErrors;

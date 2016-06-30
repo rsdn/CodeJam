@@ -73,7 +73,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(13.59, 18.23)]
+			[CompetitionBenchmark(10.77, 18.23)]
 			public RangeStub<int> Test01RangeInstance()
 			{
 				var result = _rangeData[0];
@@ -84,7 +84,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(15.91, 19.06)]
+			[CompetitionBenchmark(10.71, 19.06)]
 			public RangeStub<int> Test02RangeExtension()
 			{
 				var result = _rangeData[0];
@@ -95,7 +95,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(15.63, 23.75)]
+			[CompetitionBenchmark(10.59, 23.75)]
 			public RangeStub<int> Test02RangeExtensionAlt()
 			{
 				var result = _rangeData[0];
@@ -106,7 +106,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(15.00, 19.16)]
+			[CompetitionBenchmark(10.56, 19.16)]
 			public RangeStub<int> Test03RangeImpl()
 			{
 				var result = _rangeData[0];

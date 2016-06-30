@@ -1,4 +1,5 @@
 ﻿## TODO, Bench.Net:
+* Check `IFlushable.Flush()` usages.
 * No file logger for tests https://github.com/PerfDotNet/BenchmarkDotNet/issues/198
 * Run state for issues like this. https://github.com/PerfDotNet/BenchmarkDotNet/issues/180
 * ReadOnlyConfig
