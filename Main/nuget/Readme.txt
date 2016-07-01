@@ -1,8 +1,8 @@
 CodeJam 1.1.0-rc1 Release Notes
----------------------------------
+-------------------------------
 
 What's new in 1.1.0-rc1
--------------------------
+-----------------------
 * HGlobal and HGlobal<T> helpers
 * Range struct with algorithms
 * Map.DeepCopy method
