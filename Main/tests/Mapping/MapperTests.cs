@@ -630,5 +630,51 @@ namespace CodeJam.Mapping
 
 			Assert.That(mapper.To, Is.Not.Null);
 		}
+
+		class RClass1
+		{
+			public RClass2 Class2;
+		}
+
+		class RClass2
+		{
+			public List<RClass3> List;
+		}
+
+		class RClass3
+		{
+			public RClass1 Class1;
+			public RClass2 Class2;
+		}
+
+		[Test, Explicit("Fails")]
+		public void RecursionTest3([Values(true,false)] bool useEx)
+		{
+			var src = new RClass1
+			{
+				Class2 = new RClass2
+				{
+					List = new List<RClass3>
+					{
+						new RClass3 { Class2 = new RClass2() },
+						new RClass3 { Class2 = new RClass2(), Class1 = new RClass1() },
+					}
+				}
+			};
+
+			src.Class2.List[0].Class1 = src;
+
+			var mapper = new MapHelper<RClass1,RClass1>().Map(useEx, src, m => m.SetDeepCopy(true));
+
+			Assert.That(mapper.To,                       Is.Not.Null);
+			Assert.That(mapper.To.Class2,                Is.Not.Null);
+			Assert.That(mapper.To.Class2.List.Count,     Is.EqualTo(2));
+			Assert.That(mapper.To.Class2.List[0],        Is.Not.Null);
+			Assert.That(mapper.To.Class2.List[1],        Is.Not.Null);
+			Assert.That(mapper.To.Class2.List[0].Class1, Is.Not.Null);
+			Assert.That(mapper.To.Class2.List[0].Class2, Is.Not.Null);
+			Assert.That(mapper.To.Class2.List[1].Class1, Is.Not.Null);
+			Assert.That(mapper.To.Class2.List[1].Class2, Is.Not.Null);
+		}
 	}
 }
