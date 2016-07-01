@@ -168,9 +168,9 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
-		public void MapObjects1([Values(true,false)] bool useEx)
+		public void MapObjects1([Values(true,false)] bool useAction)
 		{
-			var map = new MapHelper<Source,Dest>().Map(useEx, m => m
+			var map = new MapHelper<Source,Dest>().Map(useAction, m => m
 				.MapMember(_ => _.Field3,  _ => _.Field2)
 				.MapMember(_ => _.Field4,  _ => _.Field5)
 				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12) : 12)
@@ -265,9 +265,9 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
-		public void MapObjects2([Values(true,false)] bool useEx)
+		public void MapObjects2([Values(true,false)] bool useAction)
 		{
-			var map = new MapHelper<Source,Dest>().Map(useEx, m => m
+			var map = new MapHelper<Source,Dest>().Map(useAction, m => m
 				.ToMapping      ("Field3", "Field2")
 				.ToMapping<Dest>("Field6", "Field7")
 				.FromMapping    (new Dictionary<string,string> { ["Field5"] = "Field4" }));
@@ -287,9 +287,9 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
-		public void MapObject([Values(true,false)] bool useEx)
+		public void MapObject([Values(true,false)] bool useAction)
 		{
-			var map = new MapHelper<Source,Source>().Map(useEx, m => m);
+			var map = new MapHelper<Source,Source>().Map(useAction, m => m);
 
 			Assert.That(map.To,         Is.Not.SameAs(map.From));
 			Assert.That(map.To.Field1,  Is.EqualTo(map.From.Field1));
@@ -310,9 +310,9 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
-		public void MapFilterObjects([Values(true,false)] bool useEx)
+		public void MapFilterObjects([Values(true,false)] bool useAction)
 		{
-			var map = new MapHelper<Source,Dest>().Map(useEx, mm => mm
+			var map = new MapHelper<Source,Dest>().Map(useAction, mm => mm
 				.SetMemberFilter(m => m.Name != nameof(Source.Field7)));
 
 			Assert.That(map.To.Field7, Is.Not.EqualTo(map.From.Field7));
@@ -324,9 +324,9 @@ namespace CodeJam.Mapping
 		class Class4 { public Class2 Class = new Class2(); }
 
 		[Test]
-		public void MapInnerObject1([Values(true,false)] bool useEx)
+		public void MapInnerObject1([Values(true,false)] bool useAction)
 		{
-			var map = new MapHelper<Class3,Class4>().Map(useEx, m => m);
+			var map = new MapHelper<Class3,Class4>().Map(useAction, m => m);
 
 			Assert.That(map.To.Class.Field, Is.EqualTo(map.From.Class.Field));
 		}
@@ -335,13 +335,13 @@ namespace CodeJam.Mapping
 		class Class6 { public Class2 Class1 = new Class2(); public Class2 Class2 = null; }
 
 		[Test]
-		public void MapInnerObject2([Values(true,false)] bool useEx)
+		public void MapInnerObject2([Values(true,false)] bool useAction)
 		{
 			var src = new Class5();
 
 			src.Class2 = src.Class1;
 
-			var map = new MapHelper<Class5,Class6>().Map(useEx, src, m => m
+			var map = new MapHelper<Class5,Class6>().Map(useAction, src, m => m
 				.SetProcessCrossReferences(true));
 
 			Assert.That(map.To.Class1, Is.Not.Null);
@@ -349,13 +349,13 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
-		public void MapInnerObject3([Values(true,false)] bool useEx)
+		public void MapInnerObject3([Values(true,false)] bool useAction)
 		{
 			var src = new Class5();
 
 			src.Class2 = src.Class1;
 
-			var map = new MapHelper<Class5,Class6>().Map(useEx, src, m => m
+			var map = new MapHelper<Class5,Class6>().Map(useAction, src, m => m
 				.SetProcessCrossReferences(false));
 
 			Assert.That(map.To.Class1, Is.Not.Null);
@@ -368,13 +368,13 @@ namespace CodeJam.Mapping
 		class Class10 { public Class8  Class = new Class8(); }
 
 		[Test]
-		public void SelfReference1([Values(true,false)] bool useEx)
+		public void SelfReference1([Values(true,false)] bool useAction)
 		{
 			var src = new Class9();
 
 			src.Class.Class = src;
 
-			var map = new MapHelper<Class9,Class10>().Map(useEx, src, m => m
+			var map = new MapHelper<Class9,Class10>().Map(useAction, src, m => m
 				.SetProcessCrossReferences(true));
 
 			Assert.That(map.To, Is.SameAs(map.To.Class.Class));
@@ -384,13 +384,13 @@ namespace CodeJam.Mapping
 		class Class12 { public Class10 Class = new Class10(); }
 
 		[Test]
-		public void SelfReference2([Values(true,false)] bool useEx)
+		public void SelfReference2([Values(true,false)] bool useAction)
 		{
 			var src = new Class11();
 
 			src.Class.Class.Class = src.Class;
 
-			var map = new MapHelper<Class11,Class12>().Map(useEx, src, m => m
+			var map = new MapHelper<Class11,Class12>().Map(useAction, src, m => m
 				.SetProcessCrossReferences(true));
 
 			Assert.That(map.To.Class, Is.SameAs(map.To.Class.Class.Class));
@@ -405,20 +405,20 @@ namespace CodeJam.Mapping
 		class Cl41 { public Cl1 Class1; public Cl21 Class2; public Cl31 Class3; }
 
 		[Test]
-		public void SelfReference3([Values(true,false)] bool useEx)
+		public void SelfReference3([Values(true,false)] bool useAction)
 		{
 			var src = new Cl4();
 
-			var map = new MapHelper<Cl4,Cl41>().Map(useEx, src, m => m
+			var map = new MapHelper<Cl4,Cl41>().Map(useAction, src, m => m
 				.SetProcessCrossReferences(true));
 		}
 
 		[Test]
-		public void NullTest([Values(true,false)] bool useEx)
+		public void NullTest([Values(true,false)] bool useAction)
 		{
 			var src = new Cl4 { Class2 = null, };
 
-			var map = new MapHelper<Cl4,Cl41>().Map(useEx, src, m => m
+			var map = new MapHelper<Cl4,Cl41>().Map(useAction, src, m => m
 				.SetProcessCrossReferences(true));
 
 			Assert.That(map.To.Class2, Is.Null);
@@ -428,21 +428,21 @@ namespace CodeJam.Mapping
 		class Class14 { public Class1 Class = new Class1();  }
 
 		[Test]
-		public void DeepCopy1([Values(true,false)] bool useEx)
+		public void DeepCopy1([Values(true,false)] bool useAction)
 		{
 			var src = new Class13();
 
-			var map = new MapHelper<Class13,Class14>().Map(useEx, src, m => m);
+			var map = new MapHelper<Class13,Class14>().Map(useAction, src, m => m);
 
 			Assert.That(map.To.Class, Is.Not.SameAs(src.Class));
 		}
 
 		[Test]
-		public void DeepCopy2([Values(true,false)] bool useEx)
+		public void DeepCopy2([Values(true,false)] bool useAction)
 		{
 			var src = new Class13();
 
-			var map = new MapHelper<Class13,Class14>().Map(useEx, src, m => m
+			var map = new MapHelper<Class13,Class14>().Map(useAction, src, m => m
 				.SetDeepCopy(false));
 
 			Assert.That(map.To.Class, Is.SameAs(src.Class));
@@ -452,13 +452,13 @@ namespace CodeJam.Mapping
 		class Class16 { public List<Class2> List = null; }
 
 		[Test]
-		public void ObjectList([Values(true,false)] bool useEx)
+		public void ObjectList([Values(true,false)] bool useAction)
 		{
 			var src = new Class15();
 
 			src.List.Add(src.List[0]);
 
-			var map = new MapHelper<Class15,Class16>().Map(useEx, src, m => m
+			var map = new MapHelper<Class15,Class16>().Map(useAction, src, m => m
 				.SetProcessCrossReferences(true));
 
 			Assert.That(map.To.List.Count, Is.EqualTo(3));
@@ -520,9 +520,9 @@ namespace CodeJam.Mapping
 		class Class18 { public Class9[] Arr = null; }
 
 		[Test]
-		public void ObjectArray1([Values(true,false)] bool useEx)
+		public void ObjectArray1([Values(true,false)] bool useAction)
 		{
-			var mapper = new MapHelper<Class17,Class18>().Map(useEx, new Class17(), m =>
+			var mapper = new MapHelper<Class17,Class18>().Map(useAction, new Class17(), m =>
 				m.SetProcessCrossReferences(true));
 
 			Assert.That(mapper.To.Arr.Length, Is.EqualTo(3));
@@ -539,9 +539,9 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
-		public void ObjectArray2([Values(true,false)] bool useEx)
+		public void ObjectArray2([Values(true,false)] bool useAction)
 		{
-			var mapper = new MapHelper<Class19,Class18>().Map(useEx, new Class19(), m =>
+			var mapper = new MapHelper<Class19,Class18>().Map(useAction, new Class19(), m =>
 				m.SetProcessCrossReferences(true));
 
 			Assert.That(mapper.To.Arr.Length, Is.EqualTo(3));
@@ -556,13 +556,13 @@ namespace CodeJam.Mapping
 		class Class21 { public Dest   Class1 = null;         public Dest   Class2 = null; }
 
 		[Test]
-		public void NoCrossRef([Values(true,false)] bool useEx)
+		public void NoCrossRef([Values(true,false)] bool useAction)
 		{
 			var source = new Class20();
 
 			source.Class2 = source.Class1;
 
-			var mapper = new MapHelper<Class20,Class21>().Map(useEx, source, m =>
+			var mapper = new MapHelper<Class20,Class21>().Map(useAction, source, m =>
 				m.SetProcessCrossReferences(false));
 
 
@@ -577,13 +577,13 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
-		public void CollectionTest([Values(true,false)] bool useEx)
+		public void CollectionTest([Values(true,false)] bool useAction)
 		{
 			var src = new Object3();
 			src.HashSet.Add(Guid.NewGuid().ToString());
 			src.HashSet.Add(Guid.NewGuid().ToString());
 
-			var mapper = new MapHelper<Object3,Object3>().Map(useEx, src, m => m);
+			var mapper = new MapHelper<Object3,Object3>().Map(useAction, src, m => m);
 
 			Assert.That(mapper.To, Is.Not.Null);
 
@@ -598,9 +598,9 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
-		public void RecursionTest1([Values(true,false)] bool useEx)
+		public void RecursionTest1([Values(true,false)] bool useAction)
 		{
-			var mapper = new MapHelper<RTest1,RTest1>().Map(useEx, new RTest1(), m => m);
+			var mapper = new MapHelper<RTest1,RTest1>().Map(useAction, new RTest1(), m => m);
 
 			Assert.That(mapper.To, Is.Not.Null);
 		}
@@ -611,9 +611,9 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
-		public void RecursionTest2([Values(true,false)] bool useEx)
+		public void RecursionTest2([Values(true,false)] bool useAction)
 		{
-			var mapper = new MapHelper<RTest2,RTest2>().Map(useEx, new RTest2(), m => m);
+			var mapper = new MapHelper<RTest2,RTest2>().Map(useAction, new RTest2(), m => m);
 
 			Assert.That(mapper.To, Is.Not.Null);
 		}
@@ -624,9 +624,9 @@ namespace CodeJam.Mapping
 		}
 
 		[Test]
-		public void ByteArrayTest([Values(true,false)] bool useEx)
+		public void ByteArrayTest([Values(true,false)] bool useAction)
 		{
-			var mapper = new MapHelper<ByteTestClass,ByteTestClass>().Map(useEx, new ByteTestClass(), m => m);
+			var mapper = new MapHelper<ByteTestClass,ByteTestClass>().Map(useAction, new ByteTestClass(), m => m);
 
 			Assert.That(mapper.To, Is.Not.Null);
 		}
@@ -647,8 +647,8 @@ namespace CodeJam.Mapping
 			public RClass2 Class2;
 		}
 
-		[Test, Explicit("Fails")]
-		public void RecursionTest3([Values(true,false)] bool useEx)
+		[Test]
+		public void RecursionTest3([Values(true,false)] bool useAction)
 		{
 			var src = new RClass1
 			{
@@ -664,7 +664,7 @@ namespace CodeJam.Mapping
 
 			src.Class2.List[0].Class1 = src;
 
-			var mapper = new MapHelper<RClass1,RClass1>().Map(useEx, src, m => m.SetDeepCopy(true));
+			var mapper = new MapHelper<RClass1,RClass1>().Map(useAction, src, m => m.SetDeepCopy(true));
 
 			Assert.That(mapper.To,                       Is.Not.Null);
 			Assert.That(mapper.To.Class2,                Is.Not.Null);
