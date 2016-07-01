@@ -4,7 +4,17 @@ using System.Linq;
 
 using NUnit.Framework;
 
+// ReSharper disable ClassNeverInstantiated.Local
+// ReSharper disable UnusedMember.Global
+// ReSharper disable MemberHidesStaticFromOuterClass
+// ReSharper disable UnusedMember.Local
+// ReSharper disable FieldCanBeMadeReadOnly.Local
+// ReSharper disable UnusedAutoPropertyAccessor.Local
+// ReSharper disable ReturnValueOfPureMethodIsNotUsed
+// ReSharper disable NotAccessedField.Local
+
 #pragma warning disable 649
+#pragma warning disable 169
 
 namespace CodeJam.Mapping
 {
@@ -13,7 +23,7 @@ namespace CodeJam.Mapping
 	[TestFixture]
 	public class MapperTests
 	{
-		class MapHelper<TFrom,TTo>
+		private class MapHelper<TFrom,TTo>
 			where TFrom : new()
 			where TTo   : new()
 		{
@@ -26,14 +36,7 @@ namespace CodeJam.Mapping
 
 				From = fromObj;
 
-				if (action)
-				{
-					To = mapper.Map(From, new TTo());
-				}
-				else
-				{
-					To = mapper.Map(From);
-				}
+				To = action ? mapper.Map(From, new TTo()) : mapper.Map(From);
 
 				return this;
 			}
@@ -42,7 +45,7 @@ namespace CodeJam.Mapping
 			public TTo   To;
 		}
 
-		class TestMap {}
+		private class TestMap {}
 
 		[Test]
 		public void ActionExpressionTest()
@@ -87,7 +90,7 @@ namespace CodeJam.Mapping
 			Assert.That(dest, Is.EqualTo(42));
 		}
 
-		enum Gender
+		private enum Gender
 		{
 			[MapValue("F")] Female,
 			[MapValue("M")] Male,
@@ -113,7 +116,7 @@ namespace CodeJam.Mapping
 			Assert.That(dest, Is.EqualTo(Gender.Male));
 		}
 
-		enum Enum1
+		private enum Enum1
 		{
 			Value1 = 10,
 			Value2,
@@ -121,7 +124,7 @@ namespace CodeJam.Mapping
 			Value4,
 		}
 
-		enum Enum2
+		private enum Enum2
 		{
 			Value1,
 			Value2 = 10,
@@ -129,7 +132,7 @@ namespace CodeJam.Mapping
 			Value4,
 		}
 
-		class Dest
+		private class Dest
 		{
 			public int    Field1;
 			public float  Field3;
@@ -148,7 +151,7 @@ namespace CodeJam.Mapping
 			public Enum2  Field17;
 		}
 
-		class Source
+		private class Source
 		{
 			public int      Field1  = 1;
 			public int      Field2  = 2;
@@ -318,10 +321,10 @@ namespace CodeJam.Mapping
 			Assert.That(map.To.Field7, Is.Not.EqualTo(map.From.Field7));
 		}
 
-		class Class1 { public int Field = 1; }
-		class Class2 { public int Field = 2; }
-		class Class3 { public Class1 Class = new Class1(); }
-		class Class4 { public Class2 Class = new Class2(); }
+		private class Class1 { public int Field = 1; }
+		private class Class2 { public int Field = 2; }
+		private class Class3 { public Class1 Class = new Class1(); }
+		private class Class4 { public Class2 Class = new Class2(); }
 
 		[Test]
 		public void MapInnerObject1([Values(true,false)] bool useAction)
@@ -331,8 +334,8 @@ namespace CodeJam.Mapping
 			Assert.That(map.To.Class.Field, Is.EqualTo(map.From.Class.Field));
 		}
 
-		class Class5 { public Class1 Class1 = new Class1(); public Class1 Class2; }
-		class Class6 { public Class2 Class1 = new Class2(); public Class2 Class2 = null; }
+		private class Class5 { public Class1 Class1 = new Class1(); public Class1 Class2; }
+		private class Class6 { public Class2 Class1 = new Class2(); public Class2 Class2 = null; }
 
 		[Test]
 		public void MapInnerObject2([Values(true,false)] bool useAction)
@@ -362,10 +365,10 @@ namespace CodeJam.Mapping
 			Assert.That(map.To.Class2, Is.Not.SameAs(map.To.Class1));
 		}
 
-		class Class7  { public Class9  Class; }
-		class Class8  { public Class10 Class = null; }
-		class Class9  { public Class7  Class = new Class7(); }
-		class Class10 { public Class8  Class = new Class8(); }
+		private class Class7  { public Class9  Class; }
+		private class Class8  { public Class10 Class = null; }
+		private class Class9  { public Class7  Class = new Class7(); }
+		private class Class10 { public Class8  Class = new Class8(); }
 
 		[Test]
 		public void SelfReference1([Values(true,false)] bool useAction)
@@ -380,8 +383,8 @@ namespace CodeJam.Mapping
 			Assert.That(map.To, Is.SameAs(map.To.Class.Class));
 		}
 
-		class Class11 { public Class9  Class = new Class9();  }
-		class Class12 { public Class10 Class = new Class10(); }
+		private class Class11 { public Class9  Class = new Class9();  }
+		private class Class12 { public Class10 Class = new Class10(); }
 
 		[Test]
 		public void SelfReference2([Values(true,false)] bool useAction)
@@ -396,20 +399,20 @@ namespace CodeJam.Mapping
 			Assert.That(map.To.Class, Is.SameAs(map.To.Class.Class.Class));
 		}
 
-		class Cl1 {}
-		class Cl2 { public Cl1 Class1 = new Cl1(); }
-		class Cl3 { public Cl1 Class1 = new Cl1(); }
-		class Cl4 { public Cl1 Class1 = new Cl1(); public Cl2 Class2 = new Cl2(); public Cl3 Class3 = new Cl3(); }
-		class Cl21 { public Cl1 Class1; }
-		class Cl31 { public Cl1 Class1; }
-		class Cl41 { public Cl1 Class1; public Cl21 Class2; public Cl31 Class3; }
+		private class Cl1 {}
+		private class Cl2 { public Cl1 Class1 = new Cl1(); }
+		private class Cl3 { public Cl1 Class1 = new Cl1(); }
+		private class Cl4 { public Cl1 Class1 = new Cl1(); public Cl2 Class2 = new Cl2(); public Cl3 Class3 = new Cl3(); }
+		private class Cl21 { public Cl1 Class1; }
+		private class Cl31 { public Cl1 Class1; }
+		private class Cl41 { public Cl1 Class1; public Cl21 Class2; public Cl31 Class3; }
 
 		[Test]
 		public void SelfReference3([Values(true,false)] bool useAction)
 		{
 			var src = new Cl4();
 
-			var map = new MapHelper<Cl4,Cl41>().Map(useAction, src, m => m
+			new MapHelper<Cl4,Cl41>().Map(useAction, src, m => m
 				.SetProcessCrossReferences(true));
 		}
 
@@ -424,8 +427,8 @@ namespace CodeJam.Mapping
 			Assert.That(map.To.Class2, Is.Null);
 		}
 
-		class Class13 { public Class1 Class = new Class1();  }
-		class Class14 { public Class1 Class = new Class1();  }
+		private class Class13 { public Class1 Class = new Class1();  }
+		private class Class14 { public Class1 Class = new Class1();  }
 
 		[Test]
 		public void DeepCopy1([Values(true,false)] bool useAction)
@@ -448,8 +451,8 @@ namespace CodeJam.Mapping
 			Assert.That(map.To.Class, Is.SameAs(src.Class));
 		}
 
-		class Class15 { public List<Class1> List = new List<Class1> { new Class1(), new Class1() }; }
-		class Class16 { public List<Class2> List = null; }
+		private class Class15 { public List<Class1> List = new List<Class1> { new Class1(), new Class1() }; }
+		private class Class16 { public List<Class2> List = null; }
 
 		[Test]
 		public void ObjectList([Values(true,false)] bool useAction)
@@ -503,11 +506,11 @@ namespace CodeJam.Mapping
 			Assert.AreEqual("3", dest[2]);
 		}
 
-		class Class17
+		private class Class17
 		{
 			public IEnumerable<Class9> Arr => GetEnumerable();
 
-			static IEnumerable<Class9> GetEnumerable()
+			private static IEnumerable<Class9> GetEnumerable()
 			{
 				var c = new Class9();
 
@@ -517,7 +520,7 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		class Class18 { public Class9[] Arr = null; }
+		private class Class18 { public Class9[] Arr = null; }
 
 		[Test]
 		public void ObjectArray1([Values(true,false)] bool useAction)
@@ -533,7 +536,7 @@ namespace CodeJam.Mapping
 			Assert.That(mapper.To.Arr[0], Is.SameAs(mapper.To.Arr[2]));
 		}
 
-		class Class19
+		private class Class19
 		{
 			public Class9[] Arr => new Class17().Arr.ToArray();
 		}
@@ -552,8 +555,8 @@ namespace CodeJam.Mapping
 			Assert.That(mapper.To.Arr[0], Is.SameAs(mapper.To.Arr[2]));
 		}
 
-		class Class20 { public Source Class1 = new Source(); public Source Class2; }
-		class Class21 { public Dest   Class1 = null;         public Dest   Class2 = null; }
+		private class Class20 { public Source Class1 = new Source(); public Source Class2; }
+		private class Class21 { public Dest   Class1 = null;         public Dest   Class2 = null; }
 
 		[Test]
 		public void NoCrossRef([Values(true,false)] bool useAction)
@@ -571,7 +574,7 @@ namespace CodeJam.Mapping
 			Assert.That(mapper.To.Class1, Is.Not.SameAs(mapper.To.Class2));
 		}
 
-		public class Object3
+		private class Object3
 		{
 			public HashSet<string> HashSet = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
 		}
@@ -593,8 +596,9 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		class RTest1
-		{public List<RTest1> Depends { get; set; }
+		private class RTest1
+		{
+			public List<RTest1> Depends { get; set; }
 		}
 
 		[Test]
@@ -618,7 +622,7 @@ namespace CodeJam.Mapping
 			Assert.That(mapper.To, Is.Not.Null);
 		}
 
-		public class ByteTestClass
+		private class ByteTestClass
 		{
 			public byte[] Image { get; set; }
 		}
@@ -631,17 +635,17 @@ namespace CodeJam.Mapping
 			Assert.That(mapper.To, Is.Not.Null);
 		}
 
-		class RClass1
+		private class RClass1
 		{
 			public RClass2 Class2;
 		}
 
-		class RClass2
+		private class RClass2
 		{
 			public List<RClass3> List;
 		}
 
-		class RClass3
+		private class RClass3
 		{
 			public RClass1 Class1;
 			public RClass2 Class2;
