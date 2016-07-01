@@ -100,30 +100,34 @@ namespace CodeJam.Mapping.Examples
 							System.Collections.Generic.IDictionary`2[System.Object,System.Object] $dic1
 						)
 					{
-						(Class2)(.Call CodeJam.Mapping.ExpressionBuilder.GetValue($dic1,$from)
-						??
-						.Block(Class2 $obj2)
+						.Block(System.Collections.Generic.IDictionary`2[System.Object,System.Object] $ldic2)
 						{
-							$obj2 = .If ($to == null) { .New Class2() } .Else { $to };
-
-							.Call CodeJam.Mapping.ExpressionBuilder.Add($dic1, $from, $obj2);
-
-							$obj2.Prop1  = .Call ($from.Prop1).ToString();
-
-							$obj2.Field1 = .If ($from.Field1 != null)
+							$ldic2 = $dic1;
+							(Class2)(.Call CodeJam.Mapping.ExpressionBuilder.GetValue($ldic2,$from)
+							??
+							.Block(Class2 $obj3)
 							{
-								(System.Nullable`1[System.DateTime]).Call System.DateTime.Parse(
-									$from.Field1,
-									null,
-									.Constant<System.Globalization.DateTimeStyles>(NoCurrentDateDefault))
-							}
-							.Else
-							{
-								null
-							};
+								$obj3 = .If ($to == null) { .New Class2() } .Else { $to };
 
-							$obj2
-						})
+								.Call CodeJam.Mapping.ExpressionBuilder.Add($ldic2, $from, $obj3);
+
+								$obj3.Prop1  = .Call ($from.Prop1).ToString();
+
+								$obj3.Field1 = .If ($from.Field1 != null)
+								{
+									(System.Nullable`1[System.DateTime]).Call System.DateTime.Parse(
+										$from.Field1,
+										null,
+										.Constant<System.Globalization.DateTimeStyles>(NoCurrentDateDefault))
+								}
+								.Else
+								{
+									null
+								};
+
+								$obj3
+							})
+						}
 					}".Remove(" ", "\t", "\r", "\n")));
 		}
 	}

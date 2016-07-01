@@ -59,8 +59,7 @@ namespace CodeJam.Mapping
 		private readonly Type             _fromType;
 		private readonly Type             _toType;
 		private readonly BuilderData      _data;
-
-		private bool _processCrossReferences;
+		private readonly bool             _processCrossReferences;
 
 		#region GetExpressionEx
 
