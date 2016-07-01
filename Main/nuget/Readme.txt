@@ -1,10 +1,13 @@
-CodeJam 1.1.0-beta6 Release Notes
+CodeJam 1.1.0-rc1 Release Notes
 ---------------------------------
 
-What's new in 1.1.0-beta6
+What's new in 1.1.0-rc1
 -------------------------
 * HGlobal and HGlobal<T> helpers
 * Range struct with algorithms
+* Map.DeepCopy method
+* Doc comment fixes
+* Fixes and code cleanup
 
 What's new in 1.1.0-beta5
 -------------------------
