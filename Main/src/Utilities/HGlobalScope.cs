@@ -8,38 +8,33 @@ using JetBrains.Annotations;
 namespace CodeJam
 {
 	/// <summary>
-	/// Wraps Mashal.AllocHGlobal and Marshal.FreeHGlobal using generic.
+	/// Wraps <see cref="Marshal.AllocHGlobal(System.IntPtr)"/> and <see cref="Marshal.FreeHGlobal"/>.
 	/// </summary>
 	[PublicAPI]
 	[SecurityCritical]
-	public class HGlobal<T> : CriticalFinalizerObject, IDisposable where T : struct
+	public class HGlobalScope : CriticalFinalizerObject, IDisposable
 	{
-		private IntPtr _buffer;
-
 		/// <summary>
-		/// Default constructor, allocates memory with the size of <typeparamref name="T"/>
+		/// Internal pointer.
 		/// </summary>
-		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
-		public HGlobal() : this(_size) { }
+		private IntPtr _ptr;
 
 		/// <summary>
 		/// Allocates memory from the unmanaged memory of the process by using the specified number of bytes.
 		/// </summary>
 		/// <param name="cb">The required number of bytes in memory.</param>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
-		public HGlobal(int cb)
+		internal HGlobalScope(int cb)
 		{
-			if (cb < _size)
-				throw new ArgumentException($"size is less than {_size}");
+			_ptr = Marshal.AllocHGlobal(cb);
 
-			_buffer = Marshal.AllocHGlobal(cb);
 			Length = cb;
 		}
 
 		/// <summary>
 		/// Finalizer.
 		/// </summary>
-		~HGlobal()
+		~HGlobalScope()
 		{
 			DisposeInternal();
 		}
@@ -55,34 +50,24 @@ namespace CodeJam
 
 		/// <summary>
 		/// Length
-		///  </summary>
+		/// </summary>
 		public int Length { get; }
 
 		/// <summary>
 		/// Pointer to data.
 		/// </summary>
-		public IntPtr Data => _buffer;
-
-		/// <summary>
-		/// Value
-		/// </summary>
-		public T Value => (T)Marshal.PtrToStructure(_buffer, typeof(T));
+		public IntPtr Data => _ptr;
 
 		/// <summary>
 		/// Internal Dispose method.
 		/// </summary>
 		private void DisposeInternal()
 		{
-			if (_buffer != IntPtr.Zero)
+			if (_ptr != IntPtr.Zero)
 			{
-				Marshal.FreeHGlobal(_buffer);
-				_buffer = IntPtr.Zero;
+				Marshal.FreeHGlobal(_ptr);
+				_ptr = IntPtr.Zero;
 			}
 		}
-
-		/// <summary>
-		/// Size of the of the generic parameter <typeparamref name="T"/>.
-		/// </summary>
-		private static readonly int _size = Marshal.SizeOf(typeof(T));
 	}
 }
