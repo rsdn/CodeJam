@@ -1,6 +1,6 @@
 ﻿using System;
 
-using BenchmarkDotNet.Mathematics;
+using BenchmarkDotNet.Reports;
 
 using JetBrains.Annotations;
 
@@ -13,7 +13,7 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 	public class PercentileLimitProvider : CompetitionLimitProviderBase
 	{
 		/// <summary> Metric is based on 20 (lower boundary) and 80 (upper boundary) percentiles.</summary>
-		public static readonly ICompetitionLimitProvider P20To80 = new PercentileLimitProvider(40, 60, 20);
+		public static readonly ICompetitionLimitProvider P20To80 = new PercentileLimitProvider(45, 65, 15);
 
 		/// <summary>Initializes a new instance of the <see cref="PercentileLimitProvider"/> class.</summary>
 		/// <param name="minRatioPercentile">The percentile for the minimum timing ratio.</param>
@@ -57,12 +57,15 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 		public int LimitModeDelta { get; }
 
 		/// <summary>Limits for the benchmark.</summary>
-		/// <param name="timingRatios">Timing ratios relative to the baseline.</param>
+		/// <param name="baselineReport">The baseline report.</param>
+		/// <param name="benchmarkReport">The benchmark report.</param>
 		/// <param name="limitMode">If <c>true</c> limit values should be returned. Actual values returned otherwise.</param>
 		/// <returns>Limits for the benchmark or <c>null</c> if none.</returns>
-		protected override CompetitionLimit TryGetCompetitionLimitImpl(double[] timingRatios, bool limitMode)
+		protected override CompetitionLimit TryGetCompetitionLimitImpl(
+			BenchmarkReport baselineReport,
+			BenchmarkReport benchmarkReport,
+			bool limitMode)
 		{
-			var percentiles = new Statistics(timingRatios).Percentiles;
 			var minPercentile = limitMode
 				? Math.Max(0, MinRatioPercentile - LimitModeDelta)
 				: MinRatioPercentile;
@@ -70,10 +73,22 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 				? Math.Min(99, MaxRatioPercentile + LimitModeDelta)
 				: MaxRatioPercentile;
 
-			var minRatio = percentiles.Percentile(minPercentile);
-			var maxRatio = percentiles.Percentile(maxPercentile);
+			var minValueBaseline = baselineReport.ResultStatistics.Percentiles.Percentile(minPercentile);
+			var maxValueBaseline = baselineReport.ResultStatistics.Percentiles.Percentile(maxPercentile);
 
-			return new CompetitionLimit(minRatio, maxRatio);
+			// ReSharper disable CompareOfFloatsByEqualityOperator
+			if (minValueBaseline == 0 || maxValueBaseline == 0)
+				// ReSharper restore CompareOfFloatsByEqualityOperator
+				return null;
+
+			var minValueBenchmark = benchmarkReport.ResultStatistics.Percentiles.Percentile(minPercentile);
+			var maxValueBenchmark = benchmarkReport.ResultStatistics.Percentiles.Percentile(maxPercentile);
+
+			var minRatio = minValueBenchmark / minValueBaseline;
+			var maxRatio = maxValueBenchmark / maxValueBaseline;
+			return new CompetitionLimit(
+				Math.Min(minRatio, maxRatio),
+				maxRatio);
 		}
 	}
 }

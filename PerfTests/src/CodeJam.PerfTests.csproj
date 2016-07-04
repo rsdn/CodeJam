@@ -103,7 +103,6 @@
     <Compile Include="[L4_CompetitionLimits]\Analysers\CompetitionAnalyser.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.CompetitionLimitProviders\ICompetitionLimitProvider.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.CompetitionLimitProviders\CompetitionLimitProviderBase.cs" />
-    <Compile Include="[L4_CompetitionLimits]\Running.CompetitionLimitProviders\ConfidenceIntervalLimitProvider.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.CompetitionLimitProviders\PercentileLimitProvider.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\AttributeAnnotations.cs" />
     <Compile Include="[L4_CompetitionLimits]\CompetitionLimitProperties.cs" />

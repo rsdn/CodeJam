@@ -47,8 +47,10 @@ namespace CodeJam
 		/// </summary>
 		public static ICompetitionConfig RunConfig => new AssemblyWideConfig();
 
-		//private static readonly ILogger _detailedLogger = CreateDetailedLogger();
-		private static readonly ILogger _importantInfoLogger = CreateImportantInfoLogger();
+		private static readonly Lazy<ILogger> _detailedLogger =
+			new Lazy<ILogger>(CreateDetailedLogger);
+		private static readonly Lazy<ILogger> _importantInfoLogger =
+			new Lazy<ILogger>(CreateImportantInfoLogger);
 
 		/// <summary>
 		/// Constructor
@@ -71,8 +73,8 @@ namespace CodeJam
 			{
 				result = CreateRunConfigAnnotate();
 #if !CI_Build
-				result.PreviousRunLogUri =
-					@"https://ci.appveyor.com/api/projects/andrewvk/codejam/artifacts/CodeJam-Tests.Performance.Short.AllPerfTests.log";
+				//result.PreviousRunLogUri =
+				//	@"https://ci.appveyor.com/api/projects/andrewvk/codejam/artifacts/CodeJam-Tests.Performance.Short.AllPerfTests.log";
 #endif
 			}
 
@@ -80,9 +82,9 @@ namespace CodeJam
 			if (TroubleshootingMode)
 			{
 				result.Add(TimingsExporter.Instance);
-				//result.Add(_detailedLogger, _importantInfoLogger);
-				result.Add(_importantInfoLogger);
+				result.Add(_detailedLogger.Value);
 			}
+			result.Add(_importantInfoLogger.Value);
 
 			return result;
 		}

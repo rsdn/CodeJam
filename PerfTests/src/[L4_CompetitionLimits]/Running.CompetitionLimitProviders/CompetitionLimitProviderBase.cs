@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
@@ -75,24 +74,17 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 			if (!TryGetReports(benchmark, summary, out baselineReport, out benchmarkReport))
 				return null;
 
-			var timingRatios = benchmarkReport
-				.GetResultRuns()
-				.Zip(
-					baselineReport.GetResultRuns(),
-					(r1, r2) => r1.GetAverageNanoseconds() / r2.GetAverageNanoseconds())
-				.Where(r => !double.IsNaN(r) && !double.IsInfinity(r))
-				.ToArray();
-
-			if (timingRatios.Length == 0)
-				return null;
-
-			return TryGetCompetitionLimitImpl(timingRatios, limitMode);
+			return TryGetCompetitionLimitImpl(baselineReport, benchmarkReport, limitMode);
 		}
 
 		/// <summary>Limits for the benchmark.</summary>
-		/// <param name="timingRatios">Timing ratios relative to the baseline.</param>
+		/// <param name="baselineReport">The baseline report.</param>
+		/// <param name="benchmarkReport">The benchmark report.</param>
 		/// <param name="limitMode">If <c>true</c> limit values should be returned. Actual values returned otherwise.</param>
 		/// <returns>Limits for the benchmark or <c>null</c> if none.</returns>
-		protected abstract CompetitionLimit TryGetCompetitionLimitImpl(double[] timingRatios, bool limitMode);
+		protected abstract CompetitionLimit TryGetCompetitionLimitImpl(
+			BenchmarkReport baselineReport,
+			BenchmarkReport benchmarkReport,
+			bool limitMode);
 	}
 }

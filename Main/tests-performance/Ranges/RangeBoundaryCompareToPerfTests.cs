@@ -37,7 +37,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(2.57, 7.28)]
+			[CompetitionBenchmark(3.51, 5.26)]
 			public int Test01Operators()
 			{
 				var result = 0;
@@ -46,7 +46,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(2.93, 8.65)]
+			[CompetitionBenchmark(3.32, 5.30)]
 			public int Test02BoundaryValuesOperators()
 			{
 				var result = 0;
@@ -55,7 +55,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(1.69, 3.50)]
+			[CompetitionBenchmark(2.16, 3.28)]
 			public int Test03BoundariesCompareFrom()
 			{
 				var result = 0;
@@ -64,7 +64,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(1.75, 5.38)]
+			[CompetitionBenchmark(2.16, 3.26)]
 			public int Test03BoundariesCompareFromTo()
 			{
 				var result = 0;
@@ -73,7 +73,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(7.18, 13.85)]
+			[CompetitionBenchmark(7.82, 11.90)]
 			public int Test04BoundaryToValueCompare()
 			{
 				var result = 0;
@@ -100,7 +100,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(1.89, 4.14)]
+			[CompetitionBenchmark(2.25, 2.46)]
 			public int Test01Operators()
 			{
 				var result = 0;
@@ -109,7 +109,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(2.38, 5.06)]
+			[CompetitionBenchmark(3.51, 4.23)]
 			public int Test02BoundaryValuesOperators()
 			{
 				var result = 0;
@@ -118,7 +118,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(1.58, 3.10)]
+			[CompetitionBenchmark(2.00, 2.55)]
 			public int Test03BoundariesCompareFrom()
 			{
 				var result = 0;
@@ -127,7 +127,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(1.42, 2.98)]
+			[CompetitionBenchmark(1.87, 2.22)]
 			public int Test03BoundariesCompareFromTo()
 			{
 				var result = 0;
@@ -136,7 +136,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(4.06, 7.07)]
+			[CompetitionBenchmark(5.79, 6.43)]
 			public int Test04BoundaryToValueCompare()
 			{
 				var result = 0;

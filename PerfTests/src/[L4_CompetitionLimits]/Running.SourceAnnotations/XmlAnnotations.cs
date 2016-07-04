@@ -243,7 +243,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			logger.WriteLineInfo(
 				$"{LogInfoPrefix}Downloading {logUri}.");
 
-			using (var reader = BenchmarkHelpers.TryGetTextFromUri(logUri))
+			using (var reader = BenchmarkHelpers.TryGetTextFromUri(logUri, TimeSpan.FromSeconds(15)))
 			{
 				if (reader == null)
 				{

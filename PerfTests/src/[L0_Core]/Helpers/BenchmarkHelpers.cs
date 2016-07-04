@@ -26,6 +26,7 @@ namespace BenchmarkDotNet.Helpers
 	/// <summary>
 	/// Helper methods for benchmark infrastructure.
 	/// </summary>
+	[PublicAPI]
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	public static class BenchmarkHelpers
 	{
@@ -216,7 +217,14 @@ namespace BenchmarkDotNet.Helpers
 		/// <summary>Tries to obtain text from the given URI.</summary>
 		/// <param name="uri">The URI to geth the text from.</param>
 		/// <returns>The text reader or <c>null</c> if none.</returns>
-		public static TextReader TryGetTextFromUri(string uri)
+		public static TextReader TryGetTextFromUri(string uri) =>
+			TryGetTextFromUri(uri, null);
+
+		/// <summary>Tries to obtain text from the given URI.</summary>
+		/// <param name="uri">The URI to geth the text from.</param>
+		/// <param name="timeOut">The timeout.</param>
+		/// <returns>The text reader or <c>null</c> if none.</returns>
+		public static TextReader TryGetTextFromUri(string uri, TimeSpan? timeOut)
 		{
 			if (uri == null)
 				throw new ArgumentNullException(nameof(uri));
@@ -226,9 +234,21 @@ namespace BenchmarkDotNet.Helpers
 			{
 				try
 				{
-					using (var webClient = new WebClient())
+					var webRequest = WebRequest.Create(uriInst);
+					if (timeOut != null)
 					{
-						return new StreamReader(new MemoryStream(webClient.DownloadData(uriInst)));
+						webRequest.Timeout = (int)timeOut.Value.TotalMilliseconds;
+					}
+					using (var response = webRequest.GetResponse())
+					using (var content = response.GetResponseStream())
+					{
+						if (content == null)
+							return null;
+
+						using (var reader = new StreamReader(content))
+						{
+							return new StringReader(reader.ReadToEnd());
+						}
 					}
 				}
 				catch (WebException)
