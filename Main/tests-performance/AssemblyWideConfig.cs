@@ -70,8 +70,10 @@ namespace CodeJam
 			else
 			{
 				result = CreateRunConfigAnnotate();
+#if !CI_Build
 				result.PreviousRunLogUri =
 					@"https://ci.appveyor.com/api/projects/andrewvk/codejam/artifacts/CodeJam-Tests.Performance.Short.AllPerfTests.log";
+#endif
 			}
 
 			result.ReportWarningsAsErrors = ReportWarningsAsErrors;
