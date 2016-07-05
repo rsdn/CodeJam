@@ -130,6 +130,31 @@ namespace CodeJam.PerfTests.IntegrationTests
 		}
 
 		[Test]
+		public static void CompetitionBadLimitsBenchmark()
+		{
+			Interlocked.Exchange(ref _callCounter, 0);
+
+			var runState = new PerfTestRunner().Run<BadLimitsBenchmark>(SelfTestConfig);
+			var messages = runState.GetMessages();
+
+			Assert.AreEqual(_callCounter, ExpectedRunCount);
+			Assert.IsNull(runState.LastRunSummary);
+			Assert.IsTrue(runState.Completed);
+			Assert.AreEqual(runState.RunNumber, 1);
+			Assert.AreEqual(runState.RunsLeft, 0);
+			Assert.AreEqual(runState.RunLimitExceeded, false);
+			Assert.AreEqual(runState.LooksLikeLastRun, true);
+
+			Assert.AreEqual(messages.Length, 1);
+
+			Assert.AreEqual(messages[0].RunNumber, 1);
+			Assert.AreEqual(messages[0].RunMessageNumber, 1);
+			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.ExecutionError);
+			Assert.AreEqual(messages[0].MessageSource, MessageSource.Runner);
+			Assert.That(messages[0].MessageText, Does.StartWith("Benchmark BadLimitsBenchmark. Exception: Please check competition limits. Min ratio should not be greater than max ratio."));
+		}
+
+		[Test]
 		public static void CompetitionLimitsFailBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
@@ -181,7 +206,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[5].MessageSource, MessageSource.Runner);
 			Assert.AreEqual(
 				messages[5].MessageText,
-				"The benchmark was run 3 time(s) (read log for details). Consider to adjust competition setup.");
+				"The benchmark was run 3 time(s) (read log for details). Try to loose competition limits.");
 		}
 
 		#region Perf test helpers
@@ -274,6 +299,23 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			[CompetitionBenchmark]
 			public void Benchmark2() => Interlocked.Increment(ref _callCounter);
+		}
+
+		public class BadLimitsBenchmark
+		{
+			[CompetitionBaseline]
+			public void Baseline()
+			{
+				Interlocked.Increment(ref _callCounter);
+				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
+			}
+
+			[CompetitionBenchmark(20, 5)]
+			public void SlowerX10()
+			{
+				Interlocked.Increment(ref _callCounter);
+				CompetitionHelpers.Delay(10 * CompetitionHelpers.DefaultCount);
+			}
 		}
 
 		public class LimitsFailBenchmark

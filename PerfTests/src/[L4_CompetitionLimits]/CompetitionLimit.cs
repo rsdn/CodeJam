@@ -130,12 +130,10 @@ namespace CodeJam.PerfTests
 			minRatio = AdjustLimitArgument(minRatio, nameof(minRatio));
 			maxRatio = AdjustLimitArgument(maxRatio, nameof(maxRatio));
 
-			if (!IsMinLimitOk(minRatio, maxRatio))
-			{
-				throw CodeExceptions.Argument(
-					nameof(maxRatio),
-					$"{nameof(maxRatio)} should be greater than or equal to {nameof(minRatio)}");
-			}
+			Code.AssertArgument(
+				IsMinLimitOk(minRatio, maxRatio),
+				nameof(maxRatio),
+				"Please check competition limits. Min ratio should not be greater than max ratio.");
 
 			MinRatio = minRatio;
 			MaxRatio = maxRatio;

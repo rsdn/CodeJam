@@ -260,13 +260,13 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				competitionState.WriteMessage(
 					MessageSource.Runner, MessageSeverity.TestError,
-					$"The benchmark run limit ({competitionState.MaxRunsAllowed} runs(s)) exceeded (read log for details). Consider to adjust competition setup.");
+					$"The benchmark run limit ({competitionState.MaxRunsAllowed} runs(s)) exceeded (read log for details). Try to loose competition limits.");
 			}
 			else if (competitionState.RunNumber > 1)
 			{
 				competitionState.WriteMessage(
 					MessageSource.Runner, MessageSeverity.Warning,
-					$"The benchmark was run {competitionState.RunNumber} time(s) (read log for details). Consider to adjust competition setup.");
+					$"The benchmark was run {competitionState.RunNumber} time(s) (read log for details). Try to loose competition limits.");
 			}
 		}
 

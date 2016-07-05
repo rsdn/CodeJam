@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CodeJam.PerfTests</RootNamespace>
-    <AssemblyName>CodeJam.PerfTests-Tests</AssemblyName>
+    <AssemblyName>CodeJam.PerfTests-Tests.NUnit</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -51,6 +51,7 @@
     <Reference Include="System.Management" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Examples\SimplePerfTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\PerfTestHelpers.cs" />
     <Compile Include="Helpers\PerfTestRunner.cs" />
@@ -69,6 +70,10 @@
     <ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj">
       <Project>{2f2046cc-fb47-4318-b335-5a82b04b6c40}</Project>
       <Name>CodeJam.Main</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src-NUnit\CodeJam.PerfTests.NUnit.csproj">
+      <Project>{8abf1a06-4643-49d6-a546-b7473db10102}</Project>
+      <Name>CodeJam.PerfTests.NUnit</Name>
     </ProjectReference>
     <ProjectReference Include="..\src\CodeJam.PerfTests.csproj">
       <Project>{1D650545-A151-4211-8C29-C38A939403A6}</Project>

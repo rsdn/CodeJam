@@ -123,10 +123,11 @@ namespace BenchmarkDotNet.Running
 
 			for (int i = 0; i < iterationCount; i++)
 			{
-				var sw = Stopwatch.StartNew();
+				var chronometer = Chronometer.Start();
 				targetAction();
-				sw.Stop();
-				var measurement = new Measurement(0, iterationMode, i + 1, 1, sw.Elapsed.TotalNanoseconds());
+				var clockSpan = chronometer.Stop();
+
+				var measurement = new Measurement(0, iterationMode, i + 1, 1, clockSpan.GetNanoseconds());
 				_allMeasurements.Add(measurement);
 			}
 

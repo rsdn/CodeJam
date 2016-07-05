@@ -48,7 +48,7 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 		#endregion
 
 		#region Configs core
-		public static readonly bool RunUnderNUnit = TestContext.CurrentContext.WorkDirectory != null;
+		public static readonly bool HasNUnitContext = TestContext.CurrentContext.WorkDirectory != null;
 
 		public static ILogger CreateDetailedLogger() =>
 			new FlushableStreamLogger(
@@ -63,7 +63,7 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 		private static StreamWriter GetLogWriter(string fileName)
 		{
 			var path = Path.Combine(
-				RunUnderNUnit
+				HasNUnitContext
 					? TestContext.CurrentContext.TestDirectory
 					: Path.GetTempPath(),
 				fileName);
@@ -76,7 +76,7 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 		#endregion
 
 		#region Configs
-		public static ManualCompetitionConfig CreateRunConfig()
+		public static ManualCompetitionConfig CreateRunConfig(Platform platform = Platform.Host)
 		{
 			var result = new ManualCompetitionConfig(DefaultCompetitionConfig.Instance)
 			{
@@ -87,28 +87,29 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 				{
 					LaunchCount = 1,
 					Mode = Mode.SingleRun,
-					WarmupCount = 50,
-					TargetCount = 100,
-					Platform = Platform.X64,
-					Jit = Jit.RyuJit,
+					WarmupCount = 200,
+					TargetCount = 500,
+					Platform = platform,
+					Jit = platform == Platform.X64 ? Jit.RyuJit : Jit.Host,
 					Toolchain = InProcessToolchain.DontLogOutput
 				});
 
 			return result;
 		}
 
-		public static ManualCompetitionConfig CreateRunConfigAnnotate()
+		public static ManualCompetitionConfig CreateRunConfigAnnotate(Platform platform = Platform.Host)
 		{
-			var result = CreateRunConfig();
+			var result = CreateRunConfig(platform);
 			result.LogCompetitionLimits = true;
 			result.RerunIfLimitsFailed = true;
 			result.UpdateSourceAnnotations = true;
+			result.Add(Exporters.TimingsExporter.Instance);
 			return result;
 		}
 
-		public static ManualCompetitionConfig CreateRunConfigReAnnotate()
+		public static ManualCompetitionConfig CreateRunConfigReAnnotate(Platform platform = Platform.Host)
 		{
-			var result = CreateRunConfigAnnotate();
+			var result = CreateRunConfigAnnotate(platform);
 			result.IgnoreExistingAnnotations = true;
 			return result;
 		}

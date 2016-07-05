@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{00E3881C-3D4D-4AE3-B1B4-CDCDC99F7E51}</ProjectGuid>
+    <ProjectGuid>{8ABF1A06-4643-49D6-A546-B7473DB10102}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CodeJam</RootNamespace>
-    <AssemblyName>CodeJam.Experimental-Tests.Performance</AssemblyName>
+    <RootNamespace>CodeJam.PerfTests</RootNamespace>
+    <AssemblyName>CodeJam.PerfTests.NUnit</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -41,10 +41,6 @@
       <HintPath>..\..\packages\BenchmarkDotNet.0.9.7\lib\net40\BenchmarkDotNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Build, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Build.Framework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Build.Utilities.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="nunit.framework, Version=3.4.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NUnit.3.4.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -53,38 +49,30 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Competition.cs" />
+    <Compile Include="CompetitionHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <Compile Include="Running.Core\NUnitCompetitionRunner.cs" />
+    <Compile Include="StubNUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj">
       <Project>{2f2046cc-fb47-4318-b335-5a82b04b6c40}</Project>
       <Name>CodeJam.Main</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Main\tests-performance\CodeJam.Main-Tests.Performance.csproj">
-      <Project>{8edf4429-251a-416d-bb68-93f227191bcf}</Project>
-      <Name>CodeJam.Main-Tests.Performance</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\PerfTests\src-NUnit\CodeJam.PerfTests.NUnit.csproj">
-      <Project>{8abf1a06-4643-49d6-a546-b7473db10102}</Project>
-      <Name>CodeJam.PerfTests.NUnit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\PerfTests\src\CodeJam.PerfTests.csproj">
+    <ProjectReference Include="..\src\CodeJam.PerfTests.csproj">
       <Project>{1d650545-a151-4211-8c29-c38a939403a6}</Project>
       <Name>CodeJam.PerfTests</Name>
     </ProjectReference>
-    <ProjectReference Include="..\src\CodeJam.Experimental.csproj">
-      <Project>{7bd77da2-a731-400c-a88e-215fc592e6e3}</Project>
-      <Name>CodeJam.Experimental</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

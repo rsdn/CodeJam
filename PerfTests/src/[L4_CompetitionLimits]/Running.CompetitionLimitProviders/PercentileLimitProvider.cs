@@ -13,7 +13,7 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 	public class PercentileLimitProvider : CompetitionLimitProviderBase
 	{
 		/// <summary> Metric is based on 20 (lower boundary) and 80 (upper boundary) percentiles.</summary>
-		public static readonly ICompetitionLimitProvider P20To80 = new PercentileLimitProvider(45, 65, 15);
+		public static readonly ICompetitionLimitProvider P20To80 = new PercentileLimitProvider(40, 60, 20);
 
 		/// <summary>Initializes a new instance of the <see cref="PercentileLimitProvider"/> class.</summary>
 		/// <param name="minRatioPercentile">The percentile for the minimum timing ratio.</param>

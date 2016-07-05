@@ -77,7 +77,7 @@ namespace BenchmarkDotNet.Validators
 						? null
 						: "The current setup does not support legacy Jit.";
 				case Jit.RyuJit:
-					return env.HasRyuJit
+					return isX64 && env.HasRyuJit
 						? null
 						: "The current setup does not support RyuJit.";
 				default:
@@ -96,11 +96,11 @@ namespace BenchmarkDotNet.Validators
 				case Platform.X86:
 					return !isX64
 						? null
-						: "The current process should be run as x86.";
+						: "The code should be run as x86.";
 				case Platform.X64:
 					return isX64
 						? null
-						: "The current process should be run as x64.";
+						: "The code should be run as x86.";
 				default:
 					throw new ArgumentOutOfRangeException(nameof(job.Platform), job.Platform, null);
 			}

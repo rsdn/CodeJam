@@ -87,8 +87,8 @@ namespace CodeJam.PerfTests
 				{
 					LaunchCount = 1,
 					Mode = Mode.SingleRun,
-					WarmupCount = 50,
-					TargetCount = 100,
+					WarmupCount = 200,
+					TargetCount = 500,
 					Platform = Platform.X64,
 					Jit = Jit.RyuJit,
 					Toolchain = outOfProcess ? null : InProcessToolchain.DontLogOutput

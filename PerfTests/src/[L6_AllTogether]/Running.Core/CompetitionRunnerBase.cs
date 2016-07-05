@@ -129,7 +129,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			if (result.CompetitionLimitProvider == null)
 			{
-				result.CompetitionLimitProvider = PercentileLimitProvider.P20To80;
+				result.CompetitionLimitProvider = LogNormalLimitProvider.Instance;
 			}
 
 			if (result.MaxRunsAllowed <= 0)
