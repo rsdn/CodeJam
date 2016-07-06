@@ -211,7 +211,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.77, 1.02)]
+			[CompetitionBenchmark(0.66, 1.02)]
 			public bool Test02IsFlagMatchEnumOp()
 			{
 				var a = false;
