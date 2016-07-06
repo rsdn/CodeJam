@@ -73,8 +73,8 @@ namespace CodeJam
 			{
 				result = CreateRunConfigAnnotate();
 #if !CI_Build
-				//result.PreviousRunLogUri =
-				//	@"https://ci.appveyor.com/api/projects/andrewvk/codejam/artifacts/CodeJam-Tests.Performance.Short.AllPerfTests.log";
+				result.PreviousRunLogUri =
+					@"https://ci.appveyor.com/api/projects/andrewvk/codejam/artifacts/CodeJam-Tests.Performance.Short.AllPerfTests.log";
 #endif
 			}
 
