@@ -47,6 +47,12 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 		public static void Delay(int cycles) => Thread.SpinWait(cycles);
 		#endregion
 
+		#region Config instances
+		public static readonly ICompetitionConfig DefaultConfig = CreateDefaultConfig().AsReadOnly();
+		public static readonly ICompetitionConfig DefaultConfigAnnotate = CreateDefaultConfigAnnotate().AsReadOnly();
+		public static readonly ICompetitionConfig DefaultConfigReannotate = CreateDefaultConfigReannotate().AsReadOnly();
+		#endregion
+
 		#region Configs core
 		public static readonly bool HasNUnitContext = TestContext.CurrentContext.WorkDirectory != null;
 
@@ -76,30 +82,32 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 		#endregion
 
 		#region Configs
-		public static ManualCompetitionConfig CreateRunConfig(Platform platform = Platform.Host)
+		public static IJob CreateDefaultJob(Platform platform = Platform.Host) =>
+			new Job
+			{
+				LaunchCount = 1,
+				Mode = Mode.SingleRun,
+				WarmupCount = 100,
+				TargetCount = 300,
+				Platform = platform,
+				Jit = platform == Platform.X64 ? Jit.RyuJit : Jit.Host,
+				Toolchain = InProcessToolchain.DontLogOutput
+			};
+
+		public static ManualCompetitionConfig CreateDefaultConfig(IJob job = null)
 		{
 			var result = new ManualCompetitionConfig(DefaultCompetitionConfig.Instance)
 			{
 				RerunIfLimitsFailed = true
 			};
-			result.Add(
-				new Job
-				{
-					LaunchCount = 1,
-					Mode = Mode.SingleRun,
-					WarmupCount = 200,
-					TargetCount = 500,
-					Platform = platform,
-					Jit = platform == Platform.X64 ? Jit.RyuJit : Jit.Host,
-					Toolchain = InProcessToolchain.DontLogOutput
-				});
+			result.Add(job ?? CreateDefaultJob());
 
 			return result;
 		}
 
-		public static ManualCompetitionConfig CreateRunConfigAnnotate(Platform platform = Platform.Host)
+		public static ManualCompetitionConfig CreateDefaultConfigAnnotate(IJob job = null)
 		{
-			var result = CreateRunConfig(platform);
+			var result = CreateDefaultConfig(job);
 			result.LogCompetitionLimits = true;
 			result.RerunIfLimitsFailed = true;
 			result.UpdateSourceAnnotations = true;
@@ -107,9 +115,9 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 			return result;
 		}
 
-		public static ManualCompetitionConfig CreateRunConfigReAnnotate(Platform platform = Platform.Host)
+		public static ManualCompetitionConfig CreateDefaultConfigReannotate(IJob job = null)
 		{
-			var result = CreateRunConfigAnnotate(platform);
+			var result = CreateDefaultConfigAnnotate(job);
 			result.IgnoreExistingAnnotations = true;
 			return result;
 		}

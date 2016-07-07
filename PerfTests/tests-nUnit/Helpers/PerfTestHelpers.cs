@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Reflection;
 
-using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
@@ -48,7 +47,7 @@ namespace CodeJam.PerfTests
 				ReportWarningsAsErrors = true
 			};
 
-			result.Add(DefaultConfig.Instance.GetColumns().ToArray());
+			result.Add(BenchmarkDotNet.Configs.DefaultConfig.Instance.GetColumns().ToArray());
 			//result.Add(TimingsExporter.Instance);
 			//result.Add(_detailedLogger, _importantInfoLogger);
 			result.Add(_importantInfoLogger);
@@ -57,7 +56,7 @@ namespace CodeJam.PerfTests
 		#endregion
 
 		#region Ready configs
-		public static readonly ICompetitionConfig DefaultRunConfig = CreateRunConfig().AsReadOnly();
+		public static readonly ICompetitionConfig RunConfig = CreateRunConfig().AsReadOnly();
 
 		internal static readonly ICompetitionConfig SelfTestConfig = CreateSelfTestConfig(Platform.X64).AsReadOnly();
 

@@ -63,15 +63,15 @@ namespace CodeJam
 			ManualCompetitionConfig result;
 			if (!AnnotateOnRun)
 			{
-				result = CreateRunConfig();
+				result = CreateDefaultConfig();
 			}
 			else if (IgnoreExistingAnnotations)
 			{
-				result = CreateRunConfigReAnnotate();
+				result = CreateDefaultConfigReannotate();
 			}
 			else
 			{
-				result = CreateRunConfigAnnotate();
+				result = CreateDefaultConfigAnnotate();
 #if !CI_Build
 				result.PreviousRunLogUri =
 					@"https://ci.appveyor.com/api/projects/andrewvk/codejam/artifacts/CodeJam-Tests.Performance.Short.AllPerfTests.log";

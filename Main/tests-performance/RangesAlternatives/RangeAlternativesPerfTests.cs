@@ -196,7 +196,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(11.71, 14.15)]
+			[CompetitionBenchmark(11.71, 15.09)]
 			public RangeStubCompact<int?> Test03CompactRange()
 			{
 				var result = _rangeCompactData[0];

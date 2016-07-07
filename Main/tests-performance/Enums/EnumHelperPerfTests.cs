@@ -97,7 +97,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(6.57, 7.26)]
+			[CompetitionBenchmark(6.13, 7.26)]
 			public F Test01TryParseUndefined()
 			{
 				var a = F.Zero;
@@ -106,7 +106,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(8.86, 10.48)]
+			[CompetitionBenchmark(8.36, 10.48)]
 			public F Test02EnumTryParse()
 			{
 				var a = F.Zero;
@@ -115,7 +115,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(5.57, 5.91)]
+			[CompetitionBenchmark(5.23, 5.91)]
 			public F Test03EnumTryParseUndefined()
 			{
 				var a = F.Zero;
@@ -220,7 +220,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.76, 0.89)]
+			[CompetitionBenchmark(0.71, 0.94)]
 			public bool Test03IsFlagMatchIntOp()
 			{
 				var a = false;
@@ -318,7 +318,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.69, 0.78)]
+			[CompetitionBenchmark(0.69, 0.81)]
 			public int Test03ClearFlagIntOp()
 			{
 				var a = 1;
