@@ -21,7 +21,7 @@ namespace CodeJam.Examples
 		[CompetitionBenchmark(2.89, 3.01)]
 		public void SlowerX3() => Thread.SpinWait(3 * Count);
 
-		[CompetitionBenchmark(4.88, 5.08)]
+		[CompetitionBenchmark(4.88, 5.21)]
 		public void SlowerX5() => Thread.SpinWait(5 * Count);
 
 		[CompetitionBenchmark(6.77, 7.05)]

@@ -154,7 +154,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.68, 1.13)]
+			[CompetitionBenchmark(0.68, 1.20)]
 			public bool Test02IsFlagSetEnumOp()
 			{
 				var a = false;
@@ -251,7 +251,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(1.14, 1.52)]
+			[CompetitionBenchmark(1.10, 1.52)]
 			public F Test01SetFlag()
 			{
 				var a = F.A;

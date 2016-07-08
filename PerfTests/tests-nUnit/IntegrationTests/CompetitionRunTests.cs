@@ -226,7 +226,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
 			}
 
-			[CompetitionBenchmark(DoesNotCompete = true)]
+			[Benchmark]
 			public void Benchmark2()
 			{
 				Interlocked.Increment(ref _callCounter);

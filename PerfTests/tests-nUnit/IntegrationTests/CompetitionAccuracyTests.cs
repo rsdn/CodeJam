@@ -149,7 +149,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		public class TooSlowBenchmark
 		{
-			[CompetitionBenchmark(DoesNotCompete = true)]
+			[CompetitionBaseline]
 			public void TooSlow() => Thread.Sleep(550);
 		}
 
