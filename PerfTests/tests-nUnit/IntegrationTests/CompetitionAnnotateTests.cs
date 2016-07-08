@@ -6,7 +6,7 @@ using CodeJam.PerfTests.Running.Messages;
 
 using NUnit.Framework;
 
-using static CodeJam.PerfTests.PerfTestHelpers;
+using static CodeJam.PerfTests.SelfTestHelpers;
 
 namespace CodeJam.PerfTests.IntegrationTests
 {
@@ -30,7 +30,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void TestAnnotateFromRemoteLog()
 		{
-			var runState = new PerfTestRunner().Run<AnnotatedBenchmark>(_remoteLogConfig);
+			var runState = SelfTestRunner.Run<AnnotatedBenchmark>(_remoteLogConfig);
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.HighestMessageSeverityInRun, MessageSeverity.Warning);
 			Assert.IsTrue(runState.Completed);
@@ -46,7 +46,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			// TODO: message if no XML annotation
 			// TODO: exact message validation
-			var runState = new PerfTestRunner().Run<AnnotatedBenchmark>(_localLogConfig);
+			var runState = SelfTestRunner.Run<AnnotatedBenchmark>(_localLogConfig);
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.HighestMessageSeverityInRun, MessageSeverity.Warning);
 			Assert.IsTrue(runState.Completed);

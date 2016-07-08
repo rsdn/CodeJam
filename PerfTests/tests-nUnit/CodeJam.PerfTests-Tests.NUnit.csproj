@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{15F5BFE8-8B7C-4DF6-9E31-48A4BF9FED1C}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CodeJam.PerfTests</RootNamespace>
     <AssemblyName>CodeJam.PerfTests-Tests.NUnit</AssemblyName>
@@ -36,6 +36,9 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\..\CodeJam.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BenchmarkDotNet, Version=0.9.7.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
       <HintPath>..\..\packages\BenchmarkDotNet.0.9.7\lib\net40\BenchmarkDotNet.dll</HintPath>
@@ -51,10 +54,13 @@
     <Reference Include="System.Management" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Examples\ListCapacityPerfTest.cs" />
     <Compile Include="Examples\SimplePerfTest.cs" />
+    <Compile Include="ExamplesProgram.cs" />
+    <Compile Include="Helpers\SelfTestRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helpers\PerfTestHelpers.cs" />
-    <Compile Include="Helpers\PerfTestRunner.cs" />
+    <Compile Include="Helpers\SelfTestHelpers.cs" />
+    <Compile Include="Helpers\SelfTestRunnerImpl.cs" />
     <Compile Include="[L0_Core]\BenchmarkHelpersTests.cs" />
     <Compile Include="[L1_InProcess]\InProcessToolchainTests.cs" />
     <Compile Include="[L3_CompetitionsCore]\HostLoggerTests.cs" />

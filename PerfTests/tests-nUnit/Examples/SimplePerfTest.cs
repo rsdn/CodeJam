@@ -5,6 +5,7 @@ using CodeJam.PerfTests;
 
 using NUnit.Framework;
 
+// ReSharper disable once CheckNamespace
 namespace CodeJam.Examples
 {
 	[Category("PerfTests: examples")]

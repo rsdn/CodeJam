@@ -206,7 +206,7 @@ namespace CodeJam.PerfTests.Running.Core
 			// TODO: simplify
 			if (hasCriticalMessages)
 			{
-				allMessages.Add("Execution failed, details below.");
+				allMessages.Add("Test completed with errors, details below.");
 			}
 			else if (hasTestFailedMessages)
 			{
@@ -343,9 +343,6 @@ namespace CodeJam.PerfTests.Running.Core
 					StatisticColumn.Min,
 					new CompetitionLimitColumn(competitionConfig.CompetitionLimitProvider, false),
 					new CompetitionLimitColumn(competitionConfig.CompetitionLimitProvider, true),
-					BaselineDiffColumn.Scaled50,
-					BaselineDiffColumn.Scaled85,
-					BaselineDiffColumn.Scaled95,
 					StatisticColumn.Max
 				});
 

@@ -18,7 +18,7 @@ using static CodeJam.PerfTests.CompetitionHelpers;
 namespace CodeJam.PerfTests
 {
 	[PublicAPI]
-	public static class PerfTestHelpers
+	public static class SelfTestHelpers
 	{
 		#region Benchmark tests-related
 		// Jitting = 1, WarmupCount = 2, TargetCount = 2

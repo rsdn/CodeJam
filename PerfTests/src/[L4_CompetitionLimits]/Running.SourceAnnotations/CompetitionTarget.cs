@@ -21,23 +21,28 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <summary>Initializes a new instance of the <see cref="CompetitionTarget"/> class.</summary>
 		/// <param name="target">The target.</param>
 		/// <param name="limitsForTarget">Competition limits for the target.</param>
+		/// <param name="doesNotCompete">Exclude the benchmark from competition.</param>
 		public CompetitionTarget(
 			[NotNull] Target target,
-			[NotNull] CompetitionLimit limitsForTarget) :
-				this(target, limitsForTarget, null) { }
+			[NotNull] CompetitionLimit limitsForTarget,
+			bool doesNotCompete) :
+				this(target, limitsForTarget, doesNotCompete, null) { }
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionTarget"/> class.</summary>
 		/// <param name="target">The target.</param>
 		/// <param name="limitsForTarget">Competition limits for the target.</param>
+		/// <param name="doesNotCompete">Exclude the benchmark from competition.</param>
 		/// <param name="competitionMetadata">Description of embedded resource containing xml document with competition limits.</param>
 		public CompetitionTarget(
 			[NotNull] Target target,
 			[NotNull] CompetitionLimit limitsForTarget,
+			bool doesNotCompete,
 			[CanBeNull] CompetitionMetadata competitionMetadata) :
 				base(limitsForTarget.MinRatio, limitsForTarget.MaxRatio)
 		{
 			Target = target;
 			CompetitionMetadata = competitionMetadata;
+			DoesNotCompete = doesNotCompete;
 		}
 		#endregion
 
@@ -51,6 +56,13 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <value>Description of embedded resource containing xml document with competition limits.</value>
 		[CanBeNull]
 		public CompetitionMetadata CompetitionMetadata { get; }
+
+		/// <summary>Exclude the benchmark from competition.</summary>
+		/// <value>
+		/// <c>true</c> if the benchmark does not take part in competition
+		/// and should not be validated.
+		/// </value>
+		public bool DoesNotCompete { get; }
 
 		/// <summary>The limit properties are updated but not saved.</summary>
 		/// <value><c>true</c> if this instance has unsaved changes; otherwise, <c>false</c>.</value>

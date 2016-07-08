@@ -9,7 +9,7 @@ using BenchmarkDotNet.Validators;
 
 using NUnit.Framework;
 
-using static CodeJam.PerfTests.PerfTestHelpers;
+using static CodeJam.PerfTests.SelfTestHelpers;
 
 namespace CodeJam.PerfTests
 {
@@ -29,7 +29,7 @@ namespace CodeJam.PerfTests
 			Interlocked.Exchange(ref _callCounter, 0);
 			Interlocked.Exchange(ref _afterSetupCounter, 0);
 
-			var summary = new PerfTestRunner()
+			var summary = SelfTestRunner
 				.Run<InProcessBenchmark>(SelfTestConfig)
 				.LastRunSummary;
 
@@ -49,7 +49,7 @@ namespace CodeJam.PerfTests
 			Interlocked.Exchange(ref _callCounter, 0);
 			Interlocked.Exchange(ref _afterSetupCounter, 0);
 
-			var summary = new PerfTestRunner()
+			var summary = SelfTestRunner
 				.Run<InProcessBenchmark>(config)
 				.LastRunSummary;
 

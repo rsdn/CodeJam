@@ -12,7 +12,7 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.PerfTests.PerfTestHelpers;
+using static CodeJam.PerfTests.SelfTestHelpers;
 
 namespace CodeJam.PerfTests.IntegrationTests
 {
@@ -30,7 +30,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionTooFastBenchmark()
 		{
-			var runState = new PerfTestRunner().Run<TooFastBenchmark>(_debugConfig);
+			var runState = SelfTestRunner.Run<TooFastBenchmark>(_debugConfig);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
@@ -52,7 +52,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionTooSlowBenchmark()
 		{
-			var runState = new PerfTestRunner().Run<TooSlowBenchmark>(SelfTestConfig);
+			var runState = SelfTestRunner.Run<TooSlowBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
@@ -81,7 +81,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 				AllowLongRunningBenchmarks = true
 			};
 
-			var runState = new PerfTestRunner().Run<TooSlowBenchmark>(overrideConfig);
+			var runState = SelfTestRunner.Run<TooSlowBenchmark>(overrideConfig);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
@@ -97,7 +97,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			IgnoreIfDebug();
 
-			var runState = new PerfTestRunner().Run<HighAccuracyBenchmark>(RunConfig);
+			var runState = SelfTestRunner.Run<HighAccuracyBenchmark>(RunConfig);
 			var messages = runState.GetMessages();
 			if (messages.All(m => m.MessageText != "CompetitionAnalyser: All competition limits are ok."))
 			{
@@ -112,7 +112,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			var overrideConfig = CreateRunConfig(outOfProcess: true);
 
-			var runState = new PerfTestRunner().Run<HighAccuracyBenchmarkOutOfProcess>(overrideConfig);
+			var runState = SelfTestRunner.Run<HighAccuracyBenchmarkOutOfProcess>(overrideConfig);
 			var messages = runState.GetMessages();
 			if (messages.All(m => m.MessageText != "CompetitionAnalyser: All competition limits are ok."))
 			{

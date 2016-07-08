@@ -19,7 +19,7 @@ namespace CodeJam.PerfTests
 		{
 			var method = (MethodInfo)MethodBase.GetCurrentMethod();
 			var target = new Target(method.DeclaringType, method);
-			var result = new CompetitionTarget(target, CompetitionLimit.Empty);
+			var result = new CompetitionTarget(target, CompetitionLimit.Empty, false);
 			Assert.AreEqual(result.MinRatio, CompetitionLimit.EmptyValue);
 			Assert.AreEqual(result.MaxRatio, CompetitionLimit.EmptyValue);
 			Assert.IsTrue(result.IsEmpty);
@@ -79,7 +79,7 @@ namespace CodeJam.PerfTests
 		{
 			var method = (MethodInfo)MethodBase.GetCurrentMethod();
 			var target = new Target(method.DeclaringType, method);
-			var result = new CompetitionTarget(target, CompetitionLimit.Ignored);
+			var result = new CompetitionTarget(target, CompetitionLimit.Ignored, false);
 			Assert.AreEqual(result.MinRatio, CompetitionLimit.IgnoreValue);
 			Assert.AreEqual(result.MaxRatio, CompetitionLimit.IgnoreValue);
 			Assert.IsFalse(result.IsEmpty);
@@ -120,7 +120,7 @@ namespace CodeJam.PerfTests
 		{
 			var method = (MethodInfo)MethodBase.GetCurrentMethod();
 			var target = new Target(method.DeclaringType, method);
-			var result = new CompetitionTarget(target, new CompetitionLimit(1.005, 2.015));
+			var result = new CompetitionTarget(target, new CompetitionLimit(1.005, 2.015), false);
 			Assert.AreEqual(result.MinRatio, 1.005);
 			Assert.AreEqual(result.MaxRatio, 2.015);
 			Assert.IsFalse(result.IsEmpty);

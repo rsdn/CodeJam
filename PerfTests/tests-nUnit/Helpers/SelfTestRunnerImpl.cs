@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace CodeJam.PerfTests
 {
 	[PublicAPI]
-	public class PerfTestRunner : SimpleCompetitionRunner
+	internal class SelfTestRunnerImpl : ConsoleCompetitionRunnerImpl
 	{
 		public override CompetitionState RunCompetition(Type benchmarkType, ICompetitionConfig competitionConfig)
 		{

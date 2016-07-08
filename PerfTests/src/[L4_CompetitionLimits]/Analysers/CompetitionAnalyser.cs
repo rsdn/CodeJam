@@ -278,7 +278,7 @@ namespace CodeJam.PerfTests.Analysers
 			CompetitionState competitionState)
 		{
 			var competitionAttribute = target.Method.GetCustomAttribute<CompetitionBenchmarkAttribute>();
-			if (competitionAttribute == null || competitionAttribute.DoesNotCompete)
+			if (competitionAttribute == null )
 				return null;
 
 			CompetitionTarget result;
@@ -290,14 +290,14 @@ namespace CodeJam.PerfTests.Analysers
 					? fallbackLimit
 					: AttributeAnnotations.ParseCompetitionLimit(competitionAttribute);
 
-				result = new CompetitionTarget(target, limit);
+				result = new CompetitionTarget(target, limit, competitionAttribute.DoesNotCompete);
 			}
 			else
 			{
 				var limit = TryParseCompetitionLimit(target, competitionMetadata, competitionState)
 					?? fallbackLimit;
 
-				result = new CompetitionTarget(target, limit, competitionMetadata);
+				result = new CompetitionTarget(target, limit, competitionAttribute.DoesNotCompete, competitionMetadata);
 			}
 
 			return result;
@@ -383,6 +383,9 @@ namespace CodeJam.PerfTests.Analysers
 			CompetitionState competitionState,
 			List<IWarning> warnings)
 		{
+			if (competitionTarget.Target.Baseline || competitionTarget.DoesNotCompete)
+				return true;
+
 			var result = true;
 			foreach (var benchmark in benchmarksForTarget)
 			{
@@ -403,9 +406,6 @@ namespace CodeJam.PerfTests.Analysers
 			CompetitionState competitionState,
 			List<IWarning> warnings)
 		{
-			if (benchmark.Target.Baseline)
-				return true;
-
 			var actualValues = CompetitionLimitProvider.TryGetActualValues(benchmark, summary);
 			if (actualValues == null)
 			{

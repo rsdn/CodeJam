@@ -9,28 +9,25 @@ using BenchmarkDotNet.Reports;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Loggers;
 
-using JetBrains.Annotations;
-
 namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>Competition runner that does not support integration with unit tests.</summary>
 	/// <seealso cref="CompetitionRunnerBase"/>
-	[PublicAPI]
-	public class SimpleCompetitionRunner : CompetitionRunnerBase
+	public class ConsoleCompetitionRunnerImpl : CompetitionRunnerBase
 	{
 		/// <summary>Host logger implementation</summary>
-		protected class SimpleHostLogger : HostLogger
+		protected class ConsoleHostLogger : HostLogger
 		{
-			/// <summary>Initializes a new instance of the <see cref="SimpleHostLogger"/> class.</summary>
+			/// <summary>Initializes a new instance of the <see cref="ConsoleHostLogger"/> class.</summary>
 			/// <param name="logMode">Host logging mode.</param>
-			public SimpleHostLogger(HostLogMode logMode) : base(ConsoleLogger.Default, logMode) { }
+			public ConsoleHostLogger(HostLogMode logMode) : base(ConsoleLogger.Default, logMode) { }
 		}
 
 		/// <summary>Creates a host logger.</summary>
 		/// <param name="hostLogMode">The host log mode.</param>
 		/// <returns>An instance of <see cref="CompetitionRunnerBase.HostLogger"/></returns>
 		protected override HostLogger CreateHostLogger(HostLogMode hostLogMode) =>
-			new SimpleHostLogger(hostLogMode);
+			new ConsoleHostLogger(hostLogMode);
 
 		/// <summary>Reports the execution errors to user.</summary>
 		/// <param name="messages">The messages to report.</param>

@@ -11,7 +11,7 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.PerfTests.PerfTestHelpers;
+using static CodeJam.PerfTests.SelfTestHelpers;
 
 namespace CodeJam.PerfTests.IntegrationTests
 {
@@ -39,7 +39,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = new PerfTestRunner().Run<EmptyBenchmark>(SelfTestConfig);
+			var runState = SelfTestRunner.Run<EmptyBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, 0);
@@ -52,7 +52,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = new PerfTestRunner().Run<NoBaselineOkBenchmark>(SelfTestConfig);
+			var runState = SelfTestRunner.Run<NoBaselineOkBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -66,7 +66,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = new PerfTestRunner().Run<OkBenchmark>(SelfTestConfig);
+			var runState = SelfTestRunner.Run<OkBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -82,7 +82,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = new PerfTestRunner().Run<XmlOkBenchmark>(SelfTestConfig);
+			var runState = SelfTestRunner.Run<XmlOkBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -98,7 +98,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = new PerfTestRunner().Run<XmlFullAnnotationBenchmark>(SelfTestConfig);
+			var runState = SelfTestRunner.Run<XmlFullAnnotationBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -114,7 +114,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = new PerfTestRunner().Run<NoBaselineFailBenchmark>(SelfTestConfig);
+			var runState = SelfTestRunner.Run<NoBaselineFailBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -134,7 +134,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = new PerfTestRunner().Run<BadLimitsBenchmark>(SelfTestConfig);
+			var runState = SelfTestRunner.Run<BadLimitsBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -159,7 +159,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = new PerfTestRunner().Run<LimitsFailBenchmark>(SelfTestConfig);
+			var runState = SelfTestRunner.Run<LimitsFailBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, 3 * ExpectedRunCount); // 3x rerun
