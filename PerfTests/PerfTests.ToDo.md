@@ -9,6 +9,7 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
 ## TODO:
+ * Reusable CompetitionHelpers.
  * Tests for broken log annotations.
  * Logging: write validator messages immediately?
  * ability to pass ICompetitionConfig via attrubute?

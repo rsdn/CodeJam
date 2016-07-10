@@ -30,7 +30,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void TestAnnotateFromRemoteLog()
 		{
-			var runState = SelfTestRunner.Run<AnnotatedBenchmark>(_remoteLogConfig);
+			var runState = SelfTestCompetition.Run<AnnotatedBenchmark>(_remoteLogConfig);
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.HighestMessageSeverityInRun, MessageSeverity.Warning);
 			Assert.IsTrue(runState.Completed);
@@ -46,7 +46,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			// TODO: message if no XML annotation
 			// TODO: exact message validation
-			var runState = SelfTestRunner.Run<AnnotatedBenchmark>(_localLogConfig);
+			var runState = SelfTestCompetition.Run<AnnotatedBenchmark>(_localLogConfig);
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.HighestMessageSeverityInRun, MessageSeverity.Warning);
 			Assert.IsTrue(runState.Completed);

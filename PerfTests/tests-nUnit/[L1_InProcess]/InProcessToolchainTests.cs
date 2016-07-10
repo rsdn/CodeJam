@@ -29,7 +29,7 @@ namespace CodeJam.PerfTests
 			Interlocked.Exchange(ref _callCounter, 0);
 			Interlocked.Exchange(ref _afterSetupCounter, 0);
 
-			var summary = SelfTestRunner
+			var summary = SelfTestCompetition
 				.Run<InProcessBenchmark>(SelfTestConfig)
 				.LastRunSummary;
 
@@ -49,7 +49,7 @@ namespace CodeJam.PerfTests
 			Interlocked.Exchange(ref _callCounter, 0);
 			Interlocked.Exchange(ref _afterSetupCounter, 0);
 
-			var summary = SelfTestRunner
+			var summary = SelfTestCompetition
 				.Run<InProcessBenchmark>(config)
 				.LastRunSummary;
 

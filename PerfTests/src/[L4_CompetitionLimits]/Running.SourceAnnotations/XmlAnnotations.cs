@@ -14,6 +14,7 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 
 using CodeJam.Collections;
+using CodeJam.PerfTests.Loggers;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 
@@ -60,7 +61,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		// ReSharper disable once SuggestBaseTypeForParameter
 		private static string GetCompetitionName(this Target target, XDocument xmlAnnotationDoc) =>
 			xmlAnnotationDoc.Annotations<UseFullTypeNameAnnotation>().Any()
-				? target.Type.FullName + ", " + target.Type.Assembly.GetName().Name
+				? target.Type.GetShortAssemblyQualifiedName()
 				: target.Type.Name;
 
 		[NotNull]
@@ -241,7 +242,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			var logger = competitionState.Logger;
 
 			logger.WriteLineInfo(
-				$"{LogInfoPrefix}Downloading {logUri}.");
+				$"{LogInfoPrefix} Downloading {logUri}.");
 
 			using (var reader = BenchmarkHelpers.TryGetTextFromUri(logUri, TimeSpan.FromSeconds(15)))
 			{
@@ -254,7 +255,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				}
 
 				logger.WriteLineInfo(
-					$"{LogInfoPrefix}Downloaded {logUri}.");
+					$"{LogInfoPrefix} Downloaded {logUri}.");
 
 				var buffer = new StringBuilder();
 				int lineNumber = 0, xmlStartLineNumber = -1;
@@ -343,17 +344,19 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			}
 
 			// Dump it
-			var logger = competitionState.Logger;
-			logger.WriteLineInfo(LogAnnotationStart);
-
 			var tmp = new StringBuilder();
 			using (var writer = XmlWriter.Create(tmp, GetXmlWriterSettings(true)))
 			{
 				xmlAnnotationDoc.Save(writer);
 			}
-			logger.WriteLineInfo(tmp.ToString());
 
-			logger.WriteLineInfo(LogAnnotationEnd);
+			var logger = competitionState.Logger;
+			using (BeginLogImportant(competitionState.Config))
+			{
+				logger.WriteLineInfo(LogAnnotationStart);
+				logger.WriteLineInfo(tmp.ToString());
+				logger.WriteLineInfo(LogAnnotationEnd);
+			}
 		}
 		#endregion
 

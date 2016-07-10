@@ -4,15 +4,16 @@ Until this use with care.
 
 ## What it is? (short version)
 
-CodeJam.PerfTests is performance testing framework for .Net projects. It allows to compare multiple implementations by time (memory limits coming soon),
-annotate the methods with timning limits and check the limits each time the test is run.
+CodeJam.PerfTests is performance testing framework for .Net projects.
+It allows to compare multiple implementations by time (memory limits coming soon),
+to annotate implementations with timing limits and to check the limits each time the test is run.
 
 ## TL;DR:
-0. Create a new unit test project (there and below NUnit framework is used as a test runner.
+1. Create a new unit test project (there and below NUnit framework is used as a test runner.
 Documentation for another testing frameworks will be added later).
-1. Add a reference to the CodeJam.PerfTests.NUnit nuget package.
-2. Add a file with the following code:
-```cs
+2. Add a reference to the CodeJam.PerfTests.NUnit nuget package.
+3. Add a file with the following code:
+ ```cs
 using System;
 using System.Threading;
 
@@ -46,8 +47,8 @@ namespace CodeJam.Examples
 }
 ```
 
-3. Run the `RunSimplePerfTest` test for the release build. You should get something like this:
-```cs
+4. Run the `RunSimplePerfTest` test for the release build. You should get something like this:
+ ```cs
 	[Category("PerfTests: examples")]
 	public class SimplePerfTest
 	{
@@ -82,7 +83,6 @@ Now the test will fail if timings do not fit into limits. To proof, set
 ```
 		[CompetitionBenchmark(1, 1)]
 		public void SlowerX7() => Thread.SpinWait(7 * Count);
-	}
 ```
 and run the test. It will fail with text like this:
 ```
@@ -116,12 +116,14 @@ This means that a huge amount of work [should be done](https://github.com/PerfDo
 In short, [benchmarking](https://andreyakinshin.gitbooks.io/performancebookdotnet/content/science/microbenchmarking.html) [is](http://mattwarren.org/2014/09/19/the-art-of-benchmarking/) [hard](http://www.hanselman.com/blog/ProperBenchmarkingToDiagnoseAndSolveANETSerializationBottleneck.aspx) :)
 
 The goals for performance testing are different. This is by design:
- there will be a lot of perftests and these will be run continiously (and you do not want to [wait for hours](https://twitter.com/jonskeet/status/735415336825192448) for the tests completion),
- the tests will be run in different environments,
- and, to be honest, you're not interested in preciseness. There's no point in direct comparison of
-ImplA that takes 0.1 sec when run on a tablet and ImplB that takes 0.05 sec when run on dedicated testserver.
+
+* there will be a lot of perftests and these will be run continiously (and you do not want to [wait for hours](https://twitter.com/jonskeet/status/735415336825192448) for the tests completion),
+* the tests will be run in different environments,
+* and, to be honest, you're not interested in preciseness. There's no point in direct comparison of
+`ImplA` that takes 0.1 sec when run on a tablet and `ImplB` that takes 0.05 sec when run on dedicated testserver.
+
 Absolute timings means nothing until you're sure that all methods in benchmark are run under exactly same conditions.
-In actual, ImplA from example above takes 0.015 sec to complete when run on same hardware the ImplB was run.
+In actual, `ImplA` from example above takes 0.015 sec to complete when run on same hardware the `ImplB` was run.
 
 And here's one more thing: you cannot trust to benchmark results obtained from code being run in clean room.
 In production your code will be influenced by the environment and benchmark ignoring these side-effects will lie to you.
@@ -140,7 +142,7 @@ CodeJam.PerfTest covers all of the above.
 ## Creating a new performance test
 
 ### Code for performance test
-Let's say we want to write a perftest that measures effect of setting the capacity into list .ctor.
+Let's say we want to write a perftest that measures cost of list resizing.
 We will start with a class with two methods:
 ```cs
 	public class ListCapacityPerfTest
@@ -170,14 +172,14 @@ We will start with a class with two methods:
 Next, we should choose the baseline (or reference) implementation all other benchmark members will be compared to.
 In simple tests like this it's actually doesn't matter which one to choose. However, in large and complex perftests 
 baseline should be chosen with caution. Time of execution of the baseline should be stable,
-it should not be in order of magnitude slower (or faster) than another competitiors and so on.
+it should not be in order of magnitude slower (or faster) than another competitors and so on.
 
-TODO: link to the guidelines for the perftests.
+**TODO:** link to the guidelines for the perftests.
 
 So, let's mark the `ListWithoutCapacity()` as `[CompetitionBaseline]` and `ListWithCapacity()` as a `[CompetitionBenchmark]`
 
 ### Code that runs the performance test
-Next, you should write code that runs the perftest. Here's how to do it with the NUnit perf test runner:
+Next, you should write code that runs the perftest. Here's how to do it with NUnit:
 ```
 		[Test]
 		public static void RunListCapacityPerfTest() => 
@@ -191,7 +193,7 @@ Next, you should write code that runs the perftest. Here's how to do it with the
 The first `Competition.Run()` overload is universal - it can be placed inside the class or outside,
  but it requires to explicitly the type of the perftest class explicitly.
 
-The secont one infers the type from `this` parameter. Of course, there's no point
+The second one infers the type from `this` parameter. Of course, there's no point
  in using it if the `ListCapacityPerfTest` method is not member of the perftest class.
 
 Also, you can use default console runner to run the performance test:
@@ -204,9 +206,23 @@ Also, you can use default console runner to run the performance test:
 		}
 ```
 
-### Setting the limits:
-TBD
+output will look like this:
+![Docs\ConsoleRun.png](Docs\ConsoleRun.png)
 
+### Setting the limits:
+As you can see the perftest was failed with message
+```
+Test failed, details below.
+Failed assertions:
+    * Run #3: Method ListWithCapacity [0.77..0.77] has empty limit. Please fill it.
+Warnings:
+    * Run #3: The benchmark was run 3 time(s) (read log for details). Try to loose competition limits.
+Diagnostic messages:
+    * Run #1: Requesting 1 run(s): Limit checking failed.
+    * Run #2: Requesting 1 run(s): Limit checking failed.
+```
+
+As you can see from the screen above the timings when the test is run a are somewhere between [0.76..0.78].
 
 ## Running existing perftests
 
@@ -233,7 +249,7 @@ Errors:
 ```
 
 ### Viewing the output: 
-In addition to short message CodeJam.PerfTest provides detailes information that simplifies troubleshooting.
+In addition to short message CodeJam.PerfTest provides detailed information that simplifies troubleshooting.
 It can be viewed via test output view. Output for passed tests looks like this:
 ```
 BenchmarkDotNet=v0.9.7.0
@@ -261,8 +277,8 @@ LaunchCount=1  WarmupCount=100  TargetCount=300
 
 ### If limits are failed
 
-In case when some of methods that patricipating in limits do not fit into limits the benchmark is rerun again (up to three times by default).
-It helps to detect the case when limits are too tight and test fails time-to-time. In this case the test will complete with following warinig:
+In case when some of methods that participating in limits do not fit into limits the benchmark is rerun again (up to three times by default).
+It helps to detect the case when limits are too tight and test fails time-to-time. In this case the test will complete with following warnig:
 ```
 Test completed with warnings, details below.
 Warnings:
@@ -272,7 +288,7 @@ Diagnostic messages:
     * Run #2: CompetitionAnalyser: All competition limits are ok.
 ```
 
-If the limits were failed three times back to back, the test will fail with message
+If the limits were failed three times in a row, the test will fail with message
 ```
 Test failed, details below.
 Failed assertions:
@@ -292,5 +308,3 @@ If you want to temporary exclude the method from the competition just add `DoesN
 		public void SlowerX3() => Thread.SpinWait(3 * Count);
 ```
 or use `[Benchmark]` attribute instead of `[CompetitionBenchmark]`.
-
-

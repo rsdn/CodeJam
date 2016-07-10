@@ -30,7 +30,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionTooFastBenchmark()
 		{
-			var runState = SelfTestRunner.Run<TooFastBenchmark>(_debugConfig);
+			var runState = SelfTestCompetition.Run<TooFastBenchmark>(_debugConfig);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
@@ -52,7 +52,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionTooSlowBenchmark()
 		{
-			var runState = SelfTestRunner.Run<TooSlowBenchmark>(SelfTestConfig);
+			var runState = SelfTestCompetition.Run<TooSlowBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
@@ -81,7 +81,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 				AllowLongRunningBenchmarks = true
 			};
 
-			var runState = SelfTestRunner.Run<TooSlowBenchmark>(overrideConfig);
+			var runState = SelfTestCompetition.Run<TooSlowBenchmark>(overrideConfig);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary.ValidationErrors.Length, 0);
@@ -97,7 +97,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			IgnoreIfDebug();
 
-			var runState = SelfTestRunner.Run<HighAccuracyBenchmark>(RunConfig);
+			var runState = SelfTestCompetition.Run<HighAccuracyBenchmark>(RunConfig);
 			var messages = runState.GetMessages();
 			if (messages.All(m => m.MessageText != "CompetitionAnalyser: All competition limits are ok."))
 			{
@@ -112,7 +112,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			var overrideConfig = CreateRunConfig(outOfProcess: true);
 
-			var runState = SelfTestRunner.Run<HighAccuracyBenchmarkOutOfProcess>(overrideConfig);
+			var runState = SelfTestCompetition.Run<HighAccuracyBenchmarkOutOfProcess>(overrideConfig);
 			var messages = runState.GetMessages();
 			if (messages.All(m => m.MessageText != "CompetitionAnalyser: All competition limits are ok."))
 			{

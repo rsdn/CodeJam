@@ -13,12 +13,11 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.PerfTests.CompetitionHelpers;
 
 namespace CodeJam.PerfTests
 {
 	[PublicAPI]
-	public static class SelfTestHelpers
+	internal static class SelfTestHelpers
 	{
 		#region Benchmark tests-related
 		// Jitting = 1, WarmupCount = 2, TargetCount = 2
@@ -35,10 +34,8 @@ namespace CodeJam.PerfTests
 		#endregion
 
 		#region Configs core
-		//private static readonly ILogger _detailedLogger = CreateDetailedLogger();
-
-		private static readonly ILogger _importantInfoLogger = CreateImportantInfoLogger();
-
+		private static readonly ILogger _detailedLogger = CompetitionHelpers.CreateDetailedLogger();
+		private static readonly ILogger _importantInfoLogger = CompetitionHelpers.CreateImportantInfoLogger();
 		private static ManualCompetitionConfig CreateRunConfigCore()
 		{
 			var result = new ManualCompetitionConfig
@@ -49,7 +46,7 @@ namespace CodeJam.PerfTests
 
 			result.Add(BenchmarkDotNet.Configs.DefaultConfig.Instance.GetColumns().ToArray());
 			//result.Add(TimingsExporter.Instance);
-			//result.Add(_detailedLogger, _importantInfoLogger);
+			//result.Add(_detailedLogger);
 			result.Add(_importantInfoLogger);
 			return result;
 		}

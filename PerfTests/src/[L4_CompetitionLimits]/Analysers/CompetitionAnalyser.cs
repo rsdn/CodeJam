@@ -131,7 +131,7 @@ namespace CodeJam.PerfTests.Analysers
 
 			CheckPostconditions(summary, competitionState, warnings);
 
-			OnLimitsChecked(summary, competitionState, checkPassed);
+			OnLimitsCheckCompleted(summary, competitionState, checkPassed);
 
 			if (warnings.Count == 0)
 			{
@@ -278,7 +278,7 @@ namespace CodeJam.PerfTests.Analysers
 			CompetitionState competitionState)
 		{
 			var competitionAttribute = target.Method.GetCustomAttribute<CompetitionBenchmarkAttribute>();
-			if (competitionAttribute == null )
+			if (competitionAttribute == null)
 				return null;
 
 			CompetitionTarget result;
@@ -420,11 +420,20 @@ namespace CodeJam.PerfTests.Analysers
 			if (!competitionLimit.CheckLimitsFor(actualValues))
 			{
 				var targetMethodTitle = benchmark.Target.MethodTitle;
-				competitionState.AddAnalyserWarning(
-					warnings, MessageSeverity.TestError,
-					$"Method {targetMethodTitle} {actualValues} does not fit into limits {competitionLimit}",
-					summary.TryGetBenchmarkReport(benchmark));
-
+				if (competitionLimit.IsEmpty)
+				{
+					competitionState.AddAnalyserWarning(
+						warnings, MessageSeverity.TestError,
+						$"Method {targetMethodTitle} {actualValues} has empty limit. Please fill it.",
+						summary.TryGetBenchmarkReport(benchmark));
+				}
+				else
+				{
+					competitionState.AddAnalyserWarning(
+						warnings, MessageSeverity.TestError,
+						$"Method {targetMethodTitle} {actualValues} does not fit into limits {competitionLimit}.",
+						summary.TryGetBenchmarkReport(benchmark));
+				}
 				return false;
 			}
 
@@ -435,7 +444,7 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="summary">Summary for the run.</param>
 		/// <param name="competitionState">State of the run.</param>
 		/// <param name="checkPassed"><c>true</c> if competition check passed.</param>
-		protected virtual void OnLimitsChecked(
+		protected virtual void OnLimitsCheckCompleted(
 			Summary summary,
 			CompetitionState competitionState, bool checkPassed)
 		{

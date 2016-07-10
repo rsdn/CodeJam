@@ -39,7 +39,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = SelfTestRunner.Run<EmptyBenchmark>(SelfTestConfig);
+			var runState = SelfTestCompetition.Run<EmptyBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, 0);
@@ -52,7 +52,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = SelfTestRunner.Run<NoBaselineOkBenchmark>(SelfTestConfig);
+			var runState = SelfTestCompetition.Run<NoBaselineOkBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -66,7 +66,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = SelfTestRunner.Run<OkBenchmark>(SelfTestConfig);
+			var runState = SelfTestCompetition.Run<OkBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -82,7 +82,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = SelfTestRunner.Run<XmlOkBenchmark>(SelfTestConfig);
+			var runState = SelfTestCompetition.Run<XmlOkBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -98,7 +98,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = SelfTestRunner.Run<XmlFullAnnotationBenchmark>(SelfTestConfig);
+			var runState = SelfTestCompetition.Run<XmlFullAnnotationBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -114,7 +114,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = SelfTestRunner.Run<NoBaselineFailBenchmark>(SelfTestConfig);
+			var runState = SelfTestCompetition.Run<NoBaselineFailBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -134,7 +134,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = SelfTestRunner.Run<BadLimitsBenchmark>(SelfTestConfig);
+			var runState = SelfTestCompetition.Run<BadLimitsBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -159,7 +159,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = SelfTestRunner.Run<LimitsFailBenchmark>(SelfTestConfig);
+			var runState = SelfTestCompetition.Run<LimitsFailBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, 3 * ExpectedRunCount); // 3x rerun
@@ -171,7 +171,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[0].MessageText, Does.Contain("Method SlowerX10"));
+			Assert.That(messages[0].MessageText, Does.StartWith("Method SlowerX10"));
 			Assert.That(messages[0].MessageText, Does.Contain(" does not fit into limits "));
 
 			Assert.AreEqual(messages[1].RunNumber, 1);
@@ -184,7 +184,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[2].RunMessageNumber, 1);
 			Assert.AreEqual(messages[2].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[2].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[2].MessageText, Does.Contain("Method SlowerX10"));
+			Assert.That(messages[2].MessageText, Does.StartWith("Method SlowerX10"));
 			Assert.That(messages[2].MessageText, Does.Contain(" does not fit into limits "));
 
 			Assert.AreEqual(messages[3].RunNumber, 2);
@@ -197,8 +197,63 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[4].RunMessageNumber, 1);
 			Assert.AreEqual(messages[4].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[4].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[4].MessageText, Does.Contain("Method SlowerX10"));
+			Assert.That(messages[4].MessageText, Does.StartWith("Method SlowerX10"));
 			Assert.That(messages[4].MessageText, Does.Contain(" does not fit into limits "));
+
+			Assert.AreEqual(messages[5].RunNumber, 3);
+			Assert.AreEqual(messages[5].RunMessageNumber, 2);
+			Assert.AreEqual(messages[5].MessageSeverity, MessageSeverity.Warning);
+			Assert.AreEqual(messages[5].MessageSource, MessageSource.Runner);
+			Assert.AreEqual(
+				messages[5].MessageText,
+				"The benchmark was run 3 time(s) (read log for details). Try to loose competition limits.");
+		}
+
+		[Test]
+		public static void CompetitionLimitsEmptyFailBenchmark()
+		{
+			Interlocked.Exchange(ref _callCounter, 0);
+
+			var runState = SelfTestCompetition.Run<LimitsEmptyFailBenchmark>(SelfTestConfig);
+			var messages = runState.GetMessages();
+
+			Assert.AreEqual(_callCounter, 3 * ExpectedRunCount); // 3x rerun
+			AssertCompetitionCompleted(runState, runNumber: 3);
+
+			Assert.AreEqual(messages.Length, 6);
+
+			Assert.AreEqual(messages[0].RunNumber, 1);
+			Assert.AreEqual(messages[0].RunMessageNumber, 1);
+			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.TestError);
+			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
+			Assert.That(messages[0].MessageText, Does.StartWith("Method SlowerX10"));
+			Assert.That(messages[0].MessageText, Does.EndWith(" has empty limit. Please fill it."));
+
+			Assert.AreEqual(messages[1].RunNumber, 1);
+			Assert.AreEqual(messages[1].RunMessageNumber, 2);
+			Assert.AreEqual(messages[1].MessageSeverity, MessageSeverity.Informational);
+			Assert.AreEqual(messages[1].MessageSource, MessageSource.Runner);
+			Assert.AreEqual(messages[1].MessageText, "Requesting 1 run(s): Limit checking failed.");
+
+			Assert.AreEqual(messages[2].RunNumber, 2);
+			Assert.AreEqual(messages[2].RunMessageNumber, 1);
+			Assert.AreEqual(messages[2].MessageSeverity, MessageSeverity.TestError);
+			Assert.AreEqual(messages[2].MessageSource, MessageSource.Analyser);
+			Assert.That(messages[2].MessageText, Does.StartWith("Method SlowerX10"));
+			Assert.That(messages[2].MessageText, Does.EndWith(" has empty limit. Please fill it."));
+
+			Assert.AreEqual(messages[3].RunNumber, 2);
+			Assert.AreEqual(messages[3].RunMessageNumber, 2);
+			Assert.AreEqual(messages[3].MessageSeverity, MessageSeverity.Informational);
+			Assert.AreEqual(messages[3].MessageSource, MessageSource.Runner);
+			Assert.AreEqual(messages[3].MessageText, "Requesting 1 run(s): Limit checking failed.");
+
+			Assert.AreEqual(messages[4].RunNumber, 3);
+			Assert.AreEqual(messages[4].RunMessageNumber, 1);
+			Assert.AreEqual(messages[4].MessageSeverity, MessageSeverity.TestError);
+			Assert.AreEqual(messages[4].MessageSource, MessageSource.Analyser);
+			Assert.That(messages[4].MessageText, Does.StartWith("Method SlowerX10"));
+			Assert.That(messages[4].MessageText, Does.EndWith(" has empty limit. Please fill it."));
 
 			Assert.AreEqual(messages[5].RunNumber, 3);
 			Assert.AreEqual(messages[5].RunMessageNumber, 2);
@@ -328,6 +383,23 @@ namespace CodeJam.PerfTests.IntegrationTests
 			}
 
 			[CompetitionBenchmark(1, 1)]
+			public void SlowerX10()
+			{
+				Interlocked.Increment(ref _callCounter);
+				CompetitionHelpers.Delay(10 * CompetitionHelpers.DefaultCount);
+			}
+		}
+
+		public class LimitsEmptyFailBenchmark
+		{
+			[CompetitionBaseline]
+			public void Baseline()
+			{
+				Interlocked.Increment(ref _callCounter);
+				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
+			}
+
+			[CompetitionBenchmark]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);

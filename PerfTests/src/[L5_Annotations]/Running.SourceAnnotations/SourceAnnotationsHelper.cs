@@ -15,6 +15,8 @@ using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
+using static CodeJam.PerfTests.Loggers.HostLogger;
+
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
 	/// <summary>Core logic for source annotations.</summary>
@@ -220,7 +222,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				}
 
 				logger.WriteLineInfo(
-					$"// !Method {targetMethodTitle} updated time limits: [{targetToAnnotate.MinRatioText}, {targetToAnnotate.MaxRatioText}].");
+					$"{LogImportantInfoPrefix} Method {targetMethodTitle} updated time limits: [{targetToAnnotate.MinRatioText}, {targetToAnnotate.MaxRatioText}].");
 				annotatedTargets.Add(targetToAnnotate);
 			}
 

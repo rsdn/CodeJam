@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
@@ -13,7 +14,7 @@ namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>Competition runner that does not support integration with unit tests.</summary>
 	/// <seealso cref="CompetitionRunnerBase"/>
-	public class ConsoleCompetitionRunnerImpl : CompetitionRunnerBase
+	public class ConsoleCompetitionRunner : CompetitionRunnerBase
 	{
 		/// <summary>Host logger implementation</summary>
 		protected class ConsoleHostLogger : HostLogger
@@ -31,29 +32,35 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Reports the execution errors to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		/// <param name="hostLogger">The host logger.</param>
-		protected override void ReportExecutionErrors(string messages, HostLogger hostLogger)
+		/// <param name="competitionState">State of the run.</param>
+		protected override void ReportExecutionErrors(string messages, CompetitionState competitionState)
 		{
-			hostLogger.WrappedLogger.WriteSeparatorLine();
-			hostLogger.WrappedLogger.WriteLineError(messages);
+			var logger = competitionState.Logger;
+
+			logger.WriteLine();
+			logger.WriteLineError(messages);
 		}
 
 		/// <summary>Reports failed assertions to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		/// <param name="hostLogger">The host logger.</param>
-		protected override void ReportAssertionsFailed(string messages, HostLogger hostLogger)
+		/// <param name="competitionState">State of the run.</param>
+		protected override void ReportAssertionsFailed(string messages, CompetitionState competitionState)
 		{
-			hostLogger.WrappedLogger.WriteSeparatorLine();
-			hostLogger.WrappedLogger.WriteLineError(messages);
+			var logger = competitionState.Logger;
+
+			logger.WriteLine();
+			logger.WriteLineError(messages);
 		}
 
 		/// <summary>Reports warnings to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		/// <param name="hostLogger">The host logger.</param>
-		protected override void ReportWarnings(string messages, HostLogger hostLogger)
+		/// <param name="competitionState">State of the run.</param>
+		protected override void ReportWarnings(string messages, CompetitionState competitionState)
 		{
-			hostLogger.WrappedLogger.WriteSeparatorLine();
-			hostLogger.WrappedLogger.WriteLineInfo(messages);
+			var logger = competitionState.Logger;
+
+			logger.WriteLine();
+			logger.WriteLineInfo(messages);
 		}
 
 		/// <summary>Reports content of the host logger to user.</summary>
@@ -63,11 +70,14 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			if (logger.LogMode != HostLogMode.AllMessages && summary != null)
 			{
-				// Dumping the benchmark results to console
-				var outLogger = logger.WrappedLogger;
+				using (Loggers.HostLogger.BeginLogImportant(summary.Config))
+				{
+					// Dumping the benchmark results to console
+					var outLogger = summary.Config.GetCompositeLogger();
 
-				outLogger.WriteSeparatorLine();
-				MarkdownExporter.Console.ExportToLog(summary, outLogger);
+					outLogger.WriteSeparatorLine("Summary");
+					MarkdownExporter.Console.ExportToLog(summary, outLogger);
+				}
 			}
 		}
 

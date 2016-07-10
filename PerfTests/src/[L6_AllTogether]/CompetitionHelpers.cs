@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Threading;
 
@@ -10,8 +11,6 @@ using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Loggers;
 
 using JetBrains.Annotations;
-
-using NUnit.Framework;
 
 namespace CodeJam.PerfTests
 {
@@ -54,30 +53,22 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 		#endregion
 
 		#region Configs core
-		public static readonly bool HasNUnitContext = TestContext.CurrentContext.WorkDirectory != null;
-
 		public static ILogger CreateDetailedLogger() =>
-			new FlushableStreamLogger(
-				GetLogWriter(Assembly.GetCallingAssembly().GetName().Name + ".AllPerfTests.log"));
+			GetAssemblyLevelLogger(Assembly.GetCallingAssembly(), ".AllPerfTests.log");
 
 		public static ILogger CreateImportantInfoLogger() =>
 			new HostLogger(
-				new FlushableStreamLogger(
-					GetLogWriter(Assembly.GetCallingAssembly().GetName().Name + ".Short.AllPerfTests.log")),
+				GetAssemblyLevelLogger(Assembly.GetCallingAssembly(), ".Short.AllPerfTests.log"),
 				HostLogMode.PrefixedOnly);
 
-		private static StreamWriter GetLogWriter(string fileName)
+		private static LazyStreamLogger GetAssemblyLevelLogger(Assembly assembly, string suffix)
 		{
-			var path = Path.Combine(
-				HasNUnitContext
-					? TestContext.CurrentContext.TestDirectory
-					: Path.GetTempPath(),
-				fileName);
-
-			return new StreamWriter(
-				new FileStream(
-					path,
-					FileMode.Create, FileAccess.Write, FileShare.Read));
+			var fileName = assembly.GetName().Name + suffix;
+			return new LazyStreamLogger(
+				() => new StreamWriter(
+					new FileStream(
+						fileName,
+						FileMode.Create, FileAccess.Write, FileShare.Read)));
 		}
 		#endregion
 

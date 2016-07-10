@@ -24,6 +24,7 @@ namespace CodeJam.PerfTests.Running.Core
 	/// </summary>
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	public static class CompetitionCore
 	{
 		#region Extension methods
@@ -150,11 +151,19 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 
 			var competitionState = RunState[competitionConfig];
-			var logger = competitionConfig.GetCompositeLogger();
-			competitionState.FirstTimeInit(maxRunsAllowed, logger);
 
 			try
 			{
+				var logger = competitionConfig.GetCompositeLogger();
+				competitionState.FirstTimeInit(maxRunsAllowed, competitionConfig);
+
+				using (BeginLogImportant(competitionConfig))
+				{
+					logger.WriteLine();
+					logger.WriteSeparatorLine(benchmarkType.Name, true);
+					logger.WriteLine(LogKind.Help, $"{LogInfoPrefix} {benchmarkType.GetShortAssemblyQualifiedName()}");
+				}
+
 				try
 				{
 					var runCount = Interlocked.Increment(ref _runCount);
@@ -166,9 +175,7 @@ namespace CodeJam.PerfTests.Running.Core
 					}
 					else if (allowDebugBuilds || CheckReleaseBuilds(benchmarkType, competitionState))
 					{
-						RunCore(
-							benchmarkType, competitionConfig,
-							competitionState, maxRunsAllowed);
+						RunCore(benchmarkType, competitionState, maxRunsAllowed);
 					}
 				}
 				finally
@@ -184,11 +191,7 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 			finally
 			{
-				var loggers = competitionConfig.GetLoggers().OfType<IFlushableLogger>();
-				foreach (var flushable in loggers)
-				{
-					flushable.Flush();
-				}
+				FlushLoggers(competitionConfig);
 			}
 
 			competitionState.MarkAsCompleted();
@@ -213,7 +216,7 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		private static void RunCore(
-			Type benchmarkType, IConfig competitionConfig,
+			Type benchmarkType,
 			CompetitionState competitionState, int maxRunsAllowed)
 		{
 			var logger = competitionState.Logger;
@@ -225,16 +228,16 @@ namespace CodeJam.PerfTests.Running.Core
 				var run = competitionState.RunNumber;
 				var runsExpected = competitionState.RunNumber + competitionState.RunsLeft;
 				var runMessage = competitionState.RunLimitExceeded
-					? $"{LogImportantInfoPrefix}Run {run}, total runs (expected): {runsExpected} (rerun limit exceeded, last run)."
-					: $"{LogImportantInfoPrefix}Run {run}, total runs (expected): {runsExpected}.";
+					? $"Run {run}, total runs (expected): {runsExpected} (rerun limit exceeded, last run)"
+					: $"Run {run}, total runs (expected): {runsExpected}";
 
-				logger.WriteSeparatorLine(LogImportantInfoPrefix);
-				logger.WriteLine();
-				logger.WriteLineInfo(runMessage);
-				logger.WriteLine();
+				using (BeginLogImportant(competitionState.Config))
+				{
+					logger.WriteSeparatorLine(runMessage);
+				}
 
 				// Running the benchmark
-				var summary = BenchmarkRunner.Run(benchmarkType, competitionConfig);
+				var summary = BenchmarkRunner.Run(benchmarkType, competitionState.Config);
 				competitionState.RunCompleted(summary);
 
 				WriteValidationMessages(competitionState);
@@ -244,13 +247,13 @@ namespace CodeJam.PerfTests.Running.Core
 
 				if (competitionState.HasCriticalErrorsInRun)
 				{
-					logger.WriteLineInfo($"{LogImportantInfoPrefix}Breaking competition execution. High severity error occured.");
+					logger.WriteLineInfo($"{LogImportantInfoPrefix} Breaking competition execution. High severity error occured.");
 					break;
 				}
 
 				if (competitionState.RunsLeft > 0)
 				{
-					logger.WriteLineInfo($"{LogImportantInfoPrefix}Rerun requested. Runs left: {competitionState.RunsLeft}.");
+					logger.WriteLineInfo($"{LogImportantInfoPrefix} Rerun requested. Runs left: {competitionState.RunsLeft}.");
 				}
 			}
 

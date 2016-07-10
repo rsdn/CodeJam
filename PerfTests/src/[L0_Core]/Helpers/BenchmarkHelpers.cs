@@ -6,11 +6,14 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Text;
 
+using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Order;
+using BenchmarkDotNet.Portability;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
@@ -31,6 +34,24 @@ namespace BenchmarkDotNet.Helpers
 	public static class BenchmarkHelpers
 	{
 		#region Benchmark-related
+		/// <summary>Get benchmark types defined in the assembly.</summary>
+		/// <param name="assembly">The assembly to get benchmarks from.</param>
+		/// <returns>Benchmark types from the assembly</returns>
+		public static Type[] GetBenchmarkTypes(Assembly assembly) =>
+			// Use reflection for a more maintainable way of creating the benchmark switcher,
+			// Benchmarks are listed in namespace order first (e.g. BenchmarkDotNet.Samples.CPU,
+			// BenchmarkDotNet.Samples.IL, etc) then by name, so the output is easy to understand.
+			assembly
+				.GetTypes()
+				.Where(
+					t =>
+						t.GetMethods(BindingFlags.Instance | BindingFlags.Public)
+							.Any(m => MemberInfoExtensions.GetCustomAttributes<BenchmarkAttribute>(m, true).Any()))
+				.Where(t => !t.IsGenericType() && !t.IsAbstract)
+				.OrderBy(t => t.Namespace)
+				.ThenBy(t => t.Name)
+				.ToArray();
+
 		/// <summary>Creates read-only wrapper for the config.</summary>
 		/// <param name="config">The config to wrap.</param>
 		/// <returns>Read-only wrapper for the config.</returns>
@@ -93,25 +114,49 @@ namespace BenchmarkDotNet.Helpers
 		#endregion
 
 		#region Loggers
-		/// <summary>Helper method that writes separator log line.</summary>
-		/// <param name="logger">The logger.</param>
-		public static void WriteSeparatorLine([NotNull] this ILogger logger) =>
-			WriteSeparatorLine(logger, null);
+		private const int SeparatorLength = 42;
 
 		/// <summary>Helper method that writes separator log line.</summary>
 		/// <param name="logger">The logger.</param>
-		/// <param name="prefix">The separator line prefix.</param>
-		public static void WriteSeparatorLine([NotNull] this ILogger logger, [CanBeNull] string prefix)
+		public static void WriteSeparatorLine([NotNull] this ILogger logger) =>
+			WriteSeparatorLine(logger, null, false);
+
+		/// <summary>Helper method that writes separator log line.</summary>
+		/// <param name="logger">The logger.</param>
+		/// <param name="header">The separator line text.</param>
+		public static void WriteSeparatorLine([NotNull] this ILogger logger, [CanBeNull] string header) =>
+			WriteSeparatorLine(logger, header, false);
+
+		/// <summary>Helper method that writes separator log line.</summary>
+		/// <param name="logger">The logger.</param>
+		/// <param name="header">The separator line text.</param>
+		/// <param name="topHeader">Write top-level header.</param>
+		public static void WriteSeparatorLine(
+			[NotNull] this ILogger logger, [CanBeNull] string header, bool topHeader)
 		{
-			logger.WriteLine();
-			if (prefix.IsNullOrEmpty())
+			var separatorChar = topHeader ? '=' : '-';
+			var logKind = topHeader ? LogKind.Header : LogKind.Help;
+
+			var result = new StringBuilder(SeparatorLength);
+
+			if (header.NotNullNorEmpty())
 			{
-				logger.WriteLine(LogKind.Header, new string('=', 40));
+				var temp = (SeparatorLength - header.Length - 2) / 2;
+				if (temp > 0)
+				{
+					result.Append(separatorChar, temp);
+				}
+				result.Append(' ').Append(header).Append(' ');
 			}
-			else
+
+			var temp2 = SeparatorLength - result.Length;
+			if (temp2 > 0)
 			{
-				logger.WriteLine($"{prefix}{new string('=', 40 - prefix.Length)}");
+				result.Append(separatorChar, temp2);
 			}
+
+			logger.WriteLine(logKind, "");
+			logger.WriteLine(logKind, result.ToString());
 		}
 		#endregion
 
@@ -127,6 +172,12 @@ namespace BenchmarkDotNet.Helpers
 			var optAtt = (DebuggableAttribute)Attribute.GetCustomAttribute(assembly, typeof(DebuggableAttribute));
 			return optAtt != null && optAtt.IsJITOptimizerDisabled;
 		}
+
+		/// <summary>Gets the short form of assembly qualified type name.</summary>
+		/// <param name="type">The type to get the name for.</param>
+		/// <returns>The short form of assembly qualified type name.</returns>
+		public static string GetShortAssemblyQualifiedName([NotNull] this Type type) =>
+			type.FullName + ", " + type.Assembly.GetName().Name;
 		#endregion
 
 		#region Process
@@ -153,7 +204,7 @@ namespace BenchmarkDotNet.Helpers
 			{
 				logger.WriteLineError(
 					string.Format(
-						"// !Failed to set up priority {1}. Make sure you have the right permissions. Message: {0}", ex.Message,
+						"// ! Failed to set up priority {1}. Make sure you have the right permissions. Message: {0}", ex.Message,
 						priority));
 			}
 		}
@@ -181,7 +232,7 @@ namespace BenchmarkDotNet.Helpers
 			{
 				logger.WriteLineError(
 					string.Format(
-						"// !Failed to set up processor affinity 0x{1:X}. Make sure you have the right permissions. Message: {0}",
+						"// ! Failed to set up processor affinity 0x{1:X}. Make sure you have the right permissions. Message: {0}",
 						ex.Message,
 						(long)processorAffinity));
 			}

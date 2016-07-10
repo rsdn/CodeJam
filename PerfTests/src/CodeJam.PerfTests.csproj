@@ -48,6 +48,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlXml" />
     <Reference Include="System.Management" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -58,7 +59,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="[L0_Core]\Loggers\IFlushableLogger.cs" />
-    <Compile Include="[L0_Core]\Loggers\FlushableStreamLogger.cs" />
+    <Compile Include="[L0_Core]\Loggers\LazyStreamLogger.cs" />
     <Compile Include="[L1_InProcess]\Toolchains\MethodInvokerLight2.cs" />
     <Compile Include="[L1_InProcess]\Toolchains\MethodInvokerLight.cs" />
     <Compile Include="[L3_CompetitionsCore]\Exporters\TimingsExporter.cs" />
@@ -105,14 +106,14 @@
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.SourceAttributes.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.SymbolHelpers.cs" />
-    <Compile Include="[L6_AllTogether]\Running.Core\CompetitionApi`1.cs" />
-    <Compile Include="[L6_AllTogether]\Running.Core\ConsoleCompetitionRunnerImpl.cs" />
+    <Compile Include="[L6_AllTogether]\CompetitionHelpers.cs" />
+    <Compile Include="[L6_AllTogether]\Running.Core\ConsoleCompetitionRunner.cs" />
     <Compile Include="[L6_AllTogether]\Configs\ICompetitionConfig.cs" />
     <Compile Include="[L0_Core]\Configs\ReadOnlyConfig.cs" />
     <Compile Include="[L6_AllTogether]\Configs\DefaultCompetitionConfig.cs" />
     <Compile Include="[L6_AllTogether]\Configs\ReadOnlyCompetitionConfig.cs" />
     <Compile Include="[L6_AllTogether]\Configs\ManualCompetitionConfig.cs" />
-    <Compile Include="[L6_AllTogether]\Running.Console\ConsoleCompetitionRunner.cs" />
+    <Compile Include="[L6_AllTogether]\Running.Console\ConsoleCompetition.cs" />
     <Compile Include="[L6_AllTogether]\Running.Core\CompetitionRunnerBase.cs" />
   </ItemGroup>
   <ItemGroup>

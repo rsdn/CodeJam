@@ -7,11 +7,9 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests
 {
-	/// <summary>NUnit runner for competition performance tests.</summary>
-	[PublicAPI]
-	public static class Competition
+	internal static class SelfTestCompetition
 	{
-		private static CompetitionRunnerBase Runner => new NUnitCompetitionRunner();
+		private static CompetitionRunnerBase Runner => new SelfTestCompetitionRunner();
 
 		/// <summary>Runs the benchmark.</summary>
 		/// <typeparam name="T">Benchmark class to run.</typeparam>

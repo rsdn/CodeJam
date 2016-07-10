@@ -1,5 +1,6 @@
 ﻿using System;
 
+using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Loggers;
 
 using CodeJam.PerfTests.Loggers;
@@ -238,6 +239,59 @@ TST6
 // !-->
 ";
 			Assert.AreEqual(output.GetLog(), expected);
+		}
+
+		[Test]
+		public void TestHostLoggerImportantArea()
+		{
+			var lines = LogInput.Split(new[] { "\r\n" }, StringSplitOptions.None);
+
+			var output = new AccumulationLogger();
+			var logger = new HostLogger(output, HostLogMode.AllMessages);
+
+			var config = new ManualConfig();
+			config.Add(logger);
+
+			using (HostLogger.BeginLogImportant(config))
+			{
+				foreach (var line in lines)
+				{
+					logger.WriteLine(line);
+				}
+				Assert.AreEqual(output.GetLog(), LogInput + "\r\n");
+
+				output = new AccumulationLogger();
+				logger = new HostLogger(output, HostLogMode.AllMessages);
+				foreach (var line in lines)
+				{
+					logger.WriteLineError(line);
+				}
+				Assert.AreEqual(output.GetLog(), LogInput + "\r\n");
+
+				output = new AccumulationLogger();
+				logger = new HostLogger(output, HostLogMode.AllMessages);
+				LogMessages(logger);
+				// ReSharper disable once StringLiteralTypo
+				const string expected = @"ABCDEFGH
+TST0
+// !TST1
+TST2
+// !<--
+TST3
+// !<--
+TST4
+
+TST5
+// !-->
+TST6
+// !-->
+TST7
+TST8
+// !TST9
+TST10
+";
+				Assert.AreEqual(output.GetLog(), expected);
+			}
 		}
 	}
 }

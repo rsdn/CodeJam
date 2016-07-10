@@ -45,13 +45,13 @@ namespace CodeJam.PerfTests.Analysers
 		public string PreviousRunLogUri { get; set; }
 
 		/// <summary>
-		/// Count of runs skipped before annotation performed.
+		/// Count of runs skipped before source annotations will be applied.
 		/// Set this to non-zero positive value to skip some runs before first annotation applied.
 		/// Should be used together with <see cref="CompetitionAnalyser.MaxRerunsIfValidationFailed"/>
 		/// when run on unstable environments such as virtual machines or low-end notebooks.
 		/// </summary>
 		/// <value>The count of runs performed before updating the limits annotations.</value>
-		public int SkipAnnotationsUntilRun { get; set; }
+		public int SkipRunsBeforeApplyingAnnotations { get; set; }
 
 		/// <summary>
 		/// Count of additional runs performed after updating source annotations.
@@ -104,7 +104,7 @@ namespace CodeJam.PerfTests.Analysers
 		private XDocument[] ReadXmlAnnotationDocsFromLog(Summary summary, CompetitionState competitionState)
 		{
 			competitionState.Logger.WriteLineInfo(
-				$"{LogInfoPrefix}Reading XML annotation documents from log {PreviousRunLogUri}.");
+				$"{LogInfoPrefix} Reading XML annotation documents from log {PreviousRunLogUri}.");
 
 			var xmlAnnotationDocs = _annotationsSlot[summary].GetOrAdd(
 				PreviousRunLogUri,
@@ -118,7 +118,7 @@ namespace CodeJam.PerfTests.Analysers
 			CompetitionTargets competitionTargets, XDocument[] xmlAnnotationDocs, CompetitionState competitionState)
 		{
 			competitionState.Logger.WriteLineInfo(
-				$"{LogInfoPrefix}Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log {PreviousRunLogUri}.");
+				$"{LogInfoPrefix} Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log {PreviousRunLogUri}.");
 
 			bool updated = false;
 			foreach (var competitionTarget in competitionTargets.Values)
@@ -170,7 +170,7 @@ namespace CodeJam.PerfTests.Analysers
 			if (checkPassed)
 				return true;
 
-			if (competitionState.RunNumber <= SkipAnnotationsUntilRun)
+			if (competitionState.RunNumber <= SkipRunsBeforeApplyingAnnotations)
 				return false;
 
 			foreach (var benchmark in benchmarksForTarget)
@@ -195,14 +195,14 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="summary">Summary for the run.</param>
 		/// <param name="competitionState">State of the run.</param>
 		/// <param name="checkPassed"><c>true</c> if competition check passed.</param>
-		protected override void OnLimitsChecked(Summary summary, CompetitionState competitionState, bool checkPassed)
+		protected override void OnLimitsCheckCompleted(Summary summary, CompetitionState competitionState, bool checkPassed)
 		{
 			AnnotateTargets(summary, competitionState);
 
 			if (AdditionalRerunsIfAnnotationsUpdated <= 0 ||
-				competitionState.RunNumber <= SkipAnnotationsUntilRun)
+				competitionState.RunNumber <= SkipRunsBeforeApplyingAnnotations)
 			{
-				base.OnLimitsChecked(summary, competitionState, checkPassed);
+				base.OnLimitsCheckCompleted(summary, competitionState, checkPassed);
 			}
 			else if (!checkPassed)
 			{

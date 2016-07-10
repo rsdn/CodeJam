@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 
 using BenchmarkDotNet.Exporters;
-using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
@@ -17,7 +17,7 @@ namespace CodeJam.PerfTests.Running.Core
 	/// <summary>Nunit competition performance tests runner.</summary>
 	/// <seealso cref="CompetitionRunnerBase"/>
 	[SuppressMessage("ReSharper", "ConvertToExpressionBodyWhenPossible")]
-	public class NUnitCompetitionRunner : CompetitionRunnerBase
+	internal class NUnitCompetitionRunner : CompetitionRunnerBase
 	{
 		/// <summary>Host logger implementation</summary>
 		protected class NUnitHostLogger : HostLogger
@@ -31,30 +31,17 @@ namespace CodeJam.PerfTests.Running.Core
 			public string GetLog() => ((AccumulationLogger)WrappedLogger).GetLog();
 		}
 
-		#region Overrides of CompetitionRunnerBase
-		/// <summary>Runs the benchmark.</summary>
-		/// <param name="benchmarkType">Benchmark class to run.</param>
-		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>State of the run.</returns>
-		public override CompetitionState RunCompetition(Type benchmarkType, ICompetitionConfig competitionConfig)
+		#region Override test running behavior
+		/// <summary>Returns output directory that should be used for running the test.</summary>
+		/// <param name="targetAssembly">The target assembly tests will be run for.</param>
+		/// <returns>Output directory that should be used for running the test or <c>null</c> if the current directory should be used.</returns>
+		protected override string GetOutputDirectory(Assembly targetAssembly)
 		{
-			var currentDirectory = Environment.CurrentDirectory;
-			try
+			if (TestContext.CurrentContext.WorkDirectory != null)
 			{
-				// WORKAROUND: https://github.com/nunit/nunit3-vs-adapter/issues/38
-				// NUnit 3.0 does not alter current directory at all.
-				// So we had to do it ourselves.
-				if (TestContext.CurrentContext.WorkDirectory != null)
-				{
-					Environment.CurrentDirectory = TestContext.CurrentContext.TestDirectory;
-				}
-
-				return base.RunCompetition(benchmarkType, competitionConfig);
+				return TestContext.CurrentContext.TestDirectory;
 			}
-			finally
-			{
-				Environment.CurrentDirectory = currentDirectory;
-			}
+			return base.GetOutputDirectory(targetAssembly);
 		}
 		#endregion
 
@@ -75,30 +62,29 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				// Dumping the benchmark results to console
 				MarkdownExporter.Console.ExportToLog(summary, outLogger);
-
-				outLogger.WriteLine();
 			}
 
 			// Dumping all captured output below the benchmark results
-			outLogger.WriteLine();
 			var nUnitLogger = (NUnitHostLogger)logger;
 			outLogger.Write(nUnitLogger.GetLog());
 		}
 
 		/// <summary>Reports the execution errors to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		/// <param name="hostLogger">The host logger.</param>
-		protected override void ReportExecutionErrors(string messages, HostLogger hostLogger) => Assert.Fail(messages);
+		/// <param name="competitionState">State of the run.</param>
+		protected override void ReportExecutionErrors(string messages, CompetitionState competitionState)
+			=> Assert.Fail(messages);
 
 		/// <summary>Reports failed assertions to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		/// <param name="hostLogger">The host logger.</param>
-		protected override void ReportAssertionsFailed(string messages, HostLogger hostLogger) => Assert.Fail(messages);
+		/// <param name="competitionState">State of the run.</param>
+		protected override void ReportAssertionsFailed(string messages, CompetitionState competitionState)
+			=> Assert.Fail(messages);
 
 		/// <summary>Reports warnings to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		/// <param name="hostLogger">The host logger.</param>
-		protected override void ReportWarnings(string messages, HostLogger hostLogger) => Assert.Ignore(messages);
+		/// <param name="competitionState">State of the run.</param>
+		protected override void ReportWarnings(string messages, CompetitionState competitionState) => Assert.Ignore(messages);
 		#endregion
 
 		#region Override config parameters

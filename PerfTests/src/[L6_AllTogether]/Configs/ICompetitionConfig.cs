@@ -20,7 +20,10 @@ namespace CodeJam.PerfTests.Configs
 		#endregion
 
 		#region Runner config
-		/// <summary>Total count of reruns allowed. Set this to zero to use default limit (10 runs).</summary>
+		/// <summary>
+		/// Total count of reruns allowed. Set this to zero to use default limit of 10 runs
+		/// (limit value can be overriden by <see cref="CodeJam.PerfTests.Running.Core.CompetitionRunnerBase"/> implementation).
+		/// </summary>
 		/// <value>The upper limits of rerun count.</value>
 		int MaxRunsAllowed { get; }
 
@@ -34,7 +37,10 @@ namespace CodeJam.PerfTests.Configs
 		/// <value><c>true</c> if the analyser should ignore existing limit annotations.</value>
 		bool IgnoreExistingAnnotations { get; }
 
-		/// <summary>The analyser should not warn on benchmark runs that take longer than 0.5 sec to complete.</summary>
+		/// <summary>
+		/// The analyser should not warn on benchmark runs that take longer than 0.5 sec to complete.
+		/// (limit value can be overriden by <see cref="CodeJam.PerfTests.Running.Core.CompetitionRunnerBase"/> implementation).
+		/// </summary>
 		/// <value>
 		/// True if the analyser should not warn on benchmark runs that take longer than 0.5 sec to complete.
 		/// </value>

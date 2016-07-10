@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.Exporters;
-using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
@@ -18,7 +16,7 @@ namespace CodeJam.PerfTests.Running.Core
 	/// <summary>Nunit competition performance tests runner.</summary>
 	/// <seealso cref="CompetitionRunnerBase"/>
 	[SuppressMessage("ReSharper", "ConvertToExpressionBodyWhenPossible")]
-	public class XunitCompetitionRunner : CompetitionRunnerBase
+	internal class XunitCompetitionRunner : CompetitionRunnerBase
 	{
 		/// <summary>Host logger implementation</summary>
 		protected class XunitHostLogger : HostLogger
@@ -31,31 +29,6 @@ namespace CodeJam.PerfTests.Running.Core
 			/// <returns>String with the log content.</returns>
 			public string GetLog() => ((AccumulationLogger)WrappedLogger).GetLog();
 		}
-
-		#region Overrides of CompetitionRunnerBase
-		/// <summary>Runs the benchmark.</summary>
-		/// <param name="benchmarkType">Benchmark class to run.</param>
-		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>State of the run.</returns>
-		public override CompetitionState RunCompetition(Type benchmarkType, ICompetitionConfig competitionConfig)
-		{
-			Trace.Listeners.Add(new DefaultTraceListener());
-			var currentDirectory = Environment.CurrentDirectory;
-			try
-			{
-				//if (TestContext.CurrentContext.WorkDirectory != null)
-				//{
-				//	Environment.CurrentDirectory = TestContext.CurrentContext.TestDirectory;
-				//}
-
-				return base.RunCompetition(benchmarkType, competitionConfig);
-			}
-			finally
-			{
-				Environment.CurrentDirectory = currentDirectory;
-			}
-		}
-		#endregion
 
 		#region Host-related logic
 		/// <summary>Creates a host logger.</summary>
@@ -74,30 +47,27 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				// Dumping the benchmark results to console
 				MarkdownExporter.Console.ExportToLog(summary, outLogger);
-
-				outLogger.WriteLine();
 			}
 
 			// Dumping all captured output below the benchmark results
-			outLogger.WriteLine();
 			var nUnitLogger = (XunitHostLogger)logger;
 			outLogger.Write(nUnitLogger.GetLog());
 		}
 
 		/// <summary>Reports the execution errors to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		/// <param name="hostLogger">The host logger.</param>
-		protected override void ReportExecutionErrors(string messages, HostLogger hostLogger) => Assert.True(false, messages);
+		/// <param name="competitionState">State of the run.</param>
+		protected override void ReportExecutionErrors(string messages, CompetitionState competitionState) => Assert.True(false, messages);
 
 		/// <summary>Reports failed assertions to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		/// <param name="hostLogger">The host logger.</param>
-		protected override void ReportAssertionsFailed(string messages, HostLogger hostLogger) => Assert.True(false, messages);
+		/// <param name="competitionState">State of the run.</param>
+		protected override void ReportAssertionsFailed(string messages, CompetitionState competitionState) => Assert.True(false, messages);
 
 		/// <summary>Reports warnings to user.</summary>
 		/// <param name="messages">The messages to report.</param>
-		/// <param name="hostLogger">The host logger.</param>
-		protected override void ReportWarnings(string messages, HostLogger hostLogger)
+		/// <param name="competitionState">State of the run.</param>
+		protected override void ReportWarnings(string messages, CompetitionState competitionState)
 		{
 			throw new SkipException(messages);
 		}

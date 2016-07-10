@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
+using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
@@ -66,6 +67,10 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <value>Max count of runs allowed.</value>
 		public int MaxRunsAllowed { get; private set; }
 
+		/// <summary>The config for the competition.</summary>
+		/// <value>The config.</value>
+		public IConfig Config { get; private set; }
+
 		/// <summary>The logger for the competition.</summary>
 		/// <value>The logger.</value>
 		public ILogger Logger { get; private set; }
@@ -110,16 +115,17 @@ namespace CodeJam.PerfTests.Running.Core
 		#region State modification
 		/// <summary>Init the competition state.</summary>
 		/// <param name="maxRunsAllowed">Max limit for competition reruns.</param>
-		/// <param name="logger">The logger for the competition.</param>
-		internal void FirstTimeInit(int maxRunsAllowed, [NotNull] ILogger logger)
+		/// <param name="config">The config for the competition.</param>
+		internal void FirstTimeInit(int maxRunsAllowed, [NotNull] IConfig config)
 		{
 			AssertIsInCompetition();
 
-			Code.NotNull(logger, nameof(logger));
+			Code.NotNull(config, nameof(config));
 			_stopwatch.Restart();
 
 			MaxRunsAllowed = maxRunsAllowed;
-			Logger = logger;
+			Config = config;
+			Logger = config.GetCompositeLogger();
 
 			RunNumber = 0;
 			RunsLeft = 1;

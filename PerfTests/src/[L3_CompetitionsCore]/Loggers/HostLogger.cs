@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Threading;
 
+using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Loggers;
 
 using CodeJam.Threading;
@@ -45,6 +47,39 @@ namespace CodeJam.PerfTests.Loggers
 		/// </summary>
 		public const string LogImportantAreaEnd = "// !-->";
 		#endregion
+
+		/// <summary>All messages within the scope will be passed to the log.</summary>
+		/// <param name="config">Config with loggers.</param>
+		/// <returns>Disposable to mark the scope completion.</returns>
+		public static IDisposable BeginLogImportant(IConfig config)
+		{
+			var loggers = config.GetLoggers().OfType<HostLogger>().ToArray();
+
+			foreach (var hostLogger in loggers)
+			{
+				hostLogger.IncrementAreaCount();
+			}
+
+			return Disposable.Create(
+				() =>
+				{
+					foreach (var hostLogger in loggers)
+					{
+						hostLogger.DecrementAreaCount();
+					}
+				});
+		}
+
+		/// <summary>Flushes the loggers.</summary>
+		/// <param name="config">Config with loggers.</param>
+		public static void FlushLoggers(IConfig config)
+		{
+			var loggers = config.GetLoggers().OfType<IFlushableLogger>();
+			foreach (var flushable in loggers)
+			{
+				flushable.Flush();
+			}
+		}
 
 		#region Fields, .ctor & properties
 		private volatile int _importantAreaCount;

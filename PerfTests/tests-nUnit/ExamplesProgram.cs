@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using CodeJam.PerfTests;
 using CodeJam.PerfTests.Running.Console;
+
 
 // ReSharper disable once CheckNamespace
 namespace CodeJam.Examples
@@ -17,7 +14,10 @@ namespace CodeJam.Examples
 	{
 		private static void Main()
 		{
-			ConsoleCompetitionRunner.Run<ListCapacityPerfTest>(CompetitionHelpers.DefaultConfig);
+			Console.WindowWidth = 135;
+			Console.WindowHeight = 48;
+
+			ConsoleCompetition.Run<ListCapacityPerfTest>(CompetitionHelpers.DefaultConfigAnnotate);
 
 			Console.ReadKey();
 		}

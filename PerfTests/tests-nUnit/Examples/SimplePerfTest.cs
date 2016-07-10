@@ -14,7 +14,7 @@ namespace CodeJam.Examples
 		private const int Count = 10 * 1000;
 
 		[Test]
-		public void RunSimplePerfTest() => Competition.Run(this, CompetitionHelpers.DefaultConfig);
+		public void RunSimplePerfTest() => Competition.Run(this, CompetitionHelpers.DefaultConfigAnnotate);
 
 		[CompetitionBaseline]
 		public void Baseline() => Thread.SpinWait(Count);
