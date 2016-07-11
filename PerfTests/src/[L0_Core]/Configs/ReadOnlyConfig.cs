@@ -26,7 +26,7 @@ namespace BenchmarkDotNet.Configs
 
 		/// <summary>Initializes a new instance of the <see cref="ReadOnlyConfig"/> class.</summary>
 		/// <param name="config">The config to wrap.</param>
-		public ReadOnlyConfig(IConfig config)
+		public ReadOnlyConfig([NotNull] IConfig config)
 		{
 			if (config == null)
 				throw new ArgumentNullException(nameof(config));

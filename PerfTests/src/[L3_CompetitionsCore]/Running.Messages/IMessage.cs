@@ -2,9 +2,7 @@
 
 namespace CodeJam.PerfTests.Running.Messages
 {
-	/// <summary>
-	/// Common interface for benchmark messages
-	/// </summary>
+	/// <summary>Common interface for competition messages.</summary>
 	public interface IMessage
 	{
 		/// <summary>Number of the run the message belongs to.</summary>

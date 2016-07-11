@@ -7,9 +7,7 @@ namespace CodeJam.PerfTests.Running.Messages
 	// DONTTOUCH: DO NOT change the order of the enum values
 	// because is used to compare the severities.
 	// DO Check usages before changing the enum values
-	/// <summary>
-	/// Severity of the message
-	/// </summary>
+	/// <summary>Severity of the message.</summary>
 	[PublicAPI]
 	public enum MessageSeverity
 	{

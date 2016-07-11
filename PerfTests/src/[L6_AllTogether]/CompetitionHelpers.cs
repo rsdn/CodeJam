@@ -14,51 +14,57 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests
 {
-	// TODO: xml docs
 	/// <summary>
-	/// Class with helper metods be used for perf tests
+	/// Reusable API for performance tests.
 	/// </summary>
 	[PublicAPI]
 	public static class CompetitionHelpers
 	{
 		#region Constants
-		/// <summary>
-		/// Please, mark all benchmark classes with [TestFixture(Category = BenchmarkConstants.BenchmarkCategory)].
-		/// That way it's easier to sort out them in a Test Explorer window
-		/// </summary>
+		/// <summary>Default category prefix for performance tests.</summary>
 		public const string PerfTestCategory = "Performance";
 
-		/// <summary>
-		/// Please, mark all benchmark classes with [Explicit(BenchmarkConstants.ExplicitExcludeReason)]
-		/// Explanation: read the constant' value;)
-		/// </summary>
-		public const string ExplicitExcludeReason = @"Autorun disabled as it takes too long to run.
-Also, running this on debug builds may produce inaccurate results.
-Please, run it manually from the Test Explorer window. Remember to use release builds. Thanks and have a nice day:)";
+		/// <summary>Default explanation for bad performance tests.</summary>
+		public const string TemporarilyExcludedReason =
+			@"Temporary disabled as the results are unstable. Please, run the test manually from the Test Explorer window.";
 		#endregion
 
 		#region Benchmark-related
-		/// <summary>The default count for perf test loops.</summary>
+		/// <summary>Default count for performance test loops.</summary>
 		public const int DefaultCount = 10 * 1000;
 
-		/// <summary>Performs delay for specified number of cycles.</summary>
+		/// <summary>Default delay implementation. Performs delay for specified number of cycles.</summary>
 		/// <param name="cycles">The number of cycles to delay.</param>
 		public static void Delay(int cycles) => Thread.SpinWait(cycles);
 		#endregion
 
 		#region Config instances
+		/// <summary>Default configuration that should be used for most performance tests.</summary>
 		public static readonly ICompetitionConfig DefaultConfig = CreateDefaultConfig().AsReadOnly();
+
+		/// <summary>
+		/// Configuration that should be used for new performance tests.
+		/// Automatically annotates the source with new timing limits.
+		/// </summary>
 		public static readonly ICompetitionConfig DefaultConfigAnnotate = CreateDefaultConfigAnnotate().AsReadOnly();
+
+		/// <summary>Configuration that should be used in case the existing limits should be ignored.</summary>
 		public static readonly ICompetitionConfig DefaultConfigReannotate = CreateDefaultConfigReannotate().AsReadOnly();
 		#endregion
 
 		#region Configs core
-		public static ILogger CreateDetailedLogger() =>
-			GetAssemblyLevelLogger(Assembly.GetCallingAssembly(), ".AllPerfTests.log");
+		/// <summary>Helper for custom configs: creates detailed logger for current assembly.</summary>
+		/// <param name="targetAssembly">Assembly with performance tests. Calling assembly will be used if <c>null</c>.</param>
+		/// <returns>Detailed logger for current assembly.</returns>
+		public static ILogger CreateDetailedLoggerForAssembly([CanBeNull] Assembly targetAssembly = null) =>
+			GetAssemblyLevelLogger(targetAssembly ?? Assembly.GetCallingAssembly(), ".AllPerfTests.log");
 
-		public static ILogger CreateImportantInfoLogger() =>
+		/// <summary>Helper for custom configs: creates important info logger for current assembly.</summary>
+		/// <param name="targetAssembly">Assembly with performance tests. Calling assembly will be used if <c>null</c>.</param>
+		/// <returns>Important info logger for current assembly.</returns>
+		public static ILogger CreateImportantInfoLoggerForAssembly([CanBeNull] Assembly targetAssembly = null) =>
 			new HostLogger(
-				GetAssemblyLevelLogger(Assembly.GetCallingAssembly(), ".Short.AllPerfTests.log"),
+				GetAssemblyLevelLogger(targetAssembly ?? Assembly.GetCallingAssembly(), ".Short.AllPerfTests.log"),
 				HostLogMode.PrefixedOnly);
 
 		private static LazyStreamLogger GetAssemblyLevelLogger(Assembly assembly, string suffix)
@@ -73,6 +79,9 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 		#endregion
 
 		#region Configs
+		/// <summary>Helper for custom configs: creates default job for the config.</summary>
+		/// <param name="platform">Target platform for the job.</param>
+		/// <returns>Default job for the config.</returns>
 		public static IJob CreateDefaultJob(Platform platform = Platform.Host) =>
 			new Job
 			{
@@ -85,6 +94,9 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 				Toolchain = InProcessToolchain.DontLogOutput
 			};
 
+		/// <summary>Helper for custom configs: configuration that should be used for new performance tests.</summary>
+		/// <param name="job">The job for the config. Default one will be used if <c>null</c>.</param>
+		/// <returns>Configuration that should be used for new performance tests.</returns>
 		public static ManualCompetitionConfig CreateDefaultConfig(IJob job = null)
 		{
 			var result = new ManualCompetitionConfig(DefaultCompetitionConfig.Instance)
@@ -96,6 +108,12 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 			return result;
 		}
 
+		/// <summary>
+		/// Helper for custom configs: creates configuration that should be used for new performance tests.
+		/// Automatically annotates the source with new timing limits.
+		/// </summary>
+		/// <param name="job">The job for the config. Default one will be used if <c>null</c>.</param>
+		/// <returns>Configuration that should be used for new performance tests.</returns>
 		public static ManualCompetitionConfig CreateDefaultConfigAnnotate(IJob job = null)
 		{
 			var result = CreateDefaultConfig(job);
@@ -106,6 +124,9 @@ Please, run it manually from the Test Explorer window. Remember to use release b
 			return result;
 		}
 
+		/// <summary>Helper for custom configs: creates configuration that should be used in case the existing limits should be ignored.</summary>
+		/// <param name="job">The job for the config. Default one will be used if <c>null</c>.</param>
+		/// <returns>Configuration that should be used in case the existing limits should be ignored.</returns>
 		public static ManualCompetitionConfig CreateDefaultConfigReannotate(IJob job = null)
 		{
 			var result = CreateDefaultConfigAnnotate(job);

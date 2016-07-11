@@ -48,12 +48,15 @@ namespace CodeJam.PerfTests.Loggers
 		public const string LogImportantAreaEnd = "// !-->";
 		#endregion
 
+		#region Static members
 		/// <summary>All messages within the scope will be passed to the log.</summary>
 		/// <param name="config">Config with loggers.</param>
 		/// <returns>Disposable to mark the scope completion.</returns>
 		public static IDisposable BeginLogImportant(IConfig config)
 		{
 			var loggers = config.GetLoggers().OfType<HostLogger>().ToArray();
+			if (loggers.Length == 0)
+				return Disposable.Empty;
 
 			foreach (var hostLogger in loggers)
 			{
@@ -80,6 +83,7 @@ namespace CodeJam.PerfTests.Loggers
 				flushable.Flush();
 			}
 		}
+		#endregion
 
 		#region Fields, .ctor & properties
 		private volatile int _importantAreaCount;

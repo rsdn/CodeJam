@@ -70,7 +70,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(14.69, 18.78)]
+			[CompetitionBenchmark(10.98, 18.78)]
 			public RangeStub<int> Test01Range()
 			{
 				var result = _rangeData[0];
@@ -81,7 +81,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(14.86, 18.58)]
+			[CompetitionBenchmark(10.33, 18.58)]
 			public RangeStub<int, string> Test02KeyRange()
 			{
 				var result = _rangeKeyData[0];
@@ -92,7 +92,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(46.16, 52.12)]
+			[CompetitionBenchmark(31.07, 52.12)]
 			public RangeStubCompact<int> Test03CompactRange()
 			{
 				var result = _rangeCompactData[0];
@@ -103,7 +103,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(21.93, 24.79)]
+			[CompetitionBenchmark(14.74, 24.79)]
 			public Range<int> Test04RangeImpl()
 			{
 				var result = _rangeDataImpl[0];
@@ -114,7 +114,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(23.86, 33.38)]
+			[CompetitionBenchmark(17.31, 33.38)]
 			public Range<int, string> Test05RangeKeyImpl()
 			{
 				var result = _rangeKeyDataImpl[0];
@@ -174,7 +174,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(3.33, 3.84)]
+			[CompetitionBenchmark(3.02, 5.30)]
 			public RangeStub<int?> Test01Range()
 			{
 				var result = _rangeData[0];
@@ -185,7 +185,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(3.47, 5.99)]
+			[CompetitionBenchmark(3.29, 7.32)]
 			public RangeStub<int?, string> Test02KeyRange()
 			{
 				var result = _rangeKeyData[0];
@@ -196,7 +196,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(11.71, 15.09)]
+			[CompetitionBenchmark(11.23, 17.31)]
 			public RangeStubCompact<int?> Test03CompactRange()
 			{
 				var result = _rangeCompactData[0];
@@ -207,7 +207,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(5.49, 6.28)]
+			[CompetitionBenchmark(4.88, 7.84)]
 			public Range<int?> Test04RangeImpl()
 			{
 				var result = _rangeDataImpl[0];
@@ -218,7 +218,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(6.20, 7.41)]
+			[CompetitionBenchmark(5.53, 11.14)]
 			public Range<int?, string> Test05RangeKeyImpl()
 			{
 				var result = _rangeKeyDataImpl[0];

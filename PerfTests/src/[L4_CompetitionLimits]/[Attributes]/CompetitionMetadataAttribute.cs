@@ -7,10 +7,10 @@ namespace CodeJam.PerfTests
 	/// <summary>Attribute for benchmark classes that stores competition limits as embedded xml resource.</summary>
 	/// <remarks>
 	/// In case the <see cref="MetadataResourcePath"/> is not set:
-	/// Let's say there's benchmark class named MyNamespace.MyBenchmark
+	/// Let's say there's benchmark class with full type name 'MyNamespace.MyBenchmark'
 	/// and it's located at
 	/// <code>%project_root%\Some Dir\AnotherDir\Benchmarks.cs</code>.
-	/// The default namespace for the project is MyAmazingNamespace.
+	/// The default namespace for the project is 'MyAmazingNamespace'.
 	/// So, the resource containing competition limits should be located at
 	/// <code>%project_root%\Some Dir\AnotherDir\Benchmarks.xml</code>.
 	/// And the attribute should be declared as

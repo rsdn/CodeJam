@@ -20,7 +20,7 @@ namespace CodeJam.Arithmetic
 {
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Operators<T>, equality")]
 	[CompetitionMetadata("CodeJam.Arithmetic.OperatorsEqualityPerfTests.generated.xml")]
-	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
+	[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
 	public class OperatorsEqualityPerfTests
 	{
 		#region AreEqual

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeJam.PerfTests
+namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
 	// DONTTOUCH: renaming the enum values will break xml annotations.
 	// DO check usages at first.

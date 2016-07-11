@@ -14,7 +14,6 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 
 using CodeJam.Collections;
-using CodeJam.PerfTests.Loggers;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 
@@ -196,6 +195,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <param name="useFullTypeName">Use full type name in XML annotations.</param>
 		/// <param name="competitionState">State of the run.</param>
 		/// <returns>XML annotation document or <c>null</c> if parsing failed.</returns>
+		[CanBeNull]
 		public static XDocument TryParseXmlAnnotationDoc(
 			[NotNull] Assembly assembly,
 			[NotNull] string resourceName,
@@ -230,6 +230,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <param name="logUri">The URI the log will be obtained from.</param>
 		/// <param name="competitionState">State of the run.</param>
 		/// <returns>Parsed xml annotation documents, if any.</returns>
+		[NotNull]
 		public static XDocument[] TryParseXmlAnnotationDocsFromLog(
 			[NotNull] string logUri,
 			[NotNull] CompetitionState competitionState)
@@ -303,6 +304,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return result.ToArray();
 		}
 
+		[CanBeNull]
 		private static XDocument TryParseXmlAnnotationDocFromLogCore(
 			string logXmlText,
 			CompetitionState competitionState,

@@ -33,10 +33,6 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		#region State properties
-		/// <summary>The competition is in it's first run.</summary>
-		/// <value><c>true</c> if the competition is in it's first run.</value>
-		public bool InFirstRun => RunNumber == 1;
-
 		/// <summary>
 		/// The competition has no additional runs requested
 		/// or the count of runs is out of limit
@@ -97,6 +93,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// Can be null if the run was completed with errors.
 		/// </summary>
 		/// <value>The summary for the last completed run.</value>
+		[CanBeNull]
 		public Summary LastRunSummary { get; private set; }
 
 		/// <summary>List of summaries from all runs.</summary>
@@ -118,22 +115,28 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="config">The config for the competition.</param>
 		internal void FirstTimeInit(int maxRunsAllowed, [NotNull] IConfig config)
 		{
-			AssertIsInCompetition();
+			lock (_messages)
+			{
+				AssertIsInCompetition();
 
-			Code.NotNull(config, nameof(config));
-			_stopwatch.Restart();
+				Code.NotNull(config, nameof(config));
+				_stopwatch.Restart();
 
-			MaxRunsAllowed = maxRunsAllowed;
-			Config = config;
-			Logger = config.GetCompositeLogger();
+				MaxRunsAllowed = maxRunsAllowed;
+				Config = config;
+				Logger = config.GetCompositeLogger();
 
-			RunNumber = 0;
-			RunsLeft = 1;
+				RunNumber = 0;
+				RunsLeft = 1;
 
-			HighestMessageSeverityInRun = MessageSeverity.Verbose;
-			MessagesInRun = 0;
-			LastRunSummary = null;
-			_summaries.Clear();
+				HighestMessageSeverityInRun = MessageSeverity.Verbose;
+				MessagesInRun = 0;
+				LastRunSummary = null;
+
+				Completed = false;
+				_summaries.Clear();
+				_messages.Clear();
+			}
 		}
 
 		/// <summary>Prepare for next run.</summary>
@@ -149,7 +152,7 @@ namespace CodeJam.PerfTests.Running.Core
 			LastRunSummary = null;
 		}
 
-		/// <summary>Marks the run as completed.</summary>
+		/// <summary>Mark the run as completed.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		internal void RunCompleted([NotNull] Summary summary)
 		{
@@ -161,7 +164,7 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		/// <summary>Marks competition state as completed.</summary>
-		internal void MarkAsCompleted()
+		internal void CompetitionCompleted()
 		{
 			AssertIsInCompetition();
 
@@ -169,9 +172,7 @@ namespace CodeJam.PerfTests.Running.Core
 			Completed = true;
 		}
 
-		/// <summary>
-		/// Requests additional runs for the competition.
-		/// </summary>
+		/// <summary>Request additional runs for the competition.</summary>
 		/// <param name="additionalRunsCount">Count of additional runs.</param>
 		/// <param name="explanationMessage">The explanation message for therequest</param>
 		public void RequestReruns(int additionalRunsCount, [NotNull] string explanationMessage)
@@ -219,7 +220,7 @@ namespace CodeJam.PerfTests.Running.Core
 		[StringFormatMethod("messageFormat")]
 		public void WriteMessage(
 			MessageSource messageSource, MessageSeverity messageSeverity,
-			string messageFormat, params object[] args)
+			[NotNull] string messageFormat, params object[] args)
 		{
 			var message = args.IsNullOrEmpty()
 				? messageFormat
@@ -234,7 +235,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="messageText">Text of the message.</param>
 		public void WriteMessage(
 			MessageSource messageSource, MessageSeverity messageSeverity,
-			string messageText)
+			[NotNull] string messageText)
 		{
 			AssertIsInCompetition();
 
@@ -255,7 +256,12 @@ namespace CodeJam.PerfTests.Running.Core
 				}
 			}
 
-			Logger?.LogMessage(message);
+			if (Logger == null)
+			{
+				throw CodeExceptions.InvalidOperation(
+					$"Please call {nameof(FirstTimeInit)}() first.");
+			}
+			Logger.LogMessage(message);
 		}
 		#endregion
 	}

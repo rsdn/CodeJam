@@ -13,7 +13,6 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-
 namespace CodeJam.PerfTests
 {
 	[PublicAPI]
@@ -34,8 +33,9 @@ namespace CodeJam.PerfTests
 		#endregion
 
 		#region Configs core
-		private static readonly ILogger _detailedLogger = CompetitionHelpers.CreateDetailedLogger();
-		private static readonly ILogger _importantInfoLogger = CompetitionHelpers.CreateImportantInfoLogger();
+		private static readonly ILogger _detailedLogger = CompetitionHelpers.CreateDetailedLoggerForAssembly();
+		private static readonly ILogger _importantInfoLogger = CompetitionHelpers.CreateImportantInfoLoggerForAssembly();
+
 		private static ManualCompetitionConfig CreateRunConfigCore()
 		{
 			var result = new ManualCompetitionConfig
@@ -53,18 +53,18 @@ namespace CodeJam.PerfTests
 		#endregion
 
 		#region Ready configs
-		public static readonly ICompetitionConfig RunConfig = CreateRunConfig().AsReadOnly();
+		public static readonly ICompetitionConfig SelfTestConfig = CreateSelfTestConfig(Platform.X64).AsReadOnly();
 
-		internal static readonly ICompetitionConfig SelfTestConfig = CreateSelfTestConfig(Platform.X64).AsReadOnly();
+		public static readonly ICompetitionConfig HighAccuracyConfig = CreateHighAccuracyConfig().AsReadOnly();
 
-		internal static ManualCompetitionConfig CreateSelfTestConfig(Platform platform)
+		public static ManualCompetitionConfig CreateSelfTestConfig(Platform platform)
 		{
 			var result = CreateRunConfigCore();
 			result.AllowDebugBuilds = true;
 			result.Add(
 				new Job
 				{
-					Affinity = -1, // DONTTOUCH: affinity option should be covered by the tests.
+					Affinity = -1, // DONTTOUCH: affinity option used to improve code coverage.
 					LaunchCount = 1,
 					Mode = Mode.SingleRun,
 					WarmupCount = 2,
@@ -75,7 +75,7 @@ namespace CodeJam.PerfTests
 			return result;
 		}
 
-		public static ManualCompetitionConfig CreateRunConfig(bool outOfProcess = false)
+		public static ManualCompetitionConfig CreateHighAccuracyConfig(bool outOfProcess = false)
 		{
 			var result = CreateRunConfigCore();
 			result.Add(
@@ -95,7 +95,7 @@ namespace CodeJam.PerfTests
 
 		public static ManualCompetitionConfig CreateRunConfigAnnotate()
 		{
-			var result = CreateRunConfig();
+			var result = CreateHighAccuracyConfig();
 			result.LogCompetitionLimits = true;
 			result.RerunIfLimitsFailed = true;
 			result.UpdateSourceAnnotations = true;

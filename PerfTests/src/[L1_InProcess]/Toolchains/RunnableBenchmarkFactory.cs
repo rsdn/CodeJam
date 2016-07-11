@@ -66,7 +66,6 @@ namespace BenchmarkDotNet.Toolchains
 			}
 		}
 
-		// DONTTOUCH: 'out TDelegate' used to enable type inference.
 		/// <summary>Factory method for the setup action.</summary>
 		/// <param name="instance">The instance.</param>
 		/// <param name="targetInfo">The target information.</param>

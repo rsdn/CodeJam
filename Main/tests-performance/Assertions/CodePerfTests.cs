@@ -16,7 +16,7 @@ namespace CodeJam.Assertions
 	/// 2. Assertion should add no more than 20% penalty on tight loop use-case.
 	/// </summary>
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory)]
-	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
+	[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
 	[PublicAPI]
 	public class CodePerfTests
 	{

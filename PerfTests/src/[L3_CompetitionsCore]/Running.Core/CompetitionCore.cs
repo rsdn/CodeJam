@@ -130,8 +130,8 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="benchmarkType">The type of the benchmark.</param>
 		/// <param name="competitionConfig">The config for the benchmark.</param>
 		/// <param name="maxRunsAllowed">Total count of reruns allowed.</param>
-		/// <param name="allowDebugBuilds">Allow debug builds, If <c>false</c> the benchmark will be skipped on debug builds.</param>
-		/// <returns>A competition state for the run.</returns>
+		/// <param name="allowDebugBuilds">Allow debug builds. If <c>false</c> the benchmark will be skipped on debug builds.</param>
+		/// <returns>Competition state for the run.</returns>
 		[NotNull]
 		internal static CompetitionState Run(
 			[NotNull] Type benchmarkType,
@@ -154,8 +154,8 @@ namespace CodeJam.PerfTests.Running.Core
 
 			try
 			{
-				var logger = competitionConfig.GetCompositeLogger();
 				competitionState.FirstTimeInit(maxRunsAllowed, competitionConfig);
+				var logger = competitionState.Logger;
 
 				using (BeginLogImportant(competitionConfig))
 				{
@@ -167,13 +167,7 @@ namespace CodeJam.PerfTests.Running.Core
 				try
 				{
 					var runCount = Interlocked.Increment(ref _runCount);
-					if (runCount > 1)
-					{
-						competitionState.WriteMessage(
-							MessageSource.Runner, MessageSeverity.SetupError,
-							"Competitions cannot be run in parallel.");
-					}
-					else if (allowDebugBuilds || CheckReleaseBuilds(benchmarkType, competitionState))
+					if (CheckPreconditions(benchmarkType, runCount, allowDebugBuilds, competitionState))
 					{
 						RunCore(benchmarkType, competitionState, maxRunsAllowed);
 					}
@@ -194,18 +188,27 @@ namespace CodeJam.PerfTests.Running.Core
 				FlushLoggers(competitionConfig);
 			}
 
-			competitionState.MarkAsCompleted();
+			competitionState.CompetitionCompleted();
 
 			return competitionState;
 		}
 
-		private static bool CheckReleaseBuilds(
+		private static bool CheckPreconditions(
 			[NotNull] Type benchmarkType,
+			int runCount, bool allowDebugBuilds,
 			CompetitionState competitionState)
 		{
-			var assembly = benchmarkType.Assembly;
-			if (benchmarkType.Assembly.IsDebugAssembly())
+			if (runCount > 1)
 			{
+				competitionState.WriteMessage(
+					MessageSource.Runner, MessageSeverity.SetupError,
+					"Competitions cannot be run in parallel. Competition run skipped.");
+				return false;
+			}
+
+			if (!allowDebugBuilds && benchmarkType.Assembly.IsDebugAssembly())
+			{
+				var assembly = benchmarkType.Assembly;
 				competitionState.WriteMessage(
 					MessageSource.Runner, MessageSeverity.Warning,
 					$"Please run as a release build. Assembly {assembly.GetName().Name} was build as debug.");
@@ -240,16 +243,17 @@ namespace CodeJam.PerfTests.Running.Core
 				var summary = BenchmarkRunner.Run(benchmarkType, competitionState.Config);
 				competitionState.RunCompleted(summary);
 
+				// TODO: dump them before analyser run?
 				WriteValidationMessages(competitionState);
-
-				if (competitionState.RunLimitExceeded)
-					break;
 
 				if (competitionState.HasCriticalErrorsInRun)
 				{
 					logger.WriteLineInfo($"{LogImportantInfoPrefix} Breaking competition execution. High severity error occured.");
 					break;
 				}
+
+				if (competitionState.RunLimitExceeded)
+					break;
 
 				if (competitionState.RunsLeft > 0)
 				{

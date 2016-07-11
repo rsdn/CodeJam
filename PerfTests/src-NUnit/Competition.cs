@@ -17,18 +17,14 @@ namespace CodeJam.PerfTests
 		/// <typeparam name="T">Benchmark class to run.</typeparam>
 		/// <param name="thisReference">Reference used to infer type of the benchmark.</param>
 		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>The state of the competition.</returns>
-		[NotNull]
-		public static CompetitionState Run<T>([NotNull] T thisReference, [CanBeNull] ICompetitionConfig competitionConfig)
+		public static void Run<T>([NotNull] T thisReference, [CanBeNull] ICompetitionConfig competitionConfig)
 			where T : class =>
 				Runner.Run(thisReference, competitionConfig);
 
 		/// <summary>Runs the benchmark.</summary>
 		/// <typeparam name="T">Benchmark class to run.</typeparam>
 		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>The state of the competition.</returns>
-		[NotNull]
-		public static CompetitionState Run<T>([CanBeNull] ICompetitionConfig competitionConfig)
+		public static void Run<T>([CanBeNull] ICompetitionConfig competitionConfig)
 			where T : class =>
 				Runner.Run<T>(competitionConfig);
 	}

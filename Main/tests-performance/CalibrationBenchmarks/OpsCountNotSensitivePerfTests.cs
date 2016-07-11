@@ -18,7 +18,7 @@ namespace CodeJam
 	/// </summary>
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Self-testing")]
 	[PublicAPI]
-	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
+	[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
 	public class OpsCountNotSensitivePerfTests
 	{
 		#region PerfTest helpers

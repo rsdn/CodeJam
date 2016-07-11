@@ -24,7 +24,8 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <typeparam name="T">The type of the running state instance.</typeparam>
 		/// <returns>The value for the <see cref="RunState{T}"/>.</returns>
 		[NotNull]
-		public T GetSlot<T>() where T : class, new() => (T)_stateSlots.GetOrAdd(typeof(T), t => new T());
+		public T GetSlot<T>() where T : class, new() => 
+			(T)_stateSlots.GetOrAdd(typeof(T), t => new T());
 
 		#region IValidator stub implementation
 		/// <summary>Gets a value indicating whether warnings are treated as errors.</summary>

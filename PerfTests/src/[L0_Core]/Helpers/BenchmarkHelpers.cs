@@ -13,11 +13,8 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Order;
-using BenchmarkDotNet.Portability;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
-
-using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -37,7 +34,7 @@ namespace BenchmarkDotNet.Helpers
 		/// <summary>Get benchmark types defined in the assembly.</summary>
 		/// <param name="assembly">The assembly to get benchmarks from.</param>
 		/// <returns>Benchmark types from the assembly</returns>
-		public static Type[] GetBenchmarkTypes(Assembly assembly) =>
+		public static Type[] GetBenchmarkTypes([NotNull] Assembly assembly) =>
 			// Use reflection for a more maintainable way of creating the benchmark switcher,
 			// Benchmarks are listed in namespace order first (e.g. BenchmarkDotNet.Samples.CPU,
 			// BenchmarkDotNet.Samples.IL, etc) then by name, so the output is easy to understand.
@@ -46,8 +43,8 @@ namespace BenchmarkDotNet.Helpers
 				.Where(
 					t =>
 						t.GetMethods(BindingFlags.Instance | BindingFlags.Public)
-							.Any(m => MemberInfoExtensions.GetCustomAttributes<BenchmarkAttribute>(m, true).Any()))
-				.Where(t => !t.IsGenericType() && !t.IsAbstract)
+							.Any(m => m.GetCustomAttributes<BenchmarkAttribute>(true).Any()))
+				.Where(t => !t.IsGenericType && !t.IsAbstract)
 				.OrderBy(t => t.Namespace)
 				.ThenBy(t => t.Name)
 				.ToArray();
@@ -139,7 +136,7 @@ namespace BenchmarkDotNet.Helpers
 
 			var result = new StringBuilder(SeparatorLength);
 
-			if (header.NotNullNorEmpty())
+			if (!string.IsNullOrEmpty(header))
 			{
 				var temp = (SeparatorLength - header.Length - 2) / 2;
 				if (temp > 0)
@@ -240,7 +237,6 @@ namespace BenchmarkDotNet.Helpers
 		#endregion
 
 		#region IO
-		// TODO: test for it
 		/// <summary>Writes file content without empty line at the end.</summary>
 		/// <param name="path">The path.</param>
 		/// <param name="lines">The lines to write.</param>

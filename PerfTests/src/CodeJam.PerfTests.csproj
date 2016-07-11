@@ -21,6 +21,7 @@
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\CodeJam.PerfTests.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\CodeJam.PerfTests.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -60,8 +62,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="[L0_Core]\Loggers\IFlushableLogger.cs" />
     <Compile Include="[L0_Core]\Loggers\LazyStreamLogger.cs" />
-    <Compile Include="[L1_InProcess]\Toolchains\MethodInvokerLight2.cs" />
     <Compile Include="[L1_InProcess]\Toolchains\MethodInvokerLight.cs" />
+    <Compile Include="[L1_InProcess]\Toolchains\MethodInvokerLightDontUse.cs" />
     <Compile Include="[L3_CompetitionsCore]\Exporters\TimingsExporter.cs" />
     <Compile Include="[L0_Core]\Helpers\BenchmarkHelpers.cs" />
     <Compile Include="[L0_Core]\Portability\AssemblyExtensions.cs" />
@@ -95,7 +97,7 @@
     <Compile Include="[L4_CompetitionLimits]\Running.CompetitionLimitProviders\LogNormalLimitProvider.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.CompetitionLimitProviders\PercentileLimitProvider.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\AttributeAnnotations.cs" />
-    <Compile Include="[L4_CompetitionLimits]\CompetitionLimitProperties.cs" />
+    <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\CompetitionLimitProperties.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\CompetitionMetadata.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\CompetitionTarget.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\XmlAnnotations.cs" />

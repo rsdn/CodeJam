@@ -8,11 +8,15 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 {
+	/// <summary>Competition limit provider for microbenchmarks. Uses lognormal distribution for results estimation.</summary>
+	/// <seealso cref="CompetitionLimitProviderBase" />
 	[PublicAPI]
 	public class LogNormalLimitProvider : CompetitionLimitProviderBase
 	{
+		/// <summary>Instance of the provider.</summary>
 		public static readonly ICompetitionLimitProvider Instance = new LogNormalLimitProvider();
 
+		/// <summary>Prevents a default instance of the <see cref="LogNormalLimitProvider"/> class from being created.</summary>
 		private LogNormalLimitProvider() { }
 
 		/// <summary>Short description for the provider.</summary>

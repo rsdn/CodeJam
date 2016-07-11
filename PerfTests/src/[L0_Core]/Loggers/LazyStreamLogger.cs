@@ -30,7 +30,7 @@ namespace BenchmarkDotNet.Loggers
 		/// <summary>Initializes a new instance of the <see cref="LazyStreamLogger"/> class.</summary>
 		/// <param name="filePath">The file path for the log.</param>
 		/// <param name="append">
-		/// if set to <c>true</c> the log will be append to existing file; if <c>false</c> the log wil be overwritten.
+		/// if set to <c>true</c> the log will be appended to existing file; if <c>false</c> the log wil be overwritten.
 		/// </param>
 		public LazyStreamLogger([NotNull] string filePath, bool append = false)
 		{
@@ -38,7 +38,7 @@ namespace BenchmarkDotNet.Loggers
 				throw new ArgumentNullException(nameof(filePath));
 
 			_writerLazy = new Lazy<StreamWriter>(
-				() => new StreamWriter(filePath, append), 
+				() => new StreamWriter(filePath, append),
 				LazyThreadSafetyMode.ExecutionAndPublication);
 		}
 

@@ -4,9 +4,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.Messages
 {
-	/// <summary>
-	/// Benchmark message
-	/// </summary>
+	/// <summary>Competition message.</summary>
 	/// <seealso cref="IMessage"/>
 	public class Message : IMessage
 	{

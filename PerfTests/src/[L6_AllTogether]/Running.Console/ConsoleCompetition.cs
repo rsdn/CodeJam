@@ -49,7 +49,7 @@ namespace CodeJam.PerfTests.Running.Console
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>The state of the competition for each benchmark that was run.</returns>
 		[NotNull]
-		public static IReadOnlyDictionary<Type, CompetitionState> RunCore(
+		public static IReadOnlyDictionary<Type, CompetitionState> Run(
 			[NotNull] Assembly assembly,
 			[CanBeNull] ICompetitionConfig competitionConfig) =>
 				Runner.Run(assembly, competitionConfig);
@@ -59,7 +59,7 @@ namespace CodeJam.PerfTests.Running.Console
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>The state of the competition for each benchmark that was run.</returns>
 		[NotNull]
-		public static IReadOnlyDictionary<Type, CompetitionState> RunCore(
+		public static IReadOnlyDictionary<Type, CompetitionState> Run(
 			[NotNull] Type[] benchmarkTypes,
 			[CanBeNull] ICompetitionConfig competitionConfig) =>
 				Runner.Run(benchmarkTypes, competitionConfig);

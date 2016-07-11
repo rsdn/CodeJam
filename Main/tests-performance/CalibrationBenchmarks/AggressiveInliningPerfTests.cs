@@ -14,7 +14,7 @@ namespace CodeJam
 	/// Proof test: Aggressive inlining can be used to boost the code.
 	/// </summary>
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Self-testing")]
-	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
+	[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
 	public class AggressiveInliningPerfTests
 	{
 		// Use case:

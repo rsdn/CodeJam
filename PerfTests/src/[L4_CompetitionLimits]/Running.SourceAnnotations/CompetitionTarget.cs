@@ -21,7 +21,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <summary>Initializes a new instance of the <see cref="CompetitionTarget"/> class.</summary>
 		/// <param name="target">The target.</param>
 		/// <param name="limitsForTarget">Competition limits for the target.</param>
-		/// <param name="doesNotCompete">Exclude the benchmark from competition.</param>
+		/// <param name="doesNotCompete">Exclude the benchmark from the competition.</param>
 		public CompetitionTarget(
 			[NotNull] Target target,
 			[NotNull] CompetitionLimit limitsForTarget,
@@ -31,7 +31,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <summary>Initializes a new instance of the <see cref="CompetitionTarget"/> class.</summary>
 		/// <param name="target">The target.</param>
 		/// <param name="limitsForTarget">Competition limits for the target.</param>
-		/// <param name="doesNotCompete">Exclude the benchmark from competition.</param>
+		/// <param name="doesNotCompete">Exclude the benchmark from the competition.</param>
 		/// <param name="competitionMetadata">Description of embedded resource containing xml document with competition limits.</param>
 		public CompetitionTarget(
 			[NotNull] Target target,
@@ -57,7 +57,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		[CanBeNull]
 		public CompetitionMetadata CompetitionMetadata { get; }
 
-		/// <summary>Exclude the benchmark from competition.</summary>
+		/// <summary>Exclude the benchmark from the competition.</summary>
 		/// <value>
 		/// <c>true</c> if the benchmark does not take part in competition
 		/// and should not be validated.

@@ -7,8 +7,6 @@ using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.InProcess;
 
-using CodeJam.Strings;
-
 using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace
@@ -16,7 +14,8 @@ using JetBrains.Annotations;
 namespace BenchmarkDotNet.Validators
 {
 	/// <summary>
-	/// Validator to be used together with <see cref="InProcessToolchain"/> to proof that the config matches the environment.
+	/// Validator to be used together with <see cref="InProcessToolchain"/>
+	/// to proof that the config matches the environment.
 	/// </summary>
 	/// <seealso cref="IValidator"/>
 	[PublicAPI]
@@ -28,22 +27,22 @@ namespace BenchmarkDotNet.Validators
 		private static readonly IReadOnlyDictionary<string, Func<IJob, EnvironmentInfo, string>> _validationRules =
 			new Dictionary<string, Func<IJob, EnvironmentInfo, string>>
 			{
-				{ nameof(IJob.Affinity), NoValidation },
+				{ nameof(IJob.Affinity), DontValidate },
 				{ nameof(IJob.Framework), ValidateFramework },
-				{ nameof(IJob.IterationTime), NoValidation },
+				{ nameof(IJob.IterationTime), DontValidate },
 				{ nameof(IJob.Jit), ValidateJit },
-				{ nameof(IJob.LaunchCount), NoValidation },
-				{ nameof(IJob.Mode), NoValidation },
+				{ nameof(IJob.LaunchCount), DontValidate },
+				{ nameof(IJob.Mode), DontValidate },
 				{ nameof(IJob.Platform), ValidatePlatform },
 				{ nameof(IJob.Runtime), ValidateRuntime },
-				{ nameof(IJob.TargetCount), NoValidation },
+				{ nameof(IJob.TargetCount), DontValidate },
 				{ nameof(IJob.Toolchain), ValidateToolchain },
-				{ nameof(IJob.WarmupCount), NoValidation }
+				{ nameof(IJob.WarmupCount), DontValidate }
 			};
 
 		// ReSharper restore HeapView.DelegateAllocation
 
-		private static string NoValidation(IJob job, EnvironmentInfo env) => null;
+		private static string DontValidate(IJob job, EnvironmentInfo env) => null;
 
 		// TODO: detect framework
 		private static string ValidateFramework(IJob job, EnvironmentInfo env)
@@ -163,7 +162,7 @@ namespace BenchmarkDotNet.Validators
 					if (_validationRules.TryGetValue(jobProperty.Name, out validationRule))
 					{
 						var message = validationRule(job, env);
-						if (message.NotNullNorEmpty())
+						if (!string.IsNullOrEmpty(message))
 						{
 							result.Add(
 								new ValidationError(

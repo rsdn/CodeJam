@@ -19,9 +19,9 @@ namespace CodeJam.PerfTests
 		/// <summary>Marks the competition benchmark.</summary>
 		/// <param name="maxRatio">
 		/// The maximum timing ratio relative to the baseline.
-		/// Set to <see cref="CompetitionLimit.Empty"/> (used by default)
+		/// Use <see cref="CompetitionLimit.Empty"/> (used by default)
 		/// to mark the limit as unset but updateable during the annotation.
-		/// Set to <see cref="CompetitionLimit.IgnoreValue"/> to ignore the limit.
+		/// Use <see cref="CompetitionLimit.IgnoreValue"/> to ignore the limit.
 		/// </param>
 		public CompetitionBenchmarkAttribute(double maxRatio)
 		{
@@ -32,15 +32,15 @@ namespace CodeJam.PerfTests
 		/// <summary>Marks the competition benchmark.</summary>
 		/// <param name="minRatio">
 		/// The minimum timing ratio relative to the baseline.
-		/// Set to <see cref="CompetitionLimit.Empty"/> (used by default)
+		/// Use <see cref="CompetitionLimit.Empty"/> (used by default)
 		/// to mark the limit as unset but updateable during the annotation.
-		/// Set to <see cref="CompetitionLimit.IgnoreValue"/> to ignore the limit.
+		/// Use <see cref="CompetitionLimit.IgnoreValue"/> to ignore the limit.
 		/// </param>
 		/// <param name="maxRatio">
 		/// The maximum timing ratio relative to the baseline.
-		/// Set to <see cref="CompetitionLimit.Empty"/> (used by default)
+		/// Use <see cref="CompetitionLimit.Empty"/> (used by default)
 		/// to mark the limit as unset but updateable during the annotation.
-		/// Set to <see cref="CompetitionLimit.IgnoreValue"/> to ignore the limit.
+		/// Use <see cref="CompetitionLimit.IgnoreValue"/> to ignore the limit.
 		/// </param>
 		public CompetitionBenchmarkAttribute(double minRatio, double maxRatio)
 		{

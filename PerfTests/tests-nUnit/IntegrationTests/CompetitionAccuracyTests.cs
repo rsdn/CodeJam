@@ -22,7 +22,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 	[SuppressMessage("ReSharper", "ArgumentsStyleLiteral")]
 	public static class CompetitionAccuracyTests
 	{
-		private static readonly ICompetitionConfig _debugConfig = new ManualCompetitionConfig(RunConfig)
+		private static readonly ICompetitionConfig _debugConfig = new ManualCompetitionConfig(HighAccuracyConfig)
 		{
 			AllowDebugBuilds = true
 		};
@@ -97,7 +97,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			IgnoreIfDebug();
 
-			var runState = SelfTestCompetition.Run<HighAccuracyBenchmark>(RunConfig);
+			var runState = SelfTestCompetition.Run<HighAccuracyBenchmark>(HighAccuracyConfig);
 			var messages = runState.GetMessages();
 			if (messages.All(m => m.MessageText != "CompetitionAnalyser: All competition limits are ok."))
 			{
@@ -110,7 +110,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			IgnoreIfDebug();
 
-			var overrideConfig = CreateRunConfig(outOfProcess: true);
+			var overrideConfig = CreateHighAccuracyConfig(outOfProcess: true);
 
 			var runState = SelfTestCompetition.Run<HighAccuracyBenchmarkOutOfProcess>(overrideConfig);
 			var messages = runState.GetMessages();

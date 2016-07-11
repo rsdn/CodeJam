@@ -13,7 +13,7 @@ namespace CodeJam
 	/// Estimates average cost of params calls
 	/// </summary>
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Self-testing")]
-	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
+	[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
 	public class CallCostParamsPerfTests
 	{
 		#region PerfTest helpers

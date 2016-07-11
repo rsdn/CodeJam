@@ -19,7 +19,7 @@ namespace CodeJam.Arithmetic
 {
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Operators<T>.Numeric")]
 	[CompetitionMetadata("CodeJam.Arithmetic.OperatorsNumPerfTests.generated.xml")]
-	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
+	[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
 	public class OperatorsNumPerfTests
 	{
 		#region Unary

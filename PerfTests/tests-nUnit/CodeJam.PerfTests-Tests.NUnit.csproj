@@ -58,10 +58,10 @@
     <Compile Include="Examples\ListCapacityPerfTest.cs" />
     <Compile Include="Examples\SimplePerfTest.cs" />
     <Compile Include="ExamplesProgram.cs" />
-    <Compile Include="Helpers\SelfTestCompetition.cs" />
+    <Compile Include="SelfTestingApi\SelfTestCompetition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helpers\SelfTestHelpers.cs" />
-    <Compile Include="Helpers\SelfTestCompetitionRunner.cs" />
+    <Compile Include="SelfTestingApi\SelfTestHelpers.cs" />
+    <Compile Include="SelfTestingApi\SelfTestCompetitionRunner.cs" />
     <Compile Include="[L0_Core]\BenchmarkHelpersTests.cs" />
     <Compile Include="[L1_InProcess]\InProcessToolchainTests.cs" />
     <Compile Include="[L3_CompetitionsCore]\HostLoggerTests.cs" />

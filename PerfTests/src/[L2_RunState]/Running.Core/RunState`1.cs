@@ -40,7 +40,10 @@ namespace CodeJam.PerfTests.Running.Core
 
 				var slots = config.GetValidators()
 					.OfType<RunStateSlots>()
-					.First();
+					.FirstOrDefault();
+
+				Code.AssertState(slots != null, "The config is broken. Please do not override default config validators.");
+
 				return slots.GetSlot<T>();
 			}
 		}

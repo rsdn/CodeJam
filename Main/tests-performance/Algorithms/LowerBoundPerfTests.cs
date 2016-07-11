@@ -13,7 +13,7 @@ using NUnit.Framework;
 namespace CodeJam.Algorithms
 {
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory)]
-	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
+	[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
 	[PublicAPI]
 	public class LowerBoundPerfTests
 	{

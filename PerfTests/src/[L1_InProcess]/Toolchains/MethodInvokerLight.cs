@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading;
 
+using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Horology;
 using BenchmarkDotNet.Jobs;
-using BenchmarkDotNet.Mathematics;
-using BenchmarkDotNet.Reports;
 
 // TODO: rewrite, add support for diagnosers.
 // Copied from Benchmark.Net.
@@ -15,7 +11,7 @@ using BenchmarkDotNet.Reports;
 
 namespace BenchmarkDotNet.Running
 {
-	public class MethodInvokerLight
+	internal class MethodInvokerLight
 	{
 		private const int MinInvokeCount = 4;
 		private const int MinIterationTimeMs = 200;
@@ -24,6 +20,32 @@ namespace BenchmarkDotNet.Running
 		private const double TargetIdleAutoMaxAcceptableError = 0.05;
 		private const double TargetIdleAutoMaxIterationCount = 30;
 		private const double TargetMainAutoMaxAcceptableError = 0.01;
+
+		public struct Measurement
+		{
+			public IterationMode IterationMode { get; }
+			public int LaunchIndex { get; }
+			public int IterationIndex { get; }
+			public long Operations { get; }
+			public double Nanoseconds { get; }
+
+			public Measurement(
+				int launchIndex, IterationMode iterationMode, int iterationIndex, long operations, double nanoseconds)
+			{
+				IterationMode = iterationMode;
+				IterationIndex = iterationIndex;
+				Operations = operations;
+				Nanoseconds = nanoseconds;
+				LaunchIndex = launchIndex;
+			}
+
+			public string ToOutputLine() => $"{IterationMode} {IterationIndex}: {GetDisplayValue()}";
+			private string GetDisplayValue() => $"{Operations} op, {Nanoseconds.ToStr()} ns, {GetAverageTime()}";
+			private string GetAverageTime() => $"{(Nanoseconds / Operations).ToTimeStr()}/op";
+
+			public override string ToString()
+				=> $"#{LaunchIndex}/{IterationMode} {IterationIndex}: {Operations} op, {Nanoseconds.ToTimeStr()}";
+		}
 
 		private struct MultiInvokeInput
 		{
@@ -39,312 +61,129 @@ namespace BenchmarkDotNet.Running
 			}
 		}
 
-		private static bool ShouldCallIdle(IterationMode iterationMode) =>
-			iterationMode == IterationMode.IdleWarmup || iterationMode == IterationMode.IdleTarget;
+		private readonly List<Measurement> _allMeasurements;
+
+		public MethodInvokerLight(IJob job)
+		{
+			_allMeasurements = new List<Measurement>(job.WarmupCount + 2 * job.TargetCount);
+		}
+
+		private static bool InvokeBaseImplementation(IJob job, long operationsPerInvoke) =>
+			job.Mode != Mode.SingleRun ||
+				job.LaunchCount.IsAuto ||
+				job.WarmupCount.IsAuto ||
+				job.TargetCount.IsAuto ||
+				operationsPerInvoke > 1;
 
 		public void Invoke(IJob job, long operationsPerInvoke, Action setupAction, Action targetAction, Action idleAction)
 		{
+			if (InvokeBaseImplementation(job, operationsPerInvoke))
+			{
+				CodeJam.DebugCode.AssertState(false, "please check the call");
+				new MethodInvoker().Invoke(job, operationsPerInvoke, setupAction, targetAction, idleAction);
+				return;
+			}
+
 			// Jitting
 			setupAction();
 			targetAction();
 			idleAction();
 
 			// Run
-			Func<MultiInvokeInput, Measurement> multiInvoke = input =>
-			{
-				var action = ShouldCallIdle(input.IterationMode)
-					? idleAction
-					: targetAction;
-				return MultiInvoke(
-					input.IterationMode, input.Index, setupAction, action, input.InvokeCount,
-					operationsPerInvoke);
-			};
-			Invoke(job, multiInvoke);
+			RunCore(setupAction, targetAction, IterationMode.MainWarmup, job.WarmupCount);
+			RunCore(setupAction, targetAction, IterationMode.MainTarget, job.TargetCount);
+
+			PrintResult();
 		}
 
 		public void Invoke<T>(
 			IJob job, long operationsPerInvoke, Action setupAction, Func<T> targetAction, Func<T> idleAction)
 		{
+			if (InvokeBaseImplementation(job, operationsPerInvoke))
+			{
+				CodeJam.DebugCode.AssertState(false, "please check the call");
+				new MethodInvoker().Invoke(job, operationsPerInvoke, setupAction, targetAction, idleAction);
+				return;
+			}
+
 			// Jitting
 			setupAction();
 			targetAction();
 			idleAction();
 
 			// Run
-			Func<MultiInvokeInput, Measurement> multiInvoke = input =>
-			{
-				var action = ShouldCallIdle(input.IterationMode)
-					? idleAction
-					: targetAction;
-				return MultiInvoke(
-					input.IterationMode, input.Index, setupAction, action, input.InvokeCount,
-					operationsPerInvoke);
-			};
-			Invoke(job, multiInvoke);
+			RunCore(setupAction, targetAction, IterationMode.MainWarmup, job.WarmupCount);
+			RunCore(setupAction, targetAction, IterationMode.MainTarget, job.TargetCount);
+
+			PrintResult();
 		}
 
-		public void Invoke<T>(
-			IJob job, long operationsPerInvoke, Action setupAction, Func<T> targetAction, Func<int> idleAction)
+		private void RunCore<T>(
+			Action setupAction, Func<T> targetAction, IterationMode iterationMode, Count iterationCount)
 		{
-			// Jitting
+			ForceGcCollect();
+
 			setupAction();
-			targetAction();
-			idleAction();
-
-			// Run
-			Func<MultiInvokeInput, Measurement> multiInvoke = input => ShouldCallIdle(input.IterationMode)
-				? MultiInvoke(input.IterationMode, input.Index, setupAction, idleAction, input.InvokeCount, operationsPerInvoke)
-				: MultiInvoke(input.IterationMode, input.Index, setupAction, targetAction, input.InvokeCount, operationsPerInvoke);
-			Invoke(job, multiInvoke);
-		}
-
-		private void Invoke(IJob job, Func<MultiInvokeInput, Measurement> multiInvoke)
-		{
-			long invokeCount = 1;
-			IList<Measurement> idle = null;
-			if (job.Mode == Mode.Throughput)
-			{
-				invokeCount = RunPilot(multiInvoke, job.IterationTime);
-				RunWarmup(multiInvoke, invokeCount, IterationMode.IdleWarmup, Count.Auto);
-				idle = RunTarget(multiInvoke, invokeCount, IterationMode.IdleTarget, Count.Auto);
-			}
-
-			RunWarmup(multiInvoke, invokeCount, IterationMode.MainWarmup, job.WarmupCount);
-			var main = RunTarget(multiInvoke, invokeCount, IterationMode.MainTarget, job.TargetCount);
-
-			PrintResult(idle, main);
-		}
-
-		private static long RunPilot(Func<MultiInvokeInput, Measurement> multiInvoke, Count iterationTime)
-		{
-			long invokeCount = MinInvokeCount;
-			if (iterationTime.IsAuto)
-			{
-				var resolution = Chronometer.GetResolution();
-				int iterationCounter = 0;
-				while (true)
-				{
-					iterationCounter++;
-					var measurement = multiInvoke(new MultiInvokeInput(IterationMode.Pilot, iterationCounter, invokeCount));
-					if (resolution / invokeCount <
-						measurement.GetAverageNanoseconds() * TargetMainAutoMaxAcceptableError &&
-						measurement.Nanoseconds > TimeUnit.Convert(MinIterationTimeMs, TimeUnit.Millisecond, TimeUnit.Nanoseconds))
-						break;
-					invokeCount *= 2;
-				}
-			}
-			else
-			{
-				var iterationTimeInNanoseconds = TimeUnit.Convert(iterationTime, TimeUnit.Millisecond, TimeUnit.Nanoseconds);
-				int iterationCounter = 0;
-				int downCount = 0;
-				while (true)
-				{
-					iterationCounter++;
-					var measurement = multiInvoke(new MultiInvokeInput(IterationMode.Pilot, iterationCounter, invokeCount));
-					var newInvokeCount = Math.Max(
-						5, (long)Math.Round(invokeCount * iterationTimeInNanoseconds / measurement.Nanoseconds));
-					if (newInvokeCount < invokeCount)
-						downCount++;
-					if (Math.Abs(newInvokeCount - invokeCount) <= 1 || downCount >= 3)
-						break;
-					invokeCount = newInvokeCount;
-				}
-			}
-			Console.WriteLine();
-			return invokeCount;
-		}
-
-		private static void RunWarmup(
-			Func<MultiInvokeInput, Measurement> multiInvoke, long invokeCount, IterationMode iterationMode, Count iterationCount)
-		{
-			if (iterationCount.IsAuto)
-			{
-				ForceGcCollect();
-
-				int iterationCounter = 0;
-				Measurement previousMeasurement = null;
-				int upCount = 0;
-				while (true)
-				{
-					iterationCounter++;
-					var measurement = multiInvoke(new MultiInvokeInput(iterationMode, iterationCounter, invokeCount));
-					if (previousMeasurement != null && measurement.Nanoseconds > previousMeasurement.Nanoseconds - 0.1)
-						upCount++;
-					if (iterationCounter >= WarmupAutoMinIterationCount && upCount >= 3)
-						break;
-					previousMeasurement = measurement;
-				}
-
-				ForceGcCollect();
-			}
-			else
-			{
-				ForceGcCollect();
-
-				for (int i = 0; i < iterationCount; i++)
-					multiInvoke(new MultiInvokeInput(IterationMode.MainWarmup, i + 1, invokeCount));
-
-				ForceGcCollect();
-			}
-			Console.WriteLine();
-		}
-
-		private static IList<Measurement> RunTarget(
-			Func<MultiInvokeInput, Measurement> multiInvoke, long invokeCount, IterationMode iterationMode, Count iterationCount)
-		{
-			var measurements = new List<Measurement>();
-			if (iterationCount.IsAuto)
-			{
-				int iterationCounter = 0;
-				bool isIdle = ShouldCallIdle(iterationMode);
-				var maxAcceptableError = isIdle ? TargetIdleAutoMaxAcceptableError : TargetMainAutoMaxAcceptableError;
-
-				ForceGcCollect();
-
-				while (true)
-				{
-					iterationCounter++;
-					var measurement = multiInvoke(new MultiInvokeInput(iterationMode, iterationCounter, invokeCount));
-					measurements.Add(measurement);
-					var statistics = new Statistics(measurements.Select(m => m.Nanoseconds));
-					var statisticsWithoutOutliers = new Statistics(statistics.WithoutOutliers());
-					if (iterationCounter >= TargetAutoMinIterationCount &&
-						statisticsWithoutOutliers.StandardError < maxAcceptableError * statisticsWithoutOutliers.Mean)
-						break;
-					if (isIdle && iterationCounter >= TargetIdleAutoMaxIterationCount)
-						break;
-				}
-
-				ForceGcCollect();
-			}
-			else
-			{
-				ForceGcCollect();
-
-				for (int i = 0; i < iterationCount; i++)
-					measurements.Add(multiInvoke(new MultiInvokeInput(IterationMode.MainTarget, i + 1, invokeCount)));
-
-				ForceGcCollect();
-			}
-			Console.WriteLine();
-			return measurements;
-		}
-
-		private static void PrintResult(IList<Measurement> idle, IList<Measurement> main)
-		{
-			var overhead = idle == null ? 0.0 : new Statistics(idle.Select(m => m.Nanoseconds)).Median;
-			int resultIndex = 0;
-			foreach (var measurement in main)
-			{
-				var resultMeasurement = new Measurement(
-					measurement.LaunchIndex,
-					IterationMode.Result,
-					++resultIndex,
-					measurement.Operations,
-					Math.Max(0, measurement.Nanoseconds - overhead));
-				Console.WriteLine(resultMeasurement.ToOutputLine());
-			}
-			Console.WriteLine();
-		}
-
-		private Measurement MultiInvoke(
-			IterationMode mode, int index, Action setupAction, Action targetAction, long invocationCount,
-			long operationsPerInvoke)
-		{
-			var totalOperations = invocationCount * operationsPerInvoke;
-			setupAction();
-			ClockSpan clockSpan;
-			GcCollect();
-			if (invocationCount == 1)
+			for (int i = 0; i < iterationCount; i++)
 			{
 				var chronometer = Chronometer.Start();
 				targetAction();
-				clockSpan = chronometer.Stop();
+				var clockSpan = chronometer.Stop();
+				var measurement = new Measurement(0, iterationMode, i + 1, 1, clockSpan.GetNanoseconds());
+				_allMeasurements.Add(measurement);
 			}
-			else if (invocationCount < int.MaxValue)
-			{
-				int intInvocationCount = (int)invocationCount;
-				var chronometer = Chronometer.Start();
-				RunAction(targetAction, intInvocationCount);
-				clockSpan = chronometer.Stop();
-			}
-			else
-			{
-				var chronometer = Chronometer.Start();
-				RunAction(targetAction, invocationCount);
-				clockSpan = chronometer.Stop();
-			}
-			var measurement = new Measurement(0, mode, index, totalOperations, clockSpan.GetNanoseconds());
-			Console.WriteLine(measurement.ToOutputLine());
-			GcCollect();
-			return measurement;
+
+			ForceGcCollect();
 		}
 
-		private object multiInvokeReturnHolder;
-
-		private Measurement MultiInvoke<T>(
-			IterationMode mode, int index, Action setupAction, Func<T> targetAction, long invocationCount,
-			long operationsPerInvoke, T returnHolder = default(T))
+		private void RunCore(
+			Action setupAction, Action targetAction, IterationMode iterationMode, Count iterationCount)
 		{
-			var totalOperations = invocationCount * operationsPerInvoke;
 			setupAction();
-			ClockSpan clockSpan;
-			GcCollect();
-			if (invocationCount == 1)
+			ForceGcCollect();
+
+			for (int i = 0; i < iterationCount; i++)
 			{
 				var chronometer = Chronometer.Start();
-				returnHolder = targetAction();
-				clockSpan = chronometer.Stop();
+				targetAction();
+				var clockSpan = chronometer.Stop();
+
+				var measurement = new Measurement(0, iterationMode, i + 1, 1, clockSpan.GetNanoseconds());
+				_allMeasurements.Add(measurement);
 			}
-			else if (invocationCount < int.MaxValue)
+
+			ForceGcCollect();
+		}
+
+		private void PrintResult()
+		{
+			var tmp = new List<Measurement>();
+			int resultIndex = 0;
+			foreach (var measurement in _allMeasurements)
 			{
-				int intInvocationCount = (int)invocationCount;
-				var chronometer = Chronometer.Start();
-				RunAction(targetAction, intInvocationCount);
-				clockSpan = chronometer.Stop();
+				if (measurement.IterationMode == IterationMode.MainTarget)
+					tmp.Add(
+						new Measurement(
+							measurement.LaunchIndex,
+							IterationMode.Result,
+							++resultIndex,
+							measurement.Operations,
+							measurement.Nanoseconds));
 			}
-			else
+
+			foreach (var measurement in _allMeasurements)
 			{
-				var chronometer = Chronometer.Start();
-				RunAction(targetAction, invocationCount);
-				clockSpan = chronometer.Stop();
+				Console.WriteLine(measurement.ToOutputLine());
 			}
-			multiInvokeReturnHolder = returnHolder;
-			var measurement = new Measurement(0, mode, index, totalOperations, clockSpan.GetNanoseconds());
-			Console.WriteLine(measurement.ToOutputLine());
-			GcCollect();
-			return measurement;
-		}
+			Console.WriteLine();
 
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		private static void RunAction(Action action, int count)
-		{
-			for (int i = 0; i < count; i++)
-				action();
-		}
+			foreach (var measurement in tmp)
+			{
+				Console.WriteLine(measurement.ToOutputLine());
+			}
+			Console.WriteLine();
 
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		private static void RunAction(Action action, long count)
-		{
-			for (int i = 0; i < count; i++)
-				action();
-		}
-
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		private void RunAction<T>(Func<T> action, int count, T returnHolder = default(T))
-		{
-			for (int i = 0; i < count; i++)
-				returnHolder = action();
-			multiInvokeReturnHolder = returnHolder;
-		}
-
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		private void RunAction<T>(Func<T> action, long count, T returnHolder = default(T))
-		{
-			for (int i = 0; i < count; i++)
-				returnHolder = action();
-			multiInvokeReturnHolder = returnHolder;
+			_allMeasurements.Clear();
 		}
 
 		private static void ForceGcCollect()
@@ -353,16 +192,29 @@ namespace BenchmarkDotNet.Running
 			GC.WaitForPendingFinalizers();
 			GC.Collect();
 		}
+	}
 
-		private static long prevGcCount;
-
-		private static void GcCollect()
+	internal static class CommonExtensions
+	{
+		public static string ToTimeStr(this double value, TimeUnit unit = null, int unitNameWidth = 1)
 		{
-			var gcCount = GC.CollectionCount(0);
-			if (Interlocked.Exchange(ref prevGcCount, gcCount) != gcCount)
-			{
-				ForceGcCollect();
-			}
+			unit = unit ?? TimeUnit.GetBestTimeUnit(value);
+			var unitValue = TimeUnit.Convert(value, TimeUnit.Nanoseconds, unit);
+			var unitName = unit.Name.PadLeft(unitNameWidth);
+			return $"{unitValue.ToStr("N4")} {unitName}";
+		}
+
+		public static string ToStr(this double value, string format = "0.##")
+		{
+			// Here we should manually create an object[] for string.Format
+			// If we write something like
+			//     string.Format(EnvironmentInfo.MainCultureInfo, $"{{0:{format}}}", value)
+			// it will be resolved to:
+			//     string.Format(System.IFormatProvider, string, params object[]) // .NET 4.5
+			//     string.Format(System.IFormatProvider, string, object)          // .NET 4.6
+			// Unfortunately, Mono doesn't have the second overload (with object instead of params object[]).            
+			var args = new object[] { value };
+			return string.Format(EnvironmentInfo.MainCultureInfo, $"{{0:{format}}}", args);
 		}
 	}
 }

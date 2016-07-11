@@ -16,7 +16,7 @@ namespace CodeJam.PerfTests.Running.Core
 	/// <summary>Nunit competition performance tests runner.</summary>
 	/// <seealso cref="CompetitionRunnerBase"/>
 	[SuppressMessage("ReSharper", "ConvertToExpressionBodyWhenPossible")]
-	internal class XunitCompetitionRunner : CompetitionRunnerBase
+	public class XunitCompetitionRunner : CompetitionRunnerBase
 	{
 		/// <summary>Host logger implementation</summary>
 		protected class XunitHostLogger : HostLogger

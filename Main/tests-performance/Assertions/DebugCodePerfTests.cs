@@ -15,7 +15,7 @@ namespace CodeJam.Assertions
 	/// 1. Heavy DebugCode assertions has no impact on release build
 	/// </summary>
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory)]
-	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
+	[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
 	[PublicAPI]
 	public class DebugCodePerfTests
 	{

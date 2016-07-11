@@ -15,7 +15,7 @@ namespace CodeJam
 	/// as in http://blog.nodatime.org/2014/07/micro-optimization-surprising.html
 	/// </summary>
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Self-testing")]
-	[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
+	[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
 	public class NestedStructAccessPerfTests
 	{
 		#region PerfTest helpers

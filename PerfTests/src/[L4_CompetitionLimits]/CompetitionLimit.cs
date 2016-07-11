@@ -27,6 +27,13 @@ namespace CodeJam.PerfTests
 		public static readonly CompetitionLimit Ignored = new CompetitionLimit(IgnoreValue, IgnoreValue);
 
 		#region Core logic for competition limits
+		private static bool IsInvalidValue(double value) => double.IsInfinity(value) || double.IsNaN(value);
+
+		private static bool IsIgnoredValue(double value) => value < EmptyValue;
+
+		// ReSharper disable once CompareOfFloatsByEqualityOperator
+		private static bool IsEmptyValue(double value) => value == EmptyValue;
+
 		[AssertionMethod]
 		private static void AssertLimitArgument(double value, [InvokerParameterName] string argName)
 		{
@@ -42,16 +49,9 @@ namespace CodeJam.PerfTests
 
 			return IsIgnoredValue(value) ? IgnoreValue : value;
 		}
-
-		private static bool IsInvalidValue(double value) => double.IsInfinity(value) || double.IsNaN(value);
-
-		private static bool IsIgnoredValue(double value) => value < EmptyValue;
-
-		// ReSharper disable once CompareOfFloatsByEqualityOperator
-		private static bool IsEmptyValue(double value) => value == EmptyValue;
 		#endregion
 
-		#region Limit helper methods (reusable methods for memory and timing limits)
+		#region Limit helper methods
 		/// <summary>
 		/// Helper method for checking the value against min limit.
 		/// </summary>
@@ -139,7 +139,7 @@ namespace CodeJam.PerfTests
 			MaxRatio = maxRatio;
 		}
 
-		/// <summary>All limits are is empty.</summary>
+		/// <summary>All limits are empty.</summary>
 		/// <value><c>true</c> if all limits are is empty; otherwise, <c>false</c>.</value>
 		public bool IsEmpty => IsEmptyValue(MinRatio) && IsEmptyValue(MaxRatio);
 

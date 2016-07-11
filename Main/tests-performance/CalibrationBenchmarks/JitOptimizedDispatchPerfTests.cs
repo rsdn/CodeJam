@@ -120,7 +120,7 @@ namespace CodeJam
 		private const int Count = 1000 * 1000;
 
 		[Test]
-		[Explicit(CompetitionHelpers.ExplicitExcludeReason)]
+		[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
 		public void RunJitOptimizedDispatchPerfTests() => Competition.Run(this, RunConfig);
 
 		[CompetitionBaseline]

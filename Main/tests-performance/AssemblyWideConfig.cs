@@ -47,8 +47,8 @@ namespace CodeJam
 		/// </summary>
 		public static ICompetitionConfig RunConfig => new AssemblyWideConfig();
 
-		private static readonly ILogger _detailedLogger = CreateDetailedLogger();
-		private static readonly ILogger _importantInfoLogger = CreateImportantInfoLogger();
+		private static readonly ILogger _detailedLogger = CreateDetailedLoggerForAssembly();
+		private static readonly ILogger _importantInfoLogger = CreateImportantInfoLoggerForAssembly();
 
 		/// <summary>
 		/// Constructor

@@ -22,8 +22,7 @@ namespace CodeJam.PerfTests.Exporters
 		public static readonly TimingsExporter Instance = new TimingsExporter();
 
 		/// <summary>Prevents a default instance of the <see cref="TimingsExporter"/> class from being created.</summary>
-		private TimingsExporter()
-		{ }
+		private TimingsExporter() { }
 
 		/// <summary>File extension.</summary>
 		/// <value>The file extension.</value>
@@ -72,6 +71,7 @@ namespace CodeJam.PerfTests.Exporters
 					MeasurementNs = measurement.m.GetAverageNanoseconds()
 				};
 
+			// TODO: culture for output?
 			logger.WriteLine(
 				"RunNumber;Job;Target;Parameters;" +
 					"LaunchNumber;MeasurementNumber;MeasurementType;MeasurementIteration;MeasurementNs");

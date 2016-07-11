@@ -19,7 +19,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <param name="target">The target to get resource name for.</param>
 		/// <returns>
 		/// Name of the resource containing xml document with competition limits
-		/// or <c>null</c> if the target is not annotated with <see cref="CompetitionMetadataAttribute"/>
+		/// or <c>null</c> if the target (or any container type) is not annotated with <see cref="CompetitionMetadataAttribute"/>
 		/// </returns>
 		[CanBeNull]
 		public static CompetitionMetadata TryGetCompetitionMetadata([NotNull] this Target target)
@@ -53,6 +53,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// A new instance of the <see cref="CompetitionLimit"/> class
 		/// filled with the properties from <see cref="CompetitionBenchmarkAttribute"/>
 		/// </returns>
+		[NotNull]
 		public static CompetitionLimit ParseCompetitionLimit(
 			[NotNull] CompetitionBenchmarkAttribute competitionAttribute)
 		{

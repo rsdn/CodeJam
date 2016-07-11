@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Reflection;
 
-using CodeJam.PerfTests.Running.Core;
-
 using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-namespace CodeJam.PerfTests
+// ReSharper disable once CheckNamespace
+namespace CodeJam.PerfTests.Running.Core
 {
 	[PublicAPI]
 	internal class SelfTestCompetitionRunner : ConsoleCompetitionRunner
