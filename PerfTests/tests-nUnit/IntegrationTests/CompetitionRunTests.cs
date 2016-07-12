@@ -154,7 +154,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.That(
 				messages[0].MessageText,
 				Does.StartWith(
-					"Benchmark BadLimitsBenchmark. Exception: Please check competition limits. Min ratio should not be greater than max ratio."));
+					"Benchmark BadLimitsBenchmark. Exception: Please check competition limits."));
 		}
 
 		[Test]

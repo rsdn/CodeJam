@@ -19,13 +19,13 @@ namespace CodeJam.Examples
 		[CompetitionBaseline]
 		public void Baseline() => Thread.SpinWait(Count);
 
-		[CompetitionBenchmark(2.92, 3.05)]
+		[CompetitionBenchmark(2.74, 3.50)]
 		public void SlowerX3() => Thread.SpinWait(3 * Count);
 
-		[CompetitionBenchmark(4.87, 5.07)]
+		[CompetitionBenchmark(4.58, 5.51)]
 		public void SlowerX5() => Thread.SpinWait(5 * Count);
 
-		[CompetitionBenchmark(6.77, 7.05)]
+		[CompetitionBenchmark(6.53, 8.15)]
 		public void SlowerX7() => Thread.SpinWait(7 * Count);
 	}
 }
