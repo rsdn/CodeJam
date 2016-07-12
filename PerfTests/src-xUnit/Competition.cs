@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests
 {
-	/// <summary>NUnit runner for competition performance tests.</summary>
+	/// <summary>xUnit runner for competition performance tests.</summary>
 	[PublicAPI]
 	public static class Competition
 	{

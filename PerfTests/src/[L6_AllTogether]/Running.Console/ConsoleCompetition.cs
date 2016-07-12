@@ -9,7 +9,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.Console
 {
-	/// <summary>Console competition runner that does not support integration with unit tests.</summary>
+	/// <summary>Console competition runner.</summary>
 	[PublicAPI]
 	public static class ConsoleCompetition
 	{

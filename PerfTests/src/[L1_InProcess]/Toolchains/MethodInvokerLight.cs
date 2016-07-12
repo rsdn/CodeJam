@@ -43,8 +43,8 @@ namespace BenchmarkDotNet.Running
 			private string GetDisplayValue() => $"{Operations} op, {Nanoseconds.ToStr()} ns, {GetAverageTime()}";
 			private string GetAverageTime() => $"{(Nanoseconds / Operations).ToTimeStr()}/op";
 
-			public override string ToString()
-				=> $"#{LaunchIndex}/{IterationMode} {IterationIndex}: {Operations} op, {Nanoseconds.ToTimeStr()}";
+			public override string ToString() =>
+				$"#{LaunchIndex}/{IterationMode} {IterationIndex}: {Operations} op, {Nanoseconds.ToTimeStr()}";
 		}
 
 		private struct MultiInvokeInput

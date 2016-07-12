@@ -160,6 +160,7 @@ namespace CodeJam.PerfTests.Running.Core
 				Loggers.HostLogger.FlushLoggers(benchmarkConfig);
 				SetCurrentDirectoryIfNotNull(previousDir);
 			}
+
 			return competitionState;
 		}
 		#endregion
@@ -188,11 +189,12 @@ namespace CodeJam.PerfTests.Running.Core
 			return result.AsReadOnly();
 		}
 
-		private void ProcessRunComplete([NotNull] ICompetitionConfig competitionConfig, [NotNull] CompetitionState competitionState)
+		private void ProcessRunComplete(
+			[NotNull] ICompetitionConfig competitionConfig, [NotNull] CompetitionState competitionState)
 		{
-			if (competitionConfig.DetailedLogging && competitionState.Logger != null)
+			var logger = competitionState.Logger;
+			if (competitionConfig.DetailedLogging && logger != null)
 			{
-				var logger = competitionState.Logger;
 				var messages = competitionState.GetMessages();
 
 				if (messages.Any())
@@ -206,7 +208,7 @@ namespace CodeJam.PerfTests.Running.Core
 				else
 				{
 					logger.WriteSeparatorLine();
-					logger.WriteLineInfo("// No messages in run.");
+					logger.WriteLineInfo("{LogVerbosePrefix} No messages in run.");
 				}
 			}
 		}
@@ -215,7 +217,9 @@ namespace CodeJam.PerfTests.Running.Core
 		#region Override test running behavior
 		/// <summary>Returns output directory that should be used for running the test.</summary>
 		/// <param name="targetAssembly">The target assembly tests will be run for.</param>
-		/// <returns>Output directory that should be used for running the test or <c>null</c> if the current directory should be used.</returns>
+		/// <returns>
+		/// Output directory that should be used for running the test or <c>null</c> if the current directory should be used.
+		/// </returns>
 		protected virtual string GetOutputDirectory(Assembly targetAssembly) => null;
 
 		/// <summary>Default timing limit to detect too fast benchmarks.</summary>
@@ -312,10 +316,14 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			// TODO: better columns.
 			var result = OverrideColumns(competitionConfig);
-			result.AddRange(new[]
-			{
-				StatisticColumn.Min, new CompetitionLimitColumn(competitionConfig.CompetitionLimitProvider, false), new CompetitionLimitColumn(competitionConfig.CompetitionLimitProvider, true), StatisticColumn.Max
-			});
+			result.AddRange(
+				new[]
+				{
+					StatisticColumn.Min,
+					new CompetitionLimitColumn(competitionConfig.CompetitionLimitProvider, false),
+					new CompetitionLimitColumn(competitionConfig.CompetitionLimitProvider, true),
+					StatisticColumn.Max
+				});
 
 			return result;
 		}
@@ -324,7 +332,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			var result = OverrideValidators(competitionConfig);
 
-			bool debugMode = competitionConfig.AllowDebugBuilds || EnvironmentInfo.GetCurrent().HasAttachedDebugger;
+			bool debugMode = competitionConfig.AllowDebugBuilds;
 
 			if (result.Any(v => v is JitOptimizationsValidator))
 			{
@@ -338,7 +346,8 @@ namespace CodeJam.PerfTests.Running.Core
 				result.Insert(0, JitOptimizationsValidator.FailOnError);
 			}
 
-			if (competitionConfig.GetJobs().Any(j => j.Toolchain is InProcessToolchain))
+			if (competitionConfig.GetJobs().Any(j => j.Toolchain is InProcessToolchain) &&
+				!result.Any(v => v is InProcessValidator))
 			{
 				result.Insert(0, debugMode ? InProcessValidator.DontFailOnError : InProcessValidator.FailOnError);
 			}
@@ -361,19 +370,29 @@ namespace CodeJam.PerfTests.Running.Core
 
 		private CompetitionAnalyser GetCompetitionAnalyser(ICompetitionConfig competitionConfig)
 		{
-			var competitionAnalyser = competitionConfig.UpdateSourceAnnotations ? new CompetitionAnnotateAnalyser
-			{
-				PreviousRunLogUri = competitionConfig.PreviousRunLogUri, AdditionalRerunsIfAnnotationsUpdated = competitionConfig.RerunIfLimitsFailed ? DefaultAdditionalRerunsIfAnnotationsUpdated : 0, SkipRunsBeforeApplyingAnnotations = DefaultSkipRunsBeforeApplyingAnnotations
-			} : new CompetitionAnalyser();
+			var competitionAnalyser = competitionConfig.UpdateSourceAnnotations
+				? new CompetitionAnnotateAnalyser
+				{
+					PreviousRunLogUri = competitionConfig.PreviousRunLogUri,
+					AdditionalRerunsIfAnnotationsUpdated = competitionConfig.RerunIfLimitsFailed
+						? DefaultAdditionalRerunsIfAnnotationsUpdated
+						: 0,
+					SkipRunsBeforeApplyingAnnotations = DefaultSkipRunsBeforeApplyingAnnotations
+				}
+				: new CompetitionAnalyser();
 
 			competitionAnalyser.TooFastBenchmarkLimit = DefaultTooFastBenchmarkLimit;
-			competitionAnalyser.LongRunningBenchmarkLimit = competitionConfig.AllowLongRunningBenchmarks ? _defaultLongRunsAllowedLimit : DefaultLongRunningBenchmarkLimit;
+			competitionAnalyser.LongRunningBenchmarkLimit = competitionConfig.AllowLongRunningBenchmarks
+				? _defaultLongRunsAllowedLimit
+				: DefaultLongRunningBenchmarkLimit;
 
 			competitionAnalyser.IgnoreExistingAnnotations = competitionConfig.IgnoreExistingAnnotations;
 			competitionAnalyser.LogCompetitionLimits = competitionConfig.LogCompetitionLimits;
 			competitionAnalyser.CompetitionLimitProvider = competitionConfig.CompetitionLimitProvider;
 
-			competitionAnalyser.MaxRerunsIfValidationFailed = competitionConfig.RerunIfLimitsFailed ? DefaultMaxRerunsIfValidationFailed : 0;
+			competitionAnalyser.MaxRerunsIfValidationFailed = competitionConfig.RerunIfLimitsFailed
+				? DefaultMaxRerunsIfValidationFailed
+				: 0;
 
 			return competitionAnalyser;
 		}
@@ -382,51 +401,63 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Override competition jobs.</summary>
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>The jobs for the competition</returns>
-		protected virtual List<IJob> OverrideJobs([NotNull] ICompetitionConfig competitionConfig) => competitionConfig.GetJobs().ToList();
+		protected virtual List<IJob> OverrideJobs([NotNull] ICompetitionConfig competitionConfig) =>
+			competitionConfig.GetJobs().ToList();
 
 		/// <summary>Override competition exporters.</summary>
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>The jobs for the competition</returns>
-		protected virtual List<IExporter> OverrideExporters([NotNull] ICompetitionConfig competitionConfig) => competitionConfig.GetExporters().ToList();
+		protected virtual List<IExporter> OverrideExporters([NotNull] ICompetitionConfig competitionConfig) =>
+			competitionConfig.GetExporters().ToList();
 
 		/// <summary>Override competition diagnosers.</summary>
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>The diagnosers for the competition</returns>
-		protected virtual List<IDiagnoser> OverrideDiagnosers([NotNull] ICompetitionConfig competitionConfig) => competitionConfig.GetDiagnosers().ToList();
+		protected virtual List<IDiagnoser> OverrideDiagnosers([NotNull] ICompetitionConfig competitionConfig) =>
+			competitionConfig.GetDiagnosers().ToList();
 
 		/// <summary>Override competition loggers.</summary>
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>The loggers for the competition</returns>
-		protected virtual List<ILogger> OverrideLoggers([NotNull] ICompetitionConfig competitionConfig) => competitionConfig.GetLoggers().ToList();
+		protected virtual List<ILogger> OverrideLoggers([NotNull] ICompetitionConfig competitionConfig) =>
+			competitionConfig.GetLoggers().ToList();
 
 		/// <summary>Override competition columns.</summary>
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>The columns for the competition</returns>
-		protected virtual List<IColumn> OverrideColumns([NotNull] ICompetitionConfig competitionConfig) => competitionConfig.GetColumns().ToList();
+		protected virtual List<IColumn> OverrideColumns([NotNull] ICompetitionConfig competitionConfig) =>
+			competitionConfig.GetColumns().ToList();
 
 		/// <summary>Override competition validators.</summary>
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>The validators for the competition</returns>
-		protected virtual List<IValidator> OverrideValidators([NotNull] ICompetitionConfig competitionConfig) => competitionConfig.GetValidators().ToList();
+		protected virtual List<IValidator> OverrideValidators([NotNull] ICompetitionConfig competitionConfig) =>
+			competitionConfig.GetValidators().ToList();
 
 		/// <summary>Override competition analysers.</summary>
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>The analysers for the competition</returns>
-		protected virtual List<IAnalyser> OverrideAnalysers([NotNull] ICompetitionConfig competitionConfig) => competitionConfig.GetAnalysers().ToList();
+		protected virtual List<IAnalyser> OverrideAnalysers([NotNull] ICompetitionConfig competitionConfig) =>
+			competitionConfig.GetAnalysers().ToList();
 		#endregion
 
 		#endregion
 
 		#region Messages
-		private void ReportMessagesToUser([NotNull] ICompetitionConfig competitionConfig, [NotNull] CompetitionState competitionState)
+		private void ReportMessagesToUser(
+			[NotNull] ICompetitionConfig competitionConfig,
+			[NotNull] CompetitionState competitionState)
 		{
-			var criticalErrorMessages = GetMessageLines(competitionState, m => m.MessageSeverity > MessageSeverity.TestError, true);
+			var criticalErrorMessages = GetMessageLines(
+				competitionState, m => m.MessageSeverity > MessageSeverity.TestError, true);
 			bool hasCriticalMessages = criticalErrorMessages.Any();
 
-			var testFailedMessages = GetMessageLines(competitionState, m => m.MessageSeverity == MessageSeverity.TestError, hasCriticalMessages);
+			var testFailedMessages = GetMessageLines(
+				competitionState, m => m.MessageSeverity == MessageSeverity.TestError, hasCriticalMessages);
 			bool hasTestFailedMessages = testFailedMessages.Any();
 
-			var warningMessages = GetMessageLines(competitionState, m => m.MessageSeverity == MessageSeverity.Warning, true);
+			var warningMessages = GetMessageLines(
+				competitionState, m => m.MessageSeverity == MessageSeverity.Warning, true);
 			bool hasWarnings = warningMessages.Any();
 
 			var infoMessages = GetMessageLines(competitionState, m => m.MessageSeverity < MessageSeverity.Warning, true);
@@ -487,14 +518,35 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 		}
 
-		private string[] GetMessageLines(CompetitionState competitionState, Func<IMessage, bool> filter, bool fromAllRuns)
+		private string[] GetMessageLines(
+			CompetitionState competitionState,
+			Func<IMessage, bool> severityFilter,
+			bool fromAllRuns)
 		{
-			var result = from message in competitionState.GetMessages() where fromAllRuns || ShouldReport(message, competitionState) where filter(message) orderby message.RunNumber, message.RunMessageNumber select $"    * Run #{message.RunNumber}: {message.MessageText}";
+			var result = from message in competitionState.GetMessages()
+				where severityFilter(message) && ShouldReport(message, competitionState.RunNumber, fromAllRuns)
+				orderby message.RunNumber, message.RunMessageNumber
+				select $"    * Run #{message.RunNumber}: {message.MessageText}";
 
 			return result.ToArray();
 		}
 
-		private bool ShouldReport(IMessage message, CompetitionState competitionState) => message.RunNumber == competitionState.RunNumber || (message.MessageSource != MessageSource.Analyser && message.MessageSource != MessageSource.Diagnoser);
+		private bool ShouldReport(IMessage message, int runNumber, bool fromAllRuns)
+		{
+			if (fromAllRuns || message.RunNumber == runNumber)
+				return true;
+
+			// all of these on last run only.
+			switch (message.MessageSource)
+			{
+				case MessageSource.Validator:
+				case MessageSource.Analyser:
+				case MessageSource.Diagnoser:
+					return false;
+				default:
+					return true;
+			}
+		}
 		#endregion
 	}
 }

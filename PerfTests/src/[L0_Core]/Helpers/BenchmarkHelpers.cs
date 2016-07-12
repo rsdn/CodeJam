@@ -152,7 +152,7 @@ namespace BenchmarkDotNet.Helpers
 				result.Append(separatorChar, temp2);
 			}
 
-			logger.WriteLine(logKind, "");
+			logger.WriteLine();
 			logger.WriteLine(logKind, result.ToString());
 		}
 		#endregion

@@ -28,7 +28,7 @@ namespace CodeJam.PerfTests.Analysers
 		#region Cached XML annotations from log
 		// DONTTOUCH: Each run should use results from previous run log.
 		// DO NOT cache log output in static field 
-		// as test can be runned multiple times in same appdomain.
+		// as test can be run multiple times in same appdomain.
 		private class LoggedXmlAnnotations : Dictionary<string, XDocument[]> { }
 
 		private static readonly RunState<LoggedXmlAnnotations> _annotationsSlot =
@@ -39,7 +39,7 @@ namespace CodeJam.PerfTests.Analysers
 		/// <summary>
 		/// URI of the log that contains competition limits from previous run(s).
 		/// Relative paths, file paths and web URLs are supported.
-		/// Enable the <see cref="CompetitionAnalyser.LogCompetitionLimits"/> to log the limits.
+		/// Set the <see cref="CompetitionAnalyser.LogCompetitionLimits"/> to <c>true</c> to log the limits.
 		/// </summary>
 		/// <value>The URI of the log that contains competition limits from previous run(s).</value>
 		public string PreviousRunLogUri { get; set; }
@@ -104,7 +104,7 @@ namespace CodeJam.PerfTests.Analysers
 		private XDocument[] ReadXmlAnnotationDocsFromLog(Summary summary, CompetitionState competitionState)
 		{
 			competitionState.Logger.WriteLineInfo(
-				$"{LogInfoPrefix} Reading XML annotation documents from log {PreviousRunLogUri}.");
+				$"{LogVerbosePrefix} Reading XML annotation documents from log {PreviousRunLogUri}.");
 
 			var xmlAnnotationDocs = _annotationsSlot[summary].GetOrAdd(
 				PreviousRunLogUri,
@@ -118,7 +118,7 @@ namespace CodeJam.PerfTests.Analysers
 			CompetitionTargets competitionTargets, XDocument[] xmlAnnotationDocs, CompetitionState competitionState)
 		{
 			competitionState.Logger.WriteLineInfo(
-				$"{LogInfoPrefix} Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log {PreviousRunLogUri}.");
+				$"{LogVerbosePrefix} Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log {PreviousRunLogUri}.");
 
 			bool updated = false;
 			foreach (var competitionTarget in competitionTargets.Values)
@@ -167,11 +167,8 @@ namespace CodeJam.PerfTests.Analysers
 				summary, competitionState,
 				warnings);
 
-			if (checkPassed)
-				return true;
-
-			if (competitionState.RunNumber <= SkipRunsBeforeApplyingAnnotations)
-				return false;
+			if (checkPassed || competitionState.RunNumber <= SkipRunsBeforeApplyingAnnotations)
+				return checkPassed;
 
 			foreach (var benchmark in benchmarksForTarget)
 			{

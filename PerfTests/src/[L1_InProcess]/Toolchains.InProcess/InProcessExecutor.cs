@@ -83,7 +83,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 			{
 				if (LogOutput)
 				{
-					logger.WriteLine(LogKind.Default, line);
+					logger.WriteLine(line);
 				}
 
 				if (!line.StartsWith("//") && !string.IsNullOrEmpty(line))

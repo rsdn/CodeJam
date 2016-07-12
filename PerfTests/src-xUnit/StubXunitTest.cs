@@ -6,10 +6,9 @@ using Xunit;
 
 namespace CodeJam.PerfTests
 {
-	// TODO: refactor into assembly with NUnit runner
-	public static class StubXunitTest
+	internal static class StubXunitTest
 	{
-		[Fact]
+		[Fact(Skip = "To fool Appveyor")]
 		public static void XunitTestToFoolAppveyor()
 		{
 			Assert.True(true);

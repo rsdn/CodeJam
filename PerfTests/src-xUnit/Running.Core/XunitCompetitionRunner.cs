@@ -13,7 +13,7 @@ using Xunit;
 
 namespace CodeJam.PerfTests.Running.Core
 {
-	/// <summary>Nunit competition performance tests runner.</summary>
+	/// <summary>xUnit competition performance tests runner.</summary>
 	/// <seealso cref="CompetitionRunnerBase"/>
 	[SuppressMessage("ReSharper", "ConvertToExpressionBodyWhenPossible")]
 	public class XunitCompetitionRunner : CompetitionRunnerBase
@@ -50,19 +50,21 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 
 			// Dumping all captured output below the benchmark results
-			var nUnitLogger = (XunitHostLogger)logger;
-			outLogger.Write(nUnitLogger.GetLog());
+			var xunitLogger = (XunitHostLogger)logger;
+			outLogger.Write(xunitLogger.GetLog());
 		}
 
 		/// <summary>Reports the execution errors to user.</summary>
 		/// <param name="messages">The messages to report.</param>
 		/// <param name="competitionState">State of the run.</param>
-		protected override void ReportExecutionErrors(string messages, CompetitionState competitionState) => Assert.True(false, messages);
+		protected override void ReportExecutionErrors(string messages, CompetitionState competitionState) =>
+			Assert.True(false, messages);
 
 		/// <summary>Reports failed assertions to user.</summary>
 		/// <param name="messages">The messages to report.</param>
 		/// <param name="competitionState">State of the run.</param>
-		protected override void ReportAssertionsFailed(string messages, CompetitionState competitionState) => Assert.True(false, messages);
+		protected override void ReportAssertionsFailed(string messages, CompetitionState competitionState) =>
+			Assert.True(false, messages);
 
 		/// <summary>Reports warnings to user.</summary>
 		/// <param name="messages">The messages to report.</param>

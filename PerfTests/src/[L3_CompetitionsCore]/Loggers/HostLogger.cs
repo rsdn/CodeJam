@@ -24,6 +24,12 @@ namespace CodeJam.PerfTests.Loggers
 
 		#region Log line prefixes (constants)
 		/// <summary>
+		/// The prefix for verbose log lines.
+		/// Lines with this prefix will be written only if <see cref="HostLogMode.AllMessages"/> mode set.
+		/// </summary>
+		public const string LogVerbosePrefix = "//";
+
+		/// <summary>
 		/// The prefix for informational log lines.
 		/// Lines with this prefix will be written even if <see cref="HostLogMode"/> filter applied.
 		/// </summary>

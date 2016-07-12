@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Reflection;
 
-using BenchmarkDotNet.Running;
-
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations
@@ -16,24 +14,24 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// Returns the name of target resource if defined in <see cref="CompetitionMetadataAttribute"/>.
 		/// If the target type is nested all container types are checked too.
 		/// </summary>
-		/// <param name="target">The target to get resource name for.</param>
+		/// <param name="targetType">Type of the benchmark to get resource name for.</param>
 		/// <returns>
 		/// Name of the resource containing xml document with competition limits
 		/// or <c>null</c> if the target (or any container type) is not annotated with <see cref="CompetitionMetadataAttribute"/>
 		/// </returns>
 		[CanBeNull]
-		public static CompetitionMetadata TryGetCompetitionMetadata([NotNull] this Target target)
+		public static CompetitionMetadata TryGetCompetitionMetadata([NotNull] Type targetType)
 		{
-			Code.NotNull(target, nameof(target));
+			Code.NotNull(targetType, nameof(targetType));
 
 			CompetitionMetadataAttribute result = null;
 
-			var targetType = target.Type;
-			while (result == null && targetType != null)
+			var currentType = targetType;
+			while (result == null && currentType != null)
 			{
-				result = targetType.GetCustomAttribute<CompetitionMetadataAttribute>();
+				result = currentType.GetCustomAttribute<CompetitionMetadataAttribute>();
 
-				targetType = targetType.DeclaringType;
+				currentType = currentType.DeclaringType;
 			}
 
 			if (result == null)

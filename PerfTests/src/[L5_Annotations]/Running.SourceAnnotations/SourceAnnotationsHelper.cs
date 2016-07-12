@@ -110,7 +110,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			/// <param name="file">The file to mark.</param>
 			public void MarkAsChanged(string file)
 			{
-				if (!_sourceLines.ContainsKey(file) && !_xmlAnnotations.ContainsKey(file))
+				if (_sourceLines.GetValueOrDefault(file).IsNullOrEmpty() &&
+					_xmlAnnotations.GetValueOrDefault(file) == null)
 					throw CodeExceptions.InvalidOperation($"Load file {file} before marking it as changed.");
 
 				_changedFiles.Add(file);
@@ -124,10 +125,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			/// <param name="newLine">Line to replace with.</param>
 			public void ReplaceLine(string file, int lineIndex, string newLine)
 			{
-				if (!_sourceLines.ContainsKey(file))
+				var lines = _sourceLines.GetValueOrDefault(file);
+				if (lines.IsNullOrEmpty())
 					throw CodeExceptions.InvalidOperation($"Load source file {file} before marking it as changed.");
 
-				_sourceLines[file][lineIndex] = newLine;
+				lines[lineIndex] = newLine;
 				MarkAsChanged(file);
 			}
 
@@ -181,7 +183,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				var targetMethodTitle = target.MethodTitle;
 
 				logger.WriteLineInfo(
-					$"// Method {targetMethodTitle}: updating time limits {targetToAnnotate}.");
+					$"{LogVerbosePrefix} Method {targetMethodTitle}: updating time limits {targetToAnnotate}.");
 
 				// DONTTOUCH: the source should be loaded for checksum validation even if target uses resource annotation.
 				string fileName;
@@ -198,7 +200,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				{
 					var resourceFileName = GetResourceFileName(fileName, competitionMetadata);
 
-					logger.WriteLineInfo($"// Method {targetMethodTitle}: annotating resource file {resourceFileName}.");
+					logger.WriteLineInfo(
+						$"{LogVerbosePrefix} Method {targetMethodTitle}: annotating resource file {resourceFileName}.");
 					var annotated = TryFixBenchmarkXmlAnnotation(annContext, resourceFileName, targetToAnnotate, competitionState);
 					if (!annotated)
 					{
@@ -210,7 +213,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				}
 				else
 				{
-					logger.WriteLineInfo($"// Method {targetMethodTitle}: annotating file {fileName}, line {firstCodeLine}.");
+					logger.WriteLineInfo(
+						$"{LogVerbosePrefix} Method {targetMethodTitle}: annotating file {fileName}, line {firstCodeLine}.");
 					var annotated = TryFixBenchmarkAttribute(annContext, fileName, firstCodeLine, targetToAnnotate, competitionState);
 					if (!annotated)
 					{
@@ -222,7 +226,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				}
 
 				logger.WriteLineInfo(
-					$"{LogImportantInfoPrefix} Method {targetMethodTitle} updated time limits: [{targetToAnnotate.MinRatioText}, {targetToAnnotate.MaxRatioText}].");
+					$"{LogImportantInfoPrefix} Method {targetMethodTitle} updated time limits: {targetToAnnotate}.");
 				annotatedTargets.Add(targetToAnnotate);
 			}
 
@@ -234,10 +238,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		{
 			if (competitionMetadata.MetadataResourcePath.NotNullNorEmpty())
 			{
-				return Path.Combine(
-					// ReSharper disable once AssignNullToNotNullAttribute
-					Path.GetDirectoryName(fileName),
-					competitionMetadata.MetadataResourcePath);
+				var dir = Path.GetDirectoryName(fileName);
+
+				return dir.IsNullOrEmpty()
+					? competitionMetadata.MetadataResourcePath
+					: Path.Combine(dir, competitionMetadata.MetadataResourcePath);
 			}
 
 			return Path.ChangeExtension(fileName, ".xml");
@@ -248,9 +253,13 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			CompetitionTarget competitionTarget,
 			CompetitionState competitionState)
 		{
+			Code.AssertArgument(
+				competitionTarget.CompetitionMetadata != null, nameof(competitionTarget),
+				"Competition metadata cannot be null for xml annotations.");
+
 			var xmlAnnotationDoc = annotateContext.TryGetXmlAnnotation(
 				xmlFileName,
-				competitionTarget.CompetitionMetadata?.UseFullTypeName ?? false,
+				competitionTarget.CompetitionMetadata.UseFullTypeName,
 				competitionState);
 			if (xmlAnnotationDoc == null)
 				return false;

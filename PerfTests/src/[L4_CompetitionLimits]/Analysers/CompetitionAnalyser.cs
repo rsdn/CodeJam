@@ -77,7 +77,7 @@ namespace CodeJam.PerfTests.Analysers
 		public bool LogCompetitionLimits { get; set; }
 
 		/// <summary>Competition limit provider.</summary>
-		/// <value>The competition limit provider..</value>
+		/// <value>The competition limit provider.</value>
 		public ICompetitionLimitProvider CompetitionLimitProvider { get; set; }
 		#endregion
 
@@ -105,6 +105,7 @@ namespace CodeJam.PerfTests.Analysers
 			return warnings.ToArray();
 		}
 
+		#region Analyse core
 		private void AnalyseCore(
 			Summary summary, CompetitionTargets competitionTargets,
 			CompetitionState competitionState, List<IWarning> warnings)
@@ -112,21 +113,34 @@ namespace CodeJam.PerfTests.Analysers
 			if (competitionState.HasCriticalErrorsInRun)
 				return;
 
-			if (!competitionTargets.Initialized)
+			if (!TryInitialize(summary, competitionTargets, competitionState))
 			{
-				FillCompetitionTargets(competitionTargets, summary, competitionState);
-				competitionTargets.SetInitialized();
+				return;
 			}
 
-			if (competitionState.HasCriticalErrorsInRun)
-				return;
-
-			if (competitionTargets.Count == 0)
+			if (competitionTargets.Any())
+			{
+				CheckCompetitionLimitsCore(summary, competitionState, warnings);
+			}
+			else
 			{
 				CheckPostconditions(summary, competitionState, warnings);
-				return;
 			}
+		}
 
+		private bool TryInitialize(Summary summary, CompetitionTargets competitionTargets, CompetitionState competitionState)
+		{
+			if (competitionTargets.Initialized)
+				return true;
+
+			FillCompetitionTargets(competitionTargets, summary, competitionState);
+			competitionTargets.SetInitialized();
+
+			return !competitionState.HasCriticalErrorsInRun;
+		}
+
+		private void CheckCompetitionLimitsCore(Summary summary, CompetitionState competitionState, List<IWarning> warnings)
+		{
 			var checkPassed = CheckCompetitionLimits(summary, competitionState, warnings);
 
 			CheckPostconditions(summary, competitionState, warnings);
@@ -140,6 +154,7 @@ namespace CodeJam.PerfTests.Analysers
 					$"{GetType().Name}: All competition limits are ok.");
 			}
 		}
+		#endregion
 
 		#region Pre- & postconditions
 		private bool CheckPreconditions(Summary summary, CompetitionState competitionState)
@@ -252,7 +267,12 @@ namespace CodeJam.PerfTests.Analysers
 				.Select(b => b.Target)
 				.ToHashSet();
 
-			var competitionMetadata = targets.FirstOrDefault()?.TryGetCompetitionMetadata();
+			if (targets.Count == 0)
+				return;
+
+			var targetType = targets.First().Type;
+
+			var competitionMetadata = AttributeAnnotations.TryGetCompetitionMetadata(targetType);
 			foreach (var target in targets)
 			{
 				hasBaseline |= target.Baseline;
@@ -266,13 +286,13 @@ namespace CodeJam.PerfTests.Analysers
 
 			if (!hasBaseline && competitionTargets.Any())
 			{
-				var target = summary.Benchmarks[0].Target;
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.SetupError,
-					$"The benchmark {target.Type.Name} has no baseline.");
+					$"The benchmark {targetType.Name} has no baseline.");
 			}
 		}
 
+		[CanBeNull]
 		private CompetitionTarget TryParseCompetitionTarget(
 			Target target, CompetitionMetadata competitionMetadata,
 			CompetitionState competitionState)
@@ -281,14 +301,13 @@ namespace CodeJam.PerfTests.Analysers
 			if (competitionAttribute == null)
 				return null;
 
-			CompetitionTarget result;
 			var fallbackLimit = CompetitionLimit.Empty;
 
+			CompetitionTarget result;
 			if (competitionMetadata == null)
 			{
-				var limit = IgnoreExistingAnnotations
-					? fallbackLimit
-					: AttributeAnnotations.ParseCompetitionLimit(competitionAttribute);
+				var limit = TryParseCompetitionLimit(competitionAttribute)
+					?? fallbackLimit;
 
 				result = new CompetitionTarget(target, limit, competitionAttribute.DoesNotCompete);
 			}
@@ -302,6 +321,12 @@ namespace CodeJam.PerfTests.Analysers
 
 			return result;
 		}
+
+		private CompetitionLimit TryParseCompetitionLimit(
+			CompetitionBenchmarkAttribute competitionAttribute) =>
+				IgnoreExistingAnnotations
+					? null
+					: AttributeAnnotations.ParseCompetitionLimit(competitionAttribute);
 
 		private CompetitionLimit TryParseCompetitionLimit(
 			Target target,
@@ -350,18 +375,15 @@ namespace CodeJam.PerfTests.Analysers
 			var competitionTargets = TargetsSlot[summary];
 
 			var benchmarksByTarget = summary.GetExecutionOrderBenchmarks()
-				.GroupBy(b => b.Target);
+				.GroupBy(b => b.Target)
+				.Where(g => competitionTargets.ContainsKey(g.Key.Method));
+
 			foreach (var benchmarks in benchmarksByTarget)
 			{
-				var target = benchmarks.Key;
-				var benchmarksForTarget = benchmarks.ToArray();
-
-				CompetitionTarget competitionTarget;
-				if (!competitionTargets.TryGetValue(target.Method, out competitionTarget))
-					continue;
+				var competitionTarget = competitionTargets[benchmarks.Key.Method];
 
 				result &= CheckCompetitionTargetLimits(
-					competitionTarget, benchmarksForTarget,
+					competitionTarget, benchmarks.ToArray(),
 					summary, competitionState,
 					warnings);
 			}
@@ -396,6 +418,7 @@ namespace CodeJam.PerfTests.Analysers
 					competitionState,
 					warnings);
 			}
+
 			return result;
 		}
 
@@ -417,27 +440,18 @@ namespace CodeJam.PerfTests.Analysers
 				return true;
 			}
 
-			if (!competitionLimit.CheckLimitsFor(actualValues))
-			{
-				var targetMethodTitle = benchmark.Target.MethodTitle;
-				if (competitionLimit.IsEmpty)
-				{
-					competitionState.AddAnalyserWarning(
-						warnings, MessageSeverity.TestError,
-						$"Method {targetMethodTitle} {actualValues} has empty limit. Please fill it.",
-						summary.TryGetBenchmarkReport(benchmark));
-				}
-				else
-				{
-					competitionState.AddAnalyserWarning(
-						warnings, MessageSeverity.TestError,
-						$"Method {targetMethodTitle} {actualValues} does not fit into limits {competitionLimit}.",
-						summary.TryGetBenchmarkReport(benchmark));
-				}
-				return false;
-			}
+			if (competitionLimit.CheckLimitsFor(actualValues))
+				return true;
 
-			return true;
+			var targetMethodTitle = benchmark.Target.MethodTitle;
+			var message = competitionLimit.IsEmpty
+				? $"Method {targetMethodTitle} {actualValues} has empty limit. Please fill it."
+				: $"Method {targetMethodTitle} {actualValues} does not fit into limits {competitionLimit}.";
+
+			competitionState.AddAnalyserWarning(
+				warnings, MessageSeverity.TestError, message, summary.TryGetBenchmarkReport(benchmark));
+
+			return false;
 		}
 
 		/// <summary>Called after limits check completed.</summary>

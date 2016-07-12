@@ -11,6 +11,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Columns
 {
+	// TODO: column with source limits?
 	/// <summary>Displays metric (upper or lower boundary) for the benchmark to baseline comparison.</summary>
 	/// <seealso cref="BenchmarkDotNet.Columns.IColumn"/>
 	[PublicAPI]

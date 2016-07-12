@@ -22,7 +22,7 @@ namespace CodeJam.PerfTests.Configs
 			result.Add(defaultConfig.GetColumns().ToArray());
 			result.Add(defaultConfig.GetValidators().ToArray());
 			result.Add(defaultConfig.GetAnalysers().ToArray());
-			result.Add(defaultConfig.GetAnalysers().ToArray());
+			result.Add(defaultConfig.GetDiagnosers().ToArray());
 
 			result.KeepBenchmarkFiles = defaultConfig.KeepBenchmarkFiles;
 			result.Set(defaultConfig.GetOrderProvider());

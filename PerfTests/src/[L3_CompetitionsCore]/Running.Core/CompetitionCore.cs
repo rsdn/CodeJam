@@ -161,7 +161,7 @@ namespace CodeJam.PerfTests.Running.Core
 				{
 					logger.WriteLine();
 					logger.WriteSeparatorLine(benchmarkType.Name, true);
-					logger.WriteLine(LogKind.Help, $"{LogInfoPrefix} {benchmarkType.GetShortAssemblyQualifiedName()}");
+					logger.WriteLineHelp($"{LogInfoPrefix} {benchmarkType.GetShortAssemblyQualifiedName()}");
 				}
 
 				try

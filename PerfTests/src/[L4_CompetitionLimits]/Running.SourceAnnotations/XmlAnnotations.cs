@@ -242,8 +242,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			var logger = competitionState.Logger;
 
-			logger.WriteLineInfo(
-				$"{LogInfoPrefix} Downloading {logUri}.");
+			logger.WriteLineInfo($"{LogVerbosePrefix} Downloading {logUri}.");
 
 			using (var reader = BenchmarkHelpers.TryGetTextFromUri(logUri, TimeSpan.FromSeconds(15)))
 			{
@@ -255,8 +254,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					return Array<XDocument>.Empty;
 				}
 
-				logger.WriteLineInfo(
-					$"{LogInfoPrefix} Downloaded {logUri}.");
+				logger.WriteLineInfo($"{LogVerbosePrefix} Downloaded {logUri}.");
 
 				var buffer = new StringBuilder();
 				int lineNumber = 0, xmlStartLineNumber = -1;

@@ -35,7 +35,10 @@ namespace CodeJam.PerfTests.Configs
 		#endregion
 
 		#region Runner config
-		/// <summary>Total count of reruns allowed. Set this to zero to use default limit (10 runs).</summary>
+		/// <summary>
+		/// Total count of reruns allowed. Set this to zero to use default limit of 10 runs.
+		/// (limit value can be overriden by <see cref="CodeJam.PerfTests.Running.Core.CompetitionRunnerBase"/> implementation).
+		/// </summary>
 		/// <value>The upper limits of rerun count.</value>
 		public int MaxRunsAllowed => _config.MaxRunsAllowed;
 
@@ -49,7 +52,10 @@ namespace CodeJam.PerfTests.Configs
 		/// <value><c>true</c> if the analyser should ignore existing limit annotations.</value>
 		public bool IgnoreExistingAnnotations => _config.IgnoreExistingAnnotations;
 
-		/// <summary>The analyser should not warn on benchmark runs that take longer than 0.5 sec to complete.</summary>
+		/// <summary>
+		/// The analyser should not warn on benchmark runs that take longer than 0.5 sec to complete.
+		/// (limit value can be overriden by <see cref="CodeJam.PerfTests.Running.Core.CompetitionRunnerBase"/> implementation).
+		/// </summary>
 		/// <value>
 		/// True if the analyser should not warn on benchmark runs that take longer than 0.5 sec to complete.
 		/// </value>
@@ -77,7 +83,7 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>
 		/// URI of the log that contains competition limits from previous run(s).
-		/// Relative paths, file paths and web URLs are supported.
+		/// Relative paths, absolute paths and web URLs are supported.
 		/// If <see cref="UpdateSourceAnnotations"/> set to <c>true</c>, the annotations will be updated with limits from the log.
 		/// Set <see cref="LogCompetitionLimits"/> <c>true</c> to log the limits.
 		/// </summary>

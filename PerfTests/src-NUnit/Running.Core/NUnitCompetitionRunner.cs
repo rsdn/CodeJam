@@ -72,19 +72,20 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Reports the execution errors to user.</summary>
 		/// <param name="messages">The messages to report.</param>
 		/// <param name="competitionState">State of the run.</param>
-		protected override void ReportExecutionErrors(string messages, CompetitionState competitionState)
-			=> Assert.Fail(messages);
+		protected override void ReportExecutionErrors(string messages, CompetitionState competitionState) =>
+			Assert.Fail(messages);
 
 		/// <summary>Reports failed assertions to user.</summary>
 		/// <param name="messages">The messages to report.</param>
 		/// <param name="competitionState">State of the run.</param>
-		protected override void ReportAssertionsFailed(string messages, CompetitionState competitionState)
-			=> Assert.Fail(messages);
+		protected override void ReportAssertionsFailed(string messages, CompetitionState competitionState) =>
+			Assert.Fail(messages);
 
 		/// <summary>Reports warnings to user.</summary>
 		/// <param name="messages">The messages to report.</param>
 		/// <param name="competitionState">State of the run.</param>
-		protected override void ReportWarnings(string messages, CompetitionState competitionState) => Assert.Ignore(messages);
+		protected override void ReportWarnings(string messages, CompetitionState competitionState) =>
+			Assert.Ignore(messages);
 		#endregion
 
 		#region Override config parameters

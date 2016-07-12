@@ -21,7 +21,7 @@ namespace CodeJam.PerfTests.Configs
 
 		#region Runner config
 		/// <summary>
-		/// Total count of reruns allowed. Set this to zero to use default limit of 10 runs
+		/// Total count of reruns allowed. Set this to zero to use default limit of 10 runs.
 		/// (limit value can be overriden by <see cref="CodeJam.PerfTests.Running.Core.CompetitionRunnerBase"/> implementation).
 		/// </summary>
 		/// <value>The upper limits of rerun count.</value>

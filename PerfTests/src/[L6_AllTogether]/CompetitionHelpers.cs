@@ -26,7 +26,7 @@ namespace CodeJam.PerfTests
 
 		/// <summary>Default explanation for bad performance tests.</summary>
 		public const string TemporarilyExcludedReason =
-			@"Temporary disabled as the results are unstable. Please, run the test manually from the Test Explorer window.";
+			"Temporary disabled as the results are unstable. Please, run the test manually from the Test Explorer window.";
 		#endregion
 
 		#region Benchmark-related
@@ -124,7 +124,9 @@ namespace CodeJam.PerfTests
 			return result;
 		}
 
-		/// <summary>Helper for custom configs: creates configuration that should be used in case the existing limits should be ignored.</summary>
+		/// <summary>
+		/// Helper for custom configs: creates configuration that should be used in case the existing limits should be ignored.
+		/// </summary>
 		/// <param name="job">The job for the config. Default one will be used if <c>null</c>.</param>
 		/// <returns>Configuration that should be used in case the existing limits should be ignored.</returns>
 		public static ManualCompetitionConfig CreateDefaultConfigReannotate(IJob job = null)

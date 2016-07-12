@@ -12,7 +12,7 @@ using CodeJam.PerfTests.Loggers;
 
 namespace CodeJam.PerfTests.Running.Core
 {
-	/// <summary>Competition runner that does not support integration with unit tests.</summary>
+	/// <summary>Console competition runner.</summary>
 	/// <seealso cref="CompetitionRunnerBase"/>
 	public class ConsoleCompetitionRunner : CompetitionRunnerBase
 	{
@@ -68,7 +68,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="summary">The summary to report.</param>
 		protected override void ReportHostLogger(HostLogger logger, Summary summary)
 		{
-			if (logger.LogMode != HostLogMode.AllMessages && summary != null)
+			if (summary != null && logger.LogMode != HostLogMode.AllMessages)
 			{
 				using (Loggers.HostLogger.BeginLogImportant(summary.Config))
 				{
