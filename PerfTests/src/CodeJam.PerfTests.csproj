@@ -90,7 +90,7 @@
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\MessageSeverity.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\Message.cs" />
     <Compile Include="[L4_CompetitionLimits]\Columns\CompetitionLimitColumn.cs" />
-    <Compile Include="[L4_CompetitionLimits]\CompetitionLimit.cs" />
+    <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\CompetitionLimit.cs" />
     <Compile Include="[L4_CompetitionLimits]\Analysers\CompetitionAnalyser.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.CompetitionLimitProviders\ICompetitionLimitProvider.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.CompetitionLimitProviders\CompetitionLimitProviderBase.cs" />

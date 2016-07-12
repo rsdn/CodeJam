@@ -4,7 +4,7 @@ using BenchmarkDotNet.Helpers;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests
+namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
 	/// <summary>Class that describes limits for benchmarks participating in competition.</summary>
 	[PublicAPI]
@@ -130,10 +130,13 @@ namespace CodeJam.PerfTests
 			minRatio = AdjustLimitArgument(minRatio, nameof(minRatio));
 			maxRatio = AdjustLimitArgument(maxRatio, nameof(maxRatio));
 
-			Code.AssertArgument(
-				IsMinLimitOk(minRatio, maxRatio),
-				nameof(maxRatio),
-				"Please check competition limits. Min ratio should not be greater than max ratio.");
+			if (!IsMinLimitOk(minRatio, maxRatio))
+			{
+				throw CodeExceptions.Argument(
+					nameof(maxRatio),
+					$"Please check competition limits. {nameof(minRatio)} ({minRatio.ToString(EnvironmentInfo.MainCultureInfo)}) " +
+					$"should not be greater than {nameof(maxRatio)} ({maxRatio.ToString(EnvironmentInfo.MainCultureInfo)}).");
+			}
 
 			MinRatio = minRatio;
 			MaxRatio = maxRatio;

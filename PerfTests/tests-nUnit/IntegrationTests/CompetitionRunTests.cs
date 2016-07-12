@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 
@@ -151,7 +151,10 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.ExecutionError);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Runner);
-			Assert.That(messages[0].MessageText, Does.StartWith("Benchmark BadLimitsBenchmark. Exception: Please check competition limits. Min ratio should not be greater than max ratio."));
+			Assert.That(
+				messages[0].MessageText,
+				Does.StartWith(
+					"Benchmark BadLimitsBenchmark. Exception: Please check competition limits. Min ratio should not be greater than max ratio."));
 		}
 
 		[Test]

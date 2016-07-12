@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Exporters;
-using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
@@ -24,6 +21,13 @@ namespace CodeJam.PerfTests.Running.Core
 			public ConsoleHostLogger(HostLogMode logMode) : base(ConsoleLogger.Default, logMode) { }
 		}
 
+		#region Override test running behavior
+		/// <summary>Summary should be logged even if detailed logging is disabled.</summary>
+		/// <value> <c>true</c> if summary should be logged; otherwise, <c>false</c>.</value>
+		protected override bool LogSummary => true;
+		#endregion
+
+		#region Host-related logic
 		/// <summary>Creates a host logger.</summary>
 		/// <param name="hostLogMode">The host log mode.</param>
 		/// <returns>An instance of <see cref="CompetitionRunnerBase.HostLogger"/></returns>
@@ -68,18 +72,9 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="summary">The summary to report.</param>
 		protected override void ReportHostLogger(HostLogger logger, Summary summary)
 		{
-			if (summary != null && logger.LogMode != HostLogMode.AllMessages)
-			{
-				using (Loggers.HostLogger.BeginLogImportant(summary.Config))
-				{
-					// Dumping the benchmark results to console
-					var outLogger = summary.Config.GetCompositeLogger();
-
-					outLogger.WriteSeparatorLine("Summary");
-					MarkdownExporter.Console.ExportToLog(summary, outLogger);
-				}
-			}
+			// Do nothing.
 		}
+		#endregion
 
 		#region Override config parameters
 		/// <summary>Override competition loggers.</summary>

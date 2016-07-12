@@ -99,7 +99,7 @@ namespace BenchmarkDotNet.Validators
 				case Platform.X64:
 					return isX64
 						? null
-						: "The code should be run as x86.";
+						: "The code should be run as x64.";
 				default:
 					throw new ArgumentOutOfRangeException(nameof(job.Platform), job.Platform, null);
 			}

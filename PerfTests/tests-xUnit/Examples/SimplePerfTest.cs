@@ -12,7 +12,7 @@ namespace CodeJam.Examples
 	{
 		private const int Count = 10 * 1000;
 
-		[SkippableFact]
+		[CompetitionFact]
 		public void RunSimplePerfTest() => Competition.Run(this, CompetitionHelpers.DefaultConfigAnnotate);
 
 		[CompetitionBaseline]

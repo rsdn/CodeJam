@@ -190,10 +190,16 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		private void ProcessRunComplete(
-			[NotNull] ICompetitionConfig competitionConfig, [NotNull] CompetitionState competitionState)
+			[NotNull] ICompetitionConfig competitionConfig,
+			[NotNull] CompetitionState competitionState)
 		{
 			var logger = competitionState.Logger;
-			if (competitionConfig.DetailedLogging && logger != null)
+			var summary = competitionState.LastRunSummary;
+
+			if (logger == null)
+				return;
+
+			if (competitionConfig.DetailedLogging)
 			{
 				var messages = competitionState.GetMessages();
 
@@ -211,6 +217,15 @@ namespace CodeJam.PerfTests.Running.Core
 					logger.WriteLineInfo("{LogVerbosePrefix} No messages in run.");
 				}
 			}
+			else if (LogSummary && summary != null)
+			{
+				using (Loggers.HostLogger.BeginLogImportant(summary.Config))
+				{
+					// Dumping the benchmark results to console
+					logger.WriteSeparatorLine("Summary");
+					MarkdownExporter.Console.ExportToLog(summary, logger);
+				}
+			}
 		}
 		#endregion
 
@@ -221,6 +236,10 @@ namespace CodeJam.PerfTests.Running.Core
 		/// Output directory that should be used for running the test or <c>null</c> if the current directory should be used.
 		/// </returns>
 		protected virtual string GetOutputDirectory(Assembly targetAssembly) => null;
+
+		/// <summary>Summary should be logged even if detailed logging is disabled.</summary>
+		/// <value> <c>true</c> if summary should be logged; otherwise, <c>false</c>.</value>
+		protected virtual bool LogSummary => false;
 
 		/// <summary>Default timing limit to detect too fast benchmarks.</summary>
 		/// <value>The default timing limit to detect too fast benchmarks.</value>
@@ -251,7 +270,7 @@ namespace CodeJam.PerfTests.Running.Core
 		protected virtual int DefaultAdditionalRerunsIfAnnotationsUpdated => 2;
 		#endregion
 
-		#region Host-related abstract methods
+		#region Host-related logic
 		/// <summary>Creates a host logger.</summary>
 		/// <param name="hostLogMode">The host log mode.</param>
 		/// <returns>An instance of <see cref="HostLogger"/></returns>

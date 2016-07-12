@@ -79,7 +79,6 @@ namespace BenchmarkDotNet.Running
 		{
 			if (InvokeBaseImplementation(job, operationsPerInvoke))
 			{
-				CodeJam.DebugCode.AssertState(false, "please check the call");
 				new MethodInvoker().Invoke(job, operationsPerInvoke, setupAction, targetAction, idleAction);
 				return;
 			}
@@ -101,7 +100,6 @@ namespace BenchmarkDotNet.Running
 		{
 			if (InvokeBaseImplementation(job, operationsPerInvoke))
 			{
-				CodeJam.DebugCode.AssertState(false, "please check the call");
 				new MethodInvoker().Invoke(job, operationsPerInvoke, setupAction, targetAction, idleAction);
 				return;
 			}

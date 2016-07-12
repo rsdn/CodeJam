@@ -1,5 +1,6 @@
 ﻿using System;
 
+using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 
 using CodeJam.PerfTests.Configs;
@@ -59,21 +60,23 @@ namespace CodeJam
 		private static ManualCompetitionConfig Create()
 		{
 			ManualCompetitionConfig result;
+			var job = CreateDefaultJob(Platform.X64);
+
 			if (!AnnotateOnRun)
 			{
-				result = CreateDefaultConfig();
+				result = CreateDefaultConfig(job);
 			}
-			else if (IgnoreExistingAnnotations)
+			else if (!IgnoreExistingAnnotations)
 			{
-				result = CreateDefaultConfigReannotate();
-			}
-			else
-			{
-				result = CreateDefaultConfigAnnotate();
+				result = CreateDefaultConfigAnnotate(job);
 #if !CI_Build
 				result.PreviousRunLogUri =
 					@"https://ci.appveyor.com/api/projects/andrewvk/codejam/artifacts/CodeJam-Tests.Performance.Short.AllPerfTests.log?all=true";
 #endif
+			}
+			else
+			{
+				result = CreateDefaultConfigReannotate(job);
 			}
 
 			result.ReportWarningsAsErrors = ReportWarningsAsErrors;

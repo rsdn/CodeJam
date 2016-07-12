@@ -4,6 +4,8 @@ using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
+using CodeJam.PerfTests.Running.SourceAnnotations;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
