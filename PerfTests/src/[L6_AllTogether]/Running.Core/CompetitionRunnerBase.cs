@@ -20,7 +20,7 @@ using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Columns;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Loggers;
-using CodeJam.PerfTests.Running.CompetitionLimitProviders;
+using CodeJam.PerfTests.Running.Limits;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Strings;
 

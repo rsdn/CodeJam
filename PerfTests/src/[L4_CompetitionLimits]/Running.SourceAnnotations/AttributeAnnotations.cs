@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Reflection;
 
+using CodeJam.PerfTests.Running.Limits;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations

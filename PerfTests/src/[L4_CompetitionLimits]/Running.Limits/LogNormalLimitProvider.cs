@@ -4,11 +4,9 @@ using System.Linq;
 using BenchmarkDotNet.Mathematics;
 using BenchmarkDotNet.Reports;
 
-using CodeJam.PerfTests.Running.SourceAnnotations;
-
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
+namespace CodeJam.PerfTests.Running.Limits
 {
 	/// <summary>
 	/// Competition limit provider for microbenchmarks. Uses lognormal distribution for results estimation.
@@ -34,7 +32,7 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 		/// <param name="benchmarkReport">The benchmark report.</param>
 		/// <param name="limitMode">If <c>true</c> limit values should be returned. Actual values returned otherwise.</param>
 		/// <returns>Limits for the benchmark or <c>null</c> if none.</returns>
-		protected override CompetitionLimit TryGetCompetitionLimitImpl(
+		protected override CompetitionLimit TryGetCompetitionLimit(
 			BenchmarkReport baselineReport,
 			BenchmarkReport benchmarkReport,
 			bool limitMode)

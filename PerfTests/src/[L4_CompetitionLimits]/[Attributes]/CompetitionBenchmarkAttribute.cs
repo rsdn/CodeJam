@@ -2,7 +2,7 @@
 
 using BenchmarkDotNet.Attributes;
 
-using CodeJam.PerfTests.Running.SourceAnnotations;
+using CodeJam.PerfTests.Running.Limits;
 
 using JetBrains.Annotations;
 

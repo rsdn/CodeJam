@@ -7,6 +7,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests
 {
+	[PublicAPI]
 	internal static class SelfTestCompetition
 	{
 		private static CompetitionRunnerBase Runner => new SelfTestCompetitionRunner();

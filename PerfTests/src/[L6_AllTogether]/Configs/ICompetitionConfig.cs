@@ -2,7 +2,7 @@
 
 using BenchmarkDotNet.Configs;
 
-using CodeJam.PerfTests.Running.CompetitionLimitProviders;
+using CodeJam.PerfTests.Running.Limits;
 
 namespace CodeJam.PerfTests.Configs
 {

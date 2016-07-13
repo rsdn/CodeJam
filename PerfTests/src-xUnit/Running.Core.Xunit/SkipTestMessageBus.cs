@@ -50,7 +50,7 @@ namespace CodeJam.PerfTests.Running.Core.Xunit
 		{
 			/// <inheritdoc/>
 			public TestSkippedWithOutput(ITest test, string reason, string output)
-				: base(test, Decimal.Zero, output)
+				: base(test, decimal.Zero, output)
 			{
 				Reason = reason;
 			}

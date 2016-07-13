@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using CodeJam.PerfTests;
 
@@ -10,6 +11,7 @@ using NUnit.Framework;
 namespace CodeJam.Examples
 {
 	[Category("PerfTests: examples")]
+	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public class ListCapacityPerfTest
 	{
 		private const int Count = 10000;

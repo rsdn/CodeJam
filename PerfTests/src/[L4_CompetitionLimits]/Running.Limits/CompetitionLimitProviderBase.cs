@@ -4,11 +4,9 @@ using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
-using CodeJam.PerfTests.Running.SourceAnnotations;
-
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
+namespace CodeJam.PerfTests.Running.Limits
 {
 	/// <summary>Base class for metrics providers.</summary>
 	/// <seealso cref="ICompetitionLimitProvider"/>
@@ -52,14 +50,14 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns>Actual values for the benchmark or <c>null</c> if none.</returns>
 		public CompetitionLimit TryGetActualValues(Benchmark benchmark, Summary summary) =>
-			TryGetCompetitionLimit(benchmark, summary, false);
+			TryGetCompetitionLimitCore(benchmark, summary, false);
 
 		/// <summary>Limits for the benchmark.</summary>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <param name="summary">Summary for the run.</param>
 		/// <returns>Limits for the benchmark or <c>null</c> if none.</returns>
 		public CompetitionLimit TryGetCompetitionLimit(Benchmark benchmark, Summary summary) =>
-			TryGetCompetitionLimit(benchmark, summary, true);
+			TryGetCompetitionLimitCore(benchmark, summary, true);
 
 		/// <summary>Limits for the benchmark.</summary>
 		/// <param name="benchmark">The benchmark.</param>
@@ -67,7 +65,7 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 		/// <param name="limitMode">If <c>true</c> limit values should be returned. Actual values returned otherwise.</param>
 		/// <returns>Limits for the benchmark or <c>null</c> if none.</returns>
 		[CanBeNull]
-		protected CompetitionLimit TryGetCompetitionLimit(Benchmark benchmark, Summary summary, bool limitMode)
+		private CompetitionLimit TryGetCompetitionLimitCore(Benchmark benchmark, Summary summary, bool limitMode)
 		{
 			Code.NotNull(benchmark, nameof(benchmark));
 			Code.NotNull(summary, nameof(summary));
@@ -76,7 +74,7 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 			if (!TryGetReports(benchmark, summary, out baselineReport, out benchmarkReport))
 				return null;
 
-			return TryGetCompetitionLimitImpl(baselineReport, benchmarkReport, limitMode);
+			return TryGetCompetitionLimit(baselineReport, benchmarkReport, limitMode);
 		}
 
 		/// <summary>Limits for the benchmark.</summary>
@@ -85,7 +83,7 @@ namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
 		/// <param name="limitMode">If <c>true</c> limit values should be returned. Actual values returned otherwise.</param>
 		/// <returns>Limits for the benchmark or <c>null</c> if none.</returns>
 		[CanBeNull]
-		protected abstract CompetitionLimit TryGetCompetitionLimitImpl(
+		protected abstract CompetitionLimit TryGetCompetitionLimit(
 			BenchmarkReport baselineReport,
 			BenchmarkReport benchmarkReport,
 			bool limitMode);

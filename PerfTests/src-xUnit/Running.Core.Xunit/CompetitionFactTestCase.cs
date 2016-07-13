@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
+using JetBrains.Annotations;
+
 using Xunit;
 using Xunit.Abstractions;
 using Xunit.Sdk;
@@ -19,6 +21,7 @@ namespace CodeJam.PerfTests.Running.Core.Xunit
 	{
 		/// <inheritdoc/>
 		[Obsolete("Called by the de-serializer; should only be called by deriving classes for de-serialization purposes")]
+		[UsedImplicitly]
 		public CompetitionFactTestCase() { }
 
 		/// <inheritdoc/>

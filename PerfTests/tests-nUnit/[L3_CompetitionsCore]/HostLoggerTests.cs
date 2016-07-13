@@ -144,7 +144,7 @@ TST10");
 			logger = new HostLogger(output, HostLogMode.AllMessages);
 			LogMessages(logger);
 			// ReSharper disable once StringLiteralTypo
-			const string expected = @"ABCDEFGH
+			const string Expected = @"ABCDEFGH
 TST0
 // !TST1
 TST2
@@ -162,7 +162,7 @@ TST8
 // !TST9
 TST10
 ";
-			Assert.AreEqual(output.GetLog(), expected);
+			Assert.AreEqual(output.GetLog(), Expected);
 		}
 
 		[Test]
@@ -188,7 +188,7 @@ TST10
 			output = new AccumulationLogger();
 			logger = new HostLogger(output, HostLogMode.PrefixedOrErrors);
 			LogMessages(logger);
-			const string expected = @"AH
+			const string Expected = @"AH
 TST0
 // !TST1
 // !<--
@@ -201,7 +201,7 @@ TST5
 TST6
 // !-->
 ";
-			Assert.AreEqual(output.GetLog(), expected);
+			Assert.AreEqual(output.GetLog(), Expected);
 		}
 
 		[Test]
@@ -227,7 +227,7 @@ TST6
 			output = new AccumulationLogger();
 			logger = new HostLogger(output, HostLogMode.PrefixedOnly);
 			LogMessages(logger);
-			const string expected = @"// !TST1
+			const string Expected = @"// !TST1
 // !<--
 TST3
 // !<--
@@ -238,7 +238,7 @@ TST5
 TST6
 // !-->
 ";
-			Assert.AreEqual(output.GetLog(), expected);
+			Assert.AreEqual(output.GetLog(), Expected);
 		}
 
 		[Test]
@@ -272,7 +272,7 @@ TST6
 				logger = new HostLogger(output, HostLogMode.AllMessages);
 				LogMessages(logger);
 				// ReSharper disable once StringLiteralTypo
-				const string expected = @"ABCDEFGH
+				const string Expected = @"ABCDEFGH
 TST0
 // !TST1
 TST2
@@ -290,7 +290,7 @@ TST8
 // !TST9
 TST10
 ";
-				Assert.AreEqual(output.GetLog(), expected);
+				Assert.AreEqual(output.GetLog(), Expected);
 			}
 		}
 	}

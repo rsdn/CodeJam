@@ -3,11 +3,9 @@
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
-using CodeJam.PerfTests.Running.SourceAnnotations;
-
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.CompetitionLimitProviders
+namespace CodeJam.PerfTests.Running.Limits
 {
 	/// <summary>Interface for competition limit provider.</summary>
 	public interface ICompetitionLimitProvider

@@ -5,7 +5,7 @@ using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
-using CodeJam.PerfTests.Running.CompetitionLimitProviders;
+using CodeJam.PerfTests.Running.Limits;
 
 using JetBrains.Annotations;
 

@@ -12,8 +12,8 @@ using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
 using CodeJam.Collections;
-using CodeJam.PerfTests.Running.CompetitionLimitProviders;
 using CodeJam.PerfTests.Running.Core;
+using CodeJam.PerfTests.Running.Limits;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.PerfTests.Running.SourceAnnotations;
 

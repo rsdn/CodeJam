@@ -36,7 +36,7 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(_callCounter, ExpectedSelfTestRunCount);
 			Assert.AreEqual(_afterSetupCounter, 2);
 
-			Assert.IsFalse(summary.ValidationErrors.Any());
+			Assert.IsFalse(summary?.ValidationErrors.Any());
 		}
 
 		[Test]
@@ -56,9 +56,9 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(_callCounter, 0);
 			Assert.AreEqual(_afterSetupCounter, 0);
 
-			Assert.AreEqual(summary.ValidationErrors.Length, 1);
-			Assert.IsTrue(summary.ValidationErrors[0].IsCritical);
-			Assert.That(summary.ValidationErrors[0].Message, Does.Contain(", property Platform:"));
+			Assert.AreEqual(summary?.ValidationErrors.Length, 1);
+			Assert.IsTrue(summary?.ValidationErrors[0].IsCritical);
+			Assert.That(summary?.ValidationErrors[0].Message, Does.Contain(", property Platform:"));
 		}
 
 		public class InProcessBenchmark

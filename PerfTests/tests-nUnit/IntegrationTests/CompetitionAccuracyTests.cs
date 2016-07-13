@@ -33,7 +33,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var runState = SelfTestCompetition.Run<TooFastBenchmark>(_debugConfig);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
-			Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			Assert.AreEqual(summary?.ValidationErrors.Length, 0);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
@@ -55,7 +55,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var runState = SelfTestCompetition.Run<TooSlowBenchmark>(SelfTestConfig);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
-			Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			Assert.AreEqual(summary?.ValidationErrors.Length, 0);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
@@ -84,7 +84,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var runState = SelfTestCompetition.Run<TooSlowBenchmark>(overrideConfig);
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
-			Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			Assert.AreEqual(summary?.ValidationErrors.Length, 0);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);

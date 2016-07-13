@@ -4,6 +4,7 @@ using System.Reflection;
 
 using BenchmarkDotNet.Running;
 
+using CodeJam.PerfTests.Running.Limits;
 using CodeJam.PerfTests.Running.SourceAnnotations;
 
 using NUnit.Framework;

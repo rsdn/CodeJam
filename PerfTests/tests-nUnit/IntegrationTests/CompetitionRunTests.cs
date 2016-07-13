@@ -26,7 +26,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			var summary = runState.LastRunSummary;
 
-			Assert.AreEqual(summary.ValidationErrors.Length, 0);
+			Assert.AreEqual(summary?.ValidationErrors.Length, 0);
 			Assert.IsTrue(runState.Completed);
 			Assert.AreEqual(runState.RunNumber, runNumber);
 			Assert.AreEqual(runState.RunsLeft, 0);

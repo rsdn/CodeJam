@@ -3,6 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.Running;
 
+using CodeJam.PerfTests.Running.Limits;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations
