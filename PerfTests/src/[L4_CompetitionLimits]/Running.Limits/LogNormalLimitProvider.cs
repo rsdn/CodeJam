@@ -56,8 +56,8 @@ namespace CodeJam.PerfTests.Running.Limits
 
 			if (limitMode)
 			{
-				minRatio *= 0.985;
-				maxRatio *= 1.015;
+				minRatio *= 0.98;
+				maxRatio *= 1.02;
 			}
 			return new CompetitionLimit(
 				Math.Min(minRatio, maxRatio),

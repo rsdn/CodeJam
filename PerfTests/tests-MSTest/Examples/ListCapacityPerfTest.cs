@@ -4,19 +4,20 @@ using System.Diagnostics.CodeAnalysis;
 
 using CodeJam.PerfTests;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 // ReSharper disable once CheckNamespace
 
 namespace CodeJam.Examples
 {
-	[Category("PerfTests: NUnit examples")]
+	[TestClass]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public class ListCapacityPerfTest
 	{
 		private const int Count = 10000;
 
-		[Test]
+		[TestMethod]
+		[TestCategory("PerfTests: MSTest examples")]
 		public void RunListCapacityPerfTest() => Competition.Run(this, CompetitionHelpers.DefaultConfigAnnotate);
 
 		[CompetitionBaseline]
@@ -30,7 +31,7 @@ namespace CodeJam.Examples
 			return data.Count;
 		}
 
-		[CompetitionBenchmark(0.72, 0.82)]
+		[CompetitionBenchmark(0.71, 0.79)]
 		public int ListWithCapacity()
 		{
 			var data = new List<int>(Count);

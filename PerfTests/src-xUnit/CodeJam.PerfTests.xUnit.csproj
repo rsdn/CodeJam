@@ -74,7 +74,6 @@
     <Compile Include="Running.Core.Xunit\CompetitionFactTestCase.cs" />
     <Compile Include="Running.Core.Xunit\SkipTestException.cs" />
     <Compile Include="Running.Core\XunitCompetitionRunner.cs" />
-    <Compile Include="StubXunitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\CodeJam.PerfTests.csproj">
