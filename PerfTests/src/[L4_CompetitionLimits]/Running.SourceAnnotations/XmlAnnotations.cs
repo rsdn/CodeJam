@@ -165,14 +165,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				competitionState.WriteExceptionMessage(
 					MessageSource.Analyser, MessageSeverity.SetupError,
-					$"{sourceDescription}: Could not parse annotation", ex);
+					$"{sourceDescription}: Could not parse annotation.", ex);
 				return null;
 			}
 			catch (XmlException ex)
 			{
 				competitionState.WriteExceptionMessage(
 					MessageSource.Analyser, MessageSeverity.SetupError,
-					$"{sourceDescription}: Could not parse annotation", ex);
+					$"{sourceDescription}: Could not parse annotation.", ex);
 				return null;
 			}
 
@@ -212,7 +212,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				{
 					competitionState.WriteMessage(
 						MessageSource.Analyser, MessageSeverity.SetupError,
-						$"Benchmark {assembly.FullName}: resource stream {resourceName} not found");
+						$"Benchmark {assembly.FullName}: resource stream '{resourceName}' not found.");
 
 					return null;
 				}
@@ -221,7 +221,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				{
 					return TryParseXmlAnnotationDoc(
 						reader, useFullTypeName, competitionState,
-						$"Resource {resourceName}");
+						$"Resource '{resourceName}'");
 				}
 			}
 		}
@@ -242,7 +242,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			var logger = competitionState.Logger;
 
-			logger.WriteLineInfo($"{LogVerbosePrefix} Downloading {logUri}.");
+			logger.WriteLineInfo($"{LogVerbosePrefix} Downloading '{logUri}'.");
 
 			using (var reader = BenchmarkHelpers.TryGetTextFromUri(logUri, TimeSpan.FromSeconds(15)))
 			{
@@ -250,11 +250,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				{
 					competitionState.WriteMessage(
 						MessageSource.Analyser, MessageSeverity.SetupError,
-						$"Could not load log content from {logUri}.");
+						$"Could not load log content from '{logUri}'.");
 					return Array<XDocument>.Empty;
 				}
 
-				logger.WriteLineInfo($"{LogVerbosePrefix} Downloaded {logUri}.");
+				logger.WriteLineInfo($"{LogVerbosePrefix} Downloaded '{logUri}'.");
 
 				var buffer = new StringBuilder();
 				int lineNumber = 0, xmlStartLineNumber = -1;
@@ -314,7 +314,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					reader,
 					true,
 					competitionState,
-					$"Log {logUri}, line {logLine}");
+					$"Log '{logUri}', line {logLine}");
 
 				return xmlAnnotationDoc;
 			}

@@ -64,7 +64,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 						// ReSharper disable once PossibleNullReferenceException
 						competitionState.WriteMessage(
 							MessageSource.Analyser, MessageSeverity.SetupError,
-							$"Method {method.DeclaringType.Name}.{method.Name}, no PDB data available");
+							$"Method {method.DeclaringType.Name}.{method.Name}, no PDB data available.");
 					}
 				}
 
@@ -99,7 +99,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					// ReSharper disable once PossibleNullReferenceException
 					competitionState.WriteExceptionMessage(
 						MessageSource.Analyser, MessageSeverity.ExecutionError,
-						$"Method {method.DeclaringType.Name}.{method.Name}, no PDB data available", ex);
+						$"Method {method.DeclaringType.Name}.{method.Name}, no PDB data available.", ex);
 
 					return null;
 				}
@@ -148,7 +148,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					// ReSharper disable once PossibleNullReferenceException
 					competitionState.WriteExceptionMessage(
 						MessageSource.Analyser, MessageSeverity.ExecutionError,
-						"Could not parse methodSymbols", ex);
+						"Could not parse method symbols.", ex);
 
 					return false;
 				}

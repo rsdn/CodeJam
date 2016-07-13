@@ -300,7 +300,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(1.05, 1.51)]
+			[CompetitionBenchmark(1.05, 1.56)]
 			public F Test01ClearFlag()
 			{
 				var a = F.A;

@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.Messages
 {
-	/// <summary>The source of the message.</summary>
+	/// <summary>Source of the message.</summary>
 	// TODO: define more sources.
 	[PublicAPI]
 	public enum MessageSource

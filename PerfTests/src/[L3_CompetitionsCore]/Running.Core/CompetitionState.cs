@@ -213,7 +213,7 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		/// <summary>Adds a message for the competition.</summary>
-		/// <param name="messageSource">The source of the message.</param>
+		/// <param name="messageSource">Source of the message.</param>
 		/// <param name="messageSeverity">Severity of the message.</param>
 		/// <param name="messageFormat">Message string format.</param>
 		/// <param name="args">The arguments for message.</param>
@@ -230,7 +230,7 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		/// <summary>Adds a message for the competition.</summary>
-		/// <param name="messageSource">The source of the message.</param>
+		/// <param name="messageSource">Source of the message.</param>
 		/// <param name="messageSeverity">Severity of the message.</param>
 		/// <param name="messageText">Text of the message.</param>
 		public void WriteMessage(

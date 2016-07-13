@@ -17,8 +17,8 @@ namespace CodeJam.PerfTests.Running.Messages
 		/// <value>Time elapsed since start of the competition.</value>
 		TimeSpan Elapsed { get; }
 
-		/// <summary>The source of the message.</summary>
-		/// <value>The source of the message.</value>
+		/// <summary>Source of the message.</summary>
+		/// <value>Source of the message.</value>
 		MessageSource MessageSource { get; }
 
 		/// <summary>Severity of the message.</summary>

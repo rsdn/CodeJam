@@ -10,6 +10,7 @@ namespace CodeJam.PerfTests
 	internal static class StubMSTestTest
 	{
 		[TestMethod]
+		[Ignore]
 		public static void MSTestTestToFoolAppveyor()
 		{
 			Assert.IsTrue(true);

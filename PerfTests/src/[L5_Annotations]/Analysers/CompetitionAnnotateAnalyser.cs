@@ -81,7 +81,7 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.Warning,
-					$"No XML annotation documents in the log {PreviousRunLogUri}.");
+					$"No XML annotation documents in the log '{PreviousRunLogUri}'.");
 
 				return;
 			}
@@ -91,20 +91,20 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.Informational,
-					$"Competition limits were updated from log file {PreviousRunLogUri}.");
+					$"Competition limits were updated from log file '{PreviousRunLogUri}'.");
 			}
 			else
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.Informational,
-					$"Competition limits do not require update. Log file: {PreviousRunLogUri}.");
+					$"Competition limits do not require update. Log file: '{PreviousRunLogUri}'.");
 			}
 		}
 
 		private XDocument[] ReadXmlAnnotationDocsFromLog(Summary summary, CompetitionState competitionState)
 		{
 			competitionState.Logger.WriteLineInfo(
-				$"{LogVerbosePrefix} Reading XML annotation documents from log {PreviousRunLogUri}.");
+				$"{LogVerbosePrefix} Reading XML annotation documents from log '{PreviousRunLogUri}'.");
 
 			var xmlAnnotationDocs = _annotationsSlot[summary].GetOrAdd(
 				PreviousRunLogUri,
@@ -118,7 +118,7 @@ namespace CodeJam.PerfTests.Analysers
 			CompetitionTargets competitionTargets, XDocument[] xmlAnnotationDocs, CompetitionState competitionState)
 		{
 			competitionState.Logger.WriteLineInfo(
-				$"{LogVerbosePrefix} Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log {PreviousRunLogUri}.");
+				$"{LogVerbosePrefix} Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log '{PreviousRunLogUri}'.");
 
 			bool updated = false;
 			foreach (var competitionTarget in competitionTargets.Values)
@@ -235,7 +235,7 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.Warning,
-					"The sources were updated with a new annotations. Please check them before commiting the changes.");
+					"The sources were updated with new annotations. Please check them before commiting the changes.");
 			}
 
 			foreach (var competitionTarget in targetsToAnnotate)

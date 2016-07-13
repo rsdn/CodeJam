@@ -49,7 +49,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				Code.NotNullNorEmpty(file, nameof(file));
 				Code.NotNull(competitionState, nameof(competitionState));
-				Code.AssertState(!_xmlAnnotations.ContainsKey(file), $"File {file} already loaded as XML annotation");
+				Code.AssertState(!_xmlAnnotations.ContainsKey(file), $"File '{file}' already loaded as XML annotation.");
 
 				return _sourceLines.GetOrAdd(
 					file, f =>
@@ -62,7 +62,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 						{
 							competitionState.WriteExceptionMessage(
 								MessageSource.Analyser, MessageSeverity.SetupError,
-								$"Could not access file {file}.", ex);
+								$"Could not access file '{file}'.", ex);
 
 							return Array<string>.Empty;
 						}
@@ -81,7 +81,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				Code.NotNullNorEmpty(file, nameof(file));
 				Code.NotNull(competitionState, nameof(competitionState));
-				Code.AssertState(!_sourceLines.ContainsKey(file), $"File {file} already loaded as source lines");
+				Code.AssertState(!_sourceLines.ContainsKey(file), $"File '{file}' already loaded as source lines.");
 
 				return _xmlAnnotations.GetOrAdd(
 					file, f =>
@@ -92,14 +92,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 							{
 								return XmlAnnotations.TryParseXmlAnnotationDoc(
 									reader, useFullTypeName, competitionState,
-									$"XML annotation {file}");
+									$"XML annotation '{file}'");
 							}
 						}
 						catch (IOException ex)
 						{
 							competitionState.WriteExceptionMessage(
 								MessageSource.Analyser, MessageSeverity.SetupError,
-								$"Could not access file {file}.", ex);
+								$"Could not access file '{file}'.", ex);
 
 							return null;
 						}
@@ -112,7 +112,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				if (_sourceLines.GetValueOrDefault(file).IsNullOrEmpty() &&
 					_xmlAnnotations.GetValueOrDefault(file) == null)
-					throw CodeExceptions.InvalidOperation($"Load file {file} before marking it as changed.");
+					throw CodeExceptions.InvalidOperation($"Load file '{file}' before marking it as changed.");
 
 				_changedFiles.Add(file);
 			}
@@ -127,7 +127,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				var lines = _sourceLines.GetValueOrDefault(file);
 				if (lines.IsNullOrEmpty())
-					throw CodeExceptions.InvalidOperation($"Load source file {file} before marking it as changed.");
+					throw CodeExceptions.InvalidOperation($"Load source file '{file}' before marking it as changed.");
 
 				lines[lineIndex] = newLine;
 				MarkAsChanged(file);
@@ -201,26 +201,26 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					var resourceFileName = GetResourceFileName(fileName, competitionMetadata);
 
 					logger.WriteLineInfo(
-						$"{LogVerbosePrefix} Method {targetMethodTitle}: annotating resource file {resourceFileName}.");
+						$"{LogVerbosePrefix} Method {targetMethodTitle}: annotating resource file '{resourceFileName}'.");
 					var annotated = TryFixBenchmarkXmlAnnotation(annContext, resourceFileName, targetToAnnotate, competitionState);
 					if (!annotated)
 					{
 						competitionState.WriteMessage(
 							MessageSource.Analyser, MessageSeverity.Warning,
-							$"Method {targetMethodTitle}: could not annotate resource file {resourceFileName}.", null);
+							$"Method {targetMethodTitle}: could not annotate resource file '{resourceFileName}'.", null);
 						continue;
 					}
 				}
 				else
 				{
 					logger.WriteLineInfo(
-						$"{LogVerbosePrefix} Method {targetMethodTitle}: annotating file {fileName}, line {firstCodeLine}.");
+						$"{LogVerbosePrefix} Method {targetMethodTitle}: annotating file '{fileName}', line {firstCodeLine}.");
 					var annotated = TryFixBenchmarkAttribute(annContext, fileName, firstCodeLine, targetToAnnotate, competitionState);
 					if (!annotated)
 					{
 						competitionState.WriteMessage(
 							MessageSource.Analyser, MessageSeverity.Warning,
-							$"Method {targetMethodTitle}: could not annotate source file {fileName}.");
+							$"Method {targetMethodTitle}: could not annotate source file '{fileName}'.");
 						continue;
 					}
 				}

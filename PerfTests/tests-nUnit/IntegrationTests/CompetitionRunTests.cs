@@ -154,7 +154,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.That(
 				messages[0].MessageText,
 				Does.StartWith(
-					"Benchmark BadLimitsBenchmark. Exception: Please check competition limits."));
+					"Benchmark BadLimitsBenchmark failed. Exception: Please check competition limits. " +
+						"The minRatio (20.2) should not be greater than the maxRatio (5.5)."));
 		}
 
 		[Test]
@@ -368,7 +369,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
 			}
 
-			[CompetitionBenchmark(20, 5)]
+			[CompetitionBenchmark(20.2, 5.5)]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);

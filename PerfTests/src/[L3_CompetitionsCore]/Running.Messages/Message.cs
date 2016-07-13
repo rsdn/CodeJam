@@ -12,7 +12,7 @@ namespace CodeJam.PerfTests.Running.Messages
 		/// <param name="runNumber">Number of the run the message belongs to.</param>
 		/// <param name="runMessageNumber">Number of the message in the run.</param>
 		/// <param name="elapsed">Time elapsed from the start of the benchmark.</param>
-		/// <param name="messageSource">The source of the message.</param>
+		/// <param name="messageSource">Source of the message.</param>
 		/// <param name="messageSeverity">Severity of the message.</param>
 		/// <param name="messageText">>Text of the message.</param>
 		public Message(
@@ -44,8 +44,8 @@ namespace CodeJam.PerfTests.Running.Messages
 		/// <value>Time elapsed since start of the competition.</value>
 		public TimeSpan Elapsed { get; }
 
-		/// <summary>The source of the message.</summary>
-		/// <value>The source of the message.</value>
+		/// <summary>Source of the message.</summary>
+		/// <value>Source of the message.</value>
 		public MessageSource MessageSource { get; }
 
 		/// <summary>Severity of the message.</summary>

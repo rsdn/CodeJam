@@ -14,6 +14,7 @@ namespace CodeJam.Examples
 		private const int Count = 10 * 1000;
 
 		[TestMethod]
+		[TestCategory("PerfTests: MSTest examples")]
 		public void RunSimplePerfTest() => Competition.Run(this, CompetitionHelpers.DefaultConfigAnnotate);
 
 		[CompetitionBaseline]

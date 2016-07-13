@@ -80,23 +80,23 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Writes the setup exception message.</summary>
 		/// <param name="competitionState">State of the run.</param>
-		/// <param name="messageSource">The source of the message.</param>
+		/// <param name="messageSource">Source of the message.</param>
 		/// <param name="messageSeverity">Severity of the message.</param>
-		/// <param name="origin">The prefix to be used in message.</param>
+		/// <param name="message">The explanation for the exception.</param>
 		/// <param name="ex">The exception to write.</param>
 		public static void WriteExceptionMessage(
 			[NotNull] this CompetitionState competitionState,
 			MessageSource messageSource, MessageSeverity messageSeverity,
-			[NotNull] string origin,
+			[NotNull] string message,
 			[NotNull] Exception ex)
 		{
 			Code.NotNull(competitionState, nameof(competitionState));
-			Code.NotNullNorEmpty(origin, nameof(origin));
+			Code.NotNullNorEmpty(message, nameof(message));
 			Code.NotNull(ex, nameof(ex));
 
 			competitionState.WriteMessage(
 				messageSource, messageSeverity,
-				$"{origin}. Exception: {ex.Message}.");
+				$"{message} Exception: {ex.Message}.");
 			competitionState.Logger.WriteLineError(ex.ToString());
 		}
 
@@ -147,7 +147,7 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				throw CodeExceptions.Argument(
 					nameof(competitionConfig),
-					$"The competition config should include single instance of {nameof(RunStateSlots)} validator");
+					$"The competition config should include single instance of {nameof(RunStateSlots)} validator.");
 			}
 
 			var competitionState = RunState[competitionConfig];
@@ -181,7 +181,7 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				competitionState.WriteExceptionMessage(
 					MessageSource.Runner, MessageSeverity.ExecutionError,
-					$"Benchmark {benchmarkType.Name}", ex);
+					$"Benchmark {benchmarkType.Name} failed.", ex);
 			}
 			finally
 			{
