@@ -46,14 +46,12 @@
       <HintPath>..\..\packages\BenchmarkDotNet.0.9.7\lib\net40\BenchmarkDotNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="nunit.framework, Version=3.4.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Management" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Examples\ListCapacityPerfTest.cs" />
@@ -75,10 +73,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj">
-      <Project>{2f2046cc-fb47-4318-b335-5a82b04b6c40}</Project>
-      <Name>CodeJam.Main</Name>
-    </ProjectReference>
     <ProjectReference Include="..\src-NUnit\CodeJam.PerfTests.NUnit.csproj">
       <Project>{8abf1a06-4643-49d6-a546-b7473db10102}</Project>
       <Name>CodeJam.PerfTests.NUnit</Name>

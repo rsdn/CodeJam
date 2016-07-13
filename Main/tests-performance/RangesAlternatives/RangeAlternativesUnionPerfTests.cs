@@ -95,7 +95,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(12.11, 18.41)]
+			[CompetitionBenchmark(12.11, 24.48)]
 			public RangeStub<int> Test02RangeExtensionAlt()
 			{
 				var result = _rangeData[0];

@@ -53,9 +53,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Competition.cs" />
@@ -64,10 +61,6 @@
     <Compile Include="StubNUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj">
-      <Project>{2f2046cc-fb47-4318-b335-5a82b04b6c40}</Project>
-      <Name>CodeJam.Main</Name>
-    </ProjectReference>
     <ProjectReference Include="..\src\CodeJam.PerfTests.csproj">
       <Project>{1d650545-a151-4211-8c29-c38a939403a6}</Project>
       <Name>CodeJam.PerfTests</Name>

@@ -1,15 +1,15 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CodeJam.PerfTests.xUnit")]
+[assembly: AssemblyTitle("CodeJam.PerfTests-Tests.MSTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CodeJam.PerfTests.xUnit")]
+[assembly: AssemblyProduct("CodeJam.PerfTests-Tests.MSTest")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("92c6e5f8-ffee-4269-92d7-bb9cfeb63d4b")]
+[assembly: Guid("b535d8ef-66cc-4701-845d-f4c44c49922e")]
 
 // Version information for an assembly consists of the following four values:
 //

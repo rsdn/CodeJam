@@ -4,14 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{00E3881C-3D4D-4AE3-B1B4-CDCDC99F7E51}</ProjectGuid>
+    <ProjectGuid>{84C380D0-0EA7-4262-BB9E-44C7156EC091}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CodeJam</RootNamespace>
-    <AssemblyName>CodeJam.Experimental-Tests.Performance</AssemblyName>
+    <RootNamespace>CodeJam.PerfTests</RootNamespace>
+    <AssemblyName>CodeJam.PerfTests.MSTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\CodeJam.PerfTests.MSTest.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\CodeJam.PerfTests.MSTest.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -41,40 +45,35 @@
       <HintPath>..\..\packages\BenchmarkDotNet.0.9.7\lib\net40\BenchmarkDotNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.4.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
   <ItemGroup>
+    <Compile Include="Competition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Running.Core\MSTestCompetitionRunner.cs" />
+    <Compile Include="StubMSTestTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj">
-      <Project>{2f2046cc-fb47-4318-b335-5a82b04b6c40}</Project>
-      <Name>CodeJam.Main</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\PerfTests\src-NUnit\CodeJam.PerfTests.NUnit.csproj">
-      <Project>{8abf1a06-4643-49d6-a546-b7473db10102}</Project>
-      <Name>CodeJam.PerfTests.NUnit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\PerfTests\src\CodeJam.PerfTests.csproj">
+    <ProjectReference Include="..\src\CodeJam.PerfTests.csproj">
       <Project>{1d650545-a151-4211-8c29-c38a939403a6}</Project>
       <Name>CodeJam.PerfTests</Name>
     </ProjectReference>
-    <ProjectReference Include="..\src\CodeJam.Experimental.csproj">
-      <Project>{7bd77da2-a731-400c-a88e-215fc592e6e3}</Project>
-      <Name>CodeJam.Experimental</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
