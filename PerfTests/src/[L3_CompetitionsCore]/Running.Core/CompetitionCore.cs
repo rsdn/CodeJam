@@ -170,7 +170,7 @@ namespace CodeJam.PerfTests.Running.Core
 					bool entered = false;
 					try
 					{
-						entered = mutex.WaitOne(10);
+						entered = mutex.WaitOne(TimeSpan.FromMinutes(10));
 						if (CheckPreconditions(benchmarkType, enableConcurrentRuns || entered, allowDebugBuilds, competitionState))
 						{
 							RunCore(benchmarkType, competitionState, maxRunsAllowed);
