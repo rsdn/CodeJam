@@ -124,20 +124,21 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		#region Run logic
-		private static int _runCount;
 
 		/// <summary>Runs the benchmark for specified benchmark type.</summary>
 		/// <param name="benchmarkType">The type of the benchmark.</param>
 		/// <param name="competitionConfig">The config for the benchmark.</param>
 		/// <param name="maxRunsAllowed">Total count of reruns allowed.</param>
 		/// <param name="allowDebugBuilds">Allow debug builds. If <c>false</c> the benchmark will be skipped on debug builds.</param>
+		/// <param name="enableConcurrentRuns">If set to <c>true</c> concurrent runs are allowed.</param>
 		/// <returns>Competition state for the run.</returns>
 		[NotNull]
 		internal static CompetitionState Run(
 			[NotNull] Type benchmarkType,
 			[NotNull] IConfig competitionConfig,
 			int maxRunsAllowed,
-			bool allowDebugBuilds)
+			bool allowDebugBuilds,
+			bool enableConcurrentRuns)
 		{
 			Code.NotNull(benchmarkType, nameof(benchmarkType));
 			Code.NotNull(competitionConfig, nameof(competitionConfig));
@@ -164,17 +165,22 @@ namespace CodeJam.PerfTests.Running.Core
 					logger.WriteLineHelp($"{LogInfoPrefix} {benchmarkType.GetShortAssemblyQualifiedName()}");
 				}
 
-				try
+				using (var mutex = new Mutex(false, $"Global\\{typeof(CompetitionCore).FullName}"))
 				{
-					var runCount = Interlocked.Increment(ref _runCount);
-					if (CheckPreconditions(benchmarkType, runCount, allowDebugBuilds, competitionState))
+					bool entered = false;
+					try
 					{
-						RunCore(benchmarkType, competitionState, maxRunsAllowed);
+						entered = mutex.WaitOne(10);
+						if (CheckPreconditions(benchmarkType, enableConcurrentRuns || entered, allowDebugBuilds, competitionState))
+						{
+							RunCore(benchmarkType, competitionState, maxRunsAllowed);
+						}
 					}
-				}
-				finally
-				{
-					Interlocked.Decrement(ref _runCount);
+					finally
+					{
+						if (entered)
+							mutex.ReleaseMutex();
+					}
 				}
 			}
 			catch (Exception ex)
@@ -195,14 +201,15 @@ namespace CodeJam.PerfTests.Running.Core
 
 		private static bool CheckPreconditions(
 			[NotNull] Type benchmarkType,
-			int runCount, bool allowDebugBuilds,
+			bool safeToRun, bool allowDebugBuilds,
 			CompetitionState competitionState)
 		{
-			if (runCount > 1)
+			if (!safeToRun)
 			{
 				competitionState.WriteMessage(
 					MessageSource.Runner, MessageSeverity.SetupError,
-					"Competitions cannot be run in parallel. Competition run skipped.");
+					"Competitions cannot be run in parallel. Be sure to disable parallel test execution. Competition run skipped.");
+
 				return false;
 			}
 
@@ -212,6 +219,7 @@ namespace CodeJam.PerfTests.Running.Core
 				competitionState.WriteMessage(
 					MessageSource.Runner, MessageSeverity.Warning,
 					$"Please run as a release build. Assembly {assembly.GetName().Name} was build as debug.");
+
 				return false;
 			}
 
