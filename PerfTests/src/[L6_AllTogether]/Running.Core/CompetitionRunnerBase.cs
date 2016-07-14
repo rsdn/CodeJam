@@ -155,7 +155,8 @@ namespace CodeJam.PerfTests.Running.Core
 					competitionState = CompetitionCore.Run(
 						benchmarkType, benchmarkConfig,
 						competitionConfig.MaxRunsAllowed,
-						competitionConfig.AllowDebugBuilds, false);
+						competitionConfig.AllowDebugBuilds, 
+						competitionConfig.ConcurrentRunBehavior);
 
 					ProcessRunComplete(competitionConfig, competitionState);
 				}

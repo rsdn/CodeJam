@@ -97,7 +97,6 @@ namespace CodeJam.PerfTests.Running.Core
 			competitionState.WriteMessage(
 				messageSource, messageSeverity,
 				$"{message} Exception: {ex.Message}.");
-			competitionState.Logger.WriteLineError(ex.ToString());
 		}
 
 		/// <summary>Helper method to dump the content of the message into logger.</summary>
@@ -124,13 +123,12 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		#region Run logic
-
 		/// <summary>Runs the benchmark for specified benchmark type.</summary>
 		/// <param name="benchmarkType">The type of the benchmark.</param>
 		/// <param name="competitionConfig">The config for the benchmark.</param>
 		/// <param name="maxRunsAllowed">Total count of reruns allowed.</param>
 		/// <param name="allowDebugBuilds">Allow debug builds. If <c>false</c> the benchmark will be skipped on debug builds.</param>
-		/// <param name="enableConcurrentRuns">If set to <c>true</c> concurrent runs are allowed.</param>
+		/// <param name="concurrentRunBehavior">Behavior for concurrent competition runs.</param>
 		/// <returns>Competition state for the run.</returns>
 		[NotNull]
 		internal static CompetitionState Run(
@@ -138,7 +136,7 @@ namespace CodeJam.PerfTests.Running.Core
 			[NotNull] IConfig competitionConfig,
 			int maxRunsAllowed,
 			bool allowDebugBuilds,
-			bool enableConcurrentRuns)
+			ConcurrentRunBehavior concurrentRunBehavior)
 		{
 			Code.NotNull(benchmarkType, nameof(benchmarkType));
 			Code.NotNull(competitionConfig, nameof(competitionConfig));
@@ -167,18 +165,19 @@ namespace CodeJam.PerfTests.Running.Core
 
 				using (var mutex = new Mutex(false, $"Global\\{typeof(CompetitionCore).FullName}"))
 				{
-					bool entered = false;
+					bool lockTaken = false;
 					try
 					{
-						entered = mutex.WaitOne(TimeSpan.FromMinutes(10));
-						if (CheckPreconditions(benchmarkType, enableConcurrentRuns || entered, allowDebugBuilds, competitionState))
+						var timeout = concurrentRunBehavior == ConcurrentRunBehavior.Lock ? Timeout.InfiniteTimeSpan : TimeSpan.Zero;
+						lockTaken = mutex.WaitOne(timeout);
+						if (CheckPreconditions(benchmarkType, lockTaken, allowDebugBuilds, concurrentRunBehavior, competitionState))
 						{
 							RunCore(benchmarkType, competitionState, maxRunsAllowed);
 						}
 					}
 					finally
 					{
-						if (entered)
+						if (lockTaken)
 							mutex.ReleaseMutex();
 					}
 				}
@@ -201,16 +200,34 @@ namespace CodeJam.PerfTests.Running.Core
 
 		private static bool CheckPreconditions(
 			[NotNull] Type benchmarkType,
-			bool safeToRun, bool allowDebugBuilds,
+			bool lockTaken, bool allowDebugBuilds,
+			ConcurrentRunBehavior concurrentRunBehavior,
 			CompetitionState competitionState)
 		{
-			if (!safeToRun)
+			if (!lockTaken)
 			{
-				competitionState.WriteMessage(
-					MessageSource.Runner, MessageSeverity.SetupError,
-					"Competitions cannot be run in parallel. Be sure to disable parallel test execution. Competition run skipped.");
-
-				return false;
+				switch (concurrentRunBehavior)
+				{
+#pragma warning disable 618
+					case ConcurrentRunBehavior.Ignore:
+						competitionState.Logger.WriteLine(
+							$"{LogImportantInfoPrefix} There are another competitions being run in parallel. The timings can be affected by them.");
+						break;
+					case ConcurrentRunBehavior.Warning:
+						competitionState.WriteMessage(
+							MessageSource.Runner, MessageSeverity.Warning,
+							"There are another competitions being run in parallel. The timings can be affected by them.");
+						break;
+#pragma warning restore 618
+					case ConcurrentRunBehavior.Lock:
+					case ConcurrentRunBehavior.Fail:
+						competitionState.WriteMessage(
+							MessageSource.Runner, MessageSeverity.SetupError,
+							"Competitions cannot be run in parallel. Be sure to disable parallel test execution. Competition run skipped.");
+						return false;
+					default:
+						throw CodeExceptions.UnexpectedArgumentValue(nameof(concurrentRunBehavior), concurrentRunBehavior);
+				}
 			}
 
 			if (!allowDebugBuilds && benchmarkType.Assembly.IsDebugAssembly())
@@ -226,9 +243,7 @@ namespace CodeJam.PerfTests.Running.Core
 			return true;
 		}
 
-		private static void RunCore(
-			Type benchmarkType,
-			CompetitionState competitionState, int maxRunsAllowed)
+		private static void RunCore(Type benchmarkType, CompetitionState competitionState, int maxRunsAllowed)
 		{
 			var logger = competitionState.Logger;
 

@@ -22,12 +22,17 @@ namespace CodeJam.PerfTests.IntegrationTests
 	[SuppressMessage("ReSharper", "ArgumentsStyleLiteral")]
 	public static class CompetitionRunTests
 	{
-		private static void AssertCompetitionCompleted(CompetitionState runState, int runNumber = 1)
+		private static void AssertCompetitionCompleted(CompetitionState runState, MessageSeverity expectedSeverity, int runNumber = 1, bool skipSummary = true)
 		{
-			var summary = runState.LastRunSummary;
+			if (!skipSummary)
+			{
+				var summary = runState.LastRunSummary;
 
-			Assert.AreEqual(summary?.ValidationErrors.Length, 0);
+				Assert.AreEqual(summary?.ValidationErrors.Length, 0);
+			}
+
 			Assert.IsTrue(runState.Completed);
+			Assert.AreEqual(runState.HighestMessageSeverity, expectedSeverity);
 			Assert.AreEqual(runState.RunNumber, runNumber);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
@@ -43,7 +48,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, 0);
-			AssertCompetitionCompleted(runState);
+			AssertCompetitionCompleted(runState, MessageSeverity.Verbose);
 			Assert.AreEqual(messages.Length, 0);
 		}
 
@@ -56,7 +61,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			AssertCompetitionCompleted(runState);
+			AssertCompetitionCompleted(runState, MessageSeverity.Verbose);
 
 			Assert.AreEqual(messages.Length, 0);
 		}
@@ -70,7 +75,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			AssertCompetitionCompleted(runState);
+			AssertCompetitionCompleted(runState, MessageSeverity.Informational);
 
 			Assert.AreEqual(messages.Length, 1);
 
@@ -86,7 +91,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			AssertCompetitionCompleted(runState);
+			AssertCompetitionCompleted(runState, MessageSeverity.Informational);
 
 			Assert.AreEqual(messages.Length, 1);
 
@@ -102,7 +107,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			AssertCompetitionCompleted(runState);
+			AssertCompetitionCompleted(runState, MessageSeverity.Informational);
 
 			Assert.AreEqual(messages.Length, 1);
 
@@ -118,7 +123,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			AssertCompetitionCompleted(runState);
+			AssertCompetitionCompleted(runState, MessageSeverity.SetupError);
 
 			Assert.AreEqual(messages.Length, 1);
 
@@ -138,12 +143,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			Assert.IsNull(runState.LastRunSummary);
-			Assert.IsTrue(runState.Completed);
-			Assert.AreEqual(runState.RunNumber, 1);
-			Assert.AreEqual(runState.RunsLeft, 0);
-			Assert.AreEqual(runState.RunLimitExceeded, false);
-			Assert.AreEqual(runState.LooksLikeLastRun, true);
+			AssertCompetitionCompleted(runState, MessageSeverity.ExecutionError, skipSummary: true);
 
 			Assert.AreEqual(messages.Length, 1);
 
@@ -167,7 +167,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, 3 * ExpectedRunCount); // 3x rerun
-			AssertCompetitionCompleted(runState, runNumber: 3);
+			AssertCompetitionCompleted(runState, MessageSeverity.TestError, runNumber: 3);
 
 			Assert.AreEqual(messages.Length, 6);
 
@@ -222,7 +222,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, 3 * ExpectedRunCount); // 3x rerun
-			AssertCompetitionCompleted(runState, runNumber: 3);
+			AssertCompetitionCompleted(runState, MessageSeverity.TestError, runNumber: 3);
 
 			Assert.AreEqual(messages.Length, 6);
 

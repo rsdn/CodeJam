@@ -30,5 +30,15 @@ namespace CodeJam.PerfTests
 		public static CompetitionState Run<T>([CanBeNull] ICompetitionConfig competitionConfig)
 			where T : class =>
 				Runner.Run<T>(competitionConfig);
+
+		/// <summary>Runs the benchmark.</summary>
+		/// <param name="benchmarkType">Benchmark class to run.</param>
+		/// <param name="competitionConfig">The competition config.</param>
+		/// <returns>The state of the competition.</returns>
+		[NotNull]
+		public static CompetitionState Run(
+			[NotNull] Type benchmarkType,
+			[CanBeNull] ICompetitionConfig competitionConfig) =>
+				Runner.Run(benchmarkType, competitionConfig);
 	}
 }

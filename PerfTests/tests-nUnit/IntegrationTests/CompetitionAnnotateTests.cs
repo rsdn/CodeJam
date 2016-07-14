@@ -32,7 +32,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			var runState = SelfTestCompetition.Run<AnnotatedBenchmark>(_remoteLogConfig);
 			var messages = runState.GetMessages();
-			Assert.AreEqual(runState.HighestMessageSeverityInRun, MessageSeverity.Warning);
+			Assert.AreEqual(runState.HighestMessageSeverity, MessageSeverity.Warning);
 			Assert.IsTrue(runState.Completed);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
@@ -48,7 +48,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			// TODO: exact message validation
 			var runState = SelfTestCompetition.Run<AnnotatedBenchmark>(_localLogConfig);
 			var messages = runState.GetMessages();
-			Assert.AreEqual(runState.HighestMessageSeverityInRun, MessageSeverity.Warning);
+			Assert.AreEqual(runState.HighestMessageSeverity, MessageSeverity.Warning);
 			Assert.IsTrue(runState.Completed);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);

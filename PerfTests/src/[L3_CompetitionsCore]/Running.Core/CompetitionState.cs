@@ -55,6 +55,10 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <value><c>true</c> if there's a error-severity messages for the current run.</value>
 		public bool HasTestErrorsInRun => HighestMessageSeverityInRun.IsTestErrorOrHigher();
 
+		/// <summary>The competition completed without warnings and errors.</summary>
+		/// <value><c>true</c> if the competition completed without warnings and errors.</value>
+		public bool CompletedSuccessfully => Completed && !HighestMessageSeverity.IsWarningOrHigher();
+
 		/// <summary>Time elapsed since start of the competition.</summary>
 		/// <value>Time elapsed since start of the competition.</value>
 		public TimeSpan Elapsed => _stopwatch.Elapsed;
@@ -82,6 +86,11 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>The highest message severity for the run.</summary>
 		/// <value>The highest message severity for the run.</value>
 		public MessageSeverity HighestMessageSeverityInRun { get; private set; }
+
+		/// <summary>The highest message severity for entire competition.</summary>
+		/// <value>The highest message severity for entire competition.</value>
+		public MessageSeverity HighestMessageSeverity { get; private set; }
+
 
 		/// <summary>Count of messages for the current run.</summary>
 		/// <value>Count of messages for the current run.</value>
@@ -130,6 +139,7 @@ namespace CodeJam.PerfTests.Running.Core
 				RunsLeft = 1;
 
 				HighestMessageSeverityInRun = MessageSeverity.Verbose;
+				HighestMessageSeverity = MessageSeverity.Verbose;
 				MessagesInRun = 0;
 				LastRunSummary = null;
 
@@ -250,9 +260,14 @@ namespace CodeJam.PerfTests.Running.Core
 
 				_messages.Add(message);
 				MessagesInRun++;
+
 				if (HighestMessageSeverityInRun < messageSeverity)
 				{
 					HighestMessageSeverityInRun = messageSeverity;
+				}
+				if (HighestMessageSeverity < messageSeverity)
+				{
+					HighestMessageSeverity = messageSeverity;
 				}
 			}
 

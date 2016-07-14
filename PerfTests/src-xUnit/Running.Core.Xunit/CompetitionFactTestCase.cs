@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
+using BenchmarkDotNet.Helpers;
+
 using JetBrains.Annotations;
 
 using Xunit;
@@ -97,12 +99,9 @@ namespace CodeJam.PerfTests.Running.Core.Xunit
 			/// <inheritdoc/>
 			protected override async Task<Tuple<decimal, string>> InvokeTestAsync(ExceptionAggregator aggregator)
 			{
-				var oldOutput = System.Console.Out;
-				try
+				var writer = new StringWriter();
+				using (BenchmarkHelpers.CaptureConsoleOutput(writer))
 				{
-					var writer = new StringWriter();
-					System.Console.SetOut(writer);
-
 					var result = await base.InvokeTestAsync(aggregator);
 
 					writer.Flush();
@@ -112,10 +111,6 @@ namespace CodeJam.PerfTests.Running.Core.Xunit
 						return result;
 					}
 					return new Tuple<decimal, string>(result.Item1, result.Item2 + output);
-				}
-				finally
-				{
-					System.Console.SetOut(oldOutput);
 				}
 			}
 		}

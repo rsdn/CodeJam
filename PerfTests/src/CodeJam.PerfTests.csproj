@@ -106,6 +106,7 @@
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.SourceAttributes.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.SymbolHelpers.cs" />
     <Compile Include="[L6_AllTogether]\CompetitionHelpers.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Core\ConcurrentRunBehavior.cs" />
     <Compile Include="[L6_AllTogether]\Configs\ICompetitionConfigSource.cs" />
     <Compile Include="[L6_AllTogether]\Running.Core\ConsoleCompetitionRunner.cs" />
     <Compile Include="[L6_AllTogether]\Configs\ICompetitionConfig.cs" />

@@ -16,6 +16,8 @@ using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Portability;
 
+using CodeJam;
+
 using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace
@@ -28,6 +30,7 @@ namespace BenchmarkDotNet.Helpers
 	/// </summary>
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
+	[SuppressMessage("ReSharper", "ArrangeBraces_while")]
 	public static class BenchmarkHelpers
 	{
 		#region Benchmark-related
@@ -339,6 +342,66 @@ namespace BenchmarkDotNet.Helpers
 			var path = uriInst.IsAbsoluteUri ? uriInst.LocalPath : uri;
 
 			return File.Exists(path) ? File.OpenText(path) : null;
+		}
+		#endregion
+
+		#region Console
+		private static readonly Stack<TextWriter> _outputStack = new Stack<TextWriter>();
+		private static readonly HashSet<TextWriter> _popCollection = new HashSet<TextWriter>();
+
+		/// <summary>
+		/// Sets the console output in a thread-safe manner.
+		/// WARNING: DO use only this method to override the output. Job will fail otherwise.
+		/// </summary>
+		/// <param name="output">The new console output.</param>
+		/// <returns><see cref="IDisposable"/> to restore the output</returns>
+		public static IDisposable CaptureConsoleOutput(TextWriter output)
+		{
+			if (output == null)
+				throw new ArgumentNullException(nameof(output));
+
+			var newWriter = TextWriter.Synchronized(output);
+			if (ReferenceEquals(newWriter, output))
+				throw new ArgumentException("Please pass non-synchronized test writer.", nameof(output));
+
+			SetOutputCore(output);
+			return Disposable.Create(() => RestoreOutputCore(output));
+		}
+
+		private static void SetOutputCore(TextWriter output)
+		{
+			lock (_outputStack)
+			{
+				Console.SetOut(output);
+				if (!ReferenceEquals(output, Console.Out))
+					throw new InvalidOperationException("Internal logic bug.");
+
+				if (_outputStack.Count == 0)
+				{
+					_outputStack.Push(Console.Out);
+				}
+				_outputStack.Push(output);
+			}
+		}
+
+		private static void RestoreOutputCore(TextWriter output)
+		{
+			lock (_outputStack)
+			{
+				if (_outputStack.Peek() == output)
+				{
+					_outputStack.Pop();
+				}
+				else
+				{
+					_popCollection.Add(output);
+
+					while (_popCollection.Contains(_outputStack.Peek()))
+					{
+						_popCollection.Remove(_outputStack.Pop());
+					}
+				}
+			}
 		}
 		#endregion
 	}

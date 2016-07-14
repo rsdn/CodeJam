@@ -60,29 +60,26 @@ namespace BenchmarkDotNet.Toolchains
 			if (_benchmark == null)
 				throw new InvalidOperationException("Call Init() first.");
 
-			var oldWriter = Console.Out;
-			try
+			using (BenchmarkHelpers.CaptureConsoleOutput(_output))
 			{
-				Console.SetOut(_output);
-				FillProperties(_instance, _benchmark);
-
-				_output.WriteLine();
-				foreach (var infoLine in EnvironmentInfo.GetCurrent().ToFormattedString())
+				try
 				{
-					_output.WriteLine("// {0}", infoLine);
-				}
-				_output.WriteLine();
+					FillProperties(_instance, _benchmark);
 
-				new MethodInvokerLight(_job).Invoke(_job, _operationsPerInvoke, _setupAction, _runCallback, _idleCallback);
-			}
-			catch (Exception ex)
-			{
-				_output.WriteLine(ex);
-				throw;
-			}
-			finally
-			{
-				Console.SetOut(oldWriter);
+					_output.WriteLine();
+					foreach (var infoLine in EnvironmentInfo.GetCurrent().ToFormattedString())
+					{
+						_output.WriteLine("// {0}", infoLine);
+					}
+					_output.WriteLine();
+
+					new MethodInvokerLight(_job).Invoke(_job, _operationsPerInvoke, _setupAction, _runCallback, _idleCallback);
+				}
+				catch (Exception ex)
+				{
+					_output.WriteLine(ex);
+					throw;
+				}
 			}
 		}
 		#endregion
@@ -133,29 +130,26 @@ namespace BenchmarkDotNet.Toolchains
 			if (_benchmark == null)
 				throw new InvalidOperationException("Call Init() first.");
 
-			var oldWriter = Console.Out;
-			try
+			using (BenchmarkHelpers.CaptureConsoleOutput(_output))
 			{
-				Console.SetOut(_output);
-				FillProperties(_instance, _benchmark);
-
-				_output.WriteLine();
-				foreach (var infoLine in EnvironmentInfo.GetCurrent().ToFormattedString())
+				try
 				{
-					_output.WriteLine("// {0}", infoLine);
-				}
-				_output.WriteLine();
+					FillProperties(_instance, _benchmark);
 
-				new MethodInvokerLight(_job).Invoke(_job, _operationsPerInvoke, _setupAction, _runCallback, _idleCallback);
-			}
-			catch (Exception ex)
-			{
-				_output.WriteLine(ex);
-				throw;
-			}
-			finally
-			{
-				Console.SetOut(oldWriter);
+					_output.WriteLine();
+					foreach (var infoLine in EnvironmentInfo.GetCurrent().ToFormattedString())
+					{
+						_output.WriteLine("// {0}", infoLine);
+					}
+					_output.WriteLine();
+
+					new MethodInvokerLight(_job).Invoke(_job, _operationsPerInvoke, _setupAction, _runCallback, _idleCallback);
+				}
+				catch (Exception ex)
+				{
+					_output.WriteLine(ex);
+					throw;
+				}
 			}
 		}
 		#endregion

@@ -57,6 +57,7 @@
     <Compile Include="Examples\ListCapacityPerfTest.cs" />
     <Compile Include="Examples\SimplePerfTest.cs" />
     <Compile Include="ExamplesProgram.cs" />
+    <Compile Include="IntegrationTests\CompetitionRunConcurrentTest.cs" />
     <Compile Include="IntegrationTests\CompetitionConfigAttributeTests.cs" />
     <Compile Include="SelfTestingApi\SelfTestCompetition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

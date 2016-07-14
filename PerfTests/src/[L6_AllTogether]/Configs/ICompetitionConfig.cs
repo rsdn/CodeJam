@@ -2,6 +2,7 @@
 
 using BenchmarkDotNet.Configs;
 
+using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Limits;
 
 namespace CodeJam.PerfTests.Configs
@@ -30,6 +31,10 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Report warnings as errors.</summary>
 		/// <value><c>true</c> if competition warnings should be reported as errors; otherwise, <c>false</c>.</value>
 		bool ReportWarningsAsErrors { get; }
+
+		/// <summary>Behavior for concurrent competition runs.</summary>
+		/// <value>Behavior for concurrent competition runs.</value>
+		ConcurrentRunBehavior ConcurrentRunBehavior { get; }
 		#endregion
 
 		#region Validation config
