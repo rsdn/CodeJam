@@ -9,10 +9,9 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
 ## TODO:
- * Reusable CompetitionHelpers.
+ * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix).
  * Tests for broken log annotations.
  * Logging: write validator messages immediately?
- * ability to pass ICompetitionConfig via attrubute?
  * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion
  * Memory limits + diagnoser - whoops, https://github.com/PerfDotNet/BenchmarkDotNet/issues/200 . Will need to replace MethodInvoker, delayed.
 
