@@ -14,10 +14,7 @@ namespace CodeJam.Examples
 	{
 		private const int Count = 10 * 1000;
 
-		// WAITINGFOR: https://github.com/xunit/xunit/issues/490
-#if (!CI)
 		[CompetitionFact]
-#endif
 		public void RunSimplePerfTest() => Competition.Run(this, CompetitionHelpers.DefaultConfigAnnotate);
 
 		[CompetitionBaseline]
