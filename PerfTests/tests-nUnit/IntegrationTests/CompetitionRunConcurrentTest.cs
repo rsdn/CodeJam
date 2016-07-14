@@ -23,8 +23,6 @@ namespace CodeJam.PerfTests.IntegrationTests
 	public static class CompetitionRunConcurrentTest
 	{
 		[TestCase(ConcurrentRunBehavior.Lock)]
-		[TestCase(ConcurrentRunBehavior.Ignore)]
-		[TestCase(ConcurrentRunBehavior.Warning)]
 		[TestCase(ConcurrentRunBehavior.Fail)]
 		[TestCase(ConcurrentRunBehavior.Default)]
 		public static void CompetitionRunConcurrent(ConcurrentRunBehavior concurrentRunBehavior)
@@ -35,7 +33,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 				typeof(ConcurrentRunBenchmark2),
 				typeof(ConcurrentRunBenchmark3),
 				typeof(ConcurrentRunBenchmark4),
-				typeof(ConcurrentRunBenchmark5),
+				typeof(ConcurrentRunBenchmark5)
 			};
 			var config = CreateHighAccuracyConfig();
 			config.ConcurrentRunBehavior = concurrentRunBehavior;
@@ -72,7 +70,6 @@ namespace CodeJam.PerfTests.IntegrationTests
 			switch (concurrentRunBehavior)
 			{
 				case ConcurrentRunBehavior.Lock:
-				case ConcurrentRunBehavior.Ignore:
 					Assert.AreEqual(errorResultCount, 0);
 					Assert.AreEqual(warningResultCount, 0);
 					Assert.AreEqual(okResultCount, concurrentRunsCount);
@@ -80,15 +77,6 @@ namespace CodeJam.PerfTests.IntegrationTests
 					Assert.AreEqual(errorMessageCount, 0);
 					Assert.AreEqual(warningMessageCount, 0);
 					Assert.AreEqual(okCount, concurrentRunsCount);
-					break;
-				case ConcurrentRunBehavior.Warning:
-					Assert.AreEqual(errorResultCount, 0);
-					Assert.Greater(warningResultCount, 0);
-					Assert.Less(okResultCount, concurrentRunsCount);
-
-					Assert.AreEqual(errorMessageCount, 0);
-					Assert.Greater(warningMessageCount, 0);
-					Assert.Less(okCount, concurrentRunsCount);
 					break;
 				case ConcurrentRunBehavior.Fail:
 					Assert.Greater(errorResultCount, 0);

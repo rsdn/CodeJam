@@ -208,17 +208,6 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				switch (concurrentRunBehavior)
 				{
-#pragma warning disable 618
-					case ConcurrentRunBehavior.Ignore:
-						competitionState.Logger.WriteLine(
-							$"{LogImportantInfoPrefix} There are another competitions being run in parallel. The timings can be affected by them.");
-						break;
-					case ConcurrentRunBehavior.Warning:
-						competitionState.WriteMessage(
-							MessageSource.Runner, MessageSeverity.Warning,
-							"There are another competitions being run in parallel. The timings can be affected by them.");
-						break;
-#pragma warning restore 618
 					case ConcurrentRunBehavior.Lock:
 					case ConcurrentRunBehavior.Fail:
 						competitionState.WriteMessage(
