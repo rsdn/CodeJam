@@ -55,6 +55,20 @@ namespace CodeJam.PerfTests.Running.Core
 				Environment.CurrentDirectory = currentDirectory;
 			}
 		}
+
+		private static ManualCompetitionConfig GetFirstConfig(
+			[CanBeNull] Type benchmarkType,
+			[CanBeNull] ICompetitionConfig customConfig)
+		{
+			if (customConfig != null)
+				return new ManualCompetitionConfig(customConfig);
+
+			var configSource = benchmarkType?.TryGetMetadataAttribute<ICompetitionConfigSource>();
+
+			return new ManualCompetitionConfig(
+				configSource?.Config ??
+				CompetitionHelpers.DefaultConfig);
+		}
 		#endregion
 
 		#region Public API
@@ -127,7 +141,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			Code.NotNull(benchmarkType, nameof(benchmarkType));
 
-			competitionConfig = PrepareCompetitionConfig(competitionConfig);
+			competitionConfig = PrepareCompetitionConfig(benchmarkType, competitionConfig);
 			var benchmarkConfig = CreateBenchmarkConfig(competitionConfig);
 			var hostLogger = benchmarkConfig.GetLoggers().OfType<HostLogger>().Single();
 
@@ -167,9 +181,11 @@ namespace CodeJam.PerfTests.Running.Core
 
 		#region Prepare & run completed logic
 		[NotNull]
-		private ICompetitionConfig PrepareCompetitionConfig([CanBeNull] ICompetitionConfig competitionConfig)
+		private ICompetitionConfig PrepareCompetitionConfig(
+			[NotNull] Type benchmarkType,
+			[CanBeNull] ICompetitionConfig competitionConfig)
 		{
-			var result = new ManualCompetitionConfig(competitionConfig);
+			var result = GetFirstConfig(benchmarkType, competitionConfig);
 
 			if (result.CompetitionLimitProvider == null)
 			{

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Reflection;
 
+using BenchmarkDotNet.Helpers;
+
 using CodeJam.PerfTests.Running.Limits;
 
 using JetBrains.Annotations;
@@ -26,23 +28,15 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		{
 			Code.NotNull(targetType, nameof(targetType));
 
-			CompetitionMetadataAttribute result = null;
+			var attribute = targetType.TryGetMetadataAttribute<CompetitionMetadataAttribute>();
 
-			var currentType = targetType;
-			while (result == null && currentType != null)
-			{
-				result = currentType.GetCustomAttribute<CompetitionMetadataAttribute>();
-
-				currentType = currentType.DeclaringType;
-			}
-
-			if (result == null)
+			if (attribute == null)
 				return null;
 
 			return new CompetitionMetadata(
-				result.MetadataResourceName,
-				result.MetadataResourcePath,
-				result.UseFullTypeName);
+				attribute.MetadataResourceName,
+				attribute.MetadataResourcePath,
+				attribute.UseFullTypeName);
 		}
 
 		/// <summary>

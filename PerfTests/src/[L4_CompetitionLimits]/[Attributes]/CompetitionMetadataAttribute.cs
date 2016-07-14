@@ -20,7 +20,7 @@ namespace CodeJam.PerfTests
 	/// Note that all non-alphanumeric symbols are replaced with '_'.
 	/// </remarks>
 	// ReSharper disable once RedundantAttributeUsageProperty
-	[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
+	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
 	[PublicAPI, MeansImplicitUse]
 	public class CompetitionMetadataAttribute : Attribute
 	{

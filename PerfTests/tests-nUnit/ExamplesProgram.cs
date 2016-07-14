@@ -17,9 +17,12 @@ namespace CodeJam.Examples
 			Console.WindowWidth = 135;
 			Console.WindowHeight = 48;
 
-			ConsoleCompetition.Run<ListCapacityPerfTest>(CompetitionHelpers.DefaultConfigAnnotate);
+			ConsoleCompetition.Run<ListCapacityPerfTest>(CompetitionHelpers.DefaultConfig);
 
-			Console.ReadKey();
+			Console.WriteLine();
+			Console.Write("Done. Press any key to exit.");
+			Console.ReadKey(true);
+			Console.WriteLine();
 		}
 	}
 }

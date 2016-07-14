@@ -5,7 +5,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Reflection;
 using System.Text;
 
 using BenchmarkDotNet.Attributes;
@@ -15,6 +14,7 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
+using BenchmarkDotNet.Portability;
 
 using JetBrains.Annotations;
 
@@ -34,7 +34,7 @@ namespace BenchmarkDotNet.Helpers
 		/// <summary>Get benchmark types defined in the assembly.</summary>
 		/// <param name="assembly">The assembly to get benchmarks from.</param>
 		/// <returns>Benchmark types from the assembly</returns>
-		public static Type[] GetBenchmarkTypes([NotNull] Assembly assembly) =>
+		public static Type[] GetBenchmarkTypes([NotNull] System.Reflection.Assembly assembly) =>
 			// Use reflection for a more maintainable way of creating the benchmark switcher,
 			// Benchmarks are listed in namespace order first (e.g. BenchmarkDotNet.Samples.CPU,
 			// BenchmarkDotNet.Samples.IL, etc) then by name, so the output is easy to understand.
@@ -42,7 +42,7 @@ namespace BenchmarkDotNet.Helpers
 				.GetTypes()
 				.Where(
 					t =>
-						t.GetMethods(BindingFlags.Instance | BindingFlags.Public)
+						t.GetMethods(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public)
 							.Any(m => m.GetCustomAttributes<BenchmarkAttribute>(true).Any()))
 				.Where(t => !t.IsGenericType && !t.IsAbstract)
 				.OrderBy(t => t.Namespace)
@@ -161,7 +161,7 @@ namespace BenchmarkDotNet.Helpers
 		/// <summary>Checks that the assembly is build in debug mode.</summary>
 		/// <param name="assembly">The assembly.</param>
 		/// <returns><c>true</c> if the assembly was build with optimizations disabled.</returns>
-		public static bool IsDebugAssembly([NotNull] this Assembly assembly)
+		public static bool IsDebugAssembly([NotNull] this System.Reflection.Assembly assembly)
 		{
 			if (assembly == null)
 				throw new ArgumentNullException(nameof(assembly));
@@ -175,6 +175,38 @@ namespace BenchmarkDotNet.Helpers
 		/// <returns>The short form of assembly qualified type name.</returns>
 		public static string GetShortAssemblyQualifiedName([NotNull] this Type type) =>
 			type.FullName + ", " + type.Assembly.GetName().Name;
+
+		/// <summary>
+		/// Performs search for metadata attribute in the following order:
+		/// * type attributes
+		/// * container type attributes (if the <paramref name="type"/> is nested type)
+		/// * assembly attributes.
+		/// </summary>
+		/// <typeparam name="TAttribute">Type of the attribute to search for.</typeparam>
+		/// <param name="type">Type the attribute is searched for.</param>
+		/// <returns>Metadata attribute for the type.</returns>
+		public static TAttribute TryGetMetadataAttribute<TAttribute>([NotNull] this Type type)
+		{
+			if (type == null)
+				throw new ArgumentNullException(nameof(type));
+
+			var tempType = type;
+			while (tempType != null)
+			{
+				var typeAttribute = tempType
+					.GetCustomAttributes<TAttribute>(true)
+					.FirstOrDefault();
+
+				if (typeAttribute != null)
+					return typeAttribute;
+
+				tempType = tempType.DeclaringType;
+			}
+
+			return type.Assembly
+				.GetCustomAttributes<TAttribute>(true)
+				.FirstOrDefault();
+		}
 		#endregion
 
 		#region Process

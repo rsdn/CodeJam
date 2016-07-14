@@ -12,30 +12,6 @@ namespace CodeJam.PerfTests.Configs
 	[PublicAPI]
 	public sealed class ManualCompetitionConfig : ManualConfig, ICompetitionConfig
 	{
-		/// <summary>Merges two configs.</summary>
-		/// <param name="globalConfig">The global config.</param>
-		/// <param name="localConfig">The local config.</param>
-		/// <returns>Merged config instance.</returns>
-		public static ManualCompetitionConfig Union(
-			ICompetitionConfig globalConfig, IConfig localConfig)
-		{
-			var competitionConfig = new ManualCompetitionConfig();
-			switch (localConfig.UnionRule)
-			{
-				case ConfigUnionRule.AlwaysUseLocal:
-					competitionConfig.Add(localConfig);
-					break;
-				case ConfigUnionRule.AlwaysUseGlobal:
-					competitionConfig.Add(globalConfig);
-					break;
-				case ConfigUnionRule.Union:
-					competitionConfig.Add(globalConfig);
-					competitionConfig.Add(localConfig);
-					break;
-			}
-			return competitionConfig;
-		}
-
 		#region Ctor & Add()
 		/// <summary>Initializes a new instance of the <see cref="ManualCompetitionConfig"/> class.</summary>
 		public ManualCompetitionConfig() { }
@@ -55,6 +31,9 @@ namespace CodeJam.PerfTests.Configs
 		/// <param name="config">The config to init from.</param>
 		public new void Add(IConfig config)
 		{
+			if (config == null)
+				return;
+
 			var competitionConfig = config as ICompetitionConfig;
 			if (competitionConfig != null)
 			{

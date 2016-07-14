@@ -106,14 +106,15 @@
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.SourceAttributes.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.SymbolHelpers.cs" />
     <Compile Include="[L6_AllTogether]\CompetitionHelpers.cs" />
+    <Compile Include="[L6_AllTogether]\Configs\ICompetitionConfigSource.cs" />
     <Compile Include="[L6_AllTogether]\Running.Core\ConsoleCompetitionRunner.cs" />
     <Compile Include="[L6_AllTogether]\Configs\ICompetitionConfig.cs" />
     <Compile Include="[L0_Core]\Configs\ReadOnlyConfig.cs" />
-    <Compile Include="[L6_AllTogether]\Configs\DefaultCompetitionConfig.cs" />
     <Compile Include="[L6_AllTogether]\Configs\ReadOnlyCompetitionConfig.cs" />
     <Compile Include="[L6_AllTogether]\Configs\ManualCompetitionConfig.cs" />
     <Compile Include="[L6_AllTogether]\Running.Console\ConsoleCompetition.cs" />
     <Compile Include="[L6_AllTogether]\Running.Core\CompetitionRunnerBase.cs" />
+    <Compile Include="[L6_AllTogether]\[Attributes]\CompetitionConfigAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 
@@ -99,10 +100,20 @@ namespace CodeJam.PerfTests
 		/// <returns>Configuration that should be used for new performance tests.</returns>
 		public static ManualCompetitionConfig CreateDefaultConfig(IJob job = null)
 		{
-			var result = new ManualCompetitionConfig(DefaultCompetitionConfig.Instance)
+			var defaultConfig = BenchmarkDotNet.Configs.DefaultConfig.Instance;
+
+			var result = new ManualCompetitionConfig
 			{
-				RerunIfLimitsFailed = true
+				RerunIfLimitsFailed = true,
+				KeepBenchmarkFiles = defaultConfig.KeepBenchmarkFiles
 			};
+
+			result.Add(defaultConfig.GetColumns().ToArray());
+			result.Add(defaultConfig.GetValidators().ToArray());
+			result.Add(defaultConfig.GetAnalysers().ToArray());
+			result.Add(defaultConfig.GetDiagnosers().ToArray());
+			result.Set(defaultConfig.GetOrderProvider());
+
 			result.Add(job ?? CreateDefaultJob());
 
 			return result;
