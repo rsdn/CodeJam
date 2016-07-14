@@ -67,7 +67,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			return new ManualCompetitionConfig(
 				configSource?.Config ??
-				CompetitionHelpers.DefaultConfig);
+					CompetitionHelpers.DefaultConfig);
 		}
 		#endregion
 
@@ -155,7 +155,7 @@ namespace CodeJam.PerfTests.Running.Core
 					competitionState = CompetitionCore.Run(
 						benchmarkType, benchmarkConfig,
 						competitionConfig.MaxRunsAllowed,
-						competitionConfig.AllowDebugBuilds, 
+						competitionConfig.AllowDebugBuilds,
 						competitionConfig.ConcurrentRunBehavior);
 
 					ProcessRunComplete(competitionConfig, competitionState);

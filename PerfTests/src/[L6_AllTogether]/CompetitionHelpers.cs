@@ -58,17 +58,19 @@ namespace CodeJam.PerfTests
 		/// <param name="targetAssembly">Assembly with performance tests. Calling assembly will be used if <c>null</c>.</param>
 		/// <param name="suffix">The suffix for the log filename.</param>
 		/// <returns>Detailed logger for current assembly.</returns>
-		public static ILogger CreateDetailedLoggerForAssembly([CanBeNull] Assembly targetAssembly = null, string suffix = null) =>
-			GetAssemblyLevelLogger(targetAssembly ?? Assembly.GetCallingAssembly(), suffix + ".AllPerfTests.log");
+		public static ILogger CreateDetailedLoggerForAssembly(
+			[CanBeNull] Assembly targetAssembly = null, string suffix = null) =>
+				GetAssemblyLevelLogger(targetAssembly ?? Assembly.GetCallingAssembly(), suffix + ".AllPerfTests.log");
 
 		/// <summary>Helper for custom configs: creates important info logger for current assembly.</summary>
 		/// <param name="targetAssembly">Assembly with performance tests. Calling assembly will be used if <c>null</c>.</param>
 		/// <param name="suffix">The suffix for the log filename.</param>
 		/// <returns>Important info logger for current assembly.</returns>
-		public static ILogger CreateImportantInfoLoggerForAssembly([CanBeNull] Assembly targetAssembly = null, string suffix = null) =>
-			new HostLogger(
-				GetAssemblyLevelLogger(targetAssembly ?? Assembly.GetCallingAssembly(), suffix + ".Short.AllPerfTests.log"),
-				HostLogMode.PrefixedOnly);
+		public static ILogger CreateImportantInfoLoggerForAssembly(
+			[CanBeNull] Assembly targetAssembly = null, string suffix = null) =>
+				new HostLogger(
+					GetAssemblyLevelLogger(targetAssembly ?? Assembly.GetCallingAssembly(), suffix + ".Short.AllPerfTests.log"),
+					HostLogMode.PrefixedOnly);
 
 		private static LazyStreamLogger GetAssemblyLevelLogger(Assembly assembly, string suffix)
 		{

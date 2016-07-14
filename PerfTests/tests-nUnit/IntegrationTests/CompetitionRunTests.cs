@@ -22,7 +22,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 	[SuppressMessage("ReSharper", "ArgumentsStyleLiteral")]
 	public static class CompetitionRunTests
 	{
-		private static void AssertCompetitionCompleted(CompetitionState runState, MessageSeverity expectedSeverity, int runNumber = 1, bool skipSummary = true)
+		private static void AssertCompetitionCompleted(
+			CompetitionState runState, MessageSeverity expectedSeverity, int runNumber = 1, bool skipSummary = true)
 		{
 			if (!skipSummary)
 			{

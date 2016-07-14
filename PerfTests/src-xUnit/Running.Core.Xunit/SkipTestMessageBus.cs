@@ -44,7 +44,7 @@ namespace CodeJam.PerfTests.Running.Core.Xunit
 		public void Dispose() => DynamicallySkippedTestCount = 0;
 
 		/// <summary>
-		/// Custom implementation of <see cref="T:Xunit.Abstractions.ITestSkipped" />.
+		/// Custom implementation of <see cref="T:Xunit.Abstractions.ITestSkipped"/>.
 		/// </summary>
 		private class TestSkippedWithOutput : TestResultMessage, ITestSkipped
 		{
@@ -55,7 +55,7 @@ namespace CodeJam.PerfTests.Running.Core.Xunit
 				Reason = reason;
 			}
 
-			/// <inheritdoc />
+			/// <inheritdoc/>
 			public string Reason { get; }
 		}
 	}

@@ -12,9 +12,9 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Order;
+using BenchmarkDotNet.Portability;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
-using BenchmarkDotNet.Portability;
 
 using CodeJam;
 
@@ -392,7 +392,7 @@ namespace BenchmarkDotNet.Helpers
 				var popCount = _outputStack.TakeWhile(t => t != output).Count();
 				if (popCount < _outputStack.Count)
 				{
-					for (int i = 0; i < popCount; i++)
+					for (var i = 0; i < popCount; i++)
 					{
 						_outputStack.Pop();
 					}

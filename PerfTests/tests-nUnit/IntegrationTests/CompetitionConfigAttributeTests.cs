@@ -30,6 +30,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			return result;
 		}
 	}
+
 	public class AssemblyCompetitionConfigAttribute : CompetitionConfigAttribute
 	{
 		public AssemblyCompetitionConfigAttribute() : base(Create()) { }

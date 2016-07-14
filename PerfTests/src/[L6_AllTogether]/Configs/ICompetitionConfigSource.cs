@@ -1,9 +1,5 @@
 ﻿using System;
 
-using BenchmarkDotNet.Configs;
-
-using CodeJam.PerfTests.Running.Limits;
-
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Base interface for config provider attributes.</summary>

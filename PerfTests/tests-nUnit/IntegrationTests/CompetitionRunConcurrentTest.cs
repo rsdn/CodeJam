@@ -53,7 +53,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 				runResults = Task.WhenAll(tasks).Result;
 			}
 
-			int concurrentRunsCount = benchmarks.Length;
+			var concurrentRunsCount = benchmarks.Length;
 			var errorResultCount = runResults.Count(r => r.HighestMessageSeverity == MessageSeverity.SetupError);
 			var warningResultCount = runResults.Count(r => r.HighestMessageSeverity == MessageSeverity.Warning);
 			var okResultCount = runResults.Count(r => r.HighestMessageSeverity == MessageSeverity.Informational);
@@ -106,9 +106,13 @@ namespace CodeJam.PerfTests.IntegrationTests
 		}
 
 		public class ConcurrentRunBenchmark1 : ConcurrentRunBenchmarkBase { }
+
 		public class ConcurrentRunBenchmark2 : ConcurrentRunBenchmarkBase { }
+
 		public class ConcurrentRunBenchmark3 : ConcurrentRunBenchmarkBase { }
+
 		public class ConcurrentRunBenchmark4 : ConcurrentRunBenchmarkBase { }
+
 		public class ConcurrentRunBenchmark5 : ConcurrentRunBenchmarkBase { }
 		#endregion
 	}

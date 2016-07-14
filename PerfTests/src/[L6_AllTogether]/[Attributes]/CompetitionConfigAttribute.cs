@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests
 {
 	/// <summary>Default competition config attribute.</summary>
-	/// <seealso cref="ICompetitionConfigSource" />
+	/// <seealso cref="ICompetitionConfigSource"/>
 	// ReSharper disable RedundantAttributeUsageProperty
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Assembly, Inherited = true, AllowMultiple = false)]
 	// ReSharper restore RedundantAttributeUsageProperty
@@ -16,7 +16,7 @@ namespace CodeJam.PerfTests
 	{
 		/// <summary>Initializes a new instance of the <see cref="CompetitionConfigAttribute"/> class.</summary>
 		/// <param name="type">The type of the competition config. Should have a public constructor without parameters.</param>
-		public CompetitionConfigAttribute([NotNull]Type type)
+		public CompetitionConfigAttribute([NotNull] Type type)
 		{
 			Code.NotNull(type, nameof(type));
 			Config = (ICompetitionConfig)Activator.CreateInstance(type);

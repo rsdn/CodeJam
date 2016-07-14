@@ -91,7 +91,6 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <value>The highest message severity for entire competition.</value>
 		public MessageSeverity HighestMessageSeverity { get; private set; }
 
-
 		/// <summary>Count of messages for the current run.</summary>
 		/// <value>Count of messages for the current run.</value>
 		public int MessagesInRun { get; private set; }

@@ -3,8 +3,8 @@
 using CodeJam.PerfTests;
 using CodeJam.PerfTests.Running.Console;
 
-
 // ReSharper disable once CheckNamespace
+
 namespace CodeJam.Examples
 {
 	/// <summary>

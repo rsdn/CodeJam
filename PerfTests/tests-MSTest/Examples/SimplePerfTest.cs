@@ -6,6 +6,7 @@ using CodeJam.PerfTests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 // ReSharper disable once CheckNamespace
+
 namespace CodeJam.Examples
 {
 	[TestClass]
