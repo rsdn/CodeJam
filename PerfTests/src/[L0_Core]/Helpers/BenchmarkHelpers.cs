@@ -346,8 +346,17 @@ namespace BenchmarkDotNet.Helpers
 		#endregion
 
 		#region Console
-		private static readonly Stack<TextWriter> _outputStack = new Stack<TextWriter>();
-		private static readonly HashSet<TextWriter> _popCollection = new HashSet<TextWriter>();
+		private class PreviousOutputHolder
+		{
+			public PreviousOutputHolder(TextWriter output)
+			{
+				Output = output;
+			}
+
+			public TextWriter Output { get; }
+		}
+
+		private static readonly Stack<PreviousOutputHolder> _outputStack = new Stack<PreviousOutputHolder>();
 
 		/// <summary>
 		/// Sets the console output in a thread-safe manner.
@@ -360,59 +369,36 @@ namespace BenchmarkDotNet.Helpers
 			if (output == null)
 				throw new ArgumentNullException(nameof(output));
 
-			var old = Console.Out;
-			Console.SetOut(output);
-
-			return Disposable.Create(() => Console.SetOut(old));
-
-			var newWriter = TextWriter.Synchronized(output);
-			if (ReferenceEquals(newWriter, output))
-				throw new ArgumentException("Please pass non-synchronized test writer.", nameof(output));
-
-			SetOutputCore(output);
-			return Disposable.Create(() => RestoreOutputCore(output, old));
+			var holder = SetOutputCore(output);
+			return Disposable.Create(() => RestoreOutputCore(holder));
 		}
 
-		private static void SetOutputCore(TextWriter output)
+		private static PreviousOutputHolder SetOutputCore(TextWriter output)
 		{
 			lock (_outputStack)
 			{
+				var holder = new PreviousOutputHolder(Console.Out);
 				Console.SetOut(output);
-				if (!ReferenceEquals(output, Console.Out))
-					throw new InvalidOperationException("Internal logic bug.");
+				_outputStack.Push(holder);
 
-				if (_outputStack.Count == 0)
-				{
-					_outputStack.Push(Console.Out);
-				}
-				_outputStack.Push(output);
+				return holder;
 			}
 		}
 
-		private static void RestoreOutputCore(TextWriter output, TextWriter old)
+		private static void RestoreOutputCore(PreviousOutputHolder output)
 		{
 			lock (_outputStack)
 			{
-				_outputStack.Pop();
-
-				Console.SetOut(old);
-				return; 
-				if (_outputStack.Peek() == output)
+				var popCount = _outputStack.TakeWhile(t => t != output).Count();
+				if (popCount < _outputStack.Count)
 				{
-					_outputStack.Pop();
-
-					Console.SetOut(_outputStack.Peek());
-				}
-				else
-				{
-					_popCollection.Add(output);
-
-					while (_popCollection.Contains(_outputStack.Peek()))
+					for (int i = 0; i < popCount; i++)
 					{
-						_popCollection.Remove(_outputStack.Pop());
+						_outputStack.Pop();
 					}
 
-					Console.SetOut(_outputStack.Peek());
+					Code.AssertState(output == _outputStack.Peek(), "Bug");
+					Console.SetOut(_outputStack.Pop().Output);
 				}
 			}
 		}
