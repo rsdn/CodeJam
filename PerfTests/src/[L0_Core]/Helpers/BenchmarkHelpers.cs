@@ -360,12 +360,17 @@ namespace BenchmarkDotNet.Helpers
 			if (output == null)
 				throw new ArgumentNullException(nameof(output));
 
+			var old = Console.Out;
+			Console.SetOut(output);
+
+			return Disposable.Create(() => Console.SetOut(old));
+
 			var newWriter = TextWriter.Synchronized(output);
 			if (ReferenceEquals(newWriter, output))
 				throw new ArgumentException("Please pass non-synchronized test writer.", nameof(output));
 
 			SetOutputCore(output);
-			return Disposable.Create(() => RestoreOutputCore(output));
+			return Disposable.Create(() => RestoreOutputCore(output, old));
 		}
 
 		private static void SetOutputCore(TextWriter output)
@@ -384,13 +389,19 @@ namespace BenchmarkDotNet.Helpers
 			}
 		}
 
-		private static void RestoreOutputCore(TextWriter output)
+		private static void RestoreOutputCore(TextWriter output, TextWriter old)
 		{
 			lock (_outputStack)
 			{
+				_outputStack.Pop();
+
+				Console.SetOut(old);
+				return; 
 				if (_outputStack.Peek() == output)
 				{
 					_outputStack.Pop();
+
+					Console.SetOut(_outputStack.Peek());
 				}
 				else
 				{
@@ -400,6 +411,8 @@ namespace BenchmarkDotNet.Helpers
 					{
 						_popCollection.Remove(_outputStack.Pop());
 					}
+
+					Console.SetOut(_outputStack.Peek());
 				}
 			}
 		}
