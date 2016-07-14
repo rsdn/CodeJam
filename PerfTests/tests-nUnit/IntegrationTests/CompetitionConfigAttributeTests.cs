@@ -79,7 +79,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = SelfTestCompetition.Run<BenchmarkWithConfig>(null);
+			var runState = SelfTestCompetition.Run<BenchmarkWithConfig>();
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -90,7 +90,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			runState = SelfTestCompetition.Run<Nested.BenchmarkWithConfig>(null);
+			runState = SelfTestCompetition.Run<Nested.BenchmarkWithConfig>();
 			messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -105,7 +105,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = SelfTestCompetition.Run<BenchmarkWithoutConfig>(null);
+			var runState = SelfTestCompetition.Run<BenchmarkWithoutConfig>();
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);

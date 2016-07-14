@@ -15,17 +15,36 @@ namespace CodeJam.PerfTests
 
 		/// <summary>Runs the benchmark.</summary>
 		/// <typeparam name="T">Benchmark class to run.</typeparam>
+		/// <param name="competitionConfig">
+		/// The competition config.
+		/// If<c>null</c> config from <see cref="CompetitionConfigAttribute"/> will be used.
+		/// </param>
+		public static void Run<T>([CanBeNull] ICompetitionConfig competitionConfig = null)
+			where T : class =>
+				Runner.Run<T>(competitionConfig);
+
+		/// <summary>Runs the benchmark.</summary>
+		/// <typeparam name="T">Benchmark class to run.</typeparam>
 		/// <param name="thisReference">Reference used to infer type of the benchmark.</param>
-		/// <param name="competitionConfig">The competition config.</param>
-		public static void Run<T>([NotNull] T thisReference, [CanBeNull] ICompetitionConfig competitionConfig)
+		/// <param name="competitionConfig">
+		/// The competition config.
+		/// If<c>null</c> config from <see cref="CompetitionConfigAttribute"/> will be used.
+		/// </param>
+		public static void Run<T>(
+			[NotNull] T thisReference,
+			[CanBeNull] ICompetitionConfig competitionConfig = null)
 			where T : class =>
 				Runner.Run(thisReference, competitionConfig);
 
 		/// <summary>Runs the benchmark.</summary>
-		/// <typeparam name="T">Benchmark class to run.</typeparam>
-		/// <param name="competitionConfig">The competition config.</param>
-		public static void Run<T>([CanBeNull] ICompetitionConfig competitionConfig)
-			where T : class =>
-				Runner.Run<T>(competitionConfig);
+		/// <param name="benchmarkType">Benchmark class to run.</param>
+		/// <param name="competitionConfig">
+		/// The competition config.
+		/// If<c>null</c> config from <see cref="CompetitionConfigAttribute"/> will be used.
+		/// </param>
+		public static void Run(
+			[NotNull] Type benchmarkType,
+			[CanBeNull] ICompetitionConfig competitionConfig = null) =>
+				Runner.Run(benchmarkType, competitionConfig);
 	}
 }
