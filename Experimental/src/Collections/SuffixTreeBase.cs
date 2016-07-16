@@ -5,12 +5,12 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
-    public abstract class SuffixTreeBase
-    {
+	public abstract class SuffixTreeBase
+	{
 		/// <summary>Node alignment in Print output</summary>
 		private const int Align = 6;
 		/// <summary>Root node index</summary>
-	    protected const int RootNodeIndex = 0;
+		protected const int RootNodeIndex = 0;
 
 		/// <summary>Tree nodes</summary>
 		private readonly List<Node> _nodes;
@@ -21,27 +21,27 @@ namespace CodeJam.Collections
 		/// <summary>Adds a new node</summary>
 		/// <param name="node">A node to add</param>
 		/// <returns>Index of the node</returns>
-	    protected int AddNode(Node node)
-	    {
-		    var index = _nodes.Count;
+		protected int AddNode(Node node)
+		{
+			var index = _nodes.Count;
 			_nodes.Add(node);
-		    return index;
-	    }
+			return index;
+		}
 
 		/// <summary>Updates the node at the index</summary>
 		/// <param name="index">The index to update</param>
 		/// <param name="node">The new node value</param>
-	    protected void UpdateNode(int index, Node node) => _nodes[index] = node;
+		protected void UpdateNode(int index, Node node) => _nodes[index] = node;
 
-	    /// <summary>Gets a node at the index</summary>
+		/// <summary>Gets a node at the index</summary>
 		/// <param name="index">The index of the node</param>
 		/// <returns>The node</returns>
-	    protected Node GetNode(int index) => _nodes[index];
+		protected Node GetNode(int index) => _nodes[index];
 
 		/// <summary>Number of nodes</summary>
-	    protected int NodesCount => _nodes.Count;
+		protected int NodesCount => _nodes.Count;
 
-	    /// <summary>Concatenated input strings</summary>
+		/// <summary>Concatenated input strings</summary>
 		protected string InternalData { get; private set; }
 
 		/// <summary>List of end positions of added strings inside the InternalData</summary>
@@ -75,73 +75,141 @@ namespace CodeJam.Collections
 			BuildFor(begin, InternalData.Length);
 		}
 
+		/// <summary>Enumerates all suffixes in the suffix tree</summary>
+		/// <remarks>May return suffixes with the same value of the they are present in different source strings</remarks>
+		/// <returns>The enumeration of all suffixes</returns>
+		[PublicAPI]
+		public IEnumerable<Suffix> AllSuffixes()
+		{
+			if (Root.IsLeaf) // Empty tree
+			{
+				yield break;
+			}
+
+			var branchStack = new Stack<BranchPoint>();
+			var branchPoint = new BranchPoint { Node = Root, EdgeIndex = 0 };
+			var length = 0;
+			for (;;)
+			{
+				var edge = GetNode(branchPoint.Node.Children[branchPoint.EdgeIndex]);
+				var edgeLength = edge.Length;
+				length += edgeLength;
+				if (!edge.IsTerminal)
+				{
+					branchPoint.Length = edgeLength;
+					branchStack.Push(branchPoint);
+					branchPoint = new BranchPoint { Node = edge, EdgeIndex = 0 };
+					continue;
+				}
+
+				// We have descended to a terminal edge. Let's produce a suffix
+				var end = edge.End;
+				var offset = end - length;
+				var sourceIndex = GetSourceIndexByEnd(end);
+				yield return new Suffix(InternalData, sourceIndex, offset, length);
+
+				// Move to the next suffix branch
+				for (;;)
+				{
+					length -= edgeLength;
+					var nextEdgeIndex = branchPoint.EdgeIndex + 1;
+					if (nextEdgeIndex < branchPoint.Node.Children.Count)
+					{
+						branchPoint.EdgeIndex = nextEdgeIndex;
+						break;
+					}
+					// There is no more branches on the current level
+					// Return to the previous level
+					if (branchStack.Count == 0)
+					{
+						// no more branches to visit
+						DebugCode.AssertState(length == 0, "Illegal final length. Check logic");
+						yield break;
+					}
+					branchPoint = branchStack.Pop();
+					edgeLength = branchPoint.Length;
+				}
+			}
+		}
+
+		/// <summary>Locates the source string index by the suffix end</summary>
+		/// <param name="end">The suffix end</param>
+		/// <returns>The source string index</returns>
+		private int GetSourceIndexByEnd(int end)
+		{
+			var index = EndPositions.LowerBound(end);
+			DebugCode.AssertState(index < EndPositions.Count && EndPositions[index] == end
+				, "Invalid source index computed. Check logic");
+			return index;
+		}
+
 		/// <summary>Appends suffixes for the last added string</summary>
-	    protected abstract void BuildFor(int begin, int end);
+		protected abstract void BuildFor(int begin, int end);
 
 		/// <summary>Creates a comparer for nodes against a char</summary>
 		/// <returns>The comparer</returns>
-	    protected Func<int, char, int> GetComparer() => (index, c) =>
-	    {
-		    var node = GetNode(index);
-		    if (node.Begin == node.End) // no char always less than any char
-		    {
-			    return -1;
-		    }
+		protected Func<int, char, int> GetComparer() => (index, c) =>
+		{
+			var node = GetNode(index);
+			if (node.Begin == node.End) // no char always less than any char
+			{
+				return -1;
+			}
 			var firstChar = InternalData[node.Begin];
-		    return firstChar - c;
-	    };
+			return firstChar - c;
+		};
 
 		/// <summary>Prints the tree structure to the string for the debugging purposes</summary>
 		/// <returns>The tree structure as a string</returns>
 		[Pure]
 		public string Print()
-	    {
-		    var sb = new StringBuilder();
-		    var currentIndex = RootNodeIndex;
-		    var stack = new List<ValueTuple<int, int>>();
-		    for (;;)
-		    {
-			    PrintNodeWithPath(sb, currentIndex, stack);
-			    var node = GetNode(currentIndex);
-			    if (node.Children != null)
-			    {
-				    stack.Add(ValueTuple.Create(currentIndex, node.Children.Count - 2));
-				    currentIndex = node.Children[node.Children.Count - 1];
+		{
+			var sb = new StringBuilder();
+			var currentIndex = RootNodeIndex;
+			var stack = new List<ValueTuple<int, int>>();
+			for (;;)
+			{
+				PrintNodeWithPath(sb, currentIndex, stack);
+				var node = GetNode(currentIndex);
+				if (node.Children != null)
+				{
+					stack.Add(ValueTuple.Create(currentIndex, node.Children.Count - 2));
+					currentIndex = node.Children[node.Children.Count - 1];
 					continue;
-			    }
-			    currentIndex = -1;
-			    while (stack.Count > 0)
-			    {
+				}
+				currentIndex = -1;
+				while (stack.Count > 0)
+				{
 					var t = stack[stack.Count - 1];
 					stack.RemoveAt(stack.Count - 1);
 					node = GetNode(t.Item1);
 					var nextChild = t.Item2;
-				    if (nextChild >= 0)
-				    {
-					    currentIndex = node.Children[nextChild];
+					if (nextChild >= 0)
+					{
+						currentIndex = node.Children[nextChild];
 						stack.Add(ValueTuple.Create(t.Item1, nextChild - 1));
-					    break;
-				    }
+						break;
+					}
 				}
-			    if (currentIndex == -1)
-			    {
-				    break;
-			    }
-		    }
+				if (currentIndex == -1)
+				{
+					break;
+				}
+			}
 			return sb.ToString();
-	    }
+		}
 
 		/// <summary>Prints a single node representation along with the path prefix</summary>
 		/// <param name="sb">The builder to print to</param>
 		/// <param name="nodeIndex">THe index of the node</param>
 		/// <param name="stack">The stack of nodes to process</param>
-	    private void PrintNodeWithPath([NotNull] StringBuilder sb, int nodeIndex
+		private void PrintNodeWithPath([NotNull] StringBuilder sb, int nodeIndex
 			, [NotNull] IReadOnlyList<ValueTuple<int, int>> stack)
-	    {
-		    if (stack.Count > 0)
-		    {
-			    for (var i = 0; i < stack.Count - 1; ++i)
-			    {
+		{
+			if (stack.Count > 0)
+			{
+				for (var i = 0; i < stack.Count - 1; ++i)
+				{
 					sb.Append(stack[i].Item2 >= 0 ? '|' : ' ');
 					sb.Append(' ', Align - 1);
 				}
@@ -155,13 +223,13 @@ namespace CodeJam.Collections
 				sb.Append('_', Align - 1);
 			}
 			PrintNodeText(sb, nodeIndex);
-	    }
+		}
 
 		/// <summary>Prints a single node information</summary>
 		/// <param name="sb">The builder to print to</param>
 		/// <param name="nodeIndex">The node index</param>
-	    protected virtual void PrintNodeText([NotNull] StringBuilder sb, int nodeIndex)
-	    {
+		protected virtual void PrintNodeText([NotNull] StringBuilder sb, int nodeIndex)
+		{
 			var n = GetNode(nodeIndex);
 			sb.AppendLine($"({nodeIndex}, [{n.Begin}-{n.End}), {InternalData.Substring(n.Begin, n.Length)})");
 		}
@@ -175,7 +243,7 @@ namespace CodeJam.Collections
 			/// <param name="begin">An edge start offset</param>
 			/// <param name="end">An edge end offset</param>
 			/// <param name="terminal">Is the edge terminates the string or not</param>
-			public Node(int begin, int end, bool terminal) : this(begin, end, terminal, null) {}
+			public Node(int begin, int end, bool terminal) : this(begin, end, terminal, null) { }
 
 			/// <summary>Constructs a new node</summary>
 			/// <param name="begin">An edge start offset</param>
@@ -205,6 +273,17 @@ namespace CodeJam.Collections
 			public int End => Math.Abs(_end);
 			/// <summary>Length of the corresponding substring</summary>
 			public int Length => End - Begin;
+		}
+
+		/// <summary>Branching point</summary>
+		private class BranchPoint
+		{
+			/// <summary>The tree node</summary>
+			public Node Node;
+			/// <summary>The chosen edge</summary>
+			public int EdgeIndex;
+			/// <summary>The length over the edge</summary>
+			public int Length;
 		}
 	}
 }
