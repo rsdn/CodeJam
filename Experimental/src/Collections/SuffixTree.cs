@@ -21,13 +21,11 @@ namespace CodeJam.Collections
 
 		/// <summary>Links between nodes</summary>
 		private Lazy<List<int>> _nodeLinks;
-		/// <summary>Comparer for nodes against a char</summary>
-		private Func<int, char, int> _childComparer;
 		// state: (activeNode_, activeChild_, activeLength_), pending_
 		/// <summary>Index of the branch node</summary>
 		private int _branchNodeIndex;
 		/// <summary>Index of the active edge (child node) of the branch node</summary>
-		private int _activeEdgeIndex ;
+		private int _activeEdgeIndex;
 		/// <summary>The length of the current part of the active child</summary>
 		private int activeLength_;
 		/// <summary>Offset of the first suffix to insert</summary>
@@ -61,7 +59,6 @@ namespace CodeJam.Collections
 		protected override void BuildFor(int begin, int end)
 		{
 			Code.AssertState(begin < end, "Invalid parameters passed");
-			_childComparer = GetComparer();
 			_branchNodeIndex = RootNodeIndex;
 			_activeEdgeIndex = InvalidNodeIndex;
 			activeLength_ = 0;
@@ -93,7 +90,6 @@ namespace CodeJam.Collections
 				}
 				UpdateActiveEdgeAndCurentPosition();
 			}
-			_childComparer = null;
 		}
 
 		/// <summary>Finds the next branching point</summary>
@@ -113,10 +109,10 @@ namespace CodeJam.Collections
 				childNodeIndex = InvalidNodeIndex;
 				activeEdge = default(Node);
 			}
-			for(;;)
+			for (;;)
 			{
 				if (_activeEdgeIndex == InvalidNodeIndex)
-				{					
+				{
 					DebugCode.AssertState(activeLength_ == 0, "Invalid active state");
 					if (_currentOffset == _end)
 					{
@@ -128,7 +124,7 @@ namespace CodeJam.Collections
 						return;
 					}
 					var c = InternalData[_currentOffset];
-					var childIndex = children.LowerBound(c, _childComparer);
+					var childIndex = children.LowerBound(c, EdgeComparer);
 					if (childIndex == children.Count)
 					{
 						// a new branch
@@ -219,7 +215,7 @@ namespace CodeJam.Collections
 				DebugCode.AssertState(!branchNode.IsLeaf, "Invalid active state");
 				var index = _currentOffset - activeLength_;
 				var children = branchNode.Children;
-				var childIndex = children.LowerBound(InternalData[index], _childComparer);
+				var childIndex = children.LowerBound(InternalData[index], EdgeComparer);
 				DebugCode.AssertState(childIndex != children.Count, "Invalid active state");
 				var edgeIndex = children[childIndex];
 				var edgeNode = GetNode(edgeIndex);
@@ -295,7 +291,7 @@ namespace CodeJam.Collections
 			{
 				childNodeIndex = _currentOffset == _end
 					? 0 // empty nodes always at the beginning
-					: children.LowerBound(InternalData[_currentOffset], _childComparer);
+					: children.LowerBound(InternalData[_currentOffset], EdgeComparer);
 			}
 			// now we have a non-empty children and an insertion index
 			// just do an insert
@@ -328,7 +324,7 @@ namespace CodeJam.Collections
 		{
 			var n = GetNode(nodeIndex);
 			var nodeLink = _nodeLinks.IsValueCreated ? _nodeLinks.Value[nodeIndex] : InvalidNodeIndex;
-			var linkText = nodeLink != InvalidNodeIndex ? $" -> {nodeLink}" : string.Empty; 
+			var linkText = nodeLink != InvalidNodeIndex ? $" -> {nodeLink}" : string.Empty;
 			sb.AppendLine($"({nodeIndex}{linkText}, [{n.Begin}-{n.End}), {InternalData.Substring(n.Begin, n.End - n.Begin)})");
 		}
 	}
