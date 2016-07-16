@@ -10,7 +10,6 @@ namespace CodeJam.Collections
 	{
 		protected override void BuildFor(int start, int end)
 		{
-			var childComparer = GetComparer();
 			for (var i = end - 1; i >= start; --i)
 			{
 				var currentNodeIndex = RootNodeIndex;
@@ -47,7 +46,7 @@ namespace CodeJam.Collections
 						}
 						else
 						{
-							childIndex = children.LowerBound(InternalData[begin], childComparer);
+							childIndex = children.LowerBound(InternalData[begin], EdgeComparer);
 						}
 					}
 

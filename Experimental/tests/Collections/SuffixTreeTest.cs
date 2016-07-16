@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using NUnit.Framework;
@@ -54,6 +55,177 @@ namespace CodeJam.Collections
 				Assert.That(result, Is.EqualTo(expected));
 				result = SuffixTreeEncoder.Encode(stCompact);
 				Assert.That(result, Is.EqualTo(expected));
+			}
+		}
+
+		[Test]
+		public void Test16AllSuffixes()
+		{
+			const int length = 50;
+			// pure random
+			for (var numberOfString = 1; numberOfString < 6; ++numberOfString)
+			{
+				var strings = Enumerable.Range(0, numberOfString)
+					.Select(_ => MakeRandomString(length)).ToArray();
+				TestAllSuffixes(strings);
+			}
+			// with guaranteed duplicates
+			var s = MakeRandomString(length);
+			for (var numberOfString = 2; numberOfString < 6; ++numberOfString)
+			{
+				var strings = Enumerable.Range(0, numberOfString - 2)
+					.Select(_ => MakeRandomString(length)).Union(s, s).ToArray();
+				TestAllSuffixes(strings);
+			}
+		}
+
+		[Test]
+		public void Test17Contains()
+		{
+			const int length = 50;
+			for (var numberOfString = 1; numberOfString < 6; ++numberOfString)
+			{
+				var strings = Enumerable.Range(0, numberOfString)
+					.Select(_ => MakeRandomString(length)).ToArray();
+				var st = new SuffixTree();
+				var suffixes = new HashSet<string>();
+				var properSubstrings = new HashSet<string>();
+				foreach (var s in strings)
+				{
+					st.Add(s);
+					for (var i = 0; i < s.Length; ++i)
+					{
+						var suffix = s.Substring(i);
+						suffixes.Add(suffix);
+						if (suffix.Length != 1)
+						{
+							properSubstrings.Add(suffix.Substring(0, suffix.Length - 1));
+						}
+					}
+				}
+				properSubstrings.ExceptWith(suffixes);
+				st.Compact();
+
+				const string notPresent = "@";
+				Assert.That(st.Contains(string.Empty));
+				Assert.That(st.ContainsSuffix(string.Empty));
+				Assert.That(!st.Contains(notPresent));
+				Assert.That(!st.ContainsSuffix(notPresent));
+				foreach (var suffix in suffixes)
+				{
+					Assert.That(st.Contains(suffix));
+					Assert.That(st.ContainsSuffix(suffix));
+				}
+				foreach (var properSubstring in properSubstrings)
+				{
+					Assert.That(st.Contains(properSubstring));
+					Assert.That(!st.ContainsSuffix(properSubstring));
+					for (var i = 0; i <= properSubstring.Length; ++i)
+					{
+						var notSubstring = properSubstring.Insert(i, notPresent);
+						Assert.That(!st.Contains(notSubstring));
+						Assert.That(!st.ContainsSuffix(notSubstring));
+					}
+				}
+			}
+		}
+
+		[Test]
+		public void Test18StartingWith()
+		{
+			const int length = 50;
+			for (var numberOfString = 1; numberOfString < 6; ++numberOfString)
+			{
+				var strings = Enumerable.Range(0, numberOfString)
+					.Select(_ => MakeRandomString(length)).ToArray();
+				TestStartingWith(strings);
+			}
+		}
+
+		private static void TestStartingWith(string[] strings)
+		{
+			var prefixes = new HashSet<string>();
+			var st = new SuffixTree();
+			foreach (var s in strings)
+			{
+				st.Add(s);
+				for (var i = 0; i < s.Length; ++i)
+				{
+					for (var j = i + 1; j <= s.Length; ++j)
+					{
+						prefixes.Add(s.Substring(i, j - i));
+					}
+				}
+			}
+			st.Compact();
+			foreach (var prefix in prefixes)
+			{
+				var expectedSuffixes = new List<string>();
+				var expectedSources = new LazyDictionary<string, List<int>>(_ => new List<int>());
+				for (var i = 0; i < strings.Length; ++i)
+				{
+					var s = strings[i];
+					var pos = 0;
+					for (;;)
+					{
+						pos = s.IndexOf(prefix, pos);
+						if (pos == -1)
+						{
+							break;
+						}
+						var suffix = s.Substring(pos);
+						expectedSuffixes.Add(suffix);
+						expectedSources[suffix].Add(i);
+						++pos;
+					}
+				}
+				expectedSuffixes.Sort();
+				var suffixes = st.StartingWith(prefix).ToList();
+				Assert.That(suffixes.Select(_ => _.Value).ToList(), Is.EqualTo(expectedSuffixes));
+				var grouped = suffixes.Select(_ => new { value = _.Value, source = _.SourceIndex })
+					.GroupBy(_ => _.value).ToDictionary(_ => _.Key, _ => _.Select(v => v.source).OrderBy(v => v).ToList());
+				foreach (var v in grouped)
+				{
+					Assert.That(v.Value, Is.EqualTo(expectedSources[v.Key]));
+				}
+			}
+			Assert.That(st.StartingWith("@").Count(), Is.EqualTo(0));
+			VerifyAllSuffixes(strings, st.StartingWith(string.Empty));
+		}
+
+		private static void TestAllSuffixes(string[] strings)
+		{
+			var st = new SuffixTree();
+			foreach (var s in strings)
+			{
+				st.Add(s);
+			}
+			st.Compact();
+			VerifyAllSuffixes(strings, st.All());
+		}
+
+		private static void VerifyAllSuffixes(string[] strings, IEnumerable<Suffix> result)
+		{
+			var expectedSuffixes = new List<string>();
+			var expectedSources = new LazyDictionary<string, List<int>>(_ => new List<int>());
+			for (var i = 0; i < strings.Length; ++i)
+			{
+				var s = strings[i];
+				for (var j = 0; j < s.Length; ++j)
+				{
+					var suffix = s.Substring(j);
+					expectedSuffixes.Add(suffix);
+					expectedSources[suffix].Add(i);
+				}
+			}
+			expectedSuffixes.Sort();
+			var suffixes = result.ToList();
+			Assert.That(suffixes.Select(_ => _.Value).ToList(), Is.EqualTo(expectedSuffixes));
+			var grouped = suffixes.Select(_ => new { value = _.Value, source = _.SourceIndex })
+				.GroupBy(_ => _.value).ToDictionary(_ => _.Key, _ => _.Select(v => v.source).OrderBy(v => v).ToList());
+			foreach (var v in grouped)
+			{
+				Assert.That(v.Value, Is.EqualTo(expectedSources[v.Key]));
 			}
 		}
 
