@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using NUnit.Framework;
@@ -56,6 +57,42 @@ namespace CodeJam.Collections
 				Assert.That(result, Is.EqualTo(expected));
 			}
 		}
+
+		[Test]
+		public void Test16AllSuffixes()
+		{
+			const int length = 50;
+			for (var numberOfString = 1; numberOfString < 6; ++numberOfString)
+			{
+				var strings = Enumerable.Range(0, numberOfString)
+					.Select(_ => MakeRandomString(length)).ToArray();
+				var expectedSuffixes = new List<string>();
+				var expectedCounts = new LazyDictionary<string, List<int>>(_ => new List<int>());
+				var st = new SuffixTree();
+				for (var i = 0; i < strings.Length; ++i)
+				{
+					var s = strings[i];
+					st.Add(s);
+					for (var j = 0; j < s.Length; ++j)
+					{
+						var suffix = s.Substring(j);
+						expectedSuffixes.Add(suffix);
+						expectedCounts[suffix].Add(i);
+					}
+				}
+				st.Compact();
+				expectedSuffixes.Sort();
+				var suffixes = st.AllSuffixes().ToList();
+				Assert.That(suffixes.Select(_ => _.Value).ToList(), Is.EqualTo(expectedSuffixes));
+				var grouped = suffixes.Select(_ => new { value = _.Value, source = _.SourceIndex })
+					.GroupBy(_ => _.value).ToDictionary(_ => _.Key, _ => _.Select(v => v.source).OrderBy(v => v).ToList());
+				foreach (var v in grouped)
+				{
+					Assert.That(v.Value, Is.EqualTo(expectedCounts[v.Key]));
+				}
+			}
+		}
+
 
 		protected override void Check(string expected, params string[] data)
 		{
