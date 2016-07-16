@@ -79,6 +79,7 @@ namespace CodeJam.Collections
 		/// <remarks>May return suffixes with the same value of the they are present in different source strings</remarks>
 		/// <returns>The enumeration of all suffixes</returns>
 		[PublicAPI]
+		[Pure]
 		public IEnumerable<Suffix> AllSuffixes()
 		{
 			if (Root.IsLeaf) // Empty tree
@@ -130,6 +131,111 @@ namespace CodeJam.Collections
 					edgeLength = branchPoint.Length;
 				}
 			}
+		}
+
+		/// <summary>Checks wether the suffix tree contains the given substring or not</summary>
+		/// <param name="substring">The substring to locate</param>
+		/// <returns>true if found, false otherwise</returns>
+		[PublicAPI]
+		[Pure]
+		public bool Contains([NotNull] string substring)
+		{
+			Code.NotNull(substring, nameof(substring));
+			if (substring == string.Empty)
+			{
+				return true;
+			}
+			var r = FindBranch(substring);
+			return r != null;
+		}
+
+		/// <summary>Checks wether the suffix tree contains the given suffix or not</summary>
+		/// <param name="suffix">The suffix to locate</param>
+		/// <returns>true if found, false otherwise</returns>
+		[PublicAPI]
+		[Pure]
+		public bool ContainsSuffix([NotNull] string suffix)
+		{
+			Code.NotNull(suffix, nameof(suffix));
+			if (suffix == string.Empty)
+			{
+				return true;
+			}
+			var r = FindBranch(suffix);
+			if (r == null)
+			{
+				return false;
+			}
+			var edge = r.Item1;
+			var length = r.Item2;
+			if (length < edge.Length) // proper substring of a suffix?
+			{
+				return false;
+			}
+			if (edge.IsLeaf) // a terminal edge?
+			{
+				return true; 
+			}
+			return GetNode(edge.Children[0]).Length == 0; // has a child terminal edge of zero length
+		}
+
+		/// <summary>Locates the branch corresponding to the given string</summary>
+		/// <param name="s">The string to find</param>
+		/// <returns>The last matched edge and the matched length over this edge or null if no match found</returns>
+		[Pure]
+		private Tuple<Node, int> FindBranch([NotNull] string s)
+		{
+			DebugCode.AssertState(s.Length > 0, "The string length should be positive");
+			var currentNode = Root;
+			var comparer = GetComparer();
+			var offset = 0;
+			for (;;)
+			{
+				Node edge;
+				var edgeIndex = FindEdge(currentNode, comparer, s[offset], out edge);
+				if (edgeIndex == -1)
+				{
+					return null;
+				}
+				var edgeLength = edge.Length;
+				var compareLength = Math.Min(s.Length - offset, edgeLength);
+				if (compareLength > 1
+					&& string.CompareOrdinal(s, offset + 1, InternalData, edge.Begin + 1, compareLength - 1) != 0)
+				{
+					return null;
+				}
+				offset += compareLength;
+				if (offset == s.Length)
+				{
+					return Tuple.Create(edge, compareLength);
+				}
+				DebugCode.AssertState(compareLength == edgeLength, "Invalid compare length. Check logic");
+				currentNode = edge;
+				// continue search from the next level
+			}
+		}
+
+		/// <summary>Finds an edge from the given node corresponding to the given char</summary>
+		/// <param name="node">The node to search in</param>
+		/// <param name="comparer">The comparer used to find the char</param>
+		/// <param name="c">The char to find</param>
+		/// <param name="edge">Te edge found</param>
+		/// <returns>The index of the edge or -1 if there is no edge starting with the given char</returns>
+		[Pure]
+		private int FindEdge(Node node, [NotNull] Func<int, char, int> comparer, char c, out Node edge)
+		{
+			edge = default(Node);
+			if (node.IsLeaf)
+			{
+				return -1;
+			}
+			var edgeIndex = node.Children.LowerBound(c, comparer);
+			if (edgeIndex == node.Children.Count)
+			{
+				return -1;
+			}
+			edge = GetNode(node.Children[edgeIndex]);
+			return edge.Length > 0 && InternalData[edge.Begin] == c ? edgeIndex : -1;
 		}
 
 		/// <summary>Locates the source string index by the suffix end</summary>

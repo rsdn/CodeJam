@@ -62,34 +62,99 @@ namespace CodeJam.Collections
 		public void Test16AllSuffixes()
 		{
 			const int length = 50;
+			// pure random
 			for (var numberOfString = 1; numberOfString < 6; ++numberOfString)
 			{
 				var strings = Enumerable.Range(0, numberOfString)
 					.Select(_ => MakeRandomString(length)).ToArray();
-				var expectedSuffixes = new List<string>();
-				var expectedCounts = new LazyDictionary<string, List<int>>(_ => new List<int>());
+				TestAllSuffixes(strings);
+			}
+			// with guaranteed duplicates
+			var s = MakeRandomString(length);
+			for (var numberOfString = 2; numberOfString < 6; ++numberOfString)
+			{
+				var strings = Enumerable.Range(0, numberOfString - 2)
+					.Select(_ => MakeRandomString(length)).Union(s, s).ToArray();
+				TestAllSuffixes(strings);
+			}
+		}
+
+		[Test]
+		public void Test17Contains()
+		{
+			const int length = 50;
+			for (var numberOfString = 1; numberOfString < 6; ++numberOfString)
+			{
+				var strings = Enumerable.Range(0, numberOfString)
+					.Select(_ => MakeRandomString(length)).ToArray();
 				var st = new SuffixTree();
-				for (var i = 0; i < strings.Length; ++i)
+				var suffixes = new HashSet<string>();
+				var properSubstrings = new HashSet<string>();
+				foreach (var s in strings)
 				{
-					var s = strings[i];
 					st.Add(s);
-					for (var j = 0; j < s.Length; ++j)
+					for (var i = 0; i < s.Length; ++i)
 					{
-						var suffix = s.Substring(j);
-						expectedSuffixes.Add(suffix);
-						expectedCounts[suffix].Add(i);
+						var suffix = s.Substring(i);
+						suffixes.Add(suffix);
+						if (suffix.Length != 1)
+						{
+							properSubstrings.Add(suffix.Substring(0, suffix.Length - 1));
+						}
 					}
 				}
+				properSubstrings.ExceptWith(suffixes);
 				st.Compact();
-				expectedSuffixes.Sort();
-				var suffixes = st.AllSuffixes().ToList();
-				Assert.That(suffixes.Select(_ => _.Value).ToList(), Is.EqualTo(expectedSuffixes));
-				var grouped = suffixes.Select(_ => new { value = _.Value, source = _.SourceIndex })
-					.GroupBy(_ => _.value).ToDictionary(_ => _.Key, _ => _.Select(v => v.source).OrderBy(v => v).ToList());
-				foreach (var v in grouped)
+
+				const string notPresent = "@";
+				Assert.That(st.Contains(string.Empty));
+				Assert.That(st.ContainsSuffix(string.Empty));
+				Assert.That(!st.Contains(notPresent));
+				Assert.That(!st.ContainsSuffix(notPresent));
+				foreach (var suffix in suffixes)
 				{
-					Assert.That(v.Value, Is.EqualTo(expectedCounts[v.Key]));
+					Assert.That(st.Contains(suffix));
+					Assert.That(st.ContainsSuffix(suffix));
 				}
+				foreach (var properSubstring in properSubstrings)
+				{
+					Assert.That(st.Contains(properSubstring));
+					Assert.That(!st.ContainsSuffix(properSubstring));
+					for (var i = 0; i <= properSubstring.Length; ++i)
+					{
+						var notSubstring = properSubstring.Insert(i, notPresent);
+						Assert.That(!st.Contains(notSubstring));
+						Assert.That(!st.ContainsSuffix(notSubstring));
+					}
+				}
+			}
+		}
+
+		private static void TestAllSuffixes(string[] strings)
+		{
+			var expectedSuffixes = new List<string>();
+			var expectedCounts = new LazyDictionary<string, List<int>>(_ => new List<int>());
+			var st = new SuffixTree();
+			for (var i = 0; i < strings.Length; ++i)
+			{
+				var s = strings[i];
+				st.Add(s);
+				for (var j = 0; j < s.Length; ++j)
+				{
+					var suffix = s.Substring(j);
+					expectedSuffixes.Add(suffix);
+					expectedCounts[suffix].Add(i);
+				}
+			}
+			st.Compact();
+			expectedSuffixes.Sort();
+			var suffixes = st.AllSuffixes().ToList();
+			Assert.That(suffixes.Select(_ => _.Value).ToList(), Is.EqualTo(expectedSuffixes));
+			var grouped = suffixes.Select(_ => new { value = _.Value, source = _.SourceIndex })
+				.GroupBy(_ => _.value).ToDictionary(_ => _.Key, _ => _.Select(v => v.source).OrderBy(v => v).ToList());
+			foreach (var v in grouped)
+			{
+				Assert.That(v.Value, Is.EqualTo(expectedCounts[v.Key]));
 			}
 		}
 
