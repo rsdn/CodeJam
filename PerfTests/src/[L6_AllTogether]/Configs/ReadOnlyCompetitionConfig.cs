@@ -21,6 +21,8 @@ namespace CodeJam.PerfTests.Configs
 		/// <param name="config">The config to wrap.</param>
 		public ReadOnlyCompetitionConfig([NotNull] ICompetitionConfig config) : base(config)
 		{
+			Code.NotNull(config, nameof(config));
+
 			_config = config;
 		}
 		#endregion

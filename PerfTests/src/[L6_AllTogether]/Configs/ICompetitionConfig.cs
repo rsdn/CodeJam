@@ -5,6 +5,8 @@ using BenchmarkDotNet.Configs;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Limits;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Competition config.</summary>
@@ -61,6 +63,7 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Competition limit provider.</summary>
 		/// <value>The competition limit provider.</value>
+		[CanBeNull]
 		ICompetitionLimitProvider CompetitionLimitProvider { get; }
 		#endregion
 
@@ -78,6 +81,7 @@ namespace CodeJam.PerfTests.Configs
 		/// Set <see cref="LogCompetitionLimits"/> <c>true</c> to log the limits.
 		/// </summary>
 		/// <value>The URI of the log that contains competition limits from previous run(s).</value>
+		[CanBeNull]
 		string PreviousRunLogUri { get; }
 		#endregion
 	}

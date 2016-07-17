@@ -21,16 +21,13 @@ namespace CodeJam.PerfTests.Configs
 		/// <param name="config">The config to init from.</param>
 		public ManualCompetitionConfig([CanBeNull] IConfig config)
 		{
-			if (config != null)
-			{
-				Add(config);
-			}
+			Add(config);
 		}
 
 		// TODO: as override
 		/// <summary>Fills properties from the specified config.</summary>
 		/// <param name="config">The config to init from.</param>
-		public new void Add(IConfig config)
+		public new void Add([CanBeNull] IConfig config)
 		{
 			if (config == null)
 				return;
@@ -47,7 +44,7 @@ namespace CodeJam.PerfTests.Configs
 			}
 		}
 
-		private void AddCompetitionProperties(ICompetitionConfig config)
+		private void AddCompetitionProperties([NotNull] ICompetitionConfig config)
 		{
 			//Runner config - troubleshooting
 			AllowDebugBuilds = config.AllowDebugBuilds;

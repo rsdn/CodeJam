@@ -10,12 +10,12 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-namespace CodeJam.Algorithms
+namespace CodeJam
 {
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory)]
 	[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
 	[PublicAPI]
-	public class LowerBoundPerfTests
+	public class AlgorithmsLowerBoundPerfTests
 	{
 		#region PerfTest helpers
 		private static int LowerBoundIComparable<T>(IList<T> list, T value, int from, int to) where T : IComparable<T>

@@ -15,7 +15,7 @@ using NUnit.Framework;
 
 using static CodeJam.PerfTests.SelfTestHelpers;
 
-[assembly: AssemblyCompetitionConfig]
+[assembly: SelfTestCompetitionConfig]
 
 namespace CodeJam.PerfTests.IntegrationTests
 {
@@ -31,11 +31,11 @@ namespace CodeJam.PerfTests.IntegrationTests
 		}
 	}
 
-	public class AssemblyCompetitionConfigAttribute : CompetitionConfigAttribute
+	public class SelfTestCompetitionConfigAttribute : CompetitionConfigAttribute
 	{
-		public AssemblyCompetitionConfigAttribute() : base(Create()) { }
+		public SelfTestCompetitionConfigAttribute() : base(Create()) { }
 
-		public static ManualCompetitionConfig Create()
+		private static ManualCompetitionConfig Create()
 		{
 			var result = CreateSelfTestConfig(Platform.Host);
 			result.Add(BaselineDiffColumn.Delta);

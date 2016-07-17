@@ -1,5 +1,7 @@
 ﻿using System;
 
+using BenchmarkDotNet.Helpers;
+
 using CodeJam.PerfTests;
 using CodeJam.PerfTests.Running.Console;
 
@@ -19,10 +21,7 @@ namespace CodeJam.Examples
 
 			ConsoleCompetition.Run<ListCapacityPerfTest>(CompetitionHelpers.DefaultConfig);
 
-			Console.WriteLine();
-			Console.Write("Done. Press any key to exit.");
-			Console.ReadKey(true);
-			Console.WriteLine();
+			BenchmarkHelpers.ConsoleDoneWaitForConfirmation();
 		}
 	}
 }

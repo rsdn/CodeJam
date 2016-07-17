@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
-using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Toolchains.InProcess;
 
 using CodeJam.PerfTests.Configs;
+using CodeJam.PerfTests.Running.Core;
 
 using JetBrains.Annotations;
 
@@ -15,6 +16,7 @@ using NUnit.Framework;
 
 namespace CodeJam.PerfTests
 {
+	// TODO: redo as a derived from AssemblyCompetitionConfig
 	[PublicAPI]
 	internal static class SelfTestHelpers
 	{
@@ -22,6 +24,7 @@ namespace CodeJam.PerfTests
 		// Jitting = 1, WarmupCount = 2, TargetCount = 2
 		public const int ExpectedSelfTestRunCount = 5;
 
+		[MethodImpl(MethodImplOptions.NoInlining)]
 		public static void IgnoreIfDebug()
 		{
 			var caller = Assembly.GetCallingAssembly();
@@ -33,9 +36,6 @@ namespace CodeJam.PerfTests
 		#endregion
 
 		#region Configs core
-		private static readonly ILogger _detailedLogger = CompetitionHelpers.CreateDetailedLoggerForAssembly();
-		private static readonly ILogger _importantInfoLogger = CompetitionHelpers.CreateImportantInfoLoggerForAssembly();
-
 		private static ManualCompetitionConfig CreateRunConfigCore()
 		{
 			var result = new ManualCompetitionConfig
@@ -45,9 +45,7 @@ namespace CodeJam.PerfTests
 			};
 
 			result.Add(BenchmarkDotNet.Configs.DefaultConfig.Instance.GetColumns().ToArray());
-			//result.Add(TimingsExporter.Instance);
-			//result.Add(_detailedLogger);
-			result.Add(_importantInfoLogger);
+			result.Add(AppConfigHelpers.GetImportantOnlyLogger(typeof(SelfTestHelpers).Assembly));
 			return result;
 		}
 		#endregion

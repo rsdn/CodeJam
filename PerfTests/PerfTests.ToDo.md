@@ -1,5 +1,5 @@
 ﻿## TODO, Bench.Net:
-* Check `IFlushable.Flush()` usages.
+* Support for `IFlushable.Flush()`.
 * No file logger for tests https://github.com/PerfDotNet/BenchmarkDotNet/issues/198
 * Run state for issues like this. https://github.com/PerfDotNet/BenchmarkDotNet/issues/180
 * ReadOnlyConfig
@@ -9,11 +9,18 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
 ## TODO:
+ * Separate project for self-testing
+ * Name all cache-related member with Cache suffix, use Memoize() if possible.
  * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix).
  * Tests for broken log annotations.
  * Logging: write validator messages immediately?
  * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion
  * Memory limits + diagnoser - whoops, https://github.com/PerfDotNet/BenchmarkDotNet/issues/200 . Will need to replace MethodInvoker, delayed.
+
+## Issues:
+https://github.com/nunit/nunit/issues/668
+https://github.com/xunit/xunit/issues/908
+https://github.com/appveyor/ci/issues/916
 
 ## layered design: Bench.NET part
 

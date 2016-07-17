@@ -48,6 +48,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -116,6 +117,12 @@
     <Compile Include="[L6_AllTogether]\Running.Console\ConsoleCompetition.cs" />
     <Compile Include="[L6_AllTogether]\Running.Core\CompetitionRunnerBase.cs" />
     <Compile Include="[L6_AllTogether]\[Attributes]\CompetitionConfigAttribute.cs" />
+    <Compile Include="[L7_Configuration]\Running.Core\AppConfigHelpers.cs" />
+    <Compile Include="[L7_Configuration]\Configs\AssemblyCompetitionConfigAttribute.cs" />
+    <Compile Include="[L7_Configuration]\Configs\AssemblyCompetitionConfig.cs" />
+    <Compile Include="[L7_Configuration]\Running.Core\AppConfigLoggers.cs" />
+    <Compile Include="[L7_Configuration]\Configs\PerfTestsSection.cs" />
+    <Compile Include="[L7_Configuration]\Running.Core\AppConfigOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

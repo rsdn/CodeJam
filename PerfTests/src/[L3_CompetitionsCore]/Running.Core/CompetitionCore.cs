@@ -198,6 +198,7 @@ namespace CodeJam.PerfTests.Running.Core
 			return competitionState;
 		}
 
+		// TODO: as a part of CompetitionRunnerBase
 		private static bool CheckPreconditions(
 			[NotNull] Type benchmarkType,
 			bool lockTaken, bool allowDebugBuilds,
@@ -212,7 +213,7 @@ namespace CodeJam.PerfTests.Running.Core
 					case ConcurrentRunBehavior.Fail:
 						competitionState.WriteMessage(
 							MessageSource.Runner, MessageSeverity.SetupError,
-							"Competitions cannot be run in parallel. Be sure to disable parallel test execution. Competition run skipped.");
+							"Competition run skipped. Competitions cannot be run in parallel, be sure to disable parallel test execution.");
 						return false;
 					default:
 						throw CodeExceptions.UnexpectedArgumentValue(nameof(concurrentRunBehavior), concurrentRunBehavior);
@@ -221,10 +222,11 @@ namespace CodeJam.PerfTests.Running.Core
 
 			if (!allowDebugBuilds && benchmarkType.Assembly.IsDebugAssembly())
 			{
+				// TODO: as error?
 				var assembly = benchmarkType.Assembly;
 				competitionState.WriteMessage(
 					MessageSource.Runner, MessageSeverity.Warning,
-					$"Please run as a release build. Assembly {assembly.GetName().Name} was build as debug.");
+					$"Competition run skipped. Assembly {assembly.GetName().Name} was build as debug.");
 
 				return false;
 			}

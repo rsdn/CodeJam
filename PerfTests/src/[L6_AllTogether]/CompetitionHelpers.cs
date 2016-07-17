@@ -10,6 +10,7 @@ using BenchmarkDotNet.Toolchains.InProcess;
 
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Loggers;
+using CodeJam.Threading;
 
 using JetBrains.Annotations;
 
@@ -51,36 +52,6 @@ namespace CodeJam.PerfTests
 
 		/// <summary>Configuration that should be used in case the existing limits should be ignored.</summary>
 		public static readonly ICompetitionConfig DefaultConfigReannotate = CreateDefaultConfigReannotate().AsReadOnly();
-		#endregion
-
-		#region Configs core
-		/// <summary>Helper for custom configs: creates detailed logger for current assembly.</summary>
-		/// <param name="targetAssembly">Assembly with performance tests. Calling assembly will be used if <c>null</c>.</param>
-		/// <param name="suffix">The suffix for the log filename.</param>
-		/// <returns>Detailed logger for current assembly.</returns>
-		public static ILogger CreateDetailedLoggerForAssembly(
-			[CanBeNull] Assembly targetAssembly = null, string suffix = null) =>
-				GetAssemblyLevelLogger(targetAssembly ?? Assembly.GetCallingAssembly(), suffix + ".AllPerfTests.log");
-
-		/// <summary>Helper for custom configs: creates important info logger for current assembly.</summary>
-		/// <param name="targetAssembly">Assembly with performance tests. Calling assembly will be used if <c>null</c>.</param>
-		/// <param name="suffix">The suffix for the log filename.</param>
-		/// <returns>Important info logger for current assembly.</returns>
-		public static ILogger CreateImportantInfoLoggerForAssembly(
-			[CanBeNull] Assembly targetAssembly = null, string suffix = null) =>
-				new HostLogger(
-					GetAssemblyLevelLogger(targetAssembly ?? Assembly.GetCallingAssembly(), suffix + ".Short.AllPerfTests.log"),
-					HostLogMode.PrefixedOnly);
-
-		private static LazyStreamLogger GetAssemblyLevelLogger(Assembly assembly, string suffix)
-		{
-			var fileName = assembly.GetName().Name + suffix;
-			return new LazyStreamLogger(
-				() => new StreamWriter(
-					new FileStream(
-						fileName,
-						FileMode.Create, FileAccess.Write, FileShare.Read)));
-		}
 		#endregion
 
 		#region Configs

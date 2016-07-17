@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 
 using BenchmarkDotNet.Attributes;
@@ -17,6 +19,7 @@ using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
 using CodeJam;
+using CodeJam.Reflection;
 
 using JetBrains.Annotations;
 
@@ -37,7 +40,7 @@ namespace BenchmarkDotNet.Helpers
 		/// <summary>Get benchmark types defined in the assembly.</summary>
 		/// <param name="assembly">The assembly to get benchmarks from.</param>
 		/// <returns>Benchmark types from the assembly</returns>
-		public static Type[] GetBenchmarkTypes([NotNull] System.Reflection.Assembly assembly) =>
+		public static Type[] GetBenchmarkTypes([NotNull] Assembly assembly) =>
 			// Use reflection for a more maintainable way of creating the benchmark switcher,
 			// Benchmarks are listed in namespace order first (e.g. BenchmarkDotNet.Samples.CPU,
 			// BenchmarkDotNet.Samples.IL, etc) then by name, so the output is easy to understand.
@@ -45,8 +48,8 @@ namespace BenchmarkDotNet.Helpers
 				.GetTypes()
 				.Where(
 					t =>
-						t.GetMethods(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public)
-							.Any(m => m.GetCustomAttributes<BenchmarkAttribute>(true).Any()))
+						t.GetMethods(BindingFlags.Instance | BindingFlags.Public)
+							.Any(m => MemberInfoExtensions.GetCustomAttributes<BenchmarkAttribute>(m, true).Any()))
 				.Where(t => !t.IsGenericType && !t.IsAbstract)
 				.OrderBy(t => t.Namespace)
 				.ThenBy(t => t.Name)
@@ -164,7 +167,7 @@ namespace BenchmarkDotNet.Helpers
 		/// <summary>Checks that the assembly is build in debug mode.</summary>
 		/// <param name="assembly">The assembly.</param>
 		/// <returns><c>true</c> if the assembly was build with optimizations disabled.</returns>
-		public static bool IsDebugAssembly([NotNull] this System.Reflection.Assembly assembly)
+		public static bool IsDebugAssembly([NotNull] this Assembly assembly)
 		{
 			if (assembly == null)
 				throw new ArgumentNullException(nameof(assembly));
@@ -198,6 +201,8 @@ namespace BenchmarkDotNet.Helpers
 			{
 				var typeAttribute = tempType
 					.GetCustomAttributes<TAttribute>(true)
+					.OrderBy(t => t.GetType().Name)
+					.ThenBy(t => t.GetType().AssemblyQualifiedName)
 					.FirstOrDefault();
 
 				if (typeAttribute != null)
@@ -401,6 +406,65 @@ namespace BenchmarkDotNet.Helpers
 					Console.SetOut(_outputStack.Pop().Output);
 				}
 			}
+		}
+
+		/// <summary>Reports that work is completed and asks user to press any key to continue.</summary>
+		public static void ConsoleDoneWaitForConfirmation()
+		{
+			Console.WriteLine();
+			Console.Write("Done. Press any key to continue...");
+
+			Console.ReadKey(true);
+			Console.WriteLine();
+		}
+		#endregion
+
+		#region Configs
+		/// <summary>
+		/// Retuns configuration section from app.config or (if none)
+		/// from first of the <paramref name="fallbackAssemblies"/> that have the section in its config.
+		/// </summary>
+		/// <typeparam name="TSection">Type of the section.</typeparam>
+		/// <param name="sectionName">Name of the section.</param>
+		/// <param name="fallbackAssemblies">The assemblies to check for the config section if the app.config does not contain the section.</param>
+		/// <returns>Configuration section with the name specified in <paramref name="sectionName"/>.</returns>
+		public static TSection ParseConfigurationSection<TSection>(
+			[NotNull] string sectionName,
+			params Assembly[] fallbackAssemblies)
+			where TSection : ConfigurationSection =>
+				ParseConfigurationSection<TSection>(sectionName, fallbackAssemblies.AsEnumerable());
+
+		/// <summary>
+		/// Retuns configuration section from app.config or (if none)
+		/// from first of the <paramref name="fallbackAssemblies"/> that have the section in its config.
+		/// </summary>
+		/// <typeparam name="TSection">Type of the section.</typeparam>
+		/// <param name="sectionName">Name of the section.</param>
+		/// <param name="fallbackAssemblies">The assemblies to check for the config section if the app.config does not contain the section.</param>
+		/// <returns>Configuration section with the name specified in <paramref name="sectionName"/>.</returns>
+		public static TSection ParseConfigurationSection<TSection>(
+			[NotNull] string sectionName,
+			IEnumerable<Assembly> fallbackAssemblies)
+			where TSection : ConfigurationSection
+		{
+			if (string.IsNullOrEmpty(sectionName))
+				throw new ArgumentNullException(nameof(sectionName));
+
+			var result = (TSection)ConfigurationManager.GetSection(sectionName);
+			if (result == null)
+			{
+				// DONTTOUCH: .Distinct preserves order of fallbackAssemblies.
+				foreach (var assembly in fallbackAssemblies.Distinct())
+				{
+					result = (TSection)ConfigurationManager
+						.OpenExeConfiguration(assembly.GetAssemblyPath())
+						.GetSection(sectionName);
+
+					if (result != null)
+						break;
+				}
+			}
+			return result;
 		}
 		#endregion
 	}
