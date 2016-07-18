@@ -165,6 +165,26 @@ namespace CodeJam.Assertions
 		}
 
 		[Test]
+		public void TestValidCount()
+		{
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.ValidCount(-1, "arg00"));
+
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.ValidCount(-1, "arg00", 1));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.ValidCount(-1, "arg00", 0));
+
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.ValidCount(1, "arg00", 0));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.ValidCount(0, "arg00", -1));
+
+			var ex = Assert.Throws<ArgumentOutOfRangeException>(() => Code.ValidCount(4, "arg00", 3));
+			Assert.That(ex.Message, Does.Contain("arg00"));
+			Assert.That(
+				ex.Message, Does.Contain("The value of 'arg00' (4) should be between 0 and 3"));
+
+			Assert.DoesNotThrow(() => Code.ValidCount(3, "arg00"));
+			Assert.DoesNotThrow(() => Code.ValidCount(3, "arg00", 4));
+		}
+
+		[Test]
 		public void TestValidIndex()
 		{
 			Assert.Throws<IndexOutOfRangeException>(() => Code.ValidIndex(-1, "arg00"));
