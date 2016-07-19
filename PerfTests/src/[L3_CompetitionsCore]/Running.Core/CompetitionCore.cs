@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Threading;
 
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Configs;
@@ -123,20 +122,44 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		#region Run logic
+		/// <summary>Returns competition state for skipped benchmark run.</summary>
+		/// <param name="benchmarkType">The type of the benchmark.</param>
+		/// <param name="competitionConfig">The config for the benchmark.</param>
+		/// <param name="skipMessage">Messages that explains why the test was skipped.</param>
+		/// <param name="logger">The logger for the competition. If <c>null</c> loggers from <paramref name="competitionConfig"/> are used.</param>
+		/// <returns>Competition state for skipped benchmark run.</returns>
+		internal static CompetitionState RunSkipped(
+			[NotNull] Type benchmarkType,
+			[NotNull] IConfig competitionConfig,
+			[NotNull] string skipMessage,
+			[CanBeNull] ILogger logger = null)
+		{
+			Code.NotNull(benchmarkType, nameof(benchmarkType));
+			Code.NotNull(competitionConfig, nameof(competitionConfig));
+			Code.NotNullNorEmpty(skipMessage, nameof(skipMessage));
+
+			var competitionState = new CompetitionState();
+			competitionState.FirstTimeInit(0, competitionConfig, logger);
+			LogHeader(benchmarkType, competitionConfig, competitionState);
+
+			competitionState.WriteMessage(MessageSource.Runner, MessageSeverity.Warning, skipMessage);
+
+			competitionState.CompetitionCompleted();
+			return competitionState;
+		}
+
 		/// <summary>Runs the benchmark for specified benchmark type.</summary>
 		/// <param name="benchmarkType">The type of the benchmark.</param>
 		/// <param name="competitionConfig">The config for the benchmark.</param>
 		/// <param name="maxRunsAllowed">Total count of reruns allowed.</param>
-		/// <param name="allowDebugBuilds">Allow debug builds. If <c>false</c> the benchmark will be skipped on debug builds.</param>
-		/// <param name="concurrentRunBehavior">Behavior for concurrent competition runs.</param>
+		/// <param name="logger">The logger for the competition. If <c>null</c> loggers from <paramref name="competitionConfig"/> are used.</param>
 		/// <returns>Competition state for the run.</returns>
 		[NotNull]
 		internal static CompetitionState Run(
 			[NotNull] Type benchmarkType,
 			[NotNull] IConfig competitionConfig,
 			int maxRunsAllowed,
-			bool allowDebugBuilds,
-			ConcurrentRunBehavior concurrentRunBehavior)
+			[CanBeNull] ILogger logger = null)
 		{
 			Code.NotNull(benchmarkType, nameof(benchmarkType));
 			Code.NotNull(competitionConfig, nameof(competitionConfig));
@@ -153,34 +176,10 @@ namespace CodeJam.PerfTests.Running.Core
 
 			try
 			{
-				competitionState.FirstTimeInit(maxRunsAllowed, competitionConfig);
-				var logger = competitionState.Logger;
+				competitionState.FirstTimeInit(maxRunsAllowed, competitionConfig, logger);
+				LogHeader(benchmarkType, competitionConfig, competitionState);
 
-				using (BeginLogImportant(competitionConfig))
-				{
-					logger.WriteLine();
-					logger.WriteSeparatorLine(benchmarkType.Name, true);
-					logger.WriteLineHelp($"{LogInfoPrefix} {benchmarkType.GetShortAssemblyQualifiedName()}");
-				}
-
-				using (var mutex = new Mutex(false, $"Global\\{typeof(CompetitionCore).FullName}"))
-				{
-					bool lockTaken = false;
-					try
-					{
-						var timeout = concurrentRunBehavior == ConcurrentRunBehavior.Lock ? Timeout.InfiniteTimeSpan : TimeSpan.Zero;
-						lockTaken = mutex.WaitOne(timeout);
-						if (CheckPreconditions(benchmarkType, lockTaken, allowDebugBuilds, concurrentRunBehavior, competitionState))
-						{
-							RunCore(benchmarkType, competitionState, maxRunsAllowed);
-						}
-					}
-					finally
-					{
-						if (lockTaken)
-							mutex.ReleaseMutex();
-					}
-				}
+				RunCore(benchmarkType, competitionState, maxRunsAllowed);
 			}
 			catch (Exception ex)
 			{
@@ -198,40 +197,16 @@ namespace CodeJam.PerfTests.Running.Core
 			return competitionState;
 		}
 
-		// TODO: as a part of CompetitionRunnerBase
-		private static bool CheckPreconditions(
-			[NotNull] Type benchmarkType,
-			bool lockTaken, bool allowDebugBuilds,
-			ConcurrentRunBehavior concurrentRunBehavior,
-			CompetitionState competitionState)
+		private static void LogHeader(Type benchmarkType, IConfig competitionConfig, CompetitionState competitionState)
 		{
-			if (!lockTaken)
+			var logger = competitionState.Logger;
+
+			using (BeginLogImportant(competitionConfig))
 			{
-				switch (concurrentRunBehavior)
-				{
-					case ConcurrentRunBehavior.Lock:
-					case ConcurrentRunBehavior.Fail:
-						competitionState.WriteMessage(
-							MessageSource.Runner, MessageSeverity.SetupError,
-							"Competition run skipped. Competitions cannot be run in parallel, be sure to disable parallel test execution.");
-						return false;
-					default:
-						throw CodeExceptions.UnexpectedArgumentValue(nameof(concurrentRunBehavior), concurrentRunBehavior);
-				}
+				logger.WriteLine();
+				logger.WriteSeparatorLine(benchmarkType.Name, true);
+				logger.WriteLineHelp($"{LogInfoPrefix} {benchmarkType.GetShortAssemblyQualifiedName()}");
 			}
-
-			if (!allowDebugBuilds && benchmarkType.Assembly.IsDebugAssembly())
-			{
-				// TODO: as error?
-				var assembly = benchmarkType.Assembly;
-				competitionState.WriteMessage(
-					MessageSource.Runner, MessageSeverity.Warning,
-					$"Competition run skipped. Assembly {assembly.GetName().Name} was build as debug.");
-
-				return false;
-			}
-
-			return true;
 		}
 
 		private static void RunCore(Type benchmarkType, CompetitionState competitionState, int maxRunsAllowed)

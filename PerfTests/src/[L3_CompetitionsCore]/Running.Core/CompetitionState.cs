@@ -22,6 +22,8 @@ namespace CodeJam.PerfTests.Running.Core
 	[SuppressMessage("ReSharper", "ArrangeBraces_lock")]
 	public class CompetitionState
 	{
+		private const int MaxRunLimit = 100;
+
 		private readonly List<IMessage> _messages = new List<IMessage>();
 		private readonly List<Summary> _summaries = new List<Summary>();
 		private readonly Stopwatch _stopwatch = new Stopwatch();
@@ -58,6 +60,10 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>The competition completed without warnings and errors.</summary>
 		/// <value><c>true</c> if the competition completed without warnings and errors.</value>
 		public bool CompletedSuccessfully => Completed && !HighestMessageSeverity.IsWarningOrHigher();
+
+		/// <summary>The competition run was skipped.</summary>
+		/// <value><c>true</c> if the competition run was skipped.</value>
+		public bool RunSkipped => MaxRunsAllowed == 0;
 
 		/// <summary>Time elapsed since start of the competition.</summary>
 		/// <value>Time elapsed since start of the competition.</value>
@@ -121,8 +127,11 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Init the competition state.</summary>
 		/// <param name="maxRunsAllowed">Max limit for competition reruns.</param>
 		/// <param name="config">The config for the competition.</param>
-		internal void FirstTimeInit(int maxRunsAllowed, [NotNull] IConfig config)
+		/// <param name="logger">The logger for the competition.</param>
+		internal void FirstTimeInit(int maxRunsAllowed, [NotNull] IConfig config, ILogger logger = null)
 		{
+			Code.InRange(maxRunsAllowed, nameof(maxRunsAllowed), 0, MaxRunLimit);
+
 			lock (_messages)
 			{
 				AssertIsInCompetition();
@@ -132,10 +141,10 @@ namespace CodeJam.PerfTests.Running.Core
 
 				MaxRunsAllowed = maxRunsAllowed;
 				Config = config;
-				Logger = config.GetCompositeLogger();
+				Logger = logger ?? config.GetCompositeLogger();
 
 				RunNumber = 0;
-				RunsLeft = 1;
+				RunsLeft = maxRunsAllowed == 0 ? 0 : 1;
 
 				HighestMessageSeverityInRun = MessageSeverity.Verbose;
 				HighestMessageSeverity = MessageSeverity.Verbose;
@@ -152,6 +161,7 @@ namespace CodeJam.PerfTests.Running.Core
 		internal void PrepareForRun()
 		{
 			AssertIsInCompetition();
+			Code.AssertState(RunsLeft > 0, "No runs left.");
 
 			RunNumber++;
 			RunsLeft--;
@@ -188,7 +198,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			AssertIsInCompetition();
 
-			Code.InRange(additionalRunsCount, nameof(additionalRunsCount), 0, 100);
+			Code.InRange(additionalRunsCount, nameof(additionalRunsCount), 0, MaxRunLimit);
 			Code.NotNullNorEmpty(explanationMessage, nameof(explanationMessage));
 
 			if (additionalRunsCount == 0)

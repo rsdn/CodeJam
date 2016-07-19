@@ -8,8 +8,8 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Use global (cross-process) lock to prevent concurrent runs.</summary>
 		Lock,
 
-		/// <summary>Competition will fail with error.</summary>
-		Fail,
+		/// <summary>Competition will be skipped.</summary>
+		Skip,
 
 		/// <summary>Same as <see cref="Lock"/>: use global (cross-process) lock to prevent concurrent runs.</summary>
 		Default = Lock

@@ -15,8 +15,6 @@ using static CodeJam.PerfTests.SelfTestHelpers;
 
 namespace CodeJam.PerfTests.IntegrationTests
 {
-	// TODO: fix.
-	[Explicit("Do not work at all")]
 	[PublicAPI]
 	[TestFixture(Category = "BenchmarkDotNet")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
@@ -25,17 +23,17 @@ namespace CodeJam.PerfTests.IntegrationTests
 	public static class CompetitionRunConcurrentTest
 	{
 		[TestCase(ConcurrentRunBehavior.Lock)]
-		[TestCase(ConcurrentRunBehavior.Fail)]
+		[TestCase(ConcurrentRunBehavior.Skip)]
 		[TestCase(ConcurrentRunBehavior.Default)]
 		public static void CompetitionRunConcurrent(ConcurrentRunBehavior concurrentRunBehavior)
 		{
 			var benchmarks = new[]
 			{
-				typeof(ConcurrentRunBenchmark1),
-				typeof(ConcurrentRunBenchmark2),
-				typeof(ConcurrentRunBenchmark3),
-				typeof(ConcurrentRunBenchmark4),
-				typeof(ConcurrentRunBenchmark5)
+				typeof(ConcurrentRunBenchmark),
+				typeof(ConcurrentRunBenchmark),
+				typeof(ConcurrentRunBenchmark),
+				typeof(ConcurrentRunBenchmark),
+				typeof(ConcurrentRunBenchmark)
 			};
 			var config = CreateHighAccuracyConfig();
 			config.ConcurrentRunBehavior = concurrentRunBehavior;
@@ -61,12 +59,9 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var okResultCount = runResults.Count(r => r.HighestMessageSeverity == MessageSeverity.Informational);
 
 			var messages = runResults.SelectMany(r => r.GetMessages()).ToArray();
-			var errorMessageCount = messages.Count(
-				m => m.MessageText ==
-					"Competitions cannot be run in parallel. Be sure to disable parallel test execution. Competition run skipped.");
 			var warningMessageCount = messages.Count(
 				m => m.MessageText ==
-					"There are another competitions being run in parallel. The timings can be affected by them.");
+					"Competition run skipped. Competitions cannot be run in parallel, be sure to disable parallel test execution.");
 			var okCount = messages.Count(m => m.MessageText == "CompetitionAnalyser: All competition limits are ok.");
 
 			switch (concurrentRunBehavior)
@@ -76,17 +71,15 @@ namespace CodeJam.PerfTests.IntegrationTests
 					Assert.AreEqual(warningResultCount, 0);
 					Assert.AreEqual(okResultCount, concurrentRunsCount);
 
-					Assert.AreEqual(errorMessageCount, 0);
 					Assert.AreEqual(warningMessageCount, 0);
 					Assert.AreEqual(okCount, concurrentRunsCount);
 					break;
-				case ConcurrentRunBehavior.Fail:
-					Assert.Greater(errorResultCount, 0);
-					Assert.AreEqual(warningResultCount, 0);
+				case ConcurrentRunBehavior.Skip:
+					Assert.AreEqual(errorResultCount, 0);
+					Assert.Greater(warningResultCount, 0);
 					Assert.Less(okResultCount, concurrentRunsCount);
 
-					Assert.Greater(errorMessageCount, 0);
-					Assert.AreEqual(warningMessageCount, 0);
+					Assert.Greater(warningMessageCount, 0);
 					Assert.Less(okCount, concurrentRunsCount);
 					break;
 				default:
@@ -98,7 +91,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		// two methods in each benchmark
 		private const int ExpectedRunCount = 2 * ExpectedSelfTestRunCount;
 
-		public class ConcurrentRunBenchmarkBase
+		public class ConcurrentRunBenchmark
 		{
 			[CompetitionBaseline]
 			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
@@ -106,16 +99,6 @@ namespace CodeJam.PerfTests.IntegrationTests
 			[CompetitionBenchmark(5, 20)]
 			public void SlowerX10() => CompetitionHelpers.Delay(10 * CompetitionHelpers.DefaultCount);
 		}
-
-		public class ConcurrentRunBenchmark1 : ConcurrentRunBenchmarkBase { }
-
-		public class ConcurrentRunBenchmark2 : ConcurrentRunBenchmarkBase { }
-
-		public class ConcurrentRunBenchmark3 : ConcurrentRunBenchmarkBase { }
-
-		public class ConcurrentRunBenchmark4 : ConcurrentRunBenchmarkBase { }
-
-		public class ConcurrentRunBenchmark5 : ConcurrentRunBenchmarkBase { }
 		#endregion
 	}
 }

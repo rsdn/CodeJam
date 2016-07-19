@@ -251,7 +251,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(1.10, 1.52)]
+			[CompetitionBenchmark(1.10, 1.66)]
 			public F Test01SetFlag()
 			{
 				var a = F.A;
@@ -260,7 +260,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.66, 1.01)]
+			[CompetitionBenchmark(0.66, 1.05)]
 			public F Test02SetFlagEnumOp()
 			{
 				var a = F.A;
@@ -300,7 +300,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(1.05, 1.56)]
+			[CompetitionBenchmark(1.05, 1.66)]
 			public F Test01ClearFlag()
 			{
 				var a = F.A;
@@ -309,7 +309,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.78, 1.15)]
+			[CompetitionBenchmark(0.76, 1.15)]
 			public F Test02ClearFlagEnumOp()
 			{
 				var a = F.A;
@@ -318,7 +318,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.67, 0.88)]
+			[CompetitionBenchmark(0.62, 0.88)]
 			public int Test03ClearFlagIntOp()
 			{
 				var a = 1;
