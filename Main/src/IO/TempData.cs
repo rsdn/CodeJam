@@ -134,7 +134,7 @@ namespace CodeJam.IO
 		{
 			private FileInfo _info;
 
-			/// <summary>Create an instance using an automatically constructed temp file path</summary>
+			/// <summary>Create an instance using an automatically constructed temp file path.</summary>
 			public TempFile() : base(System.IO.Path.Combine(System.IO.Path.GetTempPath(), GetTempName())) { }
 			/// <summary>Initialize instance.</summary>
 			/// <param name="path">The path.</param>
@@ -173,8 +173,8 @@ namespace CodeJam.IO
 		#endregion
 
 		#region Factory methods
-		/// <summary>Creates a temporary file or directory name</summary>
-		/// <returns>The temporary name</returns>
+		/// <summary>Returns a random name for a temp file or directory.</summary>
+		/// <returns>A random name</returns>
 		/// <remarks>The resulting name is a local name (does not include a base path)</remarks>
 		public static string GetTempName() => Guid.NewGuid() + ".tmp";
 

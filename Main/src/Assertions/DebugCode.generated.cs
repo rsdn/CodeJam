@@ -181,6 +181,27 @@ namespace CodeJam
 		}
 		#endregion
 
+		#region Argument validation - valid count
+		/// <summary>Asserts if the passed value is not a valid count.</summary>
+		/// <param name="count">The count value.</param>
+		/// <param name="argName">The name of the argument.</param>
+		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void ValidCount(int count, [NotNull, InvokerParameterName] string argName)
+			=> InRange(count, argName, 0, int.MaxValue);
+
+		/// <summary>Asserts if the passed value is not a valid count.</summary>
+		/// <param name="count">The count value.</param>
+		/// <param name="argName">The name of the argument.</param>
+		/// <param name="length">The length.</param>
+		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void ValidCount(int count,
+			[NotNull, InvokerParameterName] string argName,
+			int length)
+				=> InRange(count, argName, 0, length);
+		#endregion
+
 		#region Argument validation - valid index
 		/// <summary>Assertion for index in range</summary>
 		/// <param name="index">The index.</param>
