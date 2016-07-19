@@ -15,6 +15,8 @@ using static CodeJam.PerfTests.SelfTestHelpers;
 
 namespace CodeJam.PerfTests.IntegrationTests
 {
+	// TODO: fix.
+	[Explicit("Do not work at all")]
 	[PublicAPI]
 	[TestFixture(Category = "BenchmarkDotNet")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]

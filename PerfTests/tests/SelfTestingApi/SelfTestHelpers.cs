@@ -16,7 +16,6 @@ using NUnit.Framework;
 
 namespace CodeJam.PerfTests
 {
-	// TODO: redo as a derived from AssemblyCompetitionConfig
 	[PublicAPI]
 	internal static class SelfTestHelpers
 	{

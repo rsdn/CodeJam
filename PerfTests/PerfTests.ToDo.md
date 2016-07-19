@@ -9,6 +9,7 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
 ## TODO:
+ * ConcurrentRunBehavior: use Lock at competition runner base-level as it can override environment settings.
  * Separate project for self-testing
  * Name all cache-related member with Cache suffix, use Memoize() if possible.
  * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix).

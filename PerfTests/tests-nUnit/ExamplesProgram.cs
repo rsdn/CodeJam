@@ -2,7 +2,6 @@
 
 using BenchmarkDotNet.Helpers;
 
-using CodeJam.PerfTests;
 using CodeJam.PerfTests.Running.Console;
 
 // ReSharper disable once CheckNamespace
@@ -10,16 +9,16 @@ using CodeJam.PerfTests.Running.Console;
 namespace CodeJam.Examples
 {
 	/// <summary>
-	/// Runner for the examples
+	/// Console runner example
 	/// </summary>
 	public static class ExamplesProgram
 	{
 		private static void Main()
 		{
 			Console.WindowWidth = 135;
-			Console.WindowHeight = 48;
+			Console.WindowHeight = 54;
 
-			ConsoleCompetition.Run<ListCapacityPerfTest>(CompetitionHelpers.DefaultConfig);
+			ConsoleCompetition.Run(typeof(ListCapacityPerfTest).Assembly);
 
 			BenchmarkHelpers.ConsoleDoneWaitForConfirmation();
 		}
