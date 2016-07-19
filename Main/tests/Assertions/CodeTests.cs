@@ -284,6 +284,20 @@ namespace CodeJam.Assertions
 		}
 
 		[Test]
+		public void TestBugIf()
+		{
+			var ex = Assert.Throws<InvalidOperationException>(
+				() => Code.BugIf(true, "someUniqueMessage"));
+			Assert.AreEqual(ex.Message, "someUniqueMessage");
+
+			ex = Assert.Throws<InvalidOperationException>(
+				() => Code.BugIf(true, "someUniqueMessage {0}", "someUniqueFormatArg"));
+			Assert.AreEqual(ex.Message, "someUniqueMessage someUniqueFormatArg");
+
+			Assert.DoesNotThrow(() => Code.BugIf(false, "someUniqueMessage"));
+		}
+
+		[Test]
 		public void TestDisposedIf()
 		{
 			// anything disposable

@@ -58,7 +58,7 @@ namespace CodeJam.Collections
 
 		protected override void BuildFor(int begin, int end)
 		{
-			Code.AssertState(begin < end, "Invalid parameters passed");
+			Code.BugIf(begin >= end, "Invalid parameters passed");
 			_branchNodeIndex = RootNodeIndex;
 			_activeEdgeIndex = InvalidNodeIndex;
 			activeLength_ = 0;

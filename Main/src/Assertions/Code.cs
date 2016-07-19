@@ -291,5 +291,35 @@ namespace CodeJam
 				throw CodeExceptions.InvalidOperation(messageFormat, args);
 		}
 		#endregion
+
+		#region Code consistency validation
+		/// <summary>Asserts if the given condition is satisfied.</summary>
+		/// <param name="condition">The condition to check.</param>
+		/// <param name="message">The message.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void BugIf(
+			[AssertionCondition(AssertionConditionType.IS_FALSE)] bool condition,
+			[NotNull] string message)
+		{
+			if (condition)
+				throw CodeExceptions.InvalidOperation(message);
+		}
+
+		/// <summary>Asserts if the given condition is satisfied.</summary>
+		/// <param name="condition">The condition to check.</param>
+		/// <param name="messageFormat">The message format.</param>
+		/// <param name="args">The arguments.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod, StringFormatMethod("messageFormat")]
+		public static void BugIf(
+			[AssertionCondition(AssertionConditionType.IS_FALSE)] bool condition,
+			[NotNull] string messageFormat,
+			[CanBeNull] params object[] args)
+		{
+			if (condition)
+				throw CodeExceptions.InvalidOperation(messageFormat, args);
+		}
+		#endregion
 	}
 }
