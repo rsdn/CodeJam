@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Configuration;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
@@ -109,10 +111,13 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void CompetitionHighAccuracyBenchmarkOutOfProcess()
 		{
 			IgnoreIfDebug();
+			// HACK: forcing a reference to System.Configuration
+			// WAITINGFOR: https://github.com/PerfDotNet/BenchmarkDotNet/issues/234
+			GC.KeepAlive(typeof(ConfigurationManager));
 
-			var overrideConfig = CreateHighAccuracyConfig(outOfProcess: true);
+			var config = CreateHighAccuracyConfig(outOfProcess: true);
 
-			var runState = SelfTestCompetition.Run<HighAccuracyBenchmarkOutOfProcess>(overrideConfig);
+			var runState = SelfTestCompetition.Run<HighAccuracyBenchmarkOutOfProcess>(config);
 			var messages = runState.GetMessages();
 			if (messages.All(m => m.MessageText != "CompetitionAnalyser: All competition limits are ok."))
 			{

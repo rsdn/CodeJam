@@ -19,9 +19,10 @@
  * Memory limits + diagnoser - whoops, https://github.com/PerfDotNet/BenchmarkDotNet/issues/200 . Will need to replace MethodInvoker, delayed.
 
 ## Issues:
+https://github.com/PerfDotNet/BenchmarkDotNet/issues/234
 https://github.com/nunit/nunit/issues/668
+https://github.com/nunit/nunit/issues/1586
 https://github.com/xunit/xunit/issues/908
-https://github.com/appveyor/ci/issues/916
 
 ## layered design: Bench.NET part
 
