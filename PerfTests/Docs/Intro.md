@@ -1,19 +1,26 @@
-# [WORK IN PROGRESS] CodeJam.PerfTests - performance tests framework for .Net projects.
+# [WORK IN PROGRESS] CodeJam.PerfTests.
 Please do not remove [WORK IN PROGRESS] modifier until the doc is complete.
 Until this use with care.
 
 ## What it is? (short version)
 
 CodeJam.PerfTests is performance testing framework for .Net projects.
-It allows to compare multiple implementations by time (memory limits coming soon),
+It allows to compare multiple implementations by execution time (memory limits coming soon),
 to annotate implementations with timing limits and to check the limits each time the test is run.
 
-## TL;DR:
-1. Create a new unit test project (there and below NUnit framework is used as a test runner.
-Documentation for another testing frameworks will be added later).
+## TL;DR (NUnit version):
+
+>**SIDENOTE**
+>
+>Here and below all samples are based on NUnit framework. Actually there's no significant difference, 
+only package name and attributes should be changed.
+For example how to use CodeJam.PerfTests with other test frameworks see the 
+[MS test version](Example.MSTest.md) and [xUnit version](Example.xUnit.md).
+
+1. Create a new unit test project.
 2. Add a reference to the CodeJam.PerfTests.NUnit nuget package.
 3. Add a file with the following code:
- ```cs
+ ```c#
 using System;
 using System.Threading;
 
@@ -23,69 +30,80 @@ using NUnit.Framework;
 
 namespace CodeJam.Examples
 {
-	[Category("PerfTests: examples")]
+	// A perf test class.
+	[Category("PerfTests: NUnit examples")]
 	public class SimplePerfTest
 	{
 		private const int Count = 10 * 1000;
 
+		// Perf test runner method.
 		[Test]
-		public void RunSimplePerfTest() =>
-			Competition.Run(this, CompetitionHelpers.DefaultConfigAnnotate);
+		public void RunSimplePerfTest() => Competition.Run(this, CompetitionHelpers.DefaultConfigAnnotate);
 
+		// Baseline competition member. Other competition members will be compared with this.
 		[CompetitionBaseline]
 		public void Baseline() => Thread.SpinWait(Count);
 
+		// Competition member #1. Should take ~3x more time to run.
 		[CompetitionBenchmark]
 		public void SlowerX3() => Thread.SpinWait(3 * Count);
 
+		// Competition member #2. Should take ~5x more time to run.
 		[CompetitionBenchmark]
 		public void SlowerX5() => Thread.SpinWait(5 * Count);
 
+		// Competition member #3. Should take ~7x more time to run.
 		[CompetitionBenchmark]
 		public void SlowerX7() => Thread.SpinWait(7 * Count);
 	}
-}
 ```
 
-4. Run the `RunSimplePerfTest` test for the release build. You should get something like this:
- ```cs
-	[Category("PerfTests: examples")]
+4. Select release build and run the `RunSimplePerfTest` test. You should get something like this
+ (look at `[CompetitionBenchmark]` parameters):
+ ```c#
+	// A perf test class.
+	[Category("PerfTests: NUnit examples")]
 	public class SimplePerfTest
 	{
 		private const int Count = 10 * 1000;
 
+		// Perf test runner method.
 		[Test]
-		public void RunSimplePerfTest() =>
-			Competition.Run(this, CompetitionHelpers.DefaultConfigAnnotate);
+		public void RunSimplePerfTest() => Competition.Run(this, CompetitionHelpers.DefaultConfigAnnotate);
 
+		// Baseline competition member. Other competition members will be compared with this.
 		[CompetitionBaseline]
 		public void Baseline() => Thread.SpinWait(Count);
 
-		[CompetitionBenchmark(2.96, 3.05)]
+		// Competition member #1. Should take ~3x more time to run.
+		[CompetitionBenchmark(2.93, 3.05)]
 		public void SlowerX3() => Thread.SpinWait(3 * Count);
 
-		[CompetitionBenchmark(4.89, 5.04)]
+		// Competition member #2. Should take ~5x more time to run.
+		[CompetitionBenchmark(4.89, 5.14)]
 		public void SlowerX5() => Thread.SpinWait(5 * Count);
 
+		// Competition member #3. Should take ~7x more time to run.
 		[CompetitionBenchmark(6.82, 7.21)]
 		public void SlowerX7() => Thread.SpinWait(7 * Count);
 	}
 ```
-yep, it's a magic:)
+ yep, it's a magic:)
 
-After the `[CompetitionBenchmark]` attributes are filled with actual timing limits
-you can disable source annotation by using 
-```cs
+5. After the `[CompetitionBenchmark]` attributes are filled with actual timing limits 
+you can disable source auto-annotation. To do this, use the `CompetitionHelpers.DefaultConfig`:
+ ```c#
 		[Test]
 		public void RunSimplePerfTest() => Competition.Run(this, CompetitionHelpers.DefaultConfig);
 ```
-Now the test will fail if timings do not fit into limits. To proof, set 
-```
+6. Now the test will fail if timings do not fit into limits. To proof, set wrong limit for any competiton method and run the test.
+As example:
+ ```c#
 		[CompetitionBenchmark(1, 1)]
 		public void SlowerX7() => Thread.SpinWait(7 * Count);
 ```
-and run the test. It will fail with text like this:
-```
+ The test should fail with text like this:
+ ```
 Test failed, details below.
 Failed assertions:
     * Run #3: Method SlowerX7 [6.99..6.99] does not fit into limits [1.00..1.00]
@@ -103,40 +121,48 @@ Well, that's all.
 The CodeJam.PerfTest framework is built on top of amazing [BenchmarkDotNet](https://github.com/PerfDotNet/BenchmarkDotNet),
 the best and most mature benchmarking framework for .Net.
 
-Of course, there are another decent benchmarking frameworks such as 
+Of course, there are another decent frameworks such as 
 [NBench](https://github.com/petabridge/NBench) or [SimpleSpeedTester](https://github.com/theburningmonk/SimpleSpeedTester) 
 but, well, BenchmarkDotNet is the best one. Kudos to authors!
 
-Ok, back to topic. Why not just use one of these? Is there a room for another testing framework or it's all about https://xkcd.com/927/ ?
+Ok, back to topic. Why not just use one of these? Is there a room for another testing framework or it's all about 
+https://xkcd.com/927/ ?
 
 Well, it turns out that benchmarks and perftests ARE NOT the same.
 
-Benchmark runners are aimed to measure perf metrics of multiple implementations and to do the measurements as precise as it's possible.
-This means that a huge amount of work [should be done](https://github.com/PerfDotNet/BenchmarkDotNet#how-it-works) to fight against various side-effects.
-In short, [benchmarking](https://andreyakinshin.gitbooks.io/performancebookdotnet/content/science/microbenchmarking.html) [is](http://mattwarren.org/2014/09/19/the-art-of-benchmarking/) [hard](http://www.hanselman.com/blog/ProperBenchmarkingToDiagnoseAndSolveANETSerializationBottleneck.aspx) :)
+Benchmark runners are aimed to measure perf metrics of multiple implementations and to do the measurements as precise as 
+it's possible.
+This means that a huge amount of work [should be done](https://github.com/PerfDotNet/BenchmarkDotNet#how-it-works) 
+to fight against various side-effects.
+In short, [benchmarking](https://andreyakinshin.gitbooks.io/performancebookdotnet/content/science/microbenchmarking.html) 
+[is](http://mattwarren.org/2014/09/19/the-art-of-benchmarking/) 
+[hard](http://www.hanselman.com/blog/ProperBenchmarkingToDiagnoseAndSolveANETSerializationBottleneck.aspx) :)
 
 The goals for performance testing are different. This is by design:
 
-* there will be a lot of perftests and these will be run continiously (and you do not want to [wait for hours](https://twitter.com/jonskeet/status/735415336825192448) for the tests completion),
-* the tests will be run in different environments,
+* there will be a lot of perftests and these will be run continiously 
+(and you do not want to [wait for hours](https://twitter.com/jonskeet/status/735415336825192448) for the tests completion),
+* the tests will be run on different hardware from tablets to CI servers,
 * and, to be honest, you're not interested in preciseness. There's no point in direct comparison of
 `ImplA` that takes 0.1 sec when run on a tablet and `ImplB` that takes 0.05 sec when run on dedicated testserver.
 
-Absolute timings means nothing until you're sure that all methods in benchmark are run under exactly same conditions.
+Absolute timings means nothing until you're sure that benchmarks are run under exactly same conditions.
 In actual, `ImplA` from example above takes 0.015 sec to complete when run on same hardware the `ImplB` was run.
 
-And here's one more thing: you cannot trust to benchmark results obtained from code being run in clean room.
-In production your code will be influenced by the environment and benchmark ignoring these side-effects will lie to you.
-If your code does a lot of memory reads/writes it will suffer from CPU cache hits caused by concurrent reads.
-If you do a lot of short-lived allocations, GC collection caused by another code will promote your objects into higher generation increasing the gc overhead.
+And here's one more thing: you cannot trust benchmark results obtained from code being run in clean room conditions.
+In production your code will be influenced by the environment and benchmark ignoring these side effects will lie to you.  
+If your code does a lot of memory reads/writes it will suffer from CPU cache hits caused by concurrent reads.  
+If you do a lot of short-lived allocations, GC collection caused by another code will promote your objects into higher 
+generation increasing the gc overhead.  
 Reading from HDD/Network? Still the same - unexpected latencies will hurt you.
 
 All of the above means that:
 * You do want to get reproducible results that are as close to the results from production as it's possible.
-* You do want to be able to compare benchmark results obtained from different test runs, from different machines and from different implementations.
-* You do want to have a lot (a lot means hundreds and thousands) of tests and the maintain them as easy as usual unit tests.
+* You do want to be able to compare benchmark results obtained from different test runs, from different machines 
+and from different implementations.
+* You do want to have a lot (a lot means hundreds and thousands) of tests and to maintain them as easy as usual unit tests.
 
-CodeJam.PerfTest covers all of the above.
+CodeJam.PerfTest handles all of the above.
 
 
 ## Creating a new performance test
@@ -207,7 +233,7 @@ Also, you can use default console runner to run the performance test:
 ```
 
 output will look like this:
-![Docs\ConsoleRun.png](Docs\ConsoleRun.png)
+![ConsoleRun.png](ConsoleRun.png)
 
 ### Setting the limits:
 As you can see the perftest was failed with message
