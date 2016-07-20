@@ -165,8 +165,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				Sha1
 			}
 
-			private static readonly ConcurrentDictionary<string, byte[]> _md5Hashes = new ConcurrentDictionary<string, byte[]>();
-			private static readonly ConcurrentDictionary<string, byte[]> _sha1Hashes = new ConcurrentDictionary<string, byte[]>();
+			private static readonly ConcurrentDictionary<string, byte[]> _md5HashesCache = new ConcurrentDictionary<string, byte[]>();
+			private static readonly ConcurrentDictionary<string, byte[]> _sha1HashesCache = new ConcurrentDictionary<string, byte[]>();
 
 			private const string Sha1AlgName = "SHA1";
 			private const string Md5AlgName = "Md5";
@@ -176,9 +176,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				switch (doc.ChecksumAlgorithm)
 				{
 					case ChecksumAlgorithmKind.Md5:
-						return ValidateCore(doc.Url, _md5Hashes, Md5AlgName, doc.Checksum, competitionState);
+						return ValidateCore(doc.Url, _md5HashesCache, Md5AlgName, doc.Checksum, competitionState);
 					case ChecksumAlgorithmKind.Sha1:
-						return ValidateCore(doc.Url, _sha1Hashes, Sha1AlgName, doc.Checksum, competitionState);
+						return ValidateCore(doc.Url, _sha1HashesCache, Sha1AlgName, doc.Checksum, competitionState);
 					default:
 						throw CodeExceptions.UnexpectedArgumentValue(nameof(doc.ChecksumAlgorithm), doc.ChecksumAlgorithm);
 				}
@@ -186,11 +186,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			private static bool ValidateCore(
 				string file,
-				ConcurrentDictionary<string, byte[]> fileHashes,
+				ConcurrentDictionary<string, byte[]> fileHashesCache,
 				string hashAlgName,
 				byte[] expectedChecksum, CompetitionState competitionState)
 			{
-				var actualChecksum = fileHashes.GetOrAdd(file, f => TryGetChecksum(f, hashAlgName));
+				var actualChecksum = fileHashesCache.GetOrAdd(file, f => TryGetChecksum(f, hashAlgName));
 				if (expectedChecksum.SequenceEqual(actualChecksum))
 				{
 					return true;

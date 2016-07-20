@@ -13,11 +13,15 @@ using JetBrains.Annotations;
 namespace CodeJam
 {
 	/// <summary>
-	/// CodeJam project competition config. Can be configured via app.config
+	/// Assembly competition config for the CodeJam perf tests. Can be configured via app.config.
 	/// Check the <see cref="AppConfigOptions"/> for settings avaliable.
 	/// </summary>
 	public sealed class AssemblyWideConfig : ReadOnlyCompetitionConfig
 	{
+		#region Factory methods
+		private static Func<Assembly, AssemblyWideConfig> _configFactory = Algorithms.Memoize(
+			(Assembly a) => new AssemblyWideConfig(a), true);
+
 		/// <summary>Returns competition config for the assembly.</summary>
 		/// <param name="targetAssembly">The target assembly.</param>
 		/// <returns>The competition config for the assembly.</returns>
@@ -34,10 +38,9 @@ namespace CodeJam
 				return GetConfigForAssembly(Assembly.GetCallingAssembly());
 			}
 		}
+		#endregion
 
-		private static Func<Assembly, AssemblyWideConfig> _configFactory = Algorithms.Memoize(
-			(Assembly a) => new AssemblyWideConfig(a), true);
-
+		#region .ctor
 		/// <summary>Initializes a new instance of the <see cref="AssemblyCompetitionConfig"/> class.</summary>
 		/// <param name="targetAssembly">The assembly for which the config should be created.</param>
 		// ReSharper disable once ConvertClosureToMethodGroup
@@ -71,5 +74,6 @@ namespace CodeJam
 
 			return AppConfigHelpers.CreateAppCompetitionConfig(targetAssembly, createOptions);
 		}
+		#endregion
 	}
 }

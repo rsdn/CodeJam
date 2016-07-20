@@ -14,6 +14,8 @@ using CodeJam.Reflection;
 
 using JetBrains.Annotations;
 
+using static CodeJam.PerfTests.CompetitionHelpers;
+
 namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>
@@ -22,6 +24,9 @@ namespace CodeJam.PerfTests.Running.Core
 	[PublicAPI]
 	public static class AppConfigHelpers
 	{
+		/// <summary>Name of the config section.</summary>
+		public const string SectionName = "CodeJam.PerfTests";
+
 		/// <summary>Reads assembly level options config section.</summary>
 		/// <param name="assembliesToCheck">Assemblies to check for the config section if the app.config does not contain the section.</param>
 		/// <returns>
@@ -31,7 +36,7 @@ namespace CodeJam.PerfTests.Running.Core
 			params Assembly[] assembliesToCheck)
 		{
 			var section = BenchmarkHelpers.ParseConfigurationSection<PerfTestsSection>(
-				"CodeJam.PerfTests",
+				SectionName,
 				assembliesToCheck.Concat(typeof(CompetitionRunnerBase).Assembly));
 
 			return section == null
@@ -62,24 +67,24 @@ namespace CodeJam.PerfTests.Running.Core
 			Code.NotNull(targetAssembly, nameof(targetAssembly));
 
 			if (createOptions == null)
-				return new ManualCompetitionConfig(CompetitionHelpers.DefaultConfig);
+				return new ManualCompetitionConfig(DefaultConfig);
 
 			if (job == null)
-				job = CompetitionHelpers.CreateDefaultJob(createOptions.TargetPlatform);
+				job = CreateDefaultJob(createOptions.TargetPlatform);
 
 			ManualCompetitionConfig result;
 			if (!createOptions.AnnotateOnRun)
 			{
-				result = CompetitionHelpers.CreateDefaultConfig(job);
+				result = CreateDefaultConfig(job);
 			}
 			else if (!createOptions.IgnoreExistingAnnotations)
 			{
-				result = CompetitionHelpers.CreateDefaultConfigAnnotate(job);
+				result = CreateDefaultConfigAnnotate(job);
 				result.PreviousRunLogUri = createOptions.PreviousRunLogUri;
 			}
 			else
 			{
-				result = CompetitionHelpers.CreateDefaultConfigReannotate(job);
+				result = CreateDefaultConfigReannotate(job);
 			}
 
 			if (createOptions.TroubleshootingMode)

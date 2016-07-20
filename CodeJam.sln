@@ -40,6 +40,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.Experimental-Tests.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PerfTests", "PerfTests", "{F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}"
 	ProjectSection(SolutionItems) = preProject
+		PerfTests\app.config = PerfTests\app.config
 		PerfTests\PerfTests.Intro.md = PerfTests\PerfTests.Intro.md
 		PerfTests\PerfTests.ToDo.md = PerfTests\PerfTests.ToDo.md
 	EndProjectSection

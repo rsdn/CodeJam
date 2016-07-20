@@ -16,18 +16,18 @@ namespace CodeJam.Examples
 
 		[TestMethod]
 		[TestCategory("PerfTests: MSTest examples")]
-		public void RunSimplePerfTest() => Competition.Run(this, CompetitionHelpers.DefaultConfigAnnotate);
+		public void RunSimplePerfTest() => Competition.Run(this, CompetitionHelpers.DefaultConfig);
 
 		[CompetitionBaseline]
 		public void Baseline() => Thread.SpinWait(Count);
 
-		[CompetitionBenchmark(2.84, 3.18)]
+		[CompetitionBenchmark(2.74, 3.18)]
 		public void SlowerX3() => Thread.SpinWait(3 * Count);
 
-		[CompetitionBenchmark(4.81, 5.13)]
+		[CompetitionBenchmark(4.51, 5.13)]
 		public void SlowerX5() => Thread.SpinWait(5 * Count);
 
-		[CompetitionBenchmark(6.62, 7.24)]
+		[CompetitionBenchmark(6.45, 7.24)]
 		public void SlowerX7() => Thread.SpinWait(7 * Count);
 	}
 }

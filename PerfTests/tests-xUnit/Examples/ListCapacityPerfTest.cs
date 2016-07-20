@@ -17,7 +17,7 @@ namespace CodeJam.Examples
 		private const int Count = 10000;
 
 		[CompetitionFact]
-		public void RunListCapacityPerfTest() => Competition.Run(this, CompetitionHelpers.DefaultConfigAnnotate);
+		public void RunListCapacityPerfTest() => Competition.Run(this);
 
 		[CompetitionBaseline]
 		public int ListWithoutCapacity()
@@ -30,7 +30,7 @@ namespace CodeJam.Examples
 			return data.Count;
 		}
 
-		[CompetitionBenchmark(0.66, 0.79)]
+		[CompetitionBenchmark(0.64, 0.90)]
 		public int ListWithCapacity()
 		{
 			var data = new List<int>(Count);

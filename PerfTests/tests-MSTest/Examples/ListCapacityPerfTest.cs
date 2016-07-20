@@ -18,7 +18,7 @@ namespace CodeJam.Examples
 
 		[TestMethod]
 		[TestCategory("PerfTests: MSTest examples")]
-		public void RunListCapacityPerfTest() => Competition.Run(this, CompetitionHelpers.DefaultConfigAnnotate);
+		public void RunListCapacityPerfTest() => Competition.Run(this);
 
 		[CompetitionBaseline]
 		public int ListWithoutCapacity()
@@ -31,7 +31,7 @@ namespace CodeJam.Examples
 			return data.Count;
 		}
 
-		[CompetitionBenchmark(0.64, 0.79)]
+		[CompetitionBenchmark(0.64, 0.90)]
 		public int ListWithCapacity()
 		{
 			var data = new List<int>(Count);

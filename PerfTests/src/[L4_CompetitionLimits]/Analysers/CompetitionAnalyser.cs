@@ -48,7 +48,7 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		#region Cached resources with XML annotations.
-		private static readonly ConcurrentDictionary<ResourceKey, XDocument> _xmlAnnotationResources =
+		private static readonly ConcurrentDictionary<ResourceKey, XDocument> _xmlAnnotationsCache =
 			new ConcurrentDictionary<ResourceKey, XDocument>();
 		#endregion
 
@@ -341,7 +341,7 @@ namespace CodeJam.PerfTests.Analysers
 				competitionMetadata.MetadataResourceName,
 				competitionMetadata.UseFullTypeName);
 
-			var xmlAnnotationDoc = _xmlAnnotationResources.GetOrAdd(
+			var xmlAnnotationDoc = _xmlAnnotationsCache.GetOrAdd(
 				resourceKey,
 				r => XmlAnnotations.TryParseXmlAnnotationDoc(r.Item1, r.Item2, r.Item3, competitionState));
 

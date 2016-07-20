@@ -125,38 +125,38 @@ namespace CodeJam.PerfTests.Running.Core
 		#region Run logic
 		/// <summary>Runs the benchmark for specified benchmark type.</summary>
 		/// <param name="benchmarkType">The type of the benchmark.</param>
-		/// <param name="competitionConfig">The config for the benchmark.</param>
+		/// <param name="benchmarkConfig">The config for the benchmark.</param>
 		/// <param name="maxRunsAllowed">Total count of reruns allowed.</param>
 		/// <param name="allowDebugBuilds">Allow debug builds. If <c>false</c> the benchmark will be skipped on debug builds.</param>
-		/// <param name="concurrentRunBehavior">Behavior for concurrent competition runs.</param>
+		/// <param name="concurrentRunBehavior">Behavior for concurrent runs.</param>
 		/// <returns>Competition state for the run.</returns>
 		[NotNull]
 		internal static CompetitionState Run(
 			[NotNull] Type benchmarkType,
-			[NotNull] IConfig competitionConfig,
+			[NotNull] IConfig benchmarkConfig,
 			int maxRunsAllowed,
 			bool allowDebugBuilds,
 			ConcurrentRunBehavior concurrentRunBehavior)
 		{
 			Code.NotNull(benchmarkType, nameof(benchmarkType));
-			Code.NotNull(competitionConfig, nameof(competitionConfig));
+			Code.NotNull(benchmarkConfig, nameof(benchmarkConfig));
 
-			var runStateSlots = competitionConfig.GetValidators().OfType<RunStateSlots>();
+			var runStateSlots = benchmarkConfig.GetValidators().OfType<RunStateSlots>();
 			if (runStateSlots.Count() != 1)
 			{
 				throw CodeExceptions.Argument(
-					nameof(competitionConfig),
+					nameof(benchmarkConfig),
 					$"The competition config should include single instance of {nameof(RunStateSlots)} validator.");
 			}
 
-			var competitionState = RunState[competitionConfig];
+			var competitionState = RunState[benchmarkConfig];
 
 			try
 			{
-				competitionState.FirstTimeInit(maxRunsAllowed, competitionConfig);
+				competitionState.FirstTimeInit(maxRunsAllowed, benchmarkConfig);
 				var logger = competitionState.Logger;
 
-				using (BeginLogImportant(competitionConfig))
+				using (BeginLogImportant(benchmarkConfig))
 				{
 					logger.WriteLine();
 					logger.WriteSeparatorLine(benchmarkType.Name, true);
@@ -190,7 +190,7 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 			finally
 			{
-				FlushLoggers(competitionConfig);
+				FlushLoggers(benchmarkConfig);
 			}
 
 			competitionState.CompetitionCompleted();

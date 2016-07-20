@@ -14,6 +14,10 @@ namespace CodeJam.PerfTests.Configs
 	/// </summary>
 	public sealed class AssemblyCompetitionConfig : ReadOnlyCompetitionConfig
 	{
+		#region Factory methods
+		private static Func<Assembly, AssemblyCompetitionConfig> _configFactory = Algorithms.Memoize(
+			(Assembly a) => new AssemblyCompetitionConfig(a), true);
+
 		/// <summary>Returns competition config for the assembly.</summary>
 		/// <param name="targetAssembly">The target assembly.</param>
 		/// <returns>The competition config for the assembly.</returns>
@@ -30,10 +34,9 @@ namespace CodeJam.PerfTests.Configs
 				return GetConfigForAssembly(Assembly.GetCallingAssembly());
 			}
 		}
+		#endregion
 
-		private static Func<Assembly, AssemblyCompetitionConfig> _configFactory = Algorithms.Memoize(
-			(Assembly a) => new AssemblyCompetitionConfig(a), true);
-
+		#region .ctor
 		/// <summary>Initializes a new instance of the <see cref="AssemblyCompetitionConfig"/> class.</summary>
 		/// <param name="targetAssembly">The assembly for which the config should be created.</param>
 		// ReSharper disable once ConvertClosureToMethodGroup
@@ -47,5 +50,6 @@ namespace CodeJam.PerfTests.Configs
 
 			return AppConfigHelpers.CreateAppCompetitionConfig(targetAssembly, createOptions);
 		}
+		#endregion
 	}
 }

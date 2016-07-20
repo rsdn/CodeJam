@@ -2,6 +2,9 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
+using CodeJam.Examples;
+using CodeJam.PerfTests.Configs;
+
 using Xunit;
 
 // General Information about an assembly is controlled through the following 
@@ -37,3 +40,5 @@ using Xunit;
 [assembly: AssemblyVersion("1.1.0.0")]
 [assembly: AssemblyFileVersion("1.1.0.0")]
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
+
+[assembly: AssemblyCompetitionConfig(typeof(SimplePerfTest))]

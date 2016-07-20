@@ -4,16 +4,16 @@
 * Run state for issues like this. https://github.com/PerfDotNet/BenchmarkDotNet/issues/180
 * ReadOnlyConfig
 * ManualConfig.Add - make virtual?
-* Validators: access to config, in-process validators, naming: ThreatsWarnings -> ThreatWarnings
+* Validators: access to config, in-process validators
 * remove calls instance.setupAction(), instance.targetAction() from BenchmarkProgram.txt
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
-## TODO:
- * ConcurrentRunBehavior: use Lock at competition runner base-level as it can override environment settings.
- * Separate project for self-testing
- * Name all cache-related member with Cache suffix, use Memoize() if possible.
- * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix).
+## TODOs:
+ * log table with timings on last run.
  * Tests for broken log annotations.
+
+## Long-term TODOs:
+ * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix).
  * Logging: write validator messages immediately?
  * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion
  * Memory limits + diagnoser - whoops, https://github.com/PerfDotNet/BenchmarkDotNet/issues/200 . Will need to replace MethodInvoker, delayed.

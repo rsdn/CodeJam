@@ -13,7 +13,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Do not log anything.</summary>
 		None = 0x0,
 
-		/// <summary>Add important-level loggers.</summary>
+		/// <summary>Add important-level logger.</summary>
 		ImportantOnly = 0x1,
 
 		/// <summary>Add detailed logger.</summary>

@@ -31,7 +31,7 @@ namespace CodeJam.PerfTests.Analysers
 		// as test can be run multiple times in same appdomain.
 		private class LoggedXmlAnnotations : Dictionary<string, XDocument[]> { }
 
-		private static readonly RunState<LoggedXmlAnnotations> _annotationsSlot =
+		private static readonly RunState<LoggedXmlAnnotations> _annotationsCacheSlot =
 			new RunState<LoggedXmlAnnotations>();
 		#endregion
 
@@ -106,7 +106,7 @@ namespace CodeJam.PerfTests.Analysers
 			competitionState.Logger.WriteLineInfo(
 				$"{LogVerbosePrefix} Reading XML annotation documents from log '{PreviousRunLogUri}'.");
 
-			var xmlAnnotationDocs = _annotationsSlot[summary].GetOrAdd(
+			var xmlAnnotationDocs = _annotationsCacheSlot[summary].GetOrAdd(
 				PreviousRunLogUri,
 				uri => XmlAnnotations.TryParseXmlAnnotationDocsFromLog(uri, competitionState));
 
