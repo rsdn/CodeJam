@@ -1,16 +1,11 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Threading;
 
 using BenchmarkDotNet.Jobs;
-using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Toolchains.InProcess;
 
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Loggers;
-using CodeJam.Threading;
 
 using JetBrains.Annotations;
 

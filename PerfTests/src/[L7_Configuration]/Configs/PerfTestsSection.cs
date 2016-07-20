@@ -37,7 +37,9 @@ namespace CodeJam.PerfTests.Configs
 		/// Enables <see cref="ICompetitionConfig.IgnoreExistingAnnotations"/> option.
 		/// If set to <c>true</c> the <see cref="PreviousRunLogUri"/> value will be ignored.
 		/// </summary>
-		/// <value><c>true</c> if <see cref="ICompetitionConfig.IgnoreExistingAnnotations"/> should be enabled.</value>
+		/// <value>
+		/// <c>true</c> if <see cref="ICompetitionConfig.IgnoreExistingAnnotations"/> should be enabled.
+		/// </value>
 		[ConfigurationProperty(nameof(IgnoreExistingAnnotations), IsRequired = false)]
 		public bool IgnoreExistingAnnotations
 		{
@@ -84,7 +86,9 @@ namespace CodeJam.PerfTests.Configs
 			}
 		}
 
-		/// <summary>Assembly-level loggers that should be used. Check the <see cref="AppConfigLoggers"/> for possible values.</summary>
+		/// <summary>
+		/// Assembly-level loggers that should be used. Check the <see cref="AppConfigLoggers"/> for possible values.
+		/// </summary>
 		/// <value>Assembly-level loggers that should be used.</value>
 		[ConfigurationProperty(nameof(Loggers), IsRequired = false)]
 		public AppConfigLoggers Loggers

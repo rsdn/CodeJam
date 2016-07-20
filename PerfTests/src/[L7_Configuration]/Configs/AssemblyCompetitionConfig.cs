@@ -17,7 +17,7 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Returns competition config for the assembly.</summary>
 		/// <param name="targetAssembly">The target assembly.</param>
 		/// <returns>The competition config for the assembly.</returns>
-		public static ICompetitionConfig GetConfigForAssembly(Assembly targetAssembly) => 
+		public static ICompetitionConfig GetConfigForAssembly(Assembly targetAssembly) =>
 			_configFactory(targetAssembly);
 
 		/// <summary>Returns competition config for calling assembly.</summary>

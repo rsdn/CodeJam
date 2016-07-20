@@ -426,7 +426,9 @@ namespace BenchmarkDotNet.Helpers
 		/// </summary>
 		/// <typeparam name="TSection">Type of the section.</typeparam>
 		/// <param name="sectionName">Name of the section.</param>
-		/// <param name="fallbackAssemblies">The assemblies to check for the config section if the app.config does not contain the section.</param>
+		/// <param name="fallbackAssemblies">
+		/// The assemblies to check for the config section if the app.config does not contain the section.
+		/// </param>
 		/// <returns>Configuration section with the name specified in <paramref name="sectionName"/>.</returns>
 		public static TSection ParseConfigurationSection<TSection>(
 			[NotNull] string sectionName,
@@ -440,7 +442,9 @@ namespace BenchmarkDotNet.Helpers
 		/// </summary>
 		/// <typeparam name="TSection">Type of the section.</typeparam>
 		/// <param name="sectionName">Name of the section.</param>
-		/// <param name="fallbackAssemblies">The assemblies to check for the config section if the app.config does not contain the section.</param>
+		/// <param name="fallbackAssemblies">
+		/// The assemblies to check for the config section if the app.config does not contain the section.
+		/// </param>
 		/// <returns>Configuration section with the name specified in <paramref name="sectionName"/>.</returns>
 		public static TSection ParseConfigurationSection<TSection>(
 			[NotNull] string sectionName,

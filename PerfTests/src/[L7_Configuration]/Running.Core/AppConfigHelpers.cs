@@ -24,7 +24,9 @@ namespace CodeJam.PerfTests.Running.Core
 	{
 		/// <summary>Reads assembly level options config section.</summary>
 		/// <param name="assembliesToCheck">Assemblies to check for the config section if the app.config does not contain the section.</param>
-		/// <returns>Configuration section from the app.config, <paramref name="assembliesToCheck"/> or CodeJam.PerfTests assembly (first wins).</returns>
+		/// <returns>
+		/// Configuration section from the app.config, <paramref name="assembliesToCheck"/> or CodeJam.PerfTests assembly (first wins).
+		/// </returns>
 		public static AppConfigOptions GetAppConfigOptions(
 			params Assembly[] assembliesToCheck)
 		{
