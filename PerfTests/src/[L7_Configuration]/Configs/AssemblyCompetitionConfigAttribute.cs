@@ -12,8 +12,8 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Initializes a new instance of the <see cref="AssemblyCompetitionConfigAttribute"/> class.</summary>
 		/// <param name="anyTypeFromTargetAssembly">Any type from assembly the attribute is applied to.</param>
 		public AssemblyCompetitionConfigAttribute([NotNull] Type anyTypeFromTargetAssembly) :
-			base(
-			AssemblyCompetitionConfig.GetConfigForAssembly(
-				anyTypeFromTargetAssembly.Assembly)) { }
+			base(() =>
+				AssemblyCompetitionConfig.GetConfigForAssembly(
+					anyTypeFromTargetAssembly.Assembly)) { }
 	}
 }

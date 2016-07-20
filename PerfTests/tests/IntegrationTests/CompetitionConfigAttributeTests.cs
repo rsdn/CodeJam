@@ -21,7 +21,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 {
 	public class CustomCompetitionConfigAttribute : CompetitionConfigAttribute
 	{
-		public CustomCompetitionConfigAttribute() : base(Create()) { }
+		public CustomCompetitionConfigAttribute() : base(Create) { }
 
 		public static ManualCompetitionConfig Create()
 		{
@@ -33,7 +33,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 	public class SelfTestCompetitionConfigAttribute : CompetitionConfigAttribute
 	{
-		public SelfTestCompetitionConfigAttribute() : base(Create()) { }
+		public SelfTestCompetitionConfigAttribute() : base(Create) { }
 
 		private static ManualCompetitionConfig Create()
 		{

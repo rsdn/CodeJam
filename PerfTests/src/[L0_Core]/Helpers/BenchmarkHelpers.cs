@@ -436,6 +436,12 @@ namespace BenchmarkDotNet.Helpers
 			where TSection : ConfigurationSection =>
 				ParseConfigurationSection<TSection>(sectionName, fallbackAssemblies.AsEnumerable());
 
+		private static readonly Func<Assembly, string, object> _sectionsCache = Algorithms.Memoize(
+			(Assembly a, string sectionName) => ConfigurationManager
+				.OpenExeConfiguration(a.GetAssemblyPath())
+				.GetSection(sectionName),
+			true);
+
 		/// <summary>
 		/// Retuns configuration section from app.config or (if none)
 		/// from first of the <paramref name="fallbackAssemblies"/> that have the section in its config.
@@ -460,9 +466,7 @@ namespace BenchmarkDotNet.Helpers
 				// DONTTOUCH: .Distinct preserves order of fallbackAssemblies.
 				foreach (var assembly in fallbackAssemblies.Distinct())
 				{
-					result = (TSection)ConfigurationManager
-						.OpenExeConfiguration(assembly.GetAssemblyPath())
-						.GetSection(sectionName);
+					result = (TSection)_sectionsCache(assembly, sectionName);
 
 					if (result != null)
 						break;
