@@ -1,62 +1,62 @@
 ﻿some log text
 some log text
 
-// !<--------xml_annotation_begin------
+// !<-- ------ xml_annotation_begin ------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests-Tests">
 		<Candidate Target="SlowerX20" MinRatio="20" MaxRatio="20" />
 	</Competition>
 </CompetitionBenchmarks>
-// !-->-------xml_annotation_end-------
+// !--> ------- xml_annotation_end -------
 some log text
 
-// !<--------xml_annotation_begin------
+// !<-- ------ xml_annotation_begin ------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests-Tests">
 		<Candidate Target="SlowerX20" MinRatio="15" MaxRatio="25" />
 	</Competition>
 </CompetitionBenchmarks>
-// !-->-------xml_annotation_end-------
+// !--> ------- xml_annotation_end -------
 some log text
 
-// !<--------xml_annotation_begin------
+// !<-- ------ xml_annotation_begin ------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests-Tests">
 		<Candidate Target="SlowerX20" MinRatio="10" MaxRatio="30" />
 	</Competition>
 </CompetitionBenchmarks>
-// !-->-------xml_annotation_end-------
+// !--> ------- xml_annotation_end -------
 some log text
 some log text
-// !<--------xml_annotation_begin------
+// !<-- ------ xml_annotation_begin ------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests-Tests">
 		<Candidate Target="SlowerX20" MinRatio="12" MaxRatio="28" />
 	</Competition>
 </CompetitionBenchmarks>
-// !-->-------xml_annotation_end-------
+// !--> ------- xml_annotation_end -------
 some log text
 some log text
 
 
 // !BAD parts
-// !<--------xml_annotation_begin------
+// !<-- ------ xml_annotation_begin ------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="OTHERTARGET">
 		<Candidate Target="SlowerX20" MinRatio="1" MaxRatio="100" />
 	</Competition>
 </CompetitionBenchmarks>
-// !-->-------xml_annotation_end-------
-// !<--------xml_annotation_begin1------ ---bad region
+// !--> ------- xml_annotation_end -------
+// !<-- ----- xml_annotation_begin1 ------ ---bad region
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests-Tests">
 		<Candidate Target="SlowerX20" MinRatio="1" MaxRatio="100" />
 	</Competition>
 </CompetitionBenchmarks>
-// !-->-------xml_annotation_end1------- ---bad region
+// !--> ------ xml_annotation_end1 ------- ---bad region

@@ -39,10 +39,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		#region XML metadata constants
 		private const string LogAnnotationStart = LogImportantAreaStart +
-			"------xml_annotation_begin------";
+			" ------ xml_annotation_begin ------";
 
 		private const string LogAnnotationEnd = LogImportantAreaEnd +
-			"-------xml_annotation_end-------";
+			" ------- xml_annotation_end -------";
 
 		private const string CompetitionBenchmarksRootNode = "CompetitionBenchmarks";
 		private const string CompetitionNode = "Competition";

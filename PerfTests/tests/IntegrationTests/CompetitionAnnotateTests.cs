@@ -19,7 +19,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			AllowDebugBuilds = true,
 			PreviousRunLogUri =
-				"https://gist.githubusercontent.com/ig-sinicyn/91ac0badca95b19fc7de6f683a51b9d2/raw/38686c437887a782de48918a632001b410fc47b0/CompetitionAnnotateTests.log"
+				"https://gist.githubusercontent.com/ig-sinicyn/91ac0badca95b19fc7de6f683a51b9d2/raw/6ca603331c836d0f9605918e65f4f9833eaf421e/CompetitionAnnotateTests.log"
 		};
 
 		private static readonly ICompetitionConfig _localLogConfig = new ManualCompetitionConfig(_remoteLogConfig)
