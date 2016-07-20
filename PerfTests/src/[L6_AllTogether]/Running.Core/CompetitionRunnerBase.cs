@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
 
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Columns;
@@ -83,7 +82,7 @@ namespace CodeJam.PerfTests.Running.Core
 		[NotNull]
 		public CompetitionState Run<T>([CanBeNull] ICompetitionConfig competitionConfig = null)
 			where T : class =>
-				RunCompetition(typeof(T), competitionConfig);
+				RunCore(typeof(T), competitionConfig);
 
 		/// <summary>Runs the benchmark.</summary>
 		/// <typeparam name="T">Benchmark class to run.</typeparam>
@@ -98,7 +97,7 @@ namespace CodeJam.PerfTests.Running.Core
 			[NotNull] T thisReference,
 			[CanBeNull] ICompetitionConfig competitionConfig = null)
 			where T : class =>
-				RunCompetition(thisReference.GetType(), competitionConfig);
+				RunCore(thisReference.GetType(), competitionConfig);
 
 		/// <summary>Runs the benchmark.</summary>
 		/// <param name="benchmarkType">Benchmark class to run.</param>
@@ -111,7 +110,7 @@ namespace CodeJam.PerfTests.Running.Core
 		public CompetitionState Run(
 			[NotNull] Type benchmarkType,
 			[CanBeNull] ICompetitionConfig competitionConfig = null) =>
-				RunCompetition(benchmarkType, competitionConfig);
+				RunCore(benchmarkType, competitionConfig);
 		#endregion
 
 		#region Advanced public API (expose these if you wish)
@@ -144,7 +143,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			foreach (var benchmarkType in benchmarkTypes)
 			{
-				result[benchmarkType] = RunCompetition(benchmarkType, competitionConfig);
+				result[benchmarkType] = RunCore(benchmarkType, competitionConfig);
 			}
 
 			return result;
@@ -159,117 +158,35 @@ namespace CodeJam.PerfTests.Running.Core
 		/// </param>
 		/// <returns>State of the run.</returns>
 		[NotNull]
-		private CompetitionState RunCompetition(
+		private CompetitionState RunCore(
 			[NotNull] Type benchmarkType,
 			[CanBeNull] ICompetitionConfig competitionConfig)
 		{
 			Code.NotNull(benchmarkType, nameof(benchmarkType));
+
 			competitionConfig = PrepareCompetitionConfig(benchmarkType, competitionConfig);
+			var benchmarkConfig = CreateBenchmarkConfig(competitionConfig);
+			var hostLogger = benchmarkConfig.GetLoggers().OfType<HostLogger>().Single();
 
-			CompetitionState competitionState;
-
-			using (var mutex = new Mutex(false, $"Global\\{typeof(CompetitionBenchmarkAttribute).Namespace}"))
+			var previousDirectory = Environment.CurrentDirectory;
+			var currentDirectory = GetOutputDirectory(benchmarkType.Assembly);
+			if (currentDirectory == previousDirectory)
 			{
-				bool lockTaken = false;
-				try
-				{
-					var timeout = competitionConfig.ConcurrentRunBehavior == ConcurrentRunBehavior.Lock
-						? Timeout.InfiniteTimeSpan
-						: TimeSpan.Zero;
-					lockTaken = mutex.WaitOne(timeout);
-
-					var hostLogMode = competitionConfig.DetailedLogging ? HostLogMode.AllMessages : HostLogMode.PrefixedOnly;
-					var hostLogger = CreateHostLogger(hostLogMode);
-
-					string skipMessage;
-					// ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
-					if (ShouldSkip(lockTaken, benchmarkType, competitionConfig, out skipMessage))
-					{
-						competitionState = RunSkipped(benchmarkType, competitionConfig, hostLogger, skipMessage);
-					}
-					else
-					{
-						competitionState = RunCore(benchmarkType, competitionConfig, hostLogger);
-					}
-				}
-				finally
-				{
-					
-					if (lockTaken)
-						mutex.ReleaseMutex();
-				}
+				currentDirectory = null;
+				previousDirectory = null;
 			}
-
-			return competitionState;
-		}
-
-		private bool ShouldSkip(
-			bool lockTaken,
-			[NotNull] Type benchmarkType,
-			[NotNull] ICompetitionConfig competitionConfig,
-			[CanBeNull] out string skipMessage)
-		{
-			var assembly = benchmarkType.Assembly;
-			if (!competitionConfig.AllowDebugBuilds && assembly.IsDebugAssembly())
-			{
-				skipMessage =
-					$"Competition run skipped. Assembly {assembly.GetName().Name} was build as debug.";
-
-				return true;
-			}
-
-			if (!lockTaken)
-			{
-				skipMessage =
-					"Competition run skipped. Competitions cannot be run in parallel, be sure to disable parallel test execution.";
-				return true;
-			}
-
-			skipMessage = null;
-			return false;
-		}
-
-		private CompetitionState RunSkipped(
-			Type benchmarkType,
-			ICompetitionConfig competitionConfig,
-			HostLogger hostLogger,
-			string skipMessage)
-		{
-			CompetitionState competitionState = null;
-
-			try
-			{
-				competitionState = CompetitionCore.RunSkipped(benchmarkType, competitionConfig, skipMessage, hostLogger);
-
-				ProcessRunComplete(competitionConfig, competitionState);
-			}
-			finally
-			{
-				ReportHostLogger(hostLogger, competitionState?.LastRunSummary);
-			}
-
-			return competitionState;
-		}
-
-		private CompetitionState RunCore(
-			Type benchmarkType,
-			ICompetitionConfig competitionConfig,
-			HostLogger hostLogger)
-		{
-			var benchmarkConfig = CreateBenchmarkConfig(competitionConfig, hostLogger);
 
 			CompetitionState competitionState = null;
-			var previousDir = Environment.CurrentDirectory;
 			try
 			{
-				SetCurrentDirectoryIfNotNull(GetOutputDirectory(benchmarkType.Assembly));
-
+				SetCurrentDirectoryIfNotNull(currentDirectory);
 				try
 				{
 					competitionState = CompetitionCore.Run(
-						benchmarkType,
-						benchmarkConfig,
-						competitionConfig.MaxRunsAllowed);
+						benchmarkType, benchmarkConfig,
+						competitionConfig.MaxRunsAllowed,
+						competitionConfig.AllowDebugBuilds,
+						competitionConfig.ConcurrentRunBehavior);
 
 					ProcessRunComplete(competitionConfig, competitionState);
 				}
@@ -286,8 +203,9 @@ namespace CodeJam.PerfTests.Running.Core
 			finally
 			{
 				Loggers.HostLogger.FlushLoggers(benchmarkConfig);
-				SetCurrentDirectoryIfNotNull(previousDir);
+				SetCurrentDirectoryIfNotNull(previousDirectory);
 			}
+
 			return competitionState;
 		}
 
@@ -427,7 +345,7 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		#region Create benchark config
-		private IConfig CreateBenchmarkConfig(ICompetitionConfig competitionConfig, HostLogger hostLogger)
+		private IConfig CreateBenchmarkConfig(ICompetitionConfig competitionConfig)
 		{
 			// ReSharper disable once UseObjectOrCollectionInitializer
 			var result = new ManualConfig();
@@ -437,18 +355,26 @@ namespace CodeJam.PerfTests.Running.Core
 			result.UnionRule = competitionConfig.UnionRule;
 			result.Set(competitionConfig.GetOrderProvider());
 
-			result.Add(hostLogger);
-
 			result.Add(OverrideJobs(competitionConfig).ToArray());
 			result.Add(OverrideExporters(competitionConfig).ToArray());
 			result.Add(OverrideDiagnosers(competitionConfig).ToArray());
-			result.Add(OverrideLoggers(competitionConfig).ToArray());
 
+			result.Add(GetLoggers(competitionConfig).ToArray());
 			result.Add(GetColumns(competitionConfig).ToArray());
 			result.Add(GetValidators(competitionConfig).ToArray());
 			result.Add(GetAnalysers(competitionConfig).ToArray());
 
 			return result.AsReadOnly();
+		}
+
+		private List<ILogger> GetLoggers(ICompetitionConfig competitionConfig)
+		{
+			var result = OverrideLoggers(competitionConfig);
+
+			var hostLogMode = competitionConfig.DetailedLogging ? HostLogMode.AllMessages : HostLogMode.PrefixedOnly;
+			result.Insert(0, CreateHostLogger(hostLogMode));
+
+			return result;
 		}
 
 		private List<IColumn> GetColumns(ICompetitionConfig competitionConfig)

@@ -31,7 +31,7 @@ namespace CodeJam.PerfTests.Configs
 			}
 		}
 
-		private static Func<Assembly, ICompetitionConfig> _configFactory = Algorithms.Memoize(
+		private static Func<Assembly, AssemblyCompetitionConfig> _configFactory = Algorithms.Memoize(
 			(Assembly a) => new AssemblyCompetitionConfig(a), true);
 
 		/// <summary>Initializes a new instance of the <see cref="AssemblyCompetitionConfig"/> class.</summary>

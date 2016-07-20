@@ -10,6 +10,8 @@ using CodeJam.Collections;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Exporters;
 using CodeJam.PerfTests.Loggers;
+using CodeJam.Reflection;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.Core
@@ -113,7 +115,8 @@ namespace CodeJam.PerfTests.Running.Core
 		#region Logger factories
 		private static LazyStreamLogger CreateAssemblyLevelLogger(Assembly assembly, string suffix)
 		{
-			var fileName = assembly.GetName().Name + suffix;
+			var fileName = assembly.GetAssemblyPath();
+			fileName = Path.ChangeExtension(fileName, suffix);
 			return new LazyStreamLogger(
 				() => new StreamWriter(
 					new FileStream(

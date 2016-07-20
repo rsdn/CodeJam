@@ -35,8 +35,8 @@ namespace CodeJam
 			}
 		}
 
-		private static Func<Assembly, ICompetitionConfig> _configFactory = Algorithms.Memoize(
-			(Assembly a) => new AssemblyCompetitionConfig(a), true);
+		private static Func<Assembly, AssemblyWideConfig> _configFactory = Algorithms.Memoize(
+			(Assembly a) => new AssemblyWideConfig(a), true);
 
 		/// <summary>Initializes a new instance of the <see cref="AssemblyCompetitionConfig"/> class.</summary>
 		/// <param name="targetAssembly">The assembly for which the config should be created.</param>

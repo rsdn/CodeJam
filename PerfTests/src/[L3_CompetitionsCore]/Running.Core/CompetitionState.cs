@@ -61,10 +61,6 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <value><c>true</c> if the competition completed without warnings and errors.</value>
 		public bool CompletedSuccessfully => Completed && !HighestMessageSeverity.IsWarningOrHigher();
 
-		/// <summary>The competition run was skipped.</summary>
-		/// <value><c>true</c> if the competition run was skipped.</value>
-		public bool RunSkipped => MaxRunsAllowed == 0;
-
 		/// <summary>Time elapsed since start of the competition.</summary>
 		/// <value>Time elapsed since start of the competition.</value>
 		public TimeSpan Elapsed => _stopwatch.Elapsed;
@@ -127,8 +123,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Init the competition state.</summary>
 		/// <param name="maxRunsAllowed">Max limit for competition reruns.</param>
 		/// <param name="config">The config for the competition.</param>
-		/// <param name="logger">The logger for the competition.</param>
-		internal void FirstTimeInit(int maxRunsAllowed, [NotNull] IConfig config, ILogger logger = null)
+		internal void FirstTimeInit(int maxRunsAllowed, [NotNull] IConfig config)
 		{
 			Code.InRange(maxRunsAllowed, nameof(maxRunsAllowed), 0, MaxRunLimit);
 
@@ -141,10 +136,10 @@ namespace CodeJam.PerfTests.Running.Core
 
 				MaxRunsAllowed = maxRunsAllowed;
 				Config = config;
-				Logger = logger ?? config.GetCompositeLogger();
+				Logger = config.GetCompositeLogger();
 
 				RunNumber = 0;
-				RunsLeft = maxRunsAllowed == 0 ? 0 : 1;
+				RunsLeft = 1;
 
 				HighestMessageSeverityInRun = MessageSeverity.Verbose;
 				HighestMessageSeverity = MessageSeverity.Verbose;
