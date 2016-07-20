@@ -9,7 +9,6 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
 
 ## TODOs:
- * log table with timings on last run.
  * Tests for broken log annotations.
 
 ## Long-term TODOs:

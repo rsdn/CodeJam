@@ -30,6 +30,14 @@ namespace CodeJam.PerfTests.Running.Core
 			public string GetLog() => ((AccumulationLogger)WrappedLogger).GetLog();
 		}
 
+		#region Override test running behavior
+		/// <summary>Gets a value indicating whether the last run summary should be dumped into host logger.</summary>
+		/// <value>
+		/// <c>true</c> if the last run summary should be dumped into host logger; otherwise, <c>false</c>.
+		/// </value>
+		protected override bool DumpSummaryToHostLogger => false;
+		#endregion
+
 		#region Host-related logic
 		/// <summary>Creates a host logger.</summary>
 		/// <param name="hostLogMode">The host log mode.</param>

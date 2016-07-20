@@ -18,7 +18,7 @@ namespace CodeJam
 		/// If true, breaks execution if debugger is attached and assertion is failed.
 		/// Enabled by default.
 		/// </summary>
-		/// <value><c>true</c> if the execution will break on exception creation, otherwise, <c>false</c>.</value>
+		/// <value><c>true</c> if the execution will break on exception creation; otherwise, <c>false</c>.</value>
 		public static bool BreakOnException { get; set; } = true;
 
 		/// <summary>BreaksExecution if debugger attached</summary>

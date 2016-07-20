@@ -21,12 +21,6 @@ namespace CodeJam.PerfTests.Running.Core
 			public ConsoleHostLogger(HostLogMode logMode) : base(ConsoleLogger.Default, logMode) { }
 		}
 
-		#region Override test running behavior
-		/// <summary>Summary should be logged even if detailed logging is disabled.</summary>
-		/// <value> <c>true</c> if summary should be logged; otherwise, <c>false</c>.</value>
-		protected override bool LogSummary => true;
-		#endregion
-
 		#region Host-related logic
 		/// <summary>Creates a host logger.</summary>
 		/// <param name="hostLogMode">The host log mode.</param>

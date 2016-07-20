@@ -263,13 +263,21 @@ namespace CodeJam.PerfTests.Running.Core
 					logger.WriteLineInfo("{LogVerbosePrefix} No messages in run.");
 				}
 			}
-			else if (LogSummary && summary != null)
+			else if (summary != null)
 			{
 				using (Loggers.HostLogger.BeginLogImportant(summary.Config))
 				{
+					var summarylogger = DumpSummaryToHostLogger
+						? logger
+						: new CompositeLogger(
+							summary.Config
+								.GetLoggers()
+								.Where(l => !(l is HostLogger))
+								.ToArray());
+
 					// Dumping the benchmark results to console
-					logger.WriteSeparatorLine("Summary");
-					MarkdownExporter.Console.ExportToLog(summary, logger);
+					summarylogger.WriteSeparatorLine("Summary");
+					MarkdownExporter.Console.ExportToLog(summary, summarylogger);
 				}
 			}
 		}
@@ -283,9 +291,11 @@ namespace CodeJam.PerfTests.Running.Core
 		/// </returns>
 		protected virtual string GetOutputDirectory(Assembly targetAssembly) => null;
 
-		/// <summary>Summary should be logged even if detailed logging is disabled.</summary>
-		/// <value> <c>true</c> if summary should be logged; otherwise, <c>false</c>.</value>
-		protected virtual bool LogSummary => false;
+		/// <summary>Gets a value indicating whether the last run summary should be dumped into host logger.</summary>
+		/// <value>
+		/// <c>true</c> if the last run summary should be dumped into host logger; otherwise, <c>false</c>.
+		/// </value>
+		protected virtual bool DumpSummaryToHostLogger => true;
 
 		/// <summary>Default timing limit to detect too fast benchmarks.</summary>
 		/// <value>The default timing limit to detect too fast benchmarks.</value>
