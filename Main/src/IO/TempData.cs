@@ -134,6 +134,8 @@ namespace CodeJam.IO
 		{
 			private FileInfo _info;
 
+			/// <summary>Create an instance using an automatically constructed temp file path.</summary>
+			public TempFile() : base(System.IO.Path.Combine(System.IO.Path.GetTempPath(), GetTempName())) { }
 			/// <summary>Initialize instance.</summary>
 			/// <param name="path">The path.</param>
 			public TempFile(string path) : base(path) { }
@@ -171,15 +173,19 @@ namespace CodeJam.IO
 		#endregion
 
 		#region Factory methods
-		private static string GetTempName() => Guid.NewGuid() + ".tmp";
+		/// <summary>Returns a random name for a temp file or directory.</summary>
+		/// <returns>A random name</returns>
+		/// <remarks>The resulting name is a local name (does not include a base path)</remarks>
+		public static string GetTempName() => Guid.NewGuid() + ".tmp";
 
 		/// <summary>Creates temp directory and returns <see cref="IDisposable"/> to free it.</summary>
 		/// <returns>Temp directory to be freed on dispose.</returns>
 		public static TempDirectory CreateDirectory()
 		{
 			var directoryPath = Path.Combine(Path.GetTempPath(), GetTempName());
+			var result = new TempDirectory(directoryPath);
 			Directory.CreateDirectory(directoryPath);
-			return new TempDirectory(directoryPath);
+			return result;
 		}
 
 		/// <summary>Creates temp file and return disposable handle.</summary>
@@ -199,8 +205,9 @@ namespace CodeJam.IO
 				fileName = GetTempName();
 
 			var filePath = Path.Combine(dirPath, fileName);
-			File.Create(filePath).Close();
-			return new TempFile(filePath);
+			var result = new TempFile(filePath);
+			using (File.Create(filePath)) {}
+			return result;
 		}
 
 		/// <summary>Creates stream and returns disposable handler.</summary>

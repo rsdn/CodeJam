@@ -181,6 +181,27 @@ namespace CodeJam
 		}
 		#endregion
 
+		#region Argument validation - valid count
+		/// <summary>Asserts if the passed value is not a valid count.</summary>
+		/// <param name="count">The count value.</param>
+		/// <param name="argName">The name of the argument.</param>
+		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void ValidCount(int count, [NotNull, InvokerParameterName] string argName)
+			=> InRange(count, argName, 0, int.MaxValue);
+
+		/// <summary>Asserts if the passed value is not a valid count.</summary>
+		/// <param name="count">The count value.</param>
+		/// <param name="argName">The name of the argument.</param>
+		/// <param name="length">The length.</param>
+		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void ValidCount(int count,
+			[NotNull, InvokerParameterName] string argName,
+			int length)
+				=> InRange(count, argName, 0, length);
+		#endregion
+
 		#region Argument validation - valid index
 		/// <summary>Assertion for index in range</summary>
 		/// <param name="index">The index.</param>
@@ -278,6 +299,36 @@ namespace CodeJam
 			[CanBeNull] params object[] args)
 		{
 			if (!condition)
+				throw CodeExceptions.InvalidOperation(messageFormat, args);
+		}
+		#endregion
+
+		#region Code consistency validation
+		/// <summary>Asserts if the given condition is satisfied.</summary>
+		/// <param name="condition">The condition to check.</param>
+		/// <param name="message">The message.</param>
+		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void BugIf(
+			[AssertionCondition(AssertionConditionType.IS_FALSE)] bool condition,
+			[NotNull] string message)
+		{
+			if (condition)
+				throw CodeExceptions.InvalidOperation(message);
+		}
+
+		/// <summary>Asserts if the given condition is satisfied.</summary>
+		/// <param name="condition">The condition to check.</param>
+		/// <param name="messageFormat">The message format.</param>
+		/// <param name="args">The arguments.</param>
+		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod, StringFormatMethod("messageFormat")]
+		public static void BugIf(
+			[AssertionCondition(AssertionConditionType.IS_FALSE)] bool condition,
+			[NotNull] string messageFormat,
+			[CanBeNull] params object[] args)
+		{
+			if (condition)
 				throw CodeExceptions.InvalidOperation(messageFormat, args);
 		}
 		#endregion

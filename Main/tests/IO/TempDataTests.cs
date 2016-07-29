@@ -135,7 +135,7 @@ namespace CodeJam.IO
 		public void Test05FileSpecificPath()
 		{
 			var tempPath = Path.GetTempPath();
-			var fileName = Guid.NewGuid() + ".tmp";
+			var fileName = TempData.GetTempName();
 			var filePath = Path.Combine(tempPath, fileName);
 
 			using (var file = TempData.CreateFile(tempPath, fileName))
@@ -215,6 +215,42 @@ namespace CodeJam.IO
 			{
 				Assert.AreEqual(fileStream.Name, filePath);
 				Assert.IsTrue(File.Exists(filePath), "File should exist");
+			}
+			Assert.IsFalse(File.Exists(filePath), "File should NOT exist");
+		}
+
+		[Test]
+		public void Test09FileWrapperWithDefaultPath()
+		{
+			string filePath;
+			using (var file = new TempData.TempFile())
+			{
+				filePath = file.Path;
+				Assert.IsNotNull(file.Info, "Info is null");
+				Assert.IsFalse(file.Info.Exists, "File should not exist");
+
+				using (File.Create(filePath)) {}
+				file.Info.Refresh();
+				Assert.IsTrue(file.Info.Exists, "File should exist");
+			}
+			Assert.IsFalse(File.Exists(filePath), "File should NOT exist");
+		}
+
+		[Test]
+		public void Test10FileWrapperWithCustomPath()
+		{
+			var tempPath = Path.GetTempPath();
+			var fileName = TempData.GetTempName();
+			var filePath = Path.Combine(tempPath, fileName);
+			using (var file = new TempData.TempFile(filePath))
+			{
+				Assert.AreEqual(filePath, file.Path);
+				Assert.IsNotNull(file.Info, "Info is null");
+				Assert.IsFalse(file.Info.Exists, "File should not exist");
+
+				using (File.Create(filePath)) { }
+				file.Info.Refresh();
+				Assert.IsTrue(file.Info.Exists, "File should exist");
 			}
 			Assert.IsFalse(File.Exists(filePath), "File should NOT exist");
 		}
