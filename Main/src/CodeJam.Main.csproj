@@ -278,6 +278,7 @@
     </Compile>
     <Compile Include="Threading\AsyncOperationHelper.cs" />
     <Compile Include="Threading\ConcurrentLazyDictionary.cs" />
+    <Compile Include="Threading\ExecSyncConcurrentLazyDictionary.cs" />
     <Compile Include="DisposableExtensions.cs" />
     <Compile Include="Collections\EnumerableExtensions.TopoSort.cs" />
     <Compile Include="Disposable.cs" />
