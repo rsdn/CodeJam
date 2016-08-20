@@ -1,5 +1,10 @@
-CodeJam 1.1.0-rc1 Release Notes
+CodeJam 1.1.0-rc2 Release Notes
 -------------------------------
+
+What's new in 1.1.0-rc2
+-----------------------
+* Contains and ContainsSuffix methods in SuffixTree
+* StartingWith method in SuffixTree
 
 What's new in 1.1.0-rc1
 -----------------------
