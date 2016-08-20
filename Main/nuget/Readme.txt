@@ -1,5 +1,13 @@
-CodeJam 1.1.0-rc2 Release Notes
+CodeJam 1.2.0-beta1 Release Notes
 -------------------------------
+
+What's new in 1.2.0-beta1
+-----------------------
+* HGlobal improvements
+* Code.ValidCount and Code.BugIf assertions
+* Added a way to create a TempFile wrapper with a default temp name without a real creation of a file.
+* Add execution synchronized LazyDictionary implementation
+* Fixes and code cleanup
 
 What's new in 1.1.0-rc2
 -----------------------
