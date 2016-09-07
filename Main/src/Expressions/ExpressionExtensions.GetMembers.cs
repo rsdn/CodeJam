@@ -88,9 +88,10 @@ namespace CodeJam.Expressions
 		public static MethodInfo GetMethod([NotNull] this LambdaExpression expression)
 		{
 			var info = GetMemberInfo(expression);
+			var propertyInfo = info as PropertyInfo;
 			return
-				info is PropertyInfo
-					? ((PropertyInfo)info).GetGetMethod(true)
+				propertyInfo != null
+					? propertyInfo.GetGetMethod(true)
 					: (MethodInfo)info;
 		}
 
