@@ -116,7 +116,8 @@ namespace CodeJam
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
-			return obj is Option<T> && Equals((Option<T>)obj);
+			var a = obj as Option<T>;
+			return a != null && Equals(a);
 		}
 
 		/// <summary>Returns the hash code for this instance.</summary>

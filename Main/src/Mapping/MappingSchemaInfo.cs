@@ -54,7 +54,6 @@ namespace CodeJam.Mapping
 			if (_genericConvertProviders != null)
 			{
 				lock (_genericConvertProviders)
-				{
 					foreach (var type in _genericConvertProviders)
 					{
 						var args = type.Key.GetGenericArguments();
@@ -74,7 +73,6 @@ namespace CodeJam.Mapping
 							changed = true;
 						}
 					}
-				}
 			}
 
 			return changed;

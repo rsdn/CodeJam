@@ -22,6 +22,7 @@ namespace CodeJam
 		/// <returns>Detailed exception text.</returns>
 		public static StringBuilder ToDiagnosticString(this Exception exception, StringBuilder stringBuilder)
 		{
+			// ReSharper disable once PossibleNullReferenceException
 			for (var ex = exception; ex != null; ex = ex.InnerException)
 			{
 				var exceptionText = $"Exception: {ex.GetType()}";
