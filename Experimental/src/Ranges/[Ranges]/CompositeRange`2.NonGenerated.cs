@@ -65,6 +65,8 @@ namespace CodeJam.Ranges
 		/// </returns>
 		public bool Equals(CompositeRange<T, TKey> other)
 		{
+			// TODO: BADCODE, rewrite
+
 			if (IsEmpty)
 				return other.IsEmpty;
 			if (other.IsEmpty)
@@ -84,25 +86,28 @@ namespace CodeJam.Ranges
 			for (int i = 0; i < _ranges.Count; i++)
 			{
 				var currentWithoutKey = _ranges[i].WithoutKey();
+
 				// TODO: helper method to compare without key.
 				if (!currentWithoutKey.Equals(otherRanges[i].WithoutKey()))
 					return false;
 
 				if (currentWithoutKey != previousRange)
 				{
-					if (nullKeysCount != 0 || keys.Values.Any(a => a != 0))
+					var sameKeys = nullKeysCount == 0 && keys.Values.All(a => a == 0);
+					if (!sameKeys)
 						return false;
 
 					keys.Clear();
+					nullKeysCount = 0;
 				}
 
 				var key = _ranges[i].Key;
-				var otherKey = otherRanges[i].Key;
 				if (key == null)
 					nullKeysCount++;
 				else
 					keys[key] = keys.GetValueOrDefault(key) + 1;
 
+				var otherKey = otherRanges[i].Key;
 				if (otherKey == null)
 					nullKeysCount--;
 				else
