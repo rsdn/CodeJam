@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using CodeJam.Collections;
+
 using JetBrains.Annotations;
 
 // The file contains members that should not be copied into CompositeRange<T, TKey>. DO NOT remove it
@@ -75,35 +77,41 @@ namespace CodeJam.Ranges
 			if (_containingRange != other._containingRange || _ranges.Count != otherRanges.Count)
 				return false;
 
-			var prevRange = Range<T>.Empty;
-			var sameRangeKeys = new HashSet<TKey>();
-			var sameRangeKeysOther = new HashSet<TKey>();
+			var previousRange = Range<T>.Empty;
+			var keys = new Dictionary<TKey, int>();
+			int nullKeysCount = 0;
 
 			for (int i = 0; i < _ranges.Count; i++)
 			{
 				var currentWithoutKey = _ranges[i].WithoutKey();
+				// TODO: helper method to compare without key.
 				if (!currentWithoutKey.Equals(otherRanges[i].WithoutKey()))
 					return false;
 
-				if (currentWithoutKey == prevRange)
+				if (currentWithoutKey != previousRange)
 				{
-					sameRangeKeys.Add(_ranges[i].Key);
-					sameRangeKeysOther.Add(otherRanges[i].Key);
-				}
-				else
-				{
-					if (!sameRangeKeys.SetEquals(sameRangeKeysOther))
+					if (nullKeysCount != 0 || keys.Values.Any(a => a != 0))
 						return false;
 
-					sameRangeKeys.Clear();
-					sameRangeKeysOther.Clear();
-					sameRangeKeys.Add(_ranges[i].Key);
-					sameRangeKeysOther.Add(otherRanges[i].Key);
+					keys.Clear();
 				}
-				prevRange = currentWithoutKey;
+
+				var key = _ranges[i].Key;
+				var otherKey = otherRanges[i].Key;
+				if (key == null)
+					nullKeysCount++;
+				else
+					keys[key] = keys.GetValueOrDefault(key) + 1;
+
+				if (otherKey == null)
+					nullKeysCount--;
+				else
+					keys[otherKey] = keys.GetValueOrDefault(otherKey) - 1;
+
+				previousRange = currentWithoutKey;
 			}
 
-			return sameRangeKeys.SetEquals(sameRangeKeysOther);
+			return nullKeysCount == 0 && keys.Values.All(a => a == 0);
 		}
 
 		/// <summary>Indicates whether the current range and a specified object are equal.</summary>
@@ -127,6 +135,5 @@ namespace CodeJam.Ranges
 			return result;
 		}
 		#endregion
-
 	}
 }
