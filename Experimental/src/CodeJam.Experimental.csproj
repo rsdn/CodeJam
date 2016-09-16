@@ -78,6 +78,30 @@
     <Compile Include="Parsing\PostfixUnaryOperator.cs" />
     <Compile Include="Parsing\PrefixUnaryOperator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ranges\CompositeRange.cs" />
+    <Compile Include="Ranges\[RangeExtensions]\CompositeRangeExtensions.cs" />
+    <Compile Include="Ranges\CompositeRange.generated.cs">
+      <DependentUpon>CompositeRange.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ranges\[Ranges]\ICompositeRange`1.cs" />
+    <Compile Include="Ranges\[Ranges]\CompositeRange`1.NonGenerated.cs" />
+    <Compile Include="Ranges\[Ranges]\CompositeRange`2.NonGenerated.cs" />
+    <Compile Include="Ranges\[Ranges]\CompositeRange`1.cs" />
+    <Compile Include="Ranges\CompositeRangeInternal.cs" />
+    <Compile Include="Ranges\[Ranges]\CompositeRange`2.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompositeRange`2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ranges\[Helper types]\RangeBoundaryToDescendingComparer`1.cs" />
+    <Compile Include="Ranges\[Helper types]\RangeIntersection`1.cs" />
+    <Compile Include="Ranges\[RangeExtensions]\CompositeRangeExtensions.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompositeRangeExtensions.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj">
@@ -87,6 +111,23 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Ranges\CompositeRange.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CompositeRange.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Ranges\[Ranges]\CompositeRange`2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CompositeRange`2.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Ranges\[RangeExtensions]\CompositeRangeExtensions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CompositeRangeExtensions.generated.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Ranges_tmp\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -18,6 +18,10 @@ namespace CodeJam.Ranges
 	{
 		private static readonly Func<TKey, TKey, bool> _keyEqualityFunc = Operators<TKey>.AreEqual;
 
+		#region Formattable logic
+		private static readonly Func<TKey, string, IFormatProvider, string> _formattableCallback = GetFormattableCallback<TKey>();
+		#endregion
+
 		/// <summary>The value associated with the range.</summary>
 		/// <value>The value of the range key.</value>
 		// ReSharper disable once ConvertToAutoPropertyWithPrivateSetter
@@ -104,7 +108,7 @@ namespace CodeJam.Ranges
 		[Pure]
 		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 		public string ToString(string format, IFormatProvider formatProvider) =>
-			KeyPrefixString + _key + KeySeparatorString +
+			KeyPrefixString + _formattableCallback(_key, null, formatProvider) + KeySeparatorString +
 				(IsEmpty
 					? EmptyString
 					: (_from.ToString(format, formatProvider) + SeparatorString + _to.ToString(format, formatProvider)));

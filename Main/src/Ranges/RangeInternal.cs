@@ -1,5 +1,7 @@
 ﻿using System;
 
+using CodeJam.Reflection;
+
 namespace CodeJam.Ranges
 {
 	/// <summary>Range internal helpers</summary>
@@ -52,8 +54,21 @@ namespace CodeJam.Ranges
 
 		#region Range constants
 		internal const string KeyPrefixString = "'";
-		internal const string KeySeparatorString = "': ";
+		internal const string KeySeparatorString = "':";
 		internal const string SeparatorString = "..";
 		#endregion
+
+		/// <summary>Returns formattable callback for arbitrary type.</summary>
+		/// <typeparam name="T">Type of the formattable object.</typeparam>
+		/// <returns>The format callback. Returns <c>null</c> if the first arg is <c>null</c>.</returns>
+		internal static Func<T, string, IFormatProvider, string> GetFormattableCallback<T>()
+		{
+			var type = typeof(T).ToNullableUnderlying();
+			if (typeof(IFormattable).IsAssignableFrom(type))
+			{
+				return (value, format, formatProvider) => ((IFormattable)value)?.ToString(format, formatProvider);
+			}
+			return (value, format, formatProvider) => value?.ToString();
+		}
 	}
 }

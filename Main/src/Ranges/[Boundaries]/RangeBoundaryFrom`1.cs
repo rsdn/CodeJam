@@ -108,17 +108,7 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Formattable logic
-		private static Func<T, string, IFormatProvider, string> GetFormattableCallback()
-		{
-			var type = typeof(T).ToNullableUnderlying();
-			if (typeof(IFormattable).IsAssignableFrom(type))
-			{
-				return (value, format, formatProvider) => ((IFormattable)value).ToString(format, formatProvider);
-			}
-			return (value, format, formatProvider) => value.ToString();
-		}
-
-		private static readonly Func<T, string, IFormatProvider, string> _formattableCallback = GetFormattableCallback();
+		private static readonly Func<T, string, IFormatProvider, string> _formattableCallback = GetFormattableCallback<T>();
 		#endregion
 
 		#endregion

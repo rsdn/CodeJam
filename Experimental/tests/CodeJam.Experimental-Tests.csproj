@@ -55,6 +55,7 @@
     <Compile Include="Collections\SuffixTreeNaiveTest.cs" />
     <Compile Include="Parsing\ParseHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ranges\CompositeRangeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj">
@@ -73,6 +74,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

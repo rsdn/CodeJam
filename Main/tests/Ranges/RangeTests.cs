@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 
 using NUnit.Framework;
 
@@ -13,6 +14,7 @@ namespace CodeJam.Ranges
 	[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
 	[SuppressMessage("ReSharper", "ConvertToConstant.Local")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
+	[SuppressMessage("ReSharper", "HeapView.DelegateAllocation")]
 	public static partial class RangeTests
 	{
 		private const char RangeKey = '_';
@@ -146,6 +148,8 @@ namespace CodeJam.Ranges
 			int? value1 = 1;
 			int? value2 = 2;
 			int? empty = null;
+			var key = "Hello!";
+			var key2 = "Hello2!";
 
 			var eFrom = new RangeBoundaryFrom<int?>();
 			var eTo = new RangeBoundaryTo<int?>();
@@ -167,7 +171,10 @@ namespace CodeJam.Ranges
 				Range.Create(value1, value2));
 
 			IsTrue(Range.Create(value1, value2) == Range.Create<int?>(1, 2));
-			IsFalse(Range.Create(value1, value2) == Range.Create(value1, value1));
+			IsTrue(Range.Create(value1, value2) != Range.Create(value1, 1));
+			IsTrue(Range.Create(value1, value2, key) == Range.Create<int?, string>(1, 2, key));
+			IsTrue(Range.Create(value1, value2, key) != Range.Create<int?, string>(1, 2, key2));
+			IsTrue(Range.Create(value1, value2, key) != Range.Create<int?, string>(1, 1, key));
 		}
 
 		/// <summary>Tests the range to string.</summary>
@@ -176,7 +183,7 @@ namespace CodeJam.Ranges
 		{
 			int? value1 = 1;
 			int? empty = null;
-			var key = "Hello";
+			var key = "Hello!";
 
 			AreEqual(Range<int>.Empty.ToString(), "∅");
 			AreEqual(Range<int>.Infinite.ToString(), "(-∞..+∞)");
@@ -187,14 +194,74 @@ namespace CodeJam.Ranges
 			AreEqual(Range.CreateExclusiveTo(1, 2).ToString(), "[1..2)");
 			AreEqual(Range.CreateExclusive(value1, empty).ToString("000"), "(001..+∞)");
 
-			AreEqual(Range.Create(RangeBoundaryFrom<int>.Empty, RangeBoundaryTo<int>.Empty, key).ToString(), "'Hello': ∅");
-			AreEqual(Range.Create(empty, empty, key).ToString(), "'Hello': (-∞..+∞)");
-			AreEqual(Range.Create(1, 1, key).ToString(), "'Hello': [1..1]");
-			AreEqual(Range.Create(1, 2, key).ToString(), "'Hello': [1..2]");
-			AreEqual(Range.CreateExclusive(1, 2, key).ToString(), "'Hello': (1..2)");
-			AreEqual(Range.CreateExclusiveFrom(1, 2, key).ToString(), "'Hello': (1..2]");
-			AreEqual(Range.CreateExclusiveTo(1, 2, key).ToString(), "'Hello': [1..2)");
-			AreEqual(Range.CreateExclusive(value1, empty, 3).ToString("000"), "'3': (001..+∞)");
+			AreEqual(Range.Create(RangeBoundaryFrom<int>.Empty, RangeBoundaryTo<int>.Empty, key).ToString(), "'Hello!':∅");
+			AreEqual(Range.Create(empty, empty, key).ToString(), "'Hello!':(-∞..+∞)");
+			AreEqual(Range.Create(empty, empty, (string)null).ToString(), "'':(-∞..+∞)");
+			AreEqual(Range.Create(1, 1, key).ToString(), "'Hello!':[1..1]");
+			AreEqual(Range.Create(1, 2, key).ToString(), "'Hello!':[1..2]");
+			AreEqual(Range.CreateExclusive(1, 2, key).ToString(), "'Hello!':(1..2)");
+			AreEqual(Range.CreateExclusiveFrom(1, 2, key).ToString(), "'Hello!':(1..2]");
+			AreEqual(Range.CreateExclusiveTo(1, 2, key).ToString(), "'Hello!':[1..2)");
+			AreEqual(Range.CreateExclusive(value1, empty, 3).ToString("000"), "'3':(001..+∞)");
+
+			var cultureRu = CultureInfo.GetCultureInfo("ru-RU");
+			var cultureEn = CultureInfo.GetCultureInfo("en-US");
+			AreEqual(Range.Create(1.5, 2.5, 1.1).ToString("000.000", cultureRu), "'1,1':[001,500..002,500]");
+			AreEqual(Range.Create(1.5, 2.5, 1.1).ToString("000.000", cultureEn), "'1.1':[001.500..002.500]");
+			AreEqual(Range.Create(1.5, 2.5, (string)null).ToString(null, cultureRu), "'':[1,5..2,5]");
+			AreEqual(Range.Create(1.5, 2.5, (string)null).ToString(null, cultureEn), "'':[1.5..2.5]");
+		}
+
+		[Test]
+		public static void TestKeyedRangeKeyFlow()
+		{
+			int? value1 = 1;
+			int? empty = null;
+			var key = "Hello!";
+
+			var range = Range.Create(value1, empty).WithKey("A");
+
+			AreEqual(range.ToString(), "'A':[1..+∞)");
+			AreNotEqual(range.Key, key);
+
+			var prevRange = range.WithKey(key);
+
+			range = prevRange;
+			AreEqual(range.ToString(), "'Hello!':[1..+∞)");
+			AreEqual(range.Key, key);
+			AreEqual(range, prevRange);
+
+			range = range.Intersect(1, 2);
+			AreEqual(range.ToString(), "'Hello!':[1..2]");
+			AreEqual(range.Key, key);
+			AreNotEqual(range, prevRange);
+
+			range = range.Union(4, 8);
+			AreEqual(range.ToString(), "'Hello!':[1..8]");
+			AreEqual(range.Key, key);
+			AreNotEqual(range, prevRange);
+
+			range = range.Intersect(10, 20);
+			AreEqual(range.ToString(), "'Hello!':∅");
+			AreEqual(range.Key, key);
+			AreNotEqual(range, prevRange);
+
+			range = range.Union(null, null);
+			AreEqual(range.ToString(), "'Hello!':(-∞..+∞)");
+			AreEqual(range.Key, key);
+			AreNotEqual(range, prevRange);
+
+			range = range.TrimFrom(1);
+			AreEqual(range.ToString(), "'Hello!':[1..+∞)");
+			AreEqual(range.Key, key);
+			AreEqual(range, prevRange);
+
+			range = Range.Create(value1, value1)
+				.WithKey("B")
+				.Intersect(range);
+			AreEqual(range.ToString(), "'B':[1..1]");
+			AreNotEqual(range.Key, key);
+			AreNotEqual(range, prevRange);
 		}
 	}
 }
