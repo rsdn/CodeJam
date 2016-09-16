@@ -6,6 +6,11 @@ namespace CodeJam.Ranges
 	internal static class RangeInternal
 	{
 		#region The stub param to mark unsafe overloads
+		/// <summary>The message for unsafe (no arg validation) method.</summary>
+		internal const string SkipsArgValidationObsolete =
+			"Marked as obsolete to emit warnings on incorrect usage. " +
+				"Read comments on RangeInternal.UnsafeOverload before suppressing the warning.";
+
 		/// <summary>
 		/// Helper enum to mark unsafe (no validation) constructor overloads.
 		/// Should be used ONLY if the arguments are validated already
@@ -14,6 +19,11 @@ namespace CodeJam.Ranges
 		[Obsolete(SkipsArgValidationObsolete)]
 		internal enum UnsafeOverload
 		{
+			/// <summary>
+			/// Marks unsafe (no validation) constructor overload.
+			/// Should be used ONLY if the arguments are validated already
+			/// AND the code is on the hotpath.
+			/// </summary>
 			SkipsArgValidation
 		}
 
@@ -26,11 +36,6 @@ namespace CodeJam.Ranges
 #pragma warning disable 618 // The warning is transitive: the constant is marked as obsolete.
 		internal const UnsafeOverload SkipsArgValidation = UnsafeOverload.SkipsArgValidation;
 #pragma warning restore 618
-
-		/// <summary>The message for unsafe (no arg validation) method.</summary>
-		internal const string SkipsArgValidationObsolete =
-			"Marked as obsolete to emit warnings on incorrect usage. " +
-				"Read comments on RangeInternal.SkipsArgValidation before suppressing the warning.";
 		#endregion
 
 		#region Boundary constants

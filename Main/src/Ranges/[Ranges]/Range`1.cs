@@ -136,28 +136,5 @@ namespace CodeJam.Ranges
 		/// <value><c>true</c> if the range is infinite; otherwise, <c>false</c>.</value>
 		public bool IsInfinite => _from.IsNegativeInfinity && _to.IsPositiveInfinity;
 		#endregion
-
-		#region IEquatable<Range<T>>
-		/// <summary>Indicates whether the current range and a specified object are equal.</summary>
-		/// <param name="obj">The object to compare with this. </param>
-		/// <returns>
-		/// <c>True</c> if <paramref name="obj"/> and the current range are the same type
-		/// and represent the same value; otherwise, false.
-		/// </returns>
-		[Pure]
-		public override bool Equals(object obj) =>
-			obj is Range<T> && Equals((Range<T>)obj);
-		#endregion
-
-		#region ToString
-		/// <summary>
-		/// Returns string representation of the range using the specified format string.
-		/// If <typeparamref name="T"/> does not implement <seealso cref="IFormattable"/> the format string is ignored.
-		/// </summary>
-		/// <param name="format">The format string.</param>
-		/// <returns>The string representation of the range.</returns>
-		[Pure, NotNull]
-		public string ToString(string format) => ToString(format, null);
-		#endregion
 	}
 }

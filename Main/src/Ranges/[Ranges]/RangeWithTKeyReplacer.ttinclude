@@ -6,9 +6,14 @@
 		Transform(
 			sourceFileName,
 			additionalReplaces,
+			new ReplaceInfo // region for non-updateable text
+			{
+				Pattern = @"\#region T4\-dont\-replace.*?\#endregion",
+				Mode = ReplaceMode.Ignore
+			},
 			new ReplaceInfo // Fix generic params
 			{
-				Pattern = @"(?<!(?:BoundaryTo<|BoundaryFrom<))T>",
+				Pattern = @"(?<!(?:BoundaryTo<|BoundaryFrom<|Comparer<))T>",
 				Replacement = "T, TKey>",
 				ThrowOnFail = true
 			},
@@ -22,13 +27,13 @@
 			{
 				Pattern = @"(T>? to(?:Value)?)(\)|,)",
 				Replacement = @"$1, TKey key$2",
-				ThrowOnFail = true
+				ThrowOnFail = false
 			},
 			new ReplaceInfo // Fix method XML docs
 			{
 				Pattern = @"(\r\n.+?)(<param name=""to(?:Value)?"">(?:.|\r|\n)+?</param>)",
 				Replacement = @"$1$2$1<param name=""key"">The value of the range key.</param>",
-				ThrowOnFail = true
+				ThrowOnFail = false
 			},
 			new ReplaceInfo // Fix parameter passing
 			{

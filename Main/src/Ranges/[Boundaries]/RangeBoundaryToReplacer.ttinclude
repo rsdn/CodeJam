@@ -16,7 +16,7 @@
 				Replacement = "To",
 				ThrowOnFail = false,
 				WholeWord = true,
-				SwapMode = true
+				Mode = ReplaceMode.Swap
 			},
 			new ReplaceInfo // Swap BoundaryFrom <> BoundaryTo
 			{
@@ -24,7 +24,7 @@
 				Replacement = "BoundaryTo",
 				ThrowOnFail = true,
 				WholeWord = false,
-				SwapMode = true
+				Mode = ReplaceMode.Swap
 			},
 			new ReplaceInfo // Swap Negative <> Negative
 			{
@@ -32,7 +32,7 @@
 				Replacement = "Positive",
 				ThrowOnFail = false,
 				WholeWord = false,
-				SwapMode = true
+				Mode = ReplaceMode.Swap
 			},
 			new ReplaceInfo // Swap negative <> positive
 			{
@@ -40,7 +40,7 @@
 				Replacement = "positive",
 				ThrowOnFail = false,
 				WholeWord = false,
-				SwapMode = true
+				Mode = ReplaceMode.Swap
 			},
 			new ReplaceInfo // Swap -∞ <> +∞
 			{
@@ -48,7 +48,7 @@
 				Replacement = "+∞",
 				ThrowOnFail = false,
 				WholeWord = false,
-				SwapMode = true
+				Mode = ReplaceMode.Swap
 			});
 	}
 #>
