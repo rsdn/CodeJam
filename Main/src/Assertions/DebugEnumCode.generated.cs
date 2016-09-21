@@ -87,7 +87,7 @@ namespace CodeJam
 			where TEnum : struct, IComparable, IFormattable, IConvertible
 		{
 			if (!value.IsAnyFlagSet(flags))
-				throw EnumCodeExceptions.ArgumentAnyFlagUnset(argName, value, flags);
+				throw EnumCodeExceptions.ArgumentAllFlagsUnset(argName, value, flags);
 		}
 
 		/// <summary>Asserts that the specified flag is not set</summary>
@@ -114,13 +114,13 @@ namespace CodeJam
 		/// <param name="flags">The bitwise combinations of the flags.</param>
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void AnyFlagUnset<TEnum>(
+		public static void AllFlagsUnset<TEnum>(
 			TEnum value,
 			[NotNull, InvokerParameterName] string argName,
 			TEnum flags)
 			where TEnum : struct, IComparable, IFormattable, IConvertible
 		{
-			if (!value.IsAnyFlagUnset(flags))
+			if (!value.AreAllFlagsUnset(flags))
 				throw EnumCodeExceptions.ArgumentAnyFlagSet(argName, value, flags);
 		}
 		#endregion

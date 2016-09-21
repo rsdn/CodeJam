@@ -419,7 +419,7 @@ namespace CodeJam
 		/// <param name="flags">The bitwise combinations of the flags.</param>
 		/// <returns><c>true</c> if the value does not include any bit of the flags.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool IsAnyFlagUnset<TEnum>(this TEnum value, TEnum flags)
+		public static bool AreAllFlagsUnset<TEnum>(this TEnum value, TEnum flags)
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				!Holder<TEnum>.IsAnyFlagSetCallback(value, flags);
 		#endregion

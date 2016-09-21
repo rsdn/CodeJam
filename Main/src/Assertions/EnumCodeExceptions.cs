@@ -62,7 +62,7 @@ namespace CodeJam
 		/// <returns>Initialized instance of <seealso cref="ArgumentException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
-		public static ArgumentException ArgumentAnyFlagUnset<TEnum>(
+		public static ArgumentException ArgumentAllFlagsUnset<TEnum>(
 			[NotNull, InvokerParameterName] string argumentName,
 			TEnum value, TEnum flags)
 			where TEnum : struct, IComparable, IFormattable, IConvertible

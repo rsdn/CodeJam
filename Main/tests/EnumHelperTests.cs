@@ -217,12 +217,12 @@ namespace CodeJam
 			IsTrue(Abc.IsAnyFlagSet(Bd));
 			IsFalse(Abc.IsAnyFlagSet(D));
 
-			IsFalse(Abc.IsAnyFlagUnset(Zero));
-			IsFalse(Abc.IsAnyFlagUnset(Bc));
-			IsFalse(Abc.IsAnyFlagUnset(Abc));
-			IsFalse(Abc.IsAnyFlagUnset(Abcd));
-			IsFalse(Abc.IsAnyFlagUnset(Bd));
-			IsTrue(Abc.IsAnyFlagUnset(D));
+			IsFalse(Abc.AreAllFlagsUnset(Zero));
+			IsFalse(Abc.AreAllFlagsUnset(Bc));
+			IsFalse(Abc.AreAllFlagsUnset(Abc));
+			IsFalse(Abc.AreAllFlagsUnset(Abcd));
+			IsFalse(Abc.AreAllFlagsUnset(Bd));
+			IsTrue(Abc.AreAllFlagsUnset(D));
 		}
 
 		[Test]
