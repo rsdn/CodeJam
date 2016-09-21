@@ -25,7 +25,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="cb">The required number of bytes in memory.</param>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
-		public HGlobalScope(int cb) : base(checkSize(cb))
+		public HGlobalScope(int cb) : base(CheckSize(cb))
 		{
 		}
 		
@@ -44,7 +44,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="cb">The required number of bytes in memory.</param>
 		/// <returns><paramref name="cb" /></returns>
-		private static int checkSize(int cb)
+		private static int CheckSize(int cb)
 		{
 			if (cb < _size)
 				throw new ArgumentException($"size is less than {_size}");

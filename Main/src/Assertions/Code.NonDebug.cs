@@ -10,7 +10,7 @@ namespace CodeJam
 {
 	/// <summary>Assertions class.</summary>
 	// Part that excluded from debug assertions generation.
-	static partial class Code
+	partial class Code
 	{
 		#region DisposedIf assertions (DO NOT copy into DebugCode)
 		// NB: ObjectDisposedException should be thrown from all builds or not thrown at all.

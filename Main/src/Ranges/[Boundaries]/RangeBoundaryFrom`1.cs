@@ -5,7 +5,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
-using CodeJam.Reflection;
 
 using JetBrains.Annotations;
 

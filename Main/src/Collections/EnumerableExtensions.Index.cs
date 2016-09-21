@@ -24,7 +24,6 @@ namespace CodeJam.Collections
 		private static IEnumerable<IndexedItem<T>> IndexImpl<T>(IEnumerable<T> source)
 		{
 			using (var enumerator = source.GetEnumerator())
-			{
 				if (enumerator.MoveNext())
 				{
 					var index = 0;
@@ -40,7 +39,6 @@ namespace CodeJam.Collections
 						isFirst = false;
 					}
 				}
-			}
 		}
 	}
 }
