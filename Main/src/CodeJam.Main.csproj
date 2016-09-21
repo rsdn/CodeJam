@@ -94,6 +94,12 @@
     <Compile Include="Arithmetic\Operators.cs" />
     <Compile Include="Assertions\Code.NonDebug.cs" />
     <Compile Include="Assertions\Code.cs" />
+    <Compile Include="Assertions\DebugEnumCode.generated.cs">
+      <DependentUpon>DebugEnumCode.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Assertions\EnumCodeExceptions.cs" />
     <Compile Include="Assertions\CodeExceptions.cs" />
     <Compile Include="Assertions\DebugCode.cs" />
     <Compile Include="Assertions\DebugCode.generated.cs">
@@ -115,6 +121,7 @@
     <Compile Include="Collections\NamespaceDoc.cs" />
     <Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
     <Compile Include="Collections\QueryableExtensions.cs" />
+    <Compile Include="Assertions\EnumCode.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="Expressions\NamespaceDoc.cs" />
@@ -354,6 +361,10 @@
     <Content Include="Arithmetic\Operators.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Operators.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Assertions\DebugEnumCode.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DebugEnumCode.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Collections\DictionaryExtensions.GetValueOrDefault.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

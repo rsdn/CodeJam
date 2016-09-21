@@ -74,7 +74,7 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"String '{argumentName}' should be neither null nor empty",
+				$"String '{argumentName}' should be neither null nor empty.",
 				argumentName);
 		}
 
@@ -87,7 +87,7 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"String '{argumentName}' should be neither null nor whitespace",
+				$"String '{argumentName}' should be neither null nor whitespace.",
 				argumentName);
 		}
 
@@ -107,7 +107,7 @@ namespace CodeJam
 			return new ArgumentOutOfRangeException(
 				argumentName,
 				value,
-				$"The value of '{argumentName}' ({value}) should be between {fromValue} and {toValue}");
+				$"The value of '{argumentName}' ({value}) should be between {fromValue} and {toValue}.");
 		}
 
 		/// <summary>Creates <seealso cref="ArgumentOutOfRangeException"/></summary>
@@ -127,7 +127,7 @@ namespace CodeJam
 			return new ArgumentOutOfRangeException(
 				argumentName,
 				value,
-				$"The value of '{argumentName}' ('{value}') should be between '{fromValue}' and '{toValue}'");
+				$"The value of '{argumentName}' ('{value}') should be between '{fromValue}' and '{toValue}'.");
 		}
 
 		/// <summary>Creates <seealso cref="IndexOutOfRangeException"/></summary>
@@ -200,7 +200,7 @@ namespace CodeJam
 			BreakIfAttached();
 			var valueType = value?.GetType() ?? typeof(T);
 			return new ArgumentOutOfRangeException(
-				argumentName, value, $"Unexpected value '{value}' of type '{valueType.FullName}'");
+				argumentName, value, $"Unexpected value '{value}' of type '{valueType.FullName}'.");
 		}
 
 		/// <summary>
@@ -240,7 +240,7 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			var valueType = value?.GetType() ?? typeof(T);
-			return new InvalidOperationException($"Unexpected value '{value}' of type '{valueType.FullName}'");
+			return new InvalidOperationException($"Unexpected value '{value}' of type '{valueType.FullName}'.");
 		}
 
 		/// <summary>
@@ -264,7 +264,6 @@ namespace CodeJam
 		/// <param name="typeofDisposedObject">The typeof disposed object.</param>
 		/// <returns>Initialized instance of <seealso cref="ObjectDisposedException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[StringFormatMethod("messageFormat")]
 		[MustUseReturnValue]
 		public static ObjectDisposedException ObjectDisposed([CanBeNull] Type typeofDisposedObject)
 		{

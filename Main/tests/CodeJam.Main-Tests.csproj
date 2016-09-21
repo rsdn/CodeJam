@@ -60,6 +60,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OperatorsTests.tt</DependentUpon>
     </Compile>
+    <Compile Include="Assertions\EnumCodeTests.cs" />
     <Compile Include="Assertions\CodeTests.cs" />
     <Compile Include="Collections\EnumerableExtensionTests.TopoSort.cs" />
     <Compile Include="Collections\MinMaxByTests.cs" />

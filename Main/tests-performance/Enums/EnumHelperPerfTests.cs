@@ -172,7 +172,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(9.17, 16.27)]
+			[CompetitionBenchmark(8.55, 16.27)]
 			public bool Test04EnumHasFlag()
 			{
 				var a = false;
@@ -183,27 +183,27 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void RunIsFlagMatchCase() => Competition.Run<IsFlagMatchCase>(RunConfig);
+		public void RunIsAnyFlagSetCase() => Competition.Run<IsAnyFlagSetCase>(RunConfig);
 
-		public class IsFlagMatchCase
+		public class IsAnyFlagSetCase
 		{
 			[MethodImpl(MethodImplOptions.NoInlining)]
-			private static bool IsFlagMatch(F value, F flag) => flag == 0 || (value & flag) != 0;
+			private static bool IsAnyFlagSet(F value, F flag) => flag == 0 || (value & flag) != 0;
 
-			private static readonly Func<F, F, bool> _isFlagMatchEnumOp = OperatorsFactory.IsFlagMatchOperator<F>();
-			private static readonly Func<int, int, bool> _isFlagMatchIntOp = OperatorsFactory.IsFlagMatchOperator<int>();
+			private static readonly Func<F, F, bool> _isAnyFlagSetEnumOp = OperatorsFactory.IsAnyFlagSetOperator<F>();
+			private static readonly Func<int, int, bool> _isAnyFlagSetIntOp = OperatorsFactory.IsAnyFlagSetOperator<int>();
 
 			[CompetitionBaseline]
 			public bool Test00Baseline()
 			{
 				var a = false;
 				for (var i = 0; i < Count; i++)
-					a = IsFlagMatch(F.CD, F.B | F.C);
+					a = IsAnyFlagSet(F.CD, F.B | F.C);
 				return a;
 			}
 
 			[CompetitionBenchmark(1.12, 1.77)]
-			public bool Test01IsFlagMatch()
+			public bool Test01IsAnyFlagSet()
 			{
 				var a = false;
 				for (var i = 0; i < Count; i++)
@@ -212,20 +212,20 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(0.58, 1.22)]
-			public bool Test02IsFlagMatchEnumOp()
+			public bool Test02IsAnyFlagSetEnumOp()
 			{
 				var a = false;
 				for (var i = 0; i < Count; i++)
-					a = _isFlagMatchEnumOp(F.CD, F.B | F.C);
+					a = _isAnyFlagSetEnumOp(F.CD, F.B | F.C);
 				return a;
 			}
 
 			[CompetitionBenchmark(0.67, 1.14)]
-			public bool Test03IsFlagMatchIntOp()
+			public bool Test03IsAnyFlagSetIntOp()
 			{
 				var a = false;
 				for (var i = 0; i < Count; i++)
-					a = _isFlagMatchIntOp(8 | 4, 2 | 4);
+					a = _isAnyFlagSetIntOp(8 | 4, 2 | 4);
 				return a;
 			}
 		}
@@ -251,7 +251,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(1.10, 1.66)]
+			[CompetitionBenchmark(0.75, 1.66)]
 			public F Test01SetFlag()
 			{
 				var a = F.A;
@@ -260,7 +260,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.66, 1.05)]
+			[CompetitionBenchmark(0.51, 1.05)]
 			public F Test02SetFlagEnumOp()
 			{
 				var a = F.A;
@@ -269,7 +269,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.60, 1.00)]
+			[CompetitionBenchmark(0.51, 1.00)]
 			public int Test03SetFlagIntOp()
 			{
 				var a = 1;

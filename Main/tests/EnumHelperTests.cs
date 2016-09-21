@@ -203,26 +203,26 @@ namespace CodeJam
 			IsFalse(Abc.IsFlagSet(Bd));
 			IsFalse(Abc.IsFlagSet(D));
 
-			IsFalse(Abc.IsFlagNotSet(Zero));
-			IsFalse(Abc.IsFlagNotSet(Bc));
-			IsFalse(Abc.IsFlagNotSet(Abc));
-			IsTrue(Abc.IsFlagNotSet(Abcd));
-			IsTrue(Abc.IsFlagNotSet(Bd));
-			IsTrue(Abc.IsFlagNotSet(D));
+			IsFalse(Abc.IsFlagUnset(Zero));
+			IsFalse(Abc.IsFlagUnset(Bc));
+			IsFalse(Abc.IsFlagUnset(Abc));
+			IsTrue(Abc.IsFlagUnset(Abcd));
+			IsTrue(Abc.IsFlagUnset(Bd));
+			IsTrue(Abc.IsFlagUnset(D));
 
-			IsTrue(Abc.IsFlagMatch(Zero));
-			IsTrue(Abc.IsFlagMatch(Bc));
-			IsTrue(Abc.IsFlagMatch(Abc));
-			IsTrue(Abc.IsFlagMatch(Abcd));
-			IsTrue(Abc.IsFlagMatch(Bd));
-			IsFalse(Abc.IsFlagMatch(D));
+			IsTrue(Abc.IsAnyFlagSet(Zero));
+			IsTrue(Abc.IsAnyFlagSet(Bc));
+			IsTrue(Abc.IsAnyFlagSet(Abc));
+			IsTrue(Abc.IsAnyFlagSet(Abcd));
+			IsTrue(Abc.IsAnyFlagSet(Bd));
+			IsFalse(Abc.IsAnyFlagSet(D));
 
-			IsFalse(Abc.IsFlagNotMatch(Zero));
-			IsFalse(Abc.IsFlagNotMatch(Bc));
-			IsFalse(Abc.IsFlagNotMatch(Abc));
-			IsFalse(Abc.IsFlagNotMatch(Abcd));
-			IsFalse(Abc.IsFlagNotMatch(Bd));
-			IsTrue(Abc.IsFlagNotMatch(D));
+			IsFalse(Abc.IsAnyFlagUnset(Zero));
+			IsFalse(Abc.IsAnyFlagUnset(Bc));
+			IsFalse(Abc.IsAnyFlagUnset(Abc));
+			IsFalse(Abc.IsAnyFlagUnset(Abcd));
+			IsFalse(Abc.IsAnyFlagUnset(Bd));
+			IsTrue(Abc.IsAnyFlagUnset(D));
 		}
 
 		[Test]
@@ -231,7 +231,7 @@ namespace CodeJam
 		public static void Test0602IsFlagSetOperators()
 		{
 			var isFlagSet = OperatorsFactory.IsFlagSetOperator<int>();
-			var isFlagMatch = OperatorsFactory.IsFlagMatchOperator<int>();
+			var isAnyFlagSet = OperatorsFactory.IsAnyFlagSetOperator<int>();
 			const int Abc = (int)EnumHelperTests.Abc;
 			const int Abcd = (int)EnumHelperTests.Abcd;
 			const int Bc = (int)EnumHelperTests.Bc;
@@ -246,12 +246,12 @@ namespace CodeJam
 			IsFalse(isFlagSet(Abc, Bd));
 			IsFalse(isFlagSet(Abc, D));
 
-			IsTrue(isFlagMatch(Abc, Zero));
-			IsTrue(isFlagMatch(Abc, Bc));
-			IsTrue(isFlagMatch(Abc, Abc));
-			IsTrue(isFlagMatch(Abc, Abcd));
-			IsTrue(isFlagMatch(Abc, Bd));
-			IsFalse(isFlagMatch(Abc, D));
+			IsTrue(isAnyFlagSet(Abc, Zero));
+			IsTrue(isAnyFlagSet(Abc, Bc));
+			IsTrue(isAnyFlagSet(Abc, Abc));
+			IsTrue(isAnyFlagSet(Abc, Abcd));
+			IsTrue(isAnyFlagSet(Abc, Bd));
+			IsFalse(isAnyFlagSet(Abc, D));
 		}
 
 		[Test]
@@ -260,7 +260,7 @@ namespace CodeJam
 		public static void Test0603IsFlagSetInt()
 		{
 			Func<int, int, bool> isFlagSet = (value, flag) => (value & flag) == flag;
-			Func<int, int, bool> isFlagMatch = (value, flag) => (flag == 0) || ((value & flag) != 0);
+			Func<int, int, bool> isAnyFlagSet = (value, flag) => (flag == 0) || ((value & flag) != 0);
 
 			const int Abc = (int)EnumHelperTests.Abc;
 			const int Abcd = (int)EnumHelperTests.Abcd;
@@ -276,12 +276,12 @@ namespace CodeJam
 			IsFalse(isFlagSet(Abc, Bd));
 			IsFalse(isFlagSet(Abc, D));
 
-			IsTrue(isFlagMatch(Abc, Zero));
-			IsTrue(isFlagMatch(Abc, Bc));
-			IsTrue(isFlagMatch(Abc, Abc));
-			IsTrue(isFlagMatch(Abc, Abcd));
-			IsTrue(isFlagMatch(Abc, Bd));
-			IsFalse(isFlagMatch(Abc, D));
+			IsTrue(isAnyFlagSet(Abc, Zero));
+			IsTrue(isAnyFlagSet(Abc, Bc));
+			IsTrue(isAnyFlagSet(Abc, Abc));
+			IsTrue(isAnyFlagSet(Abc, Abcd));
+			IsTrue(isAnyFlagSet(Abc, Bd));
+			IsFalse(isAnyFlagSet(Abc, D));
 		}
 
 		[Test]
@@ -304,6 +304,24 @@ namespace CodeJam
 			AreEqual(Abc.ClearFlag(Abcd), Zero);
 			AreEqual(Abc.ClearFlag(Bd), Flags.A | Flags.C);
 			AreEqual(Abc.ClearFlag(D), Abc);
+		}
+
+		[Test]
+		public static void Test09SetOrClearFlag()
+		{
+			AreEqual(Abc.SetFlag(Zero, true), Abc);
+			AreEqual(Abc.SetFlag(Bc, true), Abc);
+			AreEqual(Abc.SetFlag(Abc, true), Abc);
+			AreEqual(Abc.SetFlag(Abcd, true), Abcd);
+			AreEqual(Abc.SetFlag(Bd, true), Abcd);
+			AreEqual(Abc.SetFlag(D, true), Abcd);
+
+			AreEqual(Abc.SetFlag(Zero, false), Abc);
+			AreEqual(Abc.SetFlag(Bc, false), Flags.A);
+			AreEqual(Abc.SetFlag(Abc, false), Zero);
+			AreEqual(Abc.SetFlag(Abcd, false), Zero);
+			AreEqual(Abc.SetFlag(Bd, false), Flags.A | Flags.C);
+			AreEqual(Abc.SetFlag(D, false), Abc);
 		}
 	}
 }
