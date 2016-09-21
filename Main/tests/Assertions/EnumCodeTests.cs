@@ -105,7 +105,7 @@ namespace CodeJam.Assertions
 		[Test]
 		public void TestAllFlagsUnset()
 		{
-			var ex = Assert.Throws<ArgumentException>(() => EnumCode.AnyFlagUnset(FileAccess.Read, "arg00", FileAccess.ReadWrite));
+			var ex = Assert.Throws<ArgumentException>(() => EnumCode.AllFlagsUnset(FileAccess.Read, "arg00", FileAccess.ReadWrite));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 			Assert.That(ex.Message, Does.Contain("The value of the arg00 argument "));
 			Assert.That(ex.Message, Does.Contain(" should not include any flag from "));
