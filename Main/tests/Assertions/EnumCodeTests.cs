@@ -92,23 +92,23 @@ namespace CodeJam.Assertions
 		[Test]
 		public void TestFlagUnset()
 		{
-			var ex = Assert.Throws<ArgumentException>(() => EnumCode.FlagUnset(FileAccess.ReadWrite, "arg00", FileAccess.Write));
+			var ex = Assert.Throws<ArgumentException>(() => EnumCode.AnyFlagUnset(FileAccess.ReadWrite, "arg00", FileAccess.Write));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 			Assert.That(ex.Message, Does.Contain("The value of the arg00 argument "));
 			Assert.That(ex.Message, Does.Contain(" should not include flag "));
 
-			Assert.DoesNotThrow(() => EnumCode.FlagUnset(FileAccess.Read, "arg00", FileAccess.Write));
+			Assert.DoesNotThrow(() => EnumCode.AnyFlagUnset(FileAccess.Read, "arg00", FileAccess.Write));
 		}
 
 		[Test]
 		public void TestAllFlagsUnset()
 		{
-			var ex = Assert.Throws<ArgumentException>(() => EnumCode.AllFlagsUnset(FileAccess.Read, "arg00", FileAccess.ReadWrite));
+			var ex = Assert.Throws<ArgumentException>(() => EnumCode.FlagUnset(FileAccess.Read, "arg00", FileAccess.ReadWrite));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 			Assert.That(ex.Message, Does.Contain("The value of the arg00 argument "));
 			Assert.That(ex.Message, Does.Contain(" should not include any flag from "));
 
-			Assert.DoesNotThrow(() => EnumCode.AllFlagsUnset(FileAccess.Read, "arg00", FileAccess.Write));
+			Assert.DoesNotThrow(() => EnumCode.FlagUnset(FileAccess.Read, "arg00", FileAccess.Write));
 		}
 	}
 }

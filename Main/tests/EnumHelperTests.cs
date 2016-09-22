@@ -203,12 +203,12 @@ namespace CodeJam
 			IsFalse(Abc.IsFlagSet(Bd));
 			IsFalse(Abc.IsFlagSet(D));
 
-			IsFalse(Abc.IsFlagUnset(Zero));
-			IsFalse(Abc.IsFlagUnset(Bc));
-			IsFalse(Abc.IsFlagUnset(Abc));
-			IsTrue(Abc.IsFlagUnset(Abcd));
-			IsTrue(Abc.IsFlagUnset(Bd));
-			IsTrue(Abc.IsFlagUnset(D));
+			IsFalse(Abc.IsAnyFlagUnset(Zero));
+			IsFalse(Abc.IsAnyFlagUnset(Bc));
+			IsFalse(Abc.IsAnyFlagUnset(Abc));
+			IsTrue(Abc.IsAnyFlagUnset(Abcd));
+			IsTrue(Abc.IsAnyFlagUnset(Bd));
+			IsTrue(Abc.IsAnyFlagUnset(D));
 
 			IsTrue(Abc.IsAnyFlagSet(Zero));
 			IsTrue(Abc.IsAnyFlagSet(Bc));
@@ -217,12 +217,12 @@ namespace CodeJam
 			IsTrue(Abc.IsAnyFlagSet(Bd));
 			IsFalse(Abc.IsAnyFlagSet(D));
 
-			IsFalse(Abc.AreAllFlagsUnset(Zero));
-			IsFalse(Abc.AreAllFlagsUnset(Bc));
-			IsFalse(Abc.AreAllFlagsUnset(Abc));
-			IsFalse(Abc.AreAllFlagsUnset(Abcd));
-			IsFalse(Abc.AreAllFlagsUnset(Bd));
-			IsTrue(Abc.AreAllFlagsUnset(D));
+			IsFalse(Abc.IsFlagUnset(Zero));
+			IsFalse(Abc.IsFlagUnset(Bc));
+			IsFalse(Abc.IsFlagUnset(Abc));
+			IsFalse(Abc.IsFlagUnset(Abcd));
+			IsFalse(Abc.IsFlagUnset(Bd));
+			IsTrue(Abc.IsFlagUnset(D));
 		}
 
 		[Test]

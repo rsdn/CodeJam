@@ -231,8 +231,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void RunSetFlagCase() =>
-			Competition.Run<SetFlagCase>(RunConfig);
+		public void RunSetFlagCase() => Competition.Run<SetFlagCase>(RunConfig);
 
 		public class SetFlagCase
 		{
@@ -280,8 +279,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void RunClearFlagCase() =>
-			Competition.Run<ClearFlagCase>(RunConfig);
+		public void RunClearFlagCase() => Competition.Run<ClearFlagCase>(RunConfig);
 
 		public class ClearFlagCase
 		{

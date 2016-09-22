@@ -393,6 +393,16 @@ namespace CodeJam
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				Holder<TEnum>.IsFlagSetCallback(value, flag);
 
+		/// <summary>Determines whether the specified flag is not set.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The value.</param>
+		/// <param name="flag">The flag.</param>
+		/// <returns><c>true</c> if the value does not include all bits of the flag.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static bool IsAnyFlagUnset<TEnum>(this TEnum value, TEnum flag)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				!Holder<TEnum>.IsFlagSetCallback(value, flag);
+
 		/// <summary>Determines whether any bit from specified flag is set.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value.</param>
@@ -403,23 +413,13 @@ namespace CodeJam
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				Holder<TEnum>.IsAnyFlagSetCallback(value, flags);
 
-		/// <summary>Determines whether the specified flag is not set.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="value">The value.</param>
-		/// <param name="flag">The flag.</param>
-		/// <returns><c>true</c> if the value does not include all bits of the flag.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static bool IsFlagUnset<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				!Holder<TEnum>.IsFlagSetCallback(value, flag);
-
-		/// <summary>Determines whether all bits from specified flag are not set.</summary>
+		/// <summary>Determines whether any bit from specified flag is not set.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value.</param>
 		/// <param name="flags">The bitwise combinations of the flags.</param>
 		/// <returns><c>true</c> if the value does not include any bit of the flags.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool AreAllFlagsUnset<TEnum>(this TEnum value, TEnum flags)
+		public static bool IsFlagUnset<TEnum>(this TEnum value, TEnum flags)
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				!Holder<TEnum>.IsAnyFlagSetCallback(value, flags);
 		#endregion
