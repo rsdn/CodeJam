@@ -107,7 +107,7 @@ namespace CodeJam
 				throw EnumCodeExceptions.ArgumentFlagSet(argName, value, flag);
 		}
 
-		/// <summary>Asserts that any bit from specified flag is not set.</summary>
+		/// <summary>Asserts that all bits from specified flag are not set.</summary>
 		/// <typeparam name="TEnum">The type of the enum value.</typeparam>
 		/// <param name="value">The value.</param>
 		/// <param name="argName">Name of the argument.</param>

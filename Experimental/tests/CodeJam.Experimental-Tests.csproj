@@ -53,6 +53,7 @@
     <Compile Include="Collections\SuffixTreeNaive.cs" />
     <Compile Include="Collections\SuffixTreeTest.cs" />
     <Compile Include="Collections\SuffixTreeNaiveTest.cs" />
+    <Compile Include="EnumCodeRefactoringUseCaseTests.cs" />
     <Compile Include="Parsing\ParseHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ranges\CompositeRangeTests.cs" />
