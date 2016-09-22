@@ -329,7 +329,7 @@ namespace CodeJam.Strings
 			[CanBeNull] IFormatProvider provider = null)
 		{
 			double result;
-			return double.TryParse(str, numberStyle, provider, out result) ? (int?)result : null;
+			return double.TryParse(str, numberStyle, provider, out result) ? (double?)result : null;
 		}
 	}
 }
