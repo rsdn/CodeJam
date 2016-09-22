@@ -51,13 +51,8 @@ To get the latest "preview" drop, add the `-pre` switch to the nuget commands
 
 ### Links
  - [Class library documentation](https://github.com/rsdn/CodeJam/wiki/DocHome)
- - [Continiuos Integration builds](https://ci.appveyor.com/project/andrewvk/codejam)
+ - Continuous integration build [![Build status](https://ci.appveyor.com/api/projects/status/oxdyxkgwotiv64r1/branch/master?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam)
+ - Docs continuous integration build [![Docs build status](https://ci.appveyor.com/api/projects/status/bucrjn2eceptbqwl?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam-jlvna)
  - [Continiuos Integration builds Nuget feed](https://ci.appveyor.com/nuget/codejam)
  - [Forum (russian)](http://rsdn.ru/forum/prj.codejam/)
  - [![Join the chat at https://gitter.im/rsdn/CodeJam](https://badges.gitter.im/rsdn/CodeJam.svg)](https://gitter.im/rsdn/CodeJam?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-### Project Build Status
-#### CodeJam
-[![Build status](https://ci.appveyor.com/api/projects/status/oxdyxkgwotiv64r1/branch/master?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam)
-#### CodeJam documentation
-[![Build status](https://ci.appveyor.com/api/projects/status/bucrjn2eceptbqwl?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam-jlvna)
