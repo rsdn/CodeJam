@@ -66,6 +66,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 							return Array<string>.Empty;
 						}
+						catch (UnauthorizedAccessException ex)
+						{
+							competitionState.WriteExceptionMessage(
+								MessageSource.Analyser, MessageSeverity.SetupError,
+								$"Could not access file '{file}'.", ex);
+
+							return Array<string>.Empty;
+						}
 					});
 			}
 
@@ -96,6 +104,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 							}
 						}
 						catch (IOException ex)
+						{
+							competitionState.WriteExceptionMessage(
+								MessageSource.Analyser, MessageSeverity.SetupError,
+								$"Could not access file '{file}'.", ex);
+
+							return null;
+						}
+						catch (UnauthorizedAccessException ex)
 						{
 							competitionState.WriteExceptionMessage(
 								MessageSource.Analyser, MessageSeverity.SetupError,

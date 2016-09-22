@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.ConstrainedExecution;
 using System.Threading;
@@ -19,6 +20,13 @@ namespace CodeJam.IO
 		[PublicAPI]
 		public abstract class TempBase : CriticalFinalizerObject, IDisposable
 		{
+			/// <summary>Checks that the path is valid.</summary>
+			/// <param name="path">The path.</param>
+			[Conditional(DebugCode.DebugCondition)]
+			protected static void DebugAssertValidPath(string path) =>
+				// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
+				System.IO.Path.GetFullPath(path);
+
 			private volatile string _path;
 
 			/// <summary>Assertion on object dispose</summary>
@@ -29,6 +37,7 @@ namespace CodeJam.IO
 			protected TempBase(string path)
 			{
 				Code.NotNullNorEmpty(path, nameof(path));
+				DebugAssertValidPath(path);
 
 				_path = path;
 			}
@@ -92,9 +101,12 @@ namespace CodeJam.IO
 		{
 			private DirectoryInfo _info;
 
+			/// <summary>Create an instance using an automatically constructed temp directory path.</summary>
+			internal TempDirectory() : base(System.IO.Path.Combine(System.IO.Path.GetTempPath(), GetTempName())) { }
+
 			/// <summary>Initializes a new instance of the <see cref="TempDirectory"/> class.</summary>
 			/// <param name="path">The path.</param>
-			public TempDirectory(string path) : base(path) { }
+			internal TempDirectory(string path) : base(path) { }
 
 			/// <summary>DirectoryInfo object</summary>
 			/// <value>The DirectoryInfo object.</value>
@@ -124,6 +136,7 @@ namespace CodeJam.IO
 				catch (ArgumentException) { }
 				catch (IOException) { }
 				catch (UnauthorizedAccessException) { }
+				catch (NotSupportedException) { }
 			}
 		}
 
@@ -135,10 +148,11 @@ namespace CodeJam.IO
 			private FileInfo _info;
 
 			/// <summary>Create an instance using an automatically constructed temp file path.</summary>
-			public TempFile() : base(System.IO.Path.Combine(System.IO.Path.GetTempPath(), GetTempName())) { }
+			internal TempFile() : base(System.IO.Path.Combine(System.IO.Path.GetTempPath(), GetTempName())) { }
+
 			/// <summary>Initialize instance.</summary>
 			/// <param name="path">The path.</param>
-			public TempFile(string path) : base(path) { }
+			internal TempFile(string path) : base(path) { }
 
 			/// <summary>FileInfo object</summary>
 			/// <value>The FileInfo object.</value>
@@ -168,6 +182,7 @@ namespace CodeJam.IO
 				catch (ArgumentException) { }
 				catch (IOException) { }
 				catch (UnauthorizedAccessException) { }
+				catch (NotSupportedException) { }
 			}
 		}
 		#endregion
@@ -180,9 +195,26 @@ namespace CodeJam.IO
 
 		/// <summary>Creates temp directory and returns <see cref="IDisposable"/> to free it.</summary>
 		/// <returns>Temp directory to be freed on dispose.</returns>
-		public static TempDirectory CreateDirectory()
+		public static TempDirectory CreateDirectory() => CreateDirectory(null, null);
+
+		/// <summary>Creates temp directory and returns <see cref="IDisposable"/> to free it.</summary>
+		/// <param name="dirPath">The dir path.</param>
+		/// <returns>Temp directory to be freed on dispose.</returns>
+		public static TempDirectory CreateDirectory([CanBeNull] string dirPath) => CreateDirectory(dirPath, null);
+
+		/// <summary>Creates temp directory and returns <see cref="IDisposable"/> to free it.</summary>
+		/// <param name="dirPath">The dir path.</param>
+		/// <param name="directoryName">Name of the temp directory.</param>
+		/// <returns>Temp directory to be freed on dispose.</returns>
+		public static TempDirectory CreateDirectory([CanBeNull] string dirPath, [CanBeNull] string directoryName)
 		{
-			var directoryPath = Path.Combine(Path.GetTempPath(), GetTempName());
+			if (dirPath == null)
+				dirPath = Path.GetTempPath();
+
+			if (directoryName == null)
+				directoryName = GetTempName();
+
+			var directoryPath = Path.Combine(dirPath, directoryName);
 			var result = new TempDirectory(directoryPath);
 			Directory.CreateDirectory(directoryPath);
 			return result;
@@ -190,31 +222,42 @@ namespace CodeJam.IO
 
 		/// <summary>Creates temp file and return disposable handle.</summary>
 		/// <returns>Temp file to be freed on dispose.</returns>
-		public static TempFile CreateFile() => CreateFile(Path.GetTempPath());
+		public static TempFile CreateFile() => CreateFile(null, null);
+
+		/// <summary>Creates temp file and return disposable handle.</summary>
+		/// <param name="dirPath">The dir path.</param>
+		/// <returns>Temp file to be freed on dispose.</returns>
+		public static TempFile CreateFile([CanBeNull] string dirPath) => CreateFile(dirPath, null);
 
 		/// <summary>Creates temp file and return disposable handle.</summary>
 		/// <param name="dirPath">The dir path.</param>
 		/// <param name="fileName">Name of the temp file.</param>
 		/// <returns>Temp file to be freed on dispose.</returns>
 		/// <exception cref="ArgumentNullException"><paramref name="dirPath"/> is null.</exception>
-		public static TempFile CreateFile([NotNull] string dirPath, [CanBeNull] string fileName = null)
+		public static TempFile CreateFile([CanBeNull] string dirPath, [CanBeNull] string fileName)
 		{
-			Code.NotNull(dirPath, nameof(dirPath));
+			if (dirPath == null)
+				dirPath = Path.GetTempPath();
 
 			if (fileName == null)
 				fileName = GetTempName();
 
 			var filePath = Path.Combine(dirPath, fileName);
 			var result = new TempFile(filePath);
-			using (File.Create(filePath)) {}
+			using (File.Create(filePath)) { }
 			return result;
 		}
 
 		/// <summary>Creates stream and returns disposable handler.</summary>
+		/// <returns>Temp stream to be freed on dispose.</returns>
+		public static FileStream CreateFileStream() =>
+			CreateFileStream(null, null, FileAccess.ReadWrite);
+
+		/// <summary>Creates stream and returns disposable handler.</summary>
 		/// <param name="fileAccess">The file access.</param>
 		/// <returns>Temp stream to be freed on dispose.</returns>
-		public static FileStream CreateFileStream(FileAccess fileAccess = FileAccess.ReadWrite) =>
-			CreateFileStream(Path.GetTempPath(), null, fileAccess);
+		public static FileStream CreateFileStream(FileAccess fileAccess) =>
+			CreateFileStream(null, null, fileAccess);
 
 		/// <summary> Creates stream and returns disposable handler.</summary>
 		/// <param name="dirPath">The dir path.</param>
@@ -222,11 +265,12 @@ namespace CodeJam.IO
 		/// <param name="fileAccess">The file access.</param>
 		/// <returns>Temp stream to be freed on dispose.</returns>
 		public static FileStream CreateFileStream(
-			[NotNull] string dirPath, [CanBeNull] string fileName = null, FileAccess fileAccess = FileAccess.ReadWrite)
+			[CanBeNull] string dirPath, [CanBeNull] string fileName = null, FileAccess fileAccess = FileAccess.ReadWrite)
 		{
 			const int bufferSize = 4096;
 
-			Code.NotNull(dirPath, nameof(dirPath));
+			if (dirPath == null)
+				dirPath = Path.GetTempPath();
 
 			if (fileName == null)
 				fileName = GetTempName();
