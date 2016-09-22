@@ -1,4 +1,6 @@
 ## CodeJam
+
+[![Join the chat at https://gitter.im/rsdn/CodeJam](https://badges.gitter.im/rsdn/CodeJam.svg)](https://gitter.im/rsdn/CodeJam?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 CodeJam is a set of handy reusable .NET components that can simplify your daily work and
 save your time when you copy and paste your favorite helper methods and classes from one project to another.
 
