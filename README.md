@@ -1,6 +1,5 @@
 ## CodeJam
 
-[![Join the chat at https://gitter.im/rsdn/CodeJam](https://badges.gitter.im/rsdn/CodeJam.svg)](https://gitter.im/rsdn/CodeJam?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 CodeJam is a set of handy reusable .NET components that can simplify your daily work and
 save your time when you copy and paste your favorite helper methods and classes from one project to another.
 
@@ -55,6 +54,7 @@ To get the latest "preview" drop, add the `-pre` switch to the nuget commands
  - [Continiuos Integration builds](https://ci.appveyor.com/project/andrewvk/codejam)
  - [Continiuos Integration builds Nuget feed](https://ci.appveyor.com/nuget/codejam)
  - [Forum (russian)](http://rsdn.ru/forum/prj.codejam/)
+ - [![Join the chat at https://gitter.im/rsdn/CodeJam](https://badges.gitter.im/rsdn/CodeJam.svg)](https://gitter.im/rsdn/CodeJam?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ### Project Build Status
 #### CodeJam
