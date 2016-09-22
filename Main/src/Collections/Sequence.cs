@@ -45,7 +45,6 @@ namespace CodeJam.Collections
 		}
 
 		public static IEnumerable<T> Create<T>(T start, [NotNull] Func<T, bool> predicate, [NotNull] Func<T, T> next)
-			where T : class
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(predicate, nameof (predicate));
