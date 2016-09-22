@@ -52,7 +52,7 @@ namespace CodeJam
 				$"The value of the {argumentName} argument ('{value}') should not include flag '{flag}'.", argumentName);
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentException"/> for flag is not set case.</summary>
+		/// <summary>Creates <seealso cref="ArgumentException"/> for any bit from flag is not set case.</summary>
 		/// <typeparam name="TEnum">The type of the enum value.</typeparam>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
@@ -88,7 +88,7 @@ namespace CodeJam
 				$"The value of the {argumentName} argument ('{value}') should not include any flag from '{flags}'.", argumentName);
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentException"/> for any bit from flag is not set case.</summary>
+		/// <summary>Creates <seealso cref="ArgumentException"/> for flag is not set case.</summary>
 		/// <typeparam name="TEnum">The type of the enum value.</typeparam>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>

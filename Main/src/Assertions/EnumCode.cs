@@ -62,7 +62,7 @@ namespace CodeJam
 				throw EnumCodeExceptions.ArgumentAnyFlagUnset(argName, value, flag);
 		}
 
-		/// <summary>Asserts that the specified flag is not set.</summary>
+		/// <summary>Asserts that any bit from specified flag is not set.</summary>
 		/// <typeparam name="TEnum">The type of the enum value.</typeparam>
 		/// <param name="value">The value.</param>
 		/// <param name="argName">Name of the argument.</param>
@@ -96,7 +96,7 @@ namespace CodeJam
 				throw EnumCodeExceptions.ArgumentFlagUnset(argName, value, flags);
 		}
 
-		/// <summary>Asserts that any bit from specified flag is not set.</summary>
+		/// <summary>Asserts that the specified flag is not set.</summary>
 		/// <typeparam name="TEnum">The type of the enum value.</typeparam>
 		/// <param name="value">The value.</param>
 		/// <param name="argName">Name of the argument.</param>

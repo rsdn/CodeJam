@@ -393,7 +393,7 @@ namespace CodeJam
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				Holder<TEnum>.IsFlagSetCallback(value, flag);
 
-		/// <summary>Determines whether the specified flag is not set.</summary>
+		/// <summary>Determines whether any bit from specified flag is not set.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value.</param>
 		/// <param name="flag">The flag.</param>
@@ -413,7 +413,7 @@ namespace CodeJam
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				Holder<TEnum>.IsAnyFlagSetCallback(value, flags);
 
-		/// <summary>Determines whether any bit from specified flag is not set.</summary>
+		/// <summary>Determines whether the specified flag is not set.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value.</param>
 		/// <param name="flags">The bitwise combinations of the flags.</param>

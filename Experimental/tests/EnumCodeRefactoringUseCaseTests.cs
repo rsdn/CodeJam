@@ -69,7 +69,7 @@ namespace CodeJam
 			Assert.IsTrue(permissions.IsFlagSet(PermittedActions.Read));
 			Assert.IsFalse(permissions.IsFlagSet(PermittedActions.SetOwner));
 
-			//  Checks that entire bit combination is NOT set
+			// Checks that any bit is NOT set
 			Assert.IsTrue(permissions.IsAnyFlagUnset(readOrOwner));
 			Assert.IsFalse(permissions.IsAnyFlagUnset(PermittedActions.Read));
 			Assert.IsTrue(permissions.IsAnyFlagUnset(PermittedActions.SetOwner));
@@ -79,7 +79,7 @@ namespace CodeJam
 			Assert.IsTrue(permissions.IsAnyFlagSet(PermittedActions.Read));
 			Assert.IsFalse(permissions.IsAnyFlagSet(PermittedActions.SetOwner));
 
-			// Checks that any bit is NOT set
+			// Checks that entire bit combination is NOT set
 			Assert.IsFalse(permissions.IsFlagUnset(readOrOwner));
 			Assert.IsFalse(permissions.IsFlagUnset(PermittedActions.Read));
 			Assert.IsTrue(permissions.IsFlagUnset(PermittedActions.SetOwner));
@@ -113,7 +113,7 @@ namespace CodeJam
 			istrue(permissions.IsFlagSet(PermittedActions.Read));
 			isfalse(permissions.IsFlagSet(PermittedActions.SetOwner));
 
-			//  Checks that entire bit combination is NOT set
+			// Checks that any bit is NOT set
 			istrue(permissions.IsAnyFlagUnset(readOrOwner));
 			isfalse(permissions.IsAnyFlagUnset(PermittedActions.Read));
 			istrue(permissions.IsAnyFlagUnset(PermittedActions.SetOwner));
@@ -123,7 +123,7 @@ namespace CodeJam
 			istrue(permissions.IsAnyFlagSet(PermittedActions.Read));
 			isfalse(permissions.IsAnyFlagSet(PermittedActions.SetOwner));
 
-			// Checks that any bit is NOT set
+			// Checks that entire bit combination is NOT set
 			isfalse(permissions.IsFlagUnset(readOrOwner));
 			isfalse(permissions.IsFlagUnset(PermittedActions.Read));
 			istrue(permissions.IsFlagUnset(PermittedActions.SetOwner));
@@ -151,7 +151,7 @@ namespace CodeJam
 			istrue(permissions.Includes(PermittedActions.Read));
 			isfalse(permissions.Includes(PermittedActions.SetOwner));
 
-			//  Checks that entire bit combination is NOT set
+			// Checks that any bit is NOT set
 			istrue(permissions.ExcludesAny(readOrOwner));
 			isfalse(permissions.ExcludesAny(PermittedActions.Read));
 			istrue(permissions.ExcludesAny(PermittedActions.SetOwner));
@@ -161,7 +161,7 @@ namespace CodeJam
 			istrue(permissions.IncludesAny(PermittedActions.Read));
 			isfalse(permissions.IncludesAny(PermittedActions.SetOwner));
 
-			// Checks that any bit is NOT set
+			// Checks that entire bit combination is NOT set
 			isfalse(permissions.Excludes(readOrOwner));
 			isfalse(permissions.Excludes(PermittedActions.Read));
 			istrue(permissions.Excludes(PermittedActions.SetOwner));
@@ -189,7 +189,7 @@ namespace CodeJam
 			istrue(permissions.Contains(PermittedActions.Read));
 			isfalse(permissions.Contains(PermittedActions.SetOwner));
 
-			//  Checks that entire bit combination is NOT set
+			// Checks that any bit is NOT set
 			istrue(permissions.ContainsAny(readOrOwner));
 			istrue(permissions.ContainsAny(PermittedActions.Read));
 			isfalse(permissions.ContainsAny(PermittedActions.SetOwner));
@@ -199,7 +199,7 @@ namespace CodeJam
 			isfalse(permissions.DoesNotContainAny(PermittedActions.Read));
 			istrue(permissions.DoesNotContainAny(PermittedActions.SetOwner));
 
-			// Checks that any bit is NOT set
+			// Checks that entire bit combination is NOT set
 			isfalse(permissions.DoesNotContain(readOrOwner));
 			isfalse(permissions.DoesNotContain(PermittedActions.Read));
 			istrue(permissions.DoesNotContain(PermittedActions.SetOwner));
