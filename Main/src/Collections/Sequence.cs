@@ -13,7 +13,6 @@ namespace CodeJam.Collections
 	{
 #pragma warning disable 1591
 		public static IEnumerable<T> Create<T>(T start, [NotNull] Func<T, T> next)
-			where T : class
 		{
 			Code.NotNull(next, nameof(next));
 
@@ -30,7 +29,6 @@ namespace CodeJam.Collections
 			T start,
 			[NotNull] Func<T, T> next,
 			[NotNull] Func<T, TResult> resultSelector)
-			where T : class
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(resultSelector, nameof(resultSelector));
@@ -61,7 +59,6 @@ namespace CodeJam.Collections
 				T start,
 				[NotNull] Func<T, bool> predicate,
 				Func<T, T> next, [NotNull] Func<T, TResult> resultSelector)
-			where T : class
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(predicate, nameof(predicate));
