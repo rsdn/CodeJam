@@ -23,7 +23,7 @@ namespace CodeJam.Strings
 		[TestCase("abc", StringOrigin.End,   2, ExpectedResult = "bc")]
 		[TestCase("abc", StringOrigin.Begin, 4, ExpectedResult = "abc")]
 		[TestCase("abc", StringOrigin.End,   4, ExpectedResult = "abc")]
-		public string SubstringOrg(string str, StringOrigin origin, int length) => str.Substring(origin, length);
+		public string SubstringOrigin(string str, StringOrigin origin, int length) => str.Substring(origin, length);
 
 		[TestCase("abc", null, ExpectedResult = "abc")]
 		[TestCase("abc", "", ExpectedResult = "abc")]
@@ -83,5 +83,43 @@ namespace CodeJam.Strings
 		[TestCase("quo\"ted", ExpectedResult = "quo\"ted")]
 		[TestCase("\"quoted\"", ExpectedResult = "quoted")]
 		public string Unquote(string str) => str.Unquote();
+
+		[TestCase("1", ExpectedResult = 1)]
+		[TestCase("-1", ExpectedResult = -1)]
+		[TestCase(" \r\n\t\t \v 10 \r\n", ExpectedResult = 10)]
+		[TestCase("1000 0000", ExpectedResult = null)]
+		[TestCase("1e3", ExpectedResult = null)]
+		[TestCase("- 1", ExpectedResult = null)]
+		[TestCase("1.0", ExpectedResult = null)]
+		[TestCase("1,0", ExpectedResult = null)]
+		[TestCase("1a", ExpectedResult = null)]
+		[TestCase("1 a", ExpectedResult = null)]
+		[TestCase("a 1", ExpectedResult = null)]
+		[TestCase("a1", ExpectedResult = null)]
+		[TestCase("2 1", ExpectedResult = null)]
+		[TestCase("1 2", ExpectedResult = null)]
+		public int? ToInt(string str) => str.ToInt(provider: CultureInfo.InvariantCulture);
+
+		[TestCase("1", ExpectedResult = 1.0)]
+		[TestCase("1.0", ExpectedResult = 1.0)]
+		[TestCase("1.5", ExpectedResult = 1.5)]
+		[TestCase(" 1.0", ExpectedResult = 1.0)]
+		[TestCase("1.0 ", ExpectedResult = 1.0)]
+		[TestCase("1.3e3", ExpectedResult = 1300.0)]
+		[TestCase("1.3e3", ExpectedResult = 1300.0)]
+		[TestCase(" \r\n\t\t \v -1.0 \r\n", ExpectedResult = -1.0)]
+		[TestCase("NaN", ExpectedResult = double.NaN)]
+		[TestCase("-Infinity", ExpectedResult = double.NegativeInfinity)]
+		[TestCase("-∞", ExpectedResult = null)]
+		[TestCase("-infinity", ExpectedResult = null)]
+		[TestCase("- 1.0 ", ExpectedResult = null)]
+		[TestCase("1,0", ExpectedResult = null)]
+		[TestCase("1.0a", ExpectedResult = null)]
+		[TestCase("1.0 a", ExpectedResult = null)]
+		[TestCase("a 1.0", ExpectedResult = null)]
+		[TestCase("a1.0", ExpectedResult = null)]
+		[TestCase("2 1.0", ExpectedResult = null)]
+		[TestCase("1.0 2", ExpectedResult = null)]
+		public double? ToDouble(string str) => str.ToDouble(provider: CultureInfo.InvariantCulture);
 	}
 }
