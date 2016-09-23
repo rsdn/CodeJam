@@ -7,14 +7,15 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-namespace CodeJam
+// ReSharper disable once CheckNamespace
+namespace CodeJam.UseCases.EnumHelpersSamples
 {
 	[TestFixture(Category = "Assertions")]
 	[SuppressMessage("ReSharper", "NotResolvedInText")]
 	[SuppressMessage("ReSharper", "PassStringInterpolation")]
 	[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
-	public class EnumCodeRefactoringUseCaseTests
+	public class EnumCodeUseCases
 	{
 		#region Test helpers
 		private bool? _breakOnException;
