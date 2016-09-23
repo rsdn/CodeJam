@@ -56,18 +56,18 @@ namespace CodeJam
 		/// <typeparam name="TEnum">The type of the enum value.</typeparam>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
-		/// <param name="flag">The flag.</param>
+		/// <param name="flags">The bitwise combinations of the flags.</param>
 		/// <returns>Initialized instance of <seealso cref="ArgumentException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static ArgumentException ArgumentAnyFlagUnset<TEnum>(
 			[NotNull, InvokerParameterName] string argumentName,
-			TEnum value, TEnum flag)
+			TEnum value, TEnum flags)
 			where TEnum : struct, IComparable, IFormattable, IConvertible
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"The value of the {argumentName} argument ('{value}') should include flag '{flag}'.", argumentName);
+				$"The value of the {argumentName} argument ('{value}') should include flag '{flags}'.", argumentName);
 		}
 
 		/// <summary>Creates <seealso cref="ArgumentException"/> for any bit from flag is set case.</summary>
@@ -92,18 +92,18 @@ namespace CodeJam
 		/// <typeparam name="TEnum">The type of the enum value.</typeparam>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
-		/// <param name="flags">The bitwise combinations of the flags.</param>
+		/// <param name="flag">The flag.</param>
 		/// <returns>Initialized instance of <seealso cref="ArgumentException"/></returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static ArgumentException ArgumentFlagUnset<TEnum>(
 			[NotNull, InvokerParameterName] string argumentName,
-			TEnum value, TEnum flags)
+			TEnum value, TEnum flag)
 			where TEnum : struct, IComparable, IFormattable, IConvertible
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"The value of the {argumentName} argument ('{value}') should include any flag from '{flags}'.", argumentName);
+				$"The value of the {argumentName} argument ('{value}') should include any flag from '{flag}'.", argumentName);
 		}
 		#endregion
 	}
