@@ -45,22 +45,43 @@ namespace BenchmarkDotNet.Loggers
 		/// <summary>Write the text.</summary>
 		/// <param name="logKind">Kind of text.</param>
 		/// <param name="text">The text to write.</param>
-		public void Write(LogKind logKind, string text) => _writerLazy.Value.Write(text);
+		public void Write(LogKind logKind, string text)
+		{
+			lock (_writerLazy)
+			{
+				_writerLazy.Value.Write(text);
+			}
+		}
 
 		/// <summary>Write empty line.</summary>
-		public void WriteLine() => _writerLazy.Value.WriteLine();
+		public void WriteLine()
+		{
+			lock (_writerLazy)
+			{
+				_writerLazy.Value.WriteLine();
+			}
+		}
 
 		/// <summary>Write the line.</summary>
 		/// <param name="logKind">Kind of text.</param>
 		/// <param name="text">The text to write.</param>
-		public void WriteLine(LogKind logKind, string text) => _writerLazy.Value.WriteLine(text);
+		public void WriteLine(LogKind logKind, string text)
+		{
+			lock (_writerLazy)
+			{
+				_writerLazy.Value.WriteLine(text);
+			}
+		}
 
 		/// <summary>Flushes the log.</summary>
 		public void Flush()
 		{
 			if (_writerLazy.IsValueCreated)
 			{
-				_writerLazy.Value.Flush();
+				lock (_writerLazy)
+				{
+					_writerLazy.Value.Flush();
+				}
 			}
 		}
 	}
