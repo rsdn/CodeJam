@@ -120,11 +120,11 @@ namespace CodeJam.PerfTests.Running.Core
 		public const string ImportantOnlyLogSuffix = "." + nameof(AppConfigLoggers.ImportantOnly) + ".PerfTests.log";
 
 		#region Logger factories
-		private static LazyStreamLogger CreateAssemblyLevelLogger(Assembly assembly, string suffix)
+		private static LazySynchronizedStreamLogger CreateAssemblyLevelLogger(Assembly assembly, string suffix)
 		{
 			var fileName = assembly.GetAssemblyPath();
 			fileName = Path.ChangeExtension(fileName, suffix);
-			return new LazyStreamLogger(
+			return new LazySynchronizedStreamLogger(
 				() => new StreamWriter(
 					new FileStream(
 						fileName,

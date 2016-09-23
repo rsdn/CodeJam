@@ -34,7 +34,7 @@ namespace CodeJam.Reflection
 		}
 
 		/// <summary>
-		/// Returns path to assembly <paramref name="assembly"/> file.
+		/// Returns path to the <paramref name="assembly"/> file.
 		/// </summary>
 		/// <param name="assembly">Assembly.</param>
 		/// <returns>Path to <paramref name="assembly"/>.</returns>

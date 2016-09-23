@@ -64,7 +64,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(20.99, 54.28)]
+			[CompetitionBenchmark(20.99, 56.07)]
 			public bool Test02EnumIsDefined()
 			{
 				var a = false;
@@ -202,7 +202,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(1.12, 1.77)]
+			[CompetitionBenchmark(0.86, 1.77)]
 			public bool Test01IsAnyFlagSet()
 			{
 				var a = false;
@@ -211,7 +211,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.58, 1.22)]
+			[CompetitionBenchmark(0.53, 1.22)]
 			public bool Test02IsAnyFlagSetEnumOp()
 			{
 				var a = false;
@@ -220,7 +220,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.67, 1.14)]
+			[CompetitionBenchmark(0.61, 1.18)]
 			public bool Test03IsAnyFlagSetIntOp()
 			{
 				var a = false;
@@ -316,7 +316,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.62, 0.88)]
+			[CompetitionBenchmark(0.62, 1.00)]
 			public int Test03ClearFlagIntOp()
 			{
 				var a = 1;
