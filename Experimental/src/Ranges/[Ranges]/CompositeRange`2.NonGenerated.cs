@@ -6,6 +6,8 @@ using CodeJam.Collections;
 
 using JetBrains.Annotations;
 
+using static CodeJam.Ranges.CompositeRangeInternal;
+
 // The file contains members that should not be copied into CompositeRange<T, TKey>. DO NOT remove it
 
 namespace CodeJam.Ranges
@@ -13,6 +15,36 @@ namespace CodeJam.Ranges
 	/// <summary>Describes a range of the values.</summary>
 	public partial struct CompositeRange<T, TKey> : ICompositeRange<T>
 	{
+		#region Helpers
+		private static IEnumerable<Range<T>> MergeRangesNoKeyCore(
+			IEnumerable<Range<T, TKey>> sortedRanges)
+		{
+			var temp = Range<T>.Empty;
+			foreach (var range in sortedRanges)
+			{
+				if (temp.IsEmpty)
+				{
+					temp = range.WithoutKey();
+				}
+				else if (IsContinuationFor(temp.To, range))
+				{
+					temp = temp.ExtendTo(range.To);
+				}
+				else
+				{
+					yield return temp;
+					temp = range.WithoutKey();
+				}
+
+				if (temp.To.IsPositiveInfinity)
+					break;
+			}
+
+			if (temp.IsNotEmpty)
+				yield return temp;
+		}
+		#endregion
+
 		#region ICompositeRange<T>
 		/// <summary>Returns a sequence of merged subranges. Should be used for operations over the ranges.</summary>
 		/// <returns>A sequence of merged subranges</returns>
@@ -20,40 +52,32 @@ namespace CodeJam.Ranges
 
 		[NotNull]
 		private IEnumerable<Range<T>> GetMergedRanges() => _hasRangesToMerge
-			? MergeRangesCore()
+			? MergeRangesNoKeyCore(SubRanges)
 			: SubRanges.Select(r => r.WithoutKey());
+		#endregion
 
-		[NotNull]
-		private IEnumerable<Range<T>> MergeRangesCore()
+		#region Operations
+		/// <summary>Returns simplified composite range. Adjacent ranges with same keys will be merged.</summary>
+		/// <returns>Simplified composite range.</returns>
+		public CompositeRange<T, TKey> Merge()
 		{
-			var mergedRange = _emptyRangeNoKey;
+			if (IsMerged)
+				return this;
 
-			foreach (var range in SubRanges)
+			var groups = SubRanges.GroupBy(r => r.Key).ToArray();
+			if (groups.Length == 1)
 			{
-				if (range.IsEmpty)
-				{
-					continue;
-				}
-				if (mergedRange.IsEmpty)
-				{
-					mergedRange = range.WithoutKey();
-				}
-				else if (IsContinuationFor(mergedRange.To, range))
-				{
-					mergedRange = mergedRange.ExtendTo(range.To);
-				}
-				else
-				{
-					yield return mergedRange;
-					mergedRange = range.WithoutKey();
-				}
+				return new CompositeRange<T, TKey>(
+					MergeRangesCore(groups[0]),
+					UnsafeOverload.NoEmptyRangesAlreadySortedAndMerged);
 			}
-
-			if (mergedRange.IsNotEmpty)
+			else
 			{
-				yield return mergedRange;
+				return new CompositeRange<T, TKey>(
+					groups.SelectMany(group => MergeRangesCore(group)),
+					UnsafeOverload.NoEmptyRanges);
 			}
-		}
+		} 
 		#endregion
 
 		#region IEquatable<CompositeRange<T, TKey>>

@@ -1,5 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Ranges
 {
 	/// <summary>Helper methods for the <seealso cref="CompositeRange{T}"/>.</summary>
@@ -16,7 +18,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="T">The type of the range values.</typeparam>
 		/// <param name="ranges">The ranges.</param>
 		/// <returns>A new composite range.</returns>
-		public static CompositeRange<T> Create<T>(params Range<T>[] ranges) =>
+		public static CompositeRange<T> Create<T>([NotNull] params Range<T>[] ranges) =>
 			new CompositeRange<T>(ranges);
 	}
 }

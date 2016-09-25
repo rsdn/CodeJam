@@ -196,9 +196,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Ranges\[RangeExtensions]\RangeExtensions.cs" />
-    <Compile Include="Ranges\[RangeExtensions]\RangeExtensions.ForRange.cs" />
-    <Compile Include="Ranges\[RangeExtensions]\RangeExtensions.ForRangeWithKey.generated.cs">
-      <DependentUpon>RangeExtensions.ForRangeWithKey.tt</DependentUpon>
+    <Compile Include="Ranges\[RangeExtensions]\RangeExtensions.NoKey.cs" />
+    <Compile Include="Ranges\[RangeExtensions]\RangeExtensions.WithKey.generated.cs">
+      <DependentUpon>RangeExtensions.WithKey.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -391,9 +391,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RangeBoundaryTo`1.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Ranges\[RangeExtensions]\RangeExtensions.ForRangeWithKey.tt">
+    <Content Include="Ranges\[RangeExtensions]\RangeExtensions.WithKey.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RangeExtensions.ForRangeWithKey.generated.cs</LastGenOutput>
+      <LastGenOutput>RangeExtensions.WithKey.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Ranges\[Ranges]\Range`2.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

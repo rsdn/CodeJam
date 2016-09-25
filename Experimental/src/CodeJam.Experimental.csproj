@@ -79,6 +79,7 @@
     <Compile Include="Parsing\PrefixUnaryOperator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ranges\CompositeRange.cs" />
+    <Compile Include="Ranges\[RangeExtensions]\CompositeRangeExtensions.NoKey.cs" />
     <Compile Include="Ranges\[RangeExtensions]\CompositeRangeExtensions.cs" />
     <Compile Include="Ranges\CompositeRange.generated.cs">
       <DependentUpon>CompositeRange.tt</DependentUpon>
@@ -97,10 +98,10 @@
     </Compile>
     <Compile Include="Ranges\[Helper types]\RangeBoundaryToDescendingComparer`1.cs" />
     <Compile Include="Ranges\[Helper types]\RangeIntersection`1.cs" />
-    <Compile Include="Ranges\[RangeExtensions]\CompositeRangeExtensions.generated.cs">
+    <Compile Include="Ranges\[RangeExtensions]\CompositeRangeExtensions.WithKey.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CompositeRangeExtensions.tt</DependentUpon>
+      <DependentUpon>CompositeRangeExtensions.WithKey.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -121,9 +122,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CompositeRange`2.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Ranges\[RangeExtensions]\CompositeRangeExtensions.tt">
+    <Content Include="Ranges\[RangeExtensions]\CompositeRangeExtensions.WithKey.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CompositeRangeExtensions.generated.cs</LastGenOutput>
+      <LastGenOutput>CompositeRangeExtensions.WithKey.generated.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
+
+using CodeJam.Strings;
 
 using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
+using static CodeJam.Ranges.RangeTestHelpers;
 
 namespace CodeJam.Ranges
 {
@@ -14,35 +18,137 @@ namespace CodeJam.Ranges
 	[SuppressMessage("ReSharper", "HeapView.ObjectAllocation")]
 	public static class CompositeRangeTests
 	{
-		[Test]
-		public static void TestCreate()
+		#region Parse helpers
+		private static CompositeRange<T> ParseCompositeRange<T>(
+			string value,
+			Func<string, T> parseValueCallback)
 		{
-			var range1 = Range.Create(1, 2);
-			var range2 = Range.Create(2, 3);
+			if (value == RangeInternal.EmptyString)
+				return CompositeRange<T>.Empty;
 
-			var keyedRange1 = Range.Create(1, 2, "A");
-			var keyedRange2 = Range.Create(2, 3, "B");
+			var boundaryAndRange = value.Split(new[] { CompositeRangeInternal.PrefixString }, 2, StringSplitOptions.None);
+			var boundary = ParseRange(boundaryAndRange[0], parseValueCallback);
 
-			DoesNotThrow(() => CompositeRange.Create<int>());
-			DoesNotThrow(() => CompositeRange.Create(range1));
-			DoesNotThrow(() => CompositeRange.Create(range1, range2));
-			DoesNotThrow(() => CompositeRange.Create(range1, range1));
-			DoesNotThrow(() => CompositeRange.Create(range2, range1));
-			Throws<ArgumentNullException>(() => CompositeRange.Create<int>(null));
+			var result = boundaryAndRange[1]
+				.Substring(0, boundaryAndRange[1].Length - CompositeRangeInternal.SuffixString.Length)
+				.Split(new[] { CompositeRangeInternal.SeparatorString }, StringSplitOptions.None)
+				.Select(s => ParseRange(s, parseValueCallback))
+				.ToCompositeRange();
 
-			DoesNotThrow(() => CompositeRange.Create<int, string>());
-			DoesNotThrow(() => CompositeRange.Create(keyedRange1));
-			DoesNotThrow(() => CompositeRange.Create(keyedRange1, keyedRange2));
-			DoesNotThrow(() => CompositeRange.Create(keyedRange1, keyedRange1));
-			DoesNotThrow(() => CompositeRange.Create(keyedRange2, keyedRange1));
-			Throws<ArgumentNullException>(() => CompositeRange.Create<int, string>(null));
-
-			AreEqual(new CompositeRange<int>(), CompositeRange<int>.Empty);
-			AreEqual(CompositeRange.Create<int>(), CompositeRange<int>.Empty);
-			AreEqual(CompositeRange.Create(Range<int>.Empty), CompositeRange<int>.Empty);
-			AreEqual(CompositeRange.Create(Range<int>.Empty, Range<int>.Empty), CompositeRange<int>.Empty);
-			AreEqual(CompositeRange.Create(Range<int>.Infinite), CompositeRange<int>.Infinite);
+			AreEqual(boundary, result.ContainingRange);
+			return result;
 		}
+
+		private static CompositeRange<T, TKey> ParseCompositeRange<T, TKey>(
+			string value,
+			Func<string, T> parseValueCallback,
+			Func<string, TKey> parseKeyCallback)
+		{
+			if (value == RangeInternal.EmptyString)
+				return CompositeRange<T, TKey>.Empty;
+
+			var boundaryAndRange = value.Split(new[] { CompositeRangeInternal.PrefixString }, 2, StringSplitOptions.None);
+			var boundary = ParseRange(boundaryAndRange[0], parseValueCallback);
+
+			var result = boundaryAndRange[1]
+				.Substring(0, boundaryAndRange[1].Length - CompositeRangeInternal.SuffixString.Length)
+				.Split(new[] { CompositeRangeInternal.SeparatorString }, StringSplitOptions.None)
+				.Select(s => ParseRange(s, parseValueCallback, parseKeyCallback))
+				.ToCompositeRange();
+
+			AreEqual(boundary, result.ContainingRange);
+			return result;
+		}
+
+
+		public static CompositeRange<double?> ParseCompositeRangeDouble(string value) =>
+			ParseCompositeRange(value, s => (double?)double.Parse(s, CultureInfo.InvariantCulture));
+
+		public static CompositeRange<int?, string> ParseCompositeKeyedRangeInt32(string value) =>
+			ParseCompositeRange(value, s => (int?)int.Parse(s, CultureInfo.InvariantCulture), s => s.IsNullOrEmpty() ? null : s);
+		#endregion
+
+		[Test]
+		[TestCase(
+			"[1..2]: { [1..2] }",
+			"[1..2]: { [1..2] }")]
+		[TestCase(
+			"[1..2]: { [1..2]; [1..2]; [1..2] }",
+			"[1..2]: { [1..2]; [1..2]; [1..2] }")]
+		[TestCase(
+			"[1..3]: { [2..3]; [1..2]; [1..3]; ∅ }",
+			"[1..3]: { [1..2]; [1..3]; [2..3] }")]
+		[TestCase(
+			"[1..2]: { (1..2); (1..2]; [1..2); [1..2] }",
+			"[1..2]: { [1..2); [1..2]; (1..2); (1..2] }")]
+		[TestCase(
+			"(0..4): { [2..3]; [3..4); (0..1); [1..2] }",
+			"(0..4): { (0..1); [1..2]; [2..3]; [3..4) }")]
+		[TestCase(
+			"∅: { ∅; ∅; ∅; ∅ }",
+			"∅")]
+		[TestCase(
+			"(-∞..+∞): { (-∞..3]; [3..+∞); [1..5]; [4..5) }",
+			"(-∞..+∞): { (-∞..3]; [1..5]; [3..+∞); [4..5) }")]
+		[TestCase(
+			"[0..8): { [3..4]; [3..5); [0..6]; ∅; ∅; ∅; [1..2]; (4..6); [7..8); [1..2]; [3..5]; (3..5); ∅; ∅; (3..5] }",
+			"[0..8): { [0..6]; [1..2]; [1..2]; [3..4]; [3..5); [3..5]; (3..5); (3..5]; (4..6); [7..8) }")]
+		[TestCase(
+			"(-∞..+∞): { [3..4]; [3..5); [0..6]; ∅; ∅; ∅; [1..2]; (4..6); (-∞..+∞); [7..8); [1..2]; [3..5]; (3..5); ∅; ∅; (3..5] }",
+			"(-∞..+∞): { (-∞..+∞); [0..6]; [1..2]; [1..2]; [3..4]; [3..5); [3..5]; (3..5); (3..5]; (4..6); [7..8) }")]
+		public static void TestCreate(
+			string ranges, string expected)
+		{
+			var seed = new Random().Next();
+			Console.WriteLine(
+				$"{MethodBase.GetCurrentMethod().Name}: Rnd seed: {seed} (use the seed to reproduce test results).");
+			var rnd = new Random(seed);
+
+			var compositeRange = ParseCompositeRangeDouble(ranges);
+			AreEqual(compositeRange.ToString(CultureInfo.InvariantCulture), expected);
+
+			var compositeRange2 = compositeRange.SubRanges.OrderBy(r => rnd.Next()).ToCompositeRange();
+			AreEqual(compositeRange2.ToString(CultureInfo.InvariantCulture), expected);
+		}
+
+		[Test]
+		[TestCase(
+			"[1..2]: { '':[1..2] }",
+			"[1..2]: { '':[1..2] }")]
+		[TestCase(
+			"[1..2]: { 'A':[1..2]; 'B':[1..2]; 'C':[1..2] }",
+			"[1..2]: { 'A':[1..2]; 'B':[1..2]; 'C':[1..2] }")]
+		[TestCase(
+			"[0..3]: { 'C':[1..2]; 'B':[1..2]; 'C':[1..2]; 'B':[1..2]; 'B':[1..2]; 'A':[1..2]; ' ':[2..3]; ' ':[0..1] }",
+			"[0..3]: { ' ':[0..1]; 'C':[1..2]; 'B':[1..2]; 'C':[1..2]; 'B':[1..2]; 'B':[1..2]; 'A':[1..2]; ' ':[2..3] }")]
+		[TestCase(
+			"[1..3]: { 'A':[2..3]; 'B':[1..2]; 'C':[1..3]; 'D':∅ }",
+			"[1..3]: { 'B':[1..2]; 'C':[1..3]; 'A':[2..3] }")]
+		[TestCase(
+			"[1..2]: { 'A':(1..2); 'B':(1..2]; 'C':[1..2); 'D':[1..2] }",
+			"[1..2]: { 'C':[1..2); 'D':[1..2]; 'A':(1..2); 'B':(1..2] }")]
+		[TestCase(
+			"(0..4): { 'A':[2..3]; 'B':[3..4); 'C':(0..1); 'D':[1..2] }",
+			"(0..4): { 'C':(0..1); 'D':[1..2]; 'A':[2..3]; 'B':[3..4) }")]
+		[TestCase(
+			"∅: { 'A':∅; 'B':∅; 'C':∅; 'D':∅ }",
+			"∅")]
+		[TestCase(
+			"(-∞..+∞): { 'A':(-∞..3]; 'B':[3..+∞); 'C':[1..5]; 'D':[4..5) }",
+			"(-∞..+∞): { 'A':(-∞..3]; 'C':[1..5]; 'B':[3..+∞); 'D':[4..5) }")]
+		[TestCase(
+			"[0..8): { 'A':[3..4]; 'B':[3..5); 'C':[0..6]; 'D':∅; 'E':∅; 'F':∅; 'G':[1..2]; 'H':(4..6); 'I':[7..8); 'J':[1..2]; 'K':[3..5]; 'L':(3..5); 'M':∅; 'N':∅; 'O':(3..5] }",
+			"[0..8): { 'C':[0..6]; 'G':[1..2]; 'J':[1..2]; 'A':[3..4]; 'B':[3..5); 'K':[3..5]; 'L':(3..5); 'O':(3..5]; 'H':(4..6); 'I':[7..8) }")]
+		[TestCase(
+			"(-∞..+∞): { 'A':[3..4]; 'B':[3..5); 'C':[0..6]; 'D':∅; 'E':∅; 'F':∅; 'G':[1..2]; 'H':(4..6); '':(-∞..+∞); 'I':[7..8); 'J':[1..2]; 'K':[3..5]; 'L':(3..5); 'M':∅; 'N':∅; 'O':(3..5] }",
+			"(-∞..+∞): { '':(-∞..+∞); 'C':[0..6]; 'G':[1..2]; 'J':[1..2]; 'A':[3..4]; 'B':[3..5); 'K':[3..5]; 'L':(3..5); 'O':(3..5]; 'H':(4..6); 'I':[7..8) }")]
+		public static void TestCreateWithKey(
+			string ranges, string expected)
+		{
+			var compositeRange = ParseCompositeKeyedRangeInt32(ranges);
+			AreEqual(compositeRange.ToString(CultureInfo.InvariantCulture), expected);
+		}
+
 		[Test]
 		public static void TestRangeProperties()
 		{
@@ -51,6 +157,10 @@ namespace CodeJam.Ranges
 			var range3 = Range.Create(3, 4);
 			var empty = Range<int>.Empty;
 			var infinite = Range<int>.Infinite;
+
+			// ReSharper disable once ObjectCreationAsStatement
+			// ReSharper disable once AssignNullToNotNullAttribute
+			Throws<ArgumentNullException>(() => new CompositeRange<int>(null));
 
 			var a = new CompositeRange<int>();
 			AreEqual(a, CompositeRange<int>.Empty);
@@ -134,7 +244,7 @@ namespace CodeJam.Ranges
 			var empty = Range<int>.Empty.WithKey((string)null);
 			var infinite = Range<int>.Infinite.WithKey((string)null);
 
-			var a = new CompositeRange<int,string>();
+			var a = new CompositeRange<int, string>();
 			AreEqual(a, CompositeRange.Create(empty, empty));
 			AreEqual(a, new CompositeRange<int, string>());
 			AreEqual(a.SubRanges.Count, 0);
@@ -143,7 +253,7 @@ namespace CodeJam.Ranges
 			IsFalse(a.IsNotEmpty);
 			IsTrue(a.IsMerged);
 
-			a = new CompositeRange<int,string>(infinite);
+			a = new CompositeRange<int, string>(infinite);
 			AreNotEqual(a, new CompositeRange<int, string>());
 			AreEqual(a, CompositeRange.Create(infinite));
 			AreNotEqual(a, CompositeRange.Create(infinite, infinite));
@@ -207,284 +317,193 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		public static void TestCompositeRangeArgsOrder()
+		[TestCase(
+			"[1..2]: { [1..2] }",
+			"[1..2]: { [1..2] }",
+			true)]
+		[TestCase(
+			"[1..2]: { [1..2] }",
+			"[1..3]: { [1..3] }",
+			false)]
+		[TestCase(
+			"[1..2]: { [1..2] }",
+			"[1..2]: { [1..2]; [1..2] }",
+			false)]
+		[TestCase(
+			"[1..5]: { [1..2]; [3..5] }",
+			"[1..5]: { [1..2]; [3..5] }",
+			true)]
+		[TestCase(
+			"[1..5]: { [1..2]; [3..5] }",
+			"[1..5]: { [1..2]; (3..5] }",
+			false)]
+		[TestCase(
+			"[1..2]: { [1..2] }",
+			"(-∞..+∞): { (-∞..+∞) }",
+			false)]
+		[TestCase(
+			"[1..5]: { [1..2]; [3..5] }",
+			"∅",
+			false)]
+		public static void TestCompositeRangeEquality(string range1, string range2, bool expected)
 		{
-			var seek = new Random().Next();
-			Console.WriteLine(
-				$"{MethodBase.GetCurrentMethod().Name}: Rnd seek: {seek} (use the seek to reproduce test results).");
-			var rnd = new Random(seek);
+			var compositeRange1 = ParseCompositeRangeDouble(range1);
+			var compositeRange2 = ParseCompositeRangeDouble(range2);
 
-			var ranges = new[]
-			{
-				Range<int>.Empty,
-				Range.Create(1, 2),
-				Range.Create(1, 2),
-				Range.Create(3, 4),
-				Range.Create(3, 5),
-				Range<int>.Empty,
-				Range<int>.Empty,
-				Range<int>.Empty,
-				Range.CreateExclusive(4, 6),
-				Range.CreateExclusiveTo(7, 8),
-				Range.CreateExclusiveTo(3, 5),
-				Range.CreateExclusive(3, 5),
-				Range.CreateExclusiveFrom(3, 5),
-				Range.Create(0, 6),
-				Range<int>.Empty,
-				Range<int>.Empty,
-				Range<int>.Infinite
-			};
-
-			var compositeRange = new CompositeRange<int>(ranges);
-			AreEqual(
-				compositeRange.ToString(),
-				"(-∞..+∞): { (-∞..+∞); [0..6]; [1..2]; [1..2]; [3..4]; [3..5); [3..5]; (3..5); (3..5]; (4..6); [7..8) }");
-
-			compositeRange = ranges.OrderBy(r => rnd.Next()).ToCompositeRange();
-			AreEqual(
-				compositeRange.ToString(),
-				"(-∞..+∞): { (-∞..+∞); [0..6]; [1..2]; [1..2]; [3..4]; [3..5); [3..5]; (3..5); (3..5]; (4..6); [7..8) }");
-
-			compositeRange = ranges.Take(ranges.Length - 1).ToCompositeRange();
-			AreEqual(
-				compositeRange.ToString(),
-				"[0..8): { [0..6]; [1..2]; [1..2]; [3..4]; [3..5); [3..5]; (3..5); (3..5]; (4..6); [7..8) }");
-
-			compositeRange = ranges.Take(ranges.Length - 1).OrderBy(r => rnd.Next()).ToCompositeRange();
-			AreEqual(
-				compositeRange.ToString(),
-				"[0..8): { [0..6]; [1..2]; [1..2]; [3..4]; [3..5); [3..5]; (3..5); (3..5]; (4..6); [7..8) }");
-
-			compositeRange = new CompositeRange<int>(ranges.Last());
-			AreEqual(compositeRange.ToString(), "(-∞..+∞): { (-∞..+∞) }");
-
-			compositeRange = new CompositeRange<int>(ranges.First());
-			AreEqual(compositeRange.ToString(), "∅");
-
-			compositeRange = new CompositeRange<int>(ranges.Take(0));
-			AreEqual(compositeRange.ToString(), "∅");
-
-			compositeRange = new CompositeRange<int>();
-			AreEqual(compositeRange.ToString(), "∅");
+			AreEqual(compositeRange1.Equals(compositeRange2), expected);
 		}
 
 		[Test]
-		public static void TestCompositeRangeArgsOrderWithKeys()
+		[TestCase(
+			"[1..2]: { 'A':[1..2] }",
+			"[1..2]: { 'A':[1..2] }",
+			true)]
+		[TestCase(
+			"[1..2]: { 'A':[1..2] }",
+			"[1..2]: { 'B':[1..2] }",
+			false)]
+		[TestCase(
+			"[1..2]: { 'A':[1..2] }",
+			"[1..3]: { 'A':[1..3] }",
+			false)]
+		[TestCase(
+			"[1..2]: { 'A':[1..2] }",
+			"[1..2]: { 'A':[1..2]; 'A':[1..2] }",
+			false)]
+		[TestCase(
+			"[1..5]: { '':[1..2]; '':[3..5] }",
+			"[1..5]: { '':[1..2]; '':[3..5] }",
+			true)]
+		[TestCase(
+			"[1..5]: { '':[1..2]; '':[3..5] }",
+			"[1..5]: { '':[1..2]; '':(3..5] }",
+			false)]
+		[TestCase(
+			"[1..2]: { '':[1..2] }",
+			"(-∞..+∞): { 'A':(-∞..+∞) }",
+			false)]
+		[TestCase(
+			"[1..5]: { '':[1..2]; '':[3..5] }",
+			"∅",
+			false)]
+		[TestCase(
+			"[1..2]: { 'A':[1..2]; 'A':[1..2]; 'A':[1..2]; '':[1..2]; 'C':[1..2]; '':[1..2]; 'C':[1..2]; 'B':[1..2] }",
+			"[1..2]: { 'C':[1..2]; 'A':[1..2]; '':[1..2]; 'B':[1..2]; '':[1..2]; 'A':[1..2]; 'A':[1..2]; 'C':[1..2] }",
+			true)]
+		[TestCase(
+			"[1..2]: { 'A':[1..2]; 'A':[1..2]; 'A':[1..2]; '':[1..2]; 'C':[1..2]; '':[1..2]; 'C':[1..2]; 'B':[1..2] }",
+			"[1..2]: { 'A':[1..2]; 'A':[1..2]; 'C':[1..2]; '':[1..2]; 'C':[1..2]; '':[1..2]; 'C':[1..2]; 'B':[1..2] }",
+			false)]
+		[TestCase(
+			"[0..8): { '':[0..6]; 'A':[1..2]; 'B':[1..2]; 'B':[3..4]; 'G':[3..5); 'C':[3..5]; 'H':(3..5); 'K':(3..5]; 'D':(4..6); 'F':[7..8) }",
+			"[0..8): { '':[0..6]; 'B':[1..2]; 'A':[1..2]; 'B':[3..4]; 'G':[3..5); 'C':[3..5]; 'H':(3..5); 'K':(3..5]; 'D':(4..6); 'F':[7..8) }",
+			true)]
+		[TestCase(
+			"[0..8): { '':[0..6]; 'A':[1..2]; 'B':[1..2]; 'B':[3..4]; 'G':[3..5); 'C':[3..5]; 'H':(3..5); 'K':(3..5]; 'D':(4..6); 'F':[7..8) }",
+			"[0..8): { '':[0..6]; 'B':[1..2]; 'A':[1..2]; 'B':[3..4]; 'G':[3..5); 'C':[3..5]; 'H':(3..5); 'K':(3..5]; 'D':(4..6); 'G':[7..8) }",
+			false)]
+		public static void TestCompositeRangeWithKeyEquality(string range1, string range2, bool expected)
 		{
-			var seek = new Random().Next();
+			var seed = new Random().Next();
 			Console.WriteLine(
-				$"{MethodBase.GetCurrentMethod().Name}: Rnd seek: {seek} (use the seek to reproduce test results).");
-			var rnd = new Random(seek);
+				$"{MethodBase.GetCurrentMethod().Name}: Rnd seed: {seed} (use the seed to reproduce test results).");
+			var rnd = new Random(seed);
 
-			var emtpy = Range.Create(RangeBoundaryFrom<int>.Empty, RangeBoundaryTo<int>.Empty, "E");
-			var infinite = Range.Create(
-				RangeBoundaryFrom<int>.NegativeInfinity,
-				RangeBoundaryTo<int>.PositiveInfinity, "I");
-			// Equal ranges should use same keys to provide repeatable results after
-			// ranges array will be shuffled.
-			var ranges = new[]
-			{
-				emtpy,
-				Range.Create(1, 2, "A"),
-				Range.Create(1, 2, "A"),
-				Range.Create(3, 4, "B"),
-				Range.Create(3, 5, "C"),
-				emtpy,
-				emtpy,
-				emtpy,
-				Range.CreateExclusive(4, 6, "D"),
-				Range.CreateExclusiveTo(7, 8, "F"),
-				Range.CreateExclusiveTo(3, 5, "G"),
-				Range.CreateExclusive(3, 5, "H"),
-				Range.CreateExclusiveFrom(3, 5, "K"),
-				Range.Create(0, 6, (string)null),
-				emtpy,
-				emtpy,
-				infinite
-			};
+			var compositeRange1 = ParseCompositeKeyedRangeInt32(range1);
+			var compositeRange2 = ParseCompositeKeyedRangeInt32(range2);
 
-			var compositeRange = new CompositeRange<int, string>(ranges);
-			AreEqual(
-				compositeRange.ToString(),
-				"(-∞..+∞): { 'I':(-∞..+∞); '':[0..6]; 'A':[1..2]; 'A':[1..2]; 'B':[3..4]; " +
-					"'G':[3..5); 'C':[3..5]; 'H':(3..5); 'K':(3..5]; 'D':(4..6); 'F':[7..8) }");
+			// Shuffle keys
+			var compositeRange1Rnd = compositeRange1.SubRanges.OrderBy(r => rnd.Next()).ToCompositeRange();
+			var compositeRange2Rnd = compositeRange2.SubRanges.OrderBy(r => rnd.Next()).ToCompositeRange();
 
-			compositeRange = new CompositeRange<int, string>(ranges.OrderBy(r => rnd.Next()));
-			AreEqual(
-				compositeRange.ToString(),
-				"(-∞..+∞): { 'I':(-∞..+∞); '':[0..6]; 'A':[1..2]; 'A':[1..2]; 'B':[3..4]; " +
-					"'G':[3..5); 'C':[3..5]; 'H':(3..5); 'K':(3..5]; 'D':(4..6); 'F':[7..8) }");
+			AreEqual(compositeRange1.Equals(compositeRange1Rnd), true);
+			AreEqual(compositeRange2.Equals(compositeRange2Rnd), true);
 
-			compositeRange = new CompositeRange<int, string>(ranges.Take(ranges.Length - 1));
-			AreEqual(
-				compositeRange.ToString(),
-				"[0..8): { '':[0..6]; 'A':[1..2]; 'A':[1..2]; 'B':[3..4]; " +
-					"'G':[3..5); 'C':[3..5]; 'H':(3..5); 'K':(3..5]; 'D':(4..6); 'F':[7..8) }");
-
-			compositeRange = new CompositeRange<int, string>(ranges.Take(ranges.Length - 1).OrderBy(r => rnd.Next()));
-			AreEqual(
-				compositeRange.ToString(),
-				"[0..8): { '':[0..6]; 'A':[1..2]; 'A':[1..2]; 'B':[3..4]; " +
-					"'G':[3..5); 'C':[3..5]; 'H':(3..5); 'K':(3..5]; 'D':(4..6); 'F':[7..8) }");
-
-			compositeRange = new CompositeRange<int, string>(ranges.Last());
-			AreEqual(compositeRange.ToString(), "(-∞..+∞): { 'I':(-∞..+∞) }");
-
-			compositeRange = new CompositeRange<int, string>(ranges.First());
-			AreEqual(compositeRange.ToString(), "∅");
-
-			compositeRange = new CompositeRange<int, string>(ranges.Take(0));
-			AreEqual(compositeRange.ToString(), "∅");
-
-			compositeRange = new CompositeRange<int, string>();
-			AreEqual(compositeRange.ToString(), "∅");
+			AreEqual(compositeRange1.Equals(compositeRange2), expected);
+			AreEqual(compositeRange1Rnd.Equals(compositeRange2), expected);
+			AreEqual(compositeRange2Rnd.Equals(compositeRange1), expected);
+			AreEqual(compositeRange2Rnd.Equals(compositeRange1Rnd), expected);
 		}
 
 		[Test]
-		public static void TestCompositeRangEqualsWithKeysSimple()
+		[TestCase(
+			"[1..2]: { [1..2] }",
+			"[1..2]: { [1..2] }")]
+		[TestCase(
+			"[1..2]: { [1..2]; [1..2]; [1..2] }",
+			"[1..2]: { [1..2] }")]
+		[TestCase(
+			"[1..3]: { [2..3]; [1..2]; [1..3]; ∅ }",
+			"[1..3]: { [1..3] }")]
+		[TestCase(
+			"[1..2]: { (1..2); (1..2]; [1..2); [1..2] }",
+			"[1..2]: { [1..2] }")]
+		[TestCase(
+			"(0..4): { [2..3); [3..4); (0..1); [1..2] }",
+			"(0..4): { (0..4) }")]
+		[TestCase(
+			"(0..4): { [2..3); (3..4); (0..1); [1..2] }",
+			"(0..4): { (0..3); (3..4) }")]
+		[TestCase(
+			"∅: { ∅; ∅; ∅; ∅ }",
+			"∅")]
+		[TestCase(
+			"(-∞..+∞): { (-∞..3]; [3..+∞); [1..5]; [4..5) }",
+			"(-∞..+∞): { (-∞..+∞) }")]
+		[TestCase(
+			"[0..8): { [3..4]; [3..5); [0..6]; ∅; ∅; ∅; [1..2]; (4..6); [7..8); [1..2]; [3..5]; (3..5); ∅; ∅; (3..5] }",
+			"[0..8): { [0..6]; [7..8) }")]
+		[TestCase(
+			"(-∞..+∞): { [3..4]; [3..5); [0..6]; ∅; ∅; ∅; [1..2]; (4..6); (-∞..+∞); [7..8); [1..2]; [3..5]; (3..5); ∅; ∅; (3..5] }",
+			"(-∞..+∞): { (-∞..+∞) }")]
+		public static void TestMerge(string ranges, string expected)
 		{
-			var seek = new Random().Next();
-			Console.WriteLine(
-				$"{MethodBase.GetCurrentMethod().Name}: Rnd seek: {seek} (use the seek to reproduce test results).");
-			var rnd = new Random(seek);
-
-			var range = new[]
-			{
-				Range.Create(1, 2, "A"),
-				Range.Create(1, 2, "B"),
-				Range.Create(1, 2, "C"),
-				Range.Create(1, 2, "B")
-			}.ToCompositeRange();
-
-			var rangeRandomReordered = new[]
-			{
-				Range.Create(1, 2, "A"),
-				Range.Create(1, 2, "B"),
-				Range.Create(1, 2, "C"),
-				Range.Create(1, 2, "B")
-			}.OrderBy(r=>rnd.Next()).ToCompositeRange();
-
-			var rangeReordered = new[]
-			{
-				Range.Create(1, 2, "C"),
-				Range.Create(1, 2, "B"),
-				Range.Create(1, 2, "B"),
-				Range.Create(1, 2, "A")
-			}.ToCompositeRange();
-
-			var rangeOtherKeys = new[]
-			{
-				Range.Create(1, 2, "A"),
-				Range.Create(1, 2, "A"),
-				Range.Create(1, 2, "B"),
-				Range.Create(1, 2, "C")
-			}.ToCompositeRange();
-
-			var rangeLessKeys = CompositeRange.Create(
-				Range.Create(1, 2, "A"),
-				Range.Create(1, 2, "B"),
-				Range.Create(1, 2, "C"));
-
-			AreEqual(
-				range.ToString(),
-				"[1..2]: { 'A':[1..2]; 'B':[1..2]; 'C':[1..2]; 'B':[1..2] }");
-			AreEqual(
-				rangeReordered.ToString(),
-				"[1..2]: { 'C':[1..2]; 'B':[1..2]; 'B':[1..2]; 'A':[1..2] }");
-			AreEqual(
-				rangeOtherKeys.ToString(),
-				"[1..2]: { 'A':[1..2]; 'A':[1..2]; 'B':[1..2]; 'C':[1..2] }");
-			AreEqual(
-				rangeLessKeys.ToString(),
-				"[1..2]: { 'A':[1..2]; 'B':[1..2]; 'C':[1..2] }");
-
-			AreEqual(range, range);
-			AreEqual(rangeRandomReordered, rangeRandomReordered);
-			AreEqual(rangeReordered, rangeReordered);
-			AreEqual(rangeOtherKeys, rangeOtherKeys);
-			AreEqual(rangeLessKeys, rangeLessKeys);
-
-			AreEqual(range, rangeReordered);
-			AreEqual(range, rangeRandomReordered);
-			AreNotEqual(range, rangeOtherKeys);
-			AreNotEqual(range, rangeLessKeys);
-			AreEqual(rangeReordered, rangeRandomReordered);
+			var compositeRange = ParseCompositeRangeDouble(ranges);
+			AreEqual(compositeRange.Merge().ToString(CultureInfo.InvariantCulture), expected);
 		}
 
 		[Test]
-		public static void TestCompositeRangEqualsWithKeysComplex()
+		[TestCase(
+			"[1..2]: { '':[1..2] }",
+			"[1..2]: { '':[1..2] }")]
+		[TestCase(
+			"[1..2]: { 'A':[1..2]; 'B':[1..2]; 'C':[1..2] }",
+			"[1..2]: { 'A':[1..2]; 'B':[1..2]; 'C':[1..2] }")]
+		[TestCase(
+			"[1..2]: { 'A':[1..2]; 'B':[1..2]; 'A':[1..2] }",
+			"[1..2]: { 'A':[1..2]; 'B':[1..2] }")]
+		[TestCase(
+			"[0..3]: { 'C':[1..2]; 'B':[1..2]; 'C':[1..2]; 'B':[1..2]; 'B':[1..2]; 'A':[1..2]; ' ':[2..3]; ' ':[0..1] }",
+			"[0..3]: { ' ':[0..1]; 'C':[1..2]; 'B':[1..2]; 'A':[1..2]; ' ':[2..3] }")]
+		[TestCase(
+			"[1..3]: { 'A':[2..3]; 'A':[1..2); 'C':[1..3]; 'D':∅ }",
+			"[1..3]: { 'A':[1..3]; 'C':[1..3] }")]
+		[TestCase(
+			"[1..3]: { 'A':(2..3); 'A':[1..2); 'C':[1..3]; 'D':∅ }",
+			"[1..3]: { 'A':[1..2); 'C':[1..3]; 'A':(2..3) }")]
+		[TestCase(
+			"[1..2]: { 'A':(1..2); 'B':(1..2]; 'C':[1..2); 'D':[1..2] }",
+			"[1..2]: { 'C':[1..2); 'D':[1..2]; 'A':(1..2); 'B':(1..2] }")]
+		[TestCase(
+			"[1..2]: { 'A':(1..2); 'B':(1..2]; 'A':[1..2); 'C':[1..2] }",
+			"[1..2]: { 'A':[1..2); 'C':[1..2]; 'B':(1..2] }")]
+		[TestCase(
+			"(0..4): { 'A':[2..3]; 'B':[3..4); 'C':(0..1); 'D':[1..2] }",
+			"(0..4): { 'C':(0..1); 'D':[1..2]; 'A':[2..3]; 'B':[3..4) }")]
+		[TestCase(
+			"∅: { 'A':∅; 'B':∅; 'C':∅; 'D':∅ }",
+			"∅")]
+		[TestCase(
+			"(-∞..+∞): { 'A':(-∞..3]; 'B':[3..+∞); 'C':[1..5]; 'D':[4..5) }",
+			"(-∞..+∞): { 'A':(-∞..3]; 'C':[1..5]; 'B':[3..+∞); 'D':[4..5) }")]
+		[TestCase(
+			"[0..8): { 'A':[3..4]; 'B':[3..5); 'A':[0..6]; 'B':∅; 'A':∅; 'B':∅; 'A':[1..2]; 'B':(4..6); 'A':[7..8); 'B':[1..2]; 'A':[3..5]; 'B':(3..5); 'A':∅; 'B':∅; 'A':(3..5] }",
+			"[0..8): { 'A':[0..6]; 'B':[1..2]; 'B':[3..6); 'A':[7..8) }")]
+		public static void TestMergeWithKey(
+			string ranges, string expected)
 		{
-			var ranges = new[]
-			{
-				Range.Create(0, 1, "X"),
-				Range.Create(0, 1, "Y"),
-				Range.Create(1, 1, "Z"),
-				Range.Create(1, 2, "A"),
-				Range.Create(1, 2, "B"),
-				Range.Create(1, 2, "C"),
-				Range.Create(1, 2, "B"),
-				Range.Create(2, 3, "X"),
-				Range.Create(2, 3, "Y"),
-				Range.Create(2, 2, "Z")
-			};
-			var ranges3 = new[]
-			{
-				Range.Create(0, 1, "X"),
-				Range.Create(0, 1, "Y"),
-				Range.Create(1, 1, "Z"),
-				Range.Create(1, 2, "A"),
-				Range.Create(1, 2, "B"),
-				Range.Create(1, 2, "C"),
-				Range.Create(1, 2, "B"),
-				Range.Create(2, 3, "Y2"),
-				Range.Create(2, 3, "Y2"),
-				Range.Create(2, 2, "Z")
-			};
-			var ranges4 = new[]
-			{
-				Range.Create(0, 1, "X"),
-				Range.Create(0, 1, "Y"),
-				Range.Create(1, 1, "Z"),
-				Range.Create(1, 2, "A"),
-				Range.Create(1, 2, "A"),
-				Range.Create(1, 2, "B"),
-				Range.Create(1, 2, "C"),
-				Range.Create(2, 3, "X"),
-				Range.Create(2, 3, "Y"),
-				Range.Create(2, 2, "Z")
-			};
-
-			var ranges2 = ranges.Reverse().ToArray();
-
-			var compositeRange = new CompositeRange<int, string>(ranges);
-			var compositeRange2 = new CompositeRange<int, string>(ranges2);
-			var compositeRange3 = new CompositeRange<int, string>(ranges3);
-			var compositeRange4 = new CompositeRange<int, string>(ranges4);
-
-			AreEqual(
-				compositeRange.ToString(),
-				"[0..3]: { 'X':[0..1]; 'Y':[0..1]; 'Z':[1..1]; 'A':[1..2]; 'B':[1..2]; 'C':[1..2]; 'B':[1..2]; 'Z':[2..2]; 'X':[2..3]; 'Y':[2..3] }");
-			AreEqual(
-				compositeRange2.ToString(),
-				"[0..3]: { 'Y':[0..1]; 'X':[0..1]; 'Z':[1..1]; 'B':[1..2]; 'C':[1..2]; 'B':[1..2]; 'A':[1..2]; 'Z':[2..2]; 'Y':[2..3]; 'X':[2..3] }");
-			AreEqual(
-				compositeRange3.ToString(),
-				"[0..3]: { 'X':[0..1]; 'Y':[0..1]; 'Z':[1..1]; 'A':[1..2]; 'B':[1..2]; 'C':[1..2]; 'B':[1..2]; 'Z':[2..2]; 'Y2':[2..3]; 'Y2':[2..3] }");
-			AreEqual(
-				compositeRange4.ToString(),
-				"[0..3]: { 'X':[0..1]; 'Y':[0..1]; 'Z':[1..1]; 'A':[1..2]; 'A':[1..2]; 'B':[1..2]; 'C':[1..2]; 'Z':[2..2]; 'X':[2..3]; 'Y':[2..3] }");
-
-			AreEqual(compositeRange, compositeRange);
-			AreEqual(compositeRange2, compositeRange2);
-			AreEqual(compositeRange3, compositeRange3);
-			AreEqual(compositeRange4, compositeRange4);
-
-			AreEqual(compositeRange, compositeRange2);
-			AreNotEqual(compositeRange, compositeRange3);
-			AreNotEqual(compositeRange, compositeRange4);
-			AreNotEqual(compositeRange2, compositeRange3);
-			AreNotEqual(compositeRange2, compositeRange4);
-			AreNotEqual(compositeRange3, compositeRange4);
+			var compositeRange = ParseCompositeKeyedRangeInt32(ranges);
+			AreEqual(compositeRange.Merge().ToString(CultureInfo.InvariantCulture), expected);
 		}
 	}
 }

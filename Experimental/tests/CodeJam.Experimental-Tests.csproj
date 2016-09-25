@@ -64,6 +64,10 @@
       <Project>{2f2046cc-fb47-4318-b335-5a82b04b6c40}</Project>
       <Name>CodeJam.Main</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Main\tests\CodeJam.Main-Tests.csproj">
+      <Project>{dd65e3f2-9658-4242-a8aa-056028473cb1}</Project>
+      <Name>CodeJam.Main-Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\src\CodeJam.Experimental.csproj">
       <Project>{7bd77da2-a731-400c-a88e-215fc592e6e3}</Project>
       <Name>CodeJam.Experimental</Name>

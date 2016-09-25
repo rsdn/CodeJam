@@ -92,6 +92,34 @@ namespace CodeJam.Ranges
 			return lastBoundary.IsPositiveInfinity ||
 				lastBoundary.GetComplementation() >= nextRange.From;
 		}
+
+		private static IEnumerable<Range<T, TKey>> MergeRangesCore(
+			IEnumerable<Range<T, TKey>> sortedRanges)
+		{
+			var temp = Range<T, TKey>.Empty;
+			foreach (var range in sortedRanges)
+			{
+				if (temp.IsEmpty)
+				{
+					temp = range;
+				}
+				else if (IsContinuationFor(temp.To, range))
+				{
+					temp = temp.ExtendTo(range.To);
+				}
+				else
+				{
+					yield return temp;
+					temp = range;
+				}
+
+				if (temp.To.IsPositiveInfinity)
+					break;
+			}
+
+			if (temp.IsNotEmpty)
+				yield return temp;
+		}
 		#endregion
 
 		#region Predefined values
@@ -101,6 +129,11 @@ namespace CodeJam.Ranges
 		private static readonly Range<T> _emptyRangeNoKey = Range<T>.Empty;
 		#endregion
 
+		/// <summary>Empty range, ∅</summary>
+		public static readonly CompositeRange<T, TKey> Empty = new CompositeRange<T, TKey>();
+
+		/// <summary>Infinite range, (-∞..+∞)</summary>
+		public static readonly CompositeRange<T, TKey> Infinite = new CompositeRange<T, TKey>(Range<T, TKey>.Infinite);
 		#endregion
 
 		#endregion
@@ -135,12 +168,10 @@ namespace CodeJam.Ranges
 		{
 			Code.NotNull(ranges, nameof(ranges));
 
-#pragma warning disable 618 // ok by design.
 			bool rangesReady = skipsArgHandling == UnsafeOverload.NoEmptyRangesAlreadySortedAndMerged;
 			var tempRanges = rangesReady || skipsArgHandling == UnsafeOverload.NoEmptyRanges
 				? ranges.ToArray()
 				: ranges.Where(r => r.IsNotEmpty).ToArray();
-#pragma warning restore 618
 
 			if (tempRanges.Length == 0)
 			{
@@ -158,9 +189,7 @@ namespace CodeJam.Ranges
 				return;
 			}
 
-#pragma warning disable 618 // ok by design.
 			if (skipsArgHandling != UnsafeOverload.RangesAlreadySorted)
-#pragma warning restore 618
 			{
 				Array.Sort(tempRanges, _rangeComparer);
 			}
@@ -237,6 +266,15 @@ namespace CodeJam.Ranges
 		/// <returns>The string representation of the range.</returns>
 		[Pure, NotNull]
 		public string ToString(string format) => ToString(format, null);
+
+		/// <summary>
+		/// Returns string representation of the range using the specified format string.
+		/// If <typeparamref name="T"/> does not implement <seealso cref="IFormattable"/> the format string is ignored.
+		/// </summary>
+		/// <param name="formatProvider">The format provider.</param>
+		/// <returns>The string representation of the range.</returns>
+		[Pure]
+		public string ToString(IFormatProvider formatProvider) => ToString(null, formatProvider);
 
 		/// <summary>
 		/// Returns string representation of the range using the specified format string.

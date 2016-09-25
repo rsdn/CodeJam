@@ -94,6 +94,15 @@ namespace CodeJam.Ranges
 		/// Returns string representation of the range using the specified format string.
 		/// If <typeparamref name="T"/> does not implement <seealso cref="IFormattable"/> the format string is ignored.
 		/// </summary>
+		/// <param name="formatProvider">The format provider.</param>
+		/// <returns>The string representation of the range.</returns>
+		[Pure]
+		public string ToString(IFormatProvider formatProvider) => ToString(null, formatProvider);
+
+		/// <summary>
+		/// Returns string representation of the range using the specified format string.
+		/// If <typeparamref name="T"/> does not implement <seealso cref="IFormattable"/> the format string is ignored.
+		/// </summary>
 		/// <param name="format">The format string.</param>
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>

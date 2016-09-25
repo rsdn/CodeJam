@@ -8,7 +8,7 @@
 			additionalReplaces,
 			new ReplaceInfo // region for non-updateable text
 			{
-				Pattern = @"\#region T4\-dont\-replace.*?\#endregion",
+				Pattern = @"(?s)\#region T4\-dont\-replace.*?\#endregion",
 				Mode = ReplaceMode.Ignore
 			},
 			new ReplaceInfo // Fix generic params

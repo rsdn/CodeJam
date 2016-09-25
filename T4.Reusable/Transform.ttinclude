@@ -37,8 +37,7 @@
 			var newText = Regex.Replace(
 				text,
 				pattern,
-				m => ignoreReplaces.GetOrAdd(replacement ?? m.Value, s => "%" + Guid.NewGuid() + "%"),
-				RegexOptions.Singleline);
+				m => ignoreReplaces.GetOrAdd(replacement ?? m.Value, s => "%" + Guid.NewGuid() + "%"));
 
 			if (replaceInfo.ThrowOnFail && newText == text)
 				throw new InvalidOperationException("The match for " + pattern + " not found");

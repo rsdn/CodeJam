@@ -11,18 +11,6 @@ namespace CodeJam.Ranges
 	/// <summary>Describes a composite range that contains some subranges.</summary>
 	public partial struct CompositeRange<T> : ICompositeRange<T>
 	{
-		#region Static members
-
-		#region Predefined values
-		/// <summary>Empty range, ∅</summary>
-		public static readonly CompositeRange<T> Empty = new CompositeRange<T>();
-
-		/// <summary>Infinite range, (-∞..+∞)</summary>
-		public static readonly CompositeRange<T> Infinite = new CompositeRange<T>(Range<T>.Infinite);
-		#endregion
-
-		#endregion
-
 		#region ICompositeRange<T>
 		/// <summary>Returns a sequence of merged subranges. Should be used for operations over the ranges.</summary>
 		/// <returns>A sequence of merged subranges</returns>
@@ -64,6 +52,20 @@ namespace CodeJam.Ranges
 				yield return mergedRange;
 			}
 		}
+		#endregion
+
+		#region Operations
+		/// <summary>Returns simplified composite range. Adjacent ranges with same keys will be merged.</summary>
+		/// <returns>Simplified composite range.</returns>
+		public CompositeRange<T> Merge()
+		{
+			if (IsMerged)
+				return this;
+
+			return new CompositeRange<T>(
+				MergeRangesCore(SubRanges),
+				CompositeRangeInternal.UnsafeOverload.NoEmptyRangesAlreadySortedAndMerged);
+		} 
 		#endregion
 
 		#region IEquatable<CompositeRange<T>>
@@ -117,6 +119,5 @@ namespace CodeJam.Ranges
 			return result;
 		}
 		#endregion
-
 	}
 }

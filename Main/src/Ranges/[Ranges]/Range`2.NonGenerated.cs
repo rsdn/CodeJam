@@ -16,10 +16,19 @@ namespace CodeJam.Ranges
 	/// <summary>Describes a range of the values with a key attached.</summary>
 	public partial struct Range<T, TKey>
 	{
+		#region Static members
 		private static readonly Func<TKey, TKey, bool> _keyEqualityFunc = Operators<TKey>.AreEqual;
-
-		#region Formattable logic
 		private static readonly Func<TKey, string, IFormatProvider, string> _formattableCallback = GetFormattableCallback<TKey>();
+
+		#region Predefined values
+		/// <summary>Empty range, ∅</summary>
+		public static readonly Range<T, TKey> Empty;
+
+		/// <summary>Infinite range, (-∞..+∞)</summary>
+		public static readonly Range<T, TKey> Infinite = new Range<T, TKey>(
+			RangeBoundaryFrom<T>.NegativeInfinity, RangeBoundaryTo<T>.PositiveInfinity,
+			default(TKey));
+		#endregion 
 		#endregion
 
 		/// <summary>The value associated with the range.</summary>
@@ -98,6 +107,15 @@ namespace CodeJam.Ranges
 		[Pure, NotNull]
 		public string ToString(string format) => ToString(format, null);
 
+		/// <summary>
+		/// Returns string representation of the range using the specified format string.
+		/// If <typeparamref name="T"/> does not implement <seealso cref="IFormattable"/> the format string is ignored.
+		/// </summary>
+		/// <param name="formatProvider">The format provider.</param>
+		/// <returns>The string representation of the range.</returns>
+		[Pure]
+		public string ToString(IFormatProvider formatProvider) => ToString(null, formatProvider);
+		
 		/// <summary>
 		/// Returns string representation of the range using the specified format string.
 		/// If <typeparamref name="T"/> does not implement <seealso cref="IFormattable"/> the format string is ignored.

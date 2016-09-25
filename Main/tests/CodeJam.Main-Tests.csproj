@@ -101,10 +101,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Ranges\RangeTestHelpers.cs" />
     <Compile Include="Ranges\RangeTests.cs" />
-    <Compile Include="Ranges\RangeTests.Extensions.cs" />
-    <Compile Include="Ranges\RangeTests.ExtensionsWithKey.generated.cs">
-      <DependentUpon>RangeTests.ExtensionsWithKey.tt</DependentUpon>
+    <Compile Include="Ranges\RangeTests.NoKey.cs" />
+    <Compile Include="Ranges\RangeTests.WithKey.generated.cs">
+      <DependentUpon>RangeTests.WithKey.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -150,9 +151,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RangeBoundaryToTests.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Ranges\RangeTests.ExtensionsWithKey.tt">
+    <Content Include="Ranges\RangeTests.WithKey.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RangeTests.ExtensionsWithKey.generated.cs</LastGenOutput>
+      <LastGenOutput>RangeTests.WithKey.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Threading\InterlockedOperationsTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

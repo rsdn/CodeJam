@@ -3,7 +3,7 @@
 <#@ include file="$(SolutionDir)T4.Reusable\Transform.ttinclude" #>
 <#
 		Transform(
-			"RangeTests.Extensions.cs",
+			"RangeTests.NoKey.cs",
 			new ReplaceInfo // Rename TestRange => TestRange
 			{
 				Pattern = "TestRange",

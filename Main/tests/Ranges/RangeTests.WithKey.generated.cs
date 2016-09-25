@@ -147,7 +147,7 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		public static void TestKeyedRangeContainsRange()
+		public static void TestKeyedRangeContainsRange2()
 		{
 			double? empty = null;
 			double? value1 = 1;
@@ -156,18 +156,12 @@ namespace CodeJam.Ranges
 			var emptyTo = RangeBoundaryTo<double?>.Empty;
 
 			var range = Range.Create(value1, value2, RangeKey);
-			IsTrue(range.Contains(range));
 			IsTrue(range.Contains(1, 2));
-			IsTrue(range.Contains(Range.CreateExclusive(value1, value2, RangeKey2)));
 			IsFalse(range.Contains(1, null));
-			IsFalse(range.Contains(Range<double?>.Empty));
-			IsFalse(range.Contains(Range<double?>.Infinite));
 			IsFalse(range.Contains(null, null));
 			IsFalse(range.Contains(double.NegativeInfinity, double.PositiveInfinity));
-			Throws<ArgumentException>(
-				() => range.Contains(2, 1));
-			Throws<ArgumentException>(
-				() => range.Contains(double.PositiveInfinity, double.NegativeInfinity));
+			Throws<ArgumentException>(() => range.Contains(2, 1));
+			Throws<ArgumentException>(() => range.Contains(double.PositiveInfinity, double.NegativeInfinity));
 			IsTrue(range.Contains(1.5, 1.5));
 			IsTrue(range.Contains(1.5, 2));
 			IsFalse(range.Contains(0, 3));

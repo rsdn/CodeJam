@@ -7,7 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
+
+using JetBrains.Annotations;
 
 namespace CodeJam.Ranges
 {
@@ -19,6 +23,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey">The type of the range key</typeparam>
 		/// <param name="ranges">The ranges.</param>
 		/// <returns>A new composite range.</returns>
-		public static CompositeRange<T, TKey> ToCompositeRange<T, TKey>(this IEnumerable<Range<T, TKey>> ranges) => new CompositeRange<T, TKey>(ranges);
+		public static CompositeRange<T, TKey> ToCompositeRange<T, TKey>([NotNull] this IEnumerable<Range<T, TKey>> ranges)
+			=> new CompositeRange<T, TKey>(ranges);
 	}
 }

@@ -5,6 +5,7 @@ using System.Globalization;
 using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
+using static CodeJam.Ranges.RangeTestHelpers;
 
 namespace CodeJam.Ranges
 {
@@ -69,13 +70,21 @@ namespace CodeJam.Ranges
 			AreEqual(
 				Range<double>.Infinite,
 				Range.Create(double.NegativeInfinity, double.PositiveInfinity));
-			AreNotEqual(
-				Range<int?>.Infinite,
-				Range.Create(empty, empty, key));
-
 			AreEqual(
 				Range.TryCreate(value2, value1),
 				Range<int?>.Empty);
+			AreEqual(
+				Range<int?, string>.Empty,
+				Range.TryCreate(value2, value1, (string)null));
+			AreEqual(
+				Range<int?, string>.Infinite,
+				Range.Create(empty, empty, (string)null));
+			AreNotEqual(
+				Range<int?, string>.Empty,
+				Range.TryCreate(value2, value1, key));
+			AreNotEqual(
+				Range<int?, string>.Infinite,
+				Range.Create(empty, empty, key));
 
 			IsTrue(Range.TryCreate(value2, value1, key).IsEmpty);
 			IsFalse(Range.TryCreate(value1, value2, key).IsEmpty);
@@ -262,6 +271,59 @@ namespace CodeJam.Ranges
 			AreEqual(range.ToString(), "'B':[1..1]");
 			AreNotEqual(range.Key, key);
 			AreNotEqual(range, prevRange);
+		}
+
+		[Test]
+		[TestCase("[1..2]", "[1..2]", true)]
+		[TestCase("[1..2]", "(1..2)", true)]
+		[TestCase("[1..2]", "(1..2]", true)]
+		[TestCase("[1..2]", "[1..2)", true)]
+		[TestCase("(1..2)", "[1..2]", false)]
+		[TestCase("(1..2)", "(1..2)", true)]
+		[TestCase("(1..2)", "(1..2]", false)]
+		[TestCase("(1..2)", "[1..2)", false)]
+		[TestCase("[1..2]", "(0..3)", false)]
+		[TestCase("[1..2]", "[2..3)", false)]
+		[TestCase("[1..2]", "(2..3)", false)]
+		[TestCase("[1..2]", "(0..1)", false)]
+		[TestCase("[1..2]", "(0..1]", false)]
+		[TestCase("[1..2]", "(-∞..+∞)", false)]
+		[TestCase("(1..2)", "∅", false)]
+		[TestCase("(-∞..+∞)", "∅", false)]
+		[TestCase("(-∞..+∞)", "[1..2]", true)]
+		[TestCase("(-∞..+∞)", "(-∞..+∞)", true)]
+		[TestCase("∅", "(-∞..+∞)", false)]
+		[TestCase("∅", "[1..2)", false)]
+		[TestCase("∅", "∅", true)]
+		public static void TestRangeContainsRange(string rangeA, string rangeB, bool expected)
+		{
+			var a = ParseRangeDouble(rangeA);
+			var b = ParseRangeDouble(rangeB);
+			var a2 = a.WithKey("1");
+			var b2 = b.WithKey(1);
+
+			AreEqual(a.Contains(b), expected);
+			AreEqual(a.Contains(b2), expected);
+			AreEqual(a2.Contains(b), expected);
+			AreEqual(a2.Contains(b2), expected);
+			if (b.IsNotEmpty && !b.From.IsExclusiveBoundary && !b.To.IsExclusiveBoundary)
+			{
+				AreEqual(a.Contains(b.From.GetValueOrDefault(), b.To.GetValueOrDefault()), expected);
+			}
+		}
+
+		[Test]
+		[TestCase("[1..2]", 2.0, 1.0)]
+		[TestCase("[1..2]", double.PositiveInfinity, double.PositiveInfinity)]
+		[TestCase("[1..2]", double.PositiveInfinity, null)]
+		[TestCase("[1..2]", 1.0, double.NaN)]
+		public static void TestRangeContainsThrows(string rangeA, double? from, double to)
+		{
+			var a = ParseRangeDouble(rangeA);
+			var a2 = a.WithKey("1");
+
+			Throws<ArgumentException>(() => a.Contains(from, to));
+			Throws<ArgumentException>(() => a2.Contains(from, to));
 		}
 	}
 }

@@ -24,13 +24,10 @@ namespace CodeJam.Ranges
 			/// <summary>Threat passed ranges as usual.</summary>
 			FullValidation,
 			/// <summary>Do not check for empty ranges.</summary>
-			[Obsolete(SkipsArgValidationObsolete)]
 			NoEmptyRanges,
 			/// <summary>Do not sort ranges.</summary>
-			[Obsolete(SkipsArgValidationObsolete)]
 			RangesAlreadySorted,
 			/// <summary>No validation at all.</summary>
-			[Obsolete(SkipsArgValidationObsolete)]
 			NoEmptyRangesAlreadySortedAndMerged
 		}
 		#endregion
