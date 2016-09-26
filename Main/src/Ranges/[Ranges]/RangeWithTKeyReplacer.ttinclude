@@ -13,7 +13,7 @@
 			},
 			new ReplaceInfo // Fix generic params
 			{
-				Pattern = @"(?<!(?:BoundaryTo<|BoundaryFrom<|Comparer<))T>",
+				Pattern = @"(?<!(?:BoundaryTo<|BoundaryFrom<|Comparer<|Func<T, ))T>",
 				Replacement = "T, TKey>",
 				ThrowOnFail = true
 			},

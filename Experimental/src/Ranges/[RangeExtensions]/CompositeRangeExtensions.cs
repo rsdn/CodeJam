@@ -51,7 +51,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="key">The value of the new key.</param>
 		/// <returns>A new composite range with the key specified.</returns>
-		public static CompositeRange<T, TKey2> WithKey<T, TKey2>(this CompositeRange<T> compositeRange, TKey2 key) =>
+		public static CompositeRange<T, TKey2> WithKeys<T, TKey2>(this CompositeRange<T> compositeRange, TKey2 key) =>
 			compositeRange.IsEmpty
 				? CompositeRange<T, TKey2>.Empty
 				: compositeRange.SubRanges.Select(s => s.WithKey(key)).ToCompositeRange();
@@ -63,7 +63,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="key">The value of the new key.</param>
 		/// <returns>A new composite range with the key specified.</returns>
-		public static CompositeRange<T, TKey2> WithKey<T, TKey, TKey2>(this CompositeRange<T> compositeRange, TKey2 key) =>
+		public static CompositeRange<T, TKey2> WithKeys<T, TKey, TKey2>(this CompositeRange<T, TKey> compositeRange, TKey2 key) =>
 			compositeRange.IsEmpty
 				? CompositeRange<T, TKey2>.Empty
 				: compositeRange.SubRanges.Select(s => s.WithKey(key)).ToCompositeRange();
@@ -75,7 +75,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="keySelector">Callback to obtain a value for the range key.</param>
 		/// <returns>A new composite range with the key specified.</returns>
-		public static CompositeRange<T, TKey2> WithKey<T, TKey, TKey2>(
+		public static CompositeRange<T, TKey2> WithKeys<T, TKey, TKey2>(
 			this CompositeRange<T, TKey> compositeRange,
 			[NotNull] Func<TKey, TKey2> keySelector) =>
 				compositeRange.IsEmpty
