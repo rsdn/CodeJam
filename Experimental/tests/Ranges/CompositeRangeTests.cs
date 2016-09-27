@@ -577,5 +577,51 @@ namespace CodeJam.Ranges
 			compositeRange = compositeRange.MakeExclusive(i => i - 1, i => i + 1);
 			AreEqual(compositeRange.ToString(CultureInfo.InvariantCulture), expected);
 		}
+
+		[Test]
+		[TestCase(
+			"(1..3): { (1..3) }",
+			"(-∞..1]: { ∅ } | (1..3): { (1..3) } | [3..+∞): { ∅ }")]
+		[TestCase(
+			"[1..3): { [1..2]; (1..3); [2..2] }",
+			"(-∞..1): { ∅ } | " +
+				"[1..1]: { [1..2] } | " +
+				"(1..2): { [1..2]; (1..3) } | " +
+				"[2..2]: { [1..2]; (1..3); [2..2] } | " +
+				"(2..3): { (1..3) } | " +
+				"[3..+∞): { ∅ }")]
+		[TestCase(
+			"(-∞..+∞): { (-∞..1]; (-∞..1]; [2..+∞); [2..+∞) }",
+			"(-∞..1]: { (-∞..1]; (-∞..1] } | (1..2): { ∅ } | [2..+∞): { [2..+∞); [2..+∞) }")]
+		public static void TestCompositeRangeIntersections(string ranges, string expected)
+		{
+			var compositeRange = ParseCompositeRangeDouble(ranges);
+			var intersections = compositeRange.GetIntersections()
+				.Select(i => i.ToInvariantString()).Join(" | ");
+			AreEqual(intersections, expected);
+		}
+
+		[Test]
+		[TestCase(
+			"(1..3): { 'A':(1..3) }",
+			"(-∞..1]: { ∅ } | (1..3): { 'A':(1..3) } | [3..+∞): { ∅ }")]
+		[TestCase(
+			"[1..3): { 'A':[1..2]; 'B':(1..3); 'C':[2..2] }",
+			"(-∞..1): { ∅ } | " +
+				"[1..1]: { 'A':[1..2] } | " +
+				"(1..2): { 'A':[1..2]; 'B':(1..3) } | " +
+				"[2..2]: { 'A':[1..2]; 'B':(1..3); 'C':[2..2] } | " +
+				"(2..3): { 'B':(1..3) } | " +
+				"[3..+∞): { ∅ }")]
+		[TestCase(
+			"(-∞..+∞): { 'A':(-∞..1]; 'B':(-∞..1]; 'A':[2..+∞); 'B':[2..+∞) }",
+			"(-∞..1]: { 'A':(-∞..1]; 'B':(-∞..1] } | (1..2): { ∅ } | [2..+∞): { 'A':[2..+∞); 'B':[2..+∞) }")]
+		public static void TestCompositeRangeIntersectionsWithKeys(string ranges, string expected)
+		{
+			var compositeRange = ParseCompositeKeyedRangeInt32(ranges);
+			var intersections = compositeRange.GetIntersections()
+				.Select(i => i.ToInvariantString()).Join(" | ");
+			AreEqual(intersections, expected);
+		}
 	}
 }

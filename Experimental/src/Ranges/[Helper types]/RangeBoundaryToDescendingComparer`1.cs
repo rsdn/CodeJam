@@ -11,6 +11,9 @@ namespace CodeJam.Ranges
 	[Serializable]
 	internal sealed class RangeBoundaryToDescendingComparer<T> : IComparer<RangeBoundaryTo<T>>
 	{
+		/// <summary>Default comparer instance.</summary>
+		public static readonly RangeBoundaryToDescendingComparer<T> Instance = new RangeBoundaryToDescendingComparer<T>();
+
 		#region Implementation of IComparer<in Range<T>>
 		/// <summary>
 		/// Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.

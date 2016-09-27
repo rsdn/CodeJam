@@ -79,6 +79,11 @@
     <Compile Include="Parsing\PrefixUnaryOperator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ranges\CompositeRange.cs" />
+    <Compile Include="Ranges\[Helper types]\RangeIntersection`2.generated.cs">
+      <DependentUpon>RangeIntersection`2.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Ranges\[RangeExtensions]\CompositeRangeExtensions.NoKey.cs" />
     <Compile Include="Ranges\[RangeExtensions]\CompositeRangeExtensions.cs" />
     <Compile Include="Ranges\CompositeRange.generated.cs">
@@ -117,6 +122,10 @@
     <Content Include="Ranges\CompositeRange.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CompositeRange.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Ranges\[Helper types]\RangeIntersection`2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RangeIntersection`2.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Ranges\[Ranges]\CompositeRange`2.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
