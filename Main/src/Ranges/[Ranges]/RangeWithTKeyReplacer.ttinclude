@@ -46,6 +46,11 @@
 		Transform(
 			sourceFileName,
 			additionalReplaces,
+			new ReplaceInfo // region for non-updateable text
+			{
+				Pattern = @"(?s)\#region T4\-dont\-replace.*?\#endregion",
+				Mode = ReplaceMode.Ignore
+			},
 			new ReplaceInfo // Range<T, TKey>
 			{
 				Pattern = "Range<T>",
@@ -53,10 +58,24 @@
 				ThrowOnFail = true,
 				WholeWord = true
 			},
-			new ReplaceInfo // Range<T, TKey2
+			new ReplaceInfo // CompositeRange<T, TKey>
 			{
-				Pattern = @"(static.+?)<T([^>]*?>\()((?:.|\r|\n)*?this\b)",
-				Replacement = "$1<T, TKey$2$3",
+				Pattern = "CompositeRange<T>",
+				Replacement = "CompositeRange<T, TKey>",
+				ThrowOnFail = false,
+				WholeWord = true
+			},
+			new ReplaceInfo // RangeIntersection<T, TKey>
+			{
+				Pattern = "RangeIntersection<T>",
+				Replacement = "RangeIntersection<T, TKey>",
+				ThrowOnFail = false,
+				WholeWord = true
+			},
+			new ReplaceInfo // SomeMethod<T, TKey2
+			{
+				Pattern = @"(static .+?)<T([^>]*?>\()",
+				Replacement = "$1<T, TKey$2",
 				ThrowOnFail = true
 			},
 			new ReplaceInfo // Fix generic params XML docs

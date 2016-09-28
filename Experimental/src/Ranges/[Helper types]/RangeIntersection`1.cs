@@ -14,9 +14,7 @@ namespace CodeJam.Ranges
 	/// <summary>
 	/// Describes an intersection of multiple ranges.
 	/// </summary>
-	/// <typeparam name="T">
-	/// The type of the value. Should implement <seealso cref="IComparable{T}"/> or <seealso cref="IComparable"/>.
-	/// </typeparam>
+	/// <typeparam name="T">The type of the range values.</typeparam>
 	/// <seealso cref="System.IFormattable" />
 	public struct RangeIntersection<T> : IFormattable
 	{

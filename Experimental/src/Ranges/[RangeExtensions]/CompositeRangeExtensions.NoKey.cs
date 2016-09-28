@@ -80,9 +80,12 @@ namespace CodeJam.Ranges
 					Range.Create(intersectionFrom, intersectionTo),
 					intersectionRanges.ToArray());
 
+		/// <summary>Returns all range intersections from the composite range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <returns>All range intersections from the composite range.</returns>
 		[NotNull]
-		public static IEnumerable<RangeIntersection<T>> GetIntersections<T>(
-			this CompositeRange<T> compositeRange)
+		public static IEnumerable<RangeIntersection<T>> GetIntersections<T>(this CompositeRange<T> compositeRange)
 		{
 			if (compositeRange.IsEmpty)
 			{
@@ -136,6 +139,194 @@ namespace CodeJam.Ranges
 			}
 
 			yield return GetRangeIntersection(fromBoundary, RangeBoundaryTo<T>.PositiveInfinity, rangesToYield);
+		}
+		#endregion
+
+		#region Contains
+		/// <summary>Determines whether the composite range contains the specified value.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="value">The value to check.</param>
+		/// <returns><c>true</c>, if the composite range contains the value.</returns>
+		public static bool Contains<T>(this CompositeRange<T> compositeRange, T value) =>
+				compositeRange.ContainingRange.Contains(value) &&
+					compositeRange.SubRanges.Any(r => r.Contains(value));
+
+		/// <summary>Determines whether the composite range contains the specified range boundary.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="other">The boundary to check.</param>
+		/// <returns><c>true</c>, if the composite range contains the boundary.</returns>
+		public static bool Contains<T>(this CompositeRange<T> compositeRange, RangeBoundaryFrom<T> other) =>
+				compositeRange.ContainingRange.Contains(other) &&
+					compositeRange.SubRanges.Any(r => r.Contains(other));
+
+		/// <summary>Determines whether the composite range contains the specified range boundary.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="other">The boundary to check.</param>
+		/// <returns><c>true</c>, if the composite range contains the boundary.</returns>
+		public static bool Contains<T>(this CompositeRange<T> compositeRange, RangeBoundaryTo<T> other) =>
+				compositeRange.ContainingRange.Contains(other) &&
+					compositeRange.SubRanges.Any(r => r.Contains(other));
+
+		/// <summary>Determines whether the composite range contains another range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="from">The boundary From value of the range to check.</param>
+		/// <param name="to">The boundary To value of the range to check.</param>
+		/// <returns><c>true</c>, if the composite range contains another range.</returns>
+		public static bool Contains<T>(this CompositeRange<T> compositeRange, T from, T to) =>
+			Contains(compositeRange, Range.Create(from, to));
+
+		/// <summary>Determines whether the composite range contains another range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="other">The range to check.</param>
+		/// <returns><c>true</c>, if the composite range contains another range.</returns>
+		public static bool Contains<T>(
+			this CompositeRange<T> compositeRange,
+
+			#region T4-dont-replace
+			Range<T> other
+			#endregion
+
+			) =>
+				compositeRange.ContainingRange.Contains(other) &&
+					compositeRange.GetMergedRanges().Any(r => r.Contains(other));
+
+
+		/// <summary>Determines whether the composite range contains another range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey2">The type of the other range key</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="other">The range to check.</param>
+		/// <returns><c>true</c>, if the composite range contains another range.</returns>
+		public static bool Contains<T, TKey2>(
+			this CompositeRange<T> compositeRange, Range<T, TKey2> other) =>
+				compositeRange.ContainingRange.Contains(other) &&
+					compositeRange.GetMergedRanges().Any(r => r.Contains(other));
+
+		/// <summary>Determines whether the composite range contains another range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TCompositeRange">The type of another range.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="other">The range to check.</param>
+		/// <returns><c>true</c>, if the composite range contains another range.</returns>
+		public static bool Contains<T, TCompositeRange>(
+			this CompositeRange<T> compositeRange, TCompositeRange other)
+			where TCompositeRange : ICompositeRange<T>
+		{
+			if (compositeRange.IsEmpty && other.IsEmpty)
+			{
+				return true;
+			}
+			if (!compositeRange.ContainingRange.Contains(other.ContainingRange))
+			{
+				return false;
+			}
+
+			bool result = true;
+			using (var containingRanges = compositeRange.GetMergedRanges().GetEnumerator())
+			{
+				bool hasContainingRange = containingRanges.MoveNext();
+				foreach (var otherRange in other.GetMergedRanges())
+				{
+					while (hasContainingRange && containingRanges.Current.EndsBefore(otherRange))
+					{
+						hasContainingRange = containingRanges.MoveNext();
+					}
+
+					if (!hasContainingRange || !containingRanges.Current.Contains(otherRange))
+					{
+						result = false;
+						break;
+					}
+				}
+			}
+
+			return result;
+		}
+		#endregion
+
+		#region HasIntersection
+		/// <summary>Determines whether the composite  has intersection with another range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="from">The boundary From value of the range to check.</param>
+		/// <param name="to">The boundary To value of the range to check.</param>
+		/// <returns><c>true</c>, if the composite range has intersection with another range.</returns>
+		public static bool HasIntersection<T>(
+			this CompositeRange<T> compositeRange,
+			T from, T to) =>
+				HasIntersection(compositeRange, Range.Create(from, to));
+
+		/// <summary>Determines whether the composite range has intersection with another range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="other">The range to check.</param>
+		/// <returns><c>true</c>, if the composite range has intersection with another range.</returns>
+		public static bool HasIntersection<T>(
+			this CompositeRange<T> compositeRange,
+
+			#region T4-dont-replace
+			Range<T> other
+			#endregion
+
+			) =>
+				compositeRange.ContainingRange.HasIntersection(other) &&
+					compositeRange.SubRanges.Any(r => r.HasIntersection(other));
+
+		/// <summary>Determines whether the composite range has intersection with another range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey2">The type of the other range key</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="other">The range to check.</param>
+		/// <returns><c>true</c>, if the composite range has intersection with another range.</returns>
+		public static bool HasIntersection<T, TKey2>(
+			this CompositeRange<T> compositeRange, Range<T, TKey2> other) =>
+				compositeRange.ContainingRange.HasIntersection(other) &&
+					compositeRange.SubRanges.Any(r => r.HasIntersection(other));
+
+		/// <summary>Determines whether the composite range has intersection with another range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <typeparam name="TCompositeRange">The type of another range.</typeparam>
+		/// <param name="other">The range to check.</param>
+		/// <returns><c>true</c>, if the composite range has intersection with another range.</returns>
+		public static bool HasIntersection<T, TCompositeRange>(
+			this CompositeRange<T> compositeRange, TCompositeRange other)
+			where TCompositeRange : ICompositeRange<T>
+		{
+			if (compositeRange.IsEmpty && other.IsEmpty)
+			{
+				return true;
+			}
+			if (!compositeRange.ContainingRange.HasIntersection(other.ContainingRange))
+			{
+				return false;
+			}
+
+			bool result = false;
+			using (var containingRanges = compositeRange.GetMergedRanges().GetEnumerator())
+			{
+				bool hasContainingRange = containingRanges.MoveNext();
+				foreach (var otherRange in other.GetMergedRanges())
+				{
+					while (hasContainingRange && containingRanges.Current.EndsBefore(otherRange))
+					{
+						hasContainingRange = containingRanges.MoveNext();
+					}
+
+					if (!hasContainingRange || containingRanges.Current.HasIntersection(otherRange))
+					{
+						result = hasContainingRange;
+						break;
+					}
+				}
+			}
+
+			return result;
 		}
 		#endregion
 	}

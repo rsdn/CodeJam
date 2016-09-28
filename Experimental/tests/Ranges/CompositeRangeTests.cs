@@ -623,5 +623,77 @@ namespace CodeJam.Ranges
 				.Select(i => i.ToInvariantString()).Join(" | ");
 			AreEqual(intersections, expected);
 		}
+
+		[Test]
+		[TestCase("(1..3): { 'A':(1..3) }", "(1..3): { 'B':(1..3) }", true)]
+		[TestCase("(1..3): { 'A':(1..3) }", "∅", false)]
+		[TestCase("∅", "(1..3): { 'A':(1..3) }", false)]
+		[TestCase("(1..3): { 'A':(1..3) }", "[1..3]: { '':[1..3] }", false)]
+		[TestCase("[0..5]: { 'A':[0..2]; 'B':(2..5] }", "[0..5]: { 'A':[0..2); 'B':[2..5] }", true)]
+		[TestCase("[0..5]: { 'A':[0..2); 'B':[2..5] }", "[0..5]: { 'A':[0..2]; 'B':(2..5] }", true)]
+		[TestCase("[0..5]: { 'A':[0..2]; 'B':(2..5] }", "[1..4]: { '':[1..3); '':[3..4] }", true)]
+		[TestCase("[0..5]: { 'A':[0..2]; 'B':(2..5] }", "[1..4]: { '':[1..3); '':(3..4] }", true)]
+		[TestCase("[0..5]: { 'A':[0..2); 'B':(2..5] }", "[1..4]: { '':[1..3); '':[3..4] }", false)]
+		[TestCase("[0..5]: { 'A':[0..2); 'B':(2..5] }", "[1..4]: { '':[1..1]; '':[4..4] }", true)]
+		[TestCase("∅", "∅", true)]
+		public static void TestCompositeRangeContains(string ranges, string other, bool expected)
+		{
+			var compositeRange1 = ParseCompositeKeyedRangeInt32(ranges);
+			var compositeRange2 = ParseCompositeKeyedRangeInt32(other);
+			var compositeRange1A = compositeRange1.WithoutKeys();
+			var compositeRange2A = compositeRange2.WithoutKeys();
+
+			IsTrue(compositeRange1.Contains(compositeRange1));
+			IsTrue(compositeRange1.Contains(compositeRange1A));
+			IsTrue(compositeRange2A.Contains(compositeRange2));
+			IsTrue(compositeRange2A.Contains(compositeRange2A));
+
+			AreEqual(compositeRange1.Contains(compositeRange2A), expected);
+
+			if (expected)
+			{
+				IsTrue(compositeRange2A.SubRanges.All(r=>compositeRange1.Contains(r)));
+				IsTrue(compositeRange2A.SubRanges.All(r=>compositeRange1.Contains(r.From)));
+				IsTrue(compositeRange2A.SubRanges.All(r=>compositeRange1A.Contains(r.To)));
+			}
+			else
+			{
+				IsTrue(compositeRange2.IsEmpty || compositeRange2.SubRanges.Any(r => !compositeRange1A.Contains(r)));
+			}
+		}
+
+		[Test]
+		[TestCase("(1..3): { 'A':(1..3) }", "(1..3): { 'B':(1..3) }", true)]
+		[TestCase("(1..3): { 'A':(1..3) }", "∅", false)]
+		[TestCase("∅", "(1..3): { 'A':(1..3) }", false)]
+		[TestCase("(1..3): { 'A':(1..3) }", "[1..1]: { '':[1..1] }", false)]
+		[TestCase("[0..5]: { 'A':[0..2); 'B':(2..5] }", "[2..2]: { '':[2..2] }", false)]
+		[TestCase("[0..5]: { 'A':[0..2); 'B':(2..3); 'C':(3..5] }", "[2..3]: { '':[2..2]; '':[3..3] }", false)]
+		[TestCase("[0..5]: { 'A':[0..2); 'B':(2..3); 'C':[3..5] }", "[2..3]: { '':[2..2]; '':[3..3] }", true)]
+		[TestCase("∅", "∅", true)]
+		public static void TestCompositeRangeHasIntersection(string ranges, string other, bool expected)
+		{
+			var compositeRange1 = ParseCompositeKeyedRangeInt32(ranges);
+			var compositeRange2 = ParseCompositeKeyedRangeInt32(other);
+			var compositeRange1A = compositeRange1.WithoutKeys();
+			var compositeRange2A = compositeRange2.WithoutKeys();
+
+			IsTrue(compositeRange1.HasIntersection(compositeRange1));
+			IsTrue(compositeRange1.HasIntersection(compositeRange1A));
+			IsTrue(compositeRange2A.HasIntersection(compositeRange2));
+			IsTrue(compositeRange2A.HasIntersection(compositeRange2A));
+
+			AreEqual(compositeRange1.HasIntersection(compositeRange2A), expected);
+			AreEqual(compositeRange2A.HasIntersection(compositeRange1), expected);
+
+			if (expected)
+			{
+				IsTrue(compositeRange2.IsEmpty || compositeRange2A.SubRanges.Any(r => compositeRange1.HasIntersection(r)));
+			}
+			else
+			{
+				IsTrue(compositeRange2.SubRanges.All(r => !compositeRange1A.HasIntersection(r)));
+			}
+		}
 	}
 }

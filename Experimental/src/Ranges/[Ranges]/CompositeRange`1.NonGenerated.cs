@@ -16,8 +16,10 @@ namespace CodeJam.Ranges
 		/// <returns>A sequence of merged subranges</returns>
 		IEnumerable<Range<T>> ICompositeRange<T>.GetMergedRanges() => GetMergedRanges();
 
+		/// <summary>Returns a sequence of merged subranges. Should be used for operations over the ranges.</summary>
+		/// <returns>A sequence of merged subranges</returns>
 		[NotNull]
-		private IEnumerable<Range<T>> GetMergedRanges() => _hasRangesToMerge
+		internal IEnumerable<Range<T>> GetMergedRanges() => _hasRangesToMerge
 			? MergeRangesCore()
 			: SubRanges;
 
