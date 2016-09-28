@@ -70,6 +70,33 @@ namespace CodeJam.Ranges
 				.Where(r => r.IsNotEmpty)
 				.ToCompositeRange();
 		}
+
+		/// <summary>Creates a new composite range with the key specified.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="T2">The type of new range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="newValueSelector">The value of the new key.</param>
+		/// <returns>A new composite range with the key specified.</returns>
+		public static CompositeRange<T2> WithValues<T, T2>(
+			this CompositeRange<T> compositeRange, [NotNull, InstantHandle] Func<T, T2> newValueSelector) =>
+			compositeRange.IsEmpty
+				? CompositeRange<T2>.Empty
+				: compositeRange.SubRanges.Select(s => s.WithValues(newValueSelector)).ToCompositeRange();
+
+		/// <summary>Creates a new composite range with the key specified.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="T2">The type of new range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="fromValueSelector">Callback to obtain a new value for the From boundary. Used if boundary has a value.</param>
+		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if boundary has a value.</param>
+		/// <returns>A new composite range with the key specified.</returns>
+		public static CompositeRange<T2> WithValues<T, T2>(
+			this CompositeRange<T> compositeRange,
+			[NotNull, InstantHandle] Func<T, T2> fromValueSelector,
+			[NotNull, InstantHandle] Func<T, T2> toValueSelector) =>
+			compositeRange.IsEmpty
+				? CompositeRange<T2>.Empty
+				: compositeRange.SubRanges.Select(s => s.WithValues(fromValueSelector, toValueSelector)).ToCompositeRange();
 		#endregion
 
 		#region Get intersections
@@ -149,8 +176,8 @@ namespace CodeJam.Ranges
 		/// <param name="value">The value to check.</param>
 		/// <returns><c>true</c>, if the composite range contains the value.</returns>
 		public static bool Contains<T>(this CompositeRange<T> compositeRange, T value) =>
-				compositeRange.ContainingRange.Contains(value) &&
-					compositeRange.SubRanges.Any(r => r.Contains(value));
+			compositeRange.ContainingRange.Contains(value) &&
+				compositeRange.SubRanges.Any(r => r.Contains(value));
 
 		/// <summary>Determines whether the composite range contains the specified range boundary.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -158,8 +185,8 @@ namespace CodeJam.Ranges
 		/// <param name="other">The boundary to check.</param>
 		/// <returns><c>true</c>, if the composite range contains the boundary.</returns>
 		public static bool Contains<T>(this CompositeRange<T> compositeRange, RangeBoundaryFrom<T> other) =>
-				compositeRange.ContainingRange.Contains(other) &&
-					compositeRange.SubRanges.Any(r => r.Contains(other));
+			compositeRange.ContainingRange.Contains(other) &&
+				compositeRange.SubRanges.Any(r => r.Contains(other));
 
 		/// <summary>Determines whether the composite range contains the specified range boundary.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -167,8 +194,8 @@ namespace CodeJam.Ranges
 		/// <param name="other">The boundary to check.</param>
 		/// <returns><c>true</c>, if the composite range contains the boundary.</returns>
 		public static bool Contains<T>(this CompositeRange<T> compositeRange, RangeBoundaryTo<T> other) =>
-				compositeRange.ContainingRange.Contains(other) &&
-					compositeRange.SubRanges.Any(r => r.Contains(other));
+			compositeRange.ContainingRange.Contains(other) &&
+				compositeRange.SubRanges.Any(r => r.Contains(other));
 
 		/// <summary>Determines whether the composite range contains another range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -194,7 +221,6 @@ namespace CodeJam.Ranges
 			) =>
 				compositeRange.ContainingRange.Contains(other) &&
 					compositeRange.GetMergedRanges().Any(r => r.Contains(other));
-
 
 		/// <summary>Determines whether the composite range contains another range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>

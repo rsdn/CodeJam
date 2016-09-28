@@ -311,6 +311,28 @@ namespace CodeJam.Ranges
 		}
 
 		/// <summary>
+		/// Creates a new boundary with updated value (if the current boundary has one).
+		/// If the boundary has no value the method returns the boundary unchanged.
+		/// </summary>
+		/// <typeparam name="T2">The new type of the range value</typeparam>
+		/// <param name="newValueSelector">Callback to obtain a new value for the boundary. Used if the boundary has a value.</param>
+		/// <returns>Range boundary with the same kind but with a new value (if the current boundary has one).</returns>
+		[Pure]
+		public RangeBoundaryTo<T2> WithValue<T2>([NotNull, InstantHandle] Func<T, T2> newValueSelector)
+		{
+			if (HasValue)
+			{
+				var newValue = newValueSelector(_value);
+
+				return RangeBoundaryTo<T2>.AdjustAndCreate(newValue, _kind);
+			}
+
+#pragma warning disable 618 // Validation not required: HasValue checked.
+			return new RangeBoundaryTo<T2>((default(T2)), _kind, UnsafeOverload.SkipsArgValidation);
+#pragma warning restore 618
+		}
+
+		/// <summary>
 		/// Creates a new boundary with exclusive boundary kind if the current boundary has a value.
 		/// The original boundary is returned otherwise.
 		/// </summary>

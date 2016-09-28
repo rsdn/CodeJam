@@ -53,29 +53,29 @@
 			},
 			new ReplaceInfo // Range<T, TKey>
 			{
-				Pattern = "Range<T>",
-				Replacement = "Range<T, TKey>",
+				Pattern = "Range<T([^>,]*?)>",
+				Replacement = "Range<T$1, TKey>",
 				ThrowOnFail = true,
 				WholeWord = true
 			},
 			new ReplaceInfo // CompositeRange<T, TKey>
 			{
-				Pattern = "CompositeRange<T>",
-				Replacement = "CompositeRange<T, TKey>",
+				Pattern = "CompositeRange<T([^>,]*?)>",
+				Replacement = "CompositeRange<T$1, TKey>",
 				ThrowOnFail = false,
 				WholeWord = true
 			},
 			new ReplaceInfo // RangeIntersection<T, TKey>
 			{
-				Pattern = "RangeIntersection<T>",
-				Replacement = "RangeIntersection<T, TKey>",
+				Pattern = "RangeIntersection<T([^>,]*?)>",
+				Replacement = "RangeIntersection<T$1, TKey>",
 				ThrowOnFail = false,
 				WholeWord = true
 			},
 			new ReplaceInfo // SomeMethod<T, TKey2
 			{
-				Pattern = @"(static .+?)<T([^>]*?>\()",
-				Replacement = "$1<T, TKey$2",
+				Pattern = @"(static .+?)<T([^>]*?)>\(",
+				Replacement = "$1<T, TKey$2>(",
 				ThrowOnFail = true
 			},
 			new ReplaceInfo // Fix generic params XML docs

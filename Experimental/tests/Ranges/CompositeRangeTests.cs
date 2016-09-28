@@ -138,10 +138,12 @@ namespace CodeJam.Ranges
 			"(-∞..+∞): { 'A':(-∞..3]; 'C':[1..5]; 'B':[3..+∞); 'D':[4..5) }")]
 		[TestCase(
 			"[0..8): { 'A':[3..4]; 'B':[3..5); 'C':[0..6]; 'D':∅; 'E':∅; 'F':∅; 'G':[1..2]; 'H':(4..6); 'I':[7..8); 'J':[1..2]; 'K':[3..5]; 'L':(3..5); 'M':∅; 'N':∅; 'O':(3..5] }",
-			"[0..8): { 'C':[0..6]; 'G':[1..2]; 'J':[1..2]; 'A':[3..4]; 'B':[3..5); 'K':[3..5]; 'L':(3..5); 'O':(3..5]; 'H':(4..6); 'I':[7..8) }")]
+			"[0..8): { 'C':[0..6]; 'G':[1..2]; 'J':[1..2]; 'A':[3..4]; 'B':[3..5); 'K':[3..5]; 'L':(3..5); 'O':(3..5]; 'H':(4..6); 'I':[7..8) }"
+			)]
 		[TestCase(
 			"(-∞..+∞): { 'A':[3..4]; 'B':[3..5); 'C':[0..6]; 'D':∅; 'E':∅; 'F':∅; 'G':[1..2]; 'H':(4..6); '':(-∞..+∞); 'I':[7..8); 'J':[1..2]; 'K':[3..5]; 'L':(3..5); 'M':∅; 'N':∅; 'O':(3..5] }",
-			"(-∞..+∞): { '':(-∞..+∞); 'C':[0..6]; 'G':[1..2]; 'J':[1..2]; 'A':[3..4]; 'B':[3..5); 'K':[3..5]; 'L':(3..5); 'O':(3..5]; 'H':(4..6); 'I':[7..8) }")]
+			"(-∞..+∞): { '':(-∞..+∞); 'C':[0..6]; 'G':[1..2]; 'J':[1..2]; 'A':[3..4]; 'B':[3..5); 'K':[3..5]; 'L':(3..5); 'O':(3..5]; 'H':(4..6); 'I':[7..8) }"
+			)]
 		public static void TestCompositeRangeCreateWithKey(
 			string ranges, string expected)
 		{
@@ -536,6 +538,58 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
+		public static void TestCompositeRangeWithValues()
+		{
+			var compositeRange = Enumerable
+				.Range(1, 2)
+				.ToCompositeRange(i => i - 1, i => i + 1);
+			AreEqual(compositeRange.ToString(), "[0..3]: { '1':[0..2]; '2':[1..3] }");
+
+			var compositeRange2 = compositeRange.WithValues(i => "A" + i);
+			AreEqual(compositeRange2.ToString(), "[A0..A3]: { '1':[A0..A2]; '2':[A1..A3] }");
+
+			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i.Substring(1));
+			AreEqual(compositeRange3.ToString(), "[A0..B3]: { '1':[A0..B2]; '2':[A1..B3] }");
+
+			var compositeRange4 = compositeRange3.WithoutKeys().WithValues(i=>int.Parse(i.Substring(1)));
+			AreEqual(compositeRange4.ToString(), "[0..3]: { [0..2]; [1..3] }");
+
+			AreEqual(compositeRange4, compositeRange.WithoutKeys());
+		}
+
+		[Test]
+		[TestCase(
+			"∅",
+			"(-∞..+∞): { (-∞..+∞) }")]
+		[TestCase(
+			"[1..2]: { '':[1..2] }",
+			"(-∞..+∞): { (-∞..1); (2..+∞) }")]
+		[TestCase(
+			"(0..2]: { 'A':(0..1); 'B':(1..2] }",
+			"(-∞..+∞): { (-∞..0]; [1..1]; (2..+∞) }")]
+		[TestCase(
+			"(0..2]: { 'A':(0..1); 'B':[1..2] }",
+			"(-∞..+∞): { (-∞..0]; (2..+∞) }")]
+		[TestCase(
+			"(0..2]: { 'A':(0..1); 'B':(1..2]; 'C':[1..2) }",
+			"(-∞..+∞): { (-∞..0]; (2..+∞) }")]
+		public static void TestCompositeRangeComplementation(string ranges, string expected)
+		{
+			var compositeRange1 = ParseCompositeKeyedRangeInt32(ranges);
+			var compositeRange2 = ParseCompositeRangeDouble(expected).WithValues(i => (int?)i);
+			var compositeRange1A = compositeRange1.WithoutKeys().Merge();
+
+			AreEqual(compositeRange1.GetComplementation().ToInvariantString(), expected);
+			AreEqual(compositeRange2.GetComplementation(), compositeRange1A);
+
+			if (compositeRange1.SubRanges.Count == 1)
+			{
+				AreEqual(compositeRange1.ContainingRange.GetComplementation().ToInvariantString(), expected);
+				AreEqual(compositeRange1.SubRanges[0].GetComplementation().ToInvariantString(), expected);
+			}
+		}
+
+		[Test]
 		[TestCase(
 			"[1..2]: { '':[1..2] }",
 			"[1..2]: { '':[1..2] }")]
@@ -652,9 +706,9 @@ namespace CodeJam.Ranges
 
 			if (expected)
 			{
-				IsTrue(compositeRange2A.SubRanges.All(r=>compositeRange1.Contains(r)));
-				IsTrue(compositeRange2A.SubRanges.All(r=>compositeRange1.Contains(r.From)));
-				IsTrue(compositeRange2A.SubRanges.All(r=>compositeRange1A.Contains(r.To)));
+				IsTrue(compositeRange2A.SubRanges.All(r => compositeRange1.Contains(r)));
+				IsTrue(compositeRange2A.SubRanges.All(r => compositeRange1.Contains(r.From)));
+				IsTrue(compositeRange2A.SubRanges.All(r => compositeRange1A.Contains(r.To)));
 			}
 			else
 			{

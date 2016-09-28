@@ -71,7 +71,7 @@ namespace CodeJam.Ranges
 
 			var toInf = (double?)double.PositiveInfinity;
 			var range2 = Range.CreateExclusive(1, toInf, RangeKey);
-			IsTrue(range2.WithValues(i => null).IsInfinite);
+			IsTrue(range2.WithValues(i => (double?)null).IsInfinite);
 			range2 = Range.Create(double.NegativeInfinity, toInf, RangeKey);
 			AreEqual(range2, range2.WithValues(i => i - 1, i => i + 1));
 		}

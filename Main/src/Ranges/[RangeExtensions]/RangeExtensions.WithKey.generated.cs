@@ -88,36 +88,6 @@ namespace CodeJam.Ranges
 			return range.TryCreateRange(from, to);
 		}
 
-		/// <summary>Updates the values of the boundaries of the range.</summary>
-		/// <typeparam name="T">The type of the range values.</typeparam>
-		/// <typeparam name="TKey">The type of the range key</typeparam>
-		/// <param name="range">The source range.</param>
-		/// <param name="valueSelector">Callback to obtain a new value for the boundaries. Used if boundary has a value.</param>
-		/// <returns>A range with new values.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static Range<T, TKey> WithValues<T, TKey>(
-			this Range<T, TKey> range,
-			[NotNull, InstantHandle] Func<T, T> valueSelector) =>
-			WithValues(range, valueSelector, valueSelector);
-
-		/// <summary>Updates the values of the boundaries of the range.</summary>
-		/// <typeparam name="T">The type of the range values.</typeparam>
-		/// <typeparam name="TKey">The type of the range key</typeparam>
-		/// <param name="range">The source range.</param>
-		/// <param name="fromValueSelector">Callback to obtain a new value for the From boundary. Used if boundary has a value.</param>
-		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if boundary has a value.</param>
-		/// <returns>A range with new values.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static Range<T, TKey> WithValues<T, TKey>(
-			this Range<T, TKey> range,
-			[NotNull, InstantHandle] Func<T, T> fromValueSelector,
-			[NotNull, InstantHandle] Func<T, T> toValueSelector)
-		{
-			var from = range.From.WithValue(fromValueSelector);
-			var to = range.To.WithValue(toValueSelector);
-			return range.TryCreateRange(from, to);
-		}
-
 		/// <summary>Creates a new range with the key specified.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
 		/// <typeparam name="TKey">The type of the range key</typeparam>
