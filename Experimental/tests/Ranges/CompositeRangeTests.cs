@@ -85,6 +85,14 @@ namespace CodeJam.Ranges
 			AreEqual(
 				range.WithoutKeys().Union(Range.Create(1, 10)).ToInvariantString(),
 				"[1..10]: { [1..10] }");
+
+			range = range.Union(Range.Create(7, 8, "Key1"));
+			AreEqual(range.ToInvariantString(), "[2..9]: { 'Key1':[2..2]; 'Key2':[5..7); 'Key1':[7..8]; 'Key2':(8..9] }");
+
+			range = range
+				.Except(7, 8)
+				.Union(Range.Create(7, 8, "Key2"));
+			AreEqual(range.ToInvariantString(), "[2..9]: { 'Key1':[2..2]; 'Key2':[5..9] }");
 		}
 
 		[Test]
