@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using CodeJam.Collections;
@@ -13,6 +14,7 @@ using static CodeJam.Ranges.CompositeRangeInternal;
 namespace CodeJam.Ranges
 {
 	/// <summary>Describes a range of the values.</summary>
+	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public partial struct CompositeRange<T, TKey> : ICompositeRange<T>
 	{
 		#region Helpers
@@ -73,13 +75,12 @@ namespace CodeJam.Ranges
 					MergeRangesCore(groups[0]),
 					UnsafeOverload.NoEmptyRangesAlreadySortedAndMerged);
 			}
-			else
-			{
-				return new CompositeRange<T, TKey>(
-					groups.SelectMany(group => MergeRangesCore(group)),
-					UnsafeOverload.NoEmptyRanges);
-			}
-		} 
+
+			// ReSharper disable once ConvertClosureToMethodGroup
+			return new CompositeRange<T, TKey>(
+				groups.SelectMany(group => MergeRangesCore(group)),
+				UnsafeOverload.NoEmptyRanges);
+		}
 		#endregion
 
 		#region IEquatable<CompositeRange<T, TKey>>

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 
 using JetBrains.Annotations;
 
@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 namespace CodeJam.Ranges
 {
 	/// <summary>Describes a composite range that contains some subranges.</summary>
+	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public partial struct CompositeRange<T> : ICompositeRange<T>
 	{
 		#region ICompositeRange<T>

@@ -551,7 +551,7 @@ namespace CodeJam.Ranges
 			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i.Substring(1));
 			AreEqual(compositeRange3.ToString(), "[A0..B3]: { '1':[A0..B2]; '2':[A1..B3] }");
 
-			var compositeRange4 = compositeRange3.WithoutKeys().WithValues(i=>int.Parse(i.Substring(1)));
+			var compositeRange4 = compositeRange3.WithoutKeys().WithValues(i => int.Parse(i.Substring(1)));
 			AreEqual(compositeRange4.ToString(), "[0..3]: { [0..2]; [1..3] }");
 
 			AreEqual(compositeRange4, compositeRange.WithoutKeys());
@@ -748,6 +748,99 @@ namespace CodeJam.Ranges
 			{
 				IsTrue(compositeRange2.SubRanges.All(r => !compositeRange1A.HasIntersection(r)));
 			}
+		}
+
+		[Test]
+		[TestCase(
+			"(1..3): { (1..3) }",
+			"(1..3): { (1..3); (1..3) }",
+			"(1..3): { (1..3) }")]
+		[TestCase("∅", "∅", "∅")]
+		[TestCase(
+			"∅",
+			"(1..3): { (1..3) }",
+			"(1..3): { (1..3) }")]
+		[TestCase(
+			"(1..3): { (1..3) }",
+			"∅",
+			"(1..3): { (1..3) }")]
+		[TestCase(
+			"(-∞..+∞): { (-∞..1]; [2..+∞) }",
+			"[1..2]: { [1..2] }",
+			"(-∞..+∞): { (-∞..+∞) }")]
+		public static void Union(string ranges, string other, string expected)
+		{
+			var compositeRange1 = ParseCompositeRangeDouble(ranges);
+			var compositeRange2 = ParseCompositeRangeDouble(other);
+
+			AreEqual(compositeRange1.Union(compositeRange2).ToInvariantString(), expected);
+			AreEqual(compositeRange2.Union(compositeRange1).ToInvariantString(), expected);
+		}
+
+		[Test]
+		[TestCase(
+			"(1..3): { 'A':(1..3) }",
+			"(1..3): { 'B':(1..3) }",
+			"(1..3): { 'A':(1..3); 'B':(1..3) }")]
+		[TestCase(
+			"(1..3): { 'A':(1..3); 'A':(1..3); 'B':(1..3) }",
+			"(1..3): { 'A':(1..3); 'B':(1..3); 'B':(1..3) }",
+			"(1..3): { 'A':(1..3); 'B':(1..3) }")]
+		[TestCase("∅", "∅", "∅")]
+		[TestCase(
+			"∅",
+			"(1..3): { 'B':(1..3) }",
+			"(1..3): { 'B':(1..3) }")]
+		[TestCase(
+			"(1..3): { 'B':(1..3) }",
+			"∅",
+			"(1..3): { 'B':(1..3) }")]
+		[TestCase(
+			"(-∞..+∞): { 'A':(-∞..1]; 'B':[0..+∞) }",
+			"(-∞..+∞): { 'B':(-∞..1]; 'A':[0..+∞) }",
+			"(-∞..+∞): { 'A':(-∞..+∞); 'B':(-∞..+∞) }")]
+		public static void UnionWithKey(string ranges, string other, string expected)
+		{
+			var compositeRange1 = ParseCompositeKeyedRangeInt32(ranges);
+			var compositeRange2 = ParseCompositeKeyedRangeInt32(other);
+
+			AreEqual(compositeRange1.Union(compositeRange2).ToInvariantString(), expected);
+		}
+
+		[Test]
+		[TestCase(
+			"(1..3): { 'A':(1..3) }",
+			"(1..3): { 'B':(1..3) }",
+			"(1..3): { 'A':(1..3) }")]
+		[TestCase(
+			"(1..3): { 'A':(1..3); 'A':(1..3); 'B':(1..3) }",
+			"(1..3): { 'A':(1..3); 'B':(1..3); 'B':(1..3) }",
+			"(1..3): { 'A':(1..3); 'A':(1..3); 'B':(1..3) }")]
+		[TestCase("∅", "∅", "∅")]
+		[TestCase(
+			"∅",
+			"(1..3): { 'B':(1..3) }",
+			"∅")]
+		[TestCase(
+			"(1..3): { 'B':(1..3) }",
+			"∅",
+			"∅")]
+		[TestCase(
+			"(-∞..+∞): { 'A':(-∞..1]; 'B':[0..+∞) }",
+			"[0..2]: { 'C':[0..2] }",
+			"[0..2]: { 'A':[0..1]; 'B':[0..2] }")]
+		public static void Intersect(string ranges, string other, string expected)
+		{
+			var compositeRange1 = ParseCompositeKeyedRangeInt32(ranges);
+			var compositeRange2 = ParseCompositeKeyedRangeInt32(other);
+			var compositeRange1A = compositeRange1.WithoutKeys();
+			var compositeRange2A = compositeRange2.WithoutKeys();
+
+			AreEqual(compositeRange1.Intersect(compositeRange2).ToInvariantString(), expected);
+			AreEqual(compositeRange1.Intersect(compositeRange2A).ToInvariantString(), expected);
+			AreEqual(
+				compositeRange1.Intersect(compositeRange2A).WithoutKeys(),
+				compositeRange1A.Intersect(compositeRange2A));
 		}
 	}
 }

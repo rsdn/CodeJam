@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using CodeJam.Collections;
@@ -28,6 +29,7 @@ namespace CodeJam.Ranges
 	/// <typeparam name="TKey">The type of the range key</typeparam>
 	[Serializable]
 	[PublicAPI]
+	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public partial struct CompositeRange<T, TKey> : IEquatable<CompositeRange<T, TKey>>, IFormattable
 	{
 		#region Nested types
@@ -130,7 +132,7 @@ namespace CodeJam.Ranges
 		#endregion
 
 		/// <summary>Empty range, ∅</summary>
-		public static readonly CompositeRange<T, TKey> Empty = new CompositeRange<T, TKey>();
+		public static readonly CompositeRange<T, TKey> Empty;
 
 		/// <summary>Infinite range, (-∞..+∞)</summary>
 		public static readonly CompositeRange<T, TKey> Infinite = new CompositeRange<T, TKey>(Range<T, TKey>.Infinite);
@@ -228,7 +230,7 @@ namespace CodeJam.Ranges
 		/// <summary>Collection of subranges.</summary>
 		/// <value>The collection of subranges.</value>
 		[NotNull]
-		public IReadOnlyList<Range<T, TKey>> SubRanges => _ranges ?? _emptyRanges;
+		public ReadOnlyCollection<Range<T, TKey>> SubRanges => _ranges ?? _emptyRanges;
 
 		#region T4-dont-replace
 		/// <summary>Range that contains all subranges.</summary>

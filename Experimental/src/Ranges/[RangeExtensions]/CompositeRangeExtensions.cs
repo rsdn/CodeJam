@@ -5,6 +5,7 @@ using System.Linq;
 using JetBrains.Annotations;
 
 using static CodeJam.Ranges.CompositeRangeInternal;
+
 namespace CodeJam.Ranges
 {
 	/// <summary>Extension methods for <seealso cref="CompositeRange{T}"/>.</summary>
@@ -20,8 +21,8 @@ namespace CodeJam.Ranges
 		/// <returns>A new composite range with keys filled from the original collection.</returns>
 		public static CompositeRange<T, TKey> ToCompositeRange<T, TKey>(
 			[NotNull] this IEnumerable<TKey> source,
-			[NotNull] Func<TKey, T> fromValueSelector,
-			[NotNull] Func<TKey, T> toValueSelector) =>
+			[NotNull, InstantHandle] Func<TKey, T> fromValueSelector,
+			[NotNull, InstantHandle] Func<TKey, T> toValueSelector) =>
 				source
 					.Select(s => Range.Create(fromValueSelector(s), toValueSelector(s), s))
 					.ToCompositeRange();
@@ -37,9 +38,9 @@ namespace CodeJam.Ranges
 		/// <returns>A new composite range with keys filled from the original collection.</returns>
 		public static CompositeRange<T, TKey> ToCompositeRange<TSource, T, TKey>(
 			[NotNull] this IEnumerable<TSource> source,
-			[NotNull] Func<TSource, T> fromValueSelector,
-			[NotNull] Func<TSource, T> toValueSelector,
-			[NotNull] Func<TSource, TKey> keySelector) =>
+			[NotNull, InstantHandle] Func<TSource, T> fromValueSelector,
+			[NotNull, InstantHandle] Func<TSource, T> toValueSelector,
+			[NotNull, InstantHandle] Func<TSource, TKey> keySelector) =>
 				source
 					.Select(s => Range.Create(fromValueSelector(s), toValueSelector(s), keySelector(s)))
 					.ToCompositeRange();
@@ -64,10 +65,11 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="key">The value of the new key.</param>
 		/// <returns>A new composite range with the key specified.</returns>
-		public static CompositeRange<T, TKey2> WithKeys<T, TKey, TKey2>(this CompositeRange<T, TKey> compositeRange, TKey2 key) =>
-			compositeRange.IsEmpty
-				? CompositeRange<T, TKey2>.Empty
-				: compositeRange.SubRanges.Select(s => s.WithKey(key)).ToCompositeRange();
+		public static CompositeRange<T, TKey2> WithKeys<T, TKey, TKey2>(
+			this CompositeRange<T, TKey> compositeRange, TKey2 key) =>
+				compositeRange.IsEmpty
+					? CompositeRange<T, TKey2>.Empty
+					: compositeRange.SubRanges.Select(s => s.WithKey(key)).ToCompositeRange();
 
 		/// <summary>Creates a new composite range with the key specified.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -78,7 +80,7 @@ namespace CodeJam.Ranges
 		/// <returns>A new composite range with the key specified.</returns>
 		public static CompositeRange<T, TKey2> WithKeys<T, TKey, TKey2>(
 			this CompositeRange<T, TKey> compositeRange,
-			[NotNull] Func<TKey, TKey2> keySelector) =>
+			[NotNull, InstantHandle] Func<TKey, TKey2> keySelector) =>
 				compositeRange.IsEmpty
 					? CompositeRange<T, TKey2>.Empty
 					: compositeRange.SubRanges.Select(s => s.WithKey(keySelector(s.Key))).ToCompositeRange();
@@ -139,7 +141,7 @@ namespace CodeJam.Ranges
 
 		private static CompositeRange<T> GetComplementationCore<T, TCompositeRange>(
 			TCompositeRange compositeRange)
-			where TCompositeRange:ICompositeRange<T>
+			where TCompositeRange : ICompositeRange<T>
 		{
 			if (compositeRange.IsEmpty)
 			{
