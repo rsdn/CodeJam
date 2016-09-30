@@ -69,6 +69,25 @@ namespace CodeJam.Ranges
 		#endregion
 
 		[Test]
+		public static void TestCompositeRangeUseCase()
+		{
+			var range = Range.Create(1, 2, "Key1")
+				.ToCompositeRange()
+				.Union(Range.Create(5, 10, "Key2"))
+				.Except(Range.Create(7, 8))
+				.Intersect(2, 9);
+
+			AreEqual(range.ToInvariantString(), "[2..9]: { 'Key1':[2..2]; 'Key2':[5..7); 'Key2':(8..9] }");
+			AreEqual(
+				range.SubRanges.Select(r => r.Key).Distinct().Join(";"),
+				"Key1;Key2");
+
+			AreEqual(
+				range.WithoutKeys().Union(Range.Create(1, 10)).ToInvariantString(),
+				"[1..10]: { [1..10] }");
+		}
+
+		[Test]
 		[TestCase(
 			"[1..2]: { [1..2] }",
 			"[1..2]: { [1..2] }")]
