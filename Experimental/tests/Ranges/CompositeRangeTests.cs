@@ -768,7 +768,7 @@ namespace CodeJam.Ranges
 			"(-∞..+∞): { (-∞..1]; [2..+∞) }",
 			"[1..2]: { [1..2] }",
 			"(-∞..+∞): { (-∞..+∞) }")]
-		public static void Union(string ranges, string other, string expected)
+		public static void TestCompositeRangeUnion(string ranges, string other, string expected)
 		{
 			var compositeRange1 = ParseCompositeRangeDouble(ranges);
 			var compositeRange2 = ParseCompositeRangeDouble(other);
@@ -799,7 +799,7 @@ namespace CodeJam.Ranges
 			"(-∞..+∞): { 'A':(-∞..1]; 'B':[0..+∞) }",
 			"(-∞..+∞): { 'B':(-∞..1]; 'A':[0..+∞) }",
 			"(-∞..+∞): { 'A':(-∞..+∞); 'B':(-∞..+∞) }")]
-		public static void UnionWithKey(string ranges, string other, string expected)
+		public static void TestCompositeRangeUnionWithKey(string ranges, string other, string expected)
 		{
 			var compositeRange1 = ParseCompositeKeyedRangeInt32(ranges);
 			var compositeRange2 = ParseCompositeKeyedRangeInt32(other);
@@ -829,7 +829,7 @@ namespace CodeJam.Ranges
 			"(-∞..+∞): { 'A':(-∞..1]; 'B':[0..+∞) }",
 			"[0..2]: { 'C':[0..2] }",
 			"[0..2]: { 'A':[0..1]; 'B':[0..2] }")]
-		public static void Intersect(string ranges, string other, string expected)
+		public static void TestCompositeRangeIntersect(string ranges, string other, string expected)
 		{
 			var compositeRange1 = ParseCompositeKeyedRangeInt32(ranges);
 			var compositeRange2 = ParseCompositeKeyedRangeInt32(other);
