@@ -195,7 +195,7 @@ namespace CodeJam.PerfTests.Analysers
 
 		private void CheckPostconditions(Summary summary, CompetitionState competitionState, List<IWarning> warnings)
 		{
-			var culture = EnvironmentInfo.MainCultureInfo;
+			var culture = HostEnvironmentInfo.MainCultureInfo;
 
 			if (TooFastBenchmarkLimit > TimeSpan.Zero)
 			{

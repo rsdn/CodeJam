@@ -145,7 +145,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(1.07, 1.71)]
+			[CompetitionBenchmark(0.99, 1.71)]
 			public bool Test01IsFlagSet()
 			{
 				var a = false;
@@ -163,7 +163,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.70, 1.06)]
+			[CompetitionBenchmark(0.67, 1.06)]
 			public bool Test03IsFlagSetIntOp()
 			{
 				var a = false;
@@ -172,7 +172,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(8.55, 16.27)]
+			[CompetitionBenchmark(7.18, 16.27)]
 			public bool Test04EnumHasFlag()
 			{
 				var a = false;

@@ -19,6 +19,6 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns>Build result.</returns>
 		public BuildResult Build(GenerateResult generateResult, ILogger logger, Benchmark benchmark) =>
-			new BuildResult(generateResult, true, null, null);
+			BuildResult.Success(generateResult);
 	}
 }

@@ -134,9 +134,9 @@ namespace CodeJam.PerfTests.Running.Limits
 			{
 				throw CodeExceptions.Argument(
 					nameof(maxRatio),
-					$"Please check competition limits. The {nameof(minRatio)} ({minRatio.ToString(EnvironmentInfo.MainCultureInfo)}) "
+					$"Please check competition limits. The {nameof(minRatio)} ({minRatio.ToString(HostEnvironmentInfo.MainCultureInfo)}) "
 						+
-						$"should not be greater than the {nameof(maxRatio)} ({maxRatio.ToString(EnvironmentInfo.MainCultureInfo)}).");
+						$"should not be greater than the {nameof(maxRatio)} ({maxRatio.ToString(HostEnvironmentInfo.MainCultureInfo)}).");
 			}
 
 			MinRatio = minRatio;
@@ -178,14 +178,14 @@ namespace CodeJam.PerfTests.Running.Limits
 		/// <summary>The string representation of minimum timing ratio limit.</summary>
 		/// <value>The string representation of minimum timing ratio limit.</value>
 		public string MinRatioText => IgnoreMinRatio
-			? MinRatioRounded.ToString(EnvironmentInfo.MainCultureInfo)
-			: MinRatioRounded.ToString(RatioFormat, EnvironmentInfo.MainCultureInfo);
+			? MinRatioRounded.ToString(HostEnvironmentInfo.MainCultureInfo)
+			: MinRatioRounded.ToString(RatioFormat, HostEnvironmentInfo.MainCultureInfo);
 
 		/// <summary>The string representation of maximum timing ratio limit.</summary>
 		/// <value>The string representation of maximum timing ratio limit.</value>
 		public string MaxRatioText => IgnoreMaxRatio
-			? MaxRatioRounded.ToString(EnvironmentInfo.MainCultureInfo)
-			: MaxRatioRounded.ToString(RatioFormat, EnvironmentInfo.MainCultureInfo);
+			? MaxRatioRounded.ToString(HostEnvironmentInfo.MainCultureInfo)
+			: MaxRatioRounded.ToString(RatioFormat, HostEnvironmentInfo.MainCultureInfo);
 
 		/// <summary>Checks if actual values fits into limits represented by this instance.</summary>
 		/// <param name="actualValues">The limits for actual values.</param>

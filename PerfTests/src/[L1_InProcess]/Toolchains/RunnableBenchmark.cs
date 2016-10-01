@@ -67,7 +67,7 @@ namespace BenchmarkDotNet.Toolchains
 					FillProperties(_instance, _benchmark);
 
 					_output.WriteLine();
-					foreach (var infoLine in EnvironmentInfo.GetCurrent().ToFormattedString())
+					foreach (var infoLine in HostEnvironmentInfo.GetCurrent().ToFormattedString())
 					{
 						_output.WriteLine("// {0}", infoLine);
 					}
@@ -137,7 +137,7 @@ namespace BenchmarkDotNet.Toolchains
 					FillProperties(_instance, _benchmark);
 
 					_output.WriteLine();
-					foreach (var infoLine in EnvironmentInfo.GetCurrent().ToFormattedString())
+					foreach (var infoLine in HostEnvironmentInfo.GetCurrent().ToFormattedString())
 					{
 						_output.WriteLine("// {0}", infoLine);
 					}

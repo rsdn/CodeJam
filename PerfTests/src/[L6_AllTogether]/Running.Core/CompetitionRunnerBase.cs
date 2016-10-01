@@ -227,7 +227,7 @@ namespace CodeJam.PerfTests.Running.Core
 				result.MaxRunsAllowed = DefaultMaxRunsAllowed;
 			}
 
-			if (EnvironmentInfo.GetCurrent().HasAttachedDebugger)
+			if (HostEnvironmentInfo.GetCurrent().HasAttachedDebugger)
 			{
 				result.AllowDebugBuilds = true;
 			}

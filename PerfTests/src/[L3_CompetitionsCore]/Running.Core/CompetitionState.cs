@@ -238,7 +238,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			var message = args.IsNullOrEmpty()
 				? messageFormat
-				: string.Format(EnvironmentInfo.MainCultureInfo, messageFormat, args);
+				: string.Format(HostEnvironmentInfo.MainCultureInfo, messageFormat, args);
 
 			WriteMessage(messageSource, messageSeverity, message);
 		}

@@ -24,11 +24,11 @@ namespace BenchmarkDotNet.Validators
 	{
 		#region Validation rules
 		// ReSharper disable HeapView.DelegateAllocation
-		private static readonly IReadOnlyDictionary<string, Func<IJob, EnvironmentInfo, string>> _validationRules =
-			new Dictionary<string, Func<IJob, EnvironmentInfo, string>>
+		private static readonly IReadOnlyDictionary<string, Func<IJob, HostEnvironmentInfo, string>> _validationRules =
+			new Dictionary<string, Func<IJob, HostEnvironmentInfo, string>>
 			{
 				{ nameof(IJob.Affinity), DontValidate },
-				{ nameof(IJob.Framework), ValidateFramework },
+				{ nameof(IJob.GcMode), DontValidate },
 				{ nameof(IJob.IterationTime), DontValidate },
 				{ nameof(IJob.Jit), ValidateJit },
 				{ nameof(IJob.LaunchCount), DontValidate },
@@ -42,29 +42,9 @@ namespace BenchmarkDotNet.Validators
 
 		// ReSharper restore HeapView.DelegateAllocation
 
-		private static string DontValidate(IJob job, EnvironmentInfo env) => null;
+		private static string DontValidate(IJob job, HostEnvironmentInfo env) => null;
 
-		// TODO: detect framework
-		private static string ValidateFramework(IJob job, EnvironmentInfo env)
-		{
-			switch (job.Framework)
-			{
-				case Framework.Host:
-					return null;
-				case Framework.V40:
-				case Framework.V45:
-				case Framework.V451:
-				case Framework.V452:
-				case Framework.V46:
-				case Framework.V461:
-				case Framework.V462:
-					return $"Should be set to {nameof(Framework.Host)}.";
-				default:
-					throw new ArgumentOutOfRangeException(nameof(job.Framework), job.Framework, null);
-			}
-		}
-
-		private static string ValidateJit(IJob job, EnvironmentInfo env)
+		private static string ValidateJit(IJob job, HostEnvironmentInfo env)
 		{
 			bool isX64 = env.Architecture == "64-bit";
 			switch (job.Jit)
@@ -84,7 +64,7 @@ namespace BenchmarkDotNet.Validators
 			}
 		}
 
-		private static string ValidatePlatform(IJob job, EnvironmentInfo env)
+		private static string ValidatePlatform(IJob job, HostEnvironmentInfo env)
 		{
 			bool isX64 = env.Architecture == "64-bit";
 			switch (job.Platform)
@@ -106,7 +86,7 @@ namespace BenchmarkDotNet.Validators
 		}
 
 		// TODO: detect runtime
-		private static string ValidateRuntime(IJob job, EnvironmentInfo env)
+		private static string ValidateRuntime(IJob job, HostEnvironmentInfo env)
 		{
 			switch (job.Runtime)
 			{
@@ -114,7 +94,6 @@ namespace BenchmarkDotNet.Validators
 					return null;
 				case Runtime.Clr:
 				case Runtime.Mono:
-				case Runtime.Dnx:
 				case Runtime.Core:
 					return $"Should be set to {nameof(Runtime.Host)}.";
 				default:
@@ -122,7 +101,7 @@ namespace BenchmarkDotNet.Validators
 			}
 		}
 
-		private static string ValidateToolchain(IJob job, EnvironmentInfo env) =>
+		private static string ValidateToolchain(IJob job, HostEnvironmentInfo env) =>
 			job.Toolchain is InProcessToolchain
 				? null
 				: $"Should be instance of {nameof(InProcessToolchain)}.";
@@ -153,12 +132,12 @@ namespace BenchmarkDotNet.Validators
 		{
 			var result = new List<ValidationError>();
 
-			var env = EnvironmentInfo.GetCurrent();
+			var env = HostEnvironmentInfo.GetCurrent();
 			foreach (var job in benchmarks.GetJobs())
 			{
 				foreach (var jobProperty in job.AllProperties)
 				{
-					Func<IJob, EnvironmentInfo, string> validationRule;
+					Func<IJob, HostEnvironmentInfo, string> validationRule;
 					if (_validationRules.TryGetValue(jobProperty.Name, out validationRule))
 					{
 						var message = validationRule(job, env);

@@ -442,7 +442,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			var limitText = competitionNode.Attribute(limitProperty.ToString())?.Value;
 			if (limitText != null)
 			{
-				var culture = EnvironmentInfo.MainCultureInfo;
+				var culture = HostEnvironmentInfo.MainCultureInfo;
 				double parsed;
 				if (double.TryParse(limitText, NumberStyles.Any, culture, out parsed))
 				{

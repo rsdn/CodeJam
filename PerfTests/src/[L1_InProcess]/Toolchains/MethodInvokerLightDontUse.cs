@@ -163,13 +163,13 @@ namespace BenchmarkDotNet.Running
 				ForceGcCollect();
 
 				int iterationCounter = 0;
-				Measurement previousMeasurement = null;
+				Measurement? previousMeasurement = null;
 				int upCount = 0;
 				while (true)
 				{
 					iterationCounter++;
 					var measurement = multiInvoke(new MultiInvokeInput(iterationMode, iterationCounter, invokeCount));
-					if (previousMeasurement != null && measurement.Nanoseconds > previousMeasurement.Nanoseconds - 0.1)
+					if (previousMeasurement != null && measurement.Nanoseconds > previousMeasurement.GetValueOrDefault().Nanoseconds - 0.1)
 						upCount++;
 					if (iterationCounter >= WarmupAutoMinIterationCount && upCount >= 3)
 						break;

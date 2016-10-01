@@ -402,7 +402,7 @@ namespace BenchmarkDotNet.Helpers
 						_outputStack.Pop();
 					}
 
-					Code.AssertState(output == _outputStack.Peek(), "Bug");
+					CodeJam.Code.AssertState(output == _outputStack.Peek(), "Bug");
 					Console.SetOut(_outputStack.Pop().Output);
 				}
 			}

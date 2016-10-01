@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Helpers;
+using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
+using BenchmarkDotNet.Toolchains;
+using BenchmarkDotNet.Toolchains.InProcess;
 
 using CodeJam.PerfTests.Running.Messages;
 
@@ -182,6 +186,12 @@ namespace CodeJam.PerfTests.Running.Core
 					}
 				}
 			}
+			catch (TargetInvocationException ex)
+			{
+				competitionState.WriteExceptionMessage(
+					MessageSource.Runner, MessageSeverity.ExecutionError,
+					$"Benchmark {benchmarkType.Name} failed.", ex.InnerException);
+			}
 			catch (Exception ex)
 			{
 				competitionState.WriteExceptionMessage(
@@ -252,8 +262,21 @@ namespace CodeJam.PerfTests.Running.Core
 					logger.WriteSeparatorLine(runMessage);
 				}
 
+				// BADCODE
+				// TODO: remove as Run will become public.
+				Func<IJob, IToolchain> toolchainProvider = j => j.Toolchain ?? InProcessToolchain.Instance;
+				var runMethod = typeof(IConfig).Assembly
+					.GetType("BenchmarkDotNet.Running.BenchmarkRunnerCore")
+					.GetMethods(BindingFlags.NonPublic | BindingFlags.Static)
+					.Single(m=>m.Name == "Run" && m.IsAssembly);
+
 				// Running the benchmark
-				var summary = BenchmarkRunner.Run(benchmarkType, competitionState.Config);
+				var summary = (Summary)runMethod.Invoke(
+					null,
+					new object[]
+					{
+						BenchmarkConverter.TypeToBenchmarks(benchmarkType, competitionState.Config), competitionState.Config, toolchainProvider
+					});
 				competitionState.RunCompleted(summary);
 
 				// TODO: dump them before analyser run?
