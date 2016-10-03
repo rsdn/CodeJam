@@ -335,7 +335,7 @@ namespace CodeJam.Arithmetic
 				caseIfAIsNull,
 				caseIfAIsNotNull);
 		}
-#endregion
+		#endregion
 
 		/// <summary>Compare operator factory method..</summary>
 		/// <typeparam name="T">The type of the operands</typeparam>
@@ -362,10 +362,11 @@ namespace CodeJam.Arithmetic
 			{
 				return GetBinaryOperatorCore<T, bool>(comparisonType);
 			}
-			catch (NotSupportedException)
+			catch (NotSupportedException ex)
 			{
-				return GetComparerComparison<T>(comparisonType);
+				ex.LogToCodeTraceSourceCatched();
 			}
+			return GetComparerComparison<T>(comparisonType);
 		}
 
 		[NotNull]
@@ -396,9 +397,9 @@ namespace CodeJam.Arithmetic
 					throw CodeExceptions.UnexpectedArgumentValue(nameof(comparisonType), comparisonType);
 			}
 		}
-#endregion
+		#endregion
 
-#region Flag operators
+		#region Flag operators
 		/// <summary>Emits code for (value &amp; flag) == flag check.</summary>
 		/// <typeparam name="T">The type of the operands</typeparam>
 		/// <returns>Callback for (value &amp; flag) == flag check</returns>
@@ -453,6 +454,6 @@ namespace CodeJam.Arithmetic
 				typeof(T),
 				Parameter(typeof(T), "value"),
 				Parameter(typeof(T), "flag"));
-#endregion
+		#endregion
 	}
 }

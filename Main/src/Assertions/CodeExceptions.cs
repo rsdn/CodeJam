@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 using JetBrains.Annotations;
 
@@ -40,6 +41,61 @@ namespace CodeJam
 		[StringFormatMethod("messageFormat")]
 		private static string FormatMessage([NotNull] string messageFormat, [CanBeNull] params object[] args) =>
 			(args == null || args.Length == 0) ? messageFormat : string.Format(messageFormat, args);
+
+		/// <summary>Returns trace source for code exceptions.</summary>
+		/// <value>The code trace source.</value>
+		public static TraceSource CodeTraceSource => _codeTraceSource.Value;
+
+		private static readonly Lazy<TraceSource> _codeTraceSource = new Lazy<TraceSource>(
+			() => CreateTraceSource(typeof(Code).Namespace + "." + nameof(CodeTraceSource)));
+
+		private static TraceSource CreateTraceSource(string sourceName)
+		{
+			// BASEDON: System.Diagnostics.PresentationTraceSources
+			var traceSource = new TraceSource(sourceName);
+			if (traceSource.Switch.Level == SourceLevels.Off && Debugger.IsAttached)
+			{
+				traceSource.Switch.Level = SourceLevels.Warning;
+			}
+			return traceSource;
+		}
+
+		/// <summary>Logs the exception that will be thrown to the <see cref="CodeTraceSource"/>.</summary>
+		/// <typeparam name="TException">The type of the exception.</typeparam>
+		/// <param name="exception">The exception.</param>
+		/// <returns>The original exception</returns>
+		internal static TException LogToCodeTraceSourceBeforeThrow<TException>(this TException exception)
+			where TException : Exception
+		{
+			var sb = new StringBuilder();
+			exception.ToDiagnosticString(sb);
+			if (exception.StackTrace == null)
+			{
+				sb.Append(new StackTrace());
+			}
+
+			CodeTraceSource.TraceEvent(TraceEventType.Error, 0, sb.ToString());
+			return exception;
+		}
+
+		/// <summary>Logs the catched exception to the <see cref="CodeTraceSource"/>.</summary>
+		/// <typeparam name="TException">The type of the exception.</typeparam>
+		/// <param name="exception">The exception.</param>
+		/// <returns>The original exception</returns>
+		internal static TException LogToCodeTraceSourceCatched<TException>(this TException exception)
+			where TException : Exception
+		{
+			var sb = new StringBuilder();
+			sb.Append("Swallowed: ");
+			exception.ToDiagnosticString(sb);
+			if (exception.StackTrace == null)
+			{
+				sb.Append(new StackTrace());
+			}
+
+			CodeTraceSource.TraceEvent(TraceEventType.Warning, 0, sb.ToString());
+			return exception;
+		}
 		#endregion
 
 		#region Argument validation
@@ -51,7 +107,7 @@ namespace CodeJam
 		public static ArgumentNullException ArgumentNull([NotNull, InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
-			return new ArgumentNullException(argumentName);
+			return new ArgumentNullException(argumentName).LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Creates <seealso cref="ArgumentNullException"/>.</summary>
@@ -62,7 +118,9 @@ namespace CodeJam
 		public static ArgumentException ArgumentItemNull([NotNull, InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
-			return new ArgumentException(argumentName, $"All items in '{argumentName}' should not be null.");
+			return new ArgumentException(
+				argumentName, $"All items in '{argumentName}' should not be null.")
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Creates <seealso cref="ArgumentException"/> for empty string</summary>
@@ -75,7 +133,8 @@ namespace CodeJam
 			BreakIfAttached();
 			return new ArgumentException(
 				$"String '{argumentName}' should be neither null nor empty.",
-				argumentName);
+				argumentName)
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Creates <seealso cref="ArgumentException"/> for empty (or whitespace) string</summary>
@@ -88,7 +147,8 @@ namespace CodeJam
 			BreakIfAttached();
 			return new ArgumentException(
 				$"String '{argumentName}' should be neither null nor whitespace.",
-				argumentName);
+				argumentName)
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Creates <seealso cref="ArgumentOutOfRangeException"/></summary>
@@ -107,7 +167,8 @@ namespace CodeJam
 			return new ArgumentOutOfRangeException(
 				argumentName,
 				value,
-				$"The value of '{argumentName}' ({value}) should be between {fromValue} and {toValue}.");
+				$"The value of '{argumentName}' ({value}) should be between {fromValue} and {toValue}.")
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Creates <seealso cref="ArgumentOutOfRangeException"/></summary>
@@ -127,7 +188,8 @@ namespace CodeJam
 			return new ArgumentOutOfRangeException(
 				argumentName,
 				value,
-				$"The value of '{argumentName}' ('{value}') should be between '{fromValue}' and '{toValue}'.");
+				$"The value of '{argumentName}' ('{value}') should be between '{fromValue}' and '{toValue}'.")
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Creates <seealso cref="IndexOutOfRangeException"/></summary>
@@ -144,7 +206,8 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new IndexOutOfRangeException(
-				$"The value of '{argumentName}' ({value}) should be greater than or equal to {startIndex} and less than {length}.");
+				$"The value of '{argumentName}' ({value}) should be greater than or equal to {startIndex} and less than {length}.")
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 		#endregion
 
@@ -163,7 +226,9 @@ namespace CodeJam
 			[CanBeNull] params object[] args)
 		{
 			BreakIfAttached();
-			return new ArgumentException(FormatMessage(messageFormat, args), argumentName);
+			return new ArgumentException(
+				FormatMessage(messageFormat, args), argumentName)
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Creates <seealso cref="InvalidOperationException"/></summary>
@@ -178,7 +243,9 @@ namespace CodeJam
 			[CanBeNull] params object[] args)
 		{
 			BreakIfAttached();
-			return new InvalidOperationException(FormatMessage(messageFormat, args));
+			return new InvalidOperationException(
+				FormatMessage(messageFormat, args))
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 		#endregion
 
@@ -200,7 +267,8 @@ namespace CodeJam
 			BreakIfAttached();
 			var valueType = value?.GetType() ?? typeof(T);
 			return new ArgumentOutOfRangeException(
-				argumentName, value, $"Unexpected value '{value}' of type '{valueType.FullName}'.");
+				argumentName, value, $"Unexpected value '{value}' of type '{valueType.FullName}'.")
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>
@@ -224,7 +292,8 @@ namespace CodeJam
 			BreakIfAttached();
 			return new ArgumentOutOfRangeException(
 				argumentName, value,
-				FormatMessage(messageFormat, args));
+				FormatMessage(messageFormat, args))
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>
@@ -240,7 +309,10 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			var valueType = value?.GetType() ?? typeof(T);
-			return new InvalidOperationException($"Unexpected value '{value}' of type '{valueType.FullName}'.");
+			return
+				new InvalidOperationException(
+					$"Unexpected value '{value}' of type '{valueType.FullName}'.")
+					.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>
@@ -257,7 +329,9 @@ namespace CodeJam
 			[NotNull] string messageFormat, [CanBeNull] params object[] args)
 		{
 			BreakIfAttached();
-			return new InvalidOperationException(FormatMessage(messageFormat, args));
+			return new InvalidOperationException(
+				FormatMessage(messageFormat, args))
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Throw this if the object is disposed.</summary>
@@ -268,7 +342,9 @@ namespace CodeJam
 		public static ObjectDisposedException ObjectDisposed([CanBeNull] Type typeofDisposedObject)
 		{
 			BreakIfAttached();
-			return new ObjectDisposedException(typeofDisposedObject?.FullName);
+			return new ObjectDisposedException(
+				typeofDisposedObject?.FullName)
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Throw this if the object is disposed.</summary>
@@ -283,7 +359,10 @@ namespace CodeJam
 			[CanBeNull] Type typeofDisposedObject, [NotNull] string messageFormat, [CanBeNull] params object[] args)
 		{
 			BreakIfAttached();
-			return new ObjectDisposedException(typeofDisposedObject?.FullName, FormatMessage(messageFormat, args));
+			return
+				new ObjectDisposedException(
+					typeofDisposedObject?.FullName, FormatMessage(messageFormat, args))
+					.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Used to be thrown in places expected to be unreachable.</summary>
@@ -296,7 +375,9 @@ namespace CodeJam
 		public static NotSupportedException Unreachable([NotNull] string messageFormat, [CanBeNull] params object[] args)
 		{
 			BreakIfAttached();
-			return new NotSupportedException(FormatMessage(messageFormat, args));
+			return new NotSupportedException(
+				FormatMessage(messageFormat, args))
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 		#endregion
 	}

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading;
 
@@ -44,10 +46,31 @@ namespace CodeJam.Assertions
 		[Test]
 		public void TestNotNull()
 		{
-			var ex = Assert.Throws<ArgumentNullException>(() => Code.NotNull<object>(null, "arg00"));
-			Assert.That(ex.Message, Does.Contain("arg00"));
+			var log = new StringWriter();
+			var listener = new TextWriterTraceListener(log)
+			{
+				TraceOutputOptions = TraceOptions.None
+			};
+			var ts = CodeExceptions.CodeTraceSource;
+			var logLevel = ts.Switch.Level;
+			try
+			{
+				ts.Switch.Level = SourceLevels.All;
+				ts.Listeners.Add(listener);
 
-			Assert.DoesNotThrow(() => Code.NotNull<object>("Hello!", "arg00"));
+				var ex = Assert.Throws<ArgumentNullException>(() => Code.NotNull<object>(null, "arg00"));
+				Assert.That(ex.Message, Does.Contain("arg00"));
+				Assert.That(log.ToString(), Does.Contain(ex.Message));
+
+
+				Assert.DoesNotThrow(() => Code.NotNull<object>("Hello!", "arg00"));
+				Assert.That(log.ToString(), Does.Not.Contain("Hello!"));
+			}
+			finally
+			{
+				ts.Listeners.Remove(listener);
+				ts.Switch.Level = logLevel;
+			}
 		}
 
 		[Test]
@@ -57,7 +80,7 @@ namespace CodeJam.Assertions
 			var ex = Assert.Throws<ArgumentNullException>(() => DebugCode.NotNull<object>(null, "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 #else
-	// ReSharper disable once InvocationIsSkipped
+			// ReSharper disable once InvocationIsSkipped
 			Assert.DoesNotThrow(() => DebugCode.NotNull<object>(null, "arg00"));
 #endif
 

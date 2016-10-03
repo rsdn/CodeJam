@@ -48,7 +48,10 @@ namespace CodeJam
 				{
 					item.Dispose();
 				}
-				catch (Exception ex) when (exceptionHandler(ex)) { }
+				catch (Exception ex) when (exceptionHandler(ex))
+				{
+					ex.LogToCodeTraceSourceCatched();
+				}
 			}
 		}
 	}

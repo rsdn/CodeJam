@@ -29,7 +29,9 @@ namespace CodeJam
 			BreakIfAttached();
 			var valueType = value.GetType();
 			return new ArgumentOutOfRangeException(
-				argumentName, value, $"Unexpected value '{value}' of type '{valueType.FullName}'.");
+				argumentName, value,
+				$"Unexpected value '{value}' of type '{valueType.FullName}'.")
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 		#endregion
 
@@ -49,7 +51,9 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"The value of the {argumentName} argument ('{value}') should not include flag '{flag}'.", argumentName);
+				$"The value of the {argumentName} argument ('{value}') should not include flag '{flag}'.", 
+				argumentName)
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Creates <seealso cref="ArgumentException"/> for any bit from flag is not set case.</summary>
@@ -67,7 +71,9 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"The value of the {argumentName} argument ('{value}') should include flag '{flags}'.", argumentName);
+				$"The value of the {argumentName} argument ('{value}') should include flag '{flags}'.",
+				argumentName)
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Creates <seealso cref="ArgumentException"/> for any bit from flag is set case.</summary>
@@ -85,7 +91,9 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"The value of the {argumentName} argument ('{value}') should not include any flag from '{flags}'.", argumentName);
+				$"The value of the {argumentName} argument ('{value}') should not include any flag from '{flags}'.",
+				argumentName)
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Creates <seealso cref="ArgumentException"/> for flag is not set case.</summary>
@@ -103,7 +111,9 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"The value of the {argumentName} argument ('{value}') should include any flag from '{flag}'.", argumentName);
+				$"The value of the {argumentName} argument ('{value}') should include any flag from '{flag}'.",
+				argumentName)
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 		#endregion
 	}
