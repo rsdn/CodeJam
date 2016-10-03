@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<id>CodeJam.PerfTests.MSTest</id>
+		<version>0.0.1-alpha</version>
+		<title>CodeJam .NET Library</title>
+		<authors>ig-sinicyn</authors>
+		<licenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</licenseUrl>
+		<projectUrl>https://github.com/rsdn/CodeJam</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>CodeJam.PerfTests.MSTest provides MSTest support for Benchmark.Net-driven performance tests. Should be installed into test project as MSTest does not provide dependency package yet.</description>
+		<copyright>RSDN.ru, 2016</copyright>
+		<tags>benchmark benchmarking performance</tags>
+		<dependencies>
+			<dependency id="CodeJam.PerfTests.Core" version="0.0.1-alpha" />
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="Readme.txt" target="" />
+
+		<file src="..\src-MSTest\bin\Release\CodeJam.PerfTests.MSTest.dll" target="lib\net46" />
+		<file src="..\src-MSTest\bin\Release\CodeJam.PerfTests.MSTest.pdb" target="lib\net46" />
+		<file src="..\src-MSTest\bin\Release\CodeJam.PerfTests.MSTest.xml" target="lib\net46" />
+	</files>
+</package>
