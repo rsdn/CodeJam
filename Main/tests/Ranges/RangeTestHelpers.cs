@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
-
-using NUnit.Framework;
 
 using CodeJam.Strings;
-
-using static NUnit.Framework.Assert;
 
 namespace CodeJam.Ranges
 {

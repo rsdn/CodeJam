@@ -123,6 +123,20 @@
     <Compile Include="Collections\QueryableExtensions.cs" />
     <Compile Include="Assertions\EnumCode.cs" />
     <Compile Include="Collections\Sequence.cs" />
+    <Compile Include="Dates\DateTimeRangeExtensions.NonGenerated.cs" />
+    <Compile Include="Dates\DateTimeRangeExtensions.generated.cs">
+      <DependentUpon>DateTimeRangeExtensions.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Dates\DateTimeExtensions.NonGenerated.cs" />
+    <Compile Include="Dates\DateTimeExtensions.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DateTimeExtensions.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dates\DateTimeRangeExtensions.cs" />
+    <Compile Include="Dates\DateTimeExtensions.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="Expressions\NamespaceDoc.cs" />
@@ -370,6 +384,14 @@
     <Content Include="Collections\DictionaryExtensions.GetValueOrDefault.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DictionaryExtensions.GetValueOrDefault.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Dates\DateTimeRangeExtensions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DateTimeRangeExtensions.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Dates\DateTimeExtensions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DateTimeExtensions.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Fn.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -319,7 +319,7 @@ namespace CodeJam.Ranges
 			}
 
 #pragma warning disable 618 // Validation not required: HasValue checked.
-			return new RangeBoundaryFrom<T2>((default(T2)), _kind, UnsafeOverload.SkipsArgValidation);
+			return new RangeBoundaryFrom<T2>(default(T2), _kind, UnsafeOverload.SkipsArgValidation);
 #pragma warning restore 618
 		}
 
