@@ -1,8 +1,17 @@
-CodeJam 1.2.0-beta1 Release Notes
+CodeJam 1.2.0-beta2 Release Notes
 -------------------------------
 
+What's new in 1.2.0-beta2
+-------------------------
+* Composite ranges structures and algorithms
+* EnumCode - assertions for enums
+* Sequence generators
+* TraceSource added for CodeJam diagnostics
+* DateTime extensions
+* Fixes and code cleanup
+
 What's new in 1.2.0-beta1
------------------------
+-------------------------
 * HGlobal improvements
 * Code.ValidCount and Code.BugIf assertions
 * Added a way to create a TempFile wrapper with a default temp name without a real creation of a file.
@@ -10,7 +19,7 @@ What's new in 1.2.0-beta1
 * Fixes and code cleanup
 
 What's new in 1.1.0
------------------------
+-------------------
 * Code cleanup
 
 What's new in 1.1.0-rc2
