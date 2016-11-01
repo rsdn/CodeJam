@@ -110,7 +110,7 @@ namespace CodeJam.Dates
 			}
 		}
 
-		/// <summary>Returns days of in range.</summary>
+		/// <summary>Returns first days of months in range.</summary>
 		/// <param name="range">The date range.</param>
 		/// <returns>First days of months in range</returns>
 		[NotNull]
@@ -133,6 +133,28 @@ namespace CodeJam.Dates
 			}
 		}
 
+		/// <summary>Returns first days of years in range.</summary>
+		/// <param name="range">The date range.</param>
+		/// <returns>First days of years in range</returns>
+		[NotNull]
+		public static IEnumerable<DateTime> YearsBetween(this Range<DateTime> range)
+		{
+			range = range.MakeInclusive();
+			if (range.IsEmpty)
+				yield break;
+
+			var startDate = range.FromValue.FirstDayOfYear();
+			var endDate = range.ToValue;
+
+			// if range.FromValue is not first date of year, the years is skipped.
+			if (startDate < range.FromValue)
+				startDate = startDate.NextYear();
+			while (startDate <= endDate)
+			{
+				yield return startDate;
+				startDate = startDate.NextYear();
+			}
+		}
 
 		/// <summary>Splits the range by months.</summary>
 		/// <param name="range">The date range.</param>
@@ -149,6 +171,28 @@ namespace CodeJam.Dates
 			while (startDate < lastMonthDate)
 			{
 				var next = startDate.FirstDayOfMonth().NextMonth();
+				yield return Range.CreateExclusiveTo(startDate, next);
+				startDate = next;
+			}
+
+			yield return Range.Create(startDate, range.To.Value);
+		}
+
+		/// <summary>Splits the range by years.</summary>
+		/// <param name="range">The date range.</param>
+		/// <returns>Ranges splitted by first day of years in range.</returns>
+		[NotNull]
+		public static IEnumerable<Range<DateTime>> SplitByYears(this Range<DateTime> range)
+		{
+			if (range.IsEmpty)
+				yield break;
+
+			var startDate = range.From.Value;
+			var lastYearDate = range.To.Value.FirstDayOfYear();
+
+			while (startDate < lastYearDate)
+			{
+				var next = startDate.FirstDayOfYear().NextYear();
 				yield return Range.CreateExclusiveTo(startDate, next);
 				startDate = next;
 			}
