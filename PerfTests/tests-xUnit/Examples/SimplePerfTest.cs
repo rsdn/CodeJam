@@ -32,7 +32,7 @@ namespace CodeJam.Examples
 		public void SlowerX5() => Thread.SpinWait(5 * Count);
 
 		// Competition member #3. Should take ~7x more time to run.
-		[CompetitionBenchmark(6.82, 7.21)]
+		[CompetitionBenchmark(6.70, 7.21)]
 		public void SlowerX7() => Thread.SpinWait(7 * Count);
 	}
 }
