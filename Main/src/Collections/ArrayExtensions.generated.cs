@@ -70,7 +70,7 @@ namespace CodeJam.Collections
 				return true;
 			}
 
-			fixed (void* pa = a, pb = b)
+			fixed (void* pa = &a[0], pb = &b[0])
 				return Memory.Compare((byte*)pa, (byte*)pb, a.Length * sizeof(byte));
 		}
 
@@ -132,7 +132,7 @@ namespace CodeJam.Collections
 				return true;
 			}
 
-			fixed (void* pa = a, pb = b)
+			fixed (void* pa = &a[0], pb = &b[0])
 				return Memory.Compare((byte*)pa, (byte*)pb, a.Length * sizeof(sbyte));
 		}
 
@@ -194,7 +194,7 @@ namespace CodeJam.Collections
 				return true;
 			}
 
-			fixed (void* pa = a, pb = b)
+			fixed (void* pa = &a[0], pb = &b[0])
 				return Memory.Compare((byte*)pa, (byte*)pb, a.Length * sizeof(short));
 		}
 
@@ -256,7 +256,7 @@ namespace CodeJam.Collections
 				return true;
 			}
 
-			fixed (void* pa = a, pb = b)
+			fixed (void* pa = &a[0], pb = &b[0])
 				return Memory.Compare((byte*)pa, (byte*)pb, a.Length * sizeof(ushort));
 		}
 
@@ -318,7 +318,7 @@ namespace CodeJam.Collections
 				return true;
 			}
 
-			fixed (void* pa = a, pb = b)
+			fixed (void* pa = &a[0], pb = &b[0])
 				return Memory.Compare((byte*)pa, (byte*)pb, a.Length * sizeof(int));
 		}
 
@@ -380,7 +380,7 @@ namespace CodeJam.Collections
 				return true;
 			}
 
-			fixed (void* pa = a, pb = b)
+			fixed (void* pa = &a[0], pb = &b[0])
 				return Memory.Compare((byte*)pa, (byte*)pb, a.Length * sizeof(uint));
 		}
 
@@ -442,7 +442,7 @@ namespace CodeJam.Collections
 				return true;
 			}
 
-			fixed (void* pa = a, pb = b)
+			fixed (void* pa = &a[0], pb = &b[0])
 				return Memory.Compare((byte*)pa, (byte*)pb, a.Length * sizeof(long));
 		}
 
@@ -504,7 +504,7 @@ namespace CodeJam.Collections
 				return true;
 			}
 
-			fixed (void* pa = a, pb = b)
+			fixed (void* pa = &a[0], pb = &b[0])
 				return Memory.Compare((byte*)pa, (byte*)pb, a.Length * sizeof(ulong));
 		}
 

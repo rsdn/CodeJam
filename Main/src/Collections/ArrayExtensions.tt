@@ -138,7 +138,7 @@ private void GenerateUnsafeMethod(string type)
 				return true;
 			}
 
-			fixed (void* pa = a, pb = b)
+			fixed (void* pa = &a[0], pb = &b[0])
 				return Memory.Compare((byte*)pa, (byte*)pb, a.Length * sizeof(<#= type #>));
 		}
 <#+

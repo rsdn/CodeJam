@@ -251,11 +251,11 @@ namespace CodeJam.Strings
 			if (data.Length == 0)
 				return string.Empty;
 
-			var length = data.Length << 1;
+			var length = data.Length * 2;
 			var result = new string('\0', length);
 
 			fixed (char* res = result)
-			fixed (byte* buf = data)
+			fixed (byte* buf = &data[0])
 			{
 				var pres = res;
 
@@ -268,9 +268,9 @@ namespace CodeJam.Strings
 					n = b & 0xF;
 					pres[1] = (char)(55 + n + (((n - 10) >> 31) & -7));
 				}
-			}
 
-			return result;
+				return result;
+			}
 		}
 
 		/// <summary>
@@ -292,11 +292,14 @@ namespace CodeJam.Strings
 				return string.Empty;
 
 			var hasSeparator = byteSeparator.NotNullNorEmpty();
-			var length = data.Length * 2 + (hasSeparator ? (data.Length - 1) * byteSeparator.Length : 0);
+			var length = data.Length * 2;
+			if (hasSeparator)
+				length += (data.Length - 1) * byteSeparator.Length;
+
 			var result = new string('\0', length);
 
 			fixed (char* res = result, sep = byteSeparator)
-			fixed (byte* buf = data)
+			fixed (byte* buf = &data[0])
 			{
 				var pres = res;
 
@@ -313,9 +316,9 @@ namespace CodeJam.Strings
 					n = b & 0xF;
 					pres[1] = (char)(55 + n + (((n - 10) >> 31) & -7));
 				}
-			}
 
-			return result;
+				return result;
+			}
 		}
 
 		/// <summary>
