@@ -278,9 +278,22 @@ namespace CodeJam.TableData
 				? (ITableDataFormatter)new CsvFormatter()
 				: new CsvNoEscapeFormatter();
 
+		/// <summary>
+		/// Prints full CSV table
+		/// </summary>
+		/// <param name="writer">Instance of <see cref="TextWriter"/> to write to.</param>
+		/// <param name="data">Data to write.</param>
+		/// <param name="indent">The indent.</param>
+		/// <param name="allowEscaping">If true, use escaping.</param>
+		public static void Print([NotNull] TextWriter writer,
+				[NotNull] IEnumerable<string[]> data,
+				[CanBeNull] string indent = null,
+				bool allowEscaping = true) =>
+			CreateFormatter(allowEscaping).Print(writer, data, indent);
+
 		private class CsvFormatter : ITableDataFormatter
 		{
-			public int GetValueLength([CanBeNull] string value)
+			public int GetValueLength(string value)
 			{
 				var len = value?.Length;
 				if (!len.HasValue || len == 0)
@@ -331,7 +344,7 @@ namespace CodeJam.TableData
 			/// </summary>
 			/// <param name="value">Value.</param>
 			/// <returns>Length of formatted value representation.</returns>
-			public int GetValueLength(string value) => value.Length;
+			public int GetValueLength(string value) => (value?.Length).GetValueOrDefault();
 
 			/// <summary>
 			/// Prints line of table data.

@@ -8,7 +8,7 @@ using static CodeJam.Ranges.CompositeRangeInternal;
 
 namespace CodeJam.Ranges
 {
-	/// <summary>Extension methods for <seealso cref="CompositeRange{T}"/>.</summary>
+	/// <summary>Extension methods for <see cref="CompositeRange{T}"/>.</summary>
 	public static partial class CompositeRangeExtensions
 	{
 		#region ToCompositeRange

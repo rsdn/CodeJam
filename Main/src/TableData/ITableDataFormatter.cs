@@ -8,6 +8,8 @@ namespace CodeJam.TableData
 	[PublicAPI]
 	public interface ITableDataFormatter
 	{
+		int GetValueLength([CanBeNull] string value);
+
 		/// <summary>
 		/// Prints line of table data.
 		/// </summary>

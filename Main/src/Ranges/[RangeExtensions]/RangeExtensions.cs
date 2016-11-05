@@ -7,7 +7,7 @@ using static CodeJam.PlatformDependent;
 
 namespace CodeJam.Ranges
 {
-	/// <summary>Extension methods for <seealso cref="Range{T}"/>.</summary>
+	/// <summary>Extension methods for <see cref="Range{T}"/>.</summary>
 	[PublicAPI]
 	public static partial class RangeExtensions
 	{

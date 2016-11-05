@@ -14,7 +14,7 @@ namespace CodeJam.TableData
 	public static class TableDataPrinter
 	{
 		/// <summary>
-		/// Prints full CSV table
+		/// Prints full data table
 		/// </summary>
 		/// <param name="formatter">The formatter.</param>
 		/// <param name="writer">Instance of <see cref="TextWriter"/> to write to.</param>
@@ -43,7 +43,12 @@ namespace CodeJam.TableData
 
 				widths =
 					line
-						.Select((ln, i) => i >= widths.Length ? ln.Length : Math.Max(ln.Length, widths[i]))
+						.Select(
+							(val, i) =>
+							{
+								var len = formatter.GetValueLength(val);
+								return i >= widths.Length ? len : Math.Max(len, widths[i]);
+							})
 						.ToArray();
 				writer.Write(formatter.FormatLine(line, widths));
 			}
