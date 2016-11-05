@@ -26,7 +26,30 @@ namespace CodeJam.TableData
 	[PublicAPI]
 	public static class CsvFormat
 	{
-#region Parser
+		private static readonly char[] _invalidChars = { '\r', '\n', '"', ',' };
+
+		private static bool IsEscapeRequired(string value)
+		{
+			if (string.IsNullOrEmpty(value))
+				return false;
+			return
+				char.IsWhiteSpace(value[0])
+				|| char.IsWhiteSpace(value[value.Length - 1])
+				|| value.IndexOfAny(_invalidChars) >= 0;
+		}
+
+		/// <summary>Escapes csv value.</summary>
+		/// <param name="value">The value.</param>
+		/// <returns>Escaped value.</returns>
+		public static string EscapeValue(string value)
+		{
+			if (!IsEscapeRequired(value))
+				return value;
+
+			return '"' + value.Replace("\"", "\"\"") + '"';
+		}
+
+		#region Parser
 		/// <summary>
 		/// Creates RFC4180 compliant CSV parser.
 		/// </summary>
@@ -99,7 +122,7 @@ namespace CodeJam.TableData
 							break;
 
 						case ParserState.Field:
-							Debug.Assert(curField != null, "curField != null");
+							DebugCode.BugIf(curField == null, "curField should be not null");
 							if (curChar.IsEof || curChar.IsEol || curChar.Char == separator)
 							{
 								result.Add(curField.ToString().Trim());
@@ -112,7 +135,7 @@ namespace CodeJam.TableData
 							break;
 
 						case ParserState.QuotedField:
-							Debug.Assert(curField != null, "curField != null");
+							DebugCode.BugIf(curField == null, "curField should be not null");
 							if (curChar.IsEof)
 								throw new FormatException($"Unexpected EOF at line {lineNum} column {column}");
 
@@ -256,28 +279,11 @@ namespace CodeJam.TableData
 
 		private class CsvFormatter : ITableDataFormatter
 		{
-			private static bool IsEscapeRequired(string value)
-			{
-				if (string.IsNullOrEmpty(value))
-					return false;
-				return
-					char.IsWhiteSpace(value[0])
-					|| char.IsWhiteSpace(value[value.Length - 1])
-					|| value.IndexOfAny(new[] { '\r', '\n', '"', ',' }) >= 0;
-			}
-
 			public int GetValueLength(string value)
 			{
 				if (!IsEscapeRequired(value))
 					return value.Length;
 				return value.Length + 2 + value.Count(c => c == '"');
-			}
-
-			private static string EscapeValue(string value)
-			{
-				if (!IsEscapeRequired(value))
-					return value;
-				return '"' + value.Replace("\"", "\"\"") + '"';
 			}
 
 			public string FormatLine(string[] values, int[] columnWidths)
