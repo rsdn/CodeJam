@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,27 +25,28 @@ namespace CodeJam.TableData
 	[PublicAPI]
 	public static class CsvFormat
 	{
-		private static readonly char[] _invalidChars = { '\r', '\n', '"', ',' };
+		private static readonly char[] _conflictChars = { '\r', '\n', '"', ',' };
 
-		private static bool IsEscapeRequired(string value)
-		{
-			if (string.IsNullOrEmpty(value))
-				return false;
-			return
-				char.IsWhiteSpace(value[0])
-				|| char.IsWhiteSpace(value[value.Length - 1])
-				|| value.IndexOfAny(_invalidChars) >= 0;
-		}
+		private static bool IsEscapeRequired(char value) => value.IsWhiteSpace() || _conflictChars.Contains(value);
 
 		/// <summary>Escapes csv value.</summary>
 		/// <param name="value">The value.</param>
 		/// <returns>Escaped value.</returns>
 		public static string EscapeValue(string value)
 		{
-			if (!IsEscapeRequired(value))
-				return value;
-
-			return '"' + value.Replace("\"", "\"\"") + '"';
+			StringBuilder escaped = null;
+			for (var i = 0; i < value.Length; i++)
+			{
+				var chr = value[i];
+				if (escaped != null)
+					if (chr == '"')
+						escaped.Append("\"\"");
+					else
+						escaped.Append(chr);
+				else if (IsEscapeRequired(chr))
+					escaped = new StringBuilder(chr == '"' ? value.Substring(0, i) + "\"\"" : value.Substring(0, i + 1));
+			}
+			return escaped?.ToString() ?? value;
 		}
 
 		#region Parser
@@ -208,7 +208,7 @@ namespace CodeJam.TableData
 			return parts;
 		}
 
-#region CharReader struct
+		#region CharReader struct
 		private struct CharReader
 		{
 			private const int _eof = -1;
@@ -251,9 +251,9 @@ namespace CodeJam.TableData
 
 			public CharReader Peek() => new CharReader(_reader, _reader.Peek());
 		}
-#endregion
+		#endregion
 
-#region ParserState enum
+		#region ParserState enum
 		private enum ParserState
 		{
 			ExpectField,
@@ -261,10 +261,11 @@ namespace CodeJam.TableData
 			QuotedField,
 			AfterField
 		}
-#endregion
-#endregion
+		#endregion
 
-#region Formatter
+		#endregion
+
+		#region Formatter
 		/// <summary>
 		/// Creates formatter for CSV.
 		/// </summary>
@@ -279,11 +280,27 @@ namespace CodeJam.TableData
 
 		private class CsvFormatter : ITableDataFormatter
 		{
-			public int GetValueLength(string value)
+			public int GetValueLength([CanBeNull] string value)
 			{
-				if (!IsEscapeRequired(value))
-					return value.Length;
-				return value.Length + 2 + value.Count(c => c == '"');
+				var len = value?.Length;
+				if (!len.HasValue || len == 0)
+					return 0;
+
+				var append = 0;
+				foreach (var chr in value) {
+					if (append == 0)
+					{
+						if (IsEscapeRequired(chr))
+						{
+							append = 2; // add two quotes
+							if (chr == '"')
+								append++; // +1 for double quota escape
+						}
+					}
+					else if (chr == '"')
+						append++; // +1 for double quota escape
+				}
+				return len.Value + append;
 			}
 
 			public string FormatLine(string[] values, int[] columnWidths)
@@ -308,7 +325,7 @@ namespace CodeJam.TableData
 
 		private class CsvNoEscapeFormatter : ITableDataFormatter
 		{
-#region Implementation of ITableDataFormatter
+			#region Implementation of ITableDataFormatter
 			/// <summary>
 			/// Returns length of formatted value.
 			/// </summary>
@@ -330,8 +347,8 @@ namespace CodeJam.TableData
 						columnWidths,
 						(s, w) => s.PadLeft(w))
 					.Join(", ");
-#endregion
+			#endregion
 		}
-#endregion
+		#endregion
 	}
 }
