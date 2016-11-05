@@ -9,6 +9,8 @@ install:
     nuget install EWSoftware.SHFB -o c:\ -Version 2015.10.10
 
     nuget install EWSoftware.SHFB.NETFramework -o c:\projects\codejam
+before_build:
+- cmd: nuget restore CodeJam.sln
 build:
   project: CodeJamDoc.sln
   verbosity: minimal
