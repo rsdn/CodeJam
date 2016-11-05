@@ -1,5 +1,12 @@
-CodeJam 1.2.0-beta2 Release Notes
+CodeJam 1.2.0-beta3 Release Notes
 -------------------------------
+
+What's new in 1.2.0-beta3
+-------------------------
+* ArrayExtensions and StringExtensions optimization
+* CsvFormat.EscapeValue optimized and made public
+* Use System.ValueTuple instead of CodeJam.ValueTuple (possible breaking changes)
+* Doc comment fixes
 
 What's new in 1.2.0-beta2
 -------------------------

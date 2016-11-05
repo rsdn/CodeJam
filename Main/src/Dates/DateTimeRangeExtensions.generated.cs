@@ -36,13 +36,13 @@ namespace CodeJam.Dates
 
 		/// <summary>Gets date range from start of the year to the current date.</summary>
 		/// <param name="date">The date.</param>
-		/// <returns></returns>
+		/// <returns>Date range.</returns>
 		public static Range<DateTimeOffset> GetFromStartOfYearRange(this DateTimeOffset date) =>
 			Range.Create(date.FirstDayOfYear(), date);
 
 		/// <summary>Gets date range from start of the year to the current date.</summary>
 		/// <param name="date">The date.</param>
-		/// <returns></returns>
+		/// <returns>Date range.</returns>
 		public static Range<DateTimeOffset> GetToEndOfYearRange(this DateTimeOffset date) =>
 			Range.CreateExclusiveTo(date, date.FirstDayOfYear().NextYear());
 		#endregion
@@ -74,13 +74,14 @@ namespace CodeJam.Dates
 		}
 
 		private static int DifferenceInMonths(DateTimeOffset startDate, DateTimeOffset endDate) =>
+			// ReSharper disable once ArrangeRedundantParentheses
 			(endDate.Month - startDate.Month) +
 			(endDate.Year - startDate.Year) * 12;
 
 		/// <summary>Returns count of days between two dates.</summary>
 		/// <param name="range">The date range.</param>
 		/// <returns>Count of days between two dates.</returns>
-		public static int CountOfDays(this Range<DateTimeOffset> range) => DifferenceInDays(range.FromValue, range.ToValue) + 1;
+		public static int CountOfDays(this Range<DateTimeOffset> range) => DifferenceInDays(range) + 1;
 
 		/// <summary>Returns delta between two dates measured in months.</summary>
 		/// <param name="range">The date range.</param>
@@ -118,7 +119,7 @@ namespace CodeJam.Dates
 			}
 		}
 
-		/// <summary>Returns days of in range.</summary>
+		/// <summary>Returns first days of months in range.</summary>
 		/// <param name="range">The date range.</param>
 		/// <returns>First days of months in range</returns>
 		[NotNull]
@@ -141,6 +142,28 @@ namespace CodeJam.Dates
 			}
 		}
 
+		/// <summary>Returns first days of years in range.</summary>
+		/// <param name="range">The date range.</param>
+		/// <returns>First days of years in range</returns>
+		[NotNull]
+		public static IEnumerable<DateTimeOffset> YearsBetween(this Range<DateTimeOffset> range)
+		{
+			range = range.MakeInclusive();
+			if (range.IsEmpty)
+				yield break;
+
+			var startDate = range.FromValue.FirstDayOfYear();
+			var endDate = range.ToValue;
+
+			// if range.FromValue is not first date of year, the years is skipped.
+			if (startDate < range.FromValue)
+				startDate = startDate.NextYear();
+			while (startDate <= endDate)
+			{
+				yield return startDate;
+				startDate = startDate.NextYear();
+			}
+		}
 
 		/// <summary>Splits the range by months.</summary>
 		/// <param name="range">The date range.</param>
@@ -157,6 +180,28 @@ namespace CodeJam.Dates
 			while (startDate < lastMonthDate)
 			{
 				var next = startDate.FirstDayOfMonth().NextMonth();
+				yield return Range.CreateExclusiveTo(startDate, next);
+				startDate = next;
+			}
+
+			yield return Range.Create(startDate, range.To.Value);
+		}
+
+		/// <summary>Splits the range by years.</summary>
+		/// <param name="range">The date range.</param>
+		/// <returns>Ranges splitted by first day of years in range.</returns>
+		[NotNull]
+		public static IEnumerable<Range<DateTimeOffset>> SplitByYears(this Range<DateTimeOffset> range)
+		{
+			if (range.IsEmpty)
+				yield break;
+
+			var startDate = range.From.Value;
+			var lastYearDate = range.To.Value.FirstDayOfYear();
+
+			while (startDate < lastYearDate)
+			{
+				var next = startDate.FirstDayOfYear().NextYear();
 				yield return Range.CreateExclusiveTo(startDate, next);
 				startDate = next;
 			}

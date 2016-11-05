@@ -12,6 +12,14 @@ namespace CodeJam.Collections
 	public class Sequence
 	{
 #pragma warning disable 1591
+		/// <summary>
+		/// Creates a sequence from start value and next element factory.
+		/// </summary>
+		/// <typeparam name="T">The type of element.</typeparam>
+		/// <param name="start">Start value.</param>
+		/// <param name="next">Next element factory.</param>
+		/// <returns>Generated sequence.</returns>
+		[Pure]
 		public static IEnumerable<T> Create<T>(T start, [NotNull] Func<T, T> next)
 		{
 			Code.NotNull(next, nameof(next));
@@ -25,6 +33,16 @@ namespace CodeJam.Collections
 			// ReSharper disable once IteratorNeverReturns
 		}
 
+		/// <summary>
+		/// Creates a sequence from start value and next element factory.
+		/// </summary>
+		/// <typeparam name="T">The type of source element.</typeparam>
+		/// <typeparam name="TResult">The type of result element</typeparam>
+		/// <param name="start">Start value.</param>
+		/// <param name="next">Next element factory.</param>
+		/// <param name="resultSelector">A transform function to apply to each element.</param>
+		/// <returns>Generated sequence.</returns>
+		[Pure]
 		public static IEnumerable<TResult> Create<T, TResult>(
 			T start,
 			[NotNull] Func<T, T> next,
@@ -42,6 +60,15 @@ namespace CodeJam.Collections
 			// ReSharper disable once IteratorNeverReturns
 		}
 
+		/// <summary>
+		/// Creates a sequence from start value and next element factory.
+		/// </summary>
+		/// <typeparam name="T">The type of element.</typeparam>
+		/// <param name="start">Start value.</param>
+		/// <param name="predicate">A function to test each element for a condition.</param>
+		/// <param name="next">Next element factory.</param>
+		/// <returns>Generated sequence.</returns>
+		[Pure]
 		public static IEnumerable<T> Create<T>(T start, [NotNull] Func<T, bool> predicate, [NotNull] Func<T, T> next)
 		{
 			Code.NotNull(next, nameof(next));
@@ -55,10 +82,22 @@ namespace CodeJam.Collections
 			}
 		}
 
+		/// <summary>
+		/// Creates a sequence from start value and next element factory.
+		/// </summary>
+		/// <typeparam name="T">The type of source element.</typeparam>
+		/// <typeparam name="TResult">The type of result element</typeparam>
+		/// <param name="start">Start value.</param>
+		/// <param name="predicate">A function to test each element for a condition.</param>
+		/// <param name="next">Next element factory.</param>
+		/// <param name="resultSelector">A transform function to apply to each element.</param>
+		/// <returns>Generated sequence.</returns>
+		[Pure]
 		public static IEnumerable<TResult> Create<T, TResult>(
 				T start,
 				[NotNull] Func<T, bool> predicate,
-				Func<T, T> next, [NotNull] Func<T, TResult> resultSelector)
+				Func<T, T> next,
+				[NotNull] Func<T, TResult> resultSelector)
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(predicate, nameof(predicate));
@@ -72,6 +111,14 @@ namespace CodeJam.Collections
 			}
 		}
 
+		/// <summary>
+		/// Creates a sequence from start value and next element factory till factory returns null.
+		/// </summary>
+		/// <typeparam name="T">The type of element.</typeparam>
+		/// <param name="start">Start value.</param>
+		/// <param name="next">Next element factory.</param>
+		/// <returns>Generated sequence.</returns>
+		[Pure]
 		public static IEnumerable<T> CreateWhileNotNull<T>(T start, [NotNull] Func<T, T> next)
 			where T: class
 		{
@@ -85,6 +132,16 @@ namespace CodeJam.Collections
 			}
 		}
 
+		/// <summary>
+		/// Creates a sequence from start value and next element factory till factory returns null.
+		/// </summary>
+		/// <typeparam name="T">The type of source element.</typeparam>
+		/// <typeparam name="TResult">The type of result element</typeparam>
+		/// <param name="start">Start value.</param>
+		/// <param name="next">Next element factory.</param>
+		/// <param name="resultSelector">A transform function to apply to each element.</param>
+		/// <returns>Generated sequence.</returns>
+		[Pure]
 		public static IEnumerable<TResult> CreateWhileNotNull<T, TResult>(
 			T start,
 			[NotNull] Func<T, T> next,
@@ -102,11 +159,25 @@ namespace CodeJam.Collections
 			}
 		}
 
+		/// <summary>
+		/// Creates a single element sequence.
+		/// </summary>
+		/// <typeparam name="T">The type of element.</typeparam>
+		/// <param name="element">Element instance to create sequence from.</param>
+		/// <returns>Single element sequence</returns>
+		[Pure]
 		public IEnumerable<T> CreateSingle<T>(T element)
 		{
 			yield return element;
 		}
 
+		/// <summary>
+		/// Creates a single element sequence.
+		/// </summary>
+		/// <typeparam name="T">The type of element.</typeparam>
+		/// <param name="elementFactory">Element factory.</param>
+		/// <returns>Single element sequence</returns>
+		[Pure]
 		public IEnumerable<T> CreateSingle<T>(Func<T> elementFactory)
 		{
 			yield return elementFactory();

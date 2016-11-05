@@ -27,13 +27,13 @@ namespace CodeJam.Dates
 
 		/// <summary>Gets date range from start of the year to the current date.</summary>
 		/// <param name="date">The date.</param>
-		/// <returns></returns>
+		/// <returns>Date range.</returns>
 		public static Range<DateTime> GetFromStartOfYearRange(this DateTime date) =>
 			Range.Create(date.FirstDayOfYear(), date);
 
 		/// <summary>Gets date range from start of the year to the current date.</summary>
 		/// <param name="date">The date.</param>
-		/// <returns></returns>
+		/// <returns>Date range.</returns>
 		public static Range<DateTime> GetToEndOfYearRange(this DateTime date) =>
 			Range.CreateExclusiveTo(date, date.FirstDayOfYear().NextYear());
 		#endregion
