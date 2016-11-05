@@ -7,6 +7,7 @@ What's new in 1.2.0-beta3
 * CsvFormat.EscapeValue optimized and made public
 * Use System.ValueTuple instead of CodeJam.ValueTuple (possible breaking changes)
 * CompositeRanges moved from Experimental to Main part
+* TableData improvements: CSV printer fixes, fixed with printer, shortcut methods for specific formats
 * Doc comment fixes
 
 What's new in 1.2.0-beta2
