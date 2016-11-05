@@ -193,6 +193,13 @@
     <Compile Include="NamespaceDoc.cs" />
     <Compile Include="NullableHelper.cs" />
     <Compile Include="Objects.cs" />
+    <Compile Include="Ranges\CompositeRange.cs" />
+    <Compile Include="Ranges\CompositeRange.generated.cs">
+      <DependentUpon>CompositeRange.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ranges\CompositeRangeInternal.cs" />
     <Compile Include="Ranges\NamespaceDoc.cs" />
     <Compile Include="Ranges\Range.cs" />
     <Compile Include="Ranges\Range.FactoryMethods.cs" />
@@ -214,6 +221,20 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Ranges\[Helper types]\RangeBoundaryToDescendingComparer`1.cs" />
+    <Compile Include="Ranges\[Helper types]\RangeIntersection`1.cs" />
+    <Compile Include="Ranges\[Helper types]\RangeIntersection`2.generated.cs">
+      <DependentUpon>RangeIntersection`2.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ranges\[RangeExtensions]\CompositeRangeExtensions.cs" />
+    <Compile Include="Ranges\[RangeExtensions]\CompositeRangeExtensions.NoKey.cs" />
+    <Compile Include="Ranges\[RangeExtensions]\CompositeRangeExtensions.WithKey.generated.cs">
+      <DependentUpon>CompositeRangeExtensions.WithKey.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Ranges\[RangeExtensions]\RangeExtensions.cs" />
     <Compile Include="Ranges\[RangeExtensions]\RangeExtensions.NoKey.cs" />
     <Compile Include="Ranges\[RangeExtensions]\RangeExtensions.WithKey.generated.cs">
@@ -221,6 +242,15 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Ranges\[Ranges]\CompositeRange`1.cs" />
+    <Compile Include="Ranges\[Ranges]\CompositeRange`1.NonGenerated.cs" />
+    <Compile Include="Ranges\[Ranges]\CompositeRange`2.generated.cs">
+      <DependentUpon>CompositeRange`2.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ranges\[Ranges]\CompositeRange`2.NonGenerated.cs" />
+    <Compile Include="Ranges\[Ranges]\ICompositeRange`1.cs" />
     <Compile Include="Ranges\[Ranges]\IRangeFactory.cs" />
     <Compile Include="Ranges\[Ranges]\IRange`1.cs" />
     <Compile Include="Ranges\[Ranges]\Range`1.cs" />
@@ -404,6 +434,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Expr.generated.cs</LastGenOutput>
     </Content>
+    <Content Include="Ranges\CompositeRange.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CompositeRange.generated.cs</LastGenOutput>
+    </Content>
     <Content Include="Ranges\Range.FactoryMethods.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Range.FactoryMethods.generated.cs</LastGenOutput>
@@ -416,9 +450,21 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RangeBoundaryTo`1.generated.cs</LastGenOutput>
     </Content>
+    <Content Include="Ranges\[Helper types]\RangeIntersection`2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RangeIntersection`2.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Ranges\[RangeExtensions]\CompositeRangeExtensions.WithKey.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CompositeRangeExtensions.WithKey.generated.cs</LastGenOutput>
+    </Content>
     <Content Include="Ranges\[RangeExtensions]\RangeExtensions.WithKey.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RangeExtensions.WithKey.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Ranges\[Ranges]\CompositeRange`2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CompositeRange`2.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Ranges\[Ranges]\Range`2.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

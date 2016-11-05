@@ -56,7 +56,6 @@
     <Compile Include="UseCases\EnumCodeUseCases.cs" />
     <Compile Include="Parsing\ParseHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ranges\CompositeRangeTests.cs" />
     <Compile Include="UseCases\TempDataUseCases.cs" />
   </ItemGroup>
   <ItemGroup>

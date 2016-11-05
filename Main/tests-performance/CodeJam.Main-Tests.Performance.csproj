@@ -105,6 +105,7 @@
     <Compile Include="Ranges\RangeBoundaryBaseCase.cs" />
     <Compile Include="Ranges\RangeBoundaryCompareToPerfTests.cs" />
     <Compile Include="Ranges\RangeBoundaryFactoryPerfTests.cs" />
+    <Compile Include="SequencePerfTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PerfTests\src-NUnit\CodeJam.PerfTests.NUnit.csproj">

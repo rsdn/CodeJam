@@ -99,6 +99,7 @@
     <Compile Include="Mapping\MappingSchemaTests.cs" />
     <Compile Include="Metadata\AttributeReaderTests.cs" />
     <Compile Include="Metadata\XmlReaderTests.cs" />
+    <Compile Include="Ranges\CompositeRangeTests.cs" />
     <Compile Include="Ranges\RangeBoundaryFromTests.cs" />
     <Compile Include="Ranges\RangeBoundaryFromToTests.cs" />
     <Compile Include="Ranges\RangeBoundaryToTests.generated.cs">

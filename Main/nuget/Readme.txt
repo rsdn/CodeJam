@@ -6,6 +6,7 @@ What's new in 1.2.0-beta3
 * ArrayExtensions and StringExtensions optimization
 * CsvFormat.EscapeValue optimized and made public
 * Use System.ValueTuple instead of CodeJam.ValueTuple (possible breaking changes)
+* CompositeRanges moved from Experimental to Main part
 * Doc comment fixes
 
 What's new in 1.2.0-beta2
