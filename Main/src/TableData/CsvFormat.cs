@@ -63,6 +63,19 @@ namespace CodeJam.TableData
 				? (Parser)((TextReader rdr, ref int ln) => ParseCsv(rdr, ref ln, columnSeparator))
 				: ((TextReader rdr, ref int ln) => ParseCsvNoEscape(rdr, ref ln, columnSeparator));
 
+		/// <summary>Parses CSV data.</summary>
+		/// <param name="reader">Text to parse</param>
+		/// <param name = "allowEscaping" > If true, allows values escaping.</param>
+		/// <param name="columnSeparator">Char to use as column separator</param>
+		/// <returns>Enumeration of <see cref="DataLine" /> contained parsed data.</returns>
+		[NotNull]
+		[Pure]
+		public static IEnumerable<DataLine> Parse(
+				TextReader reader,
+				bool allowEscaping = true,
+				char columnSeparator = ',') =>
+			CreateParser(allowEscaping, columnSeparator).Parse(reader);
+
 		[CanBeNull]
 		private static string[] ParseCsv(TextReader reader, ref int lineNum, char separator)
 		{
@@ -368,7 +381,7 @@ namespace CodeJam.TableData
 						.Zip(
 							values.Select(EscapeValue),
 							columnWidths,
-							(s, w) => s.PadLeft(w))
+							(s, w) => s.PadRight(w))
 						.Join(", ");
 			}
 		}

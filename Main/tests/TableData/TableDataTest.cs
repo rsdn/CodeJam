@@ -51,7 +51,7 @@ namespace CodeJam.TableData
 		[TestCase("a,b", ExpectedResult = "  a, b")]
 		[TestCase("a,b\r\nc,d", ExpectedResult = "  a, b\r\n  c, d")]
 		[TestCase("a,b\r\ncc,dd", ExpectedResult = "  a, b\r\n  cc, dd")]
-		[TestCase("a,b\r\ncc,dd\r\ne,f", ExpectedResult = "  a, b\r\n  cc, dd\r\n   e,  f")]
+		[TestCase("a,b\r\ncc,dd\r\ne,f", ExpectedResult = "  a, b\r\n  cc, dd\r\n  e , f ")]
 		public string PrintCsv(string source)
 		{
 			var data = CsvFormat.CreateParser(true).Parse(source);
@@ -72,5 +72,19 @@ namespace CodeJam.TableData
 				.Parse(source)
 				.Select(l => l.ToString())
 				.Join("; ");
+
+		[TestCase("a",              new[] {1},      ExpectedResult = "a")]
+		[TestCase("a",              new[] { 3 },    ExpectedResult = "a  ")]
+		[TestCase("  a b",          new[] { 3, 2 }, ExpectedResult = "a  b ")]
+		[TestCase("  a b\r\n  c d", new[] { 3, 2 }, ExpectedResult = "a  b \r\nc  d ")]
+		public string PrintFixedWidth(string source, int[] widths)
+		{
+			var res = new StringWriter();
+			FixedWidthFormat.Print(
+				res,
+				FixedWidthFormat.CreateParser(widths).Parse(source).Select(dl => dl.Values),
+				widths);
+			return res.ToString();
+		}
 	}
 }
