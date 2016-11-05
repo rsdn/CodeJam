@@ -56,9 +56,7 @@ namespace CodeJam.TableData
 		{
 			var data = CsvFormat.CreateParser(true).Parse(source);
 			var result = new StringWriter();
-			CsvFormat
-				.CreateFormatter()
-				.Print(result, data.Select(l => l.Values), "  ");
+			CsvFormat.Print(result, data.Select(l => l.Values), "  ");
 			return result.ToString();
 		}
 

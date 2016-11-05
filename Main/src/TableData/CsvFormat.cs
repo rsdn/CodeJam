@@ -267,29 +267,66 @@ namespace CodeJam.TableData
 
 		#region Formatter
 		/// <summary>
-		/// Creates formatter for CSV.
-		/// </summary>
-		/// <param name="allowEscaping">If true, use escaping.</param>
-		/// <returns>Formatter instance</returns>
-		[NotNull]
-		[Pure]
-		public static ITableDataFormatter CreateFormatter(bool allowEscaping = true) =>
-			allowEscaping
-				? (ITableDataFormatter)new CsvFormatter()
-				: new CsvNoEscapeFormatter();
-
-		/// <summary>
-		/// Prints full CSV table
+		/// Prints full data table
 		/// </summary>
 		/// <param name="writer">Instance of <see cref="TextWriter"/> to write to.</param>
 		/// <param name="data">Data to write.</param>
 		/// <param name="indent">The indent.</param>
-		/// <param name="allowEscaping">If true, use escaping.</param>
-		public static void Print([NotNull] TextWriter writer,
-				[NotNull] IEnumerable<string[]> data,
-				[CanBeNull] string indent = null,
-				bool allowEscaping = true) =>
-			CreateFormatter(allowEscaping).Print(writer, data, indent);
+		/// <param name="allowEscaping">If true, allows values escaping.</param>
+		public static void Print(
+			[NotNull] TextWriter writer,
+			[NotNull] IEnumerable<string[]> data,
+			[CanBeNull] string indent = null,
+			bool allowEscaping = true)
+		{
+			Code.NotNull(writer, nameof(writer));
+			Code.NotNull(data, nameof(data));
+
+			var formatter =
+				allowEscaping
+					? (ITableDataFormatter)new CsvFormatter()
+					: new CsvNoEscapeFormatter();
+			var first = true;
+			var widths = new int[0];
+			foreach (var line in data)
+			{
+				if (!first)
+					writer.WriteLine();
+				else
+					first = false;
+				if (indent != null)
+					writer.Write(indent);
+
+				widths =
+					line
+						.Select(
+							(val, i) =>
+							{
+								var len = formatter.GetValueLength(val);
+								return i >= widths.Length ? len : Math.Max(len, widths[i]);
+							})
+						.ToArray();
+				writer.Write(formatter.FormatLine(line, widths));
+			}
+		}
+
+		/// <summary>
+		/// Formatter interface.
+		/// </summary>
+		private interface ITableDataFormatter
+		{
+			int GetValueLength([CanBeNull] string value);
+
+			/// <summary>
+			/// Prints line of table data.
+			/// </summary>
+			/// <param name="values">Line values.</param>
+			/// <param name="columnWidths">Array of column widths.</param>
+			/// <returns>String representation of values</returns>
+			[NotNull]
+			string FormatLine([NotNull] string[] values, [NotNull] int[] columnWidths);
+		}
+
 
 		private class CsvFormatter : ITableDataFormatter
 		{
