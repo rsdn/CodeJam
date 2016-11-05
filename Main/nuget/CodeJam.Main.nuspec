@@ -17,10 +17,13 @@
 			</group>
 			<group targetFramework="net40">
 			</group>
+			<group targetFramework="net45">
+				<dependency id="System.ValueTuple" version="4.0.0-rc3-24212-01" />
+			</group>
 		</dependencies>
 	</metadata>
 	<files>
-		<file src="Readme.txt"                              target="" />
+		<file src="Readme.txt"                         target="" />
 
 		<file src="..\src\bin\Release.3.5\CodeJam.dll" target="lib\net35" />
 		<file src="..\src\bin\Release.3.5\CodeJam.pdb" target="lib\net35" />

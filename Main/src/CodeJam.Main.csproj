@@ -43,6 +43,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" Condition="!$(DefineConstants.Contains('FW40'))">
+      <HintPath>..\..\packages\System.ValueTuple.4.0.0-rc3-24212-01\lib\netstandard1.1\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Threading, Version=1.0.2856.102, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" Condition="$(DefineConstants.Contains('FW35'))">
@@ -251,7 +255,6 @@
     <Compile Include="Services\IServicePublisher.cs" />
     <Compile Include="Services\ServiceContainer.cs" />
     <Compile Include="Services\ServiceProviderHelper.cs" />
-    <Compile Include="Structures\IValueTuple.cs" />
     <Compile Include="Structures\Option\Option`1.cs" />
     <Compile Include="TableData\CsvFormat.cs" />
     <Compile Include="TableData\DataLine.cs" />
@@ -260,7 +263,8 @@
     <Compile Include="TableData\NamespaceDoc.cs" />
     <Compile Include="TableData\TableDataParser.cs" />
     <Compile Include="TableData\TableDataPrinter.cs" />
-    <Compile Include="Targeting\CustomAttributeExtensions.cs" />
+    <Compile Include="Targeting\FW35\Tuple.cs" />
+    <Compile Include="Targeting\FW40\CustomAttributeExtensions.cs" />
     <Compile Include="Targeting\FW35\Action.cs" />
     <Compile Include="Targeting\FW35\EnumerableTargeting.cs" />
     <Compile Include="Targeting\FW35\EnumTargeting.cs" />
@@ -270,6 +274,8 @@
     <Compile Include="Targeting\FW35\StringTargeting.cs" />
     <Compile Include="Targeting\FW35\Volatile.cs" />
     <Compile Include="Targeting\FW40\DictionaryWithReadOnly.cs" />
+    <Compile Include="Targeting\FW40\ValueTuple\TupleExtensions.cs" />
+    <Compile Include="Targeting\FW40\ValueTuple\ValueTuple.cs" />
     <Compile Include="Targeting\PlatformDependent.cs" />
     <Compile Include="Collections\ArrayExtensions.cs" />
     <Compile Include="Collections\ArrayExtensions.generated.cs">
@@ -293,11 +299,6 @@
     <Compile Include="Targeting\FW40\IReadOnlyDictionary.cs" />
     <Compile Include="IO\TempData.cs" />
     <Compile Include="Reflection\AssemblyExtensions.cs" />
-    <Compile Include="Structures\ValueTuple.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ValueTuple.tt</DependentUpon>
-    </Compile>
     <Compile Include="Threading\AsyncOperationHelper.cs" />
     <Compile Include="Threading\ConcurrentLazyDictionary.cs" />
     <Compile Include="Threading\ExecSyncConcurrentLazyDictionary.cs" />
@@ -351,6 +352,7 @@
       <DependentUpon>Compile.tt</DependentUpon>
     </None>
     <Compile Include="Reflection\ReflectionExtensions.CreateInstance.cs" />
+    <None Include="packages.config" />
     <None Include="Ranges\RangesPlannedChanges.md" />
     <None Include="Ranges\[Boundaries]\RangeBoundaryToReplacer.ttinclude" />
     <None Include="Ranges\[Ranges]\RangeWithTKeyReplacer.ttinclude" />
@@ -449,10 +451,6 @@
     <Content Include="Compile.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Compile.cmd</LastGenOutput>
-    </Content>
-    <Content Include="Structures\ValueTuple.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ValueTuple.generated.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
