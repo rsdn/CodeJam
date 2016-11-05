@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 using CodeJam.Collections;
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -16,11 +16,18 @@ namespace CodeJam.Ranges
 	/// </summary>
 	/// <typeparam name="T">The type of the range values.</typeparam>
 	/// <seealso cref="System.IFormattable" />
+	[PublicAPI]
 	public struct RangeIntersection<T> : IFormattable
 	{
-		private static readonly ReadOnlyCollection<Range<T>> _emptyRanges = Array<Range<T>>.Empty.AsReadOnly();
+		private static readonly IReadOnlyCollection<Range<T>> _emptyRanges =
+#if (!FW452)
+			Array.Empty<Range<T>>()
+#else
+			Array<Range<T>>.Empty
+#endif
+			.AsReadOnly();
 
-		private readonly ReadOnlyCollection<Range<T>> _ranges;
+		private readonly IReadOnlyCollection<Range<T>> _ranges;
 
 		#region Fields & .ctor()
 		/// <summary>Initializes a new instance of the <see cref="RangeIntersection{T}"/> struct.</summary>
@@ -50,7 +57,7 @@ namespace CodeJam.Ranges
 		/// <summary>The ranges in the intersection, if any.</summary>
 		/// <value>The ranges in the intersection, if any.</value>
 		[NotNull]
-		public IReadOnlyList<Range<T>> Ranges => _ranges ?? _emptyRanges;
+		public IReadOnlyCollection<Range<T>> Ranges => _ranges ?? _emptyRanges;
 
 		/// <summary>Gets a value indicating whether the intersection does not contain any ranges.</summary>
 		/// <value><c>true</c> if the intersection does not contain any ranges; otherwise, <c>false</c>.</value>
@@ -68,9 +75,7 @@ namespace CodeJam.Ranges
 			var intersectionRangePart = IntersectionRange.ToString();
 			var rangesPart = IsEmpty
 				? RangeInternal.EmptyString
-				: string.Join(
-					SeparatorString,
-					Ranges.Select(element => element.ToString()));
+				: Ranges.Select(element => element.ToString()).Join(SeparatorString);
 
 			return intersectionRangePart +
 				PrefixString +
@@ -109,9 +114,7 @@ namespace CodeJam.Ranges
 			var intersectionRangePart = IntersectionRange.ToString(format, formatProvider);
 			var rangesPart = IsEmpty
 				? RangeInternal.EmptyString
-				: string.Join(
-					SeparatorString,
-					Ranges.Select(element => element.ToString(format, formatProvider)));
+				: Ranges.Select(element => element.ToString(format, formatProvider)).Join(SeparatorString);
 
 			return intersectionRangePart +
 				PrefixString +

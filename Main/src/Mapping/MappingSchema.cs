@@ -388,7 +388,7 @@ namespace CodeJam.Mapping
 			{
 				var empty =
 #if (!FW452)
-						Array.Empty<Type>()
+					Array.Empty<Type>()
 #else
 					Array<Type>.Empty
 #endif

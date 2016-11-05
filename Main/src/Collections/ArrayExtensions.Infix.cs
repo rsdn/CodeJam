@@ -15,9 +15,21 @@ namespace CodeJam.Collections
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.</exception>
 		[NotNull, Pure]
-		public static ReadOnlyCollection<T> AsReadOnly<T>([NotNull] this T[] array) => Array.AsReadOnly(array);
+		public static
+#if FW40
+			ReadOnlyCollectionWithReadOnly<T>
+#else
+			ReadOnlyCollection<T>
+#endif
+			AsReadOnly<T>([NotNull] this T[] array) =>
+#if FW40
+			new ReadOnlyCollectionWithReadOnly<T>(array)
+#else
+			Array.AsReadOnly(array)
+#endif
+			;
 
-		#region BinarySearch
+#region BinarySearch
 
 		/// <summary>Searches an entire one-dimensional sorted <see cref="Array" /> for a specific element, using the <see cref="IComparable{T}" /> generic interface implemented by each element of the <see cref="Array" /> and by the specified object.</summary>
 		/// <returns>The index of the specified <paramref name="value" /> in the specified <paramref name="array" />, if <paramref name="value" /> is found. If <paramref name="value" /> is not found and <paramref name="value" /> is less than one or more elements in <paramref name="array" />, a negative number which is the bitwise complement of the index of the first element that is larger than <paramref name="value" />. If <paramref name="value" /> is not found and <paramref name="value" /> is greater than any of the elements in <paramref name="array" />, a negative number which is the bitwise complement of (the index of the last element plus 1).</returns>
@@ -83,7 +95,7 @@ namespace CodeJam.Collections
 		[Pure]
 		public static int BinarySearch<T>([NotNull] this T[] array, int index, int length, T value, IComparer<T> comparer) => Array.BinarySearch(array, index, length, value, comparer);
 
-		#endregion BinarySearch
+#endregion BinarySearch
 
 		/// <summary>Sets a range of elements in the <see cref="Array" /> to zero, to false, or to null, depending on the element type.</summary>
 		/// <param name="array">The <see cref="Array" /> whose elements need to be cleared.</param>
@@ -132,7 +144,7 @@ namespace CodeJam.Collections
 		[NotNull, Pure]
 		public static TOutput[] ConvertAll<TInput, TOutput>([NotNull] this TInput[] array, [NotNull, InstantHandle] Converter<TInput, TOutput> converter) => Array.ConvertAll(array, converter);
 
-		#region Copy
+#region Copy
 
 		/// <summary>Copies a range of elements from an <see cref="Array" /> starting at the first element and pastes them into another <see cref="Array" /> starting at the first element. The length is specified as a 32-bit integer.</summary>
 		/// <param name="sourceArray">The <see cref="Array" /> that contains the data to copy.</param>
@@ -210,7 +222,7 @@ namespace CodeJam.Collections
 		/// <filterpriority>1</filterpriority>
 		public static void Copy([NotNull] this Array sourceArray, int sourceIndex, [NotNull] Array destinationArray, int destinationIndex, int length) => Array.Copy(sourceArray, sourceIndex, destinationArray, destinationIndex, length);
 
-		#endregion Copy
+#endregion Copy
 
 		/// <summary>Determines whether the specified array contains elements that match the conditions defined by the specified predicate.</summary>
 		/// <returns>true if <paramref name="array" /> contains one or more elements that match the conditions defined by the specified predicate; otherwise, false.</returns>
@@ -248,7 +260,7 @@ namespace CodeJam.Collections
 		[NotNull, Pure]
 		public static T[] FindAll<T>([NotNull] this T[] array, [NotNull, InstantHandle] Predicate<T> match) => Array.FindAll(array, match);
 
-		#region Find[Last]Index
+#region Find[Last]Index
 
 		/// <summary>Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the first occurrence within the entire <see cref="Array" />.</summary>
 		/// <returns>The zero-based index of the first occurrence of an element that matches the conditions defined by <paramref name="match" />, if found; otherwise, –1.</returns>
@@ -339,7 +351,7 @@ namespace CodeJam.Collections
 		[Pure]
 		public static int FindLastIndex<T>([NotNull] this T[] array, int startIndex, int count, [NotNull, InstantHandle] Predicate<T> match) => Array.FindLastIndex(array, startIndex, count, match);
 
-		#endregion Find[Last]Index
+#endregion Find[Last]Index
 
 		/// <summary>Performs the specified action on each element of the specified array.</summary>
 		/// <param name="array">The one-dimensional, zero-based <see cref="Array" /> on whose elements the action is to be performed.</param>
@@ -349,7 +361,7 @@ namespace CodeJam.Collections
 		/// <paramref name="array" /> is null.-or-<paramref name="action" /> is null.</exception>
 		public static void ForEach<T>([NotNull] this T[] array, [NotNull, InstantHandle] Action<T> action) => Array.ForEach(array, action);
 
-		#region [Last]IndexOf
+#region [Last]IndexOf
 
 		/// <summary>Searches for the specified object and returns the index of the first occurrence within the entire <see cref="Array" />.</summary>
 		/// <returns>The zero-based index of the first occurrence of <paramref name="value" /> within the entire <paramref name="array" />, if found; otherwise, –1.</returns>
@@ -425,7 +437,7 @@ namespace CodeJam.Collections
 		[Pure]
 		public static int LastIndexOf<T>([NotNull] this T[] array, T value, int startIndex, int count) => Array.LastIndexOf(array, value, startIndex, count);
 
-		#endregion [Last]IndexOf
+#endregion [Last]IndexOf
 
 		/// <summary>Reverses the sequence of the elements in the entire one-dimensional <see cref="Array" />.</summary>
 		/// <param name="array">The one-dimensional <see cref="Array" /> to reverse.</param>
@@ -451,7 +463,7 @@ namespace CodeJam.Collections
 		/// <filterpriority>1</filterpriority>
 		public static void Reverse([NotNull] this Array array, int index, int length) => Array.Reverse(array, index, length);
 
-		#region Sort
+#region Sort
 
 		/// <summary>Sorts the elements in an entire <see cref="Array" /> using the <see cref="IComparable{T}" /> generic interface implementation of each element of the <see cref="Array" />.</summary>
 		/// <param name="array">The one-dimensional, zero-based <see cref="Array" /> to sort.</param>
@@ -511,7 +523,7 @@ namespace CodeJam.Collections
 		/// <paramref name="comparer" /> is null, and one or more elements in <paramref name="array" /> do not implement the <see cref="IComparable{T}" /> generic interface.</exception>
 		public static void Sort<T>([NotNull] this T[] array, int index, int length, IComparer<T> comparer) => Array.Sort(array, index, length, comparer);
 
-		#endregion Sort
+#endregion Sort
 
 		/// <summary>Determines whether every element in the array matches the conditions defined by the specified predicate.</summary>
 		/// <returns>true if every element in <paramref name="array" /> matches the conditions defined by the specified predicate; otherwise, false. If there are no elements in the array, the return value is true.</returns>

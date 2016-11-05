@@ -14,8 +14,17 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using CodeJam.Collections;
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
+
+using StringClass =
+#if FW35
+	CodeJam.Targeting.StringTargeting
+#else
+	System.String
+#endif
+	;
 
 using static CodeJam.Ranges.CompositeRangeInternal;
 
@@ -125,7 +134,13 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Predefined values
-		private static readonly ReadOnlyCollection<Range<T, TKey>> _emptyRanges = Array<Range<T, TKey>>.Empty.AsReadOnly();
+		private static readonly ReadOnlyCollection<Range<T, TKey>> _emptyRanges =
+#if (!FW452)
+			Array.Empty<Range<T, TKey>>()
+#else
+			Array<Range<T, TKey>>.Empty
+#endif
+			.AsReadOnly();
 
 		#region T4-dont-replace
 		private static readonly Range<T> _emptyRangeNoKey = Range<T>.Empty;
@@ -250,9 +265,10 @@ namespace CodeJam.Ranges
 				return ContainingRange.ToString();
 
 			var containingRangePart = ContainingRange.ToString();
-			var subRangesPart = string.Join(
-				SeparatorString,
-				SubRanges.Select(item => item.ToString()));
+			var subRangesPart =
+				SubRanges
+					.Select(item => item.ToString())
+					.Join(SeparatorString);
 
 			return containingRangePart +
 				PrefixString +
@@ -292,9 +308,10 @@ namespace CodeJam.Ranges
 				return ContainingRange.ToString(format, formatProvider);
 
 			var containingRangePart = ContainingRange.ToString(format, formatProvider);
-			var subRangesPart = string.Join(
-				SeparatorString,
-				SubRanges.Select(item => item.ToString(format, formatProvider)));
+			var subRangesPart =
+				SubRanges
+					.Select(item => item.ToString(format, formatProvider))
+					.Join(SeparatorString);
 
 			return containingRangePart +
 				PrefixString +
