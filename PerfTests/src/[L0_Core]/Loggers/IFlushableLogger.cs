@@ -4,7 +4,7 @@
 
 namespace BenchmarkDotNet.Loggers
 {
-	/// <summary>Extension of <see cref="ILogger"/> interface that supports flush method.</summary>
+	/// <summary>Extension of <see cref="ILogger"/> interface that adds flush method.</summary>
 	public interface IFlushableLogger : ILogger
 	{
 		/// <summary>Flushes the log.</summary>

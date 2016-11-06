@@ -7,6 +7,7 @@ using System.Threading;
 
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
@@ -31,6 +32,9 @@ namespace CodeJam.PerfTests.Running.Core
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	public static class CompetitionCore
 	{
+		/// <summary>Maximum time limit for competition run. Set to two hours for now, can change in future.</summary>
+		internal static readonly TimeSpan MaxRunTimeout = TimeSpan.FromHours(2);
+
 		#region Extension methods
 		/// <summary>The message severity is setup error or higher.</summary>
 		/// <param name="severity">The severity to check.</param>
@@ -49,12 +53,14 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Log format for the message.</summary>
 		/// <returns>Log format for the message.</returns>
-		public static string ToLogString(this IMessage message)
-		{
-			var m = message;
-			return $"#{m.RunNumber}.{m.RunMessageNumber,-2} {m.Elapsed.TotalSeconds:00.000}s" +
-				$", {m.MessageSeverity + "@" + m.MessageSource + ":",-23} {m.MessageText}";
-		}
+		public static string ToLogString(this IMessage message) => string.Format(
+			HostEnvironmentInfo.MainCultureInfo,
+			"#{0}.{1,-2} {2:00.000}s, {3,-23} {4}",
+			message.RunNumber,
+			message.RunMessageNumber,
+			message.Elapsed.TotalSeconds,
+			message.MessageSeverity + "@" + message.MessageSource + ":",
+			message.MessageText);
 		#endregion
 
 		#region API to use during the run
@@ -82,7 +88,7 @@ namespace CodeJam.PerfTests.Running.Core
 			warnings.Add(new Warning(severity.ToString(), message, report));
 		}
 
-		/// <summary>Writes the setup exception message.</summary>
+		/// <summary>Writes the exception message.</summary>
 		/// <param name="competitionState">State of the run.</param>
 		/// <param name="messageSource">Source of the message.</param>
 		/// <param name="messageSeverity">Severity of the message.</param>
@@ -172,7 +178,7 @@ namespace CodeJam.PerfTests.Running.Core
 					bool lockTaken = false;
 					try
 					{
-						var timeout = concurrentRunBehavior == ConcurrentRunBehavior.Lock ? Timeout.InfiniteTimeSpan : TimeSpan.Zero;
+						var timeout = concurrentRunBehavior == ConcurrentRunBehavior.Lock ? MaxRunTimeout : TimeSpan.Zero;
 						lockTaken = mutex.WaitOne(timeout);
 						if (CheckPreconditions(benchmarkType, lockTaken, allowDebugBuilds, concurrentRunBehavior, competitionState))
 						{
@@ -190,7 +196,7 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				competitionState.WriteExceptionMessage(
 					MessageSource.Runner, MessageSeverity.ExecutionError,
-					$"Benchmark {benchmarkType.Name} failed.", ex.InnerException);
+					$"Benchmark {benchmarkType.Name} failed.", ex.InnerException ?? ex);
 			}
 			catch (Exception ex)
 			{
@@ -208,7 +214,7 @@ namespace CodeJam.PerfTests.Running.Core
 			return competitionState;
 		}
 
-		// TODO: as a part of CompetitionRunnerBase
+		// TODO: as a part of CompetitionRunnerBase?
 		private static bool CheckPreconditions(
 			[NotNull] Type benchmarkType,
 			bool lockTaken, bool allowDebugBuilds,
@@ -264,18 +270,24 @@ namespace CodeJam.PerfTests.Running.Core
 
 				// BADCODE
 				// TODO: remove as Run will become public.
-				Func<IJob, IToolchain> toolchainProvider = j => j.Toolchain ?? InProcessToolchain.Instance;
+				Func<Job, IToolchain> toolchainProvider = j => j.Infrastructure?.Toolchain ?? InProcessToolchain.Instance;
+
 				var runMethod = typeof(IConfig).Assembly
 					.GetType("BenchmarkDotNet.Running.BenchmarkRunnerCore")
-					.GetMethods(BindingFlags.NonPublic | BindingFlags.Static)
-					.Single(m=>m.Name == "Run" && m.IsAssembly);
+					.GetMethod(
+					"Run",
+					BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static,
+					null,
+					new[] { typeof(Benchmark[]), typeof(IConfig), toolchainProvider.GetType() },
+					null);
 
 				// Running the benchmark
 				var summary = (Summary)runMethod.Invoke(
 					null,
 					new object[]
 					{
-						BenchmarkConverter.TypeToBenchmarks(benchmarkType, competitionState.Config), competitionState.Config, toolchainProvider
+						BenchmarkConverter.TypeToBenchmarks(benchmarkType, competitionState.Config), competitionState.Config,
+						toolchainProvider
 					});
 				competitionState.RunCompleted(summary);
 
@@ -323,7 +335,7 @@ namespace CodeJam.PerfTests.Running.Core
 				var severity = validationError.IsCritical ? MessageSeverity.SetupError : MessageSeverity.Warning;
 				var message = validationError.Benchmark == null
 					? validationError.Message
-					: $"Benchmark {validationError.Benchmark.ShortInfo}:{Environment.NewLine}\t{validationError.Message}";
+					: $"Benchmark {validationError.Benchmark.DisplayInfo}:{Environment.NewLine}\t{validationError.Message}";
 
 				competitionState.WriteMessage(MessageSource.Validator, severity, message);
 			}

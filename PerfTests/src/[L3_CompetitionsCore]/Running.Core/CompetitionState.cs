@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Helpers;
+using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
@@ -20,7 +20,7 @@ namespace CodeJam.PerfTests.Running.Core
 	/// </summary>
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "ArrangeBraces_lock")]
-	public class CompetitionState
+	public sealed class CompetitionState
 	{
 		private const int MaxRunLimit = 100;
 
@@ -116,8 +116,12 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		[AssertionMethod]
+		private void AsserIsInInit() =>
+			Code.AssertState(Config == null && !Completed, "Could not init state as the competition is in run or was completed.");
+
+		[AssertionMethod]
 		private void AssertIsInCompetition() =>
-			Code.AssertState(!Completed, "Could not update the state as the competition was completed.");
+			Code.AssertState(Config != null && !Completed, "Could not update state as the competition is not running completed.");
 
 		#region State modification
 		/// <summary>Init the competition state.</summary>
@@ -126,12 +130,12 @@ namespace CodeJam.PerfTests.Running.Core
 		internal void FirstTimeInit(int maxRunsAllowed, [NotNull] IConfig config)
 		{
 			Code.InRange(maxRunsAllowed, nameof(maxRunsAllowed), 0, MaxRunLimit);
+			Code.NotNull(config, nameof(config));
 
 			lock (_messages)
 			{
-				AssertIsInCompetition();
+				AsserIsInInit();
 
-				Code.NotNull(config, nameof(config));
 				_stopwatch.Restart();
 
 				MaxRunsAllowed = maxRunsAllowed;
@@ -155,15 +159,18 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Prepare for next run.</summary>
 		internal void PrepareForRun()
 		{
-			AssertIsInCompetition();
-			Code.AssertState(RunsLeft > 0, "No runs left.");
+			lock (_messages)
+			{
+				AssertIsInCompetition();
+				Code.AssertState(RunsLeft > 0, "No runs left.");
 
-			RunNumber++;
-			RunsLeft--;
+				RunNumber++;
+				RunsLeft--;
 
-			HighestMessageSeverityInRun = MessageSeverity.Verbose;
-			MessagesInRun = 0;
-			LastRunSummary = null;
+				HighestMessageSeverityInRun = MessageSeverity.Verbose;
+				MessagesInRun = 0;
+				LastRunSummary = null;
+			}
 		}
 
 		/// <summary>Mark the run as completed.</summary>
@@ -171,19 +178,26 @@ namespace CodeJam.PerfTests.Running.Core
 		internal void RunCompleted([NotNull] Summary summary)
 		{
 			Code.NotNull(summary, nameof(summary));
-			AssertIsInCompetition();
 
-			LastRunSummary = summary;
-			_summaries.Add(summary);
+			lock (_messages)
+			{
+				AssertIsInCompetition();
+
+				LastRunSummary = summary;
+				_summaries.Add(summary);
+			}
 		}
 
 		/// <summary>Marks competition state as completed.</summary>
 		internal void CompetitionCompleted()
 		{
-			AssertIsInCompetition();
+			lock (_messages)
+			{
+				AssertIsInCompetition();
 
-			_stopwatch.Stop();
-			Completed = true;
+				_stopwatch.Stop();
+				Completed = true;
+			}
 		}
 
 		/// <summary>Request additional runs for the competition.</summary>
@@ -191,26 +205,29 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="explanationMessage">The explanation message for therequest</param>
 		public void RequestReruns(int additionalRunsCount, [NotNull] string explanationMessage)
 		{
-			AssertIsInCompetition();
-
 			Code.InRange(additionalRunsCount, nameof(additionalRunsCount), 0, MaxRunLimit);
 			Code.NotNullNorEmpty(explanationMessage, nameof(explanationMessage));
 
-			if (additionalRunsCount == 0)
+			lock (_messages)
 			{
-				WriteMessage(
-					MessageSource.Runner,
-					MessageSeverity.Informational,
-					$"No reruns requested: {explanationMessage}");
-			}
-			else
-			{
-				WriteMessage(
-					MessageSource.Runner,
-					MessageSeverity.Informational,
-					$"Requesting {additionalRunsCount} run(s): {explanationMessage}");
+				AssertIsInCompetition();
 
-				RunsLeft = Math.Max(additionalRunsCount, RunsLeft);
+				if (additionalRunsCount == 0)
+				{
+					WriteMessage(
+						MessageSource.Runner,
+						MessageSeverity.Informational,
+						$"No reruns requested: {explanationMessage}");
+				}
+				else
+				{
+					WriteMessage(
+						MessageSource.Runner,
+						MessageSeverity.Informational,
+						$"Requesting {additionalRunsCount} run(s): {explanationMessage}");
+
+					RunsLeft = Math.Max(additionalRunsCount, RunsLeft);
+				}
 			}
 		}
 		#endregion
@@ -251,12 +268,12 @@ namespace CodeJam.PerfTests.Running.Core
 			MessageSource messageSource, MessageSeverity messageSeverity,
 			[NotNull] string messageText)
 		{
-			AssertIsInCompetition();
-
 			Message message;
 
 			lock (_messages)
 			{
+				AssertIsInCompetition();
+
 				message = new Message(
 					RunNumber, MessagesInRun + 1,
 					Elapsed,
@@ -278,7 +295,7 @@ namespace CodeJam.PerfTests.Running.Core
 			if (Logger == null)
 			{
 				throw CodeExceptions.InvalidOperation(
-					$"Please call {nameof(FirstTimeInit)}() first.");
+					$"Please call {nameof(FirstTimeInit)}() at first.");
 			}
 			Logger.LogMessage(message);
 		}

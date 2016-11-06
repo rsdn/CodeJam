@@ -27,11 +27,11 @@ namespace CodeJam.PerfTests.Analysers
 	{
 		#region Cached XML annotations from log
 		// DONTTOUCH: Each run should use results from previous run log.
-		// DO NOT cache log output in static field 
+		// DO NOT cache log output in static field
 		// as test can be run multiple times in same appdomain.
-		private class LoggedXmlAnnotations : Dictionary<string, XDocument[]> { }
+		private sealed class LoggedXmlAnnotations : Dictionary<string, XDocument[]> { }
 
-		private static readonly RunState<LoggedXmlAnnotations> _annotationsCacheSlot =
+		private static readonly RunState<LoggedXmlAnnotations> _annotationsFromLogCacheSlot =
 			new RunState<LoggedXmlAnnotations>();
 		#endregion
 
@@ -106,7 +106,7 @@ namespace CodeJam.PerfTests.Analysers
 			competitionState.Logger.WriteLineInfo(
 				$"{LogVerbosePrefix} Reading XML annotation documents from log '{PreviousRunLogUri}'.");
 
-			var xmlAnnotationDocs = _annotationsCacheSlot[summary].GetOrAdd(
+			var xmlAnnotationDocs = _annotationsFromLogCacheSlot[summary].GetOrAdd(
 				PreviousRunLogUri,
 				uri => XmlAnnotations.TryParseXmlAnnotationDocsFromLog(uri, competitionState));
 
@@ -121,7 +121,7 @@ namespace CodeJam.PerfTests.Analysers
 				$"{LogVerbosePrefix} Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log '{PreviousRunLogUri}'.");
 
 			bool updated = false;
-			foreach (var competitionTarget in competitionTargets.Values)
+			foreach (var competitionTarget in competitionTargets.Targets)
 			{
 				bool hasAnnotations = false;
 
@@ -139,7 +139,7 @@ namespace CodeJam.PerfTests.Analysers
 				{
 					competitionState.WriteMessage(
 						MessageSource.Analyser, MessageSeverity.Warning,
-						$"No logged XML annotation for {competitionTarget.Target.MethodTitle} found. Check if the method was renamed.");
+						$"No logged XML annotation for {competitionTarget.Target.MethodDisplayInfo} found. Check if the method was renamed.");
 				}
 			}
 
@@ -196,12 +196,13 @@ namespace CodeJam.PerfTests.Analysers
 		{
 			AnnotateTargets(summary, competitionState);
 
-			if (AdditionalRerunsIfAnnotationsUpdated <= 0 ||
+			if (checkPassed || 
+				AdditionalRerunsIfAnnotationsUpdated <= 0 ||
 				competitionState.RunNumber <= SkipRunsBeforeApplyingAnnotations)
 			{
 				base.OnLimitsCheckCompleted(summary, competitionState, checkPassed);
 			}
-			else if (!checkPassed)
+			else
 			{
 				competitionState.RequestReruns(
 					AdditionalRerunsIfAnnotationsUpdated,
@@ -213,7 +214,7 @@ namespace CodeJam.PerfTests.Analysers
 		private void AnnotateTargets(Summary summary, CompetitionState competitionState)
 		{
 			var competitionTargets = TargetsSlot[summary];
-			var targetsToAnnotate = competitionTargets.Values
+			var targetsToAnnotate = competitionTargets.Targets
 				.Where(t => t.HasUnsavedChanges)
 				.ToArray();
 

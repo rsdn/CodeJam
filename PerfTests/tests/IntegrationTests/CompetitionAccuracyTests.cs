@@ -47,7 +47,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"The benchmark(s) TooFast, TooFast2 run faster than 0.0015ms. Results cannot be trusted.");
+				"The benchmark(s) TooFast, TooFastX5 run faster than 0.0015 ms. Results cannot be trusted.");
 		}
 
 		[Test]
@@ -69,7 +69,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"The benchmark(s) TooSlow run longer than 0.5s." +
+				"The benchmark(s) TooSlow run longer than 0.5 sec." +
 					" Consider to rewrite the test as the peek timings will be hidden by averages" +
 					" or enable long running benchmarks support in the config.");
 		}
@@ -107,6 +107,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		}
 
 		[Test]
+		[Ignore("No outofproc support yet")]
 		public static void CompetitionHighAccuracyBenchmarkOutOfProcess()
 		{
 			IgnoreIfDebug();
@@ -140,7 +141,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			}
 
 			[Benchmark]
-			public int TooFast2()
+			public int TooFastX5()
 			{
 				var a = 0;
 				for (var i = 0; i < 50; i++)

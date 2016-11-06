@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Threading;
 
+using BenchmarkDotNet.Engines;
+using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Toolchains.InProcess;
 
@@ -53,22 +55,35 @@ namespace CodeJam.PerfTests
 		/// <summary>Helper for custom configs: creates default job for the config.</summary>
 		/// <param name="platform">Target platform for the job.</param>
 		/// <returns>Default job for the config.</returns>
-		public static IJob CreateDefaultJob(Platform platform = Platform.Host) =>
-			new Job
+		public static Job CreateDefaultJob(Platform? platform = null)
+		{
+			var job = new Job("CompetitionDefaultJob" + platform)
 			{
-				LaunchCount = 1,
-				Mode = Mode.SingleRun,
-				WarmupCount = 100,
-				TargetCount = 300,
-				Platform = platform,
-				Jit = platform == Platform.X64 ? Jit.RyuJit : Jit.Host,
-				Toolchain = InProcessToolchain.DontLogOutput
+				Env =
+				{
+					Gc = { Force = false }
+				},
+				Run =
+				{
+					LaunchCount = 1, WarmupCount = 100, TargetCount = 300, UnrollFactor = 1,
+					RunStrategy = RunStrategy.Throughput,
+					InvocationCount = 1
+				},
+				Infrastructure = { Toolchain = InProcessToolchain.Instance },
+				Accuracy = { AnalyzeLaunchVariance = false, EvaluateOverhead = false, RemoveOutliers = true }
 			};
+			if (platform != null)
+			{
+				job.Env.Platform = platform.Value;
+			}
+
+			return job.Freeze();
+		}
 
 		/// <summary>Helper for custom configs: configuration that should be used for new performance tests.</summary>
 		/// <param name="job">The job for the config. Default one will be used if <c>null</c>.</param>
 		/// <returns>Configuration that should be used for new performance tests.</returns>
-		public static ManualCompetitionConfig CreateDefaultConfig(IJob job = null)
+		public static ManualCompetitionConfig CreateDefaultConfig(Job job = null)
 		{
 			var defaultConfig = BenchmarkDotNet.Configs.DefaultConfig.Instance;
 
@@ -78,12 +93,14 @@ namespace CodeJam.PerfTests
 				KeepBenchmarkFiles = defaultConfig.KeepBenchmarkFiles
 			};
 
-			result.Add(defaultConfig.GetColumns().ToArray());
+			// DONTTOUCH: competition should not use default
+			// Exporters, Loggers and Jobs.
+			// These are omitted intentionally.
+			result.Add(defaultConfig.GetColumnProviders().ToArray());
 			result.Add(defaultConfig.GetValidators().ToArray());
 			result.Add(defaultConfig.GetAnalysers().ToArray());
 			result.Add(defaultConfig.GetDiagnosers().ToArray());
 			result.Set(defaultConfig.GetOrderProvider());
-
 			result.Add(job ?? CreateDefaultJob());
 
 			return result;
@@ -95,13 +112,13 @@ namespace CodeJam.PerfTests
 		/// </summary>
 		/// <param name="job">The job for the config. Default one will be used if <c>null</c>.</param>
 		/// <returns>Configuration that should be used for new performance tests.</returns>
-		public static ManualCompetitionConfig CreateDefaultConfigAnnotate(IJob job = null)
+		public static ManualCompetitionConfig CreateDefaultConfigAnnotate(Job job = null)
 		{
 			var result = CreateDefaultConfig(job);
 			result.LogCompetitionLimits = true;
 			result.RerunIfLimitsFailed = true;
 			result.UpdateSourceAnnotations = true;
-			result.Add(Exporters.TimingsExporter.Instance);
+			result.Add(Exporters.CsvTimingsExporter.Default);
 			return result;
 		}
 
@@ -110,7 +127,7 @@ namespace CodeJam.PerfTests
 		/// </summary>
 		/// <param name="job">The job for the config. Default one will be used if <c>null</c>.</param>
 		/// <returns>Configuration that should be used in case the existing limits should be ignored.</returns>
-		public static ManualCompetitionConfig CreateDefaultConfigReannotate(IJob job = null)
+		public static ManualCompetitionConfig CreateDefaultConfigReannotate(Job job = null)
 		{
 			var result = CreateDefaultConfigAnnotate(job);
 			result.IgnoreExistingAnnotations = true;

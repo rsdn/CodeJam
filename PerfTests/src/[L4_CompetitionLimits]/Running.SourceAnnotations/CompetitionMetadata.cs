@@ -31,7 +31,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		[NotNull]
 		public string MetadataResourceName { get; }
 
-		/// <summary>The relative path to the resource containing xml document with competition limits.</summary>
+		/// <summary>
+		/// The path to the resource containing xml document with competition limits.
+		/// Should be relative to the source file the attribute is applied to.
+		/// </summary>
 		/// <value>The relative path to the resource containing xml document with competition limits.</value>
 		[CanBeNull]
 		public string MetadataResourcePath { get; }

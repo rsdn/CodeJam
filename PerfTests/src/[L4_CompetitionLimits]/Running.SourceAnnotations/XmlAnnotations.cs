@@ -9,6 +9,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 
+using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
@@ -28,6 +29,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	/// Helper class for xml annotations
 	/// </summary>
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
+	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
+	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	internal static class XmlAnnotations
 	{
 		private sealed class UseFullTypeNameAnnotation
@@ -66,7 +69,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		[NotNull]
 		private static string GetCandidateName(this Target target) =>
-			target.MethodTitle;
+			target.MethodDisplayInfo;
 
 		[NotNull]
 		// ReSharper disable once SuggestBaseTypeForParameter
@@ -91,7 +94,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		[CanBeNull]
 		// ReSharper disable once UnusedMethodReturnValue.Local
-		private static XAttribute SetAttribute(this XElement parent, XName attributeName, string attributeValue)
+		private static XAttribute SetAttribute(this XElement parent, XName attributeName, object attributeValue)
 		{
 			if (attributeValue == null)
 			{
@@ -108,7 +111,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			}
 			else
 			{
-				result.Value = attributeValue;
+				result.SetValue(attributeValue);
 			}
 
 			return result;
@@ -239,8 +242,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			Code.NotNullNorEmpty(logUri, nameof(logUri));
 			Code.NotNull(competitionState, nameof(competitionState));
 
-			var result = new List<XDocument>();
-
 			var logger = competitionState.Logger;
 
 			logger.WriteLineInfo($"{LogVerbosePrefix} Downloading '{logUri}'.");
@@ -255,56 +256,74 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					return Array<XDocument>.Empty;
 				}
 
-				logger.WriteLineInfo($"{LogVerbosePrefix} Downloaded '{logUri}'.");
+				logger.WriteLineInfo($"{LogVerbosePrefix} Parsing '{logUri}' content.");
 
-				var buffer = new StringBuilder();
-				int lineNumber = 0, xmlStartLineNumber = -1;
-				string logLine;
-				while ((logLine = reader.ReadLine()) != null)
+				return ParseLogContent(logUri, reader, competitionState);
+			}
+		}
+
+		private static XDocument[] ParseLogContent(
+			string logUri, TextReader reader,
+			CompetitionState competitionState)
+		{
+			var result = new List<XDocument>();
+
+			var buffer = new StringBuilder();
+			int lineNumber = 0, xmlStartLineNumber = -1;
+			string logLine;
+			while ((logLine = reader.ReadLine()) != null)
+			{
+				lineNumber++;
+
+				if (logLine.StartsWith(LogAnnotationStart, StringComparison.OrdinalIgnoreCase))
 				{
-					lineNumber++;
-
-					if (logLine.StartsWith(LogAnnotationStart, StringComparison.OrdinalIgnoreCase))
+					if (xmlStartLineNumber >= 0)
 					{
-						xmlStartLineNumber = lineNumber;
+						competitionState.WriteMessage(
+							MessageSource.Analyser, MessageSeverity.Warning,
+							$"The log is damaged, annotation area start tag was repeated twice. Uri '{logUri}', lines {xmlStartLineNumber} and {lineNumber}.");
 					}
-					else if (logLine.StartsWith(LogAnnotationEnd, StringComparison.OrdinalIgnoreCase))
+					xmlStartLineNumber = lineNumber;
+				}
+				else if (logLine.StartsWith(LogAnnotationEnd, StringComparison.OrdinalIgnoreCase))
+				{
+					if (xmlStartLineNumber < 0)
 					{
-						if (buffer.Length > 0)
+						competitionState.WriteMessage(
+							MessageSource.Analyser, MessageSeverity.Warning,
+							$"The log is damaged, annotation area start tag is missing. Uri '{logUri}', start tag at line {lineNumber}.");
+					}
+					else if (buffer.Length > 0)
+					{
+						var xmlAnnotationDoc = TryParseLogContentDoc(
+							buffer.ToString(), competitionState, logUri, xmlStartLineNumber);
+						if (xmlAnnotationDoc != null)
 						{
-							var xmlAnnotationDoc = TryParseXmlAnnotationDocFromLogCore(
-								buffer.ToString(), competitionState, logUri, xmlStartLineNumber);
-							if (xmlAnnotationDoc != null)
-							{
-								result.Add(xmlAnnotationDoc);
-							}
+							result.Add(xmlAnnotationDoc);
 						}
-						buffer.Length = 0;
+					}
 
-						xmlStartLineNumber = -1;
-					}
-					else if (xmlStartLineNumber >= 0)
-					{
-						buffer.Append(logLine);
-					}
+					buffer.Length = 0;
+					xmlStartLineNumber = -1;
 				}
-
-				if (buffer.Length > 0)
+				else if (xmlStartLineNumber >= 0)
 				{
-					var xmlAnnotationDoc = TryParseXmlAnnotationDocFromLogCore(
-						buffer.ToString(), competitionState, logUri, xmlStartLineNumber);
-					if (xmlAnnotationDoc != null)
-					{
-						result.Add(xmlAnnotationDoc);
-					}
+					buffer.Append(logLine);
 				}
+			}
+
+			if (xmlStartLineNumber >= 0)
+			{
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.Warning,
+					$"The log is damaged, annotation area end tag is missing. Uri '{logUri}', start tag at line {xmlStartLineNumber}.");
 			}
 
 			return result.ToArray();
 		}
 
 		[CanBeNull]
-		private static XDocument TryParseXmlAnnotationDocFromLogCore(
+		private static XDocument TryParseLogContentDoc(
 			string logXmlText,
 			CompetitionState competitionState,
 			string logUri, int logLine)
@@ -412,11 +431,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			var minRatio = TryParseLimitValue(
 				target, competitionNode,
-				CompetitionLimitProperties.MinRatio,
+				nameof(CompetitionTarget.MinRatio),
 				competitionState);
 			var maxRatio = TryParseLimitValue(
 				target, competitionNode,
-				CompetitionLimitProperties.MaxRatio,
+				nameof(CompetitionTarget.MaxRatio),
 				competitionState);
 
 			// If only one limit set, the other should be ignored
@@ -434,12 +453,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		private static double? TryParseLimitValue(
 			Target target, XElement competitionNode,
-			CompetitionLimitProperties limitProperty,
+			string limitProperty,
 			CompetitionState competitionState)
 		{
 			double? result = null;
 
-			var limitText = competitionNode.Attribute(limitProperty.ToString())?.Value;
+			var limitText = competitionNode.Attribute(limitProperty)?.Value;
 			if (limitText != null)
 			{
 				var culture = HostEnvironmentInfo.MainCultureInfo;
@@ -452,7 +471,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				{
 					competitionState.WriteMessage(
 						MessageSource.Analyser, MessageSeverity.SetupError,
-						$"XML anotation for {target.MethodTitle}: could not parse {limitProperty}.");
+						$"XML anotation for {target.MethodDisplayInfo}: could not parse {limitProperty}.");
 				}
 			}
 
@@ -471,18 +490,23 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			var competitionName = competitionTarget.Target.GetCompetitionName(xmlAnnotationDoc);
 			var candidateName = competitionTarget.Target.GetCandidateName();
+			bool isBaseline = competitionTarget.Baseline;
 
 			var competition = xmlAnnotationDoc
 				.Element(CompetitionBenchmarksRootNode)
 				.GetOrAddElement(CompetitionNode, competitionName);
 			var candidate = competition.GetOrAddElement(CandidateNode, candidateName);
 
-			var minText = competitionTarget.IgnoreMinRatio ? null : competitionTarget.MinRatioText;
+			var baselineText = isBaseline ? XmlConvert.ToString(true) : null;
+			var minText = (isBaseline || competitionTarget.IgnoreMinRatio) ? null : competitionTarget.MinRatioText;
 			// MaxText should be specified even if ignored.
-			var maxText = competitionTarget.MaxRatioText;
+			var maxText = isBaseline ? null: competitionTarget.MaxRatioText;
 
-			candidate.SetAttribute(CompetitionLimitProperties.MinRatio.ToString(), minText);
-			candidate.SetAttribute(CompetitionLimitProperties.MaxRatio.ToString(), maxText);
+			// Informational only, ignored on parse
+			candidate.SetAttribute(nameof(CompetitionTarget.Baseline), baselineText);
+
+			candidate.SetAttribute(nameof(CompetitionTarget.MinRatio), minText);
+			candidate.SetAttribute(nameof(CompetitionTarget.MaxRatio), maxText);
 		}
 		#endregion
 	}

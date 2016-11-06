@@ -36,9 +36,9 @@ namespace BenchmarkDotNet.Configs
 		#endregion
 
 		#region IConfig implementation
-		/// <summary>Get benchmark columns.</summary>
-		/// <returns>Benchmark columns.</returns>
-		public IEnumerable<IColumn> GetColumns() => _config.GetColumns();
+		/// <summary>Get benchmark column providers.</summary>
+		/// <returns>Benchmark column columns.</returns>
+		public IEnumerable<IColumnProvider> GetColumnProviders() => _config.GetColumnProviders();
 
 		/// <summary>Get benchmark exporters.</summary>
 		/// <returns>Benchmark exporters.</returns>
@@ -58,7 +58,7 @@ namespace BenchmarkDotNet.Configs
 
 		/// <summary>Get benchmark jobs.</summary>
 		/// <returns>Benchmark jobs.</returns>
-		public IEnumerable<IJob> GetJobs() => _config.GetJobs();
+		public IEnumerable<Job> GetJobs() => _config.GetJobs();
 
 		/// <summary>Get benchmark validators.</summary>
 		/// <returns>Benchmark validators.</returns>

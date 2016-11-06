@@ -2,7 +2,7 @@
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 
-using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Environments;
 
 using CodeJam.PerfTests.Exporters;
 using CodeJam.PerfTests.Running.Core;
@@ -69,7 +69,7 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>
 		/// Enables <see cref="ICompetitionConfig.DetailedLogging"/> and <see cref="ICompetitionConfig.AllowDebugBuilds"/> options.
-		/// Adds the <see cref="TimingsExporter"/> exporter.
+		/// Adds the <see cref="CsvTimingsExporter"/> exporter.
 		/// Also the <see cref="Loggers"/> will be threated as if set to <seealso cref="AppConfigLoggers.Both"/>
 		/// </summary>
 		/// <value><c>true</c> to enable troubleshooting mode.</value>
@@ -86,6 +86,7 @@ namespace CodeJam.PerfTests.Configs
 			}
 		}
 
+		// TODO: better naming???
 		/// <summary>
 		/// Assembly-level loggers that should be used. Check the <see cref="AppConfigLoggers"/> for possible values.
 		/// </summary>

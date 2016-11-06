@@ -66,6 +66,15 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// </value>
 		public bool DoesNotCompete { get; }
 
+		// DONTTOUCH: renaming the property will break xml annotations.
+		/// <summary>The benchmark target is baseline.</summary>
+		/// <value><c>true</c> if the benchmark target is baseline.</value>
+		public bool Baseline => Target.Baseline;
+
+		/// <summary>The benchmark has limits to check.</summary>
+		/// <value><c>true</c> if the benchmark has limits to check.</value>
+		public bool CheckLimiths => !Target.Baseline && !DoesNotCompete;
+
 		/// <summary>The limit properties are updated but not saved.</summary>
 		/// <value><c>true</c> if this instance has unsaved changes; otherwise, <c>false</c>.</value>
 		public bool HasUnsavedChanges => _changedProperties != CompetitionLimitProperties.None;

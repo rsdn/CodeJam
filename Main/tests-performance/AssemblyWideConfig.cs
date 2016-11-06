@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
+using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Jobs;
 
 using CodeJam.PerfTests.Configs;
@@ -67,7 +68,7 @@ namespace CodeJam
 
 			createOptions.Loggers |= AppConfigLoggers.ImportantOnly;
 
-			if (createOptions.TargetPlatform == Platform.Host)
+			if (createOptions.TargetPlatform == null)
 			{
 				createOptions.TargetPlatform = Platform.X64;
 			}

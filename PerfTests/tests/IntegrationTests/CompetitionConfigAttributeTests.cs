@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 
 using BenchmarkDotNet.Columns;
-using BenchmarkDotNet.Jobs;
 
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.IntegrationTests;
@@ -25,7 +24,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		public static ManualCompetitionConfig Create()
 		{
-			var result = CreateSelfTestConfig(Platform.Host);
+			var result = CreateSelfTestConfig(null);
 			result.Add(BaselineScaledColumn.WelchTTestPValue);
 			return result;
 		}
@@ -37,7 +36,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		private static ManualCompetitionConfig Create()
 		{
-			var result = CreateSelfTestConfig(Platform.Host);
+			var result = CreateSelfTestConfig(null);
 			result.Add(StatisticColumn.Kurtosis);
 			return result;
 		}
@@ -59,8 +58,16 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(messages.Length, 1);
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
-			Assert.AreEqual(runState.Config.GetColumns().Count(c => c == StatisticColumn.Kurtosis), 0);
-			Assert.AreEqual(runState.Config.GetColumns().Count(c => c == BaselineScaledColumn.WelchTTestPValue), 0);
+			Assert.AreEqual(
+				runState.Config
+					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
+					.Count(c => c == StatisticColumn.Kurtosis),
+				0);
+			Assert.AreEqual(
+				runState.Config
+					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
+					.Count(c => c == BaselineScaledColumn.WelchTTestPValue),
+				0);
 
 			Interlocked.Exchange(ref _callCounter, 0);
 
@@ -70,8 +77,16 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(messages.Length, 1);
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
-			Assert.AreEqual(runState.Config.GetColumns().Count(c => c == StatisticColumn.Kurtosis), 0);
-			Assert.AreEqual(runState.Config.GetColumns().Count(c => c == BaselineScaledColumn.WelchTTestPValue), 1);
+			Assert.AreEqual(
+				runState.Config
+					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
+					.Count(c => c == StatisticColumn.Kurtosis),
+				0);
+			Assert.AreEqual(
+				runState.Config
+					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
+					.Count(c => c == BaselineScaledColumn.WelchTTestPValue),
+				1);
 		}
 
 		[Test]
@@ -85,8 +100,16 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(messages.Length, 1);
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
-			Assert.AreEqual(runState.Config.GetColumns().Count(c => c == StatisticColumn.Kurtosis), 0);
-			Assert.AreEqual(runState.Config.GetColumns().Count(c => c == BaselineScaledColumn.WelchTTestPValue), 1);
+			Assert.AreEqual(
+				runState.Config
+					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
+					.Count(c => c == StatisticColumn.Kurtosis),
+				0);
+			Assert.AreEqual(
+				runState.Config
+					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
+					.Count(c => c == BaselineScaledColumn.WelchTTestPValue),
+				1);
 
 			Interlocked.Exchange(ref _callCounter, 0);
 
@@ -96,8 +119,16 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(messages.Length, 1);
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
-			Assert.AreEqual(runState.Config.GetColumns().Count(c => c == StatisticColumn.Kurtosis), 0);
-			Assert.AreEqual(runState.Config.GetColumns().Count(c => c == BaselineScaledColumn.WelchTTestPValue), 1);
+			Assert.AreEqual(
+				runState.Config
+					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
+					.Count(c => c == StatisticColumn.Kurtosis),
+				0);
+			Assert.AreEqual(
+				runState.Config
+					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
+					.Count(c => c == BaselineScaledColumn.WelchTTestPValue),
+				1);
 		}
 
 		[Test]
@@ -111,8 +142,16 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(messages.Length, 1);
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
-			Assert.AreEqual(runState.Config.GetColumns().Count(c => c == StatisticColumn.Kurtosis), 1);
-			Assert.AreEqual(runState.Config.GetColumns().Count(c => c == BaselineScaledColumn.WelchTTestPValue), 0);
+			Assert.AreEqual(
+				runState.Config
+					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
+					.Count(c => c == StatisticColumn.Kurtosis),
+				1);
+			Assert.AreEqual(
+				runState.Config
+					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
+					.Count(c => c == BaselineScaledColumn.WelchTTestPValue),
+				0);
 		}
 
 		#region Perf test helpers

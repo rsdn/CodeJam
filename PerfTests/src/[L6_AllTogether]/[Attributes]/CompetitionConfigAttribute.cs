@@ -23,13 +23,13 @@ namespace CodeJam.PerfTests
 			Code.NotNull(configType, nameof(configType));
 
 			_configLazy = new Lazy<ICompetitionConfig>(
-				()=>(ICompetitionConfig)Activator.CreateInstance(configType),
+				() => (ICompetitionConfig)Activator.CreateInstance(configType),
 				LazyThreadSafetyMode.ExecutionAndPublication);
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionConfigAttribute"/> class.</summary>
 		/// <param name="configFactory">Instance of the competition config.</param>
-		protected CompetitionConfigAttribute(Func<ICompetitionConfig> configFactory)
+		protected CompetitionConfigAttribute([NotNull] Func<ICompetitionConfig> configFactory)
 		{
 			_configLazy = new Lazy<ICompetitionConfig>(
 				configFactory,

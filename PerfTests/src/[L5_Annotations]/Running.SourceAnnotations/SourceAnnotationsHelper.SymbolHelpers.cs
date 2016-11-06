@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -10,6 +8,7 @@ using System.Security.Cryptography;
 using CodeJam.Collections;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
+using CodeJam.Reflection;
 using CodeJam.Strings;
 
 using JetBrains.Annotations;
@@ -78,15 +77,15 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				{
 					// ReSharper disable once PossibleNullReferenceException
 					var assembly = method.DeclaringType.Assembly;
-					var codeBase = new Uri(assembly.CodeBase).LocalPath;
-					var codeBaseDirectory = Path.GetDirectoryName(codeBase);
+					var assemblyPath = assembly.GetAssemblyPath();
+					var codeBaseDirectory = Path.GetDirectoryName(assemblyPath);
 
 					var dispenser = (IMetaDataDispenser)new CorMetaDataDispenser();
-					var import = dispenser.OpenScope(codeBase, 0, typeof(IMetaDataImportStub).GUID);
+					var import = dispenser.OpenScope(assemblyPath, 0, typeof(IMetaDataImportStub).GUID);
 					var binder = (ISymUnmanagedBinder)new CorSymBinder();
 
 					ISymUnmanagedReader reader;
-					var hr = binder.GetReaderForFile(import, codeBase, codeBaseDirectory, out reader);
+					var hr = binder.GetReaderForFile(import, assemblyPath, codeBaseDirectory, out reader);
 					ThrowExceptionForHR(hr);
 
 					ISymUnmanagedMethod methodSymbols;
@@ -165,8 +164,13 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				Sha1
 			}
 
-			private static readonly ConcurrentDictionary<string, byte[]> _md5HashesCache = new ConcurrentDictionary<string, byte[]>();
-			private static readonly ConcurrentDictionary<string, byte[]> _sha1HashesCache = new ConcurrentDictionary<string, byte[]>();
+			private static readonly Func<string, byte[]> _md5HashesCache = Algorithms.Memoize(
+				(string f) => TryGetChecksum(f, Md5AlgName),
+				true);
+
+			private static readonly Func<string, byte[]> _sha1HashesCache = Algorithms.Memoize(
+				(string f) => TryGetChecksum(f, Sha1AlgName),
+				true);
 
 			private const string Sha1AlgName = "SHA1";
 			private const string Md5AlgName = "Md5";
@@ -186,12 +190,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			private static bool ValidateCore(
 				string file,
-				ConcurrentDictionary<string, byte[]> fileHashesCache,
+				Func<string, byte[]> fileHashesGetter,
 				string hashAlgName,
 				byte[] expectedChecksum, CompetitionState competitionState)
 			{
-				var actualChecksum = fileHashesCache.GetOrAdd(file, f => TryGetChecksum(f, hashAlgName));
-				if (expectedChecksum.SequenceEqual(actualChecksum))
+				var actualChecksum = fileHashesGetter(file);
+				if (expectedChecksum.EqualsTo(actualChecksum))
 				{
 					return true;
 				}

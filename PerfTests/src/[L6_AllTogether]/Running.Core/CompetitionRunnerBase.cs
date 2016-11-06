@@ -8,6 +8,7 @@ using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
+using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
@@ -30,10 +31,10 @@ namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>Base class for competition benchmark runners</summary>
 	[PublicAPI]
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
-	[SuppressMessage("ReSharper", "VirtualMemberNeverOverriden.Global")]
-	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
+	[SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
 	public abstract class CompetitionRunnerBase
 	{
 		/// <summary>Base class for competition runner's host logger.</summary>
@@ -260,14 +261,14 @@ namespace CodeJam.PerfTests.Running.Core
 				else
 				{
 					logger.WriteSeparatorLine();
-					logger.WriteLineInfo("{LogVerbosePrefix} No messages in run.");
+					logger.WriteLineInfo($"{Loggers.HostLogger.LogVerbosePrefix} No messages in run.");
 				}
 			}
 			else if (summary != null)
 			{
 				using (Loggers.HostLogger.BeginLogImportant(summary.Config))
 				{
-					var summarylogger = DumpSummaryToHostLogger
+					var summaryLogger = DumpSummaryToHostLogger
 						? logger
 						: new CompositeLogger(
 							summary.Config
@@ -275,9 +276,9 @@ namespace CodeJam.PerfTests.Running.Core
 								.Where(l => !(l is HostLogger))
 								.ToArray());
 
-					// Dumping the benchmark results to console
-					summarylogger.WriteSeparatorLine("Summary");
-					MarkdownExporter.Console.ExportToLog(summary, summarylogger);
+					// Dumping the benchmark summary
+					summaryLogger.WriteSeparatorLine("Summary");
+					MarkdownExporter.Console.ExportToLog(summary, summaryLogger);
 				}
 			}
 		}
@@ -304,9 +305,8 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Timing limit for too fast runs.</summary>
 		/// <value>The timing limit for too fast runs</value>
+		// DONTTOUCH: update xml docs for BurstModeEngineBase after changing the constant.
 		protected virtual TimeSpan DefaultTooFastBenchmarkLimit => new TimeSpan(15); // 1500 ns
-
-		private static readonly TimeSpan _defaultLongRunsAllowedLimit = TimeSpan.FromDays(1);
 
 		/// <summary>Default timing limit to detect long-running benchmarks.</summary>
 		/// <value>The default timing limit to detect long-running benchmarks.</value>
@@ -365,16 +365,41 @@ namespace CodeJam.PerfTests.Running.Core
 			result.UnionRule = competitionConfig.UnionRule;
 			result.Set(competitionConfig.GetOrderProvider());
 
-			result.Add(OverrideJobs(competitionConfig).ToArray());
 			result.Add(OverrideExporters(competitionConfig).ToArray());
 			result.Add(OverrideDiagnosers(competitionConfig).ToArray());
 
+			result.Add(GetJobs(competitionConfig).ToArray());
 			result.Add(GetLoggers(competitionConfig).ToArray());
-			result.Add(GetColumns(competitionConfig).ToArray());
+			result.Add(GetColumnProviders(competitionConfig).ToArray());
 			result.Add(GetValidators(competitionConfig).ToArray());
 			result.Add(GetAnalysers(competitionConfig).ToArray());
 
 			return result.AsReadOnly();
+		}
+
+		private List<Job> GetJobs(ICompetitionConfig competitionConfig)
+		{
+			var result = OverrideJobs(competitionConfig);
+			if (result.Count == 0)
+			{
+				result.Add(CompetitionHelpers.CreateDefaultJob());
+			}
+
+			var customToolchain = new InfrastructureMode
+			{
+				Toolchain = InProcessToolchain.Instance
+			};
+
+			for (int i = 0; i < result.Count; i++)
+			{
+				if (result[i].Infrastructure.Job == null)
+				{
+					result[i] = result[i].Apply(customToolchain);
+				}
+				result[i].Freeze();
+			}
+
+			return result;
 		}
 
 		private List<ILogger> GetLoggers(ICompetitionConfig competitionConfig)
@@ -387,17 +412,19 @@ namespace CodeJam.PerfTests.Running.Core
 			return result;
 		}
 
-		private List<IColumn> GetColumns(ICompetitionConfig competitionConfig)
+		private List<IColumnProvider> GetColumnProviders(ICompetitionConfig competitionConfig)
 		{
 			// TODO: better columns.
+			// TODO: custom column provider?
 			var result = OverrideColumns(competitionConfig);
 			result.AddRange(
 				new[]
 				{
-					StatisticColumn.Min,
-					new CompetitionLimitColumn(competitionConfig.CompetitionLimitProvider, false),
-					new CompetitionLimitColumn(competitionConfig.CompetitionLimitProvider, true),
-					StatisticColumn.Max
+					new SimpleColumnProvider(
+						StatisticColumn.Min,
+						new CompetitionLimitColumn(competitionConfig.CompetitionLimitProvider, false),
+						new CompetitionLimitColumn(competitionConfig.CompetitionLimitProvider, true),
+						StatisticColumn.Max)
 				});
 
 			return result;
@@ -409,23 +436,26 @@ namespace CodeJam.PerfTests.Running.Core
 
 			bool debugMode = competitionConfig.AllowDebugBuilds;
 
-			if (result.Any(v => v is JitOptimizationsValidator))
-			{
-				if (debugMode)
-				{
-					result.RemoveAll(v => v is JitOptimizationsValidator && v.TreatsWarningsAsErrors);
-				}
-			}
-			else if (competitionConfig.UpdateSourceAnnotations && !debugMode)
-			{
-				result.Insert(0, JitOptimizationsValidator.FailOnError);
-			}
-
-			if (competitionConfig.GetJobs().Any(j => j.Toolchain is InProcessToolchain) &&
+			bool customToolchain = competitionConfig.GetJobs().Any(j => !(j.Infrastructure?.Toolchain is InProcessToolchain));
+			if (!customToolchain &&
 				!result.Any(v => v is InProcessValidator))
 			{
 				result.Insert(0, debugMode ? InProcessValidator.DontFailOnError : InProcessValidator.FailOnError);
 			}
+
+			if (debugMode)
+			{
+				result.RemoveAll(v => v is JitOptimizationsValidator && v.TreatsWarningsAsErrors);
+			}
+			else if (competitionConfig.UpdateSourceAnnotations &&
+				!result.OfType<JitOptimizationsValidator>().Any())
+			{
+				result.Insert(0, JitOptimizationsValidator.FailOnError);
+			}
+
+			Code.BugIf(
+				result.OfType<RunStateSlots>().Any(),
+				"The config validators should not contain instances of RunStateSlots.");
 
 			// DONTTOUCH: the RunStateSlots should be first in the chain.
 			result.Insert(0, new RunStateSlots());
@@ -436,6 +466,10 @@ namespace CodeJam.PerfTests.Running.Core
 		private List<IAnalyser> GetAnalysers(ICompetitionConfig competitionConfig)
 		{
 			var result = OverrideAnalysers(competitionConfig);
+
+			Code.BugIf(
+				result.OfType<CompetitionAnalyser>().Any(),
+				"The config analysers should not contain instances of CompetitionAnalyser.");
 
 			// DONTTOUCH: the CompetitionAnnotateAnalyser should be last analyser in the chain.
 			result.Add(GetCompetitionAnalyser(competitionConfig));
@@ -458,7 +492,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			competitionAnalyser.TooFastBenchmarkLimit = DefaultTooFastBenchmarkLimit;
 			competitionAnalyser.LongRunningBenchmarkLimit = competitionConfig.AllowLongRunningBenchmarks
-				? _defaultLongRunsAllowedLimit
+				? CompetitionCore.MaxRunTimeout
 				: DefaultLongRunningBenchmarkLimit;
 
 			competitionAnalyser.IgnoreExistingAnnotations = competitionConfig.IgnoreExistingAnnotations;
@@ -476,7 +510,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Override competition jobs.</summary>
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>The jobs for the competition</returns>
-		protected virtual List<IJob> OverrideJobs([NotNull] ICompetitionConfig competitionConfig) =>
+		protected virtual List<Job> OverrideJobs([NotNull] ICompetitionConfig competitionConfig) =>
 			competitionConfig.GetJobs().ToList();
 
 		/// <summary>Override competition exporters.</summary>
@@ -500,8 +534,8 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Override competition columns.</summary>
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>The columns for the competition</returns>
-		protected virtual List<IColumn> OverrideColumns([NotNull] ICompetitionConfig competitionConfig) =>
-			competitionConfig.GetColumns().ToList();
+		protected virtual List<IColumnProvider> OverrideColumns([NotNull] ICompetitionConfig competitionConfig) =>
+			competitionConfig.GetColumnProviders().ToList();
 
 		/// <summary>Override competition validators.</summary>
 		/// <param name="competitionConfig">The competition config.</param>
@@ -599,9 +633,9 @@ namespace CodeJam.PerfTests.Running.Core
 			bool fromAllRuns)
 		{
 			var result = from message in competitionState.GetMessages()
-				where severityFilter(message) && ShouldReport(message, competitionState.RunNumber, fromAllRuns)
-				orderby message.RunNumber, message.RunMessageNumber
-				select $"    * Run #{message.RunNumber}: {message.MessageText}";
+						 where severityFilter(message) && ShouldReport(message, competitionState.RunNumber, fromAllRuns)
+						 orderby message.RunNumber, message.RunMessageNumber
+						 select $"    * Run #{message.RunNumber}: {message.MessageText}";
 
 			return result.ToArray();
 		}

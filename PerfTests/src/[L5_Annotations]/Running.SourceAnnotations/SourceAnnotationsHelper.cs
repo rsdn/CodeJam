@@ -11,7 +11,6 @@ using BenchmarkDotNet.Loggers;
 using CodeJam.Collections;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
-using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -196,7 +195,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			foreach (var targetToAnnotate in targetsToAnnotate)
 			{
 				var target = targetToAnnotate.Target;
-				var targetMethodTitle = target.MethodTitle;
+				var targetMethodTitle = target.MethodDisplayInfo;
 
 				logger.WriteLineInfo(
 					$"{LogVerbosePrefix} Method {targetMethodTitle}: updating time limits {targetToAnnotate}.");
@@ -248,42 +247,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			annContext.Save();
 			return annotatedTargets.ToArray();
-		}
-
-		private static string GetResourceFileName(string fileName, CompetitionMetadata competitionMetadata)
-		{
-			if (competitionMetadata.MetadataResourcePath.NotNullNorEmpty())
-			{
-				var dir = Path.GetDirectoryName(fileName);
-
-				return dir.IsNullOrEmpty()
-					? competitionMetadata.MetadataResourcePath
-					: Path.Combine(dir, competitionMetadata.MetadataResourcePath);
-			}
-
-			return Path.ChangeExtension(fileName, ".xml");
-		}
-
-		private static bool TryFixBenchmarkXmlAnnotation(
-			AnnotateContext annotateContext, string xmlFileName,
-			CompetitionTarget competitionTarget,
-			CompetitionState competitionState)
-		{
-			Code.AssertArgument(
-				competitionTarget.CompetitionMetadata != null, nameof(competitionTarget),
-				"Competition metadata cannot be null for xml annotations.");
-
-			var xmlAnnotationDoc = annotateContext.TryGetXmlAnnotation(
-				xmlFileName,
-				competitionTarget.CompetitionMetadata.UseFullTypeName,
-				competitionState);
-			if (xmlAnnotationDoc == null)
-				return false;
-
-			XmlAnnotations.AddOrUpdateXmlAnnotation(xmlAnnotationDoc, competitionTarget);
-			annotateContext.MarkAsChanged(xmlFileName);
-
-			return true;
 		}
 	}
 }

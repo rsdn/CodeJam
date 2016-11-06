@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Validators;
 
 using NUnit.Framework;
@@ -58,7 +58,9 @@ namespace CodeJam.PerfTests
 
 			Assert.AreEqual(summary?.ValidationErrors.Length, 1);
 			Assert.IsTrue(summary?.ValidationErrors[0].IsCritical);
-			Assert.That(summary?.ValidationErrors[0].Message, Does.Contain(", property Platform:"));
+			Assert.AreEqual(
+				summary?.ValidationErrors[0].Message,
+				"Job SelfTestConfigX86, property EnvMode.Platform: value (X86) does not match environment (X64).");
 		}
 
 		public class InProcessBenchmark

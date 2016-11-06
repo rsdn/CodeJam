@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="XmlOkBenchmark">
+		<Candidate Target="Baseline" Baseline="true" />
 		<Candidate Target="SlowerX20" MinRatio="10" MaxRatio="30" />
 	</Competition>
 	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionRunTests+XmlFullAnnotationBenchmark, CodeJam.PerfTests-Tests">
+		<Candidate Target="Baseline" Baseline="true" />
 		<Candidate Target="SlowerX20" MinRatio="10" MaxRatio="30" />
 	</Competition>
 </CompetitionBenchmarks>

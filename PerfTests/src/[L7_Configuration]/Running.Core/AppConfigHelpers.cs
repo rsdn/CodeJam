@@ -8,7 +8,6 @@ using BenchmarkDotNet.Loggers;
 
 using CodeJam.Collections;
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Exporters;
 using CodeJam.PerfTests.Loggers;
 using CodeJam.Reflection;
 
@@ -62,12 +61,12 @@ namespace CodeJam.PerfTests.Running.Core
 		public static ManualCompetitionConfig CreateAppCompetitionConfig(
 			[NotNull] Assembly targetAssembly,
 			[CanBeNull] AppConfigOptions createOptions,
-			[CanBeNull] IJob job = null)
+			[CanBeNull] Job job = null)
 		{
 			Code.NotNull(targetAssembly, nameof(targetAssembly));
 
 			if (createOptions == null)
-				return new ManualCompetitionConfig(DefaultConfig);
+				return new ManualCompetitionConfig(CreateDefaultConfig(job));
 
 			if (job == null)
 				job = CreateDefaultJob(createOptions.TargetPlatform);
@@ -93,7 +92,7 @@ namespace CodeJam.PerfTests.Running.Core
 				result.Add(
 					GetDetailedLogger(targetAssembly),
 					GetImportantOnlyLogger(targetAssembly));
-				result.Add(TimingsExporter.Instance);
+				result.Add(Exporters.CsvTimingsExporter.Default);
 			}
 			else
 			{

@@ -2,6 +2,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
+using BenchmarkDotNet.Engines;
+using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
@@ -22,7 +24,8 @@ namespace BenchmarkDotNet.Toolchains
 	/// <typeparam name="TResult">The type of the result.</typeparam>
 	/// <seealso cref="IRunnableBenchmark"/>
 	[SuppressMessage("ReSharper", "PassStringInterpolation")]
-	public class RunnableBenchmark<TTarget, TResult> : IRunnableBenchmark where TTarget : new()
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
+	internal class RunnableBenchmark<TTarget, TResult> : IRunnableBenchmark where TTarget : new()
 	{
 		private Func<TResult> _runCallback;
 		private Func<TResult> _idleCallback;
@@ -32,22 +35,43 @@ namespace BenchmarkDotNet.Toolchains
 		#region Copy this into InProcessProgram<TTarget>
 		private Benchmark _benchmark;
 		private TTarget _instance;
+		private bool _isDiagnoserAttached;
+		private Type _engineFactoryType;
 		private Action _setupAction;
+		private Action _cleanupAction;
 		private int _operationsPerInvoke;
-		private IJob _job;
+		private Job _job;
 		private TextWriter _output;
 
-		/// <summary>Initializes the specified benchmark before <see cref="IRunnableBenchmark.Run"/> call.</summary>
+		/// <summary>Initializes the specified benchmark before <see cref="IRunnableBenchmark.Run" /> call.</summary>
 		/// <param name="benchmarkToRun">The benchmark that will be run.</param>
+		/// <param name="engineFactoryType">Type of the engine factory.</param>
 		/// <param name="output">The writer to redirect the output.</param>
-		public void Init(Benchmark benchmarkToRun, TextWriter output)
+		/// <param name="isDiagnoserAttached"><c>true</c> if there is diagnoser attached.</param>
+		public void Init(Benchmark benchmarkToRun, Type engineFactoryType, TextWriter output, bool isDiagnoserAttached)
 		{
+			// TODO: lazy RunCore! Why:
+			// the first thing to do is to let diagnosers hook in before anything happens
+			// so all jit-related diagnosers can catch first jit compilation!
+			if (_isDiagnoserAttached) // stub code, no diagnoser supported yet.
+			{
+				_output.WriteLine(Engine.Signals.BeforeAnythingElse);
+			}
+
 			_benchmark = benchmarkToRun;
+			_isDiagnoserAttached = isDiagnoserAttached;
+			_engineFactoryType = engineFactoryType;
+
 			var target = _benchmark.Target;
+			var unrollFactor = _benchmark.Job.ResolveValue(RunMode.UnrollFactorCharacteristic, EnvResolver.Instance);
 			_instance = new TTarget();
 			CreateSetupAction(_instance, target, out _setupAction);
+			CreateCleanupAction(_instance, target, out _cleanupAction);
 			CreateRunCallback(_instance, target, out _runCallback);
 			_idleCallback = Idle;
+
+			_runCallback = Unroll(_runCallback, unrollFactor);
+			_idleCallback = Unroll(_idleCallback, unrollFactor);
 
 			_operationsPerInvoke = target.OperationsPerInvoke;
 			_job = _benchmark.Job;
@@ -67,19 +91,67 @@ namespace BenchmarkDotNet.Toolchains
 					FillProperties(_instance, _benchmark);
 
 					_output.WriteLine();
-					foreach (var infoLine in HostEnvironmentInfo.GetCurrent().ToFormattedString())
+					foreach (var infoLine in BenchmarkEnvironmentInfo.GetCurrent().ToFormattedString())
 					{
 						_output.WriteLine("// {0}", infoLine);
 					}
+					_output.WriteLine("// Job: {0}", _job.DisplayInfo);
 					_output.WriteLine();
 
-					new MethodInvokerLight(_job).Invoke(_job, _operationsPerInvoke, _setupAction, _runCallback, _idleCallback);
+					var engineParameters = new EngineParameters
+					{
+						MainAction = MainMultiAction,
+						IdleAction = IdleMultiAction,
+						SetupAction = _setupAction,
+						CleanupAction = _cleanupAction,
+						TargetJob = _job,
+						OperationsPerInvoke = _operationsPerInvoke,
+						IsDiagnoserAttached = _isDiagnoserAttached
+					};
+
+					var engine = IsBurstNode(_job)
+						? CreateBurstModeEngine(engineParameters, _idleCallback, _runCallback)
+						: ((EngineFactory)Activator.CreateInstance(_engineFactoryType)).Create(engineParameters);
+
+					engine.PreAllocate();
+
+					_setupAction();
+
+					engine.Jitting(); // does first call to main action, must be executed after setup()!
+
+					if (_isDiagnoserAttached)
+						Console.WriteLine(Engine.Signals.AfterSetup);
+
+					var results = engine.Run();
+
+					if (_isDiagnoserAttached)
+						Console.WriteLine(Engine.Signals.BeforeCleanup);
+
+					_cleanupAction();
+
+					results.Print(); // printing costs memory, do this after runs
 				}
 				catch (Exception ex)
 				{
 					_output.WriteLine(ex);
 					throw;
 				}
+			}
+		}
+
+		private void IdleMultiAction(long invokeCount)
+		{
+			for (long i = 0; i < invokeCount; i++)
+			{
+				_idleCallback();
+			}
+		}
+
+		private void MainMultiAction(long invokeCount)
+		{
+			for (long i = 0; i < invokeCount; i++)
+			{
+				_runCallback();
 			}
 		}
 		#endregion
@@ -92,7 +164,8 @@ namespace BenchmarkDotNet.Toolchains
 	/// <typeparam name="TTarget">The type of the target.</typeparam>
 	/// <seealso cref="IRunnableBenchmark"/>
 	[SuppressMessage("ReSharper", "PassStringInterpolation")]
-	public class RunnableBenchmark<TTarget> : IRunnableBenchmark where TTarget : new()
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
+	internal class RunnableBenchmark<TTarget> : IRunnableBenchmark where TTarget : new()
 	{
 		private Action _runCallback;
 		private Action _idleCallback;
@@ -102,22 +175,43 @@ namespace BenchmarkDotNet.Toolchains
 		#region Copied from InProcessProgram<TTarget, TResult>
 		private Benchmark _benchmark;
 		private TTarget _instance;
+		private bool _isDiagnoserAttached;
+		private Type _engineFactoryType;
 		private Action _setupAction;
+		private Action _cleanupAction;
 		private int _operationsPerInvoke;
-		private IJob _job;
+		private Job _job;
 		private TextWriter _output;
 
-		/// <summary>Initializes the specified benchmark before <see cref="IRunnableBenchmark.Run"/> call.</summary>
+		/// <summary>Initializes the specified benchmark before <see cref="IRunnableBenchmark.Run" /> call.</summary>
 		/// <param name="benchmarkToRun">The benchmark that will be run.</param>
+		/// <param name="engineFactoryType">Type of the engine factory.</param>
 		/// <param name="output">The writer to redirect the output.</param>
-		public void Init(Benchmark benchmarkToRun, TextWriter output)
+		/// <param name="isDiagnoserAttached"><c>true</c> if there is diagnoser attached.</param>
+		public void Init(Benchmark benchmarkToRun, Type engineFactoryType, TextWriter output, bool isDiagnoserAttached)
 		{
+			// TODO: lazy RunCore! Why:
+			// the first thing to do is to let diagnosers hook in before anything happens
+			// so all jit-related diagnosers can catch first jit compilation!
+			if (_isDiagnoserAttached) // stub code, no diagnoser supported yet.
+			{
+				_output.WriteLine(Engine.Signals.BeforeAnythingElse);
+			}
+
 			_benchmark = benchmarkToRun;
+			_isDiagnoserAttached = isDiagnoserAttached;
+			_engineFactoryType = engineFactoryType;
+
 			var target = _benchmark.Target;
+			var unrollFactor = _benchmark.Job.ResolveValue(RunMode.UnrollFactorCharacteristic, EnvResolver.Instance);
 			_instance = new TTarget();
 			CreateSetupAction(_instance, target, out _setupAction);
+			CreateCleanupAction(_instance, target, out _cleanupAction);
 			CreateRunCallback(_instance, target, out _runCallback);
 			_idleCallback = Idle;
+
+			_runCallback = Unroll(_runCallback, unrollFactor);
+			_idleCallback = Unroll(_idleCallback, unrollFactor);
 
 			_operationsPerInvoke = target.OperationsPerInvoke;
 			_job = _benchmark.Job;
@@ -137,19 +231,67 @@ namespace BenchmarkDotNet.Toolchains
 					FillProperties(_instance, _benchmark);
 
 					_output.WriteLine();
-					foreach (var infoLine in HostEnvironmentInfo.GetCurrent().ToFormattedString())
+					foreach (var infoLine in BenchmarkEnvironmentInfo.GetCurrent().ToFormattedString())
 					{
 						_output.WriteLine("// {0}", infoLine);
 					}
+					_output.WriteLine("// Job: {0}", _job.DisplayInfo);
 					_output.WriteLine();
 
-					new MethodInvokerLight(_job).Invoke(_job, _operationsPerInvoke, _setupAction, _runCallback, _idleCallback);
+					var engineParameters = new EngineParameters
+					{
+						MainAction = MainMultiAction,
+						IdleAction = IdleMultiAction,
+						SetupAction = _setupAction,
+						CleanupAction = _cleanupAction,
+						TargetJob = _job,
+						OperationsPerInvoke = _operationsPerInvoke,
+						IsDiagnoserAttached = _isDiagnoserAttached
+					};
+
+					var engine = IsBurstNode(_job)
+						? CreateBurstModeEngine(engineParameters, _idleCallback, _runCallback)
+						: ((EngineFactory)Activator.CreateInstance(_engineFactoryType)).Create(engineParameters);
+
+					engine.PreAllocate();
+
+					_setupAction();
+
+					engine.Jitting(); // does first call to main action, must be executed after setup()!
+
+					if (_isDiagnoserAttached)
+						Console.WriteLine(Engine.Signals.AfterSetup);
+
+					var results = engine.Run();
+
+					if (_isDiagnoserAttached)
+						Console.WriteLine(Engine.Signals.BeforeCleanup);
+
+					_cleanupAction();
+
+					results.Print(); // printing costs memory, do this after runs
 				}
 				catch (Exception ex)
 				{
 					_output.WriteLine(ex);
 					throw;
 				}
+			}
+		}
+
+		private void IdleMultiAction(long invokeCount)
+		{
+			for (long i = 0; i < invokeCount; i++)
+			{
+				_idleCallback();
+			}
+		}
+
+		private void MainMultiAction(long invokeCount)
+		{
+			for (long i = 0; i < invokeCount; i++)
+			{
+				_runCallback();
 			}
 		}
 		#endregion

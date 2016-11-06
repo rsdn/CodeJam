@@ -66,7 +66,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="summary">The summary to report.</param>
 		protected override void ReportHostLogger(HostLogger logger, Summary summary)
 		{
-			// Do nothing.
+			// Do nothing. logger dumps output to the console.
 		}
 		#endregion
 

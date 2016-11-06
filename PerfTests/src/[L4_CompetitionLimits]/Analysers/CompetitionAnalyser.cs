@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Xml.Linq;
 
 using BenchmarkDotNet.Analysers;
+using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
@@ -32,11 +33,40 @@ namespace CodeJam.PerfTests.Analysers
 	{
 		#region Competition targets
 		/// <summary>Storage class for competition targets.</summary>
-		protected class CompetitionTargets : Dictionary<MethodInfo, CompetitionTarget>
+		protected sealed class CompetitionTargets
 		{
+			private readonly Dictionary<MethodInfo, CompetitionTarget> _targets = new Dictionary<MethodInfo, CompetitionTarget>();
+
+			/// <summary>Gets the <see cref="CompetitionTarget"/> for the specified target.</summary>
+			/// <value>The <see cref="CompetitionTarget"/>.</value>
+			/// <param name="target">The target.</param>
+			/// <returns>Competition target</returns>
+			[CanBeNull]
+			public CompetitionTarget this[Target target] => _targets.GetValueOrDefault(target.Method);
+
+			/// <summary>Returns all targets.</summary>
+			/// <value>The targets.</value>
+			public IReadOnlyCollection<CompetitionTarget> Targets => _targets.Values;
+
 			/// <summary>Gets a value indicating whether the targets are initialized.</summary>
 			/// <value><c>true</c> if initialized; otherwise, <c>false</c>.</value>
 			public bool Initialized { get; private set; }
+
+			/// <summary>Gets a value indicating whether there are any targets.</summary>
+			/// <value><c>true</c> if there are any targets; otherwise, <c>false</c>.</value>
+			public bool HasTargets => _targets.Count > 0;
+
+			/// <summary>Clears this instance.</summary>
+			public void Clear()
+			{
+				_targets.Clear();
+				Initialized = false;
+			}
+
+			/// <summary>Adds the specified competition target.</summary>
+			/// <param name="competitionTarget">The competition target.</param>
+			public void Add(CompetitionTarget competitionTarget) =>
+				_targets.Add(competitionTarget.Target.Method, competitionTarget);
 
 			/// <summary>Marks as initialized.</summary>
 			public void SetInitialized() => Initialized = true;
@@ -48,6 +78,8 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		#region Cached resources with XML annotations.
+		// DONTTOUCH: DO NOT replace with Memoize as the value reading depends on CompetitionState
+		// and should be called from callee thread only.
 		private static readonly ConcurrentDictionary<ResourceKey, XDocument> _xmlAnnotationsCache =
 			new ConcurrentDictionary<ResourceKey, XDocument>();
 		#endregion
@@ -99,7 +131,7 @@ namespace CodeJam.PerfTests.Analysers
 
 			if (competitionState.LooksLikeLastRun && LogCompetitionLimits)
 			{
-				XmlAnnotations.LogCompetitionTargets(competitionTargets.Values, competitionState);
+				XmlAnnotations.LogCompetitionTargets(competitionTargets.Targets, competitionState);
 			}
 
 			return warnings.ToArray();
@@ -114,17 +146,19 @@ namespace CodeJam.PerfTests.Analysers
 				return;
 
 			if (!TryInitialize(summary, competitionTargets, competitionState))
-			{
 				return;
-			}
 
-			if (competitionTargets.Any())
+			var checkPassed = CheckCompetitionLimits(summary, competitionTargets, competitionState, warnings);
+
+			CheckPostconditions(summary, competitionState, warnings);
+
+			OnLimitsCheckCompleted(summary, competitionState, checkPassed);
+
+			if (warnings.Count == 0 && competitionTargets.Targets.Any(c => c.CheckLimiths))
 			{
-				CheckCompetitionLimitsCore(summary, competitionState, warnings);
-			}
-			else
-			{
-				CheckPostconditions(summary, competitionState, warnings);
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.Informational,
+					$"{GetType().Name}: All competition limits are ok.");
 			}
 		}
 
@@ -138,27 +172,13 @@ namespace CodeJam.PerfTests.Analysers
 
 			return !competitionState.HasCriticalErrorsInRun;
 		}
-
-		private void CheckCompetitionLimitsCore(Summary summary, CompetitionState competitionState, List<IWarning> warnings)
-		{
-			var checkPassed = CheckCompetitionLimits(summary, competitionState, warnings);
-
-			CheckPostconditions(summary, competitionState, warnings);
-
-			OnLimitsCheckCompleted(summary, competitionState, checkPassed);
-
-			if (warnings.Count == 0)
-			{
-				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.Informational,
-					$"{GetType().Name}: All competition limits are ok.");
-			}
-		}
 		#endregion
 
 		#region Pre- & postconditions
 		private bool CheckPreconditions(Summary summary, CompetitionState competitionState)
 		{
+			// DONTTOUCH: DO NOT add return into the if clause.
+			// All preconditions should be checked.
 			if (summary.HasCriticalValidationErrors)
 			{
 				competitionState.WriteMessage(
@@ -172,7 +192,7 @@ namespace CodeJam.PerfTests.Analysers
 
 			var benchMissing = summary.GetSummaryOrderBenchmarks()
 				.Except(benchmarksWithReports)
-				.Select(b => b.Target.MethodTitle)
+				.Select(b => b.Target.MethodDisplayInfo)
 				.Distinct()
 				.ToArray();
 
@@ -208,7 +228,7 @@ namespace CodeJam.PerfTests.Analysers
 					competitionState.AddAnalyserWarning(
 						warnings, MessageSeverity.Warning,
 						"The benchmark(s) " + string.Join(", ", tooFastReports) +
-							$" run faster than {TooFastBenchmarkLimit.TotalMilliseconds.ToString(culture)}ms. Results cannot be trusted.");
+							$" run faster than {TooFastBenchmarkLimit.TotalMilliseconds.ToString(culture)} ms. Results cannot be trusted.");
 				}
 			}
 
@@ -223,7 +243,7 @@ namespace CodeJam.PerfTests.Analysers
 					competitionState.AddAnalyserWarning(
 						warnings, MessageSeverity.Warning,
 						"The benchmark(s) " + string.Join(", ", tooSlowReports) +
-							$" run longer than {LongRunningBenchmarkLimit.TotalSeconds.ToString(culture)}s." +
+							$" run longer than {LongRunningBenchmarkLimit.TotalSeconds.ToString(culture)} sec." +
 							" Consider to rewrite the test as the peek timings will be hidden by averages" +
 							" or enable long running benchmarks support in the config.");
 				}
@@ -235,7 +255,7 @@ namespace CodeJam.PerfTests.Analysers
 			summary.GetSummaryOrderBenchmarks()
 				.Select(b => summary[b])
 				.Where(rp => rp.GetResultRuns().Any(measurementFilter))
-				.Select(rp => rp.Benchmark.Target.MethodTitle)
+				.Select(rp => rp.Benchmark.Target.MethodDisplayInfo)
 				.Distinct()
 				.ToArray();
 		#endregion
@@ -265,12 +285,13 @@ namespace CodeJam.PerfTests.Analysers
 
 			var targets = summary.GetExecutionOrderBenchmarks()
 				.Select(b => b.Target)
-				.ToHashSet();
+				.Distinct()
+				.ToArray();
 
-			if (targets.Count == 0)
+			if (targets.Length == 0)
 				return;
 
-			var targetType = targets.First().Type;
+			var targetType = targets[0].Type;
 
 			var competitionMetadata = AttributeAnnotations.TryGetCompetitionMetadata(targetType);
 			foreach (var target in targets)
@@ -280,11 +301,11 @@ namespace CodeJam.PerfTests.Analysers
 				var competitionTarget = TryParseCompetitionTarget(target, competitionMetadata, competitionState);
 				if (competitionTarget != null)
 				{
-					competitionTargets.Add(target.Method, competitionTarget);
+					competitionTargets.Add(competitionTarget);
 				}
 			}
 
-			if (!hasBaseline && competitionTargets.Any())
+			if (!hasBaseline && competitionTargets.HasTargets)
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.SetupError,
@@ -297,7 +318,7 @@ namespace CodeJam.PerfTests.Analysers
 			Target target, CompetitionMetadata competitionMetadata,
 			CompetitionState competitionState)
 		{
-			var competitionAttribute = target.Method.GetCustomAttribute<CompetitionBenchmarkAttribute>();
+			var competitionAttribute = target.Method.GetCustomAttribute<CompetitionBenchmarkAttribute>(true);
 			if (competitionAttribute == null)
 				return null;
 
@@ -356,7 +377,7 @@ namespace CodeJam.PerfTests.Analysers
 				{
 					competitionState.WriteMessage(
 						MessageSource.Analyser, MessageSeverity.Warning,
-						$"No XML annotation for {target.MethodTitle} found. Check if the method was renamed.");
+						$"No XML annotation for {target.MethodDisplayInfo} found. Check if the method was renamed.");
 				}
 				else
 				{
@@ -369,23 +390,27 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		#region Checking competition limits
-		private bool CheckCompetitionLimits(Summary summary, CompetitionState competitionState, List<IWarning> warnings)
+		private bool CheckCompetitionLimits(
+			Summary summary, CompetitionTargets competitionTargets,
+			CompetitionState competitionState, List<IWarning> warnings)
 		{
 			var result = true;
-			var competitionTargets = TargetsSlot[summary];
 
-			var benchmarksByTarget = summary.GetExecutionOrderBenchmarks()
-				.GroupBy(b => b.Target)
-				.Where(g => competitionTargets.ContainsKey(g.Key.Method));
+			var benchmarksByTarget = summary
+				.GetExecutionOrderBenchmarks()
+				.GroupBy(b => b.Target);
 
 			foreach (var benchmarks in benchmarksByTarget)
 			{
-				var competitionTarget = competitionTargets[benchmarks.Key.Method];
+				var competitionTarget = competitionTargets[benchmarks.Key];
 
-				result &= CheckCompetitionTargetLimits(
-					competitionTarget, benchmarks.ToArray(),
-					summary, competitionState,
-					warnings);
+				if (competitionTarget != null)
+				{
+					result &= CheckCompetitionTargetLimits(
+						competitionTarget, benchmarks.ToArray(),
+						summary, competitionState,
+						warnings);
+				}
 			}
 
 			return result;
@@ -405,7 +430,7 @@ namespace CodeJam.PerfTests.Analysers
 			CompetitionState competitionState,
 			List<IWarning> warnings)
 		{
-			if (competitionTarget.Target.Baseline || competitionTarget.DoesNotCompete)
+			if (!competitionTarget.CheckLimiths)
 				return true;
 
 			var result = true;
@@ -434,7 +459,7 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				competitionState.AddAnalyserWarning(
 					warnings, MessageSeverity.ExecutionError,
-					$"Could not obtain competition limits for {benchmark.ShortInfo}.",
+					$"Could not obtain competition limits for {benchmark.DisplayInfo}.",
 					summary.TryGetBenchmarkReport(benchmark));
 
 				return true;
@@ -443,7 +468,7 @@ namespace CodeJam.PerfTests.Analysers
 			if (competitionLimit.CheckLimitsFor(actualValues))
 				return true;
 
-			var targetMethodTitle = benchmark.Target.MethodTitle;
+			var targetMethodTitle = benchmark.Target.MethodDisplayInfo;
 			var message = competitionLimit.IsEmpty
 				? $"Method {targetMethodTitle} {actualValues} has empty limit. Please fill it."
 				: $"Method {targetMethodTitle} {actualValues} does not fit into limits {competitionLimit}.";

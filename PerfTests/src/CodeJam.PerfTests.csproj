@@ -40,7 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BenchmarkDotNet.Core, Version=0.9.9.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\BenchmarkDotNet.Core.0.9.9\lib\net45\BenchmarkDotNet.Core.dll</HintPath>
+      <HintPath>..\..\packages\BenchmarkDotNet.Core.0.9.9.203\lib\net45\BenchmarkDotNet.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.DiaSymReader, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -69,15 +69,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="[L0_Core]\Loggers\IFlushableLogger.cs" />
     <Compile Include="[L0_Core]\Loggers\LazySynchronizedStreamLogger.cs" />
-    <Compile Include="[L1_InProcess]\Toolchains\MethodInvokerLight.cs" />
-    <Compile Include="[L1_InProcess]\Toolchains\MethodInvokerLightDontUse.cs" />
-    <Compile Include="[L3_CompetitionsCore]\Exporters\TimingsExporter.cs" />
+    <Compile Include="[L1_InProcess]\Toolchains\BurstModeEngine.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Exporters\CsvTimingsExporter.cs" />
     <Compile Include="[L0_Core]\Helpers\BenchmarkHelpers.cs" />
-    <Compile Include="[L0_Core]\Portability\AssemblyExtensions.cs" />
-    <Compile Include="[L0_Core]\Portability\FieldInfoExtensions.cs" />
-    <Compile Include="[L0_Core]\Portability\MemberInfoExtensions.cs" />
-    <Compile Include="[L0_Core]\Portability\PropertyInfoExtensions.cs" />
-    <Compile Include="[L0_Core]\Portability\TypeExtensions.cs" />
+    <Compile Include="[L0_Core]\Portability\PortabilityExtensions.cs" />
     <Compile Include="[L1_InProcess]\Validators\InProcessValidator.cs" />
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessBuilder.cs" />
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessExecutor.cs" />
@@ -112,6 +107,7 @@
     <Compile Include="[L4_CompetitionLimits]\[Attributes]\CompetitionBenchmarkAttribute.cs" />
     <Compile Include="[L4_CompetitionLimits]\[Attributes]\CompetitionMetadataAttribute.cs" />
     <Compile Include="[L5_Annotations]\Analysers\CompetitionAnnotateAnalyser.cs" />
+    <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.XmlAnnotations.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.SourceAttributes.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.SymbolHelpers.cs" />

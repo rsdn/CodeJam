@@ -15,14 +15,14 @@ namespace CodeJam.PerfTests.Configs
 	public sealed class AssemblyCompetitionConfig : ReadOnlyCompetitionConfig
 	{
 		#region Factory methods
-		private static Func<Assembly, AssemblyCompetitionConfig> _configFactory = Algorithms.Memoize(
+		private static Func<Assembly, AssemblyCompetitionConfig> _configCache = Algorithms.Memoize(
 			(Assembly a) => new AssemblyCompetitionConfig(a), true);
 
 		/// <summary>Returns competition config for the assembly.</summary>
 		/// <param name="targetAssembly">The target assembly.</param>
 		/// <returns>The competition config for the assembly.</returns>
 		public static ICompetitionConfig GetConfigForAssembly(Assembly targetAssembly) =>
-			_configFactory(targetAssembly);
+			_configCache(targetAssembly);
 
 		/// <summary>Returns competition config for calling assembly.</summary>
 		/// <value>The competition config for calling assembly.</value>

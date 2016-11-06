@@ -2,7 +2,6 @@
 
 namespace CodeJam.PerfTests.Running.Limits
 {
-	// DONTTOUCH: renaming the enum values will break xml annotations.
 	// DO check usages at first.
 	/// <summary>
 	/// Well-known competition limits

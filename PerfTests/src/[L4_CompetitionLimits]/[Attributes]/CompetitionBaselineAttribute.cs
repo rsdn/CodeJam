@@ -11,7 +11,7 @@ namespace CodeJam.PerfTests
 	// ReSharper disable once RedundantAttributeUsageProperty
 	[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
 	[PublicAPI, MeansImplicitUse]
-	public class CompetitionBaselineAttribute : BenchmarkAttribute
+	public class CompetitionBaselineAttribute : CompetitionBenchmarkAttribute
 	{
 		/// <summary>Constructor for baseline competition benchmark attribute.</summary>
 		public CompetitionBaselineAttribute()

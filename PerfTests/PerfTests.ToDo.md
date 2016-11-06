@@ -10,8 +10,15 @@
 
 ## TODOs:
  * Tests for broken log annotations.
+ * Task/Task<T> support.
 
 ## Long-term TODOs:
+ * Simplify config setup system. There're assembly appconfig, defaut competition config, overrides at competiton runner.
+ * Add enum (RunMode or AnnotateMode) and use it for config helpers.
+ * Pass competition settings as CompetitionState property instead of setting the analyzer props?
+   Real use case: pass CompetitionLimitProvider to CompetitionLimitColumn and to CompetitionAnalyser.
+ * Remove all virtual Default* methods and allow to change props of competition settings (see above)?
+ * use default toolchain factory and set InProcessToolchain from CompetitionRunner
  * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix).
  * Logging: write validator messages immediately?
  * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion

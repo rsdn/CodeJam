@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text;
 
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
@@ -37,7 +38,7 @@ namespace BenchmarkDotNet.Helpers
 	public static class BenchmarkHelpers
 	{
 		#region Benchmark-related
-		/// <summary>Get benchmark types defined in the assembly.</summary>
+		/// <summary>Returns benchmark types from the assembly.</summary>
 		/// <param name="assembly">The assembly to get benchmarks from.</param>
 		/// <returns>Benchmark types from the assembly</returns>
 		public static Type[] GetBenchmarkTypes([NotNull] Assembly assembly) =>
@@ -47,10 +48,9 @@ namespace BenchmarkDotNet.Helpers
 			assembly
 				.GetTypes()
 				.Where(
-					t =>
-						t.GetMethods(BindingFlags.Instance | BindingFlags.Public)
-							.Any(m => MemberInfoExtensions.GetCustomAttributes<BenchmarkAttribute>(m, true).Any()))
-				.Where(t => !t.IsGenericType && !t.IsAbstract)
+					t => t.GetMethods(BindingFlags.Instance | BindingFlags.Public)
+						.Any(m => m.GetCustomAttributes(true).OfType<BenchmarkAttribute>().Any()))
+				.Where(t => !t.GetTypeInfo().IsGenericType)
 				.OrderBy(t => t.Namespace)
 				.ThenBy(t => t.Name)
 				.ToArray();
@@ -65,11 +65,11 @@ namespace BenchmarkDotNet.Helpers
 		/// <param name="benchmarks">The benchmarks to select jobs from.</param>
 		/// <returns>Jobs from the benchmarks.</returns>
 		// ReSharper disable once ReturnTypeCanBeEnumerable.Global
-		public static IOrderedEnumerable<IJob> GetJobs([NotNull] this IEnumerable<Benchmark> benchmarks) =>
+		public static IOrderedEnumerable<Job> GetJobs([NotNull] this IEnumerable<Benchmark> benchmarks) =>
 			benchmarks
 				.Select(d => d.Job)
 				.Distinct()
-				.OrderBy(d => d.GetShortInfo());
+				.OrderBy(d => d.DisplayInfo);
 
 		/// <summary>Returns benchmarks for the summary sorted by execution order.</summary>
 		/// <param name="summary">Summary for the run.</param>
@@ -97,7 +97,8 @@ namespace BenchmarkDotNet.Helpers
 			[NotNull] this Summary summary,
 			[NotNull] Benchmark benchmark) =>
 				summary.Benchmarks
-					.Where(b => b.Job == benchmark.Job && b.Parameters == benchmark.Parameters)
+					.Where(b => b.Job.DisplayInfo == benchmark.Job.DisplayInfo)
+					.Where(b => b.Parameters.DisplayInfo == benchmark.Parameters.DisplayInfo)
 					.FirstOrDefault(b => b.Target.Baseline);
 
 		/// <summary>Returns the report for the benchmark or <c>null</c> if there's no report.</summary>
@@ -107,8 +108,19 @@ namespace BenchmarkDotNet.Helpers
 		public static BenchmarkReport TryGetBenchmarkReport(
 			[NotNull] this Summary summary,
 			[NotNull] Benchmark benchmark) =>
-				summary.Reports.SingleOrDefault(r => r.Benchmark == benchmark);
+				summary[benchmark];
 		#endregion
+
+		/// <summary>
+		/// Determines whether the characteristic has influence on job execution.
+		/// </summary>
+		/// <param name="characteristic">The characteristic.</param>
+		/// <param name="includeIgnoreOnApply">Include ignorable.</param>
+		/// <returns>
+		/// <c>true</c> if the characteristic has influence on job execution.
+		/// </returns>
+		public static bool DeterminesBehavior(this Characteristic characteristic, bool includeIgnoreOnApply = false) =>
+			!characteristic.HasChildCharacteristics && (includeIgnoreOnApply || !characteristic.IgnoreOnApply);
 
 		/// <summary>Gets the value of the current TimeSpan structure expressed in nanoseconds.</summary>
 		/// <param name="timeSpan">The timespan.</param>
@@ -144,18 +156,18 @@ namespace BenchmarkDotNet.Helpers
 
 			if (!string.IsNullOrEmpty(header))
 			{
-				var temp = (SeparatorLength - header.Length - 2) / 2;
-				if (temp > 0)
+				var prefixLength = (SeparatorLength - header.Length - 2) / 2;
+				if (prefixLength > 0)
 				{
-					result.Append(separatorChar, temp);
+					result.Append(separatorChar, prefixLength);
 				}
 				result.Append(' ').Append(header).Append(' ');
 			}
 
-			var temp2 = SeparatorLength - result.Length;
-			if (temp2 > 0)
+			var suffixLength = SeparatorLength - result.Length;
+			if (suffixLength > 0)
 			{
-				result.Append(separatorChar, temp2);
+				result.Append(separatorChar, suffixLength);
 			}
 
 			logger.WriteLine();
@@ -240,9 +252,7 @@ namespace BenchmarkDotNet.Helpers
 			catch (Exception ex)
 			{
 				logger.WriteLineError(
-					string.Format(
-						"// ! Failed to set up priority {1}. Make sure you have the right permissions. Message: {0}", ex.Message,
-						priority));
+					$"// ! Failed to set up priority {priority}. Make sure you have the right permissions. Message: {ex.Message}");
 			}
 		}
 
@@ -263,7 +273,8 @@ namespace BenchmarkDotNet.Helpers
 
 			try
 			{
-				process.ProcessorAffinity = processorAffinity;
+				var cpuMask = (1 << Environment.ProcessorCount) - 1;
+				process.ProcessorAffinity = new IntPtr(processorAffinity.ToInt32() & cpuMask);
 			}
 			catch (Exception ex)
 			{
@@ -402,7 +413,7 @@ namespace BenchmarkDotNet.Helpers
 						_outputStack.Pop();
 					}
 
-					CodeJam.Code.AssertState(output == _outputStack.Peek(), "Bug");
+					CodeJam.Code.BugIf(output != _outputStack.Peek(), "Capture output stack disbalanced.");
 					Console.SetOut(_outputStack.Pop().Output);
 				}
 			}

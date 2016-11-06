@@ -56,6 +56,12 @@ namespace CodeJam.PerfTests.Columns
 			return UseMaxRatio ? result.MaxRatioText : result.MinRatioText;
 		}
 
+		/// <summary>Determines whether the specified summary is default.</summary>
+		/// <param name="summary">The summary.</param>
+		/// <param name="benchmark">The benchmark.</param>
+		/// <returns><c>true</c> if the specified summary is default; otherwise, <c>false</c>.</returns>
+		public bool IsDefault(Summary summary, Benchmark benchmark) => true;
+
 		/// <summary>The name of the column.</summary>
 		/// <value>The name of the column.</value>
 		public string ColumnName => CompetitionLimitProvider.ShortInfo + (UseMaxRatio ? "(max)" : "(min)");
@@ -65,6 +71,12 @@ namespace CodeJam.PerfTests.Columns
 		/// <returns><c>true</c> if can provide values for the specified summary.</returns>
 		public bool IsAvailable(Summary summary) => summary.Benchmarks.Any(b => b.Target.Baseline);
 
+		/// <summary>
+		/// An unique identifier of the column.
+		/// <remarks>If there are several columns with the same Id, only one of them will be shown in the summary.</remarks>
+		/// </summary>
+		public string Id => ColumnName;
+
 		/// <summary>Should be shown anyway.</summary>
 		/// <value><c>true</c> if should be shown anyway.</value>
 		public bool AlwaysShow => true;
@@ -72,6 +84,10 @@ namespace CodeJam.PerfTests.Columns
 		/// <summary>Category of the column.</summary>
 		/// <value>The category of the column.</value>
 		public ColumnCategory Category => ColumnCategory.Statistics;
+
+		/// <summary>Defines order of column in the same category.</summary>
+		/// <returns>Order of column in the same category.</returns>
+		public int PriorityInCategory { get; } 
 
 		/// <summary>Returns a <see cref="string"/> that represents this instance.</summary>
 		/// <returns>A <see cref="string"/> that represents this instance.</returns>

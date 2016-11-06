@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
+using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
-using BenchmarkDotNet.Toolchains.InProcess;
 
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Core;
@@ -27,7 +28,7 @@ namespace CodeJam.PerfTests
 		public static void IgnoreIfDebug()
 		{
 			var caller = Assembly.GetCallingAssembly();
-			if (caller.IsDebugAssembly())
+			if (caller.IsDebugAssembly() && !HostEnvironmentInfo.GetCurrent().HasAttachedDebugger)
 			{
 				Assert.Ignore("Please run as a release build");
 			}
@@ -43,7 +44,7 @@ namespace CodeJam.PerfTests
 				ReportWarningsAsErrors = true
 			};
 
-			result.Add(BenchmarkDotNet.Configs.DefaultConfig.Instance.GetColumns().ToArray());
+			result.Add(BenchmarkDotNet.Configs.DefaultConfig.Instance.GetColumnProviders().ToArray());
 			result.Add(AppConfigHelpers.GetImportantOnlyLogger(typeof(SelfTestHelpers).Assembly));
 			return result;
 		}
@@ -54,38 +55,49 @@ namespace CodeJam.PerfTests
 
 		public static readonly ICompetitionConfig HighAccuracyConfig = CreateHighAccuracyConfig().AsReadOnly();
 
-		public static ManualCompetitionConfig CreateSelfTestConfig(Platform platform)
+		public static ManualCompetitionConfig CreateSelfTestConfig(Platform? platform)
 		{
+			var job = new Job(
+				$"SelfTestConfig{platform}",
+				CompetitionHelpers.CreateDefaultJob(platform))
+			{
+				Run =
+				{
+					LaunchCount = 1,
+					WarmupCount = 2,
+					TargetCount = 2
+				},
+				Env =
+				{
+					Affinity = new IntPtr(-1)
+				}
+			};
+
 			var result = CreateRunConfigCore();
 			result.AllowDebugBuilds = true;
-			result.Add(
-				new Job
-				{
-					Affinity = -1, // DONTTOUCH: affinity option used to improve code coverage.
-					LaunchCount = 1,
-					Mode = Mode.SingleRun,
-					WarmupCount = 2,
-					TargetCount = 2,
-					Platform = platform,
-					Toolchain = InProcessToolchain.Instance
-				});
+			result.Add(job);
 			return result;
 		}
 
 		public static ManualCompetitionConfig CreateHighAccuracyConfig(bool outOfProcess = false)
 		{
-			var result = CreateRunConfigCore();
-			result.Add(
-				new Job
+			var job = new Job("HighAccuracyConfig",
+				CompetitionHelpers.CreateDefaultJob(),
+				EnvMode.RyuJitX64)
+			{
+				Run =
 				{
 					LaunchCount = 1,
-					Mode = Mode.SingleRun,
 					WarmupCount = 200,
-					TargetCount = 500,
-					Platform = Platform.X64,
-					Jit = Jit.RyuJit,
-					Toolchain = outOfProcess ? null : InProcessToolchain.DontLogOutput
-				});
+					TargetCount = 500
+				}
+			};
+
+			if( outOfProcess)
+				throw new NotImplementedException();
+
+			var result = CreateRunConfigCore();
+			result.Add(job);
 
 			return result;
 		}

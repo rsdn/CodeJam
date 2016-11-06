@@ -22,6 +22,11 @@ namespace CodeJam.PerfTests.Running.Messages
 			MessageSource messageSource, MessageSeverity messageSeverity,
 			[NotNull] string messageText)
 		{
+			DebugCode.ValidCount(runNumber, nameof(runNumber));
+			DebugCode.ValidCount(runMessageNumber, nameof(runMessageNumber));
+			DebugCode.AssertArgument(elapsed > TimeSpan.Zero, nameof(messageSeverity), "Elapsed time should be positive.");
+			DebugEnumCode.Defined(messageSource, nameof(messageSource));
+			DebugEnumCode.Defined(messageSeverity, nameof(messageSeverity));
 			Code.NotNullNorEmpty(messageText, nameof(messageText));
 
 			RunNumber = runNumber;
@@ -54,6 +59,7 @@ namespace CodeJam.PerfTests.Running.Messages
 
 		/// <summary>Text of the message.</summary>
 		/// <value>The text of the message.</value>
+		[NotNull]
 		public string MessageText { get; }
 	}
 }

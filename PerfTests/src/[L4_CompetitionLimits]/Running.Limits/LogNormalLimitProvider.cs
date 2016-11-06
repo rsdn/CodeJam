@@ -37,8 +37,14 @@ namespace CodeJam.PerfTests.Running.Limits
 			BenchmarkReport benchmarkReport,
 			bool limitMode)
 		{
-			var baselineStat = new Statistics(baselineReport.GetResultRuns().Select(r => Math.Log(r.GetAverageNanoseconds())));
-			var benchmarkStat = new Statistics(benchmarkReport.GetResultRuns().Select(r => Math.Log(r.GetAverageNanoseconds())));
+			var baselineStat = new Statistics(
+				baselineReport.GetResultRuns()
+					.Select(r => r.GetAverageNanoseconds())
+					.Select(r => r <= 0 ? 0 : Math.Log(r)));
+			var benchmarkStat = new Statistics(
+				benchmarkReport.GetResultRuns()
+					.Select(r => r.GetAverageNanoseconds())
+					.Select(r => r <= 0 ? 0 : Math.Log(r)));
 
 			var minValueBaseline = Math.Exp(baselineStat.Mean);
 			var maxValueBaseline = Math.Exp(baselineStat.Mean);

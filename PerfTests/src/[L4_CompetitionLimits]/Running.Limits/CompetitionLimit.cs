@@ -1,6 +1,6 @@
 ﻿using System;
 
-using BenchmarkDotNet.Helpers;
+using BenchmarkDotNet.Environments;
 
 using JetBrains.Annotations;
 
@@ -151,10 +151,12 @@ namespace CodeJam.PerfTests.Running.Limits
 		/// <value><c>true</c> if all limits are ignored; otherwise, <c>false</c>.</value>
 		public bool IgnoreAll => IgnoreMinRatio && IgnoreMaxRatio;
 
+		// DONTTOUCH: renaming the property will break xml annotations.
 		/// <summary>The minimum timing ratio relative to the baseline.</summary>
 		/// <value>The minimum timing ratio relative to the baseline.</value>
 		public double MinRatio { get; protected set; }
 
+		// DONTTOUCH: renaming the property will break xml annotations.
 		/// <summary>The maximum timing ratio relative to the baseline.</summary>
 		/// <value>The maximum timing ratio relative to the baseline.</value>
 		public double MaxRatio { get; protected set; }

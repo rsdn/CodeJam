@@ -1,5 +1,6 @@
 ﻿using System;
 
+using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 
@@ -24,18 +25,26 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 
 		/// <summary>Initializes a new instance of the <see cref="InProcessToolchain"/> class.</summary>
 		/// <param name="logOutput"><c>true</c> if the output should be logged.</param>
-		private InProcessToolchain(bool logOutput)
+		private InProcessToolchain(bool logOutput):this(TimeSpan.FromMinutes(5), logOutput)
+		{
+		}
+
+		/// <summary>Initializes a new instance of the <see cref="InProcessToolchain"/> class.</summary>
+		/// <param name="timeout">Timeout for the run.</param>
+		/// <param name="logOutput"><c>true</c> if the output should be logged.</param>
+		private InProcessToolchain(TimeSpan timeout, bool logOutput)
 		{
 			Generator = new InProcessGenerator();
 			Builder = new InProcessBuilder();
-			Executor = new InProcessExecutor(TimeSpan.FromMinutes(5), logOutput);
+			Executor = new InProcessExecutor(timeout, logOutput);
 		}
 
 		/// <summary>Determines whether the specified benchmark is supported.</summary>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <param name="logger">The logger.</param>
+		/// <param name="resolver">The resolver.</param>
 		/// <returns><c>true</c> if the benchmark can be run with the toolchain.</returns>
-		public bool IsSupported(Benchmark benchmark, ILogger logger) => true;
+		public bool IsSupported(Benchmark benchmark, ILogger logger, IResolver resolver) => true;
 
 		/// <summary>Name of the toolchain.</summary>
 		/// <value>The name of the toolchain.</value>
@@ -52,5 +61,11 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 		/// <summary>The executor.</summary>
 		/// <value>The executor.</value>
 		public IExecutor Executor { get; }
+
+		#region Overrides of Object
+		/// <summary>Returns a <see cref="String" /> that represents this instance.</summary>
+		/// <returns>A <see cref="String" /> that represents this instance.</returns>
+		public override string ToString() => GetType().Name;
+		#endregion
 	}
 }

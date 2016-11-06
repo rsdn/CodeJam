@@ -100,6 +100,7 @@ namespace CodeJam.PerfTests.Loggers
 		public HostLogger([NotNull] ILogger wrappedLogger, HostLogMode logMode)
 		{
 			Code.NotNull(wrappedLogger, nameof(wrappedLogger));
+			EnumCode.Defined(logMode, nameof(logMode));
 
 			WrappedLogger = wrappedLogger;
 			LogMode = logMode;
@@ -184,6 +185,7 @@ namespace CodeJam.PerfTests.Loggers
 		public virtual void WriteLine(LogKind logKind, string text)
 		{
 			// DONTTOUCH: the order of calls in condition is important.
+			// Preprocess call can change the _importantAreaCount value.
 			if (PreprocessLine(text) || ShouldWrite(logKind))
 			{
 				WrappedLogger.WriteLine(logKind, text);

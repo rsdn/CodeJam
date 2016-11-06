@@ -32,15 +32,12 @@ namespace CodeJam.PerfTests.Configs
 			if (config == null)
 				return;
 
+			base.Add(config);
+
 			var competitionConfig = config as ICompetitionConfig;
 			if (competitionConfig != null)
 			{
-				base.Add(config);
 				AddCompetitionProperties(competitionConfig);
-			}
-			else
-			{
-				base.Add(config);
 			}
 		}
 

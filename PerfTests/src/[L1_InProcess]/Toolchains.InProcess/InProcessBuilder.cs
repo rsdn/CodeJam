@@ -1,5 +1,6 @@
 ﻿using System;
 
+using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.Results;
@@ -17,8 +18,9 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 		/// <param name="generateResult">Generation result.</param>
 		/// <param name="logger">The logger.</param>
 		/// <param name="benchmark">The benchmark.</param>
+		/// <param name="resolver">The resolver.</param>
 		/// <returns>Build result.</returns>
-		public BuildResult Build(GenerateResult generateResult, ILogger logger, Benchmark benchmark) =>
+		public BuildResult Build(GenerateResult generateResult, ILogger logger, Benchmark benchmark, IResolver resolver) =>
 			BuildResult.Success(generateResult);
 	}
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
+using BenchmarkDotNet.Characteristics;
+using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
@@ -24,85 +26,66 @@ namespace BenchmarkDotNet.Validators
 	{
 		#region Validation rules
 		// ReSharper disable HeapView.DelegateAllocation
-		private static readonly IReadOnlyDictionary<string, Func<IJob, HostEnvironmentInfo, string>> _validationRules =
-			new Dictionary<string, Func<IJob, HostEnvironmentInfo, string>>
+		private static readonly IReadOnlyDictionary<Characteristic, Func<Job, Characteristic, string>> _validationRules =
+			new Dictionary<Characteristic, Func<Job, Characteristic, string>>
 			{
-				{ nameof(IJob.Affinity), DontValidate },
-				{ nameof(IJob.GcMode), DontValidate },
-				{ nameof(IJob.IterationTime), DontValidate },
-				{ nameof(IJob.Jit), ValidateJit },
-				{ nameof(IJob.LaunchCount), DontValidate },
-				{ nameof(IJob.Mode), DontValidate },
-				{ nameof(IJob.Platform), ValidatePlatform },
-				{ nameof(IJob.Runtime), ValidateRuntime },
-				{ nameof(IJob.TargetCount), DontValidate },
-				{ nameof(IJob.Toolchain), ValidateToolchain },
-				{ nameof(IJob.WarmupCount), DontValidate }
+				// TODO: recheck all characteristics
+				{ EnvMode.AffinityCharacteristic, DontValidate },
+				{ EnvMode.JitCharacteristic, ValidateEnvironment },
+				{ EnvMode.PlatformCharacteristic, ValidatePlatform },
+				{ EnvMode.RuntimeCharacteristic, ValidateEnvironment },
+
+				{ GcMode.ServerCharacteristic, ValidateEnvironment },
+				{ GcMode.ConcurrentCharacteristic, ValidateEnvironment },
+				{ GcMode.CpuGroupsCharacteristic, ValidateEnvironment },
+				{ GcMode.ForceCharacteristic, DontValidate },
+				{ GcMode.AllowVeryLargeObjectsCharacteristic, ValidateEnvironment },
+
+				{ RunMode.LaunchCountCharacteristic, DontValidate },
+				{ RunMode.RunStrategyCharacteristic, DontValidate },
+				{ RunMode.WarmupCountCharacteristic, DontValidate },
+				{ RunMode.TargetCountCharacteristic, DontValidate },
+				{ RunMode.IterationTimeCharacteristic, DontValidate },
+				{ RunMode.InvocationCountCharacteristic, DontValidate },
+				{ RunMode.UnrollFactorCharacteristic, DontValidate },
+
+				{ AccuracyMode.AnalyzeLaunchVarianceCharacteristic, DontValidate },
+				{ AccuracyMode.EvaluateOverheadCharacteristic, DontValidate },
+				{ AccuracyMode.MaxStdErrRelativeCharacteristic, DontValidate },
+				{ AccuracyMode.MinInvokeCountCharacteristic, DontValidate },
+				{ AccuracyMode.MinIterationTimeCharacteristic, DontValidate },
+				{ AccuracyMode.RemoveOutliersCharacteristic, DontValidate },
+
+				{ InfrastructureMode.ClockCharacteristic, DontValidate },
+				{ InfrastructureMode.EngineFactoryCharacteristic, DontValidate },
+				{ InfrastructureMode.ToolchainCharacteristic, ValidateToolchain }
 			};
 
 		// ReSharper restore HeapView.DelegateAllocation
 
-		private static string DontValidate(IJob job, HostEnvironmentInfo env) => null;
 
-		private static string ValidateJit(IJob job, HostEnvironmentInfo env)
+		private static string DontValidate(Job job, Characteristic characteristic) => null;
+
+		private static string ValidateEnvironment(Job job, Characteristic characteristic)
 		{
-			bool isX64 = env.Architecture == "64-bit";
-			switch (job.Jit)
-			{
-				case Jit.Host:
-					return null;
-				case Jit.LegacyJit:
-					return !isX64 || !env.HasRyuJit
-						? null
-						: "The current setup does not support legacy Jit.";
-				case Jit.RyuJit:
-					return isX64 && env.HasRyuJit
-						? null
-						: "The current setup does not support RyuJit.";
-				default:
-					throw new ArgumentOutOfRangeException(nameof(job.Jit), job.Jit, null);
-			}
+			var resolver = EnvResolver.Instance;
+			var actual = resolver.Resolve(Job.Default, characteristic);
+			var expected = resolver.Resolve(job, characteristic);
+			return Equals(actual, expected)
+				? null
+				: $"value ({expected}) does not match environment ({actual}).";
 		}
 
-		private static string ValidatePlatform(IJob job, HostEnvironmentInfo env)
+		private static string ValidatePlatform(Job job, Characteristic characteristic)
 		{
-			bool isX64 = env.Architecture == "64-bit";
-			switch (job.Platform)
-			{
-				case Platform.Host:
-				case Platform.AnyCpu:
-					return null;
-				case Platform.X86:
-					return !isX64
-						? null
-						: "The code should be run as x86.";
-				case Platform.X64:
-					return isX64
-						? null
-						: "The code should be run as x64.";
-				default:
-					throw new ArgumentOutOfRangeException(nameof(job.Platform), job.Platform, null);
-			}
+			if (job.Env.Platform == Platform.AnyCpu)
+				return null;
+
+			return ValidateEnvironment(job,characteristic);
 		}
 
-		// TODO: detect runtime
-		private static string ValidateRuntime(IJob job, HostEnvironmentInfo env)
-		{
-			switch (job.Runtime)
-			{
-				case Runtime.Host:
-					return null;
-				case Runtime.Clr:
-				case Runtime.Mono:
-				case Runtime.Core:
-					return $"Should be set to {nameof(Runtime.Host)}.";
-				default:
-					throw new ArgumentOutOfRangeException(nameof(job.Runtime), job.Runtime, null);
-			}
-		}
-
-		private static string ValidateToolchain(IJob job, HostEnvironmentInfo env) =>
-			job.Toolchain is InProcessToolchain
+		private static string ValidateToolchain(Job job, Characteristic characteristic) =>
+			job.Infrastructure.Toolchain is InProcessToolchain
 				? null
 				: $"Should be instance of {nameof(InProcessToolchain)}.";
 		#endregion
@@ -132,29 +115,28 @@ namespace BenchmarkDotNet.Validators
 		{
 			var result = new List<ValidationError>();
 
-			var env = HostEnvironmentInfo.GetCurrent();
 			foreach (var job in benchmarks.GetJobs())
 			{
-				foreach (var jobProperty in job.AllProperties)
+				foreach (var characteristic in job.GetCharacteristicsWithValues())
 				{
-					Func<IJob, HostEnvironmentInfo, string> validationRule;
-					if (_validationRules.TryGetValue(jobProperty.Name, out validationRule))
+					Func<Job, Characteristic, string> validationRule;
+					if (_validationRules.TryGetValue(characteristic, out validationRule))
 					{
-						var message = validationRule(job, env);
+						var message = validationRule(job, characteristic);
 						if (!string.IsNullOrEmpty(message))
 						{
 							result.Add(
 								new ValidationError(
 									TreatsWarningsAsErrors,
-									$"Job {job.GetShortInfo()}, property {jobProperty.Name}: {message}"));
+									$"Job {job}, property {characteristic.FullId}: {message}"));
 						}
 					}
-					else
+					else if (characteristic.DeterminesBehavior())
 					{
 						result.Add(
 							new ValidationError(
 								false,
-								$"Job {job.GetShortInfo()}, property {jobProperty.Name}: no validation rule specified."));
+								$"Job {job}, property {characteristic.FullId}: no validation rule specified."));
 					}
 				}
 			}
