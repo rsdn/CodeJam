@@ -48,12 +48,13 @@ namespace CodeJam
 			value.HasValue ? Some(value.Value) : None<T>();
 
 		/// <summary>
-		/// Creates instance of <see cref="Option"/> without value.
+		/// Returns instance of <see cref="Option"/> without value.
 		/// </summary>
 		/// <typeparam name="T">Type of value.</typeparam>
 		/// <returns>Instance without value.</returns>
+		/// <remarks>None value is singleton.</remarks>
 		[Pure]
-		public static Option<T> None<T>() => Option<T>.NoneValue;
+		public static Option<T> None<T>() => Option<T>.None.Instance;
 
 		/// <summary>
 		/// Calls <paramref name="someAction"/> if <paramref name="option"/> has value,

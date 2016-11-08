@@ -14,7 +14,7 @@
     <Name>Documentation</Name>
     <!-- SHFB properties -->
     <FrameworkVersion>.NET Framework 4.6</FrameworkVersion>
-    <OutputPath>.\Help\</OutputPath>
+    <OutputPath>Help\</OutputPath>
     <HtmlHelpName>Documentation</HtmlHelpName>
     <Language>en-US</Language>
     <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
@@ -37,26 +37,30 @@
     <ContentPlacement>AboveNamespaces</ContentPlacement>
     <DocumentationSources>
       <DocumentationSource sourceFile="src\bin\Release\CodeJam.PerfTests.dll" />
-<DocumentationSource sourceFile="src\bin\Release\CodeJam.PerfTests.xml" />
-<DocumentationSource sourceFile="src-NUnit\bin\Release\CodeJam.PerfTests.NUnit.dll" />
-<DocumentationSource sourceFile="src-NUnit\bin\Release\CodeJam.PerfTests.NUnit.xml" />
-<DocumentationSource sourceFile="src-xUnit\bin\Release\CodeJam.PerfTests.xUnit.dll" />
-<DocumentationSource sourceFile="src-xUnit\bin\Release\CodeJam.PerfTests.xUnit.xml" />
-<DocumentationSource sourceFile="src-MSTest\bin\Release\CodeJam.PerfTests.MSTest.dll" />
-<DocumentationSource sourceFile="src-MSTest\bin\Release\CodeJam.PerfTests.MSTest.xml" /></DocumentationSources>
+      <DocumentationSource sourceFile="src\bin\Release\CodeJam.PerfTests.xml" />
+      <DocumentationSource sourceFile="src-NUnit\bin\Release\CodeJam.PerfTests.NUnit.dll" />
+      <DocumentationSource sourceFile="src-NUnit\bin\Release\CodeJam.PerfTests.NUnit.xml" />
+      <DocumentationSource sourceFile="src-xUnit\bin\Release\CodeJam.PerfTests.xUnit.dll" />
+      <DocumentationSource sourceFile="src-xUnit\bin\Release\CodeJam.PerfTests.xUnit.xml" />
+      <DocumentationSource sourceFile="src-MSTest\bin\Release\CodeJam.PerfTests.MSTest.dll" />
+      <DocumentationSource sourceFile="src-MSTest\bin\Release\CodeJam.PerfTests.MSTest.xml" />
+    </DocumentationSources>
     <ApiFilter>
       <Filter entryType="Namespace" fullName="BenchmarkDotNet.Configs" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="BenchmarkDotNet.Helpers" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="BenchmarkDotNet.Loggers" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="BenchmarkDotNet.Toolchains" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="BenchmarkDotNet.Toolchains.InProcess" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="BenchmarkDotNet.Validators" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Xunit" isExposed="False" xmlns="" /></ApiFilter>
+      <Filter entryType="Namespace" fullName="BenchmarkDotNet.Helpers" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="BenchmarkDotNet.Loggers" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="BenchmarkDotNet.Toolchains" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="BenchmarkDotNet.Toolchains.InProcess" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="BenchmarkDotNet.Validators" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Xunit" isExposed="False" xmlns="" />
+    </ApiFilter>
     <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected</VisibleItems>
     <PlugInConfigurations>
     </PlugInConfigurations>
     <ComponentConfigurations>
     </ComponentConfigurations>
+    <WarnOnMissingSourceContext>False</WarnOnMissingSourceContext>
+    <SourceCodeBasePath>.\</SourceCodeBasePath>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->
