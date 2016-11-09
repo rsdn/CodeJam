@@ -56,17 +56,13 @@ namespace CodeJam.Collections
 		public void Compact() => ResetLinks();
 
 		/// <summary>Resets node links lazy list to a default value</summary>
-		private void ResetLinks() => _nodeLinks =
-			new Lazy<List<int>>(() => Enumerable.Repeat(InvalidNodeIndex, NodesCount).ToList(), false);
+		private void ResetLinks() =>
+			_nodeLinks = new Lazy<List<int>>(() => Enumerable.Repeat(InvalidNodeIndex, NodesCount).ToList(), false);
 
 		/// <summary>Shows whether we have a pending link insertion</summary>
 		private bool LinkPending => _pendingLinkIndexFrom != InvalidNodeIndex;
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="begin"></param>
-		/// <param name="end"></param>
+		/// <summary>Appends suffixes for the last added string</summary>
 		protected override void BuildFor(int begin, int end)
 		{
 			Code.BugIf(begin >= end, "Invalid parameters passed");
