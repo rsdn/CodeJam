@@ -62,6 +62,11 @@ namespace CodeJam.Collections
 		/// <summary>Shows whether we have a pending link insertion</summary>
 		private bool LinkPending => _pendingLinkIndexFrom != InvalidNodeIndex;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="begin"></param>
+		/// <param name="end"></param>
 		protected override void BuildFor(int begin, int end)
 		{
 			Code.BugIf(begin >= end, "Invalid parameters passed");
@@ -326,7 +331,12 @@ namespace CodeJam.Collections
 			return result;
 		}
 
-		protected override void PrintNodeText(StringBuilder sb, int nodeIndex)
+		/// <summary>
+		/// Appends specified node text.
+		/// </summary>
+		/// <param name="sb"><see cref="StringBuilder"/> to append node text to</param>
+		/// <param name="nodeIndex">Node index.</param>
+		protected override void AppendNodeText(StringBuilder sb, int nodeIndex)
 		{
 			var n = GetNode(nodeIndex);
 			var nodeLink = _nodeLinks.IsValueCreated ? _nodeLinks.Value[nodeIndex] : InvalidNodeIndex;

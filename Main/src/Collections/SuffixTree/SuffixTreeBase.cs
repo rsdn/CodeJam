@@ -325,7 +325,14 @@ namespace CodeJam.Collections
 		{
 			var sb = new StringBuilder();
 			var currentIndex = RootNodeIndex;
-			var stack = new List<ValueTuple<int, int>>();
+			var stack =
+				new
+#if FW40
+				ListWithReadOnly
+#else
+				List
+#endif
+				<ValueTuple <int, int>>();
 			for (;;)
 			{
 				PrintNodeWithPath(sb, currentIndex, stack);
@@ -381,13 +388,13 @@ namespace CodeJam.Collections
 				sb.Append('|');
 				sb.Append('_', _align - 1);
 			}
-			PrintNodeText(sb, nodeIndex);
+			AppendNodeText(sb, nodeIndex);
 		}
 
 		/// <summary>Prints a single node information</summary>
 		/// <param name="sb">The builder to print to</param>
 		/// <param name="nodeIndex">The node index</param>
-		protected virtual void PrintNodeText([NotNull] StringBuilder sb, int nodeIndex)
+		protected virtual void AppendNodeText([NotNull] StringBuilder sb, int nodeIndex)
 		{
 			var n = GetNode(nodeIndex);
 			sb.AppendLine($"({nodeIndex}, [{n.Begin}-{n.End}), {InternalData.Substring(n.Begin, n.Length)})");

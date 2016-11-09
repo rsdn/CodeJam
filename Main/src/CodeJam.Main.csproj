@@ -307,6 +307,7 @@
     <Compile Include="Targeting\FW35\Volatile.cs" />
     <Compile Include="Targeting\FW40\DictionaryWithReadOnly.cs" />
     <Compile Include="Targeting\FW40\IReadOnlyList.cs" />
+    <Compile Include="Targeting\FW40\ListWithReadOnly.cs" />
     <Compile Include="Targeting\FW40\ReadOnlyCollectionWithReadOnly.cs" />
     <Compile Include="Targeting\FW40\ValueTuple\TupleExtensions.cs" />
     <Compile Include="Targeting\FW40\ValueTuple\ValueTuple.cs" />
