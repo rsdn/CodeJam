@@ -6,10 +6,14 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
+	/// <summary>
+	/// Base class for suffix tree algorithm implementation.
+	/// </summary>
+	[PublicAPI]
 	public abstract class SuffixTreeBase
 	{
 		/// <summary>Node alignment in Print output</summary>
-		private const int Align = 6;
+		private const int _align = 6;
 
 		/// <summary>Root node index</summary>
 		protected const int RootNodeIndex = 0;
@@ -366,16 +370,16 @@ namespace CodeJam.Collections
 				for (var i = 0; i < stack.Count - 1; ++i)
 				{
 					sb.Append(stack[i].Item2 >= 0 ? '|' : ' ');
-					sb.Append(' ', Align - 1);
+					sb.Append(' ', _align - 1);
 				}
 				sb.AppendLine("|");
 				for (var i = 0; i < stack.Count - 1; ++i)
 				{
 					sb.Append(stack[i].Item2 >= 0 ? '|' : ' ');
-					sb.Append(' ', Align - 1);
+					sb.Append(' ', _align - 1);
 				}
 				sb.Append('|');
-				sb.Append('_', Align - 1);
+				sb.Append('_', _align - 1);
 			}
 			PrintNodeText(sb, nodeIndex);
 		}
@@ -398,14 +402,8 @@ namespace CodeJam.Collections
 			/// <param name="begin">An edge start offset</param>
 			/// <param name="end">An edge end offset</param>
 			/// <param name="terminal">Is the edge terminates the string or not</param>
-			public Node(int begin, int end, bool terminal) : this(begin, end, terminal, null) { }
-
-			/// <summary>Constructs a new node</summary>
-			/// <param name="begin">An edge start offset</param>
-			/// <param name="end">An edge end offset</param>
-			/// <param name="terminal">Is the edge terminates the string or not</param>
 			/// <param name="children">A list of child nodes (edges)</param>
-			public Node(int begin, int end, bool terminal, List<int> children)
+			public Node(int begin, int end, bool terminal, List<int> children = null)
 			{
 				DebugCode.AssertArgument(end >= 0, nameof(end), "end should be nonnegative");
 				Begin = begin;

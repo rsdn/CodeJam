@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Collections
 {
 	/// <summary>
@@ -13,7 +15,8 @@ namespace CodeJam.Collections
 	/// and http://www.cise.ufl.edu/~sahni/dsaaj/enrich/c16/suffix.htm
 	/// </remarks>
 	/// </summary>
-	[DebuggerDisplay("{Print()}")]
+	[DebuggerDisplay("{" + nameof(Print) + "()}")]
+	[PublicAPI]
 	public class SuffixTree : SuffixTreeBase
 	{
 		/// <summary>Unassigned node index</summary>
@@ -27,7 +30,7 @@ namespace CodeJam.Collections
 		/// <summary>Index of the active edge (child node) of the branch node</summary>
 		private int _activeEdgeIndex;
 		/// <summary>The length of the current part of the active child</summary>
-		private int activeLength_;
+		private int _activeLength;
 		/// <summary>Offset of the first suffix to insert</summary>
 		private int _nextSuffixOffset;
 		/// <summary>Current working offset in the string</summary>
@@ -37,6 +40,9 @@ namespace CodeJam.Collections
 		/// <summary>The end of the string</summary>
 		private int _end;
 
+		/// <summary>
+		/// Creates instance of <see cref="SuffixTree"/>.
+		/// </summary>
 		public SuffixTree()
 		{
 			ResetLinks();
@@ -61,7 +67,7 @@ namespace CodeJam.Collections
 			Code.BugIf(begin >= end, "Invalid parameters passed");
 			_branchNodeIndex = RootNodeIndex;
 			_activeEdgeIndex = InvalidNodeIndex;
-			activeLength_ = 0;
+			_activeLength = 0;
 			_nextSuffixOffset = begin;
 			_pendingLinkIndexFrom = InvalidNodeIndex;
 			_currentOffset = begin;
@@ -113,7 +119,7 @@ namespace CodeJam.Collections
 			{
 				if (_activeEdgeIndex == InvalidNodeIndex)
 				{
-					DebugCode.AssertState(activeLength_ == 0, "Invalid active state");
+					DebugCode.AssertState(_activeLength == 0, "Invalid active state");
 					if (_currentOffset == _end)
 					{
 						return;
@@ -137,12 +143,12 @@ namespace CodeJam.Collections
 						// a new branch
 						return;
 					}
-					activeLength_ = 1;
+					_activeLength = 1;
 					_activeEdgeIndex = childIndex;
 					activeEdge = edgeNode;
 					++_currentOffset;
 				}
-				var edgeOffset = activeEdge.Begin + activeLength_;
+				var edgeOffset = activeEdge.Begin + _activeLength;
 				var edgeEnd = activeEdge.End;
 				for (;;)
 				{
@@ -154,7 +160,7 @@ namespace CodeJam.Collections
 						children = branchNode.Children;
 						_activeEdgeIndex = InvalidNodeIndex;
 						activeEdge = default(Node);
-						activeLength_ = 0;
+						_activeLength = 0;
 						break;
 					}
 					if (_currentOffset == _end)
@@ -165,7 +171,7 @@ namespace CodeJam.Collections
 					{
 						return;
 					}
-					++activeLength_;
+					++_activeLength;
 					++_currentOffset;
 					++edgeOffset;
 				}
@@ -191,7 +197,7 @@ namespace CodeJam.Collections
 				_currentOffset = _nextSuffixOffset;
 				_branchNodeIndex = RootNodeIndex;
 				_activeEdgeIndex = InvalidNodeIndex;
-				activeLength_ = 0;
+				_activeLength = 0;
 				_pendingLinkIndexFrom = InvalidNodeIndex;
 				return;
 			}
@@ -199,11 +205,11 @@ namespace CodeJam.Collections
 			_branchNodeIndex = _nodeLinks.Value[_branchNodeIndex];
 			if (_branchNodeIndex == InvalidNodeIndex)
 			{
-				activeLength_ = _currentOffset - _nextSuffixOffset;
+				_activeLength = _currentOffset - _nextSuffixOffset;
 				_branchNodeIndex = RootNodeIndex;
 			}
 			_activeEdgeIndex = InvalidNodeIndex;
-			if (activeLength_ == 0)
+			if (_activeLength == 0)
 			{
 				// we are already at a correct node
 				return;
@@ -213,7 +219,7 @@ namespace CodeJam.Collections
 			for (;;)
 			{
 				DebugCode.AssertState(!branchNode.IsLeaf, "Invalid active state");
-				var index = _currentOffset - activeLength_;
+				var index = _currentOffset - _activeLength;
 				var children = branchNode.Children;
 				var childIndex = children.LowerBound(InternalData[index], EdgeComparer);
 				DebugCode.AssertState(childIndex != children.Count, "Invalid active state");
@@ -221,11 +227,11 @@ namespace CodeJam.Collections
 				var edgeNode = GetNode(edgeIndex);
 				DebugCode.AssertState(InternalData[edgeNode.Begin] == InternalData[index], "Invalid active state");
 				var edgeLength = edgeNode.Length;
-				if (edgeLength <= activeLength_)
+				if (edgeLength <= _activeLength)
 				{
-					activeLength_ -= edgeLength;
+					_activeLength -= edgeLength;
 					_branchNodeIndex = edgeIndex;
-					if (activeLength_ == 0)
+					if (_activeLength == 0)
 					{
 						return;
 					}
@@ -251,8 +257,8 @@ namespace CodeJam.Collections
 				var edgeNodeIndex = branchChildren[_activeEdgeIndex];
 				// need to create a new internal node
 				var edgeNode = GetNode(edgeNodeIndex);
-				DebugCode.AssertState(activeLength_ < edgeNode.Length, "Invalid active state");
-				var newEdgeNode = new Node(edgeNode.Begin, edgeNode.Begin + activeLength_, false
+				DebugCode.AssertState(_activeLength < edgeNode.Length, "Invalid active state");
+				var newEdgeNode = new Node(edgeNode.Begin, edgeNode.Begin + _activeLength, false
 					, new List<int> { edgeNodeIndex });
 				var newEdgeNodeIndex = AddNode(newEdgeNode);
 				var updatedEdgeNode = new Node(newEdgeNode.End, edgeNode.End, edgeNode.IsTerminal
@@ -264,7 +270,7 @@ namespace CodeJam.Collections
 			}
 			else
 			{
-				DebugCode.AssertState(activeLength_ == 0, "Invalid active state");
+				DebugCode.AssertState(_activeLength == 0, "Invalid active state");
 				insertionNode = branchNode;
 				insertionNodeIndex = _branchNodeIndex;
 			}
