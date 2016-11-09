@@ -11,7 +11,7 @@ namespace CodeJam.Reflection
 	/// <summary>
 	/// Provides fast access to type and its members.
 	/// </summary>
-	[DebuggerDisplay("Type = {Type}")]
+	[DebuggerDisplay("Type = {" + nameof(Type) + "}")]
 	[PublicAPI]
 	public abstract class TypeAccessor
 	{

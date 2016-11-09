@@ -44,7 +44,7 @@ namespace CodeJam.ObjectPools
 	[PublicAPI]
 	public class ObjectPool<T> where T : class
 	{
-		[DebuggerDisplay("{Value,nq}")]
+		[DebuggerDisplay("{" + nameof(Value) + ",nq}")]
 		private struct Element
 		{
 			public T Value;
