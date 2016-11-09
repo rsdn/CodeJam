@@ -131,7 +131,7 @@ namespace CodeJam
 		/// <summary>
 		/// Represents an Option with value.
 		/// </summary>
-		public class Some : Option<T>
+		public sealed class Some : Option<T>
 		{
 			/// <summary>
 			/// Initializes a new instance to the specified value.
@@ -155,7 +155,7 @@ namespace CodeJam
 		/// <summary>
 		/// Represents an Option without value.
 		/// </summary>
-		public class None : Option<T>
+		public sealed class None : Option<T>
 		{
 			internal static None Instance = new None();
 

@@ -12,6 +12,7 @@ namespace CodeJam.Ranges
 	/// <summary>Extension methods for <seealso cref="CompositeRange{T}"/>.</summary>
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "ArrangeBraces_while")]
+	[PublicAPI]
 	public static partial class CompositeRangeExtensions
 	{
 		#region ToCompositeRange
