@@ -66,22 +66,26 @@
     </Compile>
     <Compile Include="Assertions\EnumCodeTests.cs" />
     <Compile Include="Assertions\CodeTests.cs" />
-    <Compile Include="Collections\EnumerableExtensionTests.TopoSort.cs" />
-    <Compile Include="Collections\MinMaxByTests.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensionTests.TopoSort.cs" />
+    <Compile Include="Collections\Enumerable\MinMaxByTests.cs" />
     <Compile Include="Collections\ArrayExtensionsTest.cs" />
     <Compile Include="Collections\ComparerBuilderTests.cs" />
     <Compile Include="Collections\QueryableExtensionsTests.ApplyOrder.cs" />
     <Compile Include="Collections\DictionaryExtensionsTest.cs" />
-    <Compile Include="Collections\MinMaxByTests.generated.cs">
+    <Compile Include="Collections\Enumerable\MinMaxByTests.generated.cs">
       <DependentUpon>MinMaxByTests.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Collections\EnumerableExtensionTests.Page.cs" />
-    <Compile Include="Collections\EnumerableExtensionTests.Split.cs" />
-    <Compile Include="Collections\EnumerableExtensionTests.Slice.cs" />
-    <Compile Include="Collections\EnumerableExtensionTests.TakeLast.cs" />
-    <Compile Include="Collections\EnumerableExtensionTests.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensionTests.Page.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensionTests.Split.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensionTests.Slice.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensionTests.TakeLast.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensionTests.cs" />
+    <Compile Include="Collections\SuffixTree\SuffixTreeEncoder.cs" />
+    <Compile Include="Collections\SuffixTree\SuffixTreeNaive.cs" />
+    <Compile Include="Collections\SuffixTree\SuffixTreeNaiveTest.cs" />
+    <Compile Include="Collections\SuffixTree\SuffixTreeTest.cs" />
     <Compile Include="Dates\DateTimeExtensionsTests.cs" />
     <Compile Include="ExceptionExtensionsTests.cs" />
     <Compile Include="FnTests.cs" />
@@ -149,7 +153,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>OperatorsTests.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Collections\MinMaxByTests.tt">
+    <Content Include="Collections\Enumerable\MinMaxByTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MinMaxByTests.generated.cs</LastGenOutput>
     </Content>

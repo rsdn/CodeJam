@@ -112,21 +112,24 @@
       <DependentUpon>DebugCode.tt</DependentUpon>
     </Compile>
     <Compile Include="Collections\ComparerBuilder.cs" />
-    <Compile Include="Collections\DictionaryExtensions.GetValueOrDefault.generated.cs">
+    <Compile Include="Collections\Dictionary\DictionaryExtensions.GetValueOrDefault.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DictionaryExtensions.GetValueOrDefault.tt</DependentUpon>
     </Compile>
-    <Compile Include="Collections\EnumerableExtensions.AggregateOrDefault.cs" />
-    <Compile Include="Collections\EnumerableExtensions.Index.cs" />
-    <Compile Include="Collections\IndexedItem.cs" />
-    <Compile Include="Collections\EnumerableExtensions.Page.cs" />
-    <Compile Include="Collections\EnumerableExtensions.Slice.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensions.AggregateOrDefault.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensions.Index.cs" />
+    <Compile Include="Collections\Enumerable\IndexedItem.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensions.Page.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensions.Slice.cs" />
     <Compile Include="Collections\NamespaceDoc.cs" />
     <Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
     <Compile Include="Collections\QueryableExtensions.cs" />
     <Compile Include="Assertions\EnumCode.cs" />
     <Compile Include="Collections\Sequence.cs" />
+    <Compile Include="Collections\SuffixTree\Suffix.cs" />
+    <Compile Include="Collections\SuffixTree\SuffixTree.cs" />
+    <Compile Include="Collections\SuffixTree\SuffixTreeBase.cs" />
     <Compile Include="Dates\DateTimeRangeExtensions.NonGenerated.cs" />
     <Compile Include="Dates\DateTimeRangeExtensions.generated.cs">
       <DependentUpon>DateTimeRangeExtensions.tt</DependentUpon>
@@ -308,24 +311,24 @@
     <Compile Include="Targeting\FW40\ValueTuple\TupleExtensions.cs" />
     <Compile Include="Targeting\FW40\ValueTuple\ValueTuple.cs" />
     <Compile Include="Targeting\PlatformDependent.cs" />
-    <Compile Include="Collections\ArrayExtensions.cs" />
-    <Compile Include="Collections\ArrayExtensions.generated.cs">
+    <Compile Include="Collections\Array\ArrayExtensions.cs" />
+    <Compile Include="Collections\Array\ArrayExtensions.generated.cs">
       <DependentUpon>ArrayExtensions.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Collections\EnumerableExtensions.Flatten.cs" />
-    <Compile Include="Collections\EnumerableExtensions.TakeLast.cs" />
-    <Compile Include="Collections\LazyDictionary.cs" />
-    <Compile Include="Collections\LazyDictionary`2.cs" />
-    <Compile Include="Collections\EnumerableExtensions.Split.cs" />
-    <Compile Include="Collections\KeyEqualityComparer.cs" />
-    <Compile Include="Collections\EnumerableExtensions.MinMaxBy.generated.cs">
+    <Compile Include="Collections\Enumerable\EnumerableExtensions.Flatten.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensions.TakeLast.cs" />
+    <Compile Include="Collections\Dictionary\LazyDictionary.cs" />
+    <Compile Include="Collections\Dictionary\LazyDictionary`2.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensions.Split.cs" />
+    <Compile Include="Collections\Dictionary\KeyEqualityComparer.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensions.MinMaxBy.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EnumerableExtensions.MinMaxBy.tt</DependentUpon>
     </Compile>
-    <Compile Include="Collections\ILazyDictionary.cs" />
+    <Compile Include="Collections\Dictionary\ILazyDictionary.cs" />
     <Compile Include="Targeting\FW40\IReadOnlyCollection.cs" />
     <Compile Include="Targeting\FW40\IReadOnlyDictionary.cs" />
     <Compile Include="IO\TempData.cs" />
@@ -334,15 +337,15 @@
     <Compile Include="Threading\ConcurrentLazyDictionary.cs" />
     <Compile Include="Threading\ExecSyncConcurrentLazyDictionary.cs" />
     <Compile Include="DisposableExtensions.cs" />
-    <Compile Include="Collections\EnumerableExtensions.TopoSort.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensions.TopoSort.cs" />
     <Compile Include="Disposable.cs" />
     <Compile Include="Fn.cs" />
-    <Compile Include="Collections\Array.cs" />
-    <Compile Include="Collections\ArrayExtensions.Infix.cs" />
-    <Compile Include="Collections\KeyEqualityComparer`1.cs" />
+    <Compile Include="Collections\Array\Array.cs" />
+    <Compile Include="Collections\Array\ArrayExtensions.Infix.cs" />
+    <Compile Include="Collections\Dictionary\KeyEqualityComparer`1.cs" />
     <Compile Include="Collections\CollectionExtensions.cs" />
-    <Compile Include="Collections\DictionaryExtensions.cs" />
-    <Compile Include="Collections\EnumerableExtensions.cs" />
+    <Compile Include="Collections\Dictionary\DictionaryExtensions.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensions.cs" />
     <Compile Include="Fn`1.cs" />
     <Compile Include="Structures\ObjectPools\SharedPools.cs" />
     <Compile Include="Structures\ObjectPools\SharedPoolExtensions.cs" />
@@ -376,7 +379,7 @@
     <Compile Include="Xml\XNodeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Collections\EnumerableExtensions.MinMaxBy.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensions.MinMaxBy.cs" />
     <None Include="Compile.cmd">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -414,7 +417,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DebugEnumCode.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Collections\DictionaryExtensions.GetValueOrDefault.tt">
+    <Content Include="Collections\Dictionary\DictionaryExtensions.GetValueOrDefault.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DictionaryExtensions.GetValueOrDefault.generated.cs</LastGenOutput>
     </Content>
@@ -487,11 +490,11 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DebugCode.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Collections\ArrayExtensions.tt">
+    <Content Include="Collections\Array\ArrayExtensions.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ArrayExtensions.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Collections\EnumerableExtensions.MinMaxBy.tt">
+    <Content Include="Collections\Enumerable\EnumerableExtensions.MinMaxBy.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EnumerableExtensions.MinMaxBy.generated.cs</LastGenOutput>
     </Content>

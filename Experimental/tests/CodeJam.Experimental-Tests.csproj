@@ -49,10 +49,6 @@
     <Compile Include="CmdLine\ParserTest.cs" />
     <Compile Include="CmdLine\PrintUsageTest.cs" />
     <Compile Include="Collections\DisjointSetsTest.cs" />
-    <Compile Include="Collections\SuffixTreeEncoder.cs" />
-    <Compile Include="Collections\SuffixTreeNaive.cs" />
-    <Compile Include="Collections\SuffixTreeTest.cs" />
-    <Compile Include="Collections\SuffixTreeNaiveTest.cs" />
     <Compile Include="UseCases\EnumCodeUseCases.cs" />
     <Compile Include="Parsing\ParseHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
