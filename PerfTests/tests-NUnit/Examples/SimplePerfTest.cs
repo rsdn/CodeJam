@@ -24,7 +24,7 @@ namespace CodeJam.Examples
 		public void Baseline() => Thread.SpinWait(Count);
 
 		// Competition member #1. Should take ~3x more time to run.
-		[CompetitionBenchmark(2.85, 3.25)]
+		[CompetitionBenchmark(2.85, 3.15)]
 		public void SlowerX3() => Thread.SpinWait(3 * Count);
 
 		// Competition member #2. Should take ~5x more time to run.
