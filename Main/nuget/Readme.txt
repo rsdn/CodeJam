@@ -1,5 +1,11 @@
-CodeJam 1.2.0-beta3 Release Notes
+CodeJam 1.2.0-beta4 Release Notes
 -------------------------------
+
+What's new in 1.2.0-beta4
+-------------------------
+* Suffix tree moved from Experimental to Main part
+* Doc comment fixes
+* Fixes and code cleanup
 
 What's new in 1.2.0-beta3
 -------------------------
