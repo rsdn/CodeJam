@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
+	/// <summary>
+	/// Base class for suffix tree algorithm implementation.
+	/// </summary>
+	[PublicAPI]
 	public abstract class SuffixTreeBase
 	{
 		/// <summary>Node alignment in Print output</summary>
-		private const int Align = 6;
+		private const int _align = 6;
 
 		/// <summary>Root node index</summary>
 		protected const int RootNodeIndex = 0;
@@ -23,8 +28,8 @@ namespace CodeJam.Collections
 		protected Func<int, char, int> EdgeComparer { get; }
 
 		/// <summary>The comparer to compare string locations against a string end</summary>
-		private readonly Func<ValueTuple<int, int>, int, int> _stringLocationByEndComparer
-			= (position, end) => position.Item2 - end;
+		private readonly Func<ValueTuple<int, int>, int, int> _stringLocationByEndComparer =
+			(position, end) => position.Item2 - end;
 
 		/// <summary>Adds a new node</summary>
 		/// <param name="node">A node to add</param>
@@ -79,8 +84,7 @@ namespace CodeJam.Collections
 		/// The string to add
 		/// <remarks>The last string character should be unique among all added strings</remarks>
 		/// </param>
-		[PublicAPI]
-		public void Add([NotNull]string data)
+		public void Add([NotNull] string data)
 		{
 			Code.NotNull(data, nameof(data));
 			if (data.Length == 0)
@@ -94,16 +98,16 @@ namespace CodeJam.Collections
 		}
 
 		/// <summary>Enumerates all suffixes in the suffix tree</summary>
-		/// <remarks>May return suffixes with the same value of the they are present in different source strings</remarks>
+		/// <remarks>
+		/// May return suffixes with the same value of the they are present in different source strings
+		/// </remarks>
 		/// <returns>The enumeration of all suffixes in lexicographical order</returns>
-		[PublicAPI]
 		[Pure]
 		public IEnumerable<Suffix> All() => AllFromNode(Root, 0);
 
 		/// <summary>Checks wether the suffix tree contains the given substring or not</summary>
 		/// <param name="substring">The substring to locate</param>
 		/// <returns>true if found, false otherwise</returns>
-		[PublicAPI]
 		[Pure]
 		public bool Contains([NotNull] string substring)
 		{
@@ -119,7 +123,6 @@ namespace CodeJam.Collections
 		/// <summary>Checks wether the suffix tree contains the given suffix or not</summary>
 		/// <param name="suffix">The suffix to locate</param>
 		/// <returns>true if found, false otherwise</returns>
-		[PublicAPI]
 		[Pure]
 		public bool ContainsSuffix([NotNull] string suffix)
 		{
@@ -149,7 +152,6 @@ namespace CodeJam.Collections
 		/// <summary>Enumerates all suffixes starting with the given prefix</summary>
 		/// <param name="prefix">The prefix to find</param>
 		/// <returns>The enumeration of all suffixes with the given prefix in lexicographical order</returns>
-		[PublicAPI]
 		[Pure]
 		public IEnumerable<Suffix> StartingWith([NotNull] string prefix)
 		{
@@ -174,7 +176,9 @@ namespace CodeJam.Collections
 		}
 
 		/// <summary>Enumerates all suffixes in the subtree of the given node</summary>
-		/// <remarks>May return suffixes with the same value of the they are present in different source strings</remarks>
+		/// <remarks>
+		/// May return suffixes with the same value of the they are present in different source strings
+		/// </remarks>
 		/// <returns>The enumeration of all suffixes in the subtree in lexicographical order</returns>
 		[Pure]
 		private IEnumerable<Suffix> AllFromNode(Node node, int length)
@@ -306,8 +310,9 @@ namespace CodeJam.Collections
 		private int GetSourceIndexByEnd(int end)
 		{
 			var index = StringLocations.LowerBound(end, _stringLocationByEndComparer);
-			DebugCode.AssertState(index < StringLocations.Count && StringLocations[index].Item2 == end
-				, "Invalid source index computed. Check logic");
+			DebugCode.AssertState(
+				index < StringLocations.Count && StringLocations[index].Item2 == end,
+				"Invalid source index computed. Check logic");
 			return index;
 		}
 
@@ -321,7 +326,14 @@ namespace CodeJam.Collections
 		{
 			var sb = new StringBuilder();
 			var currentIndex = RootNodeIndex;
-			var stack = new List<ValueTuple<int, int>>();
+			var stack =
+				new
+#if FW40
+				ListWithReadOnly
+#else
+					List
+#endif
+						<ValueTuple<int, int>>();
 			for (;;)
 			{
 				PrintNodeWithPath(sb, currentIndex, stack);
@@ -358,32 +370,34 @@ namespace CodeJam.Collections
 		/// <param name="sb">The builder to print to</param>
 		/// <param name="nodeIndex">THe index of the node</param>
 		/// <param name="stack">The stack of nodes to process</param>
-		private void PrintNodeWithPath([NotNull] StringBuilder sb, int nodeIndex
-			, [NotNull] IReadOnlyList<ValueTuple<int, int>> stack)
+		private void PrintNodeWithPath(
+			[NotNull] StringBuilder sb,
+			int nodeIndex,
+			[NotNull] IReadOnlyList<ValueTuple<int, int>> stack)
 		{
 			if (stack.Count > 0)
 			{
 				for (var i = 0; i < stack.Count - 1; ++i)
 				{
 					sb.Append(stack[i].Item2 >= 0 ? '|' : ' ');
-					sb.Append(' ', Align - 1);
+					sb.Append(' ', _align - 1);
 				}
 				sb.AppendLine("|");
 				for (var i = 0; i < stack.Count - 1; ++i)
 				{
 					sb.Append(stack[i].Item2 >= 0 ? '|' : ' ');
-					sb.Append(' ', Align - 1);
+					sb.Append(' ', _align - 1);
 				}
 				sb.Append('|');
-				sb.Append('_', Align - 1);
+				sb.Append('_', _align - 1);
 			}
-			PrintNodeText(sb, nodeIndex);
+			AppendNodeText(sb, nodeIndex);
 		}
 
 		/// <summary>Prints a single node information</summary>
 		/// <param name="sb">The builder to print to</param>
 		/// <param name="nodeIndex">The node index</param>
-		protected virtual void PrintNodeText([NotNull] StringBuilder sb, int nodeIndex)
+		protected virtual void AppendNodeText([NotNull] StringBuilder sb, int nodeIndex)
 		{
 			var n = GetNode(nodeIndex);
 			sb.AppendLine($"({nodeIndex}, [{n.Begin}-{n.End}), {InternalData.Substring(n.Begin, n.Length)})");
@@ -398,14 +412,8 @@ namespace CodeJam.Collections
 			/// <param name="begin">An edge start offset</param>
 			/// <param name="end">An edge end offset</param>
 			/// <param name="terminal">Is the edge terminates the string or not</param>
-			public Node(int begin, int end, bool terminal) : this(begin, end, terminal, null) { }
-
-			/// <summary>Constructs a new node</summary>
-			/// <param name="begin">An edge start offset</param>
-			/// <param name="end">An edge end offset</param>
-			/// <param name="terminal">Is the edge terminates the string or not</param>
 			/// <param name="children">A list of child nodes (edges)</param>
-			public Node(int begin, int end, bool terminal, List<int> children)
+			public Node(int begin, int end, bool terminal, List<int> children = null)
 			{
 				DebugCode.AssertArgument(end >= 0, nameof(end), "end should be nonnegative");
 				Begin = begin;
@@ -435,8 +443,10 @@ namespace CodeJam.Collections
 		{
 			/// <summary>The tree node</summary>
 			public Node Node;
+
 			/// <summary>The chosen edge</summary>
 			public int EdgeIndex;
+
 			/// <summary>The length over the edge</summary>
 			public int Length;
 		}

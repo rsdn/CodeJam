@@ -9,6 +9,7 @@ namespace CodeJam.Ranges
 	/// <typeparam name="T">
 	/// The type of the value. Should implement <seealso cref="IComparable{T}"/> or <seealso cref="IComparable"/>.
 	/// </typeparam>
+	[PublicAPI]
 	public interface ICompositeRange<T>
 	{
 		/// <summary>The composite range is empty, ∅.</summary>

@@ -12,8 +12,6 @@ namespace CodeJam
 	[PublicAPI]
 	public abstract class Option<T> : IOption<T>, IEquatable<Option<T>>
 	{
-		internal static None NoneValue = new None();
-
 		/// <summary>
 		/// Gets a value indicating whether the current object has a value.
 		/// </summary>
@@ -133,7 +131,7 @@ namespace CodeJam
 		/// <summary>
 		/// Represents an Option with value.
 		/// </summary>
-		public class Some : Option<T>
+		public sealed class Some : Option<T>
 		{
 			/// <summary>
 			/// Initializes a new instance to the specified value.
@@ -157,8 +155,12 @@ namespace CodeJam
 		/// <summary>
 		/// Represents an Option without value.
 		/// </summary>
-		public class None : Option<T>
+		public sealed class None : Option<T>
 		{
+			internal static None Instance = new None();
+
+			private None() { }
+
 			/// <summary>Returns the hash code for this instance.</summary>
 			/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
 			public override int GetHashCode() => 0;
