@@ -38,10 +38,16 @@ after_build:
 - cmd: cd ..\..
 - ps: nuget pack Main\nuget\CodeJam.Main.nuspec -version "$env:nugetVersion"
 - ps: nuget pack Experimental\nuget\CodeJam.Experimental.nuspec -version "$env:nugetVersion"
-- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.nuspec -version "$env:nugetVersion"
+- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.Core.nuspec -version "$env:nugetVersion"
+- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.NUnit.nuspec -version "$env:nugetVersion"
+- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.xUnit.nuspec -version "$env:nugetVersion"
+- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.MSTest.nuspec -version "$env:nugetVersion"
 - ps: Push-AppveyorArtifact CodeJam.$env:nugetVersion.nupkg
 - ps: Push-AppveyorArtifact CodeJam.Experimental.$env:nugetVersion.nupkg
-- ps: Push-AppveyorArtifact CodeJam.PerfTests.$env:nugetVersion.nupkg
+- ps: Push-AppveyorArtifact CodeJam.PerfTests.Core.$env:nugetVersion.nupkg
+- ps: Push-AppveyorArtifact CodeJam.PerfTests.NUnit.$env:nugetVersion.nupkg
+- ps: Push-AppveyorArtifact CodeJam.PerfTests.xUnit.$env:nugetVersion.nupkg
+- ps: Push-AppveyorArtifact CodeJam.PerfTests.MSTest.$env:nugetVersion.nupkg
 
 # artifacts for perftests
 on_finish:
