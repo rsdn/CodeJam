@@ -11,6 +11,7 @@
 ## TODOs:
  * Tests for broken log annotations.
  * Task/Task<T> support.
+ * IgnoreExistingAnnotations - skip reading the xml resources / log annotations?
 
 ## Long-term TODOs:
  * Simplify config setup system. There're assembly appconfig, defaut competition config, overrides at competiton runner.

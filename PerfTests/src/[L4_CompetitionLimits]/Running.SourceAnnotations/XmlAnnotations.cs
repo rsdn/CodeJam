@@ -343,7 +343,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <summary>Writes xml annotation document for the competition targets to the log.</summary>
 		/// <param name="competitionTargets">The competition targets to log.</param>
 		/// <param name="competitionState">State of the run.</param>
-		public static void LogCompetitionTargets(
+		public static void LogXmlAnnotationDoc(
 			[NotNull] IReadOnlyCollection<CompetitionTarget> competitionTargets,
 			[NotNull] CompetitionState competitionState)
 		{

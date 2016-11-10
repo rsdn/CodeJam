@@ -8,6 +8,7 @@ using BenchmarkDotNet.Horology;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Reports;
 
+using CodeJam;
 using CodeJam.Collections;
 
 using JetBrains.Annotations;
@@ -52,6 +53,7 @@ namespace BenchmarkDotNet.Engines
 			WarmupCount = targetJob.ResolveValueAsNullable(RunMode.WarmupCountCharacteristic) ?? 1;
 			TargetCount = targetJob.ResolveValueAsNullable(RunMode.TargetCountCharacteristic) ?? 1;
 
+			IdleWarmupList = new List<Measurement>(WarmupCount);
 			WarmupList = new List<Measurement>(WarmupCount);
 			IdleTargetList = new List<Measurement>(TargetCount);
 			TargetList = new List<Measurement>(TargetCount);
@@ -72,6 +74,7 @@ namespace BenchmarkDotNet.Engines
 		private int WarmupCount { get; }
 		private int TargetCount { get; }
 
+		private List<Measurement> IdleWarmupList { get; }
 		private List<Measurement> WarmupList { get; }
 		private List<Measurement> IdleTargetList { get; }
 		private List<Measurement> TargetList { get; }
@@ -91,6 +94,8 @@ namespace BenchmarkDotNet.Engines
 			if (TimeUnit.All == null || list[0].Nanoseconds != default(double))
 				throw new Exception("just use this things here to provoke static ctor");
 
+			IdleWarmupList.Clear();
+			IdleWarmupList.Capacity = WarmupCount;
 			WarmupList.Clear();
 			WarmupList.Capacity = WarmupCount;
 			IdleTargetList.Clear();
@@ -125,8 +130,7 @@ namespace BenchmarkDotNet.Engines
 			{
 				if (EvaluateOverhead)
 				{
-					RunCore(IterationMode.IdleWarmup, WarmupCount, WarmupList);
-					WarmupList.Clear();
+					RunCore(IterationMode.IdleWarmup, WarmupCount, IdleWarmupList);
 				}
 				RunCore(IterationMode.MainWarmup, WarmupCount, WarmupList);
 			}
@@ -143,7 +147,24 @@ namespace BenchmarkDotNet.Engines
 				RemoveOutliers);
 
 			if (!IsDiagnoserAttached)
-				results.Print();
+			{
+				foreach (var measurement in IdleWarmupList)
+				{
+					Console.WriteLine(measurement.ToOutputLine());
+				}
+				foreach (var measurement in WarmupList)
+				{
+					Console.WriteLine(measurement.ToOutputLine());
+				}
+				foreach (var measurement in IdleTargetList)
+				{
+					Console.WriteLine(measurement.ToOutputLine());
+				}
+				foreach (var measurement in TargetList)
+				{
+					Console.WriteLine(measurement.ToOutputLine());
+				}
+			}
 
 			return results;
 		}
@@ -269,6 +290,9 @@ namespace BenchmarkDotNet.Engines
 		/// <param name="measurements">The measurements.</param>
 		protected override void RunCore(IterationMode iterationMode, int iterationCount, List<Measurement> measurements)
 		{
+			DebugCode.BugIf(measurements.Count>0, "measurements not empty.");
+			DebugCode.BugIf(measurements.Capacity < iterationCount, "measurements capacity not set.");
+
 			var resultCount = GetResultCount(iterationCount);
 			var action = iterationMode.IsIdle() ? _idleAction : _mainAction;
 

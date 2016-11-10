@@ -70,7 +70,7 @@ namespace CodeJam.PerfTests
 					InvocationCount = 1
 				},
 				Infrastructure = { Toolchain = InProcessToolchain.Instance },
-				Accuracy = { AnalyzeLaunchVariance = false, EvaluateOverhead = false, RemoveOutliers = true }
+				Accuracy = { AnalyzeLaunchVariance = false, EvaluateOverhead = false, RemoveOutliers = false }
 			};
 			if (platform != null)
 			{
@@ -89,7 +89,6 @@ namespace CodeJam.PerfTests
 
 			var result = new ManualCompetitionConfig
 			{
-				RerunIfLimitsFailed = true,
 				KeepBenchmarkFiles = defaultConfig.KeepBenchmarkFiles
 			};
 
@@ -115,9 +114,17 @@ namespace CodeJam.PerfTests
 		public static ManualCompetitionConfig CreateDefaultConfigAnnotate(Job job = null)
 		{
 			var result = CreateDefaultConfig(job);
-			result.LogCompetitionLimits = true;
-			result.RerunIfLimitsFailed = true;
-			result.UpdateSourceAnnotations = true;
+			result.Add(new CompetitionMode
+			{
+				Limits =
+				{
+					LogAnnotations = true
+				},
+				SourceAnnotations =
+				{
+					UpdateSources = true
+				}
+			});
 			result.Add(Exporters.CsvTimingsExporter.Default);
 			return result;
 		}
@@ -130,7 +137,13 @@ namespace CodeJam.PerfTests
 		public static ManualCompetitionConfig CreateDefaultConfigReannotate(Job job = null)
 		{
 			var result = CreateDefaultConfigAnnotate(job);
-			result.IgnoreExistingAnnotations = true;
+			result.Add(new CompetitionMode
+			{
+				Limits =
+				{
+					IgnoreExistingAnnotations = true
+				}
+			});
 			return result;
 		}
 		#endregion

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -36,17 +34,31 @@ namespace CodeJam.PerfTests
 		#endregion
 
 		#region Configs core
-		private static ManualCompetitionConfig CreateRunConfigCore()
+		private static ManualCompetitionConfig AddLogger(this ManualCompetitionConfig config)
 		{
-			var result = new ManualCompetitionConfig
+			config.Add(AppConfigHelpers.GetImportantOnlyLogger(typeof(SelfTestHelpers).Assembly));
+			return config;
+		}
+
+		private static Job CreateHighAccuracyJob(bool outOfProcess = false)
+		{
+			var job = new Job(
+				"HighAccuracyConfig",
+				CompetitionHelpers.CreateDefaultJob(),
+				EnvMode.RyuJitX64)
 			{
-				RerunIfLimitsFailed = true,
-				ReportWarningsAsErrors = true
+				Run =
+				{
+					LaunchCount = 1,
+					WarmupCount = 200,
+					TargetCount = 500
+				}
 			};
 
-			result.Add(BenchmarkDotNet.Configs.DefaultConfig.Instance.GetColumnProviders().ToArray());
-			result.Add(AppConfigHelpers.GetImportantOnlyLogger(typeof(SelfTestHelpers).Assembly));
-			return result;
+			if (outOfProcess)
+				throw new NotImplementedException();
+
+			return job;
 		}
 		#endregion
 
@@ -73,51 +85,18 @@ namespace CodeJam.PerfTests
 				}
 			};
 
-			var result = CreateRunConfigCore();
-			result.AllowDebugBuilds = true;
-			result.Add(job);
-			return result;
+			var result = CompetitionHelpers.CreateDefaultConfig(job);
+			return result.AddLogger();
 		}
 
-		public static ManualCompetitionConfig CreateHighAccuracyConfig(bool outOfProcess = false)
-		{
-			var job = new Job("HighAccuracyConfig",
-				CompetitionHelpers.CreateDefaultJob(),
-				EnvMode.RyuJitX64)
-			{
-				Run =
-				{
-					LaunchCount = 1,
-					WarmupCount = 200,
-					TargetCount = 500
-				}
-			};
+		public static ManualCompetitionConfig CreateHighAccuracyConfig(bool outOfProcess = false) => 
+			CompetitionHelpers.CreateDefaultConfig(CreateHighAccuracyJob(outOfProcess)).AddLogger();
 
-			if( outOfProcess)
-				throw new NotImplementedException();
+		public static ManualCompetitionConfig CreateRunConfigAnnotate() =>
+			CompetitionHelpers.CreateDefaultConfigAnnotate(CreateHighAccuracyJob()).AddLogger();
 
-			var result = CreateRunConfigCore();
-			result.Add(job);
-
-			return result;
-		}
-
-		public static ManualCompetitionConfig CreateRunConfigAnnotate()
-		{
-			var result = CreateHighAccuracyConfig();
-			result.LogCompetitionLimits = true;
-			result.RerunIfLimitsFailed = true;
-			result.UpdateSourceAnnotations = true;
-			result.MaxRunsAllowed = 6;
-			return result;
-		}
-
-		public static ManualCompetitionConfig CreateRunConfigReAnnotate()
-		{
-			var result = CreateRunConfigAnnotate();
-			result.IgnoreExistingAnnotations = true;
-			return result;
-		}
+		public static ManualCompetitionConfig CreateRunConfigReannotate() =>
+			CompetitionHelpers.CreateDefaultConfigReannotate(CreateHighAccuracyJob()).AddLogger();
 		#endregion
 	}
 }

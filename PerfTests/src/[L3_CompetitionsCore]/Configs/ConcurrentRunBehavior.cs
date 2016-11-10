@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeJam.PerfTests.Running.Core
+namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Behavior for concurrent competition runs.</summary>
 	public enum ConcurrentRunBehavior

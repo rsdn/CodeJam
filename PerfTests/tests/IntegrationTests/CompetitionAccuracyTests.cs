@@ -23,10 +23,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 	[SuppressMessage("ReSharper", "ArgumentsStyleLiteral")]
 	public static class CompetitionAccuracyTests
 	{
-		private static readonly ICompetitionConfig _debugConfig = new ManualCompetitionConfig(HighAccuracyConfig)
-		{
-			AllowDebugBuilds = true
-		};
+		private static readonly ICompetitionConfig _debugConfig = HighAccuracyConfig.WithAllowDebugBuilds(true);
 
 		[Test]
 		public static void CompetitionTooFastBenchmark()
@@ -77,10 +74,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionTooSlowOk()
 		{
-			var overrideConfig = new ManualCompetitionConfig(SelfTestConfig)
-			{
-				AllowLongRunningBenchmarks = true
-			};
+			var overrideConfig = SelfTestConfig.WithLongRunningBenchmarkLimit(TimeSpan.FromMinutes(2));
 
 			var runState = SelfTestCompetition.Run<TooSlowBenchmark>(overrideConfig);
 			var messages = runState.GetMessages();

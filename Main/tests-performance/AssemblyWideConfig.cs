@@ -3,7 +3,6 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 
 using BenchmarkDotNet.Environments;
-using BenchmarkDotNet.Jobs;
 
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Core;
@@ -48,7 +47,7 @@ namespace CodeJam
 		public AssemblyWideConfig([NotNull] Assembly targetAssembly) : base(Create(targetAssembly)) { }
 
 		[NotNull]
-		private static ManualCompetitionConfig Create(
+		private static ICompetitionConfig Create(
 			[NotNull] Assembly targetAssembly)
 		{
 			var createOptions = AppConfigHelpers.GetAppConfigOptions(

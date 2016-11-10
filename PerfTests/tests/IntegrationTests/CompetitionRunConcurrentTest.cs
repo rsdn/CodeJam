@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
+using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 
@@ -35,8 +36,12 @@ namespace CodeJam.PerfTests.IntegrationTests
 				typeof(ConcurrentRunBenchmark),
 				typeof(ConcurrentRunBenchmark)
 			};
-			var config = CreateHighAccuracyConfig();
-			config.ConcurrentRunBehavior = concurrentRunBehavior;
+			var config = new ManualCompetitionConfig( CreateHighAccuracyConfig());
+			config.Add(
+				new CompetitionMode
+				{
+					RunMode = { Concurrent = concurrentRunBehavior }
+				});
 
 			CompetitionState[] runResults;
 			using (var barrier = new Barrier(benchmarks.Length))

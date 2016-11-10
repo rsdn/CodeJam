@@ -43,7 +43,7 @@ namespace CodeJam.PerfTests.Configs
 		public AssemblyCompetitionConfig([NotNull] Assembly targetAssembly) : base(Create(targetAssembly)) { }
 
 		[NotNull]
-		private static ManualCompetitionConfig Create(
+		private static ICompetitionConfig Create(
 			[NotNull] Assembly targetAssembly)
 		{
 			var createOptions = AppConfigHelpers.GetAppConfigOptions(targetAssembly);

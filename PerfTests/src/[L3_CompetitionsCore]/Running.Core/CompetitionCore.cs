@@ -16,6 +16,7 @@ using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains;
 using BenchmarkDotNet.Toolchains.InProcess;
 
+using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
@@ -32,9 +33,6 @@ namespace CodeJam.PerfTests.Running.Core
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	public static class CompetitionCore
 	{
-		/// <summary>Maximum time limit for competition run. Set to two hours for now, can change in future.</summary>
-		internal static readonly TimeSpan MaxRunTimeout = TimeSpan.FromHours(2);
-
 		#region Extension methods
 		/// <summary>The message severity is setup error or higher.</summary>
 		/// <param name="severity">The severity to check.</param>
@@ -50,6 +48,27 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="severity">The severity to check.</param>
 		/// <returns><c>true</c> if the severity is warning or higher.</returns>
 		public static bool IsWarningOrHigher(this MessageSeverity severity) => severity >= MessageSeverity.Warning;
+
+
+		/// <summary>Returns appropriate conclusion kind.</summary>
+		/// <param name="severity">The severity.</param>
+		/// <returns>Conclusion kind for severity.</returns>
+		public static ConclusionKind ToConclusionKind(this MessageSeverity severity)
+		{
+			switch (severity)
+			{
+				case MessageSeverity.Verbose:
+				case MessageSeverity.Informational:
+					return ConclusionKind.Hint;
+				case MessageSeverity.Warning:
+				case MessageSeverity.TestError:
+				case MessageSeverity.SetupError:
+				case MessageSeverity.ExecutionError:
+					return ConclusionKind.Warning;
+				default:
+					throw CodeExceptions.UnexpectedArgumentValue(nameof(severity), severity);
+			}
+		}
 
 		/// <summary>Log format for the message.</summary>
 		/// <returns>Log format for the message.</returns>
@@ -67,25 +86,31 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Run state slot.</summary>
 		public static readonly RunState<CompetitionState> RunState = new RunState<CompetitionState>();
 
-		/// <summary>Reports analyser warning.</summary>
+		/// <summary>Reports analyser conclusion.</summary>
 		/// <param name="competitionState">State of the run.</param>
-		/// <param name="warnings">The list the warnings will be added to.</param>
+		/// <param name="analyser">The analyser the message belongs to.</param>
+		/// <param name="conclusions">The list the conclusion will be added to.</param>
 		/// <param name="severity">Severity of the message.</param>
 		/// <param name="message">The message.</param>
 		/// <param name="report">The report the message belongs to.</param>
-		public static void AddAnalyserWarning(
+		public static void AddAnalyserConclusion(
 			[NotNull] this CompetitionState competitionState,
-			[NotNull] List<IWarning> warnings,
+			[NotNull] IAnalyser analyser,
+			[NotNull] List<Conclusion> conclusions,
 			MessageSeverity severity,
 			[NotNull] string message,
 			BenchmarkReport report = null)
 		{
 			Code.NotNull(competitionState, nameof(competitionState));
-			Code.NotNull(warnings, nameof(warnings));
+			Code.NotNull(analyser, nameof(analyser));
+			Code.NotNull(conclusions, nameof(conclusions));
 			Code.NotNullNorEmpty(message, nameof(message));
 
 			competitionState.WriteMessage(MessageSource.Analyser, severity, message);
-			warnings.Add(new Warning(severity.ToString(), message, report));
+			var conclusion = severity.ToConclusionKind() == ConclusionKind.Hint
+				? Conclusion.CreateHint(analyser.Id, message, report)
+				: Conclusion.CreateWarning(analyser.Id, message, report);
+			conclusions.Add(conclusion);
 		}
 
 		/// <summary>Writes the exception message.</summary>
@@ -136,17 +161,13 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Runs the benchmark for specified benchmark type.</summary>
 		/// <param name="benchmarkType">The type of the benchmark.</param>
 		/// <param name="benchmarkConfig">The config for the benchmark.</param>
-		/// <param name="maxRunsAllowed">Total count of reruns allowed.</param>
-		/// <param name="allowDebugBuilds">Allow debug builds. If <c>false</c> the benchmark will be skipped on debug builds.</param>
-		/// <param name="concurrentRunBehavior">Behavior for concurrent runs.</param>
+		/// <param name="competitionMode">The competition parameters.</param>
 		/// <returns>Competition state for the run.</returns>
 		[NotNull]
 		internal static CompetitionState Run(
 			[NotNull] Type benchmarkType,
 			[NotNull] IConfig benchmarkConfig,
-			int maxRunsAllowed,
-			bool allowDebugBuilds,
-			ConcurrentRunBehavior concurrentRunBehavior)
+			CompetitionMode competitionMode)
 		{
 			Code.NotNull(benchmarkType, nameof(benchmarkType));
 			Code.NotNull(benchmarkConfig, nameof(benchmarkConfig));
@@ -163,7 +184,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			try
 			{
-				competitionState.FirstTimeInit(maxRunsAllowed, benchmarkConfig);
+				competitionState.FirstTimeInit(benchmarkConfig, competitionMode);
 				var logger = competitionState.Logger;
 
 				using (BeginLogImportant(benchmarkConfig))
@@ -178,11 +199,12 @@ namespace CodeJam.PerfTests.Running.Core
 					bool lockTaken = false;
 					try
 					{
-						var timeout = concurrentRunBehavior == ConcurrentRunBehavior.Lock ? MaxRunTimeout : TimeSpan.Zero;
+						var runMode = competitionState.CompetitionMode.RunMode;
+						var timeout = runMode.Concurrent == ConcurrentRunBehavior.Lock ? CompetitionRunMode.TotalRunTimeout : TimeSpan.Zero;
 						lockTaken = mutex.WaitOne(timeout);
-						if (CheckPreconditions(benchmarkType, lockTaken, allowDebugBuilds, concurrentRunBehavior, competitionState))
+						if (CheckPreconditions(benchmarkType, lockTaken, competitionState))
 						{
-							RunCore(benchmarkType, competitionState, maxRunsAllowed);
+							RunCore(benchmarkType, competitionState);
 						}
 					}
 					finally
@@ -217,13 +239,14 @@ namespace CodeJam.PerfTests.Running.Core
 		// TODO: as a part of CompetitionRunnerBase?
 		private static bool CheckPreconditions(
 			[NotNull] Type benchmarkType,
-			bool lockTaken, bool allowDebugBuilds,
-			ConcurrentRunBehavior concurrentRunBehavior,
+			bool lockTaken,
 			CompetitionState competitionState)
 		{
+			var runMode = competitionState.CompetitionMode.RunMode;
+
 			if (!lockTaken)
 			{
-				switch (concurrentRunBehavior)
+				switch (runMode.Concurrent)
 				{
 					case ConcurrentRunBehavior.Lock:
 					case ConcurrentRunBehavior.Skip:
@@ -232,11 +255,11 @@ namespace CodeJam.PerfTests.Running.Core
 							"Competition run skipped. Competitions cannot be run in parallel, be sure to disable parallel test execution.");
 						return false;
 					default:
-						throw CodeExceptions.UnexpectedArgumentValue(nameof(concurrentRunBehavior), concurrentRunBehavior);
+						throw CodeExceptions.UnexpectedArgumentValue(nameof(runMode.Concurrent), runMode.Concurrent);
 				}
 			}
 
-			if (!allowDebugBuilds && benchmarkType.Assembly.IsDebugAssembly())
+			if (!runMode.AllowDebugBuilds && benchmarkType.Assembly.IsDebugAssembly())
 			{
 				var assembly = benchmarkType.Assembly;
 				competitionState.WriteMessage(
@@ -249,9 +272,12 @@ namespace CodeJam.PerfTests.Running.Core
 			return true;
 		}
 
-		private static void RunCore(Type benchmarkType, CompetitionState competitionState, int maxRunsAllowed)
+		private static void RunCore(Type benchmarkType, CompetitionState competitionState)
 		{
 			var logger = competitionState.Logger;
+			var runMode = competitionState.CompetitionMode.RunMode;
+
+			Code.InRange(runMode.MaxRunsAllowed, nameof(runMode.MaxRunsAllowed), 0, CompetitionRunMode.MaxRunLimit);
 
 			while (competitionState.RunsLeft > 0)
 			{
@@ -268,27 +294,14 @@ namespace CodeJam.PerfTests.Running.Core
 					logger.WriteSeparatorLine(runMessage);
 				}
 
-				// BADCODE
-				// TODO: remove as Run will become public.
+				// TODO: toolchainProvider to base.
 				Func<Job, IToolchain> toolchainProvider = j => j.Infrastructure?.Toolchain ?? InProcessToolchain.Instance;
 
-				var runMethod = typeof(IConfig).Assembly
-					.GetType("BenchmarkDotNet.Running.BenchmarkRunnerCore")
-					.GetMethod(
-					"Run",
-					BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static,
-					null,
-					new[] { typeof(Benchmark[]), typeof(IConfig), toolchainProvider.GetType() },
-					null);
-
 				// Running the benchmark
-				var summary = (Summary)runMethod.Invoke(
-					null,
-					new object[]
-					{
-						BenchmarkConverter.TypeToBenchmarks(benchmarkType, competitionState.Config), competitionState.Config,
-						toolchainProvider
-					});
+				var summary = BenchmarkRunnerCore.Run(
+					BenchmarkConverter.TypeToBenchmarks(benchmarkType, competitionState.Config),
+					competitionState.Config,
+					toolchainProvider);
 				competitionState.RunCompleted(summary);
 
 				// TODO: dump them before analyser run?
@@ -315,7 +328,7 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				competitionState.WriteMessage(
 					MessageSource.Runner, MessageSeverity.TestError,
-					$"The benchmark run limit ({competitionState.MaxRunsAllowed} runs(s)) exceeded (read log for details). Try to loose competition limits.");
+					$"The benchmark run limit ({runMode.MaxRunsAllowed} runs(s)) exceeded (read log for details). Try to loose competition limits.");
 			}
 			else if (competitionState.RunNumber > 1)
 			{

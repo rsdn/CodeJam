@@ -58,7 +58,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="job">The job for the config. Default one will be used if <c>null</c>.</param>
 		/// <returns>Config for the competition.</returns>
 		[NotNull]
-		public static ManualCompetitionConfig CreateAppCompetitionConfig(
+		public static ICompetitionConfig CreateAppCompetitionConfig(
 			[NotNull] Assembly targetAssembly,
 			[CanBeNull] AppConfigOptions createOptions,
 			[CanBeNull] Job job = null)
@@ -66,20 +66,19 @@ namespace CodeJam.PerfTests.Running.Core
 			Code.NotNull(targetAssembly, nameof(targetAssembly));
 
 			if (createOptions == null)
-				return new ManualCompetitionConfig(CreateDefaultConfig(job));
+				return CreateDefaultConfig(job);
 
 			if (job == null)
 				job = CreateDefaultJob(createOptions.TargetPlatform);
 
-			ManualCompetitionConfig result;
+			ICompetitionConfig result;
 			if (!createOptions.AnnotateOnRun)
 			{
 				result = CreateDefaultConfig(job);
 			}
 			else if (!createOptions.IgnoreExistingAnnotations)
 			{
-				result = CreateDefaultConfigAnnotate(job);
-				result.PreviousRunLogUri = createOptions.PreviousRunLogUri;
+				result = CreateDefaultConfigAnnotate(job).WithPreviousRunLogUri(createOptions.PreviousRunLogUri);
 			}
 			else
 			{
@@ -88,25 +87,30 @@ namespace CodeJam.PerfTests.Running.Core
 
 			if (createOptions.TroubleshootingMode)
 			{
-				result.DetailedLogging = true;
-				result.Add(
+				var temp = new ManualCompetitionConfig(result.WithDetailedLogging(true));
+
+				temp.Add(
 					GetDetailedLogger(targetAssembly),
 					GetImportantOnlyLogger(targetAssembly));
-				result.Add(Exporters.CsvTimingsExporter.Default);
+				temp.Add(Exporters.CsvTimingsExporter.Default);
+
+				result = temp.AsReadOnly();
 			}
 			else
 			{
+				var temp = new ManualCompetitionConfig(result);
 				if (createOptions.Loggers.IsFlagSet(AppConfigLoggers.Detailed))
 				{
-					result.Add(GetDetailedLogger(targetAssembly));
+					temp.Add(GetDetailedLogger(targetAssembly));
 				}
 				if (createOptions.Loggers.IsFlagSet(AppConfigLoggers.ImportantOnly))
 				{
-					result.Add(GetImportantOnlyLogger(targetAssembly));
+					temp.Add(GetImportantOnlyLogger(targetAssembly));
 				}
+				result = temp.AsReadOnly();
 			}
 
-			result.ReportWarningsAsErrors = createOptions.ReportWarningsAsErrors;
+			result = result.WithReportWarningsAsErrors(createOptions.ReportWarningsAsErrors);
 
 			return result;
 		}

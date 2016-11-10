@@ -40,7 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BenchmarkDotNet.Core, Version=0.9.9.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\BenchmarkDotNet.Core.0.9.9.203\lib\net45\BenchmarkDotNet.Core.dll</HintPath>
+      <HintPath>..\..\packages\BenchmarkDotNet.Core.0.9.9.213\lib\net45\BenchmarkDotNet.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.DiaSymReader, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -70,6 +70,7 @@
     <Compile Include="[L0_Core]\Loggers\IFlushableLogger.cs" />
     <Compile Include="[L0_Core]\Loggers\LazySynchronizedStreamLogger.cs" />
     <Compile Include="[L1_InProcess]\Toolchains\BurstModeEngine.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Configs\SourceAnnotationsMode.cs" />
     <Compile Include="[L3_CompetitionsCore]\Exporters\CsvTimingsExporter.cs" />
     <Compile Include="[L0_Core]\Helpers\BenchmarkHelpers.cs" />
     <Compile Include="[L0_Core]\Portability\PortabilityExtensions.cs" />
@@ -86,33 +87,37 @@
     <Compile Include="[L3_CompetitionsCore]\Loggers\HostLogMode.cs" />
     <Compile Include="[L3_CompetitionsCore]\Loggers\HostLogger.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Core\CompetitionCore.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Configs\CompetitionLimitsMode.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Configs\CompetitionRunMode.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Configs\CompetitionMode.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Core\CompetitionState.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\IMessage.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\MessageSource.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\MessageSeverity.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\Message.cs" />
     <Compile Include="[L4_CompetitionLimits]\Columns\CompetitionLimitColumn.cs" />
-    <Compile Include="[L4_CompetitionLimits]\Running.Limits\CompetitionLimit.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Limits\CompetitionLimit.cs" />
     <Compile Include="[L4_CompetitionLimits]\Analysers\CompetitionAnalyser.cs" />
-    <Compile Include="[L4_CompetitionLimits]\Running.Limits\ICompetitionLimitProvider.cs" />
-    <Compile Include="[L4_CompetitionLimits]\Running.Limits\CompetitionLimitProviderBase.cs" />
-    <Compile Include="[L4_CompetitionLimits]\Running.Limits\LogNormalLimitProvider.cs" />
-    <Compile Include="[L4_CompetitionLimits]\Running.Limits\PercentileLimitProvider.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Limits\ICompetitionLimitProvider.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Limits\CompetitionLimitProviderBase.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Limits\LogNormalLimitProvider.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Limits\PercentileLimitProvider.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\AttributeAnnotations.cs" />
-    <Compile Include="[L4_CompetitionLimits]\Running.Limits\CompetitionLimitProperties.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Limits\CompetitionLimitProperties.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\CompetitionMetadata.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\CompetitionTarget.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\XmlAnnotations.cs" />
-    <Compile Include="[L4_CompetitionLimits]\[Attributes]\CompetitionBaselineAttribute.cs" />
-    <Compile Include="[L4_CompetitionLimits]\[Attributes]\CompetitionBenchmarkAttribute.cs" />
-    <Compile Include="[L4_CompetitionLimits]\[Attributes]\CompetitionMetadataAttribute.cs" />
+    <Compile Include="[L3_CompetitionsCore]\[Attributes]\CompetitionBaselineAttribute.cs" />
+    <Compile Include="[L3_CompetitionsCore]\[Attributes]\CompetitionBenchmarkAttribute.cs" />
+    <Compile Include="[L3_CompetitionsCore]\[Attributes]\CompetitionMetadataAttribute.cs" />
     <Compile Include="[L5_Annotations]\Analysers\CompetitionAnnotateAnalyser.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.XmlAnnotations.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.SourceAttributes.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.SymbolHelpers.cs" />
     <Compile Include="[L6_AllTogether]\CompetitionHelpers.cs" />
-    <Compile Include="[L3_CompetitionsCore]\Running.Core\ConcurrentRunBehavior.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Configs\ConcurrentRunBehavior.cs" />
+    <Compile Include="[L6_AllTogether]\Configs\CompetitionConfigExtensions.cs" />
     <Compile Include="[L6_AllTogether]\Configs\ICompetitionConfigSource.cs" />
     <Compile Include="[L6_AllTogether]\Running.Core\ConsoleCompetitionRunner.cs" />
     <Compile Include="[L6_AllTogether]\Configs\ICompetitionConfig.cs" />
