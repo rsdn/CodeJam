@@ -67,7 +67,7 @@ namespace CodeJam.PerfTests.Configs
 		{
 			var manualConfig = new ManualCompetitionConfig(config);
 			addAction(manualConfig);
-			return manualConfig;
+			return manualConfig.AsReadOnly();
 		}
 	}
 }

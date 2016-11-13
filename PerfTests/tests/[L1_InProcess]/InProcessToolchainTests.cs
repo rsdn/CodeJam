@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading;
 
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Environments;
+using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Validators;
 
 using NUnit.Framework;
@@ -34,6 +36,26 @@ namespace CodeJam.PerfTests
 				.LastRunSummary;
 
 			Assert.AreEqual(_callCounter, ExpectedSelfTestRunCount);
+			Assert.AreEqual(_afterSetupCounter, ExpectedSelfTestRunCount);
+
+			Assert.IsFalse(summary?.ValidationErrors.Any());
+		}
+
+		[Test]
+		public static void TestInProcessBenchmarkBurstMode()
+		{
+			Interlocked.Exchange(ref _callCounter, 0);
+			Interlocked.Exchange(ref _afterSetupCounter, 0);
+
+			var job = new Job(
+				CreateDefaultJob()
+				.Apply(new InfrastructureMode { EngineFactory = BurstModeEngineFactory.Instance}));
+
+			var summary = SelfTestCompetition
+				.Run<InProcessBenchmark>(CreateSelfTestConfig(job))
+				.LastRunSummary;
+
+			Assert.AreEqual(_callCounter, ExpectedSelfTestRunCount);
 			Assert.AreEqual(_afterSetupCounter, 2);
 
 			Assert.IsFalse(summary?.ValidationErrors.Any());
@@ -43,7 +65,7 @@ namespace CodeJam.PerfTests
 		public static void TestInProcessBenchmarkWithValidation()
 		{
 			// DONTTOUCH: config SHOULD NOT match the default platform (x64).
-			var config = CreateSelfTestConfig(Platform.X86);
+			var config = CreateSelfTestConfig(CreateDefaultJob(Platform.X86));
 			config.Add(InProcessValidator.FailOnError);
 
 			Interlocked.Exchange(ref _callCounter, 0);

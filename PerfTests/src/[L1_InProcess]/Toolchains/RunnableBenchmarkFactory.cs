@@ -145,9 +145,10 @@ namespace BenchmarkDotNet.Toolchains
 				return callback;
 
 			// TODO: combine delegates if .net native
+			var target = callback.Method.IsStatic ? null : Constant(callback.Target);
 			return Lambda<Action>(Block(
 				Enumerable.Repeat(callback, unrollFactor)
-					.Select(c => Call(Constant(callback.Target),callback.Method))
+					.Select(c => Call(target, callback.Method))
 				)).Compile();
 		}
 
@@ -197,35 +198,6 @@ namespace BenchmarkDotNet.Toolchains
 				}
 			}
 		}
-
-		/// <summary>Determines if it's possible to use the <see cref="BurstModeEngine"/>.</summary>
-		/// <param name="job">The job.</param>
-		/// <returns><c>true</c> if [is burst node] [the specified job]; otherwise, <c>false</c>.</returns>
-		internal static bool IsBurstNode(Job job) =>
-			job.HasValue(RunMode.WarmupCountCharacteristic) &&
-			job.HasValue(RunMode.TargetCountCharacteristic) &&
-			job.HasValue(RunMode.InvocationCountCharacteristic);
-
-		/// <summary>Creates the burst mode engine.</summary>
-		/// <param name="engineParameters">The engine parameters.</param>
-		/// <param name="idleCallback">The idle callback.</param>
-		/// <param name="runCallback">The run callback.</param>
-		/// <returns>A new instance of burst mode engine.</returns>
-		internal static BurstModeEngine CreateBurstModeEngine(
-			EngineParameters engineParameters,
-			Action idleCallback, Action runCallback) =>
-			new BurstModeEngine(engineParameters, idleCallback, runCallback);
-
-		/// <summary>Creates the burst mode engine.</summary>
-		/// <typeparam name="TResult">The type of the result.</typeparam>
-		/// <param name="engineParameters">The engine parameters.</param>
-		/// <param name="idleCallback">The idle callback.</param>
-		/// <param name="runCallback">The run callback.</param>
-		/// <returns>A new instance of burst mode engine.</returns>
-		internal static BurstModeEngine<TResult> CreateBurstModeEngine<TResult>(
-		EngineParameters engineParameters,
-			Func<TResult> idleCallback, Func<TResult> runCallback) => 
-			new BurstModeEngine<TResult>(engineParameters, idleCallback, runCallback);
 		#endregion
 	}
 }

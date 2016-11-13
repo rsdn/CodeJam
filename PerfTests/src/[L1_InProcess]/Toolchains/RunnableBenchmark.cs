@@ -109,9 +109,8 @@ namespace BenchmarkDotNet.Toolchains
 						IsDiagnoserAttached = _isDiagnoserAttached
 					};
 
-					var engine = IsBurstNode(_job)
-						? CreateBurstModeEngine(engineParameters, _idleCallback, _runCallback)
-						: ((EngineFactory)Activator.CreateInstance(_engineFactoryType)).Create(engineParameters);
+					var engine = ((IEngineFactory)Activator.CreateInstance(_engineFactoryType))
+						.Create(engineParameters);
 
 					engine.PreAllocate();
 
@@ -249,9 +248,8 @@ namespace BenchmarkDotNet.Toolchains
 						IsDiagnoserAttached = _isDiagnoserAttached
 					};
 
-					var engine = IsBurstNode(_job)
-						? CreateBurstModeEngine(engineParameters, _idleCallback, _runCallback)
-						: ((EngineFactory)Activator.CreateInstance(_engineFactoryType)).Create(engineParameters);
+					var engine = ((IEngineFactory)Activator.CreateInstance(_engineFactoryType))
+						.Create(engineParameters);
 
 					engine.PreAllocate();
 

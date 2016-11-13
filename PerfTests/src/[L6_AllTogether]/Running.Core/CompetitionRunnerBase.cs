@@ -21,7 +21,6 @@ using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Columns;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Loggers;
-using CodeJam.PerfTests.Running.Limits;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Strings;
 
@@ -306,10 +305,24 @@ namespace CodeJam.PerfTests.Running.Core
 
 			var result = new ManualCompetitionConfig(competitionConfig)
 			{
-				CompetitionMode = OverrideCompetitionMode(competitionConfig)
+				CompetitionMode = GetCompetitionMode(competitionConfig)
 			};
 
 			return result.AsReadOnly();
+		}
+
+		private CompetitionMode GetCompetitionMode(ICompetitionConfig competitionConfig)
+		{
+			var result = OverrideCompetitionMode(competitionConfig);
+			if (HostEnvironmentInfo.GetCurrent().HasAttachedDebugger)
+			{
+				result = new CompetitionMode(result)
+				{
+					RunMode = { AllowDebugBuilds = true }
+				};
+			}
+
+			return result;
 		}
 
 		private IConfig CreateBenchmarkConfig(ICompetitionConfig competitionConfig)
@@ -452,8 +465,10 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="competitionConfig">The competition mode.</param>
 		/// <returns>Parameters for the competition</returns>
 		[NotNull]
-		protected virtual CompetitionMode OverrideCompetitionMode([NotNull] ICompetitionConfig competitionConfig) =>
-			competitionConfig.CompetitionMode??CompetitionMode.Default;
+		protected virtual CompetitionMode OverrideCompetitionMode([NotNull] ICompetitionConfig competitionConfig)
+		{
+			return competitionConfig.CompetitionMode ?? CompetitionMode.Default;
+		}
 
 		/// <summary>Override competition jobs.</summary>
 		/// <param name="competitionConfig">The competition config.</param>

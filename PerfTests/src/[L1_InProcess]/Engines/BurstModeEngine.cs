@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Environments;
@@ -11,28 +10,24 @@ using BenchmarkDotNet.Reports;
 using CodeJam;
 using CodeJam.Collections;
 
-using JetBrains.Annotations;
-
-#pragma warning disable 1591
-
 // ReSharper disable once CheckNamespace
 
 namespace BenchmarkDotNet.Engines
 {
 	/// <summary>
-	/// Engine that measures each call in benchmark (base class).
-	/// Should be used only if call time >> than timer resolution (recommended minimum is 1500 ns).
+	/// Burst mode measurements engine (a lot of runs, measure each).
+	/// Recommended for use if call time >> than timer resolution (recommended minimum is 1500 ns).
 	/// </summary>
 	/// <seealso cref="BenchmarkDotNet.Engines.IEngine" />
-	internal abstract class BurstModeEngineBase : IEngine
+	internal sealed class BurstModeEngine : IEngine
 	{
 		private readonly EngineParameters _engineParameters;
 		private bool _isPreAllocated;
 		private bool _isJitted;
 
-		/// <summary>Initializes a new instance of the <see cref="BurstModeEngineBase"/> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="BurstModeEngine"/> class.</summary>
 		/// <param name="engineParameters">The engine parameters.</param>
-		protected BurstModeEngineBase(EngineParameters engineParameters)
+		public BurstModeEngine(EngineParameters engineParameters)
 		{
 			_engineParameters = engineParameters;
 
@@ -57,14 +52,16 @@ namespace BenchmarkDotNet.Engines
 			WarmupList = new List<Measurement>(WarmupCount);
 			IdleTargetList = new List<Measurement>(TargetCount);
 			TargetList = new List<Measurement>(TargetCount);
+
+			var resultCount = OperationsPerInvoke * InvocationCount;
+			if (resultCount % UnrollFactor != 0)
+				throw new ArgumentOutOfRangeException(
+					$"InvokeCount({resultCount}) should be a multiple of UnrollFactor({UnrollFactor}).");
+			ResultIterationsCount = resultCount;
 		}
 
-		/// <summary>The clock.</summary>
-		/// <value>The clock.</value>
-		protected IClock Clock { get; }
-		/// <summary>Force GC before each run.</summary>
-		/// <value><c>true</c> GC should be performed before each call.</value>
-		protected bool ForceAllocations { get; }
+		private IClock Clock { get; }
+		private bool ForceAllocations { get; }
 		private int UnrollFactor { get; }
 		private RunStrategy Strategy { get; }
 		private bool EvaluateOverhead { get; }
@@ -73,6 +70,8 @@ namespace BenchmarkDotNet.Engines
 		private int InvocationCount { get; }
 		private int WarmupCount { get; }
 		private int TargetCount { get; }
+		private long ResultIterationsCount { get; }
+
 
 		private List<Measurement> IdleWarmupList { get; }
 		private List<Measurement> WarmupList { get; }
@@ -169,22 +168,6 @@ namespace BenchmarkDotNet.Engines
 			return results;
 		}
 
-		/// <summary>
-		/// Returns the result count with <see cref="OperationsPerInvoke"/> and <see cref="UnrollFactor"/> applied.
-		/// </summary>
-		/// <param name="original">The original count.</param>
-		/// <returns>Result count.</returns>
-		/// <exception cref="ArgumentOutOfRangeException">InvokeCount should be a multiple of UnrollFactor({UnrollFactor}).</exception>
-		protected long GetResultCount(int original)
-		{
-			var resultCount = original * OperationsPerInvoke * InvocationCount;
-			if (resultCount % UnrollFactor != 0)
-				throw new ArgumentOutOfRangeException(
-					$"InvokeCount({resultCount}) should be a multiple of UnrollFactor({UnrollFactor}).");
-
-			return resultCount / UnrollFactor;
-		}
-
 		/// <summary>Runs the iteration.</summary>
 		/// <param name="data">The data.</param>
 		/// <returns>Measurement for the iteration</returns>
@@ -221,8 +204,12 @@ namespace BenchmarkDotNet.Engines
 		/// <summary>Gets the cleanup action.</summary>
 		/// <value>The cleanup action.</value>
 		public Action CleanupAction => _engineParameters.CleanupAction;
-		Action<long> IEngine.MainAction => _engineParameters.MainAction;
-		Action<long> IEngine.IdleAction => _engineParameters.IdleAction;
+		/// <summary>Gets the idle action.</summary>
+		/// <value>The idle action.</value>
+		public Action<long> IdleAction => _engineParameters.IdleAction;
+		/// <summary>Gets the main action.</summary>
+		/// <value>The main action.</value>
+		public Action<long> MainAction => _engineParameters.MainAction;
 		/// <summary>Gets a value indicating whether this run has diagnoser attached.</summary>
 		/// <value>
 		/// <c>true</c> if this run has diagnoser attached; otherwise, <c>false</c>.
@@ -233,81 +220,41 @@ namespace BenchmarkDotNet.Engines
 		public IResolver Resolver { get; }
 		#endregion
 
-		/// <summary>Jitting method.</summary>
-		protected abstract void JittingCore();
+		private void JittingCore()
+		{
+			IdleAction(1);
+			MainAction(1);
+		}
 
-		/// <summary>Forces the GC collection.</summary>
-		protected static void ForceGcCollect()
+		private static void ForceGcCollect()
 		{
 			GC.Collect();
 			GC.WaitForPendingFinalizers();
 			GC.Collect();
 		}
 
-		/// <summary>Core runs logic.</summary>
-		/// <param name="iterationMode">The iteration mode.</param>
-		/// <param name="iterationCount">The iteration count.</param>
-		/// <param name="measurements">The measurements.</param>
-		protected abstract void RunCore(
+		private void RunCore(
 			IterationMode iterationMode,
-			int iterationCount,
-			List<Measurement> measurements);
-	}
-
-	/// <summary>
-	/// Engine that measures each call in benchmark.
-	/// Should be used only if call time >> than timer resolution (recommended minimum is 1500 ns).
-	/// </summary>
-	/// <seealso cref="BenchmarkDotNet.Engines.BurstModeEngineBase" />
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
-	internal class BurstModeEngine : BurstModeEngineBase
-	{
-		private readonly Action _idleAction;
-		private readonly Action _mainAction;
-
-		/// <summary>Initializes a new instance of the <see cref="BurstModeEngine"/> class.</summary>
-		/// <param name="engineParameters">The engine parameters.</param>
-		/// <param name="idleAction">The idle action.</param>
-		/// <param name="mainAction">The main action.</param>
-		public BurstModeEngine(EngineParameters engineParameters, [NotNull] Action idleAction, [NotNull] Action mainAction)
-			: base(engineParameters)
+			int repeatCount,
+			List<Measurement> measurements)
 		{
-			_idleAction = idleAction;
-			_mainAction = mainAction;
-		}
+			DebugCode.BugIf(measurements.Count > 0, "measurements not empty.");
+			DebugCode.BugIf(measurements.Capacity < repeatCount, "measurements capacity not set.");
 
-		/// <summary>Jitting method.</summary>
-		protected override void JittingCore()
-		{
-			// first signal about jitting is raised from auto-generated Program.cs, look at BenchmarkProgram.txt
-			_idleAction.Invoke();
-			_mainAction.Invoke();
-		}
-
-		/// <summary>Core runs logic.</summary>
-		/// <param name="iterationMode">The iteration mode.</param>
-		/// <param name="iterationCount">The iteration count.</param>
-		/// <param name="measurements">The measurements.</param>
-		protected override void RunCore(IterationMode iterationMode, int iterationCount, List<Measurement> measurements)
-		{
-			DebugCode.BugIf(measurements.Count>0, "measurements not empty.");
-			DebugCode.BugIf(measurements.Capacity < iterationCount, "measurements capacity not set.");
-
-			var resultCount = GetResultCount(iterationCount);
-			var action = iterationMode.IsIdle() ? _idleAction : _mainAction;
-
+			var action = iterationMode.IsIdle() ? IdleAction : MainAction;
+			var resultIterationsCount = ResultIterationsCount;
 			if (!iterationMode.IsIdle())
 				SetupAction?.Invoke();
 
 			ForceGcCollect();
 			if (ForceAllocations) // DONTTOUCH: DO NOT merge loops as it will produce inaccurate results for microbenchmarks.
 			{
-				for (int i = 0; i < resultCount; i++)
+				for (int i = 0; i < repeatCount; i++)
 				{
 					ForceGcCollect();
 
 					var clock = Clock.Start();
-					action();
+					action(resultIterationsCount);
 					var clockSpan = clock.Stop();
 
 					measurements.Add(
@@ -316,89 +263,10 @@ namespace BenchmarkDotNet.Engines
 			}
 			else
 			{
-				for (int i = 0; i < resultCount; i++)
+				for (int i = 0; i < repeatCount; i++)
 				{
 					var clock = Clock.Start();
-					action();
-					var clockSpan = clock.Stop();
-
-					measurements.Add(
-						new Measurement(0, iterationMode, i + 1, 1, clockSpan.GetNanoseconds()));
-				}
-			}
-
-			ForceGcCollect();
-			if (!iterationMode.IsIdle())
-				CleanupAction?.Invoke();
-		}
-	}
-
-	/// <summary>
-	/// Engine that measures each call in benchmark.
-	/// Should be used only if call time >> than timer resolution (recommended minimum is 1500 ns).
-	/// </summary>
-	/// <typeparam name="TResult">The type of the result.</typeparam>
-	/// <seealso cref="BenchmarkDotNet.Engines.BurstModeEngineBase" />
-	internal class BurstModeEngine<TResult> : BurstModeEngineBase
-	{
-		private readonly Func<TResult> _idleAction;
-		private readonly Func<TResult> _mainAction;
-
-		/// <summary>Initializes a new instance of the <see cref="BurstModeEngine{TResult}"/> class.</summary>
-		/// <param name="engineParameters">The engine parameters.</param>
-		/// <param name="idleAction">The idle action.</param>
-		/// <param name="mainAction">The main action.</param>
-		public BurstModeEngine(
-			EngineParameters engineParameters,
-			[NotNull] Func<TResult> idleAction,
-			[NotNull] Func<TResult> mainAction)
-			: base(engineParameters)
-		{
-			_idleAction = idleAction;
-			_mainAction = mainAction;
-		}
-
-		/// <summary>Jitting method.</summary>
-		protected override void JittingCore()
-		{
-			// first signal about jitting is raised from auto-generated Program.cs, look at BenchmarkProgram.txt
-			_mainAction.Invoke();
-			_idleAction.Invoke();
-		}
-
-		/// <summary>Core runs logic.</summary>
-		/// <param name="iterationMode">The iteration mode.</param>
-		/// <param name="iterationCount">The iteration count.</param>
-		/// <param name="measurements">The measurements.</param>
-		protected override void RunCore(IterationMode iterationMode, int iterationCount, List<Measurement> measurements)
-		{
-			var resultCount = GetResultCount(iterationCount);
-			var action = iterationMode.IsIdle() ? _idleAction : _mainAction;
-
-			if (!iterationMode.IsIdle())
-				SetupAction?.Invoke();
-
-			ForceGcCollect();
-			if (ForceAllocations) // DONTTOUCH: DO NOT merge loops as it will produce inaccurate results for microbenchmarks.
-			{
-				for (int i = 0; i < resultCount; i++)
-				{
-					ForceGcCollect();
-
-					var clock = Clock.Start();
-					action();
-					var clockSpan = clock.Stop();
-
-					measurements.Add(
-						new Measurement(0, iterationMode, i + 1, 1, clockSpan.GetNanoseconds()));
-				}
-			}
-			else
-			{
-				for (int i = 0; i < resultCount; i++)
-				{
-					var clock = Clock.Start();
-					action();
+					action(resultIterationsCount);
 					var clockSpan = clock.Stop();
 
 					measurements.Add(

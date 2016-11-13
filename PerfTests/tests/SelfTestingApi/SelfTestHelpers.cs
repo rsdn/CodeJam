@@ -63,11 +63,12 @@ namespace CodeJam.PerfTests
 		#endregion
 
 		#region Ready configs
-		public static readonly ICompetitionConfig SelfTestConfig = CreateSelfTestConfig(Platform.X64).AsReadOnly();
+		public static readonly ICompetitionConfig SelfTestConfig = CreateSelfTestConfig(
+			CreateDefaultJob(Platform.X64)).AsReadOnly();
 
 		public static readonly ICompetitionConfig HighAccuracyConfig = CreateHighAccuracyConfig().AsReadOnly();
 
-		public static ManualCompetitionConfig CreateSelfTestConfig(Platform? platform)
+		public static Job CreateDefaultJob(Platform? platform = null)
 		{
 			var job = new Job(
 				$"SelfTestConfig{platform}",
@@ -84,12 +85,16 @@ namespace CodeJam.PerfTests
 					Affinity = new IntPtr(-1)
 				}
 			};
+			return job;
+		}
 
-			var result = CompetitionHelpers.CreateDefaultConfig(job);
+		public static ManualCompetitionConfig CreateSelfTestConfig(Job job = null)
+		{
+			var result = CompetitionHelpers.CreateDefaultConfig(job ?? CreateDefaultJob());
 			return result.AddLogger();
 		}
 
-		public static ManualCompetitionConfig CreateHighAccuracyConfig(bool outOfProcess = false) => 
+		public static ManualCompetitionConfig CreateHighAccuracyConfig(bool outOfProcess = false) =>
 			CompetitionHelpers.CreateDefaultConfig(CreateHighAccuracyJob(outOfProcess)).AddLogger();
 
 		public static ManualCompetitionConfig CreateRunConfigAnnotate() =>
