@@ -41,9 +41,5 @@ namespace CodeJam.Collections
 		public int Length { get; }
 		/// <summary>The suffix value</summary>
 		public string Value => _buffer.Substring(_sourceOffset + Offset, Length);
-
-		/// <summary>String conversion operator</summary>
-		/// <param name="suffix">The suffix to convert</param>
-		public static implicit operator string(Suffix suffix) => suffix.Value;
-	}
+    }
 }
