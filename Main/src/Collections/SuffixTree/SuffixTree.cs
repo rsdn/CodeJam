@@ -18,7 +18,7 @@ namespace CodeJam.Collections
 	[DebuggerDisplay("{" + nameof(Print) + "()}")]
 	[PublicAPI]
 	public class SuffixTree : SuffixTreeBase
-	{
+    {
 		/// <summary>Unassigned node index</summary>
 		protected const int InvalidNodeIndex = -1;
 
@@ -62,8 +62,10 @@ namespace CodeJam.Collections
 		/// <summary>Shows whether we have a pending link insertion</summary>
 		private bool LinkPending => _pendingLinkIndexFrom != InvalidNodeIndex;
 
-		/// <summary>Appends suffixes for the last added string</summary>
-		protected override void BuildFor(int begin, int end)
+        /// <summary>Appends suffixes for the last added string</summary>
+        /// <param name="begin">Offset of the string in the InternalData buffer</param>
+        /// <param name="end">The position after the last char of the string</param>
+        protected override void BuildFor(int begin, int end)
 		{
 			Code.BugIf(begin >= end, "Invalid parameters passed");
 			_branchNodeIndex = RootNodeIndex;
@@ -79,12 +81,12 @@ namespace CodeJam.Collections
 				// to be able to make a link to an existing node if needed
 				var savedOffset = _currentOffset;
 				var saveBranchNodeIndex = _branchNodeIndex;
-				FindBranchingPoint();
+				MoveToNextBranchingPoint();
 				if (_currentOffset != savedOffset && LinkPending)
 				{
 					// we have omitted an implicit insertion
 					// however, we still need to make a link
-					CreatePendingLink(saveBranchNodeIndex);
+					InitializePendingLink(saveBranchNodeIndex);
 				}
 				// here we have a branching point
 				// and we need either to add a new branch to an existing node
@@ -99,8 +101,8 @@ namespace CodeJam.Collections
 			}
 		}
 
-		/// <summary>Finds the next branching point</summary>
-		private void FindBranchingPoint()
+		/// <summary>Updates the internal state to point to the next branching point</summary>
+		private void MoveToNextBranchingPoint()
 		{
 			var branchNode = GetNode(_branchNodeIndex);
 			var children = branchNode.Children;
@@ -181,7 +183,7 @@ namespace CodeJam.Collections
 
 		/// <summary>Creates a pending link</summary>
 		/// <param name="toNodeIndex">The node to link to</param>
-		private void CreatePendingLink(int toNodeIndex)
+		private void InitializePendingLink(int toNodeIndex)
 		{
 			DebugCode.AssertState(LinkPending, "Pending link should be present");
 			_nodeLinks.Value[_pendingLinkIndexFrom] = toNodeIndex;
@@ -308,7 +310,7 @@ namespace CodeJam.Collections
 			// create a link if needed
 			if (LinkPending)
 			{
-				CreatePendingLink(insertionNodeIndex);
+				InitializePendingLink(insertionNodeIndex);
 			}
 			// and mask a branching node as link pending if it is not the root
 			if (insertionNodeIndex != RootNodeIndex)
