@@ -117,7 +117,7 @@ namespace CodeJam.Collections
 				return true;
 			}
 			var r = FindBranch(substring);
-			return r != null;
+			return r.HasValue;
 		}
 
 		/// <summary>Checks wether the suffix tree contains the given suffix or not</summary>
@@ -132,12 +132,12 @@ namespace CodeJam.Collections
 				return true;
 			}
 			var r = FindBranch(suffix);
-			if (r == null)
+			if (!r.HasValue)
 			{
 				return false;
 			}
-			var edge = r.Item1;
-			var length = r.Item2;
+			var edge = r.Value.Item1;
+			var length = r.Value.Item2;
 			if (length < edge.Length) // proper substring of a suffix?
 			{
 				return false;
@@ -161,13 +161,13 @@ namespace CodeJam.Collections
 				return All();
 			}
 			var first = FindBranch(prefix);
-			if (first == null)
+			if (!first.HasValue)
 			{
 				return Enumerable.Empty<Suffix>();
 			}
 			var length = prefix.Length;
-			var edge = first.Item1;
-			var matchLength = first.Item2;
+			var edge = first.Value.Item1;
+			var matchLength = first.Value.Item2;
 			if (matchLength < edge.Length)
 			{
 				length += edge.Length - matchLength;
@@ -251,7 +251,7 @@ namespace CodeJam.Collections
 		/// <param name="s">The string to find</param>
 		/// <returns>The last matched edge and the matched length over this edge or null if no match found</returns>
 		[Pure]
-		private Tuple<Node, int> FindBranch([NotNull] string s)
+		private ValueOption<ValueTuple<Node, int>> FindBranch([NotNull] string s)
 		{
 			DebugCode.AssertState(s.Length > 0, "The string length should be positive");
 			var currentNode = Root;
@@ -262,19 +262,19 @@ namespace CodeJam.Collections
 				var edgeIndex = FindEdge(currentNode, s[offset], out edge);
 				if (edgeIndex == -1)
 				{
-					return null;
+					return ValueOption.None<ValueTuple<Node, int>>();
 				}
 				var edgeLength = edge.Length;
 				var compareLength = Math.Min(s.Length - offset, edgeLength);
 				if (compareLength > 1
 					&& string.Compare(s, offset + 1, InternalData, edge.Begin + 1, compareLength - 1) != 0)
 				{
-					return null;
+					return ValueOption.None<ValueTuple<Node, int>>();
 				}
 				offset += compareLength;
 				if (offset == s.Length)
 				{
-					return Tuple.Create(edge, compareLength);
+					return ValueTuple.Create(edge, compareLength);
 				}
 				DebugCode.AssertState(compareLength == edgeLength, "Invalid compare length. Check logic");
 				currentNode = edge;
