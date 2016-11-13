@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Threading;
 
 using BenchmarkDotNet.Helpers;
+using BenchmarkDotNet.Horology;
 
 using NUnit.Framework;
 
@@ -14,6 +16,58 @@ namespace CodeJam.PerfTests
 	[SuppressMessage("ReSharper", "ConvertToConstant.Local")]
 	public static class BenchmarkHelpersTests
 	{
+		[Test]
+		public static void TestProcessCycleTimeClock()
+		{
+			Thread.SpinWait(10 * 1000 * 1000);
+
+			var clockA = ProcessCycleTimeClock.Instance;
+			var clockB = Chronometer.BestClock;
+
+			var c1 = clockA.Start();
+			var c2 = clockB.Start();
+			Thread.SpinWait(30 * 1000 * 1000);
+			var s1 = c1.Stop();
+			var s2 = c2.Stop();
+
+			var t1 = s1.GetSeconds();
+			var t2 = s2.GetSeconds();
+			LessOrEqual(Math.Abs(t1 - t2) / t2, 0.4); // We're not interested in accurate absolute values +/- 30% is acceptable.
+
+			var c3 = clockA.Start();
+			Thread.SpinWait(30 * 1000 * 1000);
+			var s3 = c3.Stop();
+
+			var t3 = s3.GetSeconds();
+			LessOrEqual(Math.Abs(t1 - t3) / t1, 0.05); // At the same time relative time should be precise enough.
+		}
+
+		[Test]
+		public static void TestThreadCycleTimeClock()
+		{
+			Thread.SpinWait(30 * 1000 * 1000);
+
+			var clockA = ThreadCycleTimeClock.Instance;
+			var clockB = Chronometer.BestClock;
+
+			var c1 = clockA.Start();
+			var c2 = clockB.Start();
+			Thread.SpinWait(30 * 1000 * 1000);
+			var s1 = c1.Stop();
+			var s2 = c2.Stop();
+
+			var t1 = s1.GetSeconds();
+			var t2 = s2.GetSeconds();
+			LessOrEqual(Math.Abs(t1 - t2) / t2, 0.4); // We're not interested in accurate absolute values +/- 30% is acceptable.
+
+			var c3 = clockA.Start();
+			Thread.SpinWait(30 * 1000 * 1000);
+			var s3 = c3.Stop();
+
+			var t3 = s3.GetSeconds();
+			LessOrEqual(Math.Abs(t1 - t3) / t1, 0.05); // At the same time relative time should be precise enough.
+		}
+
 		[Test]
 		public static void TestGetTotalNanoseconds()
 		{

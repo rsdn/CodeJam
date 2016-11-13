@@ -13,17 +13,18 @@ using Microsoft.Win32.SafeHandles;
 // ReSharper disable once CheckNamespace
 namespace BenchmarkDotNet.Horology
 {
+	/// <summary>Helper method for CPU cycle timers.</summary>
 	internal static class CycleClockHelpers
 	{
 		#region Interop
 		[DllImport("Kernel32")]
 		[return: MarshalAs(UnmanagedType.Bool)]
-		private static extern bool QueryThreadCycleTime(IntPtr threadHandle, out ulong cycleTime);
+		private static extern bool QueryProcessCycleTime(SafeProcessHandle processHandle, out ulong cycleTime);
+		#endregion
 
 		[DllImport("Kernel32")]
 		[return: MarshalAs(UnmanagedType.Bool)]
-		private static extern bool QueryProcessCycleTime(SafeProcessHandle processHandle, out ulong cycleTime);
-		#endregion
+		private static extern bool QueryThreadCycleTime(IntPtr threadHandle, out ulong cycleTime);
 
 		private static bool IsWindows()
 		{
@@ -35,9 +36,14 @@ namespace BenchmarkDotNet.Horology
 #endif
 		}
 
-		public static readonly SafeProcessHandle ProcessHandle = Process.GetCurrentProcess().SafeHandle;
+		/// <summary>The current process handle</summary>
+		public static readonly SafeProcessHandle CurrentProcessHandle = Process.GetCurrentProcess().SafeHandle;
+		/// <summary>The current thread handle</summary>
 		public static readonly IntPtr CurrentThreadHandle = new IntPtr(-2);
 
+		/// <summary>Gets process cycle time.</summary>
+		/// <param name="processHandle">The process handle.</param>
+		/// <returns>Process cycle time timestamp.</returns>
 		public static long GetProcessTimestamp(SafeProcessHandle processHandle)
 		{
 			ulong result;
@@ -47,6 +53,9 @@ namespace BenchmarkDotNet.Horology
 			return checked((long)result);
 		}
 
+		/// <summary>Gets thread the .</summary>
+		/// <param name="threadHandle">The thread handle.</param>
+		/// <returns>Thread cycle time timestamp.</returns>
 		public static long GetThreadTimestamp(IntPtr threadHandle)
 		{
 			ulong result;
@@ -57,7 +66,7 @@ namespace BenchmarkDotNet.Horology
 		}
 
 		private static bool RunHighestPriority([InstantHandle] Action callback)
-		{ 
+		{
 			if (!IsWindows())
 			{
 				return false;
@@ -87,15 +96,22 @@ namespace BenchmarkDotNet.Horology
 			}
 		}
 
-		// WARNING: rough estimate only.
-		// see https://blogs.msdn.microsoft.com/oldnewthing/20160429-00/?p=93385 for more.
-		public static bool GetProcessFrequency(IClock clock, int iterationsCount, out long frequency)
+		/// <summary>
+		/// Estimates frequency coefficient for process cycle time.
+		/// WARNING: result is inaccurate (up to +/- 30% to actual time)
+		/// see https://blogs.msdn.microsoft.com/oldnewthing/20160429-00/?p=93385 for more.
+		/// </summary>
+		/// <param name="clock">The clock.</param>
+		/// <param name="iterationsCount">Iterations performed to estimate the time.</param>
+		/// <param name="frequency">The frequency.</param>
+		/// <returns>Frequency coefficient for process cycle time</returns>
+		public static bool EstimateProcessCycleTimeFrequency(IClock clock, int iterationsCount, out long frequency)
 		{
 			var freq = default(long);
 			var result = RunHighestPriority(
 				() =>
 				{
-					var local = ProcessHandle;
+					var local = CurrentProcessHandle;
 
 					var t = clock.Start();
 					var ts1 = GetProcessTimestamp(local);
@@ -110,9 +126,16 @@ namespace BenchmarkDotNet.Horology
 			return result;
 		}
 
-		// WARNING: rough estimate only.
-		// see https://blogs.msdn.microsoft.com/oldnewthing/20160429-00/?p=93385 for more.
-		public static bool GetThreadFrequency(IClock clock, int iterationsCount, out long frequency)
+		/// <summary>
+		/// Estimates frequency coefficient for thread cycle time.
+		/// WARNING: results are inaccurate (up to +/- 30% to actual time),
+		/// see https://blogs.msdn.microsoft.com/oldnewthing/20160429-00/?p=93385 for more.
+		/// </summary>
+		/// <param name="clock">The clock.</param>
+		/// <param name="iterationsCount">Iterations performed to estimate the time.</param>
+		/// <param name="frequency">The frequency.</param>
+		/// <returns>Frequency coefficient for thread cycle time</returns>
+		public static bool EstimateThreadCycleTimeFrequency(IClock clock, int iterationsCount, out long frequency)
 		{
 			var freq = default(long);
 			var result = RunHighestPriority(
@@ -131,52 +154,6 @@ namespace BenchmarkDotNet.Horology
 
 			frequency = freq;
 			return result;
-		}
-	}
-
-	public class ProcessCycleTimeClock : IClock
-	{
-		#region Static members
-		private static readonly bool _isAvailable;
-		private static readonly long _frequency;
-
-		static ProcessCycleTimeClock()
-		{
-			_isAvailable = CycleClockHelpers.GetProcessFrequency(
-				Chronometer.BestClock,
-				1000*1000, out _frequency);
-		}
-		#endregion
-
-		public bool IsAvailable => _isAvailable;
-		public Frequency Frequency => new Frequency(_frequency);
-
-		public long GetTimestamp()
-		{
-			return CycleClockHelpers.GetProcessTimestamp(CycleClockHelpers.ProcessHandle);
-		}
-	}
-
-	public class ThreadCycleTimeClock : IClock
-	{
-		#region Static members
-		private static readonly bool _isAvailable;
-		private static readonly long _frequency;
-
-		static ThreadCycleTimeClock()
-		{
-			_isAvailable = CycleClockHelpers.GetThreadFrequency(
-				Chronometer.BestClock,
-				1000 * 1000, out _frequency);
-		}
-		#endregion
-
-		public bool IsAvailable => _isAvailable;
-		public Frequency Frequency => new Frequency(_frequency);
-
-		public long GetTimestamp()
-		{
-			return CycleClockHelpers.GetThreadTimestamp(CycleClockHelpers.CurrentThreadHandle);
 		}
 	}
 }
