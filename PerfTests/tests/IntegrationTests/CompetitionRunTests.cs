@@ -303,7 +303,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
 			}
 
-			[CompetitionBenchmark(5, 20)]
+			// Limits loosed as perftest is run only four times and timings on appveyor are very inaccurate
+			[CompetitionBenchmark(3, 30)]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
