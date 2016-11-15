@@ -8,7 +8,6 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
 using static CodeJam.PerfTests.CompetitionHelpers;
 
 // ReSharper disable once CheckNamespace
@@ -42,7 +41,7 @@ namespace CodeJam
 		private const int Count = DefaultCount / 5;
 
 		[Test]
-		public void RunIsDefinedCase() => Competition.Run<IsDefinedCase>(RunConfig);
+		public void RunIsDefinedCase() => Competition.Run<IsDefinedCase>();
 
 		public class IsDefinedCase
 		{
@@ -84,7 +83,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void RunTryParseCase() => Competition.Run<TryParseCase>(RunConfig);
+		public void RunTryParseCase() => Competition.Run<TryParseCase>();
 
 		public class TryParseCase
 		{
@@ -126,7 +125,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void RunIsFlagSetCase() => Competition.Run<IsFlagSetCase>(RunConfig);
+		public void RunIsFlagSetCase() => Competition.Run<IsFlagSetCase>();
 
 		public class IsFlagSetCase
 		{
@@ -183,7 +182,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void RunIsAnyFlagSetCase() => Competition.Run<IsAnyFlagSetCase>(RunConfig);
+		public void RunIsAnyFlagSetCase() => Competition.Run<IsAnyFlagSetCase>();
 
 		public class IsAnyFlagSetCase
 		{
@@ -231,7 +230,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void RunSetFlagCase() => Competition.Run<SetFlagCase>(RunConfig);
+		public void RunSetFlagCase() => Competition.Run<SetFlagCase>();
 
 		public class SetFlagCase
 		{
@@ -279,7 +278,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void RunClearFlagCase() => Competition.Run<ClearFlagCase>(RunConfig);
+		public void RunClearFlagCase() => Competition.Run<ClearFlagCase>();
 
 		public class ClearFlagCase
 		{

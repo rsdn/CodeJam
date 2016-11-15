@@ -36,12 +36,12 @@ namespace CodeJam.PerfTests.IntegrationTests
 				typeof(ConcurrentRunBenchmark),
 				typeof(ConcurrentRunBenchmark)
 			};
-			var config = new ManualCompetitionConfig( CreateHighAccuracyConfig());
-			config.Add(
-				new CompetitionMode
-				{
-					RunMode = { Concurrent = concurrentRunBehavior }
-				});
+			var config = SelfTestConfig.HighAccuracy
+				.WithCompetitionOptions(
+					new CompetitionOptions
+					{
+						RunOptions = { Concurrent = concurrentRunBehavior }
+					});
 
 			CompetitionState[] runResults;
 			using (var barrier = new Barrier(benchmarks.Length))

@@ -9,7 +9,6 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
 using static CodeJam.PerfTests.CompetitionHelpers;
 
 namespace CodeJam.RangesAlternatives
@@ -23,8 +22,7 @@ namespace CodeJam.RangesAlternatives
 	public class RangeAlternativesUnionPerfTests
 	{
 		[Test]
-		public void RunRangeUnionIntCase() =>
-			Competition.Run<RangeUnionIntCase>(RunConfig);
+		public void RunRangeUnionIntCase() => Competition.Run<RangeUnionIntCase>();
 
 		[PublicAPI]
 		public class RangeUnionIntCase
@@ -119,8 +117,7 @@ namespace CodeJam.RangesAlternatives
 		}
 
 		[Test]
-		public void RunRangeUnionNullableIntCase() =>
-			Competition.Run<RangeUnionNIntCase>(RunConfig);
+		public void RunRangeUnionNullableIntCase() => Competition.Run<RangeUnionNIntCase>();
 
 		[PublicAPI]
 		public class RangeUnionNIntCase

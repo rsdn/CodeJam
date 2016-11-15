@@ -3,7 +3,6 @@ using System.Linq;
 
 using CodeJam.Collections;
 using CodeJam.PerfTests;
-using CodeJam.PerfTests.Configs;
 
 using JetBrains.Annotations;
 
@@ -19,7 +18,7 @@ namespace CodeJam
 		public readonly int Count = 100 * 1000;
 
 		[Test]
-		public void RunSequencePerfTests() => Competition.Run(this, AssemblyCompetitionConfig.RunConfig);
+		public void RunSequencePerfTests() => Competition.Run(this);
 
 		[CompetitionBenchmark(17.03, 23.40)]
 		public long TestSequence()

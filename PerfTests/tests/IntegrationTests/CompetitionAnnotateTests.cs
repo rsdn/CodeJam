@@ -15,7 +15,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
 	public static class CompetitionAnnotateTests
 	{
-		private static readonly ICompetitionConfig _remoteLogConfig = CreateRunConfigReannotate()
+		private static readonly ICompetitionConfig _remoteLogConfig = SelfTestConfig.ReannotateSources
 			.WithAllowDebugBuilds(true)
 			.WithPreviousRunLogUri(
 				"https://gist.githubusercontent.com/ig-sinicyn/91ac0badca95b19fc7de6f683a51b9d2/raw/03ddf13c1232b2dca585d5c258a7145d007b60b0/CompetitionAnnotateTests.log");

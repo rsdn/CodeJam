@@ -4,10 +4,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
-using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Helpers;
@@ -57,15 +55,15 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		private static ICompetitionConfig GetFirstConfig(
-			[CanBeNull] Type benchmarkType,
+			[NotNull] Type benchmarkType,
 			[CanBeNull] ICompetitionConfig customConfig)
 		{
 			if (customConfig != null)
 				return new ManualCompetitionConfig(customConfig);
 
-			var configSource = benchmarkType?.TryGetMetadataAttribute<ICompetitionConfigSource>();
+			var configSource = benchmarkType.TryGetMetadataAttribute<ICompetitionConfigSource>();
 
-			return configSource?.Config ?? CompetitionHelpers.DefaultConfig;
+			return configSource?.Config ?? CompetitionConfig.GetConfigForAssembly(benchmarkType.Assembly);
 		}
 		#endregion
 
@@ -162,10 +160,9 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			Code.NotNull(benchmarkType, nameof(benchmarkType));
 
-			competitionConfig = PrepareCompetitionConfig(benchmarkType, competitionConfig);
-			var benchmarkConfig = CreateBenchmarkConfig(competitionConfig);
+			competitionConfig = CreateBenchmarkConfig(benchmarkType, competitionConfig);
 
-			var hostLogger = benchmarkConfig.GetLoggers().OfType<HostLogger>().Single();
+			var hostLogger = competitionConfig.GetLoggers().OfType<HostLogger>().Single();
 
 			var previousDirectory = Environment.CurrentDirectory;
 			var currentDirectory = GetOutputDirectory(benchmarkType.Assembly);
@@ -182,8 +179,9 @@ namespace CodeJam.PerfTests.Running.Core
 				try
 				{
 					competitionState = CompetitionCore.Run(
-						benchmarkType, benchmarkConfig,
-						competitionConfig.CompetitionMode);
+						benchmarkType,
+						new ReadOnlyConfig(competitionConfig),
+						competitionConfig.Options);
 
 					ProcessRunComplete(competitionConfig, competitionState);
 				}
@@ -192,14 +190,14 @@ namespace CodeJam.PerfTests.Running.Core
 					ReportHostLogger(hostLogger, competitionState?.LastRunSummary);
 				}
 
-				using (Loggers.HostLogger.BeginLogImportant(benchmarkConfig))
+				using (Loggers.HostLogger.BeginLogImportant(competitionConfig))
 				{
 					ReportMessagesToUser(competitionConfig, competitionState);
 				}
 			}
 			finally
 			{
-				Loggers.HostLogger.FlushLoggers(benchmarkConfig);
+				Loggers.HostLogger.FlushLoggers(competitionConfig);
 				SetCurrentDirectoryIfNotNull(previousDirectory);
 			}
 
@@ -217,7 +215,7 @@ namespace CodeJam.PerfTests.Running.Core
 			if (logger == null)
 				return;
 
-			if (competitionConfig.CompetitionMode.RunMode.DetailedLogging)
+			if (competitionConfig.Options.RunOptions.DetailedLogging)
 			{
 				var messages = competitionState.GetMessages();
 
@@ -299,219 +297,129 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		#region Create benchark config
-		private ICompetitionConfig PrepareCompetitionConfig(Type benchmarkType, ICompetitionConfig competitionConfig)
-		{
-			competitionConfig = GetFirstConfig(benchmarkType, competitionConfig);
-
-			var result = new ManualCompetitionConfig(competitionConfig)
-			{
-				CompetitionMode = GetCompetitionMode(competitionConfig)
-			};
-
-			return result.AsReadOnly();
-		}
-
-		private CompetitionMode GetCompetitionMode(ICompetitionConfig competitionConfig)
-		{
-			var result = OverrideCompetitionMode(competitionConfig);
-			if (HostEnvironmentInfo.GetCurrent().HasAttachedDebugger)
-			{
-				result = new CompetitionMode(result)
-				{
-					RunMode = { AllowDebugBuilds = true }
-				};
-			}
-
-			return result;
-		}
-
-		private IConfig CreateBenchmarkConfig(ICompetitionConfig competitionConfig)
+		private ICompetitionConfig CreateBenchmarkConfig([NotNull] Type benchmarkType, ICompetitionConfig competitionConfig)
 		{
 			// ReSharper disable once UseObjectOrCollectionInitializer
-			var result = new ManualConfig();
-
-			// TODO: to overridable methods?
-			result.KeepBenchmarkFiles = competitionConfig.KeepBenchmarkFiles;
-			result.UnionRule = competitionConfig.UnionRule;
-			result.Set(competitionConfig.GetOrderProvider());
-
-			result.Add(OverrideExporters(competitionConfig).ToArray());
-			result.Add(OverrideDiagnosers(competitionConfig).ToArray());
-
-			result.Add(GetJobs(competitionConfig).ToArray());
-			result.Add(GetLoggers(competitionConfig).ToArray());
-			result.Add(GetColumnProviders(competitionConfig).ToArray());
-			result.Add(GetValidators(competitionConfig).ToArray());
-			result.Add(GetAnalysers(competitionConfig).ToArray());
+			var result = new ManualCompetitionConfig(GetFirstConfig(benchmarkType, competitionConfig));
+			PrepareCompetitionConfig(result);
+			InitCompetitionConfigOverride(result);
+			FixCompetitionConfig(result);
 
 			return result.AsReadOnly();
 		}
 
-		private List<Job> GetJobs(ICompetitionConfig competitionConfig)
+		private void PrepareCompetitionConfig(ManualCompetitionConfig competitionConfig)
 		{
-			var result = OverrideJobs(competitionConfig);
-			if (result.Count == 0)
+			if (competitionConfig.Options == null)
 			{
-				result.Add(CompetitionHelpers.CreateDefaultJob());
+				competitionConfig.Options = CompetitionConfig.Default.Options;
 			}
-
-			var customToolchain = new InfrastructureMode
+			if (HostEnvironmentInfo.GetCurrent().HasAttachedDebugger)
 			{
-				Toolchain = InProcessToolchain.Instance
-			};
-
-			for (int i = 0; i < result.Count; i++)
-			{
-				if (result[i].Infrastructure.Job == null)
+				competitionConfig.ApplyCompetitionOptions(new CompetitionOptions
 				{
-					result[i] = result[i].Apply(customToolchain);
-				}
-				result[i].Freeze();
+					RunOptions = { AllowDebugBuilds = true }
+				});
 			}
-
-			return result;
+			var jobs = competitionConfig.Jobs;
+			if (jobs.Count == 0)
+			{
+				jobs.AddRange(CompetitionConfig.Default.GetJobs());
+			}
 		}
 
-		private List<ILogger> GetLoggers(ICompetitionConfig competitionConfig)
+		private void FixCompetitionConfig(ManualCompetitionConfig competitionConfig)
 		{
-			var result = OverrideLoggers(competitionConfig);
-
-			var runMode = competitionConfig.CompetitionMode.RunMode;
-			var hostLogMode = runMode.DetailedLogging ? HostLogMode.AllMessages : HostLogMode.PrefixedOnly;
-			result.Insert(0, CreateHostLogger(hostLogMode));
-
-			return result;
+			// DONTTOUCH: call order is important.
+			FixConfigJobs(competitionConfig);
+			FixConfigLoggers(competitionConfig);
+			FixConfigColumns(competitionConfig);
+			FixConfigValidators(competitionConfig);
+			FixConfigAnalysers(competitionConfig);
 		}
 
-		private List<IColumnProvider> GetColumnProviders(ICompetitionConfig competitionConfig)
+		private static void FixConfigJobs(ManualCompetitionConfig competitionConfig)
+		{
+			var jobs = competitionConfig.Jobs;
+			for (int i = 0; i < jobs.Count; i++)
+			{
+				if (jobs[i].Infrastructure.Job == null)
+				{
+					jobs[i] = jobs[i].With(InProcessToolchain.Instance);
+				}
+			}
+		}
+
+		private void FixConfigLoggers(ManualCompetitionConfig competitionConfig)
+		{
+			var runOptions = competitionConfig.Options.RunOptions;
+			var hostLogMode = runOptions.DetailedLogging ? HostLogMode.AllMessages : HostLogMode.PrefixedOnly;
+			competitionConfig.Loggers.Insert(0, CreateHostLogger(hostLogMode));
+		}
+
+		private void FixConfigColumns(ManualCompetitionConfig competitionConfig)
 		{
 			// TODO: better columns.
 			// TODO: custom column provider?
-			var result = OverrideColumns(competitionConfig);
-
-			var limitsMode = competitionConfig.CompetitionMode.Limits;
-			result.AddRange(
-				new[]
-				{
-					new SimpleColumnProvider(
-						StatisticColumn.Min,
-						new CompetitionLimitColumn(limitsMode.LimitProvider, false),
-						new CompetitionLimitColumn(limitsMode.LimitProvider, true),
-						StatisticColumn.Max)
-				});
-
-			return result;
+			var limitsMode = competitionConfig.Options.Limits;
+			competitionConfig.Add(
+				StatisticColumn.Min,
+				new CompetitionLimitColumn(limitsMode.LimitProvider, false),
+				new CompetitionLimitColumn(limitsMode.LimitProvider, true),
+				StatisticColumn.Max);
 		}
 
-		private List<IValidator> GetValidators(ICompetitionConfig competitionConfig)
+		private void FixConfigValidators(ManualCompetitionConfig competitionConfig)
 		{
-			var result = OverrideValidators(competitionConfig);
+			var competitionOptions = competitionConfig.Options;
+			bool debugMode = competitionOptions.RunOptions.AllowDebugBuilds;
 
-			var competitionMode = competitionConfig.CompetitionMode;
-			bool debugMode = competitionMode.RunMode.AllowDebugBuilds;
-
-			bool customToolchain = competitionConfig.GetJobs().Any(j => !(j.Infrastructure?.Toolchain is InProcessToolchain));
+			var validators = competitionConfig.Validators;
+			bool customToolchain = competitionConfig.Jobs.Any(j => !(j.Infrastructure?.Toolchain is InProcessToolchain));
 			if (!customToolchain &&
-				!result.Any(v => v is InProcessValidator))
+				!validators.Any(v => v is InProcessValidator))
 			{
-				result.Insert(0, debugMode ? InProcessValidator.DontFailOnError : InProcessValidator.FailOnError);
+				validators.Insert(0, debugMode ? InProcessValidator.DontFailOnError : InProcessValidator.FailOnError);
 			}
 
 			if (debugMode)
 			{
-				result.RemoveAll(v => v is JitOptimizationsValidator && v.TreatsWarningsAsErrors);
+				validators.RemoveAll(v => v is JitOptimizationsValidator && v.TreatsWarningsAsErrors);
 			}
-			else if (competitionMode.SourceAnnotations.UpdateSources &&
-				!result.OfType<JitOptimizationsValidator>().Any())
+			else if (competitionOptions.SourceAnnotations.UpdateSources &&
+				!validators.OfType<JitOptimizationsValidator>().Any())
 			{
-				result.Insert(0, JitOptimizationsValidator.FailOnError);
+				validators.Insert(0, JitOptimizationsValidator.FailOnError);
 			}
 
 			Code.BugIf(
-				result.OfType<RunStateSlots>().Any(),
+				validators.OfType<RunStateSlots>().Any(),
 				"The config validators should not contain instances of RunStateSlots.");
 
 			// DONTTOUCH: the RunStateSlots should be first in the chain.
-			result.Insert(0, new RunStateSlots());
-
-			return result;
+			validators.Insert(0, new RunStateSlots());
 		}
 
-		private List<IAnalyser> GetAnalysers(ICompetitionConfig competitionConfig)
+		private void FixConfigAnalysers(ManualCompetitionConfig competitionConfig)
 		{
-			var result = OverrideAnalysers(competitionConfig);
-
 			Code.BugIf(
-				result.OfType<CompetitionAnalyser>().Any(),
+				competitionConfig.Analysers.OfType<CompetitionAnalyser>().Any(),
 				"The config analysers should not contain instances of CompetitionAnalyser.");
 
+			var annotationsMode = competitionConfig.Options.SourceAnnotations;
+
 			// DONTTOUCH: the CompetitionAnnotateAnalyser should be last analyser in the chain.
-			result.Add(GetCompetitionAnalyser(competitionConfig));
-
-			return result;
-		}
-
-		private CompetitionAnalyser GetCompetitionAnalyser(ICompetitionConfig competitionConfig)
-		{
-			var annotationsMode = competitionConfig.CompetitionMode.SourceAnnotations;
-
-			return annotationsMode.UpdateSources
+			var analyzer = annotationsMode.UpdateSources
 				? new CompetitionAnnotateAnalyser()
 				: new CompetitionAnalyser();
+			competitionConfig.Analysers.Add(analyzer);
 		}
 
-		#region Override config parameters
-		/// <summary>Override competition mode.</summary>
-		/// <param name="competitionConfig">The competition mode.</param>
-		/// <returns>Parameters for the competition</returns>
-		[NotNull]
-		protected virtual CompetitionMode OverrideCompetitionMode([NotNull] ICompetitionConfig competitionConfig)
+		/// <summary>Customize competition config.</summary>
+		/// <param name="competitionConfig">The competition configuration.</param>
+		protected virtual void InitCompetitionConfigOverride(ManualCompetitionConfig competitionConfig)
 		{
-			return competitionConfig.CompetitionMode ?? CompetitionMode.Default;
 		}
-
-		/// <summary>Override competition jobs.</summary>
-		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>The jobs for the competition</returns>
-		protected virtual List<Job> OverrideJobs([NotNull] ICompetitionConfig competitionConfig) =>
-			competitionConfig.GetJobs().ToList();
-
-		/// <summary>Override competition exporters.</summary>
-		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>The jobs for the competition</returns>
-		protected virtual List<IExporter> OverrideExporters([NotNull] ICompetitionConfig competitionConfig) =>
-			competitionConfig.GetExporters().ToList();
-
-		/// <summary>Override competition diagnosers.</summary>
-		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>The diagnosers for the competition</returns>
-		protected virtual List<IDiagnoser> OverrideDiagnosers([NotNull] ICompetitionConfig competitionConfig) =>
-			competitionConfig.GetDiagnosers().ToList();
-
-		/// <summary>Override competition loggers.</summary>
-		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>The loggers for the competition</returns>
-		protected virtual List<ILogger> OverrideLoggers([NotNull] ICompetitionConfig competitionConfig) =>
-			competitionConfig.GetLoggers().ToList();
-
-		/// <summary>Override competition columns.</summary>
-		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>The columns for the competition</returns>
-		protected virtual List<IColumnProvider> OverrideColumns([NotNull] ICompetitionConfig competitionConfig) =>
-			competitionConfig.GetColumnProviders().ToList();
-
-		/// <summary>Override competition validators.</summary>
-		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>The validators for the competition</returns>
-		protected virtual List<IValidator> OverrideValidators([NotNull] ICompetitionConfig competitionConfig) =>
-			competitionConfig.GetValidators().ToList();
-
-		/// <summary>Override competition analysers.</summary>
-		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>The analysers for the competition</returns>
-		protected virtual List<IAnalyser> OverrideAnalysers([NotNull] ICompetitionConfig competitionConfig) =>
-			competitionConfig.GetAnalysers().ToList();
-		#endregion
 
 		#endregion
 
@@ -576,12 +484,12 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 
 			var messageText = string.Join(Environment.NewLine, allMessages);
-			var runMode = competitionConfig.CompetitionMode.RunMode;
+			var runOptions = competitionConfig.Options.RunOptions;
 			if (hasCriticalMessages)
 			{
 				ReportExecutionErrors(messageText, competitionState);
 			}
-			else if (hasTestFailedMessages || runMode.ReportWarningsAsErrors)
+			else if (hasTestFailedMessages || runOptions.ReportWarningsAsErrors)
 			{
 				ReportAssertionsFailed(messageText, competitionState);
 			}

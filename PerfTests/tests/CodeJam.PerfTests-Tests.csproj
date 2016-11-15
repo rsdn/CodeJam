@@ -65,6 +65,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelfTestingApi\SelfTestCompetition.cs" />
     <Compile Include="SelfTestingApi\SelfTestCompetitionRunner.cs" />
+    <Compile Include="SelfTestingApi\SelfTestConfig.cs" />
     <Compile Include="SelfTestingApi\SelfTestHelpers.cs" />
     <Compile Include="[L0_Core]\BenchmarkHelpersTests.cs" />
     <Compile Include="[L1_InProcess]\InProcessToolchainTests.cs" />

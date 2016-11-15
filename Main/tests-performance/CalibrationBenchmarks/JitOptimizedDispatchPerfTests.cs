@@ -6,8 +6,6 @@ using CodeJam.PerfTests;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
-
 namespace CodeJam
 {
 	/// <summary>
@@ -121,7 +119,7 @@ namespace CodeJam
 
 		[Test]
 		[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
-		public void RunJitOptimizedDispatchPerfTests() => Competition.Run(this, RunConfig);
+		public void RunJitOptimizedDispatchPerfTests() => Competition.Run(this);
 
 		[CompetitionBaseline]
 		public int Test00Baseline()

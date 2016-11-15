@@ -24,7 +24,7 @@ namespace CodeJam.Examples
 		// Perf test runner method.
 		[TestMethod]
 		[TestCategory("PerfTests: MSTest examples")]
-		public void RunSimplePerfTest() => Competition.Run(this, CompetitionHelpers.DefaultConfig);
+		public void RunSimplePerfTest() => Competition.Run(this, CompetitionConfig.Default);
 
 		// Baseline competition member. Other competition members will be compared with this.
 		[CompetitionBaseline]

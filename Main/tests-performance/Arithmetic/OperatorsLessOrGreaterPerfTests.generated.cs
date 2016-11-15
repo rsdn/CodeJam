@@ -14,8 +14,6 @@ using CodeJam.PerfTests;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
-
 namespace CodeJam.Arithmetic
 {
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Operators<T>.LessOrGreater")]
@@ -26,7 +24,7 @@ namespace CodeJam.Arithmetic
 		#region GreaterThan
 		[Test]
 		public void RunIntGreaterThanCase() =>
-			Competition.Run<IntGreaterThanCase>(RunConfig);
+			Competition.Run<IntGreaterThanCase>();
 
 		public class IntGreaterThanCase : IntOperatorsBaseCase
 		{
@@ -77,7 +75,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableIntGreaterThanCase() =>
-			Competition.Run<NullableIntGreaterThanCase>(RunConfig);
+			Competition.Run<NullableIntGreaterThanCase>();
 
 		public class NullableIntGreaterThanCase : NullableIntOperatorsBaseCase
 		{
@@ -128,7 +126,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunEnumGreaterThanCase() =>
-			Competition.Run<EnumGreaterThanCase>(RunConfig);
+			Competition.Run<EnumGreaterThanCase>();
 
 		public class EnumGreaterThanCase : EnumOperatorsBaseCase
 		{
@@ -179,7 +177,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableEnumGreaterThanCase() =>
-			Competition.Run<NullableEnumGreaterThanCase>(RunConfig);
+			Competition.Run<NullableEnumGreaterThanCase>();
 
 		public class NullableEnumGreaterThanCase : NullableEnumOperatorsBaseCase
 		{
@@ -230,7 +228,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableDateTimeGreaterThanCase() =>
-			Competition.Run<NullableDateTimeGreaterThanCase>(RunConfig);
+			Competition.Run<NullableDateTimeGreaterThanCase>();
 
 		public class NullableDateTimeGreaterThanCase : NullableDateTimeOperatorsBaseCase
 		{
@@ -281,7 +279,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunStringGreaterThanCase() =>
-			Competition.Run<StringGreaterThanCase>(RunConfig);
+			Competition.Run<StringGreaterThanCase>();
 
 		public class StringGreaterThanCase : StringOperatorsBaseCase
 		{
@@ -334,7 +332,7 @@ namespace CodeJam.Arithmetic
 		#region GreaterThanOrEqual
 		[Test]
 		public void RunIntGreaterThanOrEqualCase() =>
-			Competition.Run<IntGreaterThanOrEqualCase>(RunConfig);
+			Competition.Run<IntGreaterThanOrEqualCase>();
 
 		public class IntGreaterThanOrEqualCase : IntOperatorsBaseCase
 		{
@@ -385,7 +383,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableIntGreaterThanOrEqualCase() =>
-			Competition.Run<NullableIntGreaterThanOrEqualCase>(RunConfig);
+			Competition.Run<NullableIntGreaterThanOrEqualCase>();
 
 		public class NullableIntGreaterThanOrEqualCase : NullableIntOperatorsBaseCase
 		{
@@ -436,7 +434,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunEnumGreaterThanOrEqualCase() =>
-			Competition.Run<EnumGreaterThanOrEqualCase>(RunConfig);
+			Competition.Run<EnumGreaterThanOrEqualCase>();
 
 		public class EnumGreaterThanOrEqualCase : EnumOperatorsBaseCase
 		{
@@ -487,7 +485,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableEnumGreaterThanOrEqualCase() =>
-			Competition.Run<NullableEnumGreaterThanOrEqualCase>(RunConfig);
+			Competition.Run<NullableEnumGreaterThanOrEqualCase>();
 
 		public class NullableEnumGreaterThanOrEqualCase : NullableEnumOperatorsBaseCase
 		{
@@ -538,7 +536,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableDateTimeGreaterThanOrEqualCase() =>
-			Competition.Run<NullableDateTimeGreaterThanOrEqualCase>(RunConfig);
+			Competition.Run<NullableDateTimeGreaterThanOrEqualCase>();
 
 		public class NullableDateTimeGreaterThanOrEqualCase : NullableDateTimeOperatorsBaseCase
 		{
@@ -589,7 +587,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunStringGreaterThanOrEqualCase() =>
-			Competition.Run<StringGreaterThanOrEqualCase>(RunConfig);
+			Competition.Run<StringGreaterThanOrEqualCase>();
 
 		public class StringGreaterThanOrEqualCase : StringOperatorsBaseCase
 		{
@@ -642,7 +640,7 @@ namespace CodeJam.Arithmetic
 		#region LessThan
 		[Test]
 		public void RunIntLessThanCase() =>
-			Competition.Run<IntLessThanCase>(RunConfig);
+			Competition.Run<IntLessThanCase>();
 
 		public class IntLessThanCase : IntOperatorsBaseCase
 		{
@@ -693,7 +691,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableIntLessThanCase() =>
-			Competition.Run<NullableIntLessThanCase>(RunConfig);
+			Competition.Run<NullableIntLessThanCase>();
 
 		public class NullableIntLessThanCase : NullableIntOperatorsBaseCase
 		{
@@ -744,7 +742,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunEnumLessThanCase() =>
-			Competition.Run<EnumLessThanCase>(RunConfig);
+			Competition.Run<EnumLessThanCase>();
 
 		public class EnumLessThanCase : EnumOperatorsBaseCase
 		{
@@ -795,7 +793,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableEnumLessThanCase() =>
-			Competition.Run<NullableEnumLessThanCase>(RunConfig);
+			Competition.Run<NullableEnumLessThanCase>();
 
 		public class NullableEnumLessThanCase : NullableEnumOperatorsBaseCase
 		{
@@ -846,7 +844,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableDateTimeLessThanCase() =>
-			Competition.Run<NullableDateTimeLessThanCase>(RunConfig);
+			Competition.Run<NullableDateTimeLessThanCase>();
 
 		public class NullableDateTimeLessThanCase : NullableDateTimeOperatorsBaseCase
 		{
@@ -897,7 +895,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunStringLessThanCase() =>
-			Competition.Run<StringLessThanCase>(RunConfig);
+			Competition.Run<StringLessThanCase>();
 
 		public class StringLessThanCase : StringOperatorsBaseCase
 		{
@@ -950,7 +948,7 @@ namespace CodeJam.Arithmetic
 		#region LessThanOrEqual
 		[Test]
 		public void RunIntLessThanOrEqualCase() =>
-			Competition.Run<IntLessThanOrEqualCase>(RunConfig);
+			Competition.Run<IntLessThanOrEqualCase>();
 
 		public class IntLessThanOrEqualCase : IntOperatorsBaseCase
 		{
@@ -1001,7 +999,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableIntLessThanOrEqualCase() =>
-			Competition.Run<NullableIntLessThanOrEqualCase>(RunConfig);
+			Competition.Run<NullableIntLessThanOrEqualCase>();
 
 		public class NullableIntLessThanOrEqualCase : NullableIntOperatorsBaseCase
 		{
@@ -1052,7 +1050,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunEnumLessThanOrEqualCase() =>
-			Competition.Run<EnumLessThanOrEqualCase>(RunConfig);
+			Competition.Run<EnumLessThanOrEqualCase>();
 
 		public class EnumLessThanOrEqualCase : EnumOperatorsBaseCase
 		{
@@ -1103,7 +1101,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableEnumLessThanOrEqualCase() =>
-			Competition.Run<NullableEnumLessThanOrEqualCase>(RunConfig);
+			Competition.Run<NullableEnumLessThanOrEqualCase>();
 
 		public class NullableEnumLessThanOrEqualCase : NullableEnumOperatorsBaseCase
 		{
@@ -1154,7 +1152,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableDateTimeLessThanOrEqualCase() =>
-			Competition.Run<NullableDateTimeLessThanOrEqualCase>(RunConfig);
+			Competition.Run<NullableDateTimeLessThanOrEqualCase>();
 
 		public class NullableDateTimeLessThanOrEqualCase : NullableDateTimeOperatorsBaseCase
 		{
@@ -1205,7 +1203,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunStringLessThanOrEqualCase() =>
-			Competition.Run<StringLessThanOrEqualCase>(RunConfig);
+			Competition.Run<StringLessThanOrEqualCase>();
 
 		public class StringLessThanOrEqualCase : StringOperatorsBaseCase
 		{

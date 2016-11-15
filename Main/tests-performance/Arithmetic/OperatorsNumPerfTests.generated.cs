@@ -13,8 +13,6 @@ using CodeJam.PerfTests;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
-
 namespace CodeJam.Arithmetic
 {
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Operators<T>.Numeric")]
@@ -26,7 +24,7 @@ namespace CodeJam.Arithmetic
 		#region UnaryMinus
 		[Test]
 		public void RunIntUnaryMinusCase() =>
-			Competition.Run<IntUnaryMinusCase>(RunConfig);
+			Competition.Run<IntUnaryMinusCase>();
 
 		public class IntUnaryMinusCase : IntOperatorsBaseCase
 		{
@@ -68,7 +66,7 @@ namespace CodeJam.Arithmetic
 		#region OnesComplement
 		[Test]
 		public void RunIntOnesComplementCase() =>
-			Competition.Run<IntOnesComplementCase>(RunConfig);
+			Competition.Run<IntOnesComplementCase>();
 
 		public class IntOnesComplementCase : IntOperatorsBaseCase
 		{
@@ -112,7 +110,7 @@ namespace CodeJam.Arithmetic
 		#region Plus
 		[Test]
 		public void RunIntPlusCase() =>
-			Competition.Run<IntPlusCase>(RunConfig);
+			Competition.Run<IntPlusCase>();
 
 		public class IntPlusCase : IntOperatorsBaseCase
 		{
@@ -153,7 +151,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableDoublePlusCase() =>
-			Competition.Run<NullableDoublePlusCase>(RunConfig);
+			Competition.Run<NullableDoublePlusCase>();
 
 		public class NullableDoublePlusCase : NullableDoubleOperatorsBaseCase
 		{
@@ -196,7 +194,7 @@ namespace CodeJam.Arithmetic
 		#region Minus
 		[Test]
 		public void RunIntMinusCase() =>
-			Competition.Run<IntMinusCase>(RunConfig);
+			Competition.Run<IntMinusCase>();
 
 		public class IntMinusCase : IntOperatorsBaseCase
 		{
@@ -237,7 +235,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableDoubleMinusCase() =>
-			Competition.Run<NullableDoubleMinusCase>(RunConfig);
+			Competition.Run<NullableDoubleMinusCase>();
 
 		public class NullableDoubleMinusCase : NullableDoubleOperatorsBaseCase
 		{
@@ -280,7 +278,7 @@ namespace CodeJam.Arithmetic
 		#region Mul
 		[Test]
 		public void RunIntMulCase() =>
-			Competition.Run<IntMulCase>(RunConfig);
+			Competition.Run<IntMulCase>();
 
 		public class IntMulCase : IntOperatorsBaseCase
 		{
@@ -321,7 +319,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableDoubleMulCase() =>
-			Competition.Run<NullableDoubleMulCase>(RunConfig);
+			Competition.Run<NullableDoubleMulCase>();
 
 		public class NullableDoubleMulCase : NullableDoubleOperatorsBaseCase
 		{
@@ -364,7 +362,7 @@ namespace CodeJam.Arithmetic
 		#region Div
 		[Test]
 		public void RunIntDivCase() =>
-			Competition.Run<IntDivCase>(RunConfig);
+			Competition.Run<IntDivCase>();
 
 		public class IntDivCase : IntOperatorsBaseCase
 		{
@@ -405,7 +403,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableDoubleDivCase() =>
-			Competition.Run<NullableDoubleDivCase>(RunConfig);
+			Competition.Run<NullableDoubleDivCase>();
 
 		public class NullableDoubleDivCase : NullableDoubleOperatorsBaseCase
 		{
@@ -448,7 +446,7 @@ namespace CodeJam.Arithmetic
 		#region Modulo
 		[Test]
 		public void RunIntModuloCase() =>
-			Competition.Run<IntModuloCase>(RunConfig);
+			Competition.Run<IntModuloCase>();
 
 		public class IntModuloCase : IntOperatorsBaseCase
 		{
@@ -491,7 +489,7 @@ namespace CodeJam.Arithmetic
 		#region Xor
 		[Test]
 		public void RunIntXorCase() =>
-			Competition.Run<IntXorCase>(RunConfig);
+			Competition.Run<IntXorCase>();
 
 		public class IntXorCase : IntOperatorsBaseCase
 		{
@@ -534,7 +532,7 @@ namespace CodeJam.Arithmetic
 		#region BitwiseAnd
 		[Test]
 		public void RunIntBitwiseAndCase() =>
-			Competition.Run<IntBitwiseAndCase>(RunConfig);
+			Competition.Run<IntBitwiseAndCase>();
 
 		public class IntBitwiseAndCase : IntOperatorsBaseCase
 		{
@@ -577,7 +575,7 @@ namespace CodeJam.Arithmetic
 		#region BitwiseOr
 		[Test]
 		public void RunIntBitwiseOrCase() =>
-			Competition.Run<IntBitwiseOrCase>(RunConfig);
+			Competition.Run<IntBitwiseOrCase>();
 
 		public class IntBitwiseOrCase : IntOperatorsBaseCase
 		{
@@ -620,7 +618,7 @@ namespace CodeJam.Arithmetic
 		#region LeftShift
 		[Test]
 		public void RunIntLeftShiftCase() =>
-			Competition.Run<IntLeftShiftCase>(RunConfig);
+			Competition.Run<IntLeftShiftCase>();
 
 		public class IntLeftShiftCase : IntOperatorsBaseCase
 		{
@@ -663,7 +661,7 @@ namespace CodeJam.Arithmetic
 		#region RightShift
 		[Test]
 		public void RunIntRightShiftCase() =>
-			Competition.Run<IntRightShiftCase>(RunConfig);
+			Competition.Run<IntRightShiftCase>();
 
 		public class IntRightShiftCase : IntOperatorsBaseCase
 		{

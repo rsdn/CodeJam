@@ -50,7 +50,7 @@ namespace CodeJam.PerfTests.Analysers
 		{
 			base.FillCompetitionTargets(competitionTargets, summary, competitionState);
 
-			var annotationsMode = competitionState.CompetitionMode.SourceAnnotations;
+			var annotationsMode = competitionState.Options.SourceAnnotations;
 			var logUri = annotationsMode.PreviousRunLogUri;
 
 			if (!annotationsMode.UpdateSources || string.IsNullOrEmpty(logUri))
@@ -142,7 +142,7 @@ namespace CodeJam.PerfTests.Analysers
 			CompetitionState competitionState,
 			List<Conclusion> conclusions)
 		{
-			var annotationsMode = competitionState.CompetitionMode.SourceAnnotations;
+			var annotationsMode = competitionState.Options.SourceAnnotations;
 			var checkPassed = base.CheckCompetitionTargetLimits(
 				competitionTarget, benchmarksForTarget,
 				summary, competitionState,
@@ -156,7 +156,7 @@ namespace CodeJam.PerfTests.Analysers
 				if (benchmark.Target.Baseline)
 					continue;
 
-				var limitsMode = competitionState.CompetitionMode.Limits;
+				var limitsMode = competitionState.Options.Limits;
 				var limit = limitsMode.LimitProvider.TryGetCompetitionLimit(benchmark, summary);
 				if (limit == null)
 				{
@@ -176,7 +176,7 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="checkPassed"><c>true</c> if competition check passed.</param>
 		protected override void OnLimitsCheckCompleted(Summary summary, CompetitionState competitionState, bool checkPassed)
 		{
-			var annotationsMode = competitionState.CompetitionMode.SourceAnnotations;
+			var annotationsMode = competitionState.Options.SourceAnnotations;
 			AnnotateTargets(summary, competitionState);
 
 			if (checkPassed || !annotationsMode.UpdateSources

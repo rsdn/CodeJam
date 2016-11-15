@@ -16,6 +16,7 @@ namespace CodeJam.PerfTests
 	public class CompetitionConfigAttribute : Attribute, ICompetitionConfigSource
 	{
 		private readonly Lazy<ICompetitionConfig> _configLazy;
+
 		/// <summary>Initializes a new instance of the <see cref="CompetitionConfigAttribute"/> class.</summary>
 		/// <param name="configType">The type of the competition config. Should have a public constructor without parameters.</param>
 		public CompetitionConfigAttribute([NotNull] Type configType)

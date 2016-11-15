@@ -9,6 +9,8 @@ using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Validators;
 
+using CodeJam.PerfTests.Configs;
+
 using NUnit.Framework;
 
 using static CodeJam.PerfTests.SelfTestHelpers;
@@ -26,13 +28,16 @@ namespace CodeJam.PerfTests
 		private static int _afterSetupCounter;
 
 		[Test]
-		public static void TestInProcessBenchmark()
+		public static void TestInProcessBenchmarkStandardEngine()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			Interlocked.Exchange(ref _afterSetupCounter, 0);
 
+			var config = SelfTestConfig.Default.WithJobModifier(
+				new Job(new InfrastructureMode { EngineFactory = new EngineFactory() }),
+				true);
 			var summary = SelfTestCompetition
-				.Run<InProcessBenchmark>(SelfTestConfig)
+				.Run<InProcessBenchmark>(SelfTestConfig.Default)
 				.LastRunSummary;
 
 			Assert.AreEqual(_callCounter, ExpectedSelfTestRunCount);
@@ -47,12 +52,11 @@ namespace CodeJam.PerfTests
 			Interlocked.Exchange(ref _callCounter, 0);
 			Interlocked.Exchange(ref _afterSetupCounter, 0);
 
-			var job = new Job(
-				CreateDefaultJob()
-				.Apply(new InfrastructureMode { EngineFactory = BurstModeEngineFactory.Instance}));
-
+			var config = SelfTestConfig.Default.WithJobModifier(
+				new Job(new InfrastructureMode { EngineFactory = BurstModeEngineFactory.Instance }),
+				true);
 			var summary = SelfTestCompetition
-				.Run<InProcessBenchmark>(CreateSelfTestConfig(job))
+				.Run<InProcessBenchmark>(config)
 				.LastRunSummary;
 
 			Assert.AreEqual(_callCounter, ExpectedSelfTestRunCount);
@@ -65,7 +69,7 @@ namespace CodeJam.PerfTests
 		public static void TestInProcessBenchmarkWithValidation()
 		{
 			// DONTTOUCH: config SHOULD NOT match the default platform (x64).
-			var config = CreateSelfTestConfig(CreateDefaultJob(Platform.X86));
+			var config = new ManualCompetitionConfig(new SelfTestConfig(Platform.X86));
 			config.Add(InProcessValidator.FailOnError);
 
 			Interlocked.Exchange(ref _callCounter, 0);

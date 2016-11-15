@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 
 using CodeJam.PerfTests;
+using CodeJam.PerfTests.Configs;
 
 using NUnit.Framework;
 
@@ -17,7 +18,7 @@ namespace CodeJam.Examples
 
 		// Perf test runner method.
 		[Test]
-		public void RunSimplePerfTest() => Competition.Run(this, CompetitionHelpers.DefaultConfig);
+		public void RunSimplePerfTest() => Competition.Run(this, CompetitionConfig.Default);
 
 		// Baseline competition member. Other competition members will be compared with this.
 		[CompetitionBaseline]

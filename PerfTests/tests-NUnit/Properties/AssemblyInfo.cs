@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 
 using CodeJam.Examples;
-using CodeJam.PerfTests.Configs;
+using CodeJam.PerfTests;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information

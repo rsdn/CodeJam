@@ -8,8 +8,6 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
-
 namespace CodeJam
 {
 	/// <summary>
@@ -113,8 +111,7 @@ namespace CodeJam
 		private const int Count = 100 * 1000;
 
 		[Test]
-		public void RunCallCostPerfTests() =>
-			Competition.Run(this, RunConfig);
+		public void RunCallCostPerfTests() => Competition.Run(this);
 
 		[CompetitionBaseline]
 		public int Test00Raw()

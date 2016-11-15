@@ -5,9 +5,6 @@ using CodeJam.PerfTests;
 using JetBrains.Annotations;
 
 using NUnit.Framework;
-
-using static CodeJam.AssemblyWideConfig;
-
 namespace CodeJam
 {
 	/// <summary>
@@ -60,7 +57,7 @@ namespace CodeJam
 		private const int Count = 100 * 1000;
 
 		[Test]
-		public void RunNestedStructAccessPerfTests() => Competition.Run(this, RunConfig);
+		public void RunNestedStructAccessPerfTests() => Competition.Run(this);
 
 		[CompetitionBaseline]
 		public decimal Test00Mutable()

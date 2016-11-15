@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.Exporters;
@@ -82,15 +81,12 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		#region Override config parameters
-		/// <summary>Override competition loggers.</summary>
-		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>The loggers for the competition</returns>
-		protected override List<ILogger> OverrideLoggers(ICompetitionConfig competitionConfig)
+		/// <summary>Customize competition config.</summary>
+		/// <param name="competitionConfig">The competition configuration.</param>
+		protected override void InitCompetitionConfigOverride(ManualCompetitionConfig competitionConfig)
 		{
-			var result = base.OverrideLoggers(competitionConfig);
-			result.RemoveAll(l => l is ConsoleLogger);
-
-			return result;
+			base.InitCompetitionConfigOverride(competitionConfig);
+			competitionConfig.Loggers.RemoveAll(l => l is ConsoleLogger);
 		}
 		#endregion
 	}

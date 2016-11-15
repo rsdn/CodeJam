@@ -9,8 +9,6 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
-
 namespace CodeJam
 {
 	/// <summary>
@@ -28,7 +26,7 @@ namespace CodeJam
 		public void RunSensitivityPerfTests()
 		{
 			// The test could fail with "too fast" warning, it's ok
-			var overrideConfig = RunConfig.WithReportWarningsAsErrors(false);
+			var overrideConfig = CodeJamCompetitionConfig.ConfigForAssembly.WithReportWarningsAsErrors(false);
 			Competition.Run(this, overrideConfig);
 		}
 

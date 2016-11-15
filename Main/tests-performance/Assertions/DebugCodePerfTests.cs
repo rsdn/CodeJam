@@ -6,8 +6,6 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
-
 namespace CodeJam.Assertions
 {
 	/// <summary>
@@ -23,8 +21,7 @@ namespace CodeJam.Assertions
 		public int Count { get; set; } = 100 * 1000;
 
 		[Test]
-		public void RunDebugCodePerfTests() =>
-			Competition.Run(this, RunConfig);
+		public void RunDebugCodePerfTests() => Competition.Run(this);
 
 		[CompetitionBaseline]
 		public string Test00RunWithoutAssertion()

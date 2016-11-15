@@ -159,15 +159,15 @@ namespace CodeJam.PerfTests.Running.Core
 
 		#region Run logic
 		/// <summary>Runs the benchmark for specified benchmark type.</summary>
-		/// <param name="benchmarkType">The type of the benchmark.</param>
-		/// <param name="benchmarkConfig">The config for the benchmark.</param>
-		/// <param name="competitionMode">The competition parameters.</param>
+		/// <param name="benchmarkType">Type of the benchmark.</param>
+		/// <param name="benchmarkConfig">Config for the benchmark.</param>
+		/// <param name="competitionOptions">Competition options.</param>
 		/// <returns>Competition state for the run.</returns>
 		[NotNull]
 		internal static CompetitionState Run(
 			[NotNull] Type benchmarkType,
 			[NotNull] IConfig benchmarkConfig,
-			CompetitionMode competitionMode)
+			CompetitionOptions competitionOptions)
 		{
 			Code.NotNull(benchmarkType, nameof(benchmarkType));
 			Code.NotNull(benchmarkConfig, nameof(benchmarkConfig));
@@ -184,7 +184,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			try
 			{
-				competitionState.FirstTimeInit(benchmarkConfig, competitionMode);
+				competitionState.FirstTimeInit(benchmarkConfig, competitionOptions);
 				var logger = competitionState.Logger;
 
 				using (BeginLogImportant(benchmarkConfig))
@@ -199,8 +199,8 @@ namespace CodeJam.PerfTests.Running.Core
 					bool lockTaken = false;
 					try
 					{
-						var runMode = competitionState.CompetitionMode.RunMode;
-						var timeout = runMode.Concurrent == ConcurrentRunBehavior.Lock ? CompetitionRunMode.TotalRunTimeout : TimeSpan.Zero;
+						var runOptions = competitionState.Options.RunOptions;
+						var timeout = runOptions.Concurrent == ConcurrentRunBehavior.Lock ? CompetitionRunMode.TotalRunTimeout : TimeSpan.Zero;
 						lockTaken = mutex.WaitOne(timeout);
 						if (CheckPreconditions(benchmarkType, lockTaken, competitionState))
 						{
@@ -242,11 +242,11 @@ namespace CodeJam.PerfTests.Running.Core
 			bool lockTaken,
 			CompetitionState competitionState)
 		{
-			var runMode = competitionState.CompetitionMode.RunMode;
+			var runOptions = competitionState.Options.RunOptions;
 
 			if (!lockTaken)
 			{
-				switch (runMode.Concurrent)
+				switch (runOptions.Concurrent)
 				{
 					case ConcurrentRunBehavior.Lock:
 					case ConcurrentRunBehavior.Skip:
@@ -255,11 +255,11 @@ namespace CodeJam.PerfTests.Running.Core
 							"Competition run skipped. Competitions cannot be run in parallel, be sure to disable parallel test execution.");
 						return false;
 					default:
-						throw CodeExceptions.UnexpectedArgumentValue(nameof(runMode.Concurrent), runMode.Concurrent);
+						throw CodeExceptions.UnexpectedArgumentValue(nameof(runOptions.Concurrent), runOptions.Concurrent);
 				}
 			}
 
-			if (!runMode.AllowDebugBuilds && benchmarkType.Assembly.IsDebugAssembly())
+			if (!runOptions.AllowDebugBuilds && benchmarkType.Assembly.IsDebugAssembly())
 			{
 				var assembly = benchmarkType.Assembly;
 				competitionState.WriteMessage(
@@ -275,9 +275,9 @@ namespace CodeJam.PerfTests.Running.Core
 		private static void RunCore(Type benchmarkType, CompetitionState competitionState)
 		{
 			var logger = competitionState.Logger;
-			var runMode = competitionState.CompetitionMode.RunMode;
+			var runOptions = competitionState.Options.RunOptions;
 
-			Code.InRange(runMode.MaxRunsAllowed, nameof(runMode.MaxRunsAllowed), 0, CompetitionRunMode.MaxRunLimit);
+			Code.InRange(runOptions.MaxRunsAllowed, nameof(runOptions.MaxRunsAllowed), 0, CompetitionRunMode.MaxRunLimit);
 
 			while (competitionState.RunsLeft > 0)
 			{
@@ -328,7 +328,7 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				competitionState.WriteMessage(
 					MessageSource.Runner, MessageSeverity.TestError,
-					$"The benchmark run limit ({runMode.MaxRunsAllowed} runs(s)) exceeded (read log for details). Try to loose competition limits.");
+					$"The benchmark run limit ({runOptions.MaxRunsAllowed} runs(s)) exceeded (read log for details). Try to loose competition limits.");
 			}
 			else if (competitionState.RunNumber > 1)
 			{

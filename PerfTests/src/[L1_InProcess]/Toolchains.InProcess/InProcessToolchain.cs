@@ -20,7 +20,8 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 		/// <summary>The default toolchain instance.</summary>
 		public static readonly IToolchain Instance = new InProcessToolchain(true);
 
-		/// <summary>The default toolchain instance.</summary>
+		// TODO: remove as unused?
+		/// <summary>The toolchain instance without output logging.</summary>
 		public static readonly IToolchain DontLogOutput = new InProcessToolchain(false);
 
 		/// <summary>Initializes a new instance of the <see cref="InProcessToolchain"/> class.</summary>

@@ -26,6 +26,6 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Competition parameters.</summary>
 		/// <value>Competition parameters.</value>
-		public CompetitionMode CompetitionMode => _config.CompetitionMode;
+		public CompetitionOptions Options => _config.Options;
 	}
 }

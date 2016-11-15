@@ -95,7 +95,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 			}
 
 			int retryCount = 0;
-			while (runThread.IsAlive && retryCount++ < 1000)
+			while (runThread.IsAlive && retryCount++ < 100)
 			{
 				Thread.Sleep(10);
 			}

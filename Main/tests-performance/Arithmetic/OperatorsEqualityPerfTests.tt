@@ -8,8 +8,6 @@ using CodeJam.PerfTests;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
-
 namespace CodeJam.Arithmetic
 {
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Operators<T>, equality")]

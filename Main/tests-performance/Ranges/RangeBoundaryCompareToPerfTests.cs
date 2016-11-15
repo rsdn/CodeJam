@@ -8,7 +8,6 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
 using static CodeJam.PerfTests.CompetitionHelpers;
 
 namespace CodeJam.Ranges
@@ -23,7 +22,7 @@ namespace CodeJam.Ranges
 	{
 		[Test]
 		public void RunRangeBoundaryCompareToIntCase() =>
-			Competition.Run<RangeBoundaryCompareToIntCase>(RunConfig);
+			Competition.Run<RangeBoundaryCompareToIntCase>();
 
 		[PublicAPI]
 		public class RangeBoundaryCompareToIntCase : IntRangeBoundaryBaseCase
@@ -85,7 +84,7 @@ namespace CodeJam.Ranges
 
 		[Test]
 		public void RunRangeBoundaryCompareToNullableIntCase() =>
-			Competition.Run<RangeBoundaryCompareToNullableIntCase>(RunConfig);
+			Competition.Run<RangeBoundaryCompareToNullableIntCase>();
 
 		[PublicAPI]
 		public class RangeBoundaryCompareToNullableIntCase : NullableIntRangeBoundaryBaseCase

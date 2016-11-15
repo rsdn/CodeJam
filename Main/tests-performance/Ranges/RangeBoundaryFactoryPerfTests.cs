@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
 using static CodeJam.PerfTests.CompetitionHelpers;
 
 namespace CodeJam.Ranges
@@ -21,7 +20,7 @@ namespace CodeJam.Ranges
 		private const int Count = DefaultCount;
 
 		[Test]
-		public void RunRangeBoundaryFactoryPerfTests() => Competition.Run(this, RunConfig);
+		public void RunRangeBoundaryFactoryPerfTests() => Competition.Run(this);
 
 		[CompetitionBaseline]
 		public RangeBoundaryFrom<int> Test00Validated()

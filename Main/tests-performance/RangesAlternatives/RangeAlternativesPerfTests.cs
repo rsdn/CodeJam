@@ -9,7 +9,6 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
 using static CodeJam.PerfTests.CompetitionHelpers;
 
 namespace CodeJam.RangesAlternatives
@@ -24,7 +23,7 @@ namespace CodeJam.RangesAlternatives
 	{
 		[Test]
 		public void RunRangeAlternativesIntCase() =>
-			Competition.Run<RangeAlternativesIntCase>(RunConfig);
+			Competition.Run<RangeAlternativesIntCase>();
 
 		[PublicAPI]
 		public class RangeAlternativesIntCase
@@ -128,7 +127,7 @@ namespace CodeJam.RangesAlternatives
 
 		[Test]
 		public void RunRangeAlternativesNullableIntCase() =>
-			Competition.Run<RangeAlternativesNullableIntCase>(RunConfig);
+			Competition.Run<RangeAlternativesNullableIntCase>();
 
 		[PublicAPI]
 		public class RangeAlternativesNullableIntCase

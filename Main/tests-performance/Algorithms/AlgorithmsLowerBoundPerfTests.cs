@@ -81,7 +81,7 @@ namespace CodeJam
 		public int Count { get; set; }
 
 		[Test]
-		public void RunLowerBoundPerfTests() => Competition.Run(this, AssemblyWideConfig.RunConfig);
+		public void RunLowerBoundPerfTests() => Competition.Run(this);
 
 		[CompetitionBaseline]
 		public void Test00IComparable()

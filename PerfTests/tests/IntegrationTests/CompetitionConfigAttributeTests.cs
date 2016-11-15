@@ -24,7 +24,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		public static ManualCompetitionConfig Create()
 		{
-			var result = CreateSelfTestConfig(null);
+			var result = new ManualCompetitionConfig(SelfTestConfig.Default);
 			result.Add(BaselineScaledColumn.WelchTTestPValue);
 			return result;
 		}
@@ -36,7 +36,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		private static ManualCompetitionConfig Create()
 		{
-			var result = CreateSelfTestConfig(null);
+			var result = new ManualCompetitionConfig(SelfTestConfig.Default);
 			result.Add(StatisticColumn.Kurtosis);
 			return result;
 		}
@@ -52,7 +52,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = SelfTestCompetition.Run<BenchmarkWithoutConfig>(SelfTestConfig);
+			var runState = SelfTestCompetition.Run<BenchmarkWithoutConfig>(SelfTestConfig.Default);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);

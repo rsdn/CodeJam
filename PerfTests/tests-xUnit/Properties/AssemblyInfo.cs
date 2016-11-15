@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 
 using CodeJam.Examples;
-using CodeJam.PerfTests.Configs;
+using CodeJam.PerfTests;
 
 using Xunit;
 

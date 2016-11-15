@@ -5,8 +5,6 @@ using CodeJam.PerfTests;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
-
 namespace CodeJam
 {
 	/// <summary>
@@ -47,8 +45,7 @@ namespace CodeJam
 		private const int Count = 1000 * 1000;
 
 		[Test]
-		public void RunStructAndInterfacesPerfTests() =>
-			Competition.Run(this, RunConfig);
+		public void RunStructAndInterfacesPerfTests() => Competition.Run(this);
 
 		[CompetitionBaseline]
 		public int Test00Baseline()

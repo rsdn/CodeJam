@@ -46,7 +46,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>The count of runs is out of limit.</summary>
 		/// <value><c>true</c> if count of runs is out of limit.</value>
-		public bool RunLimitExceeded => RunNumber >= CompetitionMode.RunMode.MaxRunsAllowed;
+		public bool RunLimitExceeded => RunNumber >= Options.RunOptions.MaxRunsAllowed;
 
 		/// <summary>There's a critical-severity messages for the current run.</summary>
 		/// <value><c>true</c> if there's a critical-severity messages for the current run.</value>
@@ -68,9 +68,9 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <value>The config.</value>
 		public IConfig Config { get; private set; }
 
-		/// <summary>The competition parameters.</summary>
-		/// <value>The competition parameters.</value>
-		public CompetitionMode CompetitionMode { get; private set; }
+		/// <summary>Competition options.</summary>
+		/// <value>Competition options.</value>
+		public CompetitionOptions Options { get; private set; }
 
 		/// <summary>The logger for the competition.</summary>
 		/// <value>The logger.</value>
@@ -116,21 +116,21 @@ namespace CodeJam.PerfTests.Running.Core
 
 		[AssertionMethod]
 		private void AsserIsInInit() =>
-			Code.AssertState(CompetitionMode == null && !Completed, "Could not init state as the competition is in run or was completed.");
+			Code.AssertState(Options == null && !Completed, "Could not init state as the competition is in run or was completed.");
 
 		[AssertionMethod]
 		private void AssertIsInCompetition() =>
-			Code.AssertState(CompetitionMode != null && !Completed, "Could not update state as the competition is not running completed.");
+			Code.AssertState(Options != null && !Completed, "Could not update state as the competition is not running completed.");
 
 		#region State modification
 		/// <summary>Init the competition state.</summary>
 		/// <param name="config">The config for the competition.</param>
-		/// <param name="competitionMode">The competition parameters.</param>
+		/// <param name="competitionOptions">Competition options.</param>
 		internal void FirstTimeInit(
 			[NotNull] IConfig config,
-			[NotNull] CompetitionMode competitionMode)
+			[NotNull] CompetitionOptions competitionOptions)
 		{
-			Code.NotNull(competitionMode, nameof(competitionMode));
+			Code.NotNull(competitionOptions, nameof(competitionOptions));
 			Code.NotNull(config, nameof(config));
 
 			lock (_messages)
@@ -139,7 +139,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 				_stopwatch.Restart();
 
-				CompetitionMode = competitionMode;
+				Options = competitionOptions;
 				Config = config;
 				Logger = config.GetCompositeLogger();
 

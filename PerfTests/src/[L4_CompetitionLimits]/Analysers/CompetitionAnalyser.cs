@@ -99,7 +99,7 @@ namespace CodeJam.PerfTests.Analysers
 			Code.NotNull(summary, nameof(summary));
 
 			var competitionState = CompetitionCore.RunState[summary];
-			var limitsMode = competitionState.CompetitionMode.Limits;
+			var limitsMode = competitionState.Options.Limits;
 			var competitionTargets = TargetsSlot[summary];
 			var conclusions = new List<Conclusion>();
 
@@ -182,7 +182,7 @@ namespace CodeJam.PerfTests.Analysers
 					"No reports for benchmarks: " + string.Join(", ", benchMissing));
 			}
 
-			var limitsMode = competitionState.CompetitionMode.Limits;
+			var limitsMode = competitionState.Options.Limits;
 			if (limitsMode.LimitProvider == null)
 			{
 				competitionState.WriteMessage(
@@ -196,7 +196,7 @@ namespace CodeJam.PerfTests.Analysers
 		private void CheckPostconditions(Summary summary, CompetitionState competitionState, List<Conclusion> conclusions)
 		{
 			var culture = HostEnvironmentInfo.MainCultureInfo;
-			var limitsMode = competitionState.CompetitionMode.Limits;
+			var limitsMode = competitionState.Options.Limits;
 
 			if (limitsMode.TooFastBenchmarkLimit > TimeSpan.Zero)
 			{
@@ -254,7 +254,7 @@ namespace CodeJam.PerfTests.Analysers
 			
 			// DONTTOUCH: DO NOT add return into the if clause.
 			// The competitionTargets should be filled with empty limits if IgnoreExistingAnnotations set to false
-			var limitsMode = competitionState.CompetitionMode.Limits;
+			var limitsMode = competitionState.Options.Limits;
 			if (limitsMode.IgnoreExistingAnnotations)
 			{
 				competitionState.WriteMessage(
@@ -310,7 +310,7 @@ namespace CodeJam.PerfTests.Analysers
 			CompetitionTarget result;
 			if (competitionMetadata == null)
 			{
-				var limit = TryParseCompetitionLimit(competitionAttribute, competitionState.CompetitionMode)
+				var limit = TryParseCompetitionLimit(competitionAttribute, competitionState.Options)
 					?? fallbackLimit;
 
 				result = new CompetitionTarget(target, limit, competitionAttribute.DoesNotCompete);
@@ -328,8 +328,8 @@ namespace CodeJam.PerfTests.Analysers
 
 		private CompetitionLimit TryParseCompetitionLimit(
 			CompetitionBenchmarkAttribute competitionAttribute,
-			CompetitionMode competitionMode) =>
-				competitionMode.Limits.IgnoreExistingAnnotations
+			CompetitionOptions competitionOptions) =>
+				competitionOptions.Limits.IgnoreExistingAnnotations
 					? null
 					: AttributeAnnotations.ParseCompetitionLimit(competitionAttribute);
 
@@ -340,7 +340,7 @@ namespace CodeJam.PerfTests.Analysers
 		{
 			CompetitionLimit result = null;
 
-			var limitsMode = competitionState.CompetitionMode.Limits;
+			var limitsMode = competitionState.Options.Limits;
 
 			// DONTTOUCH: the doc should be loaded for validation even if IgnoreExistingAnnotations = true
 			var resourceKey = new ResourceKey(
@@ -440,7 +440,7 @@ namespace CodeJam.PerfTests.Analysers
 			CompetitionState competitionState,
 			List<Conclusion> conclusions)
 		{
-			var limitsMode = competitionState.CompetitionMode.Limits;
+			var limitsMode = competitionState.Options.Limits;
 			var actualValues = limitsMode.LimitProvider.TryGetActualValues(benchmark, summary);
 			if (actualValues == null)
 			{
@@ -478,7 +478,7 @@ namespace CodeJam.PerfTests.Analysers
 			if (checkPassed)
 				return;
 
-			var limitsMode = competitionState.CompetitionMode.Limits;
+			var limitsMode = competitionState.Options.Limits;
 			if (competitionState.RunNumber < limitsMode.RerunsIfValidationFailed)
 			{
 				competitionState.RequestReruns(1, "Limit checking failed.");

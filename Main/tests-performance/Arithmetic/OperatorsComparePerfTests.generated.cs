@@ -14,8 +14,6 @@ using CodeJam.PerfTests;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
-
 namespace CodeJam.Arithmetic
 {
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Operators<T>.Compare")]
@@ -26,7 +24,7 @@ namespace CodeJam.Arithmetic
 		#region Compare
 		[Test]
 		public void RunIntCompareCase() =>
-			Competition.Run<IntCompareCase>(RunConfig);
+			Competition.Run<IntCompareCase>();
 
 		public class IntCompareCase : IntOperatorsBaseCase
 		{
@@ -77,7 +75,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableIntCompareCase() =>
-			Competition.Run<NullableIntCompareCase>(RunConfig);
+			Competition.Run<NullableIntCompareCase>();
 
 		public class NullableIntCompareCase : NullableIntOperatorsBaseCase
 		{
@@ -128,7 +126,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunEnumCompareCase() =>
-			Competition.Run<EnumCompareCase>(RunConfig);
+			Competition.Run<EnumCompareCase>();
 
 		public class EnumCompareCase : EnumOperatorsBaseCase
 		{
@@ -179,7 +177,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableEnumCompareCase() =>
-			Competition.Run<NullableEnumCompareCase>(RunConfig);
+			Competition.Run<NullableEnumCompareCase>();
 
 		public class NullableEnumCompareCase : NullableEnumOperatorsBaseCase
 		{
@@ -230,7 +228,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunNullableDateTimeCompareCase() =>
-			Competition.Run<NullableDateTimeCompareCase>(RunConfig);
+			Competition.Run<NullableDateTimeCompareCase>();
 
 		public class NullableDateTimeCompareCase : NullableDateTimeOperatorsBaseCase
 		{
@@ -281,7 +279,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void RunStringCompareCase() =>
-			Competition.Run<StringCompareCase>(RunConfig);
+			Competition.Run<StringCompareCase>();
 
 		public class StringCompareCase : StringOperatorsBaseCase
 		{

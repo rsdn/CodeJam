@@ -9,8 +9,6 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
-
 namespace CodeJam
 {
 	/// <summary>
@@ -34,7 +32,7 @@ namespace CodeJam
 		public void RunOpsCountNotSensitivePerfTests()
 		{
 			// The test will fail with "too fast" warning, it's ok
-			var overrideConfig = RunConfig.WithReportWarningsAsErrors(false);
+			var overrideConfig = CodeJamCompetitionConfig.ConfigForAssembly.WithReportWarningsAsErrors(false);
 			Competition.Run(this, overrideConfig);
 		}
 

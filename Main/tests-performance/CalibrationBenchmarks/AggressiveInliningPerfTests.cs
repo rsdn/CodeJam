@@ -6,8 +6,6 @@ using CodeJam.PerfTests;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
-
 namespace CodeJam
 {
 	/// <summary>
@@ -26,8 +24,7 @@ namespace CodeJam
 		private const int Count = 1000 * 1000;
 
 		[Test]
-		public void RunCaseAggInlineNoEffect() =>
-			Competition.Run<CaseAggInlineNoEffect>(RunConfig);
+		public void RunCaseAggInlineNoEffect() => Competition.Run<CaseAggInlineNoEffect>();
 
 		public class CaseAggInlineNoEffect
 		{
@@ -112,8 +109,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void RunCaseAggInlineEffective() =>
-			Competition.Run<CaseAggInlineEffective>(RunConfig);
+		public void RunCaseAggInlineEffective() => Competition.Run<CaseAggInlineEffective>();
 
 		public class CaseAggInlineEffective
 		{

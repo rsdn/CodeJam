@@ -7,8 +7,6 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.AssemblyWideConfig;
-
 namespace CodeJam
 {
 	/// <summary>
@@ -44,7 +42,7 @@ namespace CodeJam
 
 		[Test]
 		[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
-		public void RunJitOptimizedFeatureSwitchPerfTests() => Competition.Run(this, RunConfig);
+		public void RunJitOptimizedFeatureSwitchPerfTests() => Competition.Run(this);
 
 		[CompetitionBaseline]
 		public int Test0000Baseline()
