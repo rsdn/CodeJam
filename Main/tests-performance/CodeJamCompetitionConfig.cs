@@ -59,7 +59,7 @@ namespace CodeJam
 			features.ImportantInfoLogger = true;
 
 #if CI_Build
-			createOptions.PreviousRunLogUri = null;
+			features.PreviousRunLogUri = null;
 #else
 			var assemblyName = targetAssembly.GetName().Name;
 			if (features.PreviousRunLogUri.IsNullOrEmpty())
