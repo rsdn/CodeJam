@@ -64,7 +64,6 @@
     <Compile Include="Competition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Running.Core\NUnitCompetitionRunner.cs" />
-    <Compile Include="Running.Core.NUnit\StubNUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\CodeJam.PerfTests.csproj">

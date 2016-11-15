@@ -139,6 +139,7 @@ As a benchmarking framewotk, CodeJam.PerfTests do not provide anything that Benc
    * Support for perftests over dynamically generated or emitted codebase. Code annotations for such tests are stored as xml resource files, therefore you can change the code without transferring the competition limits from old code to new one.
    * Continuous integration support. If you do not want to update source annotations during CI test run (who does?) you can enable limits logging. Next run on a developer machine will catch up changed limits and update sources for you.
    * Configuration via per-assembly `.appconfig` files, assembly- and type-level attributes. Setup once, use everywhere.
+   * Competition configuration system was rewritten. It is much simpler to create custom competition configs and to modify existing ones now.
    * Console perftest runner. In case you need it.
 
     What's next?

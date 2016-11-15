@@ -357,17 +357,14 @@ namespace CodeJam.PerfTests.Running.Core
 			competitionConfig.Loggers.Insert(0, CreateHostLogger(hostLogMode));
 		}
 
-		private void FixConfigColumns(ManualCompetitionConfig competitionConfig)
-		{
-			// TODO: better columns.
-			// TODO: custom column provider?
-			var limitsMode = competitionConfig.Options.Limits;
+		// TODO: better columns.
+		// TODO: custom column provider?
+		private void FixConfigColumns(ManualCompetitionConfig competitionConfig) =>
 			competitionConfig.Add(
 				StatisticColumn.Min,
-				new CompetitionLimitColumn(limitsMode.LimitProvider, false),
-				new CompetitionLimitColumn(limitsMode.LimitProvider, true),
+				CompetitionLimitColumn.Min,
+				CompetitionLimitColumn.Max,
 				StatisticColumn.Max);
-		}
 
 		private void FixConfigValidators(ManualCompetitionConfig competitionConfig)
 		{

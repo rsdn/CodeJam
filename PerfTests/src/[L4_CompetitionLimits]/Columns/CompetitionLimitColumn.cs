@@ -5,6 +5,7 @@ using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
+using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Limits;
 
 using JetBrains.Annotations;
@@ -17,15 +18,18 @@ namespace CodeJam.PerfTests.Columns
 	[PublicAPI]
 	public class CompetitionLimitColumn : IColumn
 	{
+		/// <summary>Minimum limit column</summary>
+		public static readonly CompetitionLimitColumn Min = new CompetitionLimitColumn(null, false);
+		/// <summary>Maximum limit column</summary>
+		public static readonly CompetitionLimitColumn Max = new CompetitionLimitColumn(null, true);
+
 		/// <summary>Initializes a new instance of the <see cref="CompetitionLimitColumn"/> class.</summary>
 		/// <param name="competitionLimitProvider">The competition limit provider.</param>
 		/// <param name="useMaxRatio">
 		/// Use maximum timing ratio relative to the baseline. if set to <c>false</c> the minimum one used.
 		/// </param>
-		public CompetitionLimitColumn(ICompetitionLimitProvider competitionLimitProvider, bool useMaxRatio)
+		public CompetitionLimitColumn([CanBeNull] ICompetitionLimitProvider competitionLimitProvider, bool useMaxRatio)
 		{
-			Code.NotNull(competitionLimitProvider, nameof(competitionLimitProvider));
-
 			CompetitionLimitProvider = competitionLimitProvider;
 			UseMaxRatio = useMaxRatio;
 		}
@@ -40,7 +44,7 @@ namespace CodeJam.PerfTests.Columns
 
 		/// <summary>Instance of competition limit provider.</summary>
 		/// <value>The competition limit provider.</value>
-		[NotNull]
+		[CanBeNull]
 		public ICompetitionLimitProvider CompetitionLimitProvider { get; }
 
 		/// <summary>Returns value for the column.</summary>
@@ -49,7 +53,10 @@ namespace CodeJam.PerfTests.Columns
 		/// <returns>Metric value (upper or lower boundary) for the benchmark.</returns>
 		public string GetValue(Summary summary, Benchmark benchmark)
 		{
-			var result = CompetitionLimitProvider.TryGetActualValues(benchmark, summary);
+			var limitProvider = CompetitionLimitProvider
+				?? CompetitionCore.RunState[summary].Options.Limits.LimitProvider;
+
+			var result = limitProvider?.TryGetActualValues(benchmark, summary);
 			if (result == null)
 				return "?";
 
@@ -64,7 +71,7 @@ namespace CodeJam.PerfTests.Columns
 
 		/// <summary>The name of the column.</summary>
 		/// <value>The name of the column.</value>
-		public string ColumnName => CompetitionLimitProvider.ShortInfo + (UseMaxRatio ? "(max)" : "(min)");
+		public string ColumnName => CompetitionLimitProvider?.ShortInfo ?? "Limit" + (UseMaxRatio ? "(max)" : "(min)");
 
 		/// <summary>Can provide values for the specified summary.</summary>
 		/// <param name="summary">Summary for the run.</param>

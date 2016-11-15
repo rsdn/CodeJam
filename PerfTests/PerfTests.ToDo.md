@@ -3,26 +3,20 @@
 * No file logger for tests https://github.com/PerfDotNet/BenchmarkDotNet/issues/198
 * Run state for issues like this. https://github.com/PerfDotNet/BenchmarkDotNet/issues/180
 * ReadOnlyConfig
-* ManualConfig.Add - make virtual?
+* ManualConfig.Add - backport ManualCompetitionConfig design
 * Validators: access to config, in-process validators
 * remove calls instance.setupAction(), instance.targetAction() from BenchmarkProgram.txt
-  https://github.com/PerfDotNet/BenchmarkDotNet/issues/184
+  https://github.com/PerfDotNet/BenchmarkDotNet/issues/184 ?
 
 ## TODOs:
  * Tests for broken log annotations.
  * Task/Task<T> support.
- * IgnoreExistingAnnotations - skip reading the xml resources / log annotations?
  * detailing logging - fix toolchain
+ * Test for standard analyser warnings - are they logged?
+ * Logging: write validator messages immediately?
 
 ## Long-term TODOs:
- * Simplify config setup system. There're assembly appconfig, defaut competition config, overrides at competiton runner.
- * Add enum (RunMode or AnnotateMode) and use it for config helpers.
- * Pass competition settings as CompetitionState property instead of setting the analyzer props?
-   Real use case: pass CompetitionLimitProvider to CompetitionLimitColumn and to CompetitionAnalyser.
- * Remove all virtual Default* methods and allow to change props of competition settings (see above)?
- * use default toolchain factory and set InProcessToolchain from CompetitionRunner
  * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix).
- * Logging: write validator messages immediately?
  * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion
  * Memory limits + diagnoser - whoops, https://github.com/PerfDotNet/BenchmarkDotNet/issues/200 . Will need to replace MethodInvoker, delayed.
 
