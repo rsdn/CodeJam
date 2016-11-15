@@ -144,14 +144,7 @@ namespace CodeJam.PerfTests.Configs
 			},
 			Infrastructure =
 			{
-				Toolchain = InProcessToolchain.Instance,
-				EngineFactory = BurstModeEngineFactory.Instance
-			},
-			Accuracy =
-			{
-				AnalyzeLaunchVariance = false,
-				EvaluateOverhead = false,
-				RemoveOutliers = false
+				Toolchain = InProcessToolchain.Instance
 			}
 		}.Freeze();
 

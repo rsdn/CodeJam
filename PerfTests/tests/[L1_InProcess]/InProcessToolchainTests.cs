@@ -37,7 +37,7 @@ namespace CodeJam.PerfTests
 				new Job(new InfrastructureMode { EngineFactory = new EngineFactory() }),
 				true);
 			var summary = SelfTestCompetition
-				.Run<InProcessBenchmark>(SelfTestConfig.Default)
+				.Run<InProcessBenchmark>(config)
 				.LastRunSummary;
 
 			Assert.AreEqual(_callCounter, ExpectedSelfTestRunCount);
