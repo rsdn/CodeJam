@@ -8,6 +8,7 @@ using System;
 using System.Threading;
 
 using CodeJam.PerfTests;
+using CodeJam.PerfTests.Configs;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -22,7 +23,7 @@ namespace CodeJam.Examples
 		// Perf test runner method.
 		[TestMethod]
 		public void RunSimplePerfTest() => Competition.Run(
-			this, CompetitionHelpers.DefaultConfigAnnotate);
+			this, CompetitionConfig.AnnotateSources);
 
 		// Baseline competition member. Other competition members will be compared with this.
 		[CompetitionBaseline]
@@ -62,12 +63,11 @@ namespace CodeJam.Examples
 >
 > We have an issue with perftest being run on low-end notebooks / nettops with mobile CPUs. Current implementation provides inaccurate competition limits occasionally (too high / too low timing values). We're going to fix it in the near future. Sorry!
 
-5. After the `[CompetitionBenchmark]` attributes are filled with timing limits 
-   you can disable source auto-annotation. To do this,  use the `CompetitionHelpers.DefaultConfig`:
+5. After `[CompetitionBenchmark]` attributes are filled with timing limits, you can disable source auto-annotation. To do this,  use the `CompetitionConfig.Default`:
 ```c#
 		[Test]
 		public void RunSimplePerfTest() => Competition.Run(
-			this, CompetitionHelpers.DefaultConfig);
+			this, CompetitionConfig.Default);
 ```
 6. Now the test will fail if timings do not fit into limits. To proof, change implementation for any competiton method and run the test. As example:
 ```c#
@@ -87,6 +87,3 @@ Diagnostic messages:
  ```
 
 7. Well, that's all.
-```
-
-Well, that's all.

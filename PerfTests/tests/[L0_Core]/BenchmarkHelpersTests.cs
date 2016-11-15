@@ -32,7 +32,8 @@ namespace CodeJam.PerfTests
 
 			var t1 = s1.GetSeconds();
 			var t2 = s2.GetSeconds();
-			LessOrEqual(Math.Abs(t1 - t2) / t2, 0.4); // We're not interested in accurate absolute values +/- 30% is acceptable.
+			LessOrEqual(Math.Abs(t1 - t2) / t2, 0.3); // We're not interested in accurate absolute values +/- 30% is acceptable.
+			Console.WriteLine($"Clock {c1.Clock.GetType().Name} to {c2.Clock.GetType().Name}: {t1 / t2:P}");
 
 			var c3 = clockA.Start();
 			Thread.SpinWait(30 * 1000 * 1000);
@@ -40,6 +41,7 @@ namespace CodeJam.PerfTests
 
 			var t3 = s3.GetSeconds();
 			LessOrEqual(Math.Abs(t1 - t3) / t1, 0.05); // At the same time relative time should be precise enough.
+			Console.WriteLine($"Clock {c1.Clock.GetType().Name} to {c3.Clock.GetType().Name}: {t1 / t3:P}");
 		}
 
 		[Test]
@@ -58,7 +60,8 @@ namespace CodeJam.PerfTests
 
 			var t1 = s1.GetSeconds();
 			var t2 = s2.GetSeconds();
-			LessOrEqual(Math.Abs(t1 - t2) / t2, 0.4); // We're not interested in accurate absolute values +/- 30% is acceptable.
+			LessOrEqual(Math.Abs(t1 - t2) / t2, 0.3); // We're not interested in accurate absolute values +/- 30% is acceptable.
+			Console.WriteLine($"Clock {c1.Clock.GetType().Name} to {c2.Clock.GetType().Name}: {t1 / t2:P}");
 
 			var c3 = clockA.Start();
 			Thread.SpinWait(30 * 1000 * 1000);
@@ -66,6 +69,7 @@ namespace CodeJam.PerfTests
 
 			var t3 = s3.GetSeconds();
 			LessOrEqual(Math.Abs(t1 - t3) / t1, 0.05); // At the same time relative time should be precise enough.
+			Console.WriteLine($"Clock {c1.Clock.GetType().Name} to {c3.Clock.GetType().Name}: {t1 / t3:P}");
 		}
 
 		[Test]
