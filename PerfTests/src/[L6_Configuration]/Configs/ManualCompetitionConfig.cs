@@ -122,7 +122,7 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Adds the specified new jobs.</summary>
 		/// <param name="newJobs">The new jobs.</param>
-		public void Add(params Job[] newJobs) =>
+		public void Add(params Job[] newJobs) => 
 			// DONTTOUCH: please DO NOT remove .Freeze() call.
 			Jobs.AddRange(newJobs.Select(j => j.Freeze()));
 
@@ -179,9 +179,10 @@ namespace CodeJam.PerfTests.Configs
 				string id = null;
 				if (preserveId)
 				{
-					id = 
-						job.ResolveValue(JobMode.IdCharacteristic, (string)null) +
-						jobModifier.ResolveValue(JobMode.IdCharacteristic, (string)null);
+					if (job.HasValue(JobMode.IdCharacteristic))
+						id = job.Id;
+					if (jobModifier.HasValue(JobMode.IdCharacteristic))
+						id += jobModifier.Id;
 				}
 
 				// DONTTOUCH: please DO NOT remove .Freeze() call.

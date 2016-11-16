@@ -347,7 +347,7 @@ namespace CodeJam.PerfTests.Running.Core
 				var job = jobs[i];
 				if (job.Infrastructure.Toolchain == null)
 				{
-					var id = job.ResolveValue(JobMode.IdCharacteristic, (string)null);
+					var id = job.HasValue(JobMode.IdCharacteristic) ? job.Id : null;
 					jobs[i] = job
 						.With(InProcessToolchain.Instance)
 						.WithId(id);
@@ -386,7 +386,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			if (debugMode)
 			{
-				validators.RemoveAll(v => v is JitOptimizationsValidator && v.TreatsWarningsAsErrors);
+				validators.RemoveAll(v => v is JitOptimizationsValidator);
 			}
 			else if (competitionOptions.SourceAnnotations.UpdateSources &&
 				!validators.OfType<JitOptimizationsValidator>().Any())

@@ -106,6 +106,14 @@ namespace CodeJam.PerfTests
 			}
 
 			var result = CompetitionConfigFactory.Create("SelfTestConfig", null, competitionFeatures);
+			result.ApplyCompetitionOptions(
+				new CompetitionOptions
+				{
+					RunOptions =
+					{
+						AllowDebugBuilds = true,
+					}
+				});
 			result.ApplyToJobs(jobModifier, true);
 			return result;
 		}
