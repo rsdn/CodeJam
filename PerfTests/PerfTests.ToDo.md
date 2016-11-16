@@ -15,6 +15,8 @@
  * Test for standard analyser warnings - are they logged?
  * Logging: write validator messages immediately?
  * Source annotations: test for partial files / methods
+ * CompetitonOptions: predefined
+ * xUnit: tests: run as x64?
 
 ## Long-term TODOs:
  * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix).
