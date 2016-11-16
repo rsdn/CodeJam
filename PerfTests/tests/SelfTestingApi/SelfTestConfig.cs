@@ -40,7 +40,8 @@ namespace CodeJam.PerfTests
 					IgnoreExistingAnnotations = true
 				}));
 
-		public static readonly ICompetitionConfig HighAccuracy = new SelfTestConfig(Create(
+		public static readonly ICompetitionConfig HighAccuracy = new SelfTestConfig(
+			Create(
 				true,
 				new CompetitionFeatures
 				{
@@ -54,8 +55,7 @@ namespace CodeJam.PerfTests
 				new CompetitionFeatures
 				{
 					TargetPlatform = targetPlatform
-				}))
-		{ }
+				})) { }
 
 		/// <summary>Initializes a new instance of the <see cref="SelfTestConfig"/> class.</summary>
 		/// <param name="competitionConfig">The config to wrap.</param>

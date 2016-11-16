@@ -26,11 +26,11 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Name of the config section.</summary>
 		public const string SectionName = "CodeJam.PerfTests";
 
-		/// <summary>Reads <see cref="CompetitionFeatures" /> from assembly level options config section.</summary>
+		/// <summary>Reads <see cref="CompetitionFeatures"/> from assembly level options config section.</summary>
 		/// <param name="competitionFeatures">The competition features.</param>
 		/// <param name="targetAssembly">Assembly to check. If <c>null</c>, the result is <c>null</c></param>
 		/// <returns>
-		///   <see cref="CompetitionFeatures" /> section filled from first of app.config, <paramref name="targetAssembly" /> or CodeJam.PerfTests assembly.
+		///   <see cref="CompetitionFeatures"/> section filled from first of app.config, <paramref name="targetAssembly"/> or CodeJam.PerfTests assembly.
 		/// </returns>
 		public static CompetitionFeatures CreateCompetitionFeatures(
 			CompetitionFeatures competitionFeatures,
@@ -213,14 +213,15 @@ namespace CodeJam.PerfTests.Configs
 		#endregion
 
 		#region Factory methods
-		/// <summary>Creates mutable comnpetition config.</summary>
+		/// <summary>Creates mutable competition config.</summary>
 		/// <param name="jobId">The job identifier.</param>
 		/// <param name="targetAssembly">The target assembly.</param>
 		/// <param name="competitionFeatures">
 		/// The competition features.
 		/// if is <c>null</c> and the <paramref name="targetAssembly"/> set,
-		/// features are taken from appconfig.</param>
-		/// <returns>New mutable comnpetition config.</returns>
+		/// features are taken from appconfig.
+		/// </param>
+		/// <returns>New mutable competition config.</returns>
 		public static ManualCompetitionConfig Create(
 			string jobId, Assembly targetAssembly, CompetitionFeatures competitionFeatures)
 		{

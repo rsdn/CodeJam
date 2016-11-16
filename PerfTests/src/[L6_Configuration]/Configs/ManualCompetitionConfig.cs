@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using BenchmarkDotNet.Analysers;
@@ -19,6 +20,7 @@ namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Class to ease competition config creation</summary>
 	[PublicAPI]
+	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public sealed class ManualCompetitionConfig : ICompetitionConfig
 	{
 		#region Fields & .ctor
@@ -74,6 +76,7 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Competition options.</summary>
 		/// <value>Competition options.</value>
+		[NotNull]
 		public CompetitionOptions Options
 		{
 			get
@@ -82,6 +85,7 @@ namespace CodeJam.PerfTests.Configs
 			}
 			set
 			{
+				// DONTTOUCH: please DO NOT remove .Freeze() call.
 				_competitionOptions = value?.Freeze();
 			}
 		}
@@ -91,30 +95,41 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Adds the specified new columns.</summary>
 		/// <param name="newColumns">The new columns.</param>
 		public void Add(params IColumn[] newColumns) => ColumnProviders.AddRange(newColumns.Select(c => c.ToProvider()));
+
 		/// <summary>Adds the specified new column providers.</summary>
 		/// <param name="newColumnProviders">The new column providers.</param>
 		public void Add(params IColumnProvider[] newColumnProviders) => ColumnProviders.AddRange(newColumnProviders);
+
 		/// <summary>Adds the specified new exporters.</summary>
 		/// <param name="newExporters">The new exporters.</param>
 		public void Add(params IExporter[] newExporters) => Exporters.AddRange(newExporters);
+
 		/// <summary>Adds the specified new loggers.</summary>
 		/// <param name="newLoggers">The new loggers.</param>
 		public void Add(params ILogger[] newLoggers) => Loggers.AddRange(newLoggers);
+
 		/// <summary>Adds the specified new diagnosers.</summary>
 		/// <param name="newDiagnosers">The new diagnosers.</param>
 		public void Add(params IDiagnoser[] newDiagnosers) => Diagnosers.AddRange(newDiagnosers);
+
 		/// <summary>Adds the specified new analysers.</summary>
 		/// <param name="newAnalysers">The new analysers.</param>
 		public void Add(params IAnalyser[] newAnalysers) => Analysers.AddRange(newAnalysers);
+
 		/// <summary>Adds the specified new validators.</summary>
 		/// <param name="newValidators">The new validators.</param>
 		public void Add(params IValidator[] newValidators) => Validators.AddRange(newValidators);
+
 		/// <summary>Adds the specified new jobs.</summary>
 		/// <param name="newJobs">The new jobs.</param>
-		public void Add(params Job[] newJobs) => Jobs.AddRange(newJobs.Select(j => j.Freeze())); // DONTTOUCH: please DO NOT remove .Freeze() call.
-																								 /// <summary>Sets the specified provider.</summary>
-																								 /// <param name="provider">The provider.</param>
+		public void Add(params Job[] newJobs) =>
+			// DONTTOUCH: please DO NOT remove .Freeze() call.
+			Jobs.AddRange(newJobs.Select(j => j.Freeze()));
+
+		/// <summary>Sets the specified provider.</summary>
+		/// <param name="provider">The provider.</param>
 		public void Set(IOrderProvider provider) => OrderProvider = provider ?? OrderProvider;
+
 		/// <summary>Sets the specified competition options.</summary>
 		/// <param name="competitionOptions">Competition options.</param>
 		public void Set(CompetitionOptions competitionOptions) => Options = competitionOptions ?? Options;
@@ -164,12 +179,12 @@ namespace CodeJam.PerfTests.Configs
 				string id = null;
 				if (preserveId)
 				{
-					if (job.HasValue(JobMode.IdCharacteristic))
-						id = job.Id;
-					if (jobModifier.HasValue(JobMode.IdCharacteristic))
-						id += jobModifier.Id;
+					id = 
+						job.ResolveValue(JobMode.IdCharacteristic, (string)null) +
+						jobModifier.ResolveValue(JobMode.IdCharacteristic, (string)null);
 				}
 
+				// DONTTOUCH: please DO NOT remove .Freeze() call.
 				jobs[i] = new Job(id, job, jobModifier).Freeze();
 			}
 		}
@@ -178,27 +193,35 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Gets the column providers.</summary>
 		/// <returns>The column providers.</returns>
 		IEnumerable<IColumnProvider> IConfig.GetColumnProviders() => ColumnProviders;
+
 		/// <summary>Gets the exporters.</summary>
 		/// <returns>The exporters.</returns>
 		IEnumerable<IExporter> IConfig.GetExporters() => Exporters;
+
 		/// <summary>Gets the loggers.</summary>
 		/// <returns>The loggers.</returns>
 		IEnumerable<ILogger> IConfig.GetLoggers() => Loggers;
+
 		/// <summary>Gets the diagnosers.</summary>
 		/// <returns>The diagnosers.</returns>
 		IEnumerable<IDiagnoser> IConfig.GetDiagnosers() => Diagnosers;
+
 		/// <summary>Gets the analysers.</summary>
 		/// <returns>The analysers.</returns>
 		IEnumerable<IAnalyser> IConfig.GetAnalysers() => Analysers;
+
 		/// <summary>Gets the validators.</summary>
 		/// <returns>The validators.</returns>
 		IEnumerable<IValidator> IConfig.GetValidators() => Validators;
+
 		/// <summary>Gets the jobs.</summary>
 		/// <returns>The jobs.</returns>
 		IEnumerable<Job> IConfig.GetJobs() => Jobs;
+
 		/// <summary>Gets the order provider.</summary>
 		/// <returns>The order provider.</returns>
 		IOrderProvider IConfig.GetOrderProvider() => OrderProvider;
+
 		/// <summary>Gets the union rule.</summary>
 		/// <value>The union rule.</value>
 		ConfigUnionRule IConfig.UnionRule => ConfigUnionRule.Union;

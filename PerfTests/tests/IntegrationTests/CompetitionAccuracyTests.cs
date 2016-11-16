@@ -103,7 +103,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		}
 
 		[Test]
-		[Ignore("No outofproc support yet")]
+		[Ignore("No out-of-process support yet")]
 		public static void CompetitionHighAccuracyBenchmarkOutOfProcess()
 		{
 			IgnoreIfDebug();

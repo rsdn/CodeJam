@@ -1,4 +1,5 @@
 ﻿using System;
+
 using BenchmarkDotNet.Environments;
 
 using CodeJam.PerfTests.Exporters;
@@ -33,7 +34,9 @@ namespace CodeJam.PerfTests.Configs
 
 		#region Troubleshooting
 		/// <summary>Fails tests if there are any warnings.</summary>
-		/// <value><c>true</c> if <see cref="CompetitionRunMode.ReportWarningsAsErrors"/> should be set to true.</value>
+		/// <value>
+		/// <c>true</c> if <see cref="CompetitionRunMode.ReportWarningsAsErrors"/> should be set to true.
+		/// </value>
 		public bool ReportWarningsAsErrors { get; set; }
 
 		/// <summary>
@@ -50,7 +53,7 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Enables detailed logger.</summary>
 		/// <value><c>true</c> if detailed logger should be used.</value>
-		public bool DetailedLogger { get; set; } 
+		public bool DetailedLogger { get; set; }
 		#endregion
 	}
 }

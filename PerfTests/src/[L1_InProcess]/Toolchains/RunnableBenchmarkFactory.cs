@@ -2,8 +2,6 @@
 using System.Linq;
 using System.Reflection;
 
-using BenchmarkDotNet.Engines;
-using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Portability;
 using BenchmarkDotNet.Running;
 
@@ -146,10 +144,11 @@ namespace BenchmarkDotNet.Toolchains
 
 			// TODO: combine delegates if .net native
 			var target = callback.Method.IsStatic ? null : Constant(callback.Target);
-			return Lambda<Action>(Block(
-				Enumerable.Repeat(callback, unrollFactor)
-					.Select(c => Call(target, callback.Method))
-				)).Compile();
+			return Lambda<Action>(
+				Block(
+					Enumerable.Repeat(callback, unrollFactor)
+						.Select(c => Call(target, callback.Method))
+					)).Compile();
 		}
 
 		/// <summary>Unrolls the specified callback.</summary>
@@ -163,10 +162,11 @@ namespace BenchmarkDotNet.Toolchains
 				return callback;
 
 			// TODO: combine delegates if .net native
-			return Lambda<Func<TResult>>(Block(
-				Enumerable.Repeat(callback, unrollFactor)
-					.Select(c => Call(Constant(callback.Target), callback.Method))
-				)).Compile();
+			return Lambda<Func<TResult>>(
+				Block(
+					Enumerable.Repeat(callback, unrollFactor)
+						.Select(c => Call(Constant(callback.Target), callback.Method))
+					)).Compile();
 		}
 
 		/// <summary>Fills the properties of the instance of the object used to run the benchmark.</summary>

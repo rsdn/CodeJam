@@ -4,12 +4,13 @@ using System.ComponentModel;
 using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Jobs;
 
-using CodeJam.PerfTests.Running.Limits;
+using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Source annotation parameters class.</summary>
-	/// <seealso cref="BenchmarkDotNet.Jobs.JobMode{CompetitionLimitsMode}" />
+	/// <seealso cref="BenchmarkDotNet.Jobs.JobMode{CompetitionLimitsMode}"/>
+	[PublicAPI]
 	public sealed class SourceAnnotationsMode : JobMode<SourceAnnotationsMode>
 	{
 		/// <summary>Update source annotations characteristic.</summary>
@@ -24,7 +25,9 @@ namespace CodeJam.PerfTests.Configs
 		public static readonly Characteristic<int> AnnotateSourcesOnRunCharacteristic = Characteristic.Create(
 			(SourceAnnotationsMode m) => m.AnnotateSourcesOnRun);
 
-		/// <summary>Count of additional runs performed after updating source annotations feature. Default is 2.</summary>
+		/// <summary>
+		/// Count of additional runs performed after updating source annotations feature. Default is 2.
+		/// </summary>
 		public static readonly Characteristic<int> AdditionalRerunsIfAnnotationsUpdatedCharacteristic = Characteristic.Create(
 			(SourceAnnotationsMode m) => m.AdditionalRerunsIfAnnotationsUpdated,
 			2);

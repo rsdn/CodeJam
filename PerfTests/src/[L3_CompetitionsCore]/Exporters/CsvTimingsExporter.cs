@@ -26,9 +26,8 @@ namespace CodeJam.PerfTests.Exporters
 		private readonly string _separator;
 
 		/// <summary>Initializes a new instance of the <see cref="CsvTimingsExporter"/> class.</summary>
-		public CsvTimingsExporter():this(CsvSeparator.Semicolon)
-		{
-		}
+		public CsvTimingsExporter() : this(CsvSeparator.Semicolon) { }
+
 		/// <summary>Initializes a new instance of the <see cref="CsvTimingsExporter"/> class.</summary>
 		/// <param name="separator">The separator.</param>
 		public CsvTimingsExporter(CsvSeparator separator)
@@ -80,7 +79,7 @@ namespace CodeJam.PerfTests.Exporters
 					measurement.m.IterationIndex.ToString(c),
 					measurement.m.GetAverageNanoseconds().ToString(c)
 				};
-			
+
 			var headers = new[]
 			{
 				"RunNumber",

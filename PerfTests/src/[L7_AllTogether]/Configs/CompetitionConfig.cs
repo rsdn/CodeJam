@@ -7,7 +7,7 @@ namespace CodeJam.PerfTests.Configs
 	/// <summary>
 	/// Competition config implementation
 	/// </summary>
-	/// <seealso cref="CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig" />
+	/// <seealso cref="CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig"/>
 	public sealed class CompetitionConfig : ReadOnlyCompetitionConfig
 	{
 		#region Static members
@@ -67,11 +67,9 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Initializes a new instance of the <see cref="CompetitionConfig"/> class.</summary>
 		/// <param name="competitionConfig">The config to wrap.</param>
 		private CompetitionConfig(ICompetitionConfig competitionConfig) :
-			base(competitionConfig)
-		{ }
+			base(competitionConfig) { }
 
 		private static ICompetitionConfig Create(Assembly targetAssembly, CompetitionFeatures competitionFeatures) =>
 			CompetitionConfigFactory.Create(nameof(CompetitionConfig), targetAssembly, competitionFeatures);
-
 	}
 }

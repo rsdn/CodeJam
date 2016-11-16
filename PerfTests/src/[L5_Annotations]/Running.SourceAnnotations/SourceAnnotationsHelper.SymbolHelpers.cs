@@ -13,25 +13,22 @@ using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
-using Microsoft.DiaSymReader;
-
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
+	[SuppressMessage("ReSharper", "InvocationIsSkipped")]
 	internal static partial class SourceAnnotationsHelper
 	{
 		/// <summary>
 		/// BASEDON:
 		///  http://sorin.serbans.net/blog/2010/08/how-to-read-pdb-files/257/
 		///  http://stackoverflow.com/questions/13911069/how-to-get-global-variables-definition-from-symbols-tables
-		///  http://referencesource.microsoft.com/#System.Management/Instrumentation/MetaDataInfo.cs,45
-		///  https://github.com/dotnet/roslyn/blob/master/src/Test/PdbUtilities/Shared/SymUnmanagedReaderExtensions.cs#L483
 		///  http://stackoverflow.com/questions/36649271/check-that-pdb-file-matches-to-the-source
 		/// </summary>
 		[SuppressMessage("ReSharper", "SuspiciousTypeConversion.Global")]
-		private static class SymbolHelpers
+		[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
+		private static partial class SymbolHelpers
 		{
-			// BASEDON: http://stackoverflow.com/questions/36649271/check-that-pdb-file-matches-to-the-source
 			public static bool TryGetSourceInfo(
 				MethodBase method,
 				CompetitionState competitionState,
@@ -49,6 +46,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 					if (TryGetDocsAndLines(methodSymbols, competitionState, out documents, out startLines))
 					{
+						// TODO: collect count of method lines and check for partial methods?
+						DebugCode.BugIf(
+							documents.Length > 1,
+							"Temp assertion: current approach with sort is very naive. Use something better?");
 						Array.Sort(startLines, documents);
 						var doc = new SymDocument(documents[0]);
 
@@ -86,11 +87,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 					ISymUnmanagedReader reader;
 					var hr = binder.GetReaderForFile(import, assemblyPath, codeBaseDirectory, out reader);
-					ThrowExceptionForHR(hr);
+					InteropUtilities.ThrowExceptionForHR(hr);
 
 					ISymUnmanagedMethod methodSymbols;
 					hr = reader.GetMethod(method.MetadataToken, out methodSymbols);
-					ThrowExceptionForHR(hr);
+					InteropUtilities.ThrowExceptionForHR(hr);
 					return methodSymbols;
 				}
 				catch (COMException ex)
@@ -110,40 +111,22 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				out ISymUnmanagedDocument[] documents,
 				out int[] startLines)
 			{
-				documents = Array<ISymUnmanagedDocument>.Empty;
-				startLines = Array<int>.Empty;
 				try
 				{
-					int numAvailable;
-					var hr = methodSymbols.GetSequencePointCount(out numAvailable);
-					ThrowExceptionForHR(hr);
+					documents = InteropUtilities.GetDocumentsForMethod(methodSymbols);
+					startLines = new int[documents.Length];
 
-					documents = new ISymUnmanagedDocument[numAvailable];
-					startLines = new int[numAvailable];
-
-					if (numAvailable > 0)
+					for (int i = 0; i < startLines.Length; i++)
 					{
-						var offsets = new int[numAvailable];
-						var startColumns = new int[numAvailable];
-						var endLines = new int[numAvailable];
-						var endColumns = new int[numAvailable];
-
-						int numRead;
-						hr = methodSymbols.GetSequencePoints(
-							numAvailable, out numRead,
-							offsets, documents,
-							startLines, startColumns,
-							endLines, endColumns);
-						ThrowExceptionForHR(hr);
-
-						if (numRead != numAvailable)
-						{
-							throw new COMException($"Read only {numRead} of {numAvailable} sequence points.");
-						}
+						int stub;
+						InteropUtilities.GetSourceExtentInDocument(methodSymbols, documents[i], out startLines[i], out stub);
 					}
 				}
 				catch (COMException ex)
 				{
+					documents = null;
+					startLines = null;
+
 					// ReSharper disable once PossibleNullReferenceException
 					competitionState.WriteExceptionMessage(
 						MessageSource.Analyser, MessageSeverity.ExecutionError,
@@ -155,7 +138,40 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				return startLines.Length > 0;
 			}
 
-			#region Validate checksum
+			#region Doc & validate checksum
+			private class SymDocument
+			{
+				// ReSharper disable once CommentTypo
+				// guids are from corsym.h
+				// ReSharper disable InconsistentNaming
+				private static readonly Guid CorSym_SourceHash_MD5 = new Guid("406ea660-64cf-4c82-b6f0-42d48172a799");
+				private static readonly Guid CorSym_SourceHash_SHA1 = new Guid("ff1816ec-aa5e-4d10-87f7-6f4963833460");
+				// ReSharper restore InconsistentNaming
+
+				public SymDocument(ISymUnmanagedDocument doc)
+				{
+					if (doc == null)
+						throw new ArgumentNullException(nameof(doc));
+
+					Url = InteropUtilities.GetName(doc);
+					Checksum = InteropUtilities.GetChecksum(doc);
+					ChecksumAlgorithmId = InteropUtilities.GetHashAlgorithm(doc);
+					if (ChecksumAlgorithmId == CorSym_SourceHash_MD5)
+					{
+						ChecksumAlgorithm = ChecksumAlgorithmKind.Md5;
+					}
+					else if (ChecksumAlgorithmId == CorSym_SourceHash_SHA1)
+					{
+						ChecksumAlgorithm = ChecksumAlgorithmKind.Sha1;
+					}
+				}
+
+				public string Url { get; }
+				public byte[] Checksum { get; }
+				private Guid ChecksumAlgorithmId { get; }
+				public ChecksumAlgorithmKind ChecksumAlgorithm { get; }
+			}
+
 			private enum ChecksumAlgorithmKind
 			{
 				[UsedImplicitly]
@@ -225,150 +241,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					return h.ComputeHash(f);
 				}
 			}
-			#endregion
-
-			#region COM interop
-			// ReSharper disable IdentifierTypo
-			// ReSharper disable CommentTypo
-			// ReSharper disable InconsistentNaming
-			private const int E_FAIL = unchecked((int)0x80004005);
-			private const int E_NOTIMPL = unchecked((int)0x80004001);
-			private static readonly IntPtr _ignoreIErrorInfo = new IntPtr(-1);
-
-			// BASEDON https://github.com/dotnet/roslyn/blob/master/src/Test/PdbUtilities/Shared/SymUnmanagedReaderExtensions.cs#L483
-			private static void ThrowExceptionForHR(int hr)
-			{
-				// E_FAIL indicates "no info".
-				// E_NOTIMPL indicates a lack of ISymUnmanagedReader support (in a particular implementation).
-				if (hr < 0 && hr != E_FAIL && hr != E_NOTIMPL)
-				{
-					Marshal.ThrowExceptionForHR(hr, _ignoreIErrorInfo);
-				}
-			}
-
-			private class SymDocument
-			{
-				// guids are from corsym.h
-				private static readonly Guid CorSym_SourceHash_MD5 = new Guid("406ea660-64cf-4c82-b6f0-42d48172a799");
-				private static readonly Guid CorSym_SourceHash_SHA1 = new Guid("ff1816ec-aa5e-4d10-87f7-6f4963833460");
-
-				public SymDocument(ISymUnmanagedDocument doc)
-				{
-					if (doc == null)
-						throw new ArgumentNullException(nameof(doc));
-
-					int len;
-					var hr = doc.GetUrl(0, out len, null);
-					ThrowExceptionForHR(hr);
-					if (len > 0)
-					{
-						var urlChars = new char[len];
-						hr = doc.GetUrl(len, out len, urlChars);
-						ThrowExceptionForHR(hr);
-						Url = new string(urlChars, 0, len - 1);
-					}
-
-					hr = doc.GetChecksum(0, out len, null);
-					ThrowExceptionForHR(hr);
-
-					if (len > 0)
-					{
-						Checksum = new byte[len];
-						hr = doc.GetChecksum(len, out len, Checksum);
-						ThrowExceptionForHR(hr);
-					}
-
-					var id = Guid.Empty;
-					hr = doc.GetChecksumAlgorithmId(ref id);
-					ThrowExceptionForHR(hr);
-
-					ChecksumAlgorithmId = id;
-					if (id == CorSym_SourceHash_MD5)
-					{
-						ChecksumAlgorithm = ChecksumAlgorithmKind.Md5;
-					}
-					else if (id == CorSym_SourceHash_SHA1)
-					{
-						ChecksumAlgorithm = ChecksumAlgorithmKind.Sha1;
-					}
-				}
-
-				public string Url { get; }
-				public byte[] Checksum { get; }
-				[UsedImplicitly]
-				private Guid ChecksumAlgorithmId { get; }
-				public ChecksumAlgorithmKind ChecksumAlgorithm { get; }
-			}
-
-			/// <summary>
-			/// CoClass for getting an ISymUnmanagedBinder
-			/// </summary>
-			[ComImport, Guid("0A29FF9E-7F9C-4437-8B11-F424491E3931")]
-			internal class CorSymBinder { }
-
-			/// <summary>
-			/// CoClass for getting an IMetaDataDispenser
-			/// </summary>
-			[ComImport]
-			[Guid("E5CB7A31-7512-11d2-89CE-0080C792E5D8")]
-			[TypeLibType(TypeLibTypeFlags.FCanCreate)]
-			[ClassInterface(ClassInterfaceType.None)]
-			private class CorMetaDataDispenser { }
-
-			[ComImport]
-			[Guid("7DAC8207-D3AE-4c75-9B67-92801A497D44")]
-			[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-			[TypeLibType(TypeLibTypeFlags.FRestricted)]
-			private interface IMetaDataImportStub
-			{
-				// ...
-			}
-
-			/// <summary>
-			/// This version of the IMetaDataDispenser interface defines
-			/// the interfaces so that the last parameter from cor.h
-			/// is the return value of the methods.  The 'raw' way to
-			/// implement these methods is as follows:
-			///    void OpenScope(
-			///        [In][MarshalAs(UnmanagedType.LPWStr)]  string   szScope,
-			///        [In] UInt32 dwOpenFlags,
-			///        [In] ref Guid riid,
-			///        [Out] out IntPtr ppIUnk);
-			/// The way to call this other version is as follows
-			///    IntPtr unk;
-			///    dispenser.OpenScope(assemblyName, 0, ref guidIMetaDataImport, out unk);
-			///    importInterface = (IMetaDataImport)Marshal.GetObjectForIUnknown(unk);
-			///    Marshal.Release(unk);
-			/// </summary>
-			[ComImport]
-			[Guid("809C652E-7396-11D2-9771-00A0C9B4D50C")]
-			[InterfaceType(ComInterfaceType.InterfaceIsIUnknown /*0x0001*/)]
-			[TypeLibType(TypeLibTypeFlags.FRestricted /*0x0200*/)]
-			private interface IMetaDataDispenser
-			{
-				[return: MarshalAs(UnmanagedType.Interface)]
-				object DefineScope(
-					[In] ref Guid rclsid,
-					[In] uint dwCreateFlags,
-					[In] ref Guid riid);
-
-				[return: MarshalAs(UnmanagedType.Interface)]
-				object OpenScope(
-					[In] [MarshalAs(UnmanagedType.LPWStr)] string szScope,
-					[In] uint dwOpenFlags,
-					[In] ref Guid riid);
-
-				[return: MarshalAs(UnmanagedType.Interface)]
-				object OpenScopeOnMemory(
-					[In] IntPtr pData,
-					[In] uint cbData,
-					[In] uint dwOpenFlags,
-					[In] ref Guid riid);
-			}
-
-			// ReSharper restore InconsistentNaming
-			// ReSharper restore CommentTypo
-			// ReSharper restore IdentifierTypo
 			#endregion
 		}
 	}

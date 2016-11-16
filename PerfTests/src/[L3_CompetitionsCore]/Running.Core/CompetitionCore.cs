@@ -49,7 +49,6 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <returns><c>true</c> if the severity is warning or higher.</returns>
 		public static bool IsWarningOrHigher(this MessageSeverity severity) => severity >= MessageSeverity.Warning;
 
-
 		/// <summary>Returns appropriate conclusion kind.</summary>
 		/// <param name="severity">The severity.</param>
 		/// <returns>Conclusion kind for severity.</returns>
@@ -200,7 +199,9 @@ namespace CodeJam.PerfTests.Running.Core
 					try
 					{
 						var runOptions = competitionState.Options.RunOptions;
-						var timeout = runOptions.Concurrent == ConcurrentRunBehavior.Lock ? CompetitionRunMode.TotalRunTimeout : TimeSpan.Zero;
+						var timeout = runOptions.Concurrent == ConcurrentRunBehavior.Lock
+							? CompetitionRunMode.TotalRunTimeout
+							: TimeSpan.Zero;
 						lockTaken = mutex.WaitOne(timeout);
 						if (CheckPreconditions(benchmarkType, lockTaken, competitionState))
 						{

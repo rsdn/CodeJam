@@ -3,10 +3,13 @@
 using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Jobs;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Competition options class.</summary>
-	/// <seealso cref="BenchmarkDotNet.Jobs.JobMode{CompetitionOptions}" />
+	/// <seealso cref="BenchmarkDotNet.Jobs.JobMode{CompetitionOptions}"/>
+	[PublicAPI]
 	public sealed class CompetitionOptions : JobMode<CompetitionOptions>
 	{
 		/// <summary>Competition run parameters characteristic.</summary>
@@ -22,8 +25,7 @@ namespace CodeJam.PerfTests.Configs
 			(CompetitionOptions o) => o.SourceAnnotations);
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionOptions"/> class.</summary>
-		public CompetitionOptions() : this((string)null)
-		{ }
+		public CompetitionOptions() : this((string)null) { }
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionOptions"/> class.</summary>
 		/// <param name="id">The identifier.</param>
@@ -36,16 +38,12 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionOptions"/> class.</summary>
 		/// <param name="other">Mode to apply.</param>
-		public CompetitionOptions(JobMode other) : this((string)null, other)
-		{
-		}
+		public CompetitionOptions(JobMode other) : this((string)null, other) { }
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionOptions"/> class.</summary>
 		/// <param name="others">Modes to apply.</param>
 		// ReSharper disable once RedundantCast
-		public CompetitionOptions(params JobMode[] others) : this((string)null, others)
-		{
-		}
+		public CompetitionOptions(params JobMode[] others) : this((string)null, others) { }
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionOptions"/> class.</summary>
 		/// <param name="id">The identifier.</param>

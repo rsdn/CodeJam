@@ -15,7 +15,7 @@ namespace BenchmarkDotNet.Toolchains
 		// TODO: API that can be used with out-of-process benchmarks.
 		// Use Job + Parameters + Target instead of benchmark?
 		// TODO: Init() with string[] args?
-		/// <summary>Initializes the specified benchmark before <see cref="IRunnableBenchmark.Run" /> call.</summary>
+		/// <summary>Initializes the specified benchmark before <see cref="IRunnableBenchmark.Run"/> call.</summary>
 		/// <param name="benchmarkToRun">The benchmark that will be run.</param>
 		/// <param name="engineFactoryType">Type of the engine factory.</param>
 		/// <param name="output">The writer to redirect the output.</param>

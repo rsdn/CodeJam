@@ -500,7 +500,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			var baselineText = isBaseline ? XmlConvert.ToString(true) : null;
 			var minText = (isBaseline || competitionTarget.IgnoreMinRatio) ? null : competitionTarget.MinRatioText;
 			// MaxText should be specified even if ignored.
-			var maxText = isBaseline ? null: competitionTarget.MaxRatioText;
+			var maxText = isBaseline ? null : competitionTarget.MaxRatioText;
 
 			// Informational only, ignored on parse
 			candidate.SetAttribute(nameof(CompetitionTarget.Baseline), baselineText);

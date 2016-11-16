@@ -5,10 +5,13 @@ using BenchmarkDotNet.Jobs;
 
 using CodeJam.PerfTests.Running.Limits;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Competition limit parameters class.</summary>
-	/// <seealso cref="BenchmarkDotNet.Jobs.JobMode{CompetitionLimitsMode}" />
+	/// <seealso cref="BenchmarkDotNet.Jobs.JobMode{CompetitionLimitsMode}"/>
+	[PublicAPI]
 	public sealed class CompetitionLimitsMode : JobMode<CompetitionLimitsMode>
 	{
 		/// <summary>Ignore existing limit annotations characteristic.</summary>
@@ -55,7 +58,9 @@ namespace CodeJam.PerfTests.Configs
 		}
 
 		/// <summary>Log competition limits annotations.</summary>
-		/// <value><c>true</c> if result competition limit annotations should be logged; otherwise, <c>false</c>.</value>
+		/// <value>
+		/// <c>true</c> if result competition limit annotations should be logged; otherwise, <c>false</c>.
+		/// </value>
 		public bool LogAnnotations
 		{
 			get

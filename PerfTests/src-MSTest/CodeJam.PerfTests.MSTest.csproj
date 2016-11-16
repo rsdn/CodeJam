@@ -67,6 +67,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="..\..\Jetbrains.Annotations.cs">
+      <Link>Properties\Jetbrains.Annotations.cs</Link>
+    </Compile>
     <Compile Include="Competition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Running.Core\MSTestCompetitionRunner.cs" />

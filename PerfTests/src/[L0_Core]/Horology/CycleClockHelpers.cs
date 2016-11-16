@@ -1,8 +1,9 @@
 ﻿// BASEDON:https://github.com/Azure/DotNetty/blob/dev/test/DotNetty.Microbench/Utilities/CycleTime.cs
+
 using System;
-using System.Linq;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 
@@ -11,6 +12,7 @@ using JetBrains.Annotations;
 using Microsoft.Win32.SafeHandles;
 
 // ReSharper disable once CheckNamespace
+
 namespace BenchmarkDotNet.Horology
 {
 	/// <summary>Helper method for CPU cycle timers.</summary>
@@ -38,6 +40,7 @@ namespace BenchmarkDotNet.Horology
 
 		/// <summary>The current process handle</summary>
 		public static readonly SafeProcessHandle CurrentProcessHandle = Process.GetCurrentProcess().SafeHandle;
+
 		/// <summary>The current thread handle</summary>
 		public static readonly IntPtr CurrentThreadHandle = new IntPtr(-2);
 

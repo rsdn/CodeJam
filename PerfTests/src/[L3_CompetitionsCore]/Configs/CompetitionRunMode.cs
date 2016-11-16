@@ -3,10 +3,13 @@
 using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Jobs;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Competition run parameters class.</summary>
-	/// <seealso cref="BenchmarkDotNet.Jobs.JobMode{CompetitionRunMode}" />
+	/// <seealso cref="BenchmarkDotNet.Jobs.JobMode{CompetitionRunMode}"/>
+	[PublicAPI]
 	public sealed class CompetitionRunMode : JobMode<CompetitionRunMode>
 	{
 		/// <summary>The maximum run limit.</summary>
@@ -104,6 +107,5 @@ namespace CodeJam.PerfTests.Configs
 				ReportWarningsAsErrorsCharacteristic[this] = value;
 			}
 		}
-
 	}
 }

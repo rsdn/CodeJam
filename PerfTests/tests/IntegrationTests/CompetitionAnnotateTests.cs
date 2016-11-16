@@ -6,8 +6,6 @@ using CodeJam.PerfTests.Running.Messages;
 
 using NUnit.Framework;
 
-using static CodeJam.PerfTests.SelfTestHelpers;
-
 namespace CodeJam.PerfTests.IntegrationTests
 {
 	[TestFixture(Category = "BenchmarkDotNet")]

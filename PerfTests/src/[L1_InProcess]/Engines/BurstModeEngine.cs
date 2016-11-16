@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Environments;
@@ -18,7 +19,9 @@ namespace BenchmarkDotNet.Engines
 	/// Burst mode measurements engine (a lot of runs, measure each).
 	/// Recommended for use if call time >> than timer resolution (recommended minimum is 1500 ns).
 	/// </summary>
-	/// <seealso cref="BenchmarkDotNet.Engines.IEngine" />
+	/// <seealso cref="BenchmarkDotNet.Engines.IEngine"/>
+	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
+	[SuppressMessage("ReSharper", "InvocationIsSkipped")]
 	internal sealed class BurstModeEngine : IEngine
 	{
 		private readonly EngineParameters _engineParameters;
@@ -72,7 +75,6 @@ namespace BenchmarkDotNet.Engines
 		private int TargetCount { get; }
 		private long ResultIterationsCount { get; }
 
-
 		private List<Measurement> IdleWarmupList { get; }
 		private List<Measurement> WarmupList { get; }
 		private List<Measurement> IdleTargetList { get; }
@@ -86,7 +88,11 @@ namespace BenchmarkDotNet.Engines
 		/// <exception cref="Exception">just use this things here to provoke static ctor</exception>
 		public void PreAllocate()
 		{
-			var list = new List<Measurement> { new Measurement(), new Measurement() };
+			var list = new List<Measurement>
+			{
+				new Measurement(),
+				new Measurement()
+			};
 			list.Sort(); // provoke JIT, static ctors etc (was allocating 1740 bytes with first call)
 
 			// ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -141,7 +147,7 @@ namespace BenchmarkDotNet.Engines
 			RunCore(IterationMode.MainTarget, TargetCount, TargetList);
 
 			var results = new RunResults(
-				IdleTargetList.IsNullOrEmpty() ? null : IdleTargetList, 
+				IdleTargetList.IsNullOrEmpty() ? null : IdleTargetList,
 				TargetList,
 				RemoveOutliers);
 
@@ -279,8 +285,8 @@ namespace BenchmarkDotNet.Engines
 				CleanupAction?.Invoke();
 		}
 
-		/// <summary>Returns a <see cref="String" /> that represents this instance.</summary>
-		/// <returns>A <see cref="String" /> that represents this instance.</returns>
+		/// <summary>Returns a <see cref="String"/> that represents this instance.</summary>
+		/// <returns>A <see cref="String"/> that represents this instance.</returns>
 		public override string ToString() => GetType().Name;
 	}
 }

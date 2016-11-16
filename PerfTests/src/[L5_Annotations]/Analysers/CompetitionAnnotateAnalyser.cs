@@ -10,6 +10,7 @@ using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
 using CodeJam.Collections;
+using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.PerfTests.Running.SourceAnnotations;
@@ -20,9 +21,8 @@ namespace CodeJam.PerfTests.Analysers
 {
 	/// <summary>Competition analyser that updates source annotations if competition limit checking failed.</summary>
 	/// <seealso cref="CompetitionAnalyser"/>
-	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
-	[SuppressMessage("ReSharper", "ConvertClosureToMethodGroup")]
+	[SuppressMessage("ReSharper", "MemberCanBeMadeStatic.Local")]
 	internal class CompetitionAnnotateAnalyser : CompetitionAnalyser
 	{
 		#region Cached XML annotations from log
@@ -40,7 +40,7 @@ namespace CodeJam.PerfTests.Analysers
 
 		#region Parsing competition target info
 		/// <summary>
-		/// Refills the competition targets collection and fills competition limits from the <see cref="PreviousRunLogUri"/>.
+		/// Refills the competition targets collection and fills competition limits from the <see cref="SourceAnnotationsMode.PreviousRunLogUri"/>.
 		/// </summary>
 		/// <param name="competitionTargets">The collection to be filled with competition targets.</param>
 		/// <param name="summary">Summary for the run.</param>
@@ -128,6 +128,15 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		#region Checking competition limits
+		private static bool SkipAnnotation(bool checkPassed, CompetitionState competitionState)
+		{
+			var annotationsMode = competitionState.Options.SourceAnnotations;
+
+			return checkPassed ||
+				!annotationsMode.UpdateSources ||
+				competitionState.RunNumber < annotationsMode.AnnotateSourcesOnRun;
+		}
+
 		/// <summary>Check competition target limits.</summary>
 		/// <param name="competitionTarget">The competition target.</param>
 		/// <param name="benchmarksForTarget">Benchmarks for the target.</param>
@@ -142,14 +151,15 @@ namespace CodeJam.PerfTests.Analysers
 			CompetitionState competitionState,
 			List<Conclusion> conclusions)
 		{
-			var annotationsMode = competitionState.Options.SourceAnnotations;
 			var checkPassed = base.CheckCompetitionTargetLimits(
 				competitionTarget, benchmarksForTarget,
 				summary, competitionState,
 				conclusions);
 
-			if (checkPassed || !annotationsMode.UpdateSources || competitionState.RunNumber < annotationsMode.AnnotateSourcesOnRun)
+			if (SkipAnnotation(checkPassed, competitionState))
+			{
 				return checkPassed;
+			}
 
 			foreach (var benchmark in benchmarksForTarget)
 			{
@@ -179,9 +189,8 @@ namespace CodeJam.PerfTests.Analysers
 			var annotationsMode = competitionState.Options.SourceAnnotations;
 			AnnotateTargets(summary, competitionState);
 
-			if (checkPassed || !annotationsMode.UpdateSources
-				|| competitionState.RunNumber < annotationsMode.AnnotateSourcesOnRun
-				|| annotationsMode.AdditionalRerunsIfAnnotationsUpdated <= 0)
+			if (SkipAnnotation(checkPassed, competitionState) ||
+				annotationsMode.AdditionalRerunsIfAnnotationsUpdated <= 0)
 			{
 				base.OnLimitsCheckCompleted(summary, competitionState, checkPassed);
 			}

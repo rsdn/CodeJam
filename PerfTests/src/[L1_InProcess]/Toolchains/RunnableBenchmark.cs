@@ -43,7 +43,7 @@ namespace BenchmarkDotNet.Toolchains
 		private Job _job;
 		private TextWriter _output;
 
-		/// <summary>Initializes the specified benchmark before <see cref="IRunnableBenchmark.Run" /> call.</summary>
+		/// <summary>Initializes the specified benchmark before <see cref="IRunnableBenchmark.Run"/> call.</summary>
 		/// <param name="benchmarkToRun">The benchmark that will be run.</param>
 		/// <param name="engineFactoryType">Type of the engine factory.</param>
 		/// <param name="output">The writer to redirect the output.</param>
@@ -182,7 +182,7 @@ namespace BenchmarkDotNet.Toolchains
 		private Job _job;
 		private TextWriter _output;
 
-		/// <summary>Initializes the specified benchmark before <see cref="IRunnableBenchmark.Run" /> call.</summary>
+		/// <summary>Initializes the specified benchmark before <see cref="IRunnableBenchmark.Run"/> call.</summary>
 		/// <param name="benchmarkToRun">The benchmark that will be run.</param>
 		/// <param name="engineFactoryType">Type of the engine factory.</param>
 		/// <param name="output">The writer to redirect the output.</param>

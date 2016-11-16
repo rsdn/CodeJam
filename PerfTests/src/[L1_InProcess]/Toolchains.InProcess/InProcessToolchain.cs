@@ -26,9 +26,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 
 		/// <summary>Initializes a new instance of the <see cref="InProcessToolchain"/> class.</summary>
 		/// <param name="logOutput"><c>true</c> if the output should be logged.</param>
-		private InProcessToolchain(bool logOutput):this(TimeSpan.FromMinutes(5), logOutput)
-		{
-		}
+		private InProcessToolchain(bool logOutput) : this(TimeSpan.FromMinutes(5), logOutput) { }
 
 		/// <summary>Initializes a new instance of the <see cref="InProcessToolchain"/> class.</summary>
 		/// <param name="timeout">Timeout for the run.</param>
@@ -64,8 +62,8 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 		public IExecutor Executor { get; }
 
 		#region Overrides of Object
-		/// <summary>Returns a <see cref="String" /> that represents this instance.</summary>
-		/// <returns>A <see cref="String" /> that represents this instance.</returns>
+		/// <summary>Returns a <see cref="String"/> that represents this instance.</summary>
+		/// <returns>A <see cref="String"/> that represents this instance.</returns>
 		public override string ToString() => GetType().Name;
 		#endregion
 	}

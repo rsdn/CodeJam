@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
@@ -45,7 +44,7 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 			return base.GetOutputDirectory(targetAssembly);
 		}
-		
+
 		/// <summary>Gets a value indicating whether the last run summary should be dumped into host logger.</summary>
 		/// <value>
 		/// <c>true</c> if the last run summary should be dumped into host logger; otherwise, <c>false</c>.

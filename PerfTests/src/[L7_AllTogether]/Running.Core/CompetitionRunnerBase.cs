@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
+using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Environments;
@@ -310,16 +311,16 @@ namespace CodeJam.PerfTests.Running.Core
 
 		private void PrepareCompetitionConfig(ManualCompetitionConfig competitionConfig)
 		{
-			if (competitionConfig.Options == null)
-			{
-				competitionConfig.Options = CompetitionConfig.Default.Options;
-			}
 			if (HostEnvironmentInfo.GetCurrent().HasAttachedDebugger)
 			{
-				competitionConfig.ApplyCompetitionOptions(new CompetitionOptions
-				{
-					RunOptions = { AllowDebugBuilds = true }
-				});
+				competitionConfig.ApplyCompetitionOptions(
+					new CompetitionOptions
+					{
+						RunOptions =
+						{
+							AllowDebugBuilds = true
+						}
+					});
 			}
 			var jobs = competitionConfig.Jobs;
 			if (jobs.Count == 0)
@@ -343,9 +344,13 @@ namespace CodeJam.PerfTests.Running.Core
 			var jobs = competitionConfig.Jobs;
 			for (int i = 0; i < jobs.Count; i++)
 			{
-				if (jobs[i].Infrastructure.Job == null)
+				var job = jobs[i];
+				if (job.Infrastructure.Toolchain == null)
 				{
-					jobs[i] = jobs[i].With(InProcessToolchain.Instance);
+					var id = job.ResolveValue(JobMode.IdCharacteristic, (string)null);
+					jobs[i] = job
+						.With(InProcessToolchain.Instance)
+						.WithId(id);
 				}
 			}
 		}
@@ -372,7 +377,7 @@ namespace CodeJam.PerfTests.Running.Core
 			bool debugMode = competitionOptions.RunOptions.AllowDebugBuilds;
 
 			var validators = competitionConfig.Validators;
-			bool customToolchain = competitionConfig.Jobs.Any(j => !(j.Infrastructure?.Toolchain is InProcessToolchain));
+			bool customToolchain = competitionConfig.Jobs.Any(j => !(j.Infrastructure.Toolchain is InProcessToolchain));
 			if (!customToolchain &&
 				!validators.Any(v => v is InProcessValidator))
 			{
@@ -414,10 +419,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Customize competition config.</summary>
 		/// <param name="competitionConfig">The competition configuration.</param>
-		protected virtual void InitCompetitionConfigOverride(ManualCompetitionConfig competitionConfig)
-		{
-		}
-
+		protected virtual void InitCompetitionConfigOverride(ManualCompetitionConfig competitionConfig) { }
 		#endregion
 
 		#region Messages
@@ -501,10 +503,11 @@ namespace CodeJam.PerfTests.Running.Core
 			Func<IMessage, bool> severityFilter,
 			bool fromAllRuns)
 		{
-			var result = from message in competitionState.GetMessages()
-						 where severityFilter(message) && ShouldReport(message, competitionState.RunNumber, fromAllRuns)
-						 orderby message.RunNumber, message.RunMessageNumber
-						 select $"    * Run #{message.RunNumber}: {message.MessageText}";
+			var result =
+				from message in competitionState.GetMessages()
+				where severityFilter(message) && ShouldReport(message, competitionState.RunNumber, fromAllRuns)
+				orderby message.RunNumber, message.RunMessageNumber
+				select $"    * Run #{message.RunNumber}: {message.MessageText}";
 
 			return result.ToArray();
 		}

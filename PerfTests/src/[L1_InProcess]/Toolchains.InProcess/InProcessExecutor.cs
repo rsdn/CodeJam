@@ -66,7 +66,9 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 				throw new NotSupportedException("Inline toolchain does not support diagnosers for now.");
 
 			var runnableBenchmark = RunnableBenchmarkFactory.Create(benchmark);
-			var factory = benchmark.Job.ResolveValue(InfrastructureMode.EngineFactoryCharacteristic, InfrastructureResolver.Instance);
+			var factory = benchmark.Job.ResolveValue(
+				InfrastructureMode.EngineFactoryCharacteristic,
+				InfrastructureResolver.Instance);
 			var factoryType = factory.GetType();
 
 			var outputStream = new MemoryStream(80 * 1000);

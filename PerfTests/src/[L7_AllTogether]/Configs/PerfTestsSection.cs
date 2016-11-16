@@ -86,7 +86,9 @@ namespace CodeJam.PerfTests.Configs
 
 		#region Troubleshooting
 		/// <summary>Fails tests if there are any warnings.</summary>
-		/// <value><c>true</c> if <see cref="CompetitionRunMode.ReportWarningsAsErrors"/> should be set to true.</value>
+		/// <value>
+		/// <c>true</c> if <see cref="CompetitionRunMode.ReportWarningsAsErrors"/> should be set to true.
+		/// </value>
 		[ConfigurationProperty(nameof(ReportWarningsAsErrors), IsRequired = false)]
 		public bool ReportWarningsAsErrors
 		{

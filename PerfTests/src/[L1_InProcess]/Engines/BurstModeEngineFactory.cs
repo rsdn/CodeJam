@@ -1,4 +1,5 @@
 ﻿using System;
+
 using BenchmarkDotNet.Jobs;
 
 // ReSharper disable once CheckNamespace
@@ -9,7 +10,7 @@ namespace BenchmarkDotNet.Engines
 	/// Factory for burst mode measurements engine (a lot of runs, measure each).
 	/// Recommended for use if call time >> than timer resolution (recommended minimum is 1500 ns).
 	/// </summary>
-	/// <seealso cref="IEngineFactory" />
+	/// <seealso cref="IEngineFactory"/>
 	public class BurstModeEngineFactory : IEngineFactory
 	{
 		/// <summary>The default instance of <see cref="BurstModeEngineFactory"/></summary>
@@ -31,7 +32,7 @@ namespace BenchmarkDotNet.Engines
 				throw new ArgumentException("Diagnosers are not supported yet.", nameof(engineParameters.IsDiagnoserAttached));
 
 			var targetJob = engineParameters.TargetJob;
-			if (!targetJob.HasValue(RunMode.InvocationCountCharacteristic) || 
+			if (!targetJob.HasValue(RunMode.InvocationCountCharacteristic) ||
 				!targetJob.HasValue(RunMode.WarmupCountCharacteristic) ||
 				!targetJob.HasValue(RunMode.TargetCountCharacteristic))
 				throw new ArgumentException(

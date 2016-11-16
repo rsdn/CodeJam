@@ -12,7 +12,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Columns
 {
-	// TODO: column with source limits?
+	// TODO: column with limits from source annotations?
 	/// <summary>Displays metric (upper or lower boundary) for the benchmark to baseline comparison.</summary>
 	/// <seealso cref="BenchmarkDotNet.Columns.IColumn"/>
 	[PublicAPI]
@@ -20,6 +20,7 @@ namespace CodeJam.PerfTests.Columns
 	{
 		/// <summary>Minimum limit column</summary>
 		public static readonly CompetitionLimitColumn Min = new CompetitionLimitColumn(null, false);
+
 		/// <summary>Maximum limit column</summary>
 		public static readonly CompetitionLimitColumn Max = new CompetitionLimitColumn(null, true);
 
@@ -30,9 +31,19 @@ namespace CodeJam.PerfTests.Columns
 		/// </param>
 		public CompetitionLimitColumn([CanBeNull] ICompetitionLimitProvider competitionLimitProvider, bool useMaxRatio)
 		{
+			ColumnName = competitionLimitProvider?.ShortInfo ?? ("Limit" + (UseMaxRatio ? "(max)" : "(min)"));
 			CompetitionLimitProvider = competitionLimitProvider;
 			UseMaxRatio = useMaxRatio;
 		}
+
+		/// <summary>The name of the column.</summary>
+		/// <value>The name of the column.</value>
+		public string ColumnName { get; }
+
+		/// <summary>Instance of competition limit provider.</summary>
+		/// <value>The competition limit provider.</value>
+		[CanBeNull]
+		public ICompetitionLimitProvider CompetitionLimitProvider { get; }
 
 		/// <summary>
 		/// Use maximum timing ratio relative to the baseline. if set to <c>false</c> the minimum one used.
@@ -41,11 +52,6 @@ namespace CodeJam.PerfTests.Columns
 		/// If <c>true</c>: use maximum timing ratio relative to the baseline. if set to <c>false</c> the minimum one used.
 		/// </value>
 		public bool UseMaxRatio { get; }
-
-		/// <summary>Instance of competition limit provider.</summary>
-		/// <value>The competition limit provider.</value>
-		[CanBeNull]
-		public ICompetitionLimitProvider CompetitionLimitProvider { get; }
 
 		/// <summary>Returns value for the column.</summary>
 		/// <param name="summary">Summary for the run.</param>
@@ -69,10 +75,6 @@ namespace CodeJam.PerfTests.Columns
 		/// <returns><c>true</c> if the specified summary is default; otherwise, <c>false</c>.</returns>
 		public bool IsDefault(Summary summary, Benchmark benchmark) => true;
 
-		/// <summary>The name of the column.</summary>
-		/// <value>The name of the column.</value>
-		public string ColumnName => CompetitionLimitProvider?.ShortInfo ?? "Limit" + (UseMaxRatio ? "(max)" : "(min)");
-
 		/// <summary>Can provide values for the specified summary.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <returns><c>true</c> if can provide values for the specified summary.</returns>
@@ -80,7 +82,9 @@ namespace CodeJam.PerfTests.Columns
 
 		/// <summary>
 		/// An unique identifier of the column.
-		/// <remarks>If there are several columns with the same Id, only one of them will be shown in the summary.</remarks>
+		/// <remarks>
+		/// If there are several columns with the same Id, only one of them will be shown in the summary.
+		/// </remarks>
 		/// </summary>
 		public string Id => ColumnName;
 
@@ -94,7 +98,7 @@ namespace CodeJam.PerfTests.Columns
 
 		/// <summary>Defines order of column in the same category.</summary>
 		/// <returns>Order of column in the same category.</returns>
-		public int PriorityInCategory { get; } 
+		public int PriorityInCategory { get; }
 
 		/// <summary>Returns a <see cref="string"/> that represents this instance.</summary>
 		/// <returns>A <see cref="string"/> that represents this instance.</returns>

@@ -1,13 +1,8 @@
 using System;
 using System.Threading;
 
-using BenchmarkDotNet.Columns;
-using BenchmarkDotNet.Configs;
-
 using CodeJam.PerfTests;
-using CodeJam.PerfTests.Columns;
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Running.Limits;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

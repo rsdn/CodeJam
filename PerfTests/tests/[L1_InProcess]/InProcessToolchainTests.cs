@@ -34,7 +34,11 @@ namespace CodeJam.PerfTests
 			Interlocked.Exchange(ref _afterSetupCounter, 0);
 
 			var config = SelfTestConfig.Default.WithJobModifier(
-				new Job(new InfrastructureMode { EngineFactory = new EngineFactory() }),
+				new Job(
+					new InfrastructureMode
+					{
+						EngineFactory = new EngineFactory()
+					}),
 				true);
 			var summary = SelfTestCompetition
 				.Run<InProcessBenchmark>(config)
@@ -53,7 +57,11 @@ namespace CodeJam.PerfTests
 			Interlocked.Exchange(ref _afterSetupCounter, 0);
 
 			var config = SelfTestConfig.Default.WithJobModifier(
-				new Job(new InfrastructureMode { EngineFactory = BurstModeEngineFactory.Instance }),
+				new Job(
+					new InfrastructureMode
+					{
+						EngineFactory = BurstModeEngineFactory.Instance
+					}),
 				true);
 			var summary = SelfTestCompetition
 				.Run<InProcessBenchmark>(config)

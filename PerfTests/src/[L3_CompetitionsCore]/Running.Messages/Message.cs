@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 using JetBrains.Annotations;
 
@@ -6,6 +7,7 @@ namespace CodeJam.PerfTests.Running.Messages
 {
 	/// <summary>Competition message.</summary>
 	/// <seealso cref="IMessage"/>
+	[SuppressMessage("ReSharper", "InvocationIsSkipped")]
 	public class Message : IMessage
 	{
 		/// <summary>Initializes a new instance of the <see cref="Message"/> class.</summary>

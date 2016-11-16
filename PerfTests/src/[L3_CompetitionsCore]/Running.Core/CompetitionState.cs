@@ -116,11 +116,15 @@ namespace CodeJam.PerfTests.Running.Core
 
 		[AssertionMethod]
 		private void AsserIsInInit() =>
-			Code.AssertState(Options == null && !Completed, "Could not init state as the competition is in run or was completed.");
+			Code.AssertState(
+				Options == null && !Completed,
+				"Could not init state as the competition is in run or was completed.");
 
 		[AssertionMethod]
 		private void AssertIsInCompetition() =>
-			Code.AssertState(Options != null && !Completed, "Could not update state as the competition is not running completed.");
+			Code.AssertState(
+				Options != null && !Completed,
+				"Could not update state as the competition is not running completed.");
 
 		#region State modification
 		/// <summary>Init the competition state.</summary>

@@ -27,9 +27,8 @@ namespace CodeJam.PerfTests.Analysers
 
 	/// <summary>Basic competition analyser.</summary>
 	/// <seealso cref="IAnalyser"/>
-	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-	[SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
+	[SuppressMessage("ReSharper", "MemberCanBeMadeStatic.Local")]
 	internal class CompetitionAnalyser : IAnalyser
 	{
 		#region Competition targets
@@ -251,7 +250,6 @@ namespace CodeJam.PerfTests.Analysers
 			Summary summary,
 			CompetitionState competitionState)
 		{
-			
 			// DONTTOUCH: DO NOT add return into the if clause.
 			// The competitionTargets should be filled with empty limits if IgnoreExistingAnnotations set to false
 			var limitsMode = competitionState.Options.Limits;

@@ -34,13 +34,11 @@ namespace BenchmarkDotNet.Validators
 				{ EnvMode.JitCharacteristic, ValidateEnvironment },
 				{ EnvMode.PlatformCharacteristic, ValidatePlatform },
 				{ EnvMode.RuntimeCharacteristic, ValidateEnvironment },
-
 				{ GcMode.ServerCharacteristic, ValidateEnvironment },
 				{ GcMode.ConcurrentCharacteristic, ValidateEnvironment },
 				{ GcMode.CpuGroupsCharacteristic, ValidateEnvironment },
 				{ GcMode.ForceCharacteristic, DontValidate },
 				{ GcMode.AllowVeryLargeObjectsCharacteristic, ValidateEnvironment },
-
 				{ RunMode.LaunchCountCharacteristic, DontValidate },
 				{ RunMode.RunStrategyCharacteristic, DontValidate },
 				{ RunMode.WarmupCountCharacteristic, DontValidate },
@@ -48,21 +46,18 @@ namespace BenchmarkDotNet.Validators
 				{ RunMode.IterationTimeCharacteristic, DontValidate },
 				{ RunMode.InvocationCountCharacteristic, DontValidate },
 				{ RunMode.UnrollFactorCharacteristic, DontValidate },
-
 				{ AccuracyMode.AnalyzeLaunchVarianceCharacteristic, DontValidate },
 				{ AccuracyMode.EvaluateOverheadCharacteristic, DontValidate },
 				{ AccuracyMode.MaxStdErrRelativeCharacteristic, DontValidate },
 				{ AccuracyMode.MinInvokeCountCharacteristic, DontValidate },
 				{ AccuracyMode.MinIterationTimeCharacteristic, DontValidate },
 				{ AccuracyMode.RemoveOutliersCharacteristic, DontValidate },
-
 				{ InfrastructureMode.ClockCharacteristic, DontValidate },
 				{ InfrastructureMode.EngineFactoryCharacteristic, DontValidate },
 				{ InfrastructureMode.ToolchainCharacteristic, ValidateToolchain }
 			};
 
 		// ReSharper restore HeapView.DelegateAllocation
-
 
 		private static string DontValidate(Job job, Characteristic characteristic) => null;
 
@@ -81,7 +76,7 @@ namespace BenchmarkDotNet.Validators
 			if (job.Env.Platform == Platform.AnyCpu)
 				return null;
 
-			return ValidateEnvironment(job,characteristic);
+			return ValidateEnvironment(job, characteristic);
 		}
 
 		private static string ValidateToolchain(Job job, Characteristic characteristic) =>

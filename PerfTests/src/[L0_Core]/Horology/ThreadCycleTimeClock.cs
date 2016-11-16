@@ -3,6 +3,7 @@
 using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace
+
 namespace BenchmarkDotNet.Horology
 {
 	/// <summary>
@@ -10,7 +11,7 @@ namespace BenchmarkDotNet.Horology
 	/// WARNING: results are inaccurate (up to +/- 30% to actual time),
 	/// see https://blogs.msdn.microsoft.com/oldnewthing/20160429-00/?p=93385 for more.
 	/// </summary>
-	/// <seealso cref="BenchmarkDotNet.Horology.IClock" />
+	/// <seealso cref="BenchmarkDotNet.Horology.IClock"/>
 	[PublicAPI]
 	public sealed class ThreadCycleTimeClock : IClock
 	{

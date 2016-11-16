@@ -40,7 +40,10 @@ namespace CodeJam.PerfTests.IntegrationTests
 				.WithCompetitionOptions(
 					new CompetitionOptions
 					{
-						RunOptions = { Concurrent = concurrentRunBehavior }
+						RunOptions =
+						{
+							Concurrent = concurrentRunBehavior
+						}
 					});
 
 			CompetitionState[] runResults;
