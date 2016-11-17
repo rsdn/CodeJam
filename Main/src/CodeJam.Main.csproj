@@ -49,11 +49,17 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Threading, Version=1.0.2856.102, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" Condition="$(DefineConstants.Contains('FW35'))">
-      <HintPath>..\..\packages\TaskParallelLibrary.1.0.2856.0\lib\Net35\System.Threading.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
+  <Choose>
+    <When Condition="$(DefineConstants.Contains('FW35'))">
+      <ItemGroup>
+        <Reference Include="System.Threading, Version=1.0.2856.102, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+          <HintPath>..\..\packages\TaskParallelLibrary.1.0.2856.0\lib\Net35\System.Threading.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
   <ItemGroup>
     <Compile Include="..\..\Jetbrains.Annotations.cs">
       <Link>Jetbrains.Annotations.cs</Link>
