@@ -8,109 +8,18 @@ namespace CodeJam.Collections
 {
 	partial class ArrayExtensions
 	{
-		#region string
-<# GenerateMethod("string"); #>
-		#endregion
 <#
-	foreach (var type in new[] { "byte", "sbyte", "short", "ushort", "int", "uint", "long", "ulong" })
+	foreach (var type in new[] { "byte", "sbyte", "short", "ushort", "int", "uint", "long", "ulong", "TimeSpan", "Guid" })
 	{
-#>
-
-		#region <#= type #>
-<#
+		WriteRegionLine(type);
 		GenerateUnsafeMethod(type);
-		GenerateNullableMethod(type);
-#>
-		#endregion
-<#
 	}
 
-	foreach (var type in new[] { "float", "double", "decimal", "TimeSpan", "DateTime", "DateTimeOffset" })
-	{
-#>
-
-		#region <#= type #>
-<#
-		GenerateMethod(type);
-		GenerateNullableMethod(type);
-#>
-		#endregion
-<#
-	}
+	FlushRegions();
 #>
 	}
 }
-<#+
-private void GenerateMethod(string type)
-{
-#>
-		/// <summary>
-		/// Compares length and content of <paramref name="a"/> and <paramref name="b"/>.
-		/// </summary>
-		/// <param name="a">The first array to compare.</param>
-		/// <param name="b">The second array to compare.</param>
-		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
-		[Pure]
-		public static bool EqualsTo([CanBeNull] this <#= type #>[] a, [CanBeNull] <#= type #>[] b)
-		{
-			if (a == b)
-				return true;
-
-			if (a == null || b == null)
-				return false;
-
-			if (a.Length != b.Length)
-				return false;
-
-			for (var i = 0; i < a.Length; i++)
-				if (a[i] != b[i])
-					return false;
-
-			return true;
-		}
-<#+
-}
-#>
-<#+
-private void GenerateNullableMethod(string type)
-{
-#>
-
-		/// <summary>
-		/// Compares length and content of <paramref name="a"/> and <paramref name="b"/>.
-		/// </summary>
-		/// <param name="a">The first array to compare.</param>
-		/// <param name="b">The second array to compare.</param>
-		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
-		[Pure]
-		public static bool EqualsTo([CanBeNull] this <#= type #>?[] a, [CanBeNull] <#= type #>?[] b)
-		{
-			if (a == b)
-				return true;
-
-			if (a == null || b == null)
-				return false;
-
-			if (a.Length != b.Length)
-				return false;
-
-			for (var i = 0; i < a.Length; i++)
-			{
-				var lhs = a[i];
-				var rhs = b[i];
-				if (lhs.GetValueOrDefault() != rhs.GetValueOrDefault() || lhs.HasValue != rhs.HasValue)
-					return false;
-			}
-
-			return true;
-		}
-<#+
-}
-#>
-<#+
-private void GenerateUnsafeMethod(string type)
-{
-#>
+<#+ private void GenerateUnsafeMethod(string type) { #>
 		/// <summary>
 		/// Returns true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
 		/// </summary>
@@ -129,6 +38,7 @@ private void GenerateUnsafeMethod(string type)
 			if (a.Length != b.Length)
 				return false;
 
+<#+ if (type != "Guid") { #>
 			if (a.Length < 5)
 			{
 				for (var i = 0; i < a.Length; i++)
@@ -137,10 +47,12 @@ private void GenerateUnsafeMethod(string type)
 
 				return true;
 			}
+<#+ } else { #>
+			if (a.Length == 0)
+				return true;
+<#+ } #>
 
 			fixed (void* pa = &a[0], pb = &b[0])
 				return Memory.Compare((byte*)pa, (byte*)pb, a.Length * sizeof(<#= type #>));
 		}
-<#+
-}
-#>
+<#+ } #>

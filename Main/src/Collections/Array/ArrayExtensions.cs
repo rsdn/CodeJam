@@ -14,6 +14,134 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Returns true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
 		/// </summary>
+		/// <param name="a">The first array to compare.</param>
+		/// <param name="b">The second array to compare.</param>
+		/// <returns>
+		/// true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
+		/// </returns>
+		[Pure]
+		public static bool EqualsTo([CanBeNull] this string[] a, [CanBeNull] string[] b)
+		{
+			if (a == b)
+				return true;
+
+			if (a == null || b == null)
+				return false;
+
+			if (a.Length != b.Length)
+				return false;
+
+			for (var i = 0; i < a.Length; i++)
+			{
+				if (!string.Equals(a[i], b[i]))
+					return false;
+			}
+
+			return true;
+		}
+
+		/// <summary>
+		/// Returns true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
+		/// A parameter specifies the culture, case, and sort rules used in the comparison.
+		/// </summary>
+		/// <param name="a">The first array to compare.</param>
+		/// <param name="b">The second array to compare.</param>
+		/// <param name="comparison">One of the enumeration values that specifies the rules for the comparison.</param>
+		/// <returns>
+		/// true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
+		/// </returns>
+		[Pure]
+		public static bool EqualsTo([CanBeNull] this string[] a, [CanBeNull] string[] b, StringComparison comparison)
+		{
+			if (comparison == StringComparison.Ordinal)
+				return EqualsTo(a, b);
+
+			if (a == b)
+				return true;
+
+			if (a == null || b == null)
+				return false;
+
+			if (a.Length != b.Length)
+				return false;
+
+			for (var i = 0; i < a.Length; i++)
+			{
+				if (!string.Equals(a[i], b[i], comparison))
+					return false;
+			}
+
+			return true;
+		}
+
+		/// <summary>
+		/// Returns true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
+		/// </summary>
+		/// <typeparam name="T">Type of array item.</typeparam>
+		/// <param name="a">The first array to compare.</param>
+		/// <param name="b">The second array to compare.</param>
+		/// <returns>
+		/// <c>true</c> if content of <paramref name="a"/> equals to <paramref name="b"/>, <c>false</c> otherwise.
+		/// </returns>
+		[Pure]
+		public static bool EqualsTo<T>([CanBeNull] this T[] a, [CanBeNull] T[] b) where T : IEquatable<T>
+		{
+			if (a == b)
+				return true;
+
+			if (a == null || b == null)
+				return false;
+
+			if (a.Length != b.Length)
+				return false;
+
+			for (var i = 0; i < a.Length; i++)
+			{
+				if (a[i] != null)
+				{
+					if (!a[i].Equals(b[i]))
+						return false;
+				}
+				else if (b[i] != null)
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		/// <summary>
+		/// Returns true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
+		/// </summary>
+		/// <typeparam name="T">Type of array item.</typeparam>
+		/// <param name="a">The first array to compare.</param>
+		/// <param name="b">The second array to compare.</param>
+		/// <returns>
+		/// <c>true</c> if content of <paramref name="a"/> equals to <paramref name="b"/>, <c>false</c> otherwise.
+		/// </returns>
+		[Pure]
+		public static bool EqualsTo<T>([CanBeNull] this T?[] a, [CanBeNull] T?[] b) where T : struct, IEquatable<T>
+		{
+			if (a == b)
+				return true;
+
+			if (a == null || b == null)
+				return false;
+
+			if (a.Length != b.Length)
+				return false;
+
+			for (var i = 0; i < a.Length; i++)
+				if (a[i].HasValue != b[i].HasValue || !a[i].GetValueOrDefault().Equals(b[i].GetValueOrDefault()))
+					return false;
+
+			return true;
+		}
+
+		/// <summary>
+		/// Returns true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
+		/// </summary>
 		/// <typeparam name="T">Type of array item.</typeparam>
 		/// <param name="a">The first array to compare.</param>
 		/// <param name="b">The second array to compare.</param>
@@ -43,19 +171,6 @@ namespace CodeJam.Collections
 
 			return true;
 		}
-
-		/// <summary>
-		/// Returns true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
-		/// </summary>
-		/// <typeparam name="T">Type of array item.</typeparam>
-		/// <param name="a">The first array to compare.</param>
-		/// <param name="b">The second array to compare.</param>
-		/// <returns>
-		/// <c>true</c> if content of <paramref name="a"/> equals to <paramref name="b"/>, <c>false</c> otherwise.
-		/// </returns>
-		[Pure]
-		public static bool EqualsTo<T>([CanBeNull] this T[] a, [CanBeNull] T[] b) =>
-			EqualsTo(a, b, EqualityComparer<T>.Default);
 
 		/// <summary>
 		/// Checks if any element in array exists.
