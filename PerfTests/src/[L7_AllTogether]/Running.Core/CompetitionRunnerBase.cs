@@ -19,6 +19,7 @@ using BenchmarkDotNet.Validators;
 using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Columns;
 using CodeJam.PerfTests.Configs;
+using CodeJam.PerfTests.Configs.Factories;
 using CodeJam.PerfTests.Loggers;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Strings;
@@ -53,18 +54,6 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				Environment.CurrentDirectory = currentDirectory;
 			}
-		}
-
-		private static ICompetitionConfig GetFirstConfig(
-			[NotNull] Type benchmarkType,
-			[CanBeNull] ICompetitionConfig customConfig)
-		{
-			if (customConfig != null)
-				return new ManualCompetitionConfig(customConfig);
-
-			var configSource = benchmarkType.TryGetMetadataAttribute<ICompetitionConfigSource>();
-
-			return configSource?.Config ?? CompetitionConfig.GetConfigForAssembly(benchmarkType.Assembly);
 		}
 		#endregion
 
@@ -301,7 +290,9 @@ namespace CodeJam.PerfTests.Running.Core
 		private ICompetitionConfig CreateBenchmarkConfig([NotNull] Type benchmarkType, ICompetitionConfig competitionConfig)
 		{
 			// ReSharper disable once UseObjectOrCollectionInitializer
-			var result = new ManualCompetitionConfig(GetFirstConfig(benchmarkType, competitionConfig));
+			var result = new ManualCompetitionConfig(
+				competitionConfig ??
+				CompetitionConfigFactory.FindFactoryAndCreate(benchmarkType, null));
 			PrepareCompetitionConfig(result);
 			InitCompetitionConfigOverride(result);
 			FixCompetitionConfig(result);
@@ -322,10 +313,10 @@ namespace CodeJam.PerfTests.Running.Core
 						}
 					});
 			}
-			var jobs = competitionConfig.Jobs;
-			if (jobs.Count == 0)
+
+			if (competitionConfig.Jobs.Count == 0)
 			{
-				jobs.AddRange(CompetitionConfig.Default.GetJobs());
+				competitionConfig.Add(CompetitionConfigFactory.DefaultJob);
 			}
 		}
 
@@ -334,7 +325,6 @@ namespace CodeJam.PerfTests.Running.Core
 			// DONTTOUCH: call order is important.
 			FixConfigJobs(competitionConfig);
 			FixConfigLoggers(competitionConfig);
-			FixConfigColumns(competitionConfig);
 			FixConfigValidators(competitionConfig);
 			FixConfigAnalysers(competitionConfig);
 		}
@@ -361,15 +351,6 @@ namespace CodeJam.PerfTests.Running.Core
 			var hostLogMode = runOptions.DetailedLogging ? HostLogMode.AllMessages : HostLogMode.PrefixedOnly;
 			competitionConfig.Loggers.Insert(0, CreateHostLogger(hostLogMode));
 		}
-
-		// TODO: better columns.
-		// TODO: custom column provider?
-		private void FixConfigColumns(ManualCompetitionConfig competitionConfig) =>
-			competitionConfig.Add(
-				StatisticColumn.Min,
-				CompetitionLimitColumn.Min,
-				CompetitionLimitColumn.Max,
-				StatisticColumn.Max);
 
 		private void FixConfigValidators(ManualCompetitionConfig competitionConfig)
 		{

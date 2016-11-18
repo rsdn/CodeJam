@@ -32,7 +32,7 @@ namespace CodeJam
 		public void RunOpsCountNotSensitivePerfTests()
 		{
 			// The test will fail with "too fast" warning, it's ok
-			var overrideConfig = CodeJamCompetitionConfig.ConfigForAssembly.WithReportWarningsAsErrors(false);
+			var overrideConfig = CompetitionHelpers.ConfigForAssembly.WithReportWarningsAsErrors(false);
 			Competition.Run(this, overrideConfig);
 		}
 

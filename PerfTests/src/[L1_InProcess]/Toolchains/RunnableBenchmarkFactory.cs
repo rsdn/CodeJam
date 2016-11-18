@@ -162,10 +162,11 @@ namespace BenchmarkDotNet.Toolchains
 				return callback;
 
 			// TODO: combine delegates if .net native
+			var target = callback.Method.IsStatic ? null : Constant(callback.Target);
 			return Lambda<Func<TResult>>(
 				Block(
 					Enumerable.Repeat(callback, unrollFactor)
-						.Select(c => Call(Constant(callback.Target), callback.Method))
+						.Select(c => Call(target, callback.Method))
 					)).Compile();
 		}
 
@@ -182,7 +183,7 @@ namespace BenchmarkDotNet.Toolchains
 				var targetType = benchmark.Target.Type;
 				var paramProperty = targetType.GetProperty(parameter.Name, flags);
 
-				var setter = paramProperty?.GetSetter();
+				var setter = paramProperty?.GetSetMethod();
 				if (setter == null)
 					throw new InvalidOperationException(
 						$"Type {targetType.FullName}: no settable property {parameter.Name} found.");

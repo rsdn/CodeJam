@@ -59,6 +59,7 @@
       <Link>Properties\Jetbrains.Annotations.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="[L0_Core]\Helpers\AttributeValue.cs" />
     <Compile Include="[L0_Core]\Horology\CycleClockHelpers.cs" />
     <Compile Include="[L0_Core]\Horology\ProcessCycleTimeClock.cs" />
     <Compile Include="[L0_Core]\Horology\ThreadCycleTimeClock.cs" />
@@ -69,7 +70,6 @@
     <Compile Include="[L3_CompetitionsCore]\Configs\SourceAnnotationsMode.cs" />
     <Compile Include="[L3_CompetitionsCore]\Exporters\CsvTimingsExporter.cs" />
     <Compile Include="[L0_Core]\Helpers\BenchmarkHelpers.cs" />
-    <Compile Include="[L0_Core]\Portability\PortabilityExtensions.cs" />
     <Compile Include="[L1_InProcess]\Validators\InProcessValidator.cs" />
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessBuilder.cs" />
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessExecutor.cs" />
@@ -112,12 +112,19 @@
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.SourceAttributes.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.SymbolHelpers.cs" />
-    <Compile Include="[L7_AllTogether]\Configs\CompetitionConfigFactory.cs" />
+    <Compile Include="[L6_Configuration]\Configs.Factories\CompetitionFactoryHelpers.cs" />
+    <Compile Include="[L6_Configuration]\[Attributes]\CompetitionConfigFactoryAttribute.cs" />
+    <Compile Include="[L6_Configuration]\Configs.Factories\ICompetitionConfigFactory.cs" />
+    <Compile Include="[L6_Configuration]\[Attributes]\CompetitionModifierAttribute.cs" />
+    <Compile Include="[L6_Configuration]\Configs.Factories\ICompetitionModifier.cs" />
+    <Compile Include="[L6_Configuration]\Configs.Factories\ICompetitionModifierSource.cs" />
+    <Compile Include="[L6_Configuration]\Configs.Factories\ICompetitionConfigFactorySource.cs" />
+    <Compile Include="[L6_Configuration]\Configs.Factories\CompetitionConfigFactory.cs" />
     <Compile Include="[L7_AllTogether]\CompetitionHelpers.cs" />
     <Compile Include="[L3_CompetitionsCore]\Configs\ConcurrentRunBehavior.cs" />
     <Compile Include="[L6_Configuration]\Configs\CompetitionConfigExtensions.cs" />
     <Compile Include="[L6_Configuration]\Configs\ICompetitionConfigSource.cs" />
-    <Compile Include="[L7_AllTogether]\Configs\CompetitionConfig.cs" />
+    <Compile Include="[L6_Configuration]\[Attributes]\CompetitionFeaturesAttribute.cs" />
     <Compile Include="[L7_AllTogether]\Running.Core\ConsoleCompetitionRunner.cs" />
     <Compile Include="[L6_Configuration]\Configs\ICompetitionConfig.cs" />
     <Compile Include="[L0_Core]\Configs\ReadOnlyConfig.cs" />
@@ -126,8 +133,8 @@
     <Compile Include="[L7_AllTogether]\Running.Console\ConsoleCompetition.cs" />
     <Compile Include="[L7_AllTogether]\Running.Core\CompetitionRunnerBase.cs" />
     <Compile Include="[L6_Configuration]\[Attributes]\CompetitionConfigAttribute.cs" />
-    <Compile Include="[L7_AllTogether]\Configs\PerfTestsSection.cs" />
-    <Compile Include="[L7_AllTogether]\Configs\CompetitionFeatures.cs" />
+    <Compile Include="[L6_Configuration]\Configs\PerfTestsSection.cs" />
+    <Compile Include="[L6_Configuration]\Configs\CompetitionFeatures.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

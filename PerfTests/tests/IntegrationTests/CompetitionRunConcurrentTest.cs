@@ -21,6 +21,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
 	[SuppressMessage("ReSharper", "ArgumentsStyleLiteral")]
+	[CompetitionModifier(typeof(CompetitionHighAccuracyModifier))]
 	public static class CompetitionRunConcurrentTest
 	{
 		[TestCase(ConcurrentRunBehavior.Lock)]
@@ -36,7 +37,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 				typeof(ConcurrentRunBenchmark),
 				typeof(ConcurrentRunBenchmark)
 			};
-			var config = SelfTestConfig.HighAccuracy
+			var config = CompetitionHelpers.CreateConfig(typeof(CompetitionRunConcurrentTest))
 				.WithCompetitionOptions(
 					new CompetitionOptions
 					{

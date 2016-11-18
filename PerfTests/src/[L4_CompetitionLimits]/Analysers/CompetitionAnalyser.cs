@@ -201,7 +201,7 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				var tooFastReports = GetReportNames(
 					summary,
-					r => r.GetAverageNanoseconds() < limitsMode.TooFastBenchmarkLimit.TotalNanoseconds());
+					r => r.Nanoseconds < limitsMode.TooFastBenchmarkLimit.TotalNanoseconds());
 
 				if (tooFastReports.Any())
 				{
@@ -216,7 +216,7 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				var tooSlowReports = GetReportNames(
 					summary,
-					r => r.GetAverageNanoseconds() > limitsMode.LongRunningBenchmarkLimit.TotalNanoseconds());
+					r => r.Nanoseconds > limitsMode.LongRunningBenchmarkLimit.TotalNanoseconds());
 
 				if (tooSlowReports.Any())
 				{

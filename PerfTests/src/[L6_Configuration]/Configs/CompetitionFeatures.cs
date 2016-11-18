@@ -7,7 +7,7 @@ using CodeJam.PerfTests.Exporters;
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Features for competition.</summary>
-	public class CompetitionFeatures
+	public sealed class CompetitionFeatures
 	{
 		#region Environment
 		/// <summary>Specifies target platform for the competition.</summary>

@@ -202,6 +202,7 @@ namespace CodeJam.PerfTests.Running.Core
 						var timeout = runOptions.Concurrent == ConcurrentRunBehavior.Lock
 							? CompetitionRunMode.TotalRunTimeout
 							: TimeSpan.Zero;
+						// TODO: spinwait with notifications & catch AbandonedMutexException
 						lockTaken = mutex.WaitOne(timeout);
 						if (CheckPreconditions(benchmarkType, lockTaken, competitionState))
 						{

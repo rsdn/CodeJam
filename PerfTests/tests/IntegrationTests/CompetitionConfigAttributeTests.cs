@@ -6,7 +6,8 @@ using System.Threading;
 using BenchmarkDotNet.Columns;
 
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.IntegrationTests;
+using CodeJam.PerfTests.Configs.Factories;
+using CodeJam.PerfTests.Running.Core;
 
 using JetBrains.Annotations;
 
@@ -14,79 +15,55 @@ using NUnit.Framework;
 
 using static CodeJam.PerfTests.SelfTestHelpers;
 
-[assembly: SelfTestCompetitionConfig]
 
 namespace CodeJam.PerfTests.IntegrationTests
 {
-	public class CustomCompetitionConfigAttribute : CompetitionConfigAttribute
+	public class AddColumnWelchTTestPValueModifier : ICompetitionModifier
 	{
-		public CustomCompetitionConfigAttribute() : base(Create) { }
-
-		public static ManualCompetitionConfig Create()
-		{
-			var result = new ManualCompetitionConfig(SelfTestConfig.Default);
-			result.Add(BaselineScaledColumn.WelchTTestPValue);
-			return result;
-		}
+		public void Modify(ManualCompetitionConfig competitionConfig) => 
+			competitionConfig.Add(BaselineScaledColumn.WelchTTestPValue);
+	}
+	public class AddColumnKurtosisModifier : ICompetitionModifier
+	{
+		public void Modify(ManualCompetitionConfig competitionConfig) => 
+			competitionConfig.Add(StatisticColumn.Kurtosis);
 	}
 
-	public class SelfTestCompetitionConfigAttribute : CompetitionConfigAttribute
+	public class AddColumnSkewnessModifier : ICompetitionModifier
 	{
-		public SelfTestCompetitionConfigAttribute() : base(Create) { }
-
-		private static ManualCompetitionConfig Create()
-		{
-			var result = new ManualCompetitionConfig(SelfTestConfig.Default);
-			result.Add(StatisticColumn.Kurtosis);
-			return result;
-		}
+		public void Modify(ManualCompetitionConfig competitionConfig) =>
+			competitionConfig.Add(StatisticColumn.Skewness);
 	}
 
 	[PublicAPI]
 	[TestFixture(Category = "BenchmarkDotNet")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
+	[CompetitionModifier(typeof(AddColumnSkewnessModifier))]
 	public static class CompetitionConfigAttributeTest
 	{
+		private static void AssertColumn(CompetitionState runState, IColumn column, int expectedValue) => 
+			Assert.AreEqual(
+				runState.Config
+					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
+					.Count(c => c == column),
+				expectedValue);
+
 		[Test]
 		public static void CompetitionExplicitConfig()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = SelfTestCompetition.Run<BenchmarkWithoutConfig>(SelfTestConfig.Default);
+			var runState = SelfTestCompetition.Run<BenchmarkWithoutConfig>(CompetitionHelpers.ConfigForAssembly);
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(messages.Length, 1);
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
-			Assert.AreEqual(
-				runState.Config
-					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
-					.Count(c => c == StatisticColumn.Kurtosis),
-				0);
-			Assert.AreEqual(
-				runState.Config
-					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
-					.Count(c => c == BaselineScaledColumn.WelchTTestPValue),
-				0);
+			AssertColumn(runState, StatisticColumn.Kurtosis, 0);
+			AssertColumn(runState, BaselineScaledColumn.WelchTTestPValue, 0);
+			AssertColumn(runState, StatisticColumn.Skewness, 0);
 
 			Interlocked.Exchange(ref _callCounter, 0);
-
-			runState = SelfTestCompetition.Run<BenchmarkWithoutConfig>(CustomCompetitionConfigAttribute.Create());
-			messages = runState.GetMessages();
-
-			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
-			Assert.AreEqual(
-				runState.Config
-					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
-					.Count(c => c == StatisticColumn.Kurtosis),
-				0);
-			Assert.AreEqual(
-				runState.Config
-					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
-					.Count(c => c == BaselineScaledColumn.WelchTTestPValue),
-				1);
 		}
 
 		[Test]
@@ -100,58 +77,23 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(messages.Length, 1);
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
-			Assert.AreEqual(
-				runState.Config
-					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
-					.Count(c => c == StatisticColumn.Kurtosis),
-				0);
-			Assert.AreEqual(
-				runState.Config
-					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
-					.Count(c => c == BaselineScaledColumn.WelchTTestPValue),
-				1);
+			AssertColumn(runState, BaselineScaledColumn.WelchTTestPValue, 1);
+			AssertColumn(runState, StatisticColumn.Kurtosis, 0);
+			AssertColumn(runState, StatisticColumn.Skewness, 1);
 
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			runState = SelfTestCompetition.Run<Nested.BenchmarkWithConfig>();
+			runState = SelfTestCompetition.Run<Nested.BenchmarkWithConfig2>();
 			messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(messages.Length, 1);
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
-			Assert.AreEqual(
-				runState.Config
-					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
-					.Count(c => c == StatisticColumn.Kurtosis),
-				0);
-			Assert.AreEqual(
-				runState.Config
-					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
-					.Count(c => c == BaselineScaledColumn.WelchTTestPValue),
-				1);
-		}
+			AssertColumn(runState, BaselineScaledColumn.WelchTTestPValue, 1);
+			AssertColumn(runState, StatisticColumn.Kurtosis, 1);
+			AssertColumn(runState, StatisticColumn.Skewness, 1);
 
-		[Test]
-		public static void CompetitionAssemblyLevelConfig()
-		{
 			Interlocked.Exchange(ref _callCounter, 0);
-
-			var runState = SelfTestCompetition.Run<BenchmarkWithoutConfig>();
-			var messages = runState.GetMessages();
-
-			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
-			Assert.AreEqual(
-				runState.Config
-					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
-					.Count(c => c == StatisticColumn.Kurtosis),
-				1);
-			Assert.AreEqual(
-				runState.Config
-					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))
-					.Count(c => c == BaselineScaledColumn.WelchTTestPValue),
-				0);
 		}
 
 		#region Perf test helpers
@@ -177,15 +119,15 @@ namespace CodeJam.PerfTests.IntegrationTests
 			}
 		}
 
-		[CustomCompetitionConfig]
+		[CompetitionModifier(typeof(AddColumnWelchTTestPValueModifier))]
 		public class BenchmarkWithConfig : BenchmarkWithoutConfig { }
 
-		[CustomCompetitionConfig]
+		[CompetitionModifier(typeof(AddColumnKurtosisModifier))]
 		public class Nested
 		{
 			// ReSharper disable once MemberHidesStaticFromOuterClass
 			[UsedImplicitly]
-			public class BenchmarkWithConfig : BenchmarkWithoutConfig { }
+			public class BenchmarkWithConfig2 : BenchmarkWithConfig { }
 		}
 		#endregion
 	}

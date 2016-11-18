@@ -15,7 +15,6 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Order;
-using BenchmarkDotNet.Portability;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
@@ -196,36 +195,98 @@ namespace BenchmarkDotNet.Helpers
 
 		/// <summary>
 		/// Performs search for metadata attribute in the following order:
-		/// * type attributes
-		/// * container type attributes (if the <paramref name="type"/> is nested type)
+		/// * member attributes (if the <paramref name="attributeProvider"/> is member of the type)
+		/// * type attributes (if the <paramref name="attributeProvider"/> is type or member of the type)
+		/// * container type attributes (if the type is nested type)
 		/// * assembly attributes.
 		/// </summary>
-		/// <typeparam name="TAttribute">Type of the attribute to search for.</typeparam>
-		/// <param name="type">Type the attribute is searched for.</param>
-		/// <returns>Metadata attribute for the type.</returns>
-		public static TAttribute TryGetMetadataAttribute<TAttribute>([NotNull] this Type type)
-		{
-			if (type == null)
-				throw new ArgumentNullException(nameof(type));
+		/// <typeparam name="TAttribute">Type of the attribute.</typeparam>
+		/// <param name="attributeProvider">Metadata attribute source.</param>
+		/// <returns>Metadata attributes.</returns>
+		public static TAttribute TryGetMetadataAttribute<TAttribute>(
+			[NotNull] this ICustomAttributeProvider attributeProvider)
+			where TAttribute : class =>
+			GetMetadataAttributes<TAttribute>(attributeProvider).FirstOrDefault();
 
+		/// <summary>
+		/// Returns metadata attributes in the following order:
+		/// * member attributes (if the <paramref name="attributeProvider"/> is member of the type)
+		/// * type attributes (if the <paramref name="attributeProvider"/> is type or member of the type)
+		/// * container type attributes (if the type is nested type)
+		/// * assembly attributes.
+		/// </summary>
+		/// <typeparam name="TAttribute">Type of the attribute.</typeparam>
+		/// <param name="attributeProvider">Metadata attribute source.</param>
+		/// <returns>Metadata attributes.</returns>
+		public static IEnumerable<TAttribute> GetMetadataAttributes<TAttribute>(
+			[NotNull] this ICustomAttributeProvider attributeProvider)
+			where TAttribute: class
+		{
+			if (attributeProvider == null)
+				throw new ArgumentNullException(nameof(attributeProvider));
+
+			return GetMetadataAttributesDispatch<TAttribute>(attributeProvider);
+		}
+
+		private static IEnumerable<TAttribute> GetMetadataAttributesDispatch<TAttribute>(
+			ICustomAttributeProvider attributeProvider)
+			where TAttribute: class
+		{
+			var type = attributeProvider as Type;
+			if (type != null)
+				return type.GetMetadataAttributesForType<TAttribute>();
+
+			var member = attributeProvider as MemberInfo;
+			if (member != null)
+				return member.GetMetadataAttributesForMember<TAttribute>();
+
+			return attributeProvider.GetMetadataAttributesCore<TAttribute>();
+		}
+
+		private static IEnumerable<TAttribute> GetMetadataAttributesCore<TAttribute>(
+			this ICustomAttributeProvider attributeProvider) 
+			where TAttribute: class 
+			=>
+			attributeProvider.GetCustomAttributes(typeof(TAttribute), true)
+				.Cast<TAttribute>()
+				.OrderBy(t => t.GetType().Name)
+				.ThenBy(t => t.GetType().AssemblyQualifiedName);
+
+		private static IEnumerable<TAttribute> GetMetadataAttributesForType<TAttribute>(
+			this Type type)
+			where TAttribute : class
+		{
 			var tempType = type;
 			while (tempType != null)
 			{
-				var typeAttribute = tempType
-					.GetCustomAttributes<TAttribute>(true)
-					.OrderBy(t => t.GetType().Name)
-					.ThenBy(t => t.GetType().AssemblyQualifiedName)
-					.FirstOrDefault();
-
-				if (typeAttribute != null)
-					return typeAttribute;
+				var typeAttributes = tempType.GetMetadataAttributesCore<TAttribute>();
+				foreach (var attribute in typeAttributes)
+				{
+					yield return attribute;
+				}
 
 				tempType = tempType.DeclaringType;
 			}
 
-			return type.Assembly
-				.GetCustomAttributes<TAttribute>(true)
-				.FirstOrDefault();
+			foreach (var attribute in type.Assembly.GetMetadataAttributesCore<TAttribute>())
+			{
+				yield return attribute;
+			}
+		}
+
+		private static IEnumerable<TAttribute> GetMetadataAttributesForMember<TAttribute>(
+			this MemberInfo member)
+			where TAttribute : class
+		{
+			foreach (var attribute in member.GetMetadataAttributesCore<TAttribute>())
+			{
+				yield return attribute;
+			}
+
+			foreach (var attribute in member.DeclaringType.GetMetadataAttributesForType<TAttribute>())
+			{
+				yield return attribute;
+			}
 		}
 		#endregion
 

@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Environments;
 
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Messages;
@@ -24,13 +22,10 @@ namespace CodeJam.PerfTests.IntegrationTests
 	[SuppressMessage("ReSharper", "ArgumentsStyleLiteral")]
 	public static class CompetitionAccuracyTests
 	{
-		private static readonly ICompetitionConfig _debugHighAccuracyConfig = SelfTestConfig.HighAccuracy
-			.WithAllowDebugBuilds(true);
-
 		[Test]
 		public static void CompetitionTooFastBenchmark()
 		{
-			var runState = SelfTestCompetition.Run<TooFastBenchmark>(_debugHighAccuracyConfig);
+			var runState = SelfTestCompetition.Run<TooFastBenchmark>();
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary?.ValidationErrors.Length, 0);
@@ -52,7 +47,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionTooSlowBenchmark()
 		{
-			var runState = SelfTestCompetition.Run<TooSlowBenchmark>(SelfTestConfig.Default);
+			var runState = SelfTestCompetition.Run<TooSlowBenchmark>();
 			var messages = runState.GetMessages();
 			var summary = runState.LastRunSummary;
 			Assert.AreEqual(summary?.ValidationErrors.Length, 0);
@@ -76,7 +71,9 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[Test]
 		public static void CompetitionTooSlowOk()
 		{
-			var overrideConfig = SelfTestConfig.Default.WithLongRunningBenchmarkLimit(TimeSpan.FromMinutes(2));
+			var overrideConfig = CompetitionHelpers
+				.CreateConfig(typeof(TooSlowBenchmark))
+				.WithLongRunningBenchmarkLimit(TimeSpan.FromMinutes(2));
 
 			var runState = SelfTestCompetition.Run<TooSlowBenchmark>(overrideConfig);
 			var messages = runState.GetMessages();
@@ -94,26 +91,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			IgnoreIfDebug();
 
-			var runState = SelfTestCompetition.Run<HighAccuracyBenchmark>(_debugHighAccuracyConfig);
-			var messages = runState.GetMessages();
-			if (messages.All(m => m.MessageText != "CompetitionAnalyser: All competition limits are ok."))
-			{
-				Assert.Ignore("The environment does not provide accurate timings. Test results cannot be trusted.");
-			}
-		}
-
-		[Test]
-		[Ignore("No out-of-process support yet")]
-		public static void CompetitionHighAccuracyBenchmarkOutOfProcess()
-		{
-			IgnoreIfDebug();
-			// HACK: forcing a reference to System.Configuration
-			// WAITINGFOR: https://github.com/PerfDotNet/BenchmarkDotNet/issues/234
-			GC.KeepAlive(typeof(ConfigurationManager));
-
-			var config = new SelfTestConfig(Platform.X64);
-
-			var runState = SelfTestCompetition.Run<HighAccuracyBenchmarkOutOfProcess>(config);
+			var runState = SelfTestCompetition.Run<HighAccuracyBenchmark>();
 			var messages = runState.GetMessages();
 			if (messages.All(m => m.MessageText != "CompetitionAnalyser: All competition limits are ok."))
 			{
@@ -123,6 +101,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		#region Benchmark classes
 		[PublicAPI]
+		[CompetitionModifier(typeof(CompetitionHighAccuracyModifier))]
 		public class TooFastBenchmark
 		{
 			[Benchmark]
@@ -154,6 +133,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void TooSlow() => Thread.Sleep(550);
 		}
 
+		[CompetitionModifier(typeof(CompetitionHighAccuracyModifier))]
 		public class HighAccuracyBenchmark
 		{
 			private const int Count = 4 * CompetitionHelpers.DefaultCount;
