@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using CodeJam.Ranges;
+
 using JetBrains.Annotations;
 
 namespace CodeJam
@@ -19,7 +21,7 @@ namespace CodeJam
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange<TElement, TValue>(
+		public static Range<int> EqualRange<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
 				[NotNull, InstantHandle] Func<TElement, TValue, int> comparer) =>
@@ -38,7 +40,7 @@ namespace CodeJam
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange<TElement, TValue>(
+		public static Range<int> EqualRange<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
 				int startIndex,
@@ -59,7 +61,7 @@ namespace CodeJam
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange<TElement, TValue>(
+		public static Range<int> EqualRange<TElement, TValue>(
 			[NotNull, InstantHandle] this IList<TElement> list,
 			TValue value,
 			int startIndex,
@@ -94,7 +96,7 @@ namespace CodeJam
 					upperBoundEndIndex = endIndex;
 				}
 			}
-			return ValueTuple.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex, comparer));
+			return Range.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex, comparer));
 		}
 	}
 }

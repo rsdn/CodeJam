@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using CodeJam.Ranges;
+
 using JetBrains.Annotations;
 
 namespace CodeJam
@@ -21,7 +23,7 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange<TElement, TValue>(
+		public static Range<int> EqualRange<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value)
 			where TElement : IComparable<TValue> =>
@@ -42,7 +44,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange<TElement, TValue>(
+		public static Range<int> EqualRange<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
 				int startIndex)
@@ -65,7 +67,7 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange<TElement, TValue>(
+		public static Range<int> EqualRange<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
 				int startIndex,
@@ -98,7 +100,7 @@ namespace CodeJam
 					upperBoundEndIndex = endIndex;
 				}
 			}
-			return ValueTuple.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
+			return Range.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
 		}
 	}
 }

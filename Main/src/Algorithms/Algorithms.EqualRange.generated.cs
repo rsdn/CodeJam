@@ -10,6 +10,8 @@
 using System;
 using System.Collections.Generic;
 
+using CodeJam.Ranges;
+
 using JetBrains.Annotations;
 
 namespace CodeJam
@@ -26,7 +28,7 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<float> list, float value)
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<float> list, float value)
 			=> list.EqualRange(value, 0);
 
 		/// <summary>
@@ -39,7 +41,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<float> list, float value, int startIndex)
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<float> list, float value, int startIndex)
 			=> list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
@@ -53,7 +55,7 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange(
+		public static Range<int> EqualRange(
 			[NotNull, InstantHandle] this IList<float> list,
 			float value,
 			int startIndex,
@@ -84,7 +86,7 @@ namespace CodeJam
 					upperBoundEndIndex = endIndex;
 				}
 			}
-			return ValueTuple.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
+			return Range.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
 		}
 		#endregion
 
@@ -98,7 +100,7 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<double> list, double value)
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<double> list, double value)
 			=> list.EqualRange(value, 0);
 
 		/// <summary>
@@ -111,7 +113,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<double> list, double value, int startIndex)
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<double> list, double value, int startIndex)
 			=> list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
@@ -125,7 +127,7 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange(
+		public static Range<int> EqualRange(
 			[NotNull, InstantHandle] this IList<double> list,
 			double value,
 			int startIndex,
@@ -156,7 +158,7 @@ namespace CodeJam
 					upperBoundEndIndex = endIndex;
 				}
 			}
-			return ValueTuple.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
+			return Range.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
 		}
 		#endregion
 
@@ -170,7 +172,7 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value)
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value)
 			=> list.EqualRange(value, 0);
 
 		/// <summary>
@@ -183,7 +185,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, int startIndex)
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, int startIndex)
 			=> list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
@@ -197,7 +199,7 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange(
+		public static Range<int> EqualRange(
 			[NotNull, InstantHandle] this IList<TimeSpan> list,
 			TimeSpan value,
 			int startIndex,
@@ -228,7 +230,7 @@ namespace CodeJam
 					upperBoundEndIndex = endIndex;
 				}
 			}
-			return ValueTuple.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
+			return Range.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
 		}
 		#endregion
 
@@ -242,7 +244,7 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<DateTime> list, DateTime value)
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTime> list, DateTime value)
 			=> list.EqualRange(value, 0);
 
 		/// <summary>
@@ -255,7 +257,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, int startIndex)
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, int startIndex)
 			=> list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
@@ -269,7 +271,7 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange(
+		public static Range<int> EqualRange(
 			[NotNull, InstantHandle] this IList<DateTime> list,
 			DateTime value,
 			int startIndex,
@@ -300,7 +302,7 @@ namespace CodeJam
 					upperBoundEndIndex = endIndex;
 				}
 			}
-			return ValueTuple.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
+			return Range.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
 		}
 		#endregion
 
@@ -314,7 +316,7 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value)
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value)
 			=> list.EqualRange(value, 0);
 
 		/// <summary>
@@ -327,7 +329,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, int startIndex)
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, int startIndex)
 			=> list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
@@ -341,7 +343,7 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange(
+		public static Range<int> EqualRange(
 			[NotNull, InstantHandle] this IList<DateTimeOffset> list,
 			DateTimeOffset value,
 			int startIndex,
@@ -372,7 +374,7 @@ namespace CodeJam
 					upperBoundEndIndex = endIndex;
 				}
 			}
-			return ValueTuple.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
+			return Range.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
 		}
 		#endregion
 

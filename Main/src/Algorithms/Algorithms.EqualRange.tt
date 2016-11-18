@@ -3,6 +3,8 @@
 using System;
 using System.Collections.Generic;
 
+using CodeJam.Ranges;
+
 using JetBrains.Annotations;
 
 namespace CodeJam
@@ -37,7 +39,7 @@ private void GenerateMethods(string type)
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<<#= type #>> list, <#= type #> value)
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<<#= type #>> list, <#= type #> value)
 			=> list.EqualRange(value, 0);
 
 		/// <summary>
@@ -50,7 +52,7 @@ private void GenerateMethods(string type)
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange([NotNull, InstantHandle] this IList<<#= type #>> list, <#= type #> value, int startIndex)
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<<#= type #>> list, <#= type #> value, int startIndex)
 			=> list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
@@ -64,7 +66,7 @@ private void GenerateMethods(string type)
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static ValueTuple<int, int> EqualRange(
+		public static Range<int> EqualRange(
 			[NotNull, InstantHandle] this IList<<#= type #>> list,
 			<#= type #> value,
 			int startIndex,
@@ -95,7 +97,7 @@ private void GenerateMethods(string type)
 					upperBoundEndIndex = endIndex;
 				}
 			}
-			return ValueTuple.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
+			return Range.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex));
 		}
 <#+
 }

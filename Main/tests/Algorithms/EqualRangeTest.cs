@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using CodeJam.Ranges;
+
 using NUnit.Framework;
 
 namespace CodeJam
@@ -86,7 +88,7 @@ namespace CodeJam
 		public void Test05WithAllParams(double[] data, double value, int from, int to)
 		{
 			var list = (IList<double>)data;
-			var expected = ValueTuple.Create(list.LowerBound(value, from, to), list.UpperBound(value, from, to));
+			var expected = Range.Create(list.LowerBound(value, from, to), list.UpperBound(value, from, to));
 			// comparer version
 			Assert.That(list.EqualRange(value, from, to, Comparer<double>.Default.Compare), Is.EqualTo(expected));
 			// IComparable version
@@ -102,7 +104,7 @@ namespace CodeJam
 		{
 			// comparer version
 			var list = (IList<double>)data;
-			var expected = ValueTuple.Create(list.LowerBound(value), list.UpperBound(value));
+			var expected = Range.Create(list.LowerBound(value), list.UpperBound(value));
 			Assert.That(list.EqualRange(value, Comparer<double>.Default.Compare), Is.EqualTo(expected));
 		}
 
@@ -119,7 +121,7 @@ namespace CodeJam
 		public void Test07WithFrom(double[] data, double value, int from)
 		{
 			var list = (IList<double>)data;
-			var expected = ValueTuple.Create(list.LowerBound(value, from), list.UpperBound(value, from));
+			var expected = Range.Create(list.LowerBound(value, from), list.UpperBound(value, from));
 			// comparer version
 			Assert.That(list.EqualRange(value, from, Comparer<double>.Default.Compare), Is.EqualTo(expected));
 			// IComparable version
@@ -144,7 +146,7 @@ namespace CodeJam
 		public void Test08WithoutParams(double[] data, double value)
 		{
 			var list = (IList<double>)data;
-			var expected = ValueTuple.Create(list.LowerBound(value), list.UpperBound(value));
+			var expected = Range.Create(list.LowerBound(value), list.UpperBound(value));
 			// comparer version
 			Assert.That(list.EqualRange(value, Comparer<double>.Default.Compare), Is.EqualTo(expected));
 			// IComparable version
@@ -168,7 +170,7 @@ namespace CodeJam
 			var list2 = list.Cast<IComparable<double>>().ToList();
 			for (var j = -10.0; j < maxValue / 100.0 + 10; ++j)
 			{
-				var expected = ValueTuple.Create(list.LowerBound(j), list.UpperBound(j));
+				var expected = Range.Create(list.LowerBound(j), list.UpperBound(j));
 				// comparer version
 				Assert.That(list.EqualRange(j, Comparer<double>.Default.Compare), Is.EqualTo(expected));
 				// IComparable version
