@@ -2,7 +2,6 @@ using System;
 using System.Threading;
 
 using CodeJam.PerfTests;
-using CodeJam.PerfTests.Configs;
 
 using Xunit;
 

@@ -77,10 +77,6 @@ namespace CodeJam.PerfTests.Configs.Factories
 			Infrastructure =
 			{
 				Toolchain = InProcessToolchain.Instance
-			},
-			Accuracy =
-			{
-				MinInvokeCount = 1
 			}
 		}.Freeze();
 
