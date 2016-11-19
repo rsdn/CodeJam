@@ -32,7 +32,9 @@ namespace CodeJam.PerfTests
 
 			var t1 = s1.GetSeconds();
 			var t2 = s2.GetSeconds();
-			LessOrEqual(Math.Abs(t1 - t2) / t2, 0.3); // We're not interested in accurate absolute values +/- 30% is acceptable.
+			// If all CPU cores are busy all threads of the process can be suspended.
+			// We're not interested in accurate absolute values +/- 50% is acceptable.
+			LessOrEqual(Math.Abs(t1 - t2) / t2, 0.5);
 			Console.WriteLine($"Clock {c1.Clock.GetType().Name} to {c2.Clock.GetType().Name}: {t1 / t2:P}");
 
 			var c3 = clockA.Start();
