@@ -36,10 +36,10 @@ private void GenerateMethod(int argCount)
 			bool threadSafe = false)
 		{
 			var map =
-				LazyDictionary.Create<(<#=typeArgs#>), TResult>(
+				LazyDictionary.Create<ValueTuple<<#=typeArgs#>>, TResult>(
 					key => func(<#=List(argCount, i => "key.Item" + i)#>),
 					threadSafe);
-			return (<#=args#>) => map[(<#=args#>)];
+			return (<#=args#>) => map[ValueTuple.Create(<#=args#>)];
 		}
 
 <#+}#>

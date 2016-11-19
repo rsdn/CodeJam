@@ -28,7 +28,7 @@ namespace CodeJam.Collections
 		protected Func<int, char, int> EdgeComparer { get; }
 
 		/// <summary>The comparer to compare string locations against a string end</summary>
-		private readonly Func<(int Start, int End), int, int> _stringLocationByEndComparer =
+		private readonly Func<ValueTuple<int, int>, int, int> _stringLocationByEndComparer =
 			(position, end) => position.Item2 - end;
 
 		/// <summary>Adds a new node</summary>
@@ -58,7 +58,7 @@ namespace CodeJam.Collections
 		protected string InternalData { get; private set; }
 
 		/// <summary>List of locatons of added strings inside the InternalData</summary>
-		protected List<(int Start, int Length)> StringLocations { get; }
+		protected List<ValueTuple<int, int>> StringLocations { get; }
 
 		/// <summary>Constructs a base for a suffix tree</summary>
 		protected SuffixTreeBase()
@@ -66,7 +66,7 @@ namespace CodeJam.Collections
 			InternalData = string.Empty;
 			var root = new Node(0, 0, false);
 			_nodes = new List<Node> { root };
-			StringLocations = new List<(int, int)>();
+			StringLocations = new List<ValueTuple<int, int>>();
 			EdgeComparer = (index, c) =>
 			{
 				var node = GetNode(index);
@@ -93,7 +93,7 @@ namespace CodeJam.Collections
 			}
 			var begin = InternalData.Length;
 			InternalData = InternalData + data;
-			StringLocations.Add((begin, InternalData.Length));
+			StringLocations.Add(ValueTuple.Create(begin, InternalData.Length));
 			BuildFor(begin, InternalData.Length);
 		}
 
@@ -242,7 +242,7 @@ namespace CodeJam.Collections
 		private Suffix CreateSuffix(int end, int length)
 		{
 			var sourceIndex = GetSourceIndexByEnd(end);
-			var sourceOffset = StringLocations[sourceIndex].Start;
+			var sourceOffset = StringLocations[sourceIndex].Item1;
 			var offset = end - length - sourceOffset;
 			return new Suffix(InternalData, sourceIndex, sourceOffset, offset, length);
 		}
@@ -309,11 +309,9 @@ namespace CodeJam.Collections
 		/// <returns>The source string index</returns>
 		private int GetSourceIndexByEnd(int end)
 		{
-			// CSC bug?
-			// ReSharper disable once RedundantTypeArgumentsOfMethod
-			var index = StringLocations.LowerBound<(int, int), int>(end, _stringLocationByEndComparer);
+			var index = StringLocations.LowerBound(end, _stringLocationByEndComparer);
 			DebugCode.AssertState(
-				index < StringLocations.Count && StringLocations[index].Length == end,
+				index < StringLocations.Count && StringLocations[index].Item2 == end,
 				"Invalid source index computed. Check logic");
 			return index;
 		}
@@ -335,14 +333,14 @@ namespace CodeJam.Collections
 #else
 					List
 #endif
-					<(int Start, int Length)>();
+						<ValueTuple<int, int>>();
 			for (;;)
 			{
 				PrintNodeWithPath(sb, currentIndex, stack);
 				var node = GetNode(currentIndex);
 				if (node.Children != null)
 				{
-					stack.Add((currentIndex, node.Children.Count - 2));
+					stack.Add(ValueTuple.Create(currentIndex, node.Children.Count - 2));
 					currentIndex = node.Children[node.Children.Count - 1];
 					continue;
 				}
@@ -351,12 +349,12 @@ namespace CodeJam.Collections
 				{
 					var t = stack[stack.Count - 1];
 					stack.RemoveAt(stack.Count - 1);
-					node = GetNode(t.Start);
-					var nextChild = t.Length;
+					node = GetNode(t.Item1);
+					var nextChild = t.Item2;
 					if (nextChild >= 0)
 					{
 						currentIndex = node.Children[nextChild];
-						stack.Add((t.Item1, nextChild - 1));
+						stack.Add(ValueTuple.Create(t.Item1, nextChild - 1));
 						break;
 					}
 				}
@@ -375,19 +373,19 @@ namespace CodeJam.Collections
 		private void PrintNodeWithPath(
 			[NotNull] StringBuilder sb,
 			int nodeIndex,
-			[NotNull] IReadOnlyList<(int Start, int Length)> stack)
+			[NotNull] IReadOnlyList<ValueTuple<int, int>> stack)
 		{
 			if (stack.Count > 0)
 			{
 				for (var i = 0; i < stack.Count - 1; ++i)
 				{
-					sb.Append(stack[i].Length >= 0 ? '|' : ' ');
+					sb.Append(stack[i].Item2 >= 0 ? '|' : ' ');
 					sb.Append(' ', _align - 1);
 				}
 				sb.AppendLine("|");
 				for (var i = 0; i < stack.Count - 1; ++i)
 				{
-					sb.Append(stack[i].Length >= 0 ? '|' : ' ');
+					sb.Append(stack[i].Item2 >= 0 ? '|' : ' ');
 					sb.Append(' ', _align - 1);
 				}
 				sb.Append('|');
