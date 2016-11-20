@@ -26,6 +26,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntCompareCase() =>
 			Competition.Run<IntCompareCase>();
 
+		[CompetitionBurstMode]
 		public class IntCompareCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opCompare = Operators<int>.Compare;
@@ -77,6 +78,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableIntCompareCase() =>
 			Competition.Run<NullableIntCompareCase>();
 
+		[CompetitionBurstMode]
 		public class NullableIntCompareCase : NullableIntOperatorsBaseCase
 		{
 			private static readonly Func<int?, int?, int> _opCompare = Operators<int?>.Compare;
@@ -128,6 +130,7 @@ namespace CodeJam.Arithmetic
 		public void RunEnumCompareCase() =>
 			Competition.Run<EnumCompareCase>();
 
+		[CompetitionBurstMode]
 		public class EnumCompareCase : EnumOperatorsBaseCase
 		{
 			private static readonly Func<AttributeTargets, AttributeTargets, int> _opCompare = Operators<AttributeTargets>.Compare;
@@ -179,6 +182,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableEnumCompareCase() =>
 			Competition.Run<NullableEnumCompareCase>();
 
+		[CompetitionBurstMode]
 		public class NullableEnumCompareCase : NullableEnumOperatorsBaseCase
 		{
 			private static readonly Func<AttributeTargets?, AttributeTargets?, int> _opCompare = Operators<AttributeTargets?>.Compare;
@@ -230,6 +234,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableDateTimeCompareCase() =>
 			Competition.Run<NullableDateTimeCompareCase>();
 
+		[CompetitionBurstMode]
 		public class NullableDateTimeCompareCase : NullableDateTimeOperatorsBaseCase
 		{
 			private static readonly Func<DateTime?, DateTime?, int> _opCompare = Operators<DateTime?>.Compare;
@@ -281,6 +286,7 @@ namespace CodeJam.Arithmetic
 		public void RunStringCompareCase() =>
 			Competition.Run<StringCompareCase>();
 
+		[CompetitionBurstMode]
 		public class StringCompareCase : StringOperatorsBaseCase
 		{
 			private static readonly Func<string, string, int> _opCompare = Operators<string>.Compare;

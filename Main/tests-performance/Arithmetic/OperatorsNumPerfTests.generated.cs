@@ -26,6 +26,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntUnaryMinusCase() =>
 			Competition.Run<IntUnaryMinusCase>();
 
+		[CompetitionBurstMode]		
 		public class IntUnaryMinusCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int> _opUnaryMinus = Operators<int>.UnaryMinus;
@@ -68,6 +69,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntOnesComplementCase() =>
 			Competition.Run<IntOnesComplementCase>();
 
+		[CompetitionBurstMode]		
 		public class IntOnesComplementCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int> _opOnesComplement = Operators<int>.OnesComplement;
@@ -112,6 +114,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntPlusCase() =>
 			Competition.Run<IntPlusCase>();
 
+		[CompetitionBurstMode]
 		public class IntPlusCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opPlus = Operators<int>.Plus;
@@ -153,6 +156,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableDoublePlusCase() =>
 			Competition.Run<NullableDoublePlusCase>();
 
+		[CompetitionBurstMode]
 		public class NullableDoublePlusCase : NullableDoubleOperatorsBaseCase
 		{
 			private static readonly Func<double?, double?, double?> _opPlus = Operators<double?>.Plus;
@@ -196,6 +200,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntMinusCase() =>
 			Competition.Run<IntMinusCase>();
 
+		[CompetitionBurstMode]
 		public class IntMinusCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opMinus = Operators<int>.Minus;
@@ -237,6 +242,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableDoubleMinusCase() =>
 			Competition.Run<NullableDoubleMinusCase>();
 
+		[CompetitionBurstMode]
 		public class NullableDoubleMinusCase : NullableDoubleOperatorsBaseCase
 		{
 			private static readonly Func<double?, double?, double?> _opMinus = Operators<double?>.Minus;
@@ -280,6 +286,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntMulCase() =>
 			Competition.Run<IntMulCase>();
 
+		[CompetitionBurstMode]
 		public class IntMulCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opMul = Operators<int>.Mul;
@@ -321,6 +328,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableDoubleMulCase() =>
 			Competition.Run<NullableDoubleMulCase>();
 
+		[CompetitionBurstMode]
 		public class NullableDoubleMulCase : NullableDoubleOperatorsBaseCase
 		{
 			private static readonly Func<double?, double?, double?> _opMul = Operators<double?>.Mul;
@@ -364,6 +372,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntDivCase() =>
 			Competition.Run<IntDivCase>();
 
+		[CompetitionBurstMode]
 		public class IntDivCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opDiv = Operators<int>.Div;
@@ -405,6 +414,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableDoubleDivCase() =>
 			Competition.Run<NullableDoubleDivCase>();
 
+		[CompetitionBurstMode]
 		public class NullableDoubleDivCase : NullableDoubleOperatorsBaseCase
 		{
 			private static readonly Func<double?, double?, double?> _opDiv = Operators<double?>.Div;
@@ -448,6 +458,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntModuloCase() =>
 			Competition.Run<IntModuloCase>();
 
+		[CompetitionBurstMode]
 		public class IntModuloCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opModulo = Operators<int>.Modulo;
@@ -491,6 +502,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntXorCase() =>
 			Competition.Run<IntXorCase>();
 
+		[CompetitionBurstMode]
 		public class IntXorCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opXor = Operators<int>.Xor;
@@ -534,6 +546,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntBitwiseAndCase() =>
 			Competition.Run<IntBitwiseAndCase>();
 
+		[CompetitionBurstMode]
 		public class IntBitwiseAndCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opBitwiseAnd = Operators<int>.BitwiseAnd;
@@ -577,6 +590,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntBitwiseOrCase() =>
 			Competition.Run<IntBitwiseOrCase>();
 
+		[CompetitionBurstMode]
 		public class IntBitwiseOrCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opBitwiseOr = Operators<int>.BitwiseOr;
@@ -620,6 +634,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntLeftShiftCase() =>
 			Competition.Run<IntLeftShiftCase>();
 
+		[CompetitionBurstMode]
 		public class IntLeftShiftCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opLeftShift = Operators<int>.LeftShift;
@@ -663,6 +678,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntRightShiftCase() =>
 			Competition.Run<IntRightShiftCase>();
 
+		[CompetitionBurstMode]
 		public class IntRightShiftCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, int> _opRightShift = Operators<int>.RightShift;

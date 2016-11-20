@@ -14,7 +14,7 @@ namespace CodeJam.Assertions
 	/// </summary>
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory)]
 	[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
-	[PublicAPI]
+	[CompetitionBurstMode]
 	public class DebugCodePerfTests
 	{
 		//[Params(10 * 1000, 100 * 1000, 1000 * 1000)]

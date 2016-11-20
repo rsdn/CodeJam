@@ -56,7 +56,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 
 		#region Static members
 		/// <summary>Default competition config job.</summary>
-		public static readonly Job DefaultJob = new Job("DefaultCompetition")
+		public static readonly Job DefaultJob = new Job("Competition")
 		{
 			Env =
 			{
@@ -70,9 +70,9 @@ namespace CodeJam.PerfTests.Configs.Factories
 				LaunchCount = 1,
 				WarmupCount = 100,
 				TargetCount = 300,
-				UnrollFactor = 1,
 				RunStrategy = RunStrategy.Throughput,
-				InvocationCount = 1
+				UnrollFactor = 16,
+				InvocationCount = 64
 			},
 			Infrastructure =
 			{
@@ -80,8 +80,19 @@ namespace CodeJam.PerfTests.Configs.Factories
 			}
 		}.Freeze();
 
+		/// <summary>The modifier for burst mode jobs.</summary>
+		public static readonly Job BurstModeModifier = new Job
+		{
+			Run =
+			{
+				UnrollFactor = 1,
+				InvocationCount = 1
+			}
+		}.Freeze();
+
 		/// <summary>Default competition config options.</summary>
-		protected static readonly CompetitionOptions DefaultCompetitionOptions = CompetitionOptions.Default;
+		public static readonly CompetitionOptions DefaultCompetitionOptions = new CompetitionOptions("Competition")
+			.ApplyAndFreeze(CompetitionOptions.Default);
 
 		/// <summary>Default instance of <see cref="CompetitionConfigFactory"/></summary>
 		protected static readonly CompetitionConfigFactory FallbackInstance = new CompetitionConfigFactory(DefaultJob.Id);
@@ -107,8 +118,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 		public ICompetitionConfig Create(
 			Assembly targetAssembly,
 			CompetitionFeatures competitionFeatures) =>
-			CreateCore(targetAssembly, competitionFeatures);
-
+				CreateCore(targetAssembly, competitionFeatures);
 
 		/// <summary>Creates competition config for type.</summary>
 		/// <param name="benchmarkType">Benchmark class to run.</param>
@@ -117,7 +127,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 		public ICompetitionConfig Create(
 			Type benchmarkType,
 			CompetitionFeatures competitionFeatures) =>
-			CreateCore(benchmarkType, competitionFeatures);
+				CreateCore(benchmarkType, competitionFeatures);
 
 		/// <summary>Creates competition config for type.</summary>
 		/// <param name="metadataSource">The metadata source.</param>
@@ -134,10 +144,10 @@ namespace CodeJam.PerfTests.Configs.Factories
 				return CompleteConfig(new ManualCompetitionConfig(config));
 
 			// 2. Get competition features
-			competitionFeatures = competitionFeatures == null
-				? GetCompetitionFeatures(metadataSource)
-				: CopyCompetitionFeatures(competitionFeatures);
-			CompleteFeatures(competitionFeatures);
+			// TODO: redesign? Do not lost features Id
+			competitionFeatures = competitionFeatures?.UnfreezeCopy()
+				?? CreateCompetitionFeaturesUnfrozen(ConfigId, metadataSource);
+			competitionFeatures = CompleteFeatures(competitionFeatures);
 
 			// 3. Create config stub
 			var result = CreateEmptyConfig(metadataSource, competitionFeatures);
@@ -154,13 +164,21 @@ namespace CodeJam.PerfTests.Configs.Factories
 			return CompleteConfig(result);
 		}
 
+		/// <summary>Creates competition features. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.</summary>
+		/// <param name="jobId">The job identifier.</param>
+		/// <param name="metadataSource">The metadata source.</param>
+		/// <returns>New competition features. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.</returns>
+		protected virtual CompetitionFeatures CreateCompetitionFeaturesUnfrozen(
+			[CanBeNull] string jobId,
+			[CanBeNull] ICustomAttributeProvider metadataSource) =>
+				new CompetitionFeatures(jobId, GetCompetitionFeatures(metadataSource));
+
 		/// <summary>Completes competition features creation.</summary>
-		/// <param name="competitionFeatures">CompetitionFeatures to modify.</param>
-		protected virtual void CompleteFeatures(
-			[NotNull] CompetitionFeatures competitionFeatures)
-		{
-			// Does nothing by default;
-		}
+		/// <param name="competitionFeatures">Current competition features.</param>
+		/// <returns>Frozen competition features.</returns>
+		protected virtual CompetitionFeatures CompleteFeatures(
+			[NotNull] CompetitionFeatures competitionFeatures) =>
+				competitionFeatures.Freeze();
 
 		/// <summary>Creates empty competition config without job and competition options applied.</summary>
 		/// <param name="metadataSource">The metadata source.</param>
@@ -215,17 +233,17 @@ namespace CodeJam.PerfTests.Configs.Factories
 			return result;
 		}
 
-		/// <summary>Creates job for the competition. <see cref="Job.Frozen"/> is false.</summary>
+		/// <summary>Creates job for the competition. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.</summary>
 		/// <param name="jobId">The job identifier.</param>
 		/// <param name="metadataSource">The metadata source.</param>
 		/// <param name="competitionFeatures">The competition features.</param>
-		/// <returns>New job for the competition. <see cref="Job.Frozen"/> is false.</returns>
+		/// <returns>New job for the competition. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.</returns>
 		protected virtual Job CreateJobUnfrozen(
 			[CanBeNull] string jobId,
 			[CanBeNull] ICustomAttributeProvider metadataSource,
 			[NotNull] CompetitionFeatures competitionFeatures)
 		{
-			var platform = competitionFeatures.TargetPlatform;
+			var platform = competitionFeatures.ResolveValueAsNullable(CompetitionFeatures.TargetPlatformCharacteristic);
 
 			if (jobId == null && platform == null)
 				return DefaultJob;
@@ -238,14 +256,18 @@ namespace CodeJam.PerfTests.Configs.Factories
 			{
 				job.Env.Platform = platform.GetValueOrDefault();
 			}
+			if (competitionFeatures.BurstMode)
+			{
+				job.Apply(BurstModeModifier);
+			}
 
 			return job;
 		}
 
-		/// <summary>Creates options for the competition. <see cref="CompetitionOptions.Frozen"/> is false.</summary>
+		/// <summary>Creates options for the competition. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.</summary>
 		/// <param name="metadataSource">The metadata source.</param>
 		/// <param name="competitionFeatures">The competition features.</param>
-		/// <returns>Options for the competition. <see cref="CompetitionOptions.Frozen"/> is false.</returns>
+		/// <returns>Options for the competition. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.</returns>
 		protected virtual CompetitionOptions CreateCompetitionOptionsUnfrozen(
 			[CanBeNull] ICustomAttributeProvider metadataSource,
 			[NotNull] CompetitionFeatures competitionFeatures)
@@ -303,6 +325,6 @@ namespace CodeJam.PerfTests.Configs.Factories
 		/// <returns>Read-only competition config.</returns>
 		protected virtual ICompetitionConfig CompleteConfig(
 			[NotNull] ManualCompetitionConfig competitionConfig) =>
-			competitionConfig.AsReadOnly();
+				competitionConfig.AsReadOnly();
 	}
 }

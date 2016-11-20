@@ -13,7 +13,7 @@ namespace CodeJam.PerfTests
 	// ReSharper disable RedundantAttributeUsageProperty
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Assembly, Inherited = true, AllowMultiple = true)]
 	// ReSharper restore RedundantAttributeUsageProperty
-	[PublicAPI]
+	[PublicAPI, MeansImplicitUse(ImplicitUseTargetFlags.WithMembers)]
 	public class CompetitionModifierAttribute : Attribute, ICompetitionModifierSource
 	{
 		private readonly AttributeValue<ICompetitionModifier> _value;

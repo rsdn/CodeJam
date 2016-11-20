@@ -15,30 +15,106 @@ namespace CodeJam.PerfTests
 	// ReSharper disable RedundantAttributeUsageProperty
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Assembly, Inherited = true, AllowMultiple = true)]
 	// ReSharper restore RedundantAttributeUsageProperty
-	[PublicAPI]
+	[PublicAPI, MeansImplicitUse(ImplicitUseTargetFlags.WithMembers)]
 	public class CompetitionFeaturesAttribute : Attribute
 	{
+		private readonly CompetitionFeatures _features;
+
+		/// <summary>Initializes a new instance of the <see cref="CompetitionFeaturesAttribute"/> class.</summary>
+		public CompetitionFeaturesAttribute()
+		{
+			_features = new CompetitionFeatures();
+		}
+
+		/// <summary>Initializes a new instance of the <see cref="CompetitionFeaturesAttribute"/> class.</summary>
+		/// <param name="features">The features.</param>
+		protected CompetitionFeaturesAttribute([NotNull] CompetitionFeatures features)
+		{
+			Code.NotNull(features, nameof(features));
+
+			_features = new CompetitionFeatures(features);
+		}
+
+		#region Measurements
+		/// <summary>
+		/// Performs single run per measurement.
+		/// Recommended for use if single call time >> than timer resolution (recommended minimum is 1500 ns).
+		/// </summary>
+		/// <value>Target platform for the competition.</value>
+		public bool BurstMode
+		{
+			get
+			{
+				return _features.BurstMode;
+			}
+			set
+			{
+				_features.BurstMode = value;
+			}
+		}
+		#endregion
+
 		#region Environment
 		/// <summary>Specifies target platform for the competition.</summary>
 		/// <value>Target platform for the competition.</value>
-		public Platform? TargetPlatform { get; set; }
+		public Platform TargetPlatform
+		{
+			get
+			{
+				return _features.TargetPlatform;
+			}
+			set
+			{
+				_features.TargetPlatform = value;
+			}
+		}
 		#endregion
 
 		#region Annotations
 		/// <summary>Enables source annotations feature.</summary>
 		/// <value><c>true</c> if source annotations feature should be enabled.</value>
-		public bool? AnnotateSources { get; set; }
+		public bool AnnotateSources
+		{
+			get
+			{
+				return _features.AnnotateSources;
+			}
+			set
+			{
+				_features.AnnotateSources = value;
+			}
+		}
 
 		/// <summary>
 		/// Ignores existing annotations if <see cref="AnnotateSources"/> is enabled.
 		/// Value of <see cref="PreviousRunLogUri"/> is ignored.
 		/// </summary>
 		/// <value><c>true</c> if reannotation feature should be enabled.</value>
-		public bool? IgnoreExistingAnnotations { get; set; }
+		public bool IgnoreExistingAnnotations
+		{
+			get
+			{
+				return _features.IgnoreExistingAnnotations;
+			}
+			set
+			{
+				_features.IgnoreExistingAnnotations = value;
+			}
+		}
 
 		/// <summary>Sets the <see cref="SourceAnnotationsMode.PreviousRunLogUri"/> to the specified value.</summary>
 		/// <value>The value for <see cref="SourceAnnotationsMode.PreviousRunLogUri"/>.</value>
-		public string PreviousRunLogUri { get; set; }
+		public string PreviousRunLogUri
+		{
+			get
+			{
+				return _features.PreviousRunLogUri;
+			}
+			set
+			{
+				_features.PreviousRunLogUri = value;
+			}
+		}
 		#endregion
 
 		#region Troubleshooting
@@ -46,7 +122,17 @@ namespace CodeJam.PerfTests
 		/// <value>
 		/// <c>true</c> if <see cref="CompetitionRunMode.ReportWarningsAsErrors"/> should be set to true.
 		/// </value>
-		public bool? ReportWarningsAsErrors { get; set; }
+		public bool ReportWarningsAsErrors
+		{
+			get
+			{
+				return _features.ReportWarningsAsErrors;
+			}
+			set
+			{
+				_features.ReportWarningsAsErrors = value;
+			}
+		}
 
 		/// <summary>
 		/// Enables <see cref="CompetitionRunMode.DetailedLogging"/> and <see cref="CompetitionRunMode.AllowDebugBuilds"/> options.
@@ -54,61 +140,49 @@ namespace CodeJam.PerfTests
 		/// Adds important info and detailed info loggers.
 		/// </summary>
 		/// <value><c>true</c> to enable troubleshooting mode.</value>
-		public bool? TroubleshootingMode { get; set; }
+		public bool TroubleshootingMode
+		{
+			get
+			{
+				return _features.TroubleshootingMode;
+			}
+			set
+			{
+				_features.TroubleshootingMode = value;
+			}
+		}
 
 		/// <summary>Enables important info logger.</summary>
 		/// <value><c>true</c> if important info logger should be used.</value>
-		public bool? ImportantInfoLogger { get; set; }
+		public bool ImportantInfoLogger
+		{
+			get
+			{
+				return _features.ImportantInfoLogger;
+			}
+			set
+			{
+				_features.ImportantInfoLogger = value;
+			}
+		}
 
 		/// <summary>Enables detailed logger.</summary>
 		/// <value><c>true</c> if detailed logger should be used.</value>
-		public bool? DetailedLogger { get; set; }
+		public bool DetailedLogger
+		{
+			get
+			{
+				return _features.DetailedLogger;
+			}
+			set
+			{
+				_features.DetailedLogger = value;
+			}
+		}
 		#endregion
-	}
 
-	/// <summary>Enables source annotations feature.</summary>
-	[PublicAPI]
-	public class CompetitionAnnotateSourcesAttribute : CompetitionFeaturesAttribute
-	{
-		/// <summary>Initializes a new instance of the <see cref="CompetitionAnnotateSourcesAttribute"/> class.</summary>
-		public CompetitionAnnotateSourcesAttribute()
-		{
-			AnnotateSources = true;
-		}
-	}
-
-	/// <summary>Enables source reannotations feature.</summary>
-	[PublicAPI]
-	public class CompetitionReannotateSourcesAttribute : CompetitionFeaturesAttribute
-	{
-		/// <summary>Initializes a new instance of the <see cref="CompetitionReannotateSourcesAttribute"/> class.</summary>
-		public CompetitionReannotateSourcesAttribute()
-		{
-			AnnotateSources = true;
-			IgnoreExistingAnnotations = true;
-		}
-	}
-
-	/// <summary>Enables troubleshooting mode feature.</summary>
-	[PublicAPI]
-	public class CompetitionTroubleshootingModeAttribute : CompetitionFeaturesAttribute
-	{
-		/// <summary>Initializes a new instance of the <see cref="CompetitionTroubleshootingModeAttribute"/> class.</summary>
-		public CompetitionTroubleshootingModeAttribute()
-		{
-			TroubleshootingMode = true;
-		}
-	}
-
-	/// <summary>Specifies target platform for the  competition.</summary>
-	[PublicAPI]
-	public class CompetitionPlatformAttribute : CompetitionFeaturesAttribute
-	{
-		/// <summary>Initializes a new instance of the <see cref="CompetitionPlatformAttribute" /> class.</summary>
-		/// <param name="targetPlatform">The target platform.</param>
-		public CompetitionPlatformAttribute(Platform targetPlatform)
-		{
-			TargetPlatform = targetPlatform;
-		}
+		/// <summary>Gets the features from the attribute.</summary>
+		/// <returns>Features from the attribute</returns>
+		public CompetitionFeatures GetFeatures() => _features.UnfreezeCopy().Freeze();
 	}
 }

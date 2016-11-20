@@ -12,6 +12,7 @@ namespace CodeJam
 	/// </summary>
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Self-testing")]
 	[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
+	[CompetitionBurstMode]
 	public class CallCostParamsPerfTests
 	{
 		#region PerfTest helpers

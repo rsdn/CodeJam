@@ -19,6 +19,7 @@ namespace CodeJam
 	/// </summary>
 	[PublicAPI]
 	[TestFixture(Category = PerfTestCategory + ": EnumHelper")]
+	[CompetitionBurstMode]
 	public class EnumHelperPerfTests
 	{
 		#region PerfTest helpers

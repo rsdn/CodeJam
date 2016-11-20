@@ -26,6 +26,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntGreaterThanCase() =>
 			Competition.Run<IntGreaterThanCase>();
 
+		[CompetitionBurstMode]
 		public class IntGreaterThanCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, bool> _opGreaterThan = Operators<int>.GreaterThan;
@@ -77,6 +78,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableIntGreaterThanCase() =>
 			Competition.Run<NullableIntGreaterThanCase>();
 
+		[CompetitionBurstMode]
 		public class NullableIntGreaterThanCase : NullableIntOperatorsBaseCase
 		{
 			private static readonly Func<int?, int?, bool> _opGreaterThan = Operators<int?>.GreaterThan;
@@ -128,6 +130,7 @@ namespace CodeJam.Arithmetic
 		public void RunEnumGreaterThanCase() =>
 			Competition.Run<EnumGreaterThanCase>();
 
+		[CompetitionBurstMode]
 		public class EnumGreaterThanCase : EnumOperatorsBaseCase
 		{
 			private static readonly Func<AttributeTargets, AttributeTargets, bool> _opGreaterThan = Operators<AttributeTargets>.GreaterThan;
@@ -179,6 +182,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableEnumGreaterThanCase() =>
 			Competition.Run<NullableEnumGreaterThanCase>();
 
+		[CompetitionBurstMode]
 		public class NullableEnumGreaterThanCase : NullableEnumOperatorsBaseCase
 		{
 			private static readonly Func<AttributeTargets?, AttributeTargets?, bool> _opGreaterThan = Operators<AttributeTargets?>.GreaterThan;
@@ -230,6 +234,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableDateTimeGreaterThanCase() =>
 			Competition.Run<NullableDateTimeGreaterThanCase>();
 
+		[CompetitionBurstMode]
 		public class NullableDateTimeGreaterThanCase : NullableDateTimeOperatorsBaseCase
 		{
 			private static readonly Func<DateTime?, DateTime?, bool> _opGreaterThan = Operators<DateTime?>.GreaterThan;
@@ -281,6 +286,7 @@ namespace CodeJam.Arithmetic
 		public void RunStringGreaterThanCase() =>
 			Competition.Run<StringGreaterThanCase>();
 
+		[CompetitionBurstMode]
 		public class StringGreaterThanCase : StringOperatorsBaseCase
 		{
 			private static readonly Func<string, string, bool> _opGreaterThan = Operators<string>.GreaterThan;
@@ -334,6 +340,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntGreaterThanOrEqualCase() =>
 			Competition.Run<IntGreaterThanOrEqualCase>();
 
+		[CompetitionBurstMode]
 		public class IntGreaterThanOrEqualCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, bool> _opGreaterThanOrEqual = Operators<int>.GreaterThanOrEqual;
@@ -385,6 +392,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableIntGreaterThanOrEqualCase() =>
 			Competition.Run<NullableIntGreaterThanOrEqualCase>();
 
+		[CompetitionBurstMode]
 		public class NullableIntGreaterThanOrEqualCase : NullableIntOperatorsBaseCase
 		{
 			private static readonly Func<int?, int?, bool> _opGreaterThanOrEqual = Operators<int?>.GreaterThanOrEqual;
@@ -436,6 +444,7 @@ namespace CodeJam.Arithmetic
 		public void RunEnumGreaterThanOrEqualCase() =>
 			Competition.Run<EnumGreaterThanOrEqualCase>();
 
+		[CompetitionBurstMode]
 		public class EnumGreaterThanOrEqualCase : EnumOperatorsBaseCase
 		{
 			private static readonly Func<AttributeTargets, AttributeTargets, bool> _opGreaterThanOrEqual = Operators<AttributeTargets>.GreaterThanOrEqual;
@@ -487,6 +496,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableEnumGreaterThanOrEqualCase() =>
 			Competition.Run<NullableEnumGreaterThanOrEqualCase>();
 
+		[CompetitionBurstMode]
 		public class NullableEnumGreaterThanOrEqualCase : NullableEnumOperatorsBaseCase
 		{
 			private static readonly Func<AttributeTargets?, AttributeTargets?, bool> _opGreaterThanOrEqual = Operators<AttributeTargets?>.GreaterThanOrEqual;
@@ -538,6 +548,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableDateTimeGreaterThanOrEqualCase() =>
 			Competition.Run<NullableDateTimeGreaterThanOrEqualCase>();
 
+		[CompetitionBurstMode]
 		public class NullableDateTimeGreaterThanOrEqualCase : NullableDateTimeOperatorsBaseCase
 		{
 			private static readonly Func<DateTime?, DateTime?, bool> _opGreaterThanOrEqual = Operators<DateTime?>.GreaterThanOrEqual;
@@ -589,6 +600,7 @@ namespace CodeJam.Arithmetic
 		public void RunStringGreaterThanOrEqualCase() =>
 			Competition.Run<StringGreaterThanOrEqualCase>();
 
+		[CompetitionBurstMode]
 		public class StringGreaterThanOrEqualCase : StringOperatorsBaseCase
 		{
 			private static readonly Func<string, string, bool> _opGreaterThanOrEqual = Operators<string>.GreaterThanOrEqual;
@@ -642,6 +654,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntLessThanCase() =>
 			Competition.Run<IntLessThanCase>();
 
+		[CompetitionBurstMode]
 		public class IntLessThanCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, bool> _opLessThan = Operators<int>.LessThan;
@@ -693,6 +706,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableIntLessThanCase() =>
 			Competition.Run<NullableIntLessThanCase>();
 
+		[CompetitionBurstMode]
 		public class NullableIntLessThanCase : NullableIntOperatorsBaseCase
 		{
 			private static readonly Func<int?, int?, bool> _opLessThan = Operators<int?>.LessThan;
@@ -744,6 +758,7 @@ namespace CodeJam.Arithmetic
 		public void RunEnumLessThanCase() =>
 			Competition.Run<EnumLessThanCase>();
 
+		[CompetitionBurstMode]
 		public class EnumLessThanCase : EnumOperatorsBaseCase
 		{
 			private static readonly Func<AttributeTargets, AttributeTargets, bool> _opLessThan = Operators<AttributeTargets>.LessThan;
@@ -795,6 +810,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableEnumLessThanCase() =>
 			Competition.Run<NullableEnumLessThanCase>();
 
+		[CompetitionBurstMode]
 		public class NullableEnumLessThanCase : NullableEnumOperatorsBaseCase
 		{
 			private static readonly Func<AttributeTargets?, AttributeTargets?, bool> _opLessThan = Operators<AttributeTargets?>.LessThan;
@@ -846,6 +862,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableDateTimeLessThanCase() =>
 			Competition.Run<NullableDateTimeLessThanCase>();
 
+		[CompetitionBurstMode]
 		public class NullableDateTimeLessThanCase : NullableDateTimeOperatorsBaseCase
 		{
 			private static readonly Func<DateTime?, DateTime?, bool> _opLessThan = Operators<DateTime?>.LessThan;
@@ -897,6 +914,7 @@ namespace CodeJam.Arithmetic
 		public void RunStringLessThanCase() =>
 			Competition.Run<StringLessThanCase>();
 
+		[CompetitionBurstMode]
 		public class StringLessThanCase : StringOperatorsBaseCase
 		{
 			private static readonly Func<string, string, bool> _opLessThan = Operators<string>.LessThan;
@@ -950,6 +968,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntLessThanOrEqualCase() =>
 			Competition.Run<IntLessThanOrEqualCase>();
 
+		[CompetitionBurstMode]
 		public class IntLessThanOrEqualCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, bool> _opLessThanOrEqual = Operators<int>.LessThanOrEqual;
@@ -1001,6 +1020,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableIntLessThanOrEqualCase() =>
 			Competition.Run<NullableIntLessThanOrEqualCase>();
 
+		[CompetitionBurstMode]
 		public class NullableIntLessThanOrEqualCase : NullableIntOperatorsBaseCase
 		{
 			private static readonly Func<int?, int?, bool> _opLessThanOrEqual = Operators<int?>.LessThanOrEqual;
@@ -1052,6 +1072,7 @@ namespace CodeJam.Arithmetic
 		public void RunEnumLessThanOrEqualCase() =>
 			Competition.Run<EnumLessThanOrEqualCase>();
 
+		[CompetitionBurstMode]
 		public class EnumLessThanOrEqualCase : EnumOperatorsBaseCase
 		{
 			private static readonly Func<AttributeTargets, AttributeTargets, bool> _opLessThanOrEqual = Operators<AttributeTargets>.LessThanOrEqual;
@@ -1103,6 +1124,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableEnumLessThanOrEqualCase() =>
 			Competition.Run<NullableEnumLessThanOrEqualCase>();
 
+		[CompetitionBurstMode]
 		public class NullableEnumLessThanOrEqualCase : NullableEnumOperatorsBaseCase
 		{
 			private static readonly Func<AttributeTargets?, AttributeTargets?, bool> _opLessThanOrEqual = Operators<AttributeTargets?>.LessThanOrEqual;
@@ -1154,6 +1176,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableDateTimeLessThanOrEqualCase() =>
 			Competition.Run<NullableDateTimeLessThanOrEqualCase>();
 
+		[CompetitionBurstMode]
 		public class NullableDateTimeLessThanOrEqualCase : NullableDateTimeOperatorsBaseCase
 		{
 			private static readonly Func<DateTime?, DateTime?, bool> _opLessThanOrEqual = Operators<DateTime?>.LessThanOrEqual;
@@ -1205,6 +1228,7 @@ namespace CodeJam.Arithmetic
 		public void RunStringLessThanOrEqualCase() =>
 			Competition.Run<StringLessThanOrEqualCase>();
 
+		[CompetitionBurstMode]
 		public class StringLessThanOrEqualCase : StringOperatorsBaseCase
 		{
 			private static readonly Func<string, string, bool> _opLessThanOrEqual = Operators<string>.LessThanOrEqual;

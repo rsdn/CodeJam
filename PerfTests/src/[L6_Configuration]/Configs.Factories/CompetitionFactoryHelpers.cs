@@ -37,51 +37,6 @@ namespace CodeJam.PerfTests.Configs.Factories
 
 			return metadataSource as Assembly;
 		}
-
-		private static void InitFrom(this CompetitionFeatures result, CompetitionFeaturesAttribute source)
-		{
-			result.TargetPlatform = source.TargetPlatform ?? result.TargetPlatform;
-
-			result.AnnotateSources = source.AnnotateSources ?? result.AnnotateSources;
-			result.IgnoreExistingAnnotations = source.IgnoreExistingAnnotations ?? result.IgnoreExistingAnnotations;
-			result.PreviousRunLogUri = source.PreviousRunLogUri ?? result.PreviousRunLogUri;
-
-			result.ReportWarningsAsErrors = source.ReportWarningsAsErrors ?? result.ReportWarningsAsErrors;
-
-			result.TroubleshootingMode = source.TroubleshootingMode ?? result.TroubleshootingMode;
-			result.ImportantInfoLogger = source.ImportantInfoLogger ?? result.ImportantInfoLogger;
-			result.DetailedLogger = source.DetailedLogger ?? result.DetailedLogger;
-		}
-
-		private static void InitFrom(this CompetitionFeatures result, PerfTestsSection source)
-		{
-			result.TargetPlatform = source.TargetPlatform;
-
-			result.AnnotateSources = source.AnnotateSources;
-			result.IgnoreExistingAnnotations = source.IgnoreExistingAnnotations;
-			result.PreviousRunLogUri = source.PreviousRunLogUri;
-
-			result.ReportWarningsAsErrors = source.ReportWarningsAsErrors;
-
-			result.TroubleshootingMode = source.TroubleshootingMode;
-			result.ImportantInfoLogger = source.ImportantInfoLogger;
-			result.DetailedLogger = source.DetailedLogger;
-		}
-
-		private static void InitFrom(this CompetitionFeatures result, CompetitionFeatures source)
-		{
-			result.TargetPlatform = source.TargetPlatform;
-
-			result.AnnotateSources = source.AnnotateSources;
-			result.IgnoreExistingAnnotations = source.IgnoreExistingAnnotations;
-			result.PreviousRunLogUri = source.PreviousRunLogUri;
-
-			result.ReportWarningsAsErrors = source.ReportWarningsAsErrors;
-
-			result.TroubleshootingMode = source.TroubleshootingMode;
-			result.ImportantInfoLogger = source.ImportantInfoLogger;
-			result.DetailedLogger = source.DetailedLogger;
-		}
 		#endregion
 
 		#region Loggers
@@ -149,31 +104,21 @@ namespace CodeJam.PerfTests.Configs.Factories
 			[CanBeNull] ICustomAttributeProvider metadataSource)
 		{
 			if (metadataSource == null)
-				return new CompetitionFeatures();
+				return new CompetitionFeatures().Freeze();
 
-			var competitionFeatures = GetAssembly(metadataSource)?.FeaturesFromAppConfig() ??
+			var competitionFeatures = GetAssembly(metadataSource)
+				?.FeaturesFromAppConfig()
+				?.UnfreezeCopy() ??
 				new CompetitionFeatures();
 
 			foreach (var featureAttribute in metadataSource
 				.GetMetadataAttributes<CompetitionFeaturesAttribute>()
 				.Reverse())
 			{
-				competitionFeatures.InitFrom(featureAttribute);
+				competitionFeatures.Apply(featureAttribute.GetFeatures());
 			}
 
-			return competitionFeatures;
-		}
-
-
-		/// <summary>Creates copy of the competition features.</summary>
-		/// <param name="competitionFeatures">The competition features.</param>
-		/// <returns>Copy of the competition features.</returns>
-		[NotNull]
-		public static CompetitionFeatures CopyCompetitionFeatures(CompetitionFeatures competitionFeatures)
-		{
-			var result = new CompetitionFeatures();
-			result.InitFrom(competitionFeatures);
-			return result;
+			return competitionFeatures.Freeze();
 		}
 		#endregion
 
@@ -202,19 +147,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 				SectionName,
 				assembliesToCheck.Concat(typeof(CompetitionFactoryHelpers).Assembly));
 
-			return section == null
-				? null
-				: new CompetitionFeatures
-				{
-					TargetPlatform = section.TargetPlatform,
-					AnnotateSources = section.AnnotateSources,
-					IgnoreExistingAnnotations = section.IgnoreExistingAnnotations,
-					PreviousRunLogUri = section.PreviousRunLogUri,
-					ReportWarningsAsErrors = section.ReportWarningsAsErrors,
-					TroubleshootingMode = section.TroubleshootingMode,
-					ImportantInfoLogger = section.ImportantInfoLogger,
-					DetailedLogger = section.DetailedLogger
-				};
+			return section?.GetFeatures();
 		}
 		#endregion
 

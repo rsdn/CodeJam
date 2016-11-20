@@ -13,7 +13,7 @@ namespace CodeJam
 	/// Proof test: JIT optimizations on static feature switches
 	/// </summary>
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Self-testing")]
-	[PublicAPI]
+	[CompetitionBurstMode]
 	public class JitOptimizedFeatureSwitchPerfTests
 	{
 		// Use case:

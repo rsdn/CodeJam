@@ -13,11 +13,16 @@ namespace CodeJam.PerfTests
 	{
 		public SelfTestConfigFactory() : base("SelfTestConfig") { }
 
-		protected override void CompleteFeatures(CompetitionFeatures competitionFeatures)
+		protected override CompetitionFeatures CreateCompetitionFeaturesUnfrozen(
+			string jobId,
+			ICustomAttributeProvider metadataSource)
 		{
-			base.CompleteFeatures(competitionFeatures);
-			if (competitionFeatures.TargetPlatform == null)
-				competitionFeatures.TargetPlatform = Platform.X64;
+			var result = base.CreateCompetitionFeaturesUnfrozen(jobId, metadataSource);
+
+			if (!result.HasValue(CompetitionFeatures.TargetPlatformCharacteristic))
+				result.TargetPlatform = Platform.X64;
+
+			return result;
 		}
 
 		protected override Job CreateJobUnfrozen(string jobId, ICustomAttributeProvider metadataSource, CompetitionFeatures competitionFeatures)
@@ -29,7 +34,9 @@ namespace CodeJam.PerfTests
 					{
 						LaunchCount = 1,
 						WarmupCount = 2,
-						TargetCount = 2
+						TargetCount = 2,
+						InvocationCount =1,
+						UnrollFactor = 1
 					},
 					new EnvMode
 					{

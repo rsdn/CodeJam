@@ -26,6 +26,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntAreEqualCase() =>
 			Competition.Run<IntAreEqualCase>();
 
+		[CompetitionBurstMode]
 		public class IntAreEqualCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, bool> _opAreEqual = Operators<int>.AreEqual;
@@ -87,6 +88,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableIntAreEqualCase() =>
 			Competition.Run<NullableIntAreEqualCase>();
 
+		[CompetitionBurstMode]
 		public class NullableIntAreEqualCase : NullableIntOperatorsBaseCase
 		{
 			private static readonly Func<int?, int?, bool> _opAreEqual = Operators<int?>.AreEqual;
@@ -148,6 +150,7 @@ namespace CodeJam.Arithmetic
 		public void RunEnumAreEqualCase() =>
 			Competition.Run<EnumAreEqualCase>();
 
+		[CompetitionBurstMode]
 		public class EnumAreEqualCase : EnumOperatorsBaseCase
 		{
 			private static readonly Func<AttributeTargets, AttributeTargets, bool> _opAreEqual = Operators<AttributeTargets>.AreEqual;
@@ -209,6 +212,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableEnumAreEqualCase() =>
 			Competition.Run<NullableEnumAreEqualCase>();
 
+		[CompetitionBurstMode]
 		public class NullableEnumAreEqualCase : NullableEnumOperatorsBaseCase
 		{
 			private static readonly Func<AttributeTargets?, AttributeTargets?, bool> _opAreEqual = Operators<AttributeTargets?>.AreEqual;
@@ -270,6 +274,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableDateTimeAreEqualCase() =>
 			Competition.Run<NullableDateTimeAreEqualCase>();
 
+		[CompetitionBurstMode]
 		public class NullableDateTimeAreEqualCase : NullableDateTimeOperatorsBaseCase
 		{
 			private static readonly Func<DateTime?, DateTime?, bool> _opAreEqual = Operators<DateTime?>.AreEqual;
@@ -331,6 +336,7 @@ namespace CodeJam.Arithmetic
 		public void RunStringAreEqualCase() =>
 			Competition.Run<StringAreEqualCase>();
 
+		[CompetitionBurstMode]
 		public class StringAreEqualCase : StringOperatorsBaseCase
 		{
 			private static readonly Func<string, string, bool> _opAreEqual = Operators<string>.AreEqual;
@@ -394,6 +400,7 @@ namespace CodeJam.Arithmetic
 		public void RunIntAreNotEqualCase() =>
 			Competition.Run<IntAreNotEqualCase>();
 
+		[CompetitionBurstMode]
 		public class IntAreNotEqualCase : IntOperatorsBaseCase
 		{
 			private static readonly Func<int, int, bool> _opAreNotEqual = Operators<int>.AreNotEqual;
@@ -455,6 +462,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableIntAreNotEqualCase() =>
 			Competition.Run<NullableIntAreNotEqualCase>();
 
+		[CompetitionBurstMode]
 		public class NullableIntAreNotEqualCase : NullableIntOperatorsBaseCase
 		{
 			private static readonly Func<int?, int?, bool> _opAreNotEqual = Operators<int?>.AreNotEqual;
@@ -516,6 +524,7 @@ namespace CodeJam.Arithmetic
 		public void RunEnumAreNotEqualCase() =>
 			Competition.Run<EnumAreNotEqualCase>();
 
+		[CompetitionBurstMode]
 		public class EnumAreNotEqualCase : EnumOperatorsBaseCase
 		{
 			private static readonly Func<AttributeTargets, AttributeTargets, bool> _opAreNotEqual = Operators<AttributeTargets>.AreNotEqual;
@@ -577,6 +586,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableEnumAreNotEqualCase() =>
 			Competition.Run<NullableEnumAreNotEqualCase>();
 
+		[CompetitionBurstMode]
 		public class NullableEnumAreNotEqualCase : NullableEnumOperatorsBaseCase
 		{
 			private static readonly Func<AttributeTargets?, AttributeTargets?, bool> _opAreNotEqual = Operators<AttributeTargets?>.AreNotEqual;
@@ -638,6 +648,7 @@ namespace CodeJam.Arithmetic
 		public void RunNullableDateTimeAreNotEqualCase() =>
 			Competition.Run<NullableDateTimeAreNotEqualCase>();
 
+		[CompetitionBurstMode]
 		public class NullableDateTimeAreNotEqualCase : NullableDateTimeOperatorsBaseCase
 		{
 			private static readonly Func<DateTime?, DateTime?, bool> _opAreNotEqual = Operators<DateTime?>.AreNotEqual;
@@ -699,6 +710,7 @@ namespace CodeJam.Arithmetic
 		public void RunStringAreNotEqualCase() =>
 			Competition.Run<StringAreNotEqualCase>();
 
+		[CompetitionBurstMode]
 		public class StringAreNotEqualCase : StringOperatorsBaseCase
 		{
 			private static readonly Func<string, string, bool> _opAreNotEqual = Operators<string>.AreNotEqual;

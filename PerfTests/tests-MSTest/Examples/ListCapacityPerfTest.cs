@@ -14,7 +14,7 @@ namespace CodeJam.Examples
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public class ListCapacityPerfTest
 	{
-		private const int Count = 10000;
+		private const int Count = 10;
 
 		[TestMethod]
 		[TestCategory("PerfTests: MSTest examples")]
@@ -25,20 +25,16 @@ namespace CodeJam.Examples
 		{
 			var data = new List<int>();
 			for (int i = 0; i < Count; i++)
-			{
 				data.Add(i);
-			}
 			return data.Count;
 		}
 
-		[CompetitionBenchmark(0.64, 0.85)]
+		[CompetitionBenchmark(0.35, 0.45)]
 		public int ListWithCapacity()
 		{
 			var data = new List<int>(Count);
 			for (int i = 0; i < Count; i++)
-			{
 				data.Add(i);
-			}
 			return data.Count;
 		}
 	}

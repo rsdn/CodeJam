@@ -2,7 +2,6 @@ using System;
 using System.Threading;
 
 using CodeJam.PerfTests;
-using CodeJam.PerfTests.Configs;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -12,6 +11,7 @@ namespace CodeJam.Examples
 {
 	// A perf test class.
 	[TestClass]
+	[CompetitionBurstMode]
 	public class SimplePerfTest
 	{
 		private const int Count = 10 * 1000;

@@ -15,7 +15,7 @@ namespace CodeJam
 	/// Proof test: benchmark is sensitive enough to spot a minimal method change
 	/// </summary>
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Self-testing")]
-	[PublicAPI]
+	[CompetitionBurstMode]
 	//[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
 	public class SensitivityPerfTests
 	{

@@ -17,15 +17,36 @@ namespace CodeJam
 	{
 		public CodeJamCompetitionFactory() : base("CodeJamCompetition") { }
 
-		/// <summary>Completes competition features creation.</summary>
-		/// <param name="competitionFeatures">CompetitionFeatures to modify.</param>
-		protected override void CompleteFeatures(CompetitionFeatures competitionFeatures)
+		/// <summary>Creates competition features. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.</summary>
+		/// <param name="jobId">The job identifier.</param>
+		/// <param name="metadataSource">The metadata source.</param>
+		/// <returns>New competition features. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.</returns>
+		protected override CompetitionFeatures CreateCompetitionFeaturesUnfrozen(
+			string jobId,
+			ICustomAttributeProvider metadataSource)
 		{
-			base.CompleteFeatures(competitionFeatures);
+			var result = base.CreateCompetitionFeaturesUnfrozen(jobId, metadataSource);
 
-			// TODO Apply(EnvMode.RyuJitX64);
-			competitionFeatures.TargetPlatform = competitionFeatures.TargetPlatform ?? Platform.X64;
-			competitionFeatures.ImportantInfoLogger = true;
+			if (!result.HasValue(CompetitionFeatures.TargetPlatformCharacteristic))
+				result.TargetPlatform = Platform.X64;
+			result.ImportantInfoLogger = true;
+
+			// TODO CU build as competition feature
+#if CI_Build
+			result.PreviousRunLogUri = null;
+#else
+			if (metadataSource != null && result.PreviousRunLogUri.IsNullOrEmpty())
+			{
+				var assemblyName = GetAssembly(metadataSource)?.GetName().Name;
+				if (assemblyName != null)
+				{
+					result.PreviousRunLogUri =
+						$"https://ci.appveyor.com/api/projects/andrewvk/codejam/artifacts/{assemblyName}{ImportantOnlyLogSuffix}?all=true";
+				}
+			}
+#endif
+
+			return result;
 		}
 
 		/// <summary>Creates job for the competition. <see cref="Job.Frozen"/> is false.</summary>
@@ -42,30 +63,6 @@ namespace CodeJam
 			if (competitionFeatures.TargetPlatform == Platform.X64)
 				result.Apply(EnvMode.RyuJitX64);
 			return result;
-		}
-
-		/// <summary>Creates options for the competition. <see cref="CompetitionOptions.Frozen"/> is false.</summary>
-		/// <param name="metadataSource">The metadata source.</param>
-		/// <param name="competitionFeatures">The competition features.</param>
-		/// <returns>Options for the competition. <see cref="CompetitionOptions.Frozen"/> is false.</returns>
-		protected override CompetitionOptions CreateCompetitionOptionsUnfrozen(
-			ICustomAttributeProvider metadataSource,
-			CompetitionFeatures competitionFeatures)
-		{
-#if CI_Build
-			competitionFeatures.PreviousRunLogUri = null;
-#else
-			if (metadataSource != null && competitionFeatures.PreviousRunLogUri.IsNullOrEmpty())
-			{
-				var assemblyName = GetAssembly(metadataSource)?.GetName().Name;
-				if (assemblyName != null)
-				{
-					competitionFeatures.PreviousRunLogUri =
-						$"https://ci.appveyor.com/api/projects/andrewvk/codejam/artifacts/{assemblyName}{ImportantOnlyLogSuffix}?all=true";
-				}
-			}
-#endif
-			return base.CreateCompetitionOptionsUnfrozen(metadataSource, competitionFeatures);
 		}
 	}
 }

@@ -18,9 +18,9 @@ namespace CodeJam.PerfTests.Configs
 		public static readonly Characteristic<bool> IgnoreExistingAnnotationsCharacteristic = Characteristic.Create(
 			(CompetitionLimitsMode m) => m.IgnoreExistingAnnotations);
 
-		/// <summary>Log competition limits annotations characteristic.</summary>
+		/// <summary>Log competition limits annotations characteristic. Enabled by default.</summary>
 		public static readonly Characteristic<bool> LogAnnotationsCharacteristic = Characteristic.Create(
-			(CompetitionLimitsMode m) => m.LogAnnotations);
+			(CompetitionLimitsMode m) => m.LogAnnotations, true);
 
 		/// <summary>Competition limit provider characteristic.</summary>
 		public static readonly Characteristic<ICompetitionLimitProvider> LimitProviderCharacteristic = Characteristic.Create(
@@ -57,7 +57,7 @@ namespace CodeJam.PerfTests.Configs
 			}
 		}
 
-		/// <summary>Log competition limits annotations.</summary>
+		/// <summary>Log competition limits annotations. Enabled by default</summary>
 		/// <value>
 		/// <c>true</c> if result competition limit annotations should be logged; otherwise, <c>false</c>.
 		/// </value>

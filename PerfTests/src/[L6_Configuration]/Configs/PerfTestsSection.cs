@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using BenchmarkDotNet.Environments;
 
 using CodeJam.PerfTests.Exporters;
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -17,6 +18,26 @@ namespace CodeJam.PerfTests.Configs
 	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 	internal sealed class PerfTestsSection : ConfigurationSection
 	{
+		#region Measurements
+		/// <summary>
+		/// Performs single run per measurement.
+		/// Recommended for use if single call time >> than timer resolution (recommended minimum is 1500 ns).
+		/// </summary>
+		/// <value>Target platform for the competition.</value>
+		[ConfigurationProperty(nameof(BurstMode), IsRequired = false)]
+		public bool BurstMode
+		{
+			get
+			{
+				return (bool)this[nameof(BurstMode)];
+			}
+			set
+			{
+				this[nameof(BurstMode)] = value;
+			}
+		}
+		#endregion
+
 		#region Environment
 		/// <summary>Specifies target platform for the competition.</summary>
 		/// <value>Target platform for the competition.</value>
@@ -151,5 +172,33 @@ namespace CodeJam.PerfTests.Configs
 			}
 		}
 		#endregion
+
+		/// <summary>Gets the features from the attribute.</summary>
+		/// <returns>Features from the attribute</returns>
+		public CompetitionFeatures GetFeatures()
+		{
+			var result = new CompetitionFeatures();
+
+			if (BurstMode)
+				result.BurstMode = true;
+			if (TargetPlatform.HasValue)
+				result.TargetPlatform = TargetPlatform.Value;
+			if (AnnotateSources)
+				result.AnnotateSources = true;
+			if (IgnoreExistingAnnotations)
+				result.IgnoreExistingAnnotations = true;
+			if (PreviousRunLogUri.NotNullNorEmpty())
+				result.PreviousRunLogUri = PreviousRunLogUri;
+			if (ReportWarningsAsErrors)
+				result.ReportWarningsAsErrors = true;
+			if (TroubleshootingMode)
+				result.TroubleshootingMode = true;
+			if (ImportantInfoLogger)
+				result.ImportantInfoLogger = true;
+			if (DetailedLogger)
+				result.DetailedLogger = true;
+
+			return result.Freeze();
+		}
 	}
 }

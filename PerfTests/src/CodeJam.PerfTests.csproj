@@ -115,6 +115,7 @@
     <Compile Include="[L6_Configuration]\Configs.Factories\CompetitionFactoryHelpers.cs" />
     <Compile Include="[L6_Configuration]\[Attributes]\CompetitionConfigFactoryAttribute.cs" />
     <Compile Include="[L6_Configuration]\Configs.Factories\ICompetitionConfigFactory.cs" />
+    <Compile Include="[L6_Configuration]\[Attributes]\CompetitionFeaturesAttributes.cs" />
     <Compile Include="[L6_Configuration]\[Attributes]\CompetitionModifierAttribute.cs" />
     <Compile Include="[L6_Configuration]\Configs.Factories\ICompetitionModifier.cs" />
     <Compile Include="[L6_Configuration]\Configs.Factories\ICompetitionModifierSource.cs" />

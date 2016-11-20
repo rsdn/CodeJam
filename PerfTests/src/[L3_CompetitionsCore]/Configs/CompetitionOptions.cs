@@ -12,6 +12,7 @@ namespace CodeJam.PerfTests.Configs
 	[PublicAPI]
 	public sealed class CompetitionOptions : JobMode<CompetitionOptions>
 	{
+		#region Characteristics
 		/// <summary>Competition run parameters characteristic.</summary>
 		public static readonly Characteristic<CompetitionRunMode> RunOptionsCharacteristic = Characteristic.Create(
 			(CompetitionOptions o) => o.RunOptions);
@@ -23,7 +24,9 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Source annotation parameters characteristic.</summary>
 		public static readonly Characteristic<SourceAnnotationsMode> SourceAnnotationsCharacteristic = Characteristic.Create(
 			(CompetitionOptions o) => o.SourceAnnotations);
+		#endregion
 
+		#region .ctors
 		/// <summary>Initializes a new instance of the <see cref="CompetitionOptions"/> class.</summary>
 		public CompetitionOptions() : this((string)null) { }
 
@@ -60,6 +63,7 @@ namespace CodeJam.PerfTests.Configs
 		{
 			Apply(others);
 		}
+		#endregion
 
 		/// <summary>Competition run parameters.</summary>
 		/// <value>Competition run parameters.</value>

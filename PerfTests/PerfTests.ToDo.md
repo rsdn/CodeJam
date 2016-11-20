@@ -20,6 +20,10 @@
  * out of process test
  * concurrency: lock should be performed on entire benchmark run.
  * high-priority test for TestProcessCycleTimeClock
+ * LogAnnotations setting: now is enabled by default. Enable only when needed?
+ * Pseudo-source annotation: not update sources, lig instead. Should be used for CI runs.
+ * Competition features: CI run mode.
+ * app.config in the test integration projects: do we need it?
 
 ## Long-term TODOs:
  * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix).

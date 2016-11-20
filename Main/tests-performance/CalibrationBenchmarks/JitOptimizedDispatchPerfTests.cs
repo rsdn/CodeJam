@@ -12,6 +12,7 @@ namespace CodeJam
 	/// Proof test: JIT optimizations on handwritten method dispatching
 	/// </summary>
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Self-testing")]
+	[CompetitionBurstMode]
 	public class JitOptimizedDispatchPerfTests
 	{
 		// Use case:

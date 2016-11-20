@@ -24,7 +24,7 @@ namespace CodeJam
 	[SuppressMessage("ReSharper", "UnusedTypeParameter")]
 	// WAITINGFOR: https://github.com/PerfDotNet/BenchmarkDotNet/issues/126.
 	[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
-	[PublicAPI]
+	[CompetitionBurstMode]
 	public class CallCostPerfTests
 	{
 		#region PerfTest helpers

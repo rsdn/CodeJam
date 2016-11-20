@@ -17,7 +17,7 @@ namespace CodeJam.Ranges
 	/// 1. Proofs that there's no way to make RangeBoundary (of T) faster.
 	/// </summary>
 	[TestFixture(Category = PerfTestCategory + ": Ranges")]
-	[PublicAPI]
+	[CompetitionBurstMode]
 	public class RangeBoundaryCompareToPerfTests
 	{
 		[Test]

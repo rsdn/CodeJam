@@ -17,7 +17,7 @@ namespace CodeJam.RangesAlternatives
 	/// Test to choose valid Range(of T) implementation.
 	/// </summary>
 	[TestFixture(Category = PerfTestCategory + ": Ranges")]
-	[PublicAPI]
+	[CompetitionBurstMode]
 	[SuppressMessage("ReSharper", "PassStringInterpolation")]
 	public class RangeAlternativesPerfTests
 	{

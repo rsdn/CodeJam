@@ -12,7 +12,7 @@ namespace CodeJam
 {
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory)]
 	[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
-	[PublicAPI]
+	[CompetitionBurstMode]
 	public class SequencePerfTests
 	{
 		public readonly int Count = 100 * 1000;
