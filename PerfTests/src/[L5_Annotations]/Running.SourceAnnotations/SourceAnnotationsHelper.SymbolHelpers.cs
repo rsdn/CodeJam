@@ -15,8 +15,6 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
-	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
-	[SuppressMessage("ReSharper", "InvocationIsSkipped")]
 	internal static partial class SourceAnnotationsHelper
 	{
 		/// <summary>
@@ -26,7 +24,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		///  http://stackoverflow.com/questions/36649271/check-that-pdb-file-matches-to-the-source
 		/// </summary>
 		[SuppressMessage("ReSharper", "SuspiciousTypeConversion.Global")]
-		[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 		private static partial class SymbolHelpers
 		{
 			public static bool TryGetSourceInfo(
@@ -116,7 +113,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					documents = InteropUtilities.GetDocumentsForMethod(methodSymbols);
 					startLines = new int[documents.Length];
 
-					for (int i = 0; i < startLines.Length; i++)
+					for (var i = 0; i < startLines.Length; i++)
 					{
 						int stub;
 						InteropUtilities.GetSourceExtentInDocument(methodSymbols, documents[i], out startLines[i], out stub);

@@ -38,7 +38,7 @@ namespace CodeJam.Examples
 	[CompetitionAnnotateSources] // Opt-in feature: source annotations.
 	public class SimplePerfTest
 	{
-		private const int Count = 10 * 1000;
+		private const int Count = 200;
 
 		// Perf test runner method.
 		[Test]
@@ -109,7 +109,7 @@ Diagnostic messages:
 
 The CodeJam.PerfTest framework is built on top of amazing [BenchmarkDotNet](https://github.com/PerfDotNet/BenchmarkDotNet), the best and most mature benchmarking framework for .Net.
 
-Of course, there are another decent solutions such as [NBench](https://github.com/petabridge/NBench) or [SimpleSpeedTester](https://github.com/theburningmonk/SimpleSpeedTester) (check [awesome-dot-net-performance](https://github.com/adamsitnik/awesome-dot-net-performance#performance-measurement) by Adam Sitnik for more) but, well, BenchmarkDotNet is the best one. Kudos to authors!
+Of course, there are another decent solutions such as [NBench](https://github.com/petabridge/NBench) or [SimpleSpeedTester](https://github.com/theburningmonk/SimpleSpeedTester) (check [awesome-dot-net-performance list](https://github.com/adamsitnik/awesome-dot-net-performance#performance-measurement) by Adam Sitnik for more) but, well, BenchmarkDotNet is the best one. Kudos to authors!
 
 As a benchmarking framework, CodeJam.PerfTests do not provide anything that BenchmarkDotNet cannot do. However, as a testing framework it has some key features that other frameworks are missing:
 
@@ -117,7 +117,7 @@ As a benchmarking framework, CodeJam.PerfTests do not provide anything that Benc
 
 2. **Fast results.** In contrary to benchmarks (you'd rarely need dozen of them), it's normal to have tens or hundreds of perftests per project. This means perftests had to be fast as you do not want to [wait for hours](https://twitter.com/jonskeet/status/735415336825192448) for the tests completion. Current implementation provides accurate results in no more than *~2-3 seconds per small tests with 2-5 competing methods and 10-12 seconds for large perftests*~ with 20 methods in benchmark.
 
-3. **It just works: configuration.** In short, [benchmarking](http://blogs.microsoft.co.il/sasha/2012/06/22/micro-benchmarking-done-wrong-and-for-the-wrong-reasons/) [is](http://mattwarren.org/2014/09/19/the-art-of-benchmarking/) [hard](http://www.hanselman.com/blog/ProperBenchmarkingToDiagnoseAndSolveANETSerializationBottleneck.aspx). Benchmark.Net does [a huge amount of work undercover](http://benchmarkdotnet.org/HowItWorks.htm) to fight against various side-effects but its default configuration does not suit well for short-running perftests. CodeJam.PerfTests includes heavily-tuned presets for common use cases that provide comparable accuracy with a much faster test runs (*~only microbenchmarks are supported in preview version, memory and IO-related perftests coming soon~*) . Of course, you're still able to configure anything by yourself, we do not limit anything.
+3. **It just works: configuration.** In short, [benchmarking](http://blogs.microsoft.co.il/sasha/2012/06/22/micro-benchmarking-done-wrong-and-for-the-wrong-reasons/) [is](http://mattwarren.org/2014/09/19/the-art-of-benchmarking/) [hard](http://www.hanselman.com/blog/ProperBenchmarkingToDiagnoseAndSolveANETSerializationBottleneck.aspx). Benchmark.Net does [a huge amount of work undercover](http://benchmarkdotnet.org/HowItWorks.htm) to fight against various side-effects but its default configuration does not suit well for short-running perftests. CodeJam.PerfTests includes heavily-tuned presets for common use cases that provide comparable accuracy with a much faster test runs (*~only CPU-bound benchmarks are supported in preview version, memory and IO-related perftests coming soon~*) . Of course, you're still able to configure anything by yourself, we do not limit anything.
 
 4. **It just works: automation.** Writing correct perftest is very boring thing. You had to estimate the timings, run the test, update the limits, run in CI server, update the limits from CI server log and so on and so on.  Repeat this for each perftest (remember, there're a hundreds of them usually) and the whole idea quickly becomes "heck it, I quit" thing. CodeJam.PerfTests fills limit annotations for you (it's an opt-in feature and is disabled by default). If perftest fails, the limits are adjusted, sources are updated with new limits and the test is run few more times to proof new limits are accurate. The same is performed if the test was failed during last run on CI server.
 
@@ -125,13 +125,13 @@ As a benchmarking framework, CodeJam.PerfTests do not provide anything that Benc
    >
    > Be sure to use source control before enabling the source annotation feature. If not you'll lose your current perftest limits as they will be overwritten without confirmation.
 
-5. **It just works: diagnostics.** As said above, benchmarking is hard. CodeJam.PerfTests tries to take the burden from you by providing various diagnostic messages and warnings in case something goes wrong. Running a debug build, benchmark results are inaccurate or the source version does not match to binaries? We'll warn about it. At the same time we are trying not to bother you with garbage messages: by default output log contains only really important things. Of course, it's configurable.
+5. **It just works: diagnostics.** As said above, benchmarking is hard. CodeJam.PerfTests tries to take the burden from you by providing various diagnostic messages and warnings when something goes wrong. Running a debug build, benchmark results are inaccurate or the source version does not match to binaries? There will be warning about it. At the same time we are trying not to bother you with garbage messages: by default output log contains only really important things. Of course, it's configurable.
 
 6. **It just works: real-world use cases.**  The design of the framework is heavily inspired by dogfooding experience and use cases from our real projects. If there're sane use cases uncovered we're going to add them. What's done so far:
 
    * Support for most popular testing frameworks and base types for adding new ones. NUnit, xUnit (*~not stable yet~*) and MS Test perftest packages are available out of the box.
    * Support for perftests for dynamically generated or emitted codebase. Code annotations for such tests are stored as xml resource files, therefore you can change the code without transferring the competition limits from old code to new one.
-   * Continuous integration support. If you do not want to update source annotations during CI test run (who does?) you can enable limits logging. Next run on a developer machine will catch up changed limits and update sources for you.
+   * Continuous Integration support. CodeJam.PerfTests detects most CI services automatically (AppVeyor, Jenkins, TFS, TeamCity and Travis CI are supported for now) and adjusts its settings appropriately. E.g., by default we do not update source annotations during CI runs, as they can be unavailable. Instead, adjusted limits are logged and will be applied during run on a developer's machine.
    * Configuration via per-assembly `.appconfig` files, assembly- and type-level attributes. Setup once, use everywhere.
    * Competition configuration system was rewritten. It is much simpler to create custom competition configs and to modify existing ones now.
    * Console perftest runner. In case you need it.

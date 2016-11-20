@@ -32,7 +32,9 @@ namespace CodeJam.PerfTests
 	[PublicAPI]
 	public class CompetitionReannotateSourcesAttribute : CompetitionFeaturesAttribute
 	{
-		/// <summary>Initializes a new instance of the <see cref="CompetitionReannotateSourcesAttribute"/> class.</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CompetitionReannotateSourcesAttribute"/> class.
+		/// </summary>
 		public CompetitionReannotateSourcesAttribute()
 		{
 			AnnotateSources = true;
@@ -44,7 +46,9 @@ namespace CodeJam.PerfTests
 	[PublicAPI]
 	public class CompetitionTroubleshootingModeAttribute : CompetitionFeaturesAttribute
 	{
-		/// <summary>Initializes a new instance of the <see cref="CompetitionTroubleshootingModeAttribute"/> class.</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CompetitionTroubleshootingModeAttribute"/> class.
+		/// </summary>
 		public CompetitionTroubleshootingModeAttribute()
 		{
 			TroubleshootingMode = true;
@@ -55,7 +59,7 @@ namespace CodeJam.PerfTests
 	[PublicAPI]
 	public class CompetitionPlatformAttribute : CompetitionFeaturesAttribute
 	{
-		/// <summary>Initializes a new instance of the <see cref="CompetitionPlatformAttribute" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="CompetitionPlatformAttribute"/> class.</summary>
 		/// <param name="targetPlatform">The target platform.</param>
 		public CompetitionPlatformAttribute(Platform targetPlatform)
 		{

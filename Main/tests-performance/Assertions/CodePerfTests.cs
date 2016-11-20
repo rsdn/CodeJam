@@ -2,8 +2,6 @@ using System;
 
 using CodeJam.PerfTests;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 namespace CodeJam.Assertions

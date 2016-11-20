@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -7,7 +6,6 @@ using CodeJam.PerfTests.Running.Core;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	internal static partial class SourceAnnotationsHelper
 	{
 		private static readonly Regex _breakIfRegex = new Regex(
@@ -34,14 +32,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			if (sourceFileLines.Count == 0)
 				return false;
 
-			bool attributeFixed = false;
+			var attributeFixed = false;
 			for (var i = firstCodeLine - 2; i >= 0; i--)
 			{
 				var line = sourceFileLines[i];
 				if (_breakIfRegex.IsMatch(line))
 					break;
 
-				bool hasMatch = false;
+				var hasMatch = false;
 				var line2 = _attributeRegex.Replace(
 					line,
 					m => FixAttributeContent(m, competitionTarget, out hasMatch), 1);

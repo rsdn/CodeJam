@@ -11,9 +11,6 @@ using NUnit.Framework;
 namespace CodeJam.UseCases.EnumHelpersSamples
 {
 	[TestFixture(Category = "Assertions")]
-	[SuppressMessage("ReSharper", "NotResolvedInText")]
-	[SuppressMessage("ReSharper", "PassStringInterpolation")]
-	[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	public class EnumCodeUseCases
 	{
@@ -86,10 +83,10 @@ namespace CodeJam.UseCases.EnumHelpersSamples
 			Assert.IsTrue(permissions.IsFlagUnset(PermittedActions.SetOwner));
 
 			// Assertions
-			Assert.DoesNotThrow(() => EnumCode.FlagSet(permissions, "permissions", PermittedActions.Read));
-			Assert.DoesNotThrow(() => EnumCode.AnyFlagUnset(permissions, "permissions", readOrOwner));
-			Assert.DoesNotThrow(() => EnumCode.AnyFlagSet(permissions, "permissions", PermittedActions.Read));
-			Assert.DoesNotThrow(() => EnumCode.FlagUnset(permissions, "permissions", PermittedActions.SetOwner));
+			Assert.DoesNotThrow(() => EnumCode.FlagSet(permissions, nameof(permissions), PermittedActions.Read));
+			Assert.DoesNotThrow(() => EnumCode.AnyFlagUnset(permissions, nameof(permissions), readOrOwner));
+			Assert.DoesNotThrow(() => EnumCode.AnyFlagSet(permissions, nameof(permissions), PermittedActions.Read));
+			Assert.DoesNotThrow(() => EnumCode.FlagUnset(permissions, nameof(permissions), PermittedActions.SetOwner));
 		}
 
 		[Test]
@@ -208,6 +205,7 @@ namespace CodeJam.UseCases.EnumHelpersSamples
 	}
 
 	[Flags]
+	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 	internal enum PermittedActions
 	{
 		None = 0x0,

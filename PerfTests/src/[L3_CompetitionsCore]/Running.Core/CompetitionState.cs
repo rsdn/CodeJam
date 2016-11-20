@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
-using CodeJam.Collections;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Messages;
 
@@ -20,7 +17,6 @@ namespace CodeJam.PerfTests.Running.Core
 	/// The class holding the state of the competition.
 	/// </summary>
 	[PublicAPI]
-	[SuppressMessage("ReSharper", "ArrangeBraces_lock")]
 	public sealed class CompetitionState
 	{
 		private readonly List<IMessage> _messages = new List<IMessage>();

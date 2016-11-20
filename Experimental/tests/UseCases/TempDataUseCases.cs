@@ -2,10 +2,13 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
+using JetBrains.Annotations;
+
 // ReSharper disable once CheckNamespace
 namespace CodeJam.UseCases.TempDataSamples
 {
-	[SuppressMessage("ReSharper", "UnusedMember.Global")]
+	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+	[SuppressMessage("ReSharper", "ArgumentsStyleLiteral")]
 	public class TempDataUseCases
 	{
 		public void CaseA_NoHelpers()
@@ -131,6 +134,7 @@ namespace CodeJam.UseCases.TempDataSamples
 	}
 
 	// Stub implementation. Unusable by design.
+	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 	public class TempData : IDisposable
 	{
 		public static TempData CreateFile() => new TempData();

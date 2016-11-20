@@ -19,8 +19,6 @@ namespace CodeJam.PerfTests.IntegrationTests
 	[PublicAPI]
 	[TestFixture(Category = "BenchmarkDotNet")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
-	[SuppressMessage("ReSharper", "UnusedMember.Global")]
-	[SuppressMessage("ReSharper", "ArgumentsStyleLiteral")]
 	[CompetitionModifier(typeof(CompetitionHighAccuracyModifier))]
 	[Ignore("Will be enabled after concurrency runs fill be fixed")]
 	public static class CompetitionRunConcurrentTest

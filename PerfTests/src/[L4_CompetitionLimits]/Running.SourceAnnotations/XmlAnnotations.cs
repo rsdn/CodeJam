@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -28,9 +27,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	/// <summary>
 	/// Helper class for xml annotations
 	/// </summary>
-	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
-	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	internal static class XmlAnnotations
 	{
 		private sealed class UseFullTypeNameAnnotation
@@ -488,7 +484,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			var competitionName = competitionTarget.Target.GetCompetitionName(xmlAnnotationDoc);
 			var candidateName = competitionTarget.Target.GetCandidateName();
-			bool isBaseline = competitionTarget.Baseline;
+			var isBaseline = competitionTarget.Baseline;
 
 			var competition = xmlAnnotationDoc
 				.Element(CompetitionBenchmarksRootNode)
@@ -496,6 +492,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			var candidate = competition.GetOrAddElement(CandidateNode, candidateName);
 
 			var baselineText = isBaseline ? XmlConvert.ToString(true) : null;
+			// ReSharper disable once ArrangeRedundantParentheses
 			var minText = (isBaseline || competitionTarget.IgnoreMinRatio) ? null : competitionTarget.MinRatioText;
 			// MaxText should be specified even if ignored.
 			var maxText = isBaseline ? null : competitionTarget.MaxRatioText;

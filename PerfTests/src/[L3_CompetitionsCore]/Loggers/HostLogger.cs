@@ -15,8 +15,6 @@ namespace CodeJam.PerfTests.Loggers
 	/// <summary>Basic logger implementation for unit test runners</summary>
 	/// <seealso cref="BenchmarkDotNet.Loggers.ILogger"/>
 	[PublicAPI]
-	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
 	public class HostLogger : IFlushableLogger
 	{
@@ -127,16 +125,15 @@ namespace CodeJam.PerfTests.Loggers
 		/// <summary>Checks if the line should be written.</summary>
 		/// <param name="logKind">The kind of log message.</param>
 		/// <returns><c>true</c> if the line should be written.</returns>
-		// ReSharper disable once VirtualMemberNeverOverriden.Global
 		protected virtual bool ShouldWrite(LogKind logKind) =>
 			LogMode == HostLogMode.AllMessages ||
 				_importantAreaCount > 0 ||
+				// ReSharper disable once ArrangeRedundantParentheses
 				((logKind == LogKind.Error || logKind == LogKind.Hint) && LogMode == HostLogMode.PrefixedOrErrors);
 
 		/// <summary>Handles well-known prefixes for the line.</summary>
 		/// <param name="text">The text of the log line.</param>
 		/// <returns><c>true</c> if the line should be written.</returns>
-		// ReSharper disable once VirtualMemberNeverOverriden.Global
 		protected virtual bool PreprocessLine(string text)
 		{
 			if (LogMode == HostLogMode.AllMessages)

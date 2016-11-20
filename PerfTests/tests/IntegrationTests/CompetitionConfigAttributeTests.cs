@@ -15,17 +15,17 @@ using NUnit.Framework;
 
 using static CodeJam.PerfTests.SelfTestHelpers;
 
-
 namespace CodeJam.PerfTests.IntegrationTests
 {
 	public class AddColumnWelchTTestPValueModifier : ICompetitionModifier
 	{
-		public void Modify(ManualCompetitionConfig competitionConfig) => 
+		public void Modify(ManualCompetitionConfig competitionConfig) =>
 			competitionConfig.Add(BaselineScaledColumn.WelchTTestPValue);
 	}
+
 	public class AddColumnKurtosisModifier : ICompetitionModifier
 	{
-		public void Modify(ManualCompetitionConfig competitionConfig) => 
+		public void Modify(ManualCompetitionConfig competitionConfig) =>
 			competitionConfig.Add(StatisticColumn.Kurtosis);
 	}
 
@@ -41,7 +41,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 	[CompetitionModifier(typeof(AddColumnSkewnessModifier))]
 	public static class CompetitionConfigAttributeTest
 	{
-		private static void AssertColumn(CompetitionState runState, IColumn column, int expectedValue) => 
+		private static void AssertColumn(CompetitionState runState, IColumn column, int expectedValue) =>
 			Assert.AreEqual(
 				runState.Config
 					.GetColumnProviders().SelectMany(p => p.GetColumns(runState.LastRunSummary))

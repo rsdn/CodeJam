@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
 using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
@@ -28,10 +26,6 @@ namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>Base class for competition benchmark runners</summary>
 	[PublicAPI]
-	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
-	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
-	[SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
 	public abstract class CompetitionRunnerBase
 	{
 		/// <summary>Base class for competition runner's host logger.</summary>
@@ -289,7 +283,7 @@ namespace CodeJam.PerfTests.Running.Core
 			// ReSharper disable once UseObjectOrCollectionInitializer
 			var result = new ManualCompetitionConfig(
 				competitionConfig ??
-				CompetitionConfigFactory.FindFactoryAndCreate(benchmarkType, null));
+					CompetitionConfigFactory.FindFactoryAndCreate(benchmarkType, null));
 			InitCompetitionConfigOverride(result);
 			FixCompetitionConfig(result);
 
@@ -308,7 +302,7 @@ namespace CodeJam.PerfTests.Running.Core
 		private static void FixConfigJobs(ManualCompetitionConfig competitionConfig)
 		{
 			var jobs = competitionConfig.Jobs;
-			for (int i = 0; i < jobs.Count; i++)
+			for (var i = 0; i < jobs.Count; i++)
 			{
 				var job = jobs[i];
 				if (job.Infrastructure.Toolchain == null)
@@ -336,10 +330,10 @@ namespace CodeJam.PerfTests.Running.Core
 		private void FixConfigValidators(ManualCompetitionConfig competitionConfig)
 		{
 			var competitionOptions = competitionConfig.Options;
-			bool debugMode = competitionOptions.RunOptions.AllowDebugBuilds;
+			var debugMode = competitionOptions.RunOptions.AllowDebugBuilds;
 
 			var validators = competitionConfig.Validators;
-			bool customToolchain = competitionConfig.Jobs.Any(j => !(j.Infrastructure.Toolchain is InProcessToolchain));
+			var customToolchain = competitionConfig.Jobs.Any(j => !(j.Infrastructure.Toolchain is InProcessToolchain));
 			if (!customToolchain &&
 				!validators.Any(v => v is InProcessValidator))
 			{
@@ -390,18 +384,18 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			var criticalErrorMessages = GetMessageLines(
 				competitionState, m => m.MessageSeverity > MessageSeverity.TestError, true);
-			bool hasCriticalMessages = criticalErrorMessages.Any();
+			var hasCriticalMessages = criticalErrorMessages.Any();
 
 			var testFailedMessages = GetMessageLines(
 				competitionState, m => m.MessageSeverity == MessageSeverity.TestError, hasCriticalMessages);
-			bool hasTestFailedMessages = testFailedMessages.Any();
+			var hasTestFailedMessages = testFailedMessages.Any();
 
 			var warningMessages = GetMessageLines(
 				competitionState, m => m.MessageSeverity == MessageSeverity.Warning, true);
-			bool hasWarnings = warningMessages.Any();
+			var hasWarnings = warningMessages.Any();
 
 			var infoMessages = GetMessageLines(competitionState, m => m.MessageSeverity < MessageSeverity.Warning, true);
-			bool hasInfo = infoMessages.Any();
+			var hasInfo = infoMessages.Any();
 
 			if (!(hasCriticalMessages || hasTestFailedMessages || hasWarnings))
 				return;

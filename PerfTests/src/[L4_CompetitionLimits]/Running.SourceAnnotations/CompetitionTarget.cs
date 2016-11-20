@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.Running;
 
@@ -14,7 +13,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	/// </summary>
 	/// <seealso cref="CompetitionLimit"/>
 	/// <seealso cref="Target"/>
-	[SuppressMessage("ReSharper", "IntroduceOptionalParameters.Global")]
 	internal class CompetitionTarget : CompetitionLimit
 	{
 		#region Fields & .ctor
@@ -28,6 +26,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			[NotNull] Target target,
 			[NotNull] CompetitionLimit limitsForTarget,
 			bool doesNotCompete) :
+				// ReSharper disable once IntroduceOptionalParameters.Global
 				this(target, limitsForTarget, doesNotCompete, null) { }
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionTarget"/> class.</summary>

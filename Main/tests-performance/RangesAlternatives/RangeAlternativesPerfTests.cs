@@ -113,7 +113,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(17.31, 33.38)]
+			[CompetitionBenchmark(16.45, 33.38)]
 			public Range<int, string> Test05RangeKeyImpl()
 			{
 				var result = _rangeKeyDataImpl[0];

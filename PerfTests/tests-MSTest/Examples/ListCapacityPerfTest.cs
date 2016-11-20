@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 using CodeJam.PerfTests;
 
@@ -11,7 +10,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CodeJam.Examples
 {
 	[TestClass]
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public class ListCapacityPerfTest
 	{
 		private const int Count = 10;

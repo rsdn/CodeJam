@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Environments;
@@ -20,8 +19,6 @@ namespace BenchmarkDotNet.Engines
 	/// Recommended for use if call time >> than timer resolution (recommended minimum is 1500 ns).
 	/// </summary>
 	/// <seealso cref="BenchmarkDotNet.Engines.IEngine"/>
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
-	[SuppressMessage("ReSharper", "InvocationIsSkipped")]
 	internal sealed class BurstModeEngine : IEngine
 	{
 		private readonly EngineParameters _engineParameters;
@@ -82,7 +79,7 @@ namespace BenchmarkDotNet.Engines
 
 		#region Implementation of IEngine
 		/// <summary>
-		/// Must provoke all static .ctors and perform any other necessary allocations
+		/// Must provoke all static constructors and perform any other necessary allocations
 		/// so Run() has 0 exclusive allocations and our Memory Diagnostics is 100% accurate!
 		/// </summary>
 		/// <exception cref="Exception">just use this things here to provoke static ctor</exception>
@@ -93,7 +90,7 @@ namespace BenchmarkDotNet.Engines
 				new Measurement(),
 				new Measurement()
 			};
-			list.Sort(); // provoke JIT, static ctors etc (was allocating 1740 bytes with first call)
+			list.Sort(); // provoke JIT, static constructors etc (was allocating 1740 bytes with first call)
 
 			// ReSharper disable once CompareOfFloatsByEqualityOperator
 			if (TimeUnit.All == null || list[0].Nanoseconds != default(double))
@@ -255,7 +252,7 @@ namespace BenchmarkDotNet.Engines
 			ForceGcCollect();
 			if (ForceAllocations) // DONTTOUCH: DO NOT merge loops as it will produce inaccurate results for microbenchmarks.
 			{
-				for (int i = 0; i < repeatCount; i++)
+				for (var i = 0; i < repeatCount; i++)
 				{
 					ForceGcCollect();
 
@@ -269,7 +266,7 @@ namespace BenchmarkDotNet.Engines
 			}
 			else
 			{
-				for (int i = 0; i < repeatCount; i++)
+				for (var i = 0; i < repeatCount; i++)
 				{
 					var clock = Clock.Start();
 					action(resultIterationsCount);

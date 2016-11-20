@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -32,8 +31,6 @@ namespace BenchmarkDotNet.Helpers
 	/// Helper methods for benchmark infrastructure.
 	/// </summary>
 	[PublicAPI]
-	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
-	[SuppressMessage("ReSharper", "ArrangeBraces_while")]
 	public static class BenchmarkHelpers
 	{
 		#region Benchmark-related
@@ -206,7 +203,7 @@ namespace BenchmarkDotNet.Helpers
 		public static TAttribute TryGetMetadataAttribute<TAttribute>(
 			[NotNull] this ICustomAttributeProvider attributeProvider)
 			where TAttribute : class =>
-			GetMetadataAttributes<TAttribute>(attributeProvider).FirstOrDefault();
+				GetMetadataAttributes<TAttribute>(attributeProvider).FirstOrDefault();
 
 		/// <summary>
 		/// Returns metadata attributes in the following order:
@@ -247,10 +244,10 @@ namespace BenchmarkDotNet.Helpers
 			this ICustomAttributeProvider attributeProvider)
 			where TAttribute : class
 			=>
-			attributeProvider.GetCustomAttributes(typeof(TAttribute), true)
-				.Cast<TAttribute>()
-				.OrderBy(t => t.GetType().Name)
-				.ThenBy(t => t.GetType().AssemblyQualifiedName);
+				attributeProvider.GetCustomAttributes(typeof(TAttribute), true)
+					.Cast<TAttribute>()
+					.OrderBy(t => t.GetType().Name)
+					.ThenBy(t => t.GetType().AssemblyQualifiedName);
 
 		private static IEnumerable<TAttribute> GetMetadataAttributesForType<TAttribute>(
 			this Type type)

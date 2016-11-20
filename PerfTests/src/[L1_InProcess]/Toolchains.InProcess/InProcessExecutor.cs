@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -28,8 +27,6 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 	/// Implementation of <see cref="IExecutor"/> for in-process benchmarks.
 	/// </summary>
 	[PublicAPI]
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
-	[SuppressMessage("ReSharper", "ArrangeBraces_while")]
 	public class InProcessExecutor : IExecutor
 	{
 		/// <summary>Initializes a new instance of the <see cref="InProcessExecutor"/> class.</summary>
@@ -96,7 +93,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 							"Prefer to use out-of-process toolchains for long-running benchmarks.");
 			}
 
-			int retryCount = 0;
+			var retryCount = 0;
 			while (runThread.IsAlive && retryCount++ < 100)
 			{
 				Thread.Sleep(10);
@@ -147,6 +144,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 					continue;
 
 				// TODO: diagnoser support.
+				// ReSharper disable ConvertIfStatementToSwitchStatement
 				if (!line.StartsWith("//"))
 				{
 					lines.Add(line);
@@ -167,6 +165,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 				{
 					linesWithOutput.Add(line);
 				}
+				// ReSharper restore ConvertIfStatementToSwitchStatement
 			}
 
 			return new ExecuteResult(true, 0, lines.ToArray(), linesWithOutput.ToArray());

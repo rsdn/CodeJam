@@ -31,7 +31,7 @@ namespace CodeJam.PerfTests.Columns
 		/// </param>
 		public CompetitionLimitColumn([CanBeNull] ICompetitionLimitProvider competitionLimitProvider, bool useMaxRatio)
 		{
-			ColumnName = competitionLimitProvider?.ShortInfo 
+			ColumnName = competitionLimitProvider?.ShortInfo
 				?? ("Limit" + (UseMaxRatio ? "(max)" : "(min)"));
 			CompetitionLimitProvider = competitionLimitProvider;
 			UseMaxRatio = useMaxRatio;

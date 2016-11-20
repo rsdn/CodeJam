@@ -19,7 +19,6 @@ namespace CodeJam.PerfTests.Analysers
 	// TODO: rename to adjust limits analyser?
 	/// <summary>Competition analyser that updates source annotations if competition limit checking failed.</summary>
 	/// <seealso cref="CompetitionAnalyser"/>
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "MemberCanBeMadeStatic.Local")]
 	internal class CompetitionAnnotateAnalyser : CompetitionAnalyser
 	{
@@ -95,10 +94,10 @@ namespace CodeJam.PerfTests.Analysers
 			competitionState.WriteVerbose(
 				$"Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log.");
 
-			bool updated = false;
+			var updated = false;
 			foreach (var competitionTarget in competitionTargets.Targets)
 			{
-				bool hasAnnotations = false;
+				var hasAnnotations = false;
 
 				foreach (var doc in xmlAnnotationDocs)
 				{
@@ -123,7 +122,7 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		#region Checking competition limits
-		private static bool SkipAnnotation(bool checkPassed, CompetitionState competitionState)
+		private bool SkipAnnotation(bool checkPassed, CompetitionState competitionState)
 		{
 			var annotationsMode = competitionState.Options.SourceAnnotations;
 

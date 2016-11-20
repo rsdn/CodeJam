@@ -25,23 +25,25 @@ namespace CodeJam.PerfTests
 			return result;
 		}
 
-		protected override Job CreateJobUnfrozen(string jobId, ICustomAttributeProvider metadataSource, CompetitionFeatures competitionFeatures)
+		protected override Job CreateJobUnfrozen(
+			string jobId, ICustomAttributeProvider metadataSource,
+			CompetitionFeatures competitionFeatures)
 		{
 			var result = base.CreateJobUnfrozen(jobId, metadataSource, competitionFeatures);
 
 			result.Apply(
-					new RunMode
-					{
-						LaunchCount = 1,
-						WarmupCount = 2,
-						TargetCount = 2,
-						InvocationCount =1,
-						UnrollFactor = 1
-					},
-					new EnvMode
-					{
-						Affinity = new IntPtr(-1)
-					});
+				new RunMode
+				{
+					LaunchCount = 1,
+					WarmupCount = 2,
+					TargetCount = 2,
+					InvocationCount = 1,
+					UnrollFactor = 1
+				},
+				new EnvMode
+				{
+					Affinity = new IntPtr(-1)
+				});
 
 			return result;
 		}
@@ -61,14 +63,15 @@ namespace CodeJam.PerfTests
 	{
 		/// <summary>Updates competition config.</summary>
 		/// <param name="competitionConfig">The competition config.</param>
-		public void Modify(ManualCompetitionConfig competitionConfig) => competitionConfig.ApplyToJobs(new Job()
-		{
-			Run =
+		public void Modify(ManualCompetitionConfig competitionConfig) => competitionConfig.ApplyToJobs(
+			new Job
 			{
-				LaunchCount = 1,
-				WarmupCount = 200,
-				TargetCount = 500
-			}
-		});
+				Run =
+				{
+					LaunchCount = 1,
+					WarmupCount = 200,
+					TargetCount = 500
+				}
+			});
 	}
 }

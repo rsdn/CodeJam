@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 using BenchmarkDotNet.Exporters;
@@ -15,7 +14,6 @@ namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>Nunit competition performance tests runner.</summary>
 	/// <seealso cref="CompetitionRunnerBase"/>
-	[SuppressMessage("ReSharper", "ConvertToExpressionBodyWhenPossible")]
 	public class NUnitCompetitionRunner : CompetitionRunnerBase
 	{
 		/// <summary>Host logger implementation</summary>

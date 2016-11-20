@@ -3,8 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 
 using CodeJam.PerfTests;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 namespace CodeJam

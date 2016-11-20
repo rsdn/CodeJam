@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -16,10 +15,6 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
 	/// <summary>Core logic for source annotations.</summary>
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
-	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
-	[SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
-	[SuppressMessage("ReSharper", "ConvertClosureToMethodGroup")]
 	internal static partial class SourceAnnotationsHelper
 	{
 		#region Helper types
@@ -199,7 +194,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				// DONTTOUCH: the source should be loaded for checksum validation even if target uses resource annotation.
 				string fileName;
 				int firstCodeLine;
-				bool hasSource = SymbolHelpers.TryGetSourceInfo(target.Method, competitionState, out fileName, out firstCodeLine);
+				var hasSource = SymbolHelpers.TryGetSourceInfo(target.Method, competitionState, out fileName, out firstCodeLine);
 
 				if (!hasSource)
 				{

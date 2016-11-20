@@ -106,7 +106,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(6.84, 18.75)]
+			[CompetitionBenchmark(6.30, 18.75)]
 			public F Test02EnumTryParse()
 			{
 				var a = F.Zero;

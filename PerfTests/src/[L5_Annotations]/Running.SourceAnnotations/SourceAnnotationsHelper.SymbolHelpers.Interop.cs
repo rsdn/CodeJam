@@ -8,8 +8,6 @@ using System.Runtime.InteropServices.ComTypes;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
-	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
-	[SuppressMessage("ReSharper", "InvocationIsSkipped")]
 	internal static partial class SourceAnnotationsHelper
 	{
 		/// <summary>
@@ -18,7 +16,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		///  https://github.com/dotnet/symreader/tree/master/src/Microsoft.DiaSymReader/Shared
 		///  http://stackoverflow.com/questions/40616611/nuspec-non-transitive-package-dependencies
 		/// </summary>
-		[SuppressMessage("ReSharper", "SuspiciousTypeConversion.Global")]
 		private static partial class SymbolHelpers
 		{
 			#region CoClasses
@@ -47,6 +44,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			}
 			#endregion
 
+			[SuppressMessage("ReSharper", "SuspiciousTypeConversion.Global")]
 			private static class InteropUtilities
 			{
 				#region Core

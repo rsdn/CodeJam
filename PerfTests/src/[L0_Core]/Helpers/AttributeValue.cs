@@ -3,9 +3,12 @@ using System.Reflection;
 using System.Threading;
 
 // ReSharper disable once CheckNamespace
+
 namespace BenchmarkDotNet.Helpers
 {
-	/// <summary>Helper type for value provider attributes such as <see cref="BenchmarkDotNet.Configs.IConfigSource"/>.</summary>
+	/// <summary>
+	/// Helper type for value provider attributes such as <see cref="BenchmarkDotNet.Configs.IConfigSource"/>.
+	/// </summary>
 	/// <typeparam name="T">Type of value. It's re Use interface if possible.</typeparam>
 	public sealed class AttributeValue<T> where T : class
 	{
@@ -26,7 +29,6 @@ namespace BenchmarkDotNet.Helpers
 			_valueLazy = new Lazy<T>(
 				() => (T)Activator.CreateInstance(valueType),
 				LazyThreadSafetyMode.ExecutionAndPublication);
-
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="AttributeValue{T}"/> class.</summary>

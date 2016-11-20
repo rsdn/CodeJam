@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Reflection;
 
-using BenchmarkDotNet.Portability;
 using BenchmarkDotNet.Running;
 
 using static System.Linq.Expressions.Expression;

@@ -27,7 +27,6 @@ namespace CodeJam.PerfTests.Analysers
 
 	/// <summary>Basic competition analyser.</summary>
 	/// <seealso cref="IAnalyser"/>
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	[SuppressMessage("ReSharper", "MemberCanBeMadeStatic.Local")]
 	internal class CompetitionAnalyser : IAnalyser
 	{
@@ -261,7 +260,7 @@ namespace CodeJam.PerfTests.Analysers
 					$"Existing benchmark limits are ignored due to {CompetitionLimitsMode.IgnoreExistingAnnotationsCharacteristic.FullId} setting.");
 			}
 
-			bool hasBaseline = false;
+			var hasBaseline = false;
 			competitionTargets.Clear();
 
 			var targets = summary.GetExecutionOrderBenchmarks()

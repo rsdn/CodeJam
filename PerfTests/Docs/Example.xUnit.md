@@ -22,7 +22,7 @@ namespace CodeJam.Examples
 	[CompetitionAnnotateSources] // Opt-in feature: source annotations.
 	public class SimplePerfTest
 	{
-		private const int Count = 10 * 1000;
+		private const int Count = 200;
 
 		// Perf test runner method.
 		[CompetitionFact]

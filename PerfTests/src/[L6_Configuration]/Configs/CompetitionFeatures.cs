@@ -62,8 +62,7 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionFeatures"/> class.</summary>
 		/// <param name="id">The identifier.</param>
-		public CompetitionFeatures(string id) : base(id)
-		{ }
+		public CompetitionFeatures(string id) : base(id) { }
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionFeatures"/> class.</summary>
 		/// <param name="other">Mode to apply.</param>

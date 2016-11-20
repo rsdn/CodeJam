@@ -23,7 +23,7 @@
 			new OpInfo("BitwiseAnd", "&", ExpressionType.And),
 			new OpInfo("BitwiseOr", "|", ExpressionType.Or),
 			new OpInfo("LeftShift", "<<", ExpressionType.LeftShift),
-			new OpInfo("RightShift", ">>", ExpressionType.RightShift),
+			new OpInfo("RightShift", ">>", ExpressionType.RightShift)
 		};
 #><#+
 	private enum OpType

@@ -9,21 +9,22 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184 ?
 
 ## TODOs:
- * Tests for broken log annotations.
  * `Task`/`Task<T>` support.
- * detailing logging - fix toolchain
- * Test for standard analyser warnings - are they logged as messages?
- * Logging: write validator messages immediately?
- * Source annotations: test for partial files / methods
- * CompetitonOptions: predefined
- * xUnit: tests: run as x64?
- * out of process test
+ * InProcess toolhain: setup / clean behavior should match to default Engine implementation.
  * concurrency: lock should be performed on entire benchmark run.
- * high-priority test for TestProcessCycleTimeClock
- * app.config in the test integration projects: do we need it?
+ * Logging: write validator messages immediately?
  * Log resulting competition features / competition options?
  * LogColors.Hint: use it for something?
  * better message for "X has empty limit. Please fill it."
+
+## TODOs (tests):
+ * Source annotations: test for partial files / methods
+ * high-priority test for TestProcessCycleTimeClock
+ * Tests for broken log annotations.
+ * app.config in the test integration projects: do we need it?
+ * xUnit: tests: run as x64?
+ * Test for standard analyser warnings - are they logged as messages?
+ * out of process test
  * Test for run under CI
 
 ## Long-term TODOs:

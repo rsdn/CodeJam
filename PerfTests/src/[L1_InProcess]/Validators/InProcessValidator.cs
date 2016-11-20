@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Environments;
@@ -21,7 +20,6 @@ namespace BenchmarkDotNet.Validators
 	/// </summary>
 	/// <seealso cref="IValidator"/>
 	[PublicAPI]
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public class InProcessValidator : IValidator
 	{
 		#region Validation rules

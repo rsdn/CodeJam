@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -29,8 +28,6 @@ namespace CodeJam.PerfTests.Running.Core
 	/// Helpers for performance testing infrastructure.
 	/// </summary>
 	[PublicAPI]
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
-	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	public static class CompetitionCore
 	{
 		#region Extension methods
@@ -139,7 +136,7 @@ namespace CodeJam.PerfTests.Running.Core
 		public static void WriteVerboseHint(
 			[NotNull] this CompetitionState competitionState,
 			[NotNull] string messageText) =>
-			competitionState.Logger.WriteLineInfo($"{LogImportantInfoPrefix} {messageText}");
+				competitionState.Logger.WriteLineInfo($"{LogImportantInfoPrefix} {messageText}");
 
 		/// <summary>Writes the verbose message.</summary>
 		/// <param name="competitionState">State of the run.</param>
@@ -147,7 +144,7 @@ namespace CodeJam.PerfTests.Running.Core
 		public static void WriteVerbose(
 			[NotNull] this CompetitionState competitionState,
 			[NotNull] string messageText) =>
-			competitionState.Logger.WriteLineInfo($"{LogVerbosePrefix} {messageText}");
+				competitionState.Logger.WriteLineInfo($"{LogVerbosePrefix} {messageText}");
 
 		/// <summary>Helper method to dump the content of the message into logger.</summary>
 		/// <param name="logger">The logger the message will be dumped to.</param>
@@ -211,7 +208,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 				using (var mutex = new Mutex(false, $"Global\\{typeof(CompetitionCore).FullName}"))
 				{
-					bool lockTaken = false;
+					var lockTaken = false;
 					try
 					{
 						var runOptions = competitionState.Options.RunOptions;

@@ -18,7 +18,6 @@ namespace CodeJam.PerfTests.IntegrationTests
 	[PublicAPI]
 	[TestFixture(Category = "BenchmarkDotNet")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
-	[SuppressMessage("ReSharper", "UnusedMember.Global")]
 	[SuppressMessage("ReSharper", "ArgumentsStyleLiteral")]
 	public static class CompetitionRunTests
 	{

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using BenchmarkDotNet.Analysers;
@@ -20,7 +19,6 @@ namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Class to ease competition config creation</summary>
 	[PublicAPI]
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public sealed class ManualCompetitionConfig : ICompetitionConfig
 	{
 		#region Fields & .ctor
@@ -76,9 +74,9 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Competition options.</summary>
 		/// <value>Competition options.</value>
-		[NotNull]
 		public CompetitionOptions Options
 		{
+			[NotNull]
 			get
 			{
 				return _competitionOptions ?? CompetitionOptions.Default;
@@ -122,7 +120,7 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Adds the specified new jobs.</summary>
 		/// <param name="newJobs">The new jobs.</param>
-		public void Add(params Job[] newJobs) => 
+		public void Add(params Job[] newJobs) =>
 			// DONTTOUCH: please DO NOT remove .Freeze() call.
 			Jobs.AddRange(newJobs.Select(j => j.Freeze()));
 
@@ -162,7 +160,7 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Applies the competition options.</summary>
 		/// <param name="competitionOptions">Competition options.</param>
 		public void ApplyCompetitionOptions(CompetitionOptions competitionOptions) =>
-			Options = competitionOptions == null
+			_competitionOptions = competitionOptions == null
 				? null
 				: new CompetitionOptions(Options, competitionOptions);
 
@@ -172,7 +170,7 @@ namespace CodeJam.PerfTests.Configs
 		public void ApplyToJobs(Job jobModifier, bool preserveId = false)
 		{
 			var jobs = Jobs;
-			for (int i = 0; i < jobs.Count; i++)
+			for (var i = 0; i < jobs.Count; i++)
 			{
 				var job = jobs[i];
 

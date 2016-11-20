@@ -39,7 +39,6 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion("1.1.0.0")]
 [assembly: AssemblyFileVersion("1.1.0.0")]
-
 [assembly: InternalsVisibleTo("CodeJam.PerfTests-Tests, PublicKey=" +
 	"00240000048000009400000006020000002400005253413100040000010001000de1c523b74719" +
 	"e2f54eed3a5512cfedfa78ccfef5c1d196e9a6b09522e7a833ab027deff5462ab26b5d5b51ed42" +

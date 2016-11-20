@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 using BenchmarkDotNet.Engines;
@@ -23,8 +22,6 @@ namespace BenchmarkDotNet.Toolchains
 	/// <typeparam name="TTarget">The type of the target.</typeparam>
 	/// <typeparam name="TResult">The type of the result.</typeparam>
 	/// <seealso cref="IRunnableBenchmark"/>
-	[SuppressMessage("ReSharper", "PassStringInterpolation")]
-	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	internal class RunnableBenchmark<TTarget, TResult> : IRunnableBenchmark where TTarget : new()
 	{
 		private Func<TResult> _runCallback;
@@ -162,8 +159,6 @@ namespace BenchmarkDotNet.Toolchains
 	/// </summary>
 	/// <typeparam name="TTarget">The type of the target.</typeparam>
 	/// <seealso cref="IRunnableBenchmark"/>
-	[SuppressMessage("ReSharper", "PassStringInterpolation")]
-	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	internal class RunnableBenchmark<TTarget> : IRunnableBenchmark where TTarget : new()
 	{
 		private Action _runCallback;

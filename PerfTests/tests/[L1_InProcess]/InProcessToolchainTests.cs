@@ -19,9 +19,6 @@ namespace CodeJam.PerfTests
 {
 	[TestFixture(Category = "BenchmarkDotNet")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
-	[SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
-	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-	[SuppressMessage("ReSharper", "UnusedMember.Global")]
 	public static class InProcessToolchainTests
 	{
 		private static int _callCounter;

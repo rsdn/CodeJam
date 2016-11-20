@@ -2,8 +2,6 @@
 
 using CodeJam.PerfTests;
 
-using JetBrains.Annotations;
-
 namespace CodeJam
 {
 	/// <summary>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 using CodeJam.PerfTests.Running.Core;
@@ -8,10 +7,6 @@ using CodeJam.Strings;
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
 	/// <summary>Core logic for source annotations.</summary>
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
-	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
-	[SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
-	[SuppressMessage("ReSharper", "ConvertClosureToMethodGroup")]
 	internal static partial class SourceAnnotationsHelper
 	{
 		private static string GetResourceFileName(string fileName, CompetitionMetadata competitionMetadata)

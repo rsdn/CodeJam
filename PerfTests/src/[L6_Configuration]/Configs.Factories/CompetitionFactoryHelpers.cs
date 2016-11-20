@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+
 using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
@@ -26,7 +27,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 		/// <param name="metadataSource">The metadata source.</param>
 		/// <returns>Assembly for the metadata source</returns>
 		[CanBeNull]
-		public static Assembly GetAssembly([CanBeNull]ICustomAttributeProvider metadataSource)
+		public static Assembly GetAssembly([CanBeNull] ICustomAttributeProvider metadataSource)
 		{
 			var type = metadataSource as Type;
 			if (type != null)
@@ -137,7 +138,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 		/// <summary>
 		/// Well-known Continuous Integration services environment variables
 		/// </summary>
-		public static readonly IReadOnlyList<string> WellKnownCiVariables = new List<string>()
+		public static readonly IReadOnlyList<string> WellKnownCiVariables = new List<string>
 		{
 			"TF_BUILD",         // TFS
 			"APPVEYOR",         // AppVeyor
@@ -146,13 +147,14 @@ namespace CodeJam.PerfTests.Configs.Factories
 			"JENKINS_URL",      // Jenkins
 			"TRAVIS"            // Travis CI
 		}.AsReadOnly();
+
 		// ReSharper restore StringLiteralTypo
 		// ReSharper restore CommentTypo
 
 		/// <summary>
 		/// Checks that run is performed under continuous integration.
 		/// </summary>
-		public static bool RunsUnderContinuousIntegration() => 
+		public static bool RunsUnderContinuousIntegration() =>
 			BenchmarkHelpers.HasAnyEnvironmentVariable(WellKnownCiVariables.ToArray());
 		#endregion
 

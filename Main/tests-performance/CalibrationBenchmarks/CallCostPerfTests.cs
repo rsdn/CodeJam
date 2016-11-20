@@ -4,8 +4,6 @@ using System.Runtime.CompilerServices;
 
 using CodeJam.PerfTests;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 namespace CodeJam
