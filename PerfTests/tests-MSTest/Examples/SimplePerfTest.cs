@@ -13,7 +13,7 @@ namespace CodeJam.Examples
 	[TestClass]
 	public class SimplePerfTest
 	{
-		private const int Count = 100;
+		private const int Count = 200;
 
 		// Perf test runner method.
 		[TestMethod]
