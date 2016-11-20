@@ -13,9 +13,13 @@ namespace CodeJam.PerfTests.Configs
 	[PublicAPI]
 	public sealed class SourceAnnotationsMode : JobMode<SourceAnnotationsMode>
 	{
-		/// <summary>Update source annotations characteristic.</summary>
-		public static readonly Characteristic<bool> UpdateSourcesCharacteristic = Characteristic.Create(
-			(SourceAnnotationsMode m) => m.UpdateSources);
+		/// <summary>Adjust source annotations characteristic.</summary>
+		public static readonly Characteristic<bool> AdjustLimitsCharacteristic = Characteristic.Create(
+			(SourceAnnotationsMode m) => m.AdjustLimits);
+
+		/// <summary>Dont update sources with adjusted limits.</summary>
+		public static readonly Characteristic<bool> DontSaveAdjustedLimitsCharacteristic = Characteristic.Create(
+			(SourceAnnotationsMode m) => m.DontSaveAdjustedLimits);
 
 		/// <summary>Characteristic for URI of the log that contains competition limits from previous run(s).</summary>
 		public static readonly Characteristic<string> PreviousRunLogUriCharacteristic = Characteristic.Create(
@@ -32,19 +36,39 @@ namespace CodeJam.PerfTests.Configs
 			(SourceAnnotationsMode m) => m.AdditionalRerunsIfAnnotationsUpdated,
 			2);
 
-		/// <summary>Try to update source annotations if competition limits check failed.</summary>
+		/// <summary>Adjust source annotations if competition limits check failed.</summary>
 		/// <value>
-		/// <c>true</c> if the analyser should update source annotations if competition limits check failed; otherwise, <c>false</c>.
+		/// <c>true</c> if the analyser should adjust source annotations if competition limits check failed; otherwise, <c>false</c>.
 		/// </value>
-		public bool UpdateSources
+		public bool AdjustLimits
 		{
 			get
 			{
-				return UpdateSourcesCharacteristic[this];
+				return AdjustLimitsCharacteristic[this];
 			}
 			set
 			{
-				UpdateSourcesCharacteristic[this] = value;
+				AdjustLimitsCharacteristic[this] = value;
+			}
+		}
+
+		/// <summary>
+		/// Dont update sources with adjusted limits.
+		/// Use this for CI runs when source files are not accessible.
+		/// Set <see cref="CompetitionLimitsMode.LogAnnotations"/> to <c>true</c> to persist the limits.
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if the analyser SHOULD NOT update sources with adjusted limits.
+		/// </value>
+		public bool DontSaveAdjustedLimits
+		{
+			get
+			{
+				return DontSaveAdjustedLimitsCharacteristic[this];
+			}
+			set
+			{
+				DontSaveAdjustedLimitsCharacteristic[this] = value;
 			}
 		}
 

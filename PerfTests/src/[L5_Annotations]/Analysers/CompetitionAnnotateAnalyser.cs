@@ -5,7 +5,6 @@ using System.Linq;
 using System.Xml.Linq;
 
 using BenchmarkDotNet.Analysers;
-using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
@@ -15,10 +14,9 @@ using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.PerfTests.Running.SourceAnnotations;
 
-using static CodeJam.PerfTests.Loggers.HostLogger;
-
 namespace CodeJam.PerfTests.Analysers
 {
+	// TODO: rename to adjust limits analyser?
 	/// <summary>Competition analyser that updates source annotations if competition limit checking failed.</summary>
 	/// <seealso cref="CompetitionAnalyser"/>
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
@@ -33,9 +31,6 @@ namespace CodeJam.PerfTests.Analysers
 
 		private static readonly RunState<LoggedXmlAnnotations> _annotationsFromLogCacheSlot =
 			new RunState<LoggedXmlAnnotations>();
-		#endregion
-
-		#region Properties
 		#endregion
 
 		#region Parsing competition target info
@@ -53,7 +48,7 @@ namespace CodeJam.PerfTests.Analysers
 			var annotationsMode = competitionState.Options.SourceAnnotations;
 			var logUri = annotationsMode.PreviousRunLogUri;
 
-			if (!annotationsMode.UpdateSources || string.IsNullOrEmpty(logUri))
+			if (!annotationsMode.AdjustLimits || string.IsNullOrEmpty(logUri))
 				return;
 
 			var xmlAnnotationDocs = ReadXmlAnnotationDocsFromLog(logUri, summary, competitionState);
@@ -83,8 +78,8 @@ namespace CodeJam.PerfTests.Analysers
 
 		private XDocument[] ReadXmlAnnotationDocsFromLog(string logUri, Summary summary, CompetitionState competitionState)
 		{
-			competitionState.Logger.WriteLineInfo(
-				$"{LogVerbosePrefix} Reading XML annotation documents from log '{logUri}'.");
+			competitionState.WriteVerbose(
+				$"Reading XML annotation documents from log '{logUri}'.");
 
 			var xmlAnnotationDocs = _annotationsFromLogCacheSlot[summary].GetOrAdd(
 				logUri,
@@ -97,8 +92,8 @@ namespace CodeJam.PerfTests.Analysers
 		private bool TryFillCompetitionTargetsFromLog(
 			CompetitionTargets competitionTargets, XDocument[] xmlAnnotationDocs, CompetitionState competitionState)
 		{
-			competitionState.Logger.WriteLineInfo(
-				$"{LogVerbosePrefix} Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log.");
+			competitionState.WriteVerbose(
+				$"Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log.");
 
 			bool updated = false;
 			foreach (var competitionTarget in competitionTargets.Targets)
@@ -133,7 +128,7 @@ namespace CodeJam.PerfTests.Analysers
 			var annotationsMode = competitionState.Options.SourceAnnotations;
 
 			return checkPassed ||
-				!annotationsMode.UpdateSources ||
+				!annotationsMode.AdjustLimits ||
 				competitionState.RunNumber < annotationsMode.AnnotateSourcesOnRun;
 		}
 
@@ -198,7 +193,7 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				competitionState.RequestReruns(
 					annotationsMode.AdditionalRerunsIfAnnotationsUpdated,
-					"Annotations were updated.");
+					"Limits were adjusted.");
 			}
 		}
 
@@ -221,14 +216,30 @@ namespace CodeJam.PerfTests.Analysers
 				return;
 			}
 
-			var annotatedTargets = SourceAnnotationsHelper.TryAnnotateBenchmarkFiles(
-				targetsToAnnotate, competitionState);
-
-			if (annotatedTargets.Any())
+			if (competitionState.Options.SourceAnnotations.DontSaveAdjustedLimits)
 			{
-				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.Warning,
-					"The sources were updated with new annotations. Please check them before commiting the changes.");
+				var message =
+					$"Source annotation skipped due to {SourceAnnotationsMode.DontSaveAdjustedLimitsCharacteristic.FullId} setting.";
+				if (competitionState.FirstRun)
+				{
+					competitionState.WriteMessage(MessageSource.Analyser, MessageSeverity.Informational, message);
+				}
+				else
+				{
+					competitionState.WriteVerbose(message);
+				}
+			}
+			else
+			{
+				var annotatedTargets = SourceAnnotationsHelper.TryAnnotateBenchmarkFiles(
+					targetsToAnnotate, competitionState);
+
+				if (annotatedTargets.Any())
+				{
+					competitionState.WriteMessage(
+						MessageSource.Analyser, MessageSeverity.Warning,
+						"The sources were updated with new annotations. Please check them before commiting the changes.");
+				}
 			}
 
 			foreach (var competitionTarget in targetsToAnnotate)

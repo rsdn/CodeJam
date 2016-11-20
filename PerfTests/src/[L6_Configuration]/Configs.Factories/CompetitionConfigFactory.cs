@@ -219,7 +219,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 				}
 				else
 				{
-					if (competitionFeatures.ImportantInfoLogger)
+					if (competitionFeatures.ImportantInfoLogger || competitionFeatures.ContinuousIntegrationMode)
 					{
 						result.Add(GetImportantInfoLogger(targetAssembly));
 					}
@@ -276,7 +276,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 
 			if (competitionFeatures.AnnotateSources)
 			{
-				result.SourceAnnotations.UpdateSources = true;
+				result.SourceAnnotations.AdjustLimits = true;
 				if (competitionFeatures.IgnoreExistingAnnotations)
 				{
 					result.Limits.IgnoreExistingAnnotations = true;
@@ -297,6 +297,14 @@ namespace CodeJam.PerfTests.Configs.Factories
 			else if (competitionFeatures.ReportWarningsAsErrors)
 			{
 				result.RunOptions.ReportWarningsAsErrors = true;
+			}
+
+			if (competitionFeatures.ContinuousIntegrationMode)
+			{
+				result.RunOptions.ContinuousIntegrationMode = true;
+				result.Limits.LogAnnotations = true;
+				result.SourceAnnotations.PreviousRunLogUri = null;
+				result.SourceAnnotations.DontSaveAdjustedLimits = true;
 			}
 
 			return result;

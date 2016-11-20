@@ -38,6 +38,10 @@ namespace CodeJam.PerfTests.Configs
 		public static readonly Characteristic<bool> ReportWarningsAsErrorsCharacteristic = Characteristic.Create(
 			(CompetitionRunMode m) => m.ReportWarningsAsErrors);
 
+		/// <summary>The code is being run on a CI server characteristic.</summary>
+		public static readonly Characteristic<bool> ContinuousIntegrationModeCharacteristic = Characteristic.Create(
+			(CompetitionRunMode m) => m.ContinuousIntegrationMode);
+
 		/// <summary>Allow debug builds to be used in competitions.</summary>
 		/// <value><c>true</c> if debug builds allowed; otherwise, <c>false</c>.</value>
 		public bool AllowDebugBuilds
@@ -105,6 +109,20 @@ namespace CodeJam.PerfTests.Configs
 			set
 			{
 				ReportWarningsAsErrorsCharacteristic[this] = value;
+			}
+		}
+
+		/// <summary>The code is being run on a CI server..</summary>
+		/// <value><c>true</c> if code is being run on a CI server..</value>
+		public bool ContinuousIntegrationMode
+		{
+			get
+			{
+				return ContinuousIntegrationModeCharacteristic[this];
+			}
+			set
+			{
+				ContinuousIntegrationModeCharacteristic[this] = value;
 			}
 		}
 	}

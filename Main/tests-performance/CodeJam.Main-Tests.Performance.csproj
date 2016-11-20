@@ -30,7 +30,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(CI)' == 'True' ">
+  <PropertyGroup Condition="'$(CI)'=='True'">
     <DefineConstants>$(DefineConstants);CI_Build</DefineConstants>
   </PropertyGroup>
   <PropertyGroup>

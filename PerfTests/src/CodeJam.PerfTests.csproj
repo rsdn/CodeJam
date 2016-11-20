@@ -113,6 +113,7 @@
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.SourceAttributes.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.SymbolHelpers.cs" />
     <Compile Include="[L6_Configuration]\Configs.Factories\CompetitionFactoryHelpers.cs" />
+    <Compile Include="[L6_Configuration]\Configs\ICompetitionFeatures.cs" />
     <Compile Include="[L6_Configuration]\[Attributes]\CompetitionConfigFactoryAttribute.cs" />
     <Compile Include="[L6_Configuration]\Configs.Factories\ICompetitionConfigFactory.cs" />
     <Compile Include="[L6_Configuration]\[Attributes]\CompetitionFeaturesAttributes.cs" />

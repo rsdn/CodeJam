@@ -155,5 +155,13 @@ line3";
 			IsNull(BenchmarkHelpers.TryGetTextFromUri(fullPath));
 			IsNull(BenchmarkHelpers.TryGetTextFromUri(fullPathUri));
 		}
+
+		[Test]
+		public static void TestEnvironmentVariables()
+		{
+			True(BenchmarkHelpers.HasAnyEnvironmentVariable("Temp"));
+			True(BenchmarkHelpers.HasAnyEnvironmentVariable("tMp"));
+			False(BenchmarkHelpers.HasAnyEnvironmentVariable("StringThatShouldNotBeUsedAsEnvVariable"));
+		}
 	}
 }

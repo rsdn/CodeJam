@@ -16,7 +16,7 @@ namespace CodeJam.PerfTests.Configs
 	/// </summary>
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-	internal sealed class PerfTestsSection : ConfigurationSection
+	internal sealed class PerfTestsSection : ConfigurationSection, ICompetitionFeatures
 	{
 		#region Measurements
 		/// <summary>
@@ -39,6 +39,29 @@ namespace CodeJam.PerfTests.Configs
 		#endregion
 
 		#region Environment
+		/// <summary>
+		/// The code is being run on a CI server.
+		/// <seealso cref="CompetitionLimitsMode.LogAnnotations"/>,
+		/// <seealso cref="SourceAnnotationsMode.DontSaveAdjustedLimits"/>
+		/// and <see cref="CompetitionRunMode.ContinuousIntegrationMode"/> are enabled,
+		/// <see cref="ICompetitionFeatures.PreviousRunLogUri"/> is ignored.
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if the code is being run on a CI server.
+		/// </value>
+		[ConfigurationProperty(nameof(ContinuousIntegrationMode), IsRequired = false)]
+		public bool ContinuousIntegrationMode
+		{
+			get
+			{
+				return (bool)this[nameof(ContinuousIntegrationMode)];
+			}
+			set
+			{
+				this[nameof(ContinuousIntegrationMode)] = value;
+			}
+		}
+
 		/// <summary>Specifies target platform for the competition.</summary>
 		/// <value>Target platform for the competition.</value>
 		[ConfigurationProperty(nameof(TargetPlatform), IsRequired = false)]
@@ -53,6 +76,10 @@ namespace CodeJam.PerfTests.Configs
 				this[nameof(TargetPlatform)] = value;
 			}
 		}
+
+		/// <summary>Specifies target platform for the competition.</summary>
+		/// <value>Target platform for the competition.</value>
+		Platform ICompetitionFeatures.TargetPlatform => TargetPlatform.GetValueOrDefault();
 		#endregion
 
 		#region Annotations

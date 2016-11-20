@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-
+using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 
@@ -111,6 +112,14 @@ namespace CodeJam.PerfTests.Configs.Factories
 				?.UnfreezeCopy() ??
 				new CompetitionFeatures();
 
+			if (RunsUnderContinuousIntegration())
+				competitionFeatures.ContinuousIntegrationMode = true;
+
+			if (HostEnvironmentInfo.GetCurrent().HasAttachedDebugger)
+			{
+				competitionFeatures.TroubleshootingMode = true;
+			}
+
 			foreach (var featureAttribute in metadataSource
 				.GetMetadataAttributes<CompetitionFeaturesAttribute>()
 				.Reverse())
@@ -120,6 +129,31 @@ namespace CodeJam.PerfTests.Configs.Factories
 
 			return competitionFeatures.Freeze();
 		}
+		#endregion
+
+		#region CI detection
+		// ReSharper disable CommentTypo
+		// ReSharper disable StringLiteralTypo
+		/// <summary>
+		/// Well-known Continuous Integration services environment variables
+		/// </summary>
+		public static readonly IReadOnlyList<string> WellKnownCiVariables = new List<string>()
+		{
+			"TF_BUILD",         // TFS
+			"APPVEYOR",         // AppVeyor
+			"CI",               // AppVeyor and Travis CI
+			"TEAMCITY_VERSION", // TeamCity
+			"JENKINS_URL",      // Jenkins
+			"TRAVIS"            // Travis CI
+		}.AsReadOnly();
+		// ReSharper restore StringLiteralTypo
+		// ReSharper restore CommentTypo
+
+		/// <summary>
+		/// Checks that run is performed under continuous integration.
+		/// </summary>
+		public static bool RunsUnderContinuousIntegration() => 
+			BenchmarkHelpers.HasAnyEnvironmentVariable(WellKnownCiVariables.ToArray());
 		#endregion
 
 		#region Appcongfig support
@@ -150,6 +184,5 @@ namespace CodeJam.PerfTests.Configs.Factories
 			return section?.GetFeatures();
 		}
 		#endregion
-
 	}
 }

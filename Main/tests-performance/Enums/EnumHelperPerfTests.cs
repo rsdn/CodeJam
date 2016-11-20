@@ -316,7 +316,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.62, 1.00)]
+			[CompetitionBenchmark(0.59, 1.00)]
 			public int Test03ClearFlagIntOp()
 			{
 				var a = 1;

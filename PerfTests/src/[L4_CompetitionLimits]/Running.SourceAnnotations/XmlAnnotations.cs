@@ -242,9 +242,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			Code.NotNullNorEmpty(logUri, nameof(logUri));
 			Code.NotNull(competitionState, nameof(competitionState));
 
-			var logger = competitionState.Logger;
-
-			logger.WriteLineInfo($"{LogVerbosePrefix} Downloading '{logUri}'.");
+			competitionState.WriteVerbose($"Downloading '{logUri}'.");
 
 			using (var reader = BenchmarkHelpers.TryGetTextFromUri(logUri, TimeSpan.FromSeconds(15)))
 			{
@@ -256,7 +254,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					return Array<XDocument>.Empty;
 				}
 
-				logger.WriteLineInfo($"{LogVerbosePrefix} Parsing '{logUri}' content.");
+				competitionState.WriteVerbose($"Parsing '{logUri}' content.");
 
 				return ParseLogContent(logUri, reader, competitionState);
 			}

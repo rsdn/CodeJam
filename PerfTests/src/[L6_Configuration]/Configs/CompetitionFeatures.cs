@@ -12,12 +12,16 @@ namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Features for competition.</summary>
 	[PublicAPI]
-	public sealed class CompetitionFeatures : JobMode<CompetitionFeatures>
+	public sealed class CompetitionFeatures : JobMode<CompetitionFeatures>, ICompetitionFeatures
 	{
 		#region Characteristics
 		/// <summary>Burst mode characteristic</summary>
 		public static readonly Characteristic<bool> BurstModeCharacteristic = Characteristic.Create(
 			(CompetitionFeatures f) => f.BurstMode);
+
+		/// <summary>The code is being run on a CI server characteristic.</summary>
+		public static readonly Characteristic<bool> ContinuousIntegrationModeCharacteristic = Characteristic.Create(
+			(CompetitionFeatures f) => f.ContinuousIntegrationMode);
 
 		/// <summary>Target platform for the competition characteristic.</summary>
 		public static readonly Characteristic<Platform> TargetPlatformCharacteristic = Characteristic.Create(
@@ -107,6 +111,28 @@ namespace CodeJam.PerfTests.Configs
 		#endregion
 
 		#region Environment
+		/// <summary>
+		/// The code is being run on a CI server.
+		/// <seealso cref="CompetitionLimitsMode.LogAnnotations"/>,
+		/// <seealso cref="SourceAnnotationsMode.DontSaveAdjustedLimits"/>
+		/// and <see cref="CompetitionRunMode.ContinuousIntegrationMode"/> are enabled,
+		/// <see cref="ICompetitionFeatures.PreviousRunLogUri"/> is ignored.
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if the code is being run on a CI server.
+		/// </value>
+		public bool ContinuousIntegrationMode
+		{
+			get
+			{
+				return ContinuousIntegrationModeCharacteristic[this];
+			}
+			set
+			{
+				ContinuousIntegrationModeCharacteristic[this] = value;
+			}
+		}
+
 		/// <summary>Specifies target platform for the competition.</summary>
 		/// <value>Target platform for the competition.</value>
 		public Platform TargetPlatform

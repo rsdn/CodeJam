@@ -34,6 +34,10 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		#region State properties
+		/// <summary>The competition is performing first run..</summary>
+		/// <value><c>true</c> if the competition is performing first run.</value>
+		public bool FirstRun => RunNumber == 1;
+
 		/// <summary>
 		/// The competition has no additional runs requested
 		/// or the count of runs is out of limit
@@ -124,7 +128,7 @@ namespace CodeJam.PerfTests.Running.Core
 		private void AssertIsInCompetition() =>
 			Code.AssertState(
 				Options != null && !Completed,
-				"Could not update state as the competition is not running completed.");
+				"Could not update state as the competition is not running or was completed.");
 
 		#region State modification
 		/// <summary>Init the competition state.</summary>
@@ -246,23 +250,6 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				return _messages.ToArray();
 			}
-		}
-
-		/// <summary>Adds a message for the competition.</summary>
-		/// <param name="messageSource">Source of the message.</param>
-		/// <param name="messageSeverity">Severity of the message.</param>
-		/// <param name="messageFormat">Message string format.</param>
-		/// <param name="args">The arguments for message.</param>
-		[StringFormatMethod("messageFormat")]
-		public void WriteMessage(
-			MessageSource messageSource, MessageSeverity messageSeverity,
-			[NotNull] string messageFormat, params object[] args)
-		{
-			var message = args.IsNullOrEmpty()
-				? messageFormat
-				: string.Format(HostEnvironmentInfo.MainCultureInfo, messageFormat, args);
-
-			WriteMessage(messageSource, messageSeverity, message);
 		}
 
 		/// <summary>Adds a message for the competition.</summary>

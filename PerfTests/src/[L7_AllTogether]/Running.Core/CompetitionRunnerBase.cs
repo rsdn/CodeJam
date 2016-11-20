@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 
 using BenchmarkDotNet.Characteristics;
-using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Exporters;
@@ -17,7 +16,6 @@ using BenchmarkDotNet.Toolchains.InProcess;
 using BenchmarkDotNet.Validators;
 
 using CodeJam.PerfTests.Analysers;
-using CodeJam.PerfTests.Columns;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Configs.Factories;
 using CodeJam.PerfTests.Loggers;
@@ -173,16 +171,16 @@ namespace CodeJam.PerfTests.Running.Core
 						new ReadOnlyConfig(competitionConfig),
 						competitionConfig.Options);
 
-					ProcessRunComplete(competitionConfig, competitionState);
+					ProcessRunComplete(competitionState);
 				}
 				finally
 				{
 					ReportHostLogger(hostLogger, competitionState?.LastRunSummary);
 				}
 
-				using (Loggers.HostLogger.BeginLogImportant(competitionConfig))
+				using (Loggers.HostLogger.BeginLogImportant(competitionState.Config))
 				{
-					ReportMessagesToUser(competitionConfig, competitionState);
+					ReportMessagesToUser(competitionState);
 				}
 			}
 			finally
@@ -196,7 +194,6 @@ namespace CodeJam.PerfTests.Running.Core
 
 		#region Prepare & run completed logic
 		private void ProcessRunComplete(
-			[NotNull] ICompetitionConfig competitionConfig,
 			[NotNull] CompetitionState competitionState)
 		{
 			var logger = competitionState.Logger;
@@ -205,7 +202,7 @@ namespace CodeJam.PerfTests.Running.Core
 			if (logger == null)
 				return;
 
-			if (competitionConfig.Options.RunOptions.DetailedLogging)
+			if (competitionState.Options.RunOptions.DetailedLogging)
 			{
 				var messages = competitionState.GetMessages();
 
@@ -293,31 +290,10 @@ namespace CodeJam.PerfTests.Running.Core
 			var result = new ManualCompetitionConfig(
 				competitionConfig ??
 				CompetitionConfigFactory.FindFactoryAndCreate(benchmarkType, null));
-			PrepareCompetitionConfig(result);
 			InitCompetitionConfigOverride(result);
 			FixCompetitionConfig(result);
 
 			return result.AsReadOnly();
-		}
-
-		private void PrepareCompetitionConfig(ManualCompetitionConfig competitionConfig)
-		{
-			if (HostEnvironmentInfo.GetCurrent().HasAttachedDebugger)
-			{
-				competitionConfig.ApplyCompetitionOptions(
-					new CompetitionOptions
-					{
-						RunOptions =
-						{
-							AllowDebugBuilds = true
-						}
-					});
-			}
-
-			if (competitionConfig.Jobs.Count == 0)
-			{
-				competitionConfig.Add(CompetitionConfigFactory.DefaultJob);
-			}
 		}
 
 		private void FixCompetitionConfig(ManualCompetitionConfig competitionConfig)
@@ -342,6 +318,11 @@ namespace CodeJam.PerfTests.Running.Core
 						.With(InProcessToolchain.Instance)
 						.WithId(id);
 				}
+			}
+
+			if (competitionConfig.Jobs.Count == 0)
+			{
+				competitionConfig.Add(CompetitionConfigFactory.DefaultJob);
 			}
 		}
 
@@ -369,7 +350,7 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				validators.RemoveAll(v => v is JitOptimizationsValidator);
 			}
-			else if (competitionOptions.SourceAnnotations.UpdateSources &&
+			else if (competitionOptions.SourceAnnotations.AdjustLimits &&
 				!validators.OfType<JitOptimizationsValidator>().Any())
 			{
 				validators.Insert(0, JitOptimizationsValidator.FailOnError);
@@ -392,7 +373,7 @@ namespace CodeJam.PerfTests.Running.Core
 			var annotationsMode = competitionConfig.Options.SourceAnnotations;
 
 			// DONTTOUCH: the CompetitionAnnotateAnalyser should be last analyser in the chain.
-			var analyzer = annotationsMode.UpdateSources
+			var analyzer = annotationsMode.AdjustLimits
 				? new CompetitionAnnotateAnalyser()
 				: new CompetitionAnalyser();
 			competitionConfig.Analysers.Add(analyzer);
@@ -405,7 +386,6 @@ namespace CodeJam.PerfTests.Running.Core
 
 		#region Messages
 		private void ReportMessagesToUser(
-			[NotNull] ICompetitionConfig competitionConfig,
 			[NotNull] CompetitionState competitionState)
 		{
 			var criticalErrorMessages = GetMessageLines(
@@ -464,7 +444,7 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 
 			var messageText = string.Join(Environment.NewLine, allMessages);
-			var runOptions = competitionConfig.Options.RunOptions;
+			var runOptions = competitionState.Options.RunOptions;
 			if (hasCriticalMessages)
 			{
 				ReportExecutionErrors(messageText, competitionState);

@@ -133,6 +133,22 @@ namespace CodeJam.PerfTests.Running.Core
 				$"{message} Exception: {ex.Message}.");
 		}
 
+		/// <summary>Writes the verbose hint message. Logged, but not reported to user.</summary>
+		/// <param name="competitionState">State of the run.</param>
+		/// <param name="messageText">Text of the message.</param>
+		public static void WriteVerboseHint(
+			[NotNull] this CompetitionState competitionState,
+			[NotNull] string messageText) =>
+			competitionState.Logger.WriteLineInfo($"{LogImportantInfoPrefix} {messageText}");
+
+		/// <summary>Writes the verbose message.</summary>
+		/// <param name="competitionState">State of the run.</param>
+		/// <param name="messageText">Text of the message.</param>
+		public static void WriteVerbose(
+			[NotNull] this CompetitionState competitionState,
+			[NotNull] string messageText) =>
+			competitionState.Logger.WriteLineInfo($"{LogVerbosePrefix} {messageText}");
+
 		/// <summary>Helper method to dump the content of the message into logger.</summary>
 		/// <param name="logger">The logger the message will be dumped to.</param>
 		/// <param name="message">The message to log.</param>
@@ -271,6 +287,13 @@ namespace CodeJam.PerfTests.Running.Core
 				return false;
 			}
 
+			if (runOptions.ContinuousIntegrationMode)
+			{
+				competitionState.WriteMessage(
+					MessageSource.Runner, MessageSeverity.Informational,
+					"Competition is run under continuous integration service.");
+			}
+
 			return true;
 		}
 
@@ -311,7 +334,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 				if (competitionState.HasCriticalErrorsInRun)
 				{
-					logger.WriteLineInfo($"{LogImportantInfoPrefix} Breaking competition execution. High severity error occured.");
+					competitionState.WriteVerboseHint("Breaking competition execution. High severity error occured.");
 					break;
 				}
 
@@ -320,7 +343,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 				if (competitionState.RunsLeft > 0)
 				{
-					logger.WriteLineInfo($"{LogImportantInfoPrefix} Rerun requested. Runs left: {competitionState.RunsLeft}.");
+					competitionState.WriteVerboseHint($"Rerun requested. Runs left: {competitionState.RunsLeft}.");
 				}
 			}
 

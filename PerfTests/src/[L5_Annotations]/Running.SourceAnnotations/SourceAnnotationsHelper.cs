@@ -6,15 +6,12 @@ using System.Linq;
 using System.Xml.Linq;
 
 using BenchmarkDotNet.Helpers;
-using BenchmarkDotNet.Loggers;
 
 using CodeJam.Collections;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
-
-using static CodeJam.PerfTests.Loggers.HostLogger;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
@@ -190,15 +187,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			var annotatedTargets = new List<CompetitionTarget>();
 			var annContext = new AnnotateContext();
-			var logger = competitionState.Logger;
 
 			foreach (var targetToAnnotate in targetsToAnnotate)
 			{
 				var target = targetToAnnotate.Target;
 				var targetMethodTitle = target.MethodDisplayInfo;
 
-				logger.WriteLineInfo(
-					$"{LogVerbosePrefix} Method {targetMethodTitle}: updating time limits {targetToAnnotate}.");
+				competitionState.WriteVerbose(
+					$"Method {targetMethodTitle}: updating time limits {targetToAnnotate}.");
 
 				// DONTTOUCH: the source should be loaded for checksum validation even if target uses resource annotation.
 				string fileName;
@@ -215,21 +211,21 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				{
 					var resourceFileName = GetResourceFileName(fileName, competitionMetadata);
 
-					logger.WriteLineInfo(
-						$"{LogVerbosePrefix} Method {targetMethodTitle}: annotating resource file '{resourceFileName}'.");
+					competitionState.WriteVerbose(
+						$"Method {targetMethodTitle}: annotating resource file '{resourceFileName}'.");
 					var annotated = TryFixBenchmarkXmlAnnotation(annContext, resourceFileName, targetToAnnotate, competitionState);
 					if (!annotated)
 					{
 						competitionState.WriteMessage(
 							MessageSource.Analyser, MessageSeverity.Warning,
-							$"Method {targetMethodTitle}: could not annotate resource file '{resourceFileName}'.", null);
+							$"Method {targetMethodTitle}: could not annotate resource file '{resourceFileName}'.");
 						continue;
 					}
 				}
 				else
 				{
-					logger.WriteLineInfo(
-						$"{LogVerbosePrefix} Method {targetMethodTitle}: annotating file '{fileName}', line {firstCodeLine}.");
+					competitionState.WriteVerbose(
+						$"Method {targetMethodTitle}: annotating file '{fileName}', line {firstCodeLine}.");
 					var annotated = TryFixBenchmarkAttribute(annContext, fileName, firstCodeLine, targetToAnnotate, competitionState);
 					if (!annotated)
 					{
@@ -240,8 +236,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					}
 				}
 
-				logger.WriteLineInfo(
-					$"{LogImportantInfoPrefix} Method {targetMethodTitle} updated time limits: {targetToAnnotate}.");
+				competitionState.WriteVerboseHint(
+					$"Method {targetMethodTitle} updated time limits: {targetToAnnotate}.");
 				annotatedTargets.Add(targetToAnnotate);
 			}
 

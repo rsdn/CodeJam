@@ -16,7 +16,7 @@ namespace CodeJam.PerfTests
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Assembly, Inherited = true, AllowMultiple = true)]
 	// ReSharper restore RedundantAttributeUsageProperty
 	[PublicAPI, MeansImplicitUse(ImplicitUseTargetFlags.WithMembers)]
-	public class CompetitionFeaturesAttribute : Attribute
+	public class CompetitionFeaturesAttribute : Attribute, ICompetitionFeatures
 	{
 		private readonly CompetitionFeatures _features;
 
@@ -55,6 +55,28 @@ namespace CodeJam.PerfTests
 		#endregion
 
 		#region Environment
+		/// <summary>
+		/// The code is being run on a CI server.
+		/// <seealso cref="CompetitionLimitsMode.LogAnnotations"/>,
+		/// <seealso cref="SourceAnnotationsMode.DontSaveAdjustedLimits"/>
+		/// and <see cref="CompetitionRunMode.ContinuousIntegrationMode"/> are enabled,
+		/// <see cref="ICompetitionFeatures.PreviousRunLogUri"/> is ignored.
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if the code is being run on a CI server.
+		/// </value>
+		public bool ContinuousIntegrationMode
+		{
+			get
+			{
+				return _features.ContinuousIntegrationMode;
+			}
+			set
+			{
+				_features.ContinuousIntegrationMode = value;
+			}
+		}
+
 		/// <summary>Specifies target platform for the competition.</summary>
 		/// <value>Target platform for the competition.</value>
 		public Platform TargetPlatform

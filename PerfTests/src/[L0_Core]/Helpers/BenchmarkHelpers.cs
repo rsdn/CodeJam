@@ -220,7 +220,7 @@ namespace BenchmarkDotNet.Helpers
 		/// <returns>Metadata attributes.</returns>
 		public static IEnumerable<TAttribute> GetMetadataAttributes<TAttribute>(
 			[NotNull] this ICustomAttributeProvider attributeProvider)
-			where TAttribute: class
+			where TAttribute : class
 		{
 			if (attributeProvider == null)
 				throw new ArgumentNullException(nameof(attributeProvider));
@@ -230,7 +230,7 @@ namespace BenchmarkDotNet.Helpers
 
 		private static IEnumerable<TAttribute> GetMetadataAttributesDispatch<TAttribute>(
 			ICustomAttributeProvider attributeProvider)
-			where TAttribute: class
+			where TAttribute : class
 		{
 			var type = attributeProvider as Type;
 			if (type != null)
@@ -244,8 +244,8 @@ namespace BenchmarkDotNet.Helpers
 		}
 
 		private static IEnumerable<TAttribute> GetMetadataAttributesCore<TAttribute>(
-			this ICustomAttributeProvider attributeProvider) 
-			where TAttribute: class 
+			this ICustomAttributeProvider attributeProvider)
+			where TAttribute : class
 			=>
 			attributeProvider.GetCustomAttributes(typeof(TAttribute), true)
 				.Cast<TAttribute>()
@@ -545,6 +545,36 @@ namespace BenchmarkDotNet.Helpers
 				}
 			}
 			return result;
+		}
+		#endregion
+
+		#region Environment
+		/// <summary>
+		/// Determines whether any environment variable is set.
+		/// </summary>
+		/// <param name="variables">The variables to check. Case is ignored.</param>
+		/// <returns>
+		///   <c>true</c> if any environment variable from <paramref name="variables"/> is set.
+		/// </returns>
+		public static bool HasAnyEnvironmentVariable(params string[] variables) =>
+			HasAnyEnvironmentVariable((IEnumerable<string>)variables);
+
+		/// <summary>
+		/// Determines whether any environment variable is set.
+		/// </summary>
+		/// <param name="variables">The variables to check. Case is ignored.</param>
+		/// <returns>
+		///   <c>true</c> if any environment variable from <paramref name="variables"/> is set.
+		/// </returns>
+		public static bool HasAnyEnvironmentVariable(IEnumerable<string> variables)
+		{
+			if (variables == null)
+				return false;
+
+			var envVariables = Environment.GetEnvironmentVariables().Keys.Cast<string>();
+			var set = new HashSet<string>(envVariables, StringComparer.OrdinalIgnoreCase);
+
+			return set.Overlaps(variables);
 		}
 		#endregion
 	}

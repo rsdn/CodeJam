@@ -31,10 +31,6 @@ namespace CodeJam
 				result.TargetPlatform = Platform.X64;
 			result.ImportantInfoLogger = true;
 
-			// TODO CU build as competition feature
-#if CI_Build
-			result.PreviousRunLogUri = null;
-#else
 			if (metadataSource != null && result.PreviousRunLogUri.IsNullOrEmpty())
 			{
 				var assemblyName = GetAssembly(metadataSource)?.GetName().Name;
@@ -44,7 +40,6 @@ namespace CodeJam
 						$"https://ci.appveyor.com/api/projects/andrewvk/codejam/artifacts/{assemblyName}{ImportantOnlyLogSuffix}?all=true";
 				}
 			}
-#endif
 
 			return result;
 		}
@@ -59,7 +54,7 @@ namespace CodeJam
 			ICustomAttributeProvider metadataSource,
 			CompetitionFeatures competitionFeatures)
 		{
-			var result = base.CreateJobUnfrozen(jobId, metadataSource,competitionFeatures);
+			var result = base.CreateJobUnfrozen(jobId, metadataSource, competitionFeatures);
 			if (competitionFeatures.TargetPlatform == Platform.X64)
 				result.Apply(EnvMode.RyuJitX64);
 			return result;

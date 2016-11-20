@@ -37,4 +37,5 @@ using CodeJam.PerfTests;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly:CompetitionConfigFactory(typeof(SelfTestConfigFactory))]
+[assembly: CompetitionFeatures(ContinuousIntegrationMode = false)]
+[assembly: CompetitionConfigFactory(typeof(SelfTestConfigFactory))]
