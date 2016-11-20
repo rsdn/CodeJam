@@ -11,10 +11,9 @@ namespace CodeJam.Examples
 {
 	// A perf test class.
 	[TestClass]
-	[CompetitionBurstMode]
 	public class SimplePerfTest
 	{
-		private const int Count = 10 * 1000;
+		private const int Count = 100;
 
 		// Perf test runner method.
 		[TestMethod]
