@@ -16,7 +16,7 @@ namespace CodeJam.PerfTests.Configs
 	{
 		/// <summary>
 		/// Performs single run per measurement.
-		/// Recommended for use if single call time >> than timer resolution (recommended minimum is 1500 ns).
+		/// Recommended for use if single call time >> than timer resolution (recommended minimum is 1000 ns).
 		/// </summary>
 		/// <value>Target platform for the competition.</value>
 		bool BurstMode { get; }

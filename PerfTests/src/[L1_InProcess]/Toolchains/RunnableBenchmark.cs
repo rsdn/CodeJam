@@ -21,13 +21,12 @@ namespace BenchmarkDotNet.Toolchains
 	/// </summary>
 	/// <typeparam name="TTarget">The type of the target.</typeparam>
 	/// <typeparam name="TResult">The type of the result.</typeparam>
-	/// <seealso cref="IRunnableBenchmark"/>
-	internal class RunnableBenchmark<TTarget, TResult> : IRunnableBenchmark where TTarget : new()
+	/// <typeparam name="TIdleResult">The type of the idle result.</typeparam>
+	/// <seealso cref="IRunnableBenchmark" />
+	internal class RunnableBenchmark<TTarget, TResult, TIdleResult> : IRunnableBenchmark where TTarget : new()
 	{
 		private Func<TResult> _runCallback;
-		private Func<TResult> _idleCallback;
-		// ReSharper disable once MemberCanBeMadeStatic.Local
-		private TResult Idle() => default(TResult);
+		private Func<TIdleResult> _idleCallback;
 
 		#region Copy this into InProcessProgram<TTarget>
 		private Benchmark _benchmark;
@@ -64,11 +63,8 @@ namespace BenchmarkDotNet.Toolchains
 			_instance = new TTarget();
 			CreateSetupAction(_instance, target, out _setupAction);
 			CreateCleanupAction(_instance, target, out _cleanupAction);
-			CreateRunCallback(_instance, target, out _runCallback);
-			_idleCallback = Idle;
-
-			_runCallback = Unroll(_runCallback, unrollFactor);
-			_idleCallback = Unroll(_idleCallback, unrollFactor);
+			CreateRunCallback(_instance, target, unrollFactor, out _runCallback);
+			CreateIdleCallback(target, unrollFactor, out _idleCallback);
 
 			_operationsPerInvoke = target.OperationsPerInvoke;
 			_job = _benchmark.Job;
@@ -163,8 +159,6 @@ namespace BenchmarkDotNet.Toolchains
 	{
 		private Action _runCallback;
 		private Action _idleCallback;
-		// ReSharper disable once MemberCanBeMadeStatic.Local
-		private void Idle() { }
 
 		#region Copied from InProcessProgram<TTarget, TResult>
 		private Benchmark _benchmark;
@@ -201,11 +195,8 @@ namespace BenchmarkDotNet.Toolchains
 			_instance = new TTarget();
 			CreateSetupAction(_instance, target, out _setupAction);
 			CreateCleanupAction(_instance, target, out _cleanupAction);
-			CreateRunCallback(_instance, target, out _runCallback);
-			_idleCallback = Idle;
-
-			_runCallback = Unroll(_runCallback, unrollFactor);
-			_idleCallback = Unroll(_idleCallback, unrollFactor);
+			CreateRunCallback(_instance, target, unrollFactor, out _runCallback);
+			CreateIdleCallback(target, unrollFactor, out _idleCallback);
 
 			_operationsPerInvoke = target.OperationsPerInvoke;
 			_job = _benchmark.Job;

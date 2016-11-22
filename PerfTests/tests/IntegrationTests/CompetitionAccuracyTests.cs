@@ -39,7 +39,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"The benchmark(s) TooFast, TooFastX5 run faster than 0.0015 ms. Results cannot be trusted.");
+				"The benchmark(s) TooFast, TooFastX5 run faster than 0.001 ms. Results cannot be trusted.");
 		}
 
 		[Test]

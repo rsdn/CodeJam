@@ -16,7 +16,7 @@ namespace BenchmarkDotNet.Engines
 {
 	/// <summary>
 	/// Burst mode measurements engine (a lot of runs, measure each).
-	/// Recommended for use if call time >> than timer resolution (recommended minimum is 1500 ns).
+	/// Recommended for use if call time >> than timer resolution (recommended minimum is 1000 ns).
 	/// </summary>
 	/// <seealso cref="BenchmarkDotNet.Engines.IEngine"/>
 	internal sealed class BurstModeEngine : IEngine
@@ -57,7 +57,7 @@ namespace BenchmarkDotNet.Engines
 			if (resultCount % UnrollFactor != 0)
 				throw new ArgumentOutOfRangeException(
 					$"InvokeCount({resultCount}) should be a multiple of UnrollFactor({UnrollFactor}).");
-			ResultIterationsCount = resultCount;
+			ResultIterationsCount = resultCount / UnrollFactor;
 		}
 
 		private IClock Clock { get; }
@@ -246,8 +246,9 @@ namespace BenchmarkDotNet.Engines
 
 			var action = iterationMode.IsIdle() ? IdleAction : MainAction;
 			var resultIterationsCount = ResultIterationsCount;
-			if (!iterationMode.IsIdle())
-				SetupAction?.Invoke();
+			// TODO: reenable after https://github.com/dotnet/BenchmarkDotNet/issues/302#issuecomment-262057686
+			//if (!iterationMode.IsIdle())
+			//	SetupAction?.Invoke();
 
 			ForceGcCollect();
 			if (ForceAllocations) // DONTTOUCH: DO NOT merge loops as it will produce inaccurate results for microbenchmarks.
@@ -278,8 +279,9 @@ namespace BenchmarkDotNet.Engines
 			}
 
 			ForceGcCollect();
-			if (!iterationMode.IsIdle())
-				CleanupAction?.Invoke();
+			// TODO: reenable after https://github.com/dotnet/BenchmarkDotNet/issues/302#issuecomment-262057686
+			//if (!iterationMode.IsIdle())
+			//	CleanupAction?.Invoke();
 		}
 
 		/// <summary>Returns a <see cref="String"/> that represents this instance.</summary>

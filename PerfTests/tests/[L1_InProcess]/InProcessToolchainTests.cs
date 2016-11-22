@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
@@ -21,10 +22,10 @@ namespace CodeJam.PerfTests
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	public static class InProcessToolchainTests
 	{
+		private const int MethodsCount = 12; // 12 benchmark methods.
+
 		private static int _callCounter;
 		private static int _afterSetupCounter;
-		private static int _callReturnCounter;
-		private static int _afterSetupReturnCounter;
 		private static int _setupCounter;
 		private static int _cleanupCounter;
 
@@ -32,8 +33,6 @@ namespace CodeJam.PerfTests
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 			Interlocked.Exchange(ref _afterSetupCounter, 0);
-			Interlocked.Exchange(ref _callReturnCounter, 0);
-			Interlocked.Exchange(ref _afterSetupReturnCounter, 0);
 			Interlocked.Exchange(ref _setupCounter, 0);
 			Interlocked.Exchange(ref _cleanupCounter, 0);
 		}
@@ -43,25 +42,62 @@ namespace CodeJam.PerfTests
 		{
 			ResetCounters();
 
-			var config = CompetitionHelpers.ConfigForAssembly.WithJobModifier(
-				new Job
-				{
-					Infrastructure =
+			var config = CompetitionHelpers.ConfigForAssembly
+				.WithJobModifier(
+					new Job
 					{
-						EngineFactory = new EngineFactory()
-					}
-				},
-				true);
+						Infrastructure =
+						{
+							EngineFactory = new EngineFactory()
+						}
+					},
+					true)
+				.WithCompetitionOptions(
+					new CompetitionOptions()
+					{ Limits = { TooFastBenchmarkLimit = TimeSpan.Zero } });
 			var summary = SelfTestCompetition
-				.Run<InProcessBenchmark>(config)
+				.Run<InProcessBenchmarkAllCases>(config)
 				.LastRunSummary;
 
-			Assert.AreEqual(_callCounter, ExpectedSelfTestRunCount);
-			Assert.AreEqual(_afterSetupCounter, 0); // no calls as InvokeOnceReturn is performed
-			Assert.AreEqual(_callReturnCounter, ExpectedSelfTestRunCount);
-			Assert.AreEqual(_afterSetupReturnCounter, ExpectedSelfTestRunCount);
-			Assert.AreEqual(_setupCounter, 2);
-			Assert.AreEqual(_cleanupCounter, 2);
+			Assert.AreEqual(_callCounter, GetExpectedCount(config, MethodsCount));
+			Assert.AreEqual(_afterSetupCounter, GetExpectedCount(config, 1));
+			Assert.AreEqual(_setupCounter, MethodsCount);
+			Assert.AreEqual(_cleanupCounter, MethodsCount);
+
+			Assert.IsFalse(summary?.ValidationErrors.Any());
+		}
+
+		[Test]
+		public static void TestInProcessBenchmarkStandardEngineUnroll()
+		{
+			ResetCounters();
+
+			var config = CompetitionHelpers.ConfigForAssembly
+				.WithJobModifier(
+					new Job
+					{
+						Infrastructure =
+						{
+							EngineFactory = new EngineFactory()
+						},
+						Run =
+						{
+							InvocationCount = 20,
+							UnrollFactor = 5
+						}
+					},
+					true)
+				.WithCompetitionOptions(
+					new CompetitionOptions()
+					{ Limits = { TooFastBenchmarkLimit = TimeSpan.Zero } });
+			var summary = SelfTestCompetition
+				.Run<InProcessBenchmarkAllCases>(config)
+				.LastRunSummary;
+
+			Assert.AreEqual(_callCounter, GetExpectedCount(config, MethodsCount));
+			Assert.AreEqual(_afterSetupCounter, GetExpectedCount(config, 1));
+			Assert.AreEqual(_setupCounter, MethodsCount);
+			Assert.AreEqual(_cleanupCounter, MethodsCount);
 
 			Assert.IsFalse(summary?.ValidationErrors.Any());
 		}
@@ -71,25 +107,27 @@ namespace CodeJam.PerfTests
 		{
 			ResetCounters();
 
-			var config = CompetitionHelpers.ConfigForAssembly.WithJobModifier(
-				new Job
-				{
-					Infrastructure =
+			var config = CompetitionHelpers.ConfigForAssembly
+				.WithJobModifier(
+					new Job
 					{
-						EngineFactory = BurstModeEngineFactory.Instance
-					}
-				},
-				true);
+						Infrastructure =
+						{
+							EngineFactory = BurstModeEngineFactory.Instance
+						}
+					},
+					true)
+				.WithCompetitionOptions(
+					new CompetitionOptions()
+					{ Limits = { TooFastBenchmarkLimit = TimeSpan.Zero } });
 			var summary = SelfTestCompetition
-				.Run<InProcessBenchmark>(config)
+				.Run<InProcessBenchmarkAllCases>(config)
 				.LastRunSummary;
 
-			Assert.AreEqual(_callCounter, ExpectedSelfTestRunCount);
-			Assert.AreEqual(_afterSetupCounter, 0); // no calls as InvokeOnceReturn is performed
-			Assert.AreEqual(_callReturnCounter, ExpectedSelfTestRunCount);
-			Assert.AreEqual(_afterSetupReturnCounter, 2);
-			Assert.AreEqual(_setupCounter, 6);
-			Assert.AreEqual(_cleanupCounter, 6);
+			Assert.AreEqual(_callCounter, GetExpectedCount(config, MethodsCount));
+			Assert.AreEqual(_afterSetupCounter, GetExpectedCount(config, 1));
+			Assert.AreEqual(_setupCounter, MethodsCount);
+			Assert.AreEqual(_cleanupCounter, MethodsCount);
 
 			Assert.IsFalse(summary?.ValidationErrors.Any());
 		}
@@ -99,30 +137,32 @@ namespace CodeJam.PerfTests
 		{
 			ResetCounters();
 
-			var config = CompetitionHelpers.ConfigForAssembly.WithJobModifier(
-				new Job
-				{
-					Infrastructure =
+			var config = CompetitionHelpers.ConfigForAssembly
+				.WithJobModifier(
+					new Job
 					{
-						EngineFactory = BurstModeEngineFactory.Instance
+						Infrastructure =
+						{
+							EngineFactory = BurstModeEngineFactory.Instance
+						},
+						Run =
+						{
+							InvocationCount = 10, // BUG: works fine with ZERO!!!
+							UnrollFactor = 5
+						}
 					},
-					Run =
-					{
-						InvocationCount = 10,
-						UnrollFactor = 5
-					}
-				},
-				true);
+					true)
+				.WithCompetitionOptions(
+					new CompetitionOptions()
+					{ Limits = { TooFastBenchmarkLimit = TimeSpan.Zero } });
 			var summary = SelfTestCompetition
-				.Run<InProcessBenchmark>(config)
+				.Run<InProcessBenchmarkAllCases>(config)
 				.LastRunSummary;
 
-			Assert.AreEqual(_callCounter, 205);
-			Assert.AreEqual(_afterSetupCounter, 0); // no calls as InvokeOnceReturn is performed
-			Assert.AreEqual(_callReturnCounter, 205);
-			Assert.AreEqual(_afterSetupReturnCounter, 100);
-			Assert.AreEqual(_setupCounter, 6);
-			Assert.AreEqual(_cleanupCounter, 6);
+			Assert.AreEqual(_callCounter, GetExpectedCount(config, MethodsCount));
+			Assert.AreEqual(_afterSetupCounter, GetExpectedCount(config, 1));
+			Assert.AreEqual(_setupCounter, MethodsCount);
+			Assert.AreEqual(_cleanupCounter, MethodsCount);
 
 			Assert.IsFalse(summary?.ValidationErrors.Any());
 		}
@@ -135,7 +175,7 @@ namespace CodeJam.PerfTests
 			// DONTTOUCH: config SHOULD NOT match the default platform (x64).
 			var config = new ManualCompetitionConfig(
 				CompetitionHelpers.CreateConfig(
-					typeof(InProcessBenchmark),
+					typeof(InProcessBenchmarkAllCases),
 					new CompetitionFeatures
 					{
 						TargetPlatform = Platform.X86
@@ -143,13 +183,11 @@ namespace CodeJam.PerfTests
 			config.Add(InProcessValidator.FailOnError);
 
 			var summary = SelfTestCompetition
-				.Run<InProcessBenchmark>(config)
+				.Run<InProcessBenchmarkAllCases>(config)
 				.LastRunSummary;
 
 			Assert.AreEqual(_callCounter, 0);
 			Assert.AreEqual(_afterSetupCounter, 0);
-			Assert.AreEqual(_callReturnCounter, 0);
-			Assert.AreEqual(_afterSetupReturnCounter, 0);
 			Assert.AreEqual(_setupCounter, 0);
 			Assert.AreEqual(_cleanupCounter, 0);
 
@@ -160,35 +198,119 @@ namespace CodeJam.PerfTests
 				"Job SelfTestConfigX86, property EnvMode.Platform: value (X86) does not match environment (X64).");
 		}
 
-		public class InProcessBenchmark
+		public class InProcessBenchmarkAllCases
 		{
+			// TODO: custom type results.
 			[Setup]
 			public static void Setup()
 			{
+				//await Task.Yield();
 				Interlocked.Increment(ref _setupCounter);
 				Interlocked.Exchange(ref _afterSetupCounter, 0);
-				Interlocked.Exchange(ref _afterSetupReturnCounter, 0);
-			}
-
-			[Benchmark]
-			public void InvokeOnce()
-			{
-				Interlocked.Increment(ref _callCounter);
-				Interlocked.Increment(ref _afterSetupCounter);
-				Thread.Sleep(10);
-			}
-
-			[Benchmark]
-			public static int InvokeOnceReturn()
-			{
-				Interlocked.Increment(ref _callReturnCounter);
-				Interlocked.Increment(ref _afterSetupReturnCounter);
-				Thread.Sleep(10);
-				return 0;
 			}
 
 			[Cleanup]
-			public static void Cleanup() => Interlocked.Increment(ref _cleanupCounter);
+			public void /*decimal*/ Cleanup() => Interlocked.Increment(ref _cleanupCounter);
+
+			#region Instance members
+			[Benchmark]
+			public void InvokeOnceVoid()
+			{
+				Interlocked.Increment(ref _callCounter);
+				Interlocked.Increment(ref _afterSetupCounter);
+			}
+
+			[Benchmark]
+			public async Task InvokeOnceTask()
+			{
+				await Task.Yield();
+				Interlocked.Increment(ref _callCounter);
+				Interlocked.Increment(ref _afterSetupCounter);
+			}
+
+			[Benchmark]
+			public string InvokeOnceRefType()
+			{
+				Interlocked.Increment(ref _callCounter);
+				Interlocked.Increment(ref _afterSetupCounter);
+				return "";
+			}
+
+			[Benchmark]
+			public decimal InvokeOnceValueType()
+			{
+				Interlocked.Increment(ref _callCounter);
+				Interlocked.Increment(ref _afterSetupCounter);
+				return 0;
+			}
+
+			[Benchmark]
+			public async Task<string> InvokeOnceTaskOfT()
+			{
+				await Task.Yield();
+				Interlocked.Increment(ref _callCounter);
+				Interlocked.Increment(ref _afterSetupCounter);
+				return "";
+			}
+
+			[Benchmark]
+			public ValueTask<decimal> InvokeOnceValueTaskOfT()
+			{
+				Interlocked.Increment(ref _callCounter);
+				Interlocked.Increment(ref _afterSetupCounter);
+				return new ValueTask<decimal>(11);
+			}
+			#endregion
+
+			#region Static members
+			[Benchmark]
+			public static void InvokeOnceVoidStatic()
+			{
+				Interlocked.Increment(ref _callCounter);
+				Interlocked.Increment(ref _afterSetupCounter);
+			}
+
+			[Benchmark]
+			public static async Task InvokeOnceTaskStatic()
+			{
+				await Task.Yield();
+				Interlocked.Increment(ref _callCounter);
+				Interlocked.Increment(ref _afterSetupCounter);
+			}
+
+			[Benchmark]
+			public static string InvokeOnceRefTypeStatic()
+			{
+				Interlocked.Increment(ref _callCounter);
+				Interlocked.Increment(ref _afterSetupCounter);
+				return "";
+			}
+
+			[Benchmark]
+			public static decimal InvokeOnceValueTypeStatic()
+			{
+				Interlocked.Increment(ref _callCounter);
+				Interlocked.Increment(ref _afterSetupCounter);
+				return 0;
+			}
+
+			[Benchmark]
+			public static async Task<string> InvokeOnceTaskOfTStatic()
+			{
+				await Task.Yield();
+				Interlocked.Increment(ref _callCounter);
+				Interlocked.Increment(ref _afterSetupCounter);
+				return "";
+			}
+
+			[Benchmark]
+			public static ValueTask<decimal> InvokeOnceValueTaskOfTStatic()
+			{
+				Interlocked.Increment(ref _callCounter);
+				Interlocked.Increment(ref _afterSetupCounter);
+				return new ValueTask<decimal>(11);
+			}
+			#endregion
 		}
 	}
 }

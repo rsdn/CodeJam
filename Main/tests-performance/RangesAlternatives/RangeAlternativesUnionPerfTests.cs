@@ -19,6 +19,7 @@ namespace CodeJam.RangesAlternatives
 	[TestFixture(Category = PerfTestCategory + ": Ranges")]
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "PassStringInterpolation")]
+	[CompetitionBurstMode]
 	public class RangeAlternativesUnionPerfTests
 	{
 		[Test]

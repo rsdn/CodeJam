@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
+using System.Threading.Tasks;
 
 using BenchmarkDotNet.Attributes;
 
@@ -83,11 +84,11 @@ namespace CodeJam.PerfTests.IntegrationTests
 		}
 
 		[Test]
-		public static void CompetitionXmlOkBenchmark()
+		public static void CompetitionXmlTaskOkBenchmark()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
 
-			var runState = SelfTestCompetition.Run<XmlOkBenchmark>();
+			var runState = SelfTestCompetition.Run<XmlTaskOkBenchmark>();
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
@@ -314,20 +315,22 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[CompetitionMetadata(
 			"CodeJam.PerfTests.Assets.CompetitionRunTests.xml",
 			MetadataResourcePath = @"..\Assets\CompetitionRunTests.xml")]
-		public class XmlOkBenchmark
+		public class XmlTaskOkBenchmark
 		{
+			private const int AwaitDelayMs = 50;
 			[CompetitionBaseline]
-			public void Baseline()
+			public async Task Baseline()
 			{
+				await Task.Delay(AwaitDelayMs);
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
 			}
 
 			[CompetitionBenchmark]
-			public void SlowerX20()
+			public async Task<int> SlowerX5()
 			{
+				await Task.Delay(5 * AwaitDelayMs);
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(20 * CompetitionHelpers.DefaultCount);
+				return _callCounter;
 			}
 		}
 

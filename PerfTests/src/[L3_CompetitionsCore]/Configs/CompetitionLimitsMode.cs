@@ -27,10 +27,10 @@ namespace CodeJam.PerfTests.Configs
 			(CompetitionLimitsMode m) => m.LimitProvider,
 			LogNormalLimitProvider.Instance);
 
-		/// <summary>Timing limit to detect too fast benchmarks characteristic. Default is 1500 ns.</summary>
+		/// <summary>Timing limit to detect too fast benchmarks characteristic. Default is 1000 ns.</summary>
 		public static readonly Characteristic<TimeSpan> TooFastBenchmarkLimitCharacteristic = Characteristic.Create(
 			(CompetitionLimitsMode m) => m.TooFastBenchmarkLimit,
-			new TimeSpan(15)); // 1500 ns
+			new TimeSpan(10)); // 1000 ns
 
 		/// <summary>Timing limit to detect long-running benchmarks characteristic. Default is 500 ms.</summary>
 		public static readonly Characteristic<TimeSpan> LongRunningBenchmarkLimitCharacteristic = Characteristic.Create(
@@ -87,7 +87,7 @@ namespace CodeJam.PerfTests.Configs
 			}
 		}
 
-		/// <summary>Timing limit to detect too fast benchmarks. Default is 1500 ns.</summary>
+		/// <summary>Timing limit to detect too fast benchmarks. Default is 1000 ns.</summary>
 		/// <value>The timing limit to detect too fast benchmarks.</value>
 		public TimeSpan TooFastBenchmarkLimit
 		{

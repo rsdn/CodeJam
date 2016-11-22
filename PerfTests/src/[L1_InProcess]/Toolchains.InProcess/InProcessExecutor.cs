@@ -29,6 +29,8 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 	[PublicAPI]
 	public class InProcessExecutor : IExecutor
 	{
+		private static readonly TimeSpan _debugTimeout = TimeSpan.FromDays(1);
+
 		/// <summary>Initializes a new instance of the <see cref="InProcessExecutor"/> class.</summary>
 		/// <param name="timeout">Timeout for the run.</param>
 		/// <param name="logOutput"><c>true</c> if the output should be logged.</param>
@@ -81,13 +83,15 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 				runThread.SetApartmentState(ApartmentState.STA);
 			}
 
+			var timeout = HostEnvironmentInfo.GetCurrent().HasAttachedDebugger ?
+				_debugTimeout : ExecutionTimeout;
 			using (ProcessPriorityScope(
 				ProcessPriorityClass.RealTime,
 				benchmark.Job.ResolveValueAsNullable(EnvMode.AffinityCharacteristic),
 				logger))
 			{
 				runThread.Start();
-				if (!runThread.Join(ExecutionTimeout))
+				if (!runThread.Join(timeout))
 					throw new InvalidOperationException(
 						"Benchmark takes to long to run. " +
 							"Prefer to use out-of-process toolchains for long-running benchmarks.");

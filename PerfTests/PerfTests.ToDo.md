@@ -9,13 +9,18 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184 ?
 
 ## TODOs:
- * `Task`/`Task<T>` support.
+ * WithCompetitionOptions - preserve Id!
+ * Burst mode feature: rename to LargeSampleSet?
+ * `Task`/`Task<T>` support, includion Setup / Cleanup methods.
  * InProcess toolhain: setup / clean behavior should match to default Engine implementation.
- * concurrency: lock should be performed on entire benchmark run.
+ * Output: do not log output from toolchain?
+ * Concurrency: lock should be performed on entire benchmark run.
  * Logging: write validator messages immediately?
  * Log resulting competition features / competition options?
  * LogColors.Hint: use it for something?
- * better message for "X has empty limit. Please fill it."
+ * Better message for "X has empty limit. Please fill it."
+ * Better message for "run faster /slower than". Provide some suggestions?
+ * Warning if job count > 1
 
 ## TODOs (tests):
  * Source annotations: test for partial files / methods
@@ -28,6 +33,8 @@
  * Test for run under CI
 
 ## Long-term TODOs:
+ * Support for multi-case benchmarks (separate limits)
+ * Validate the results!!!
  * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix).
  * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion
  * Memory limits + diagnoser - whoops, https://github.com/PerfDotNet/BenchmarkDotNet/issues/200 . Will need to replace MethodInvoker, delayed.

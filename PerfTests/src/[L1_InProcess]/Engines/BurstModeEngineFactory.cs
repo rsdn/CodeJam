@@ -8,7 +8,7 @@ namespace BenchmarkDotNet.Engines
 {
 	/// <summary>
 	/// Factory for burst mode measurements engine (a lot of runs, measure each).
-	/// Recommended for use if call time >> than timer resolution (recommended minimum is 1500 ns).
+	/// Recommended for use if call time >> than timer resolution (recommended minimum is 1000 ns).
 	/// </summary>
 	/// <seealso cref="IEngineFactory"/>
 	public class BurstModeEngineFactory : IEngineFactory

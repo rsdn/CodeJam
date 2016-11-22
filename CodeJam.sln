@@ -85,7 +85,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{4DEBB88D
 		PerfTests\nuget\CodeJam.PerfTests.MSTest.nuspec = PerfTests\nuget\CodeJam.PerfTests.MSTest.nuspec
 		PerfTests\nuget\CodeJam.PerfTests.NUnit.nuspec = PerfTests\nuget\CodeJam.PerfTests.NUnit.nuspec
 		PerfTests\nuget\CodeJam.PerfTests.xUnit.nuspec = PerfTests\nuget\CodeJam.PerfTests.xUnit.nuspec
-		PerfTests\nuget\Pack.cmd = PerfTests\nuget\Pack.cmd
 		PerfTests\nuget\Readme.txt = PerfTests\nuget\Readme.txt
 	EndProjectSection
 EndProject

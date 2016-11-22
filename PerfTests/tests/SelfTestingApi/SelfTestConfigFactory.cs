@@ -32,17 +32,20 @@ namespace CodeJam.PerfTests
 			var result = base.CreateJobUnfrozen(jobId, metadataSource, competitionFeatures);
 
 			result.Apply(
-				new RunMode
+				new Job()
 				{
-					LaunchCount = 1,
-					WarmupCount = 2,
-					TargetCount = 2,
-					InvocationCount = 1,
-					UnrollFactor = 1
-				},
-				new EnvMode
-				{
-					Affinity = new IntPtr(-1)
+					Run =
+					{
+						LaunchCount = 1,
+						WarmupCount = 2,
+						TargetCount = 2,
+						InvocationCount = 1,
+						UnrollFactor = 1
+					},
+					Env =
+					{
+						Affinity = new IntPtr(-1)
+					}
 				});
 
 			return result;
