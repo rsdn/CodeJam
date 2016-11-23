@@ -56,17 +56,17 @@
       </ItemGroup>
     </When>
   </Choose>
-	<Choose>
-		<When Condition="!$(DefineConstants.Contains('FW40'))">
-			<ItemGroup>
-				<Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-					<HintPath>..\..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-					<Private>True</Private>
-					<Aliases>global</Aliases>
-				</Reference>
-			</ItemGroup>
-		</When>
-	</Choose>
+  <Choose>
+    <When Condition="!$(DefineConstants.Contains('FW40'))">
+      <ItemGroup>
+        <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+          <Private>True</Private>
+          <Aliases>global</Aliases>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
   <ItemGroup>
     <Compile Include="..\..\Jetbrains.Annotations.cs">
       <Link>Jetbrains.Annotations.cs</Link>
@@ -309,6 +309,7 @@
     <Compile Include="TableData\NamespaceDoc.cs" />
     <Compile Include="TableData\TableDataParser.cs" />
     <Compile Include="Targeting\FW35\Tuple.cs" />
+    <Compile Include="Targeting\FW35\TupleElementNamesAttribute.cs" />
     <Compile Include="Targeting\FW40\CustomAttributeExtensions.cs" />
     <Compile Include="Targeting\FW35\Action.cs" />
     <Compile Include="Targeting\FW35\EnumerableTargeting.cs" />
