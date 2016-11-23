@@ -71,6 +71,9 @@
     <Compile Include="[L0_Core]\Loggers\LazySynchronizedStreamLogger.cs" />
     <Compile Include="[L1_InProcess]\Engines\BurstModeEngineFactory.cs" />
     <Compile Include="[L1_InProcess]\Engines\BurstModeEngine.cs" />
+    <Compile Include="[L1_InProcess]\Toolchains\BenchmarkAction.cs" />
+    <Compile Include="[L1_InProcess]\Toolchains\BenchmarkActionFactory.Implementations.cs" />
+    <Compile Include="[L1_InProcess]\Toolchains\BenchmarkActionFactory.cs" />
     <Compile Include="[L3_CompetitionsCore]\Configs\SourceAnnotationsMode.cs" />
     <Compile Include="[L3_CompetitionsCore]\Exporters\CsvTimingsExporter.cs" />
     <Compile Include="[L0_Core]\Helpers\BenchmarkHelpers.cs" />
@@ -78,8 +81,6 @@
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessBuilder.cs" />
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessExecutor.cs" />
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessGenerator.cs" />
-    <Compile Include="[L1_InProcess]\Toolchains\RunnableBenchmarkFactory.cs" />
-    <Compile Include="[L1_InProcess]\Toolchains\IRunnableBenchmark.cs" />
     <Compile Include="[L1_InProcess]\Toolchains\RunnableBenchmark.cs" />
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessToolchain.cs" />
     <Compile Include="[L2_RunState]\Running.Core\RunStateSlots.cs" />
