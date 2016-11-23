@@ -309,7 +309,7 @@
     <Compile Include="TableData\NamespaceDoc.cs" />
     <Compile Include="TableData\TableDataParser.cs" />
     <Compile Include="Targeting\FW35\Tuple.cs" />
-    <Compile Include="Targeting\FW35\TupleElementNamesAttribute.cs" />
+    <Compile Include="Targeting\FW40\ValueTuple\TupleElementNamesAttribute.cs" />
     <Compile Include="Targeting\FW40\CustomAttributeExtensions.cs" />
     <Compile Include="Targeting\FW35\Action.cs" />
     <Compile Include="Targeting\FW35\EnumerableTargeting.cs" />

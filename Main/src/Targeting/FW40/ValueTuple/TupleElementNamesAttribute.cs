@@ -1,4 +1,4 @@
-﻿#if FW35
+﻿#if FW40
 // BASEDON: https://github.com/dotnet/corefx/blob/master/src/System.ValueTuple/src/System/Runtime/CompilerServices/TupleElementNamesAttribute.cs
 
 // Licensed to the .NET Foundation under one or more agreements.
