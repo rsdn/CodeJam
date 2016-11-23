@@ -11,9 +11,10 @@ namespace CodeJam.Examples
 {
 	// A perf test class.
 	[Trait("Category", "PerfTests: xUnit examples")]
+	[CompetitionBurstMode]
 	public class SimplePerfTest
 	{
-		private const int Count = 200;
+		private const int Count = 10000;
 
 		// Perf test runner method.
 		[CompetitionFact]
