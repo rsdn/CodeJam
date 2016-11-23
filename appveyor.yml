@@ -1,5 +1,6 @@
 version: 1.0.{build}
 configuration: Release
+image: Visual Studio 2015
 
 environment:
   packageVersion: 1.0
