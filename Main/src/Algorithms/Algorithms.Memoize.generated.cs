@@ -33,10 +33,10 @@ namespace CodeJam
 			bool threadSafe = false)
 		{
 			var map =
-				LazyDictionary.Create<(TArg1, TArg2), TResult>(
+				LazyDictionary.Create<ValueTuple<TArg1, TArg2>, TResult>(
 					key => func(key.Item1, key.Item2),
 					threadSafe);
-			return (arg1, arg2) => map[(arg1, arg2)];
+			return (arg1, arg2) => map[ValueTuple.Create(arg1, arg2)];
 		}
 
 		/// <summary>
@@ -56,10 +56,10 @@ namespace CodeJam
 			bool threadSafe = false)
 		{
 			var map =
-				LazyDictionary.Create<(TArg1, TArg2, TArg3), TResult>(
+				LazyDictionary.Create<ValueTuple<TArg1, TArg2, TArg3>, TResult>(
 					key => func(key.Item1, key.Item2, key.Item3),
 					threadSafe);
-			return (arg1, arg2, arg3) => map[(arg1, arg2, arg3)];
+			return (arg1, arg2, arg3) => map[ValueTuple.Create(arg1, arg2, arg3)];
 		}
 
 		/// <summary>
@@ -80,10 +80,10 @@ namespace CodeJam
 			bool threadSafe = false)
 		{
 			var map =
-				LazyDictionary.Create<(TArg1, TArg2, TArg3, TArg4), TResult>(
+				LazyDictionary.Create<ValueTuple<TArg1, TArg2, TArg3, TArg4>, TResult>(
 					key => func(key.Item1, key.Item2, key.Item3, key.Item4),
 					threadSafe);
-			return (arg1, arg2, arg3, arg4) => map[(arg1, arg2, arg3, arg4)];
+			return (arg1, arg2, arg3, arg4) => map[ValueTuple.Create(arg1, arg2, arg3, arg4)];
 		}
 
 		/// <summary>
@@ -105,10 +105,10 @@ namespace CodeJam
 			bool threadSafe = false)
 		{
 			var map =
-				LazyDictionary.Create<(TArg1, TArg2, TArg3, TArg4, TArg5), TResult>(
+				LazyDictionary.Create<ValueTuple<TArg1, TArg2, TArg3, TArg4, TArg5>, TResult>(
 					key => func(key.Item1, key.Item2, key.Item3, key.Item4, key.Item5),
 					threadSafe);
-			return (arg1, arg2, arg3, arg4, arg5) => map[(arg1, arg2, arg3, arg4, arg5)];
+			return (arg1, arg2, arg3, arg4, arg5) => map[ValueTuple.Create(arg1, arg2, arg3, arg4, arg5)];
 		}
 
 		/// <summary>
@@ -131,10 +131,10 @@ namespace CodeJam
 			bool threadSafe = false)
 		{
 			var map =
-				LazyDictionary.Create<(TArg1, TArg2, TArg3, TArg4, TArg5, TArg6), TResult>(
+				LazyDictionary.Create<ValueTuple<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>, TResult>(
 					key => func(key.Item1, key.Item2, key.Item3, key.Item4, key.Item5, key.Item6),
 					threadSafe);
-			return (arg1, arg2, arg3, arg4, arg5, arg6) => map[(arg1, arg2, arg3, arg4, arg5, arg6)];
+			return (arg1, arg2, arg3, arg4, arg5, arg6) => map[ValueTuple.Create(arg1, arg2, arg3, arg4, arg5, arg6)];
 		}
 
 		/// <summary>
@@ -158,10 +158,10 @@ namespace CodeJam
 			bool threadSafe = false)
 		{
 			var map =
-				LazyDictionary.Create<(TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7), TResult>(
+				LazyDictionary.Create<ValueTuple<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>, TResult>(
 					key => func(key.Item1, key.Item2, key.Item3, key.Item4, key.Item5, key.Item6, key.Item7),
 					threadSafe);
-			return (arg1, arg2, arg3, arg4, arg5, arg6, arg7) => map[(arg1, arg2, arg3, arg4, arg5, arg6, arg7)];
+			return (arg1, arg2, arg3, arg4, arg5, arg6, arg7) => map[ValueTuple.Create(arg1, arg2, arg3, arg4, arg5, arg6, arg7)];
 		}
 
 	}
