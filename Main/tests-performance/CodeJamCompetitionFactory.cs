@@ -59,5 +59,26 @@ namespace CodeJam
 				result.Apply(EnvMode.RyuJitX64);
 			return result;
 		}
+
+		#region Overrides of CompetitionConfigFactory
+		/// <summary>
+		/// Creates options for the competition. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
+		/// </summary>
+		/// <param name="metadataSource">The metadata source.</param>
+		/// <param name="competitionFeatures">The competition features.</param>
+		/// <returns>
+		/// Options for the competition. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
+		/// </returns>
+		protected override CompetitionOptions CreateCompetitionOptionsUnfrozen(
+			ICustomAttributeProvider metadataSource, CompetitionFeatures competitionFeatures)
+		{
+			var result = base.CreateCompetitionOptionsUnfrozen(metadataSource, competitionFeatures);
+
+			if (!result.HasValue(SourceAnnotationsMode.AnnotateSourcesOnRunCharacteristic))
+				result.SourceAnnotations.AnnotateSourcesOnRun = 2;
+
+			return result;
+		}
+		#endregion
 	}
 }

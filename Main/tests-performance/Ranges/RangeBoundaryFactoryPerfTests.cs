@@ -15,6 +15,7 @@ namespace CodeJam.Ranges
 	/// </summary>
 	[TestFixture(Category = PerfTestCategory + ": Ranges")]
 	[PublicAPI]
+	[CompetitionBurstMode]
 	public class RangeBoundaryFactoryPerfTests
 	{
 		private const int Count = DefaultCount;

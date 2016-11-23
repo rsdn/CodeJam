@@ -25,7 +25,7 @@ namespace CodeJam.PerfTests.Configs
 		public static readonly Characteristic<string> PreviousRunLogUriCharacteristic = Characteristic.Create(
 			(SourceAnnotationsMode m) => m.PreviousRunLogUri);
 
-		/// <summary>Count of runs skipped before source annotations will be applied characteristic.</summary>
+		/// <summary> Number of first run the source annotations will be applied characteristic.</summary>
 		public static readonly Characteristic<int> AnnotateSourcesOnRunCharacteristic = Characteristic.Create(
 			(SourceAnnotationsMode m) => m.AnnotateSourcesOnRun);
 

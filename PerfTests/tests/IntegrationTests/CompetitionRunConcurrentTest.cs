@@ -20,14 +20,15 @@ namespace CodeJam.PerfTests.IntegrationTests
 	[TestFixture(Category = "BenchmarkDotNet")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[CompetitionModifier(typeof(CompetitionHighAccuracyModifier))]
-	[Ignore("Will be enabled after concurrency runs fill be fixed")]
 	public static class CompetitionRunConcurrentTest
 	{
 		[TestCase(ConcurrentRunBehavior.Lock)]
 		[TestCase(ConcurrentRunBehavior.Skip)]
 		[TestCase(ConcurrentRunBehavior.Default)]
+		[Ignore("Will be enabled after concurrency runs fill be fixed")]
 		public static void CompetitionRunConcurrent(ConcurrentRunBehavior concurrentRunBehavior)
 		{
+			return;
 			var benchmarks = new[]
 			{
 				typeof(ConcurrentRunBenchmark),

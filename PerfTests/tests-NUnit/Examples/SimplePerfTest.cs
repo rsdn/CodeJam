@@ -11,10 +11,9 @@ namespace CodeJam.Examples
 {
 	// A perf test class.
 	[Category("PerfTests: NUnit examples")]
-	[CompetitionBurstMode]
 	public class SimplePerfTest
 	{
-		private const int Count = 10000;
+		private const int Count = 200;
 
 		// Perf test runner method.
 		[Test]

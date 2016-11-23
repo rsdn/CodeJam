@@ -9,9 +9,10 @@
   https://github.com/PerfDotNet/BenchmarkDotNet/issues/184 ?
 
 ## TODOs:
- * WithCompetitionOptions - preserve Id!
  * Burst mode feature: rename to LargeSampleSet?
- * Output: do not log output from toolchain?
+ * AnnotateSourcesOnRun: rename to something like skipFirstRuns
+ * WithCompetitionOptions - preserve Id!
+ * Output: option to not log output from toolchain?
  * Concurrency: lock should be performed on entire benchmark run.
  * Logging: write validator messages immediately?
  * Log resulting competition features / competition options?

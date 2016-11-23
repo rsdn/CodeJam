@@ -27,7 +27,7 @@ namespace CodeJam.Examples
 			return data.Count;
 		}
 
-		[CompetitionBenchmark(0.20, 0.45)]
+		[CompetitionBenchmark(0.20, 0.50)]
 		public int ListWithCapacity()
 		{
 			var data = new List<int>(Count);
