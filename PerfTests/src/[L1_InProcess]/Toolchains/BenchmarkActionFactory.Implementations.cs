@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ namespace BenchmarkDotNet.Toolchains
 		 Supported ones are: void, T, Task, Task<T>, ValueTask<T>.
 		1. Idle signature should match to the benchmark method signature. If the target method is static, the Idle should be static too.
 		 If it is virtual - guess what?
+		 TODO: Remove it. Entire idea failed, overhead values are inaccurate. static Idle should be used instead.
 		2. Should work under .Net native. This means NO emit or Expression.Compile calls.
 		 TODO: We can use expression.Compile for unroll for normal build, but this should be opt-in.
 		3. High data locality and no additional allocations.
@@ -49,11 +51,23 @@ namespace BenchmarkDotNet.Toolchains
 			{
 				if (callback == null)
 					throw new ArgumentNullException(nameof(callback));
-				if (unrollFactor <= 0)
+				if (unrollFactor <= 1)
 					return callback;
 
+				// TODO: valid conditional variable instead of NETNATIVE
+				// OR: appswitch for Delegate.Combine?
+#if NETNATIVE
 				return (TDelegate)(object)Delegate.Combine(
 					Enumerable.Repeat((Delegate)(object)callback, unrollFactor).ToArray());
+#else
+				return (TDelegate)(object)Expression.Lambda(
+					typeof(TDelegate),
+					Expression.Block(
+						Enumerable.Repeat(callback, unrollFactor).Select(
+							m =>
+								Expression.Call(Expression.Constant(m), m.GetType().GetMethod(nameof(Action.Invoke)))) // Delegate call to prevent inlining.
+						)).Compile();
+#endif
 			}
 
 			protected static TDelegate ChooseOrCreate<TDelegate>(
