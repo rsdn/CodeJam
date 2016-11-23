@@ -1,4 +1,4 @@
-SET MSBUILD="%ProgramFiles(x86)%\MSBuild\15.0\Bin\MSBuild.exe"
+SET MSBUILD="%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe"
 
 cd ..\src
 %MSBUILD% CodeJam.PerfTests.csproj /target:Clean /property:Configuration=Release

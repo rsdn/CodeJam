@@ -2,7 +2,7 @@
 <#@ output extension=".cmd" #>
 <#
 
-	const string msBuildExe = @"%ProgramFiles(x86)%\MSBuild\15.0\Bin\MSBuild.exe";
+	const string msBuildExe = @"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe";
 	const string projectName = "CodeJam.Main";
 
 	var projects = new[]
