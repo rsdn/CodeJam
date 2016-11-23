@@ -1,6 +1,10 @@
 CodeJam.PerfTests Release Notes
 -------------------------------
 
+# 0.0.6-alpha
+* Futher imporvements for measurement accuracy and support for Task-returning benchmarks.
+* Runs under CI are detected automatically and settings are adjusted for CI runs.
+
 # 0.0.5-alpha
 * Default config do not require for loops in the body of perftest methods.
 * Runs under CI are detected automatically and settings are adjusted for CI runs.
