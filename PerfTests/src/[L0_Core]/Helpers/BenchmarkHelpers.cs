@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Characteristics;
@@ -287,45 +288,72 @@ namespace BenchmarkDotNet.Helpers
 		}
 		#endregion
 
-		#region Process
+		#region Priority & affinity
+		/// <summary>Changes the priority of the thread.</summary>
+		/// <param name="thread">The target thread.</param>
+		/// <param name="priority">The priority.</param>
+		/// <param name="logger">The logger.</param>
+		public static bool SetPriority(
+			[NotNull] this Thread thread,
+			ThreadPriority priority,
+			[NotNull] ILogger logger)
+		{
+			if (thread == null)
+				throw new ArgumentNullException(nameof(thread));
+			if (logger == null)
+				throw new ArgumentNullException(nameof(logger));
+
+			try
+			{
+				thread.Priority = priority;
+				return true;
+			}
+			catch (Exception ex)
+			{
+				logger.WriteLineError(
+					$"// ! Failed to set up priority {priority} for thread {thread}. Make sure you have the right permissions. Message: {ex.Message}");
+			}
+			return false;
+		}
+
 		/// <summary>Changes the priority of the process.</summary>
 		/// <param name="process">The target process.</param>
 		/// <param name="priority">The priority.</param>
 		/// <param name="logger">The logger.</param>
-		public static void SetPriority(
+		public static bool SetPriority(
 			[NotNull] this Process process,
 			ProcessPriorityClass priority,
 			[NotNull] ILogger logger)
 		{
 			if (process == null)
 				throw new ArgumentNullException(nameof(process));
-
 			if (logger == null)
 				throw new ArgumentNullException(nameof(logger));
 
 			try
 			{
 				process.PriorityClass = priority;
+				return true;
 			}
 			catch (Exception ex)
 			{
 				logger.WriteLineError(
-					$"// ! Failed to set up priority {priority}. Make sure you have the right permissions. Message: {ex.Message}");
+					$"// ! Failed to set up priority {priority} for process {process}. Make sure you have the right permissions. Message: {ex.Message}");
 			}
+			return false;
 		}
 
 		/// <summary>Changes the cpu affinity of the process.</summary>
 		/// <param name="process">The target process.</param>
 		/// <param name="processorAffinity">The processor affinity.</param>
 		/// <param name="logger">The logger.</param>
-		public static void SetAffinity(
+		public static bool SetAffinity(
 			[NotNull] this Process process,
 			IntPtr processorAffinity,
 			[NotNull] ILogger logger)
 		{
 			if (process == null)
 				throw new ArgumentNullException(nameof(process));
-
 			if (logger == null)
 				throw new ArgumentNullException(nameof(logger));
 
@@ -333,15 +361,47 @@ namespace BenchmarkDotNet.Helpers
 			{
 				var cpuMask = (1 << Environment.ProcessorCount) - 1;
 				process.ProcessorAffinity = new IntPtr(processorAffinity.ToInt32() & cpuMask);
+				return true;
 			}
 			catch (Exception ex)
 			{
 				logger.WriteLineError(
-					string.Format(
-						"// ! Failed to set up processor affinity 0x{1:X}. Make sure you have the right permissions. Message: {0}",
-						ex.Message,
-						(long)processorAffinity));
+					$"// ! Failed to set up processor affinity 0x{(long)processorAffinity:X} for process {process}. Make sure you have the right permissions. Message: {ex.Message}");
 			}
+			return false;
+		}
+
+		/// <summary>Sets highest possible priority and Changes the cpu affinity of the process.</summary>
+		/// <param name="processorAffinity">The processor affinity.</param>
+		/// <param name="logger">The logger.</param>
+		public static IDisposable SetupHighestPriorityScope(
+			[CanBeNull] IntPtr? processorAffinity,
+			[NotNull] ILogger logger)
+		{
+			var process = Process.GetCurrentProcess();
+			var thread = Thread.CurrentThread;
+
+			var oldThreadPriority = thread.Priority;
+			var oldProcdessPriority = process.PriorityClass;
+			var oldAffinity = process.ProcessorAffinity;
+
+			process.SetPriority(ProcessPriorityClass.RealTime, logger);
+			if (processorAffinity.HasValue)
+			{
+				process.SetAffinity(processorAffinity.Value, logger);
+			}
+			thread.SetPriority(ThreadPriority.Highest, logger);
+
+			return Disposable.Create(
+				() =>
+				{
+					thread.SetPriority(oldThreadPriority, logger);
+					if (processorAffinity.HasValue)
+					{
+						process.SetAffinity(oldAffinity, logger);
+					}
+					process.SetPriority(oldProcdessPriority, logger);
+				});
 		}
 		#endregion
 

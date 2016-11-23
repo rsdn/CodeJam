@@ -11,8 +11,6 @@
 ## TODOs:
  * WithCompetitionOptions - preserve Id!
  * Burst mode feature: rename to LargeSampleSet?
- * `Task`/`Task<T>` support, includion Setup / Cleanup methods.
- * InProcess toolhain: setup / clean behavior should match to default Engine implementation.
  * Output: do not log output from toolchain?
  * Concurrency: lock should be performed on entire benchmark run.
  * Logging: write validator messages immediately?

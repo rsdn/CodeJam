@@ -7,6 +7,9 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 
+using BenchmarkDotNet.Helpers;
+using BenchmarkDotNet.Loggers;
+
 using JetBrains.Annotations;
 
 using Microsoft.Win32.SafeHandles;
@@ -75,27 +78,17 @@ namespace BenchmarkDotNet.Horology
 				return false;
 			}
 
-			var process = Process.GetCurrentProcess();
-			var thread = Thread.CurrentThread;
-
-			var oldProcessPriority = process.PriorityClass;
-			var oldThreadPriority = thread.Priority;
-			try
+			using (BenchmarkHelpers.SetupHighestPriorityScope(null, ConsoleLogger.Default))
 			{
-				thread.Priority = ThreadPriority.Highest;
-				process.PriorityClass = ProcessPriorityClass.RealTime;
-
-				callback();
-				return true;
-			}
-			catch (Win32Exception)
-			{
-				return false;
-			}
-			finally
-			{
-				thread.Priority = oldThreadPriority;
-				process.PriorityClass = oldProcessPriority;
+				try
+				{
+					callback();
+					return true;
+				}
+				catch (Win32Exception)
+				{
+					return false;
+				}
 			}
 		}
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -14,8 +13,6 @@ using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.Results;
-
-using CodeJam;
 
 using JetBrains.Annotations;
 
@@ -71,37 +68,32 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 			var factoryType = factory.GetType();
 
 			var outputStream = new MemoryStream(80 * 1000);
+			var affinity = benchmark.Job.ResolveValueAsNullable(EnvMode.AffinityCharacteristic);
 			var runThread = new Thread(
-				() => RunCore(runnableBenchmark, benchmark, factoryType, outputStream, false, logger))
-			{
-				IsBackground = true,
-				Priority = ThreadPriority.Highest
-			};
+				() =>
+				{
+					using (BenchmarkHelpers.SetupHighestPriorityScope(affinity, logger))
+					{
+						RunCore(runnableBenchmark, benchmark, factoryType, outputStream, false, logger);
+					}
+				});
 
 			if (benchmark.Target.Method.GetCustomAttributes(false).OfType<STAThreadAttribute>().Any())
 			{
 				runThread.SetApartmentState(ApartmentState.STA);
 			}
+			runThread.IsBackground = true;
 
 			var timeout = HostEnvironmentInfo.GetCurrent().HasAttachedDebugger ?
 				_debugTimeout : ExecutionTimeout;
-			using (ProcessPriorityScope(
-				ProcessPriorityClass.RealTime,
-				benchmark.Job.ResolveValueAsNullable(EnvMode.AffinityCharacteristic),
-				logger))
-			{
-				runThread.Start();
-				if (!runThread.Join(timeout))
-					throw new InvalidOperationException(
-						"Benchmark takes to long to run. " +
-							"Prefer to use out-of-process toolchains for long-running benchmarks.");
-			}
 
-			var retryCount = 0;
-			while (runThread.IsAlive && retryCount++ < 100)
-			{
-				Thread.Sleep(10);
-			}
+			runThread.Start();
+			if (!runThread.Join(timeout))
+				throw new InvalidOperationException(
+					$"Benchmark {benchmark.DisplayInfo} takes to long to run. " +
+						"Prefer to use out-of-process toolchains for long-running benchmarks.");
+
+			CodeJam.Code.BugIf(runThread.IsAlive, "The runThread.Join() did not work as expected.");
 
 			return ParseExecutionResult(outputStream, logger);
 		}
@@ -173,30 +165,6 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 			}
 
 			return new ExecuteResult(true, 0, lines.ToArray(), linesWithOutput.ToArray());
-		}
-
-		private static IDisposable ProcessPriorityScope(
-			ProcessPriorityClass priority, IntPtr? affinity, ILogger logger)
-		{
-			var process = Process.GetCurrentProcess();
-			var oldPriority = process.PriorityClass;
-			var oldAffinity = process.ProcessorAffinity;
-
-			process.SetPriority(priority, logger);
-			if (affinity.HasValue)
-			{
-				process.SetAffinity(affinity.Value, logger);
-			}
-
-			return Disposable.Create(
-				() =>
-				{
-					if (affinity.HasValue)
-					{
-						process.SetAffinity(oldAffinity, logger);
-					}
-					process.SetPriority(oldPriority, logger);
-				});
 		}
 	}
 }

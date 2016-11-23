@@ -12,7 +12,6 @@ using BenchmarkDotNet.Running;
 
 namespace BenchmarkDotNet.Toolchains
 {
-
 	// Copy of the code generated for each benchmark
 	/// <summary> runnable benchmark controller.</summary>
 	internal class RunnableBenchmark
@@ -67,7 +66,7 @@ namespace BenchmarkDotNet.Toolchains
 		/// <param name="isDiagnoserAttached"><c>true</c> if there is diagnoser attached.</param>
 		public void Init(Benchmark benchmarkToRun, Type engineFactoryType, TextWriter output, bool isDiagnoserAttached)
 		{
-			// TODO: lazy RunCore! Why:
+			// TODO: test to ensure we do not trigger JIT here! Why:
 			// the first thing to do is to let diagnosers hook in before anything happens
 			// so all jit-related diagnosers can catch first jit compilation!
 			if (_isDiagnoserAttached) // stub code, no diagnoser supported yet.
@@ -75,22 +74,23 @@ namespace BenchmarkDotNet.Toolchains
 				_output.WriteLine(Engine.Signals.BeforeAnythingElse);
 			}
 
+			var target = benchmarkToRun.Target;
+			var job = benchmarkToRun.Job;
+
 			_benchmark = benchmarkToRun;
 			_isDiagnoserAttached = isDiagnoserAttached;
 			_engineFactoryType = engineFactoryType;
+			_operationsPerInvoke = target.OperationsPerInvoke;
+			_job = job;
+			_output = output;
 
-			var target = _benchmark.Target;
-			var unrollFactor = _benchmark.Job.ResolveValue(RunMode.UnrollFactorCharacteristic, EnvResolver.Instance);
+			var unrollFactor = job.ResolveValue(RunMode.UnrollFactorCharacteristic, EnvResolver.Instance);
 			_instance = Activator.CreateInstance(target.Type);
 
 			_runCallback = BenchmarkActionFactory.CreateRun(target, _instance, unrollFactor);
 			_idleCallback = BenchmarkActionFactory.CreateIdle(target, _instance, unrollFactor);
 			_cleanupCallback = BenchmarkActionFactory.CreateCleanup(target, _instance);
 			_setupCallback = BenchmarkActionFactory.CreateSetup(target, _instance);
-
-			_operationsPerInvoke = target.OperationsPerInvoke;
-			_job = _benchmark.Job;
-			_output = output;
 		}
 
 		/// <summary>Runs the benchmark.</summary>
