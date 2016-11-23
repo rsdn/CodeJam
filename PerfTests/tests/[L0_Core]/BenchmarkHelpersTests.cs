@@ -29,21 +29,20 @@ namespace CodeJam.PerfTests
 			Thread.SpinWait(30 * 1000 * 1000);
 			var s1 = c1.Stop();
 			var s2 = c2.Stop();
-
 			var t1 = s1.GetSeconds();
 			var t2 = s2.GetSeconds();
-			// If all CPU cores are busy all threads of the process can be suspended.
-			// We're not interested in accurate absolute values +/- 50% is acceptable.
-			LessOrEqual(Math.Abs(t1 - t2) / t2, 0.5);
 			Console.WriteLine($"Clock {c1.Clock.GetType().Name} to {c2.Clock.GetType().Name}: {t1 / t2:P}");
 
 			var c3 = clockA.Start();
 			Thread.SpinWait(30 * 1000 * 1000);
 			var s3 = c3.Stop();
-
 			var t3 = s3.GetSeconds();
-			LessOrEqual(Math.Abs(t1 - t3) / t1, 0.05); // At the same time relative time should be precise enough.
 			Console.WriteLine($"Clock {c1.Clock.GetType().Name} to {c3.Clock.GetType().Name}: {t1 / t3:P}");
+
+			// If all CPU cores are busy all threads of the process can be suspended.
+			// We're not interested in accurate absolute values +/- 50% is acceptable.
+			LessOrEqual(Math.Abs(t1 - t2) / t2, 0.5);
+			LessOrEqual(Math.Abs(t1 - t3) / t1, 0.06); // At the same time relative time should be precise enough.
 		}
 
 		[Test]
@@ -59,20 +58,19 @@ namespace CodeJam.PerfTests
 			Thread.SpinWait(30 * 1000 * 1000);
 			var s1 = c1.Stop();
 			var s2 = c2.Stop();
-
 			var t1 = s1.GetSeconds();
 			var t2 = s2.GetSeconds();
-			// if all CPU cores are busy the thread can be suspended for very long period of time.
-			LessOrEqual(Math.Abs(t1 - t2) / t2, 0.99);
 			Console.WriteLine($"Clock {c1.Clock.GetType().Name} to {c2.Clock.GetType().Name}: {t1 / t2:P}");
 
 			var c3 = clockA.Start();
 			Thread.SpinWait(30 * 1000 * 1000);
 			var s3 = c3.Stop();
-
 			var t3 = s3.GetSeconds();
-			LessOrEqual(Math.Abs(t1 - t3) / t1, 0.05); // At the same time relative time should be precise enough.
 			Console.WriteLine($"Clock {c1.Clock.GetType().Name} to {c3.Clock.GetType().Name}: {t1 / t3:P}");
+
+			// if all CPU cores are busy the thread can be suspended for very long period of time.
+			LessOrEqual(Math.Abs(t1 - t2) / t2, 0.99);
+			LessOrEqual(Math.Abs(t1 - t3) / t1, 0.06); // At the same time relative time should be precise enough.
 		}
 
 		[Test]

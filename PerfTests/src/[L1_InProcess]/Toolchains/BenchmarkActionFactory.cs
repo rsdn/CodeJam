@@ -26,12 +26,13 @@ namespace BenchmarkDotNet.Toolchains
 				throw new ArgumentNullException(nameof(idleSignature), $"Either {nameof(targetMethod)} or  {nameof(idleSignature)} should be not null");
 
 			var resutltType = signature.ReturnType;
-			var idleTarget = signature.IsVirtual ? IdleTarget.InstanceVirtual : IdleTarget.Instance;
+			//var idleTarget = signature.IsVirtual ? IdleTarget.InstanceVirtual : IdleTarget.Instance;
 			if (signature.IsStatic)
 			{
 				instance = null;
-				idleTarget = IdleTarget.Static;
+				//idleTarget = IdleTarget.Static;
 			}
+			var idleTarget = IdleTarget.Static;
 
 			if (resutltType == typeof(void))
 			{
