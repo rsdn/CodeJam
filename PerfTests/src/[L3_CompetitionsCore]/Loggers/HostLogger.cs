@@ -25,7 +25,7 @@ namespace CodeJam.PerfTests.Loggers
 		/// The prefix for verbose log lines.
 		/// Lines with this prefix will be written only if <see cref="HostLogMode.AllMessages"/> mode set.
 		/// </summary>
-		public const string LogVerbosePrefix = "//";
+		public const string LogVerbosePrefix = "//  ";
 
 		/// <summary>
 		/// The prefix for informational log lines.

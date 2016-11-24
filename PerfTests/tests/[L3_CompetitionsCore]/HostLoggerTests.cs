@@ -98,9 +98,9 @@ logged
 			logger.Write(LogKind.Info, "E");
 			logger.Write(LogKind.Result, "F");
 			logger.Write(LogKind.Statistic, "G");
-			logger.Write(LogKind.Error, "H");
+			logger.Write(LogKind.Hint, "H");
 			logger.WriteLine(LogKind.Error, "");
-			logger.WriteLine(LogKind.Error, "TST0");
+			logger.WriteLine(LogKind.Hint, "TST0");
 			logger.WriteLine(LogKind.Info, "// !TST1");
 			logger.WriteLine(LogKind.Info, "TST2");
 			logger.WriteLine(LogKind.Error, "// !<--");
@@ -134,9 +134,13 @@ TST10");
 
 			output = new AccumulationLogger();
 			logger = new HostLogger(output, HostLogMode.AllMessages);
+			var i = 0;
 			foreach (var line in lines)
 			{
-				logger.WriteLineError(line);
+				if (i++ % 2 == 0)
+					logger.WriteLineError(line);
+				else
+					logger.WriteLineHint(line);
 			}
 			Assert.AreEqual(output.GetLog(), LogInput + "\r\n");
 
@@ -179,9 +183,13 @@ TST10
 
 			output = new AccumulationLogger();
 			logger = new HostLogger(output, HostLogMode.PrefixedOrErrors);
+			var i = 0;
 			foreach (var line in lines)
 			{
-				logger.WriteLineError(line);
+				if (i++ % 2 == 0)
+					logger.WriteLineError(line);
+				else
+					logger.WriteLineHint(line);
 			}
 			Assert.AreEqual(output.GetLog(), LogInput + "\r\n");
 
@@ -218,9 +226,13 @@ TST6
 
 			output = new AccumulationLogger();
 			logger = new HostLogger(output, HostLogMode.PrefixedOnly);
+			var i = 0;
 			foreach (var line in lines)
 			{
-				logger.WriteLineError(line);
+				if (i++ % 2 == 0)
+					logger.WriteLineError(line);
+				else
+					logger.WriteLineHint(line);
 			}
 			Assert.AreEqual(output.GetLog(), PrefixedLogOutput);
 
@@ -262,9 +274,13 @@ TST6
 
 				output = new AccumulationLogger();
 				logger = new HostLogger(output, HostLogMode.AllMessages);
+				var i = 0;
 				foreach (var line in lines)
 				{
-					logger.WriteLineError(line);
+					if (i++ % 2 == 0)
+						logger.WriteLineError(line);
+					else
+						logger.WriteLineHint(line);
 				}
 				Assert.AreEqual(output.GetLog(), LogInput + "\r\n");
 

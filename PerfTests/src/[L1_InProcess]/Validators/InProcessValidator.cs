@@ -66,7 +66,7 @@ namespace BenchmarkDotNet.Validators
 			var expected = resolver.Resolve(job, characteristic);
 			return Equals(actual, expected)
 				? null
-				: $"value ({expected}) does not match environment ({actual}).";
+				: $"run as {actual} ({expected} expected). Fix your test runner options.";
 		}
 
 		private static string ValidatePlatform(Job job, Characteristic characteristic)
@@ -121,7 +121,7 @@ namespace BenchmarkDotNet.Validators
 							result.Add(
 								new ValidationError(
 									TreatsWarningsAsErrors,
-									$"Job {job}, property {characteristic.FullId}: {message}"));
+									$"Job {job}, {characteristic.FullId}: {message}"));
 						}
 					}
 					else if (characteristic.DeterminesBehavior())
@@ -129,7 +129,7 @@ namespace BenchmarkDotNet.Validators
 						result.Add(
 							new ValidationError(
 								false,
-								$"Job {job}, property {characteristic.FullId}: no validation rule specified."));
+								$"Job {job}, {characteristic.FullId}: no validation rule specified."));
 					}
 				}
 			}

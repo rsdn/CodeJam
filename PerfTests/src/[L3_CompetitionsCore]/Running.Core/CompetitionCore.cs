@@ -103,9 +103,9 @@ namespace CodeJam.PerfTests.Running.Core
 			Code.NotNullNorEmpty(message, nameof(message));
 
 			competitionState.WriteMessage(MessageSource.Analyser, severity, message);
-			var conclusion = severity.ToConclusionKind() == ConclusionKind.Hint
-				? Conclusion.CreateHint(analyser.Id, message, report)
-				: Conclusion.CreateWarning(analyser.Id, message, report);
+			var conclusion = severity.IsTestErrorOrHigher()
+				? Conclusion.CreateWarning(analyser.Id, message, report)
+				: Conclusion.CreateHint(analyser.Id, message, report);
 			conclusions.Add(conclusion);
 		}
 
@@ -137,6 +137,14 @@ namespace CodeJam.PerfTests.Running.Core
 			[NotNull] this CompetitionState competitionState,
 			[NotNull] string messageText) =>
 				competitionState.Logger.WriteLineInfo($"{LogImportantInfoPrefix} {messageText}");
+
+		/// <summary>Writes the verbose diagnostic message. Logged, but not reported to user.</summary>
+		/// <param name="competitionState">State of the run.</param>
+		/// <param name="messageText">Text of the message.</param>
+		public static void WriteVerboseDiagnostic(
+			[NotNull] this CompetitionState competitionState,
+			[NotNull] string messageText) =>
+				competitionState.Logger.WriteLineInfo($"{LogInfoPrefix} {messageText}");
 
 		/// <summary>Writes the verbose message.</summary>
 		/// <param name="competitionState">State of the run.</param>

@@ -453,13 +453,26 @@ namespace CodeJam.PerfTests.Analysers
 				return true;
 
 			var targetMethodTitle = benchmark.Target.MethodDisplayInfo;
-			var message = competitionLimit.IsEmpty
-				? $"Method {targetMethodTitle} {actualValues} has empty limit. Please fill it."
-				: $"Method {targetMethodTitle} {actualValues} does not fit into limits {competitionLimit}.";
 
-			competitionState.AddAnalyserConclusion(
-				this, conclusions, MessageSeverity.TestError,
-				message, summary.TryGetBenchmarkReport(benchmark));
+			if (competitionLimit.IsEmpty)
+			{
+				competitionState.AddAnalyserConclusion(
+					this, conclusions, MessageSeverity.Warning,
+					$"Method {targetMethodTitle} {actualValues} has empty limit. Please fill it.",
+					summary.TryGetBenchmarkReport(benchmark));
+			}
+			else
+			{
+				var absoluteTime = BenchmarkDotNet.Columns.StatisticColumn.Mean.GetValue(summary, benchmark);
+				var absoluteTimeBaseline = BenchmarkDotNet.Columns.StatisticColumn.Mean.GetValue(summary, summary.TryGetBaseline(benchmark));
+				competitionState.AddAnalyserConclusion(
+					this, conclusions, MessageSeverity.TestError,
+					$"Method {targetMethodTitle} {actualValues} does not fit into limits {competitionLimit}.",
+					summary.TryGetBenchmarkReport(benchmark));
+
+				competitionState.WriteVerboseDiagnostic(
+					$"Method {targetMethodTitle} mean time: {absoluteTime}. baseline mean time: {absoluteTimeBaseline}.");
+			}
 
 			return false;
 		}

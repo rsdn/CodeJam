@@ -77,7 +77,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 			Algorithms.Memoize(
 				(Assembly a) => new HostLogger(
 					CreateAssemblyLevelLogger(a, ImportantOnlyLogSuffix),
-					HostLogMode.PrefixedOnly),
+					HostLogMode.PrefixedOrErrors),
 				true);
 
 		private static LazySynchronizedStreamLogger CreateAssemblyLevelLogger(Assembly assembly, string suffix)

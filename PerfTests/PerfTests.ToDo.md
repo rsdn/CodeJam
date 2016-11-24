@@ -1,14 +1,21 @@
 ﻿## TODO, Bench.Net:
-* Support for `IFlushable.Flush()`.
-* No file logger for tests https://github.com/PerfDotNet/BenchmarkDotNet/issues/198
-* Run state for issues like this. https://github.com/PerfDotNet/BenchmarkDotNet/issues/180
-* ReadOnlyConfig
-* ManualConfig.Add - backport ManualCompetitionConfig design
-* Validators: access to config, in-process validators
-* remove calls instance.setupAction(), instance.targetAction() from BenchmarkProgram.txt
-  https://github.com/PerfDotNet/BenchmarkDotNet/issues/184 ?
+ * Support for `IFlushable.Flush()`.
+ * No file logger for tests https://github.com/dotnet/BenchmarkDotNet/issues/198
+ * Run state for issues like this. https://github.com/dotnet/BenchmarkDotNet/issues/180
+ * ReadOnlyConfig
+ * ManualConfig.Add - backport ManualCompetitionConfig design
+ * Validators: access to config, in-process validators
+ * remove calls instance.setupAction(), instance.targetAction() from BenchmarkProgram.txt
+   https://github.com/dotnet/BenchmarkDotNet/issues/184 ?
+ * https://github.com/dotnet/BenchmarkDotNet/issues/307
 
 ## TODOs:
+ * Skip annotation on 1st run
+ * Exclude nunit-related assembly from tests
+ Prepare PR, https://github.com/nunit/nunit-console/issues/62#issuecomment-262599181
+ * TargetPlatform => Platform 
+ * Apply with id by default
+ * absolute timings on not match warning
  * Burst mode feature: rename to LargeSampleSet?
  * AnnotateSourcesOnRun: rename to something like skipFirstRuns
  * WithCompetitionOptions - preserve Id!
@@ -36,10 +43,12 @@
  * Validate the results!!!
  * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix).
  * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion
- * Memory limits + diagnoser - whoops, https://github.com/PerfDotNet/BenchmarkDotNet/issues/200 . Will need to replace MethodInvoker, delayed.
+ * Memory limits + diagnoser - whoops, https://github.com/dotnet/BenchmarkDotNet/issues/200 . Will need to replace MethodInvoker, delayed.
 
 ## Issues:
-https://github.com/PerfDotNet/BenchmarkDotNet/issues/234
+https://github.com/dotnet/BenchmarkDotNet/issues/307
+https://github.com/nunit/nunit-console/issues/62#issuecomment-262599181
+https://github.com/dotnet/BenchmarkDotNet/issues/234
 https://github.com/nunit/nunit/issues/668
 https://github.com/nunit/nunit/issues/1586
 https://github.com/xunit/xunit/issues/908

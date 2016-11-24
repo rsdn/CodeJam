@@ -102,7 +102,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(14.74, 26.41)]
+			[CompetitionBenchmark(14.74, 27.89)]
 			public Range<int> Test04RangeImpl()
 			{
 				var result = _rangeDataImpl[0];

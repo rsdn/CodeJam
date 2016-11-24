@@ -231,8 +231,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					}
 				}
 
-				competitionState.WriteVerboseHint(
-					$"Method {targetMethodTitle} updated time limits: {targetToAnnotate}.");
+				competitionState.WriteVerboseDiagnostic(
+					$"Method {targetMethodTitle}: updated with time limits {targetToAnnotate}.");
 				annotatedTargets.Add(targetToAnnotate);
 			}
 

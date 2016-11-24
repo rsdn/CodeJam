@@ -195,7 +195,7 @@ namespace CodeJam.PerfTests
 			Assert.IsTrue(summary?.ValidationErrors[0].IsCritical);
 			Assert.AreEqual(
 				summary?.ValidationErrors[0].Message,
-				"Job SelfTestConfigX86, property EnvMode.Platform: value (X86) does not match environment (X64).");
+				"Job SelfTestConfigX86, EnvMode.Platform: run as X64 (X86 expected). Fix your test runner options.");
 		}
 
 		public class InProcessBenchmarkAllCases
