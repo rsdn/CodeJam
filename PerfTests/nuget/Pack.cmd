@@ -16,13 +16,13 @@ cd ..\src-XUnit
 cd ..\nuget
 
 cd ..\src-MSTest
-::%MSBUILD% CodeJam.PerfTests.MSTest.csproj /target:Clean /property:Configuration=Release
-::%MSBUILD% CodeJam.PerfTests.MSTest.csproj /target:Rebuild /property:Configuration=Release
+%MSBUILD% CodeJam.PerfTests.MSTest.csproj /target:Clean /property:Configuration=Release
+%MSBUILD% CodeJam.PerfTests.MSTest.csproj /target:Rebuild /property:Configuration=Release
 cd ..\nuget
 
 del *.nupkg
 
 NuGet Pack CodeJam.PerfTests.Core.nuspec
 NuGet Pack CodeJam.PerfTests.NUnit.nuspec
-::NuGet Pack CodeJam.PerfTests.MSTest.nuspec
+NuGet Pack CodeJam.PerfTests.MSTest.nuspec
 NuGet Pack CodeJam.PerfTests.xUnit.nuspec
