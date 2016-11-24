@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>CodeJam.PerfTests.NUnit</id>
-		<version>0.0.6-alpha</version>
+		<version>0.0.7-alpha</version>
 		<title>CodeJam.PerfTests Library for NUnit</title>
 		<authors>ig-sinicyn</authors>
 		<licenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</licenseUrl>
@@ -12,7 +12,7 @@
 		<copyright>RSDN.ru, 2016</copyright>
 		<tags>benchmark benchmarking performance</tags>
 		<dependencies>
-			<dependency id="CodeJam.PerfTests.Core" version="0.0.6-alpha" />
+			<dependency id="CodeJam.PerfTests.Core" version="0.0.7-alpha" />
 			<dependency id="NUnit" version="3.5.0" />
 		</dependencies>
 	</metadata>

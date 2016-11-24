@@ -223,13 +223,13 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, 3 * ExpectedRunCount); // 3x rerun
-			AssertCompetitionCompleted(runState, MessageSeverity.TestError, runNumber: 3);
+			AssertCompetitionCompleted(runState, MessageSeverity.Warning, runNumber: 3);
 
 			Assert.AreEqual(messages.Length, 6);
 
 			Assert.AreEqual(messages[0].RunNumber, 1);
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
-			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.TestError);
+			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Warning);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.That(messages[0].MessageText, Does.StartWith("Method SlowerX10"));
 			Assert.That(messages[0].MessageText, Does.EndWith(" has empty limit. Please fill it."));
@@ -242,7 +242,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(messages[2].RunNumber, 2);
 			Assert.AreEqual(messages[2].RunMessageNumber, 1);
-			Assert.AreEqual(messages[2].MessageSeverity, MessageSeverity.TestError);
+			Assert.AreEqual(messages[2].MessageSeverity, MessageSeverity.Warning);
 			Assert.AreEqual(messages[2].MessageSource, MessageSource.Analyser);
 			Assert.That(messages[2].MessageText, Does.StartWith("Method SlowerX10"));
 			Assert.That(messages[2].MessageText, Does.EndWith(" has empty limit. Please fill it."));
@@ -255,7 +255,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(messages[4].RunNumber, 3);
 			Assert.AreEqual(messages[4].RunMessageNumber, 1);
-			Assert.AreEqual(messages[4].MessageSeverity, MessageSeverity.TestError);
+			Assert.AreEqual(messages[4].MessageSeverity, MessageSeverity.Warning);
 			Assert.AreEqual(messages[4].MessageSource, MessageSource.Analyser);
 			Assert.That(messages[4].MessageText, Does.StartWith("Method SlowerX10"));
 			Assert.That(messages[4].MessageText, Does.EndWith(" has empty limit. Please fill it."));

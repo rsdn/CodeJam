@@ -24,7 +24,7 @@
  * Logging: write validator messages immediately?
  * Log resulting competition features / competition options?
  * LogColors.Hint: use it for something?
- * Better message for "X has empty limit. Please fill it."
+ * Better message for "X has empty limit. Please fill it." + do not rerun if empty limit
  * Better message for "run faster /slower than". Provide some suggestions?
  * Warning if job count > 1
 
