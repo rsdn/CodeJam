@@ -68,8 +68,8 @@ namespace CodeJam.PerfTests.Configs.Factories
 			Run =
 			{
 				LaunchCount = 1,
-				WarmupCount = 200,
-				TargetCount = 500,
+				WarmupCount = 100,
+				TargetCount = 300,
 				RunStrategy = RunStrategy.Throughput,
 				UnrollFactor = 16,
 				InvocationCount = 256
