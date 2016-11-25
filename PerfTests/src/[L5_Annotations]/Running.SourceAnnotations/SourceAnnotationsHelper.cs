@@ -190,11 +190,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 				competitionState.WriteVerbose(
 					$"Method {targetMethodTitle}: updating time limits {targetToAnnotate}.");
-
 				// DONTTOUCH: the source should be loaded for checksum validation even if target uses resource annotation.
-				string fileName;
-				int firstCodeLine;
-				var hasSource = SymbolHelpers.TryGetSourceInfo(target.Method, competitionState, out fileName, out firstCodeLine);
+				var hasSource = SymbolHelpers.TryGetSourceInfo(
+					target.Method, competitionState,
+					out var fileName,
+					out var firstCodeLine);
 
 				if (!hasSource)
 				{
@@ -231,7 +231,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					}
 				}
 
-				competitionState.WriteVerboseDiagnostic(
+				competitionState.WriteVerboseHint(
 					$"Method {targetMethodTitle}: updated with time limits {targetToAnnotate}.");
 				annotatedTargets.Add(targetToAnnotate);
 			}

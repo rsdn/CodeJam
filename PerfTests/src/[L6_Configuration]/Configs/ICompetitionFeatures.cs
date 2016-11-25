@@ -35,7 +35,7 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Specifies target platform for the competition.</summary>
 		/// <value>Target platform for the competition.</value>
-		Platform TargetPlatform { get; }
+		Platform Platform { get; }
 
 		/// <summary>Enables source annotations feature.</summary>
 		/// <value><c>true</c> if source annotations feature should be enabled.</value>

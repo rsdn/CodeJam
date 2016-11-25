@@ -29,7 +29,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void CompetitionRunConcurrent(ConcurrentRunBehavior concurrentRunBehavior)
 		{
 			return;
-			var benchmarks = new[]
+			/*var benchmarks = new[]
 			{
 				typeof(ConcurrentRunBenchmark),
 				typeof(ConcurrentRunBenchmark),
@@ -38,7 +38,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 				typeof(ConcurrentRunBenchmark)
 			};
 			var config = CompetitionHelpers.CreateConfig(typeof(CompetitionRunConcurrentTest))
-				.WithCompetitionOptions(
+				.WithModifier(
 					new CompetitionOptions
 					{
 						RunOptions =
@@ -93,7 +93,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();
-			}
+			}*/
 		}
 
 		#region Perf test helpers

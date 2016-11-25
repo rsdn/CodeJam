@@ -13,6 +13,7 @@ using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.PerfTests.Running.SourceAnnotations;
+using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Analysers
 {
@@ -34,74 +35,61 @@ namespace CodeJam.PerfTests.Analysers
 
 		#region Parsing competition target info
 		/// <summary>
-		/// Refills the competition targets collection and fills competition limits from the <see cref="SourceAnnotationsMode.PreviousRunLogUri"/>.
+		/// Refills the competition targets collection and fills competition limits from the
+		/// <see cref="SourceAnnotationsMode.PreviousRunLogUri"/>.
 		/// </summary>
-		/// <param name="competitionTargets">The collection to be filled with competition targets.</param>
-		/// <param name="summary">Summary for the run.</param>
-		/// <param name="competitionState">State of the run.</param>
-		protected override void FillCompetitionTargets(
-			CompetitionTargets competitionTargets, Summary summary, CompetitionState competitionState)
+		/// <param name="analysis">Analyser pass results.</param>
+		protected override void FillCompetitionTargets(CompetitionAnalysis analysis)
 		{
-			base.FillCompetitionTargets(competitionTargets, summary, competitionState);
+			base.FillCompetitionTargets(analysis);
 
-			var annotationsMode = competitionState.Options.SourceAnnotations;
+			var annotationsMode = analysis.Annotations;
 			var logUri = annotationsMode.PreviousRunLogUri;
 
 			if (!annotationsMode.AdjustLimits || string.IsNullOrEmpty(logUri))
 				return;
 
-			var xmlAnnotationDocs = ReadXmlAnnotationDocsFromLog(logUri, summary, competitionState);
+			var xmlAnnotationDocs = ReadXmlAnnotationDocsFromLog(logUri, analysis);
 			if (xmlAnnotationDocs.Length == 0)
 			{
-				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.Warning,
-					$"No XML annotation documents in the log '{logUri}'.");
-
+				analysis.WriteWarningMessage($"No XML annotation documents in the log '{logUri}'.");
 				return;
 			}
 
-			// ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
-			if (TryFillCompetitionTargetsFromLog(competitionTargets, xmlAnnotationDocs, competitionState))
+			if (TryFillCompetitionTargetsFromLog(analysis, xmlAnnotationDocs))
 			{
-				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.Informational,
-					$"Competition limits were updated from log file '{logUri}'.");
+				analysis.WriteInfoMessage($"Competition limits were updated from log file '{logUri}'.");
+				return;
 			}
-			else
-			{
-				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.Informational,
-					$"Competition limits do not require update. Log file: '{logUri}'.");
-			}
+
+			analysis.WriteInfoMessage($"Competition limits do not require update. Log file: '{logUri}'.");
 		}
 
-		private XDocument[] ReadXmlAnnotationDocsFromLog(string logUri, Summary summary, CompetitionState competitionState)
+		[NotNull]
+		private XDocument[] ReadXmlAnnotationDocsFromLog(string logUri, CompetitionAnalysis analysis)
 		{
-			competitionState.WriteVerbose(
-				$"Reading XML annotation documents from log '{logUri}'.");
+			analysis.RunState.WriteVerbose($"Reading XML annotation documents from log '{logUri}'.");
 
-			var xmlAnnotationDocs = _annotationsFromLogCacheSlot[summary].GetOrAdd(
+			var xmlAnnotationDocs = _annotationsFromLogCacheSlot[analysis.Summary].GetOrAdd(
 				logUri,
-				uri => XmlAnnotations.TryParseXmlAnnotationDocsFromLog(uri, competitionState));
+				uri => XmlAnnotations.TryParseXmlAnnotationDocsFromLog(uri, analysis.RunState));
 
 			return xmlAnnotationDocs;
 		}
 
 		// ReSharper disable once SuggestBaseTypeForParameter
-		private bool TryFillCompetitionTargetsFromLog(
-			CompetitionTargets competitionTargets, XDocument[] xmlAnnotationDocs, CompetitionState competitionState)
+		private bool TryFillCompetitionTargetsFromLog(CompetitionAnalysis analysis, XDocument[] xmlAnnotationDocs)
 		{
-			competitionState.WriteVerbose(
-				$"Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log.");
+			analysis.RunState.WriteVerbose($"Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log.");
 
 			var updated = false;
-			foreach (var competitionTarget in competitionTargets.Targets)
+			foreach (var competitionTarget in analysis.Targets)
 			{
 				var hasAnnotations = false;
 
 				foreach (var doc in xmlAnnotationDocs)
 				{
-					var parsedLimit = XmlAnnotations.TryParseCompetitionLimit(competitionTarget.Target, doc, competitionState);
+					var parsedLimit = XmlAnnotations.TryParseCompetitionLimit(competitionTarget.Target, doc, analysis.RunState);
 					if (parsedLimit != null)
 					{
 						hasAnnotations = true;
@@ -111,8 +99,7 @@ namespace CodeJam.PerfTests.Analysers
 
 				if (!hasAnnotations)
 				{
-					competitionState.WriteMessage(
-						MessageSource.Analyser, MessageSeverity.Warning,
+					analysis.WriteWarningMessage(
 						$"No logged XML annotation for {competitionTarget.Target.MethodDisplayInfo} found. Check if the method was renamed.");
 				}
 			}
@@ -122,51 +109,40 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		#region Checking competition limits
-		private bool SkipAnnotation(bool checkPassed, CompetitionState competitionState)
-		{
-			var annotationsMode = competitionState.Options.SourceAnnotations;
-
-			return checkPassed ||
-				!annotationsMode.AdjustLimits ||
-				competitionState.RunNumber < annotationsMode.AnnotateSourcesOnRun;
-		}
+		private bool SkipAnnotation(bool checkPassed, CompetitionAnalysis analysis) =>
+			checkPassed ||
+			!analysis.Annotations.AdjustLimits ||
+			analysis.RunState.RunNumber < analysis.Annotations.AnnotateSourcesOnRun;
 
 		/// <summary>Check competition target limits.</summary>
-		/// <param name="competitionTarget">The competition target.</param>
 		/// <param name="benchmarksForTarget">Benchmarks for the target.</param>
-		/// <param name="summary">Summary for the run.</param>
-		/// <param name="competitionState">State of the run.</param>
-		/// <param name="conclusions">The warnings.</param>
+		/// <param name="competitionTarget">The competition target.</param>
+		/// <param name="analysis">Analyser pass results.</param>
 		/// <returns><c>true</c> if competition limits are ok.</returns>
-		protected override bool CheckCompetitionTargetLimits(
-			CompetitionTarget competitionTarget,
+		protected override bool CheckTargetLimits(
 			Benchmark[] benchmarksForTarget,
-			Summary summary,
-			CompetitionState competitionState,
-			List<Conclusion> conclusions)
+			CompetitionTarget competitionTarget,
+			CompetitionAnalysis analysis)
 		{
-			var checkPassed = base.CheckCompetitionTargetLimits(
-				competitionTarget, benchmarksForTarget,
-				summary, competitionState,
-				conclusions);
+			var checkPassed = base.CheckTargetLimits(benchmarksForTarget, competitionTarget, analysis);
 
-			if (SkipAnnotation(checkPassed, competitionState))
+			// TODO better 4 empty.
+			checkPassed &= !competitionTarget.CheckLimits || !competitionTarget.IsEmpty;
+			if (SkipAnnotation(checkPassed, analysis))
 			{
 				return checkPassed;
 			}
 
+			var limitProvider = analysis.Limits.LimitProvider;
 			foreach (var benchmark in benchmarksForTarget)
 			{
 				if (benchmark.Target.Baseline)
 					continue;
 
-				var limitsMode = competitionState.Options.Limits;
-				var limit = limitsMode.LimitProvider.TryGetCompetitionLimit(benchmark, summary);
+				var limit = limitProvider.TryGetCompetitionLimit(benchmark, analysis.Summary);
 				if (limit == null)
-				{
-					// No warnings required. Missing values should be checked by base CheckCompetitionTargetLimits() method.
+					// No warnings required. Missing values should be checked by base implementation.
 					continue;
-				}
 
 				competitionTarget.UnionWith(limit);
 			}
@@ -175,68 +151,65 @@ namespace CodeJam.PerfTests.Analysers
 		}
 
 		/// <summary>Called after limits check completed.</summary>
-		/// <param name="summary">Summary for the run.</param>
-		/// <param name="competitionState">State of the run.</param>
+		/// <param name="analysis">Analyser pass results.</param>
 		/// <param name="checkPassed"><c>true</c> if competition check passed.</param>
-		protected override void OnLimitsCheckCompleted(Summary summary, CompetitionState competitionState, bool checkPassed)
+		protected override void OnLimitsCheckCompleted(CompetitionAnalysis analysis, bool checkPassed)
 		{
-			var annotationsMode = competitionState.Options.SourceAnnotations;
-			AnnotateTargets(summary, competitionState);
+			// TODO: at limit checking???
+			AnnotateTargets(analysis);
 
-			if (SkipAnnotation(checkPassed, competitionState) ||
+			var annotationsMode = analysis.Annotations;
+			if (SkipAnnotation(checkPassed, analysis) ||
 				annotationsMode.AdditionalRerunsIfAnnotationsUpdated <= 0)
 			{
-				base.OnLimitsCheckCompleted(summary, competitionState, checkPassed);
+				base.OnLimitsCheckCompleted(analysis, checkPassed);
 			}
 			else
 			{
-				competitionState.RequestReruns(
+				analysis.RunState.RequestReruns(
 					annotationsMode.AdditionalRerunsIfAnnotationsUpdated,
 					"Limits were adjusted.");
 			}
 		}
 
 		// ReSharper disable once MemberCanBeMadeStatic.Local
-		private void AnnotateTargets(Summary summary, CompetitionState competitionState)
+		private void AnnotateTargets(CompetitionAnalysis analysis)
 		{
-			var competitionTargets = TargetsSlot[summary];
-			var targetsToAnnotate = competitionTargets.Targets
+			// TODO: move to check limits.
+			if (!analysis.Passed)
+			{
+				analysis.WriteWarningMessage("Source annotation skipped as there are critical errors in the run. Check the log please.");
+				return;
+			}
+
+			var targetsToAnnotate = analysis.Targets
 				.Where(t => t.HasUnsavedChanges)
 				.ToArray();
 
 			if (targetsToAnnotate.Length == 0)
 				return;
 
-			if (competitionState.HasCriticalErrorsInRun)
-			{
-				competitionState.WriteMessage(
-					MessageSource.Analyser, MessageSeverity.Warning,
-					"Source annotation skipped as there are critical errors in the run. Check the log please.");
-				return;
-			}
-
-			if (competitionState.Options.SourceAnnotations.DontSaveAdjustedLimits)
+			if (analysis.Annotations.DontSaveAdjustedLimits)
 			{
 				var message =
 					$"Source annotation skipped due to {SourceAnnotationsMode.DontSaveAdjustedLimitsCharacteristic.FullId} setting.";
-				if (competitionState.FirstRun)
+				if (analysis.RunState.FirstRun)
 				{
-					competitionState.WriteMessage(MessageSource.Analyser, MessageSeverity.Informational, message);
+					analysis.RunState.WriteMessage(MessageSource.Analyser, MessageSeverity.Informational, message);
 				}
 				else
 				{
-					competitionState.WriteVerbose(message);
+					analysis.RunState.WriteVerbose(message);
 				}
 			}
 			else
 			{
 				var annotatedTargets = SourceAnnotationsHelper.TryAnnotateBenchmarkFiles(
-					targetsToAnnotate, competitionState);
+					targetsToAnnotate, analysis.RunState);
 
 				if (annotatedTargets.Any())
 				{
-					competitionState.WriteMessage(
-						MessageSource.Analyser, MessageSeverity.Warning,
+					analysis.WriteWarningMessage(
 						"The sources were updated with new annotations. Please check them before commiting the changes.");
 				}
 			}

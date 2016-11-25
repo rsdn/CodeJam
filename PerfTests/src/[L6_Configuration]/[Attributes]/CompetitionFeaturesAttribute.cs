@@ -79,15 +79,15 @@ namespace CodeJam.PerfTests
 
 		/// <summary>Specifies target platform for the competition.</summary>
 		/// <value>Target platform for the competition.</value>
-		public Platform TargetPlatform
+		public Platform Platform
 		{
 			get
 			{
-				return _features.TargetPlatform;
+				return _features.Platform;
 			}
 			set
 			{
-				_features.TargetPlatform = value;
+				_features.Platform = value;
 			}
 		}
 		#endregion

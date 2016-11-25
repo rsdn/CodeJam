@@ -63,7 +63,7 @@ namespace CodeJam.PerfTests
 		/// <param name="targetPlatform">The target platform.</param>
 		public CompetitionPlatformAttribute(Platform targetPlatform)
 		{
-			TargetPlatform = targetPlatform;
+			Platform = targetPlatform;
 		}
 	}
 }

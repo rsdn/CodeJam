@@ -15,27 +15,26 @@ namespace CodeJam.PerfTests.Configs
 	{
 		/// <summary>Applies the specified competition options.</summary>
 		/// <param name="config">The config.</param>
-		/// <param name="competitionOptions">The competition options to apply.</param>
+		/// <param name="optionsModifier">Competition options to apply.</param>
 		/// <returns>Config with applied competition options.</returns>
-		public static ICompetitionConfig WithCompetitionOptions(
-			this ICompetitionConfig config, CompetitionOptions competitionOptions) =>
-				config.With(m => m.ApplyCompetitionOptions(competitionOptions));
+		public static ICompetitionConfig WithModifier(
+			this ICompetitionConfig config, CompetitionOptions optionsModifier) =>
+				config.With(m => m.ApplyModifier(optionsModifier));
 
 		/// <summary>Applies job modifier.</summary>
 		/// <param name="config">The config.</param>
-		/// <param name="jobModifier">The modifier to apply to the config' jobs.</param>
-		/// <param name="preserveId">if set to <c>true</c> job ids are preserved.</param>
+		/// <param name="jobModifier">Job modifier to apply.</param>
 		/// <returns>Config with applied job modifier.</returns>
-		public static ICompetitionConfig WithJobModifier(
-			this ICompetitionConfig config, Job jobModifier, bool preserveId = false) =>
-				config.With(m => m.ApplyToJobs(jobModifier, preserveId));
+		public static ICompetitionConfig WithModifier(
+			this ICompetitionConfig config, Job jobModifier) =>
+				config.With(m => m.ApplyModifier(jobModifier));
 
 		/// <summary>Allow debug builds to be used in competitions.</summary>
 		/// <param name="config">The config.</param>
 		/// <param name="value"><c>true</c> if debug builds allowed.</param>
 		/// <returns>A new config with applied parameters.</returns>
 		public static ICompetitionConfig WithAllowDebugBuilds(this ICompetitionConfig config, bool value) =>
-			config.WithCompetitionOptions(
+			config.WithModifier(
 				new CompetitionOptions
 				{
 					RunOptions =
@@ -49,7 +48,7 @@ namespace CodeJam.PerfTests.Configs
 		/// <param name="value"><c>true</c> if detailed logging enabled.</param>
 		/// <returns>A new config with applied parameters.</returns>
 		public static ICompetitionConfig WithDetailedLogging(this ICompetitionConfig config, bool value) =>
-			config.WithCompetitionOptions(
+			config.WithModifier(
 				new CompetitionOptions
 				{
 					RunOptions =
@@ -63,7 +62,7 @@ namespace CodeJam.PerfTests.Configs
 		/// <param name="value"><c>true</c> if competition warnings should be reported as errors.</param>
 		/// <returns>A new config with applied parameters.</returns>
 		public static ICompetitionConfig WithReportWarningsAsErrors(this ICompetitionConfig config, bool value) =>
-			config.WithCompetitionOptions(
+			config.WithModifier(
 				new CompetitionOptions
 				{
 					RunOptions =
@@ -77,7 +76,7 @@ namespace CodeJam.PerfTests.Configs
 		/// <param name="value">Timing limit to detect too fast benchmarks.</param>
 		/// <returns>A new config with applied parameters.</returns>
 		public static ICompetitionConfig WithTooFastBenchmarkLimit(this ICompetitionConfig config, TimeSpan value) =>
-			config.WithCompetitionOptions(
+			config.WithModifier(
 				new CompetitionOptions
 				{
 					Limits =
@@ -91,7 +90,7 @@ namespace CodeJam.PerfTests.Configs
 		/// <param name="value">Timing limit to detect long-running benchmarks.</param>
 		/// <returns>A new config with applied parameters.</returns>
 		public static ICompetitionConfig WithLongRunningBenchmarkLimit(this ICompetitionConfig config, TimeSpan value) =>
-			config.WithCompetitionOptions(
+			config.WithModifier(
 				new CompetitionOptions
 				{
 					Limits =
@@ -109,7 +108,7 @@ namespace CodeJam.PerfTests.Configs
 		/// </param>
 		/// <returns>A new config with applied parameters.</returns>
 		public static ICompetitionConfig WithPreviousRunLogUri(this ICompetitionConfig config, string value) =>
-			config.WithCompetitionOptions(
+			config.WithModifier(
 				new CompetitionOptions
 				{
 					SourceAnnotations =

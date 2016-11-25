@@ -72,7 +72,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		/// <summary>The benchmark has limits to check.</summary>
 		/// <value><c>true</c> if the benchmark has limits to check.</value>
-		public bool CheckLimiths => !Target.Baseline && !DoesNotCompete;
+		public bool CheckLimits => !Target.Baseline && !DoesNotCompete;
 
 		/// <summary>The limit properties are updated but not saved.</summary>
 		/// <value><c>true</c> if this instance has unsaved changes; otherwise, <c>false</c>.</value>

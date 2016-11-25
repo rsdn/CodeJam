@@ -22,7 +22,7 @@ namespace CodeJam.PerfTests.Configs
 	public sealed class ManualCompetitionConfig : ICompetitionConfig
 	{
 		#region Fields & .ctor
-		private CompetitionOptions _competitionOptions;
+		private CompetitionOptions _options;
 
 		/// <summary>Initializes a new instance of the <see cref="ManualCompetitionConfig"/> class.</summary>
 		public ManualCompetitionConfig() { }
@@ -79,12 +79,12 @@ namespace CodeJam.PerfTests.Configs
 			[NotNull]
 			get
 			{
-				return _competitionOptions ?? CompetitionOptions.Default;
+				return _options ?? CompetitionOptions.Default;
 			}
 			set
 			{
 				// DONTTOUCH: please DO NOT remove .Freeze() call.
-				_competitionOptions = value?.Freeze();
+				_options = value?.Freeze();
 			}
 		}
 		#endregion
@@ -157,31 +157,40 @@ namespace CodeJam.PerfTests.Configs
 		}
 		#endregion
 
-		/// <summary>Applies the competition options.</summary>
-		/// <param name="competitionOptions">Competition options.</param>
-		public void ApplyCompetitionOptions(CompetitionOptions competitionOptions) =>
-			_competitionOptions = competitionOptions == null
-				? null
-				: new CompetitionOptions(Options, competitionOptions);
+		/// <summary>Applies modifier to competition options.</summary>
+		/// <param name="optionsModifier">Competition options to apply.</param>
+		public void ApplyModifier([NotNull] CompetitionOptions optionsModifier)
+		{
+			Code.NotNull(optionsModifier, nameof(optionsModifier));
+
+			var options = _options;
+
+			string id = null;
+			if (options.HasValue(JobMode.IdCharacteristic))
+				id = options.Id;
+			if (optionsModifier.HasValue(JobMode.IdCharacteristic))
+				id += optionsModifier.Id;
+
+			// DONTTOUCH: please DO NOT remove .Freeze() call.
+			_options = new CompetitionOptions(id, options, optionsModifier).Freeze();
+		}
 
 		/// <summary>Applies modifier to jobs.</summary>
 		/// <param name="jobModifier">Job modifier to apply.</param>
-		/// <param name="preserveId">if set to <c>true</c> job ids are preserved.</param>
-		public void ApplyToJobs(Job jobModifier, bool preserveId = false)
+		public void ApplyModifier([NotNull] Job jobModifier)
 		{
+			Code.NotNull(jobModifier, nameof(jobModifier));
+
 			var jobs = Jobs;
 			for (var i = 0; i < jobs.Count; i++)
 			{
 				var job = jobs[i];
 
 				string id = null;
-				if (preserveId)
-				{
-					if (job.HasValue(JobMode.IdCharacteristic))
-						id = job.Id;
-					if (jobModifier.HasValue(JobMode.IdCharacteristic))
-						id += jobModifier.Id;
-				}
+				if (job.HasValue(JobMode.IdCharacteristic))
+					id = job.Id;
+				if (jobModifier.HasValue(JobMode.IdCharacteristic))
+					id += jobModifier.Id;
 
 				// DONTTOUCH: please DO NOT remove .Freeze() call.
 				jobs[i] = new Job(id, job, jobModifier).Freeze();

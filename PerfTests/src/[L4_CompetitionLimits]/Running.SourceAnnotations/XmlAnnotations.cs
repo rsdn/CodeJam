@@ -345,9 +345,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			Code.NotNull(competitionState, nameof(competitionState));
 
 			if (competitionTargets.Count == 0)
-			{
 				return;
-			}
 
 			// Create xml annotation doc
 			var xmlAnnotationDoc = new XDocument(new XElement(CompetitionBenchmarksRootNode));

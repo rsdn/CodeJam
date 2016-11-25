@@ -27,8 +27,8 @@ namespace CodeJam
 		{
 			var result = base.CreateCompetitionFeaturesUnfrozen(jobId, metadataSource);
 
-			if (!result.HasValue(CompetitionFeatures.TargetPlatformCharacteristic))
-				result.TargetPlatform = Platform.X64;
+			if (!result.HasValue(CompetitionFeatures.PlatformCharacteristic))
+				result.Platform = Platform.X64;
 			result.ImportantInfoLogger = true;
 
 			if (metadataSource != null && result.PreviousRunLogUri.IsNullOrEmpty())
@@ -55,7 +55,7 @@ namespace CodeJam
 			CompetitionFeatures competitionFeatures)
 		{
 			var result = base.CreateJobUnfrozen(jobId, metadataSource, competitionFeatures);
-			if (competitionFeatures.TargetPlatform == Platform.X64)
+			if (competitionFeatures.Platform == Platform.X64)
 				result.Apply(EnvMode.RyuJitX64);
 			return result;
 		}

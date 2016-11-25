@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -10,7 +9,6 @@ using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
-using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains;
 using BenchmarkDotNet.Toolchains.InProcess;
@@ -82,33 +80,6 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Run state slot.</summary>
 		public static readonly RunState<CompetitionState> RunState = new RunState<CompetitionState>();
 
-		/// <summary>Reports analyser conclusion.</summary>
-		/// <param name="competitionState">State of the run.</param>
-		/// <param name="analyser">The analyser the message belongs to.</param>
-		/// <param name="conclusions">The list the conclusion will be added to.</param>
-		/// <param name="severity">Severity of the message.</param>
-		/// <param name="message">The message.</param>
-		/// <param name="report">The report the message belongs to.</param>
-		public static void AddAnalyserConclusion(
-			[NotNull] this CompetitionState competitionState,
-			[NotNull] IAnalyser analyser,
-			[NotNull] List<Conclusion> conclusions,
-			MessageSeverity severity,
-			[NotNull] string message,
-			BenchmarkReport report = null)
-		{
-			Code.NotNull(competitionState, nameof(competitionState));
-			Code.NotNull(analyser, nameof(analyser));
-			Code.NotNull(conclusions, nameof(conclusions));
-			Code.NotNullNorEmpty(message, nameof(message));
-
-			competitionState.WriteMessage(MessageSource.Analyser, severity, message);
-			var conclusion = severity.IsTestErrorOrHigher()
-				? Conclusion.CreateWarning(analyser.Id, message, report)
-				: Conclusion.CreateHint(analyser.Id, message, report);
-			conclusions.Add(conclusion);
-		}
-
 		/// <summary>Writes the exception message.</summary>
 		/// <param name="competitionState">State of the run.</param>
 		/// <param name="messageSource">Source of the message.</param>
@@ -137,14 +108,6 @@ namespace CodeJam.PerfTests.Running.Core
 			[NotNull] this CompetitionState competitionState,
 			[NotNull] string messageText) =>
 				competitionState.Logger.WriteLineInfo($"{LogImportantInfoPrefix} {messageText}");
-
-		/// <summary>Writes the verbose diagnostic message. Logged, but not reported to user.</summary>
-		/// <param name="competitionState">State of the run.</param>
-		/// <param name="messageText">Text of the message.</param>
-		public static void WriteVerboseDiagnostic(
-			[NotNull] this CompetitionState competitionState,
-			[NotNull] string messageText) =>
-				competitionState.Logger.WriteLineInfo($"{LogInfoPrefix} {messageText}");
 
 		/// <summary>Writes the verbose message.</summary>
 		/// <param name="competitionState">State of the run.</param>

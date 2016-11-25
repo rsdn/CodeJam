@@ -132,7 +132,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.SetupError);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.AreEqual(messages[0].MessageText, "The benchmark NoBaselineFailBenchmark has no baseline.");
+			Assert.AreEqual(messages[0].MessageText, 
+				"The benchmark has no baseline method. Apply CompetitionBaselineAttribute to the one of the benchmark methods.");
 		}
 
 		[Test]
@@ -222,51 +223,17 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var runState = SelfTestCompetition.Run<LimitsEmptyFailBenchmark>();
 			var messages = runState.GetMessages();
 
-			Assert.AreEqual(_callCounter, 3 * ExpectedRunCount); // 3x rerun
-			AssertCompetitionCompleted(runState, MessageSeverity.Warning, runNumber: 3);
+			Assert.AreEqual(_callCounter, ExpectedRunCount); // 3x rerun
+			AssertCompetitionCompleted(runState, MessageSeverity.Warning, runNumber: 1);
 
-			Assert.AreEqual(messages.Length, 6);
+			Assert.AreEqual(messages.Length, 1);
 
 			Assert.AreEqual(messages[0].RunNumber, 1);
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Warning);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[0].MessageText, Does.StartWith("Method SlowerX10"));
-			Assert.That(messages[0].MessageText, Does.EndWith(" has empty limit. Please fill it."));
-
-			Assert.AreEqual(messages[1].RunNumber, 1);
-			Assert.AreEqual(messages[1].RunMessageNumber, 2);
-			Assert.AreEqual(messages[1].MessageSeverity, MessageSeverity.Informational);
-			Assert.AreEqual(messages[1].MessageSource, MessageSource.Runner);
-			Assert.AreEqual(messages[1].MessageText, "Requesting 1 run(s): Limit checking failed.");
-
-			Assert.AreEqual(messages[2].RunNumber, 2);
-			Assert.AreEqual(messages[2].RunMessageNumber, 1);
-			Assert.AreEqual(messages[2].MessageSeverity, MessageSeverity.Warning);
-			Assert.AreEqual(messages[2].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[2].MessageText, Does.StartWith("Method SlowerX10"));
-			Assert.That(messages[2].MessageText, Does.EndWith(" has empty limit. Please fill it."));
-
-			Assert.AreEqual(messages[3].RunNumber, 2);
-			Assert.AreEqual(messages[3].RunMessageNumber, 2);
-			Assert.AreEqual(messages[3].MessageSeverity, MessageSeverity.Informational);
-			Assert.AreEqual(messages[3].MessageSource, MessageSource.Runner);
-			Assert.AreEqual(messages[3].MessageText, "Requesting 1 run(s): Limit checking failed.");
-
-			Assert.AreEqual(messages[4].RunNumber, 3);
-			Assert.AreEqual(messages[4].RunMessageNumber, 1);
-			Assert.AreEqual(messages[4].MessageSeverity, MessageSeverity.Warning);
-			Assert.AreEqual(messages[4].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[4].MessageText, Does.StartWith("Method SlowerX10"));
-			Assert.That(messages[4].MessageText, Does.EndWith(" has empty limit. Please fill it."));
-
-			Assert.AreEqual(messages[5].RunNumber, 3);
-			Assert.AreEqual(messages[5].RunMessageNumber, 2);
-			Assert.AreEqual(messages[5].MessageSeverity, MessageSeverity.Warning);
-			Assert.AreEqual(messages[5].MessageSource, MessageSource.Runner);
-			Assert.AreEqual(
-				messages[5].MessageText,
-				"The benchmark was run 3 time(s) (read log for details). Try to loose competition limits.");
+			Assert.AreEqual(messages[0].MessageText,
+				"The benchmark SlowerX10 ignored as it has empty limit. Update limits to include benchmark in the competition.");
 		}
 
 		#region Perf test helpers
@@ -319,14 +286,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			private const int AwaitDelayMs = 50;
 			[CompetitionBaseline]
-			public async Task Baseline()
+			public async Task BaselineAsync()
 			{
 				await Task.Delay(AwaitDelayMs);
 				Interlocked.Increment(ref _callCounter);
 			}
 
 			[CompetitionBenchmark]
-			public async Task<int> SlowerX5()
+			public async Task<int> SlowerX5Async()
 			{
 				await Task.Delay(5 * AwaitDelayMs);
 				Interlocked.Increment(ref _callCounter);

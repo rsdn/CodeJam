@@ -112,8 +112,7 @@ namespace BenchmarkDotNet.Validators
 			{
 				foreach (var characteristic in job.GetCharacteristicsWithValues())
 				{
-					Func<Job, Characteristic, string> validationRule;
-					if (_validationRules.TryGetValue(characteristic, out validationRule))
+					if (_validationRules.TryGetValue(characteristic, out var validationRule))
 					{
 						var message = validationRule(job, characteristic);
 						if (!string.IsNullOrEmpty(message))

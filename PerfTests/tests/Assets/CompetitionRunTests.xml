@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="XmlTaskOkBenchmark">
-		<Candidate Target="Baseline" Baseline="true" />
-		<Candidate Target="SlowerX5" MinRatio="2" MaxRatio="7" />
+		<Candidate Target="BaselineAsync" Baseline="true" />
+		<Candidate Target="SlowerX5Async" MinRatio="2" MaxRatio="7" />
 	</Competition>
 	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionRunTests+XmlFullAnnotationBenchmark, CodeJam.PerfTests-Tests">
 		<Candidate Target="Baseline" Baseline="true" />

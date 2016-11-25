@@ -19,8 +19,8 @@ namespace CodeJam.PerfTests
 		{
 			var result = base.CreateCompetitionFeaturesUnfrozen(jobId, metadataSource);
 
-			if (!result.HasValue(CompetitionFeatures.TargetPlatformCharacteristic))
-				result.TargetPlatform = Platform.X64;
+			if (!result.HasValue(CompetitionFeatures.PlatformCharacteristic))
+				result.Platform = Platform.X64;
 
 			return result;
 		}
@@ -66,7 +66,7 @@ namespace CodeJam.PerfTests
 	{
 		/// <summary>Updates competition config.</summary>
 		/// <param name="competitionConfig">The competition config.</param>
-		public void Modify(ManualCompetitionConfig competitionConfig) => competitionConfig.ApplyToJobs(
+		public void Modify(ManualCompetitionConfig competitionConfig) => competitionConfig.ApplyModifier(
 			new Job
 			{
 				Run =

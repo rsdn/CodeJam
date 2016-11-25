@@ -24,8 +24,8 @@ namespace CodeJam.PerfTests.Configs
 			(CompetitionFeatures f) => f.ContinuousIntegrationMode);
 
 		/// <summary>Target platform for the competition characteristic.</summary>
-		public static readonly Characteristic<Platform> TargetPlatformCharacteristic = Characteristic.Create(
-			(CompetitionFeatures f) => f.TargetPlatform);
+		public static readonly Characteristic<Platform> PlatformCharacteristic = Characteristic.Create(
+			(CompetitionFeatures f) => f.Platform);
 
 		/// <summary>Source annotations feature characteristic.</summary>
 		public static readonly Characteristic<bool> AnnotateSourcesCharacteristic = Characteristic.Create(
@@ -134,15 +134,15 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Specifies target platform for the competition.</summary>
 		/// <value>Target platform for the competition.</value>
-		public Platform TargetPlatform
+		public Platform Platform
 		{
 			get
 			{
-				return TargetPlatformCharacteristic[this];
+				return PlatformCharacteristic[this];
 			}
 			set
 			{
-				TargetPlatformCharacteristic[this] = value;
+				PlatformCharacteristic[this] = value;
 			}
 		}
 		#endregion

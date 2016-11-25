@@ -64,22 +64,22 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Specifies target platform for the competition.</summary>
 		/// <value>Target platform for the competition.</value>
-		[ConfigurationProperty(nameof(TargetPlatform), IsRequired = false)]
-		public Platform? TargetPlatform
+		[ConfigurationProperty(nameof(Platform), IsRequired = false)]
+		public Platform? Platform
 		{
 			get
 			{
-				return (Platform?)this[nameof(TargetPlatform)];
+				return (Platform?)this[nameof(Platform)];
 			}
 			set
 			{
-				this[nameof(TargetPlatform)] = value;
+				this[nameof(Platform)] = value;
 			}
 		}
 
 		/// <summary>Specifies target platform for the competition.</summary>
 		/// <value>Target platform for the competition.</value>
-		Platform ICompetitionFeatures.TargetPlatform => TargetPlatform.GetValueOrDefault();
+		Platform ICompetitionFeatures.Platform => Platform.GetValueOrDefault();
 		#endregion
 
 		#region Annotations
@@ -208,8 +208,8 @@ namespace CodeJam.PerfTests.Configs
 
 			if (BurstMode)
 				result.BurstMode = true;
-			if (TargetPlatform.HasValue)
-				result.TargetPlatform = TargetPlatform.Value;
+			if (Platform.HasValue)
+				result.Platform = Platform.Value;
 			if (AnnotateSources)
 				result.AnnotateSources = true;
 			if (IgnoreExistingAnnotations)

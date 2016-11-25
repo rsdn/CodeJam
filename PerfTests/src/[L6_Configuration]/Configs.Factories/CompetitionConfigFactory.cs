@@ -251,7 +251,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 			[CanBeNull] ICustomAttributeProvider metadataSource,
 			[NotNull] CompetitionFeatures competitionFeatures)
 		{
-			var platform = competitionFeatures.ResolveValueAsNullable(CompetitionFeatures.TargetPlatformCharacteristic);
+			var platform = competitionFeatures.ResolveValueAsNullable(CompetitionFeatures.PlatformCharacteristic);
 
 			if (jobId == null && platform == null)
 				return DefaultJob;

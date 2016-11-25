@@ -43,18 +43,19 @@ namespace CodeJam.PerfTests
 			ResetCounters();
 
 			var config = CompetitionHelpers.ConfigForAssembly
-				.WithJobModifier(
+				.WithModifier(
 					new Job
 					{
 						Infrastructure =
 						{
 							EngineFactory = new EngineFactory()
 						}
-					},
-					true)
-				.WithCompetitionOptions(
+					})
+				.WithModifier(
 					new CompetitionOptions()
-					{ Limits = { TooFastBenchmarkLimit = TimeSpan.Zero } });
+					{
+						Limits = { TooFastBenchmarkLimit = TimeSpan.Zero }
+					});
 			var summary = SelfTestCompetition
 				.Run<InProcessBenchmarkAllCases>(config)
 				.LastRunSummary;
@@ -73,7 +74,7 @@ namespace CodeJam.PerfTests
 			ResetCounters();
 
 			var config = CompetitionHelpers.ConfigForAssembly
-				.WithJobModifier(
+				.WithModifier(
 					new Job
 					{
 						Infrastructure =
@@ -85,11 +86,12 @@ namespace CodeJam.PerfTests
 							InvocationCount = 20,
 							UnrollFactor = 5
 						}
-					},
-					true)
-				.WithCompetitionOptions(
+					})
+				.WithModifier(
 					new CompetitionOptions()
-					{ Limits = { TooFastBenchmarkLimit = TimeSpan.Zero } });
+					{
+						Limits = { TooFastBenchmarkLimit = TimeSpan.Zero }
+					});
 			var summary = SelfTestCompetition
 				.Run<InProcessBenchmarkAllCases>(config)
 				.LastRunSummary;
@@ -108,18 +110,19 @@ namespace CodeJam.PerfTests
 			ResetCounters();
 
 			var config = CompetitionHelpers.ConfigForAssembly
-				.WithJobModifier(
+				.WithModifier(
 					new Job
 					{
 						Infrastructure =
 						{
 							EngineFactory = BurstModeEngineFactory.Instance
 						}
-					},
-					true)
-				.WithCompetitionOptions(
+					})
+				.WithModifier(
 					new CompetitionOptions()
-					{ Limits = { TooFastBenchmarkLimit = TimeSpan.Zero } });
+					{
+						Limits = { TooFastBenchmarkLimit = TimeSpan.Zero }
+					});
 			var summary = SelfTestCompetition
 				.Run<InProcessBenchmarkAllCases>(config)
 				.LastRunSummary;
@@ -138,7 +141,7 @@ namespace CodeJam.PerfTests
 			ResetCounters();
 
 			var config = CompetitionHelpers.ConfigForAssembly
-				.WithJobModifier(
+				.WithModifier(
 					new Job
 					{
 						Infrastructure =
@@ -150,11 +153,12 @@ namespace CodeJam.PerfTests
 							InvocationCount = 10, // BUG: works fine with ZERO!!!
 							UnrollFactor = 5
 						}
-					},
-					true)
-				.WithCompetitionOptions(
+					})
+				.WithModifier(
 					new CompetitionOptions()
-					{ Limits = { TooFastBenchmarkLimit = TimeSpan.Zero } });
+					{
+						Limits = { TooFastBenchmarkLimit = TimeSpan.Zero }
+					});
 			var summary = SelfTestCompetition
 				.Run<InProcessBenchmarkAllCases>(config)
 				.LastRunSummary;
@@ -178,7 +182,7 @@ namespace CodeJam.PerfTests
 					typeof(InProcessBenchmarkAllCases),
 					new CompetitionFeatures
 					{
-						TargetPlatform = Platform.X86
+						Platform = Platform.X86
 					}));
 			config.Add(InProcessValidator.FailOnError);
 
@@ -221,7 +225,7 @@ namespace CodeJam.PerfTests
 			}
 
 			[Benchmark]
-			public async Task InvokeOnceTask()
+			public async Task InvokeOnceTaskAsync()
 			{
 				await Task.Yield();
 				Interlocked.Increment(ref _callCounter);
@@ -245,7 +249,7 @@ namespace CodeJam.PerfTests
 			}
 
 			[Benchmark]
-			public async Task<string> InvokeOnceTaskOfT()
+			public async Task<string> InvokeOnceTaskOfTAsync()
 			{
 				await Task.Yield();
 				Interlocked.Increment(ref _callCounter);
@@ -271,7 +275,7 @@ namespace CodeJam.PerfTests
 			}
 
 			[Benchmark]
-			public static async Task InvokeOnceTaskStatic()
+			public static async Task InvokeOnceTaskStaticAsync()
 			{
 				await Task.Yield();
 				Interlocked.Increment(ref _callCounter);
@@ -295,7 +299,7 @@ namespace CodeJam.PerfTests
 			}
 
 			[Benchmark]
-			public static async Task<string> InvokeOnceTaskOfTStatic()
+			public static async Task<string> InvokeOnceTaskOfTStaticAsync()
 			{
 				await Task.Yield();
 				Interlocked.Increment(ref _callCounter);

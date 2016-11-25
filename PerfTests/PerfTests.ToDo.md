@@ -13,8 +13,6 @@
  * Skip annotation on 1st run
  * Exclude nunit-related assembly from tests
  Prepare PR, https://github.com/nunit/nunit-console/issues/62#issuecomment-262599181
- * TargetPlatform => Platform 
- * Apply with id by default
  * absolute timings on not match warning
  * Burst mode feature: rename to LargeSampleSet?
  * AnnotateSourcesOnRun: rename to something like skipFirstRuns
