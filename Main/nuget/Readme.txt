@@ -1,5 +1,11 @@
-CodeJam 1.2.0-beta4 Release Notes
+CodeJam 1.2.0-rc1 Release Notes
 -------------------------------
+
+What's new in 1.2.0-rc1
+-----------------------
+* Use Range struct instead of ValueTuple in public API
+* Refactoring, fixes and code cleanup
+
 
 What's new in 1.2.0-beta4
 -------------------------
