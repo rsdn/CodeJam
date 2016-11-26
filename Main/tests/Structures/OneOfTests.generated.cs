@@ -94,6 +94,7 @@ namespace CodeJam
 			Assert.AreEqual("Case2", str);
 
 		}
+
 		[Test]
 		public void OneOf3Test()
 		{
@@ -147,6 +148,7 @@ namespace CodeJam
 			Assert.AreEqual("Case3", str);
 
 		}
+
 		[Test]
 		public void OneOf4Test()
 		{
@@ -214,6 +216,7 @@ namespace CodeJam
 			Assert.AreEqual("Case4", str);
 
 		}
+
 		[Test]
 		public void OneOf5Test()
 		{
@@ -295,6 +298,7 @@ namespace CodeJam
 			Assert.AreEqual("Case5", str);
 
 		}
+
 		[Test]
 		public void OneOf6Test()
 		{
@@ -390,6 +394,7 @@ namespace CodeJam
 			Assert.AreEqual("Case6", str);
 
 		}
+
 		[Test]
 		public void OneOf7Test()
 		{
@@ -499,6 +504,7 @@ namespace CodeJam
 			Assert.AreEqual("Case7", str);
 
 		}
+
 		[Test]
 		public void OneOf8Test()
 		{
@@ -622,5 +628,6 @@ namespace CodeJam
 			Assert.AreEqual("Case8", str);
 
 		}
+
 	}
 }
