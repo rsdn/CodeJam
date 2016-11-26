@@ -9,13 +9,57 @@
 
 using System;
 
+using JetBrains.Annotations;
+
 namespace CodeJam
 {
-	public abstract class OneOf<T1, T2>
+	/// <summary>
+	/// Tagged union for 2 types.
+	/// </summary>
+	/// <typeparam name="T1">Type of case 1</typeparam>
+	/// <typeparam name="T2">Type of case 2</typeparam>
+	public abstract class OneOf<T1, T2> : IOneOf<T1, T2>, IEquatable<OneOf<T1, T2>>
 	{
-		public abstract TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func);
+		public abstract bool IsCase1 { get; }
+
+		public abstract bool IsCase2 { get; }
+
+		public abstract TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector);
 
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action);
+
+		public abstract bool Equals(OneOf<T1, T2> other);
+
+		/// <summary>Determines whether the specified object is equal to the current object.</summary>
+		/// <param name="obj">The object to compare with the current object. </param>
+		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			if (ReferenceEquals(this, obj)) return true;
+			return obj is OneOf<T1, T2> && Equals((OneOf<T1, T2>)obj);
+		}
+
+		public override int GetHashCode()
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Equality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> equals to <paramref name="right"/></returns>
+		public static bool operator ==(OneOf<T1, T2> left, OneOf<T1, T2> right) => Equals(left, right);
+
+		/// <summary>
+		/// Unequality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> not equals to <paramref name="right"/></returns>
+		public static bool operator !=(OneOf<T1, T2> left, OneOf<T1, T2> right) => !Equals(left, right);
 
 		private sealed class Case1 : OneOf<T1, T2>
 		{
@@ -26,12 +70,36 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func) => case1Func(_value);
+			public override bool IsCase1 => true;
+			public override bool IsCase2 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector) => case1Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action) => case1Action(_value);
+
+			public override bool Equals(OneOf<T1, T2> other) => Equals(other as Case1);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2> Create(T1 value) => new Case1(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2}"/> for value of type <typeparamref name="T1"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2}"/>.</returns>
+		public static OneOf<T1, T2> Create([NotNull] T1 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case1(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2}"/> for value of type <typeparamref name="T1"/>.</returns>
+		public static implicit operator OneOf<T1, T2>(T1 value) => Create(value);
 
 		private sealed class Case2 : OneOf<T1, T2>
 		{
@@ -42,20 +110,89 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func) => case2Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => true;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector) => case2Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action) => case2Action(_value);
+
+			public override bool Equals(OneOf<T1, T2> other) => Equals(other as Case2);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2> Create(T2 value) => new Case2(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2}"/> for value of type <typeparamref name="T2"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2}"/>.</returns>
+		public static OneOf<T1, T2> Create([NotNull] T2 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case2(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2}"/> for value of type <typeparamref name="T2"/>.</returns>
+		public static implicit operator OneOf<T1, T2>(T2 value) => Create(value);
 
 	}
 
-	public abstract class OneOf<T1, T2, T3>
+	/// <summary>
+	/// Tagged union for 3 types.
+	/// </summary>
+	/// <typeparam name="T1">Type of case 1</typeparam>
+	/// <typeparam name="T2">Type of case 2</typeparam>
+	/// <typeparam name="T3">Type of case 3</typeparam>
+	public abstract class OneOf<T1, T2, T3> : IOneOf<T1, T2, T3>, IEquatable<OneOf<T1, T2, T3>>
 	{
-		public abstract TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func);
+		public abstract bool IsCase1 { get; }
+
+		public abstract bool IsCase2 { get; }
+
+		public abstract bool IsCase3 { get; }
+
+		public abstract TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector);
 
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action);
+
+		public abstract bool Equals(OneOf<T1, T2, T3> other);
+
+		/// <summary>Determines whether the specified object is equal to the current object.</summary>
+		/// <param name="obj">The object to compare with the current object. </param>
+		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			if (ReferenceEquals(this, obj)) return true;
+			return obj is OneOf<T1, T2, T3> && Equals((OneOf<T1, T2, T3>)obj);
+		}
+
+		public override int GetHashCode()
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Equality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> equals to <paramref name="right"/></returns>
+		public static bool operator ==(OneOf<T1, T2, T3> left, OneOf<T1, T2, T3> right) => Equals(left, right);
+
+		/// <summary>
+		/// Unequality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> not equals to <paramref name="right"/></returns>
+		public static bool operator !=(OneOf<T1, T2, T3> left, OneOf<T1, T2, T3> right) => !Equals(left, right);
 
 		private sealed class Case1 : OneOf<T1, T2, T3>
 		{
@@ -66,12 +203,37 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func) => case1Func(_value);
+			public override bool IsCase1 => true;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector) => case1Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action) => case1Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3> other) => Equals(other as Case1);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3> Create(T1 value) => new Case1(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3}"/> for value of type <typeparamref name="T1"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3}"/>.</returns>
+		public static OneOf<T1, T2, T3> Create([NotNull] T1 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case1(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3}"/> for value of type <typeparamref name="T1"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3>(T1 value) => Create(value);
 
 		private sealed class Case2 : OneOf<T1, T2, T3>
 		{
@@ -82,12 +244,37 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func) => case2Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => true;
+			public override bool IsCase3 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector) => case2Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action) => case2Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3> other) => Equals(other as Case2);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3> Create(T2 value) => new Case2(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3}"/> for value of type <typeparamref name="T2"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3}"/>.</returns>
+		public static OneOf<T1, T2, T3> Create([NotNull] T2 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case2(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3}"/> for value of type <typeparamref name="T2"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3>(T2 value) => Create(value);
 
 		private sealed class Case3 : OneOf<T1, T2, T3>
 		{
@@ -98,20 +285,93 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func) => case3Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => true;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector) => case3Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action) => case3Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3> other) => Equals(other as Case3);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3> Create(T3 value) => new Case3(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3}"/> for value of type <typeparamref name="T3"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3}"/>.</returns>
+		public static OneOf<T1, T2, T3> Create([NotNull] T3 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case3(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3}"/> for value of type <typeparamref name="T3"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3>(T3 value) => Create(value);
 
 	}
 
-	public abstract class OneOf<T1, T2, T3, T4>
+	/// <summary>
+	/// Tagged union for 4 types.
+	/// </summary>
+	/// <typeparam name="T1">Type of case 1</typeparam>
+	/// <typeparam name="T2">Type of case 2</typeparam>
+	/// <typeparam name="T3">Type of case 3</typeparam>
+	/// <typeparam name="T4">Type of case 4</typeparam>
+	public abstract class OneOf<T1, T2, T3, T4> : IOneOf<T1, T2, T3, T4>, IEquatable<OneOf<T1, T2, T3, T4>>
 	{
-		public abstract TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func);
+		public abstract bool IsCase1 { get; }
+
+		public abstract bool IsCase2 { get; }
+
+		public abstract bool IsCase3 { get; }
+
+		public abstract bool IsCase4 { get; }
+
+		public abstract TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector);
 
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action);
+
+		public abstract bool Equals(OneOf<T1, T2, T3, T4> other);
+
+		/// <summary>Determines whether the specified object is equal to the current object.</summary>
+		/// <param name="obj">The object to compare with the current object. </param>
+		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			if (ReferenceEquals(this, obj)) return true;
+			return obj is OneOf<T1, T2, T3, T4> && Equals((OneOf<T1, T2, T3, T4>)obj);
+		}
+
+		public override int GetHashCode()
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Equality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> equals to <paramref name="right"/></returns>
+		public static bool operator ==(OneOf<T1, T2, T3, T4> left, OneOf<T1, T2, T3, T4> right) => Equals(left, right);
+
+		/// <summary>
+		/// Unequality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> not equals to <paramref name="right"/></returns>
+		public static bool operator !=(OneOf<T1, T2, T3, T4> left, OneOf<T1, T2, T3, T4> right) => !Equals(left, right);
 
 		private sealed class Case1 : OneOf<T1, T2, T3, T4>
 		{
@@ -122,12 +382,38 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func) => case1Func(_value);
+			public override bool IsCase1 => true;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector) => case1Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action) => case1Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4> other) => Equals(other as Case1);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4> Create(T1 value) => new Case1(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T1"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4> Create([NotNull] T1 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case1(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T1"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4>(T1 value) => Create(value);
 
 		private sealed class Case2 : OneOf<T1, T2, T3, T4>
 		{
@@ -138,12 +424,38 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func) => case2Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => true;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector) => case2Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action) => case2Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4> other) => Equals(other as Case2);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4> Create(T2 value) => new Case2(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T2"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4> Create([NotNull] T2 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case2(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T2"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4>(T2 value) => Create(value);
 
 		private sealed class Case3 : OneOf<T1, T2, T3, T4>
 		{
@@ -154,12 +466,38 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func) => case3Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => true;
+			public override bool IsCase4 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector) => case3Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action) => case3Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4> other) => Equals(other as Case3);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4> Create(T3 value) => new Case3(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T3"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4> Create([NotNull] T3 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case3(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T3"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4>(T3 value) => Create(value);
 
 		private sealed class Case4 : OneOf<T1, T2, T3, T4>
 		{
@@ -170,20 +508,97 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func) => case4Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => true;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector) => case4Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action) => case4Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4> other) => Equals(other as Case4);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4> Create(T4 value) => new Case4(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T4"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4> Create([NotNull] T4 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case4(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T4"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4>(T4 value) => Create(value);
 
 	}
 
-	public abstract class OneOf<T1, T2, T3, T4, T5>
+	/// <summary>
+	/// Tagged union for 5 types.
+	/// </summary>
+	/// <typeparam name="T1">Type of case 1</typeparam>
+	/// <typeparam name="T2">Type of case 2</typeparam>
+	/// <typeparam name="T3">Type of case 3</typeparam>
+	/// <typeparam name="T4">Type of case 4</typeparam>
+	/// <typeparam name="T5">Type of case 5</typeparam>
+	public abstract class OneOf<T1, T2, T3, T4, T5> : IOneOf<T1, T2, T3, T4, T5>, IEquatable<OneOf<T1, T2, T3, T4, T5>>
 	{
-		public abstract TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func);
+		public abstract bool IsCase1 { get; }
+
+		public abstract bool IsCase2 { get; }
+
+		public abstract bool IsCase3 { get; }
+
+		public abstract bool IsCase4 { get; }
+
+		public abstract bool IsCase5 { get; }
+
+		public abstract TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector);
 
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action);
+
+		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5> other);
+
+		/// <summary>Determines whether the specified object is equal to the current object.</summary>
+		/// <param name="obj">The object to compare with the current object. </param>
+		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			if (ReferenceEquals(this, obj)) return true;
+			return obj is OneOf<T1, T2, T3, T4, T5> && Equals((OneOf<T1, T2, T3, T4, T5>)obj);
+		}
+
+		public override int GetHashCode()
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Equality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> equals to <paramref name="right"/></returns>
+		public static bool operator ==(OneOf<T1, T2, T3, T4, T5> left, OneOf<T1, T2, T3, T4, T5> right) => Equals(left, right);
+
+		/// <summary>
+		/// Unequality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> not equals to <paramref name="right"/></returns>
+		public static bool operator !=(OneOf<T1, T2, T3, T4, T5> left, OneOf<T1, T2, T3, T4, T5> right) => !Equals(left, right);
 
 		private sealed class Case1 : OneOf<T1, T2, T3, T4, T5>
 		{
@@ -194,12 +609,39 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func) => case1Func(_value);
+			public override bool IsCase1 => true;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector) => case1Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action) => case1Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5> other) => Equals(other as Case1);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5> Create(T1 value) => new Case1(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T1"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5> Create([NotNull] T1 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case1(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T1"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5>(T1 value) => Create(value);
 
 		private sealed class Case2 : OneOf<T1, T2, T3, T4, T5>
 		{
@@ -210,12 +652,39 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func) => case2Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => true;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector) => case2Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action) => case2Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5> other) => Equals(other as Case2);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5> Create(T2 value) => new Case2(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T2"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5> Create([NotNull] T2 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case2(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T2"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5>(T2 value) => Create(value);
 
 		private sealed class Case3 : OneOf<T1, T2, T3, T4, T5>
 		{
@@ -226,12 +695,39 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func) => case3Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => true;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector) => case3Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action) => case3Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5> other) => Equals(other as Case3);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5> Create(T3 value) => new Case3(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T3"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5> Create([NotNull] T3 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case3(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T3"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5>(T3 value) => Create(value);
 
 		private sealed class Case4 : OneOf<T1, T2, T3, T4, T5>
 		{
@@ -242,12 +738,39 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func) => case4Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => true;
+			public override bool IsCase5 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector) => case4Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action) => case4Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5> other) => Equals(other as Case4);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5> Create(T4 value) => new Case4(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T4"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5> Create([NotNull] T4 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case4(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T4"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5>(T4 value) => Create(value);
 
 		private sealed class Case5 : OneOf<T1, T2, T3, T4, T5>
 		{
@@ -258,20 +781,101 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func) => case5Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => true;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector) => case5Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action) => case5Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5> other) => Equals(other as Case5);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5> Create(T5 value) => new Case5(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T5"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T5"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5> Create([NotNull] T5 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case5(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T5"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5>(T5 value) => Create(value);
 
 	}
 
-	public abstract class OneOf<T1, T2, T3, T4, T5, T6>
+	/// <summary>
+	/// Tagged union for 6 types.
+	/// </summary>
+	/// <typeparam name="T1">Type of case 1</typeparam>
+	/// <typeparam name="T2">Type of case 2</typeparam>
+	/// <typeparam name="T3">Type of case 3</typeparam>
+	/// <typeparam name="T4">Type of case 4</typeparam>
+	/// <typeparam name="T5">Type of case 5</typeparam>
+	/// <typeparam name="T6">Type of case 6</typeparam>
+	public abstract class OneOf<T1, T2, T3, T4, T5, T6> : IOneOf<T1, T2, T3, T4, T5, T6>, IEquatable<OneOf<T1, T2, T3, T4, T5, T6>>
 	{
-		public abstract TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func);
+		public abstract bool IsCase1 { get; }
+
+		public abstract bool IsCase2 { get; }
+
+		public abstract bool IsCase3 { get; }
+
+		public abstract bool IsCase4 { get; }
+
+		public abstract bool IsCase5 { get; }
+
+		public abstract bool IsCase6 { get; }
+
+		public abstract TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector);
 
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action);
+
+		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other);
+
+		/// <summary>Determines whether the specified object is equal to the current object.</summary>
+		/// <param name="obj">The object to compare with the current object. </param>
+		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			if (ReferenceEquals(this, obj)) return true;
+			return obj is OneOf<T1, T2, T3, T4, T5, T6> && Equals((OneOf<T1, T2, T3, T4, T5, T6>)obj);
+		}
+
+		public override int GetHashCode()
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Equality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> equals to <paramref name="right"/></returns>
+		public static bool operator ==(OneOf<T1, T2, T3, T4, T5, T6> left, OneOf<T1, T2, T3, T4, T5, T6> right) => Equals(left, right);
+
+		/// <summary>
+		/// Unequality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> not equals to <paramref name="right"/></returns>
+		public static bool operator !=(OneOf<T1, T2, T3, T4, T5, T6> left, OneOf<T1, T2, T3, T4, T5, T6> right) => !Equals(left, right);
 
 		private sealed class Case1 : OneOf<T1, T2, T3, T4, T5, T6>
 		{
@@ -282,12 +886,40 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func) => case1Func(_value);
+			public override bool IsCase1 => true;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector) => case1Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case1Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case1);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6> Create(T1 value) => new Case1(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T1"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T1 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case1(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T1"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6>(T1 value) => Create(value);
 
 		private sealed class Case2 : OneOf<T1, T2, T3, T4, T5, T6>
 		{
@@ -298,12 +930,40 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func) => case2Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => true;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector) => case2Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case2Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case2);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6> Create(T2 value) => new Case2(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T2"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T2 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case2(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T2"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6>(T2 value) => Create(value);
 
 		private sealed class Case3 : OneOf<T1, T2, T3, T4, T5, T6>
 		{
@@ -314,12 +974,40 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func) => case3Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => true;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector) => case3Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case3Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case3);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6> Create(T3 value) => new Case3(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T3"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T3 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case3(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T3"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6>(T3 value) => Create(value);
 
 		private sealed class Case4 : OneOf<T1, T2, T3, T4, T5, T6>
 		{
@@ -330,12 +1018,40 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func) => case4Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => true;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector) => case4Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case4Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case4);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6> Create(T4 value) => new Case4(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T4"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T4 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case4(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T4"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6>(T4 value) => Create(value);
 
 		private sealed class Case5 : OneOf<T1, T2, T3, T4, T5, T6>
 		{
@@ -346,12 +1062,40 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func) => case5Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => true;
+			public override bool IsCase6 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector) => case5Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case5Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case5);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6> Create(T5 value) => new Case5(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T5"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T5"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T5 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case5(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T5"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6>(T5 value) => Create(value);
 
 		private sealed class Case6 : OneOf<T1, T2, T3, T4, T5, T6>
 		{
@@ -362,20 +1106,105 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func) => case6Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => true;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector) => case6Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case6Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case6);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6> Create(T6 value) => new Case6(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T6"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T6"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T6 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case6(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T6"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6>(T6 value) => Create(value);
 
 	}
 
-	public abstract class OneOf<T1, T2, T3, T4, T5, T6, T7>
+	/// <summary>
+	/// Tagged union for 7 types.
+	/// </summary>
+	/// <typeparam name="T1">Type of case 1</typeparam>
+	/// <typeparam name="T2">Type of case 2</typeparam>
+	/// <typeparam name="T3">Type of case 3</typeparam>
+	/// <typeparam name="T4">Type of case 4</typeparam>
+	/// <typeparam name="T5">Type of case 5</typeparam>
+	/// <typeparam name="T6">Type of case 6</typeparam>
+	/// <typeparam name="T7">Type of case 7</typeparam>
+	public abstract class OneOf<T1, T2, T3, T4, T5, T6, T7> : IOneOf<T1, T2, T3, T4, T5, T6, T7>, IEquatable<OneOf<T1, T2, T3, T4, T5, T6, T7>>
 	{
-		public abstract TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func);
+		public abstract bool IsCase1 { get; }
+
+		public abstract bool IsCase2 { get; }
+
+		public abstract bool IsCase3 { get; }
+
+		public abstract bool IsCase4 { get; }
+
+		public abstract bool IsCase5 { get; }
+
+		public abstract bool IsCase6 { get; }
+
+		public abstract bool IsCase7 { get; }
+
+		public abstract TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector);
 
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action);
+
+		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other);
+
+		/// <summary>Determines whether the specified object is equal to the current object.</summary>
+		/// <param name="obj">The object to compare with the current object. </param>
+		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			if (ReferenceEquals(this, obj)) return true;
+			return obj is OneOf<T1, T2, T3, T4, T5, T6, T7> && Equals((OneOf<T1, T2, T3, T4, T5, T6, T7>)obj);
+		}
+
+		public override int GetHashCode()
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Equality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> equals to <paramref name="right"/></returns>
+		public static bool operator ==(OneOf<T1, T2, T3, T4, T5, T6, T7> left, OneOf<T1, T2, T3, T4, T5, T6, T7> right) => Equals(left, right);
+
+		/// <summary>
+		/// Unequality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> not equals to <paramref name="right"/></returns>
+		public static bool operator !=(OneOf<T1, T2, T3, T4, T5, T6, T7> left, OneOf<T1, T2, T3, T4, T5, T6, T7> right) => !Equals(left, right);
 
 		private sealed class Case1 : OneOf<T1, T2, T3, T4, T5, T6, T7>
 		{
@@ -386,12 +1215,41 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func) => case1Func(_value);
+			public override bool IsCase1 => true;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => false;
+			public override bool IsCase7 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector) => case1Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case1Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case1);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T1 value) => new Case1(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T1"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T1 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case1(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T1"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7>(T1 value) => Create(value);
 
 		private sealed class Case2 : OneOf<T1, T2, T3, T4, T5, T6, T7>
 		{
@@ -402,12 +1260,41 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func) => case2Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => true;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => false;
+			public override bool IsCase7 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector) => case2Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case2Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case2);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T2 value) => new Case2(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T2"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T2 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case2(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T2"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7>(T2 value) => Create(value);
 
 		private sealed class Case3 : OneOf<T1, T2, T3, T4, T5, T6, T7>
 		{
@@ -418,12 +1305,41 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func) => case3Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => true;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => false;
+			public override bool IsCase7 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector) => case3Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case3Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case3);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T3 value) => new Case3(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T3"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T3 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case3(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T3"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7>(T3 value) => Create(value);
 
 		private sealed class Case4 : OneOf<T1, T2, T3, T4, T5, T6, T7>
 		{
@@ -434,12 +1350,41 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func) => case4Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => true;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => false;
+			public override bool IsCase7 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector) => case4Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case4Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case4);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T4 value) => new Case4(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T4"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T4 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case4(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T4"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7>(T4 value) => Create(value);
 
 		private sealed class Case5 : OneOf<T1, T2, T3, T4, T5, T6, T7>
 		{
@@ -450,12 +1395,41 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func) => case5Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => true;
+			public override bool IsCase6 => false;
+			public override bool IsCase7 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector) => case5Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case5Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case5);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T5 value) => new Case5(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T5"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T5"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T5 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case5(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T5"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7>(T5 value) => Create(value);
 
 		private sealed class Case6 : OneOf<T1, T2, T3, T4, T5, T6, T7>
 		{
@@ -466,12 +1440,41 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func) => case6Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => true;
+			public override bool IsCase7 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector) => case6Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case6Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case6);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T6 value) => new Case6(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T6"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T6"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T6 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case6(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T6"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7>(T6 value) => Create(value);
 
 		private sealed class Case7 : OneOf<T1, T2, T3, T4, T5, T6, T7>
 		{
@@ -482,20 +1485,109 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func) => case7Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => false;
+			public override bool IsCase7 => true;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector) => case7Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case7Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case7);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T7 value) => new Case7(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T7"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T7"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T7 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case7(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T7"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7>(T7 value) => Create(value);
 
 	}
 
-	public abstract class OneOf<T1, T2, T3, T4, T5, T6, T7, T8>
+	/// <summary>
+	/// Tagged union for 8 types.
+	/// </summary>
+	/// <typeparam name="T1">Type of case 1</typeparam>
+	/// <typeparam name="T2">Type of case 2</typeparam>
+	/// <typeparam name="T3">Type of case 3</typeparam>
+	/// <typeparam name="T4">Type of case 4</typeparam>
+	/// <typeparam name="T5">Type of case 5</typeparam>
+	/// <typeparam name="T6">Type of case 6</typeparam>
+	/// <typeparam name="T7">Type of case 7</typeparam>
+	/// <typeparam name="T8">Type of case 8</typeparam>
+	public abstract class OneOf<T1, T2, T3, T4, T5, T6, T7, T8> : IOneOf<T1, T2, T3, T4, T5, T6, T7, T8>, IEquatable<OneOf<T1, T2, T3, T4, T5, T6, T7, T8>>
 	{
-		public abstract TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func, Func<T8, TResult> case8Func);
+		public abstract bool IsCase1 { get; }
+
+		public abstract bool IsCase2 { get; }
+
+		public abstract bool IsCase3 { get; }
+
+		public abstract bool IsCase4 { get; }
+
+		public abstract bool IsCase5 { get; }
+
+		public abstract bool IsCase6 { get; }
+
+		public abstract bool IsCase7 { get; }
+
+		public abstract bool IsCase8 { get; }
+
+		public abstract TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector, Func<T8, TResult> case8Selector);
 
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action);
+
+		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other);
+
+		/// <summary>Determines whether the specified object is equal to the current object.</summary>
+		/// <param name="obj">The object to compare with the current object. </param>
+		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			if (ReferenceEquals(this, obj)) return true;
+			return obj is OneOf<T1, T2, T3, T4, T5, T6, T7, T8> && Equals((OneOf<T1, T2, T3, T4, T5, T6, T7, T8>)obj);
+		}
+
+		public override int GetHashCode()
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Equality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> equals to <paramref name="right"/></returns>
+		public static bool operator ==(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> left, OneOf<T1, T2, T3, T4, T5, T6, T7, T8> right) => Equals(left, right);
+
+		/// <summary>
+		/// Unequality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> not equals to <paramref name="right"/></returns>
+		public static bool operator !=(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> left, OneOf<T1, T2, T3, T4, T5, T6, T7, T8> right) => !Equals(left, right);
 
 		private sealed class Case1 : OneOf<T1, T2, T3, T4, T5, T6, T7, T8>
 		{
@@ -506,12 +1598,42 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func, Func<T8, TResult> case8Func) => case1Func(_value);
+			public override bool IsCase1 => true;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => false;
+			public override bool IsCase7 => false;
+			public override bool IsCase8 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector, Func<T8, TResult> case8Selector) => case1Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case1Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case1);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T1 value) => new Case1(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T1"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T1 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case1(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T1"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T1 value) => Create(value);
 
 		private sealed class Case2 : OneOf<T1, T2, T3, T4, T5, T6, T7, T8>
 		{
@@ -522,12 +1644,42 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func, Func<T8, TResult> case8Func) => case2Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => true;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => false;
+			public override bool IsCase7 => false;
+			public override bool IsCase8 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector, Func<T8, TResult> case8Selector) => case2Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case2Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case2);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T2 value) => new Case2(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T2"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T2 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case2(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T2"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T2 value) => Create(value);
 
 		private sealed class Case3 : OneOf<T1, T2, T3, T4, T5, T6, T7, T8>
 		{
@@ -538,12 +1690,42 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func, Func<T8, TResult> case8Func) => case3Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => true;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => false;
+			public override bool IsCase7 => false;
+			public override bool IsCase8 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector, Func<T8, TResult> case8Selector) => case3Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case3Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case3);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T3 value) => new Case3(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T3"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T3 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case3(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T3"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T3 value) => Create(value);
 
 		private sealed class Case4 : OneOf<T1, T2, T3, T4, T5, T6, T7, T8>
 		{
@@ -554,12 +1736,42 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func, Func<T8, TResult> case8Func) => case4Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => true;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => false;
+			public override bool IsCase7 => false;
+			public override bool IsCase8 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector, Func<T8, TResult> case8Selector) => case4Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case4Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case4);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T4 value) => new Case4(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T4"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T4 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case4(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T4"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T4 value) => Create(value);
 
 		private sealed class Case5 : OneOf<T1, T2, T3, T4, T5, T6, T7, T8>
 		{
@@ -570,12 +1782,42 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func, Func<T8, TResult> case8Func) => case5Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => true;
+			public override bool IsCase6 => false;
+			public override bool IsCase7 => false;
+			public override bool IsCase8 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector, Func<T8, TResult> case8Selector) => case5Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case5Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case5);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T5 value) => new Case5(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T5"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T5"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T5 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case5(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T5"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T5 value) => Create(value);
 
 		private sealed class Case6 : OneOf<T1, T2, T3, T4, T5, T6, T7, T8>
 		{
@@ -586,12 +1828,42 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func, Func<T8, TResult> case8Func) => case6Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => true;
+			public override bool IsCase7 => false;
+			public override bool IsCase8 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector, Func<T8, TResult> case8Selector) => case6Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case6Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case6);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T6 value) => new Case6(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T6"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T6"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T6 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case6(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T6"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T6 value) => Create(value);
 
 		private sealed class Case7 : OneOf<T1, T2, T3, T4, T5, T6, T7, T8>
 		{
@@ -602,12 +1874,42 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func, Func<T8, TResult> case8Func) => case7Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => false;
+			public override bool IsCase7 => true;
+			public override bool IsCase8 => false;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector, Func<T8, TResult> case8Selector) => case7Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case7Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case7);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T7 value) => new Case7(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T7"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T7"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T7 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case7(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T7"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T7 value) => Create(value);
 
 		private sealed class Case8 : OneOf<T1, T2, T3, T4, T5, T6, T7, T8>
 		{
@@ -618,12 +1920,42 @@ namespace CodeJam
 				_value = value;
 			}
 
-			public override TResult Match<TResult>(Func<T1, TResult> case1Func, Func<T2, TResult> case2Func, Func<T3, TResult> case3Func, Func<T4, TResult> case4Func, Func<T5, TResult> case5Func, Func<T6, TResult> case6Func, Func<T7, TResult> case7Func, Func<T8, TResult> case8Func) => case8Func(_value);
+			public override bool IsCase1 => false;
+			public override bool IsCase2 => false;
+			public override bool IsCase3 => false;
+			public override bool IsCase4 => false;
+			public override bool IsCase5 => false;
+			public override bool IsCase6 => false;
+			public override bool IsCase7 => false;
+			public override bool IsCase8 => true;
+
+			public override TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector, Func<T8, TResult> case8Selector) => case8Selector(_value);
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case8Action(_value);
+
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case8);
+
+			public override int GetHashCode() => _value.GetHashCode();
 		}
 
-		public OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T8 value) => new Case8(value);
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T8"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T8"/> to create instance from.</param>
+		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T8 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new Case8(value);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T8"/>.</returns>
+		public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T8 value) => Create(value);
 
 	}
 
