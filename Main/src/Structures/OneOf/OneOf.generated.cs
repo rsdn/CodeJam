@@ -20,19 +20,22 @@ namespace CodeJam
 	/// <typeparam name="T2">Type of case 2</typeparam>
 	public abstract class OneOf<T1, T2> : IOneOf<T1, T2>, IEquatable<OneOf<T1, T2>>
 	{
+		/// <inheritdoc />
 		public abstract bool IsCase1 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase2 { get; }
 
+		/// <inheritdoc />
 		public abstract TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector);
 
+		/// <inheritdoc />
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action);
 
+		/// <inheritdoc />
 		public abstract bool Equals(OneOf<T1, T2> other);
 
-		/// <summary>Determines whether the specified object is equal to the current object.</summary>
-		/// <param name="obj">The object to compare with the current object. </param>
-		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
@@ -40,6 +43,7 @@ namespace CodeJam
 			return obj is OneOf<T1, T2> && Equals((OneOf<T1, T2>)obj);
 		}
 
+		/// <inheritdoc />
 		public override int GetHashCode()
 		{
 			throw new NotImplementedException();
@@ -151,21 +155,25 @@ namespace CodeJam
 	/// <typeparam name="T3">Type of case 3</typeparam>
 	public abstract class OneOf<T1, T2, T3> : IOneOf<T1, T2, T3>, IEquatable<OneOf<T1, T2, T3>>
 	{
+		/// <inheritdoc />
 		public abstract bool IsCase1 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase2 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase3 { get; }
 
+		/// <inheritdoc />
 		public abstract TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector);
 
+		/// <inheritdoc />
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action);
 
+		/// <inheritdoc />
 		public abstract bool Equals(OneOf<T1, T2, T3> other);
 
-		/// <summary>Determines whether the specified object is equal to the current object.</summary>
-		/// <param name="obj">The object to compare with the current object. </param>
-		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
@@ -173,6 +181,7 @@ namespace CodeJam
 			return obj is OneOf<T1, T2, T3> && Equals((OneOf<T1, T2, T3>)obj);
 		}
 
+		/// <inheritdoc />
 		public override int GetHashCode()
 		{
 			throw new NotImplementedException();
@@ -328,23 +337,28 @@ namespace CodeJam
 	/// <typeparam name="T4">Type of case 4</typeparam>
 	public abstract class OneOf<T1, T2, T3, T4> : IOneOf<T1, T2, T3, T4>, IEquatable<OneOf<T1, T2, T3, T4>>
 	{
+		/// <inheritdoc />
 		public abstract bool IsCase1 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase2 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase3 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase4 { get; }
 
+		/// <inheritdoc />
 		public abstract TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector);
 
+		/// <inheritdoc />
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action);
 
+		/// <inheritdoc />
 		public abstract bool Equals(OneOf<T1, T2, T3, T4> other);
 
-		/// <summary>Determines whether the specified object is equal to the current object.</summary>
-		/// <param name="obj">The object to compare with the current object. </param>
-		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
@@ -352,6 +366,7 @@ namespace CodeJam
 			return obj is OneOf<T1, T2, T3, T4> && Equals((OneOf<T1, T2, T3, T4>)obj);
 		}
 
+		/// <inheritdoc />
 		public override int GetHashCode()
 		{
 			throw new NotImplementedException();
@@ -553,25 +568,31 @@ namespace CodeJam
 	/// <typeparam name="T5">Type of case 5</typeparam>
 	public abstract class OneOf<T1, T2, T3, T4, T5> : IOneOf<T1, T2, T3, T4, T5>, IEquatable<OneOf<T1, T2, T3, T4, T5>>
 	{
+		/// <inheritdoc />
 		public abstract bool IsCase1 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase2 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase3 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase4 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase5 { get; }
 
+		/// <inheritdoc />
 		public abstract TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector);
 
+		/// <inheritdoc />
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action);
 
+		/// <inheritdoc />
 		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5> other);
 
-		/// <summary>Determines whether the specified object is equal to the current object.</summary>
-		/// <param name="obj">The object to compare with the current object. </param>
-		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
@@ -579,6 +600,7 @@ namespace CodeJam
 			return obj is OneOf<T1, T2, T3, T4, T5> && Equals((OneOf<T1, T2, T3, T4, T5>)obj);
 		}
 
+		/// <inheritdoc />
 		public override int GetHashCode()
 		{
 			throw new NotImplementedException();
@@ -828,27 +850,34 @@ namespace CodeJam
 	/// <typeparam name="T6">Type of case 6</typeparam>
 	public abstract class OneOf<T1, T2, T3, T4, T5, T6> : IOneOf<T1, T2, T3, T4, T5, T6>, IEquatable<OneOf<T1, T2, T3, T4, T5, T6>>
 	{
+		/// <inheritdoc />
 		public abstract bool IsCase1 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase2 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase3 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase4 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase5 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase6 { get; }
 
+		/// <inheritdoc />
 		public abstract TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector);
 
+		/// <inheritdoc />
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action);
 
+		/// <inheritdoc />
 		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other);
 
-		/// <summary>Determines whether the specified object is equal to the current object.</summary>
-		/// <param name="obj">The object to compare with the current object. </param>
-		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
@@ -856,6 +885,7 @@ namespace CodeJam
 			return obj is OneOf<T1, T2, T3, T4, T5, T6> && Equals((OneOf<T1, T2, T3, T4, T5, T6>)obj);
 		}
 
+		/// <inheritdoc />
 		public override int GetHashCode()
 		{
 			throw new NotImplementedException();
@@ -1155,29 +1185,37 @@ namespace CodeJam
 	/// <typeparam name="T7">Type of case 7</typeparam>
 	public abstract class OneOf<T1, T2, T3, T4, T5, T6, T7> : IOneOf<T1, T2, T3, T4, T5, T6, T7>, IEquatable<OneOf<T1, T2, T3, T4, T5, T6, T7>>
 	{
+		/// <inheritdoc />
 		public abstract bool IsCase1 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase2 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase3 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase4 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase5 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase6 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase7 { get; }
 
+		/// <inheritdoc />
 		public abstract TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector);
 
+		/// <inheritdoc />
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action);
 
+		/// <inheritdoc />
 		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other);
 
-		/// <summary>Determines whether the specified object is equal to the current object.</summary>
-		/// <param name="obj">The object to compare with the current object. </param>
-		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
@@ -1185,6 +1223,7 @@ namespace CodeJam
 			return obj is OneOf<T1, T2, T3, T4, T5, T6, T7> && Equals((OneOf<T1, T2, T3, T4, T5, T6, T7>)obj);
 		}
 
+		/// <inheritdoc />
 		public override int GetHashCode()
 		{
 			throw new NotImplementedException();
@@ -1536,31 +1575,40 @@ namespace CodeJam
 	/// <typeparam name="T8">Type of case 8</typeparam>
 	public abstract class OneOf<T1, T2, T3, T4, T5, T6, T7, T8> : IOneOf<T1, T2, T3, T4, T5, T6, T7, T8>, IEquatable<OneOf<T1, T2, T3, T4, T5, T6, T7, T8>>
 	{
+		/// <inheritdoc />
 		public abstract bool IsCase1 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase2 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase3 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase4 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase5 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase6 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase7 { get; }
 
+		/// <inheritdoc />
 		public abstract bool IsCase8 { get; }
 
+		/// <inheritdoc />
 		public abstract TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector, Func<T8, TResult> case8Selector);
 
+		/// <inheritdoc />
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action);
 
+		/// <inheritdoc />
 		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other);
 
-		/// <summary>Determines whether the specified object is equal to the current object.</summary>
-		/// <param name="obj">The object to compare with the current object. </param>
-		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
@@ -1568,6 +1616,7 @@ namespace CodeJam
 			return obj is OneOf<T1, T2, T3, T4, T5, T6, T7, T8> && Equals((OneOf<T1, T2, T3, T4, T5, T6, T7, T8>)obj);
 		}
 
+		/// <inheritdoc />
 		public override int GetHashCode()
 		{
 			throw new NotImplementedException();

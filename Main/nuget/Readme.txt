@@ -1,11 +1,16 @@
 CodeJam 1.2.0-beta4 Release Notes
--------------------------------
+---------------------------------
+
+What's new in 1.3.0-beta1
+-------------------------
+* OneOf<> and ValueOneOf<> types for tagged (discriminated, joint) unions
+* Code cleanup
 
 What's new in 1.2.0-beta4
 -------------------------
 * Suffix tree moved from Experimental to Main part
 * Doc comment fixes
-* Refactorung, fixes and code cleanup
+* Refactoring, fixes and code cleanup
 
 What's new in 1.2.0-beta3
 -------------------------

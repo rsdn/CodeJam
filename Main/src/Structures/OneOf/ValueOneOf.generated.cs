@@ -35,6 +35,7 @@ namespace CodeJam
 			Case2,
 		}
 
+		/// <inheritdoc />
 		public bool IsCase1 => _curCase == Cases.Case1;
 
 		/// <summary>
@@ -56,6 +57,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2}"/> for value of type <typeparamref name="T1"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2>(T1 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase2 => _curCase == Cases.Case2;
 
 		/// <summary>
@@ -78,6 +80,7 @@ namespace CodeJam
 		public static implicit operator ValueOneOf<T1, T2>(T2 value) => Create(value);
 
 
+		/// <inheritdoc />
 		public TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector)
 		{
 			switch (_curCase)
@@ -88,6 +91,7 @@ namespace CodeJam
 			}
 		}
 
+		/// <inheritdoc />
 		public void Do(Action<T1> case1Action, Action<T2> case2Action)
 		{
 			Code.NotNull(case1Action, nameof (case1Action));
@@ -100,11 +104,13 @@ namespace CodeJam
 			}
 		}
 
+		/// <inheritdoc />
 		public bool Equals(ValueOneOf<T1, T2> other)
 		{
 			return Equals(_value, other._value);
 		}
 
+		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
@@ -133,6 +139,7 @@ namespace CodeJam
 			return !left.Equals(right);
 		}
 
+		/// <inheritdoc />
 		public override int GetHashCode() => _value.GetHashCode();
 	}
 
@@ -160,6 +167,7 @@ namespace CodeJam
 			Case3,
 		}
 
+		/// <inheritdoc />
 		public bool IsCase1 => _curCase == Cases.Case1;
 
 		/// <summary>
@@ -181,6 +189,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3}"/> for value of type <typeparamref name="T1"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3>(T1 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase2 => _curCase == Cases.Case2;
 
 		/// <summary>
@@ -202,6 +211,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3}"/> for value of type <typeparamref name="T2"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3>(T2 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase3 => _curCase == Cases.Case3;
 
 		/// <summary>
@@ -224,6 +234,7 @@ namespace CodeJam
 		public static implicit operator ValueOneOf<T1, T2, T3>(T3 value) => Create(value);
 
 
+		/// <inheritdoc />
 		public TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector)
 		{
 			switch (_curCase)
@@ -235,6 +246,7 @@ namespace CodeJam
 			}
 		}
 
+		/// <inheritdoc />
 		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action)
 		{
 			Code.NotNull(case1Action, nameof (case1Action));
@@ -249,11 +261,13 @@ namespace CodeJam
 			}
 		}
 
+		/// <inheritdoc />
 		public bool Equals(ValueOneOf<T1, T2, T3> other)
 		{
 			return Equals(_value, other._value);
 		}
 
+		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
@@ -282,6 +296,7 @@ namespace CodeJam
 			return !left.Equals(right);
 		}
 
+		/// <inheritdoc />
 		public override int GetHashCode() => _value.GetHashCode();
 	}
 
@@ -311,6 +326,7 @@ namespace CodeJam
 			Case4,
 		}
 
+		/// <inheritdoc />
 		public bool IsCase1 => _curCase == Cases.Case1;
 
 		/// <summary>
@@ -332,6 +348,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T1"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4>(T1 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase2 => _curCase == Cases.Case2;
 
 		/// <summary>
@@ -353,6 +370,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T2"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4>(T2 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase3 => _curCase == Cases.Case3;
 
 		/// <summary>
@@ -374,6 +392,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T3"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4>(T3 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase4 => _curCase == Cases.Case4;
 
 		/// <summary>
@@ -396,6 +415,7 @@ namespace CodeJam
 		public static implicit operator ValueOneOf<T1, T2, T3, T4>(T4 value) => Create(value);
 
 
+		/// <inheritdoc />
 		public TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector)
 		{
 			switch (_curCase)
@@ -408,6 +428,7 @@ namespace CodeJam
 			}
 		}
 
+		/// <inheritdoc />
 		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action)
 		{
 			Code.NotNull(case1Action, nameof (case1Action));
@@ -424,11 +445,13 @@ namespace CodeJam
 			}
 		}
 
+		/// <inheritdoc />
 		public bool Equals(ValueOneOf<T1, T2, T3, T4> other)
 		{
 			return Equals(_value, other._value);
 		}
 
+		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
@@ -457,6 +480,7 @@ namespace CodeJam
 			return !left.Equals(right);
 		}
 
+		/// <inheritdoc />
 		public override int GetHashCode() => _value.GetHashCode();
 	}
 
@@ -488,6 +512,7 @@ namespace CodeJam
 			Case5,
 		}
 
+		/// <inheritdoc />
 		public bool IsCase1 => _curCase == Cases.Case1;
 
 		/// <summary>
@@ -509,6 +534,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T1"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5>(T1 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase2 => _curCase == Cases.Case2;
 
 		/// <summary>
@@ -530,6 +556,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T2"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5>(T2 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase3 => _curCase == Cases.Case3;
 
 		/// <summary>
@@ -551,6 +578,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T3"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5>(T3 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase4 => _curCase == Cases.Case4;
 
 		/// <summary>
@@ -572,6 +600,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T4"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5>(T4 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase5 => _curCase == Cases.Case5;
 
 		/// <summary>
@@ -594,6 +623,7 @@ namespace CodeJam
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5>(T5 value) => Create(value);
 
 
+		/// <inheritdoc />
 		public TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector)
 		{
 			switch (_curCase)
@@ -607,6 +637,7 @@ namespace CodeJam
 			}
 		}
 
+		/// <inheritdoc />
 		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action)
 		{
 			Code.NotNull(case1Action, nameof (case1Action));
@@ -625,11 +656,13 @@ namespace CodeJam
 			}
 		}
 
+		/// <inheritdoc />
 		public bool Equals(ValueOneOf<T1, T2, T3, T4, T5> other)
 		{
 			return Equals(_value, other._value);
 		}
 
+		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
@@ -658,6 +691,7 @@ namespace CodeJam
 			return !left.Equals(right);
 		}
 
+		/// <inheritdoc />
 		public override int GetHashCode() => _value.GetHashCode();
 	}
 
@@ -691,6 +725,7 @@ namespace CodeJam
 			Case6,
 		}
 
+		/// <inheritdoc />
 		public bool IsCase1 => _curCase == Cases.Case1;
 
 		/// <summary>
@@ -712,6 +747,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T1"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6>(T1 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase2 => _curCase == Cases.Case2;
 
 		/// <summary>
@@ -733,6 +769,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T2"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6>(T2 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase3 => _curCase == Cases.Case3;
 
 		/// <summary>
@@ -754,6 +791,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T3"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6>(T3 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase4 => _curCase == Cases.Case4;
 
 		/// <summary>
@@ -775,6 +813,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T4"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6>(T4 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase5 => _curCase == Cases.Case5;
 
 		/// <summary>
@@ -796,6 +835,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T5"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6>(T5 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase6 => _curCase == Cases.Case6;
 
 		/// <summary>
@@ -818,6 +858,7 @@ namespace CodeJam
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6>(T6 value) => Create(value);
 
 
+		/// <inheritdoc />
 		public TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector)
 		{
 			switch (_curCase)
@@ -832,6 +873,7 @@ namespace CodeJam
 			}
 		}
 
+		/// <inheritdoc />
 		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action)
 		{
 			Code.NotNull(case1Action, nameof (case1Action));
@@ -852,11 +894,13 @@ namespace CodeJam
 			}
 		}
 
+		/// <inheritdoc />
 		public bool Equals(ValueOneOf<T1, T2, T3, T4, T5, T6> other)
 		{
 			return Equals(_value, other._value);
 		}
 
+		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
@@ -885,6 +929,7 @@ namespace CodeJam
 			return !left.Equals(right);
 		}
 
+		/// <inheritdoc />
 		public override int GetHashCode() => _value.GetHashCode();
 	}
 
@@ -920,6 +965,7 @@ namespace CodeJam
 			Case7,
 		}
 
+		/// <inheritdoc />
 		public bool IsCase1 => _curCase == Cases.Case1;
 
 		/// <summary>
@@ -941,6 +987,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T1"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(T1 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase2 => _curCase == Cases.Case2;
 
 		/// <summary>
@@ -962,6 +1009,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T2"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(T2 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase3 => _curCase == Cases.Case3;
 
 		/// <summary>
@@ -983,6 +1031,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T3"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(T3 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase4 => _curCase == Cases.Case4;
 
 		/// <summary>
@@ -1004,6 +1053,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T4"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(T4 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase5 => _curCase == Cases.Case5;
 
 		/// <summary>
@@ -1025,6 +1075,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T5"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(T5 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase6 => _curCase == Cases.Case6;
 
 		/// <summary>
@@ -1046,6 +1097,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T6"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(T6 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase7 => _curCase == Cases.Case7;
 
 		/// <summary>
@@ -1068,6 +1120,7 @@ namespace CodeJam
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(T7 value) => Create(value);
 
 
+		/// <inheritdoc />
 		public TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector)
 		{
 			switch (_curCase)
@@ -1083,6 +1136,7 @@ namespace CodeJam
 			}
 		}
 
+		/// <inheritdoc />
 		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action)
 		{
 			Code.NotNull(case1Action, nameof (case1Action));
@@ -1105,11 +1159,13 @@ namespace CodeJam
 			}
 		}
 
+		/// <inheritdoc />
 		public bool Equals(ValueOneOf<T1, T2, T3, T4, T5, T6, T7> other)
 		{
 			return Equals(_value, other._value);
 		}
 
+		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
@@ -1138,6 +1194,7 @@ namespace CodeJam
 			return !left.Equals(right);
 		}
 
+		/// <inheritdoc />
 		public override int GetHashCode() => _value.GetHashCode();
 	}
 
@@ -1175,6 +1232,7 @@ namespace CodeJam
 			Case8,
 		}
 
+		/// <inheritdoc />
 		public bool IsCase1 => _curCase == Cases.Case1;
 
 		/// <summary>
@@ -1196,6 +1254,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T1"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T1 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase2 => _curCase == Cases.Case2;
 
 		/// <summary>
@@ -1217,6 +1276,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T2"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T2 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase3 => _curCase == Cases.Case3;
 
 		/// <summary>
@@ -1238,6 +1298,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T3"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T3 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase4 => _curCase == Cases.Case4;
 
 		/// <summary>
@@ -1259,6 +1320,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T4"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T4 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase5 => _curCase == Cases.Case5;
 
 		/// <summary>
@@ -1280,6 +1342,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T5"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T5 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase6 => _curCase == Cases.Case6;
 
 		/// <summary>
@@ -1301,6 +1364,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T6"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T6 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase7 => _curCase == Cases.Case7;
 
 		/// <summary>
@@ -1322,6 +1386,7 @@ namespace CodeJam
 		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T7"/>.</returns>
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T7 value) => Create(value);
 
+		/// <inheritdoc />
 		public bool IsCase8 => _curCase == Cases.Case8;
 
 		/// <summary>
@@ -1344,6 +1409,7 @@ namespace CodeJam
 		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T8 value) => Create(value);
 
 
+		/// <inheritdoc />
 		public TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector, Func<T8, TResult> case8Selector)
 		{
 			switch (_curCase)
@@ -1360,6 +1426,7 @@ namespace CodeJam
 			}
 		}
 
+		/// <inheritdoc />
 		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action)
 		{
 			Code.NotNull(case1Action, nameof (case1Action));
@@ -1384,11 +1451,13 @@ namespace CodeJam
 			}
 		}
 
+		/// <inheritdoc />
 		public bool Equals(ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> other)
 		{
 			return Equals(_value, other._value);
 		}
 
+		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
@@ -1417,6 +1486,7 @@ namespace CodeJam
 			return !left.Equals(right);
 		}
 
+		/// <inheritdoc />
 		public override int GetHashCode() => _value.GetHashCode();
 	}
 
