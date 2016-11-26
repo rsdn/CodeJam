@@ -294,6 +294,11 @@
       <DependentUpon>StringExtensions.CharInfix.tt</DependentUpon>
     </Compile>
     <Compile Include="Structures\ObjectPools\NamespaceDoc.cs" />
+    <Compile Include="Structures\OneOf\IOneOf.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IOneOf.tt</DependentUpon>
+    </Compile>
     <Compile Include="Structures\OneOf\OneOf.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -505,6 +510,10 @@
     <Content Include="Strings\StringExtensions.CharInfix.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>StringExtensions.CharInfix.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Structures\OneOf\IOneOf.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IOneOf.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Structures\OneOf\OneOf.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

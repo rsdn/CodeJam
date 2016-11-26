@@ -124,6 +124,11 @@
     <Compile Include="Expressions\ExprTests.cs" />
     <Compile Include="Reflection\TypeAccessorTests.cs" />
     <Compile Include="Services\ServicesTests.cs" />
+    <Compile Include="Structures\OneOfTests.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OneOfTests.tt</DependentUpon>
+    </Compile>
     <Compile Include="TableData\TableDataTest.cs" />
     <Compile Include="Threading\InterlockedOperationsTests.generated.cs">
       <DependentUpon>InterlockedOperationsTests.tt</DependentUpon>
@@ -164,6 +169,10 @@
     <Content Include="Ranges\RangeTests.WithKey.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RangeTests.WithKey.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Structures\OneOfTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>OneOfTests.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Threading\InterlockedOperationsTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

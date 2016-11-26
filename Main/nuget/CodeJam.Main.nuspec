@@ -10,7 +10,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>CodeJam is a set of handy reusable .NET components that can simplify your daily work and save your time when you copy and paste your favorite helper methods and classes from one project to another.</description>
 		<copyright>RSDN.ru, 2016</copyright>
-		<tags>list string collection threading xml reflection async assertion IO extension algorithms structures utilities mapper suffix-tree csv range</tags>
+		<tags>list string collection data-structure threading xml reflection async assertion IO extension algorithms structures utilities mapper suffix-tree csv range tagged-union discriminated union discriminated-union variant variant-record disjoint-union sum-type</tags>
 		<dependencies>
 			<group targetFramework="net35">
 				<dependency id="TaskParallelLibrary" version="1.0.2856.0" />

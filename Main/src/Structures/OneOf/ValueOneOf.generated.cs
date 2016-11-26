@@ -7,9 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+
+using JetBrains.Annotations;
+
 namespace CodeJam
 {
-	public struct ValueOneOf<T1, T2>
+	/// <summary>
+	/// Value type tagged union for 2 types.
+	/// </summary>
+	/// <typeparam name="T1">Type of case 1</typeparam>
+	/// <typeparam name="T2">Type of case 2</typeparam>
+	public struct ValueOneOf<T1, T2> : IOneOf<T1, T2>, IEquatable<ValueOneOf<T1, T2>>
 	{
 		private Cases _curCase;
 		private object _value;
@@ -26,11 +35,114 @@ namespace CodeJam
 			Case2,
 		}
 
-		private bool IsCase1 => _curCase == Cases.Case1;
-		private bool IsCase2 => _curCase == Cases.Case2;
+		public bool IsCase1 => _curCase == Cases.Case1;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2}"/> for value of type <typeparamref name="T1"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2}"/>.</returns>
+		public static ValueOneOf<T1, T2> Create([NotNull] T1 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2>(value, Cases.Case1);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2}"/> for value of type <typeparamref name="T1"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2>(T1 value) => Create(value);
+
+		public bool IsCase2 => _curCase == Cases.Case2;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2}"/> for value of type <typeparamref name="T2"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2}"/>.</returns>
+		public static ValueOneOf<T1, T2> Create([NotNull] T2 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2>(value, Cases.Case2);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2}"/> for value of type <typeparamref name="T2"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2>(T2 value) => Create(value);
+
+
+		public TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector)
+		{
+			switch (_curCase)
+			{
+				case Cases.Case1 : return case1Selector((T1)_value);
+				case Cases.Case2 : return case2Selector((T2)_value);
+				default: throw CodeExceptions.InvalidOperation("Wrong state");
+			}
+		}
+
+		public void Do(Action<T1> case1Action, Action<T2> case2Action)
+		{
+			Code.NotNull(case1Action, nameof (case1Action));
+			Code.NotNull(case2Action, nameof (case2Action));
+			switch (_curCase)
+			{
+				case Cases.Case1 : case1Action((T1)_value); break;
+				case Cases.Case2 : case2Action((T2)_value); break;
+				default: throw CodeExceptions.InvalidOperation("Wrong state");
+			}
+		}
+
+		public bool Equals(ValueOneOf<T1, T2> other)
+		{
+			return Equals(_value, other._value);
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			return obj is ValueOneOf<T1, T2> && Equals((ValueOneOf<T1, T2>)obj);
+		}
+
+		/// <summary>
+		/// Equality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> equals to <paramref name="right"/></returns>
+		public static bool operator ==(ValueOneOf<T1, T2> left, ValueOneOf<T1, T2> right)
+		{
+			return left.Equals(right);
+		}
+
+		/// <summary>
+		/// Unequality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> not equals to <paramref name="right"/></returns>
+		public static bool operator !=(ValueOneOf<T1, T2> left, ValueOneOf<T1, T2> right)
+		{
+			return !left.Equals(right);
+		}
+
+		public override int GetHashCode() => _value.GetHashCode();
 	}
 
-	public struct ValueOneOf<T1, T2, T3>
+	/// <summary>
+	/// Value type tagged union for 3 types.
+	/// </summary>
+	/// <typeparam name="T1">Type of case 1</typeparam>
+	/// <typeparam name="T2">Type of case 2</typeparam>
+	/// <typeparam name="T3">Type of case 3</typeparam>
+	public struct ValueOneOf<T1, T2, T3> : IOneOf<T1, T2, T3>, IEquatable<ValueOneOf<T1, T2, T3>>
 	{
 		private Cases _curCase;
 		private object _value;
@@ -48,12 +160,139 @@ namespace CodeJam
 			Case3,
 		}
 
-		private bool IsCase1 => _curCase == Cases.Case1;
-		private bool IsCase2 => _curCase == Cases.Case2;
-		private bool IsCase3 => _curCase == Cases.Case3;
+		public bool IsCase1 => _curCase == Cases.Case1;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3}"/> for value of type <typeparamref name="T1"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3> Create([NotNull] T1 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3>(value, Cases.Case1);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3}"/> for value of type <typeparamref name="T1"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3>(T1 value) => Create(value);
+
+		public bool IsCase2 => _curCase == Cases.Case2;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3}"/> for value of type <typeparamref name="T2"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3> Create([NotNull] T2 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3>(value, Cases.Case2);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3}"/> for value of type <typeparamref name="T2"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3>(T2 value) => Create(value);
+
+		public bool IsCase3 => _curCase == Cases.Case3;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3}"/> for value of type <typeparamref name="T3"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3> Create([NotNull] T3 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3>(value, Cases.Case3);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3}"/> for value of type <typeparamref name="T3"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3>(T3 value) => Create(value);
+
+
+		public TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector)
+		{
+			switch (_curCase)
+			{
+				case Cases.Case1 : return case1Selector((T1)_value);
+				case Cases.Case2 : return case2Selector((T2)_value);
+				case Cases.Case3 : return case3Selector((T3)_value);
+				default: throw CodeExceptions.InvalidOperation("Wrong state");
+			}
+		}
+
+		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action)
+		{
+			Code.NotNull(case1Action, nameof (case1Action));
+			Code.NotNull(case2Action, nameof (case2Action));
+			Code.NotNull(case3Action, nameof (case3Action));
+			switch (_curCase)
+			{
+				case Cases.Case1 : case1Action((T1)_value); break;
+				case Cases.Case2 : case2Action((T2)_value); break;
+				case Cases.Case3 : case3Action((T3)_value); break;
+				default: throw CodeExceptions.InvalidOperation("Wrong state");
+			}
+		}
+
+		public bool Equals(ValueOneOf<T1, T2, T3> other)
+		{
+			return Equals(_value, other._value);
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			return obj is ValueOneOf<T1, T2, T3> && Equals((ValueOneOf<T1, T2, T3>)obj);
+		}
+
+		/// <summary>
+		/// Equality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> equals to <paramref name="right"/></returns>
+		public static bool operator ==(ValueOneOf<T1, T2, T3> left, ValueOneOf<T1, T2, T3> right)
+		{
+			return left.Equals(right);
+		}
+
+		/// <summary>
+		/// Unequality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> not equals to <paramref name="right"/></returns>
+		public static bool operator !=(ValueOneOf<T1, T2, T3> left, ValueOneOf<T1, T2, T3> right)
+		{
+			return !left.Equals(right);
+		}
+
+		public override int GetHashCode() => _value.GetHashCode();
 	}
 
-	public struct ValueOneOf<T1, T2, T3, T4>
+	/// <summary>
+	/// Value type tagged union for 4 types.
+	/// </summary>
+	/// <typeparam name="T1">Type of case 1</typeparam>
+	/// <typeparam name="T2">Type of case 2</typeparam>
+	/// <typeparam name="T3">Type of case 3</typeparam>
+	/// <typeparam name="T4">Type of case 4</typeparam>
+	public struct ValueOneOf<T1, T2, T3, T4> : IOneOf<T1, T2, T3, T4>, IEquatable<ValueOneOf<T1, T2, T3, T4>>
 	{
 		private Cases _curCase;
 		private object _value;
@@ -72,13 +311,164 @@ namespace CodeJam
 			Case4,
 		}
 
-		private bool IsCase1 => _curCase == Cases.Case1;
-		private bool IsCase2 => _curCase == Cases.Case2;
-		private bool IsCase3 => _curCase == Cases.Case3;
-		private bool IsCase4 => _curCase == Cases.Case4;
+		public bool IsCase1 => _curCase == Cases.Case1;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T1"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4> Create([NotNull] T1 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4>(value, Cases.Case1);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T1"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4>(T1 value) => Create(value);
+
+		public bool IsCase2 => _curCase == Cases.Case2;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T2"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4> Create([NotNull] T2 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4>(value, Cases.Case2);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T2"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4>(T2 value) => Create(value);
+
+		public bool IsCase3 => _curCase == Cases.Case3;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T3"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4> Create([NotNull] T3 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4>(value, Cases.Case3);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T3"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4>(T3 value) => Create(value);
+
+		public bool IsCase4 => _curCase == Cases.Case4;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T4"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4> Create([NotNull] T4 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4>(value, Cases.Case4);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4}"/> for value of type <typeparamref name="T4"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4>(T4 value) => Create(value);
+
+
+		public TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector)
+		{
+			switch (_curCase)
+			{
+				case Cases.Case1 : return case1Selector((T1)_value);
+				case Cases.Case2 : return case2Selector((T2)_value);
+				case Cases.Case3 : return case3Selector((T3)_value);
+				case Cases.Case4 : return case4Selector((T4)_value);
+				default: throw CodeExceptions.InvalidOperation("Wrong state");
+			}
+		}
+
+		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action)
+		{
+			Code.NotNull(case1Action, nameof (case1Action));
+			Code.NotNull(case2Action, nameof (case2Action));
+			Code.NotNull(case3Action, nameof (case3Action));
+			Code.NotNull(case4Action, nameof (case4Action));
+			switch (_curCase)
+			{
+				case Cases.Case1 : case1Action((T1)_value); break;
+				case Cases.Case2 : case2Action((T2)_value); break;
+				case Cases.Case3 : case3Action((T3)_value); break;
+				case Cases.Case4 : case4Action((T4)_value); break;
+				default: throw CodeExceptions.InvalidOperation("Wrong state");
+			}
+		}
+
+		public bool Equals(ValueOneOf<T1, T2, T3, T4> other)
+		{
+			return Equals(_value, other._value);
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			return obj is ValueOneOf<T1, T2, T3, T4> && Equals((ValueOneOf<T1, T2, T3, T4>)obj);
+		}
+
+		/// <summary>
+		/// Equality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> equals to <paramref name="right"/></returns>
+		public static bool operator ==(ValueOneOf<T1, T2, T3, T4> left, ValueOneOf<T1, T2, T3, T4> right)
+		{
+			return left.Equals(right);
+		}
+
+		/// <summary>
+		/// Unequality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> not equals to <paramref name="right"/></returns>
+		public static bool operator !=(ValueOneOf<T1, T2, T3, T4> left, ValueOneOf<T1, T2, T3, T4> right)
+		{
+			return !left.Equals(right);
+		}
+
+		public override int GetHashCode() => _value.GetHashCode();
 	}
 
-	public struct ValueOneOf<T1, T2, T3, T4, T5>
+	/// <summary>
+	/// Value type tagged union for 5 types.
+	/// </summary>
+	/// <typeparam name="T1">Type of case 1</typeparam>
+	/// <typeparam name="T2">Type of case 2</typeparam>
+	/// <typeparam name="T3">Type of case 3</typeparam>
+	/// <typeparam name="T4">Type of case 4</typeparam>
+	/// <typeparam name="T5">Type of case 5</typeparam>
+	public struct ValueOneOf<T1, T2, T3, T4, T5> : IOneOf<T1, T2, T3, T4, T5>, IEquatable<ValueOneOf<T1, T2, T3, T4, T5>>
 	{
 		private Cases _curCase;
 		private object _value;
@@ -98,14 +488,189 @@ namespace CodeJam
 			Case5,
 		}
 
-		private bool IsCase1 => _curCase == Cases.Case1;
-		private bool IsCase2 => _curCase == Cases.Case2;
-		private bool IsCase3 => _curCase == Cases.Case3;
-		private bool IsCase4 => _curCase == Cases.Case4;
-		private bool IsCase5 => _curCase == Cases.Case5;
+		public bool IsCase1 => _curCase == Cases.Case1;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T1"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5> Create([NotNull] T1 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5>(value, Cases.Case1);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T1"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5>(T1 value) => Create(value);
+
+		public bool IsCase2 => _curCase == Cases.Case2;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T2"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5> Create([NotNull] T2 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5>(value, Cases.Case2);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T2"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5>(T2 value) => Create(value);
+
+		public bool IsCase3 => _curCase == Cases.Case3;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T3"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5> Create([NotNull] T3 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5>(value, Cases.Case3);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T3"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5>(T3 value) => Create(value);
+
+		public bool IsCase4 => _curCase == Cases.Case4;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T4"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5> Create([NotNull] T4 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5>(value, Cases.Case4);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T4"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5>(T4 value) => Create(value);
+
+		public bool IsCase5 => _curCase == Cases.Case5;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T5"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T5"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5> Create([NotNull] T5 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5>(value, Cases.Case5);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/> for value of type <typeparamref name="T5"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5>(T5 value) => Create(value);
+
+
+		public TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector)
+		{
+			switch (_curCase)
+			{
+				case Cases.Case1 : return case1Selector((T1)_value);
+				case Cases.Case2 : return case2Selector((T2)_value);
+				case Cases.Case3 : return case3Selector((T3)_value);
+				case Cases.Case4 : return case4Selector((T4)_value);
+				case Cases.Case5 : return case5Selector((T5)_value);
+				default: throw CodeExceptions.InvalidOperation("Wrong state");
+			}
+		}
+
+		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action)
+		{
+			Code.NotNull(case1Action, nameof (case1Action));
+			Code.NotNull(case2Action, nameof (case2Action));
+			Code.NotNull(case3Action, nameof (case3Action));
+			Code.NotNull(case4Action, nameof (case4Action));
+			Code.NotNull(case5Action, nameof (case5Action));
+			switch (_curCase)
+			{
+				case Cases.Case1 : case1Action((T1)_value); break;
+				case Cases.Case2 : case2Action((T2)_value); break;
+				case Cases.Case3 : case3Action((T3)_value); break;
+				case Cases.Case4 : case4Action((T4)_value); break;
+				case Cases.Case5 : case5Action((T5)_value); break;
+				default: throw CodeExceptions.InvalidOperation("Wrong state");
+			}
+		}
+
+		public bool Equals(ValueOneOf<T1, T2, T3, T4, T5> other)
+		{
+			return Equals(_value, other._value);
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			return obj is ValueOneOf<T1, T2, T3, T4, T5> && Equals((ValueOneOf<T1, T2, T3, T4, T5>)obj);
+		}
+
+		/// <summary>
+		/// Equality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> equals to <paramref name="right"/></returns>
+		public static bool operator ==(ValueOneOf<T1, T2, T3, T4, T5> left, ValueOneOf<T1, T2, T3, T4, T5> right)
+		{
+			return left.Equals(right);
+		}
+
+		/// <summary>
+		/// Unequality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> not equals to <paramref name="right"/></returns>
+		public static bool operator !=(ValueOneOf<T1, T2, T3, T4, T5> left, ValueOneOf<T1, T2, T3, T4, T5> right)
+		{
+			return !left.Equals(right);
+		}
+
+		public override int GetHashCode() => _value.GetHashCode();
 	}
 
-	public struct ValueOneOf<T1, T2, T3, T4, T5, T6>
+	/// <summary>
+	/// Value type tagged union for 6 types.
+	/// </summary>
+	/// <typeparam name="T1">Type of case 1</typeparam>
+	/// <typeparam name="T2">Type of case 2</typeparam>
+	/// <typeparam name="T3">Type of case 3</typeparam>
+	/// <typeparam name="T4">Type of case 4</typeparam>
+	/// <typeparam name="T5">Type of case 5</typeparam>
+	/// <typeparam name="T6">Type of case 6</typeparam>
+	public struct ValueOneOf<T1, T2, T3, T4, T5, T6> : IOneOf<T1, T2, T3, T4, T5, T6>, IEquatable<ValueOneOf<T1, T2, T3, T4, T5, T6>>
 	{
 		private Cases _curCase;
 		private object _value;
@@ -126,15 +691,214 @@ namespace CodeJam
 			Case6,
 		}
 
-		private bool IsCase1 => _curCase == Cases.Case1;
-		private bool IsCase2 => _curCase == Cases.Case2;
-		private bool IsCase3 => _curCase == Cases.Case3;
-		private bool IsCase4 => _curCase == Cases.Case4;
-		private bool IsCase5 => _curCase == Cases.Case5;
-		private bool IsCase6 => _curCase == Cases.Case6;
+		public bool IsCase1 => _curCase == Cases.Case1;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T1"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T1 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6>(value, Cases.Case1);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T1"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6>(T1 value) => Create(value);
+
+		public bool IsCase2 => _curCase == Cases.Case2;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T2"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T2 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6>(value, Cases.Case2);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T2"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6>(T2 value) => Create(value);
+
+		public bool IsCase3 => _curCase == Cases.Case3;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T3"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T3 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6>(value, Cases.Case3);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T3"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6>(T3 value) => Create(value);
+
+		public bool IsCase4 => _curCase == Cases.Case4;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T4"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T4 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6>(value, Cases.Case4);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T4"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6>(T4 value) => Create(value);
+
+		public bool IsCase5 => _curCase == Cases.Case5;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T5"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T5"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T5 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6>(value, Cases.Case5);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T5"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6>(T5 value) => Create(value);
+
+		public bool IsCase6 => _curCase == Cases.Case6;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T6"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T6"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T6 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6>(value, Cases.Case6);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/> for value of type <typeparamref name="T6"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6>(T6 value) => Create(value);
+
+
+		public TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector)
+		{
+			switch (_curCase)
+			{
+				case Cases.Case1 : return case1Selector((T1)_value);
+				case Cases.Case2 : return case2Selector((T2)_value);
+				case Cases.Case3 : return case3Selector((T3)_value);
+				case Cases.Case4 : return case4Selector((T4)_value);
+				case Cases.Case5 : return case5Selector((T5)_value);
+				case Cases.Case6 : return case6Selector((T6)_value);
+				default: throw CodeExceptions.InvalidOperation("Wrong state");
+			}
+		}
+
+		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action)
+		{
+			Code.NotNull(case1Action, nameof (case1Action));
+			Code.NotNull(case2Action, nameof (case2Action));
+			Code.NotNull(case3Action, nameof (case3Action));
+			Code.NotNull(case4Action, nameof (case4Action));
+			Code.NotNull(case5Action, nameof (case5Action));
+			Code.NotNull(case6Action, nameof (case6Action));
+			switch (_curCase)
+			{
+				case Cases.Case1 : case1Action((T1)_value); break;
+				case Cases.Case2 : case2Action((T2)_value); break;
+				case Cases.Case3 : case3Action((T3)_value); break;
+				case Cases.Case4 : case4Action((T4)_value); break;
+				case Cases.Case5 : case5Action((T5)_value); break;
+				case Cases.Case6 : case6Action((T6)_value); break;
+				default: throw CodeExceptions.InvalidOperation("Wrong state");
+			}
+		}
+
+		public bool Equals(ValueOneOf<T1, T2, T3, T4, T5, T6> other)
+		{
+			return Equals(_value, other._value);
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			return obj is ValueOneOf<T1, T2, T3, T4, T5, T6> && Equals((ValueOneOf<T1, T2, T3, T4, T5, T6>)obj);
+		}
+
+		/// <summary>
+		/// Equality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> equals to <paramref name="right"/></returns>
+		public static bool operator ==(ValueOneOf<T1, T2, T3, T4, T5, T6> left, ValueOneOf<T1, T2, T3, T4, T5, T6> right)
+		{
+			return left.Equals(right);
+		}
+
+		/// <summary>
+		/// Unequality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> not equals to <paramref name="right"/></returns>
+		public static bool operator !=(ValueOneOf<T1, T2, T3, T4, T5, T6> left, ValueOneOf<T1, T2, T3, T4, T5, T6> right)
+		{
+			return !left.Equals(right);
+		}
+
+		public override int GetHashCode() => _value.GetHashCode();
 	}
 
-	public struct ValueOneOf<T1, T2, T3, T4, T5, T6, T7>
+	/// <summary>
+	/// Value type tagged union for 7 types.
+	/// </summary>
+	/// <typeparam name="T1">Type of case 1</typeparam>
+	/// <typeparam name="T2">Type of case 2</typeparam>
+	/// <typeparam name="T3">Type of case 3</typeparam>
+	/// <typeparam name="T4">Type of case 4</typeparam>
+	/// <typeparam name="T5">Type of case 5</typeparam>
+	/// <typeparam name="T6">Type of case 6</typeparam>
+	/// <typeparam name="T7">Type of case 7</typeparam>
+	public struct ValueOneOf<T1, T2, T3, T4, T5, T6, T7> : IOneOf<T1, T2, T3, T4, T5, T6, T7>, IEquatable<ValueOneOf<T1, T2, T3, T4, T5, T6, T7>>
 	{
 		private Cases _curCase;
 		private object _value;
@@ -156,16 +920,239 @@ namespace CodeJam
 			Case7,
 		}
 
-		private bool IsCase1 => _curCase == Cases.Case1;
-		private bool IsCase2 => _curCase == Cases.Case2;
-		private bool IsCase3 => _curCase == Cases.Case3;
-		private bool IsCase4 => _curCase == Cases.Case4;
-		private bool IsCase5 => _curCase == Cases.Case5;
-		private bool IsCase6 => _curCase == Cases.Case6;
-		private bool IsCase7 => _curCase == Cases.Case7;
+		public bool IsCase1 => _curCase == Cases.Case1;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T1"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T1 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(value, Cases.Case1);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T1"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(T1 value) => Create(value);
+
+		public bool IsCase2 => _curCase == Cases.Case2;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T2"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T2 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(value, Cases.Case2);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T2"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(T2 value) => Create(value);
+
+		public bool IsCase3 => _curCase == Cases.Case3;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T3"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T3 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(value, Cases.Case3);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T3"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(T3 value) => Create(value);
+
+		public bool IsCase4 => _curCase == Cases.Case4;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T4"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T4 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(value, Cases.Case4);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T4"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(T4 value) => Create(value);
+
+		public bool IsCase5 => _curCase == Cases.Case5;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T5"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T5"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T5 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(value, Cases.Case5);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T5"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(T5 value) => Create(value);
+
+		public bool IsCase6 => _curCase == Cases.Case6;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T6"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T6"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T6 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(value, Cases.Case6);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T6"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(T6 value) => Create(value);
+
+		public bool IsCase7 => _curCase == Cases.Case7;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T7"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T7"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T7 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(value, Cases.Case7);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/> for value of type <typeparamref name="T7"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(T7 value) => Create(value);
+
+
+		public TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector)
+		{
+			switch (_curCase)
+			{
+				case Cases.Case1 : return case1Selector((T1)_value);
+				case Cases.Case2 : return case2Selector((T2)_value);
+				case Cases.Case3 : return case3Selector((T3)_value);
+				case Cases.Case4 : return case4Selector((T4)_value);
+				case Cases.Case5 : return case5Selector((T5)_value);
+				case Cases.Case6 : return case6Selector((T6)_value);
+				case Cases.Case7 : return case7Selector((T7)_value);
+				default: throw CodeExceptions.InvalidOperation("Wrong state");
+			}
+		}
+
+		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action)
+		{
+			Code.NotNull(case1Action, nameof (case1Action));
+			Code.NotNull(case2Action, nameof (case2Action));
+			Code.NotNull(case3Action, nameof (case3Action));
+			Code.NotNull(case4Action, nameof (case4Action));
+			Code.NotNull(case5Action, nameof (case5Action));
+			Code.NotNull(case6Action, nameof (case6Action));
+			Code.NotNull(case7Action, nameof (case7Action));
+			switch (_curCase)
+			{
+				case Cases.Case1 : case1Action((T1)_value); break;
+				case Cases.Case2 : case2Action((T2)_value); break;
+				case Cases.Case3 : case3Action((T3)_value); break;
+				case Cases.Case4 : case4Action((T4)_value); break;
+				case Cases.Case5 : case5Action((T5)_value); break;
+				case Cases.Case6 : case6Action((T6)_value); break;
+				case Cases.Case7 : case7Action((T7)_value); break;
+				default: throw CodeExceptions.InvalidOperation("Wrong state");
+			}
+		}
+
+		public bool Equals(ValueOneOf<T1, T2, T3, T4, T5, T6, T7> other)
+		{
+			return Equals(_value, other._value);
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			return obj is ValueOneOf<T1, T2, T3, T4, T5, T6, T7> && Equals((ValueOneOf<T1, T2, T3, T4, T5, T6, T7>)obj);
+		}
+
+		/// <summary>
+		/// Equality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> equals to <paramref name="right"/></returns>
+		public static bool operator ==(ValueOneOf<T1, T2, T3, T4, T5, T6, T7> left, ValueOneOf<T1, T2, T3, T4, T5, T6, T7> right)
+		{
+			return left.Equals(right);
+		}
+
+		/// <summary>
+		/// Unequality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> not equals to <paramref name="right"/></returns>
+		public static bool operator !=(ValueOneOf<T1, T2, T3, T4, T5, T6, T7> left, ValueOneOf<T1, T2, T3, T4, T5, T6, T7> right)
+		{
+			return !left.Equals(right);
+		}
+
+		public override int GetHashCode() => _value.GetHashCode();
 	}
 
-	public struct ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>
+	/// <summary>
+	/// Value type tagged union for 8 types.
+	/// </summary>
+	/// <typeparam name="T1">Type of case 1</typeparam>
+	/// <typeparam name="T2">Type of case 2</typeparam>
+	/// <typeparam name="T3">Type of case 3</typeparam>
+	/// <typeparam name="T4">Type of case 4</typeparam>
+	/// <typeparam name="T5">Type of case 5</typeparam>
+	/// <typeparam name="T6">Type of case 6</typeparam>
+	/// <typeparam name="T7">Type of case 7</typeparam>
+	/// <typeparam name="T8">Type of case 8</typeparam>
+	public struct ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> : IOneOf<T1, T2, T3, T4, T5, T6, T7, T8>, IEquatable<ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>>
 	{
 		private Cases _curCase;
 		private object _value;
@@ -188,14 +1175,249 @@ namespace CodeJam
 			Case8,
 		}
 
-		private bool IsCase1 => _curCase == Cases.Case1;
-		private bool IsCase2 => _curCase == Cases.Case2;
-		private bool IsCase3 => _curCase == Cases.Case3;
-		private bool IsCase4 => _curCase == Cases.Case4;
-		private bool IsCase5 => _curCase == Cases.Case5;
-		private bool IsCase6 => _curCase == Cases.Case6;
-		private bool IsCase7 => _curCase == Cases.Case7;
-		private bool IsCase8 => _curCase == Cases.Case8;
+		public bool IsCase1 => _curCase == Cases.Case1;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T1"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T1 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(value, Cases.Case1);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T1"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T1 value) => Create(value);
+
+		public bool IsCase2 => _curCase == Cases.Case2;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T2"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T2 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(value, Cases.Case2);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T2"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T2 value) => Create(value);
+
+		public bool IsCase3 => _curCase == Cases.Case3;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T3"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T3 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(value, Cases.Case3);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T3"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T3 value) => Create(value);
+
+		public bool IsCase4 => _curCase == Cases.Case4;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T4"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T4 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(value, Cases.Case4);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T4"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T4 value) => Create(value);
+
+		public bool IsCase5 => _curCase == Cases.Case5;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T5"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T5"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T5 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(value, Cases.Case5);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T5"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T5 value) => Create(value);
+
+		public bool IsCase6 => _curCase == Cases.Case6;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T6"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T6"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T6 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(value, Cases.Case6);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T6"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T6 value) => Create(value);
+
+		public bool IsCase7 => _curCase == Cases.Case7;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T7"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T7"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T7 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(value, Cases.Case7);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T7"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T7 value) => Create(value);
+
+		public bool IsCase8 => _curCase == Cases.Case8;
+
+		/// <summary>
+		/// Creates instance of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T8"/>.
+		/// </summary>
+		/// <param name="value">Value of type <typeparamref name="T8"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T8 value)
+		{
+			if (value == null)
+				throw CodeExceptions.ArgumentNull(nameof (value));
+			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(value, Cases.Case8);
+		}
+
+		/// <summary>
+		/// Implicit cast operator.
+		/// </summary>
+		/// <param name="value">The parameter.</param>
+		/// <returns>Instance of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/> for value of type <typeparamref name="T8"/>.</returns>
+		public static implicit operator ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(T8 value) => Create(value);
+
+
+		public TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector, Func<T8, TResult> case8Selector)
+		{
+			switch (_curCase)
+			{
+				case Cases.Case1 : return case1Selector((T1)_value);
+				case Cases.Case2 : return case2Selector((T2)_value);
+				case Cases.Case3 : return case3Selector((T3)_value);
+				case Cases.Case4 : return case4Selector((T4)_value);
+				case Cases.Case5 : return case5Selector((T5)_value);
+				case Cases.Case6 : return case6Selector((T6)_value);
+				case Cases.Case7 : return case7Selector((T7)_value);
+				case Cases.Case8 : return case8Selector((T8)_value);
+				default: throw CodeExceptions.InvalidOperation("Wrong state");
+			}
+		}
+
+		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action)
+		{
+			Code.NotNull(case1Action, nameof (case1Action));
+			Code.NotNull(case2Action, nameof (case2Action));
+			Code.NotNull(case3Action, nameof (case3Action));
+			Code.NotNull(case4Action, nameof (case4Action));
+			Code.NotNull(case5Action, nameof (case5Action));
+			Code.NotNull(case6Action, nameof (case6Action));
+			Code.NotNull(case7Action, nameof (case7Action));
+			Code.NotNull(case8Action, nameof (case8Action));
+			switch (_curCase)
+			{
+				case Cases.Case1 : case1Action((T1)_value); break;
+				case Cases.Case2 : case2Action((T2)_value); break;
+				case Cases.Case3 : case3Action((T3)_value); break;
+				case Cases.Case4 : case4Action((T4)_value); break;
+				case Cases.Case5 : case5Action((T5)_value); break;
+				case Cases.Case6 : case6Action((T6)_value); break;
+				case Cases.Case7 : case7Action((T7)_value); break;
+				case Cases.Case8 : case8Action((T8)_value); break;
+				default: throw CodeExceptions.InvalidOperation("Wrong state");
+			}
+		}
+
+		public bool Equals(ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> other)
+		{
+			return Equals(_value, other._value);
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			return obj is ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> && Equals((ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>)obj);
+		}
+
+		/// <summary>
+		/// Equality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> equals to <paramref name="right"/></returns>
+		public static bool operator ==(ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> left, ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> right)
+		{
+			return left.Equals(right);
+		}
+
+		/// <summary>
+		/// Unequality operator.
+		/// </summary>
+		/// <param name="left">Left parameter.</param>
+		/// <param name="right">Right parameter</param>
+		/// <returns><c>true</c> if <paramref name="left"/> not equals to <paramref name="right"/></returns>
+		public static bool operator !=(ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> left, ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> right)
+		{
+			return !left.Equals(right);
+		}
+
+		public override int GetHashCode() => _value.GetHashCode();
 	}
 
 }
