@@ -294,6 +294,16 @@
       <DependentUpon>StringExtensions.CharInfix.tt</DependentUpon>
     </Compile>
     <Compile Include="Structures\ObjectPools\NamespaceDoc.cs" />
+    <Compile Include="Structures\OneOf\OneOf.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OneOf.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Structures\OneOf\ValueOneOf.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValueOneOf.tt</DependentUpon>
+    </Compile>
     <Compile Include="Structures\Option\IOption.cs" />
     <Compile Include="Structures\Option\Option.cs" />
     <Compile Include="Structures\Option\ValueOption.cs" />
@@ -496,6 +506,14 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>StringExtensions.CharInfix.generated.cs</LastGenOutput>
     </Content>
+    <Content Include="Structures\OneOf\OneOf.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>OneOf.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Structures\OneOf\ValueOneOf.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ValueOneOf.generated.cs</LastGenOutput>
+    </Content>
     <Content Include="Threading\InterlockedOperations.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>InterlockedOperations.generated.cs</LastGenOutput>
@@ -521,6 +539,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
