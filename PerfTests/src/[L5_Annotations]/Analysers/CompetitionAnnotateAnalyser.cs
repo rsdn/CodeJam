@@ -4,8 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Xml.Linq;
 
-using BenchmarkDotNet.Analysers;
-using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
 using CodeJam.Collections;
@@ -23,25 +21,26 @@ namespace CodeJam.PerfTests.Analysers
 	[SuppressMessage("ReSharper", "MemberCanBeMadeStatic.Local")]
 	internal class CompetitionAnnotateAnalyser : CompetitionAnalyser
 	{
-		#region Cached XML annotations from log
-		// DONTTOUCH: Each run should use results from previous run log.
-		// DO NOT cache log output in static field
-		// as test can be run multiple times in same appdomain.
+		#region Static members
 		private sealed class LoggedXmlAnnotations : Dictionary<string, XDocument[]> { }
 
+		// DONTTOUCH: Each run should use results from previous run log.
+		// Some testrunners reuse appdomains for multiple test runs.
+		// So static variable cache should be cleared after each test run.
+		// Run state cache does exactly this.
 		private static readonly RunState<LoggedXmlAnnotations> _annotationsFromLogCacheSlot =
 			new RunState<LoggedXmlAnnotations>();
 		#endregion
 
-		#region Parsing competition target info
+		#region PrepareTargets
 		/// <summary>
-		/// Refills the competition targets collection and fills competition limits from the
-		/// <see cref="SourceAnnotationsMode.PreviousRunLogUri"/>.
+		/// Fills competition targets collection.
+		/// Adds support for <see cref="SourceAnnotationsMode.PreviousRunLogUri"/>.
 		/// </summary>
 		/// <param name="analysis">Analyser pass results.</param>
-		protected override void FillCompetitionTargets(CompetitionAnalysis analysis)
+		protected override void PrepareTargetsOverride(CompetitionAnalysis analysis)
 		{
-			base.FillCompetitionTargets(analysis);
+			base.PrepareTargetsOverride(analysis);
 
 			var annotationsMode = analysis.Annotations;
 			var logUri = annotationsMode.PreviousRunLogUri;
@@ -108,9 +107,8 @@ namespace CodeJam.PerfTests.Analysers
 		}
 		#endregion
 
-		#region Checking competition limits
-		private bool SkipAnnotation(bool checkPassed, CompetitionAnalysis analysis) =>
-			checkPassed ||
+		#region CheckTargets
+		private bool SkipAnnotation(CompetitionAnalysis analysis) =>
 			!analysis.Annotations.AdjustLimits ||
 			analysis.RunState.RunNumber < analysis.Annotations.AnnotateSourcesOnRun;
 
@@ -119,26 +117,25 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="competitionTarget">The competition target.</param>
 		/// <param name="analysis">Analyser pass results.</param>
 		/// <returns><c>true</c> if competition limits are ok.</returns>
-		protected override bool CheckTargetLimits(
+		protected override bool CheckTargetOverride(
 			Benchmark[] benchmarksForTarget,
 			CompetitionTarget competitionTarget,
 			CompetitionAnalysis analysis)
 		{
-			var checkPassed = base.CheckTargetLimits(benchmarksForTarget, competitionTarget, analysis);
+			bool checkPassed = base.CheckTargetOverride(benchmarksForTarget, competitionTarget, analysis);
 
-			// TODO better 4 empty.
-			checkPassed &= !competitionTarget.CheckLimits || !competitionTarget.IsEmpty;
-			if (SkipAnnotation(checkPassed, analysis))
-			{
+			if (competitionTarget.Baseline)
 				return checkPassed;
-			}
+
+			if (checkPassed && !competitionTarget.IsEmpty)
+				return true;
+
+			if (SkipAnnotation(analysis))
+				return checkPassed;
 
 			var limitProvider = analysis.Limits.LimitProvider;
 			foreach (var benchmark in benchmarksForTarget)
 			{
-				if (benchmark.Target.Baseline)
-					continue;
-
 				var limit = limitProvider.TryGetCompetitionLimit(benchmark, analysis.Summary);
 				if (limit == null)
 					// No warnings required. Missing values should be checked by base implementation.
@@ -149,20 +146,26 @@ namespace CodeJam.PerfTests.Analysers
 
 			return false;
 		}
+		#endregion
 
+		#region CompleteCheckTargets
 		/// <summary>Called after limits check completed.</summary>
 		/// <param name="analysis">Analyser pass results.</param>
-		/// <param name="checkPassed"><c>true</c> if competition check passed.</param>
-		protected override void OnLimitsCheckCompleted(CompetitionAnalysis analysis, bool checkPassed)
+		protected override void CompleteCheckTargetsOverride(CompetitionAnalysis analysis)
 		{
-			// TODO: at limit checking???
 			AnnotateTargets(analysis);
 
+			base.CompleteCheckTargetsOverride(analysis);
+		}
+
+		/// <summary>Requests reruns for the competition.</summary>
+		/// <param name="analysis">Analyser pass results.</param>
+		protected override void RequestReruns(CompetitionAnalysis analysis)
+		{
 			var annotationsMode = analysis.Annotations;
-			if (SkipAnnotation(checkPassed, analysis) ||
-				annotationsMode.AdditionalRerunsIfAnnotationsUpdated <= 0)
+			if (SkipAnnotation(analysis) || annotationsMode.AdditionalRerunsIfAnnotationsUpdated <= 0)
 			{
-				base.OnLimitsCheckCompleted(analysis, checkPassed);
+				base.RequestReruns(analysis);
 			}
 			else
 			{
@@ -175,8 +178,8 @@ namespace CodeJam.PerfTests.Analysers
 		// ReSharper disable once MemberCanBeMadeStatic.Local
 		private void AnnotateTargets(CompetitionAnalysis analysis)
 		{
-			// TODO: move to check limits.
-			if (!analysis.Passed)
+			// TODO: messaging?
+			if (!analysis.SafeToContinue)
 			{
 				analysis.WriteWarningMessage("Source annotation skipped as there are critical errors in the run. Check the log please.");
 				return;

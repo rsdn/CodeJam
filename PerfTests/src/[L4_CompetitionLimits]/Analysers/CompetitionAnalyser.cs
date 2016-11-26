@@ -29,7 +29,7 @@ namespace CodeJam.PerfTests.Analysers
 	[SuppressMessage("ReSharper", "MemberCanBeMadeStatic.Local")]
 	internal class CompetitionAnalyser : IAnalyser
 	{
-		#region Cached resources with XML annotations.
+		#region Static members.
 		// DONTTOUCH: DO NOT replace with Memoize as the value reading depends on CompetitionState
 		// and should be called from callee thread only.
 		private static readonly ConcurrentDictionary<ResourceKey, XDocument> _xmlAnnotationsCache =
@@ -42,6 +42,12 @@ namespace CodeJam.PerfTests.Analysers
 		public string Id => GetType().Name;
 		#endregion
 
+		[AssertionMethod]
+		private void AssertNoErrors(Analysis analysis) =>
+			Code.BugIf(
+				!analysis.SafeToContinue,
+				"Bug: Trying to analyse failed competition run.");
+
 		/// <summary>Performs limit checking for competition benchmarks.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <returns>Enumerable with warnings for the benchmarks.</returns>
@@ -51,18 +57,13 @@ namespace CodeJam.PerfTests.Analysers
 
 			var analysis = new CompetitionAnalysis(Id, summary);
 
-			if (CheckPreconditions(analysis) && TryInitialize(analysis))
+			if (CheckPreconditions(analysis) && PrepareTargets(analysis))
 			{
-				var checkPassed = CheckCompetitionLimits(analysis);
+				CheckTargets(analysis);
 
 				CheckPostconditions(analysis);
 
-				OnLimitsCheckCompleted(analysis, checkPassed);
-
-				if (analysis.Conclusions.Count == 0 && analysis.Targets.Any(c => c.CheckLimits))
-				{
-					analysis.WriteInfoMessage($"{GetType().Name}: All competition limits are ok.");
-				}
+				CompleteCheckTargets(analysis);
 			}
 
 			if (analysis.RunState.LooksLikeLastRun && analysis.Limits.LogAnnotations)
@@ -105,11 +106,13 @@ namespace CodeJam.PerfTests.Analysers
 				analysis.WriteSetupErrorMessage($"The {providerProperty} should be not null.");
 			}
 
-			return analysis.Passed;
+			return analysis.SafeToContinue;
 		}
 
 		private void CheckPostconditions(CompetitionAnalysis analysis)
 		{
+			AssertNoErrors(analysis);
+
 			var culture = HostEnvironmentInfo.MainCultureInfo;
 			var limitsMode = analysis.Limits;
 
@@ -146,7 +149,7 @@ namespace CodeJam.PerfTests.Analysers
 			}
 
 			var emptyLimits = analysis.SummaryOrderTargets()
-				.Where(t => t.CheckLimits && t.IsEmpty)
+				.Where(t => t.HasRelativeLimits && t.IsEmpty)
 				.Select(rp => rp.Target.MethodDisplayInfo)
 				.ToArray();
 			if (emptyLimits.Any())
@@ -160,7 +163,9 @@ namespace CodeJam.PerfTests.Analysers
 		}
 
 		// ReSharper disable once MemberCanBeMadeStatic.Local
-		private string[] GetTargetNames(CompetitionAnalysis analysis, Func<Measurement, bool> measurementFilter) =>
+		private string[] GetTargetNames(
+			CompetitionAnalysis analysis,
+			Func<Measurement, bool> measurementFilter) =>
 			analysis.Summary.GetSummaryOrderBenchmarks()
 				.Select(b => analysis.Summary[b])
 				.Where(rp => rp.GetResultRuns().Any(measurementFilter))
@@ -169,21 +174,22 @@ namespace CodeJam.PerfTests.Analysers
 				.ToArray();
 		#endregion
 
-		#region Parsing competition target info
-		private bool TryInitialize(CompetitionAnalysis analysis)
+		#region PrepareTargets
+		private bool PrepareTargets(CompetitionAnalysis analysis)
 		{
+			AssertNoErrors(analysis);
 			if (analysis.Targets.Initialized)
 				return true;
 
-			FillCompetitionTargets(analysis);
+			PrepareTargetsOverride(analysis);
 			analysis.Targets.SetInitialized();
 
-			return analysis.Passed;
+			return analysis.SafeToContinue;
 		}
 
-		/// <summary>Refills the competition targets collection.</summary>
+		/// <summary>Fills competition targets collection.</summary>
 		/// <param name="analysis">Analyser pass results.</param>
-		protected virtual void FillCompetitionTargets([NotNull] CompetitionAnalysis analysis)
+		protected virtual void PrepareTargetsOverride([NotNull] CompetitionAnalysis analysis)
 		{
 			// DONTTOUCH: DO NOT add return into the if clause.
 			// The competitionTargets should be filled with empty limits anyway.
@@ -194,19 +200,14 @@ namespace CodeJam.PerfTests.Analysers
 					$"Existing benchmark limits are ignored due to {ignoreProperty} setting.");
 			}
 
-			var summary = analysis.Summary;
-
-			var targets = summary.GetExecutionOrderBenchmarks()
+			var targets = analysis.Summary.GetExecutionOrderBenchmarks()
 				.Select(b => b.Target)
 				.Distinct()
 				.ToArray();
-
 			if (targets.Length == 0)
 				return;
 
-			var targetType = targets[0].Type;
-
-			var competitionMetadata = AttributeAnnotations.TryGetCompetitionMetadata(targetType);
+			var competitionMetadata = AttributeAnnotations.TryGetCompetitionMetadata(targets[0].Type);
 			foreach (var target in targets)
 			{
 				var competitionTarget = TryParseCompetitionTarget(target, competitionMetadata, analysis);
@@ -263,10 +264,7 @@ namespace CodeJam.PerfTests.Analysers
 			if (xmlAnnotationDoc == null)
 				return null;
 
-			var result = XmlAnnotations.TryParseCompetitionLimit(
-				target,
-				xmlAnnotationDoc,
-				analysis.RunState);
+			var result = XmlAnnotations.TryParseCompetitionLimit(target, xmlAnnotationDoc, analysis.RunState);
 
 			if (result == null)
 				analysis.WriteWarningMessage(
@@ -276,23 +274,29 @@ namespace CodeJam.PerfTests.Analysers
 		}
 		#endregion
 
-		#region Checking competition limits
-		private bool CheckCompetitionLimits(CompetitionAnalysis analysis)
+		#region CheckTargets
+		private void CheckTargets(CompetitionAnalysis analysis)
 		{
+			AssertNoErrors(analysis);
+
 			var benchmarksByTarget = analysis.Summary
 				.GetSummaryOrderBenchmarks()
-				.GroupBy(b => b.Target);
+				.GroupBy(b => analysis.Targets[b.Target])
+				.Where(g => !g.Key?.DoesNotCompete ?? false);
 
-			var result = true;
+			var checkPassed = true;
 			foreach (var benchmarks in benchmarksByTarget)
 			{
-				var competitionTarget = analysis.Targets[benchmarks.Key];
-				if (competitionTarget != null)
-				{
-					result &= CheckTargetLimits(benchmarks.ToArray(), competitionTarget, analysis);
-				}
+				var benchmarksForTarget = benchmarks.ToArray();
+				checkPassed &= CheckTargetOverride(benchmarksForTarget, benchmarks.Key, analysis);
+
+				AssertNoErrors(analysis);
 			}
-			return result;
+
+			if (!checkPassed)
+			{
+				analysis.MarkForRerun();
+			}
 		}
 
 		/// <summary>Check competition target limits.</summary>
@@ -300,27 +304,23 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="competitionTarget">The competition target.</param>
 		/// <param name="analysis">Analyser pass results.</param>
 		/// <returns><c>true</c> if competition limits are ok.</returns>
-		protected virtual bool CheckTargetLimits(
+		protected virtual bool CheckTargetOverride(
 			[NotNull] Benchmark[] benchmarksForTarget,
 			[NotNull] CompetitionTarget competitionTarget,
 			[NotNull] CompetitionAnalysis analysis)
 		{
-			if (!competitionTarget.CheckLimits)
-				return true;
-
-			if (competitionTarget.IsEmpty)
+			if (competitionTarget.Baseline || competitionTarget.IsEmpty)
 				return true;
 
 			var result = true;
 			foreach (var benchmark in benchmarksForTarget)
 			{
-				result &= CheckBenchmarkLimits(benchmark, competitionTarget, analysis);
+				result &= CheckTargetBenchmark(benchmark, competitionTarget, analysis);
 			}
-
 			return result;
 		}
 
-		private bool CheckBenchmarkLimits(
+		private bool CheckTargetBenchmark(
 			Benchmark benchmark,
 			CompetitionLimit competitionLimit,
 			CompetitionAnalysis analysis)
@@ -329,7 +329,7 @@ namespace CodeJam.PerfTests.Analysers
 			var actualValues = limitsMode.LimitProvider.TryGetActualValues(benchmark, analysis.Summary);
 			if (actualValues == null)
 			{
-				analysis.AddExecutionErrorConclusion(
+				analysis.AddTestErrorConclusion(
 					$"Could not obtain competition limits for {benchmark.DisplayInfo}.",
 					analysis.Summary.TryGetBenchmarkReport(benchmark));
 
@@ -354,15 +354,33 @@ namespace CodeJam.PerfTests.Analysers
 
 			return false;
 		}
+		#endregion
 
-		/// <summary>Called after limits check completed.</summary>
-		/// <param name="analysis">Analyser pass results.</param>
-		/// <param name="checkPassed"><c>true</c> if competition check passed.</param>
-		protected virtual void OnLimitsCheckCompleted([NotNull] CompetitionAnalysis analysis, bool checkPassed)
+		#region CompleteCheckTargets
+		private void CompleteCheckTargets([NotNull] CompetitionAnalysis analysis)
 		{
-			if (checkPassed)
-				return;
+			CompleteCheckTargetsOverride(analysis);
 
+			if (analysis.RerunRequested)
+			{
+				RequestReruns(analysis);
+			}
+			else if (analysis.Conclusions.Count == 0 && analysis.Targets.Any(c => c.HasRelativeLimits))
+			{
+				analysis.WriteInfoMessage($"{GetType().Name}: All competition limits are ok.");
+			}
+		}
+
+		/// <summary>Complete analysis.</summary>
+		/// <param name="analysis">Analyser pass results.</param>
+		protected virtual void CompleteCheckTargetsOverride([NotNull] CompetitionAnalysis analysis)
+		{
+		}
+
+		/// <summary>Requests reruns for the competition.</summary>
+		/// <param name="analysis">Analyser pass results.</param>
+		protected virtual void RequestReruns(CompetitionAnalysis analysis)
+		{
 			if (analysis.RunState.RunNumber < analysis.Limits.RerunsIfValidationFailed)
 			{
 				analysis.RunState.RequestReruns(1, "Limit checking failed.");

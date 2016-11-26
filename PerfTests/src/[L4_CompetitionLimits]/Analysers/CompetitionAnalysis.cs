@@ -52,5 +52,12 @@ namespace CodeJam.PerfTests.Analysers
 		/// <value>The source annotation parameters.</value>
 		[NotNull]
 		public SourceAnnotationsMode Annotations => RunState.Options.SourceAnnotations;
+
+		/// <summary><c>true</c> if rerun should be performed as analysis was failed.</summary>
+		/// <value><c>true</c> if rerun should be performed as analysis was failed.</value>
+		public bool RerunRequested { get; private set; }
+
+		/// <summary>Mark analysis to request rerun. Sets <see cref="RerunRequested"/> to <c>true</c>.</summary>
+		public void MarkForRerun() => RerunRequested = true;
 	}
 }

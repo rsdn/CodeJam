@@ -55,9 +55,9 @@ namespace CodeJam.PerfTests.Analysers
 		[NotNull]
 		protected List<Conclusion> ConclusionsList { get; } = new List<Conclusion>();
 
-		/// <summary>Analysis has no errors.</summary>
+		/// <summary>Analysis has no execution or setup errors so far and can be safely performed.</summary>
 		/// <value><c>true</c> if analysis has no errors; otherwise, <c>false</c>.</value>
-		public bool Passed => !RunState.HasCriticalErrorsInRun; 
+		public bool SafeToContinue => !RunState.HasCriticalErrorsInRun; 
 		#endregion
 
 		#region Messages
@@ -88,15 +88,6 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		#region Warnings
-		/// <summary>Reports execution error conclusion.</summary>
-		/// <param name="message">Message text.</param>
-		/// <param name="report">The report the message belongs to.</param>
-		public void AddExecutionErrorConclusion([NotNull] string message, BenchmarkReport report = null)
-		{
-			WriteExecutonErrorMessage(message);
-			ConclusionsList.Add(Conclusion.CreateWarning(Id, message, report));
-		}
-
 		/// <summary>Reports test error conclusion.</summary>
 		/// <param name="message">Message text.</param>
 		/// <param name="report">The report the message belongs to.</param>
