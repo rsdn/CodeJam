@@ -1,6 +1,9 @@
 CodeJam.PerfTests Release Notes
 -------------------------------
 
+# 0.0.8-alpha
+* Minor improvements for idle measurement accuracy.
+
 # 0.0.7-alpha
 * Better handling of empty limits, project switched to VS 2017 RC.
 
