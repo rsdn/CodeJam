@@ -570,6 +570,9 @@ namespace BenchmarkDotNet.Helpers
 				.OpenExeConfiguration(a.GetAssemblyPath())
 				.GetSection(sectionName),
 			true);
+		private static readonly Func<string, object> _configSectionsCache = Algorithms.Memoize(
+			(string sectionName) => ConfigurationManager.GetSection(sectionName),
+			true);
 
 		/// <summary>
 		/// Retuns configuration section from app.config or (if none)
@@ -592,7 +595,7 @@ namespace BenchmarkDotNet.Helpers
 			// TODO: path to failed in exception
 			try
 			{
-				var result = (TSection)ConfigurationManager.GetSection(sectionName);
+				var result = (TSection)_configSectionsCache(sectionName);
 				if (result == null)
 				{
 					// DONTTOUCH: .Distinct preserves order of fallbackAssemblies.

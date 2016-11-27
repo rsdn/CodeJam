@@ -98,7 +98,7 @@ namespace CodeJam.PerfTests.Loggers
 		public HostLogger([NotNull] ILogger wrappedLogger, HostLogMode logMode)
 		{
 			Code.NotNull(wrappedLogger, nameof(wrappedLogger));
-			EnumCode.Defined(logMode, nameof(logMode));
+			DebugEnumCode.Defined(logMode, nameof(logMode));
 
 			WrappedLogger = wrappedLogger;
 			LogMode = logMode;

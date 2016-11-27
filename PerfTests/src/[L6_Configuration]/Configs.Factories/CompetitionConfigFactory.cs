@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
@@ -298,6 +299,11 @@ namespace CodeJam.PerfTests.Configs.Factories
 				{
 					result.SourceAnnotations.PreviousRunLogUri = competitionFeatures.PreviousRunLogUri;
 				}
+			}
+
+			if (Debugger.IsAttached)
+			{
+				result.RunOptions.AllowDebugBuilds = true;
 			}
 
 			if (competitionFeatures.TroubleshootingMode)

@@ -232,7 +232,7 @@ namespace BenchmarkDotNet.Toolchains
 			}
 
 			private static ValueTask<T> IdleStatic() => new ValueTask<T>(default(T));
-			private static ValueTask<T> IdleInstance() => new ValueTask<T>(default(T));
+			private ValueTask<T> IdleInstance() => new ValueTask<T>(default(T));
 
 			public override object LastRunResult => _result;
 		}

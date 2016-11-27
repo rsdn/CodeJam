@@ -57,7 +57,6 @@ namespace BenchmarkDotNet.Toolchains
 		private Type _engineFactoryType;
 		private int _operationsPerInvoke;
 		private Job _job;
-		private Target _target;
 		private TextWriter _output;
 
 		/// <summary>Initializes the specified benchmark before <see cref="Run"/> call.</summary>
@@ -84,7 +83,15 @@ namespace BenchmarkDotNet.Toolchains
 			_operationsPerInvoke = target.OperationsPerInvoke;
 			_job = job;
 			_output = output;
-			_target = target;
+
+			var unrollFactor = job.ResolveValue(RunMode.UnrollFactorCharacteristic, EnvResolver.Instance);
+
+			_instance = Activator.CreateInstance(target.Type);
+
+			_runCallback = BenchmarkActionFactory.CreateRun(target, _instance, unrollFactor);
+			_idleCallback = BenchmarkActionFactory.CreateIdle(target, _instance, unrollFactor);
+			_cleanupCallback = BenchmarkActionFactory.CreateCleanup(target, _instance);
+			_setupCallback = BenchmarkActionFactory.CreateSetup(target, _instance);
 		}
 
 		/// <summary>Runs the benchmark.</summary>
@@ -106,17 +113,6 @@ namespace BenchmarkDotNet.Toolchains
 					}
 					_output.WriteLine("// Job: {0}", _job.DisplayInfo);
 					_output.WriteLine();
-
-					// Allocate all immediately before the run. Should improve locality.
-					var job = _job;
-					var target = _target;
-					var unrollFactor = job.ResolveValue(RunMode.UnrollFactorCharacteristic, EnvResolver.Instance);
-					_instance = Activator.CreateInstance(target.Type);
-
-					_runCallback = BenchmarkActionFactory.CreateRun(target, _instance, unrollFactor);
-					_idleCallback = BenchmarkActionFactory.CreateIdle(target, _instance, unrollFactor);
-					_cleanupCallback = BenchmarkActionFactory.CreateCleanup(target, _instance);
-					_setupCallback = BenchmarkActionFactory.CreateSetup(target, _instance);
 
 					var engineParameters = new EngineParameters
 					{

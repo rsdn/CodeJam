@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 
@@ -115,11 +114,6 @@ namespace CodeJam.PerfTests.Configs.Factories
 
 			if (RunsUnderContinuousIntegration())
 				competitionFeatures.ContinuousIntegrationMode = true;
-
-			if (HostEnvironmentInfo.GetCurrent().HasAttachedDebugger)
-			{
-				competitionFeatures.TroubleshootingMode = true;
-			}
 
 			foreach (var featureAttribute in metadataSource
 				.GetMetadataAttributes<CompetitionFeaturesAttribute>()
