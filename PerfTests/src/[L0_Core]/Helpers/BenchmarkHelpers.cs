@@ -589,19 +589,27 @@ namespace BenchmarkDotNet.Helpers
 			if (string.IsNullOrEmpty(sectionName))
 				throw new ArgumentNullException(nameof(sectionName));
 
-			var result = (TSection)ConfigurationManager.GetSection(sectionName);
-			if (result == null)
+			// TODO: path to failed in exception
+			try
 			{
-				// DONTTOUCH: .Distinct preserves order of fallbackAssemblies.
-				foreach (var assembly in fallbackAssemblies.Distinct())
+				var result = (TSection)ConfigurationManager.GetSection(sectionName);
+				if (result == null)
 				{
-					result = (TSection)_sectionsCache(assembly, sectionName);
+					// DONTTOUCH: .Distinct preserves order of fallbackAssemblies.
+					foreach (var assembly in fallbackAssemblies.Distinct())
+					{
+						result = (TSection)_sectionsCache(assembly, sectionName);
 
-					if (result != null)
-						break;
+						if (result != null)
+							break;
+					}
 				}
+				return result;
 			}
-			return result;
+			catch (ConfigurationErrorsException ex)
+			{
+				throw new InvalidOperationException("Could not read appconfig file.", ex);
+			}
 		}
 		#endregion
 

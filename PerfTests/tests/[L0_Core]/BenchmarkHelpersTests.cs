@@ -17,6 +17,47 @@ namespace CodeJam.PerfTests
 	public static class BenchmarkHelpersTests
 	{
 		[Test]
+		public static void TestBestClock()
+		{
+			Thread.SpinWait(10 * 1000 * 1000);
+
+			var clockB = Chronometer.BestClock;
+
+			var c2 = clockB.Start();
+			Thread.SpinWait(30 * 1000 * 1000);
+			var s2 = c2.Stop();
+			var t2 = s2.GetSeconds();
+
+			var c3 = clockB.Start();
+			Thread.SpinWait(30 * 1000 * 1000);
+			var s3 = c3.Stop();
+			var t3 = s3.GetSeconds();
+			Console.WriteLine($"Clock {c2.Clock.GetType().Name} to {c3.Clock.GetType().Name}: {t2 / t3:P}");
+
+			LessOrEqual(Math.Abs(t2 - t3) / t2, 0.15); // At the same time relative time should be precise enough.
+		}
+		[Test]
+		public static void TestStopwatchClock()
+		{
+			Thread.SpinWait(10 * 1000 * 1000);
+
+			var clockB = Chronometer.Stopwatch;
+
+			var c2 = clockB.Start();
+			Thread.SpinWait(30 * 1000 * 1000);
+			var s2 = c2.Stop();
+			var t2 = s2.GetSeconds();
+
+			var c3 = clockB.Start();
+			Thread.SpinWait(30 * 1000 * 1000);
+			var s3 = c3.Stop();
+			var t3 = s3.GetSeconds();
+			Console.WriteLine($"Clock {c2.Clock.GetType().Name} to {c3.Clock.GetType().Name}: {t2 / t3:P}");
+
+			LessOrEqual(Math.Abs(t2 - t3) / t2, 0.15); // At the same time relative time should be precise enough.
+		}
+
+		[Test]
 		public static void TestProcessCycleTimeClock()
 		{
 			Thread.SpinWait(10 * 1000 * 1000);

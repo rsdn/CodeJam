@@ -44,5 +44,13 @@ namespace BenchmarkDotNet.Horology
 		/// <returns></returns>
 		public long GetTimestamp() =>
 			CycleClockHelpers.GetThreadTimestamp(CycleClockHelpers.CurrentThreadHandle);
+
+		/// <summary>
+		/// Returns a <see cref="String" /> that represents this instance.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="String" /> that represents this instance.
+		/// </returns>
+		public override string ToString() => GetType().Name;
 	}
 }

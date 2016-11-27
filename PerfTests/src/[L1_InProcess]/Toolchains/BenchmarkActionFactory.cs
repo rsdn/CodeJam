@@ -24,33 +24,37 @@ namespace BenchmarkDotNet.Toolchains
 			var signature = targetMethod ?? idleSignature;
 			if (signature == null)
 				throw new ArgumentNullException(nameof(idleSignature), $"Either {nameof(targetMethod)} or  {nameof(idleSignature)} should be not null");
+			if (!signature.IsStatic && instance == null)
+				throw new ArgumentNullException(nameof(instance), $"The {nameof(instance)} should be not null as the target method is not null");
 
-			var resutltType = signature.ReturnType;
-			if (resutltType == typeof(void))
+			var resultInstance = signature.IsStatic ? null : instance;
+			var resultType = signature.ReturnType;
+			if (resultType == typeof(void))
 			{
-				return new BenchmarkActionVoid(instance, targetMethod, unrollFactor);
+				return new BenchmarkActionVoid(resultInstance, targetMethod, unrollFactor);
 			}
-			if (resutltType == typeof(Task))
+			if (resultType == typeof(Task))
 			{
-				return new BenchmarkActionTask(instance, targetMethod, unrollFactor);
+				return new BenchmarkActionTask(resultInstance, targetMethod, unrollFactor);
 			}
 
-			if (resutltType.IsGenericType)
+			if (resultType.IsGenericType)
 			{
-				var genericType = resutltType.GetGenericTypeDefinition();
-				var argType = resutltType.GenericTypeArguments[0];
+				var genericType = resultType.GetGenericTypeDefinition();
+				var argType = resultType.GenericTypeArguments[0];
 				if (typeof(Task<>) == genericType)
-					return Create(typeof(BenchmarkActionTask<>).MakeGenericType(argType), instance, targetMethod, unrollFactor);
+					return Create(typeof(BenchmarkActionTask<>).MakeGenericType(argType), resultInstance, targetMethod, unrollFactor);
 
 				if (typeof(ValueTask<>).IsAssignableFrom(genericType))
-					return Create(typeof(BenchmarkActionValueTask<>).MakeGenericType(argType), instance, targetMethod, unrollFactor);
+					return Create(typeof(BenchmarkActionValueTask<>).MakeGenericType(argType), resultInstance, targetMethod, unrollFactor);
 			}
 
-			if (targetMethod == null && resutltType.IsValueType)
+			if (targetMethod == null && resultType.IsValueType)
 			{
-				resutltType = typeof(int);
+				// we return int because creating bigger ValueType could take longer than benchmarked method itself.
+				resultType = typeof(int);
 			}
-			return Create(typeof(BenchmarkAction<>).MakeGenericType(resutltType), instance, targetMethod, unrollFactor);
+			return Create(typeof(BenchmarkAction<>).MakeGenericType(resultType), resultInstance, targetMethod, unrollFactor);
 		}
 
 		private static void FallbackMethod() { }

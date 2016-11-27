@@ -14,7 +14,8 @@ namespace BenchmarkDotNet.Toolchains
 		0. Reusable API to call Setup/Clean/Idle/Run action with arbitrary return value and store the result.
 			Supported ones are: void, T, Task, Task<T>, ValueTask<T>.
 		1. Idle signature should match to the benchmark method signature.
-			NOTE For the future: Idle methods should be static to provide accurate results.
+			OBSOLETE: Idle methods should be static to provide accurate results.
+			NEW: Idle instance methods are fine if the action is created immediately before the Run.
 		2. Should work under .Net native. There's option to skip Expression.Compile calls.
 			TODO: normal switch for it.
 		3. High data locality and no additional allocations / JIT if possible.
@@ -52,12 +53,13 @@ namespace BenchmarkDotNet.Toolchains
 #endif
 			}
 
-			protected static TDelegate CreateOrIdle<TDelegate>(object instance, MethodInfo method, TDelegate idleCallback)
+			protected static TDelegate CreateOrIdle<TDelegate>(
+				object instance, MethodInfo method, TDelegate idleStaticCallback, TDelegate idleInstanceCallback)
 			{
 				TDelegate callback;
 				if (method == null)
 				{
-					callback = idleCallback;
+					callback = instance == null ? idleStaticCallback : idleInstanceCallback;
 				}
 				else if (method.IsStatic)
 				{
@@ -77,7 +79,7 @@ namespace BenchmarkDotNet.Toolchains
 
 			public BenchmarkActionVoid(object instance, MethodInfo method, int unrollFactor)
 			{
-				var callback = CreateOrIdle<Action>(instance, method, IdleStatic);
+				var callback = CreateOrIdle<Action>(instance, method, IdleStatic, IdleInstance);
 				callback = Unroll(callback, unrollFactor);
 
 				_callback = callback;
@@ -95,6 +97,7 @@ namespace BenchmarkDotNet.Toolchains
 			}
 
 			private static void IdleStatic() { }
+			private void IdleInstance() { }
 		}
 
 		internal class BenchmarkAction<T> : BenchmarkActionBase
@@ -104,7 +107,7 @@ namespace BenchmarkDotNet.Toolchains
 
 			public BenchmarkAction(object instance, MethodInfo method, int unrollFactor)
 			{
-				var callback = CreateOrIdle<Func<T>>(instance, method, IdleStatic);
+				var callback = CreateOrIdle<Func<T>>(instance, method, IdleStatic, IdleInstance);
 				callback = Unroll(callback, unrollFactor);
 
 				_callback = callback;
@@ -126,6 +129,7 @@ namespace BenchmarkDotNet.Toolchains
 			}
 
 			private static T IdleStatic() => default(T);
+			private T IdleInstance() => default(T);
 
 			public override object LastRunResult => _result;
 		}
@@ -137,7 +141,7 @@ namespace BenchmarkDotNet.Toolchains
 
 			public BenchmarkActionTask(object instance, MethodInfo method, int unrollFactor)
 			{
-				_startTaskCallback = CreateOrIdle<Func<Task>>(instance, method, IdleStatic);
+				_startTaskCallback = CreateOrIdle<Func<Task>>(instance, method, IdleStatic, IdleInstance);
 				_callback = Unroll<Action>(InvokeStartWait, unrollFactor);
 
 				InvokeSingle = _callback;
@@ -157,6 +161,7 @@ namespace BenchmarkDotNet.Toolchains
 
 			private static readonly Task _completed = Task.FromResult((object)null);
 			private static Task IdleStatic() => _completed;
+			private Task IdleInstance() => _completed;
 		}
 
 		internal class BenchmarkActionTask<T> : BenchmarkActionBase
@@ -167,7 +172,7 @@ namespace BenchmarkDotNet.Toolchains
 
 			public BenchmarkActionTask(object instance, MethodInfo method, int unrollFactor)
 			{
-				_startTaskCallback = CreateOrIdle<Func<Task<T>>>(instance, method, IdleStatic);
+				_startTaskCallback = CreateOrIdle<Func<Task<T>>>(instance, method, IdleStatic, IdleInstance);
 				_callback = Unroll<Func<T>>(InvokeStartWait, unrollFactor);
 
 				InvokeSingle = Invoke;
@@ -191,6 +196,7 @@ namespace BenchmarkDotNet.Toolchains
 
 			private static readonly Task<T> _completed = Task.FromResult(default(T));
 			private static Task<T> IdleStatic() => _completed;
+			private Task<T> IdleInstance() => _completed;
 
 			public override object LastRunResult => _result;
 		}
@@ -203,7 +209,7 @@ namespace BenchmarkDotNet.Toolchains
 
 			public BenchmarkActionValueTask(object instance, MethodInfo method, int unrollFactor)
 			{
-				_startTaskCallback = CreateOrIdle<Func<ValueTask<T>>>(instance, method, IdleStatic);
+				_startTaskCallback = CreateOrIdle<Func<ValueTask<T>>>(instance, method, IdleStatic, IdleInstance);
 				_callback = Unroll<Func<T>>(InvokeStartWait, unrollFactor);
 
 				InvokeSingle = Invoke;
@@ -226,6 +232,7 @@ namespace BenchmarkDotNet.Toolchains
 			}
 
 			private static ValueTask<T> IdleStatic() => new ValueTask<T>(default(T));
+			private static ValueTask<T> IdleInstance() => new ValueTask<T>(default(T));
 
 			public override object LastRunResult => _result;
 		}
