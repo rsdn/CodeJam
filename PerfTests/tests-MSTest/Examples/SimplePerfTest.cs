@@ -1,6 +1,8 @@
 using System;
 using System.Threading;
 
+using BenchmarkDotNet.Horology;
+
 using CodeJam.PerfTests;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,7 +16,7 @@ namespace CodeJam.Examples
 	[CompetitionBurstMode]
 	public class SimplePerfTest
 	{
-		private const int Count = 10000;
+		private static readonly int Count = (int)(ThreadCycleTimeClock.Instance.Frequency.Hertz / (128 * 1024));
 
 		// Perf test runner method.
 		[TestMethod]
