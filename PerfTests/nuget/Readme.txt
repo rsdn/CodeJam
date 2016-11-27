@@ -1,9 +1,11 @@
 CodeJam.PerfTests Release Notes
 -------------------------------
 
+# 0.0.7-alpha
+* Better handling of empty limits, project switched to VS 2017 RC.
+
 # 0.0.6-alpha
 * Futher imporvements for measurement accuracy and support for Task-returning benchmarks.
-* Runs under CI are detected automatically and settings are adjusted for CI runs.
 
 # 0.0.5-alpha
 * Default config do not require for loops in the body of perftest methods.
