@@ -134,11 +134,11 @@ namespace CodeJam.PerfTests.Configs.Factories
 		/// </summary>
 		public static readonly IReadOnlyList<string> WellKnownCiVariables = new List<string>
 		{
-			"TF_BUILD",         // TFS
 			"APPVEYOR",         // AppVeyor
 			"CI",               // AppVeyor and Travis CI
-			"TEAMCITY_VERSION", // TeamCity
 			"JENKINS_URL",      // Jenkins
+			"TEAMCITY_VERSION", // TeamCity
+			"TF_BUILD",         // TFS
 			"TRAVIS"            // Travis CI
 		}.AsReadOnly();
 

@@ -273,6 +273,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 			return job;
 		}
 
+		// TODO: pass id?
 		/// <summary>
 		/// Creates options for the competition. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
 		/// </summary>
