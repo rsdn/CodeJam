@@ -28,7 +28,8 @@ namespace CodeJam.RangesAlternatives
 		[PublicAPI]
 		public class RangeAlternativesIntCase
 		{
-			private const int Count = DefaultCount;
+			private static readonly int Count = RecommendedSpinCount / 16;
+
 			private readonly KeyValuePair<int, int>[] _data;
 			private readonly RangeStub<int>[] _rangeData;
 			private readonly RangeStub<int, string>[] _rangeKeyData;
@@ -132,7 +133,7 @@ namespace CodeJam.RangesAlternatives
 		[PublicAPI]
 		public class RangeAlternativesNullableIntCase
 		{
-			private const int Count = DefaultCount;
+			private static readonly int Count = RecommendedFastSpinCount;
 			private readonly KeyValuePair<int?, int?>[] _data;
 			private readonly RangeStub<int?>[] _rangeData;
 			private readonly RangeStub<int?, string>[] _rangeKeyData;

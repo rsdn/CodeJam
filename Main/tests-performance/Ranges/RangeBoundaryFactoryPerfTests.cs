@@ -18,7 +18,7 @@ namespace CodeJam.Ranges
 	[CompetitionBurstMode]
 	public class RangeBoundaryFactoryPerfTests
 	{
-		private const int Count = DefaultCount;
+		private static readonly int Count = RecommendedFastSpinCount;
 
 		[Test]
 		public void RunRangeBoundaryFactoryPerfTests() => Competition.Run(this);

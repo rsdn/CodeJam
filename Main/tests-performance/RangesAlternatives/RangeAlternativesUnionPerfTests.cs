@@ -28,7 +28,7 @@ namespace CodeJam.RangesAlternatives
 		[PublicAPI]
 		public class RangeUnionIntCase
 		{
-			private const int Count = DefaultCount;
+			private static readonly int Count = RecommendedSpinCount / 16;
 
 			private readonly KeyValuePair<int, int>[] _data;
 			private readonly KeyValuePair<int, int>[] _data2;
@@ -123,7 +123,7 @@ namespace CodeJam.RangesAlternatives
 		[PublicAPI]
 		public class RangeUnionNIntCase
 		{
-			private const int Count = DefaultCount;
+			private static readonly int Count = RecommendedSpinCount / 16;
 			private readonly KeyValuePair<int?, int?>[] _data;
 			private readonly KeyValuePair<int?, int?>[] _data2;
 			private readonly RangeStub<int?>[] _rangeData;

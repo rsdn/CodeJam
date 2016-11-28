@@ -85,6 +85,11 @@ namespace CodeJam.PerfTests.Analysers
 				analysis.WriteExecutonErrorMessage("Summary has validation errors.");
 			}
 
+			if (!summary.Benchmarks.Any())
+			{
+				analysis.WriteSetupErrorMessage("No methods to benchmark. Add methods into competition.");
+			}
+
 			var benchmarksWithReports = summary.Reports
 				.Where(r => r.ExecuteResults.Any())
 				.Select(r => r.Benchmark);

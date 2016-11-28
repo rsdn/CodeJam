@@ -134,42 +134,42 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[CompetitionModifier(typeof(CompetitionHighAccuracyModifier))]
 		public class HighAccuracyBenchmark
 		{
-			private const int Count = 4 * CompetitionHelpers.DefaultCount;
+			private static readonly int _count = CompetitionHelpers.RecommendedSpinCount;
 
 			[CompetitionBaseline]
-			public void Baseline() => CompetitionHelpers.Delay(Count);
+			public void Baseline() => CompetitionHelpers.Delay(_count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run1() => CompetitionHelpers.Delay(2 * Count);
+			public void SlowerX2Run1() => CompetitionHelpers.Delay(2 * _count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run2() => CompetitionHelpers.Delay(2 * Count);
+			public void SlowerX2Run2() => CompetitionHelpers.Delay(2 * _count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run3() => CompetitionHelpers.Delay(2 * Count);
+			public void SlowerX2Run3() => CompetitionHelpers.Delay(2 * _count);
 
 			[CompetitionBenchmark(4.65, 5.35)]
-			public void SlowerX5() => CompetitionHelpers.Delay(5 * Count);
+			public void SlowerX5() => CompetitionHelpers.Delay(5 * _count);
 		}
 
 		public class HighAccuracyBenchmarkOutOfProcess
 		{
-			private const int Count = CompetitionHelpers.DefaultCount;
+			private static readonly int _count = CompetitionHelpers.RecommendedSpinCount;
 
 			[CompetitionBaseline]
-			public void Baseline() => CompetitionHelpers.Delay(Count);
+			public void Baseline() => CompetitionHelpers.Delay(_count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run1() => CompetitionHelpers.Delay(2 * Count);
+			public void SlowerX2Run1() => CompetitionHelpers.Delay(2 * _count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run2() => CompetitionHelpers.Delay(2 * Count);
+			public void SlowerX2Run2() => CompetitionHelpers.Delay(2 * _count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run3() => CompetitionHelpers.Delay(2 * Count);
+			public void SlowerX2Run3() => CompetitionHelpers.Delay(2 * _count);
 
 			[CompetitionBenchmark(4.65, 5.35)]
-			public void SlowerX5() => CompetitionHelpers.Delay(5 * Count);
+			public void SlowerX5() => CompetitionHelpers.Delay(5 * _count);
 		}
 		#endregion
 	}

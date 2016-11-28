@@ -39,7 +39,7 @@ namespace CodeJam
 		private const string Fx = "X";
 		#endregion
 
-		private const int Count = DefaultCount / 10;
+		private static readonly int Count = RecommendedSpinCount / 16;
 
 		[Test]
 		public void RunIsDefinedCase() => Competition.Run<IsDefinedCase>();

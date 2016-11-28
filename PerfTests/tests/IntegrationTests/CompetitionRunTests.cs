@@ -49,8 +49,10 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, 0);
-			AssertCompetitionCompleted(runState, MessageSeverity.Verbose);
-			Assert.AreEqual(messages.Length, 0);
+			AssertCompetitionCompleted(runState, MessageSeverity.SetupError);
+			Assert.AreEqual(messages.Length, 1);
+
+			Assert.AreEqual(messages[0].MessageText, "No methods to benchmark. Add methods into competition.");
 		}
 
 		[Test]
@@ -250,14 +252,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Benchmark1()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
+				CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
 			}
 
 			[Benchmark]
 			public void Benchmark2()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
+				CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
 			}
 		}
 
@@ -267,7 +269,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
+				CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
 			}
 
 			// Limits loosed as perftest is run only four times and timings on appveyor are very inaccurate
@@ -275,7 +277,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(10 * CompetitionHelpers.DefaultCount);
+				CompetitionHelpers.Delay(10 * CompetitionHelpers.RecommendedSpinCount);
 			}
 		}
 
@@ -311,14 +313,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
+				CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
 			}
 
 			[CompetitionBenchmark]
 			public void SlowerX20()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(20 * CompetitionHelpers.DefaultCount);
+				CompetitionHelpers.Delay(20 * CompetitionHelpers.RecommendedSpinCount);
 			}
 		}
 
@@ -337,14 +339,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
+				CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
 			}
 
 			[CompetitionBenchmark(20.2, 5.5)]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(10 * CompetitionHelpers.DefaultCount);
+				CompetitionHelpers.Delay(10 * CompetitionHelpers.RecommendedSpinCount);
 			}
 		}
 
@@ -354,14 +356,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
+				CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
 			}
 
 			[CompetitionBenchmark(1, 1)]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(10 * CompetitionHelpers.DefaultCount);
+				CompetitionHelpers.Delay(10 * CompetitionHelpers.RecommendedSpinCount);
 			}
 		}
 
@@ -371,14 +373,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.DefaultCount);
+				CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
 			}
 
 			[CompetitionBenchmark]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(10 * CompetitionHelpers.DefaultCount);
+				CompetitionHelpers.Delay(10 * CompetitionHelpers.RecommendedSpinCount);
 			}
 		}
 		#endregion

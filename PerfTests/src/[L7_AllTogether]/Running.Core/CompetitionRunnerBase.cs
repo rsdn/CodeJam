@@ -50,99 +50,153 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		#region Public API (expose these via Competiton classes)
+		#region With competition features
 		/// <summary>Runs the benchmark.</summary>
 		/// <typeparam name="T">Benchmark class to run.</typeparam>
-		/// <param name="competitionConfig">
-		/// The competition config.
-		/// If<c>null</c> config from <see cref="CompetitionConfigAttribute"/> will be used.
-		/// </param>
+		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>The state of the competition.</returns>
 		[NotNull]
-		public CompetitionState Run<T>([CanBeNull] ICompetitionConfig competitionConfig = null)
+		public CompetitionState Run<T>([CanBeNull] CompetitionFeatures competitionFeatures = null)
 			where T : class =>
-				RunCore(typeof(T), competitionConfig);
+				RunCore(typeof(T), null, competitionFeatures);
 
 		/// <summary>Runs the benchmark.</summary>
 		/// <typeparam name="T">Benchmark class to run.</typeparam>
 		/// <param name="thisReference">Reference used to infer type of the benchmark.</param>
-		/// <param name="competitionConfig">
-		/// The competition config.
-		/// If<c>null</c> config from <see cref="CompetitionConfigAttribute"/> will be used.
-		/// </param>
+		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>The state of the competition.</returns>
 		[NotNull]
 		public CompetitionState Run<T>(
 			[NotNull] T thisReference,
-			[CanBeNull] ICompetitionConfig competitionConfig = null)
+			[CanBeNull] CompetitionFeatures competitionFeatures = null)
 			where T : class =>
-				RunCore(thisReference.GetType(), competitionConfig);
+				RunCore(thisReference.GetType(), null, competitionFeatures);
 
 		/// <summary>Runs the benchmark.</summary>
 		/// <param name="benchmarkType">Benchmark class to run.</param>
-		/// <param name="competitionConfig">
-		/// The competition config.
-		/// If<c>null</c> config from <see cref="CompetitionConfigAttribute"/> will be used.
-		/// </param>
+		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>The state of the competition.</returns>
 		[NotNull]
 		public CompetitionState Run(
 			[NotNull] Type benchmarkType,
-			[CanBeNull] ICompetitionConfig competitionConfig = null) =>
-				RunCore(benchmarkType, competitionConfig);
+			[CanBeNull] CompetitionFeatures competitionFeatures = null) =>
+				RunCore(benchmarkType, null, competitionFeatures);
+		#endregion
+
+		#region With config
+		/// <summary>Runs the benchmark.</summary>
+		/// <typeparam name="T">Benchmark class to run.</typeparam>
+		/// <param name="competitionConfig">Custom competition config.</param>
+		/// <returns>The state of the competition.</returns>
+		[NotNull]
+		public CompetitionState Run<T>([NotNull] ICompetitionConfig competitionConfig)
+			where T : class =>
+				RunCore(typeof(T), competitionConfig, null);
+
+		/// <summary>Runs the benchmark.</summary>
+		/// <typeparam name="T">Benchmark class to run.</typeparam>
+		/// <param name="thisReference">Reference used to infer type of the benchmark.</param>
+		/// <param name="competitionConfig">Custom competition config.</param>
+		/// <returns>The state of the competition.</returns>
+		[NotNull]
+		public CompetitionState Run<T>(
+			[NotNull] T thisReference,
+			[NotNull] ICompetitionConfig competitionConfig)
+			where T : class =>
+				RunCore(thisReference.GetType(), competitionConfig, null);
+
+		/// <summary>Runs the benchmark.</summary>
+		/// <param name="benchmarkType">Benchmark class to run.</param>
+		/// <param name="competitionConfig">Custom competition config.</param>
+		/// <returns>The state of the competition.</returns>
+		[NotNull]
+		public CompetitionState Run(
+			[NotNull] Type benchmarkType,
+			[NotNull] ICompetitionConfig competitionConfig) =>
+				RunCore(benchmarkType, competitionConfig, null);
+		#endregion
 		#endregion
 
 		#region Advanced public API (expose these if you wish)
+		#region With competition features
 		/// <summary>Runs all benchmarks defined in the assembly.</summary>
 		/// <param name="assembly">Assembly with benchmarks to run.</param>
-		/// <param name="competitionConfig">
-		/// The competition config.
-		/// If<c>null</c> config from <see cref="CompetitionConfigAttribute"/> will be used.
-		/// </param>
+		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>The state of the competition for each benchmark that was run.</returns>
 		[NotNull]
 		public IReadOnlyDictionary<Type, CompetitionState> Run(
 			[NotNull] Assembly assembly,
-			[CanBeNull] ICompetitionConfig competitionConfig = null) =>
-				Run(BenchmarkHelpers.GetBenchmarkTypes(assembly), competitionConfig);
+			[CanBeNull] CompetitionFeatures competitionFeatures = null) =>
+				Run(BenchmarkHelpers.GetBenchmarkTypes(assembly), competitionFeatures);
 
 		/// <summary>Runs all benchmarks defined in the assembly.</summary>
 		/// <param name="benchmarkTypes">Benchmark classes to run.</param>
-		/// <param name="competitionConfig">
-		/// The competition config.
-		/// If<c>null</c> config from <see cref="CompetitionConfigAttribute"/> will be used.
-		/// </param>
+		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>The state of the competition for each benchmark that was run.</returns>
 		[NotNull]
 		public IReadOnlyDictionary<Type, CompetitionState> Run(
 			[NotNull] Type[] benchmarkTypes,
-			[CanBeNull] ICompetitionConfig competitionConfig = null)
+			[CanBeNull] CompetitionFeatures competitionFeatures = null)
 		{
 			var result = new Dictionary<Type, CompetitionState>();
 
 			foreach (var benchmarkType in benchmarkTypes)
 			{
-				result[benchmarkType] = RunCore(benchmarkType, competitionConfig);
+				result[benchmarkType] = RunCore(benchmarkType, null, competitionFeatures);
 			}
 
 			return result;
 		}
 		#endregion
 
+		#region With config
+		/// <summary>Runs all benchmarks defined in the assembly.</summary>
+		/// <param name="assembly">Assembly with benchmarks to run.</param>
+		/// <param name="competitionConfig">Custom competition config.</param>
+		/// <returns>The state of the competition for each benchmark that was run.</returns>
+		[NotNull]
+		public IReadOnlyDictionary<Type, CompetitionState> Run(
+			[NotNull] Assembly assembly,
+			[NotNull] ICompetitionConfig competitionConfig) =>
+				Run(BenchmarkHelpers.GetBenchmarkTypes(assembly), competitionConfig);
+
+		/// <summary>Runs all benchmarks defined in the assembly.</summary>
+		/// <param name="benchmarkTypes">Benchmark classes to run.</param>
+		/// <param name="competitionConfig">Custom competition config.</param>
+		/// <returns>The state of the competition for each benchmark that was run.</returns>
+		[NotNull]
+		public IReadOnlyDictionary<Type, CompetitionState> Run(
+			[NotNull] Type[] benchmarkTypes,
+			[NotNull] ICompetitionConfig competitionConfig)
+		{
+			var result = new Dictionary<Type, CompetitionState>();
+
+			foreach (var benchmarkType in benchmarkTypes)
+			{
+				result[benchmarkType] = RunCore(benchmarkType, competitionConfig, null);
+			}
+
+			return result;
+		}
+		#endregion
+		#endregion
+
 		/// <summary>Runs the benchmark.</summary>
 		/// <param name="benchmarkType">Benchmark class to run.</param>
-		/// <param name="competitionConfig">
-		/// The competition config.
-		/// If<c>null</c> config from <see cref="CompetitionConfigAttribute"/> will be used.
+		/// <param name="competitionConfig">Custom competition config (optional).</param>
+		/// <param name="competitionFeatures">
+		/// The competition features. Ignored if <paramref name="competitionConfig"/> is not <c>null</c>.
 		/// </param>
 		/// <returns>State of the run.</returns>
 		[NotNull]
 		private CompetitionState RunCore(
 			[NotNull] Type benchmarkType,
-			[CanBeNull] ICompetitionConfig competitionConfig)
+			[CanBeNull] ICompetitionConfig competitionConfig,
+			[CanBeNull] CompetitionFeatures competitionFeatures)
 		{
 			Code.NotNull(benchmarkType, nameof(benchmarkType));
 
-			competitionConfig = CreateBenchmarkConfig(benchmarkType, competitionConfig);
+			competitionConfig = CreateBenchmarkConfig(benchmarkType, competitionConfig, competitionFeatures);
 
 			var hostLogger = competitionConfig.GetLoggers().OfType<HostLogger>().Single();
 
@@ -278,12 +332,15 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		#region Create benchark config
-		private ICompetitionConfig CreateBenchmarkConfig([NotNull] Type benchmarkType, ICompetitionConfig competitionConfig)
+		private ICompetitionConfig CreateBenchmarkConfig(
+			[NotNull] Type benchmarkType,
+			ICompetitionConfig competitionConfig,
+			CompetitionFeatures competitionFeatures)
 		{
 			// ReSharper disable once UseObjectOrCollectionInitializer
 			var result = new ManualCompetitionConfig(
 				competitionConfig ??
-					CompetitionConfigFactory.FindFactoryAndCreate(benchmarkType, null));
+					CompetitionConfigFactory.FindFactoryAndCreate(benchmarkType, competitionFeatures));
 			InitCompetitionConfigOverride(result);
 			FixCompetitionConfig(result);
 

@@ -3,8 +3,11 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
+using BenchmarkDotNet.Horology;
+
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Configs.Factories;
+using CodeJam.Ranges;
 
 using JetBrains.Annotations;
 
@@ -26,8 +29,11 @@ namespace CodeJam.PerfTests
 		#endregion
 
 		#region Benchmark-related
-		/// <summary>Default count for performance test loops.</summary>
-		public const int DefaultCount = 10 * 1000;
+		/// <summary>Default count for performance test spin count loops.</summary>
+		public static readonly int RecommendedSpinCount = (int)(ThreadCycleTimeClock.Instance.Frequency.Hertz / (64 * 1024));
+
+		/// <summary>Default count for performance test fast spin loops.</summary>
+		public static readonly int RecommendedFastSpinCount = RecommendedSpinCount / 128;
 
 		/// <summary>Default delay implementation. Performs delay for specified number of cycles.</summary>
 		/// <param name="cycles">The number of cycles to delay.</param>
@@ -35,9 +41,17 @@ namespace CodeJam.PerfTests
 		#endregion
 
 		#region Configs
+		private static readonly Lazy<ICompetitionConfig> _defaultConfigLazy = new Lazy<ICompetitionConfig>(
+			()=> _configForAssemblyCache(typeof(CompetitionHelpers).Assembly),
+			true);
+
 		private static Func<Assembly, ICompetitionConfig> _configForAssemblyCache = Algorithms.Memoize(
 			(Assembly a) => CreateConfig(a, null),
 			true);
+
+		/// <summary>Default configuration for calling assembly that should be used for most performance tests.</summary>
+		/// <value>Default competition configuration.</value>
+		public static ICompetitionConfig DefaultConfig => _defaultConfigLazy.Value;
 
 		/// <summary>Default configuration for calling assembly that should be used for most performance tests.</summary>
 		/// <value>Default competition configuration.</value>
@@ -56,7 +70,7 @@ namespace CodeJam.PerfTests
 		/// <returns>Competition config for type.</returns>
 		[NotNull]
 		public static ICompetitionConfig CreateConfig(
-			[CanBeNull] Type benchmarkType = null,
+			[NotNull] Type benchmarkType,
 			[CanBeNull] CompetitionFeatures competitionFeatures = null) =>
 				CompetitionConfigFactory.FindFactoryAndCreate(benchmarkType, competitionFeatures);
 
