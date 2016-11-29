@@ -13,22 +13,23 @@
  * Skip annotation on 1st run
  * Exclude nunit-related assembly from tests
  Prepare PR, https://github.com/nunit/nunit-console/issues/62#issuecomment-262599181
- * absolute timings on not match warning
+ * Message with absolute timings if limits failed: improve readability
  * Burst mode feature: rename to LargeSampleSet?
  * AnnotateSourcesOnRun: rename to something like skipFirstRuns
- * WithCompetitionOptions - preserve Id!
  * Output: option to not log output from toolchain?
  * Concurrency: lock should be performed on entire benchmark run.
  * Logging: write validator messages immediately?
  * Log resulting competition features / competition options?
  * LogColors.Hint: use it for something?
  * Better message for "X has empty limit. Please fill it." + do not rerun if empty limit
- * Better message for "run faster /slower than". Provide some suggestions?
+ * Better message for "run faster / slower than". Provide some suggestions?
  * Warning if job count > 1
+ * Apply with id for Competition options / features
+ * Metadata attributes - order by inheritance
 
 ## TODOs (tests):
  * Source annotations: test for partial files / methods
- * high-priority test for TestProcessCycleTimeClock
+ * High-priority test for TestProcessCycleTimeClock
  * Tests for broken log annotations.
  * app.config in the test integration projects: do we need it?
  * xUnit: tests: run as x64?
@@ -86,3 +87,12 @@ https://github.com/xunit/xunit/issues/908
 
 ### Layer 7: Reusable parts of the runners
  * Wrapping all of above into simple, configurable and reusable API
+
+
+##Long-term task: reusable limits, draft notes
+* Support for third-party limits, use limit provider + id
+* Target stores limits as a `Dictionary<provider_id, Range<double>>`
+* Limit provider specifies attribute name and additional parameters to be applied
+  TODO: exact format?
+  TODO: Use same properties for XML annotations or prefer something better?
+  TODO: Range extension method: Min/MaxValue to infinity?

@@ -1,4 +1,4 @@
-# CodeJam.PerfTests.
+# CodeJam.PerfTests overview
 
 > **META-NOTE**
 >
@@ -15,7 +15,7 @@
 The main thing introduced by CodeJam.PerfTests is a concept of _competition_. Competiton plays the same role the Benchmark class in BenchmarkDotNet does: it contains methods to measure. Main differences between benchmarks and competitions are:
 
 * Competitions always include a baseline method. Baseline is required to provide relative timings (see below). Use `[CompetitionBaseline]` attribute to mark the baseline method.
-* Competitions are meant to be run multiple times and their results should be comparable even if previous run was performed on another machine. Therefore competition results are stored as a relative-to-baseline timings.
+* Competitions are meant to run multiple times and their results should be comparable even if previous run was performed on another machine. Therefore competition results are stored as a relative-to-baseline timings.
 * Competition methods (except baseline method) are annotated with competition limits that describe expected execution time (relative-to-baseline time is used). Use `[CompetitionBenchmark]` to mark the competition method and set limits for it.
 * The `Competition.Run()` method should be used to run the competition (BenchmarkDotNet uses `BenchmarkRunner.Run()`).
 * Single competition run can invoke `BenchmarkRunner.Run()`multiple times (for example, additional runs are performed if competition limits were adjusted).
@@ -28,7 +28,7 @@ The main thing introduced by CodeJam.PerfTests is a concept of _competition_. Co
 
 In additional to the list above there are some limitations:
 
-* Competitions use its own configuration system. Please do not apply BenchmarkDotNet's `[Config]` attributes to the competition classes, the behavior is undefined.
+* Competitions use its own configuration system. Please do not apply BenchmarkDotNet's `[Config]` attributes to the competition classes, resulting behavior is undefined.
 
 * Competitions do not support diagnosers by default. You need to set up toolchain from BenchmarkDotNet to enable diagnosers.
 
@@ -57,7 +57,7 @@ In additional to the list above there are some limitations:
   > public void SomeMethod() => ...
   > ```
   >
-  > Not a best solution, I agree. But at least it does not tease your brain with "What limits should I rely on?"
+  > Not a best solution, I do agree. But at least it does not tease your brain with "What limits should I rely on?".
   >
   > If you want to do quick investigation on multiple cases, consider to use raw BenchmarkDotNet benchmark.
   >
@@ -69,11 +69,11 @@ In additional to the list above there are some limitations:
 
 ## Configuration system 
 
-CodeJam.PerfTests configuration uses almost same approach the BenchmarkDotNet do. However, there are additions aimed to ease configuration of large projects with hundreds or thousands of perftetests. Here's how it works:
+CodeJam.PerfTests configuration uses almost same approach the BenchmarkDotNet does. However, there are additions aimed to ease configuration of large projects with hundreds or thousands of perftetests. Here's how it works:
 
 ### 0. Attribute annotations
 
-Almost all configuration features rely on attribute annotations. Attributes are checked in the following order:
+Almost all configuration features rely on attribute annotations. Attributes are checked in following order:
 
 1. Attributes applied to the competition class or to it's base types.
 2. Attributes applied to the container types or to it's base types (if the competition class is nested type)
@@ -83,8 +83,8 @@ If the configuration system expects only one attribute (as with `CompetitionConf
 
 If multiple attributes supported (`CompetitionFeaturesAttribute` as example), they are applied in reversed order: assembly level attributes go first, container type attributes are the next and the competition class attributes are the last ones.
 
-***~NOTE~***
-
+> ***~NOTE~***
+>
 > There's no ordering for attributes applied at the same level. If there are multiple attributes applied to the type or to the assembly, they are enumerated in random order
 
 
@@ -93,7 +93,7 @@ If multiple attributes supported (`CompetitionFeaturesAttribute` as example), th
 
 >  **NOTE**
 >
-> Explicit config passing is an advanced technique and should be used only when you want to have a perfect control over the configuration. It skips entire configuration pipeline and therefore it's up to you to pass correct config into competition.
+>  Explicit config passing is an advanced technique and should be used only when you want to have a perfect control over the configuration. It skips entire configuration pipeline and therefore it's up to you to pass correct config into competition.
 
 
 
@@ -182,7 +182,7 @@ When the test is run the configuration system will check the competition's type,
 
 > **NOTE**
 >
-> All declarative config annotations are honored only if the config was not passed explicitly (as a `Competition.Run()` argument or via `CompetitionConfigAttribute`).
+> All declarative config annotations do apply only if the config was not passed explicitly (as a `Competition.Run()` argument or via `CompetitionConfigAttribute`).
 
 It should be obvious for now that CodeJam.PerfTests has very complex configuration system. At the same time most end-user use cases are very simple. You may want to enable/disable source annotations or specify target platform or just enable troubleshooting mode. You do not want to know anything about the configs or what properties should be changed to enable particular scenario. Meet the CompetitionFeatures.
 
@@ -200,7 +200,7 @@ As with explicit config scenario, features should be passed explicitly only when
 				this,
 				new CompetitionFeatures
 				{
-					// Tunes config to Detailed logging, allow debug builds, export measure
+					// Detailed logging, allow debug builds, export measurements and so on
 					TroubleshootingMode = true,
 					// We do not care whether the benchmark is run as x86 or x64
 					Platform = Platform.AnyCpu
@@ -269,7 +269,7 @@ Want to add CI service or have an idea howto make the feature better? *~Create a
 
 #### 2.4 Set competition features via attributes 
 
-While default features can be good for most perftests there always are tests that require individual approach. To adjust the features just apply `[CompetitionFeatures]` attribute (or any derived attribute) to the competition class, container type (if the competition class is a nested type) or to the assembly. Check the *~Attribute annotations TODO: link*~* section for explanation how the attributes are applied.
+While default features can be good for most perftests there always are tests that require own feature set. If you want to add (or disable) some particular features apply the `[CompetitionFeatures]` attribute (or any derived attribute) to the competition class, container type (if the competition class is a nested type) or to the assembly. Check the *~Attribute annotations TODO: link*~* section for explanation how the attributes are applied.
 
 Here's example that covers all possible annotations for the competition features.
 
@@ -312,7 +312,7 @@ Here's example that covers all possible annotations for the competition features
 
 > **NOTE**
 >
-> All declarative config annotations are honored only if the config was not passed explicitly (as a `Competition.Run()` argument or via `CompetitionConfigAttribute`).
+> All declarative config annotations do apply only if the config was not passed explicitly (as a `Competition.Run()` argument or via `CompetitionConfigAttribute`).
 
 Okay, you've set up competition features but you do want to change some options that are not exposed as a competition features. CodeJam.PerfTests provide `ICompetitionModifier` interface for tasks like this. Implement your own
 
@@ -367,20 +367,21 @@ As with `CompetitionFeaturesAttribute`, modifiers can be combined together. Chec
 
 > **NOTE**
 >
-> All declarative config annotations are honored only if the config was not passed explicitly (as a `Competition.Run()` argument or via `CompetitionConfigAttribute`).
+> All declarative config annotations do apply only if the config was not passed explicitly (as a `Competition.Run()` argument or via `CompetitionConfigAttribute`).
 
 > **NOTE**
 >
 > As with explicit config passing, this is an advanced feature and it is recommended to check for existing implementations and study them at first. There's no safety net anymore.
 
-If all of the above is not enough for you there's a backdoor: you can override entire creation pipeline. Implement `ICompetitionConfigFactory` or derive from existing one:
+If all of the above is not enough for you there's a backdoor: you can override entire config factory pipeline. Implement `ICompetitionConfigFactory` or derive from existing one:
 
 ```c#
 	public class MyCompetitionFactory : CompetitionConfigFactory
 	{
 		public MyCompetitionFactory(string configId) : base(configId) { }
 
-		protected override CompetitionFeatures CompleteFeatures(CompetitionFeatures competitionFeatures)
+		protected override CompetitionFeatures CompleteFeatures(
+			CompetitionFeatures competitionFeatures)
 		{
 			// Disable CI support.
 			competitionFeatures.ContinuousIntegrationMode = false;
@@ -388,11 +389,12 @@ If all of the above is not enough for you there's a backdoor: you can override e
 			return base.CompleteFeatures(competitionFeatures);
 		}
 
-		protected override ICompetitionConfig CompleteConfig(ManualCompetitionConfig competitionConfig)
+		protected override ICompetitionConfig CompleteConfig(
+			ManualCompetitionConfig competitionConfig)
 		{
 			// No idea what to do here. Let's sort something
-			competitionConfig.Analysers.Sort(
-				(IAnalyser a, IAnalyser b) => String.Compare(a.Id, b.Id, StringComparison.Ordinal));
+			competitionConfig.Analysers.Sort((IAnalyser a, IAnalyser b) =>
+				String.Compare(a.Id, b.Id, StringComparison.Ordinal));
 
 			// and remove some stuff.
 			competitionConfig.Exporters.Clear();
@@ -419,7 +421,6 @@ and apply it to the benchmark class, it's container class (if the benchmark clas
 
 		// ...
 	}
-
 ```
 
 When the test is run the configuration system will check the competition's type, it's container type (if any) and competition's assembly for the `CompetitionConfigFactoryAttribute`. First found attribute wins.
