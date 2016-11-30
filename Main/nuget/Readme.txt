@@ -1,8 +1,8 @@
-CodeJam 1.2.0-stable Release Notes
+CodeJam 1.2.0 Release Notes
 ----------------------------------
 
-What's new in 1.2.0-stable
--------------------------
+What's new in 1.2.0
+-------------------
 * Code cleanup
 
 What's new in 1.2.0-rc1
@@ -43,8 +43,8 @@ What's new in 1.2.0-beta1
 * Add execution synchronized LazyDictionary implementation
 * Fixes and code cleanup
 
-What's new in 1.1.0-stable
---------------------------
+What's new in 1.1.0
+-------------------
 * Code cleanup
 
 What's new in 1.1.0-rc2
@@ -106,8 +106,8 @@ What's new in 1.1.0-beta1
 * Refactoring
 * Fixes and code cleanup
 
-What's new in 1.0.0-stable
---------------------------
+What's new in 1.0.0
+-------------------
 * Small fixes
 
 What's new in 1.0.0-rc3
