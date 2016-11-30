@@ -3,8 +3,7 @@ CodeJam 1.2.0-stable Release Notes
 
 What's new in 1.2.0-stable
 -------------------------
-* Use Range struct instead of ValueTuple in public API
-* Refactoring, fixes and code cleanup
+* Code cleanup
 
 What's new in 1.2.0-rc1
 -----------------------
