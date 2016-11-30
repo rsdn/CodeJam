@@ -1,5 +1,10 @@
-CodeJam 1.2.0-rc1 Release Notes
--------------------------------
+CodeJam 1.2.0-stable Release Notes
+----------------------------------
+
+What's new in 1.2.0-stable
+-------------------------
+* Use Range struct instead of ValueTuple in public API
+* Refactoring, fixes and code cleanup
 
 What's new in 1.2.0-rc1
 -----------------------
@@ -39,8 +44,8 @@ What's new in 1.2.0-beta1
 * Add execution synchronized LazyDictionary implementation
 * Fixes and code cleanup
 
-What's new in 1.1.0
--------------------
+What's new in 1.1.0-stable
+--------------------------
 * Code cleanup
 
 What's new in 1.1.0-rc2
@@ -102,8 +107,8 @@ What's new in 1.1.0-beta1
 * Refactoring
 * Fixes and code cleanup
 
-What's new in 1.0.0
--------------------
+What's new in 1.0.0-stable
+--------------------------
 * Small fixes
 
 What's new in 1.0.0-rc3
