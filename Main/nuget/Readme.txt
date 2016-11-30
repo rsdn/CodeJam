@@ -6,6 +6,10 @@ What's new in 1.3.0-beta1
 * OneOf<> and ValueOneOf<> types for tagged (discriminated, joint) unions
 * Code cleanup
 
+What's new in 1.2.0
+-------------------
+* Code cleanup
+
 What's new in 1.2.0-rc1
 -----------------------
 * Use Range struct instead of ValueTuple in public API

@@ -4,7 +4,7 @@
 		<id>CodeJam</id>
 		<version>1.3.0-beta1</version>
 		<title>CodeJam .NET Library</title>
-		<authors>andrewvk</authors>
+		<authors>Andrew Koryavchenko, ig-sinicyn, Igor Tkachev</authors>
 		<licenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</licenseUrl>
 		<projectUrl>https://github.com/rsdn/CodeJam</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
