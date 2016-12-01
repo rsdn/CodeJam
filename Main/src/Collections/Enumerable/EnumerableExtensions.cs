@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
-
+#if !FW35
 using CodeJam.Mapping;
+#endif
 using CodeJam.Reflection;
-using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -445,7 +444,9 @@ namespace CodeJam.Collections
 				yield return obj?.ToString() ?? "";
 		}
 
-		class ValueHolder<T>
+#if !FW35
+		[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+		internal class ValueHolder<T>
 		{
 			public T Value;
 		}
@@ -575,5 +576,6 @@ namespace CodeJam.Collections
 
 			return source.ToDiagnosticString(new StringBuilder()).ToString();
 		}
+#endif
 	}
 }
