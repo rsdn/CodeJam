@@ -65,7 +65,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="competitionState">State of the run.</param>
 		protected override void ReportExecutionErrors(string messages, CompetitionState competitionState)
 		{
-			throw new XunitException(messages);
+			throw new XunitException(messages + Environment.NewLine);
 		}
 
 		/// <summary>Reports failed assertions to user.</summary>
@@ -73,7 +73,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="competitionState">State of the run.</param>
 		protected override void ReportAssertionsFailed(string messages, CompetitionState competitionState)
 		{
-			throw new XunitException(messages);
+			throw new XunitException(messages + Environment.NewLine);
 		}
 
 		/// <summary>Reports warnings to user.</summary>
@@ -81,7 +81,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="competitionState">State of the run.</param>
 		protected override void ReportWarnings(string messages, CompetitionState competitionState)
 		{
-			throw new SkipTestException(messages);
+			throw new SkipTestException(messages + Environment.NewLine);
 		}
 		#endregion
 

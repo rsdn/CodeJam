@@ -60,7 +60,7 @@ namespace CodeJam.PerfTests
 		/// <seealso cref="CompetitionLimitsMode.LogAnnotations"/>,
 		/// <seealso cref="SourceAnnotationsMode.DontSaveAdjustedLimits"/>
 		/// and <see cref="CompetitionRunMode.ContinuousIntegrationMode"/> are enabled,
-		/// <see cref="ICompetitionFeatures.PreviousRunLogUri"/> is ignored.
+		/// <see cref="PreviousRunLogUri"/> is ignored.
 		/// </summary>
 		/// <value>
 		/// <c>true</c> if the code is being run on a CI server.

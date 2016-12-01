@@ -14,7 +14,7 @@ It allows to compare multiple implementations by execution time (*~memory limits
 
 ## TL;DR (NUnit version):
 
->**SIDENOTE**
+>**NOTE**
 >
 >Here and below all samples are based on NUnit framework. Actually there's no significant difference, only things to change are package name and test frameworks attributes.
 >For example how to use CodeJam.PerfTests with other test frameworks see 
@@ -79,7 +79,7 @@ namespace CodeJam.Examples
 ```
  yep, it's a magic:)
 
- > ***~Accuracy!~***
+ > **NOTE**
  >
  > This test is known to provide inaccurate results on on low-end notebooks / nettops with mobile CPUs due to aggressive frequency scaling and throttling.
  >

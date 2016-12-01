@@ -42,6 +42,9 @@ namespace CodeJam.PerfTests.Analysers
 		{
 			base.PrepareTargetsOverride(analysis);
 
+			if (!analysis.SafeToContinue)
+				return;
+
 			var annotationsMode = analysis.Annotations;
 			var logUri = annotationsMode.PreviousRunLogUri;
 
@@ -50,18 +53,17 @@ namespace CodeJam.PerfTests.Analysers
 
 			var xmlAnnotationDocs = ReadXmlAnnotationDocsFromLog(logUri, analysis);
 			if (xmlAnnotationDocs.Length == 0)
-			{
-				analysis.WriteWarningMessage($"No XML annotation documents in the log '{logUri}'.");
 				return;
-			}
 
+			// ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
 			if (TryFillCompetitionTargetsFromLog(analysis, xmlAnnotationDocs))
 			{
 				analysis.WriteInfoMessage($"Competition limits were updated from log file '{logUri}'.");
-				return;
 			}
-
-			analysis.WriteInfoMessage($"Competition limits do not require update. Log file: '{logUri}'.");
+			else
+			{
+				analysis.WriteInfoMessage($"Competition limits do not require update. Log file: '{logUri}'.");
+			}
 		}
 
 		[NotNull]
@@ -72,6 +74,15 @@ namespace CodeJam.PerfTests.Analysers
 			var xmlAnnotationDocs = _annotationsFromLogCacheSlot[analysis.Summary].GetOrAdd(
 				logUri,
 				uri => XmlAnnotations.TryParseXmlAnnotationDocsFromLog(uri, analysis.RunState));
+
+			if (xmlAnnotationDocs == null)
+			{
+				return Array<XDocument>.Empty;
+			}
+			if (xmlAnnotationDocs.Length == 0)
+			{
+				analysis.WriteWarningMessage($"No XML annotation documents in the log '{logUri}'.");
+			}
 
 			return xmlAnnotationDocs;
 		}
@@ -204,6 +215,10 @@ namespace CodeJam.PerfTests.Analysers
 				{
 					analysis.RunState.WriteVerbose(message);
 				}
+				foreach (var competitionTarget in targetsToAnnotate)
+				{
+					competitionTarget.MarkAsSaved();
+				}
 			}
 			else
 			{
@@ -215,11 +230,11 @@ namespace CodeJam.PerfTests.Analysers
 					analysis.WriteWarningMessage(
 						"The sources were updated with new annotations. Please check them before commiting the changes.");
 				}
-			}
 
-			foreach (var competitionTarget in targetsToAnnotate)
-			{
-				competitionTarget.MarkAsSaved();
+				foreach (var competitionTarget in annotatedTargets)
+				{
+					competitionTarget.MarkAsSaved();
+				}
 			}
 		}
 		#endregion

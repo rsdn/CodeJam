@@ -136,7 +136,7 @@ namespace CodeJam.PerfTests.Running.Limits
 					nameof(maxRatio),
 					$"Please check competition limits. The {nameof(minRatio)} ({minRatio.ToString(HostEnvironmentInfo.MainCultureInfo)}) "
 						+
-						$"should not be greater than the {nameof(maxRatio)} ({maxRatio.ToString(HostEnvironmentInfo.MainCultureInfo)}).");
+						$"should be not zero and it should be greater than the {nameof(maxRatio)} ({maxRatio.ToString(HostEnvironmentInfo.MainCultureInfo)}).");
 			}
 
 			MinRatio = minRatio;

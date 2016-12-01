@@ -2,6 +2,8 @@
 
 using BenchmarkDotNet.Environments;
 
+using CodeJam.PerfTests.Configs;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests
@@ -25,6 +27,16 @@ namespace CodeJam.PerfTests
 		public CompetitionAnnotateSourcesAttribute()
 		{
 			AnnotateSources = true;
+			IgnoreExistingAnnotations = false;
+		}
+
+		/// <summary>Initializes a new instance of the <see cref="CompetitionAnnotateSourcesAttribute" /> class.</summary>
+		/// <param name="previousRunLogUri">Sets the <see cref="SourceAnnotationsMode.PreviousRunLogUri"/> to the specified value.</param>
+		public CompetitionAnnotateSourcesAttribute(string previousRunLogUri)
+		{
+			AnnotateSources = true;
+			IgnoreExistingAnnotations = false;
+			PreviousRunLogUri = previousRunLogUri;
 		}
 	}
 
@@ -32,13 +44,26 @@ namespace CodeJam.PerfTests
 	[PublicAPI]
 	public class CompetitionReannotateSourcesAttribute : CompetitionFeaturesAttribute
 	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="CompetitionReannotateSourcesAttribute"/> class.
-		/// </summary>
+		/// <summary>Initializes a new instance of the <see cref="CompetitionReannotateSourcesAttribute"/> class.</summary>
 		public CompetitionReannotateSourcesAttribute()
 		{
 			AnnotateSources = true;
 			IgnoreExistingAnnotations = true;
+		}
+	}
+
+	/// <summary>Enables limits preview feature (new limits are logged but sources will not be updated.</summary>
+	[PublicAPI]
+	public class CompetitionPreviewLimitsAttribute : CompetitionFeaturesAttribute
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CompetitionPreviewLimitsAttribute"/> class.
+		/// </summary>
+		public CompetitionPreviewLimitsAttribute()
+		{
+			AnnotateSources = true;
+			IgnoreExistingAnnotations = true;
+			ContinuousIntegrationMode = true;
 		}
 	}
 
@@ -55,7 +80,7 @@ namespace CodeJam.PerfTests
 		}
 	}
 
-	/// <summary>Specifies target platform for the  competition.</summary>
+	/// <summary>Specifies target platform for the competition.</summary>
 	[PublicAPI]
 	public class CompetitionPlatformAttribute : CompetitionFeaturesAttribute
 	{

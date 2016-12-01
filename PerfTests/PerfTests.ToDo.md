@@ -10,7 +10,15 @@
  * https://github.com/dotnet/BenchmarkDotNet/issues/307
 
 ## TODOs:
- * Skip annotation on 1st run
+ * Docs: update MSTest/xUnit intros
+ * Warning if there's log uri set, but source annotation updates are disabled.
+   Introduce logging for config factory
+   -or-
+   Run source annotations analyser even if annotations are disabled
+   -or-
+   Check on preconditions (bad idea, leaking abstraction)
+ * Check WriteVerboseHint for source annotations
+ * Skip annotation on 1st run (CI mode only?)
  * Exclude nunit-related assembly from tests
  Prepare PR, https://github.com/nunit/nunit-console/issues/62#issuecomment-262599181
  * Message with absolute timings if limits failed: improve readability
@@ -26,6 +34,7 @@
  * Warning if job count > 1
  * Apply with id for Competition options / features
  * Metadata attributes - order by inheritance
+ * Limit annotations: remove special values (Zero and -1)
 
 ## TODOs (tests):
  * Source annotations: test for partial files / methods

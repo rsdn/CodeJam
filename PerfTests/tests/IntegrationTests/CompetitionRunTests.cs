@@ -159,7 +159,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 				messages[0].MessageText,
 				Does.StartWith(
 					"Benchmark BadLimitsBenchmark failed. Exception: Please check competition limits. " +
-						"The minRatio (20.2) should not be greater than the maxRatio (5.5)."));
+						"The minRatio (20.2) should be not zero and it should be greater than the maxRatio (5.5)."));
 		}
 
 		[Test]

@@ -212,7 +212,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				{
 					competitionState.WriteMessage(
 						MessageSource.Analyser, MessageSeverity.SetupError,
-						$"Benchmark {assembly.FullName}: resource stream '{resourceName}' not found.");
+						$"XML annotation resource stream '{resourceName}' not found. Assembly {assembly.FullName}.");
 
 					return null;
 				}
@@ -229,8 +229,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <summary>Parses xml annotation documents from the log.</summary>
 		/// <param name="logUri">The URI the log will be obtained from.</param>
 		/// <param name="competitionState">State of the run.</param>
-		/// <returns>Parsed xml annotation documents, if any.</returns>
-		[NotNull]
+		/// <returns>Parsed xml annotation documents, if any or <c>null</c> if parsing failed.</returns>
+		[CanBeNull]
 		public static XDocument[] TryParseXmlAnnotationDocsFromLog(
 			[NotNull] string logUri,
 			[NotNull] CompetitionState competitionState)
@@ -245,9 +245,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				if (reader == null)
 				{
 					competitionState.WriteMessage(
-						MessageSource.Analyser, MessageSeverity.SetupError,
+						MessageSource.Analyser, MessageSeverity.Warning,
 						$"Could not load log content from '{logUri}'.");
-					return Array<XDocument>.Empty;
+					return null;
 				}
 
 				competitionState.WriteVerbose($"Parsing '{logUri}' content.");

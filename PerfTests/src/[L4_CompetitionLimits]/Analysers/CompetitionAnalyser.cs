@@ -66,9 +66,12 @@ namespace CodeJam.PerfTests.Analysers
 				CompleteCheckTargets(analysis);
 			}
 
-			if (analysis.RunState.LooksLikeLastRun && analysis.Limits.LogAnnotations)
+			if (analysis.RunState.LooksLikeLastRun)
 			{
-				XmlAnnotations.LogXmlAnnotationDoc(analysis.Targets, analysis.RunState);
+				if (analysis.Limits.LogAnnotations || analysis.Targets.Any(t => t.HasUnsavedChanges))
+				{
+					XmlAnnotations.LogXmlAnnotationDoc(analysis.Targets, analysis.RunState);
+				}
 			}
 
 			return analysis.Conclusions.ToArray();
@@ -372,7 +375,14 @@ namespace CodeJam.PerfTests.Analysers
 			}
 			else if (analysis.Conclusions.Count == 0 && analysis.Targets.Any(c => c.HasRelativeLimits))
 			{
-				analysis.WriteInfoMessage($"{GetType().Name}: All competition limits are ok.");
+				if (analysis.Targets.Any(c => c.HasUnsavedChanges))
+				{
+					analysis.WriteWarningMessage("There are competition limits unsaved. Check the log for details please.");
+				}
+				else
+				{
+					analysis.WriteInfoMessage($"{GetType().Name}: All competition limits are ok.");
+				}
 			}
 		}
 

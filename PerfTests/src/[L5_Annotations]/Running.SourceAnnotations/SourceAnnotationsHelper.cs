@@ -206,7 +206,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				{
 					var resourceFileName = GetResourceFileName(fileName, competitionMetadata);
 
-					competitionState.WriteVerbose(
+					competitionState.WriteVerboseHint(
 						$"Method {targetMethodTitle}: annotating resource file '{resourceFileName}'.");
 					var annotated = TryFixBenchmarkXmlAnnotation(annContext, resourceFileName, targetToAnnotate, competitionState);
 					if (!annotated)
@@ -214,12 +214,17 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 						competitionState.WriteMessage(
 							MessageSource.Analyser, MessageSeverity.Warning,
 							$"Method {targetMethodTitle}: could not annotate resource file '{resourceFileName}'.");
-						continue;
+					}
+					else
+					{
+						competitionState.WriteVerboseHint(
+							$"Method {targetMethodTitle}: updated with time limits {targetToAnnotate}.");
+						annotatedTargets.Add(targetToAnnotate);
 					}
 				}
 				else
 				{
-					competitionState.WriteVerbose(
+					competitionState.WriteVerboseHint(
 						$"Method {targetMethodTitle}: annotating file '{fileName}', line {firstCodeLine}.");
 					var annotated = TryFixBenchmarkAttribute(annContext, fileName, firstCodeLine, targetToAnnotate, competitionState);
 					if (!annotated)
@@ -227,13 +232,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 						competitionState.WriteMessage(
 							MessageSource.Analyser, MessageSeverity.Warning,
 							$"Method {targetMethodTitle}: could not annotate source file '{fileName}'.");
-						continue;
+					}
+					else
+					{
+						competitionState.WriteVerboseHint(
+							$"Method {targetMethodTitle}: updated with time limits {targetToAnnotate}.");
+						annotatedTargets.Add(targetToAnnotate);
 					}
 				}
-
-				competitionState.WriteVerboseHint(
-					$"Method {targetMethodTitle}: updated with time limits {targetToAnnotate}.");
-				annotatedTargets.Add(targetToAnnotate);
 			}
 
 			annContext.Save();

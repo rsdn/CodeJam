@@ -1,77 +1,15 @@
-# CodeJam.PerfTests overview
+# CodeJam.PerfTests Configuration system
 
 > **META-NOTE**
 >
 > Places to update are marked with *~…~*.
 >
-> **IMPORTANT**
->
-> This document assumes you're familiar with [BenchmarkDotNet basics](http://benchmarkdotnet.org/Overview.htm). Please read the link before continue
 
 [TOC]
 
-## Compared to BenchmarkDotNet
-
-The main thing introduced by CodeJam.PerfTests is a concept of _competition_. Competiton plays the same role the Benchmark class in BenchmarkDotNet does: it contains methods to measure. Main differences between benchmarks and competitions are:
-
-* Competitions always include a baseline method. Baseline is required to provide relative timings (see below). Use `[CompetitionBaseline]` attribute to mark the baseline method.
-* Competitions are meant to run multiple times and their results should be comparable even if previous run was performed on another machine. Therefore competition results are stored as a relative-to-baseline timings.
-* Competition methods (except baseline method) are annotated with competition limits that describe expected execution time (relative-to-baseline time is used). Use `[CompetitionBenchmark]` to mark the competition method and set limits for it.
-* The `Competition.Run()` method should be used to run the competition (BenchmarkDotNet uses `BenchmarkRunner.Run()`).
-* Single competition run can invoke `BenchmarkRunner.Run()`multiple times (for example, additional runs are performed if competition limits were adjusted).
-
-
-
-> ***~THINGS TO CHANGE~***
->
-> We're going to get rid of these, documentation will be updated.
-
-In additional to the list above there are some limitations:
-
-* Competitions use its own configuration system. Please do not apply BenchmarkDotNet's `[Config]` attributes to the competition classes, resulting behavior is undefined.
-
-* Competitions do not support diagnosers by default. You need to set up toolchain from BenchmarkDotNet to enable diagnosers.
-
-* Competitions do not work well with configs with multiple jobs or parameter values. It is not a thing to be fixed in near future as there is no easy way to provide useful limits for such benchmarks.
-
-  > **EXPLANATION**
-  >
-  > Let's say we have `[Params(SomeEnum.Slow, SomeEnum.Fast)]` and a config with two jobs (with GC and without GC).
-  >
-  > There're four possible combinations and annotation for each method in competition will look like this:
-  >
-  > ```c#
-  > [CompetitionBenchmark(2.88, 3.11, Case="Parameters=Fast, GC.Force=True")]
-  > [CompetitionBenchmark(12.21, 15.45, Case="Parameters=Slow, GC.Force=True")]
-  > [CompetitionBenchmark(2.35, 2.88, Case="Parameters=Fast, GC.Force=False")]
-  > [CompetitionBenchmark(10.81, 13.40, Case="Parameters=Slow, GC.Force=False")]
-  > public void SomeMethod() => ...
-  > ```
-  >
-  > Well, I see no point in such annotations as it's too hard to make some conclusions from it and it goes worse and worse as count of cases explodes very quickly.
-  >
-  > Current implementation will merge these annotations into
-  >
-  > ```c#
-  > [CompetitionBenchmark(2.35, 15.45)]
-  > public void SomeMethod() => ...
-  > ```
-  >
-  > Not a best solution, I do agree. But at least it does not tease your brain with "What limits should I rely on?".
-  >
-  > If you want to do quick investigation on multiple cases, consider to use raw BenchmarkDotNet benchmark.
-  >
-  > Have a idea how to make it better? Great, *~create an issue for it! TODO: link~*
-
-
-
-
-
-## Configuration system 
-
 CodeJam.PerfTests configuration uses almost same approach the BenchmarkDotNet does. However, there are additions aimed to ease configuration of large projects with hundreds or thousands of perftetests. Here's how it works:
 
-### 0. Attribute annotations
+## 0. Attribute annotations
 
 Almost all configuration features rely on attribute annotations. Attributes are checked in following order:
 
@@ -89,15 +27,15 @@ If multiple attributes supported (`CompetitionFeaturesAttribute` as example), th
 
 
 
-### 1. Run competition with explicit config
+## 1. Run competition with explicit config
 
 >  **NOTE**
 >
 >  Explicit config passing is an advanced technique and should be used only when you want to have a perfect control over the configuration. It skips entire configuration pipeline and therefore it's up to you to pass correct config into competition.
 
+Competition config stores all settings that apply to the competition. It's derived from BenchmarkDotNet's `IConfig` and adds few more options available via `CompetitionOptions` property. *~TODO: link competition options~*.
 
-
-#### 1.1. Pass config as a competition arg
+### 1.1. Pass config as a competition arg
 
 It just works. No additional adjustments are performed, competition will use the config you're passing to the test. Use it like this
 
@@ -118,7 +56,7 @@ It just works. No additional adjustments are performed, competition will use the
 
 
 
-#### 1.2. Use custom config attribute
+### 1.2. Use custom config attribute
 
 If you do want to reuse the config you can define custom config attribute
 
@@ -178,7 +116,7 @@ When the test is run the configuration system will check the competition's type,
 
 
 
-### 2. Declarative approach. Use competition features
+## 2. Declarative approach. Use competition features
 
 > **NOTE**
 >
@@ -188,7 +126,7 @@ It should be obvious for now that CodeJam.PerfTests has very complex configurati
 
 
 
-#### 2.1 Pass competition features explicitly
+### 2.1 Pass competition features explicitly
 
 As with explicit config scenario, features should be passed explicitly only when you want to override all other ways to set a competition feature. Here's how to do it:
 
@@ -208,11 +146,13 @@ As with explicit config scenario, features should be passed explicitly only when
 		}
 ```
 
-> **NOTE:** all competition feature annotations are ignored if the features are passed explicitly as an arg of the `Competition.Run()`.
+> **NOTE**
+>
+> all competition feature annotations are ignored if the features are passed explicitly as an arg of the `Competition.Run()`.
 
 
 
-#### 2.2 Set default competition features via app.config
+### 2.2 Set default competition features via app.config
 
 If you want to set up competition features for entire assembly you can add it into default app.config, assembly's app.config or into `CodeJam.PerfTests.dll.config`. First found config with `<CodeJam.PerfTests/>` section wins.
 
@@ -240,7 +180,7 @@ The syntax is following:
 </configuration>
 ```
 
-#### 2.3 Update default competition features from the environment
+### 2.3 Update default competition features from the environment
 
 > ***~THINGS TO CHANGE~***
 >
@@ -267,7 +207,7 @@ Want to add CI service or have an idea howto make the feature better? *~Create a
 
 
 
-#### 2.4 Set competition features via attributes 
+### 2.4 Set competition features via attributes 
 
 While default features can be good for most perftests there always are tests that require own feature set. If you want to add (or disable) some particular features apply the `[CompetitionFeatures]` attribute (or any derived attribute) to the competition class, container type (if the competition class is a nested type) or to the assembly. Check the *~Attribute annotations TODO: link*~* section for explanation how the attributes are applied.
 
@@ -308,7 +248,7 @@ Here's example that covers all possible annotations for the competition features
 
 
 
-### 3. Declarative approach. Modify resulting config
+## 3. Declarative approach. Modify resulting config
 
 > **NOTE**
 >
