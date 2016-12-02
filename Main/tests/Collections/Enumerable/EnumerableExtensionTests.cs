@@ -72,17 +72,22 @@ namespace CodeJam.Collections
 		[Test]
 		public void TestDiagnosticString2()
 		{
-			var str = new[]
+			var culture = Thread.CurrentThread.CurrentCulture;
+			try
 			{
-				new TestDiagnostic { StringValue = null,                          DateTimeValue = new DateTime(2016, 11, 23), DecimalValue = 1 },
-				new TestDiagnostic { StringValue = "lkajsd laskdj asd",           DateTimeValue = new DateTime(2016, 11, 13), DecimalValue = 11 },
-				new TestDiagnostic { StringValue = "dakasdlkjjkasd  djkadlskdj ", DateTimeValue = new DateTime(2016, 11, 22), DecimalValue = 111.3m },
-				new TestDiagnostic { StringValue = "dkjdkdjkl102398 3 1231233",   DateTimeValue = new DateTime(2016, 10, 23), DecimalValue = 1111111 },
-			}.ToDiagnosticString();
+				Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
-			Console.Write(str);
+				var str = new[]
+				{
+					new TestDiagnostic { StringValue = null,                          DateTimeValue = new DateTime(2016, 11, 23), DecimalValue = 1 },
+					new TestDiagnostic { StringValue = "lkajsd laskdj asd",           DateTimeValue = new DateTime(2016, 11, 13), DecimalValue = 11 },
+					new TestDiagnostic { StringValue = "dakasdlkjjkasd  djkadlskdj ", DateTimeValue = new DateTime(2016, 11, 22), DecimalValue = 111.3m },
+					new TestDiagnostic { StringValue = "dkjdkdjkl102398 3 1231233",   DateTimeValue = new DateTime(2016, 10, 23), DecimalValue = 1111111 },
+				}.ToDiagnosticString();
 
-			Assert.AreEqual(str.Remove("\r", "\n"), @"Count : 4
+				Console.Write(str);
+
+				Assert.AreEqual(str.Remove("\r", "\n"), @"Count : 4
 +---------------------+--------------+-----------------------------+
 | DateTimeValue       | DecimalValue | StringValue                 |
 +---------------------+--------------+-----------------------------+
@@ -91,6 +96,11 @@ namespace CodeJam.Collections
 | 2016-11-22 12:00:00 |        111.3 | dakasdlkjjkasd  djkadlskdj  |
 | 2016-10-23 12:00:00 |      1111111 | dkjdkdjkl102398 3 1231233   |
 +---------------------+--------------+-----------------------------+".Remove("\r", "\n"));
+			}
+			finally
+			{
+				Thread.CurrentThread.CurrentCulture = culture;
+			}
 		}
 	}
 }
