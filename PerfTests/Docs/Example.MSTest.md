@@ -1,6 +1,6 @@
 ## TL;DR (MS Test version)
 
-1. Create a new MS unit test project (*~Set targeting to .net 4.6+, previous FW versions are not supported for now~*).
+1. Create a new MS unit test project (*~Set targeting to .net 4.5.2+, previous FW versions are not supported for now~*).
 2. Add a reference to the [CodeJam.PerfTests.MSTest](https://www.nuget.org/packages/CodeJam.PerfTests.MSTest) nuget package.
 3. Add a file with the following code:
 ```c#

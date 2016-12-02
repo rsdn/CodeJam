@@ -2,7 +2,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -12,8 +11,6 @@ using BenchmarkDotNet.Loggers;
 
 using JetBrains.Annotations;
 
-using Microsoft.Win32.SafeHandles;
-
 // ReSharper disable once CheckNamespace
 
 namespace BenchmarkDotNet.Horology
@@ -22,14 +19,20 @@ namespace BenchmarkDotNet.Horology
 	internal static class CycleClockHelpers
 	{
 		#region Interop
+		[DllImport("kernel32.dll")]
+		private static extern IntPtr GetCurrentProcess();
+
+		[DllImport("kernel32.dll")]
+		private static extern IntPtr GetCurrentThread();
+
 		[DllImport("Kernel32")]
 		[return: MarshalAs(UnmanagedType.Bool)]
-		private static extern bool QueryProcessCycleTime(SafeProcessHandle processHandle, out ulong cycleTime);
-		#endregion
+		private static extern bool QueryProcessCycleTime(IntPtr processHandle, out ulong cycleTime);
 
 		[DllImport("Kernel32")]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		private static extern bool QueryThreadCycleTime(IntPtr threadHandle, out ulong cycleTime);
+		#endregion
 
 		private static bool IsWindows()
 		{
@@ -41,31 +44,29 @@ namespace BenchmarkDotNet.Horology
 #endif
 		}
 
-		/// <summary>The current process handle</summary>
-		public static readonly SafeProcessHandle CurrentProcessHandle = Process.GetCurrentProcess().SafeHandle;
+		/// <summary>Current process pseudo-handle</summary>
+		private static readonly IntPtr _currentProcessHandle = GetCurrentProcess();
 
-		/// <summary>The current thread handle</summary>
-		public static readonly IntPtr CurrentThreadHandle = new IntPtr(-2);
+		/// <summary>Current thread pseudo-handle</summary>
+		private static readonly IntPtr _currentThreadHandle = GetCurrentThread();
 
-		/// <summary>Gets process cycle time.</summary>
-		/// <param name="processHandle">The process handle.</param>
+		/// <summary>Gets current process timestamp.</summary>
 		/// <returns>Process cycle time timestamp.</returns>
-		public static long GetProcessTimestamp(SafeProcessHandle processHandle)
+		public static long GetCurrentProcessTimestamp()
 		{
 			ulong result;
-			if (!QueryProcessCycleTime(processHandle, out result))
+			if (!QueryProcessCycleTime(_currentProcessHandle, out result))
 				throw new Win32Exception();
 
 			return checked((long)result);
 		}
 
-		/// <summary>Gets thread the .</summary>
-		/// <param name="threadHandle">The thread handle.</param>
+		/// <summary>Gets current thread timestamp.</summary>
 		/// <returns>Thread cycle time timestamp.</returns>
-		public static long GetThreadTimestamp(IntPtr threadHandle)
+		public static long GetCurrentThreadTimestamp()
 		{
 			ulong result;
-			if (!QueryThreadCycleTime(threadHandle, out result))
+			if (!QueryThreadCycleTime(_currentThreadHandle, out result))
 				throw new Win32Exception();
 
 			return checked((long)result);
@@ -107,13 +108,11 @@ namespace BenchmarkDotNet.Horology
 			var result = RunHighestPriority(
 				() =>
 				{
-					var local = CurrentProcessHandle;
-
 					var t = clock.Start();
-					var ts1 = GetProcessTimestamp(local);
+					var ts1 = GetCurrentProcessTimestamp();
 					Thread.SpinWait(iterationsCount);
 					var t2 = t.Stop();
-					var ts2 = GetProcessTimestamp(local);
+					var ts2 = GetCurrentProcessTimestamp();
 
 					freq = (long)((ts2 - ts1) / t2.GetSeconds());
 				});
@@ -137,13 +136,11 @@ namespace BenchmarkDotNet.Horology
 			var result = RunHighestPriority(
 				() =>
 				{
-					var local = CurrentThreadHandle;
-
 					var t = clock.Start();
-					var ts1 = GetThreadTimestamp(local);
+					var ts1 = GetCurrentThreadTimestamp();
 					Thread.SpinWait(iterationsCount);
 					var t2 = t.Stop();
-					var ts2 = GetThreadTimestamp(local);
+					var ts2 = GetCurrentThreadTimestamp();
 
 					freq = (long)((ts2 - ts1) / t2.GetSeconds());
 				});

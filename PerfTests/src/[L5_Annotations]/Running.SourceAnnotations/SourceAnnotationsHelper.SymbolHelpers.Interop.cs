@@ -3,6 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 
+using CodeJam.Collections;
+
 // ReSharper disable InconsistentNaming
 // ReSharper disable IdentifierTypo
 
@@ -53,7 +55,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 				private static readonly IntPtr s_ignoreIErrorInfo = new IntPtr(-1);
 
-				private static T[] NullToEmpty<T>(T[] items) => items ?? Array.Empty<T>();
+				private static T[] NullToEmpty<T>(T[] items) => items ?? Array<T>.Empty;
 
 				public static void ThrowExceptionForHR(int hr)
 				{

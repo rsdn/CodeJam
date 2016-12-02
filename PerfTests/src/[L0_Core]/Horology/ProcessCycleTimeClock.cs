@@ -43,13 +43,13 @@ namespace BenchmarkDotNet.Horology
 		/// <summary>Gets the timestamp.</summary>
 		/// <returns></returns>
 		public long GetTimestamp() =>
-			CycleClockHelpers.GetProcessTimestamp(CycleClockHelpers.CurrentProcessHandle);
+			CycleClockHelpers.GetCurrentProcessTimestamp();
 
 		/// <summary>
-		/// Returns a <see cref="String" /> that represents this instance.
+		/// Returns a <see cref="string" /> that represents this instance.
 		/// </summary>
 		/// <returns>
-		/// A <see cref="String" /> that represents this instance.
+		/// A <see cref="string" /> that represents this instance.
 		/// </returns>
 		public override string ToString() => GetType().Name;
 	}

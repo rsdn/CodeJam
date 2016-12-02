@@ -16,11 +16,9 @@ It allows to compare multiple implementations by execution time (*~memory limits
 
 >**NOTE**
 >
->Here and below all samples are based on NUnit framework. Actually there's no significant difference, only things to change are package name and test frameworks attributes.
->For example how to use CodeJam.PerfTests with other test frameworks see 
->the [MS test version](Example.MSTest.md) and [xUnit version](Example.xUnit.md).
+>Here and below all samples are based on NUnit framework. Actually there's no significant difference, only things to change are package name and test frameworks attributes. For example how to use CodeJam.PerfTests with other test frameworks check the [MS test version](Example.MSTest.md) and [xUnit version](Example.xUnit.md).
 
-1. Create a new unit test project (*~Set targeting to .net 4.6+, previous FW versions are not supported for now~*).
+1. Create a new unit test project (*~Set targeting to .net 4.5.2+, previous FW versions are not supported for now~*).
 2. Add a reference to the [CodeJam.PerfTests.NUnit](https://www.nuget.org/packages/CodeJam.PerfTests.NUnit) nuget package.
 3. Add a file with the following code:
 ```c#
