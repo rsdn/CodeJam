@@ -27,6 +27,7 @@ contribute in any of these aspects, please join us!
 * ExpressionExtensions - all visitor related functionality excluded due to expression tree incompatibility
 * MemberAccessor/TypeAccessor - excluded due to expression tree incompatibility
 * ComparerBuilder - excluded due to absence of TypeAccessor and MemberAccessor classes
+* Enumerable.ToDiagnosticString - excluded due to absence of TypeAccessor class
 
 ### Contribute!
 Some of the best ways to contribute are to try things out, report bugs, and join in design conversations.

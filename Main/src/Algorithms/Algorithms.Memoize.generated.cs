@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.Threading;
 
 using CodeJam.Collections;
 
@@ -29,13 +30,29 @@ namespace CodeJam
 		[NotNull]
 		[Pure]
 		public static Func<TArg1, TArg2, TResult> Memoize<TArg1, TArg2, TResult>(
+				[NotNull] this Func<TArg1, TArg2, TResult> func,
+				bool threadSafe = false) =>
+			Memoize(func, threadSafe ? LazyThreadSafetyMode.ExecutionAndPublication : LazyThreadSafetyMode.None);
+
+		/// <summary>
+		/// Caches function value for specific arguments.
+		/// </summary>
+		/// <param name="func">Function to memoize.</param>
+		/// <param name="threadSafety">One of the enumeration values that specifies the thread safety mode.</param>
+		/// <typeparam name="TArg1">Type of argument 1</typeparam>
+		/// <typeparam name="TArg2">Type of argument 2</typeparam>
+		/// <typeparam name="TResult">Type of result</typeparam>
+		/// <returns>Memoized function</returns>
+		[NotNull]
+		[Pure]
+		public static Func<TArg1, TArg2, TResult> Memoize<TArg1, TArg2, TResult>(
 			[NotNull] this Func<TArg1, TArg2, TResult> func,
-			bool threadSafe = false)
+			LazyThreadSafetyMode threadSafety)
 		{
 			var map =
 				LazyDictionary.Create<(TArg1, TArg2), TResult>(
 					key => func(key.Item1, key.Item2),
-					threadSafe);
+					threadSafety);
 			return (arg1, arg2) => map[(arg1, arg2)];
 		}
 
@@ -52,13 +69,30 @@ namespace CodeJam
 		[NotNull]
 		[Pure]
 		public static Func<TArg1, TArg2, TArg3, TResult> Memoize<TArg1, TArg2, TArg3, TResult>(
+				[NotNull] this Func<TArg1, TArg2, TArg3, TResult> func,
+				bool threadSafe = false) =>
+			Memoize(func, threadSafe ? LazyThreadSafetyMode.ExecutionAndPublication : LazyThreadSafetyMode.None);
+
+		/// <summary>
+		/// Caches function value for specific arguments.
+		/// </summary>
+		/// <param name="func">Function to memoize.</param>
+		/// <param name="threadSafety">One of the enumeration values that specifies the thread safety mode.</param>
+		/// <typeparam name="TArg1">Type of argument 1</typeparam>
+		/// <typeparam name="TArg2">Type of argument 2</typeparam>
+		/// <typeparam name="TArg3">Type of argument 3</typeparam>
+		/// <typeparam name="TResult">Type of result</typeparam>
+		/// <returns>Memoized function</returns>
+		[NotNull]
+		[Pure]
+		public static Func<TArg1, TArg2, TArg3, TResult> Memoize<TArg1, TArg2, TArg3, TResult>(
 			[NotNull] this Func<TArg1, TArg2, TArg3, TResult> func,
-			bool threadSafe = false)
+			LazyThreadSafetyMode threadSafety)
 		{
 			var map =
 				LazyDictionary.Create<(TArg1, TArg2, TArg3), TResult>(
 					key => func(key.Item1, key.Item2, key.Item3),
-					threadSafe);
+					threadSafety);
 			return (arg1, arg2, arg3) => map[(arg1, arg2, arg3)];
 		}
 
@@ -76,13 +110,31 @@ namespace CodeJam
 		[NotNull]
 		[Pure]
 		public static Func<TArg1, TArg2, TArg3, TArg4, TResult> Memoize<TArg1, TArg2, TArg3, TArg4, TResult>(
+				[NotNull] this Func<TArg1, TArg2, TArg3, TArg4, TResult> func,
+				bool threadSafe = false) =>
+			Memoize(func, threadSafe ? LazyThreadSafetyMode.ExecutionAndPublication : LazyThreadSafetyMode.None);
+
+		/// <summary>
+		/// Caches function value for specific arguments.
+		/// </summary>
+		/// <param name="func">Function to memoize.</param>
+		/// <param name="threadSafety">One of the enumeration values that specifies the thread safety mode.</param>
+		/// <typeparam name="TArg1">Type of argument 1</typeparam>
+		/// <typeparam name="TArg2">Type of argument 2</typeparam>
+		/// <typeparam name="TArg3">Type of argument 3</typeparam>
+		/// <typeparam name="TArg4">Type of argument 4</typeparam>
+		/// <typeparam name="TResult">Type of result</typeparam>
+		/// <returns>Memoized function</returns>
+		[NotNull]
+		[Pure]
+		public static Func<TArg1, TArg2, TArg3, TArg4, TResult> Memoize<TArg1, TArg2, TArg3, TArg4, TResult>(
 			[NotNull] this Func<TArg1, TArg2, TArg3, TArg4, TResult> func,
-			bool threadSafe = false)
+			LazyThreadSafetyMode threadSafety)
 		{
 			var map =
 				LazyDictionary.Create<(TArg1, TArg2, TArg3, TArg4), TResult>(
 					key => func(key.Item1, key.Item2, key.Item3, key.Item4),
-					threadSafe);
+					threadSafety);
 			return (arg1, arg2, arg3, arg4) => map[(arg1, arg2, arg3, arg4)];
 		}
 
@@ -101,13 +153,32 @@ namespace CodeJam
 		[NotNull]
 		[Pure]
 		public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult> Memoize<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(
+				[NotNull] this Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult> func,
+				bool threadSafe = false) =>
+			Memoize(func, threadSafe ? LazyThreadSafetyMode.ExecutionAndPublication : LazyThreadSafetyMode.None);
+
+		/// <summary>
+		/// Caches function value for specific arguments.
+		/// </summary>
+		/// <param name="func">Function to memoize.</param>
+		/// <param name="threadSafety">One of the enumeration values that specifies the thread safety mode.</param>
+		/// <typeparam name="TArg1">Type of argument 1</typeparam>
+		/// <typeparam name="TArg2">Type of argument 2</typeparam>
+		/// <typeparam name="TArg3">Type of argument 3</typeparam>
+		/// <typeparam name="TArg4">Type of argument 4</typeparam>
+		/// <typeparam name="TArg5">Type of argument 5</typeparam>
+		/// <typeparam name="TResult">Type of result</typeparam>
+		/// <returns>Memoized function</returns>
+		[NotNull]
+		[Pure]
+		public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult> Memoize<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(
 			[NotNull] this Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult> func,
-			bool threadSafe = false)
+			LazyThreadSafetyMode threadSafety)
 		{
 			var map =
 				LazyDictionary.Create<(TArg1, TArg2, TArg3, TArg4, TArg5), TResult>(
 					key => func(key.Item1, key.Item2, key.Item3, key.Item4, key.Item5),
-					threadSafe);
+					threadSafety);
 			return (arg1, arg2, arg3, arg4, arg5) => map[(arg1, arg2, arg3, arg4, arg5)];
 		}
 
@@ -127,13 +198,33 @@ namespace CodeJam
 		[NotNull]
 		[Pure]
 		public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult> Memoize<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult>(
+				[NotNull] this Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult> func,
+				bool threadSafe = false) =>
+			Memoize(func, threadSafe ? LazyThreadSafetyMode.ExecutionAndPublication : LazyThreadSafetyMode.None);
+
+		/// <summary>
+		/// Caches function value for specific arguments.
+		/// </summary>
+		/// <param name="func">Function to memoize.</param>
+		/// <param name="threadSafety">One of the enumeration values that specifies the thread safety mode.</param>
+		/// <typeparam name="TArg1">Type of argument 1</typeparam>
+		/// <typeparam name="TArg2">Type of argument 2</typeparam>
+		/// <typeparam name="TArg3">Type of argument 3</typeparam>
+		/// <typeparam name="TArg4">Type of argument 4</typeparam>
+		/// <typeparam name="TArg5">Type of argument 5</typeparam>
+		/// <typeparam name="TArg6">Type of argument 6</typeparam>
+		/// <typeparam name="TResult">Type of result</typeparam>
+		/// <returns>Memoized function</returns>
+		[NotNull]
+		[Pure]
+		public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult> Memoize<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult>(
 			[NotNull] this Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult> func,
-			bool threadSafe = false)
+			LazyThreadSafetyMode threadSafety)
 		{
 			var map =
 				LazyDictionary.Create<(TArg1, TArg2, TArg3, TArg4, TArg5, TArg6), TResult>(
 					key => func(key.Item1, key.Item2, key.Item3, key.Item4, key.Item5, key.Item6),
-					threadSafe);
+					threadSafety);
 			return (arg1, arg2, arg3, arg4, arg5, arg6) => map[(arg1, arg2, arg3, arg4, arg5, arg6)];
 		}
 
@@ -154,13 +245,34 @@ namespace CodeJam
 		[NotNull]
 		[Pure]
 		public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult> Memoize<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult>(
+				[NotNull] this Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult> func,
+				bool threadSafe = false) =>
+			Memoize(func, threadSafe ? LazyThreadSafetyMode.ExecutionAndPublication : LazyThreadSafetyMode.None);
+
+		/// <summary>
+		/// Caches function value for specific arguments.
+		/// </summary>
+		/// <param name="func">Function to memoize.</param>
+		/// <param name="threadSafety">One of the enumeration values that specifies the thread safety mode.</param>
+		/// <typeparam name="TArg1">Type of argument 1</typeparam>
+		/// <typeparam name="TArg2">Type of argument 2</typeparam>
+		/// <typeparam name="TArg3">Type of argument 3</typeparam>
+		/// <typeparam name="TArg4">Type of argument 4</typeparam>
+		/// <typeparam name="TArg5">Type of argument 5</typeparam>
+		/// <typeparam name="TArg6">Type of argument 6</typeparam>
+		/// <typeparam name="TArg7">Type of argument 7</typeparam>
+		/// <typeparam name="TResult">Type of result</typeparam>
+		/// <returns>Memoized function</returns>
+		[NotNull]
+		[Pure]
+		public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult> Memoize<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult>(
 			[NotNull] this Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult> func,
-			bool threadSafe = false)
+			LazyThreadSafetyMode threadSafety)
 		{
 			var map =
 				LazyDictionary.Create<(TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7), TResult>(
 					key => func(key.Item1, key.Item2, key.Item3, key.Item4, key.Item5, key.Item6, key.Item7),
-					threadSafe);
+					threadSafety);
 			return (arg1, arg2, arg3, arg4, arg5, arg6, arg7) => map[(arg1, arg2, arg3, arg4, arg5, arg6, arg7)];
 		}
 

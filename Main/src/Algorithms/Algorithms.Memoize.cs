@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 using CodeJam.Collections;
 
@@ -21,11 +22,28 @@ namespace CodeJam
 		[NotNull]
 		[Pure]
 		public static Func<TArg, TResult> Memoize<TArg, TResult>(
+				[NotNull] this Func<TArg, TResult> func,
+				IEqualityComparer<TArg> comparer,
+				bool threadSafe = false) =>
+			Memoize(func, comparer, threadSafe ? LazyThreadSafetyMode.ExecutionAndPublication : LazyThreadSafetyMode.None);
+
+		/// <summary>
+		/// Caches function value for specific argument.
+		/// </summary>
+		/// <param name="func">Function to memoize.</param>
+		/// <param name="comparer">Argument comparer</param>
+		/// <param name="threadSafety">One of the enumeration values that specifies the thread safety mode.</param>
+		/// <typeparam name="TArg">Type of argument</typeparam>
+		/// <typeparam name="TResult">Type of result</typeparam>
+		/// <returns>Memoized function</returns>
+		[NotNull]
+		[Pure]
+		public static Func<TArg, TResult> Memoize<TArg, TResult>(
 			[NotNull] this Func<TArg, TResult> func,
 			IEqualityComparer<TArg> comparer,
-			bool threadSafe = false)
+			LazyThreadSafetyMode threadSafety)
 		{
-			var map = LazyDictionary.Create(func, comparer, threadSafe);
+			var map = LazyDictionary.Create(func, comparer, threadSafety);
 			return arg => map[arg];
 		}
 
@@ -41,9 +59,24 @@ namespace CodeJam
 		[Pure]
 		public static Func<TArg, TResult> Memoize<TArg, TResult>(
 				[NotNull] this Func<TArg, TResult> func,
-				bool threadSafe = false)
+				bool threadSafe = false) =>
+			Memoize(func, threadSafe ? LazyThreadSafetyMode.ExecutionAndPublication : LazyThreadSafetyMode.None);
+
+		/// <summary>
+		/// Caches function value for specific argument.
+		/// </summary>
+		/// <param name="func">Function to memoize.</param>
+		/// <param name="threadSafety">One of the enumeration values that specifies the thread safety mode.</param>
+		/// <typeparam name="TArg">Type of argument</typeparam>
+		/// <typeparam name="TResult">Type of result</typeparam>
+		/// <returns>Memoized function</returns>
+		[NotNull]
+		[Pure]
+		public static Func<TArg, TResult> Memoize<TArg, TResult>(
+				[NotNull] this Func<TArg, TResult> func,
+				LazyThreadSafetyMode threadSafety)
 		{
-			var map = LazyDictionary.Create(func, threadSafe);
+			var map = LazyDictionary.Create(func, threadSafety);
 			return arg => map[arg];
 		}
 	}

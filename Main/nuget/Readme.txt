@@ -1,6 +1,11 @@
 CodeJam 1.3.0-beta1 Release Notes
 ---------------------------------
 
+What's new in 1.3.0-beta2
+-------------------------
+* Enumerable.ToDiagnosticString method
+* Memoize overloads with LazyThreadSafetyMode
+
 What's new in 1.3.0-beta1
 -------------------------
 * OneOf<> and ValueOneOf<> types for tagged (discriminated, joint) unions
