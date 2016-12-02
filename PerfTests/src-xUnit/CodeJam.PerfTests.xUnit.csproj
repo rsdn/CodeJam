@@ -72,12 +72,15 @@
       <Link>Properties\Jetbrains.Annotations.cs</Link>
     </Compile>
     <Compile Include="Competition.cs" />
+    <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CompetitionFactAttribute.cs" />
     <Compile Include="Running.Core.Xunit\CompetitionFactDiscoverer.cs" />
+    <Compile Include="Running.Core.Xunit\NamespaceDoc.cs" />
     <Compile Include="Running.Core.Xunit\SkipTestMessageBus.cs" />
     <Compile Include="Running.Core.Xunit\CompetitionFactTestCase.cs" />
     <Compile Include="Running.Core.Xunit\SkipTestException.cs" />
+    <Compile Include="Running.Core\NamespaceDoc.cs" />
     <Compile Include="Running.Core\XunitCompetitionRunner.cs" />
   </ItemGroup>
   <ItemGroup>

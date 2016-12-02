@@ -1,4 +1,4 @@
-# CodeJam.PerfTests Configuration system
+# CodeJam.PerfTests Configuration System
 
 > **META-NOTE**
 >
@@ -9,7 +9,7 @@
 
 CodeJam.PerfTests configuration uses almost same approach the BenchmarkDotNet does. However, there are additions aimed to ease configuration of large projects with hundreds or thousands of perftetests. Here's how it works:
 
-## 0. Attribute annotations
+## Attribute annotations
 
 Almost all configuration features rely on attribute annotations. Attributes are checked in following order:
 
@@ -186,7 +186,7 @@ The syntax is following:
 >
 > There can be more auto-detected features in the future, documentation will be updated.
 
-CodeJam.PerfTests detects if its run under Continuous Integration services and sets `CompetitionFeatures.ContinuousIntegrationMode` to true. The primary reason of the feature is, this setting adjusts competition options so that source annotation feature will work even if sources are not available. Check *~TODO: link Source Annotations~* link for more information.
+CodeJam.PerfTests detects if it is running under Continuous Integration service and sets `CompetitionFeatures.ContinuousIntegrationMode` to true. This setting adjusts competition options so that source annotation feature will work even if sources are not available. Check [Source Annotations](SourceAnnotations.md) for more information.
 
  Current CI auto-detection uses very naïve approach and checks if the current process has any of the following environment variables applied:
 

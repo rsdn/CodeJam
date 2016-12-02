@@ -62,18 +62,31 @@
     <Compile Include="..\..\Jetbrains.Annotations.cs">
       <Link>Properties\Jetbrains.Annotations.cs</Link>
     </Compile>
+    <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="[L0_Core]\Configs\NamespaceDoc.cs" />
     <Compile Include="[L0_Core]\Helpers\AttributeValue.cs" />
+    <Compile Include="[L0_Core]\Helpers\NamespaceDoc.cs" />
     <Compile Include="[L0_Core]\Horology\CycleClockHelpers.cs" />
+    <Compile Include="[L0_Core]\Horology\NamespaceDoc.cs" />
     <Compile Include="[L0_Core]\Horology\ProcessCycleTimeClock.cs" />
     <Compile Include="[L0_Core]\Horology\ThreadCycleTimeClock.cs" />
     <Compile Include="[L0_Core]\Loggers\IFlushableLogger.cs" />
     <Compile Include="[L0_Core]\Loggers\LazySynchronizedStreamLogger.cs" />
+    <Compile Include="[L0_Core]\Loggers\NamespaceDoc.cs" />
     <Compile Include="[L1_InProcess]\Engines\BurstModeEngineFactory.cs" />
     <Compile Include="[L1_InProcess]\Engines\BurstModeEngine.cs" />
+    <Compile Include="[L1_InProcess]\Engines\NamespaceDoc.cs" />
+    <Compile Include="[L1_InProcess]\Toolchains.InProcess\NamespaceDoc.cs" />
     <Compile Include="[L1_InProcess]\Toolchains\BenchmarkAction.cs" />
     <Compile Include="[L1_InProcess]\Toolchains\BenchmarkActionFactory.Implementations.cs" />
     <Compile Include="[L1_InProcess]\Toolchains\BenchmarkActionFactory.cs" />
+    <Compile Include="[L1_InProcess]\Toolchains\NamespaceDoc.cs" />
+    <Compile Include="[L1_InProcess]\Validators\NamespaceDoc.cs" />
+    <Compile Include="[L2_RunState]\Running.Core\NamespaceDoc.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Analysers\NamespaceDoc.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Columns\NamespaceDoc.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Configs\NamespaceDoc.cs" />
     <Compile Include="[L3_CompetitionsCore]\Configs\SourceAnnotationsMode.cs" />
     <Compile Include="[L3_CompetitionsCore]\Exporters\CsvTimingsExporter.cs" />
     <Compile Include="[L0_Core]\Helpers\BenchmarkHelpers.cs" />
@@ -85,13 +98,16 @@
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessToolchain.cs" />
     <Compile Include="[L2_RunState]\Running.Core\RunStateSlots.cs" />
     <Compile Include="[L2_RunState]\Running.Core\RunState`1.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Exporters\NamespaceDoc.cs" />
     <Compile Include="[L3_CompetitionsCore]\Loggers\HostLogMode.cs" />
     <Compile Include="[L3_CompetitionsCore]\Loggers\HostLogger.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Loggers\NamespaceDoc.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Core\CompetitionCore.cs" />
     <Compile Include="[L3_CompetitionsCore]\Configs\CompetitionLimitsMode.cs" />
     <Compile Include="[L3_CompetitionsCore]\Configs\CompetitionRunMode.cs" />
     <Compile Include="[L3_CompetitionsCore]\Configs\CompetitionOptions.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Core\CompetitionState.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Limits\NamespaceDoc.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\IMessage.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\MessageSource.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\MessageSeverity.cs" />
@@ -99,6 +115,7 @@
     <Compile Include="[L3_CompetitionsCore]\Columns\CompetitionLimitColumn.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Limits\CompetitionLimit.cs" />
     <Compile Include="[L3_CompetitionsCore]\Analysers\Analysis.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Messages\NamespaceDoc.cs" />
     <Compile Include="[L4_CompetitionLimits]\Analysers\CompetitionAnalyser.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Limits\ICompetitionLimitProvider.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Limits\CompetitionLimitProviderBase.cs" />
@@ -110,6 +127,7 @@
     <Compile Include="[L3_CompetitionsCore]\Running.Limits\CompetitionLimitProperties.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\CompetitionMetadata.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\CompetitionTarget.cs" />
+    <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\NamespaceDoc.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\XmlAnnotations.cs" />
     <Compile Include="[L3_CompetitionsCore]\[Attributes]\CompetitionBaselineAttribute.cs" />
     <Compile Include="[L3_CompetitionsCore]\[Attributes]\CompetitionBenchmarkAttribute.cs" />
@@ -121,6 +139,7 @@
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.SourceAttributes.cs" />
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SourceAnnotationsHelper.SymbolHelpers.cs" />
     <Compile Include="[L6_Configuration]\Configs.Factories\CompetitionFactoryHelpers.cs" />
+    <Compile Include="[L6_Configuration]\Configs.Factories\NamespaceDoc.cs" />
     <Compile Include="[L6_Configuration]\Configs\ICompetitionFeatures.cs" />
     <Compile Include="[L6_Configuration]\[Attributes]\CompetitionConfigFactoryAttribute.cs" />
     <Compile Include="[L6_Configuration]\Configs.Factories\ICompetitionConfigFactory.cs" />
@@ -135,6 +154,7 @@
     <Compile Include="[L6_Configuration]\Configs\CompetitionConfigExtensions.cs" />
     <Compile Include="[L6_Configuration]\Configs\ICompetitionConfigSource.cs" />
     <Compile Include="[L6_Configuration]\[Attributes]\CompetitionFeaturesAttribute.cs" />
+    <Compile Include="[L7_AllTogether]\Running.Console\NamespaceDoc.cs" />
     <Compile Include="[L7_AllTogether]\Running.Core\ConsoleCompetitionRunner.cs" />
     <Compile Include="[L6_Configuration]\Configs\ICompetitionConfig.cs" />
     <Compile Include="[L0_Core]\Configs\ReadOnlyConfig.cs" />

@@ -1,9 +1,9 @@
-## TL;DR (MS Test version):
+## TL;DR (MS Test version)
 
 1. Create a new MS unit test project (*~Set targeting to .net 4.6+, previous FW versions are not supported for now~*).
 2. Add a reference to the [CodeJam.PerfTests.MSTest](https://www.nuget.org/packages/CodeJam.PerfTests.MSTest) nuget package.
 3. Add a file with the following code:
- ```c#
+```c#
 using System;
 using System.Threading;
 
@@ -41,10 +41,10 @@ namespace CodeJam.Examples
 		public void SlowerX7() => Thread.SpinWait(7 * Count);
 	}
 }
- ```
+```
 
 4. Switch to **Release** configuration and run the `RunSimplePerfTest` test. You should get something like this (look at `[CompetitionBenchmark]` parameters):
- ```c#
+```c#
 		// Competition member #1. Should take ~3x more time to run.
 		[CompetitionBenchmark(2.96, 3.08)]
 		public void SlowerX3() => Thread.SpinWait(3 * Count);
@@ -56,20 +56,22 @@ namespace CodeJam.Examples
 		// Competition member #3. Should take ~7x more time to run.
 		[CompetitionBenchmark(6.89, 7.17)]
 		public void SlowerX7() => Thread.SpinWait(7 * Count);
- ```
- yep, it's a magic:)
+```
+yep, it's magic:)
 
- > ***~OOPS!~***
+ > **NOTE**
  >
- > We have an issue with perftest being run on low-end notebooks / nettops with mobile CPUs. Current implementation provides inaccurate competition limits occasionally (too high / too low timing values). We're going to fix it in near future. Sorry!
+ > This test is known to provide inaccurate results on on low-end notebooks / nettops with mobile CPUs due to aggressive frequency scaling and throttling.
+ >
+ > There're two workarounds. First, you can set `Count` to `CompetitionHelpers.RecommendedFastSpinCount`. Second, you can use `CompetitionHelpers.RecommendedSpinCount` together with `[CompetitionBurstMode]` attribute. 
 
 5. After `[CompetitionBenchmark]` attributes are filled with timing limits, you can disable source auto-annotation. To do this, just remove the `[CompetitionAnnotateSources]` attribute.
 
 6. Now the test will fail if timings do not fit into limits. To proof, change implementation for any competiton method and run the test. As example:
- ```c#
+```c#
 		[CompetitionBenchmark(6.82, 7.21)]
 		public void SlowerX7() => Thread.SpinWait(10 * Count); // 10x slower
- ```
+```
  The test should fail with text like this:
  ```
 Test failed, details below.

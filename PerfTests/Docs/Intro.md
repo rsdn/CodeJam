@@ -1,4 +1,4 @@
-# CodeJam.PerfTests.
+# CodeJam.PerfTests
 
 > **META-NOTE**
 >
@@ -12,7 +12,7 @@ CodeJam.PerfTests is performance testing framework for .Net projects.
 
 It allows to compare multiple implementations by execution time (*~memory limits coming soon~*), to annotate test methods with timing limits and to check the limits each time the test is run.
 
-## TL;DR (NUnit version):
+## TL;DR (NUnit version)
 
 >**NOTE**
 >
@@ -77,7 +77,7 @@ namespace CodeJam.Examples
 		[CompetitionBenchmark(6.89, 7.17)]
 		public void SlowerX7() => Thread.SpinWait(7 * Count);
 ```
- yep, it's a magic:)
+yep, it's magic:)
 
  > **NOTE**
  >

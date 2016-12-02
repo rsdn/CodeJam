@@ -67,8 +67,10 @@
       <Link>Properties\Jetbrains.Annotations.cs</Link>
     </Compile>
     <Compile Include="Competition.cs" />
+    <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Running.Core\MSTestCompetitionRunner.cs" />
+    <Compile Include="Running.Core\NamespaceDoc.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\CodeJam.PerfTests.csproj">
