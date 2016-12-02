@@ -35,7 +35,7 @@ namespace CodeJam.PerfTests
 			Console.WriteLine($"Clock {c2.Clock.GetType().Name} to {c3.Clock.GetType().Name}: {t2 / t3:P}");
 
 			// if all CPU cores are busy the thread can be suspended for very long period of time.
-			LessOrEqual(Math.Abs(t2 - t3) / t2, 0.99);
+			Assume.That(Math.Abs(t2 - t3) / t2, Is.LessThanOrEqualTo(0.99));
 		}
 		[Test]
 		public static void TestStopwatchClock()
@@ -56,7 +56,7 @@ namespace CodeJam.PerfTests
 			Console.WriteLine($"Clock {c2.Clock.GetType().Name} to {c3.Clock.GetType().Name}: {t2 / t3:P}");
 
 			// if all CPU cores are busy the thread can be suspended for very long period of time.
-			LessOrEqual(Math.Abs(t2 - t3) / t2, 0.99);
+			Assume.That(Math.Abs(t2 - t3) / t2, Is.LessThanOrEqualTo(0.99));
 		}
 
 		[Test]
@@ -84,8 +84,8 @@ namespace CodeJam.PerfTests
 
 			// If all CPU cores are busy all threads of the process can be suspended.
 			// We're not interested in accurate absolute values +/- 50% is acceptable.
-			LessOrEqual(Math.Abs(t1 - t2) / t2, 0.5);
-			LessOrEqual(Math.Abs(t1 - t3) / t1, 0.06); // At the same time relative time should be precise enough.
+			Assume.That(Math.Abs(t1 - t2) / t2, Is.LessThanOrEqualTo(0.5));
+			Assume.That(Math.Abs(t1 - t3) / t1, Is.LessThanOrEqualTo(0.06)); // At the same time relative time should be precise enough.
 		}
 
 		[Test]
@@ -112,8 +112,8 @@ namespace CodeJam.PerfTests
 			Console.WriteLine($"Clock {c1.Clock.GetType().Name} to {c3.Clock.GetType().Name}: {t1 / t3:P}");
 
 			// if all CPU cores are busy the thread can be suspended for very long period of time.
-			LessOrEqual(Math.Abs(t1 - t2) / t2, 0.99);
-			LessOrEqual(Math.Abs(t1 - t3) / t1, 0.06); // At the same time relative time should be precise enough.
+			Assume.That(Math.Abs(t1 - t2) / t2, Is.LessThanOrEqualTo(0.99));
+			Assume.That(Math.Abs(t1 - t3) / t1, Is.LessThanOrEqualTo(0.06)); // At the same time relative time should be precise enough.
 		}
 
 		[Test]
@@ -189,12 +189,13 @@ line3";
 			var relativePath = "BadFile.txt";
 			var fullPath = Path.GetFullPath(relativePath);
 			var fullPathUri = new Uri(fullPath).ToString();
+			var timeout = TimeSpan.FromSeconds(0.5);
 
-			IsNull(BenchmarkHelpers.TryGetTextFromUri(webUrl));
-			IsNull(BenchmarkHelpers.TryGetTextFromUri(webUrl2));
-			IsNull(BenchmarkHelpers.TryGetTextFromUri(relativePath));
-			IsNull(BenchmarkHelpers.TryGetTextFromUri(fullPath));
-			IsNull(BenchmarkHelpers.TryGetTextFromUri(fullPathUri));
+			IsNull(BenchmarkHelpers.TryGetTextFromUri(webUrl, timeout));
+			IsNull(BenchmarkHelpers.TryGetTextFromUri(webUrl2, timeout));
+			IsNull(BenchmarkHelpers.TryGetTextFromUri(relativePath, timeout));
+			IsNull(BenchmarkHelpers.TryGetTextFromUri(fullPath, timeout));
+			IsNull(BenchmarkHelpers.TryGetTextFromUri(fullPathUri, timeout));
 		}
 
 		[Test]
