@@ -61,7 +61,7 @@ Setting competition limits using `[CompetitionBenchamrk]` does not work well wit
 
 Add a new empty XML file into your project and mark it as an Embedded Resource. It's recommended to locate it near corresponding source file and to give it the same name the file has. Like this:
 
-![XmlAnnotationsFile](XmlAnnotationsFile.png)
+![XmlAnnotationsFile](images/XmlAnnotationsFile.png)
 
 Next, annotate the perftest with `CompetitionMetadataAttribute`:
 
@@ -110,7 +110,7 @@ If you want to reuse existing XML annotations file you had to specify path to it
 
 Let's say you have source file 'PerfTests\SimplePerfTest.cs' and the XML annotations file is located at `Assets\PerfTestAnnotations.xml`.
 
-![XmlAnnotationsReuseFile](XmlAnnotationsReuseFile.png)
+![XmlAnnotationsReuseFile](images/XmlAnnotationsReuseFile.png)
 
 Use the `MetadataResourcePath` property to set path to the XML annotations file.
 
