@@ -1,6 +1,11 @@
 CodeJam.PerfTests Release Notes
 -------------------------------
 
+# 0.0.9-alpha
+* Public API improvements: allow to pass CompetitionFeatures as an arg to `Competition.Run()`.
+* Test output: readability improved.
+* CompetitionPreviewLimitsAttribute added.
+
 # 0.0.8-alpha
 * Minor improvements for idle measurement accuracy.
 
