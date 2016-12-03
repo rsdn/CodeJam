@@ -3,7 +3,7 @@ configuration: Release
 image: Visual Studio 2017 RC
 
 environment:
-  packageVersion: 1.0
+  packageVersion: 1.3.0
 
 cache:
 - packages -> **\packages.config
@@ -37,18 +37,15 @@ after_build:
 - cmd: cd Main\src
 - cmd: Compile.cmd
 - cmd: cd ..\..
+- ps: $mainVer = (Get-Content Main\nuget\CodeJam.Main.nuspec).package.metadata.version
+- ps: $mainVer
 - ps: nuget pack Main\nuget\CodeJam.Main.nuspec -version "$env:nugetVersion"
 - ps: nuget pack Experimental\nuget\CodeJam.Experimental.nuspec -version "$env:nugetVersion"
 - ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.Core.nuspec -version "$env:nugetVersion"
 - ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.NUnit.nuspec -version "$env:nugetVersion"
 - ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.xUnit.nuspec -version "$env:nugetVersion"
 - ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.MSTest.nuspec -version "$env:nugetVersion"
-- ps: Push-AppveyorArtifact CodeJam.$env:nugetVersion.nupkg
-- ps: Push-AppveyorArtifact CodeJam.Experimental.$env:nugetVersion.nupkg
-- ps: Push-AppveyorArtifact CodeJam.PerfTests.Core.$env:nugetVersion.nupkg
-- ps: Push-AppveyorArtifact CodeJam.PerfTests.NUnit.$env:nugetVersion.nupkg
-- ps: Push-AppveyorArtifact CodeJam.PerfTests.xUnit.$env:nugetVersion.nupkg
-- ps: Push-AppveyorArtifact CodeJam.PerfTests.MSTest.$env:nugetVersion.nupkg
+- ps: Push-AppveyorArtifact **\*.nupkg
 
 # artifacts for perftests
 on_finish:
