@@ -29,7 +29,7 @@ using CodeJam.PerfTests;
 
 using NUnit.Framework;
 
-namespace CodeJam.Examples
+namespace CodeJam.Examples.PerfTests
 {
 	// A perf test class.
 	[Category("PerfTests: NUnit examples")]

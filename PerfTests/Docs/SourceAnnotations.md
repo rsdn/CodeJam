@@ -39,7 +39,7 @@ Third, if you do want to obtain actual limits without updating the sources, appl
 // ? #3.1  04.123s, Informational@Analyser: CompetitionAnnotateAnalyser: All competition limits are ok.
 // !<-- ------ xml_annotation_begin ------
 <CompetitionBenchmarks>
-	<Competition Target="CodeJam.Examples.SimplePerfTest, CodeJam.Examples">
+	<Competition Target="CodeJam.Examples.PerfTests.SimplePerfTest, CodeJam.Examples.PerfTests">
 		<Candidate Target="Baseline" Baseline="true" />
 		<Candidate Target="SlowerX3" MinRatio="2.97" MaxRatio="3.09" />
 		<Candidate Target="SlowerX5" MinRatio="4.95" MaxRatio="5.15" />
@@ -85,7 +85,7 @@ Next, copy limits obtained from run with `[CompetitionPreviewLimits]` attribute 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <CompetitionBenchmarks>
-	<Competition Target="CodeJam.Examples.PerfTests.SimplePerfTest, CodeJam.Examples">
+	<Competition Target="CodeJam.Examples.PerfTests.SimplePerfTest, CodeJam.Examples.PerfTests">
 		<Candidate Target="Baseline" Baseline="true" />
 		<Candidate Target="SlowerX3" MinRatio="2.97" MaxRatio="3.09" />
 		<Candidate Target="SlowerX5" MinRatio="4.90" MaxRatio="5.10" />
@@ -137,7 +137,7 @@ To do so:
 
 1. Enable both `ContinuousIntegrationMode` and `AnnotateSources` features for runs performed on another machine. You can do it via app.config (check [ConfigurationSystem](ConfigurationSystem.md) document for more information). If the perftest is run under continuous integration service the `ContinuousIntegrationMode` is enabled automatically.
 
-2. Obtain the URI to the log file containing XML annotations. Tests being run under continuous itegration mode writes results into `%assemblyname%.ImportantOnly.PerfTests.log`. Also, you can add custom loggers if you wish. You can copy (or download) log file to local directory or obtain the URL to the log file (if the tests are run under CI server and the log is added into artifacts). For example, AppVeyor url format is
+2. Obtain the URI to the log file containing XML annotations. Tests being run under continuous itegration mode write results into `%assemblyname%.ImportantOnly.PerfTests.log`. Also, you can add custom loggers if you wish. You can copy (or download) log file to local directory or obtain the URL to the log file (if the tests are run under CI server and the log is added into artifacts). For example, AppVeyor url format is
 ```
 https://ci.appveyor.com/api/projects/%owner%/%project%/artifacts/%assemblyname%.ImportantOnly.PerfTests.log?all=true 
 ```
@@ -178,4 +178,4 @@ You have two options there.
 
 **First**, you can enable source annotations mode, add the log into build artifacts, setup previous run log URI, and just run perftests. Limit adjustments performed during CI run will be applied to sources on local run. Check previous section for more.
 
-**Second**, you can explicitly disable the `ContinuousIntegrationMode` feature, enable source annotations and setup CI server to do autocommit sources if tests succeed. As example, here's how to do it [with AppVeyor builds](https://www.appveyor.com/docs/how-to/git-push/). We do not recommend this approach. If performance will degrade unexpectedly there will be's no notifications and the limits will be silently overwritten.
+**Second**, you can explicitly disable the `ContinuousIntegrationMode` feature, enable source annotations and setup CI server to auto-commit sources if tests succeed. As example, here's how to do it [with AppVeyor builds](https://www.appveyor.com/docs/how-to/git-push/). We do not recommend this approach. If performance will degrade unexpectedly there will be's no notifications and the limits will be silently overwritten.

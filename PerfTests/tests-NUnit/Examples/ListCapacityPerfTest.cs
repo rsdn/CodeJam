@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 // ReSharper disable once CheckNamespace
 
-namespace CodeJam.Examples
+namespace CodeJam.Examples.PerfTests
 {
 	[Category("PerfTests: NUnit examples")]
 	public class ListCapacityPerfTest

@@ -102,13 +102,13 @@ namespace BenchmarkDotNet.Validators
 
 		// TODO: check that all diagnosers can be run in-process
 		/// <summary>Proofs that benchmarks' jobs match the environment.</summary>
-		/// <param name="benchmarks">The benchmarks to validate.</param>
+		/// <param name="validationParameters">The validation parameters.</param>
 		/// <returns>Enumerable of validation errors.</returns>
-		public IEnumerable<ValidationError> Validate(IList<Benchmark> benchmarks)
+		public IEnumerable<ValidationError> Validate(ValidationParameters validationParameters)
 		{
 			var result = new List<ValidationError>();
 
-			foreach (var job in benchmarks.GetJobs())
+			foreach (var job in validationParameters.Config.GetJobs())
 			{
 				foreach (var characteristic in job.GetCharacteristicsWithValues())
 				{

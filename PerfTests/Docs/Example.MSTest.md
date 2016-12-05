@@ -11,7 +11,7 @@ using CodeJam.PerfTests;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CodeJam.Examples
+namespace CodeJam.Examples.PerfTests
 {
 	// A perf test class.
 	[TestClass]

@@ -15,7 +15,7 @@ using CodeJam.PerfTests;
 
 using Xunit;
 
-namespace CodeJam.Examples
+namespace CodeJam.Examples.PerfTests
 {
 	// A perf test class.
 	[Trait("Category", "PerfTests: xUnit examples")]

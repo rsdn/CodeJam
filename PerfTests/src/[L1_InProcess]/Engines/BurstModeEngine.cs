@@ -146,7 +146,8 @@ namespace BenchmarkDotNet.Engines
 			var results = new RunResults(
 				IdleTargetList.IsNullOrEmpty() ? null : IdleTargetList,
 				TargetList,
-				RemoveOutliers);
+				RemoveOutliers,
+				new GcStats());
 
 			if (!IsDiagnoserAttached)
 			{

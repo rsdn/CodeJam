@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 // ReSharper disable once CheckNamespace
 
-namespace CodeJam.Examples
+namespace CodeJam.Examples.PerfTests
 {
 	[TestClass]
 	public class ListCapacityPerfTest

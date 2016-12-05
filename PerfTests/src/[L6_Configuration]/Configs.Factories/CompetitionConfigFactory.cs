@@ -203,6 +203,9 @@ namespace CodeJam.PerfTests.Configs.Factories
 			result.Loggers.Clear();
 			result.Exporters.Clear();
 
+			// TODO: fix diagnosers support ASAP
+			result.Diagnosers.Clear();
+
 			// TODO: better columns.
 			// TODO: custom column provider?
 			result.Add(

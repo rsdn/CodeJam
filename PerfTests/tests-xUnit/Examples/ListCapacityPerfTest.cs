@@ -7,7 +7,7 @@ using Xunit;
 
 // ReSharper disable once CheckNamespace
 
-namespace CodeJam.Examples
+namespace CodeJam.Examples.PerfTests
 {
 	[Trait("Category", "PerfTests: xUnit examples")]
 	public class ListCapacityPerfTest

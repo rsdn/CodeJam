@@ -1,4 +1,4 @@
-﻿// BASEDON:https://github.com/Azure/DotNetty/blob/dev/test/DotNetty.Microbench/Utilities/CycleTime.cs
+﻿// BASEDON: https://github.com/Azure/DotNetty/blob/dev/test/DotNetty.Microbench/Utilities/CycleTime.cs
 
 using System;
 using System.ComponentModel;
