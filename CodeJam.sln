@@ -73,15 +73,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests-Tests.MST
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests-Tests", "PerfTests\tests\CodeJam.PerfTests-Tests.csproj", "{08E84F45-2782-4D2E-85C0-FE86AF491C94}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{0B1D53B2-EC60-4D2B-8EC4-1135E521A831}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{0B1D53B2-EC60-4D2B-8EC4-1135E521A831}"
 	ProjectSection(SolutionItems) = preProject
-		PerfTests\Docs\ConfigurationSystem.md = PerfTests\Docs\ConfigurationSystem.md
-		PerfTests\Docs\Example.MSTest.md = PerfTests\Docs\Example.MSTest.md
-		PerfTests\Docs\Example.xUnit.md = PerfTests\Docs\Example.xUnit.md
-		PerfTests\Docs\Intro.md = PerfTests\Docs\Intro.md
-		PerfTests\Docs\Overview.md = PerfTests\Docs\Overview.md
-		PerfTests\Docs\SourceAnnotations.md = PerfTests\Docs\SourceAnnotations.md
-		PerfTests\Docs\Tutorial.md = PerfTests\Docs\Tutorial.md
+		PerfTests\docs\ConfigurationSystem.md = PerfTests\docs\ConfigurationSystem.md
+		PerfTests\docs\Example.MSTest.md = PerfTests\docs\Example.MSTest.md
+		PerfTests\docs\Example.xUnit.md = PerfTests\docs\Example.xUnit.md
+		PerfTests\docs\Intro.md = PerfTests\docs\Intro.md
+		PerfTests\docs\Overview.md = PerfTests\docs\Overview.md
+		PerfTests\docs\SourceAnnotations.md = PerfTests\docs\SourceAnnotations.md
+		PerfTests\docs\Tutorial.md = PerfTests\docs\Tutorial.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{4DEBB88D-97A4-4A23-AE53-A118DC5A2551}"

@@ -1,4 +1,4 @@
-# ![logo](Docs/images/CodeJam.PerfTests.logo.64.png)  CodeJam.PerfTests
+# ![logo](docs/images/CodeJam.PerfTests.logo.64.png)  CodeJam.PerfTests
 
 ## What is it? (short version)
 
@@ -10,11 +10,11 @@ It allows to compare multiple implementations by execution time (*~memory limits
 
 ## Things to read
 
-* [Intro](Docs/Intro.md)
-* [Overview](Docs/Overview.md)
-  * [Configuration System](Docs/ConfigurationSystem.md)
-  * [Source Annotations](Docs/SourceAnnotations.md) 
-* [Tutorial](Docs/Tutorial.md)
+* [Intro](docs/Intro.md)
+* [Overview](docs/Overview.md)
+  * [Configuration System](docs/ConfigurationSystem.md)
+  * [Source Annotations](docs/SourceAnnotations.md) 
+* [Tutorial](docs/Tutorial.md)
 
 
 
@@ -26,7 +26,7 @@ Nothing special, use common [CONTRIBUTING guide](../CONTRIBUTING.md) for the Cod
 
 As you may have mention, I'm not native English speaker and docs sometimes are... weird. If you dislike the texts as much as I do and you want to improve them - you're welcome!
 
-All documentation files are [here](https://github.com/rsdn/CodeJam/tree/master/PerfTests/Docs). Feel free to do PR or just [create an issue](https://github.com/rsdn/CodeJam/issues) (to notify you're fixing the document), download, edit and attach fixed file(s) into issue.
+All documentation files are [here](https://github.com/rsdn/CodeJam/tree/master/PerfTests/docs). Feel free to do PR or just [create an issue](https://github.com/rsdn/CodeJam/issues) (to notify you're fixing the document), download, edit and attach fixed file(s) into issue.
 
 
 
