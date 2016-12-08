@@ -2,18 +2,18 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>CodeJam.PerfTests.NUnit</id>
-		<version>0.0.9-alpha</version>
+		<version>0.0.10-beta</version>
 		<title>CodeJam.PerfTests Library for NUnit</title>
 		<authors>ig-sinicyn</authors>
 		<licenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</licenseUrl>
 		<projectUrl>https://github.com/rsdn/CodeJam</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/PerfTests/Docs/images/CodeJam.PerfTests.logo.256.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>CodeJam.PerfTests.Nunit provides NUnit support for Benchmark.Net-driven performance tests.</description>
+		<description>CodeJam.PerfTests.Nunit provides NUnit support for BenchmarkDotNet-driven performance tests.</description>
 		<copyright>RSDN.ru, 2016</copyright>
 		<tags>benchmark benchmarking performance</tags>
 		<dependencies>
-			<dependency id="CodeJam.PerfTests.Core" version="0.0.9-alpha" />
+			<dependency id="CodeJam.PerfTests.Core" version="0.0.10-beta" />
 			<dependency id="NUnit" version="3.5.0" />
 		</dependencies>
 	</metadata>

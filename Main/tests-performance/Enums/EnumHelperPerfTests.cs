@@ -163,7 +163,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.67, 1.24)]
+			[CompetitionBenchmark(0.65, 1.24)]
 			public bool Test03IsFlagSetIntOp()
 			{
 				var a = false;

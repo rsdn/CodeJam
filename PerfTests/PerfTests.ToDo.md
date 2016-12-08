@@ -10,18 +10,21 @@
  * https://github.com/dotnet/BenchmarkDotNet/issues/307
 
 ## TODOs:
- * Docs: update MSTest/xUnit intros
+ * Check order provider usage, execution order benchmarks vs display order benchmarks.
+ * Warning if baseline was changed!!!
  * Warning if there's log uri set, but source annotation updates are disabled.
-   Introduce logging for config factory
+ * Introduce logging for config factory
    -or-
    Run source annotations analyser even if annotations are disabled
    -or-
    Check on preconditions (bad idea, leaking abstraction)
  * Check WriteVerboseHint for source annotations
+ * Check `+ Environment.NewLine` usages in `XunitCompetitionRunner.ReportXxx()` methods
  * Skip annotation on 1st run (CI mode only?)
  * Exclude nunit-related assembly from tests
  Prepare PR, https://github.com/nunit/nunit-console/issues/62#issuecomment-262599181
  * Message with absolute timings if limits failed: improve readability
+ * Message about updated annotations: improve readability
  * Burst mode feature: rename to LargeSampleSet?
  * AnnotateSourcesOnRun: rename to something like skipFirstRuns
  * Output: option to not log output from toolchain?
@@ -48,7 +51,7 @@
 
 ## Long-term TODOs:
  * Support for multi-case benchmarks (separate limits)
- * Validate the results!!!
+ * Validate the return results!!!
  * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix).
  * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion
  * Memory limits + diagnoser - whoops, https://github.com/dotnet/BenchmarkDotNet/issues/200 . Will need to replace MethodInvoker, delayed.

@@ -52,21 +52,10 @@ namespace CodeJam.PerfTests.IntegrationTests
 			AssertCompetitionCompleted(runState, MessageSeverity.SetupError);
 			Assert.AreEqual(messages.Length, 1);
 
-			Assert.AreEqual(messages[0].MessageText, "No methods to benchmark. Add methods into competition.");
-		}
-
-		[Test]
-		public static void CompetitionNoBaselineOkBenchmark()
-		{
-			Interlocked.Exchange(ref _callCounter, 0);
-
-			var runState = SelfTestCompetition.Run<NoBaselineOkBenchmark>();
-			var messages = runState.GetMessages();
-
-			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			AssertCompetitionCompleted(runState, MessageSeverity.Verbose);
-
-			Assert.AreEqual(messages.Length, 0);
+			Assert.AreEqual(
+				messages[0].MessageText,
+				"No methods in benchmark. Apply CompetitionBenchmarkAttribute / " +
+					"CompetitionBaselineAttribute to the benchmark methods.");
 		}
 
 		[Test]
@@ -134,8 +123,26 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.SetupError);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.AreEqual(messages[0].MessageText, 
-				"The benchmark has no baseline method. Apply CompetitionBaselineAttribute to the one of the benchmark methods.");
+			Assert.AreEqual(messages[0].MessageText,
+				"No baseline method for benchmark. Apply CompetitionBaselineAttribute to the one of benchmark methods.");
+
+			Interlocked.Exchange(ref _callCounter, 0);
+
+			runState = SelfTestCompetition.Run<NoBaselineFail2Benchmark>();
+			messages = runState.GetMessages();
+
+			Assert.AreEqual(_callCounter, ExpectedRunCount);
+			AssertCompetitionCompleted(runState, MessageSeverity.SetupError);
+
+			Assert.AreEqual(messages.Length, 1);
+
+			Assert.AreEqual(messages[0].RunNumber, 1);
+			Assert.AreEqual(messages[0].RunMessageNumber, 1);
+			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.SetupError);
+			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
+			Assert.AreEqual(messages[0].MessageText,
+				"No baseline method for benchmark. Apply CompetitionBaselineAttribute to the one of benchmark methods.");
+
 		}
 
 		[Test]
@@ -246,23 +253,6 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		public class EmptyBenchmark { }
 
-		public class NoBaselineOkBenchmark
-		{
-			[Benchmark]
-			public void Benchmark1()
-			{
-				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
-			}
-
-			[Benchmark]
-			public void Benchmark2()
-			{
-				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
-			}
-		}
-
 		public class OkBenchmark
 		{
 			[CompetitionBaseline]
@@ -330,6 +320,15 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Benchmark1() => Interlocked.Increment(ref _callCounter);
 
 			[CompetitionBenchmark]
+			public void Benchmark2() => Interlocked.Increment(ref _callCounter);
+		}
+
+		public class NoBaselineFail2Benchmark
+		{
+			[Benchmark]
+			public void Benchmark1() => Interlocked.Increment(ref _callCounter);
+
+			[Benchmark]
 			public void Benchmark2() => Interlocked.Increment(ref _callCounter);
 		}
 

@@ -1,6 +1,9 @@
 CodeJam.PerfTests Release Notes
 -------------------------------
 
+# 0.0.10-beta
+* Doc files complete. First public preview.
+
 # 0.0.9-alpha
 * Public API improvements: allow to pass CompetitionFeatures as an arg to `Competition.Run()`.
 * Test output: readability improved.
@@ -25,7 +28,7 @@ CodeJam.PerfTests Release Notes
 # 0.0.3-alpha
 * BurstModeEngine, ThreadCycles/ProcessCycles clocks added.
 * CompetitionConfig APIs: major rewrite & simplification.
-* Use defaults from Benchmark.Net where possible.
+* Use defaults from BenchmarkDotNet where possible.
 * Remove dependency on Microsoft.DiaSymReader package
 
 # 0.0.2-alpha

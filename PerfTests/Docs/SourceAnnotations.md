@@ -12,7 +12,31 @@ Source annotations provides a way to specify limits for the competition. Current
 
 ## Annotate sources using attributes
 
-Each competition method should be annotated with `[CompetitionBenchmark]` attribute (or `[CompetitionBaseline]` attribute for baseline method). Default constructor of `CompetitionBenchmarkAttribute` does not specify any limit for the method so there will be warning message like this:
+A perftest always should have baseline (or reference) implementation method (annotate it with `[CompetitionBaseline]` attribute) and one or more competing implementations methods annotated with `[CompetitionBenchmark]`.
+
+If there's none of them the test will fail with
+
+```
+No methods in benchmark. Apply CompetitionBenchmarkAttribute / CompetitionBaselineAttribute to the benchmark methods.
+```
+
+or
+
+```
+No baseline method for benchmark. Apply CompetitionBaselineAttribute to the one of benchmark methods.
+```
+
+message.
+
+### Choosing a baseline method
+
+You can use any competition method as a baseline, but if you'll change the baseline in the future you will had to reset all relative-to-baseline limits. 
+
+It's a good idea to choose baseline method with stable timings as it improve accuracy of the measurements. If there are unpredictable delays in the baseline method body (IO or GC due to excessive allocations as example) baseline timings will vary a lot. This is bad as rest of competition methods use relative-to-baseline timings and theirs results will vary too even if the specific competition methods provides stable timings.
+
+### Annotating rest of the code
+
+Default constructor of `CompetitionBenchmarkAttribute` does not specify any limit for the method so there will be warning message like this:
 
 ```
 The benchmark %BenchmarkMethodName% ignored as it has empty limit. Update limits to include benchmark in the competition.
@@ -53,7 +77,7 @@ Now you can add new limits into `[CompetitionBenchmark]` annotations manually or
 
 
 
-## Annotating sources using XML file
+## Annotate sources using XML file
 
 Setting competition limits using `[CompetitionBenchamrk]` does not work well with dynamically emitted or generated code. Code generation does not preserve source changes so you need to store the limits somewhere else. Meet the XML source annotations.
 
@@ -129,7 +153,7 @@ Use the `MetadataResourcePath` property to set path to the XML annotations file.
 
 
 
-## Annotating source from previous run log file
+## Annotate source from previous run log file
 
 Sometimes you have to annotate sources with results obtained from another machine.
 
@@ -137,17 +161,22 @@ To do so:
 
 1. Enable both `ContinuousIntegrationMode` and `AnnotateSources` features for runs performed on another machine. You can do it via app.config (check [ConfigurationSystem](ConfigurationSystem.md) document for more information). If the perftest is run under continuous integration service the `ContinuousIntegrationMode` is enabled automatically.
 
-2. Obtain the URI to the log file containing XML annotations. Tests being run under continuous itegration mode write results into `%assemblyname%.ImportantOnly.PerfTests.log`. Also, you can add custom loggers if you wish. You can copy (or download) log file to local directory or obtain the URL to the log file (if the tests are run under CI server and the log is added into artifacts). For example, AppVeyor url format is
-```
-https://ci.appveyor.com/api/projects/%owner%/%project%/artifacts/%assemblyname%.ImportantOnly.PerfTests.log?all=true 
-```
-​	and TeamCity url format will be
-```
-https://%ci_server%/repository/download/%project%/.lastFinished/%assemblyname%.ImportantOnly.PerfTests.log
-```
-​	Check documentation for your CI service for exact syntax.
+2. Obtain the URI to the log file containing XML annotations. It can be local file (or network share) path or URL to the CI build log. If the CI service does not provide one you can include `%assemblyname%.ImportantOnly.PerfTests.log` file into build artifacts. Here's [example](https://github.com/ig-sinicyn/CodeJam.Examples/blob/master/appveyor.yml) of such config for AppVeyor build (note the `# artifacts for perftests` section). After done, save the URL to the last build log file. For example, AppVeyor url format is
 
-3. Pass the Uri as a value of the `PreviousRunLogUri` feature. You can use app.config or pass it as constructor app to the `CompetitionAnnotateSourcesAttribute`
+   ```
+   https://ci.appveyor.com/api/projects/%owner%/%project%/artifacts/%assemblyname%.ImportantOnly.PerfTests.log?all=true 
+   ```
+
+   and TeamCity url format will be
+
+   ```
+   https://%ci_server%/repository/download/%project%/.lastFinished/%assemblyname%.ImportantOnly.PerfTests.log
+   ```
+
+   Check documentation for your CI service for exact syntax.	
+
+
+3. Pass the URI as a value of the `PreviousRunLogUri` feature. You can use app.config or pass it as constructor app to the `CompetitionAnnotateSourcesAttribute`
 ```c#
 		[CompetitionAnnotateSources(@"d:\runs\last.log")]
 		// -or-

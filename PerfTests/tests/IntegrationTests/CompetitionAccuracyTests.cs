@@ -102,7 +102,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[CompetitionModifier(typeof(CompetitionHighAccuracyModifier))]
 		public class TooFastBenchmark
 		{
-			[Benchmark]
+			[Benchmark(Baseline = true)]
 			public int TooFast()
 			{
 				var a = 0;

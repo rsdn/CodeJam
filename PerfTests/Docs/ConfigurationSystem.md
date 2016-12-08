@@ -35,7 +35,7 @@ If multiple attributes supported (`CompetitionFeaturesAttribute` as example), th
 
 Competition config stores all settings that apply to the competition. It's derived from BenchmarkDotNet's `IConfig` and adds few more options available via `CompetitionOptions` property. *~TODO: link competition options~*.
 
-### 1.1. Pass config as a competition arg
+### 1.1 Pass config as a competition arg
 
 It just works. No additional adjustments are performed, competition will use the config you're passing to the test. Use it like this
 
@@ -56,7 +56,7 @@ It just works. No additional adjustments are performed, competition will use the
 
 
 
-### 1.2. Use custom config attribute
+### 1.2 Use custom config attribute
 
 If you do want to reuse the config you can define custom config attribute
 
@@ -303,7 +303,7 @@ As with `CompetitionFeaturesAttribute`, modifiers can be combined together. Chec
 
 
 
-### 4. Get magic under control. Custom competition config factories 
+## 4. Get magic under control. Custom competition config factories 
 
 > **NOTE**
 >

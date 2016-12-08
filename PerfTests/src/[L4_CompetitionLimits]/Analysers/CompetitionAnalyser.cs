@@ -90,7 +90,15 @@ namespace CodeJam.PerfTests.Analysers
 
 			if (!summary.Benchmarks.Any())
 			{
-				analysis.WriteSetupErrorMessage("No methods to benchmark. Add methods into competition.");
+				analysis.WriteSetupErrorMessage(
+					$"No methods in benchmark. Apply {nameof(CompetitionBenchmarkAttribute)} / " +
+					$"{nameof(CompetitionBaselineAttribute)} to the benchmark methods.");
+			}
+			else if (!summary.Benchmarks.Any(t => t.Target.Baseline))
+			{
+				analysis.WriteSetupErrorMessage(
+					"No baseline method for benchmark. " +
+						$"Apply {nameof(CompetitionBaselineAttribute)} to the one of benchmark methods.");
 			}
 
 			var benchmarksWithReports = summary.Reports
@@ -223,13 +231,6 @@ namespace CodeJam.PerfTests.Analysers
 				{
 					analysis.Targets.Add(competitionTarget);
 				}
-			}
-
-			if (analysis.Targets.Count > 0 && !analysis.Targets.Any(t => t.Baseline))
-			{
-				analysis.WriteSetupErrorMessage(
-					"The benchmark has no baseline method. " +
-						$"Apply {nameof(CompetitionBaselineAttribute)} to the one of the benchmark methods.");
 			}
 		}
 
