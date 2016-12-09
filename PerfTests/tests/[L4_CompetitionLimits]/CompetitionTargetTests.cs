@@ -32,14 +32,14 @@ namespace CodeJam.PerfTests
 			Assert.IsFalse(result.HasUnsavedChanges);
 
 			result.UnionWith(LimitRange.CreateRatioLimit(1, 2));
-			Assert.AreEqual(result.Limits.ToDisplayString(), "[1..2]");
+			Assert.AreEqual(result.Limits.ToDisplayString(), "[1.00..2.00]");
 			Assert.AreEqual(result.Limits.MinRatioText, "1.00");
 			Assert.AreEqual(result.Limits.MaxRatioText, "2.00");
 			Assert.IsFalse(result.Limits.IsEmpty);
 			Assert.IsTrue(result.HasUnsavedChanges);
 
 			result.UnionWith(LimitRange.CreateRatioLimit(0.5, null));
-			Assert.AreEqual(result.Limits.ToDisplayString(), "[0.5..+∞)");
+			Assert.AreEqual(result.Limits.ToDisplayString(), "[0.50..+∞)");
 			Assert.AreEqual(result.Limits.MinRatioText, "0.50");
 			Assert.AreEqual(result.Limits.MaxRatioText, "-1");
 			Assert.IsFalse(result.Limits.IsEmpty);
@@ -105,7 +105,7 @@ namespace CodeJam.PerfTests
 			var method = (MethodInfo)MethodBase.GetCurrentMethod();
 			var target = new Target(method.DeclaringType, method);
 			var result = new CompetitionTarget(target, LimitRange.CreateRatioLimit(3, 4), false);
-			Assert.AreEqual(result.Limits.ToDisplayString(), "[3..4]");
+			Assert.AreEqual(result.Limits.ToDisplayString(), "[3.00..4.00]");
 			Assert.AreEqual(result.Limits.MinRatioText, "3.00");
 			Assert.AreEqual(result.Limits.MaxRatioText, "4.00");
 			Assert.IsFalse(result.Limits.IsEmpty);
@@ -116,14 +116,14 @@ namespace CodeJam.PerfTests
 			Assert.IsFalse(result.HasUnsavedChanges);
 
 			result.UnionWith(LimitRange.CreateRatioLimit(1, 2));
-			Assert.AreEqual(result.Limits.ToDisplayString(), "[1..4]");
+			Assert.AreEqual(result.Limits.ToDisplayString(), "[1.00..4.00]");
 			Assert.AreEqual(result.Limits.MinRatioText, "1.00");
 			Assert.AreEqual(result.Limits.MaxRatioText, "4.00");
 			Assert.IsFalse(result.Limits.IsEmpty);
 			Assert.IsTrue(result.HasUnsavedChanges);
 
 			result.UnionWith(LimitRange.CreateRatioLimit(null, 0.25));
-			Assert.AreEqual(result.Limits.ToDisplayString(), "(-∞..4]");
+			Assert.AreEqual(result.Limits.ToDisplayString(), "(-∞..4.00]");
 			Assert.AreEqual(result.Limits.MinRatioText, null);
 			Assert.AreEqual(result.Limits.MaxRatioText, "4.00");
 			Assert.IsFalse(result.Limits.IsEmpty);
