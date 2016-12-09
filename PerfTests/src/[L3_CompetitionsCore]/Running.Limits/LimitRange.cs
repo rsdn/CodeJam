@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.Environments;
+using BenchmarkDotNet.Helpers;
 
 using CodeJam.Ranges;
 
@@ -86,6 +87,15 @@ namespace CodeJam.PerfTests.Running.Limits
 				? this
 				: new LimitRange(_limitRange.Union(other._limitRange));
 
+		private string GetFormat()
+		{
+			// First non-empty value
+			var value = _limitRange.From.GetValueOrDefault(
+				_limitRange.To.GetValueOrDefault());
+			
+			return BenchmarkHelpers.GetAutoscaledFormat(value);
+		}
+
 		/// <summary>Returns storage string representation for min limit ratio.</summary>
 		/// <value>Storage string representation for min limit ratio.</value>
 		public string MinRatioText
@@ -101,8 +111,7 @@ namespace CodeJam.PerfTests.Running.Limits
 						? (-1.0).ToString(HostEnvironmentInfo.MainCultureInfo)
 						: null;
 
-				var result = Math.Round(limitRange.FromValue, 2);
-				return result.ToString("0.00", HostEnvironmentInfo.MainCultureInfo);
+				return limitRange.FromValue.ToString(GetFormat(), HostEnvironmentInfo.MainCultureInfo);
 			}
 		}
 
@@ -119,8 +128,7 @@ namespace CodeJam.PerfTests.Running.Limits
 				if (limitRange.To.IsPositiveInfinity) // max should be specified if not empty.
 					return (-1.0).ToString(HostEnvironmentInfo.MainCultureInfo);
 
-				var result = Math.Round(limitRange.ToValue, 2);
-				return result.ToString("0.00", HostEnvironmentInfo.MainCultureInfo);
+				return limitRange.ToValue.ToString(GetFormat(), HostEnvironmentInfo.MainCultureInfo);
 			}
 		}
 
@@ -128,8 +136,7 @@ namespace CodeJam.PerfTests.Running.Limits
 		/// <returns>String representation of the limit range.</returns>
 		public string ToDisplayString() =>
 			_limitRange
-				.WithValues(from => Math.Round(from, 2), to => Math.Round(to, 2))
-				.ToString(HostEnvironmentInfo.MainCultureInfo);
+				.ToString(GetFormat(), HostEnvironmentInfo.MainCultureInfo);
 
 		#region Equality members
 		/// <summary>Equalses the specified other.</summary>

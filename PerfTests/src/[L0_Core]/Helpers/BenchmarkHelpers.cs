@@ -648,5 +648,41 @@ namespace BenchmarkDotNet.Helpers
 			return set.Overlaps(variables);
 		}
 		#endregion
+
+		#region Formatting
+		private const double ScaleCoefficient = 1.89; // Empirical value.
+
+		private static int GetAutoscaleDigits(double value)
+		{
+			// Same logic for positive & negative values.
+			value = Math.Abs(value);
+
+			// Corner cases
+			if (value <= 0)
+				return 0;
+			if (value >= 100)
+				return 1;
+			if (value >= 1)
+				return 2;
+
+			// Make value smaller to get additional decimal places for values with normalized mantissa less than 1.9;
+			value /= ScaleCoefficient;
+
+			// Get normalization scale. As the value expected to be <<1 result should be negated.
+			var normalizationPow = -Math.Log10(value);
+
+			// Add two extra places to normalized values.
+			var decimalPlaces = (int)Math.Floor(normalizationPow) + 2;
+
+			// If there's no decimal places - use zero.
+			return Math.Max(0, decimalPlaces);
+		}
+
+		/// <summary>Gets the autoscaled format for the value.</summary>
+		/// <param name="value">The value.</param>
+		/// <returns>Autoscaled format for the value</returns>
+		public static string GetAutoscaledFormat(double value) =>
+			"F" + GetAutoscaleDigits(value);
+		#endregion
 	}
 }

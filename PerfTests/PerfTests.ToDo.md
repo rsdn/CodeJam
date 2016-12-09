@@ -10,6 +10,9 @@
  * https://github.com/dotnet/BenchmarkDotNet/issues/307
 
 ## TODOs:
+ * BUG!!!: source annotations fails with default encoding :( Check for ± char as if in Simple pref test.
+   initial plan: try to reread if encoding fallback?
+ * Source annotations: append lines!
  * Check order provider usage, execution order benchmarks vs display order benchmarks.
  * Warning if baseline was changed!!!
  * Warning if there's log uri set, but source annotation updates are disabled.

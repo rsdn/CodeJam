@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading;
 
 using BenchmarkDotNet.Helpers;
@@ -204,6 +206,36 @@ line3";
 			True(BenchmarkHelpers.HasAnyEnvironmentVariable("Temp"));
 			True(BenchmarkHelpers.HasAnyEnvironmentVariable("tMp"));
 			False(BenchmarkHelpers.HasAnyEnvironmentVariable("StringThatShouldNotBeUsedAsEnvVariable"));
+		}
+
+
+		[TestCase("0", "F0")]
+		[TestCase("0.0002;0.0004;0.0008;0.001;0.0015", "F5")]
+		[TestCase("-0.0002;-0.0004;-0.0008;-0.001;-0.0015", "F5")]
+		[TestCase("0.002;0.004;0.008;0.01;0.015", "F4")]
+		[TestCase("-0.002;-0.004;-0.008;-0.01;-0.015", "F4")]
+		[TestCase("0.02;0.04;0.08;0.1;0.15", "F3")]
+		[TestCase("-0.02;-0.04;-0.08;-0.1;-0.15", "F3")]
+		[TestCase("-0.2;-0.4;-0.8", "F2")]
+		[TestCase("0.2;0.4;0.8", "F2")]
+		[TestCase("-0.2;-0.4;-0.8", "F2")]
+		[TestCase("1;2;4;8", "F2")]
+		[TestCase("-1;-2;-4;-8", "F2")]
+		[TestCase("10;20;40;80", "F2")]
+		[TestCase("-10;-20;-40;-80", "F2")]
+		[TestCase("100;200;400;800", "F1")]
+		[TestCase("-100;-200;-400;-800", "F1")]
+		[TestCase("1000;2000;4000;8000", "F1")]
+		[TestCase("-1000;-2000;-4000;-8000", "F1")]
+		[TestCase("10000;20000;40000;80000", "F1")]
+		[TestCase("-10000;-20000;-40000;-80000", "F1")]
+		public static void TestAutoformatF2(string values, string expected)
+		{
+			var valuesParsed = values.Split(';').Select(s => double.Parse(s, CultureInfo.InvariantCulture)).ToArray();
+			foreach (var value in valuesParsed)
+			{
+				AreEqual(BenchmarkHelpers.GetAutoscaledFormat(value), expected);
+			}
 		}
 	}
 }
