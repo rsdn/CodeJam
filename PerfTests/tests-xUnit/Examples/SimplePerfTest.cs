@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 
 using CodeJam.PerfTests;
+using CodeJam.PerfTests.Configs;
 
 using Xunit;
 
@@ -12,6 +13,7 @@ namespace CodeJam.Examples.PerfTests
 	// A perf test class.
 	[Trait("Category", "PerfTests: xUnit examples")]
 	[CompetitionBurstMode]
+	[CompetitionRerunsModifier(10)]
 	public class SimplePerfTest
 	{
 		private static readonly int _count = CompetitionHelpers.RecommendedSpinCount;

@@ -153,6 +153,7 @@
     <Compile Include="[L6_Configuration]\Configs\CompetitionConfigExtensions.cs" />
     <Compile Include="[L6_Configuration]\Configs\ICompetitionConfigSource.cs" />
     <Compile Include="[L6_Configuration]\[Attributes]\CompetitionFeaturesAttribute.cs" />
+    <Compile Include="[L7_AllTogether]\Configs\RerunsModifier.cs" />
     <Compile Include="[L7_AllTogether]\Running.Console\NamespaceDoc.cs" />
     <Compile Include="[L7_AllTogether]\Running.Core\ConsoleCompetitionRunner.cs" />
     <Compile Include="[L6_Configuration]\Configs\ICompetitionConfig.cs" />
