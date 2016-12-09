@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
 
@@ -14,6 +15,7 @@ namespace BenchmarkDotNet.Toolchains
 {
 	// Copy of the code generated for each benchmark
 	/// <summary> runnable benchmark controller.</summary>
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	internal class RunnableBenchmark
 	{
 		/// <summary>Fills the properties of the instance of the object used to run the benchmark.</summary>

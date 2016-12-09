@@ -39,20 +39,19 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		}
 
 		/// <summary>
-		/// Creates <see cref="CompetitionLimit"/> from <see cref="CompetitionBenchmarkAttribute"/>.
+		/// Creates <see cref="LimitRange"/> from <see cref="CompetitionBenchmarkAttribute"/>.
 		/// </summary>
 		/// <param name="competitionAttribute">The attribute with competition limits.</param>
 		/// <returns>
-		/// A new instance of the <see cref="CompetitionLimit"/> class
+		/// A new instance of the <see cref="LimitRange"/> class
 		/// filled with the properties from <see cref="CompetitionBenchmarkAttribute"/>
 		/// </returns>
-		[NotNull]
-		public static CompetitionLimit ParseCompetitionLimit(
+		public static LimitRange ParseCompetitionLimit(
 			[NotNull] CompetitionBenchmarkAttribute competitionAttribute)
 		{
 			Code.NotNull(competitionAttribute, nameof(competitionAttribute));
 
-			return new CompetitionLimit(competitionAttribute.MinRatio, competitionAttribute.MaxRatio);
+			return LimitRange.CreateRatioLimit(competitionAttribute.MinRatio, competitionAttribute.MaxRatio);
 		}
 	}
 }

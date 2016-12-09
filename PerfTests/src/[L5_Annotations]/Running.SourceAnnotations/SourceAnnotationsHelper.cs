@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -15,6 +16,7 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
 	/// <summary>Core logic for source annotations.</summary>
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	internal static partial class SourceAnnotationsHelper
 	{
 		#region Helper types
@@ -189,7 +191,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				var targetMethodTitle = target.MethodDisplayInfo;
 
 				competitionState.WriteVerbose(
-					$"Method {targetMethodTitle}: updating time limits {targetToAnnotate}.");
+					$"Method {targetMethodTitle}: updating time limits {targetToAnnotate.Limits.ToDisplayString()}.");
 				// DONTTOUCH: the source should be loaded for checksum validation even if target uses resource annotation.
 				var hasSource = SymbolHelpers.TryGetSourceInfo(
 					target.Method, competitionState,
@@ -218,7 +220,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					else
 					{
 						competitionState.WriteVerboseHint(
-							$"Method {targetMethodTitle}: updated with time limits {targetToAnnotate}.");
+							$"Method {targetMethodTitle}: updated with time limits {targetToAnnotate.Limits.ToDisplayString()}.");
 						annotatedTargets.Add(targetToAnnotate);
 					}
 				}
@@ -236,7 +238,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					else
 					{
 						competitionState.WriteVerboseHint(
-							$"Method {targetMethodTitle}: updated with time limits {targetToAnnotate}.");
+							$"Method {targetMethodTitle}: updated with time limits {targetToAnnotate.Limits.ToDisplayString()}.");
 						annotatedTargets.Add(targetToAnnotate);
 					}
 				}

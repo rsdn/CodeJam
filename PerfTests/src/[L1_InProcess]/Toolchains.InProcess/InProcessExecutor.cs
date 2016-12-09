@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -24,6 +25,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 	/// Implementation of <see cref="IExecutor"/> for in-process benchmarks.
 	/// </summary>
 	[PublicAPI]
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	public class InProcessExecutor : IExecutor
 	{
 		private static readonly TimeSpan _debugTimeout = TimeSpan.FromDays(1);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
@@ -26,6 +27,7 @@ namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>Base class for competition benchmark runners</summary>
 	[PublicAPI]
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	public abstract class CompetitionRunnerBase
 	{
 		/// <summary>Base class for competition runner's host logger.</summary>

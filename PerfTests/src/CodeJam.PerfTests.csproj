@@ -107,13 +107,13 @@
     <Compile Include="[L3_CompetitionsCore]\Configs\CompetitionRunMode.cs" />
     <Compile Include="[L3_CompetitionsCore]\Configs\CompetitionOptions.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Core\CompetitionState.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Running.Limits\LimitRange.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Limits\NamespaceDoc.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\IMessage.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\MessageSource.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\MessageSeverity.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\Message.cs" />
     <Compile Include="[L3_CompetitionsCore]\Columns\CompetitionLimitColumn.cs" />
-    <Compile Include="[L3_CompetitionsCore]\Running.Limits\CompetitionLimit.cs" />
     <Compile Include="[L3_CompetitionsCore]\Analysers\Analysis.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\NamespaceDoc.cs" />
     <Compile Include="[L4_CompetitionLimits]\Analysers\CompetitionAnalyser.cs" />
@@ -124,7 +124,6 @@
     <Compile Include="[L4_CompetitionLimits]\Analysers\CompetitionAnalysis.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\CompetitionTargets.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\AttributeAnnotations.cs" />
-    <Compile Include="[L3_CompetitionsCore]\Running.Limits\CompetitionLimitProperties.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\CompetitionMetadata.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\CompetitionTarget.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\NamespaceDoc.cs" />

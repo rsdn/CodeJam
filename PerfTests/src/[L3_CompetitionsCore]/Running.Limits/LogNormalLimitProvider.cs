@@ -31,8 +31,8 @@ namespace CodeJam.PerfTests.Running.Limits
 		/// <param name="baselineReport">The baseline report.</param>
 		/// <param name="benchmarkReport">The benchmark report.</param>
 		/// <param name="limitMode">If <c>true</c> limit values should be returned. Actual values returned otherwise.</param>
-		/// <returns>Limits for the benchmark or <c>null</c> if none.</returns>
-		protected override CompetitionLimit TryGetCompetitionLimit(
+		/// <returns>Limits for the benchmark or empty range if none.</returns>
+		protected override LimitRange TryGetCompetitionLimit(
 			BenchmarkReport baselineReport,
 			BenchmarkReport benchmarkReport,
 			bool limitMode)
@@ -52,7 +52,7 @@ namespace CodeJam.PerfTests.Running.Limits
 			// ReSharper disable CompareOfFloatsByEqualityOperator
 			if (minValueBaseline == 0 || maxValueBaseline == 0)
 				// ReSharper restore CompareOfFloatsByEqualityOperator
-				return null;
+				return LimitRange.Empty;
 
 			var minValueBenchmark = Math.Exp(benchmarkStat.Mean);
 			var maxValueBenchmark = Math.Exp(benchmarkStat.Mean);
@@ -65,7 +65,7 @@ namespace CodeJam.PerfTests.Running.Limits
 				minRatio *= 0.98; // 0.99*0.99 accuracy
 				maxRatio *= 1.02; // 1.01*1.01 accuracy
 			}
-			return new CompetitionLimit(
+			return LimitRange.CreateRatioLimit(
 				Math.Min(minRatio, maxRatio),
 				maxRatio);
 		}

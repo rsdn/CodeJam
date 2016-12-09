@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -32,6 +33,7 @@ namespace BenchmarkDotNet.Helpers
 	/// Helper methods for benchmark infrastructure.
 	/// </summary>
 	[PublicAPI]
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	public static class BenchmarkHelpers
 	{
 		#region Benchmark-related

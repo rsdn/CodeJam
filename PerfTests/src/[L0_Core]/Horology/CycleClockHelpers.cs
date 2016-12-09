@@ -2,6 +2,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -16,6 +17,7 @@ using JetBrains.Annotations;
 namespace BenchmarkDotNet.Horology
 {
 	/// <summary>Helper method for CPU cycle timers.</summary>
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	internal static class CycleClockHelpers
 	{
 		#region Interop

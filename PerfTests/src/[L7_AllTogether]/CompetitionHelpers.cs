@@ -7,7 +7,6 @@ using BenchmarkDotNet.Horology;
 
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Configs.Factories;
-using CodeJam.Ranges;
 
 using JetBrains.Annotations;
 

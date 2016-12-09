@@ -15,6 +15,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	internal static partial class SourceAnnotationsHelper
 	{
 		/// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -13,7 +14,6 @@ using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 
-using CodeJam.Collections;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Limits;
 using CodeJam.PerfTests.Running.Messages;
@@ -27,6 +27,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	/// <summary>
 	/// Helper class for xml annotations
 	/// </summary>
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	internal static class XmlAnnotations
 	{
 		private sealed class UseFullTypeNameAnnotation
@@ -47,6 +48,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		private const string CompetitionNode = "Competition";
 		private const string CandidateNode = "Candidate";
 		private const string TargetAttribute = "Target";
+		private const string BaselineAttribute = "Baseline";
+		private const string MinRatioAttribute = "MinRatio";
+		private const string MaxRatioAttribute = "MaxRatio";
 		#endregion
 
 		#region XML doc loading
@@ -395,7 +399,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <param name="xmlAnnotationDoc">The xml annotation document.</param>
 		/// <param name="competitionState">State of the run.</param>
 		/// <returns>Parsed competition limit or <c>null</c> if there is no xml annotation for the target.</returns>
-		public static CompetitionLimit TryParseCompetitionLimit(
+		[CanBeNull]
+		public static LimitRange? TryParseCompetitionLimit(
 			[NotNull] Target target,
 			[NotNull] XDocument xmlAnnotationDoc,
 			[NotNull] CompetitionState competitionState)
@@ -421,26 +426,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				return null;
 			}
 
-			var minRatio = TryParseLimitValue(
-				target, competitionNode,
-				nameof(CompetitionTarget.MinRatio),
-				competitionState);
-			var maxRatio = TryParseLimitValue(
-				target, competitionNode,
-				nameof(CompetitionTarget.MaxRatio),
-				competitionState);
-
-			// If only one limit set, the other should be ignored
-			if (minRatio == null && maxRatio != null)
-			{
-				minRatio = CompetitionLimit.IgnoreValue;
-			}
-			else if (maxRatio == null && minRatio != null)
-			{
-				maxRatio = CompetitionLimit.IgnoreValue;
-			}
-
-			return new CompetitionLimit(minRatio.GetValueOrDefault(), maxRatio.GetValueOrDefault());
+			var minRatio = TryParseLimitValue(target, competitionNode, MinRatioAttribute, competitionState);
+			var maxRatio = TryParseLimitValue(target, competitionNode, MaxRatioAttribute, competitionState);
+			return LimitRange.CreateRatioLimit(minRatio, maxRatio);
 		}
 
 		private static double? TryParseLimitValue(
@@ -490,16 +478,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			var candidate = competition.GetOrAddElement(CandidateNode, candidateName);
 
 			var baselineText = isBaseline ? XmlConvert.ToString(true) : null;
-			// ReSharper disable once ArrangeRedundantParentheses
-			var minText = (isBaseline || competitionTarget.IgnoreMinRatio) ? null : competitionTarget.MinRatioText;
-			// MaxText should be specified even if ignored.
-			var maxText = isBaseline ? null : competitionTarget.MaxRatioText;
+			var minText = competitionTarget.Limits.MinRatioText;
+			var maxText = competitionTarget.Limits.MaxRatioText;
 
 			// Informational only, ignored on parse
-			candidate.SetAttribute(nameof(CompetitionTarget.Baseline), baselineText);
+			candidate.SetAttribute(BaselineAttribute, baselineText);
 
-			candidate.SetAttribute(nameof(CompetitionTarget.MinRatio), minText);
-			candidate.SetAttribute(nameof(CompetitionTarget.MaxRatio), maxText);
+			candidate.SetAttribute(MaxRatioAttribute, minText);
+			candidate.SetAttribute(MinRatioAttribute, maxText);
 		}
 		#endregion
 	}

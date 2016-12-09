@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -26,6 +27,7 @@ namespace CodeJam.PerfTests.Running.Core
 	/// Helpers for performance testing infrastructure.
 	/// </summary>
 	[PublicAPI]
+	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	public static class CompetitionCore
 	{
 		#region Extension methods

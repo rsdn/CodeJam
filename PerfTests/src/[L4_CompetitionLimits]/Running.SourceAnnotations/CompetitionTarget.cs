@@ -11,12 +11,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	/// <summary>
 	/// Stores limits for benchmark target
 	/// </summary>
-	/// <seealso cref="CompetitionLimit"/>
 	/// <seealso cref="Target"/>
-	internal class CompetitionTarget : CompetitionLimit
+	internal class CompetitionTarget
 	{
 		#region Fields & .ctor
-		private CompetitionLimitProperties _changedProperties;
+		private bool _limitsChanged;
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionTarget"/> class.</summary>
 		/// <param name="target">The target.</param>
@@ -24,7 +23,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <param name="doesNotCompete">Exclude the benchmark from the competition.</param>
 		public CompetitionTarget(
 			[NotNull] Target target,
-			[NotNull] CompetitionLimit limitsForTarget,
+			LimitRange limitsForTarget,
 			bool doesNotCompete) :
 				// ReSharper disable once IntroduceOptionalParameters.Global
 				this(target, limitsForTarget, doesNotCompete, null) { }
@@ -36,12 +35,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <param name="competitionMetadata">Description of embedded resource containing xml document with competition limits.</param>
 		public CompetitionTarget(
 			[NotNull] Target target,
-			[NotNull] CompetitionLimit limitsForTarget,
+			LimitRange limitsForTarget,
 			bool doesNotCompete,
-			[CanBeNull] CompetitionMetadata competitionMetadata) :
-				base(limitsForTarget.MinRatio, limitsForTarget.MaxRatio)
+			[CanBeNull] CompetitionMetadata competitionMetadata)
 		{
 			Target = target;
+			Limits = limitsForTarget;
 			CompetitionMetadata = competitionMetadata;
 			DoesNotCompete = doesNotCompete;
 		}
@@ -52,6 +51,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <value>The benchmark target.</value>
 		[NotNull]
 		public Target Target { get; }
+
+		/// <summary>The relative-to-baseline timing limits for the target.</summary>
+		/// <value>The relative-to-baseline timing limits for the target.</value>
+		public LimitRange Limits { get; private set; }
 
 		/// <summary>Description of embedded resource containing xml document with competition limits.</summary>
 		/// <value>Description of embedded resource containing xml document with competition limits.</value>
@@ -76,59 +79,23 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		/// <summary>The limit properties are updated but not saved.</summary>
 		/// <value><c>true</c> if this instance has unsaved changes; otherwise, <c>false</c>.</value>
-		public bool HasUnsavedChanges => _changedProperties != CompetitionLimitProperties.None;
-		#endregion
-
-		/// <summary>Determines whether all specified properties are changed.</summary>
-		/// <param name="property">The properties to check.</param>
-		/// <returns><c>true</c> if all specified properties are changed. </returns>
-		public bool IsChanged(CompetitionLimitProperties property) =>
-			property != CompetitionLimitProperties.None &&
-				_changedProperties.IsFlagSet(property);
-
-		#region Core logic for competition limits
-		private void MarkAsChanged(CompetitionLimitProperties property) =>
-			_changedProperties = _changedProperties.SetFlag(property);
-
-		private bool UnionWithMinRatio(double newMin)
-		{
-			if (ShouldBeUpdatedMin(MinRatio, newMin))
-			{
-				MinRatio = newMin;
-				MarkAsChanged(CompetitionLimitProperties.MinRatio);
-				return true;
-			}
-
-			return false;
-		}
-
-		private bool UnionWithMaxRatio(double newMax)
-		{
-			if (ShouldBeUpdatedMax(MaxRatio, newMax))
-			{
-				MaxRatio = newMax;
-				MarkAsChanged(CompetitionLimitProperties.MaxRatio);
-				return true;
-			}
-
-			return false;
-		}
+		public bool HasUnsavedChanges => _limitsChanged;
 		#endregion
 
 		/// <summary>Adjusts competition limits with specified values.</summary>
 		/// <param name="limitsForTarget">Competition limits for the target.</param>
 		/// <returns><c>true</c> if any of the limits were updated.</returns>
-		public bool UnionWith([NotNull] CompetitionLimit limitsForTarget)
+		public bool UnionWith(LimitRange limitsForTarget)
 		{
-			Code.NotNull(limitsForTarget, nameof(limitsForTarget));
+			if (limitsForTarget.IsEmpty || Limits.Contains(limitsForTarget))
+				return false;
 
-			var result = false;
-			result |= UnionWithMinRatio(limitsForTarget.MinRatioRounded);
-			result |= UnionWithMaxRatio(limitsForTarget.MaxRatioRounded);
-			return result;
+			Limits = Limits.UnionWith(limitsForTarget);
+			_limitsChanged = true;
+			return true;
 		}
 
 		/// <summary>Marks limits as saved.</summary>
-		public void MarkAsSaved() => _changedProperties = CompetitionLimitProperties.None;
+		public void MarkAsSaved() => _limitsChanged = false;
 	}
 }

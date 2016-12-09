@@ -122,7 +122,7 @@ namespace CodeJam.Ranges
 		/// <value><c>true</c> if the range is empty; otherwise, <c>false</c>.</value>
 		public bool IsEmpty => _from.IsEmpty;
 
-		/// <summary>The range is NOT empty, ≠ ∅</summary>
+		/// <summary>The range is NOT empty, ≠ ∅.</summary>
 		/// <value><c>true</c> if the range is not empty; otherwise, <c>false</c>.</value>
 		public bool IsNotEmpty => _from.IsNotEmpty;
 

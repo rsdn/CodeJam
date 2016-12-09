@@ -3,8 +3,6 @@
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
-using JetBrains.Annotations;
-
 namespace CodeJam.PerfTests.Running.Limits
 {
 	/// <summary>Interface for competition limit provider.</summary>
@@ -17,15 +15,13 @@ namespace CodeJam.PerfTests.Running.Limits
 		/// <summary>Actual values for the benchmark.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <param name="benchmark">The benchmark.</param>
-		/// <returns>Actual values for the benchmark or <c>null</c> if none.</returns>
-		[CanBeNull]
-		CompetitionLimit TryGetActualValues(Benchmark benchmark, Summary summary);
+		/// <returns>Actual values for the benchmark or empty range if none.</returns>
+		LimitRange TryGetActualValues(Benchmark benchmark, Summary summary);
 
 		/// <summary>Limits for the benchmark.</summary>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <param name="summary">Summary for the run.</param>
-		/// <returns>Limits for the benchmark or <c>null</c> if none.</returns>
-		[CanBeNull]
-		CompetitionLimit TryGetCompetitionLimit(Benchmark benchmark, Summary summary);
+		/// <returns>Limits for the benchmark or empty range if none.</returns>
+		LimitRange TryGetCompetitionLimit(Benchmark benchmark, Summary summary);
 	}
 }

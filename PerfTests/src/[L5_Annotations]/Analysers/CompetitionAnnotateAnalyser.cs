@@ -66,6 +66,7 @@ namespace CodeJam.PerfTests.Analysers
 			}
 		}
 
+		// ReSharper disable once SuggestBaseTypeForParameter
 		[NotNull]
 		private XDocument[] ReadXmlAnnotationDocsFromLog(string logUri, CompetitionAnalysis analysis)
 		{
@@ -103,7 +104,7 @@ namespace CodeJam.PerfTests.Analysers
 					if (parsedLimit != null)
 					{
 						hasAnnotations = true;
-						updated |= competitionTarget.UnionWith(parsedLimit);
+						updated |= competitionTarget.UnionWith(parsedLimit.GetValueOrDefault());
 					}
 				}
 
@@ -133,12 +134,12 @@ namespace CodeJam.PerfTests.Analysers
 			CompetitionTarget competitionTarget,
 			CompetitionAnalysis analysis)
 		{
-			bool checkPassed = base.CheckTargetOverride(benchmarksForTarget, competitionTarget, analysis);
+			var checkPassed = base.CheckTargetOverride(benchmarksForTarget, competitionTarget, analysis);
 
 			if (competitionTarget.Baseline)
 				return checkPassed;
 
-			if (checkPassed && !competitionTarget.IsEmpty)
+			if (checkPassed && !competitionTarget.Limits.IsEmpty)
 				return true;
 
 			if (SkipAnnotation(analysis))
@@ -148,7 +149,7 @@ namespace CodeJam.PerfTests.Analysers
 			foreach (var benchmark in benchmarksForTarget)
 			{
 				var limit = limitProvider.TryGetCompetitionLimit(benchmark, analysis.Summary);
-				if (limit == null)
+				if (limit.IsEmpty)
 					// No warnings required. Missing values should be checked by base implementation.
 					continue;
 

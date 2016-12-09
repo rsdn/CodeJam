@@ -154,19 +154,17 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			AssertCompetitionCompleted(runState, MessageSeverity.ExecutionError, skipSummary: true);
+			AssertCompetitionCompleted(runState, MessageSeverity.Warning, skipSummary: false);
 
 			Assert.AreEqual(messages.Length, 1);
 
 			Assert.AreEqual(messages[0].RunNumber, 1);
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
-			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.ExecutionError);
-			Assert.AreEqual(messages[0].MessageSource, MessageSource.Runner);
+			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Warning);
+			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.That(
 				messages[0].MessageText,
-				Does.StartWith(
-					"Benchmark BadLimitsBenchmark failed. Exception: Please check competition limits. " +
-						"The minRatio (20.2) should be not zero and it should be greater than the maxRatio (5.5)."));
+				Does.StartWith("The benchmark SlowerX10 ignored as it has empty limit. Update limits to include benchmark in the competition."));
 		}
 
 		[Test]

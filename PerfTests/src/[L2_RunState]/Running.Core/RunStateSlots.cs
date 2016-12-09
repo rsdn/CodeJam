@@ -3,7 +3,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
-using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Validators;
 
 using JetBrains.Annotations;

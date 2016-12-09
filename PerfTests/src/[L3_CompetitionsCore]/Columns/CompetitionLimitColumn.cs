@@ -67,7 +67,7 @@ namespace CodeJam.PerfTests.Columns
 			if (result == null)
 				return "?";
 
-			return UseMaxRatio ? result.MaxRatioText : result.MinRatioText;
+			return UseMaxRatio ? result.Value.MaxRatioText : result.Value.MinRatioText;
 		}
 
 		/// <summary>Determines whether the specified summary is default.</summary>

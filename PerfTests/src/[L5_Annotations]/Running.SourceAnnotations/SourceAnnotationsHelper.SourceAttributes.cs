@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 using CodeJam.PerfTests.Running.Core;
+using CodeJam.Strings;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
@@ -93,14 +94,16 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		// ReSharper disable once SuggestBaseTypeForParameter
 		private static void AppendMinMax(StringBuilder result, CompetitionTarget competitionTarget)
 		{
-			if (!competitionTarget.IgnoreMinRatio)
+			var min = competitionTarget.Limits.MinRatioText;
+			var max = competitionTarget.Limits.MaxRatioText;
+
+			if (min.NotNullNorEmpty())
 			{
-				result.Append(competitionTarget.MinRatioText);
+				result.Append(min);
 				result.Append(", ");
 			}
 
-			// MaxText should be specified even if ignored.
-			result.Append(competitionTarget.MaxRatioText);
+			result.Append(max);
 		}
 	}
 }

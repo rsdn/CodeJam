@@ -165,7 +165,7 @@ namespace CodeJam.PerfTests.Analysers
 			}
 
 			var emptyLimits = analysis.SummaryOrderTargets()
-				.Where(t => t.HasRelativeLimits && t.IsEmpty)
+				.Where(t => t.HasRelativeLimits && t.Limits.IsEmpty)
 				.Select(rp => rp.Target.MethodDisplayInfo)
 				.ToArray();
 			if (emptyLimits.Any())
@@ -179,6 +179,7 @@ namespace CodeJam.PerfTests.Analysers
 		}
 
 		// ReSharper disable once MemberCanBeMadeStatic.Local
+		// ReSharper disable once SuggestBaseTypeForParameter
 		private string[] GetTargetNames(
 			CompetitionAnalysis analysis,
 			Func<Measurement, bool> measurementFilter) =>
@@ -244,19 +245,19 @@ namespace CodeJam.PerfTests.Analysers
 			if (competitionAttribute == null)
 				return null;
 
-			CompetitionLimit limit;
+			LimitRange limit;
 			if (analysis.Limits.IgnoreExistingAnnotations)
-				limit = CompetitionLimit.Empty;
+				limit = LimitRange.Empty;
 			else if (competitionMetadata == null)
 				limit = AttributeAnnotations.ParseCompetitionLimit(competitionAttribute);
 			else
-				limit = TryParseXmlAnnotationLimit(target, competitionMetadata, analysis) ?? CompetitionLimit.Empty;
+				limit = TryParseXmlAnnotationLimit(target, competitionMetadata, analysis);
 
 			return new CompetitionTarget(target, limit, competitionAttribute.DoesNotCompete, competitionMetadata);
 		}
 
-		[CanBeNull]
-		private CompetitionLimit TryParseXmlAnnotationLimit(
+		// ReSharper disable once SuggestBaseTypeForParameter
+		private LimitRange TryParseXmlAnnotationLimit(
 			Target target,
 			CompetitionMetadata competitionMetadata,
 			CompetitionAnalysis analysis)
@@ -271,7 +272,7 @@ namespace CodeJam.PerfTests.Analysers
 				r => XmlAnnotations.TryParseXmlAnnotationDoc(r.Item1, r.Item2, r.Item3, analysis.RunState));
 
 			if (xmlAnnotationDoc == null)
-				return null;
+				return LimitRange.Empty;
 
 			var result = XmlAnnotations.TryParseCompetitionLimit(target, xmlAnnotationDoc, analysis.RunState);
 
@@ -279,7 +280,7 @@ namespace CodeJam.PerfTests.Analysers
 				analysis.WriteWarningMessage(
 					$"No XML annotation for {target.MethodDisplayInfo} found. Check if the method was renamed.");
 
-			return result;
+			return result.GetValueOrDefault();
 		}
 		#endregion
 
@@ -318,44 +319,46 @@ namespace CodeJam.PerfTests.Analysers
 			[NotNull] CompetitionTarget competitionTarget,
 			[NotNull] CompetitionAnalysis analysis)
 		{
-			if (competitionTarget.Baseline || competitionTarget.IsEmpty)
+			if (competitionTarget.Baseline || competitionTarget.Limits.IsEmpty)
 				return true;
 
 			var result = true;
 			foreach (var benchmark in benchmarksForTarget)
 			{
-				result &= CheckTargetBenchmark(benchmark, competitionTarget, analysis);
+				result &= CheckTargetBenchmark(benchmark, competitionTarget.Limits, analysis);
 			}
 			return result;
 		}
 
 		private bool CheckTargetBenchmark(
 			Benchmark benchmark,
-			CompetitionLimit competitionLimit,
+			LimitRange competitionLimit,
 			CompetitionAnalysis analysis)
 		{
 			var limitsMode = analysis.Limits;
-			var actualValues = limitsMode.LimitProvider.TryGetActualValues(benchmark, analysis.Summary);
-			if (actualValues == null)
+			var summary = analysis.Summary;
+			var actualValues = limitsMode.LimitProvider.TryGetActualValues(benchmark, summary);
+			if (actualValues.IsEmpty)
 			{
 				analysis.AddTestErrorConclusion(
 					$"Could not obtain competition limits for {benchmark.DisplayInfo}.",
-					analysis.Summary.TryGetBenchmarkReport(benchmark));
+					summary.TryGetBenchmarkReport(benchmark));
 
 				return true;
 			}
 
-			if (competitionLimit.CheckLimitsFor(actualValues))
+			if (competitionLimit.Contains(actualValues))
 				return true;
 
 			var targetMethodTitle = benchmark.Target.MethodDisplayInfo;
 
-			var absoluteTime = BenchmarkDotNet.Columns.StatisticColumn.Mean.GetValue(analysis.Summary, benchmark);
-			var absoluteTimeBaseline = BenchmarkDotNet.Columns.StatisticColumn.Mean.GetValue(analysis.Summary, analysis.Summary.TryGetBaseline(benchmark));
+			var meanColumn = BenchmarkDotNet.Columns.StatisticColumn.Mean;
+			var absoluteTime = meanColumn.GetValue(summary, benchmark);
+			var absoluteTimeBaseline = meanColumn.GetValue(summary, summary.TryGetBaseline(benchmark));
 
 			analysis.AddTestErrorConclusion(
-				$"Method {targetMethodTitle} {actualValues} does not fit into limits {competitionLimit}.",
-				analysis.Summary.TryGetBenchmarkReport(benchmark));
+				$"Method {targetMethodTitle} {actualValues.ToDisplayString()} does not fit into limits {competitionLimit.ToDisplayString()}.",
+				summary.TryGetBenchmarkReport(benchmark));
 
 			// TODO: better message?
 			analysis.RunState.WriteVerboseHint(
