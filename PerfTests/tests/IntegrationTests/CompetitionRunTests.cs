@@ -123,7 +123,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.SetupError);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.AreEqual(messages[0].MessageText,
+			Assert.AreEqual(
+				messages[0].MessageText,
 				"No baseline method for benchmark. Apply CompetitionBaselineAttribute to the one of benchmark methods.");
 
 			Interlocked.Exchange(ref _callCounter, 0);
@@ -140,9 +141,9 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.SetupError);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.AreEqual(messages[0].MessageText,
+			Assert.AreEqual(
+				messages[0].MessageText,
 				"No baseline method for benchmark. Apply CompetitionBaselineAttribute to the one of benchmark methods.");
-
 		}
 
 		[Test]
@@ -164,7 +165,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.That(
 				messages[0].MessageText,
-				Does.StartWith("The benchmark SlowerX10 ignored as it has empty limit. Update limits to include benchmark in the competition."));
+				Does.StartWith(
+					"The benchmark SlowerX10 ignored as it has empty limit. Update limits to include benchmark in the competition."));
 		}
 
 		[Test]
@@ -239,7 +241,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Warning);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.AreEqual(messages[0].MessageText,
+			Assert.AreEqual(
+				messages[0].MessageText,
 				"The benchmark SlowerX10 ignored as it has empty limit. Update limits to include benchmark in the competition.");
 		}
 
@@ -275,6 +278,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public class XmlTaskOkBenchmark
 		{
 			private const int AwaitDelayMs = 50;
+
 			[CompetitionBaseline]
 			public async Task BaselineAsync()
 			{

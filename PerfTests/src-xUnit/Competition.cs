@@ -14,6 +14,7 @@ namespace CodeJam.PerfTests
 		private static CompetitionRunnerBase Runner => new XunitCompetitionRunner();
 
 		#region Public API (expose these via Competiton classes)
+
 		#region With competition features
 		/// <summary>Runs the benchmark.</summary>
 		/// <typeparam name="T">Benchmark class to run.</typeparam>
@@ -79,6 +80,7 @@ namespace CodeJam.PerfTests
 			[NotNull] ICompetitionConfig competitionConfig) =>
 				Runner.Run(benchmarkType, competitionConfig);
 		#endregion
+
 		#endregion
 	}
 }

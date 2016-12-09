@@ -92,7 +92,7 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				analysis.WriteSetupErrorMessage(
 					$"No methods in benchmark. Apply {nameof(CompetitionBenchmarkAttribute)} / " +
-					$"{nameof(CompetitionBaselineAttribute)} to the benchmark methods.");
+						$"{nameof(CompetitionBaselineAttribute)} to the benchmark methods.");
 			}
 			else if (!summary.Benchmarks.Any(t => t.Target.Baseline))
 			{
@@ -183,12 +183,12 @@ namespace CodeJam.PerfTests.Analysers
 		private string[] GetTargetNames(
 			CompetitionAnalysis analysis,
 			Func<Measurement, bool> measurementFilter) =>
-			analysis.Summary.GetSummaryOrderBenchmarks()
-				.Select(b => analysis.Summary[b])
-				.Where(rp => rp.GetResultRuns().Any(measurementFilter))
-				.Select(rp => rp.Benchmark.Target.MethodDisplayInfo)
-				.Distinct()
-				.ToArray();
+				analysis.Summary.GetSummaryOrderBenchmarks()
+					.Select(b => analysis.Summary[b])
+					.Where(rp => rp.GetResultRuns().Any(measurementFilter))
+					.Select(rp => rp.Benchmark.Target.MethodDisplayInfo)
+					.Distinct()
+					.ToArray();
 		#endregion
 
 		#region PrepareTargets
@@ -392,9 +392,7 @@ namespace CodeJam.PerfTests.Analysers
 
 		/// <summary>Complete analysis.</summary>
 		/// <param name="analysis">Analyser pass results.</param>
-		protected virtual void CompleteCheckTargetsOverride([NotNull] CompetitionAnalysis analysis)
-		{
-		}
+		protected virtual void CompleteCheckTargetsOverride([NotNull] CompetitionAnalysis analysis) { }
 
 		/// <summary>Requests reruns for the competition.</summary>
 		/// <param name="analysis">Analyser pass results.</param>

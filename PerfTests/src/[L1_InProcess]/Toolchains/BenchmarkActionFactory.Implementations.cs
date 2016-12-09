@@ -4,7 +4,6 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
 
-
 // ReSharper disable once CheckNamespace
 
 namespace BenchmarkDotNet.Toolchains
@@ -43,12 +42,13 @@ namespace BenchmarkDotNet.Toolchains
 				return (TDelegate)(object)Delegate.Combine(
 					Enumerable.Repeat((Delegate)(object)callback, unrollFactor).ToArray());
 #else
+				// Delegate call to prevent inlining.
+				var invokeMenthod = callback.GetType().GetMethod(nameof(Action.Invoke));
 				return (TDelegate)(object)Expression.Lambda(
 					typeof(TDelegate),
 					Expression.Block(
 						Enumerable.Repeat(callback, unrollFactor).Select(
-							m =>
-								Expression.Call(Expression.Constant(m), m.GetType().GetMethod(nameof(Action.Invoke)))) // Delegate call to prevent inlining.
+							m => Expression.Call(Expression.Constant(m), invokeMenthod))
 						)).Compile();
 #endif
 			}

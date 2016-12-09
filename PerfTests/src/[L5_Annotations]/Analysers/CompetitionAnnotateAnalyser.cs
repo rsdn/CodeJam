@@ -11,6 +11,7 @@ using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.PerfTests.Running.SourceAnnotations;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Analysers
@@ -122,7 +123,7 @@ namespace CodeJam.PerfTests.Analysers
 		#region CheckTargets
 		private bool SkipAnnotation(CompetitionAnalysis analysis) =>
 			!analysis.Annotations.AdjustLimits ||
-			analysis.RunState.RunNumber < analysis.Annotations.AnnotateSourcesOnRun;
+				analysis.RunState.RunNumber < analysis.Annotations.AnnotateSourcesOnRun;
 
 		/// <summary>Check competition target limits.</summary>
 		/// <param name="benchmarksForTarget">Benchmarks for the target.</param>
@@ -193,7 +194,8 @@ namespace CodeJam.PerfTests.Analysers
 			// TODO: messaging?
 			if (!analysis.SafeToContinue)
 			{
-				analysis.WriteWarningMessage("Source annotation skipped as there are critical errors in the run. Check the log please.");
+				analysis.WriteWarningMessage(
+					"Source annotation skipped as there are critical errors in the run. Check the log please.");
 				return;
 			}
 

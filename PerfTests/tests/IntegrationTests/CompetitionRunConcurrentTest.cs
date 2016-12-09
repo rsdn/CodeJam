@@ -1,12 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Running.Core;
-using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
 

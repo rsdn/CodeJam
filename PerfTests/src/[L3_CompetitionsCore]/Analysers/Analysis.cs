@@ -9,15 +9,16 @@ using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
 
-
 namespace CodeJam.PerfTests.Analysers
 {
 	/// <summary>Helper class to store analyser pass results.</summary>
 	[PublicAPI]
 	public class Analysis
 	{
-		/// <summary>Initializes a new instance of the <see cref="Analysis"/> class.
-		/// </summary><param name="id">The identifier.</param>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Analysis"/> class.
+		/// </summary>
+		/// <param name="id">The identifier.</param>
 		/// <param name="summary">The summary.</param>
 		public Analysis([NotNull] string id, [NotNull] Summary summary)
 		{
@@ -57,7 +58,7 @@ namespace CodeJam.PerfTests.Analysers
 
 		/// <summary>Analysis has no execution or setup errors so far and can be safely performed.</summary>
 		/// <value><c>true</c> if analysis has no errors; otherwise, <c>false</c>.</value>
-		public bool SafeToContinue => !RunState.HasCriticalErrorsInRun; 
+		public bool SafeToContinue => !RunState.HasCriticalErrorsInRun;
 		#endregion
 
 		#region Messages
@@ -104,7 +105,7 @@ namespace CodeJam.PerfTests.Analysers
 		{
 			WriteWarningMessage(message);
 			ConclusionsList.Add(Conclusion.CreateWarning(Id, message, report));
-		} 
+		}
 		#endregion
 	}
 }

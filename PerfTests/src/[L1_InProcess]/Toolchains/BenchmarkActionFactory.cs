@@ -23,9 +23,13 @@ namespace BenchmarkDotNet.Toolchains
 		{
 			var signature = targetMethod ?? idleSignature;
 			if (signature == null)
-				throw new ArgumentNullException(nameof(idleSignature), $"Either {nameof(targetMethod)} or  {nameof(idleSignature)} should be not null");
+				throw new ArgumentNullException(
+					nameof(idleSignature),
+					$"Either {nameof(targetMethod)} or  {nameof(idleSignature)} should be not null");
 			if (!signature.IsStatic && instance == null)
-				throw new ArgumentNullException(nameof(instance), $"The {nameof(instance)} should be not null as the target method is not null");
+				throw new ArgumentNullException(
+					nameof(instance),
+					$"The {nameof(instance)} should be not null as the target method is not null");
 
 			var resultInstance = signature.IsStatic ? null : instance;
 			var resultType = signature.ReturnType;
@@ -43,10 +47,14 @@ namespace BenchmarkDotNet.Toolchains
 				var genericType = resultType.GetGenericTypeDefinition();
 				var argType = resultType.GenericTypeArguments[0];
 				if (typeof(Task<>) == genericType)
-					return Create(typeof(BenchmarkActionTask<>).MakeGenericType(argType), resultInstance, targetMethod, unrollFactor);
+					return Create(
+						typeof(BenchmarkActionTask<>).MakeGenericType(argType), 
+						resultInstance, targetMethod, unrollFactor);
 
 				if (typeof(ValueTask<>).IsAssignableFrom(genericType))
-					return Create(typeof(BenchmarkActionValueTask<>).MakeGenericType(argType), resultInstance, targetMethod, unrollFactor);
+					return Create(
+						typeof(BenchmarkActionValueTask<>).MakeGenericType(argType),
+						resultInstance, targetMethod, unrollFactor);
 			}
 
 			if (targetMethod == null && resultType.IsValueType)
@@ -54,7 +62,9 @@ namespace BenchmarkDotNet.Toolchains
 				// we return int because creating bigger ValueType could take longer than benchmarked method itself.
 				resultType = typeof(int);
 			}
-			return Create(typeof(BenchmarkAction<>).MakeGenericType(resultType), resultInstance, targetMethod, unrollFactor);
+			return Create(
+				typeof(BenchmarkAction<>).MakeGenericType(resultType),
+				resultInstance, targetMethod, unrollFactor);
 		}
 
 		private static void FallbackMethod() { }

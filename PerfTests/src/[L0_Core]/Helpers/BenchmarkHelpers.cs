@@ -572,6 +572,7 @@ namespace BenchmarkDotNet.Helpers
 				.OpenExeConfiguration(a.GetAssemblyPath())
 				.GetSection(sectionName),
 			true);
+
 		private static readonly Func<string, object> _configSectionsCache = Algorithms.Memoize(
 			(string sectionName) => ConfigurationManager.GetSection(sectionName),
 			true);

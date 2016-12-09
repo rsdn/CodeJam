@@ -22,6 +22,7 @@ namespace CodeJam.PerfTests.Running.Limits
 		/// <param name="b">The limit2.</param>
 		/// <returns>The result of the operator.</returns>
 		public static bool operator ==(LimitRange a, LimitRange b) => a._limitRange == b._limitRange;
+
 		/// <summary>Implements the operator !=.</summary>
 		/// <param name="a">The limit1.</param>
 		/// <param name="b">The limit2.</param>
@@ -82,8 +83,8 @@ namespace CodeJam.PerfTests.Running.Limits
 		/// <returns>A union range containing both of the limit ranges.</returns>
 		public LimitRange UnionWith(LimitRange other) =>
 			_limitRange.Contains(other._limitRange)
-			? this
-			: new LimitRange(_limitRange.Union(other._limitRange));
+				? this
+				: new LimitRange(_limitRange.Union(other._limitRange));
 
 		/// <summary>Returns storage string representation for min limit ratio.</summary>
 		/// <value>Storage string representation for min limit ratio.</value>
@@ -130,7 +131,6 @@ namespace CodeJam.PerfTests.Running.Limits
 				.WithValues(from => Math.Round(from, 2), to => Math.Round(to, 2))
 				.ToString(HostEnvironmentInfo.MainCultureInfo);
 
-
 		#region Equality members
 		/// <summary>Equalses the specified other.</summary>
 		/// <param name="other">The other.</param>
@@ -140,7 +140,7 @@ namespace CodeJam.PerfTests.Running.Limits
 		public bool Equals(LimitRange other) => _limitRange.Equals(other._limitRange);
 
 		/// <summary>Determines whether the <paramref name="obj"/> is equal to this instance.</summary>
-		/// <param name="obj">The <see cref="object" /> to compare with this instance.</param>
+		/// <param name="obj">The <see cref="object"/> to compare with this instance.</param>
 		/// <returns>
 		///   <c>true</c> if the <paramref name="obj"/> is equal to this instance; otherwise, <c>false</c>.
 		/// </returns>
@@ -148,7 +148,7 @@ namespace CodeJam.PerfTests.Running.Limits
 
 		/// <summary>Returns a hash code for this instance.</summary>
 		/// <returns>
-		/// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+		/// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
 		/// </returns>
 		public override int GetHashCode() => _limitRange.GetHashCode();
 		#endregion

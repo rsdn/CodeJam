@@ -41,7 +41,7 @@ namespace CodeJam.PerfTests
 
 		#region Configs
 		private static readonly Lazy<ICompetitionConfig> _defaultConfigLazy = new Lazy<ICompetitionConfig>(
-			()=> _configForAssemblyCache(typeof(CompetitionHelpers).Assembly),
+			() => _configForAssemblyCache(typeof(CompetitionHelpers).Assembly),
 			true);
 
 		private static Func<Assembly, ICompetitionConfig> _configForAssemblyCache = Algorithms.Memoize(

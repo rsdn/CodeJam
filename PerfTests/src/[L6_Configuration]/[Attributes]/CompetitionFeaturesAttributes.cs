@@ -30,7 +30,9 @@ namespace CodeJam.PerfTests
 			IgnoreExistingAnnotations = false;
 		}
 
-		/// <summary>Initializes a new instance of the <see cref="CompetitionAnnotateSourcesAttribute" /> class.</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CompetitionAnnotateSourcesAttribute"/> class.
+		/// </summary>
 		/// <param name="previousRunLogUri">Sets the <see cref="SourceAnnotationsMode.PreviousRunLogUri"/> to the specified value.</param>
 		public CompetitionAnnotateSourcesAttribute(string previousRunLogUri)
 		{
@@ -44,7 +46,9 @@ namespace CodeJam.PerfTests
 	[PublicAPI]
 	public class CompetitionReannotateSourcesAttribute : CompetitionFeaturesAttribute
 	{
-		/// <summary>Initializes a new instance of the <see cref="CompetitionReannotateSourcesAttribute"/> class.</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CompetitionReannotateSourcesAttribute"/> class.
+		/// </summary>
 		public CompetitionReannotateSourcesAttribute()
 		{
 			AnnotateSources = true;

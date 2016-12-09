@@ -52,6 +52,7 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		#region Public API (expose these via Competiton classes)
+
 		#region With competition features
 		/// <summary>Runs the benchmark.</summary>
 		/// <typeparam name="T">Benchmark class to run.</typeparam>
@@ -117,9 +118,11 @@ namespace CodeJam.PerfTests.Running.Core
 			[NotNull] ICompetitionConfig competitionConfig) =>
 				RunCore(benchmarkType, competitionConfig, null);
 		#endregion
+
 		#endregion
 
 		#region Advanced public API (expose these if you wish)
+
 		#region With competition features
 		/// <summary>Runs all benchmarks defined in the assembly.</summary>
 		/// <param name="assembly">Assembly with benchmarks to run.</param>
@@ -181,6 +184,7 @@ namespace CodeJam.PerfTests.Running.Core
 			return result;
 		}
 		#endregion
+
 		#endregion
 
 		/// <summary>Runs the benchmark.</summary>
