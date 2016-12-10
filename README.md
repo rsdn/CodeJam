@@ -3,10 +3,11 @@
 CodeJam is a set of handy reusable .NET components that can simplify your daily work and
 save your time when you copy and paste your favorite helper methods and classes from one project to another.
 
-The CodeJam project includes two parts:
+The CodeJam project includes three parts:
 
 * Main - stable and feature complete code.
 * Experimental - A workspace for code development. Contains incomplete and/or unstable parts.
+* [CodeJam.PerfTests](https://github.com/rsdn/CodeJam/tree/master/PerfTests) - a performance testing framework for .Net projects.
 
 ### Main
 CodeJam is dedicated to one principal goal: creating and maintaining reusable code. The CodeJam.Main is a place for

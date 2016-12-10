@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>CodeJam.PerfTests.Core</id>
-		<version>0.0.10-beta</version>
+		<version>0.0.11-beta</version>
 		<title>CodeJam.PerfTests Core Library</title>
 		<authors>ig-sinicyn</authors>
 		<licenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</licenseUrl>

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>CodeJam.PerfTests.xUnit</id>
-		<version>0.0.10-beta</version>
+		<version>0.0.11-beta</version>
 		<title>CodeJam.PerfTests Library for xUnit</title>
 		<authors>ig-sinicyn</authors>
 		<licenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</licenseUrl>
@@ -13,7 +13,7 @@
 		<copyright>RSDN.ru, 2016</copyright>
 		<tags>benchmark benchmarking performance</tags>
 		<dependencies>
-			<dependency id="CodeJam.PerfTests.Core" version="0.0.10-beta" />
+			<dependency id="CodeJam.PerfTests.Core" version="0.0.11-beta" />
 			<dependency id="xunit" version="2.1.0" />
 		</dependencies>
 	</metadata>

@@ -249,9 +249,13 @@ public bool EqualsUInt64CodeJam() => ByteArrayEquality.EqualsUInt64CodeJam(_arra
 // ...
 ```
 
-Choose a reference implementation and mark it with `[CompetitionBaseline]` attribute. (see the [Choosing a baseline method](SourceAnnotations.md)  section for recommendations). Rest of competition methods should be annotated with `[CompetitionBenchmark]` attribute. 
+Choose a reference implementation and mark it with `[CompetitionBaseline]` attribute. (see the [Choosing a baseline method](SourceAnnotations.md)  section for recommendations). Rest of competition methods should be annotated with `[CompetitionBenchmark]` attribute. We will use `EqualsForLoop` as a baseline.
 
-The order of methods is irrelevant, however, it makes sense to place the benchmark method first and group rest of methods by cases they do check. In our example we have two sets of methods, for byte arrays and ulong arrays respectively. We prefer to keep same set methods together to ease comparison.
+The order of methods is irrelevant, however, it makes sense to place the baseline method first and group rest of methods by cases they do check. In our example we have two sets of methods, for byte arrays and ulong arrays respectively. We prefer to keep same set methods together to ease comparison.
+
+> **IMPORTANT** 
+>
+> Be sure to check that all competition methods use same data and provide the same results. If not there's no point to keep the methods in single benchmark as you'll end up comparing apples to orange color.
 
 
 
@@ -349,21 +353,21 @@ public void RunByteArrayEqualityPerfTest()
 
 ### 2.4 Results from Continuous Integration build
 
-Ok, we have some methods that looks like a good candidates for replacing the baseline implementation. Should we choose one right now? Nope! Remember, the results are taken on single machine only. The best thing we can do here is to run the test on different hardware.  We have one as we've setup CI build earlier. There are summary table with results including output [from CI build](https://ci.appveyor.com/project/ig-sinicyn/codejam-examples/build/0.0.1.4#L36):
+Ok, we have some methods that looks like a good candidates for replacing the baseline implementation. Should we choose one right now? Nope! Remember, the results are taken on single machine only. The best thing we can do here is to run the test on different hardware.  We have one as we've setup CI build earlier. There are summary table with results including output [from CI build](https://ci.appveyor.com/project/ig-sinicyn/codejam-examples/build/0.0.1.4#L36). Also, I've added results from low-end notebook to proof the results are accurate on mobile CPUs too.
 
-| Method                  | Scaled    | Scaled (x86) | Scaled (CI) |
-| ----------------------- | --------- | ------------ | ----------- |
-| EqualsForLoop           | 1.00      | 1.00         | 1.00        |
-| ~~EqualsLinq~~          | ~~16.13~~ | ~~12.53~~    | ~~20.67~~   |
-| EqualsCodeJam           | 0.12      | 0.14         | 0.11        |
-| ~~EqualsVectors~~       | ~~0.20~~  | ~~2.47~~     | ~~0.11~~    |
-| EqualsUnsafe            | 0.23      | 0.23         | 0.21        |
-| EqualsInterop           | 0.18      | 0.39         | 0.25        |
-| EqualsUInt64ForLoop     | 0.20      | 0.20         | 0.18        |
-| ~~EqualsUInt64Linq~~    | ~~2.33~~  | ~~2.06~~     | ~~3.30~~    |
-| EqualsUInt64Hardcoded   | 0.12      | 0.16         | 0.10        |
-| EqualsUInt64CodeJam     | 0.11      | 0.13         | 0.11        |
-| ~~EqualsUInt64Vectors~~ | ~~0.18~~  | ~~1.37~~     | ~~0.12~~    |
+| Method                  | Scaled    | Scaled (x86) | Scaled (CI) | Scaled (NB) |
+| ----------------------- | --------- | ------------ | ----------- | ----------- |
+| EqualsForLoop           | 1.00      | 1.00         | 1.00        | 1.00        |
+| ~~EqualsLinq~~          | ~~16.13~~ | ~~12.53~~    | ~~20.67~~   | ~~15.06~~   |
+| EqualsCodeJam           | 0.12      | 0.14         | 0.11        | 0.10        |
+| ~~EqualsVectors~~       | ~~0.20~~  | ~~2.47~~     | ~~0.11~~    | ~~0.16~~    |
+| EqualsUnsafe            | 0.23      | 0.23         | 0.21        | 0.23        |
+| EqualsInterop           | 0.18      | 0.39         | 0.25        | 0.31        |
+| EqualsUInt64ForLoop     | 0.20      | 0.20         | 0.18        | 0.20        |
+| ~~EqualsUInt64Linq~~    | ~~2.33~~  | ~~2.06~~     | ~~3.30~~    | ~~2.11~~    |
+| EqualsUInt64Hardcoded   | 0.12      | 0.16         | 0.10        | 0.12        |
+| EqualsUInt64CodeJam     | 0.11      | 0.13         | 0.11        | 0.10        |
+| ~~EqualsUInt64Vectors~~ | ~~0.18~~  | ~~1.37~~     | ~~0.12~~    | ~~0.21~~    |
 
 Almost done!
 
@@ -384,22 +388,22 @@ then, run perftest one more time and check source annotations. Here they are:
 | Method                  | Limit, min | Limit, max |
 | ----------------------- | ---------- | ---------- |
 | EqualsForLoop           | 1.00       | 1.00       |
-| ~~EqualsLinq~~          | ~~12.17~~  | ~~21.48~~  |
-| EqualsCodeJam           | 0.11       | 0.15       |
-| ~~EqualsVectors~~       | ~~0.11~~   | ~~2.47~~   |
+| ~~EqualsLinq~~          | ~~11.55~~  | ~~22.79~~  |
+| EqualsCodeJam           | 0.09       | 0.15       |
+| ~~EqualsVectors~~       | ~~0.11~~   | ~~2.57~~   |
 | EqualsUnsafe            | 0.16       | 0.27       |
-| EqualsInterop           | 0.18       | 0.41       |
-| EqualsUInt64ForLoop     | 0.17       | 0.24       |
-| ~~EqualsUInt64Linq~~    | ~~1.97~~   | ~~3.40~~   |
-| EqualsUInt64Hardcoded   | 0.10       | 0.17       |
-| EqualsUInt64CodeJam     | 0.09       | 0.15       |
-| ~~EqualsUInt64Vectors~~ | ~~0.12~~   | ~~1.45~~   |
+| EqualsInterop           | 0.13       | 0.41       |
+| EqualsUInt64ForLoop     | 0.16       | 0.24       |
+| ~~EqualsUInt64Linq~~    | ~~1.70~~   | ~~3.40~~   |
+| EqualsUInt64Hardcoded   | 0.09       | 0.18       |
+| EqualsUInt64CodeJam     | 0.08       | 0.16       |
+| ~~EqualsUInt64Vectors~~ | ~~0.11~~   | ~~1.45~~   |
 
 
 
 ### 2.5 Summary
 
-Well, there are conclusions: 
+There are conclusions: 
 
 * If you want to solve the task as it was formulated at start (store the hashes as a byte arrays), the best choice is to use array comparison implementation from the CodeJam library.
 * If it's ok to use ulong arrays there are additional options: you may use CodeJam lib again, may prefer to use hardcoded version or (if the perfomance is not so critical) use baseline implementation adopted to `UInt64`.
