@@ -12,7 +12,6 @@
 ## TODOs:
  * BUG!!!: source annotations fails with default encoding :( Check for ± char as if in Simple pref test.
    initial plan: try to reread if encoding fallback?
- * Source annotations: append lines!
  * Check order provider usage, execution order benchmarks vs display order benchmarks.
  * Warning if baseline was changed!!!
  * Warning if there's log uri set, but source annotation updates are disabled.
@@ -25,10 +24,10 @@
  * Check `+ Environment.NewLine` usages in `XunitCompetitionRunner.ReportXxx()` methods
  * Skip annotation on 1st run (CI mode only?)
  * Exclude nunit-related assembly from tests
- Prepare PR, https://github.com/nunit/nunit-console/issues/62#issuecomment-262599181
+   https://github.com/nunit/nunit-console/issues/62#issuecomment-262599181
  * Message with absolute timings if limits failed: improve readability
  * Message about updated annotations: improve readability
- * Burst mode feature: rename to LargeSampleSet?
+ * Burst mode feature: rename to CustomSampling?
  * AnnotateSourcesOnRun: rename to something like skipFirstRuns
  * Output: option to not log output from toolchain?
  * Concurrency: lock should be performed on entire benchmark run.
@@ -40,7 +39,6 @@
  * Warning if job count > 1
  * Apply with id for Competition options / features
  * Metadata attributes - order by inheritance
- * Limit annotations: remove special values (Zero and -1)
 
 ## TODOs (tests):
  * Source annotations: test for partial files / methods
@@ -54,15 +52,19 @@
 
 ## Long-term TODOs:
  * Support for multi-case benchmarks (separate limits)
+ * Source annotations: append lines (required to add new attributes)
  * Validate the return results!!!
  * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix).
  * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion
  * Memory limits + diagnoser - whoops, https://github.com/dotnet/BenchmarkDotNet/issues/200 . Will need to replace MethodInvoker, delayed.
 
 ## Issues:
+https://github.com/dotnet/BenchmarkDotNet/issues/324
+https://github.com/dotnet/BenchmarkDotNet/issues/319
 https://github.com/dotnet/BenchmarkDotNet/issues/307
-https://github.com/nunit/nunit-console/issues/62#issuecomment-262599181
 https://github.com/dotnet/BenchmarkDotNet/issues/234
+
+https://github.com/nunit/nunit-console/issues/62#issuecomment-262599181
 https://github.com/nunit/nunit/issues/668
 https://github.com/nunit/nunit/issues/1586
 https://github.com/xunit/xunit/issues/908
@@ -76,6 +78,7 @@ https://github.com/xunit/xunit/issues/908
  * Allows to run benchmark in process
  * Includes validator to proof that current process matches the job.
  * Adds BurstModeEngine for more stable results
+ * BenchmarkActionFactory - codegen free benchmark runner factory (should work for .Net Native too).
 
 ### Layer 2: RunState
  * Helper to store state during benchmark run.
@@ -83,7 +86,7 @@ https://github.com/xunit/xunit/issues/908
 ### Layer 3: CompetitionsCore
  * Core logic & api for competition runs.
  * Competition options
- * Competition limits, limit providers, limit columns
+ * Limit range & limit providers
  * Competition attributes
  * Competition state (api to be used during competition run)
  * Messages to be reported to user
@@ -92,21 +95,22 @@ https://github.com/xunit/xunit/issues/908
 
 ### Layer 4: CompetitionAnalyser
  * Analyser to check the limits.
+ * Limit columns
  * API to read source annotations
 
 ### Layer 5: CompetitionAnnotateAnalyser
- * Extended version of analyser from L4 with ability to annotate the source from actual running results
+ * Extended version of analyser from L4 with ability to annotate sources from actual running results
 
 ### Layer 6: Configuration
  * Base CompetitionConfig APIs and attributes
 
 ### Layer 7: Reusable parts of the runners
- * Wrapping all of above into simple, configurable and reusable API
+ * Cpmpetition runners & helpers.
 
 
 ##Long-term task: reusable limits, draft notes
 * Support for third-party limits, use limit provider + id
-* Target stores limits as a `Dictionary<provider_id, Range<double>>`
+* Target stores limits as a `Dictionary<provider_id, LimitRange>`
 * Limit provider specifies attribute name and additional parameters to be applied
   TODO: exact format?
   TODO: Use same properties for XML annotations or prefer something better?

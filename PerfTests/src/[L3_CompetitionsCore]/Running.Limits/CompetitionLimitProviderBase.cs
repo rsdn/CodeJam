@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
@@ -13,30 +14,62 @@ namespace CodeJam.PerfTests.Running.Limits
 	[PublicAPI]
 	public abstract class CompetitionLimitProviderBase : ICompetitionLimitProvider
 	{
+		#region Helpers
 		/// <summary>Reports for the benchmark and the baseline.</summary>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <param name="summary">Summary for the run.</param>
-		/// <param name="baselineReport">The baseline report.</param>
 		/// <param name="benchmarkReport">The benchmark report.</param>
-		/// <returns><c>true</c> if all is ok.</returns>
+		/// <param name="baselineReport">The baseline report.</param>
+		/// <returns><c>true</c> if both benchmark and baseline reports are available.</returns>
 		protected static bool TryGetReports(
-			Benchmark benchmark, Summary summary,
-			out BenchmarkReport baselineReport, out BenchmarkReport benchmarkReport)
+			[NotNull] Benchmark benchmark, [NotNull] Summary summary,
+			out BenchmarkReport benchmarkReport, out BenchmarkReport baselineReport)
 		{
-			baselineReport = null;
 			benchmarkReport = null;
+			baselineReport = null;
 
 			var baselineBenchmark = summary.TryGetBaseline(benchmark);
 			if (baselineBenchmark == null)
+				return false;
+
+			benchmarkReport = summary.TryGetBenchmarkReport(benchmark);
+			if (benchmarkReport?.ResultStatistics == null)
 				return false;
 
 			baselineReport = summary.TryGetBenchmarkReport(baselineBenchmark);
 			if (baselineReport?.ResultStatistics == null)
 				return false;
 
-			benchmarkReport = summary.TryGetBenchmarkReport(benchmark);
-			if (benchmarkReport?.ResultStatistics == null)
+			return true;
+		}
+
+		/// <summary>
+		/// Timings for the benchmark and the baseline.
+		/// </summary>
+		/// <param name="benchmark">The benchmark.</param>
+		/// <param name="summary">Summary for the run.</param>
+		/// <param name="benchmarkTimings">The benchmark timings.</param>
+		/// <param name="baselineTimings">The baseline timings.</param>
+		/// <returns><c>true</c> if both benchmark and baseline timings are available.</returns>
+		protected static bool TryGetTimings(
+			[NotNull] Benchmark benchmark, [NotNull] Summary summary, 
+			out double[] benchmarkTimings, out double[] baselineTimings)
+		{
+			Code.NotNull(benchmark, nameof(benchmark));
+			Code.NotNull(summary, nameof(summary));
+
+			benchmarkTimings = null;
+			baselineTimings = null;
+
+			if (!TryGetReports(benchmark, summary, out var benchmarkReport, out var baselineReport))
 				return false;
+
+			benchmarkTimings = benchmarkReport.GetResultRuns()
+				.Select(r => r.GetAverageNanoseconds())
+				.ToArray();
+			baselineTimings = baselineReport.GetResultRuns()
+				.Select(r => r.GetAverageNanoseconds())
+				.ToArray();
 
 			return true;
 		}
@@ -44,46 +77,32 @@ namespace CodeJam.PerfTests.Running.Limits
 		/// <summary>Short description for the provider.</summary>
 		/// <value>The short description for the provider.</value>
 		public abstract string ShortInfo { get; }
+		#endregion
+
+		#region Methods to implement
+		/// <summary>Actual value for the benchmark (averaged).</summary>
+		/// <param name="summary">Summary for the run.</param>
+		/// <param name="benchmark">The benchmark.</param>
+		/// <returns>Actual value for the benchmark or <c>null</c> if none.</returns>
+		public abstract double? TryGetMeanValue(Benchmark benchmark, Summary summary);
+
+		/// <summary>Metric that described deviation of the value for the benchmark.</summary>
+		/// <param name="summary">Summary for the run.</param>
+		/// <param name="benchmark">The benchmark.</param>
+		/// <returns>Metric that described deviation for the benchmark or <c>null</c> if none.</returns>
+		public abstract double? TryGetVariance(Benchmark benchmark, Summary summary);
 
 		/// <summary>Actual values for the benchmark.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns>Actual values for the benchmark or empty range if none.</returns>
-		public LimitRange TryGetActualValues(Benchmark benchmark, Summary summary) =>
-			TryGetCompetitionLimitCore(benchmark, summary, false);
+		public abstract LimitRange TryGetActualValues(Benchmark benchmark, Summary summary);
 
 		/// <summary>Limits for the benchmark.</summary>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <param name="summary">Summary for the run.</param>
 		/// <returns>Limits for the benchmark or empty range if none.</returns>
-		public LimitRange TryGetCompetitionLimit(Benchmark benchmark, Summary summary) =>
-			TryGetCompetitionLimitCore(benchmark, summary, true);
-
-		/// <summary>Limits for the benchmark.</summary>
-		/// <param name="benchmark">The benchmark.</param>
-		/// <param name="summary">Summary for the run.</param>
-		/// <param name="limitMode">If <c>true</c> limit values should be returned. Actual values returned otherwise.</param>
-		/// <returns>Limits for the benchmark or empty range if none.</returns>
-		private LimitRange TryGetCompetitionLimitCore(Benchmark benchmark, Summary summary, bool limitMode)
-		{
-			Code.NotNull(benchmark, nameof(benchmark));
-			Code.NotNull(summary, nameof(summary));
-
-			BenchmarkReport baselineReport, benchmarkReport;
-			if (!TryGetReports(benchmark, summary, out baselineReport, out benchmarkReport))
-				return LimitRange.Empty;
-
-			return TryGetCompetitionLimit(baselineReport, benchmarkReport, limitMode);
-		}
-
-		/// <summary>Limits for the benchmark.</summary>
-		/// <param name="baselineReport">The baseline report.</param>
-		/// <param name="benchmarkReport">The benchmark report.</param>
-		/// <param name="limitMode">If <c>true</c> limit values should be returned. Actual values returned otherwise.</param>
-		/// <returns>Limits for the benchmark or empty range if none.</returns>
-		protected abstract LimitRange TryGetCompetitionLimit(
-			BenchmarkReport baselineReport,
-			BenchmarkReport benchmarkReport,
-			bool limitMode);
+		public abstract LimitRange TryGetCompetitionLimit(Benchmark benchmark, Summary summary); 
+		#endregion
 	}
 }

@@ -1,77 +1,117 @@
 ﻿using System;
 
 using BenchmarkDotNet.Reports;
+using BenchmarkDotNet.Running;
+
+using CodeJam.Ranges;
 
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.Limits
 {
-	// TODO: something better than BoundaryLoosedBy?
 	/// <summary>Percentile-based competition limit provider.</summary>
 	/// <seealso cref="ICompetitionLimitProvider"/>
 	[PublicAPI]
 	public class PercentileLimitProvider : CompetitionLimitProviderBase
 	{
-		/// <summary> Metric is based on 20 (lower boundary) and 80 (upper boundary) percentiles.</summary>
-		public static readonly ICompetitionLimitProvider P20To80 = new PercentileLimitProvider(40, 60, 20);
+		private static readonly Range<int> _percentileRange = Range.Create(0, 99);
 
-		/// <summary>Initializes a new instance of the <see cref="PercentileLimitProvider"/> class.</summary>
-		/// <param name="minRatioPercentile">The percentile for the minimum timing ratio.</param>
-		/// <param name="maxRatioPercentile">>The percentile for the maximum timing ratio.</param>
-		/// <param name="limitModeDelta">
-		/// Delta to loose percentiles by. Used for <see cref="ICompetitionLimitProvider.TryGetCompetitionLimit "/>.
-		/// </param>
+		/// <summary> Metric is based on 45..55th percentiles.</summary>
+		public static readonly ICompetitionLimitProvider P50 = new PercentileLimitProvider(80, 10, 15);
+
+		#region .ctor & properties
+		/// <summary>
+		/// Initializes a new instance of the <see cref="PercentileLimitProvider" /> class.
+		/// </summary>
+		/// <param name="meanPercentile">The mean percentile.</param>
+		/// <param name="actualValuesPercentileDelta">Actual values percentile delta.</param>
+		/// <param name="limitsPercentileDelta">Limits percentile delta.</param>
 		public PercentileLimitProvider(
-			int minRatioPercentile,
-			int maxRatioPercentile,
-			int limitModeDelta)
+			int meanPercentile,
+			int actualValuesPercentileDelta,
+			int limitsPercentileDelta)
 		{
-			Code.InRange(minRatioPercentile, nameof(minRatioPercentile), 0, maxRatioPercentile);
-			Code.InRange(maxRatioPercentile, nameof(maxRatioPercentile), minRatioPercentile, 99);
-			Code.InRange(limitModeDelta, nameof(limitModeDelta), 0, 99);
+			Code.InRange(meanPercentile, nameof(meanPercentile), 0, 99);
+			var deltaMax = Math.Min(meanPercentile, 99 - meanPercentile);
+			Code.InRange(actualValuesPercentileDelta, nameof(actualValuesPercentileDelta), 0, deltaMax);
+			Code.InRange(limitsPercentileDelta, nameof(limitsPercentileDelta), 0, deltaMax);
 
-			MinRatioPercentile = minRatioPercentile;
-			MaxRatioPercentile = maxRatioPercentile;
-			LimitModeDelta = limitModeDelta;
+			MeanPercentile = meanPercentile;
+			ActualValuesPercentileDelta = actualValuesPercentileDelta;
+			LimitsPercentileDelta = limitsPercentileDelta;
 		}
 
 		/// <summary>Short description for the provider.</summary>
 		/// <value>The short description for the provider.</value>
-		public override string ShortInfo =>
-			MinRatioPercentile == MaxRatioPercentile
-				? $"P{MinRatioPercentile}(±{LimitModeDelta})"
-				: $"P{MinRatioPercentile - LimitModeDelta}..{MaxRatioPercentile + LimitModeDelta}";
+		public override string ShortInfo => $"P{MeanPercentile}";
 
-		/// <summary>Percentile for the minimum timing ratio.</summary>
-		/// <value>The percentile for the minimum timing ratio.</value>
-		public int MinRatioPercentile { get; }
+		/// <summary>The mean percentile.</summary>
+		/// <value>The mean percentile.</value>
+		public int MeanPercentile { get; }
 
-		/// <summary>Percentile for the maximum timing ratio.</summary>
-		/// <value>The percentile for the maximum timing ratio.</value>
-		public int MaxRatioPercentile { get; }
+		/// <summary>Actual values percentile delta.</summary>
+		/// <value>Actual values percentile delta.</value>
+		public int ActualValuesPercentileDelta { get; }
 
-		/// <summary>
-		/// Delta to loose percentiles by. Used for <see cref="ICompetitionLimitProvider.TryGetCompetitionLimit "/>.
-		/// </summary>
-		/// <value>The delta to loose percentiles by.</value>
-		public int LimitModeDelta { get; }
+		/// <summary>Limits percentile delta.</summary>
+		/// <value>Limits percentile deltas.</value>
+		public int LimitsPercentileDelta { get; }
+
+		#region Overrides of CompetitionLimitProviderBase
+		/// <summary>Actual value for the benchmark (averaged).</summary>
+		/// <param name="summary">Summary for the run.</param>
+		/// <param name="benchmark">The benchmark.</param>
+		/// <returns>Actual value for the benchmark or <c>null</c> if none.</returns>
+		public override double? TryGetMeanValue(Benchmark benchmark, Summary summary)
+		{
+			if (!TryGetReports(benchmark, summary, out var benchmarkReport, out var baselineReport))
+				return null;
+
+			var meanBenchmark = benchmarkReport.ResultStatistics.Percentiles.Percentile(MeanPercentile);
+			var meanBaseline = baselineReport.ResultStatistics.Percentiles.Percentile(MeanPercentile);
+
+			// ReSharper disable once CompareOfFloatsByEqualityOperator
+			if (meanBaseline == 0)
+				return null;
+
+			return meanBenchmark / meanBaseline;
+		}
+
+		/// <summary>Metric that described deviation of the value for the benchmark.</summary>
+		/// <param name="summary">Summary for the run.</param>
+		/// <param name="benchmark">The benchmark.</param>
+		/// <returns>Metric that described deviation for the benchmark or <c>null</c> if none.</returns>
+		public override double? TryGetVariance(Benchmark benchmark, Summary summary) => null;
+
+		/// <summary>Actual values for the benchmark.</summary>
+		/// <param name="summary">Summary for the run.</param>
+		/// <param name="benchmark">The benchmark.</param>
+		/// <returns>Actual values for the benchmark or empty range if none.</returns>
+		public override LimitRange TryGetActualValues(Benchmark benchmark, Summary summary) =>
+			TryGetValuesCore(
+				benchmark, summary,
+				MeanPercentile - ActualValuesPercentileDelta,
+				MeanPercentile + ActualValuesPercentileDelta);
 
 		/// <summary>Limits for the benchmark.</summary>
-		/// <param name="baselineReport">The baseline report.</param>
-		/// <param name="benchmarkReport">The benchmark report.</param>
-		/// <param name="limitMode">If <c>true</c> limit values should be returned. Actual values returned otherwise.</param>
+		/// <param name="benchmark">The benchmark.</param>
+		/// <param name="summary">Summary for the run.</param>
 		/// <returns>Limits for the benchmark or empty range if none.</returns>
-		protected override LimitRange TryGetCompetitionLimit(
-			BenchmarkReport baselineReport,
-			BenchmarkReport benchmarkReport,
-			bool limitMode)
+		public override LimitRange TryGetCompetitionLimit(Benchmark benchmark, Summary summary) =>
+			TryGetValuesCore(
+				benchmark, summary,
+				MeanPercentile - LimitsPercentileDelta,
+				MeanPercentile + LimitsPercentileDelta);
+
+		private LimitRange TryGetValuesCore(
+			Benchmark benchmark, Summary summary,
+			int minPercentile, int maxPercentile)
 		{
-			var minPercentile = limitMode
-				? Math.Max(0, MinRatioPercentile - LimitModeDelta)
-				: MinRatioPercentile;
-			var maxPercentile = limitMode
-				? Math.Min(99, MaxRatioPercentile + LimitModeDelta)
-				: MaxRatioPercentile;
+			if (!TryGetReports(benchmark, summary, out var benchmarkReport, out var baselineReport))
+				return LimitRange.Empty;
+
+			minPercentile = _percentileRange.Adjust(minPercentile);
+			maxPercentile = _percentileRange.Adjust(maxPercentile);
 
 			var minValueBaseline = baselineReport.ResultStatistics.Percentiles.Percentile(minPercentile);
 			var maxValueBaseline = baselineReport.ResultStatistics.Percentiles.Percentile(maxPercentile);
@@ -86,9 +126,15 @@ namespace CodeJam.PerfTests.Running.Limits
 
 			var minRatio = minValueBenchmark / minValueBaseline;
 			var maxRatio = maxValueBenchmark / maxValueBaseline;
+
+			if (minRatio > maxRatio)
+				Algorithms.Swap(ref minRatio, ref maxRatio);
+
 			return LimitRange.CreateRatioLimit(
 				Math.Min(minRatio, maxRatio),
 				maxRatio);
 		}
+		#endregion
+		#endregion
 	}
 }

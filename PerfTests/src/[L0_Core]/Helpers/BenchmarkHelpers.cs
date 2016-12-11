@@ -658,11 +658,9 @@ namespace BenchmarkDotNet.Helpers
 			value = Math.Abs(value);
 
 			// Corner cases
-			if (value <= 0)
-				return 0;
 			if (value >= 100)
 				return 1;
-			if (value >= 1)
+			if (value <= 0 || value >= 1)
 				return 2;
 
 			// Make value smaller to get additional decimal places for values with normalized mantissa less than 1.9;

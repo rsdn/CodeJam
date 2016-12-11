@@ -19,7 +19,7 @@ namespace CodeJam.PerfTests.Analysers
 	internal class CompetitionAnalysis : Analysis
 	{
 		/// <summary>Run state slot for the competition targets.</summary>
-		private static readonly RunState<CompetitionTargets> _targetsSlot = new RunState<CompetitionTargets>();
+		public static readonly RunState<CompetitionTargets> TargetsSlot = new RunState<CompetitionTargets>();
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CompetitionAnalysis"/> class.
@@ -28,7 +28,7 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="summary">The summary.</param>
 		public CompetitionAnalysis([NotNull] string id, [NotNull] Summary summary) : base(id, summary)
 		{
-			Targets = _targetsSlot[summary];
+			Targets = TargetsSlot[summary];
 		}
 
 		/// <summary>The competition targets.</summary>

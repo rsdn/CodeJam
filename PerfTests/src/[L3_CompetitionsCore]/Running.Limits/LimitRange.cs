@@ -42,6 +42,7 @@ namespace CodeJam.PerfTests.Running.Limits
 		/// <returns>Limits range.</returns>
 		public static LimitRange CreateRatioLimit(double? from, double? to)
 		{
+			// DONTTOUCH: behavior change will break limit parsing/providers.
 			if ((from == null && to == null) ||
 				(from == 0 && to == 0))
 				return Empty;
@@ -66,6 +67,7 @@ namespace CodeJam.PerfTests.Running.Limits
 		}
 		#endregion
 
+		#region Range operations
 		/// <summary>The range is empty.</summary>
 		/// <value><c>true</c> if the range is empty; otherwise, <c>false</c>.</value>
 		public bool IsEmpty => _limitRange.IsEmpty;
@@ -86,15 +88,23 @@ namespace CodeJam.PerfTests.Running.Limits
 			_limitRange.Contains(other._limitRange)
 				? this
 				: new LimitRange(_limitRange.Union(other._limitRange));
+		#endregion
 
+		#region String representation
 		private string GetFormat()
 		{
 			// First non-empty value
 			var value = _limitRange.From.GetValueOrDefault(
 				_limitRange.To.GetValueOrDefault());
-			
+
 			return BenchmarkHelpers.GetAutoscaledFormat(value);
 		}
+
+		/// <summary>To the display string.</summary>
+		/// <returns>String representation of the limit range.</returns>
+		public string ToDisplayString() =>
+			_limitRange
+				.ToString(GetFormat(), HostEnvironmentInfo.MainCultureInfo);
 
 		/// <summary>Returns storage string representation for min limit ratio.</summary>
 		/// <value>Storage string representation for min limit ratio.</value>
@@ -104,6 +114,7 @@ namespace CodeJam.PerfTests.Running.Limits
 			{
 				var limitRange = _limitRange;
 
+				// DONTTOUCH: behavior change will break limit annotations.
 				if (limitRange.IsEmpty)
 					return null;
 				if (limitRange.From.IsNegativeInfinity)
@@ -123,6 +134,7 @@ namespace CodeJam.PerfTests.Running.Limits
 			{
 				var limitRange = _limitRange;
 
+				// DONTTOUCH: behavior change will break limit annotations.
 				if (limitRange.IsEmpty)
 					return null;
 				if (limitRange.To.IsPositiveInfinity) // max should be specified if not empty.
@@ -131,12 +143,7 @@ namespace CodeJam.PerfTests.Running.Limits
 				return limitRange.ToValue.ToString(GetFormat(), HostEnvironmentInfo.MainCultureInfo);
 			}
 		}
-
-		/// <summary>To the display string.</summary>
-		/// <returns>String representation of the limit range.</returns>
-		public string ToDisplayString() =>
-			_limitRange
-				.ToString(GetFormat(), HostEnvironmentInfo.MainCultureInfo);
+		#endregion
 
 		#region Equality members
 		/// <summary>Equalses the specified other.</summary>

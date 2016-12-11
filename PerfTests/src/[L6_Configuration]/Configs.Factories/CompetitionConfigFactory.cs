@@ -25,6 +25,32 @@ namespace CodeJam.PerfTests.Configs.Factories
 	[SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
 	public class CompetitionConfigFactory : ICompetitionConfigFactory
 	{
+		/// <summary>Columns for default config. </summary>
+		public static IColumnProvider DefaultColumns = new CompositeColumnProvider(
+			DefaultColumnProviders.Target,
+			DefaultColumnProviders.Job,
+			DefaultColumnProviders.Params,
+			DefaultColumnProviders.Diagnosers,
+			new SimpleColumnProvider(
+				CompetitionLimitColumn.LimitValue,
+				StatisticColumn.Mean,
+				StatisticColumn.StdDev,
+				BaselineScaledColumn.Scaled,
+				BaselineScaledColumn.ScaledStdDev));
+
+		/// <summary>Columns for troubleshooting mode config. </summary>
+		public static IColumnProvider TroubleshootingModeColumns = new CompositeColumnProvider(
+			DefaultColumnProviders.Target,
+			DefaultColumnProviders.Job,
+			DefaultColumnProviders.Params,
+			DefaultColumnProviders.Diagnosers,
+			DefaultColumnProviders.Statistics,
+			new SimpleColumnProvider(
+				CompetitionLimitColumn.LimitValue,
+				CompetitionLimitColumn.LimitVariance,
+				StatisticColumn.Min,
+				StatisticColumn.Max));
+
 		/// <summary>Creates competition config for type.</summary>
 		/// <param name="targetAssembly">Assembly to create config for.</param>
 		/// <param name="competitionFeatures">The competition features.</param>
@@ -202,17 +228,13 @@ namespace CodeJam.PerfTests.Configs.Factories
 			result.Jobs.Clear();
 			result.Loggers.Clear();
 			result.Exporters.Clear();
+			result.ColumnProviders.Clear();
 
 			// TODO: fix diagnosers support ASAP
 			result.Diagnosers.Clear();
 
 			// TODO: better columns.
-			// TODO: custom column provider?
-			result.Add(
-				StatisticColumn.Min,
-				CompetitionLimitColumn.Min,
-				CompetitionLimitColumn.Max,
-				StatisticColumn.Max);
+			result.Add(competitionFeatures.TroubleshootingMode ? TroubleshootingModeColumns : DefaultColumns);
 
 			var targetAssembly = GetAssembly(metadataSource);
 			if (targetAssembly != null)

@@ -85,7 +85,7 @@
     <Compile Include="[L1_InProcess]\Validators\NamespaceDoc.cs" />
     <Compile Include="[L2_RunState]\Running.Core\NamespaceDoc.cs" />
     <Compile Include="[L3_CompetitionsCore]\Analysers\NamespaceDoc.cs" />
-    <Compile Include="[L3_CompetitionsCore]\Columns\NamespaceDoc.cs" />
+    <Compile Include="[L4_CompetitionLimits]\Columns\NamespaceDoc.cs" />
     <Compile Include="[L3_CompetitionsCore]\Configs\NamespaceDoc.cs" />
     <Compile Include="[L3_CompetitionsCore]\Configs\SourceAnnotationsMode.cs" />
     <Compile Include="[L3_CompetitionsCore]\Exporters\CsvTimingsExporter.cs" />
@@ -113,7 +113,7 @@
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\MessageSource.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\MessageSeverity.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\Message.cs" />
-    <Compile Include="[L3_CompetitionsCore]\Columns\CompetitionLimitColumn.cs" />
+    <Compile Include="[L4_CompetitionLimits]\Columns\CompetitionLimitColumn.cs" />
     <Compile Include="[L3_CompetitionsCore]\Analysers\Analysis.cs" />
     <Compile Include="[L3_CompetitionsCore]\Running.Messages\NamespaceDoc.cs" />
     <Compile Include="[L4_CompetitionLimits]\Analysers\CompetitionAnalyser.cs" />
@@ -153,7 +153,7 @@
     <Compile Include="[L6_Configuration]\Configs\CompetitionConfigExtensions.cs" />
     <Compile Include="[L6_Configuration]\Configs\ICompetitionConfigSource.cs" />
     <Compile Include="[L6_Configuration]\[Attributes]\CompetitionFeaturesAttribute.cs" />
-    <Compile Include="[L7_AllTogether]\Configs\RerunsModifier.cs" />
+    <Compile Include="[L6_Configuration]\Configs\CompetitionRerunsModifierAttribute.cs" />
     <Compile Include="[L7_AllTogether]\Running.Console\NamespaceDoc.cs" />
     <Compile Include="[L7_AllTogether]\Running.Core\ConsoleCompetitionRunner.cs" />
     <Compile Include="[L6_Configuration]\Configs\ICompetitionConfig.cs" />
