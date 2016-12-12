@@ -14,7 +14,7 @@
 		<tags>benchmark benchmarking performance</tags>
 		<dependencies>
 			<dependency id="CodeJam" version="1.3.0-beta1" />
-			<dependency id="BenchmarkDotNet.Core" version="0.10.0" />
+			<dependency id="BenchmarkDotNet.Core" version="0.10.1" />
 		</dependencies>
 	</metadata>
 	<files>

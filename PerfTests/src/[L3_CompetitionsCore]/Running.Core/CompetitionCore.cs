@@ -100,7 +100,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			competitionState.WriteMessage(
 				messageSource, messageSeverity,
-				$"{message} Exception: {ex.Message}.");
+				$"{message} Exception: {ex.Message}");
 		}
 
 		/// <summary>Writes the verbose hint message. Logged, but not reported to user.</summary>

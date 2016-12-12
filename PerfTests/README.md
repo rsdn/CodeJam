@@ -32,12 +32,13 @@ All documentation files are [here](https://github.com/rsdn/CodeJam/tree/master/P
 
 ## Thanks to
 
-Sorry if I forgot to mention you. Make me know:)
+Sorry if I forgot to mention you. [Let me know](https://github.com/rsdn/CodeJam/issues):) 
 
 In alphabetical order, Greece enters the stadium first:
 
 * [BenchmarkDotNet](https://github.com/dotnet/BenchmarkDotNet) team. [@adamsitnik](https://github.com/adamsitnik), [@AndreyAkinshin](https://github.com/AndreyAkinshin), [@mattwarren](https://github.com/mattwarren) - thanks!!!
 * [AppVeyor CI](https://www.appveyor.com) and personal to [@FeodorFitsner](https://github.com/FeodorFitsner). It just works and when it is not there's best CI support we have tried so far.
 * [NUnit project](https://www.nunit.org/) and especially to [@CharliePoole](https://github.com/CharliePoole). Almost perfect.
+* RSDN.org members [@Буравчик](http://rsdn.org/account/info/58047) & [@Lexey](http://rsdn.org/account/info/460): [lognormal distribution for relative timings proposal](http://rsdn.org/forum/alg/6471574) (RUS). (Notify me if I should use another links to your profiles!)
 * [@simon-mourier](http://stackoverflow.com/users/403671/simon-mourier) for helping [with pdb checksumms verification](http://stackoverflow.com/q/36649271).
 

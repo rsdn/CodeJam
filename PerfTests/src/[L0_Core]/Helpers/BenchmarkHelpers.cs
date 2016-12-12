@@ -408,6 +408,31 @@ namespace BenchmarkDotNet.Helpers
 		#endregion
 
 		#region IO
+		/// <summary>Reads file content and fails if not able to detect encoding.</summary>
+		/// <param name="path">The path.</param>
+		/// <returns>File lines.</returns>
+		public static string[] ReadFileContent(string path)
+		{
+			var lines = new List<string>();
+			using (var streamReader = new StreamReader(path))
+			{
+				string line;
+				while ((line = streamReader.ReadLine()) != null)
+				{
+					var fallback = streamReader.CurrentEncoding.DecoderFallback as DecoderReplacementFallback;
+					if (fallback != null)
+					{
+						var idx = line.IndexOf(fallback.DefaultString, StringComparison.Ordinal);
+						if (idx >= 0)
+							throw new DecoderFallbackException(
+								$"Invalid character at line {lines.Count + 1}, position {idx + 1}.");
+					}
+					lines.Add(line);
+				}
+			}
+			return lines.ToArray();
+		}
+
 		/// <summary>Writes file content without empty line at the end.</summary>
 		/// <param name="path">The path.</param>
 		/// <param name="lines">The lines to write.</param>

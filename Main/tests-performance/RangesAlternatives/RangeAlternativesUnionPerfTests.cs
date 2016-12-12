@@ -105,7 +105,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(9.41, 18.16)]
+			[CompetitionBenchmark(9.41, 18.58)]
 			public RangeStub<int> Test03RangeImpl()
 			{
 				var result = _rangeData[0];

@@ -137,14 +137,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		#region XML annotations
 		/// <summary>Parses xml annotation document.</summary>
-		/// <param name="source">The source to parse from.</param>
+		/// <param name="source">Stream that contains xml document.</param>
 		/// <param name="useFullTypeName">Use full type name in XML annotations.</param>
 		/// <param name="competitionState">State of the run.</param>
 		/// <param name="sourceDescription">Source description to be used in messages.</param>
 		/// <returns>XML annotation document or <c>null</c> if parsing failed.</returns>
 		[CanBeNull]
 		public static XDocument TryParseXmlAnnotationDoc(
-			[NotNull] TextReader source,
+			[NotNull] Stream source,
 			bool useFullTypeName,
 			[NotNull] CompetitionState competitionState,
 			[NotNull] string sourceDescription)
@@ -221,12 +221,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					return null;
 				}
 
-				using (var reader = new StreamReader(resourceStream))
-				{
-					return TryParseXmlAnnotationDoc(
-						reader, useFullTypeName, competitionState,
-						$"Resource '{resourceName}'");
-				}
+				return TryParseXmlAnnotationDoc(
+					resourceStream, useFullTypeName, competitionState,
+					$"Resource '{resourceName}'");
 			}
 		}
 
@@ -326,10 +323,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			CompetitionState competitionState,
 			string logUri, int logLine)
 		{
-			using (var reader = new StringReader(logXmlText))
+			using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(logXmlText)))
 			{
 				var xmlAnnotationDoc = TryParseXmlAnnotationDoc(
-					reader,
+					stream,
 					true,
 					competitionState,
 					$"Log '{logUri}', line {logLine}");

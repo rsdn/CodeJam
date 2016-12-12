@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml.Linq;
 
 using BenchmarkDotNet.Helpers;
@@ -49,7 +50,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					{
 						try
 						{
-							return File.ReadAllLines(f);
+							return BenchmarkHelpers.ReadFileContent(f);
 						}
 						catch (IOException ex)
 						{
@@ -64,6 +65,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 							competitionState.WriteExceptionMessage(
 								MessageSource.Analyser, MessageSeverity.SetupError,
 								$"Could not access file '{file}'.", ex);
+
+							return Array<string>.Empty;
+						}
+						catch (DecoderFallbackException ex)
+						{
+							competitionState.WriteExceptionMessage(
+								MessageSource.Analyser, MessageSeverity.SetupError,
+								$"Cannot detect encoding for file '{file}'. Try to save the file as UTF8 or UTF16.", ex);
 
 							return Array<string>.Empty;
 						}
@@ -89,10 +98,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					{
 						try
 						{
-							using (var reader = File.OpenText(f))
+							using (var stream = File.OpenRead(f))
 							{
 								return XmlAnnotations.TryParseXmlAnnotationDoc(
-									reader, useFullTypeName, competitionState,
+									stream, useFullTypeName, competitionState,
 									$"XML annotation '{file}'");
 							}
 						}

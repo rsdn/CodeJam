@@ -22,7 +22,7 @@ namespace CodeJam.Examples.PerfTests
 		[Test]
 		public void RunSimplePerfTest() => Competition.Run(this);
 
-		// Baseline competition member. Other competition members will be compared with this. Accuracy ±10%
+		// Baseline competition member. Other competition members will be compared with this. Accuracy Â±10%
 		[CompetitionBaseline]
 		public void Baseline() => Thread.SpinWait(_count);
 
