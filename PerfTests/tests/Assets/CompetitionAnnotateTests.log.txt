@@ -1,4 +1,15 @@
-﻿some log text
+﻿some log textsome log text
+
+// !<-- ------ xml_annotation_begin ------
+<?xml version="1.0" encoding="utf-8"?>
+<CompetitionBenchmarks>
+	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBaselineChangedBenchmark, CodeJam.PerfTests-Tests">
+		<Candidate Target="Baseline" MinRatio="20" MaxRatio="20" />
+		<Candidate Target="SlowerX20" Baseline="true" />
+	</Competition>
+</CompetitionBenchmarks>
+// !--> ------- xml_annotation_end -------
+some log text
 some log text
 
 // !<-- ------ xml_annotation_begin ------

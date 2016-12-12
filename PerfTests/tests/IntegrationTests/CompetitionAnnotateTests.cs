@@ -51,8 +51,34 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages.Length, 4);
 		}
 
+
+		[Test]
+		public static void TestAnnotateBaselineChangedFromLocalLog()
+		{
+			// TODO: message if no XML annotation
+			// TODO: exact message validation
+			var runState = SelfTestCompetition.Run<AnnotatedBaselineChangedBenchmark>(_localLogConfig);
+			var messages = runState.GetMessages();
+			Assert.AreEqual(runState.HighestMessageSeverity, MessageSeverity.SetupError);
+			Assert.IsTrue(runState.Completed);
+			Assert.AreEqual(runState.RunNumber, 1);
+			Assert.AreEqual(runState.RunsLeft, 0);
+			Assert.AreEqual(runState.RunLimitExceeded, false);
+			Assert.AreEqual(runState.LooksLikeLastRun, true);
+			Assert.AreEqual(messages.Length, 3);
+		}
+
 		#region Benchmark classes
 		public class AnnotatedBenchmark
+		{
+			[CompetitionBaseline]
+			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
+
+			[CompetitionBenchmark(10.00, 30.00)]
+			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.RecommendedSpinCount);
+		}
+
+		public class AnnotatedBaselineChangedBenchmark
 		{
 			[CompetitionBaseline]
 			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);

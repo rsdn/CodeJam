@@ -3,6 +3,7 @@ CodeJam.PerfTests Release Notes
 
 # 0.0.11-beta
 * Annotation fails on damaged/invalid encoding files.
+* Auto-adjust limit scale for annotations (more decimal places for too small values).
 
 # 0.0.10-beta
 * Doc files complete. First public preview.

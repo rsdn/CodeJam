@@ -8,4 +8,8 @@
 		<Candidate Target="Baseline" Baseline="true" />
 		<Candidate Target="SlowerX20" MinRatio="10" MaxRatio="30" />
 	</Competition>
+	<Competition Target="XmlBaselineChangedBenchmark">
+		<Candidate Target="Baseline" MinRatio="10" MaxRatio="30" />
+		<Candidate Target="SlowerX20" Baseline="true" />
+	</Competition>
 </CompetitionBenchmarks>

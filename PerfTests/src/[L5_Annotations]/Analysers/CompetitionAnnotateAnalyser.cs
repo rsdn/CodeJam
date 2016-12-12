@@ -39,9 +39,9 @@ namespace CodeJam.PerfTests.Analysers
 		/// Adds support for <see cref="SourceAnnotationsMode.PreviousRunLogUri"/>.
 		/// </summary>
 		/// <param name="analysis">Analyser pass results.</param>
-		protected override void PrepareTargetsOverride(CompetitionAnalysis analysis)
+		protected override void OnPrepareTargets(CompetitionAnalysis analysis)
 		{
-			base.PrepareTargetsOverride(analysis);
+			base.OnPrepareTargets(analysis);
 
 			if (!analysis.SafeToContinue)
 				return;
@@ -53,7 +53,7 @@ namespace CodeJam.PerfTests.Analysers
 				return;
 
 			var xmlAnnotationDocs = ReadXmlAnnotationDocsFromLog(logUri, analysis);
-			if (xmlAnnotationDocs.Length == 0)
+			if (xmlAnnotationDocs.Length == 0 || !analysis.SafeToContinue)
 				return;
 
 			// ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
@@ -61,7 +61,7 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				analysis.WriteInfoMessage($"Competition limits were updated from log file '{logUri}'.");
 			}
-			else
+			else if (analysis.SafeToContinue)
 			{
 				analysis.WriteInfoMessage($"Competition limits do not require update. Log file: '{logUri}'.");
 			}
@@ -81,7 +81,7 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				return Array<XDocument>.Empty;
 			}
-			if (xmlAnnotationDocs.Length == 0)
+			if (xmlAnnotationDocs.Length == 0 && analysis.SafeToContinue)
 			{
 				analysis.WriteWarningMessage($"No XML annotation documents in the log '{logUri}'.");
 			}
@@ -109,7 +109,7 @@ namespace CodeJam.PerfTests.Analysers
 					}
 				}
 
-				if (!hasAnnotations)
+				if (!hasAnnotations && analysis.SafeToContinue)
 				{
 					analysis.WriteWarningMessage(
 						$"No logged XML annotation for {competitionTarget.Target.MethodDisplayInfo} found. Check if the method was renamed.");
@@ -130,12 +130,12 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="competitionTarget">The competition target.</param>
 		/// <param name="analysis">Analyser pass results.</param>
 		/// <returns><c>true</c> if competition limits are ok.</returns>
-		protected override bool CheckTargetOverride(
+		protected override bool OnCheckTarget(
 			Benchmark[] benchmarksForTarget,
 			CompetitionTarget competitionTarget,
 			CompetitionAnalysis analysis)
 		{
-			var checkPassed = base.CheckTargetOverride(benchmarksForTarget, competitionTarget, analysis);
+			var checkPassed = base.OnCheckTarget(benchmarksForTarget, competitionTarget, analysis);
 
 			if (competitionTarget.Baseline)
 				return checkPassed;
@@ -164,11 +164,11 @@ namespace CodeJam.PerfTests.Analysers
 		#region CompleteCheckTargets
 		/// <summary>Called after limits check completed.</summary>
 		/// <param name="analysis">Analyser pass results.</param>
-		protected override void CompleteCheckTargetsOverride(CompetitionAnalysis analysis)
+		protected override void OnCompleteCheckTargets(CompetitionAnalysis analysis)
 		{
 			AnnotateTargets(analysis);
 
-			base.CompleteCheckTargetsOverride(analysis);
+			base.OnCompleteCheckTargets(analysis);
 		}
 
 		/// <summary>Requests reruns for the competition.</summary>

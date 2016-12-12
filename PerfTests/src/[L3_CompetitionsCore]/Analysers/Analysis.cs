@@ -100,10 +100,12 @@ namespace CodeJam.PerfTests.Analysers
 
 		/// <summary>Reports analyser warning conclusion.</summary>
 		/// <param name="message">Message text.</param>
+		/// <param name="hint">Hint how to fix the warning.</param>
 		/// <param name="report">The report the message belongs to.</param>
-		public void AddWarningConclusion([NotNull] string message, BenchmarkReport report = null)
+		public void AddWarningConclusion([NotNull] string message, [NotNull] string hint, BenchmarkReport report = null)
 		{
 			WriteWarningMessage(message);
+			RunState.WriteVerboseHint(hint);
 			ConclusionsList.Add(Conclusion.CreateWarning(Id, message, report));
 		}
 		#endregion

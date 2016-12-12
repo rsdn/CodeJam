@@ -423,28 +423,34 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				return null;
 			}
 
+			var baseline = TryParseFlagValue(target, competitionNode, BaselineAttribute, competitionState);
 			var minRatio = TryParseLimitValue(target, competitionNode, MinRatioAttribute, competitionState);
 			var maxRatio = TryParseLimitValue(target, competitionNode, MaxRatioAttribute, competitionState);
+
+			if (baseline.GetValueOrDefault() != target.Baseline)
+			{
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.SetupError,
+					$"XML anotation for {target.MethodDisplayInfo}: baseline flag on the method and in the annotation do not match.");
+				return null;
+			}
 			return LimitRange.CreateRatioLimit(minRatio, maxRatio);
 		}
 
-		private static double? TryParseLimitValue(
+		private static T? TryParseCore<T>(
 			Target target, XElement competitionNode,
 			string limitProperty,
-			CompetitionState competitionState)
+			CompetitionState competitionState,
+			Func<string, T?> tryParseCallback)
+			where T : struct
 		{
-			double? result = null;
+			T? result = null;
 
 			var limitText = competitionNode.Attribute(limitProperty)?.Value;
 			if (limitText != null)
 			{
-				var culture = HostEnvironmentInfo.MainCultureInfo;
-				double parsed;
-				if (double.TryParse(limitText, NumberStyles.Any, culture, out parsed))
-				{
-					result = parsed;
-				}
-				else
+				result = tryParseCallback(limitText);
+				if (result == null)
 				{
 					competitionState.WriteMessage(
 						MessageSource.Analyser, MessageSeverity.SetupError,
@@ -454,6 +460,26 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			return result;
 		}
+
+		private static double? TryParseLimitValue(
+			Target target, XElement competitionNode,
+			string limitProperty,
+			CompetitionState competitionState) =>
+				TryParseCore(
+					target, competitionNode,
+					limitProperty, competitionState,
+					s => double.TryParse(s, NumberStyles.Any, HostEnvironmentInfo.MainCultureInfo, out var result)
+						? result
+						: default(double?));
+
+		private static bool? TryParseFlagValue(
+			Target target, XElement competitionNode,
+			string limitProperty,
+			CompetitionState competitionState) =>
+				TryParseCore(
+					target, competitionNode,
+					limitProperty, competitionState,
+					s => bool.TryParse(s, out var result) ? result : default(bool?));
 
 		/// <summary>Adds or updates xml annotation for the competition target.</summary>
 		/// <param name="xmlAnnotationDoc">The xml annotation document that will be updated.</param>

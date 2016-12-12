@@ -54,8 +54,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"No methods in benchmark. Apply CompetitionBenchmarkAttribute / " +
-					"CompetitionBaselineAttribute to the benchmark methods.");
+				"No methods in benchmark. Apply one of CompetitionBenchmarkAttribute, CompetitionBaselineAttribute " +
+					"or BenchmarkAttribute to the benchmark methods.");
 		}
 
 		[Test]
@@ -82,12 +82,33 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var runState = SelfTestCompetition.Run<XmlTaskOkBenchmark>();
 			var messages = runState.GetMessages();
 
-			Assert.AreEqual(_callCounter, ExpectedRunCount);
+			Assert.AreEqual(_callCounter, 2 * ExpectedRunCount);
 			AssertCompetitionCompleted(runState, MessageSeverity.Informational);
 
 			Assert.AreEqual(messages.Length, 1);
 
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
+		}
+
+		[Test]
+		public static void CompetitionXmlBaselineChangedBenchmark()
+		{
+			Interlocked.Exchange(ref _callCounter, 0);
+
+			var runState = SelfTestCompetition.Run<XmlBaselineChangedBenchmark>();
+			var messages = runState.GetMessages();
+
+			Assert.AreEqual(_callCounter, ExpectedRunCount);
+			AssertCompetitionCompleted(runState, MessageSeverity.SetupError);
+
+			Assert.AreEqual(messages.Length, 2);
+
+			Assert.AreEqual(
+				messages[0].MessageText,
+				"XML anotation for Baseline: baseline flag on the method and in the annotation do not match.");
+			Assert.AreEqual(
+				messages[1].MessageText,
+				"XML anotation for SlowerX20: baseline flag on the method and in the annotation do not match.");
 		}
 
 		[Test]
@@ -105,6 +126,19 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
 		}
+		[Test]
+		public static void CompetitionNoBaselineOkBenchmark()
+		{
+			Interlocked.Exchange(ref _callCounter, 0);
+
+			var runState = SelfTestCompetition.Run<NoBaselineOkBenchmark>();
+			var messages = runState.GetMessages();
+
+			Assert.AreEqual(_callCounter, ExpectedRunCount);
+			AssertCompetitionCompleted(runState, MessageSeverity.Verbose);
+
+			Assert.AreEqual(messages.Length, 0);
+		}
 
 		[Test]
 		public static void CompetitionNoBaselineFailBenchmark()
@@ -113,24 +147,6 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			var runState = SelfTestCompetition.Run<NoBaselineFailBenchmark>();
 			var messages = runState.GetMessages();
-
-			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			AssertCompetitionCompleted(runState, MessageSeverity.SetupError);
-
-			Assert.AreEqual(messages.Length, 1);
-
-			Assert.AreEqual(messages[0].RunNumber, 1);
-			Assert.AreEqual(messages[0].RunMessageNumber, 1);
-			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.SetupError);
-			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.AreEqual(
-				messages[0].MessageText,
-				"No baseline method for benchmark. Apply CompetitionBaselineAttribute to the one of benchmark methods.");
-
-			Interlocked.Exchange(ref _callCounter, 0);
-
-			runState = SelfTestCompetition.Run<NoBaselineFail2Benchmark>();
-			messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			AssertCompetitionCompleted(runState, MessageSeverity.SetupError);
@@ -166,7 +182,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.That(
 				messages[0].MessageText,
 				Does.StartWith(
-					"The benchmark SlowerX10 ignored as it has empty limit. Update limits to include benchmark in the competition."));
+					"Benchmark SlowerX10: results ignored as benchmark limits are empty."));
 		}
 
 		[Test]
@@ -243,7 +259,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"The benchmark SlowerX10 ignored as it has empty limit. Update limits to include benchmark in the competition.");
+				"Benchmark SlowerX10: results ignored as benchmark limits are empty.");
 		}
 
 		#region Perf test helpers
@@ -286,12 +302,48 @@ namespace CodeJam.PerfTests.IntegrationTests
 				Interlocked.Increment(ref _callCounter);
 			}
 
+			[CompetitionBenchmark(DoesNotCompete = true)]
+			public async Task<int> SlowerX2Async()
+			{
+				await Task.Delay(2 * AwaitDelayMs);
+				Interlocked.Increment(ref _callCounter);
+				return _callCounter;
+			}
+
+			[Benchmark]
+			public async Task<int> SlowerX3Async()
+			{
+				await Task.Delay(3 * AwaitDelayMs);
+				Interlocked.Increment(ref _callCounter);
+				return _callCounter;
+			}
+
 			[CompetitionBenchmark]
 			public async Task<int> SlowerX5Async()
 			{
 				await Task.Delay(5 * AwaitDelayMs);
 				Interlocked.Increment(ref _callCounter);
 				return _callCounter;
+			}
+		}
+
+		[CompetitionMetadata(
+			"CodeJam.PerfTests.Assets.CompetitionRunTests.xml",
+			MetadataResourcePath = @"..\Assets\CompetitionRunTests.xml")]
+		public class XmlBaselineChangedBenchmark
+		{
+			[CompetitionBaseline]
+			public void Baseline()
+			{
+				Interlocked.Increment(ref _callCounter);
+				CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
+			}
+
+			[CompetitionBenchmark]
+			public void SlowerX20()
+			{
+				Interlocked.Increment(ref _callCounter);
+				CompetitionHelpers.Delay(20 * CompetitionHelpers.RecommendedSpinCount);
 			}
 		}
 
@@ -316,21 +368,29 @@ namespace CodeJam.PerfTests.IntegrationTests
 			}
 		}
 
+		public class NoBaselineOkBenchmark
+		{
+			[Benchmark]
+			public void Benchmark1()
+			{
+				Interlocked.Increment(ref _callCounter);
+				CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
+			}
+
+			[Benchmark]
+			public void Benchmark2()
+			{
+				Interlocked.Increment(ref _callCounter);
+				CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
+			}
+		}
+
 		public class NoBaselineFailBenchmark
 		{
 			[Benchmark]
 			public void Benchmark1() => Interlocked.Increment(ref _callCounter);
 
 			[CompetitionBenchmark]
-			public void Benchmark2() => Interlocked.Increment(ref _callCounter);
-		}
-
-		public class NoBaselineFail2Benchmark
-		{
-			[Benchmark]
-			public void Benchmark1() => Interlocked.Increment(ref _callCounter);
-
-			[Benchmark]
 			public void Benchmark2() => Interlocked.Increment(ref _callCounter);
 		}
 

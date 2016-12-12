@@ -17,7 +17,7 @@ A perftest always should have baseline (or reference) implementation method (ann
 If there's none of them the test will fail with
 
 ```
-No methods in benchmark. Apply CompetitionBenchmarkAttribute / CompetitionBaselineAttribute to the benchmark methods.
+No methods in benchmark. Apply one of CompetitionBenchmarkAttribute, CompetitionBaselineAttribute or BenchmarkAttribute to the benchmark methods.
 ```
 
 or

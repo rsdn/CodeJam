@@ -11,13 +11,13 @@
 
 ## TODOs:
  * Check order provider usage, execution order benchmarks vs display order benchmarks.
- * Warning if baseline was changed!!!
  * Warning if there's log uri set, but source annotation updates are disabled.
- * Introduce logging for config factory
-   -or-
    Run source annotations analyser even if annotations are disabled
    -or-
    Check on preconditions (bad idea, leaking abstraction)
+   -or-
+ * Log resulting competition features / competition options?
+   (introduce logging for config factory)
  * Check WriteVerboseHint for source annotations
  * Check `+ Environment.NewLine` usages in `XunitCompetitionRunner.ReportXxx()` methods
  * Skip annotation on 1st run (CI mode only?)
@@ -30,13 +30,11 @@
  * Output: option to not log output from toolchain?
  * Concurrency: lock should be performed on entire benchmark run.
  * Logging: write validator messages immediately?
- * Log resulting competition features / competition options?
  * LogColors.Hint: use it for something?
- * Better message for "X has empty limit. Please fill it." + do not rerun if empty limit
- * Better message for "run faster / slower than". Provide some suggestions?
  * Warning if job count > 1
  * Apply with id for Competition options / features
  * Metadata attributes - order by inheritance
+ * Perceniles: 100 samples X*Y, then take percentiles from it.
 
 ## TODOs (tests):
  * Source annotations: test for partial files / methods
