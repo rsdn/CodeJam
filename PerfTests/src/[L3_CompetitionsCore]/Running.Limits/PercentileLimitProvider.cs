@@ -14,7 +14,7 @@ namespace CodeJam.PerfTests.Running.Limits
 	[PublicAPI]
 	public class PercentileLimitProvider : CompetitionLimitProviderBase
 	{
-		private static readonly Range<int> _percentileRange = Range.Create(0, 99);
+		private static readonly Range<int> _percentileRange = Range.Create(0, 100);
 
 		/// <summary> Metric is based on 45..55th percentiles.</summary>
 		public static readonly ICompetitionLimitProvider P50 = new PercentileLimitProvider(80, 10, 15);
@@ -31,8 +31,8 @@ namespace CodeJam.PerfTests.Running.Limits
 			int actualValuesPercentileDelta,
 			int limitsPercentileDelta)
 		{
-			Code.InRange(meanPercentile, nameof(meanPercentile), 0, 99);
-			var deltaMax = Math.Min(meanPercentile, 99 - meanPercentile);
+			Code.InRange(meanPercentile, nameof(meanPercentile), 0, 100);
+			var deltaMax = Math.Min(meanPercentile, 100 - meanPercentile);
 			Code.InRange(actualValuesPercentileDelta, nameof(actualValuesPercentileDelta), 0, deltaMax);
 			Code.InRange(limitsPercentileDelta, nameof(limitsPercentileDelta), 0, deltaMax);
 
@@ -128,7 +128,7 @@ namespace CodeJam.PerfTests.Running.Limits
 			var maxRatio = maxValueBenchmark / maxValueBaseline;
 
 			if (minRatio > maxRatio)
-				Algorithms.Swap(ref minRatio, ref maxRatio);
+				minRatio = maxRatio;
 
 			return LimitRange.CreateRatioLimit(
 				Math.Min(minRatio, maxRatio),

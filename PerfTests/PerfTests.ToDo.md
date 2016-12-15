@@ -10,6 +10,8 @@
  * https://github.com/dotnet/BenchmarkDotNet/issues/307
 
 ## TODOs:
+ * BUG!!!: annotate on run2 + reannotate => not run.
+ * BUG!!!: annotating + first instruction + commented code above => attribute not found.
  * Check order provider usage, execution order benchmarks vs display order benchmarks.
  * Warning if there's log uri set, but source annotation updates are disabled.
    Run source annotations analyser even if annotations are disabled

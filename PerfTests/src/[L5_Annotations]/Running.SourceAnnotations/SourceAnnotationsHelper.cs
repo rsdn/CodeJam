@@ -224,7 +224,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					{
 						competitionState.WriteMessage(
 							MessageSource.Analyser, MessageSeverity.Warning,
-							$"Method {targetMethodTitle}: could not annotate resource file '{resourceFileName}'.");
+							$"Method {targetMethodTitle}: could not find annotations in resource file '{resourceFileName}'.");
 					}
 					else
 					{
@@ -242,7 +242,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					{
 						competitionState.WriteMessage(
 							MessageSource.Analyser, MessageSeverity.Warning,
-							$"Method {targetMethodTitle}: could not annotate source file '{fileName}'.");
+							$"Method {targetMethodTitle}: could not find annotations in source file '{fileName}', line {firstCodeLine}.");
 					}
 					else
 					{
