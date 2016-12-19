@@ -38,33 +38,11 @@ namespace CodeJam.Collections
 
 		[TestCase("1", 2, "1")]
 		[TestCase("1,2", 2, "1,2")]
-		[TestCase("1,2,3,5,8,9,10,123,1,2,3,4", 2, "1,2,3,5|8,9,10|123|1,2,3,4")]
+		[TestCase("1,2,3,5,8,9,10,123,1,2,3,4,8,12", 2, "1,2,3,5|8,9,10|123|1,2,3,4|8|12")]
 		public void GroupWhileDelta(string input, int delta, string expected)
 		{
 			var data = input.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse);
 			var grouping = data.GroupWhile((a, b) => Math.Abs(a - b) <= delta);
-			var result = grouping.Select(g => g.Join(",")).Join("|");
-			Assert.AreEqual(result, expected);
-		}
-
-		[TestCase("1", "1")]
-		[TestCase("1,1", "1,1")]
-		[TestCase("1,2,3,5,8,9,10,123,1,2,3,4", "1|2,3,5|8,9|10,123,1|2,3|4")]
-		public void GroupWhileOdd(string input, string expected)
-		{
-			var data = input.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse);
-			var grouping = data.GroupWhile(a => a % 2 == 1);
-			var result = grouping.Select(g => g.Join(",")).Join("|");
-			Assert.AreEqual(result, expected);
-		}
-
-		[TestCase("1", "1")]
-		[TestCase("1,1", "1,1")]
-		[TestCase("1,2,3,5,10,11,12,1,2,3,5,6,10", "1,2,3,5|10|11|12,1,2,3,5,6|10")]
-		public void GroupWhileLess10(string input, string expected)
-		{
-			var data = input.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse);
-			var grouping = data.GroupWhile(a => a < 10);
 			var result = grouping.Select(g => g.Join(",")).Join("|");
 			Assert.AreEqual(result, expected);
 		}

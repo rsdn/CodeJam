@@ -138,41 +138,6 @@ namespace CodeJam.Collections
 		/// <returns>Grouped items.</returns>
 		public static IEnumerable<T[]> GroupWhile<T>(
 			[NotNull] this IEnumerable<T> source,
-			[NotNull] Func<T, bool> predicate)
-		{
-			Code.NotNull(source, nameof(source));
-			Code.NotNull(predicate, nameof(predicate));
-			return GroupWhileCore(source, predicate);
-		}
-
-		private static IEnumerable<T[]> GroupWhileCore<T>(
-			IEnumerable<T> source, Func<T, bool> predicate)
-		{
-			var groupingList = new List<T>();
-
-			foreach (var item in source)
-			{
-				if (groupingList.Count > 0 && !predicate(item))
-				{
-					yield return groupingList.ToArray();
-					groupingList.Clear();
-				}
-				groupingList.Add(item);
-			}
-
-			if (groupingList.Count > 0)
-			{
-				yield return groupingList.ToArray();
-			}
-		}
-
-		/// <summary>Groups items in the sequence while they have same grouping key.</summary>
-		/// <typeparam name="T">Type of items in sequence</typeparam>
-		/// <param name="source">The source.</param>
-		/// <param name="predicate">Gropung predicate.</param>
-		/// <returns>Grouped items.</returns>
-		public static IEnumerable<T[]> GroupWhile<T>(
-			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, T, bool> predicate)
 		{
 			Code.NotNull(source, nameof(source));
