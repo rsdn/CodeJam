@@ -131,7 +131,9 @@
       <DependentUpon>DictionaryExtensions.GetValueOrDefault.tt</DependentUpon>
     </Compile>
     <Compile Include="Collections\Enumerable\EnumerableExtensions.AggregateOrDefault.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensions.Grouping.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensions.Index.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensions.GroupWhile.cs" />
     <Compile Include="Collections\Enumerable\IndexedItem.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensions.Page.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensions.Slice.cs" />
