@@ -18,7 +18,7 @@ namespace CodeJam.Collections
 		public void GroupWhile(string input, string expected)
 		{
 			var data = input.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse);
-			var grouping = data.GroupWhileSame(i => i / 10);
+			var grouping = data.GroupWhileEquals(i => i / 10);
 			var result = grouping.Select(g => g.Join(",")).Join("|");
 			Assert.AreEqual(result, expected);
 		}
@@ -31,7 +31,7 @@ namespace CodeJam.Collections
 		public void GroupWhileToString(string input, string expected)
 		{
 			var data = input.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse);
-			var grouping = data.GroupWhileSame(i => i / 10, i => i.ToString());
+			var grouping = data.GroupWhileEquals(i => i / 10, i => i.ToString());
 			var result = grouping.Select(g => g.Join(",")).Join("|");
 			Assert.AreEqual(result, expected);
 		}
