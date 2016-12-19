@@ -57,5 +57,16 @@ namespace CodeJam.Collections
 			var result = grouping.Select(g => g.Join(",")).Join("|");
 			Assert.AreEqual(result, expected);
 		}
+
+		[TestCase("1", "1")]
+		[TestCase("1,1", "1,1")]
+		[TestCase("1,2,3,5,10,11,12,1,2,3,5,6,10", "1,2,3,5|10|11|12,1,2,3,5,6|10")]
+		public void GroupWhileLess10(string input, string expected)
+		{
+			var data = input.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse);
+			var grouping = data.GroupWhile(a => a < 10);
+			var result = grouping.Select(g => g.Join(",")).Join("|");
+			Assert.AreEqual(result, expected);
+		}
 	}
 }
