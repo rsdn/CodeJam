@@ -34,3 +34,4 @@ _ReSharper*/
 !*.pdb
 packages/
 Help/
+.idea/

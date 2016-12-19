@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Collections
 {
 	/// <summary>
 	/// Represents an element associated with its index in a sequence.
 	/// </summary>
+	[PublicAPI]
 	public struct IndexedItem<T> : IEquatable<IndexedItem<T>>
 	{
 		/// <summary>

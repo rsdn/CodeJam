@@ -1,10 +1,11 @@
-CodeJam 1.3.0-beta1 Release Notes
+CodeJam 1.3.0-beta2 Release Notes
 ---------------------------------
 
 What's new in 1.3.0-beta2
 -------------------------
-* Enumerable.ToDiagnosticString method
 * Memoize overloads with LazyThreadSafetyMode
+* EnumerableExtensions.GroupWhile methods
+* Code cleanup
 
 What's new in 1.3.0-beta1
 -------------------------
