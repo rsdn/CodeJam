@@ -1,4 +1,6 @@
 ﻿#if FW35
+// BASEDON: https://github.com/dotnet/coreclr/blob/345e201f027eb35a7a01e1714afe36b831b6f1e3/src/mscorlib/src/System/Threading/Volatile.cs
+
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.

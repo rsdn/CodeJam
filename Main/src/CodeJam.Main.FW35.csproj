@@ -245,10 +245,6 @@
     <Compile Include="Collections\DictionaryExtensions.cs" />
     <Compile Include="Collections\EnumerableExtensions.cs" />
     <Compile Include="Fn`1.cs" />
-    <Compile Include="Structures\ObjectPools\SharedPools.cs" />
-    <Compile Include="Structures\ObjectPools\SharedPoolExtensions.cs" />
-    <Compile Include="Structures\ObjectPools\PooledObject.cs" />
-    <Compile Include="Structures\ObjectPools\ObjectPool.cs" />
     <Compile Include="Structures\Option\ValueOption`1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\ReflectionEnumHelper.cs" />

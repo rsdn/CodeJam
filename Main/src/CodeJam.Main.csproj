@@ -295,7 +295,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringExtensions.CharInfix.tt</DependentUpon>
     </Compile>
-    <Compile Include="Structures\ObjectPools\NamespaceDoc.cs" />
     <Compile Include="Structures\OneOf\IOneOf.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -379,10 +378,6 @@
     <Compile Include="Collections\Dictionary\DictionaryExtensions.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensions.cs" />
     <Compile Include="Fn`1.cs" />
-    <Compile Include="Structures\ObjectPools\SharedPools.cs" />
-    <Compile Include="Structures\ObjectPools\SharedPoolExtensions.cs" />
-    <Compile Include="Structures\ObjectPools\PooledObject.cs" />
-    <Compile Include="Structures\ObjectPools\ObjectPool.cs" />
     <Compile Include="Structures\Option\ValueOption`1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\ReflectionEnumHelper.cs" />

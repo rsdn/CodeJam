@@ -1,10 +1,9 @@
-﻿// BASEDON: https://github.com/dotnet/coreclr/blob/master/src/mscorlib/src/System/Tuple.cs
+﻿#if FW35
+// BASEDON: https://github.com/dotnet/coreclr/blob/master/src/mscorlib/src/System/Tuple.cs
 
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
-
-#if FW35
 
 using System;
 using System.Text;

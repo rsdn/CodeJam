@@ -1,6 +1,10 @@
 ﻿#if FW35
 // BASEDON: https://github.com/dotnet/corert/blob/4376c55dd018d8b7b9fed82449728711231ba266/src/System.Private.CoreLib/src/System/Collections/IStructuralComparable.cs
 
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
 namespace System.Collections
 {
 	/// <summary>

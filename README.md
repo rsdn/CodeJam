@@ -58,3 +58,14 @@ To get the latest "preview" drop, add the `-pre` switch to the nuget commands
  - [Continiuos Integration builds Nuget feed](https://ci.appveyor.com/nuget/codejam)
  - [Forum (russian)](https://rsdn.org/forum/prj.codejam/)
  - [![Join the chat at https://gitter.im/rsdn/CodeJam](https://badges.gitter.im/rsdn/CodeJam.svg)](https://gitter.im/rsdn/CodeJam?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+### Licensing & notices
+
+The current project is licensed under MIT. The project includes code parts taken from (mostly to ease targeting to previous versions of .Net) or inspired by third-party implementations.
+
+All such places are marked with `// BASEDON: ` comment. Here they are:
+
+ - [`CodeExceptions`](https://github.com/rsdn/CodeJam/tree/master/Main/src/Assertions/CodeExceptions.cs#L55): trace source design follows style introduced by the `System.Diagnostics.PresentationTraceSources`.
+ - [`NaturalOrderStringComparer`](https://github.com/rsdn/CodeJam/tree/master/Main/src/Strings/NaturalOrderStringComparer.cs): based on [the C version by Martin Pool](http://sourcefrog.net/projects/natsort/)
+ - Types that enables targeting to [.Net 3.5](https://github.com/rsdn/CodeJam/tree/master/Main/src/Targeting/FW35) and [.Net 4.0](https://github.com/rsdn/CodeJam/tree/master/Main/src/Targeting/FW40), all taken from [CoreFx ](https://github.com/dotnet/corefx)and [CoreClr](https://github.com/dotnet/coreclr/) projects.
+ - [`InterlockedOperations`](https://github.com/rsdn/CodeJam/tree/master/Main/src/Threading/InterlockedOperations.tt) uses CAS loop undercover, reference to the Roslyn implementation given as a proof the code is correct.

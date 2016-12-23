@@ -1,4 +1,6 @@
 ﻿#if FW35
+// BASEDON: https://github.com/dotnet/coreclr/blob/b638af3a4dd52fa7b1ea1958164136c72096c25c/src/mscorlib/src/System/Enum.cs
+
 using System;
 
 namespace CodeJam.Targeting
