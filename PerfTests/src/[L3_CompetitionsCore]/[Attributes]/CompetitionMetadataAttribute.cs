@@ -40,7 +40,6 @@ namespace CodeJam.PerfTests
 
 		/// <summary>
 		/// The name of the resource containing xml document with competition limits.
-		/// If not set then path to the resource should be same as path to the source file (resource's extension should be '.xml').
 		/// </summary>
 		/// <value>The name of the resource containing xml document with competition limits.</value>
 		[NotNull]
@@ -49,6 +48,7 @@ namespace CodeJam.PerfTests
 		/// <summary>
 		/// The path to the resource containing xml document with competition limits.
 		/// Should be relative to the source file the attribute is applied to.
+		/// If not set then path to the resource should be same as path to the source file (resource's extension should be '.xml').
 		/// </summary>
 		/// <value>The relative path to the resource containing xml document with competition limits.</value>
 		[CanBeNull]

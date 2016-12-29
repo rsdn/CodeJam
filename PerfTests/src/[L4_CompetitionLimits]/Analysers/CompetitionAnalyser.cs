@@ -23,8 +23,6 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Analysers
 {
-	using ResourceKey = ValueTuple<Assembly, string, bool>;
-
 	/// <summary>Basic competition analyser.</summary>
 	/// <seealso cref="IAnalyser"/>
 	[SuppressMessage("ReSharper", "MemberCanBeMadeStatic.Local")]
@@ -268,19 +266,18 @@ namespace CodeJam.PerfTests.Analysers
 			CompetitionMetadata competitionMetadata,
 			CompetitionAnalysis analysis)
 		{
-			var resourceKey = new ResourceKey(
-				target.Type.Assembly,
-				competitionMetadata.MetadataResourceName,
-				competitionMetadata.UseFullTypeName);
-
 			var xmlAnnotationDoc = _xmlAnnotationsCache.GetOrAdd(
-				resourceKey,
-				r => XmlAnnotations.TryParseXmlAnnotationDoc(r.Item1, r.Item2, r.Item3, analysis.RunState));
+				competitionMetadata.MetadataResourceKey,
+				key => XmlAnnotations.TryParseXmlAnnotationDoc(key, analysis.RunState));
 
 			if (xmlAnnotationDoc == null)
 				return LimitRange.Empty;
 
-			var result = XmlAnnotations.TryParseCompetitionLimit(target, xmlAnnotationDoc, analysis.RunState);
+			var result = XmlAnnotations.TryParseCompetitionLimit(
+				target, 
+				xmlAnnotationDoc,
+				competitionMetadata.UseFullTypeName,
+				analysis.RunState);
 
 			if (result == null && analysis.SafeToContinue)
 				analysis.WriteWarningMessage(

@@ -10,6 +10,9 @@
  * https://github.com/dotnet/BenchmarkDotNet/issues/307
 
 ## TODOs:
+ * Competition target: refactor metadata ref to parent.
+ * Ensure that there's no method-level cache. Use (Type+Method) pair as there can be derived benchmarks with its own xml annotations.
+ * Check Target's Type usages
  * BUG!!!: annotate on run2 + reannotate => not run.
  * BUG!!!: annotating + first instruction + commented code above => attribute not found.
  * Check order provider usage, execution order benchmarks vs display order benchmarks.
@@ -36,7 +39,7 @@
  * Warning if job count > 1
  * Apply with id for Competition options / features
  * Metadata attributes - order by inheritance
- * Perceniles: 100 samples X*Y, then take percentiles from it.
+ * Prev run log : cache + reread only if local & size/date/checksum(?) changed!!!
 
 ## TODOs (tests):
  * Source annotations: test for partial files / methods

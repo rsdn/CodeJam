@@ -169,7 +169,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			try
 			{
-				competitionState.FirstTimeInit(benchmarkConfig, competitionOptions);
+				competitionState.FirstTimeInit(benchmarkType, benchmarkConfig, competitionOptions);
 				var logger = competitionState.Logger;
 
 				using (BeginLogImportant(benchmarkConfig))

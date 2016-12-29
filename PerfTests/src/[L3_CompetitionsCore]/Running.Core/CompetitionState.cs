@@ -70,6 +70,10 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <value>The config.</value>
 		public IConfig Config { get; private set; }
 
+		/// <summary>The type of the benchmark.</summary>
+		/// <value>The type of the benchmark.</value>
+		public Type BenchmarkType { get; private set; }
+
 		/// <summary>Competition options.</summary>
 		/// <value>Competition options.</value>
 		public CompetitionOptions Options { get; private set; }
@@ -119,20 +123,22 @@ namespace CodeJam.PerfTests.Running.Core
 		[AssertionMethod]
 		private void AsserIsInInit() =>
 			Code.AssertState(
-				Options == null && !Completed,
+				BenchmarkType == null && !Completed,
 				"Could not init state as the competition is in run or was completed.");
 
 		[AssertionMethod]
 		private void AssertIsInCompetition() =>
 			Code.AssertState(
-				Options != null && !Completed,
+				BenchmarkType != null && !Completed,
 				"Could not update state as the competition is not running or was completed.");
 
 		#region State modification
 		/// <summary>Init the competition state.</summary>
+		/// <param name="benchmarkType">Type of the benchmark.</param>
 		/// <param name="config">The config for the competition.</param>
 		/// <param name="competitionOptions">Competition options.</param>
 		internal void FirstTimeInit(
+			[NotNull] Type benchmarkType,
 			[NotNull] IConfig config,
 			[NotNull] CompetitionOptions competitionOptions)
 		{
@@ -145,6 +151,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 				_stopwatch.Restart();
 
+				BenchmarkType = benchmarkType;
 				Options = competitionOptions;
 				Config = config;
 				Logger = config.GetCompositeLogger();

@@ -40,6 +40,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			[CanBeNull] CompetitionMetadata competitionMetadata)
 		{
 			Target = target;
+			TargetKey = new TargetCacheKey(target.Type.TypeHandle, target.Method.MethodHandle);
 			Limits = limitsForTarget;
 			CompetitionMetadata = competitionMetadata;
 			DoesNotCompete = doesNotCompete;
@@ -51,6 +52,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <value>The benchmark target.</value>
 		[NotNull]
 		public Target Target { get; }
+
+		/// <summary>The target cache key.</summary>
+		/// <value>The target cache key.</value>
+		public TargetCacheKey TargetKey { get; }
 
 		/// <summary>The relative-to-baseline timing limits for the target.</summary>
 		/// <value>The relative-to-baseline timing limits for the target.</value>
@@ -90,8 +95,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			if (limitsForTarget.IsEmpty || Limits.Contains(limitsForTarget))
 				return false;
 
+			var prev = Limits;
 			Limits = Limits.UnionWith(limitsForTarget);
-			_limitsChanged = true;
+			_limitsChanged = prev != Limits;
 			return true;
 		}
 

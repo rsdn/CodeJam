@@ -30,13 +30,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	internal static class XmlAnnotations
 	{
-		private sealed class UseFullTypeNameAnnotation
-		{
-			public static readonly UseFullTypeNameAnnotation Instance = new UseFullTypeNameAnnotation();
-
-			private UseFullTypeNameAnnotation() { }
-		}
-
 		#region XML metadata constants
 		private const string LogAnnotationStart = LogImportantAreaStart +
 			" ------ xml_annotation_begin ------";
@@ -56,14 +49,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#region XML doc loading
 
 		#region Core logic for XML annotations
-		// ReSharper disable once SuggestBaseTypeForParameter
-		private static void MarkAsUsesFullTypeName(XDocument xmlAnnotationDoc) =>
-			xmlAnnotationDoc.AddAnnotation(UseFullTypeNameAnnotation.Instance);
-
 		[NotNull]
 		// ReSharper disable once SuggestBaseTypeForParameter
-		private static string GetCompetitionName(this Target target, XDocument xmlAnnotationDoc) =>
-			xmlAnnotationDoc.Annotations<UseFullTypeNameAnnotation>().Any()
+		private static string GetCompetitionName(this Target target, XDocument xmlAnnotationDoc,
+			bool useFullTypeName) =>
+			useFullTypeName
 				? target.Type.GetShortAssemblyQualifiedName()
 				: target.Type.Name;
 
@@ -138,14 +128,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#region XML annotations
 		/// <summary>Parses xml annotation document.</summary>
 		/// <param name="source">Stream that contains xml document.</param>
-		/// <param name="useFullTypeName">Use full type name in XML annotations.</param>
 		/// <param name="competitionState">State of the run.</param>
 		/// <param name="sourceDescription">Source description to be used in messages.</param>
 		/// <returns>XML annotation document or <c>null</c> if parsing failed.</returns>
 		[CanBeNull]
 		public static XDocument TryParseXmlAnnotationDoc(
 			[NotNull] Stream source,
-			bool useFullTypeName,
 			[NotNull] CompetitionState competitionState,
 			[NotNull] string sourceDescription)
 		{
@@ -159,10 +147,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				using (var reader = XmlReader.Create(source, GetXmlReaderSettings()))
 				{
 					xmlAnnotationDoc = XDocument.Load(reader);
-					if (useFullTypeName)
-					{
-						MarkAsUsesFullTypeName(xmlAnnotationDoc);
-					}
 				}
 			}
 			catch (ArgumentException ex)
@@ -194,21 +178,17 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		}
 
 		/// <summary>Parses xml annotation document from the resource.</summary>
-		/// <param name="assembly">Assembly that contains resource.</param>
-		/// <param name="resourceName">Name of the xml resource with competition limits.</param>
-		/// <param name="useFullTypeName">Use full type name in XML annotations.</param>
+		/// <param name="annotationResourceKey">Name of the xml resource with competition limits.</param>
 		/// <param name="competitionState">State of the run.</param>
 		/// <returns>XML annotation document or <c>null</c> if parsing failed.</returns>
 		[CanBeNull]
 		public static XDocument TryParseXmlAnnotationDoc(
-			[NotNull] Assembly assembly,
-			[NotNull] string resourceName,
-			bool useFullTypeName,
+			ResourceKey annotationResourceKey,
 			[NotNull] CompetitionState competitionState)
 		{
-			Code.NotNull(assembly, nameof(assembly));
-			Code.NotNullNorEmpty(resourceName, nameof(resourceName));
 			Code.NotNull(competitionState, nameof(competitionState));
+			var assembly = annotationResourceKey.Assembly;
+			var resourceName = annotationResourceKey.ResourceName;
 
 			using (var resourceStream = assembly.GetManifestResourceStream(resourceName))
 			{
@@ -221,9 +201,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					return null;
 				}
 
-				return TryParseXmlAnnotationDoc(
-					resourceStream, useFullTypeName, competitionState,
-					$"Resource '{resourceName}'");
+				return TryParseXmlAnnotationDoc(resourceStream, competitionState, $"Resource '{resourceName}'");
 			}
 		}
 
@@ -327,7 +305,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				var xmlAnnotationDoc = TryParseXmlAnnotationDoc(
 					stream,
-					true,
 					competitionState,
 					$"Log '{logUri}', line {logLine}");
 
@@ -350,10 +327,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			// Create xml annotation doc
 			var xmlAnnotationDoc = new XDocument(new XElement(CompetitionBenchmarksRootNode));
-			MarkAsUsesFullTypeName(xmlAnnotationDoc);
 			foreach (var competitionTarget in competitionTargets)
 			{
-				AddOrUpdateXmlAnnotation(xmlAnnotationDoc, competitionTarget);
+				AddOrUpdateXmlAnnotation(xmlAnnotationDoc, competitionTarget, true);
 			}
 
 			// Dump it
@@ -394,19 +370,21 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <summary>Parses competition limit from the xml annotation document.</summary>
 		/// <param name="target">The target.</param>
 		/// <param name="xmlAnnotationDoc">The xml annotation document.</param>
+		/// <param name="useFullTypeName">Use full type name in XML annotations.</param>
 		/// <param name="competitionState">State of the run.</param>
 		/// <returns>Parsed competition limit or <c>null</c> if there is no xml annotation for the target.</returns>
 		[CanBeNull]
 		public static LimitRange? TryParseCompetitionLimit(
 			[NotNull] Target target,
 			[NotNull] XDocument xmlAnnotationDoc,
+			bool useFullTypeName,
 			[NotNull] CompetitionState competitionState)
 		{
 			Code.NotNull(target, nameof(target));
 			Code.NotNull(xmlAnnotationDoc, nameof(xmlAnnotationDoc));
 			Code.NotNull(competitionState, nameof(competitionState));
 
-			var competitionName = target.GetCompetitionName(xmlAnnotationDoc);
+			var competitionName = target.GetCompetitionName(xmlAnnotationDoc, useFullTypeName);
 			var candidateName = target.GetCandidateName();
 
 			var matchingNodes =
@@ -484,14 +462,17 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <summary>Adds or updates xml annotation for the competition target.</summary>
 		/// <param name="xmlAnnotationDoc">The xml annotation document that will be updated.</param>
 		/// <param name="competitionTarget">The competition target.</param>
+		/// <param name="useFullTypeName">Use full type name in XML annotations.</param>
 		public static void AddOrUpdateXmlAnnotation(
 			[NotNull] XDocument xmlAnnotationDoc,
-			[NotNull] CompetitionTarget competitionTarget)
+			[NotNull] CompetitionTarget competitionTarget,
+			bool useFullTypeName)
 		{
 			Code.NotNull(xmlAnnotationDoc, nameof(xmlAnnotationDoc));
 			Code.NotNull(competitionTarget, nameof(competitionTarget));
+			Code.NotNull(competitionTarget.CompetitionMetadata, nameof(competitionTarget.CompetitionMetadata));
 
-			var competitionName = competitionTarget.Target.GetCompetitionName(xmlAnnotationDoc);
+			var competitionName = competitionTarget.Target.GetCompetitionName(xmlAnnotationDoc, useFullTypeName);
 			var candidateName = competitionTarget.Target.GetCandidateName();
 			var isBaseline = competitionTarget.Baseline;
 

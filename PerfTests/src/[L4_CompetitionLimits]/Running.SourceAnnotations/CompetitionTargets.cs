@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 
 using BenchmarkDotNet.Running;
 
@@ -14,14 +13,15 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	/// <summary>Storage class for competition targets.</summary>
 	internal sealed class CompetitionTargets : IReadOnlyCollection<CompetitionTarget>
 	{
-		private readonly Dictionary<MethodInfo, CompetitionTarget> _targets = new Dictionary<MethodInfo, CompetitionTarget>();
+		private readonly Dictionary<TargetCacheKey, CompetitionTarget> _targets = new Dictionary<TargetCacheKey, CompetitionTarget>();
 
 		/// <summary>Gets the <see cref="CompetitionTarget"/> for the specified target.</summary>
 		/// <value>The <see cref="CompetitionTarget"/>.</value>
 		/// <param name="target">The target.</param>
 		/// <returns>Competition target</returns>
 		[CanBeNull]
-		public CompetitionTarget this[Target target] => _targets.GetValueOrDefault(target.Method);
+		public CompetitionTarget this[Target target] => _targets.GetValueOrDefault(
+			new TargetCacheKey(target.Type.TypeHandle, target.Method.MethodHandle));
 
 		/// <summary>Gets a value indicating whether the collection was filled with targets.</summary>
 		/// <value><c>true</c> if initialized; otherwise, <c>false</c>.</value>
@@ -35,7 +35,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		public void Add(CompetitionTarget competitionTarget)
 		{
 			Code.AssertState(!Initialized, "The targets is initialized already.");
-			_targets.Add(competitionTarget.Target.Method, competitionTarget);
+			_targets.Add(competitionTarget.TargetKey, competitionTarget);
 		}
 
 		/// <summary>Marks as initialized.</summary>

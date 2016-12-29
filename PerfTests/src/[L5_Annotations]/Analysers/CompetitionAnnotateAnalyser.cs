@@ -101,7 +101,8 @@ namespace CodeJam.PerfTests.Analysers
 
 				foreach (var doc in xmlAnnotationDocs)
 				{
-					var parsedLimit = XmlAnnotations.TryParseCompetitionLimit(competitionTarget.Target, doc, analysis.RunState);
+					var parsedLimit = XmlAnnotations.TryParseCompetitionLimit(
+						competitionTarget.Target, doc, true, analysis.RunState);
 					if (parsedLimit != null)
 					{
 						hasAnnotations = true;

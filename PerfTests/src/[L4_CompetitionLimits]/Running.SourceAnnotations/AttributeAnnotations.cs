@@ -32,8 +32,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			if (attribute == null)
 				return null;
 
+			var resourceKey = new ResourceKey(
+				targetType.Assembly,
+				attribute.MetadataResourceName);
 			return new CompetitionMetadata(
-				attribute.MetadataResourceName,
+				resourceKey,
 				attribute.MetadataResourcePath,
 				attribute.UseFullTypeName);
 		}

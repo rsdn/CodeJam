@@ -1,183 +1,243 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-
-using BenchmarkDotNet.Helpers;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Security.Cryptography;
 
 using CodeJam.Collections;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
-	/// <summary>Core logic for source annotations.</summary>
-	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	internal static partial class SourceAnnotationsHelper
 	{
-		#region Helper types
-		/// <summary>
-		/// Helper class that stores files' content during the annotation
-		/// </summary>
-		private class AnnotateContext
+		#region Annotation DOM
+		[PublicAPI]
+		private abstract class AnnotationFile
 		{
-			private readonly Dictionary<string, string[]> _sourceLines = new Dictionary<string, string[]>();
-			private readonly Dictionary<string, XDocument> _xmlAnnotations = new Dictionary<string, XDocument>();
-			private readonly HashSet<string> _changedFiles = new HashSet<string>();
-
-			private bool HasChanges => _changedFiles.Any();
-
-			/// <summary>Tries to get the lines of the source file.</summary>
-			/// <param name="file">The sources file.</param>
-			/// <param name="competitionState">State of the run.</param>
-			/// <returns>Lines of the source file or empty collection if none.</returns>
-			[NotNull]
-			public IReadOnlyList<string> TryGetFileLines(
-				[NotNull] string file,
-				[NotNull] CompetitionState competitionState)
+			protected AnnotationFile(string path, bool parsed)
 			{
-				Code.NotNullNorEmpty(file, nameof(file));
-				Code.NotNull(competitionState, nameof(competitionState));
-				Code.AssertState(!_xmlAnnotations.ContainsKey(file), $"File '{file}' already loaded as XML annotation.");
-
-				return _sourceLines.GetOrAdd(
-					file, f =>
-					{
-						try
-						{
-							return BenchmarkHelpers.ReadFileContent(f);
-						}
-						catch (IOException ex)
-						{
-							competitionState.WriteExceptionMessage(
-								MessageSource.Analyser, MessageSeverity.SetupError,
-								$"Could not access file '{file}'.", ex);
-
-							return Array<string>.Empty;
-						}
-						catch (UnauthorizedAccessException ex)
-						{
-							competitionState.WriteExceptionMessage(
-								MessageSource.Analyser, MessageSeverity.SetupError,
-								$"Could not access file '{file}'.", ex);
-
-							return Array<string>.Empty;
-						}
-						catch (DecoderFallbackException ex)
-						{
-							competitionState.WriteExceptionMessage(
-								MessageSource.Analyser, MessageSeverity.SetupError,
-								$"Cannot detect encoding for file '{file}'. Try to save the file as UTF8 or UTF16.", ex);
-
-							return Array<string>.Empty;
-						}
-					});
+				Code.NotNullNorEmpty(path, nameof(path));
+				Path = path;
+				Parsed = parsed;
 			}
 
-			/// <summary>Tries lo load the xml annotation document.</summary>
-			/// <param name="file">The file with xml annotation.</param>
-			/// <param name="useFullTypeName">Use full type name in XML annotations.</param>
-			/// <param name="competitionState">State of the run.</param>
-			/// <returns>The document with competition limits for the benchmark or <c>null</c> if none.</returns>
-			public XDocument TryGetXmlAnnotation(
-				[NotNull] string file,
-				bool useFullTypeName,
-				[NotNull] CompetitionState competitionState)
+			public string Path { get; }
+			public bool Parsed { get; }
+			public bool HasChanges { get; private set; }
+
+			[AssertionMethod]
+			protected void AssertIsParsed()
 			{
-				Code.NotNullNorEmpty(file, nameof(file));
-				Code.NotNull(competitionState, nameof(competitionState));
-				Code.AssertState(!_sourceLines.ContainsKey(file), $"File '{file}' already loaded as source lines.");
-
-				return _xmlAnnotations.GetOrAdd(
-					file, f =>
-					{
-						try
-						{
-							using (var stream = File.OpenRead(f))
-							{
-								return XmlAnnotations.TryParseXmlAnnotationDoc(
-									stream, useFullTypeName, competitionState,
-									$"XML annotation '{file}'");
-							}
-						}
-						catch (IOException ex)
-						{
-							competitionState.WriteExceptionMessage(
-								MessageSource.Analyser, MessageSeverity.SetupError,
-								$"Could not access file '{file}'.", ex);
-
-							return null;
-						}
-						catch (UnauthorizedAccessException ex)
-						{
-							competitionState.WriteExceptionMessage(
-								MessageSource.Analyser, MessageSeverity.SetupError,
-								$"Could not access file '{file}'.", ex);
-
-							return null;
-						}
-					});
+				if (!Parsed)
+					throw CodeExceptions.InvalidOperation($"Trying to change non-parsed document {Path}.");
 			}
 
-			/// <summary>Marks file as changed. File should be loaded before calling this method.</summary>
-			/// <param name="file">The file to mark.</param>
-			public void MarkAsChanged(string file)
+			public void MarkAsChanged()
 			{
-				if (_sourceLines.GetValueOrDefault(file).IsNullOrEmpty() &&
-					_xmlAnnotations.GetValueOrDefault(file) == null)
-					throw CodeExceptions.InvalidOperation($"Load file '{file}' before marking it as changed.");
-
-				_changedFiles.Add(file);
+				AssertIsParsed();
+				HasChanges = true;
 			}
 
-			/// <summary>
-			/// Replaces source line and marks file as changed line. Sources file should be loaded before calling this method.
-			/// </summary>
-			/// <param name="file">The file with sources.</param>
-			/// <param name="lineIndex">Index of the line to replace.</param>
-			/// <param name="newLine">Line to replace with.</param>
-			public void ReplaceLine(string file, int lineIndex, string newLine)
-			{
-				var lines = _sourceLines.GetValueOrDefault(file);
-				if (lines.IsNullOrEmpty())
-					throw CodeExceptions.InvalidOperation($"Load source file '{file}' before marking it as changed.");
-
-				lines[lineIndex] = newLine;
-				MarkAsChanged(file);
-			}
-
-			/// <summary>Saves modified files.</summary>
 			public void Save()
 			{
+				if (!Parsed)
+					throw CodeExceptions.InvalidOperation($"Trying to save non-parsed document {Path}.");
+
 				if (!HasChanges)
 					return;
 
-				foreach (var pair in _sourceLines)
+				SaveCore();
+				HasChanges = false;
+			}
+
+			protected abstract void SaveCore();
+		}
+
+		private class AnnotationContext
+		{
+			// TODO: no global lock?
+			private static readonly object _lockKey = new object();
+
+			// Second-level cache; stores content of the files.
+			// DONTTOUCH: the same file may be used in multiple assemblies. DO NOT change the caching schema.
+			private readonly Dictionary<string, AnnotationFile> _filesCache =
+				new Dictionary<string, AnnotationFile>();
+
+			// First-level cache that stores match competition target => annotation document.
+			private readonly Dictionary<TargetCacheKey, SourceCodeFile> _sourceAnnotationsCache =
+				new Dictionary<TargetCacheKey, SourceCodeFile>();
+			private readonly Dictionary<RuntimeTypeHandle, XmlAnnotationFile> _xmlAnnotationsCache =
+				new Dictionary<RuntimeTypeHandle, XmlAnnotationFile>();
+
+			public SourceCodeFile GetSourceCodeFile(
+				[NotNull] CompetitionTarget target,
+				[NotNull] CompetitionState competitionState)
+			{
+				Code.BugIf(target.CompetitionMetadata != null, $"Use{nameof(GetXmlAnnotationFile)}() instead.");
+				lock (_lockKey)
 				{
-					if (_changedFiles.Contains(pair.Key))
+					return _sourceAnnotationsCache.GetOrAdd(target.TargetKey, t => GetSourceCodeFileCore(target, competitionState));
+				}
+			}
+
+			[CanBeNull]
+			private SourceCodeFile GetSourceCodeFileCore(
+				[NotNull] CompetitionTarget target,
+				[NotNull] CompetitionState competitionState)
+			{
+				var key = target.TargetKey;
+				var sourcePath = SymbolHelper.TryGetSourcePath(MethodBase.GetMethodFromHandle(key.TargetMethod), competitionState);
+				if (sourcePath == null)
+					return null;
+
+				var result = (SourceCodeFile)_filesCache.GetOrAdd(sourcePath, p => SourceAnnotation.Parse(target, sourcePath, competitionState));
+				if (result.Parsed)
+				{
+					foreach (var method in result.BenchmarkAttributeLines.Keys)
 					{
-						BenchmarkHelpers.WriteFileContent(pair.Key, pair.Value);
+						if (method != key.TargetMethod)
+							_sourceAnnotationsCache.Add(new TargetCacheKey(target.TargetKey.TargetType, method), result);
 					}
 				}
+				return result;
+			}
 
-				foreach (var pair in _xmlAnnotations)
+			public XmlAnnotationFile GetXmlAnnotationFile(
+				[NotNull] CompetitionTarget target,
+				[NotNull] CompetitionState competitionState)
+			{
+				Code.BugIf(target.CompetitionMetadata == null, $"Use{nameof(GetSourceCodeFile)}() instead.");
+				lock (_lockKey)
 				{
-					if (_changedFiles.Contains(pair.Key))
+					return _xmlAnnotationsCache.GetOrAdd(
+						target.TargetKey.TargetType,
+						t => GetXmlAnnotationFileCore(target, competitionState));
+				}
+			}
+
+			private XmlAnnotationFile GetXmlAnnotationFileCore(
+				[NotNull] CompetitionTarget target,
+				[NotNull] CompetitionState competitionState)
+			{
+				var key = target.TargetKey;
+				var sourcePath = SymbolHelper.TryGetSourcePath(MethodBase.GetMethodFromHandle(key.TargetMethod), competitionState);
+				if (sourcePath == null)
+					return null;
+
+				// ReSharper disable once AssignNullToNotNullAttribute
+				var resourceFileName = XmlAnnotation.GetResourcePath(sourcePath, target.CompetitionMetadata);
+
+				return (XmlAnnotationFile)_filesCache.GetOrAdd(
+					resourceFileName, 
+					p => XmlAnnotation.Parse(resourceFileName, target.CompetitionMetadata, competitionState));
+			}
+
+
+			public void Save()
+			{
+				lock (_lockKey)
+				{
+					foreach (var sourceDocument in _filesCache.Values)
 					{
-						using (var writer = new StreamWriter(pair.Key))
-						{
-							XmlAnnotations.Save(pair.Value, writer);
-						}
+						sourceDocument.Save();
+					}
+				}
+			}
+		}
+
+		private static class FileHashes
+		{
+			private const string Sha1AlgName = "SHA1";
+			private const string Md5AlgName = "Md5";
+
+			public static bool CheckResource(
+				string file,
+				ResourceKey resourceKey,
+				CompetitionState competitionState)
+			{
+				var resourceChecksum = TryGetResourceSha1Checksum(resourceKey);
+				return Check(file, ChecksumAlgorithm.Sha1, resourceChecksum, competitionState);
+			}
+
+			public static bool Check(
+				string file,
+				ChecksumAlgorithm checksumAlgorithm,
+				byte[] expectedChecksum,
+				CompetitionState competitionState)
+			{
+				switch (checksumAlgorithm)
+				{
+					case ChecksumAlgorithm.Md5:
+						return CheckCore(file, Md5AlgName, expectedChecksum, competitionState);
+					case ChecksumAlgorithm.Sha1:
+						return CheckCore(file, Sha1AlgName, expectedChecksum, competitionState);
+					default:
+						competitionState.WriteMessage(
+							MessageSource.Analyser, MessageSeverity.SetupError,
+							$"Checksum validation failed, unknown hasing algorithm. File '{file}'.");
+						return false;
+				}
+			}
+
+			private static bool CheckCore(
+				string file,
+				string hashAlgName,
+				byte[] expectedChecksum, CompetitionState competitionState)
+			{
+				var actualChecksum = TryGetChecksum(file, hashAlgName);
+				if (expectedChecksum.EqualsTo(actualChecksum))
+					return true;
+
+				var expected = expectedChecksum.ToHexString();
+				var actual = actualChecksum.ToHexString();
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.SetupError,
+					$"{hashAlgName} checksum validation failed. File '{file}'." +
+						$"{Environment.NewLine}\tActual: 0x{actual}" +
+						$"{Environment.NewLine}\tExpected: 0x{expected}");
+
+				return false;
+			}
+
+			[NotNull]
+			private static byte[] TryGetChecksum(string file, string hashAlgName)
+			{
+				if (!File.Exists(file))
+					return Array<byte>.Empty;
+
+				using (var f = File.OpenRead(file))
+				using (var h = HashAlgorithm.Create(hashAlgName))
+				{
+					// ReSharper disable once PossibleNullReferenceException
+					return h.ComputeHash(f);
+				}
+			}
+
+			[NotNull]
+			private static byte[] TryGetResourceSha1Checksum(ResourceKey resourceKey)
+			{
+				using (var r = resourceKey.Assembly.GetManifestResourceStream(resourceKey.ResourceName))
+				{
+					if (r == null)
+						return Array<byte>.Empty;
+					using (var h = HashAlgorithm.Create(Sha1AlgName))
+					{
+						// ReSharper disable once PossibleNullReferenceException
+						return h.ComputeHash(r);
 					}
 				}
 			}
 		}
 		#endregion
+
+		private static readonly Lazy<AnnotationContext> _annotationContext = 
+			Lazy.Create(() => new AnnotationContext());
 
 		/// <summary>Tries to annotate source files with competition limits.</summary>
 		/// <param name="targetsToAnnotate">Benchmarks to annotate.</param>
@@ -190,9 +250,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		{
 			Code.NotNull(targetsToAnnotate, nameof(targetsToAnnotate));
 			Code.NotNull(competitionState, nameof(competitionState));
+			Code.BugIf(
+				targetsToAnnotate.Any(t => t.Target.Type != competitionState.BenchmarkType),
+				"Trying to annotate code that does not belongs to the benchmark.");
 
 			var annotatedTargets = new List<CompetitionTarget>();
-			var annContext = new AnnotateContext();
+			var annContext = _annotationContext.Value;
 
 			foreach (var targetToAnnotate in targetsToAnnotate)
 			{
@@ -201,30 +264,21 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 				competitionState.WriteVerbose(
 					$"Method {targetMethodTitle}: updating time limits {targetToAnnotate.Limits.ToDisplayString()}.");
-				// DONTTOUCH: the source should be loaded for checksum validation even if target uses resource annotation.
-				var hasSource = SymbolHelpers.TryGetSourceInfo(
-					target.Method, competitionState,
-					out var fileName,
-					out var firstCodeLine);
 
-				if (!hasSource)
+				if (targetToAnnotate.CompetitionMetadata != null)
 				{
-					continue;
-				}
-
-				var competitionMetadata = targetToAnnotate.CompetitionMetadata;
-				if (competitionMetadata != null)
-				{
-					var resourceFileName = GetResourceFileName(fileName, competitionMetadata);
+					var doc = annContext.GetXmlAnnotationFile(targetToAnnotate, competitionState);
+					if (doc == null)
+						continue;
 
 					competitionState.WriteVerboseHint(
-						$"Method {targetMethodTitle}: annotating resource file '{resourceFileName}'.");
-					var annotated = TryFixBenchmarkXmlAnnotation(annContext, resourceFileName, targetToAnnotate, competitionState);
+						$"Method {targetMethodTitle}: annotating resource file '{doc.Path}'.");
+					var annotated = XmlAnnotation.TryUpdate(doc, targetToAnnotate);
 					if (!annotated)
 					{
 						competitionState.WriteMessage(
 							MessageSource.Analyser, MessageSeverity.Warning,
-							$"Method {targetMethodTitle}: could not find annotations in resource file '{resourceFileName}'.");
+							$"Method {targetMethodTitle}: could not find annotations in resource file '{doc.Path}'.");
 					}
 					else
 					{
@@ -235,14 +289,19 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				}
 				else
 				{
+					var doc = annContext.GetSourceCodeFile(targetToAnnotate, competitionState);
+					if (doc == null)
+						continue;
+
 					competitionState.WriteVerboseHint(
-						$"Method {targetMethodTitle}: annotating file '{fileName}', line {firstCodeLine}.");
-					var annotated = TryFixBenchmarkAttribute(annContext, fileName, firstCodeLine, targetToAnnotate, competitionState);
+						$"Method {targetMethodTitle}: annotating file '{doc.Path}'");
+					// TODO: log line???
+					var annotated = SourceAnnotation.TryUpdate(doc, targetToAnnotate);
 					if (!annotated)
 					{
 						competitionState.WriteMessage(
 							MessageSource.Analyser, MessageSeverity.Warning,
-							$"Method {targetMethodTitle}: could not find annotations in source file '{fileName}', line {firstCodeLine}.");
+							$"Method {targetMethodTitle}: could not find annotations in source file '{doc.Path}'.");
 					}
 					else
 					{
