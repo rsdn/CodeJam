@@ -13,11 +13,11 @@ namespace CodeJam.PerfTests.Configs
 	[PublicAPI]
 	public sealed class SourceAnnotationsMode : JobMode<SourceAnnotationsMode>
 	{
-		/// <summary>Adjust source annotations characteristic.</summary>
+		/// <summary>Adjust competition limits characteristic.</summary>
 		public static readonly Characteristic<bool> AdjustLimitsCharacteristic = Characteristic.Create(
 			(SourceAnnotationsMode m) => m.AdjustLimits);
 
-		/// <summary>Dont update sources with adjusted limits.</summary>
+		/// <summary>Dont update sources with adjusted limits characteristic.</summary>
 		public static readonly Characteristic<bool> DontSaveAdjustedLimitsCharacteristic = Characteristic.Create(
 			(SourceAnnotationsMode m) => m.DontSaveAdjustedLimits);
 
@@ -25,20 +25,20 @@ namespace CodeJam.PerfTests.Configs
 		public static readonly Characteristic<string> PreviousRunLogUriCharacteristic = Characteristic.Create(
 			(SourceAnnotationsMode m) => m.PreviousRunLogUri);
 
-		/// <summary> Number of first run the source annotations will be applied characteristic.</summary>
-		public static readonly Characteristic<int> AnnotateSourcesOnRunCharacteristic = Characteristic.Create(
-			(SourceAnnotationsMode m) => m.AnnotateSourcesOnRun);
+		/// <summary>Characteristic for number of runs performed before adjusting competition limits.</summary>
+		public static readonly Characteristic<int> SkipRunsBeforeAdjustLimitsCharacteristic = Characteristic.Create(
+			(SourceAnnotationsMode m) => m.SkipRunsBeforeAdjustLimits);
 
 		/// <summary>
-		/// Count of additional runs performed after updating source annotations feature. Default is 2.
+		/// Count of additional runs performed if competition limits were adjusted. Default is 2.
 		/// </summary>
-		public static readonly Characteristic<int> AdditionalRerunsIfAnnotationsUpdatedCharacteristic = Characteristic.Create(
-			(SourceAnnotationsMode m) => m.AdditionalRerunsIfAnnotationsUpdated,
+		public static readonly Characteristic<int> RerunsIfAdjustedCharacteristic = Characteristic.Create(
+			(SourceAnnotationsMode m) => m.RerunsIfAdjusted,
 			2);
 
-		/// <summary>Adjust source annotations if competition limits check failed.</summary>
+		/// <summary>Adjust competition limits if they do not match to the actual values.</summary>
 		/// <value>
-		/// <c>true</c> if the analyser should adjust source annotations if competition limits check failed; otherwise, <c>false</c>.
+		/// <c>true</c> if the analyser should adjust competition limits if they do not match to the actual values; otherwise, <c>false</c>.
 		/// </value>
 		public bool AdjustLimits
 		{
@@ -91,40 +91,44 @@ namespace CodeJam.PerfTests.Configs
 		}
 
 		/// <summary>
-		/// Number of first run the source annotations will be applied.
-		/// Set this to non-zero positive value to skip some runs before first annotation applied.
+		/// Number of runs performed before adjusting competition limits.
+		/// Set this to non-zero positive value to skip some runs before adjusting competition limits.
 		/// Should be used together with <see cref="CompetitionLimitsMode.RerunsIfValidationFailed"/>
 		/// when run on unstable environments such as virtual machines or low-end notebooks.
 		/// </summary>
-		/// <value>The count of runs performed before updating the limits annotations.</value>
+		/// <remarks>
+		/// The value should be less than the <see cref="CompetitionLimitsMode.RerunsIfValidationFailed"/> parameter
+		/// or annotations will not be adjusted at all.
+		/// </remarks>
+		/// <value>The count of runs performed before adjusting competition limits.</value>
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		public int AnnotateSourcesOnRun
+		public int SkipRunsBeforeAdjustLimits
 		{
 			get
 			{
-				return AnnotateSourcesOnRunCharacteristic[this];
+				return SkipRunsBeforeAdjustLimitsCharacteristic[this];
 			}
 			set
 			{
-				AnnotateSourcesOnRunCharacteristic[this] = value;
+				SkipRunsBeforeAdjustLimitsCharacteristic[this] = value;
 			}
 		}
 
 		/// <summary>
-		/// Count of additional runs performed after updating source annotations. Default is 2..
-		/// Set this to zero to not perform additional runs after updating the sources.
+		/// Count of additional runs performed if competition limits were adjusted. Default is 2.
+		/// Set this to zero to skip additional runs after adjusting competition limits.
 		/// Set this to non-zero positive value to proof that the benchmark fits into updated limits.
 		/// </summary>
-		/// <value>The count of additional runs performed after updating the limits annotations.</value>
-		public int AdditionalRerunsIfAnnotationsUpdated
+		/// <value>Count of additional runs performed after adjusting competition limits.</value>
+		public int RerunsIfAdjusted
 		{
 			get
 			{
-				return AdditionalRerunsIfAnnotationsUpdatedCharacteristic[this];
+				return RerunsIfAdjustedCharacteristic[this];
 			}
 			set
 			{
-				AdditionalRerunsIfAnnotationsUpdatedCharacteristic[this] = value;
+				RerunsIfAdjustedCharacteristic[this] = value;
 			}
 		}
 	}

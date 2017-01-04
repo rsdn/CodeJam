@@ -62,7 +62,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(
 				messages[0].MessageText,
 				"Benchmark TooSlow: run takes more than 0.5 sec." +
-					" Consider to rewrite the test as the peek timings will be hidden by averages.");
+					" Consider to rewrite the test as peek timings will be hidden by averages.");
 		}
 
 		[Test]

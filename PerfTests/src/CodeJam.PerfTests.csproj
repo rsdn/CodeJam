@@ -66,6 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="[L0_Core]\Configs\NamespaceDoc.cs" />
     <Compile Include="[L0_Core]\Helpers\AttributeValue.cs" />
+    <Compile Include="[L0_Core]\Helpers\BenchmarkHelpers.cs" />
     <Compile Include="[L0_Core]\Helpers\NamespaceDoc.cs" />
     <Compile Include="[L0_Core]\Horology\CycleClockHelpers.cs" />
     <Compile Include="[L0_Core]\Horology\NamespaceDoc.cs" />
@@ -89,7 +90,7 @@
     <Compile Include="[L3_CompetitionsCore]\Configs\NamespaceDoc.cs" />
     <Compile Include="[L3_CompetitionsCore]\Configs\SourceAnnotationsMode.cs" />
     <Compile Include="[L3_CompetitionsCore]\Exporters\CsvTimingsExporter.cs" />
-    <Compile Include="[L0_Core]\Helpers\BenchmarkHelpers.cs" />
+    <Compile Include="[L0_Core]\Helpers\MetadataHelpers.cs" />
     <Compile Include="[L1_InProcess]\Validators\InProcessValidator.cs" />
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessBuilder.cs" />
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessExecutor.cs" />

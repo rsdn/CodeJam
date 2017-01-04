@@ -125,6 +125,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				[NotNull] CompetitionTarget target,
 				[NotNull] CompetitionState competitionState)
 			{
+				// TODO: use declared method for the target
 				var key = target.TargetKey;
 				var sourcePath = SymbolHelper.TryGetSourcePath(MethodBase.GetMethodFromHandle(key.TargetMethod), competitionState);
 				if (sourcePath == null)
@@ -269,7 +270,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				{
 					var doc = annContext.GetXmlAnnotationFile(targetToAnnotate, competitionState);
 					if (doc == null)
+					{
+						competitionState.WriteMessage(
+							MessageSource.Analyser, MessageSeverity.Warning,
+							$"Method {targetMethodTitle}: could not find source file for the method.");
 						continue;
+					}
 
 					competitionState.WriteVerboseHint(
 						$"Method {targetMethodTitle}: annotating resource file '{doc.Path}'.");
@@ -291,7 +297,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				{
 					var doc = annContext.GetSourceCodeFile(targetToAnnotate, competitionState);
 					if (doc == null)
+					{
+						competitionState.WriteMessage(
+							MessageSource.Analyser, MessageSeverity.Warning,
+							$"Method {targetMethodTitle}: could not find source file for the method.");
 						continue;
+					}
 
 					competitionState.WriteVerboseHint(
 						$"Method {targetMethodTitle}: annotating file '{doc.Path}'");

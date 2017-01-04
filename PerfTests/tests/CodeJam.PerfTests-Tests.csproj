@@ -68,6 +68,7 @@
     <Compile Include="SelfTestingApi\SelfTestConfigFactory.cs" />
     <Compile Include="SelfTestingApi\SelfTestHelpers.cs" />
     <Compile Include="[L0_Core]\BenchmarkHelpersTests.cs" />
+    <Compile Include="[L0_Core]\MetadataHelpersTests.cs" />
     <Compile Include="[L1_InProcess]\InProcessToolchainTests.cs" />
     <Compile Include="[L3_CompetitionsCore]\HostLoggerTests.cs" />
     <Compile Include="[L4_CompetitionLimits]\CompetitionTargetTests.cs" />

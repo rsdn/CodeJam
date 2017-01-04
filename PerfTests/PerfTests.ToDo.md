@@ -4,44 +4,34 @@
  * Run state for issues like this. https://github.com/dotnet/BenchmarkDotNet/issues/180
  * ReadOnlyConfig
  * ManualConfig.Add - backport ManualCompetitionConfig design
- * Validators: access to config, in-process validators
  * remove calls instance.setupAction(), instance.targetAction() from BenchmarkProgram.txt
    https://github.com/dotnet/BenchmarkDotNet/issues/184 ?
- * https://github.com/dotnet/BenchmarkDotNet/issues/307
 
 ## TODOs:
+
+### Types:
  * Competition target: refactor metadata ref to parent.
- * Ensure that there's no method-level cache. Use (Type+Method) pair as there can be derived benchmarks with its own xml annotations.
- * Check Target's Type usages
- * BUG!!!: annotate on run2 + reannotate => not run.
- * BUG!!!: annotating + first instruction + commented code above => attribute not found.
- * Check order provider usage, execution order benchmarks vs display order benchmarks.
- * Warning if there's log uri set, but source annotation updates are disabled.
-   Run source annotations analyser even if annotations are disabled
-   -or-
-   Check on preconditions (bad idea, leaking abstraction)
-   -or-
- * Log resulting competition features / competition options?
-   (introduce logging for config factory)
+
+### Behavior:
+ * Concurrency: lock should be performed on entire benchmark run.
+ * Rerun if sources were adjusted from log?
+ * Prev run log : cache + reread only if local & size/date/checksum(?) changed!!!
+ * Xml annotation: use any method for declared type for the target!!!!
+
+### Messages:
+ * Validate all messages, check that origin (benchmark target) is logged, add hints to them.
  * Check WriteVerboseHint for source annotations
- * Check `+ Environment.NewLine` usages in `XunitCompetitionRunner.ReportXxx()` methods
- * Skip annotation on 1st run (CI mode only?)
- * Exclude nunit-related assembly from tests
-   https://github.com/nunit/nunit-console/issues/62#issuecomment-262599181
  * Message with absolute timings if limits failed: improve readability
  * Message about updated annotations: improve readability
- * Burst mode feature: rename to CustomSampling?
- * AnnotateSourcesOnRun: rename to something like skipFirstRuns
- * Output: option to not log output from toolchain?
- * Concurrency: lock should be performed on entire benchmark run.
- * Logging: write validator messages immediately?
- * LogColors.Hint: use it for something?
- * Warning if job count > 1
- * Apply with id for Competition options / features
- * Metadata attributes - order by inheritance
- * Prev run log : cache + reread only if local & size/date/checksum(?) changed!!!
 
-## TODOs (tests):
+### Logging:
+ * Logging: write validator messages immediately?
+ * Print resulting competition options as common columns after https://github.com/dotnet/BenchmarkDotNet/pull/341
+ * Check `+ Environment.NewLine` usages in `XunitCompetitionRunner.ReportXxx()` methods
+ * Output: option to not log output from toolchain?
+ * LogColors.Hint: use it for something?
+
+### Tests:
  * Source annotations: test for partial files / methods
  * High-priority test for TestProcessCycleTimeClock
  * Tests for broken log annotations.
@@ -65,6 +55,7 @@ https://github.com/dotnet/BenchmarkDotNet/issues/324
 https://github.com/dotnet/BenchmarkDotNet/issues/319
 https://github.com/dotnet/BenchmarkDotNet/issues/307
 https://github.com/dotnet/BenchmarkDotNet/issues/234
+https://github.com/dotnet/BenchmarkDotNet/pull/341
 
 https://github.com/nunit/nunit-console/issues/62#issuecomment-262599181
 https://github.com/nunit/nunit/issues/668

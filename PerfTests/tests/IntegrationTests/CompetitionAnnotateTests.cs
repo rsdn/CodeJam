@@ -83,7 +83,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			[CompetitionBaseline]
 			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
 
-			[CompetitionBenchmark(10.00, 30.00)]
+			[CompetitionBenchmark]
 			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.RecommendedSpinCount);
 		}
 		#endregion

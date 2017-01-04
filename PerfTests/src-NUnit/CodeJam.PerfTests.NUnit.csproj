@@ -64,6 +64,7 @@
     <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Running.Core.NUnit\NamespaceDoc.cs" />
+    <Compile Include="Running.Core.NUnit\NotATestAssemblyAttribute.cs" />
     <Compile Include="Running.Core.NUnit\StubNUnitTest.cs" />
     <Compile Include="Running.Core\NamespaceDoc.cs" />
     <Compile Include="Running.Core\NUnitCompetitionRunner.cs" />

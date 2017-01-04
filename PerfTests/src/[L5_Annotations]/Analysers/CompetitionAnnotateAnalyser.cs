@@ -17,7 +17,7 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Analysers
 {
 	// TODO: rename to adjust limits analyser?
-	/// <summary>Competition analyser that updates source annotations if competition limit checking failed.</summary>
+	/// <summary>Competition analyser that updates source annotations if competition limit check failed.</summary>
 	/// <seealso cref="CompetitionAnalyser"/>
 	[SuppressMessage("ReSharper", "MemberCanBeMadeStatic.Local")]
 	internal class CompetitionAnnotateAnalyser : CompetitionAnalyser
@@ -25,12 +25,21 @@ namespace CodeJam.PerfTests.Analysers
 		#region Static members
 		private sealed class LoggedXmlAnnotations : Dictionary<string, XDocument[]> { }
 
-		// DONTTOUCH: Each run should use results from previous run log.
-		// Some testrunners reuse appdomains for multiple test runs.
-		// So static variable cache should be cleared after each test run.
+		// DONTTOUCH: DO NOT refactor into static variable.
+		// Each run should use results from previous run log.
+		// Some test runners reuse appdomains for multiple test runs.
+		// This means the cache should be cleared after each test run.
 		// Run state cache does exactly this.
 		private static readonly RunState<LoggedXmlAnnotations> _annotationsFromLogCacheSlot =
 			new RunState<LoggedXmlAnnotations>();
+		#endregion
+
+		#region Skip logic
+		private bool SkipAnnotation(CompetitionAnalysis analysis) =>
+			!analysis.Annotations.AdjustLimits || SkipCurrentRun(analysis);
+
+		private static bool SkipCurrentRun(CompetitionAnalysis analysis) =>
+			analysis.RunState.RunNumber <= analysis.Annotations.SkipRunsBeforeAdjustLimits;
 		#endregion
 
 		#region PrepareTargets
@@ -122,10 +131,6 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		#region CheckTargets
-		private bool SkipAnnotation(CompetitionAnalysis analysis) =>
-			!analysis.Annotations.AdjustLimits ||
-				analysis.RunState.RunNumber < analysis.Annotations.AnnotateSourcesOnRun;
-
 		/// <summary>Check competition target limits.</summary>
 		/// <param name="benchmarksForTarget">Benchmarks for the target.</param>
 		/// <param name="competitionTarget">The competition target.</param>
@@ -138,14 +143,15 @@ namespace CodeJam.PerfTests.Analysers
 		{
 			var checkPassed = base.OnCheckTarget(benchmarksForTarget, competitionTarget, analysis);
 
+			if (!analysis.Annotations.AdjustLimits)
+				return checkPassed;
+
 			if (competitionTarget.Baseline)
 				return checkPassed;
 
-			if (checkPassed && !competitionTarget.Limits.IsEmpty)
-				return true;
-
-			if (SkipAnnotation(analysis))
-				return checkPassed;
+			var passedAndNotEmpty = checkPassed && !competitionTarget.Limits.IsEmpty;
+			if (passedAndNotEmpty || SkipCurrentRun(analysis))
+				return passedAndNotEmpty;
 
 			var limitProvider = analysis.Limits.LimitProvider;
 			foreach (var benchmark in benchmarksForTarget)
@@ -167,9 +173,12 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="analysis">Analyser pass results.</param>
 		protected override void OnCompleteCheckTargets(CompetitionAnalysis analysis)
 		{
-			AnnotateTargets(analysis);
-
 			base.OnCompleteCheckTargets(analysis);
+
+			if (!SkipAnnotation(analysis))
+			{
+				AnnotateTargets(analysis);
+			}
 		}
 
 		/// <summary>Requests reruns for the competition.</summary>
@@ -177,14 +186,14 @@ namespace CodeJam.PerfTests.Analysers
 		protected override void RequestReruns(CompetitionAnalysis analysis)
 		{
 			var annotationsMode = analysis.Annotations;
-			if (SkipAnnotation(analysis) || annotationsMode.AdditionalRerunsIfAnnotationsUpdated <= 0)
+			if (SkipAnnotation(analysis) || annotationsMode.RerunsIfAdjusted <= 0)
 			{
 				base.RequestReruns(analysis);
 			}
 			else
 			{
 				analysis.RunState.RequestReruns(
-					annotationsMode.AdditionalRerunsIfAnnotationsUpdated,
+					annotationsMode.RerunsIfAdjusted,
 					"Limits were adjusted.");
 			}
 		}

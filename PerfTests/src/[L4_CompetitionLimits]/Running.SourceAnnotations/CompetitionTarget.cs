@@ -95,9 +95,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			if (limitsForTarget.IsEmpty || Limits.Contains(limitsForTarget))
 				return false;
 
-			var prev = Limits;
+			var oldLimits = Limits;
 			Limits = Limits.UnionWith(limitsForTarget);
-			_limitsChanged = prev != Limits;
+			_limitsChanged = oldLimits != Limits;
 			return true;
 		}
 

@@ -73,16 +73,16 @@ yep, it's magic:)
 
 6. Now the test will fail if timings do not fit into limits. To proof, change implementation for any competiton method and run the test. As example:
 ```c#
-		[CompetitionBenchmark(6.82, 7.21)]
+		[CompetitionBenchmark(6.89, 7.17)]
 		public void SlowerX7() => Thread.SpinWait(10 * Count); // 10x slower
 ```
  The test should fail with text like this:
  ```
 Test failed, details below.
 Failed assertions:
-    * Run #3: Method SlowerX7 [9.96..9.96] does not fit into limits [6.82..7.21]
+    * Run #3: Method SlowerX7 [9.96..9.96] does not fit into limits [6.89..7.17]
 Warnings:
-    * Run #3: The benchmark was run 3 time(s) (read log for details). Try to loose competition limits.
+    * Run #3: The benchmark was run 3 time(s), check log for details.
 Diagnostic messages:
     * Run #1: Requesting 1 run(s): Limit checking failed.
     * Run #2: Requesting 1 run(s): Limit checking failed.

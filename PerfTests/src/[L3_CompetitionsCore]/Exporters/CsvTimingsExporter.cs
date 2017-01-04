@@ -43,7 +43,7 @@ namespace CodeJam.PerfTests.Exporters
 		/// <value>The file caption.</value>
 		protected override string FileCaption => "timings";
 
-		/// <summary>Exports to log.</summary>
+		/// <summary>Exports summary to log.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <param name="logger">The logger.</param>
 		public override void ExportToLog([NotNull] Summary summary, [NotNull] ILogger logger)

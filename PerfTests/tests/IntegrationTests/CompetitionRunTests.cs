@@ -237,7 +237,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[5].MessageSource, MessageSource.Runner);
 			Assert.AreEqual(
 				messages[5].MessageText,
-				"The benchmark was run 3 time(s) (read log for details). Try to loose competition limits.");
+				"The benchmark was run 3 time(s), check log for details.");
 		}
 
 		[Test]

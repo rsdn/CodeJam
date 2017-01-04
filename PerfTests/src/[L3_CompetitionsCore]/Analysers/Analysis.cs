@@ -15,19 +15,27 @@ namespace CodeJam.PerfTests.Analysers
 	[PublicAPI]
 	public class Analysis
 	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Analysis"/> class.
-		/// </summary>
+		/// <summary>Initializes a new instance of the <see cref="Analysis" /> class.</summary>
 		/// <param name="id">The identifier.</param>
 		/// <param name="summary">The summary.</param>
 		public Analysis([NotNull] string id, [NotNull] Summary summary)
+			: this(id, summary, MessageSource.Analyser)
+		{}
+
+		/// <summary>Initializes a new instance of the <see cref="Analysis" /> class.</summary>
+		/// <param name="id">The identifier.</param>
+		/// <param name="summary">The summary.</param>
+		/// <param name="messageSource">Source for the messages.</param>
+		public Analysis([NotNull] string id, [NotNull] Summary summary, MessageSource messageSource)
 		{
 			Code.NotNullNorEmpty(id, nameof(id));
 			Code.NotNull(summary, nameof(summary));
+			DebugEnumCode.Defined(messageSource, nameof(messageSource));
 
 			Id = id;
 			Summary = summary;
 			RunState = CompetitionCore.RunState[summary];
+			MessageSource = messageSource;
 		}
 
 		#region Properties
@@ -35,6 +43,10 @@ namespace CodeJam.PerfTests.Analysers
 		/// <value>The analysis identifier.</value>
 		[NotNull]
 		public string Id { get; }
+
+		/// <summary>Source for the messages.</summary>
+		/// <value>Source for the messages.</value>
+		public MessageSource MessageSource { get; }
 
 		/// <summary>The state of the competition.</summary>
 		/// <value>The state of the competition.</value>
@@ -64,28 +76,28 @@ namespace CodeJam.PerfTests.Analysers
 		#region Messages
 		/// <summary>Adds test execution failure message.</summary>
 		/// <param name="message">Message text.</param>
-		public void WriteExecutonErrorMessage([NotNull] string message) =>
-			RunState.WriteMessage(MessageSource.Analyser, MessageSeverity.ExecutionError, message);
+		public void WriteExecutionErrorMessage([NotNull] string message) =>
+			RunState.WriteMessage(MessageSource, MessageSeverity.ExecutionError, message);
 
 		/// <summary>Adds test setup failure message.</summary>
 		/// <param name="message">Message text.</param>
 		public void WriteSetupErrorMessage([NotNull] string message) =>
-			RunState.WriteMessage(MessageSource.Analyser, MessageSeverity.SetupError, message);
+			RunState.WriteMessage(MessageSource, MessageSeverity.SetupError, message);
 
 		/// <summary>Adds test error message.</summary>
 		/// <param name="message">Message text.</param>
-		public void WriteTestErrorMessage([NotNull] string message) =>
-			RunState.WriteMessage(MessageSource.Analyser, MessageSeverity.TestError, message);
+		protected void WriteTestErrorMessage([NotNull] string message) =>
+			RunState.WriteMessage(MessageSource, MessageSeverity.TestError, message);
 
 		/// <summary>Adds warning message.</summary>
 		/// <param name="message">Message text.</param>
 		public void WriteWarningMessage([NotNull] string message) =>
-			RunState.WriteMessage(MessageSource.Analyser, MessageSeverity.Warning, message);
+			RunState.WriteMessage(MessageSource, MessageSeverity.Warning, message);
 
 		/// <summary>Adds an info message.</summary>
 		/// <param name="message">Message text.</param>
 		public void WriteInfoMessage([NotNull] string message) =>
-			RunState.WriteMessage(MessageSource.Analyser, MessageSeverity.Informational, message);
+			RunState.WriteMessage(MessageSource, MessageSeverity.Informational, message);
 		#endregion
 
 		#region Warnings

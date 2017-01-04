@@ -18,6 +18,7 @@ using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Limits;
 using CodeJam.PerfTests.Running.SourceAnnotations;
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -58,11 +59,11 @@ namespace CodeJam.PerfTests.Analysers
 
 			if (CheckPreconditions(analysis) && PrepareTargets(analysis))
 			{
-				CheckTargets(analysis);
+				var checkPassed = CheckTargets(analysis);
 
 				CheckPostconditions(analysis);
 
-				CompleteCheckTargets(analysis);
+				CompleteCheckTargets(analysis, checkPassed);
 			}
 
 			if (analysis.RunState.LooksLikeLastRun)
@@ -84,7 +85,7 @@ namespace CodeJam.PerfTests.Analysers
 			var summary = analysis.Summary;
 			if (summary.HasCriticalValidationErrors)
 			{
-				analysis.WriteExecutonErrorMessage("Summary has validation errors.");
+				analysis.WriteExecutionErrorMessage("Summary has validation errors.");
 			}
 
 			if (!summary.Benchmarks.Any())
@@ -92,6 +93,13 @@ namespace CodeJam.PerfTests.Analysers
 				analysis.WriteSetupErrorMessage(
 					$"No methods in benchmark. Apply one of {nameof(CompetitionBenchmarkAttribute)}, " +
 						$"{nameof(CompetitionBaselineAttribute)} or {nameof(BenchmarkAttribute)} to the benchmark methods.");
+			}
+
+			if (summary.Config.GetJobs().Skip(1).Any())
+			{
+				analysis.WriteSetupErrorMessage(
+					"Benchmark configuration includes multiple jobs. " +
+						"This is not supported as there's no way to store separate competition limits per each job.");
 			}
 
 			var benchmarksWithReports = summary.Reports
@@ -106,7 +114,7 @@ namespace CodeJam.PerfTests.Analysers
 
 			if (benchMissing.Any())
 			{
-				analysis.WriteExecutonErrorMessage("No reports for benchmarks: " + string.Join(", ", benchMissing));
+				analysis.WriteExecutionErrorMessage("No reports for benchmarks: " + string.Join(", ", benchMissing));
 			}
 
 			if (analysis.Limits.LimitProvider == null)
@@ -154,21 +162,24 @@ namespace CodeJam.PerfTests.Analysers
 					var timeSec = limitsMode.LongRunningBenchmarkLimit.TotalSeconds.ToString(culture);
 					analysis.AddWarningConclusion(
 						$"{benchmarks} {string.Join(", ", tooSlowReports)}: run takes more than {timeSec} sec. " +
-							"Consider to rewrite the test as the peek timings will be hidden by averages.",
+							"Consider to rewrite the test as peek timings will be hidden by averages.",
 						$"Hint: timing limit is configured via {CompetitionLimitsMode.LongRunningBenchmarkLimitCharacteristic.FullId}.");
 				}
 			}
 
-			var emptyLimits = analysis.SummaryOrderTargets()
-				.Where(t => t.HasRelativeLimits && t.Limits.IsEmpty)
-				.Select(rp => rp.Target.MethodDisplayInfo)
-				.ToArray();
-			if (emptyLimits.Any())
+			if (!limitsMode.IgnoreExistingAnnotations)
 			{
-				var benchmarks = emptyLimits.Length == 1 ? "Benchmark" : "Benchmarks";
-				analysis.AddWarningConclusion(
-					$"{benchmarks} {string.Join(", ", emptyLimits)}: results ignored as benchmark limits are empty.",
-					"Fill limit values to include benchmarks in the competition.");
+				var emptyLimits = analysis.SummaryOrderTargets()
+					.Where(t => t.HasRelativeLimits && t.Limits.IsEmpty)
+					.Select(rp => rp.Target.MethodDisplayInfo)
+					.ToArray();
+				if (emptyLimits.Any())
+				{
+					var benchmarks = emptyLimits.Length == 1 ? "Benchmark" : "Benchmarks";
+					analysis.AddWarningConclusion(
+						$"{benchmarks} {string.Join(", ", emptyLimits)}: results ignored as benchmark limits are empty.",
+						"Fill limit values to include benchmarks in the competition.");
+				}
 			}
 		}
 
@@ -193,6 +204,9 @@ namespace CodeJam.PerfTests.Analysers
 				return true;
 
 			OnPrepareTargets(analysis);
+			Code.BugIf(
+				analysis.Targets.Any(t => t.Target.Type != analysis.RunState.BenchmarkType),
+				"Trying to analyse code that does not belongs to the benchmark.");
 
 			analysis.Targets.SetInitialized();
 
@@ -207,19 +221,27 @@ namespace CodeJam.PerfTests.Analysers
 			// The competitionTargets should be filled with empty limits anyway.
 			if (analysis.Limits.IgnoreExistingAnnotations)
 			{
-				var ignoreProperty = CompetitionLimitsMode.IgnoreExistingAnnotationsCharacteristic.FullId;
+				var ignoreCharacteristic = CompetitionLimitsMode.IgnoreExistingAnnotationsCharacteristic.FullId;
 				analysis.WriteInfoMessage(
-					$"Existing benchmark limits are ignored due to {ignoreProperty} setting.");
+					$"Existing benchmark limits are ignored due to {ignoreCharacteristic} setting.");
 			}
 
-			var targets = analysis.Summary.GetExecutionOrderBenchmarks()
+			// TODO: to separate analyzer?
+			if (!analysis.Annotations.AdjustLimits && analysis.Annotations.PreviousRunLogUri.NotNullNorEmpty())
+			{
+				var adjustCharacteristic = SourceAnnotationsMode.AdjustLimitsCharacteristic.FullId;
+				analysis.WriteInfoMessage(
+					$"Previous run log results are ignored as {adjustCharacteristic} setting is disabled.");
+			}
+
+			var targets = analysis.Summary.GetSummaryOrderBenchmarks()
 				.Select(b => b.Target)
 				.Distinct()
 				.ToArray();
 			if (targets.Length == 0)
 				return;
 
-			var competitionMetadata = AttributeAnnotations.TryGetCompetitionMetadata(targets[0].Type);
+			var competitionMetadata = AttributeAnnotations.TryGetCompetitionMetadata(analysis.RunState.BenchmarkType);
 			foreach (var target in targets)
 			{
 				var competitionTarget = TryParseCompetitionTarget(target, competitionMetadata, analysis);
@@ -229,8 +251,7 @@ namespace CodeJam.PerfTests.Analysers
 				}
 			}
 
-
-			if (analysis.Targets.Any(c => c.HasRelativeLimits) && 
+			if (analysis.Targets.Any(c => c.HasRelativeLimits) &&
 				!analysis.Summary.Benchmarks.Any(t => t.Target.Baseline))
 			{
 				analysis.WriteSetupErrorMessage(
@@ -274,7 +295,7 @@ namespace CodeJam.PerfTests.Analysers
 				return LimitRange.Empty;
 
 			var result = XmlAnnotations.TryParseCompetitionLimit(
-				target, 
+				target,
 				xmlAnnotationDoc,
 				competitionMetadata.UseFullTypeName,
 				analysis.RunState);
@@ -288,7 +309,7 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		#region CheckTargets
-		private void CheckTargets(CompetitionAnalysis analysis)
+		private bool CheckTargets(CompetitionAnalysis analysis)
 		{
 			AssertNoErrors(analysis);
 
@@ -306,10 +327,7 @@ namespace CodeJam.PerfTests.Analysers
 				AssertNoErrors(analysis);
 			}
 
-			if (!checkPassed)
-			{
-				analysis.MarkForRerun();
-			}
+			return checkPassed;
 		}
 
 		/// <summary>Check competition target limits.</summary>
@@ -372,11 +390,11 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		#region CompleteCheckTargets
-		private void CompleteCheckTargets([NotNull] CompetitionAnalysis analysis)
+		private void CompleteCheckTargets([NotNull] CompetitionAnalysis analysis, bool checkPassed)
 		{
 			OnCompleteCheckTargets(analysis);
 
-			if (analysis.RerunRequested)
+			if (!checkPassed)
 			{
 				RequestReruns(analysis);
 			}

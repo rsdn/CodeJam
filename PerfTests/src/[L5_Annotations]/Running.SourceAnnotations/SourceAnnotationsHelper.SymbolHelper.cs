@@ -232,6 +232,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				// ReSharper disable once PossibleNullReferenceException
 				var assembly = method.DeclaringType.Assembly;
+
+				// TODO: fix it?
+				if (assembly.Modules.Skip(1).Any())
+					throw new NotSupportedException("Multi-module assemblies are not supported.");
+
 				var assemblyPath = assembly.GetAssemblyPath();
 				var codeBaseDirectory = Path.GetDirectoryName(assemblyPath);
 
