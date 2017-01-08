@@ -1,62 +1,69 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-using CodeJam;
 using CodeJam.Collections;
 
 using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace
 
-namespace BenchmarkDotNet.Helpers
+namespace CodeJam.Reflection
 {
 	/// <summary>
-	/// Helper methods for metadata attributes.
+	/// Reflection extension methods.
 	/// </summary>
-	[PublicAPI]
-	public static class MetadataHelpers
+	public static partial class ReflectionExtensions
 	{
-		// DONTOUCH: Direct compare will include ReflectedType comparison.
+		// DONTTOUCH: Direct compare may result in false negative.
+		// See http://stackoverflow.com/questions/27645408 for explanation.
 		private static readonly IEqualityComparer<Type> _typeComparer = ComparerBuilder<Type>.GetEqualityComparer(t => t.TypeHandle);
 		private static readonly IEqualityComparer<MethodInfo> _methodComparer = ComparerBuilder<MethodInfo>.GetEqualityComparer(m => m.MethodHandle);
 
-		#region Reflection
 		/// <summary>
-		/// Performs search for metadata attribute in the following order:
-		/// * member attributes (if the <paramref name="attributeProvider"/> is member of the type)
-		/// * type attributes (if the <paramref name="attributeProvider"/> is type or member of the type)
+		/// Performs search for metadata attribute in following order:
+		/// * member attributes, base implementation attributes (if the <paramref name="attributeProvider"/> is member of the type)
+		/// * type attributes, base type attributes (if the <paramref name="attributeProvider"/> is type or member of the type)
 		/// * container type attributes (if the type is nested type)
 		/// * assembly attributes.
 		/// </summary>
-		/// <typeparam name="TAttribute">Type of the attribute or type of interface implemented by the attribute.</typeparam>
+		/// <remarks>
+		/// Search logic for each level matches to the
+		/// <see cref="Attribute.GetCustomAttributes(MemberInfo,Type,bool)"/> method (inherit = <c>true</c>).
+		/// including checks of <see cref="AttributeUsageAttribute"/>.
+		/// </remarks>
+		/// <typeparam name="TAttribute">Type of the attribute or type of the interface implemented by the attributes.</typeparam>
 		/// <param name="attributeProvider">Metadata attribute source.</param>
-		/// <returns>Metadata attributes.</returns>
+		/// <returns>First attribute found.</returns>
+		[CanBeNull]
 		public static TAttribute TryGetMetadataAttribute<TAttribute>(
 			[NotNull] this ICustomAttributeProvider attributeProvider)
 			where TAttribute : class =>
 				GetMetadataAttributes<TAttribute>(attributeProvider).FirstOrDefault();
 
 		/// <summary>
-		/// Returns metadata attributes in the following order:
-		/// * member attributes (if the <paramref name="attributeProvider"/> is member of the type)
-		/// * type attributes (if the <paramref name="attributeProvider"/> is type or member of the type)
+		/// Performs search for metadata attributes in following order:
+		/// * member attributes, base implementation attributes (if the <paramref name="attributeProvider"/> is member of the type)
+		/// * type attributes, base type attributes (if the <paramref name="attributeProvider"/> is type or member of the type)
 		/// * container type attributes (if the type is nested type)
 		/// * assembly attributes.
 		/// </summary>
-		/// <typeparam name="TAttribute">Type of the attribute or type of interface implemented by the attribute.</typeparam>
+		/// <remarks>
+		/// Search logic for each level matches to the
+		/// <see cref="Attribute.GetCustomAttributes(MemberInfo,Type,bool)"/> method (inherit = <c>true</c>).
+		/// including checks of <see cref="AttributeUsageAttribute"/>.
+		/// </remarks>
+		/// <typeparam name="TAttribute">Type of the attribute or type of the interface implemented by the attributes.</typeparam>
 		/// <param name="attributeProvider">Metadata attribute source.</param>
 		/// <returns>Metadata attributes.</returns>
+		[NotNull]
 		public static IEnumerable<TAttribute> GetMetadataAttributes<TAttribute>(
 			[NotNull] this ICustomAttributeProvider attributeProvider)
 			where TAttribute : class
 		{
-			if (attributeProvider == null)
-				throw new ArgumentNullException(nameof(attributeProvider));
-
-			if (attributeProvider == null)
-				throw new ArgumentNullException(nameof(attributeProvider));
+			Code.NotNull(attributeProvider, nameof(attributeProvider));
 
 			if (attributeProvider is Type type)
 				return type.GetAttributesForType<TAttribute>();
@@ -71,7 +78,7 @@ namespace BenchmarkDotNet.Helpers
 			this Type type)
 			where TAttribute : class
 		{
-			var visited = new HashSet<ICustomAttributeProvider>();
+			var visited = new HashSet<Type>();
 			var typesToCheck = Sequence.CreateWhileNotNull(type, t => t.DeclaringType);
 			foreach (var typeToCheck in typesToCheck)
 			{
@@ -79,14 +86,16 @@ namespace BenchmarkDotNet.Helpers
 						typeToCheck,
 						t => t != null && !visited.Contains(t),
 						t => t.BaseType)
-					.ToArray<ICustomAttributeProvider>();
+					.ToArray();
 
 				if (inheritanceTypes.Length == 0)
 					continue;
 
 				visited.AddRange(inheritanceTypes);
 
-				foreach (var attribute in GetAttributesFromCandidates<TAttribute>(inheritanceTypes))
+				// ReSharper disable once CoVariantArrayConversion
+				var attributes = GetAttributesFromCandidates<TAttribute>(inheritanceTypes);
+				foreach (var attribute in attributes)
 				{
 					yield return attribute;
 				}
@@ -104,7 +113,6 @@ namespace BenchmarkDotNet.Helpers
 		{
 			// ReSharper disable once CoVariantArrayConversion
 			var attributes = GetAttributesFromCandidates<TAttribute>(member.GetOverrideChain());
-
 			foreach (var attribute in attributes)
 			{
 				yield return attribute;
@@ -117,44 +125,61 @@ namespace BenchmarkDotNet.Helpers
 		}
 
 		#region Get override chain
-		private static MemberInfo[] GetOverrideChain(this MemberInfo member)
+		private static MemberInfo[] GetOverrideChain(this MemberInfo member) =>
+			IsOverriden(member) ? _getOverrideChainCache(member) : new[] { member };
+
+		private static bool IsOverriden(MemberInfo member)
 		{
 			if (member is Type)
-				throw new ArgumentException("Member should not be a type", nameof(member));
+				throw CodeExceptions.Argument(nameof(member), "Member should not be a type.");
 
-			if (member.DeclaringType?.BaseType == null || member.DeclaringType.IsValueType)
-				return new[] { member };
+			if (member is MethodInfo method)
+				return IsOverriden(method);
+			if (member is PropertyInfo property)
+				return IsOverriden(property.GetAccessors(true)[0]);
+			if (member is EventInfo eventInfo)
+				return IsOverriden(eventInfo.GetAddMethod(true));
 
-			return _getOverrideChainCache(member);
+			return false;
 		}
+
+		private static bool IsOverriden([CanBeNull] MethodInfo method) =>
+			method != null &&
+				!method.IsStatic &&
+				method.IsVirtual &&
+				!_methodComparer.Equals(method, method.GetBaseDefinition());
 
 		private static Func<MemberInfo, MemberInfo[]> _getOverrideChainCache = Algorithms.Memoize(
 			(MemberInfo m) => GetOverrideChainDispatch(m), true);
+
+		private const BindingFlags _thisTypeMembers =
+			BindingFlags.Instance | BindingFlags.Static |
+			BindingFlags.Public | BindingFlags.NonPublic |
+			BindingFlags.DeclaredOnly;
 
 		private static MemberInfo[] GetOverrideChainDispatch(MemberInfo member)
 		{
 			// TODO: Use GetParentDefinition after https://github.com/dotnet/coreclr/issues/7135
 			if (member is MethodInfo method)
-				return GetOverrideChainCore(method, m => m, t => t.GetRuntimeMethods());
+				return GetOverrideChainCore(method, m => m, t => t.GetMethods(_thisTypeMembers));
 			if (member is PropertyInfo property)
-				return GetOverrideChainCore(property, p => p.GetAccessors(true)[0], t => t.GetRuntimeProperties());
+				return GetOverrideChainCore(property, p => p.GetAccessors(true)[0], t => t.GetProperties(_thisTypeMembers));
 			if (member is EventInfo eventInfo)
-				return GetOverrideChainCore(eventInfo, e => e.GetAddMethod(true), t => t.GetRuntimeEvents());
+				return GetOverrideChainCore(eventInfo, e => e.GetAddMethod(true), t => t.GetEvents(_thisTypeMembers));
 
 			return new[] { member };
 		}
 
 		private static MemberInfo[] GetOverrideChainCore<TMember>(
-			TMember property, Func<TMember, MethodInfo> accessorGetter, Func<Type, IEnumerable<TMember>> membersGetter)
+			TMember member,
+			Func<TMember, MethodInfo> accessorGetter,
+			Func<Type, IEnumerable<TMember>> membersGetter)
 			where TMember : MemberInfo
 		{
-			var propertyMethod = accessorGetter(property);
-			if (propertyMethod.IsStatic || !propertyMethod.IsVirtual || propertyMethod.DeclaringType?.BaseType == null)
-				return new MemberInfo[] { property };
-
 			var result = new List<MemberInfo>();
-			var baseDefinition = propertyMethod.GetBaseDefinition();
-			var typesToCheck = Sequence.CreateWhileNotNull(propertyMethod.DeclaringType, t => t.BaseType);
+			var implMethod = accessorGetter(member);
+			var baseDefinition = implMethod.GetBaseDefinition();
+			var typesToCheck = Sequence.CreateWhileNotNull(implMethod.DeclaringType, t => t.BaseType);
 			foreach (var type in typesToCheck)
 			{
 				foreach (var candidate in membersGetter(type))
@@ -168,6 +193,7 @@ namespace BenchmarkDotNet.Helpers
 					}
 				}
 			}
+
 			return result.ToArray();
 		}
 		#endregion
@@ -175,8 +201,11 @@ namespace BenchmarkDotNet.Helpers
 		#region GetAttributesFromCandidates
 		private static readonly AttributeUsageAttribute _defaultUsage = new AttributeUsageAttribute(AttributeTargets.All);
 		private static readonly Func<Type, AttributeUsageAttribute> _attributeUsages = Algorithms.Memoize(
-			(Type t) => t.GetTypeInfo().GetCustomAttribute<AttributeUsageAttribute>(true) ?? _defaultUsage);
+			(Type t) => t.GetCustomAttribute<AttributeUsageAttribute>(true) ?? _defaultUsage,
+			true);
 
+		// BASEDON: https://github.com/dotnet/coreclr/blob/master/src/mscorlib/src/System/Attribute.cs#L28
+		// Behavior matches the Attribute.InternalGetCustomAttributes() method.
 		private static TAttribute[] GetAttributesFromCandidates<TAttribute>(
 			params ICustomAttributeProvider[] traversePath)
 			where TAttribute : class
@@ -209,6 +238,6 @@ namespace BenchmarkDotNet.Helpers
 			return result.ToArray();
 		}
 		#endregion
-		#endregion
 	}
 }
+#endif

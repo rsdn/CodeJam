@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace CodeJam.Reflection
 {
 	[TestFixture(Category = "Reflection")]
-	public class ReflectionExtensionsTest
+	public partial class ReflectionExtensionsTest
 	{
 		[TestCase(typeof (List<int>),     typeof (IList<int>),       ExpectedResult = true)]
 		[TestCase(typeof (List<int>),     typeof (IList),            ExpectedResult = true)]

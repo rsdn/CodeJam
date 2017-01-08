@@ -6,11 +6,11 @@ using System.Reflection;
 
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Engines;
-using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Toolchains.InProcess;
 
 using CodeJam.PerfTests.Columns;
+using CodeJam.Reflection;
 
 using JetBrains.Annotations;
 

@@ -123,6 +123,7 @@
     <Compile Include="Reflection\AssemblyExtensionsTest.cs" />
     <Compile Include="Reflection\CreateInstanceTests.cs" />
     <Compile Include="Expressions\ExprTests.cs" />
+    <Compile Include="Reflection\ReflectionExtensionsTest.MetadataAttributes.cs" />
     <Compile Include="Reflection\TypeAccessorTests.cs" />
     <Compile Include="Services\ServicesTests.cs" />
     <Compile Include="Structures\OneOfTests.generated.cs">

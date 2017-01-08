@@ -90,7 +90,6 @@
     <Compile Include="[L3_CompetitionsCore]\Configs\NamespaceDoc.cs" />
     <Compile Include="[L3_CompetitionsCore]\Configs\SourceAnnotationsMode.cs" />
     <Compile Include="[L3_CompetitionsCore]\Exporters\CsvTimingsExporter.cs" />
-    <Compile Include="[L0_Core]\Helpers\MetadataHelpers.cs" />
     <Compile Include="[L1_InProcess]\Validators\InProcessValidator.cs" />
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessBuilder.cs" />
     <Compile Include="[L1_InProcess]\Toolchains.InProcess\InProcessExecutor.cs" />

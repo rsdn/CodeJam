@@ -1,8 +1,7 @@
 ﻿using System;
 
-using BenchmarkDotNet.Helpers;
-
 using CodeJam.PerfTests.Running.Limits;
+using CodeJam.Reflection;
 
 using JetBrains.Annotations;
 

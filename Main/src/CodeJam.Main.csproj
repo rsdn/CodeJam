@@ -280,6 +280,7 @@
     </Compile>
     <Compile Include="Ranges\[Ranges]\Range`2.NonGenerated.cs" />
     <Compile Include="Reflection\MemberAccessor.cs" />
+    <Compile Include="Reflection\ReflectionExtensions.MetadataAttributes.cs" />
     <Compile Include="Reflection\NamespaceDoc.cs" />
     <Compile Include="Reflection\TypeAccessor.cs" />
     <Compile Include="Reflection\TypeAccessorT.cs" />
