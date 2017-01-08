@@ -33,6 +33,7 @@ namespace CodeJam.Reflection
 		/// Search logic for each level matches to the
 		/// <see cref="Attribute.GetCustomAttributes(MemberInfo,Type,bool)"/> method (inherit = <c>true</c>).
 		/// including checks of <see cref="AttributeUsageAttribute"/>.
+		/// Ordering of attributes at each level is undefined and depends on runtime implementation.
 		/// </remarks>
 		/// <typeparam name="TAttribute">Type of the attribute or type of the interface implemented by the attributes.</typeparam>
 		/// <param name="attributeProvider">Metadata attribute source.</param>
@@ -54,6 +55,7 @@ namespace CodeJam.Reflection
 		/// Search logic for each level matches to the
 		/// <see cref="Attribute.GetCustomAttributes(MemberInfo,Type,bool)"/> method (inherit = <c>true</c>).
 		/// including checks of <see cref="AttributeUsageAttribute"/>.
+		/// Ordering of attributes at each level is undefined and depends on runtime implementation.
 		/// </remarks>
 		/// <typeparam name="TAttribute">Type of the attribute or type of the interface implemented by the attributes.</typeparam>
 		/// <param name="attributeProvider">Metadata attribute source.</param>

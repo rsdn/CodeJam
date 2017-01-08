@@ -101,6 +101,8 @@ namespace CodeJam.PerfTests.Running.Core
 			competitionState.WriteMessage(
 				messageSource, messageSeverity,
 				$"{message} Exception: {ex.Message}");
+			competitionState.WriteVerboseHint(
+				$"Exception: {ex.ToDiagnosticString()}");
 		}
 
 		/// <summary>Writes the verbose hint message. Logged, but not reported to user.</summary>

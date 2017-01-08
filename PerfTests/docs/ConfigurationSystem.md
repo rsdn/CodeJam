@@ -14,8 +14,8 @@ CodeJam.PerfTests configuration uses almost same approach the BenchmarkDotNet do
 Almost all configuration features rely on attribute annotations. Attributes are checked in following order:
 
 1. Attributes applied to the competition class or to it's base types.
-2. Attributes applied to the container types or to it's base types (if the competition class is nested type)
-3. Attributes applied to the assembly
+2. Attributes applied to the container types or to it's base types (if the competition class is nested type).
+3. Attributes applied to the assembly.
 
 If the configuration system expects only one attribute (as with `CompetitionConfigAttribute`), first found attribute wins.
 
@@ -23,7 +23,7 @@ If multiple attributes supported (`CompetitionFeaturesAttribute` as example), th
 
 > ***~NOTE~***
 >
-> There's no ordering for attributes applied at the same level. If there are multiple attributes applied to the type or to the assembly, they are enumerated in random order
+> There's no ordering for attributes applied at the same level. If there are multiple attributes applied to the type or to the assembly, they may be enumerated in random order.
 
 
 

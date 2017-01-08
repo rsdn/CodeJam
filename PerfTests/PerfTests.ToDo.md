@@ -39,8 +39,8 @@
  * xUnit: tests: run as x64?
  * Test for standard analyser warnings - are they logged as messages?
  * out of process test
- * Test for run under CI
-  * Test for bad encoding
+ * Test for run under CI (+ 1!)
+ * Test for bad encoding
 
 ## Long-term TODOs:
  * Support for multi-case benchmarks (separate limits)

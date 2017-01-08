@@ -51,8 +51,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#region Core logic for XML annotations
 		[NotNull]
 		// ReSharper disable once SuggestBaseTypeForParameter
-		private static string GetCompetitionName(this Target target, XDocument xmlAnnotationDoc,
-			bool useFullTypeName) =>
+		private static string GetCompetitionName(this Target target, bool useFullTypeName) =>
 			useFullTypeName
 				? target.Type.GetShortAssemblyQualifiedName()
 				: target.Type.Name;
@@ -384,7 +383,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			Code.NotNull(xmlAnnotationDoc, nameof(xmlAnnotationDoc));
 			Code.NotNull(competitionState, nameof(competitionState));
 
-			var competitionName = target.GetCompetitionName(xmlAnnotationDoc, useFullTypeName);
+			var competitionName = target.GetCompetitionName(useFullTypeName);
 			var candidateName = target.GetCandidateName();
 
 			var matchingNodes =
@@ -470,9 +469,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		{
 			Code.NotNull(xmlAnnotationDoc, nameof(xmlAnnotationDoc));
 			Code.NotNull(competitionTarget, nameof(competitionTarget));
-			Code.NotNull(competitionTarget.CompetitionMetadata, nameof(competitionTarget.CompetitionMetadata));
 
-			var competitionName = competitionTarget.Target.GetCompetitionName(xmlAnnotationDoc, useFullTypeName);
+			var competitionName = competitionTarget.Target.GetCompetitionName(useFullTypeName);
 			var candidateName = competitionTarget.Target.GetCandidateName();
 			var isBaseline = competitionTarget.Baseline;
 
