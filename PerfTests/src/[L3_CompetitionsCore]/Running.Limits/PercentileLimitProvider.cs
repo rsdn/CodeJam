@@ -110,8 +110,8 @@ namespace CodeJam.PerfTests.Running.Limits
 			if (!TryGetReports(benchmark, summary, out var benchmarkReport, out var baselineReport))
 				return LimitRange.Empty;
 
-			minPercentile = _percentileRange.Adjust(minPercentile);
-			maxPercentile = _percentileRange.Adjust(maxPercentile);
+			minPercentile = _percentileRange.Clamp(minPercentile);
+			maxPercentile = _percentileRange.Clamp(maxPercentile);
 
 			var minValueBaseline = baselineReport.ResultStatistics.Percentiles.Percentile(minPercentile);
 			var maxValueBaseline = baselineReport.ResultStatistics.Percentiles.Percentile(maxPercentile);

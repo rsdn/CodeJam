@@ -277,28 +277,28 @@ namespace CodeJam.Ranges
 			var emptyTo = RangeBoundaryTo<double>.Empty;
 
 			var range = Range.Create(1.0, 2.0, RangeKey);
-			AreEqual(range.Adjust(double.NegativeInfinity), 1);
-			AreEqual(range.Adjust(0), 1);
-			AreEqual(range.Adjust(1), 1);
-			AreEqual(range.Adjust(1.5), 1.5);
-			AreEqual(range.Adjust(2), 2);
-			AreEqual(range.Adjust(3), 2);
-			AreEqual(range.Adjust(double.PositiveInfinity), 2);
+			AreEqual(range.Clamp(double.NegativeInfinity), 1);
+			AreEqual(range.Clamp(0), 1);
+			AreEqual(range.Clamp(1), 1);
+			AreEqual(range.Clamp(1.5), 1.5);
+			AreEqual(range.Clamp(2), 2);
+			AreEqual(range.Clamp(3), 2);
+			AreEqual(range.Clamp(double.PositiveInfinity), 2);
 
 			range = Range.Create(double.NegativeInfinity, double.PositiveInfinity, RangeKey);
-			AreEqual(range.Adjust(double.NegativeInfinity), double.NegativeInfinity);
-			AreEqual(range.Adjust(0), 0);
-			AreEqual(range.Adjust(double.PositiveInfinity), double.PositiveInfinity);
+			AreEqual(range.Clamp(double.NegativeInfinity), double.NegativeInfinity);
+			AreEqual(range.Clamp(0), 0);
+			AreEqual(range.Clamp(double.PositiveInfinity), double.PositiveInfinity);
 
 			range = Range.Create(emptyFrom, emptyTo, RangeKey);
-			Throws<ArgumentException>(() => range.Adjust(double.NegativeInfinity));
-			Throws<ArgumentException>(() => range.Adjust(1));
-			Throws<ArgumentException>(() => range.Adjust(double.PositiveInfinity));
+			Throws<ArgumentException>(() => range.Clamp(double.NegativeInfinity));
+			Throws<ArgumentException>(() => range.Clamp(1));
+			Throws<ArgumentException>(() => range.Clamp(double.PositiveInfinity));
 
 			range = Range.CreateExclusive(1.0, 2.0, RangeKey);
-			Throws<ArgumentException>(() => range.Adjust(double.NegativeInfinity));
-			Throws<ArgumentException>(() => range.Adjust(1.5));
-			Throws<ArgumentException>(() => range.Adjust(double.PositiveInfinity));
+			Throws<ArgumentException>(() => range.Clamp(double.NegativeInfinity));
+			Throws<ArgumentException>(() => range.Clamp(1.5));
+			Throws<ArgumentException>(() => range.Clamp(double.PositiveInfinity));
 		}
 
 		[Test]

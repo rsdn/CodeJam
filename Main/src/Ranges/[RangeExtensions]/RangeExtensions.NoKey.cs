@@ -188,13 +188,13 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Adjust
-		/// <summary>Adjusts the specified value so that it fits into a range specified.</summary>
+		/// <summary>Ensures that the value fits into a range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
 		/// <param name="range">The range the value will be fitted to.</param>
 		/// <param name="value">The value to be adjusted.</param>
 		/// <exception cref="ArgumentException">The range is empty or any of its boundaries is exclusive.</exception>
 		/// <returns>A new value that fits into a range specified</returns>
-		public static T Adjust<T>(this Range<T> range, T value)
+		public static T Clamp<T>(this Range<T> range, T value)
 		{
 			Code.AssertArgument(
 				range.IsNotEmpty, nameof(range), "Cannot fit the value into empty range.");

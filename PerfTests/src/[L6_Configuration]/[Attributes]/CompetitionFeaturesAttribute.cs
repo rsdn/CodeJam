@@ -12,9 +12,8 @@ namespace CodeJam.PerfTests
 	/// <summary>Modifier attribute for competition features.</summary>
 	/// <summary>Competition config attribute.</summary>
 	/// <seealso cref="CompetitionFeatures"/>
-	// ReSharper disable RedundantAttributeUsageProperty
+	// ReSharper disable once RedundantAttributeUsageProperty
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Assembly, Inherited = true, AllowMultiple = true)]
-	// ReSharper restore RedundantAttributeUsageProperty
 	[PublicAPI, MeansImplicitUse(ImplicitUseTargetFlags.WithMembers)]
 	public class CompetitionFeaturesAttribute : Attribute, ICompetitionFeatures
 	{
