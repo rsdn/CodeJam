@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using CodeJam.Collections;
 
@@ -9,6 +10,8 @@ namespace CodeJam
 	/// <summary>
 	/// Hash code helper methods.
 	/// </summary>
+	// BASEDON https://github.com/dotnet/corefx/blob/master/src/Common/src/System/Numerics/Hashing/HashHelpers.cs
+	// BASEDON https://github.com/dotnet/corefx/blob/master/src/System.ValueTuple/src/System/ValueTuple/ValueTuple.cs
 	[PublicAPI]
 	public static class HashCode
 	{
@@ -19,7 +22,13 @@ namespace CodeJam
 		/// <param name="h2">Hash code 2</param>
 		/// <returns>Combined hash code</returns>
 		[Pure]
-		public static int Combine(int h1, int h2) => unchecked (((h1 << 5) + h1) ^ h2);
+		public static int Combine(int h1, int h2)
+		{
+			// RyuJIT optimizes this to use the ROL instruction
+			// Related GitHub pull request: dotnet/coreclr#1830
+			uint rol5 = ((uint)h1 << 5) | ((uint)h1 >> 27);
+			return ((int)rol5 + h1) ^ h2;
+		}
 
 		/// <summary>
 		/// Combines hash codes.
