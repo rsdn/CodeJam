@@ -869,5 +869,33 @@ namespace CodeJam.Ranges
 				compositeRange1.Intersect(compositeRange2A).WithoutKeys(),
 				compositeRange1A.Intersect(compositeRange2A));
 		}
+
+
+		[Test]
+		[TestCase(
+			"ADAFEF",
+			"[0..+∞): { 'A':[0..3); 'A':[0..3); 'D':[3..4); 'E':[4..5); 'F':[5..+∞); 'F':[5..+∞) }")]
+		[TestCase(
+			"ADD21",
+			"(-∞..+∞): { '2':(-∞..0); '1':(-∞..0); 'A':[0..3); 'D':[3..+∞); 'D':[3..+∞) }")]
+		public static void TestCompositeRangeFrom(string chars, string expected)
+		{
+			var range = chars.ToCompositeRangeFrom(c => c < 'A' ? null : (int?)(c - 'A'));
+			AreEqual(range.ToString(CultureInfo.InvariantCulture), expected);
+		}
+
+		[Test]
+		[TestCase(
+			"ADAFEF",
+			"(-∞..5]: { 'A':(-∞..0]; 'A':(-∞..0]; 'D':(0..3]; 'E':(3..4]; 'F':(4..5]; 'F':(4..5] }")]
+		[TestCase(
+			"ADD21",
+			"(-∞..+∞): { 'A':(-∞..0]; 'D':(0..3]; 'D':(0..3]; '2':(3..+∞); '1':(3..+∞) }")]
+		public static void TestCompositeRangeTo(string chars, string expected)
+		{
+			var range = chars.ToCompositeRangeTo(c => c < 'A' ? null : (int?)(c - 'A'));
+			AreEqual(range.ToString(CultureInfo.InvariantCulture), expected);
+		}
+
 	}
 }
