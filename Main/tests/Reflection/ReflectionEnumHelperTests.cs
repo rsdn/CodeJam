@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 using NUnit.Framework;
 
@@ -9,10 +10,15 @@ namespace CodeJam.Reflection
 	public class ReflectionEnumHelperTests
 	{
 		[Test]
-		[SuppressMessage("ReSharper", "PossibleNullReferenceException")]
 		public void GetField() =>
 			Assert.AreEqual(
 				AttributeTargets.ReturnValue,
-				ReflectionEnumHelper.GetField(AttributeTargets.ReturnValue).GetValue(null));
+				ReflectionEnumHelper.GetField(AttributeTargets.ReturnValue)?.GetValue(null));
+
+		[Test]
+		public void GetFields() =>
+			Assert.AreEqual(
+				Enum.GetValues(typeof(AttributeTargets)),
+				ReflectionEnumHelper.GetFields<AttributeTargets>().Select(f => f.GetValue(null)));
 	}
 }
