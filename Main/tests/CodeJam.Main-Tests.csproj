@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="Assertions\EnumCodeTests.cs" />
     <Compile Include="Assertions\CodeTests.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensionTests.With.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensionTests.GroupWhile.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensionTests.TopoSort.cs" />
     <Compile Include="Collections\Enumerable\MinMaxByTests.cs" />

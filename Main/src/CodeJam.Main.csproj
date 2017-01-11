@@ -132,7 +132,7 @@
     </Compile>
     <Compile Include="Collections\Enumerable\EnumerableExtensions.AggregateOrDefault.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensions.Grouping.cs" />
-    <Compile Include="Collections\Enumerable\EnumerableExtensions.Index.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensions.With.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensions.GroupWhile.cs" />
     <Compile Include="Collections\Enumerable\IndexedItem.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensions.Page.cs" />
