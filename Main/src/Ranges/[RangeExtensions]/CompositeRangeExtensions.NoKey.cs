@@ -360,7 +360,7 @@ namespace CodeJam.Ranges
 		}
 		#endregion
 
-		#region Union & Intersect
+		#region Union / Extend
 		/// <summary>Returns a union range containing all subranges.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
 		/// <param name="compositeRange">The source range.</param>
@@ -416,6 +416,74 @@ namespace CodeJam.Ranges
 			return result;
 		}
 
+		/// <summary>Extends the range from the left.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="from">A new value From.</param>
+		/// <returns>
+		/// A range with a new From boundary or the source fange if the new boundary is greater than original.
+		/// </returns>
+		public static CompositeRange<T> ExtendFrom<T>(this CompositeRange<T> compositeRange, T from) =>
+			ExtendFrom(compositeRange, Range.BoundaryFrom(from));
+
+		/// <summary>Extends the range from the left.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="from">A new boundary From.</param>
+		/// <returns>
+		/// A range with a new From boundary or the source fange if the new boundary is greater than original.
+		/// </returns>
+		public static CompositeRange<T> ExtendFrom<T>(this CompositeRange<T> compositeRange, RangeBoundaryFrom<T> from)
+		{
+			if (compositeRange.IsEmpty || from.IsEmpty || from >= compositeRange.ContainingRange.From)
+				return compositeRange;
+
+			var ranges = compositeRange.SubRanges.ToArray();
+			for (int i = 0; i < ranges.Length; i++)
+			{
+				if (ranges[i].From != compositeRange.ContainingRange.From)
+					break;
+
+				ranges[i] = ranges[i].ExtendFrom(from);
+			}
+			return new CompositeRange<T>(ranges, UnsafeOverload.RangesAlreadySorted);
+		}
+
+		/// <summary>Extends the range from the right.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="to">A new value To.</param>
+		/// <returns>
+		/// A range with a new To boundary or the source fange if the new boundary is less than original.
+		/// </returns>
+		public static CompositeRange<T> ExtendTo<T>(this CompositeRange<T> compositeRange, T to) =>
+			ExtendTo(compositeRange, Range.BoundaryTo(to));
+
+		/// <summary>Extends the range from the right.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="to">A new boundary To.</param>
+		/// <returns>
+		/// A range with a new To boundary or the source fange if the new boundary is less than original.
+		/// </returns>
+		public static CompositeRange<T> ExtendTo<T>(this CompositeRange<T> compositeRange, RangeBoundaryTo<T> to)
+		{
+			if (compositeRange.IsEmpty || to.IsEmpty || to <= compositeRange.ContainingRange.To)
+				return compositeRange;
+
+			var ranges = compositeRange.SubRanges.ToArray();
+			for (int i = ranges.Length - 1; i >= 0; i--)
+			{
+				if (ranges[i].To != compositeRange.ContainingRange.To)
+					break;
+
+				ranges[i] = ranges[i].ExtendTo(to);
+			}
+			return new CompositeRange<T>(ranges, UnsafeOverload.RangesAlreadySorted);
+		}
+		#endregion
+
+		#region Intersect / Trim / Except
 		/// <summary>Returns an intersection of the the ranges.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
 		/// <param name="compositeRange">The source range.</param>
@@ -516,6 +584,38 @@ namespace CodeJam.Ranges
 
 			return result;
 		}
+
+		/// <summary>Trims the range from the left.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="from">A new value From.</param>
+		/// <returns>A range trimmed with a new From boundary.</returns>
+		public static CompositeRange<T> TrimFrom<T>(this CompositeRange<T> compositeRange, T from) =>
+			TrimFrom(compositeRange, Range.BoundaryFrom(from));
+
+		/// <summary>Trims the range from the left.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="from">A new boundary From.</param>
+		/// <returns>A range trimmed with a new From boundary.</returns>
+		public static CompositeRange<T> TrimFrom<T>(this CompositeRange<T> compositeRange, RangeBoundaryFrom<T> from) =>
+			compositeRange.Intersect(Range.TryCreate(from, RangeBoundaryTo<T>.PositiveInfinity));
+
+		/// <summary>Trims the range from the right.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="to">A new value To.</param>
+		/// <returns>A range trimmed with a new To boundary.</returns>
+		public static CompositeRange<T> TrimTo<T>(this CompositeRange<T> compositeRange, T to) =>
+			TrimTo(compositeRange, Range.BoundaryTo(to));
+
+		/// <summary>Trims the range from the right.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="to">A new boundary To.</param>
+		/// <returns>A range trimmed with a new To boundary.</returns>
+		public static CompositeRange<T> TrimTo<T>(this CompositeRange<T> compositeRange, RangeBoundaryTo<T> to) =>
+			compositeRange.Intersect(Range.TryCreate(RangeBoundaryFrom<T>.NegativeInfinity, to));
 
 		/// <summary>Returns source range with other range excluded.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>

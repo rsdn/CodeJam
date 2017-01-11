@@ -29,7 +29,7 @@ namespace CodeJam.Ranges
 			}
 			else
 			{
-				throw new ArgumentException("Unknown range string format", nameof(value));
+				throw new ArgumentException("Unknown range string format: " + value, nameof(value));
 			}
 			return new RangeBoundaryFrom<T>(parseValueCallback(valuePart), kind);
 		}
@@ -56,7 +56,7 @@ namespace CodeJam.Ranges
 			}
 			else
 			{
-				throw new ArgumentException("Unknown range string format", nameof(value));
+				throw new ArgumentException("Unknown range string format: " + value, nameof(value));
 			}
 			return new RangeBoundaryTo<T>(parseValueCallback(valuePart), kind);
 		}

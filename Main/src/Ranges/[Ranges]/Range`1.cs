@@ -65,9 +65,7 @@ namespace CodeJam.Ranges
 			{
 				if (to < from)
 				{
-					throw CodeExceptions.Argument(
-						nameof(to),
-						$"The boundary {nameof(to)} should be greater than or equal to boundary {nameof(from)}.");
+					throw CodeExceptions.Argument(nameof(to), $"Invalid range {from}..{to}.");
 				}
 			}
 
@@ -79,7 +77,8 @@ namespace CodeJam.Ranges
 		/// <param name="from">Boundary From.</param>
 		/// <param name="to">Boundary To.</param>
 		public Range(T from, T to) :
-			this(Range.BoundaryFrom(from), Range.BoundaryTo(to)) { }
+			this(Range.BoundaryFrom(from), Range.BoundaryTo(to))
+		{ }
 
 		/// <summary>
 		/// Creates instance of <seealso cref="Range{T}"/>

@@ -17,6 +17,7 @@ namespace CodeJam.Ranges
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[SuppressMessage("ReSharper", "HeapView.DelegateAllocation")]
 	[SuppressMessage("ReSharper", "HeapView.ObjectAllocation")]
+	[SuppressMessage("ReSharper", "StringLiteralTypo")]
 	public static class CompositeRangeTests
 	{
 		#region Parse helpers
@@ -836,6 +837,98 @@ namespace CodeJam.Ranges
 
 		[Test]
 		[TestCase(
+			"(1..3): { (1..2]; (1..3); (2..3) }",
+			null,
+			"(-∞..3): { (-∞..2]; (-∞..3); (2..3) }")]
+		[TestCase(
+			"(1..3): { (1..2]; (1..3); (2..3) }",
+			1,
+			"[1..3): { [1..2]; [1..3); (2..3) }")]
+		[TestCase(
+			"(1..3): { (1..2]; (1..3); (2..3) }",
+			2,
+			"(1..3): { (1..2]; (1..3); (2..3) }")]
+		[TestCase("∅", 1, "∅")]
+		[TestCase("∅", null, "∅")]
+		public static void TestCompositeRangeExtendFrom(string ranges, double? extendFrom, string expected)
+		{
+			var compositeRange1 = ParseCompositeRangeDouble(ranges).ExtendFrom(extendFrom);
+
+			AreEqual(compositeRange1.ToInvariantString(), expected);
+			AreEqual(compositeRange1.ExtendFrom(extendFrom), compositeRange1);
+		}
+
+		[Test]
+		[TestCase(
+			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
+			null,
+			"(-∞..3): { 'A':(-∞..2]; 'B':(-∞..3); 'A':(2..3) }")]
+		[TestCase(
+			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
+			1,
+			"[1..3): { 'A':[1..2]; 'B':[1..3); 'A':(2..3) }")]
+		[TestCase(
+			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
+			2,
+			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }")]
+		[TestCase("∅", 1, "∅")]
+		[TestCase("∅", null, "∅")]
+		public static void TestCompositeRangeExtendFromWithKey(string ranges, int? extendFrom, string expected)
+		{
+			var compositeRange1 = ParseCompositeKeyedRangeInt32(ranges).ExtendFrom(extendFrom);
+
+			AreEqual(compositeRange1.ToInvariantString(), expected);
+			AreEqual(compositeRange1.ExtendFrom(extendFrom), compositeRange1);
+		}
+
+		[Test]
+		[TestCase(
+			"(1..3): { (1..2]; (1..3); (2..3) }",
+			null,
+			"(1..+∞): { (1..2]; (1..+∞); (2..+∞) }")]
+		[TestCase(
+			"(1..3): { (1..2]; (1..3); (2..3) }",
+			3,
+			"(1..3]: { (1..2]; (1..3]; (2..3] }")]
+		[TestCase(
+			"(1..3): { (1..2]; (1..3); (2..3) }",
+			2,
+			"(1..3): { (1..2]; (1..3); (2..3) }")]
+		[TestCase("∅", 1, "∅")]
+		[TestCase("∅", null, "∅")]
+		public static void TestCompositeRangeExtendTo(string ranges, double? extendTo, string expected)
+		{
+			var compositeRange1 = ParseCompositeRangeDouble(ranges).ExtendTo(extendTo);
+
+			AreEqual(compositeRange1.ToInvariantString(), expected);
+			AreEqual(compositeRange1.ExtendTo(extendTo), compositeRange1);
+		}
+
+		[Test]
+		[TestCase(
+			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
+			null,
+			"(1..+∞): { 'A':(1..2]; 'B':(1..+∞); 'A':(2..+∞) }")]
+		[TestCase(
+			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
+			3,
+			"(1..3]: { 'A':(1..2]; 'B':(1..3]; 'A':(2..3] }")]
+		[TestCase(
+			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
+			2,
+			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }")]
+		[TestCase("∅", 1, "∅")]
+		[TestCase("∅", null, "∅")]
+		public static void TestCompositeRangeExtendToWithKey(string ranges, int? extendTo, string expected)
+		{
+			var compositeRange1 = ParseCompositeKeyedRangeInt32(ranges).ExtendTo(extendTo);
+
+			AreEqual(compositeRange1.ToInvariantString(), expected);
+			AreEqual(compositeRange1.ExtendTo(extendTo), compositeRange1);
+		}
+
+		[Test]
+		[TestCase(
 			"(1..3): { 'A':(1..3) }",
 			"(1..3): { 'B':(1..3) }",
 			"(1..3): { 'A':(1..3) }")]
@@ -870,6 +963,98 @@ namespace CodeJam.Ranges
 				compositeRange1A.Intersect(compositeRange2A));
 		}
 
+
+		[Test]
+		[TestCase(
+			"(1..3): { (1..2]; (1..3); (2..3) }",
+			null,
+			"(1..3): { (1..2]; (1..3); (2..3) }")]
+		[TestCase(
+			"(1..3): { (1..2]; (1..3); (2..3) }",
+			2,
+			"[2..3): { [2..2]; [2..3); (2..3) }")]
+		[TestCase(
+			"(1..3): { (1..2]; (1..3); (2..3) }",
+			4,
+			"∅")]
+		[TestCase("∅", 1, "∅")]
+		[TestCase("∅", null, "∅")]
+		public static void TestCompositeRangeTrimFrom(string ranges, double? trimFrom, string expected)
+		{
+			var compositeRange1 = ParseCompositeRangeDouble(ranges).TrimFrom(trimFrom);
+
+			AreEqual(compositeRange1.ToInvariantString(), expected);
+			AreEqual(compositeRange1.TrimFrom(trimFrom), compositeRange1);
+		}
+
+		[Test]
+		[TestCase(
+			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
+			null,
+			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }")]
+		[TestCase(
+			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
+			2,
+			"[2..3): { 'A':[2..2]; 'B':[2..3); 'A':(2..3) }")]
+		[TestCase(
+			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
+			4,
+			"∅")]
+		[TestCase("∅", 1, "∅")]
+		[TestCase("∅", null, "∅")]
+		public static void TestCompositeRangeTrimFromWithKey(string ranges, int? trimFrom, string expected)
+		{
+			var compositeRange1 = ParseCompositeKeyedRangeInt32(ranges).TrimFrom(trimFrom);
+
+			AreEqual(compositeRange1.ToInvariantString(), expected);
+			AreEqual(compositeRange1.TrimFrom(trimFrom), compositeRange1);
+		}
+
+		[Test]
+		[TestCase(
+			"(1..3): { (1..2]; (1..3); (2..3) }",
+			null,
+			"(1..3): { (1..2]; (1..3); (2..3) }")]
+		[TestCase(
+			"(1..3): { (1..2]; (1..3); (2..3) }",
+			2,
+			"(1..2]: { (1..2]; (1..2] }")]
+		[TestCase(
+			"(1..3): { (1..2]; (1..3); (2..3) }",
+			1,
+			"∅")]
+		[TestCase("∅", 1, "∅")]
+		[TestCase("∅", null, "∅")]
+		public static void TestCompositeRangeTrimTo(string ranges, double? trimTo, string expected)
+		{
+			var compositeRange1 = ParseCompositeRangeDouble(ranges).TrimTo(trimTo);
+
+			AreEqual(compositeRange1.ToInvariantString(), expected);
+			AreEqual(compositeRange1.TrimTo(trimTo), compositeRange1);
+		}
+
+		[Test]
+		[TestCase(
+			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
+			null,
+			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }")]
+		[TestCase(
+			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
+			2,
+			"(1..2]: { 'A':(1..2]; 'B':(1..2] }")]
+		[TestCase(
+			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
+			1,
+			"∅")]
+		[TestCase("∅", 1, "∅")]
+		[TestCase("∅", null, "∅")]
+		public static void TestCompositeRangeTrimToWithKey(string ranges, int? trimTo, string expected)
+		{
+			var compositeRange1 = ParseCompositeKeyedRangeInt32(ranges).TrimTo(trimTo);
+
+			AreEqual(compositeRange1.ToInvariantString(), expected);
+			AreEqual(compositeRange1.TrimTo(trimTo), compositeRange1);
+		}
 
 		[Test]
 		[TestCase(

@@ -77,9 +77,7 @@ namespace CodeJam.Ranges
 			{
 				if (to < from)
 				{
-					throw CodeExceptions.Argument(
-						nameof(to),
-						$"The boundary {nameof(to)} should be greater than or equal to boundary {nameof(from)}.");
+					throw CodeExceptions.Argument(nameof(to), $"Invalid range {from}..{to}.");
 				}
 			}
 
@@ -93,7 +91,8 @@ namespace CodeJam.Ranges
 		/// <param name="to">Boundary To.</param>
 		/// <param name="key">The value of the range key.</param>
 		public Range(T from, T to, TKey key) :
-			this(Range.BoundaryFrom(from), Range.BoundaryTo(to), key) { }
+			this(Range.BoundaryFrom(from), Range.BoundaryTo(to), key)
+		{ }
 
 		/// <summary>
 		/// Creates instance of <seealso cref="Range{T}"/>
@@ -138,7 +137,7 @@ namespace CodeJam.Ranges
 		/// <value><c>true</c> if the range is empty; otherwise, <c>false</c>.</value>
 		public bool IsEmpty => _from.IsEmpty;
 
-		/// <summary>The range is NOT empty, ≠ ∅</summary>
+		/// <summary>The range is NOT empty, ≠ ∅.</summary>
 		/// <value><c>true</c> if the range is not empty; otherwise, <c>false</c>.</value>
 		public bool IsNotEmpty => _from.IsNotEmpty;
 
