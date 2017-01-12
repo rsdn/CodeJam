@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IntervalTree\IntervalTree.cs" />
+    <Compile Include="IntervalTree\IntervalTreeTests.cs" />
     <Compile Include="IntervalTree\IntervalTreePerfTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

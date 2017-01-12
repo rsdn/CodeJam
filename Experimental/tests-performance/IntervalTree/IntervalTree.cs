@@ -86,7 +86,7 @@ namespace CodeJam.Ranges
 			var middleFromBoundary = sortedRanges[middleIndex].From;
 			var middleMaxToBoundary = sortedRanges[treeIndexes[middleIndex]].To;
 
-			if (intersection.To <= middleFromBoundary)
+			if (intersection.To < middleFromBoundary)
 			{
 				//toFind ends before subtree.Data begins, prune the right subtree
 				if (startIndex < middleIndex)
@@ -95,7 +95,7 @@ namespace CodeJam.Ranges
 					Intersect(startIndex, newMiddleA, middleIndex - 1, intersection, result);
 				}
 			}
-			else if (intersection.From >= middleMaxToBoundary)
+			else if (intersection.From > middleMaxToBoundary)
 			{
 				////toFind begins after the subtree.Max ends, prune the left subtree
 				if (middleIndex < endIndex)
