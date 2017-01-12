@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IntervalTree\IntervalTreeCostin.cs" />
     <Compile Include="IntervalTree\IntervalTree.cs" />
     <Compile Include="IntervalTree\IntervalTreeTests.cs" />
     <Compile Include="IntervalTree\IntervalTreePerfTest.cs" />
