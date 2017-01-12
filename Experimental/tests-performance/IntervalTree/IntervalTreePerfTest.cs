@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using CodeJam.PerfTests;
@@ -10,7 +10,6 @@ using NUnit.Framework;
 
 namespace CodeJam.Ranges
 {
-	[CompetitionReannotateSources]
 	[CompetitionBurstMode]
 	public class IntervalTreePerfTest
 	{
