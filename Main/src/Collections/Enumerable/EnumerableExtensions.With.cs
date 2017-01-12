@@ -62,8 +62,8 @@ namespace CodeJam.Collections
 			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, T, TResult> prevNextSelector)
 		{
-			T previous = default(T);
-			bool hasPrevious = false;
+			var previous = default(T);
+			var hasPrevious = false;
 
 			foreach (var item in source)
 			{
@@ -129,8 +129,8 @@ namespace CodeJam.Collections
 			[NotNull] this IEnumerable<T> source, T combineLast,
 			[NotNull] Func<T, T, TResult> prevNextSelector)
 		{
-			T previous = default(T);
-			bool hasPrevious = false;
+			var previous = default(T);
+			var hasPrevious = false;
 
 			foreach (var item in source)
 			{

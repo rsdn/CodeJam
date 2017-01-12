@@ -1,5 +1,17 @@
-CodeJam 1.3.0-beta2 Release Notes
+CodeJam 1.3.0-beta3 Release Notes
 ---------------------------------
+
+What's new in 1.3.0-beta3
+-------------------------
+* Helpers for metadata attributes
+* Ranges improvements
+* HashCode class performance optimization
+* ReflectionEnumHelper.GetFields method added
+* EnumerableExtension.CombinedWithPrevious/Next methods added
+* CompositeRangeExtensions.ToCompositeRangeFrom/To methods added
+* Composite ranges Trim/Extend methods added
+* Breaking change! ObjectPool and SharedPool classes removed
+* Code cleanup
 
 What's new in 1.3.0-beta2
 -------------------------
