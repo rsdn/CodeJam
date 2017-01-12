@@ -40,8 +40,8 @@ namespace CodeJam.Ranges
 			[NotNull] Range<T>[] ranges)
 		{
 			DebugCode.BugIf(
-				ranges.Any(r => !r.Contains(intersectionRange)),
-				"Ranges should contain groupingRange.");
+				ranges.Any(r => !r.HasIntersection(intersectionRange)),
+				"Ranges should intersect groupingRange.");
 
 			IntersectionRange = intersectionRange;
 			_ranges = ranges.AsReadOnly();
@@ -72,6 +72,9 @@ namespace CodeJam.Ranges
 		/// <returns>The string representation of the range intersection.</returns>
 		public override string ToString()
 		{
+			if (IntersectionRange.IsEmpty)
+				return RangeInternal.EmptyString;
+
 			var intersectionRangePart = IntersectionRange.ToString();
 			var rangesPart = IsEmpty
 				? RangeInternal.EmptyString

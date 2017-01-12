@@ -51,6 +51,10 @@ namespace CodeJam.Ranges
 			}
 			else
 			{
+				DebugCode.BugIf(
+					middleIndex != startIndex + (endIndex-startIndex) / 2, 
+					"middleIndex != startIndex + (endIndex-startIndex) / 2");
+
 				int newMiddleA = startIndex + (middleIndex - 1 - startIndex) / 2;
 				SetIndexes(startIndex, newMiddleA, middleIndex - 1);
 

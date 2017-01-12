@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
+using CodeJam.Collections;
+
 using JetBrains.Annotations;
 
 using static CodeJam.Ranges.CompositeRangeInternal;
@@ -170,6 +172,72 @@ namespace CodeJam.Ranges
 			}
 
 			yield return GetRangeIntersection(fromBoundary, RangeBoundaryTo<T>.PositiveInfinity, rangesToYield);
+		}
+		#endregion
+
+		#region Get intersection
+		/// <summary>Returns ranges that has intersections with passed range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="value">The value to check.</param>
+		/// <returns>Ranges that has intersections with passed range.</returns>
+		public static RangeIntersection<T> GetIntersection<T>(this CompositeRange<T> compositeRange, T value) =>
+			GetIntersectionCore(compositeRange, Range.Create(value, value));
+
+		/// <summary>Returns ranges that has intersections with passed range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="from">The boundary From value of the range to check.</param>
+		/// <param name="to">The boundary To value of the range to check.</param>
+		/// <returns>Ranges that has intersections with passed range.</returns>
+		public static RangeIntersection<T> GetIntersection<T>(this CompositeRange<T> compositeRange, T from, T to) =>
+			GetIntersectionCore(compositeRange, Range.Create(from, to));
+
+		/// <summary>Returns ranges that has intersections with passed range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="other">The range to check.</param>
+		/// <returns>Ranges that has intersections with passed range.</returns>
+		public static RangeIntersection<T> GetIntersection<T>(
+			this CompositeRange<T> compositeRange,
+
+		#region T4-dont-replace
+			Range<T> other
+		#endregion
+
+			) =>
+				GetIntersectionCore(compositeRange, other);
+
+		/// <summary>Returns ranges that has intersections with passed range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey2">The type of the other range key</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="other">The range to check.</param>
+		/// <returns>Ranges that has intersections with passed range.</returns>
+		public static RangeIntersection<T> GetIntersection<T, TKey2>(
+			this CompositeRange<T> compositeRange, Range<T, TKey2> other) =>
+				GetIntersectionCore(compositeRange, other);
+
+		/// <summary>Returns ranges that has intersections with passed range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TRange">The type of the range.</typeparam>
+		/// <param name="compositeRange">The source range.</param>
+		/// <param name="other">The range to check.</param>
+		/// <returns>Ranges that has intersections with passed range.</returns>
+		private static RangeIntersection<T> GetIntersectionCore<T, TRange>(this CompositeRange<T> compositeRange, TRange other)
+			where TRange : IRange<T>
+		{
+			var ranges = new List<Range<T>>();
+			if (!compositeRange.ContainingRange.HasIntersection(other))
+				return GetRangeIntersection(other.From, other.To, Array<Range<T>>.Empty);
+			foreach (var range in compositeRange.SubRanges)
+			{
+				if (range.From > other.To)
+					break;
+				if (range.To >= other.From)
+					ranges.Add(range);
+			}
+			return GetRangeIntersection(other.From, other.To, ranges.ToArray());
 		}
 		#endregion
 

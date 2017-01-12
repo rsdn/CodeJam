@@ -62,6 +62,12 @@ namespace CodeJam.Ranges
 			return result;
 		}
 
+		public static Range<double?> ParseRangeDouble(string value) =>
+			ParseRange(value, s => (double?)double.Parse(s, CultureInfo.InvariantCulture));
+
+		public static Range<int?> ParseRangeInt32(string value) =>
+			ParseRange(value, s => (int?)int.Parse(s, CultureInfo.InvariantCulture));
+
 		public static CompositeRange<double?> ParseCompositeRangeDouble(string value) =>
 			ParseCompositeRange(value, s => (double?)double.Parse(s, CultureInfo.InvariantCulture));
 
@@ -704,6 +710,62 @@ namespace CodeJam.Ranges
 			var intersections = compositeRange.GetIntersections()
 				.Select(i => i.ToInvariantString()).Join(" | ");
 			AreEqual(intersections, expected);
+		}
+
+		[Test]
+		[TestCase(
+			"(1..3): { (1..3) }",
+			"(1..3)",
+			"(1..3): { (1..3) }")]
+		[TestCase(
+			"(1..3): { (1..3); (1..3); (1..3) }",
+			"(1..3)",
+			"(1..3): { (1..3); (1..3); (1..3) }")]
+		[TestCase("∅", "∅", "∅")]
+		[TestCase("∅", "(1..3)", "(1..3): { ∅ }")]
+		[TestCase("(1..3): { (1..3) }", "∅", "∅")]
+		[TestCase(
+			"(-∞..+∞): { (-∞..1]; [0..+∞) }",
+			"[0..2]",
+			"[0..2]: { (-∞..1]; [0..+∞) }")]
+		public static void TestCompositeRangeIntersection(string ranges, string intersection, string expected)
+		{
+			var compositeRange = ParseCompositeRangeDouble(ranges);
+			var intersectionRange = ParseRangeDouble(intersection);
+
+			var intersectionText = compositeRange.GetIntersection(intersectionRange).ToString();
+			AreEqual(intersectionText, expected);
+
+			intersectionText = compositeRange.GetIntersection(intersectionRange.WithKey(0)).ToString();
+			AreEqual(intersectionText, expected);
+		}
+
+		[Test]
+		[TestCase(
+			"(1..3): { 'A':(1..3) }",
+			"(1..3)",
+			"(1..3): { 'A':(1..3) }")]
+		[TestCase(
+			"(1..3): { 'A':(1..3); 'A':(1..3); 'B':(1..3) }",
+			"(1..3)",
+			"(1..3): { 'A':(1..3); 'A':(1..3); 'B':(1..3) }")]
+		[TestCase("∅", "∅", "∅")]
+		[TestCase("∅", "(1..3)", "(1..3): { ∅ }")]
+		[TestCase("(1..3): { 'B':(1..3) }", "∅", "∅")]
+		[TestCase(
+			"(-∞..+∞): { 'A':(-∞..1]; 'B':[0..+∞) }",
+			"[0..2]",
+			"[0..2]: { 'A':(-∞..1]; 'B':[0..+∞) }")]
+		public static void TestCompositeRangeIntersectionWithKey(string ranges, string intersection, string expected)
+		{
+			var compositeRange = ParseCompositeKeyedRangeInt32(ranges);
+			var intersectionRange = ParseRangeInt32(intersection);
+
+			var intersectionText = compositeRange.GetIntersection(intersectionRange).ToString();
+			AreEqual(intersectionText, expected);
+
+			intersectionText = compositeRange.GetIntersection(intersectionRange.WithKey(0)).ToString();
+			AreEqual(intersectionText, expected);
 		}
 
 		[Test]
