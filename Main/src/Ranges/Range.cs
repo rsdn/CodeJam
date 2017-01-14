@@ -162,7 +162,7 @@ namespace CodeJam.Ranges
 		public static bool IsValid<T>(T from, T to) =>
 			RangeBoundaryFrom<T>.IsValid(from) &&
 				RangeBoundaryTo<T>.IsValid(to) &&
-				BoundaryFrom(from) <= BoundaryTo(to);
+				IsValid(BoundaryFrom(from), BoundaryTo(to));
 
 		/// <summary>Returns true if the boundaries can be used for valid range creation.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -192,13 +192,10 @@ namespace CodeJam.Ranges
 		private static Range<T> TryCreateCore<T>(
 			T from, RangeBoundaryFromKind fromKind,
 			T to, RangeBoundaryToKind toKind) =>
-				IsValid(from, to)
-#pragma warning disable 618 // Validation not required: IsValid() called.
-					? new Range<T>(
+				(RangeBoundaryFrom<T>.IsValid(from) && RangeBoundaryTo<T>.IsValid(to))
+					? TryCreate(
 						RangeBoundaryFrom<T>.AdjustAndCreate(from, fromKind),
-						RangeBoundaryTo<T>.AdjustAndCreate(to, toKind),
-						SkipsArgValidation)
-#pragma warning restore 618
+						RangeBoundaryTo<T>.AdjustAndCreate(to, toKind))
 					: Range<T>.Empty;
 
 		/// <summary>Tries to create the range. Returns empty range if failed.</summary>
@@ -221,15 +218,12 @@ namespace CodeJam.Ranges
 			T from, RangeBoundaryFromKind fromKind,
 			T to, RangeBoundaryToKind toKind,
 			TKey key) =>
-				IsValid(from, to)
-#pragma warning disable 618 // Validation not required: IsValid() called.
-					? new Range<T, TKey>(
+				(RangeBoundaryFrom<T>.IsValid(from) && RangeBoundaryTo<T>.IsValid(to))
+					? TryCreate(
 						RangeBoundaryFrom<T>.AdjustAndCreate(from, fromKind),
 						RangeBoundaryTo<T>.AdjustAndCreate(to, toKind),
-						key,
-						SkipsArgValidation)
-					: new Range<T, TKey>(RangeBoundaryFrom<T>.Empty, RangeBoundaryTo<T>.Empty, key, SkipsArgValidation);
-#pragma warning restore 618
+						key)
+					: Range<T, TKey>.Empty;
 		#endregion
 	}
 }

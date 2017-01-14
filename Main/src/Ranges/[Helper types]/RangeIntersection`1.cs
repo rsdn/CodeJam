@@ -19,7 +19,7 @@ namespace CodeJam.Ranges
 	[PublicAPI]
 	public struct RangeIntersection<T> : IFormattable
 	{
-		private static readonly IReadOnlyCollection<Range<T>> _emptyRanges =
+		private static readonly IReadOnlyList<Range<T>> _emptyRanges =
 #if (!FW452)
 			Array.Empty<Range<T>>()
 #else
@@ -27,7 +27,7 @@ namespace CodeJam.Ranges
 #endif
 			.AsReadOnly();
 
-		private readonly IReadOnlyCollection<Range<T>> _ranges;
+		private readonly IReadOnlyList<Range<T>> _ranges;
 
 		#region Fields & .ctor()
 		/// <summary>Initializes a new instance of the <see cref="RangeIntersection{T}"/> struct.</summary>
@@ -57,7 +57,7 @@ namespace CodeJam.Ranges
 		/// <summary>The ranges in the intersection, if any.</summary>
 		/// <value>The ranges in the intersection, if any.</value>
 		[NotNull]
-		public IReadOnlyCollection<Range<T>> Ranges => _ranges ?? _emptyRanges;
+		public IReadOnlyList<Range<T>> Ranges => _ranges ?? _emptyRanges;
 
 		/// <summary>Gets a value indicating whether the intersection does not contain any ranges.</summary>
 		/// <value><c>true</c> if the intersection does not contain any ranges; otherwise, <c>false</c>.</value>

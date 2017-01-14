@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
 using CodeJam.PerfTests;
@@ -78,7 +78,7 @@ namespace CodeJam.Ranges
 		[CompetitionBaseline]
 		public void Intersect() => IntersectNaive(_intersection);
 
-		[CompetitionBenchmark(0.083, 0.092)]
+		[CompetitionBenchmark(0.083, 0.114)]
 		public void IntersectTree() => _tree.Intersect(_intersection);
 
 		[CompetitionBenchmark(0.21, 0.27)]

@@ -23,6 +23,10 @@ namespace CodeJam.Arithmetic
 
 		private struct StructComparable : IComparable
 		{
+			[UsedImplicitly]
+			// ReSharper disable once RedundantDefaultMemberInitializer
+			public static readonly StructComparable NaN = new StructComparable();
+
 			// DONTTOUCH: uses wrong type to proof that check for infinity will fail.
 			[UsedImplicitly]
 			public static readonly ClassNoComparable NegativeInfinity = new ClassNoComparable();
@@ -318,6 +322,10 @@ namespace CodeJam.Arithmetic
 			AssertComparison(SomeEnum.A, SomeEnum.B);
 			AssertComparison(SomeEnumByte.A, SomeEnumByte.B);
 			AssertComparison(SomeEnumLong.A, SomeEnumLong.B);
+			AssertComparison(double.NegativeInfinity, double.NegativeInfinity);
+			AssertComparison(double.PositiveInfinity, double.PositiveInfinity);
+			AssertComparison(double.NaN, double.PositiveInfinity);
+			AssertComparison(double.NaN, double.NaN);
 
 			AssertComparison<int?>(1, 2);
 			AssertComparison<byte?>(1, 2);
@@ -328,6 +336,10 @@ namespace CodeJam.Arithmetic
 			AssertComparison<SomeEnum?>(SomeEnum.A, SomeEnum.B);
 			AssertComparison<SomeEnumByte?>(SomeEnumByte.A, SomeEnumByte.B);
 			AssertComparison<SomeEnumLong?>(SomeEnumLong.A, SomeEnumLong.B);
+			AssertComparison<double?>(double.NegativeInfinity, double.NegativeInfinity);
+			AssertComparison<double?>(double.PositiveInfinity, double.PositiveInfinity);
+			AssertComparison<double?>(double.NaN, double.PositiveInfinity);
+			AssertComparison<double?>(double.NaN, double.NaN);
 
 			AssertComparison<int?>(1, null);
 			AssertComparison<byte?>(1, null);
@@ -352,6 +364,8 @@ namespace CodeJam.Arithmetic
 			AssertOperatorsCompare(SomeEnum.A, SomeEnum.B);
 			AssertOperatorsCompare(SomeEnumByte.A, SomeEnumByte.B);
 			AssertOperatorsCompare(SomeEnumLong.A, SomeEnumLong.B);
+			AssertOperatorsCompare(double.NegativeInfinity, double.NegativeInfinity);
+			AssertOperatorsCompare(double.PositiveInfinity, double.PositiveInfinity);
 
 			AssertOperatorsCompare<int?>(1, 2);
 			AssertOperatorsCompare<byte?>(1, 2);
@@ -362,6 +376,15 @@ namespace CodeJam.Arithmetic
 			AssertOperatorsCompare<SomeEnum?>(SomeEnum.A, SomeEnum.B);
 			AssertOperatorsCompare<SomeEnumByte?>(SomeEnumByte.A, SomeEnumByte.B);
 			AssertOperatorsCompare<SomeEnumLong?>(SomeEnumLong.A, SomeEnumLong.B);
+			AssertOperatorsCompare<double?>(double.NegativeInfinity, double.NegativeInfinity);
+			AssertOperatorsCompare<double?>(double.PositiveInfinity, double.PositiveInfinity);
+
+			/* These will fail as Comparer<T> does not threat double.NaN < double.PositiveInfinity as false
+				AssertOperatorsCompare(double.NaN, double.PositiveInfinity);
+				AssertOperatorsCompare(double.NaN, double.NaN);
+				AssertOperatorsCompare<double?>(double.NaN, double.PositiveInfinity);
+				AssertOperatorsCompare<double?>(double.NaN, double.NaN);
+			*/
 
 			/* These will fail as Comparer<T> does not threat 1 > null as false
 				AssertOperatorsCompare<int?>(1, null);
@@ -377,26 +400,35 @@ namespace CodeJam.Arithmetic
 		}
 
 		[Test]
-		public void Test05OperatorsInfinity()
+		public void Test05OperatorsSpecialFields()
 		{
+			Assert.IsTrue(Operators<double>.HasNaN);
 			Assert.IsTrue(Operators<double>.HasNegativeInfinity);
 			Assert.IsTrue(Operators<double>.HasPositiveInfinity);
+			Assert.IsTrue(Operators<float>.HasNaN);
 			Assert.IsTrue(Operators<float>.HasNegativeInfinity);
 			Assert.IsTrue(Operators<float>.HasPositiveInfinity);
+			Assert.IsFalse(Operators<int>.HasNaN);
 			Assert.IsFalse(Operators<int>.HasNegativeInfinity);
 			Assert.IsFalse(Operators<int>.HasPositiveInfinity);
 
+			Assert.IsTrue(Operators<double?>.HasNaN);
 			Assert.IsTrue(Operators<double?>.HasNegativeInfinity);
 			Assert.IsTrue(Operators<double?>.HasPositiveInfinity);
+			Assert.IsTrue(Operators<float?>.HasNaN);
 			Assert.IsTrue(Operators<float?>.HasNegativeInfinity);
 			Assert.IsTrue(Operators<float?>.HasPositiveInfinity);
+			Assert.IsFalse(Operators<int?>.HasNaN);
 			Assert.IsFalse(Operators<int?>.HasNegativeInfinity);
 			Assert.IsFalse(Operators<int?>.HasPositiveInfinity);
 
+			Assert.IsFalse(Operators<ClassNoComparable>.HasNaN);
 			Assert.IsTrue(Operators<ClassNoComparable>.HasNegativeInfinity);
 			Assert.IsFalse(Operators<ClassNoComparable>.HasPositiveInfinity);
+			Assert.IsTrue(Operators<StructComparable>.HasNaN);
 			Assert.IsFalse(Operators<StructComparable>.HasNegativeInfinity);
 			Assert.IsTrue(Operators<StructComparable>.HasPositiveInfinity);
+			Assert.IsTrue(Operators<StructComparable?>.HasNaN);
 			Assert.IsFalse(Operators<StructComparable?>.HasNegativeInfinity);
 			Assert.IsTrue(Operators<StructComparable?>.HasPositiveInfinity);
 
@@ -404,18 +436,24 @@ namespace CodeJam.Arithmetic
 			Assert.AreEqual(Operators<double>.PositiveInfinity, double.PositiveInfinity);
 			Assert.AreEqual(Operators<float>.NegativeInfinity, float.NegativeInfinity);
 			Assert.AreEqual(Operators<float>.PositiveInfinity, float.PositiveInfinity);
+			Assert.AreEqual(Operators<float>.NaN, float.NaN);
+			Assert.Throws<NotSupportedException>(() => Operators<int>.NaN.ToString());
 			Assert.Throws<NotSupportedException>(() => Operators<int>.NegativeInfinity.ToString());
 			Assert.Throws<NotSupportedException>(() => Operators<int>.PositiveInfinity.ToString());
 
+			Assert.AreEqual(Operators<double?>.NaN, double.NaN);
 			Assert.AreEqual(Operators<double?>.NegativeInfinity, double.NegativeInfinity);
 			Assert.AreEqual(Operators<double?>.PositiveInfinity, double.PositiveInfinity);
+			Assert.AreEqual(Operators<float?>.NaN, float.NaN);
 			Assert.AreEqual(Operators<float?>.NegativeInfinity, float.NegativeInfinity);
 			Assert.AreEqual(Operators<float?>.PositiveInfinity, float.PositiveInfinity);
+			Assert.Throws<NotSupportedException>(() => Operators<int?>.NaN.ToString());
 			Assert.Throws<NotSupportedException>(() => Operators<int?>.NegativeInfinity.ToString());
 			Assert.Throws<NotSupportedException>(() => Operators<int?>.PositiveInfinity.ToString());
 
 			Assert.AreEqual(Operators<ClassNoComparable>.NegativeInfinity, ClassNoComparable.NegativeInfinity);
 			Assert.Throws<NotSupportedException>(() => Operators<ClassNoComparable>.PositiveInfinity.ToString());
+			Assert.AreEqual(Operators<StructComparable>.NaN, StructComparable.NaN);
 			Assert.Throws<NotSupportedException>(() => Operators<StructComparable>.NegativeInfinity.ToString());
 			Assert.AreEqual(Operators<StructComparable>.PositiveInfinity, StructComparable.PositiveInfinity);
 			Assert.Throws<NotSupportedException>(() => Operators<StructComparable?>.NegativeInfinity.ToString());

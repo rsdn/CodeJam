@@ -278,6 +278,7 @@ namespace CodeJam.Ranges
 
 			var range = Range.Create(1.0, 2.0, RangeKey);
 			AreEqual(range.Clamp(double.NegativeInfinity), 1);
+			AreEqual(range.Clamp(double.NaN), 1);
 			AreEqual(range.Clamp(0), 1);
 			AreEqual(range.Clamp(1), 1);
 			AreEqual(range.Clamp(1.5), 1.5);

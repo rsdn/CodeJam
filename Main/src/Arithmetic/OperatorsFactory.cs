@@ -135,7 +135,33 @@ namespace CodeJam.Arithmetic
 				Parameter(typeof(T), "arg2"));
 		#endregion
 
-		#region Infinity
+		#region Special fields
+		/// <summary>Determines whether the type has NaN value.</summary>
+		/// <typeparam name="T">The type to check.</typeparam>
+		/// <returns><c>true</c> if the type has NaN.</returns>
+		public static bool HasNaN<T>()
+		{
+			var field = TryGetOpField<T>(nameof(double.NaN));
+
+			return field != null;
+		}
+
+		/// <summary>Returns the NaN value.</summary>
+		/// <typeparam name="T">The type to get value for.</typeparam>
+		/// <exception cref="NotSupportedException">Thrown if the type has no corresponding value.</exception>
+		/// <returns>
+		/// The NaN value or <seealso cref="NotSupportedException"/> if the type has no corresponding value.
+		/// </returns>
+		[NotNull]
+		public static T GetNaN<T>()
+		{
+			var field = TryGetOpField<T>(nameof(double.NaN));
+			if (field == null)
+				throw FieldNotSupported(typeof(T), nameof(double.NaN), null);
+
+			return (T)field.GetValue(null);
+		}
+
 		/// <summary>Determines whether the type has negative infinity value.</summary>
 		/// <typeparam name="T">The type to check.</typeparam>
 		/// <returns><c>true</c> if the type has negative infinity value.</returns>

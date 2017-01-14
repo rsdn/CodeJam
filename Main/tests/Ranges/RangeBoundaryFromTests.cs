@@ -26,11 +26,13 @@ namespace CodeJam.Ranges
 			DoesNotThrow(() => new RangeBoundaryFrom<int?>(empty, RangeBoundaryFromKind.Infinite));
 			DoesNotThrow(() => new RangeBoundaryFrom<int?>(value1, RangeBoundaryFromKind.Exclusive));
 			DoesNotThrow(() => new RangeBoundaryFrom<int?>(value2, RangeBoundaryFromKind.Inclusive));
+			DoesNotThrow(() => new RangeBoundaryFrom<double?>(double.NaN, RangeBoundaryFromKind.Empty));
 
 			Throws<ArgumentException>(() => new RangeBoundaryFrom<int?>(value1, RangeBoundaryFromKind.Empty));
 			Throws<ArgumentException>(() => new RangeBoundaryFrom<int?>(value2, RangeBoundaryFromKind.Infinite));
 			Throws<ArgumentException>(() => new RangeBoundaryFrom<int?>(empty, RangeBoundaryFromKind.Inclusive));
 			Throws<ArgumentException>(() => new RangeBoundaryFrom<int?>(empty, RangeBoundaryFromKind.Exclusive));
+			Throws<ArgumentException>(() => new RangeBoundaryFrom<double?>(double.NaN, RangeBoundaryFromKind.Exclusive));
 
 			AreEqual(
 				RangeBoundaryFrom<int?>.NegativeInfinity,
@@ -50,10 +52,12 @@ namespace CodeJam.Ranges
 			AreNotEqual(
 				new RangeBoundaryFrom<int?>(value1, RangeBoundaryFromKind.Exclusive),
 				Range.BoundaryFromExclusive(value2));
-
 			AreNotEqual(
 				RangeBoundaryFrom<int>.NegativeInfinity,
 				Range.BoundaryFrom(0));
+			AreEqual(
+				new RangeBoundaryFrom<int?>(value1, RangeBoundaryFromKind.Exclusive),
+				Range.BoundaryFromExclusive(value1));
 		}
 
 		[Test]
@@ -151,23 +155,23 @@ namespace CodeJam.Ranges
 		[Test]
 		public static void TestBoundaryFromEquality()
 		{
-			int? value1 = 1;
-			int? value2 = 2;
-			int? empty = null;
+			double? value1 = 1;
+			double? value2 = 2;
+			double? empty = null;
 
-			var e = new RangeBoundaryFrom<int?>();
+			var e = new RangeBoundaryFrom<double?>();
 			var inf = Range.BoundaryFrom(empty);
 			var a1 = Range.BoundaryFrom(value1);
 			var a12 = Range.BoundaryFrom(value1);
 			var a2 = Range.BoundaryFrom(value2);
 			var b1 = Range.BoundaryTo(value1);
 
-			AreEqual(e, RangeBoundaryFrom<int?>.Empty);
-			IsTrue(e == RangeBoundaryFrom<int?>.Empty);
-			IsFalse(e != RangeBoundaryFrom<int?>.Empty);
+			AreEqual(e, RangeBoundaryFrom<double?>.Empty);
+			IsTrue(e == RangeBoundaryFrom<double?>.Empty);
+			IsFalse(e != RangeBoundaryFrom<double?>.Empty);
 
-			AreEqual(inf, RangeBoundaryFrom<int?>.NegativeInfinity);
-			IsTrue(inf == RangeBoundaryFrom<int?>.NegativeInfinity);
+			AreEqual(inf, RangeBoundaryFrom<double?>.NegativeInfinity);
+			IsTrue(inf == RangeBoundaryFrom<double?>.NegativeInfinity);
 
 			AreNotEqual(a1, empty);
 			AreNotEqual(a1, inf);

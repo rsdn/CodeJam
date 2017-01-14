@@ -55,6 +55,8 @@ namespace CodeJam.Ranges
 			Throws<ArgumentException>(() => Range.CreateExclusive(value2, value1, key));
 			Throws<ArgumentException>(() => Range.Create(RangeBoundaryFrom<int?>.Empty, Range.BoundaryTo(value2), key));
 			Throws<ArgumentException>(() => Range.Create(Range.BoundaryFrom(empty), RangeBoundaryTo<int?>.Empty, key));
+			Throws<ArgumentException>(() => Range.Create(double.NaN, 1, key));
+			Throws<ArgumentException>(() => Range.Create(1, double.NaN, key));
 			Throws<ArgumentException>(() => Range.Create(double.NegativeInfinity, double.NegativeInfinity, key));
 			Throws<ArgumentException>(() => Range.Create(double.PositiveInfinity, double.PositiveInfinity, key));
 			Throws<ArgumentException>(() => Range.Create(double.PositiveInfinity, double.NegativeInfinity, key));
@@ -89,6 +91,8 @@ namespace CodeJam.Ranges
 			IsTrue(Range.TryCreate(value2, value1, key).IsEmpty);
 			IsFalse(Range.TryCreate(value1, value2, key).IsEmpty);
 			IsTrue(Range.TryCreate(double.NegativeInfinity, double.NegativeInfinity, key).IsEmpty);
+			IsTrue(Range.TryCreate(double.NaN, 1, key).IsEmpty);
+			IsTrue(Range.TryCreate(double.NaN, double.NaN, key).IsEmpty);
 		}
 
 		[Test]

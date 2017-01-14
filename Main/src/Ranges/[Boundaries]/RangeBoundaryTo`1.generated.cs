@@ -46,6 +46,8 @@ namespace CodeJam.Ranges
 		private static readonly Func<T, T, bool> _equalsFunc = Operators<T>.AreEqual;
 		private static readonly Func<T, T, int> _compareFunc = Operators<T>.Compare;
 
+		private static readonly bool _hasNaN = Operators<T>.HasNaN;
+
 		private static readonly bool _hasPositiveInfinity = Operators<T>.HasPositiveInfinity;
 
 		private static readonly T _positiveInfinity = Operators<T>.HasPositiveInfinity
@@ -60,6 +62,7 @@ namespace CodeJam.Ranges
 
 		/// <summary>
 		/// Infrastructure helper method to create a boundary that handles default and infinite values.
+		/// The boundaryKind should be either Inclusive or Exclusive
 		/// </summary>
 		/// <param name="value">The value of the boundary.</param>
 		/// <param name="boundaryKind">The kind of the boundary.</param>
@@ -69,16 +72,25 @@ namespace CodeJam.Ranges
 		[MethodImpl(AggressiveInlining)]
 		public static RangeBoundaryTo<T> AdjustAndCreate(T value, RangeBoundaryToKind boundaryKind)
 		{
-			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity) && boundaryKind != RangeBoundaryToKind.Empty)
+			DebugCode.AssertArgument(
+				boundaryKind == RangeBoundaryToKind.Inclusive || boundaryKind == RangeBoundaryToKind.Exclusive,
+				nameof(boundaryKind),
+				"The boundary kind should be be either Inclusive or Exclusive");
+
+			if (_hasNaN && !_equalsFunc(value, value))
+			{
+				value = default(T);
+				boundaryKind = RangeBoundaryToKind.Empty;
+			}
+			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity))
 			{
 				value = default(T);
 				boundaryKind = RangeBoundaryToKind.Infinite;
 			}
 			if (_hasNegativeInfinity && _equalsFunc(value, _negativeInfinity))
 			{
-				throw CodeExceptions.Argument(nameof(value), "The To boundary does not accept negative infinity value.");
+				throw CodeExceptions.Argument(nameof(value), "The negative infinity value should not be used for To boundaries.");
 			}
-
 			if (value == null && boundaryKind != RangeBoundaryToKind.Empty)
 			{
 				boundaryKind = RangeBoundaryToKind.Infinite;
@@ -134,13 +146,25 @@ namespace CodeJam.Ranges
 		/// <param name="boundaryKind">The kind of the boundary.</param>
 		public RangeBoundaryTo(T value, RangeBoundaryToKind boundaryKind)
 		{
-			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity) && boundaryKind != RangeBoundaryToKind.Empty)
+			if (_hasNaN && !_equalsFunc(value, value))
 			{
 				value = default(T);
+				if (boundaryKind != RangeBoundaryToKind.Empty)
+				{
+					throw CodeExceptions.Argument(nameof(value), "The NaN value should be used only for Empty boundaries.");
+				}
+			}
+			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity))
+			{
+				value = default(T);
+				if (boundaryKind != RangeBoundaryToKind.Infinite)
+				{
+					throw CodeExceptions.Argument(nameof(value), "The positive infinity value should be used only for Infinite boundaries.");
+				}
 			}
 			if (_hasNegativeInfinity && _equalsFunc(value, _negativeInfinity))
 			{
-				throw CodeExceptions.Argument(nameof(value), "The To boundary does not accept negative infinity value.");
+				throw CodeExceptions.Argument(nameof(value), "The negative infinity value should not be used for To boundaries.");
 			}
 
 			if (boundaryKind != RangeBoundaryToKind.Inclusive && boundaryKind != RangeBoundaryToKind.Exclusive)
@@ -279,7 +303,7 @@ namespace CodeJam.Ranges
 					newKind = RangeBoundaryFromKind.Inclusive;
 					break;
 				default:
-					throw CodeExceptions.UnexpectedValue($" Cannot get complementation for the boundary '{this}' as it has no value.");
+					throw CodeExceptions.UnexpectedValue($"Cannot get complementation for the boundary '{this}' as it has no value.");
 			}
 
 			return RangeBoundaryFrom<T>.AdjustAndCreate(_value, newKind);

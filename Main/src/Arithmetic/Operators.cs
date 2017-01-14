@@ -25,7 +25,24 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		public static Func<T, T, int> Compare => _compare.Value;
 
-		#region Infinity values
+		#region Special fields
+		private static readonly Lazy<bool> _hasNaN =
+			new Lazy<bool>(OperatorsFactory.HasNaN<T>, _lazyMode);
+
+		/// <summary>
+		/// Check for the NaN value.
+		/// </summary>
+		public static bool HasNaN => _hasNaN.Value;
+
+		private static readonly Lazy<T> _naN =
+			new Lazy<T>(OperatorsFactory.GetNaN<T>, _lazyMode);
+
+		/// <summary>
+		/// NaN value
+		/// </summary>
+		[NotNull]
+		public static T NaN => _naN.Value;
+		
 		private static readonly Lazy<bool> _hasNegativeInfinity =
 			new Lazy<bool>(OperatorsFactory.HasNegativeInfinity<T>, _lazyMode);
 
