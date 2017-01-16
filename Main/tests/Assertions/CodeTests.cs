@@ -62,7 +62,6 @@ namespace CodeJam.Assertions
 				Assert.That(ex.Message, Does.Contain("arg00"));
 				Assert.That(log.ToString(), Does.Contain(ex.Message));
 
-
 				Assert.DoesNotThrow(() => Code.NotNull<object>("Hello!", "arg00"));
 				Assert.That(log.ToString(), Does.Not.Contain("Hello!"));
 			}
@@ -127,6 +126,13 @@ namespace CodeJam.Assertions
 			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange(3, "arg00", 4, 5));
 			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange(3, "arg00", 5, 4));
 			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange(3, "arg00", 4, 2));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange(double.NaN, "arg00", 4, 2));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange(double.NegativeInfinity, "arg00", 4, 2));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange(2, "arg00", 4, 2));
+			Assert.Throws<ArgumentOutOfRangeException>(
+				() => Code.InRange(2, "arg00", double.PositiveInfinity, double.NegativeInfinity));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange(2, "arg00", double.NaN, 2));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange(2, "arg00", 2, double.NaN));
 
 			var ex = Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange(3, "arg00", 0, 1));
 			Assert.That(ex.Message, Does.Contain("arg00"));
@@ -137,6 +143,7 @@ namespace CodeJam.Assertions
 			Assert.DoesNotThrow(() => Code.InRange(3, "arg00", 2, 3));
 			Assert.DoesNotThrow(() => Code.InRange(3, "arg00", 3, 4));
 			Assert.DoesNotThrow(() => Code.InRange(3, "arg00", int.MinValue, int.MaxValue));
+			Assert.DoesNotThrow(() => Code.InRange(3, "arg00", double.NegativeInfinity, double.PositiveInfinity));
 		}
 
 		[Test]
@@ -149,8 +156,15 @@ namespace CodeJam.Assertions
 			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(3.0, "arg00", 4, 5));
 			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(3.0, "arg00", 5, 4));
 			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(3.0, "arg00", 4, 2));
-			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(3.0, "arg00", 4, null));
-			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(3.0, "arg00", null, 2));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(2, "arg00", 4, 2));
+			Assert.Throws<ArgumentOutOfRangeException>(
+				() => Code.InRange<double?>(2, "arg00", double.PositiveInfinity, double.NegativeInfinity));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(null, "arg00", 4, 2));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(double.NaN, "arg00", 4, 2));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(2, "arg00", double.NaN, 2));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(2, "arg00", 2, double.NaN));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(3.0, "arg00", 2, null));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(3.0, "arg00", null, 4));
 
 			var ex = Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(3.0, "arg00", 0, 1));
 			Assert.That(ex.Message, Does.Contain("arg00"));
@@ -160,9 +174,9 @@ namespace CodeJam.Assertions
 			Assert.DoesNotThrow(() => Code.InRange<double?>(3.0, "arg00", 3, 3));
 			Assert.DoesNotThrow(() => Code.InRange<double?>(3.0, "arg00", 2, 3));
 			Assert.DoesNotThrow(() => Code.InRange<double?>(3.0, "arg00", 3, 4));
+			Assert.DoesNotThrow(() => Code.InRange<double?>(3.0, "arg00", double.MinValue, double.MaxValue));
 			Assert.DoesNotThrow(
 				() => Code.InRange<double?>(3.0, "arg00", double.NegativeInfinity, double.PositiveInfinity));
-			Assert.DoesNotThrow(() => Code.InRange<double?>(3.0, "arg00", null, 4));
 		}
 
 		[Test]

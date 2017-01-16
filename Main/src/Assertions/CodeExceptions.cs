@@ -172,6 +172,26 @@ namespace CodeJam
 		}
 
 		/// <summary>Creates <seealso cref="ArgumentOutOfRangeException"/></summary>
+		/// <param name="argumentName">Name of the argument.</param>
+		/// <param name="value">The value.</param>
+		/// <param name="fromValue">From value (inclusive).</param>
+		/// <param name="toValue">To value (inclusive).</param>
+		/// <returns>Initialized instance of <seealso cref="ArgumentOutOfRangeException"/></returns>
+		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
+		[MustUseReturnValue]
+		public static ArgumentOutOfRangeException ArgumentOutOfRange(
+			[NotNull, InvokerParameterName] string argumentName,
+			double value, double fromValue, double toValue)
+		{
+			BreakIfAttached();
+			return new ArgumentOutOfRangeException(
+				argumentName,
+				value,
+				$"The value of '{argumentName}' ({value}) should be between {fromValue} and {toValue}.")
+				.LogToCodeTraceSourceBeforeThrow();
+		}
+
+		/// <summary>Creates <seealso cref="ArgumentOutOfRangeException"/></summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>

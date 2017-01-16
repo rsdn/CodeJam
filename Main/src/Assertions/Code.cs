@@ -152,6 +152,24 @@ namespace CodeJam
 		}
 
 		/// <summary>Assertion for the argument in range</summary>
+		/// <param name="value">The value.</param>
+		/// <param name="argName">Name of the argument.</param>
+		/// <param name="fromValue">From value (inclusive).</param>
+		/// <param name="toValue">To value (inclusive).</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void InRange(
+			double value,
+			[NotNull, InvokerParameterName] string argName,
+			double fromValue,
+			double toValue)
+		{
+			// DONTTOUCH: handles the NaN values
+			if (!(value >= fromValue && value <= toValue))
+				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue, toValue);
+		}
+
+		/// <summary>Assertion for the argument in range</summary>
 		/// <typeparam name="T">Type of the value</typeparam>
 		/// <param name="value">The value.</param>
 		/// <param name="argName">Name of the argument.</param>
@@ -165,7 +183,8 @@ namespace CodeJam
 			T fromValue,
 			T toValue)
 		{
-			if (Operators<T>.LessThan(value, fromValue) || Operators<T>.GreaterThan(value, toValue))
+			// DONTTOUCH: handles the NaN values
+			if (!(Operators<T>.GreaterThanOrEqual(value, fromValue) && Operators<T>.LessThanOrEqual(value, toValue)))
 				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue, toValue);
 		}
 		#endregion

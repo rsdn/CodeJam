@@ -27,7 +27,9 @@ namespace CodeJam.Ranges
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="fromValue">From value.</param>
 		/// <returns>
-		/// New inclusive boundary From, or the negative infinity boundary if the <paramref name="fromValue"/> is <c>null</c>.
+		/// New inclusive boundary From,
+		/// or negative infinity boundary if the <paramref name="fromValue"/> is <c>null</c> or equals to NegativeInfinity static field of the <typeparamref name="T"/>.
+		/// or empty boundary if the <paramref name="fromValue"/> equals to NaN static field of the <typeparamref name="T"/>.
 		/// </returns>
 		[MethodImpl(AggressiveInlining)]
 		public static RangeBoundaryFrom<T> BoundaryFrom<T>(T fromValue) =>
@@ -37,7 +39,9 @@ namespace CodeJam.Ranges
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="fromValue">From value.</param>
 		/// <returns>
-		/// New exclusive boundary From, or the negative infinity boundary if the <paramref name="fromValue"/> is <c>null</c>.
+		/// New exclusive boundary From,
+		/// or negative infinity boundary if the <paramref name="fromValue"/> is <c>null</c> or equals to NegativeInfinity static field of the <typeparamref name="T"/>.
+		/// or empty boundary if the <paramref name="fromValue"/> equals to NaN static field of the <typeparamref name="T"/>.
 		/// </returns>
 		[MethodImpl(AggressiveInlining)]
 		public static RangeBoundaryFrom<T> BoundaryFromExclusive<T>(T fromValue) =>
@@ -54,7 +58,9 @@ namespace CodeJam.Ranges
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="toValue">To value.</param>
 		/// <returns>
-		/// New inclusive boundary To, or the positive infinity boundary if the <paramref name="toValue"/> is <c>null</c>.
+		/// New inclusive boundary To,
+		/// or positive infinity boundary if the <paramref name="toValue"/> is <c>null</c> or equals to PositiveInfinity static field of the <typeparamref name="T"/>.
+		/// or empty boundary if the <paramref name="toValue"/> equals to NaN static field of the <typeparamref name="T"/>.
 		/// </returns>
 		[MethodImpl(AggressiveInlining)]
 		public static RangeBoundaryTo<T> BoundaryTo<T>(T toValue) =>
@@ -64,7 +70,9 @@ namespace CodeJam.Ranges
 		/// <typeparam name="T">The type of the boundary value.</typeparam>
 		/// <param name="toValue">To value.</param>
 		/// <returns>
-		/// New exclusive boundary To, or the positive infinity boundary if the <paramref name="toValue"/> is <c>null</c>.
+		/// New exclusive boundary To,
+		/// or positive infinity boundary if the <paramref name="toValue"/> is <c>null</c> or equals to PositiveInfinity static field of the <typeparamref name="T"/>.
+		/// or empty boundary if the <paramref name="toValue"/> equals to NaN static field of the <typeparamref name="T"/>.
 		/// </returns>
 		[MethodImpl(AggressiveInlining)]
 		public static RangeBoundaryTo<T> BoundaryToExclusive<T>(T toValue) =>
