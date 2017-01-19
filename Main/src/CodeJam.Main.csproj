@@ -176,37 +176,6 @@
       <DependentUpon>Expr.tt</DependentUpon>
     </Compile>
     <Compile Include="IO\NamespaceDoc.cs" />
-    <Compile Include="Mapping\CodeJamConvertException.cs" />
-    <Compile Include="Mapping\CodeJamMappingException.cs" />
-    <Compile Include="Mapping\ConvertBuilder.cs" />
-    <Compile Include="Mapping\Converter.cs" />
-    <Compile Include="Mapping\ConvertInfo.cs" />
-    <Compile Include="Mapping\ConvertT.cs" />
-    <Compile Include="Mapping\ConvertTo.cs" />
-    <Compile Include="Mapping\DefaultValue.cs" />
-    <Compile Include="Mapping\DefaultValueExpression.cs" />
-    <Compile Include="Mapping\DefaultValueT.cs" />
-    <Compile Include="Mapping\IGenericInfoProvider.cs" />
-    <Compile Include="Mapping\IMapperBuilder.cs" />
-    <Compile Include="Mapping\Map.cs" />
-    <Compile Include="Mapping\ExpressionBuilder.cs" />
-    <Compile Include="Mapping\Mapper.cs" />
-    <Compile Include="Mapping\MapperBuilder.cs" />
-    <Compile Include="Mapping\MappingSchema.cs" />
-    <Compile Include="Mapping\MappingSchemaInfo.cs" />
-    <Compile Include="Mapping\MapValue.cs" />
-    <Compile Include="Mapping\MapValueAttribute.cs" />
-    <Compile Include="Mapping\NamespaceDoc.cs" />
-    <Compile Include="Mapping\ScalarTypeAttribute.cs" />
-    <Compile Include="Metadata\AttributeInfo.cs" />
-    <Compile Include="Metadata\AttributeReader.cs" />
-    <Compile Include="Metadata\IMetadataReader.cs" />
-    <Compile Include="Metadata\MetadataException.cs" />
-    <Compile Include="Metadata\MetadataReader.cs" />
-    <Compile Include="Metadata\MetaMemberInfo.cs" />
-    <Compile Include="Metadata\MetaTypeInfo.cs" />
-    <Compile Include="Metadata\NamespaceDoc.cs" />
-    <Compile Include="Metadata\XmlAttributeReader.cs" />
     <Compile Include="Lazy.cs" />
     <Compile Include="NamespaceDoc.cs" />
     <Compile Include="NullableHelper.cs" />
@@ -284,7 +253,6 @@
     <Compile Include="Reflection\NamespaceDoc.cs" />
     <Compile Include="Reflection\TypeAccessor.cs" />
     <Compile Include="Reflection\TypeAccessorT.cs" />
-    <Compile Include="Services\NamespaceDoc.cs" />
     <Compile Include="Strings\NamespaceDoc.cs" />
     <Compile Include="Strings\CharExtensions.Infix.generated.cs">
       <DependentUpon>CharExtensions.Infix.tt</DependentUpon>
@@ -316,15 +284,7 @@
     <Compile Include="Structures\Option\ValueOption.cs" />
     <Compile Include="Reflection\InfoOf`1.cs" />
     <Compile Include="Reflection\ParamInfo.cs" />
-    <Compile Include="Services\IServicePublisher.cs" />
-    <Compile Include="Services\ServiceContainer.cs" />
-    <Compile Include="Services\ServiceProviderHelper.cs" />
     <Compile Include="Structures\Option\Option`1.cs" />
-    <Compile Include="TableData\CsvFormat.cs" />
-    <Compile Include="TableData\DataLine.cs" />
-    <Compile Include="TableData\FixedWidthFormat.cs" />
-    <Compile Include="TableData\NamespaceDoc.cs" />
-    <Compile Include="TableData\TableDataParser.cs" />
     <Compile Include="Targeting\FW35\Tuple.cs" />
     <Compile Include="Targeting\FW40\ValueTuple\TupleElementNamesAttribute.cs" />
     <Compile Include="Targeting\FW40\CustomAttributeExtensions.cs" />
