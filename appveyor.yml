@@ -37,6 +37,11 @@ after_build:
 - cmd: cd Main\src
 - cmd: Compile.cmd
 - cmd: cd ..\..
+
+- cmd: cd Blocks\src
+- cmd: Compile.cmd
+- cmd: cd ..\..
+
 - ps: $mainVer = (Get-Content Main\nuget\CodeJam.Main.nuspec).package.metadata.version
 - ps: "$mainVer"
 - ps: nuget pack Main\nuget\CodeJam.Main.nuspec -version "$env:nugetVersion"
