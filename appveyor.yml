@@ -40,12 +40,14 @@ after_build:
 - ps: $mainVer = (Get-Content Main\nuget\CodeJam.Main.nuspec).package.metadata.version
 - ps: "$mainVer"
 - ps: nuget pack Main\nuget\CodeJam.Main.nuspec -version "$env:nugetVersion"
+- ps: nuget pack Blocks\nuget\CodeJam.Blocks.nuspec -version "$env:nugetVersion"
 - ps: nuget pack Experimental\nuget\CodeJam.Experimental.nuspec -version "$env:nugetVersion"
 - ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.Core.nuspec -version "$env:nugetVersion"
 - ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.NUnit.nuspec -version "$env:nugetVersion"
 - ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.xUnit.nuspec -version "$env:nugetVersion"
 - ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.MSTest.nuspec -version "$env:nugetVersion"
 - ps: Push-AppveyorArtifact CodeJam.$env:nugetVersion.nupkg
+- ps: Push-AppveyorArtifact CodeJam.Blocks.$env:nugetVersion.nupkg
 - ps: Push-AppveyorArtifact CodeJam.Experimental.$env:nugetVersion.nupkg
 - ps: Push-AppveyorArtifact CodeJam.PerfTests.Core.$env:nugetVersion.nupkg
 - ps: Push-AppveyorArtifact CodeJam.PerfTests.NUnit.$env:nugetVersion.nupkg
