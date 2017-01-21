@@ -14,10 +14,42 @@ namespace CodeJam.Collections
 	[TestFixture]
 	public class ComparerBuilderTests
 	{
+		class A
+		{
+			public virtual void M() { }
+		}
+
+		class B : A
+		{
+			public override void M() { }
+		}
+
+		[Test]
+		public void MethodHandleTestFails()
+		{
+			var comparer = ComparerBuilder<MethodInfo>.GetEqualityComparer(m => m.MethodHandle);
+
+			var a = typeof(A).GetMethod("M");
+			var b = typeof(B).GetMethod("M");
+			var b2 = b.GetBaseDefinition();
+
+			Assert.False(a.Equals(b), "MethodInfo fails");
+			Assert.True(a.Equals(b2), "MethodInfo fails");
+
+			Assert.False(a.MethodHandle.Equals(b.MethodHandle), "MethodHandle fails");
+			Assert.True(a.MethodHandle.Equals(b2.MethodHandle), "MethodHandle fails");
+
+			Assert.False(EqualityComparer<RuntimeMethodHandle>.Default.Equals(a.MethodHandle, b.MethodHandle), "EqualityComparer fails");
+			Assert.True(EqualityComparer<RuntimeMethodHandle>.Default.Equals(a.MethodHandle, b2.MethodHandle), "EqualityComparer fails");
+
+			Assert.False(comparer.Equals(a, b), "ComparerBuilder fails");
+			Assert.True(comparer.Equals(a, b2), "ComparerBuilder fails");
+		}
+
 		[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 		private class TestClass
 		{
-			public int    Field1;
+			public int Field1;
 			public string Prop2 { get; set; }
 
 			private static int _n;
@@ -30,7 +62,7 @@ namespace CodeJam.Collections
 			var eq = ComparerBuilder<TestClass>.GetEqualityComparer();
 
 			Assert.That(eq.GetHashCode(new TestClass()), Is.Not.EqualTo(0));
-			Assert.That(eq.GetHashCode(null),            Is.EqualTo(0));
+			Assert.That(eq.GetHashCode(null), Is.EqualTo(0));
 		}
 
 		[Test]
@@ -38,10 +70,10 @@ namespace CodeJam.Collections
 		{
 			var eq = ComparerBuilder<TestClass>.GetEqualityComparer();
 
-			Assert.That(eq.Equals(new TestClass(), new TestClass()),              Is.True);
-			Assert.That(eq.Equals(null,            null),                         Is.True);
-			Assert.That(eq.Equals(null,            new TestClass()),              Is.False);
-			Assert.That(eq.Equals(new TestClass(), null),                         Is.False);
+			Assert.That(eq.Equals(new TestClass(), new TestClass()), Is.True);
+			Assert.That(eq.Equals(null, null), Is.True);
+			Assert.That(eq.Equals(null, new TestClass()), Is.False);
+			Assert.That(eq.Equals(new TestClass(), null), Is.False);
 			Assert.That(eq.Equals(new TestClass(), new TestClass { Field1 = 1 }), Is.False);
 		}
 
@@ -57,7 +89,7 @@ namespace CodeJam.Collections
 			Assert.That(eq.GetHashCode(new NoMemberClass()), Is.Not.EqualTo(0));
 
 			Assert.That(eq.Equals(new NoMemberClass(), new NoMemberClass()), Is.True);
-			Assert.That(eq.Equals(new NoMemberClass(), null),                Is.False);
+			Assert.That(eq.Equals(new NoMemberClass(), null), Is.False);
 		}
 
 		[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
@@ -73,15 +105,15 @@ namespace CodeJam.Collections
 
 			Assert.That(eq.GetHashCode(new OneMemberClass()), Is.Not.EqualTo(0));
 
-			Assert.That(eq.Equals(new OneMemberClass(), new OneMemberClass()),             Is.True);
-			Assert.That(eq.Equals(new OneMemberClass(), null),                             Is.False);
-			Assert.That(eq.Equals(new OneMemberClass(), new OneMemberClass { Field1 = 1}), Is.False);
+			Assert.That(eq.Equals(new OneMemberClass(), new OneMemberClass()), Is.True);
+			Assert.That(eq.Equals(new OneMemberClass(), null), Is.False);
+			Assert.That(eq.Equals(new OneMemberClass(), new OneMemberClass { Field1 = 1 }), Is.False);
 		}
 
 		[Test]
 		public void DistinctTest()
 		{
-			var eq  = ComparerBuilder<TestClass>.GetEqualityComparer();
+			var eq = ComparerBuilder<TestClass>.GetEqualityComparer();
 			var arr = new[]
 			{
 				new TestClass { Field1 = 1, Prop2 = "2"  },
@@ -99,7 +131,7 @@ namespace CodeJam.Collections
 		[Test]
 		public void DistinctByMember1Test()
 		{
-			var eq  = ComparerBuilder<TestClass>.GetEqualityComparer(t => t.Field1);
+			var eq = ComparerBuilder<TestClass>.GetEqualityComparer(t => t.Field1);
 			var arr = new[]
 			{
 				new TestClass { Field1 = 1, Prop2 = "2"  },
@@ -117,7 +149,7 @@ namespace CodeJam.Collections
 		[Test]
 		public void DistinctByMember2Test()
 		{
-			var eq  = ComparerBuilder<TestClass>.GetEqualityComparer(t => t.Field1, t => t.Prop2);
+			var eq = ComparerBuilder<TestClass>.GetEqualityComparer(t => t.Field1, t => t.Prop2);
 			var arr = new[]
 			{
 				new TestClass { Field1 = 1, Prop2 = "2"  },
@@ -135,7 +167,7 @@ namespace CodeJam.Collections
 		[Test]
 		public void DistinctByMember3Test()
 		{
-			var eq  = ComparerBuilder<TestClass>.GetEqualityComparer(ta => ta.Members.Where(m => m.Name.EndsWith("1")));
+			var eq = ComparerBuilder<TestClass>.GetEqualityComparer(ta => ta.Members.Where(m => m.Name.EndsWith("1")));
 			var arr = new[]
 			{
 				new TestClass { Field1 = 1, Prop2 = "2"  },
@@ -159,11 +191,11 @@ namespace CodeJam.Collections
 		private class TestClass2
 		{
 			[Identifier]
-			public int    EntityType { get; set; }
+			public int EntityType { get; set; }
 			[Identifier]
-			public int    EntityID   { get; set; }
+			public int EntityID { get; set; }
 
-			public string Name       { get; set; }
+			public string Name { get; set; }
 		}
 
 		private static IEnumerable<MemberAccessor> GetIdentifiers(TypeAccessor typeAccessor)
@@ -176,7 +208,7 @@ namespace CodeJam.Collections
 		[Test]
 		public void AttributeTest()
 		{
-			var eq  = ComparerBuilder<TestClass2>.GetEqualityComparer(GetIdentifiers);
+			var eq = ComparerBuilder<TestClass2>.GetEqualityComparer(GetIdentifiers);
 			var arr = new[]
 			{
 				null,
