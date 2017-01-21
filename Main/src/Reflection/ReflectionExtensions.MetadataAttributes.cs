@@ -17,13 +17,30 @@ namespace CodeJam.Reflection
 	/// </summary>
 	public static partial class ReflectionExtensions
 	{
+		private sealed class TypeTypeHandleComparer : IEqualityComparer<Type>
+		{
+			public bool Equals(Type x, Type y) =>
+				x == null ? y == null : (y != null && x.TypeHandle.Equals(y.TypeHandle));
+
+			public int GetHashCode(Type obj) => obj?.TypeHandle.GetHashCode() ?? 0;
+		}
+
+		private sealed class MethodMethodHandleComparer : IEqualityComparer<MethodInfo>
+		{
+			public bool Equals(MethodInfo x, MethodInfo y) =>
+				x == null ? y == null : (y != null && x.MethodHandle.Equals(y.MethodHandle));
+
+			public int GetHashCode(MethodInfo obj) => obj?.MethodHandle.GetHashCode() ?? 0;
+		}
+
 		// DONTTOUCH: Direct compare may result in false negative.
 		// See http://stackoverflow.com/questions/27645408 for explanation.
-		private static readonly IEqualityComparer<Type> _typeComparer = ComparerBuilder<Type>.GetEqualityComparer(t => t.TypeHandle);
-		private static readonly IEqualityComparer<MethodInfo> _methodComparer = ComparerBuilder<MethodInfo>.GetEqualityComparer(m => m.MethodHandle);
+		private static readonly IEqualityComparer<Type> _typeComparer = new TypeTypeHandleComparer();
+		private static readonly IEqualityComparer<MethodInfo> _methodComparer = new MethodMethodHandleComparer();
 
 		/// <summary>
-		/// Performs search for metadata attribute in following order:
+		/// Performs search for metadata attribute.
+		/// The search is performed in the following order
 		/// * member attributes, base implementation attributes (if the <paramref name="attributeProvider"/> is member of the type)
 		/// * type attributes, base type attributes (if the <paramref name="attributeProvider"/> is type or member of the type)
 		/// * container type attributes (if the type is nested type)
@@ -42,10 +59,36 @@ namespace CodeJam.Reflection
 		public static TAttribute TryGetMetadataAttribute<TAttribute>(
 			[NotNull] this ICustomAttributeProvider attributeProvider)
 			where TAttribute : class =>
-				GetMetadataAttributes<TAttribute>(attributeProvider).FirstOrDefault();
+				TryGetMetadataAttribute<TAttribute>(attributeProvider, false);
 
 		/// <summary>
-		/// Performs search for metadata attributes in following order:
+		/// Performs search for metadata attribute.
+		/// If the <paramref name="thisLevelOnly"/> is <c>true</c>, the search is performed in the following order:
+		/// * member attributes, base implementation attributes (if the <paramref name="attributeProvider"/> is member of the type)
+		/// * type attributes, base type attributes (if the <paramref name="attributeProvider"/> is type or member of the type)
+		/// * container type attributes (if the type is nested type)
+		/// * assembly attributes.
+		/// </summary>
+		/// <remarks>
+		/// Search logic for each level matches to the
+		/// <see cref="Attribute.GetCustomAttributes(MemberInfo,Type,bool)"/> method (inherit = <c>true</c>).
+		/// including checks of <see cref="AttributeUsageAttribute"/>.
+		/// Ordering of attributes at each level is undefined and depends on runtime implementation.
+		/// </remarks>
+		/// <typeparam name="TAttribute">Type of the attribute or type of the interface implemented by the attributes.</typeparam>
+		/// <param name="attributeProvider">Metadata attribute source.</param>
+		/// <param name="thisLevelOnly">Do not check containers for the attributes.</param>
+		/// <returns>First attribute found.</returns>
+		[CanBeNull]
+		public static TAttribute TryGetMetadataAttribute<TAttribute>(
+			[NotNull] this ICustomAttributeProvider attributeProvider,
+			bool thisLevelOnly)
+			where TAttribute : class =>
+				GetMetadataAttributes<TAttribute>(attributeProvider, thisLevelOnly).FirstOrDefault();
+
+		/// <summary>
+		/// Performs search for metadata attributes.
+		/// The search is performed in the following order:
 		/// * member attributes, base implementation attributes (if the <paramref name="attributeProvider"/> is member of the type)
 		/// * type attributes, base type attributes (if the <paramref name="attributeProvider"/> is type or member of the type)
 		/// * container type attributes (if the type is nested type)
@@ -63,31 +106,78 @@ namespace CodeJam.Reflection
 		[NotNull]
 		public static IEnumerable<TAttribute> GetMetadataAttributes<TAttribute>(
 			[NotNull] this ICustomAttributeProvider attributeProvider)
+			where TAttribute : class =>
+				GetMetadataAttributes<TAttribute>(attributeProvider, false);
+
+		/// <summary>
+		/// Performs search for metadata attributes.
+		/// If the <paramref name="thisLevelOnly"/> is <c>true</c>, the search is performed in the following order:
+		/// * member attributes, base implementation attributes (if the <paramref name="attributeProvider" /> is member of the type)
+		/// * type attributes, base type attributes (if the <paramref name="attributeProvider" /> is type or member of the type)
+		/// * container type attributes (if the type is nested type)
+		/// * assembly attributes.
+		/// </summary>
+		/// <typeparam name="TAttribute">Type of the attribute or type of the interface implemented by the attributes.</typeparam>
+		/// <param name="attributeProvider">Metadata attribute source.</param>
+		/// <param name="thisLevelOnly">Do not check containers for the attributes.</param>
+		/// <returns>Metadata attributes.</returns>
+		/// <remarks>
+		/// Search logic for each level matches to the
+		/// <see cref="Attribute.GetCustomAttributes(MemberInfo,Type,bool)" /> method (inherit = <c>true</c>).
+		/// including checks of <see cref="AttributeUsageAttribute" />.
+		/// Ordering of attributes at each level is undefined and depends on runtime implementation.
+		/// </remarks>
+		[NotNull]
+		public static IEnumerable<TAttribute> GetMetadataAttributes<TAttribute>(
+			[NotNull] this ICustomAttributeProvider attributeProvider,
+			bool thisLevelOnly)
 			where TAttribute : class
 		{
 			Code.NotNull(attributeProvider, nameof(attributeProvider));
 
 			if (attributeProvider is Type type)
-				return type.GetAttributesForType<TAttribute>();
+				return type.GetAttributesForType<TAttribute>(thisLevelOnly);
 
 			if (attributeProvider is MemberInfo member)
-				return member.GetAttributesForMember<TAttribute>();
+				return member.GetAttributesForMember<TAttribute>(thisLevelOnly);
 
-			return GetAttributesFromCandidates<TAttribute>(attributeProvider);
+			return GetAttributesFromCandidates<TAttribute>(true, attributeProvider);
 		}
 
 		private static IEnumerable<TAttribute> GetAttributesForType<TAttribute>(
+			this Type type, bool thisLevelOnly)
+			where TAttribute : class =>
+				thisLevelOnly
+					? GetAttributesForTypeSingleLevel<TAttribute>(type)
+					: GetAttributesForTypeWithNesting<TAttribute>(type);
+
+		private static IEnumerable<TAttribute> GetAttributesForTypeSingleLevel<TAttribute>(
 			this Type type)
 			where TAttribute : class
 		{
-			var visited = new HashSet<Type>();
+			var inheritanceTypes = Sequence.CreateWhileNotNull(type, t => t.BaseType)
+				.ToArray();
+
+			// ReSharper disable once CoVariantArrayConversion
+			var attributes = GetAttributesFromCandidates<TAttribute>(false, inheritanceTypes);
+			foreach (var attribute in attributes)
+			{
+				yield return attribute;
+			}
+		}
+
+		private static IEnumerable<TAttribute> GetAttributesForTypeWithNesting<TAttribute>(
+			this Type type)
+			where TAttribute : class
+		{
+			var visited = new HashSet<Type>(_typeComparer);
 			var typesToCheck = Sequence.CreateWhileNotNull(type, t => t.DeclaringType);
 			foreach (var typeToCheck in typesToCheck)
 			{
 				var inheritanceTypes = Sequence.Create(
-						typeToCheck,
-						t => t != null && !visited.Contains(t),
-						t => t.BaseType)
+					typeToCheck,
+					t => t != null && !visited.Contains(t),
+					t => t.BaseType)
 					.ToArray();
 
 				if (inheritanceTypes.Length == 0)
@@ -96,33 +186,35 @@ namespace CodeJam.Reflection
 				visited.AddRange(inheritanceTypes);
 
 				// ReSharper disable once CoVariantArrayConversion
-				var attributes = GetAttributesFromCandidates<TAttribute>(inheritanceTypes);
+				var attributes = GetAttributesFromCandidates<TAttribute>(false, inheritanceTypes);
 				foreach (var attribute in attributes)
 				{
 					yield return attribute;
 				}
 			}
 
-			foreach (var attribute in GetAttributesFromCandidates<TAttribute>(type.Assembly))
+			foreach (var attribute in GetAttributesFromCandidates<TAttribute>(true, type.Assembly))
 			{
 				yield return attribute;
 			}
 		}
 
-		private static IEnumerable<TAttribute> GetAttributesForMember<TAttribute>(
-			this MemberInfo member)
+		private static IEnumerable<TAttribute> GetAttributesForMember<TAttribute>(this MemberInfo member, bool thisLevelOnly)
 			where TAttribute : class
 		{
 			// ReSharper disable once CoVariantArrayConversion
-			var attributes = GetAttributesFromCandidates<TAttribute>(member.GetOverrideChain());
+			var attributes = GetAttributesFromCandidates<TAttribute>(false, member.GetOverrideChain());
 			foreach (var attribute in attributes)
 			{
 				yield return attribute;
 			}
 
-			foreach (var attribute in member.DeclaringType.GetAttributesForType<TAttribute>())
+			if (!thisLevelOnly)
 			{
-				yield return attribute;
+				foreach (var attribute in member.DeclaringType.GetAttributesForTypeWithNesting<TAttribute>())
+				{
+					yield return attribute;
+				}
 			}
 		}
 
@@ -156,8 +248,8 @@ namespace CodeJam.Reflection
 
 		private const BindingFlags _thisTypeMembers =
 			BindingFlags.Instance | BindingFlags.Static |
-			BindingFlags.Public | BindingFlags.NonPublic |
-			BindingFlags.DeclaredOnly;
+				BindingFlags.Public | BindingFlags.NonPublic |
+				BindingFlags.DeclaredOnly;
 
 		private static MemberInfo[] GetOverrideChainDispatch(MemberInfo member)
 		{
@@ -202,6 +294,7 @@ namespace CodeJam.Reflection
 
 		#region GetAttributesFromCandidates
 		private static readonly AttributeUsageAttribute _defaultUsage = new AttributeUsageAttribute(AttributeTargets.All);
+
 		private static readonly Func<Type, AttributeUsageAttribute> _attributeUsages = Algorithms.Memoize(
 			(Type t) => t.GetCustomAttribute<AttributeUsageAttribute>(true) ?? _defaultUsage,
 			true);
@@ -209,16 +302,17 @@ namespace CodeJam.Reflection
 		// BASEDON: https://github.com/dotnet/coreclr/blob/master/src/mscorlib/src/System/Attribute.cs#L28
 		// Behavior matches the Attribute.InternalGetCustomAttributes() method.
 		private static TAttribute[] GetAttributesFromCandidates<TAttribute>(
+			bool inherit,
 			params ICustomAttributeProvider[] traversePath)
 			where TAttribute : class
 		{
 			var result = new List<TAttribute>();
-			var visitedAttributes = new HashSet<Type>();
+			var visitedAttributes = new HashSet<Type>(_typeComparer);
 			var checkInherited = false;
 			foreach (var attributeProvider in traversePath)
 			{
 				var attributeCandidates = attributeProvider
-					.GetCustomAttributes(typeof(TAttribute), false)
+					.GetCustomAttributes(typeof(TAttribute), inherit)
 					.Cast<TAttribute>();
 				foreach (var attribute in attributeCandidates)
 				{

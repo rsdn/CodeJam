@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -31,6 +32,20 @@ namespace CodeJam.Reflection
 	[TestFixture(Category = "Reflection")]
 	public partial class ReflectionExtensionsTest
 	{
+		private enum AttributesSource
+		{
+			All,
+			Type,
+			Assembly,
+		}
+
+		private enum SearchMode
+		{
+			Attributes,
+			MetadataAttributes,
+			MetadataAttributesSingleLevel,
+		}
+
 		#region Test simple case
 		[TestCase(typeof(B.C), "C.M:SI; C:SI; B:SI; A:SI")]
 		[TestCase(typeof(T1), "T1.M:SI; T1:SI; A:SI")]
@@ -38,10 +53,22 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(T1.T3), "T3.M:SI; T3:SI; A:SI")]
 		[TestCase(typeof(T1.T3.T4), "T4.M:SI; T4:SI; T3:SI; A:SI")]
 		public static void TestMetadataAttributesSimple(Type type, string expected) =>
-			TestCore<SIAttribute>(type, expected, typeOnly: false, useDefault: false);
+			TestCore<SIAttribute>(type, expected, AttributesSource.All, SearchMode.MetadataAttributes);
 		#endregion
 
 		#region Test combinations
+		[TestCase(typeof(T1), "A:SI,SN,MI,MN; A+:MI,MN")]
+		public static void TestAssemblyMetadataAttributes(Type type, string expected) =>
+			TestCore<ITestInterface>(type, expected, AttributesSource.Assembly, SearchMode.MetadataAttributes);
+
+		[TestCase(typeof(T1), "A:SI,SN,MI,MN; A+:MI,MN")]
+		public static void TestAssemblyMetadataAttributesSingleLevel(Type type, string expected) =>
+			TestCore<ITestInterface>(type, expected, AttributesSource.Assembly, SearchMode.MetadataAttributesSingleLevel);
+
+		[TestCase(typeof(T1), "A:SI,SN,MI,MN; A+:MI,MN")]
+		public static void TestAssemblyAttributes(Type type, string expected) =>
+			TestCore<ITestInterface>(type, expected, AttributesSource.Assembly, SearchMode.Attributes);
+
 		[TestCase(typeof(T1), "T1:SI,SN,MI,MN,MI,MN; A:SI,SN,MI,MN; A+:MI,MN")]
 		[TestCase(typeof(T1.T2), "T2:SI,SN,MI,MN,MI,MN; T1:MI,MI; A:SI,SN,MI,MN; A+:MI,MN")]
 		[TestCase(typeof(T1.T3.T2), "T2:SI,SN,MI,MN,MI,MN; T1:MI,MI; A:SI,SN,MI,MN; A+:MI,MN")]
@@ -49,70 +76,99 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(T1.T3.T4),
 			"T4:SI,SN,MI,MN,MI,MN; T3:SI,SN,MI,MN,MI,MN; T0:MI,MI; T2:MI,MI; T1:MI,MI; A:SI,SN,MI,MN; A+:MI,MN"
 			)]
-		public static void TestMetadataAttributesType(Type type, string expected) =>
-			TestCore<ITestInterface>(type, expected, typeOnly: true, useDefault: false);
+		public static void TestTypeMetadataAttributes(Type type, string expected) =>
+			TestCore<ITestInterface>(type, expected, AttributesSource.Type, SearchMode.MetadataAttributes);
 
 		[TestCase(typeof(T1), "T1:SI,SN,MI,MN,MI,MN")]
 		[TestCase(typeof(T1.T2), "T2:SI,SN,MI,MN,MI,MN; T1:MI,MI")]
 		[TestCase(typeof(T1.T3.T2), "T2:SI,SN,MI,MN,MI,MN; T1:MI,MI")]
 		[TestCase(typeof(T1.T3), "T3:SI,SN,MI,MN,MI,MN; T0:MI,MI; T2:MI,MI; T1:MI,MI")]
 		[TestCase(typeof(T1.T3.T4), "T4:SI,SN,MI,MN,MI,MN")]
-		public static void TestAttributesType(Type type, string expected) =>
-			TestCore<ITestInterface>(type, expected, typeOnly: true, useDefault: true);
+		public static void TestTypeMetadataAttributesSingleLevel(Type type, string expected) =>
+			TestCore<ITestInterface>(type, expected, AttributesSource.Type, SearchMode.MetadataAttributesSingleLevel);
+
+		[TestCase(typeof(T1), "T1:SI,SN,MI,MN,MI,MN")]
+		[TestCase(typeof(T1.T2), "T2:SI,SN,MI,MN,MI,MN; T1:MI,MI")]
+		[TestCase(typeof(T1.T3.T2), "T2:SI,SN,MI,MN,MI,MN; T1:MI,MI")]
+		[TestCase(typeof(T1.T3), "T3:SI,SN,MI,MN,MI,MN; T0:MI,MI; T2:MI,MI; T1:MI,MI")]
+		[TestCase(typeof(T1.T3.T4), "T4:SI,SN,MI,MN,MI,MN")]
+		public static void TestTypeAttributes(Type type, string expected) =>
+			TestCore<ITestInterface>(type, expected, AttributesSource.Type, SearchMode.Attributes);
 
 		[TestCase(typeof(T1), "T1.M:MI,MN,SI,SN,MI,MN; T1:SI,SN,MI,MN,MI,MN; A:SI,SN,MI,MN; A+:MI,MN")]
 		[TestCase(typeof(T1.T2), "T2.M:MI,MN,SI,SN,MI,MN; T2:SI,SN,MI,MN,MI,MN; T1:MI,MI; A:SI,SN,MI,MN; A+:MI,MN")]
 		[TestCase(
 			typeof(T1.T3),
-			"T3.M:MI,MN,SI,SN,MI,MN; T3:SI,SN,MI,MN,MI,MN; T0:MI,MI; T2:MI,MI; T1:MI,MI; A:SI,SN,MI,MN; A+:MI,MN")]
+			"T3.M:MI,MN,SI,SN,MI,MN; T2.M:MI,MI; T3:SI,SN,MI,MN,MI,MN; T0:MI,MI; T2:MI,MI; T1:MI,MI; A:SI,SN,MI,MN; A+:MI,MN")]
 		[TestCase(
 			typeof(T1.T3.T4),
-			"T4.M:MI,MN,SI,SN; T4:SI,SN,MI,MN,MI,MN; T3:SI,SN,MI,MN,MI,MN; T0:MI,MI; T2:MI,MI; T1:MI,MI; A:SI,SN,MI,MN; A+:MI,MN")]
-		public static void TestMetadataAttributesMember(Type type, string expected) =>
-			TestCore<ITestInterface>(type, expected, typeOnly: false, useDefault: false);
+			"T4.M:MI,MN,SI,SN; T4:SI,SN,MI,MN,MI,MN; T3:SI,SN,MI,MN,MI,MN; T0:MI,MI; T2:MI,MI; T1:MI,MI; A:SI,SN,MI,MN; A+:MI,MN"
+			)]
+		public static void TestMemberMetadataAttributes(Type type, string expected) =>
+			TestCore<ITestInterface>(type, expected, AttributesSource.All, SearchMode.MetadataAttributes);
 
 		[TestCase(typeof(T1), "T1.M:MI,MN,SI,SN,MI,MN")]
 		[TestCase(typeof(T1.T2), "T2.M:MI,MN,SI,SN,MI,MN")]
 		[TestCase(typeof(T1.T3), "T3.M:MI,MN,SI,SN,MI,MN; T2.M:MI,MI")]
 		[TestCase(typeof(T1.T3.T4), "T4.M:MI,MN,SI,SN")]
-		public static void TestAttributesMember(Type type, string expected) =>
-			TestCore<ITestInterface>(type, expected, typeOnly: false, useDefault: true);
+		public static void TestMemberMetadataAttributesSingleLevel(Type type, string expected) =>
+			TestCore<ITestInterface>(type, expected, AttributesSource.All, SearchMode.MetadataAttributesSingleLevel);
+
+		[TestCase(typeof(T1), "T1.M:MI,MN,SI,SN,MI,MN")]
+		[TestCase(typeof(T1.T2), "T2.M:MI,MN,SI,SN,MI,MN")]
+		[TestCase(typeof(T1.T3), "T3.M:MI,MN,SI,SN,MI,MN; T2.M:MI,MI")]
+		[TestCase(typeof(T1.T3.T4), "T4.M:MI,MN,SI,SN")]
+		public static void TestMemberAttributes(Type type, string expected) =>
+			TestCore<ITestInterface>(type, expected, AttributesSource.All, SearchMode.Attributes);
 		#endregion
 
 		#region Test logic
-		private static void TestCore<TAttribute>(Type type, string expected, bool typeOnly, bool useDefault)
+		private static void TestCore<TAttribute>(
+			Type type, string expected, AttributesSource attributesSource, SearchMode searchMode)
 			where TAttribute : class, ITestInterface
 		{
-			if (typeOnly)
+			if (attributesSource != AttributesSource.All)
 			{
-				var result = GetAttributesString<TAttribute>(type, useDefault);
+				var result = attributesSource == AttributesSource.Assembly
+					? GetAttributesString<TAttribute>(type.Assembly, searchMode)
+					: GetAttributesString<TAttribute>(type, searchMode);
 				AreEqual(result, expected);
 			}
 			else
 			{
 				var bf = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
-				var result = GetAttributesString<TAttribute>(type.GetMethod("M", bf), useDefault);
+				var result = GetAttributesString<TAttribute>(type.GetMethod("M", bf), searchMode);
 				AreEqual(result, expected);
 
-				if (!useDefault) // default do not honor inherit flag for properties / events
+				if (searchMode != SearchMode.Attributes) // default do not honor inherit flag for properties / events
 				{
-					// ReSharper disable ConditionIsAlwaysTrueOrFalse
-					result = GetAttributesString<TAttribute>(type.GetProperty("P", bf), useDefault);
+					result = GetAttributesString<TAttribute>(type.GetProperty("P", bf), searchMode);
 					AreEqual(result, expected.Replace(".M", ".P"));
 
-					result = GetAttributesString<TAttribute>(type.GetEvent("E", bf), useDefault);
+					result = GetAttributesString<TAttribute>(type.GetEvent("E", bf), searchMode);
 					AreEqual(result, expected.Replace(".M", ".E"));
-					// ReSharper restore ConditionIsAlwaysTrueOrFalse
 				}
 			}
 		}
 
-		private static string GetAttributesString<TAttribute>(ICustomAttributeProvider source, bool useDefault)
+		private static string GetAttributesString<TAttribute>(ICustomAttributeProvider source, SearchMode searchMode)
 			where TAttribute : class, ITestInterface
 		{
-			var attributes = useDefault
-				? source.GetCustomAttributes(typeof(TAttribute), true).Cast<TAttribute>()
-				: source.GetMetadataAttributes<TAttribute>();
+			IEnumerable<TAttribute> attributes;
+			switch (searchMode)
+			{
+				case SearchMode.Attributes:
+					attributes = source.GetCustomAttributes(typeof(TAttribute), true).Cast<TAttribute>();
+					break;
+				case SearchMode.MetadataAttributes:
+					attributes = source.GetMetadataAttributes<TAttribute>();
+					break;
+				case SearchMode.MetadataAttributesSingleLevel:
+					attributes = source.GetMetadataAttributes<TAttribute>(thisLevelOnly: true);
+					break;
+				default:
+					throw new ArgumentOutOfRangeException(nameof(searchMode), searchMode, null);
+			}
 
 			return attributes
 				.GroupWhileEquals(
