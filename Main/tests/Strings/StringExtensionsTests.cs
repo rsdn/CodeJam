@@ -125,5 +125,28 @@ namespace CodeJam.Strings
 		[TestCase("2 1.0", ExpectedResult = null)]
 		[TestCase("1.0 2", ExpectedResult = null)]
 		public double? ToDouble(string str) => str.ToDouble(provider: CultureInfo.InvariantCulture);
+
+		[TestCase("1", ExpectedResult = 1.0)]
+		[TestCase("1.0", ExpectedResult = 1.0)]
+		[TestCase("1.5", ExpectedResult = 1.5)]
+		[TestCase("+1.0", ExpectedResult = 1.0)]
+		[TestCase("-1.0", ExpectedResult = -1.0)]
+		[TestCase(" 1.0", ExpectedResult = 1.0)]
+		[TestCase("1.0 ", ExpectedResult = 1.0)]
+		[TestCase(" \r\n\t\t \v -1.0 \r\n", ExpectedResult = -1.0)]
+		[TestCase("1.3e3", ExpectedResult = 1300.0)]
+		[TestCase("NaN", ExpectedResult = null)]
+		[TestCase("-Infinity", ExpectedResult = null)]
+		[TestCase("-∞", ExpectedResult = null)]
+		[TestCase("-infinity", ExpectedResult = null)]
+		[TestCase("- 1.0 ", ExpectedResult = null)]
+		[TestCase("1,0", ExpectedResult = null)]
+		[TestCase("1.0a", ExpectedResult = null)]
+		[TestCase("1.0 a", ExpectedResult = null)]
+		[TestCase("a 1.0", ExpectedResult = null)]
+		[TestCase("a1.0", ExpectedResult = null)]
+		[TestCase("2 1.0", ExpectedResult = null)]
+		[TestCase("1.0 2", ExpectedResult = null)]
+		public double? ToDecimal(string str) => (double?)str.ToDecimal(provider: CultureInfo.InvariantCulture);
 	}
 }
