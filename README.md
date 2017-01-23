@@ -8,11 +8,12 @@ save your time when you copy and paste your favorite helper methods and classes 
 The CodeJam project includes three parts:
 
 * Main - stable and feature complete code.
+* Blocks - app building blocks, more specific and feature oriented functionality.
 * Experimental - A workspace for code development. Contains incomplete and/or unstable parts.
 * [CodeJam.PerfTests](https://github.com/rsdn/CodeJam/tree/master/PerfTests) - a performance testing framework for .Net projects.
 
 ### Main
-CodeJam is dedicated to one principal goal: creating and maintaining reusable code. The CodeJam.Main is a place for
+CodeJam is dedicated to one principal goal: creating and maintaining reusable code. The CodeJam main is a place for
 collaboration and sharing, where developers community can work together on code to be shared by the CodeJam.
 
 CodeJam developers will make an effort to ensure that their components have no dependencies on other third-party
@@ -23,6 +24,13 @@ We welcome participation from all who are interested, at all skill levels. Codin
 development process itself are all critical parts of the software development process. If you are interested in
 contribute in any of these aspects, please join us!
 
+### Blocks
+
+### PerfTests
+CodeJam.PerfTests is performance testing framework for .Net projects.
+
+It allows to compare multiple implementations by execution time (*~memory limits coming soon~*), to annotate test methods with timing limits and to check the limits each time the test is run.
+
 ### .NET Framework 3.5 support
 .NET Framework 3.5 support is limited. Functionality not supported:
 
@@ -31,6 +39,7 @@ contribute in any of these aspects, please join us!
 * MemberAccessor/TypeAccessor - excluded due to expression tree incompatibility
 * ComparerBuilder - excluded due to absence of TypeAccessor and MemberAccessor classes
 * Enumerable.ToDiagnosticString - excluded due to absence of TypeAccessor class
+* PerfTests package not support FW 3.5 at all.
 
 ### Contribute!
 Some of the best ways to contribute are to try things out, report bugs, and join in design conversations.
