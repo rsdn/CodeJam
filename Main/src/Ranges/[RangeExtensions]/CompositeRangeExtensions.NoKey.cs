@@ -229,7 +229,16 @@ namespace CodeJam.Ranges
 		{
 			var ranges = new List<Range<T>>();
 			if (!compositeRange.ContainingRange.HasIntersection(other))
-				return GetRangeIntersection(other.From, other.To, Array<Range<T>>.Empty);
+				return
+					GetRangeIntersection(
+						other.From,
+						other.To,
+#if (!FW452)
+						Array.Empty<Range<T>>()
+#else
+						Array<Range<T>>.Empty
+#endif
+						);
 			foreach (var range in compositeRange.SubRanges)
 			{
 				if (range.From > other.To)
