@@ -200,7 +200,7 @@ namespace CodeJam.Ranges
 		private static Range<T> TryCreateCore<T>(
 			T from, RangeBoundaryFromKind fromKind,
 			T to, RangeBoundaryToKind toKind) =>
-				(RangeBoundaryFrom<T>.IsValid(from) && RangeBoundaryTo<T>.IsValid(to))
+				RangeBoundaryFrom<T>.IsValid(from) && RangeBoundaryTo<T>.IsValid(to)
 					? TryCreate(
 						RangeBoundaryFrom<T>.AdjustAndCreate(from, fromKind),
 						RangeBoundaryTo<T>.AdjustAndCreate(to, toKind))
@@ -226,7 +226,7 @@ namespace CodeJam.Ranges
 			T from, RangeBoundaryFromKind fromKind,
 			T to, RangeBoundaryToKind toKind,
 			TKey key) =>
-				(RangeBoundaryFrom<T>.IsValid(from) && RangeBoundaryTo<T>.IsValid(to))
+				RangeBoundaryFrom<T>.IsValid(from) && RangeBoundaryTo<T>.IsValid(to)
 					? TryCreate(
 						RangeBoundaryFrom<T>.AdjustAndCreate(from, fromKind),
 						RangeBoundaryTo<T>.AdjustAndCreate(to, toKind),
