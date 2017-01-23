@@ -1,5 +1,14 @@
-CodeJam 1.3.0-beta3 Release Notes
+CodeJam 1.3.0-beta4 Release Notes
 ---------------------------------
+
+What's new in 1.3.0-beta4
+-------------------------
+* CompositeRangeExtensions.GetIntersection/GetIntersections methods (helpers for searching for intersection ranges)
+* Ranges: NaN values support
+* Code.InRange assertion
+* Breaking change! Part of functionality moved to separate assembly and package CodeJam.Blocks.
+* StringExtensions.ToDecimal method added
+* Code cleanup
 
 What's new in 1.3.0-beta3
 -------------------------
