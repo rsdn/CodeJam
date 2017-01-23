@@ -6,6 +6,7 @@
 		<title>CodeJam.Blocks Library</title>
 		<authors>Andrew Koryavchenko, ig-sinicyn, Igor Tkachev</authors>
 		<licenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</licenseUrl>
+		<iconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/Blocks/nuget/CodeJam.Blocks.Icon.png</iconUrl>
 		<projectUrl>https://github.com/rsdn/CodeJam</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>CodeJam.Blocks is a set of handy reusable .NET components that can simplify your daily work and save your time when you copy and paste your favorite helper methods and classes from one project to another.</description>

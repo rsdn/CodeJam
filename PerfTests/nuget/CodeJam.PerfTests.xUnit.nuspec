@@ -7,7 +7,7 @@
 		<authors>ig-sinicyn</authors>
 		<licenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</licenseUrl>
 		<projectUrl>https://github.com/rsdn/CodeJam</projectUrl>
-		<iconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/PerfTests/docs/images/CodeJam.PerfTests.logo.256.png</iconUrl>
+		<iconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/PerfTests/nuget/CodeJam.PerfTests.Icon.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>CodeJam.PerfTests.xUnit provides xUnit support for BenchmarkDotNet-driven performance tests.</description>
 		<copyright>RSDN.ru, 2016</copyright>
