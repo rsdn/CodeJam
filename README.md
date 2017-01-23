@@ -1,4 +1,6 @@
-## CodeJam
+![CodeJam.Main.Icon](Main\nuget\CodeJam.Main.Icon.png)
+
+##  CodeJam
 
 CodeJam is a set of handy reusable .NET components that can simplify your daily work and
 save your time when you copy and paste your favorite helper methods and classes from one project to another.
@@ -52,12 +54,12 @@ nuget install CodeJam
 To get the latest "preview" drop, add the `-pre` switch to the nuget commands
 
 ### Links
- - [Class library documentation](https://github.com/rsdn/CodeJam/wiki/DocHome)
- - Continious integration build [![Build status](https://ci.appveyor.com/api/projects/status/oxdyxkgwotiv64r1/branch/master?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam)
- - Docs continious integration build [![Docs build status](https://ci.appveyor.com/api/projects/status/bucrjn2eceptbqwl?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam-jlvna)
- - [Continiuos Integration builds Nuget feed](https://ci.appveyor.com/nuget/codejam)
- - [Forum (russian)](https://rsdn.org/forum/prj.codejam/)
- - [![Join the chat at https://gitter.im/rsdn/CodeJam](https://badges.gitter.im/rsdn/CodeJam.svg)](https://gitter.im/rsdn/CodeJam?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+- [Class library documentation](https://github.com/rsdn/CodeJam/wiki/DocHome)
+- Continious integration build [![Build status](https://ci.appveyor.com/api/projects/status/oxdyxkgwotiv64r1/branch/master?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam)
+- Docs continious integration build [![Docs build status](https://ci.appveyor.com/api/projects/status/bucrjn2eceptbqwl?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam-jlvna)
+- [Continiuos Integration builds Nuget feed](https://ci.appveyor.com/nuget/codejam)
+- [Forum (russian)](https://rsdn.org/forum/prj.codejam/)
+- [![Join the chat at https://gitter.im/rsdn/CodeJam](https://badges.gitter.im/rsdn/CodeJam.svg)](https://gitter.im/rsdn/CodeJam?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ### Licensing & notices
 
@@ -65,7 +67,7 @@ The current project is licensed under MIT. The project includes code parts taken
 
 All such places are marked with `// BASEDON: ` comment. Here they are:
 
- - [`CodeExceptions`](https://github.com/rsdn/CodeJam/tree/master/Main/src/Assertions/CodeExceptions.cs#L55): trace source design follows style introduced by the `System.Diagnostics.PresentationTraceSources`.
- - [`NaturalOrderStringComparer`](https://github.com/rsdn/CodeJam/tree/master/Main/src/Strings/NaturalOrderStringComparer.cs): based on [the C version by Martin Pool](http://sourcefrog.net/projects/natsort/)
- - Types that enables targeting to [.Net 3.5](https://github.com/rsdn/CodeJam/tree/master/Main/src/Targeting/FW35) and [.Net 4.0](https://github.com/rsdn/CodeJam/tree/master/Main/src/Targeting/FW40), all taken from [CoreFx ](https://github.com/dotnet/corefx)and [CoreClr](https://github.com/dotnet/coreclr/) projects.
- - [`InterlockedOperations`](https://github.com/rsdn/CodeJam/tree/master/Main/src/Threading/InterlockedOperations.tt) uses CAS loop undercover, reference to the Roslyn implementation given as a proof the code is correct.
+- [`CodeExceptions`](https://github.com/rsdn/CodeJam/tree/master/Main/src/Assertions/CodeExceptions.cs#L55): trace source design follows style introduced by the `System.Diagnostics.PresentationTraceSources`.
+- [`NaturalOrderStringComparer`](https://github.com/rsdn/CodeJam/tree/master/Main/src/Strings/NaturalOrderStringComparer.cs): based on [the C version by Martin Pool](http://sourcefrog.net/projects/natsort/)
+- Types that enables targeting to [.Net 3.5](https://github.com/rsdn/CodeJam/tree/master/Main/src/Targeting/FW35) and [.Net 4.0](https://github.com/rsdn/CodeJam/tree/master/Main/src/Targeting/FW40), all taken from [CoreFx ](https://github.com/dotnet/corefx)and [CoreClr](https://github.com/dotnet/coreclr/) projects.
+- [`InterlockedOperations`](https://github.com/rsdn/CodeJam/tree/master/Main/src/Threading/InterlockedOperations.tt) uses CAS loop undercover, reference to the Roslyn implementation given as a proof the code is correct.
