@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 
 using JetBrains.Annotations;
 
@@ -34,27 +33,16 @@ namespace CodeJam.Collections
 		/// <returns>GetEqualsFunc function.</returns>
 		[NotNull, Pure]
 		public static Func<T, T, bool> GetEqualsFunc([NotNull, InstantHandle] IEnumerable<MemberAccessor> members)
-		{
-			var x   = Expression.Parameter(typeof(T), "x");
-			var y   = Expression.Parameter(typeof(T), "y");
-			var exs = members.Select(ma =>
-			{
-				var eq = typeof(EqualityComparer<>).MakeGenericType(ma.Type);
-				var pi = eq.GetProperty("Default");
-				var mi = eq.GetMethods().Single(m => m.IsPublic && m.Name == "Equals" && m.GetParameters().Length == 2);
+			=> CreateEqualsFunc(members.Select(m => m.GetterExpression));
 
-				return (Expression)Expression.Call(
-					Expression.Property(null, pi),
-					mi,
-					ma.GetterExpression.ReplaceParameters(x),
-					ma.GetterExpression.ReplaceParameters(y));
-			});
-
-			var ex = exs.AggregateOrDefault(Expression.AndAlso, () => Expression.Constant(true));
-			var l  = Expression.Lambda<Func<T,T,bool>>(ex, x, y);
-
-			return l.Compile();
-		}
+		/// <summary>
+		/// Returns GetEqualsFunc function for provided members for type T to compare.
+		/// </summary>
+		/// <param name="members">Members to compare.</param>
+		/// <returns>GetEqualsFunc function.</returns>
+		[NotNull, Pure]
+		public static Func<T, T, bool> GetEqualsFunc([NotNull] params Expression<Func<T, object>>[] members)
+			=> CreateEqualsFunc(members);
 
 		/// <summary>
 		/// Returns GetHashCode function for type T to compare.
@@ -74,34 +62,16 @@ namespace CodeJam.Collections
 		/// <returns>GetHashCode function.</returns>
 		[NotNull, Pure]
 		public static Func<T,int> GetGetHashCodeFunc([NotNull, InstantHandle] IEnumerable<MemberAccessor> members)
-		{
-			var p   = Expression.Parameter(typeof(T),   "p");
-			var num = Expression.Parameter(typeof(int), "num");
-			var ex  = Expression.Block(
-				new[] { num },
-				new Expression[] { Expression.Assign(num, Expression.Constant(_randomSeed)) }
-					.Concat(members.Select(ma =>
-					{
-						var eq = typeof(EqualityComparer<>).MakeGenericType(ma.Type);
-						var pi = eq.GetProperty("Default");
-						var mi = eq.GetMethods().Single(m => m.IsPublic && m.Name == "GetHashCode" && m.GetParameters().Length == 1);
+			=> CreateGetHashCodeFunc(members.Select(m => m.GetterExpression));
 
-						return Expression.Assign(
-							num,
-							Expression.Add(
-								Expression.Multiply(num, Expression.Constant(-1521134295 )),
-								Expression.Call(
-									Expression.Property(null, pi),
-									mi,
-									ma.GetterExpression.ReplaceParameters(p))
-								));
-					}))
-					.Concat(num));
-
-			var l = Expression.Lambda<Func<T,int>>(ex, p);
-
-			return l.Compile();
-		}
+		/// <summary>
+		/// Returns GetHashCode function for provided members for type T to compare.
+		/// </summary>
+		/// <param name="members">Members to compare.</param>
+		/// <returns>GetHashCode function.</returns>
+		[NotNull, Pure]
+		public static Func<T,int> GetGetHashCodeFunc([NotNull] params Expression<Func<T, object>>[] members)
+			=> CreateGetHashCodeFunc(members);
 
 		private class Comparer : EqualityComparer<T>
 		{
@@ -142,20 +112,7 @@ namespace CodeJam.Collections
 		public static IEqualityComparer<T> GetEqualityComparer([NotNull] params Expression<Func<T, object>>[] membersToCompare)
 		{
 			Code.NotNull(membersToCompare, nameof (membersToCompare));
-
-			var hashSet = new HashSet<MemberInfo>();
-
-			foreach (var func in membersToCompare)
-			{
-				var mi = InfoOf<T>.Member(func);
-
-				if (!hashSet.Contains(mi))
-					hashSet.Add(mi);
-			}
-
-			var members = TypeAccessor<T>.GetAccessor().Members.Where(m => hashSet.Contains(m.MemberInfo)).ToList();
-
-			return new Comparer(GetEqualsFunc(members), GetGetHashCodeFunc(members));
+			return new Comparer(CreateEqualsFunc(membersToCompare), CreateGetHashCodeFunc(membersToCompare));
 		}
 
 		/// <summary>
@@ -169,6 +126,69 @@ namespace CodeJam.Collections
 		{
 			var members = membersToCompare(TypeAccessor<T>.GetAccessor()).ToList();
 			return new Comparer(GetEqualsFunc(members), GetGetHashCodeFunc(members));
+		}
+
+		[NotNull, Pure]
+		private static Func<T, T, bool> CreateEqualsFunc([NotNull] IEnumerable<LambdaExpression> membersToCompare)
+		{
+			Code.NotNull(membersToCompare, nameof(membersToCompare));
+
+			var x = Expression.Parameter(typeof(T), "x");
+			var y = Expression.Parameter(typeof(T), "y");
+
+			var expressions = membersToCompare.Select(me =>
+			{
+				var arg0 = RemoveCastToObject(me.ReplaceParameters(x));
+				var arg1 = RemoveCastToObject(me.ReplaceParameters(y));
+
+				var eq = typeof(EqualityComparer<>).MakeGenericType(arg1.Type);
+				var pi = eq.GetProperty("Default");
+				var mi = eq.GetMethods().Single(m => m.IsPublic && m.Name == "Equals" && m.GetParameters().Length == 2);
+
+				return (Expression)Expression.Call(Expression.Property(null, pi), mi, arg0, arg1);
+			});
+
+			var expression = expressions
+				.DefaultIfEmpty(Expression.Constant(true))
+				.Aggregate(Expression.AndAlso);
+
+			return Expression
+				.Lambda<Func<T, T, bool>>(expression, x, y)
+				.Compile();
+		}
+
+		[NotNull, Pure]
+		private static Func<T, int> CreateGetHashCodeFunc([NotNull] IEnumerable<LambdaExpression> membersToEval)
+		{
+			Code.NotNull(membersToEval, nameof(membersToEval));
+
+			var parameter = Expression.Parameter(typeof(T), "parameter");
+			var expression = membersToEval.Aggregate(
+				(Expression)Expression.Constant(_randomSeed),
+				(e, me) =>
+				{
+					var ma = RemoveCastToObject(me.ReplaceParameters(parameter));
+					var eq = typeof(EqualityComparer<>).MakeGenericType(ma.Type);
+					var pi = eq.GetProperty("Default");
+					var mi = eq.GetMethods().Single(m => m.IsPublic && m.Name == "GetHashCode" && m.GetParameters().Length == 1);
+
+					return Expression.Add(
+						Expression.Multiply(e, Expression.Constant(-1521134295)),
+						Expression.Call(Expression.Property(null, pi), mi, ma));
+				});
+
+			return Expression
+				.Lambda<Func<T, int>>(expression, parameter)
+				.Compile();
+		}
+
+		[NotNull, Pure]
+		private static Expression RemoveCastToObject([NotNull] Expression expression)
+		{
+			if (expression.Type != typeof(object) || expression.NodeType != ExpressionType.Convert)
+				return expression;
+
+			return ((UnaryExpression)expression).Operand;
 		}
 	}
 }
