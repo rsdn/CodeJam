@@ -13,7 +13,7 @@ The CodeJam project includes three parts:
 * [CodeJam.PerfTests](https://github.com/rsdn/CodeJam/tree/master/PerfTests) - a performance testing framework for .Net projects.
 
 ### Main
-CodeJam is dedicated to one principal goal: creating and maintaining reusable code. The CodeJam main is a place for
+CodeJam is dedicated to one principal goal: creating and maintaining reusable code. The CodeJam main package is a place for
 collaboration and sharing, where developers community can work together on code to be shared by the CodeJam.
 
 CodeJam developers will make an effort to ensure that their components have no dependencies on other third-party
