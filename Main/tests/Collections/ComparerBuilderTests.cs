@@ -14,19 +14,86 @@ namespace CodeJam.Collections
 	[TestFixture]
 	public class ComparerBuilderTests
 	{
-		class A
+		private class A
 		{
+			public int Value { get; set; }
+			public virtual int Overridable { get; set; }
 			public virtual void M() { }
 		}
 
-		class B : A
+		private class B : A
 		{
+			public override int Overridable { get; set; }
 			public override void M() { }
 		}
 
+		private class C : A
+		{
+		}
+
 		[Test]
-		[Ignore("Impl broken. Disabled")]
-		public void MethodHandleTestFails()
+		public void InheritedMember0Test()
+		{
+			var comparer = ComparerBuilder<A>.GetEqualityComparer(o => o.Value, o => o.Overridable);
+			var o1 = new A { Value = 10, Overridable = 20 };
+			var o2 = new A { Value = 10, Overridable = 20 };
+
+			Assert.That(comparer.Equals(o1, o2), Is.True);
+		}
+
+		[Test]
+		public void InheritedMember1Test()
+		{
+			var comparer = ComparerBuilder<A>.GetEqualityComparer(o => o.Value, o => o.Overridable);
+			var o1 = new A { Value = 10, Overridable = 20 };
+			var o2 = new B { Value = 10, Overridable = 20 };
+
+			Assert.That(comparer.Equals(o1, o2), Is.True);
+		}
+
+		[Test]
+		public void InheritedMember2Test()
+		{
+			var comparer = ComparerBuilder<A>.GetEqualityComparer(o => o.Value, o => o.Overridable);
+			var o1 = new B { Value = 10, Overridable = 20 };
+			var o2 = new B { Value = 10, Overridable = 20 };
+
+			Assert.That(comparer.Equals(o1, o2), Is.True);
+		}
+
+		[Test]
+		public void InheritedMember3Test()
+		{
+			var comparer = ComparerBuilder<B>.GetEqualityComparer(o => o.Value, o => o.Overridable);
+			var o1 = new B { Value = 10, Overridable = 20 };
+			var o2 = new B { Value = 20, Overridable = 10 };
+
+			Assert.That(comparer.Equals(o1, o2), Is.False);
+		}
+
+		[Test]
+		public void InheritedMember4Test()
+		{
+			var comparer = ComparerBuilder<C>.GetEqualityComparer(o => o.Value);
+			var o1 = new C { Value = 10, Overridable = 20 };
+			var o2 = new C { Value = 20, Overridable = 10 };
+
+			Assert.That(comparer.Equals(o1, o2), Is.False);
+		}
+
+		[TestCase("Test", "Data", true)]
+		[TestCase("Alpha", "Beta", false)]
+		public void ComplexMemberTest(string p1, string p2, bool expected)
+		{
+			var comparer = ComparerBuilder<TestClass>.GetEqualityComparer(c => c.Prop2.Length);
+			var o1 = new TestClass { Prop2 = p1 };
+			var o2 = new TestClass { Prop2 = p2 };
+
+			Assert.That(comparer.Equals(o1, o2), Is.EqualTo(expected));
+		}
+
+		[Test]
+		public void MethodHandleTest()
 		{
 			var comparer = ComparerBuilder<MethodInfo>.GetEqualityComparer(m => m.MethodHandle);
 
