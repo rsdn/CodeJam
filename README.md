@@ -29,7 +29,8 @@ contribute in any of these aspects, please join us!
 ### PerfTests
 CodeJam.PerfTests is performance testing framework for .Net projects.
 
-It allows to compare multiple implementations by execution time (*~memory limits coming soon~*), to annotate test methods with timing limits and to check the limits each time the test is run.
+It allows to compare multiple implementations by execution time (*~memory limits coming soon~*), to annotate test methods
+with timing limits and to check the limits each time the test is run.
 
 ### .NET Framework 3.5 support
 .NET Framework 3.5 support is limited. Functionality not supported:
@@ -72,7 +73,16 @@ To get the latest "preview" drop, add the `-pre` switch to the nuget commands
 
 ### Licensing & notices
 
-The current project is licensed under MIT. The project includes code parts taken from (mostly to ease targeting to previous versions of .Net) or inspired by third-party implementations.
+The CodeJam project is free software.
+There is no warranty; not even for merchantability or fitness for a particular purpose.
+
+You may use, copy, modify and redistribute all files included in this
+distribution, individually or in aggregate, subject to the terms and conditions
+of the MIT license.  See the file `LICENSE` for details.
+
+
+The project includes code parts taken from (mostly to ease targeting to previous versions of .Net)
+or inspired by third-party implementations.
 
 All such places are marked with `// BASEDON: ` comment. Here they are:
 
@@ -80,3 +90,21 @@ All such places are marked with `// BASEDON: ` comment. Here they are:
 - [`NaturalOrderStringComparer`](https://github.com/rsdn/CodeJam/tree/master/Main/src/Strings/NaturalOrderStringComparer.cs): based on [the C version by Martin Pool](http://sourcefrog.net/projects/natsort/)
 - Types that enables targeting to [.Net 3.5](https://github.com/rsdn/CodeJam/tree/master/Main/src/Targeting/FW35) and [.Net 4.0](https://github.com/rsdn/CodeJam/tree/master/Main/src/Targeting/FW40), all taken from [CoreFx ](https://github.com/dotnet/corefx)and [CoreClr](https://github.com/dotnet/coreclr/) projects.
 - [`InterlockedOperations`](https://github.com/rsdn/CodeJam/tree/master/Main/src/Threading/InterlockedOperations.tt) uses CAS loop undercover, reference to the Roslyn implementation given as a proof the code is correct.
+
+
+In addition, you may -- at your option -- use, copy, modify and redistribute
+all images included in this distribution under the directory named `images`
+according to the terms and conditions of the Creative Commons Attribution-ShareAlike 4.0 International License.
+Use following text as a template for attribution:
+
+```
+CodeJam logo (c) by Arthur Kozyrev
+
+CodeJam logo is licensed under a
+Creative Commons Attribution-ShareAlike 4.0 International License.
+
+You should have received a copy of the license along with this
+work. If not, see <http://creativecommons.org/licenses/by-sa/4.0/>
+```
+
+See the file `LICENSE-CC-BY-SA` for details.
