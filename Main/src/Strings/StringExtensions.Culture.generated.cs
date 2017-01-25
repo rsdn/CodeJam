@@ -16,124 +16,422 @@ namespace CodeJam.Strings
 	partial class StringExtensions
 	{
 		/// <summary>
-		/// Culture invariant version of <see cref="byte.Parse(string, System.IFormatProvider)"/>
+		/// Culture invariant version of <see cref="byte.Parse(string)"/>
 		/// </summary>
 		/// <param name="s">String to parse.</param>
 		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull]
 		[Pure]
 		public static byte ToByteInvariant([NotNull] this string s) =>
 			byte.Parse(s, CultureInfo.InvariantCulture);
 
 		/// <summary>
-		/// Culture invariant version of <see cref="sbyte.Parse(string, System.IFormatProvider)"/>
+		/// Culture invariant version of <see cref="byte.TryParse(string, out byte)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static byte? TryToByteInvariant([NotNull] this string s)
+		{
+			byte res;
+			if (byte.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="byte.TryParse(string, out byte)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <param name="style">value style</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static byte? TryToByteInvariant([NotNull] this string s, NumberStyles style)
+		{
+			byte res;
+			if (byte.TryParse(s, style, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="sbyte.Parse(string)"/>
 		/// </summary>
 		/// <param name="s">String to parse.</param>
 		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull]
 		[Pure]
 		public static sbyte ToSByteInvariant([NotNull] this string s) =>
 			sbyte.Parse(s, CultureInfo.InvariantCulture);
 
 		/// <summary>
-		/// Culture invariant version of <see cref="short.Parse(string, System.IFormatProvider)"/>
+		/// Culture invariant version of <see cref="sbyte.TryParse(string, out sbyte)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static sbyte? TryToSByteInvariant([NotNull] this string s)
+		{
+			sbyte res;
+			if (sbyte.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="sbyte.TryParse(string, out sbyte)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <param name="style">value style</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static sbyte? TryToSByteInvariant([NotNull] this string s, NumberStyles style)
+		{
+			sbyte res;
+			if (sbyte.TryParse(s, style, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="short.Parse(string)"/>
 		/// </summary>
 		/// <param name="s">String to parse.</param>
 		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull]
 		[Pure]
 		public static short ToInt16Invariant([NotNull] this string s) =>
 			short.Parse(s, CultureInfo.InvariantCulture);
 
 		/// <summary>
-		/// Culture invariant version of <see cref="ushort.Parse(string, System.IFormatProvider)"/>
+		/// Culture invariant version of <see cref="short.TryParse(string, out short)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static short? TryToInt16Invariant([NotNull] this string s)
+		{
+			short res;
+			if (short.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="short.TryParse(string, out short)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <param name="style">value style</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static short? TryToInt16Invariant([NotNull] this string s, NumberStyles style)
+		{
+			short res;
+			if (short.TryParse(s, style, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="ushort.Parse(string)"/>
 		/// </summary>
 		/// <param name="s">String to parse.</param>
 		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull]
 		[Pure]
 		public static ushort ToUInt16Invariant([NotNull] this string s) =>
 			ushort.Parse(s, CultureInfo.InvariantCulture);
 
 		/// <summary>
-		/// Culture invariant version of <see cref="int.Parse(string, System.IFormatProvider)"/>
+		/// Culture invariant version of <see cref="ushort.TryParse(string, out ushort)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static ushort? TryToUInt16Invariant([NotNull] this string s)
+		{
+			ushort res;
+			if (ushort.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="ushort.TryParse(string, out ushort)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <param name="style">value style</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static ushort? TryToUInt16Invariant([NotNull] this string s, NumberStyles style)
+		{
+			ushort res;
+			if (ushort.TryParse(s, style, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="int.Parse(string)"/>
 		/// </summary>
 		/// <param name="s">String to parse.</param>
 		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull]
 		[Pure]
 		public static int ToInt32Invariant([NotNull] this string s) =>
 			int.Parse(s, CultureInfo.InvariantCulture);
 
 		/// <summary>
-		/// Culture invariant version of <see cref="uint.Parse(string, System.IFormatProvider)"/>
+		/// Culture invariant version of <see cref="int.TryParse(string, out int)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static int? TryToInt32Invariant([NotNull] this string s)
+		{
+			int res;
+			if (int.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="int.TryParse(string, out int)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <param name="style">value style</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static int? TryToInt32Invariant([NotNull] this string s, NumberStyles style)
+		{
+			int res;
+			if (int.TryParse(s, style, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="uint.Parse(string)"/>
 		/// </summary>
 		/// <param name="s">String to parse.</param>
 		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull]
 		[Pure]
 		public static uint ToUInt32Invariant([NotNull] this string s) =>
 			uint.Parse(s, CultureInfo.InvariantCulture);
 
 		/// <summary>
-		/// Culture invariant version of <see cref="long.Parse(string, System.IFormatProvider)"/>
+		/// Culture invariant version of <see cref="uint.TryParse(string, out uint)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static uint? TryToUInt32Invariant([NotNull] this string s)
+		{
+			uint res;
+			if (uint.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="uint.TryParse(string, out uint)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <param name="style">value style</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static uint? TryToUInt32Invariant([NotNull] this string s, NumberStyles style)
+		{
+			uint res;
+			if (uint.TryParse(s, style, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="long.Parse(string)"/>
 		/// </summary>
 		/// <param name="s">String to parse.</param>
 		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull]
 		[Pure]
 		public static long ToInt64Invariant([NotNull] this string s) =>
 			long.Parse(s, CultureInfo.InvariantCulture);
 
 		/// <summary>
-		/// Culture invariant version of <see cref="ulong.Parse(string, System.IFormatProvider)"/>
+		/// Culture invariant version of <see cref="long.TryParse(string, out long)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static long? TryToInt64Invariant([NotNull] this string s)
+		{
+			long res;
+			if (long.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="long.TryParse(string, out long)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <param name="style">value style</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static long? TryToInt64Invariant([NotNull] this string s, NumberStyles style)
+		{
+			long res;
+			if (long.TryParse(s, style, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="ulong.Parse(string)"/>
 		/// </summary>
 		/// <param name="s">String to parse.</param>
 		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull]
 		[Pure]
 		public static ulong ToUInt64Invariant([NotNull] this string s) =>
 			ulong.Parse(s, CultureInfo.InvariantCulture);
 
 		/// <summary>
-		/// Culture invariant version of <see cref="float.Parse(string, System.IFormatProvider)"/>
+		/// Culture invariant version of <see cref="ulong.TryParse(string, out ulong)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static ulong? TryToUInt64Invariant([NotNull] this string s)
+		{
+			ulong res;
+			if (ulong.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="ulong.TryParse(string, out ulong)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <param name="style">value style</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static ulong? TryToUInt64Invariant([NotNull] this string s, NumberStyles style)
+		{
+			ulong res;
+			if (ulong.TryParse(s, style, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="float.Parse(string)"/>
 		/// </summary>
 		/// <param name="s">String to parse.</param>
 		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull]
 		[Pure]
 		public static float ToSingleInvariant([NotNull] this string s) =>
 			float.Parse(s, CultureInfo.InvariantCulture);
 
 		/// <summary>
-		/// Culture invariant version of <see cref="double.Parse(string, System.IFormatProvider)"/>
+		/// Culture invariant version of <see cref="float.TryParse(string, out float)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static float? TryToSingleInvariant([NotNull] this string s)
+		{
+			float res;
+			if (float.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="float.TryParse(string, out float)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <param name="style">value style</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static float? TryToSingleInvariant([NotNull] this string s, NumberStyles style)
+		{
+			float res;
+			if (float.TryParse(s, style, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="double.Parse(string)"/>
 		/// </summary>
 		/// <param name="s">String to parse.</param>
 		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull]
 		[Pure]
 		public static double ToDoubleInvariant([NotNull] this string s) =>
 			double.Parse(s, CultureInfo.InvariantCulture);
 
 		/// <summary>
-		/// Culture invariant version of <see cref="decimal.Parse(string, System.IFormatProvider)"/>
+		/// Culture invariant version of <see cref="double.TryParse(string, out double)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static double? TryToDoubleInvariant([NotNull] this string s)
+		{
+			double res;
+			if (double.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="double.TryParse(string, out double)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <param name="style">value style</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static double? TryToDoubleInvariant([NotNull] this string s, NumberStyles style)
+		{
+			double res;
+			if (double.TryParse(s, style, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="decimal.Parse(string)"/>
 		/// </summary>
 		/// <param name="s">String to parse.</param>
 		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull]
 		[Pure]
 		public static decimal ToDecimalInvariant([NotNull] this string s) =>
 			decimal.Parse(s, CultureInfo.InvariantCulture);
 
 		/// <summary>
-		/// Culture invariant version of <see cref="DateTime.Parse(string, System.IFormatProvider)"/>
+		/// Culture invariant version of <see cref="decimal.TryParse(string, out decimal)"/>
 		/// </summary>
 		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull]
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
 		[Pure]
-		public static DateTime ToDateTimeInvariant([NotNull] this string s) =>
-			DateTime.Parse(s, CultureInfo.InvariantCulture);
+		public static decimal? TryToDecimalInvariant([NotNull] this string s)
+		{
+			decimal res;
+			if (decimal.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="decimal.TryParse(string, out decimal)"/>
+		/// </summary>
+		/// <param name="s">String to parse.</param>
+		/// <param name="style">value style</param>
+		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		[Pure]
+		public static decimal? TryToDecimalInvariant([NotNull] this string s, NumberStyles style)
+		{
+			decimal res;
+			if (decimal.TryParse(s, style, CultureInfo.InvariantCulture, out res))
+				return res;
+			return null;
+		}
 
 	}
 }
