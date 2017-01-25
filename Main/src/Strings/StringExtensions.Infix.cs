@@ -201,25 +201,6 @@ namespace CodeJam.Strings
 		public static int Length([CanBeNull] this string str) => str?.Length ?? 0;
 
 		/// <summary>
-		/// Culture invariant version of <see cref="IFormattable.ToString(string,System.IFormatProvider)"/>
-		/// </summary>
-		/// <param name="s">Object to convert.</param>
-		/// <returns>String representation of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull, Pure]
-		public static string ToInvariantString<T>([NotNull] this T s) where T : IFormattable =>
-			s.ToString(null, CultureInfo.InvariantCulture);
-
-		/// <summary>
-		/// Culture invariant version of <see cref="IFormattable.ToString(string,System.IFormatProvider)"/>
-		/// </summary>
-		/// <param name="s">Object to convert.</param>
-		/// <param name="format">Format string</param>
-		/// <returns>String representation of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull, Pure]
-		public static string ToInvariantString<T>([NotNull] this T s, string format) where T : IFormattable =>
-			s.ToString(format, CultureInfo.InvariantCulture);
-
-		/// <summary>
 		/// Converts the specified string, which encodes binary data as base-64 digits, to an equivalent byte array.
 		/// </summary>
 		/// <param name="str">The string to convert.</param>
