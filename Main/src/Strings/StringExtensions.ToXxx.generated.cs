@@ -18,7 +18,7 @@ namespace CodeJam.Strings
 		#region byte
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-specific format to its
-		/// <see cref="byte"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="Byte"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -32,10 +32,10 @@ namespace CodeJam.Strings
 		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="byte"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="Byte"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="byte.MinValue"/> or greater than <see cref="byte.MaxValue"/>.
+		/// represents a number less than <see cref="Byte.MinValue"/> or greater than <see cref="Byte.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static byte? ToByte(
@@ -49,7 +49,7 @@ namespace CodeJam.Strings
 
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-invariant format to its
-		/// <see cref="byte"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="Byte"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -60,10 +60,10 @@ namespace CodeJam.Strings
 		/// <paramref name="str"/>. Default value is Integer.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="byte"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="Byte"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="byte.MinValue"/> or greater than <see cref="byte.MaxValue"/>.
+		/// represents a number less than <see cref="Byte.MinValue"/> or greater than <see cref="Byte.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static byte? ToByteInvariant(
@@ -78,7 +78,7 @@ namespace CodeJam.Strings
 		#region sbyte
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-specific format to its
-		/// <see cref="sbyte"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="SByte"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -92,10 +92,10 @@ namespace CodeJam.Strings
 		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="sbyte"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="SByte"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="sbyte.MinValue"/> or greater than <see cref="sbyte.MaxValue"/>.
+		/// represents a number less than <see cref="SByte.MinValue"/> or greater than <see cref="SByte.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static sbyte? ToSByte(
@@ -109,7 +109,7 @@ namespace CodeJam.Strings
 
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-invariant format to its
-		/// <see cref="sbyte"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="SByte"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -120,10 +120,10 @@ namespace CodeJam.Strings
 		/// <paramref name="str"/>. Default value is Integer.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="sbyte"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="SByte"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="sbyte.MinValue"/> or greater than <see cref="sbyte.MaxValue"/>.
+		/// represents a number less than <see cref="SByte.MinValue"/> or greater than <see cref="SByte.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static sbyte? ToSByteInvariant(
@@ -138,7 +138,7 @@ namespace CodeJam.Strings
 		#region short
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-specific format to its
-		/// <see cref="short"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="Int16"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -152,10 +152,10 @@ namespace CodeJam.Strings
 		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="short"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="Int16"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="short.MinValue"/> or greater than <see cref="short.MaxValue"/>.
+		/// represents a number less than <see cref="Int16.MinValue"/> or greater than <see cref="Int16.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static short? ToInt16(
@@ -169,7 +169,7 @@ namespace CodeJam.Strings
 
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-invariant format to its
-		/// <see cref="short"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="Int16"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -180,10 +180,10 @@ namespace CodeJam.Strings
 		/// <paramref name="str"/>. Default value is Number.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="short"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="Int16"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="short.MinValue"/> or greater than <see cref="short.MaxValue"/>.
+		/// represents a number less than <see cref="Int16.MinValue"/> or greater than <see cref="Int16.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static short? ToInt16Invariant(
@@ -198,7 +198,7 @@ namespace CodeJam.Strings
 		#region ushort
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-specific format to its
-		/// <see cref="ushort"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="UInt16"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -212,10 +212,10 @@ namespace CodeJam.Strings
 		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="ushort"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="UInt16"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="ushort.MinValue"/> or greater than <see cref="ushort.MaxValue"/>.
+		/// represents a number less than <see cref="UInt16.MinValue"/> or greater than <see cref="UInt16.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static ushort? ToUInt16(
@@ -229,7 +229,7 @@ namespace CodeJam.Strings
 
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-invariant format to its
-		/// <see cref="ushort"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="UInt16"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -240,10 +240,10 @@ namespace CodeJam.Strings
 		/// <paramref name="str"/>. Default value is Integer.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="ushort"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="UInt16"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="ushort.MinValue"/> or greater than <see cref="ushort.MaxValue"/>.
+		/// represents a number less than <see cref="UInt16.MinValue"/> or greater than <see cref="UInt16.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static ushort? ToUInt16Invariant(
@@ -258,7 +258,7 @@ namespace CodeJam.Strings
 		#region int
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-specific format to its
-		/// <see cref="int"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="Int32"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -272,10 +272,10 @@ namespace CodeJam.Strings
 		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="int"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="Int32"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="int.MinValue"/> or greater than <see cref="int.MaxValue"/>.
+		/// represents a number less than <see cref="Int32.MinValue"/> or greater than <see cref="Int32.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static int? ToInt32(
@@ -289,7 +289,7 @@ namespace CodeJam.Strings
 
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-invariant format to its
-		/// <see cref="int"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="Int32"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -300,10 +300,10 @@ namespace CodeJam.Strings
 		/// <paramref name="str"/>. Default value is Integer.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="int"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="Int32"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="int.MinValue"/> or greater than <see cref="int.MaxValue"/>.
+		/// represents a number less than <see cref="Int32.MinValue"/> or greater than <see cref="Int32.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static int? ToInt32Invariant(
@@ -318,7 +318,7 @@ namespace CodeJam.Strings
 		#region uint
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-specific format to its
-		/// <see cref="uint"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="UInt32"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -332,10 +332,10 @@ namespace CodeJam.Strings
 		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="uint"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="UInt32"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="uint.MinValue"/> or greater than <see cref="uint.MaxValue"/>.
+		/// represents a number less than <see cref="UInt32.MinValue"/> or greater than <see cref="UInt32.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static uint? ToUInt32(
@@ -349,7 +349,7 @@ namespace CodeJam.Strings
 
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-invariant format to its
-		/// <see cref="uint"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="UInt32"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -360,10 +360,10 @@ namespace CodeJam.Strings
 		/// <paramref name="str"/>. Default value is Integer.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="uint"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="UInt32"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="uint.MinValue"/> or greater than <see cref="uint.MaxValue"/>.
+		/// represents a number less than <see cref="UInt32.MinValue"/> or greater than <see cref="UInt32.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static uint? ToUInt32Invariant(
@@ -378,7 +378,7 @@ namespace CodeJam.Strings
 		#region long
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-specific format to its
-		/// <see cref="long"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="Int64"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -392,10 +392,10 @@ namespace CodeJam.Strings
 		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="long"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="Int64"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="long.MinValue"/> or greater than <see cref="long.MaxValue"/>.
+		/// represents a number less than <see cref="Int64.MinValue"/> or greater than <see cref="Int64.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static long? ToInt64(
@@ -409,7 +409,7 @@ namespace CodeJam.Strings
 
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-invariant format to its
-		/// <see cref="long"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="Int64"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -420,10 +420,10 @@ namespace CodeJam.Strings
 		/// <paramref name="str"/>. Default value is Integer.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="long"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="Int64"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="long.MinValue"/> or greater than <see cref="long.MaxValue"/>.
+		/// represents a number less than <see cref="Int64.MinValue"/> or greater than <see cref="Int64.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static long? ToInt64Invariant(
@@ -438,7 +438,7 @@ namespace CodeJam.Strings
 		#region ulong
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-specific format to its
-		/// <see cref="ulong"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="UInt64"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -452,10 +452,10 @@ namespace CodeJam.Strings
 		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="ulong"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="UInt64"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="ulong.MinValue"/> or greater than <see cref="ulong.MaxValue"/>.
+		/// represents a number less than <see cref="UInt64.MinValue"/> or greater than <see cref="UInt64.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static ulong? ToUInt64(
@@ -469,7 +469,7 @@ namespace CodeJam.Strings
 
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-invariant format to its
-		/// <see cref="ulong"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="UInt64"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -480,10 +480,10 @@ namespace CodeJam.Strings
 		/// <paramref name="str"/>. Default value is Integer.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="ulong"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="UInt64"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="ulong.MinValue"/> or greater than <see cref="ulong.MaxValue"/>.
+		/// represents a number less than <see cref="UInt64.MinValue"/> or greater than <see cref="UInt64.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static ulong? ToUInt64Invariant(
@@ -498,7 +498,7 @@ namespace CodeJam.Strings
 		#region float
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-specific format to its
-		/// <see cref="float"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="Single"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -512,10 +512,10 @@ namespace CodeJam.Strings
 		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="float"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="Single"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="float.MinValue"/> or greater than <see cref="float.MaxValue"/>.
+		/// represents a number less than <see cref="Single.MinValue"/> or greater than <see cref="Single.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static float? ToSingle(
@@ -529,7 +529,7 @@ namespace CodeJam.Strings
 
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-invariant format to its
-		/// <see cref="float"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="Single"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -540,10 +540,10 @@ namespace CodeJam.Strings
 		/// <paramref name="str"/>. Default value is Float.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="float"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="Single"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="float.MinValue"/> or greater than <see cref="float.MaxValue"/>.
+		/// represents a number less than <see cref="Single.MinValue"/> or greater than <see cref="Single.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static float? ToSingleInvariant(
@@ -558,7 +558,7 @@ namespace CodeJam.Strings
 		#region double
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-specific format to its
-		/// <see cref="double"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="Double"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -572,10 +572,10 @@ namespace CodeJam.Strings
 		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="double"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="Double"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="double.MinValue"/> or greater than <see cref="double.MaxValue"/>.
+		/// represents a number less than <see cref="Double.MinValue"/> or greater than <see cref="Double.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static double? ToDouble(
@@ -589,7 +589,7 @@ namespace CodeJam.Strings
 
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-invariant format to its
-		/// <see cref="double"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="Double"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -600,10 +600,10 @@ namespace CodeJam.Strings
 		/// <paramref name="str"/>. Default value is Float.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="double"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="Double"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="double.MinValue"/> or greater than <see cref="double.MaxValue"/>.
+		/// represents a number less than <see cref="Double.MinValue"/> or greater than <see cref="Double.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static double? ToDoubleInvariant(
@@ -618,7 +618,7 @@ namespace CodeJam.Strings
 		#region decimal
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-specific format to its
-		/// <see cref="decimal"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="Decimal"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -632,10 +632,10 @@ namespace CodeJam.Strings
 		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="decimal"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="Decimal"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="decimal.MinValue"/> or greater than <see cref="decimal.MaxValue"/>.
+		/// represents a number less than <see cref="Decimal.MinValue"/> or greater than <see cref="Decimal.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static decimal? ToDecimal(
@@ -649,7 +649,7 @@ namespace CodeJam.Strings
 
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-invariant format to its
-		/// <see cref="decimal"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// <see cref="Decimal"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
 		/// <param name="str">
 		/// A string containing a number to convert. The string is interpreted using the style specified by
@@ -660,10 +660,10 @@ namespace CodeJam.Strings
 		/// <paramref name="str"/>. Default value is Number.
 		/// </param>
 		/// <returns>
-		/// When this method returns, contains the <see cref="decimal"/> value equivalent of the number contained in
+		/// When this method returns, contains the <see cref="Decimal"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
-		/// represents a number less than <see cref="decimal.MinValue"/> or greater than <see cref="decimal.MaxValue"/>.
+		/// represents a number less than <see cref="Decimal.MinValue"/> or greater than <see cref="Decimal.MaxValue"/>.
 		/// </returns>
 		[Pure]
 		public static decimal? ToDecimalInvariant(

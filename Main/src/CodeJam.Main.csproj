@@ -264,11 +264,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringExtensions.CharInfix.tt</DependentUpon>
     </Compile>
-    <Compile Include="Strings\StringExtensions.Culture.cs" />
-    <Compile Include="Strings\StringExtensions.Culture.generated.cs">
+    <Compile Include="Strings\StringExtensions.ToXxx.cs" />
+    <Compile Include="Strings\StringExtensions.ToXxx.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringExtensions.Culture.tt</DependentUpon>
+      <DependentUpon>StringExtensions.ToXxx.tt</DependentUpon>
     </Compile>
     <Compile Include="Structures\OneOf\IOneOf.generated.cs">
       <AutoGen>True</AutoGen>
@@ -475,9 +475,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>StringExtensions.CharInfix.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Strings\StringExtensions.Culture.tt">
+    <Content Include="Strings\StringExtensions.ToXxx.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StringExtensions.Culture.generated.cs</LastGenOutput>
+      <LastGenOutput>StringExtensions.ToXxx.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Structures\OneOf\IOneOf.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
