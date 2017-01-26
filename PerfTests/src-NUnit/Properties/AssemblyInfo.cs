@@ -37,4 +37,6 @@ using NUnit.Framework;
 [assembly: AssemblyVersion("1.1.0.0")]
 [assembly: AssemblyFileVersion("1.1.0.0")]
 
+#pragma warning disable CS0436 // Type conflicts with imported type
 [assembly: NonTestAssembly] 
+#pragma warning restore CS0436 // Type conflicts with imported type

@@ -15,423 +15,664 @@ namespace CodeJam.Strings
 {
 	partial class StringExtensions
 	{
+		#region byte
 		/// <summary>
-		/// Culture invariant version of <see cref="byte.Parse(string)"/>
+		/// Converts the string representation of a number in a specified style and culture-specific format to its
+		/// <see cref="byte"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Integer.
+		/// </param>
+		/// <param name="provider">
+		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="byte"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="byte.MinValue"/> or greater than <see cref="byte.MaxValue"/>.
+		/// </returns>
 		[Pure]
-		public static byte ToByteInvariant([NotNull] this string s) =>
-			byte.Parse(s, CultureInfo.InvariantCulture);
-
-		/// <summary>
-		/// Culture invariant version of <see cref="byte.TryParse(string, out byte)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
-		[Pure]
-		public static byte? TryToByteInvariant([NotNull] this string s)
+		public static byte? ToByte(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Integer,
+			[CanBeNull] IFormatProvider provider = null)
 		{
-			byte res;
-			if (byte.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
+			byte result;
+			return byte.TryParse(str, numberStyle, provider, out result) ? (byte?)result : null;
 		}
 
 		/// <summary>
-		/// Culture invariant version of <see cref="byte.TryParse(string, out byte)"/>
+		/// Converts the string representation of a number in a specified style and culture-invariant format to its
+		/// <see cref="byte"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <param name="style">value style</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Integer.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="byte"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="byte.MinValue"/> or greater than <see cref="byte.MaxValue"/>.
+		/// </returns>
 		[Pure]
-		public static byte? TryToByteInvariant([NotNull] this string s, NumberStyles style)
+		public static byte? ToByteInvariant(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Integer)
 		{
-			byte res;
-			if (byte.TryParse(s, style, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
+			byte result;
+			return byte.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (byte?)result : null;
+		}
+		#endregion
+
+		#region sbyte
+		/// <summary>
+		/// Converts the string representation of a number in a specified style and culture-specific format to its
+		/// <see cref="sbyte"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// </summary>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Integer.
+		/// </param>
+		/// <param name="provider">
+		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="sbyte"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="sbyte.MinValue"/> or greater than <see cref="sbyte.MaxValue"/>.
+		/// </returns>
+		[Pure]
+		public static sbyte? ToSByte(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Integer,
+			[CanBeNull] IFormatProvider provider = null)
+		{
+			sbyte result;
+			return sbyte.TryParse(str, numberStyle, provider, out result) ? (sbyte?)result : null;
 		}
 
 		/// <summary>
-		/// Culture invariant version of <see cref="sbyte.Parse(string)"/>
+		/// Converts the string representation of a number in a specified style and culture-invariant format to its
+		/// <see cref="sbyte"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Integer.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="sbyte"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="sbyte.MinValue"/> or greater than <see cref="sbyte.MaxValue"/>.
+		/// </returns>
 		[Pure]
-		public static sbyte ToSByteInvariant([NotNull] this string s) =>
-			sbyte.Parse(s, CultureInfo.InvariantCulture);
-
-		/// <summary>
-		/// Culture invariant version of <see cref="sbyte.TryParse(string, out sbyte)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
-		[Pure]
-		public static sbyte? TryToSByteInvariant([NotNull] this string s)
+		public static sbyte? ToSByteInvariant(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Integer)
 		{
-			sbyte res;
-			if (sbyte.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
+			sbyte result;
+			return sbyte.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (sbyte?)result : null;
+		}
+		#endregion
+
+		#region short
+		/// <summary>
+		/// Converts the string representation of a number in a specified style and culture-specific format to its
+		/// <see cref="short"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// </summary>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Number.
+		/// </param>
+		/// <param name="provider">
+		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="short"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="short.MinValue"/> or greater than <see cref="short.MaxValue"/>.
+		/// </returns>
+		[Pure]
+		public static short? ToInt16(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Number,
+			[CanBeNull] IFormatProvider provider = null)
+		{
+			short result;
+			return short.TryParse(str, numberStyle, provider, out result) ? (short?)result : null;
 		}
 
 		/// <summary>
-		/// Culture invariant version of <see cref="sbyte.TryParse(string, out sbyte)"/>
+		/// Converts the string representation of a number in a specified style and culture-invariant format to its
+		/// <see cref="short"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <param name="style">value style</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Number.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="short"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="short.MinValue"/> or greater than <see cref="short.MaxValue"/>.
+		/// </returns>
 		[Pure]
-		public static sbyte? TryToSByteInvariant([NotNull] this string s, NumberStyles style)
+		public static short? ToInt16Invariant(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Number)
 		{
-			sbyte res;
-			if (sbyte.TryParse(s, style, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
+			short result;
+			return short.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (short?)result : null;
+		}
+		#endregion
+
+		#region ushort
+		/// <summary>
+		/// Converts the string representation of a number in a specified style and culture-specific format to its
+		/// <see cref="ushort"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// </summary>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Integer.
+		/// </param>
+		/// <param name="provider">
+		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="ushort"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="ushort.MinValue"/> or greater than <see cref="ushort.MaxValue"/>.
+		/// </returns>
+		[Pure]
+		public static ushort? ToUInt16(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Integer,
+			[CanBeNull] IFormatProvider provider = null)
+		{
+			ushort result;
+			return ushort.TryParse(str, numberStyle, provider, out result) ? (ushort?)result : null;
 		}
 
 		/// <summary>
-		/// Culture invariant version of <see cref="short.Parse(string)"/>
+		/// Converts the string representation of a number in a specified style and culture-invariant format to its
+		/// <see cref="ushort"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Integer.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="ushort"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="ushort.MinValue"/> or greater than <see cref="ushort.MaxValue"/>.
+		/// </returns>
 		[Pure]
-		public static short ToInt16Invariant([NotNull] this string s) =>
-			short.Parse(s, CultureInfo.InvariantCulture);
-
-		/// <summary>
-		/// Culture invariant version of <see cref="short.TryParse(string, out short)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
-		[Pure]
-		public static short? TryToInt16Invariant([NotNull] this string s)
+		public static ushort? ToUInt16Invariant(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Integer)
 		{
-			short res;
-			if (short.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
+			ushort result;
+			return ushort.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (ushort?)result : null;
+		}
+		#endregion
+
+		#region int
+		/// <summary>
+		/// Converts the string representation of a number in a specified style and culture-specific format to its
+		/// <see cref="int"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// </summary>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Integer.
+		/// </param>
+		/// <param name="provider">
+		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="int"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="int.MinValue"/> or greater than <see cref="int.MaxValue"/>.
+		/// </returns>
+		[Pure]
+		public static int? ToInt32(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Integer,
+			[CanBeNull] IFormatProvider provider = null)
+		{
+			int result;
+			return int.TryParse(str, numberStyle, provider, out result) ? (int?)result : null;
 		}
 
 		/// <summary>
-		/// Culture invariant version of <see cref="short.TryParse(string, out short)"/>
+		/// Converts the string representation of a number in a specified style and culture-invariant format to its
+		/// <see cref="int"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <param name="style">value style</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Integer.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="int"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="int.MinValue"/> or greater than <see cref="int.MaxValue"/>.
+		/// </returns>
 		[Pure]
-		public static short? TryToInt16Invariant([NotNull] this string s, NumberStyles style)
+		public static int? ToInt32Invariant(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Integer)
 		{
-			short res;
-			if (short.TryParse(s, style, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
+			int result;
+			return int.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (int?)result : null;
+		}
+		#endregion
+
+		#region uint
+		/// <summary>
+		/// Converts the string representation of a number in a specified style and culture-specific format to its
+		/// <see cref="uint"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// </summary>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Integer.
+		/// </param>
+		/// <param name="provider">
+		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="uint"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="uint.MinValue"/> or greater than <see cref="uint.MaxValue"/>.
+		/// </returns>
+		[Pure]
+		public static uint? ToUInt32(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Integer,
+			[CanBeNull] IFormatProvider provider = null)
+		{
+			uint result;
+			return uint.TryParse(str, numberStyle, provider, out result) ? (uint?)result : null;
 		}
 
 		/// <summary>
-		/// Culture invariant version of <see cref="ushort.Parse(string)"/>
+		/// Converts the string representation of a number in a specified style and culture-invariant format to its
+		/// <see cref="uint"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Integer.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="uint"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="uint.MinValue"/> or greater than <see cref="uint.MaxValue"/>.
+		/// </returns>
 		[Pure]
-		public static ushort ToUInt16Invariant([NotNull] this string s) =>
-			ushort.Parse(s, CultureInfo.InvariantCulture);
-
-		/// <summary>
-		/// Culture invariant version of <see cref="ushort.TryParse(string, out ushort)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
-		[Pure]
-		public static ushort? TryToUInt16Invariant([NotNull] this string s)
+		public static uint? ToUInt32Invariant(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Integer)
 		{
-			ushort res;
-			if (ushort.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
+			uint result;
+			return uint.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (uint?)result : null;
+		}
+		#endregion
+
+		#region long
+		/// <summary>
+		/// Converts the string representation of a number in a specified style and culture-specific format to its
+		/// <see cref="long"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// </summary>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Integer.
+		/// </param>
+		/// <param name="provider">
+		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="long"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="long.MinValue"/> or greater than <see cref="long.MaxValue"/>.
+		/// </returns>
+		[Pure]
+		public static long? ToInt64(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Integer,
+			[CanBeNull] IFormatProvider provider = null)
+		{
+			long result;
+			return long.TryParse(str, numberStyle, provider, out result) ? (long?)result : null;
 		}
 
 		/// <summary>
-		/// Culture invariant version of <see cref="ushort.TryParse(string, out ushort)"/>
+		/// Converts the string representation of a number in a specified style and culture-invariant format to its
+		/// <see cref="long"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <param name="style">value style</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Integer.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="long"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="long.MinValue"/> or greater than <see cref="long.MaxValue"/>.
+		/// </returns>
 		[Pure]
-		public static ushort? TryToUInt16Invariant([NotNull] this string s, NumberStyles style)
+		public static long? ToInt64Invariant(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Integer)
 		{
-			ushort res;
-			if (ushort.TryParse(s, style, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
+			long result;
+			return long.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (long?)result : null;
+		}
+		#endregion
+
+		#region ulong
+		/// <summary>
+		/// Converts the string representation of a number in a specified style and culture-specific format to its
+		/// <see cref="ulong"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// </summary>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Integer.
+		/// </param>
+		/// <param name="provider">
+		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="ulong"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="ulong.MinValue"/> or greater than <see cref="ulong.MaxValue"/>.
+		/// </returns>
+		[Pure]
+		public static ulong? ToUInt64(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Integer,
+			[CanBeNull] IFormatProvider provider = null)
+		{
+			ulong result;
+			return ulong.TryParse(str, numberStyle, provider, out result) ? (ulong?)result : null;
 		}
 
 		/// <summary>
-		/// Culture invariant version of <see cref="int.Parse(string)"/>
+		/// Converts the string representation of a number in a specified style and culture-invariant format to its
+		/// <see cref="ulong"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Integer.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="ulong"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="ulong.MinValue"/> or greater than <see cref="ulong.MaxValue"/>.
+		/// </returns>
 		[Pure]
-		public static int ToInt32Invariant([NotNull] this string s) =>
-			int.Parse(s, CultureInfo.InvariantCulture);
-
-		/// <summary>
-		/// Culture invariant version of <see cref="int.TryParse(string, out int)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
-		[Pure]
-		public static int? TryToInt32Invariant([NotNull] this string s)
+		public static ulong? ToUInt64Invariant(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Integer)
 		{
-			int res;
-			if (int.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
+			ulong result;
+			return ulong.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (ulong?)result : null;
+		}
+		#endregion
+
+		#region float
+		/// <summary>
+		/// Converts the string representation of a number in a specified style and culture-specific format to its
+		/// <see cref="float"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// </summary>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Float.
+		/// </param>
+		/// <param name="provider">
+		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="float"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="float.MinValue"/> or greater than <see cref="float.MaxValue"/>.
+		/// </returns>
+		[Pure]
+		public static float? ToSingle(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Float,
+			[CanBeNull] IFormatProvider provider = null)
+		{
+			float result;
+			return float.TryParse(str, numberStyle, provider, out result) ? (float?)result : null;
 		}
 
 		/// <summary>
-		/// Culture invariant version of <see cref="int.TryParse(string, out int)"/>
+		/// Converts the string representation of a number in a specified style and culture-invariant format to its
+		/// <see cref="float"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <param name="style">value style</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Float.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="float"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="float.MinValue"/> or greater than <see cref="float.MaxValue"/>.
+		/// </returns>
 		[Pure]
-		public static int? TryToInt32Invariant([NotNull] this string s, NumberStyles style)
+		public static float? ToSingleInvariant(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Float)
 		{
-			int res;
-			if (int.TryParse(s, style, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
+			float result;
+			return float.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (float?)result : null;
+		}
+		#endregion
+
+		#region double
+		/// <summary>
+		/// Converts the string representation of a number in a specified style and culture-specific format to its
+		/// <see cref="double"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// </summary>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Float.
+		/// </param>
+		/// <param name="provider">
+		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="double"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="double.MinValue"/> or greater than <see cref="double.MaxValue"/>.
+		/// </returns>
+		[Pure]
+		public static double? ToDouble(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Float,
+			[CanBeNull] IFormatProvider provider = null)
+		{
+			double result;
+			return double.TryParse(str, numberStyle, provider, out result) ? (double?)result : null;
 		}
 
 		/// <summary>
-		/// Culture invariant version of <see cref="uint.Parse(string)"/>
+		/// Converts the string representation of a number in a specified style and culture-invariant format to its
+		/// <see cref="double"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Float.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="double"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="double.MinValue"/> or greater than <see cref="double.MaxValue"/>.
+		/// </returns>
 		[Pure]
-		public static uint ToUInt32Invariant([NotNull] this string s) =>
-			uint.Parse(s, CultureInfo.InvariantCulture);
-
-		/// <summary>
-		/// Culture invariant version of <see cref="uint.TryParse(string, out uint)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
-		[Pure]
-		public static uint? TryToUInt32Invariant([NotNull] this string s)
+		public static double? ToDoubleInvariant(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Float)
 		{
-			uint res;
-			if (uint.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
+			double result;
+			return double.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (double?)result : null;
+		}
+		#endregion
+
+		#region decimal
+		/// <summary>
+		/// Converts the string representation of a number in a specified style and culture-specific format to its
+		/// <see cref="decimal"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// </summary>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Number.
+		/// </param>
+		/// <param name="provider">
+		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="decimal"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="decimal.MinValue"/> or greater than <see cref="decimal.MaxValue"/>.
+		/// </returns>
+		[Pure]
+		public static decimal? ToDecimal(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Number,
+			[CanBeNull] IFormatProvider provider = null)
+		{
+			decimal result;
+			return decimal.TryParse(str, numberStyle, provider, out result) ? (decimal?)result : null;
 		}
 
 		/// <summary>
-		/// Culture invariant version of <see cref="uint.TryParse(string, out uint)"/>
+		/// Converts the string representation of a number in a specified style and culture-invariant format to its
+		/// <see cref="decimal"/> equivalent. A return value indicates whether the conversion succeeded.
 		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <param name="style">value style</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="numberStyle"/>.
+		/// </param>
+		/// <param name="numberStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Number.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="decimal"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// represents a number less than <see cref="decimal.MinValue"/> or greater than <see cref="decimal.MaxValue"/>.
+		/// </returns>
 		[Pure]
-		public static uint? TryToUInt32Invariant([NotNull] this string s, NumberStyles style)
+		public static decimal? ToDecimalInvariant(
+			[CanBeNull] this string str,
+			NumberStyles numberStyle = NumberStyles.Number)
 		{
-			uint res;
-			if (uint.TryParse(s, style, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
+			decimal result;
+			return decimal.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (decimal?)result : null;
 		}
-
-		/// <summary>
-		/// Culture invariant version of <see cref="long.Parse(string)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[Pure]
-		public static long ToInt64Invariant([NotNull] this string s) =>
-			long.Parse(s, CultureInfo.InvariantCulture);
-
-		/// <summary>
-		/// Culture invariant version of <see cref="long.TryParse(string, out long)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
-		[Pure]
-		public static long? TryToInt64Invariant([NotNull] this string s)
-		{
-			long res;
-			if (long.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
-		}
-
-		/// <summary>
-		/// Culture invariant version of <see cref="long.TryParse(string, out long)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <param name="style">value style</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
-		[Pure]
-		public static long? TryToInt64Invariant([NotNull] this string s, NumberStyles style)
-		{
-			long res;
-			if (long.TryParse(s, style, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
-		}
-
-		/// <summary>
-		/// Culture invariant version of <see cref="ulong.Parse(string)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[Pure]
-		public static ulong ToUInt64Invariant([NotNull] this string s) =>
-			ulong.Parse(s, CultureInfo.InvariantCulture);
-
-		/// <summary>
-		/// Culture invariant version of <see cref="ulong.TryParse(string, out ulong)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
-		[Pure]
-		public static ulong? TryToUInt64Invariant([NotNull] this string s)
-		{
-			ulong res;
-			if (ulong.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
-		}
-
-		/// <summary>
-		/// Culture invariant version of <see cref="ulong.TryParse(string, out ulong)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <param name="style">value style</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
-		[Pure]
-		public static ulong? TryToUInt64Invariant([NotNull] this string s, NumberStyles style)
-		{
-			ulong res;
-			if (ulong.TryParse(s, style, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
-		}
-
-		/// <summary>
-		/// Culture invariant version of <see cref="float.Parse(string)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[Pure]
-		public static float ToSingleInvariant([NotNull] this string s) =>
-			float.Parse(s, CultureInfo.InvariantCulture);
-
-		/// <summary>
-		/// Culture invariant version of <see cref="float.TryParse(string, out float)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
-		[Pure]
-		public static float? TryToSingleInvariant([NotNull] this string s)
-		{
-			float res;
-			if (float.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
-		}
-
-		/// <summary>
-		/// Culture invariant version of <see cref="float.TryParse(string, out float)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <param name="style">value style</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
-		[Pure]
-		public static float? TryToSingleInvariant([NotNull] this string s, NumberStyles style)
-		{
-			float res;
-			if (float.TryParse(s, style, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
-		}
-
-		/// <summary>
-		/// Culture invariant version of <see cref="double.Parse(string)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[Pure]
-		public static double ToDoubleInvariant([NotNull] this string s) =>
-			double.Parse(s, CultureInfo.InvariantCulture);
-
-		/// <summary>
-		/// Culture invariant version of <see cref="double.TryParse(string, out double)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
-		[Pure]
-		public static double? TryToDoubleInvariant([NotNull] this string s)
-		{
-			double res;
-			if (double.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
-		}
-
-		/// <summary>
-		/// Culture invariant version of <see cref="double.TryParse(string, out double)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <param name="style">value style</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
-		[Pure]
-		public static double? TryToDoubleInvariant([NotNull] this string s, NumberStyles style)
-		{
-			double res;
-			if (double.TryParse(s, style, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
-		}
-
-		/// <summary>
-		/// Culture invariant version of <see cref="decimal.Parse(string)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[Pure]
-		public static decimal ToDecimalInvariant([NotNull] this string s) =>
-			decimal.Parse(s, CultureInfo.InvariantCulture);
-
-		/// <summary>
-		/// Culture invariant version of <see cref="decimal.TryParse(string, out decimal)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
-		[Pure]
-		public static decimal? TryToDecimalInvariant([NotNull] this string s)
-		{
-			decimal res;
-			if (decimal.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
-		}
-
-		/// <summary>
-		/// Culture invariant version of <see cref="decimal.TryParse(string, out decimal)"/>
-		/// </summary>
-		/// <param name="s">String to parse.</param>
-		/// <param name="style">value style</param>
-		/// <returns>Parsed value of <paramref name="s"/> according to rules of invariant culture, or <c>null</c> if string can't be parsed.</returns>
-		[Pure]
-		public static decimal? TryToDecimalInvariant([NotNull] this string s, NumberStyles style)
-		{
-			decimal res;
-			if (decimal.TryParse(s, style, CultureInfo.InvariantCulture, out res))
-				return res;
-			return null;
-		}
-
+		#endregion
 	}
 }
