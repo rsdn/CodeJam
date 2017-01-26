@@ -7,7 +7,7 @@
     <ProjectGuid>{0DFF0859-2400-4487-83AD-0ED10203D6D9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CodeJam.Blocks</RootNamespace>
+    <RootNamespace>CodeJam</RootNamespace>
     <AssemblyName>CodeJam.Blocks</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

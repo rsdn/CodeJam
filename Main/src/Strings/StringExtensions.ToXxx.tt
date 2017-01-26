@@ -3,16 +3,16 @@
 	var types =
 		new[]
 		{
-			new {Lang = "byte", Clr = "Byte", Style = "Integer"},
-			new {Lang = "sbyte", Clr = "SByte", Style = "Integer"},
-			new {Lang = "short", Clr = "Int16", Style = "Number"},
-			new {Lang = "ushort", Clr = "UInt16", Style = "Integer"},
-			new {Lang = "int", Clr = "Int32", Style = "Integer"},
-			new {Lang = "uint", Clr = "UInt32", Style = "Integer"},
-			new {Lang = "long", Clr = "Int64", Style = "Integer"},
-			new {Lang = "ulong", Clr = "UInt64", Style = "Integer"},
-			new {Lang = "float", Clr = "Single", Style = "Float"},
-			new {Lang = "double", Clr = "Double", Style = "Float"},
+			new {Lang = "byte",    Clr = "Byte",    Style = "Integer"},
+			new {Lang = "sbyte",   Clr = "SByte",   Style = "Integer"},
+			new {Lang = "short",   Clr = "Int16",   Style = "Number"},
+			new {Lang = "ushort",  Clr = "UInt16",  Style = "Integer"},
+			new {Lang = "int",     Clr = "Int32",   Style = "Integer"},
+			new {Lang = "uint",    Clr = "UInt32",  Style = "Integer"},
+			new {Lang = "long",    Clr = "Int64",   Style = "Integer"},
+			new {Lang = "ulong",   Clr = "UInt64",  Style = "Integer"},
+			new {Lang = "float",   Clr = "Single",  Style = "Float"},
+			new {Lang = "double",  Clr = "Double",  Style = "Float"},
 			new {Lang = "decimal", Clr = "Decimal", Style = "Number"}
 		};
 #>
