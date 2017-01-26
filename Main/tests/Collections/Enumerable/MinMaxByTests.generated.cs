@@ -37,7 +37,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MinByInt32NullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Int32?>((Int32?)(v.ToInt()))).MinBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Int32?>((Int32?)(v.ToInt32()))).MinBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MinBy Int32 Nullable Array",  ExpectedResult = 0)]
 		[TestCase(new[] {1},             TestName = "MinBy Int32 Nullable Single", ExpectedResult = 1)]
@@ -70,7 +70,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MinByInt64NullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Int64?>((Int64?)(v.ToInt()))).MinBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Int64?>((Int64?)(v.ToInt64()))).MinBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MinBy Int64 Nullable Array",  ExpectedResult = 0)]
 		[TestCase(new[] {1},             TestName = "MinBy Int64 Nullable Single", ExpectedResult = 1)]
@@ -103,7 +103,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MinBySingleNullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Single?>((Single?)(v.ToInt()))).MinBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Single?>((Single?)(v.ToSingle()))).MinBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MinBy Single Nullable Array",  ExpectedResult = 0)]
 		[TestCase(new[] {1},             TestName = "MinBy Single Nullable Single", ExpectedResult = 1)]
@@ -136,7 +136,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MinByDoubleNullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Double?>((Double?)(v.ToInt()))).MinBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Double?>((Double?)(v.ToDouble()))).MinBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MinBy Double Nullable Array",  ExpectedResult = 0)]
 		[TestCase(new[] {1},             TestName = "MinBy Double Nullable Single", ExpectedResult = 1)]
@@ -169,7 +169,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MinByDecimalNullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Decimal?>((Decimal?)(v.ToInt()))).MinBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Decimal?>((Decimal?)(v.ToDecimal()))).MinBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MinBy Decimal Nullable Array",  ExpectedResult = 0)]
 		[TestCase(new[] {1},             TestName = "MinBy Decimal Nullable Single", ExpectedResult = 1)]
@@ -202,7 +202,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MinByInt16NullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Int16?>((Int16?)(v.ToInt()))).MinBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Int16?>((Int16?)(v.ToInt16()))).MinBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MinBy Int16 Nullable Array",  ExpectedResult = 0)]
 		[TestCase(new[] {1},             TestName = "MinBy Int16 Nullable Single", ExpectedResult = 1)]
@@ -235,7 +235,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MinBySByteNullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<SByte?>((SByte?)(v.ToInt()))).MinBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<SByte?>((SByte?)(v.ToSByte()))).MinBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MinBy SByte Nullable Array",  ExpectedResult = 0)]
 		[TestCase(new[] {1},             TestName = "MinBy SByte Nullable Single", ExpectedResult = 1)]
@@ -268,7 +268,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MinByUInt32NullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<UInt32?>((UInt32?)(v.ToInt()))).MinBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<UInt32?>((UInt32?)(v.ToUInt32()))).MinBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MinBy UInt32 Nullable Array",  ExpectedResult = 0)]
 		[TestCase(new[] {1},             TestName = "MinBy UInt32 Nullable Single", ExpectedResult = 1)]
@@ -301,7 +301,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MinByUInt64NullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<UInt64?>((UInt64?)(v.ToInt()))).MinBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<UInt64?>((UInt64?)(v.ToUInt64()))).MinBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MinBy UInt64 Nullable Array",  ExpectedResult = 0)]
 		[TestCase(new[] {1},             TestName = "MinBy UInt64 Nullable Single", ExpectedResult = 1)]
@@ -334,7 +334,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MinByUInt16NullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<UInt16?>((UInt16?)(v.ToInt()))).MinBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<UInt16?>((UInt16?)(v.ToUInt16()))).MinBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MinBy UInt16 Nullable Array",  ExpectedResult = 0)]
 		[TestCase(new[] {1},             TestName = "MinBy UInt16 Nullable Single", ExpectedResult = 1)]
@@ -367,7 +367,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MinByByteNullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Byte?>((Byte?)(v.ToInt()))).MinBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Byte?>((Byte?)(v.ToByte()))).MinBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MinBy Byte Nullable Array",  ExpectedResult = 0)]
 		[TestCase(new[] {1},             TestName = "MinBy Byte Nullable Single", ExpectedResult = 1)]
@@ -404,7 +404,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MaxByInt32NullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Int32?>((Int32?)(v.ToInt()))).MaxBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Int32?>((Int32?)(v.ToInt32()))).MaxBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MaxBy Int32 Nullable Array",  ExpectedResult = 6)]
 		[TestCase(new[] {1},             TestName = "MaxBy Int32 Nullable Single", ExpectedResult = 1)]
@@ -437,7 +437,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MaxByInt64NullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Int64?>((Int64?)(v.ToInt()))).MaxBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Int64?>((Int64?)(v.ToInt64()))).MaxBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MaxBy Int64 Nullable Array",  ExpectedResult = 6)]
 		[TestCase(new[] {1},             TestName = "MaxBy Int64 Nullable Single", ExpectedResult = 1)]
@@ -470,7 +470,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MaxBySingleNullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Single?>((Single?)(v.ToInt()))).MaxBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Single?>((Single?)(v.ToSingle()))).MaxBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MaxBy Single Nullable Array",  ExpectedResult = 6)]
 		[TestCase(new[] {1},             TestName = "MaxBy Single Nullable Single", ExpectedResult = 1)]
@@ -503,7 +503,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MaxByDoubleNullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Double?>((Double?)(v.ToInt()))).MaxBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Double?>((Double?)(v.ToDouble()))).MaxBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MaxBy Double Nullable Array",  ExpectedResult = 6)]
 		[TestCase(new[] {1},             TestName = "MaxBy Double Nullable Single", ExpectedResult = 1)]
@@ -536,7 +536,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MaxByDecimalNullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Decimal?>((Decimal?)(v.ToInt()))).MaxBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Decimal?>((Decimal?)(v.ToDecimal()))).MaxBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MaxBy Decimal Nullable Array",  ExpectedResult = 6)]
 		[TestCase(new[] {1},             TestName = "MaxBy Decimal Nullable Single", ExpectedResult = 1)]
@@ -569,7 +569,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MaxByInt16NullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Int16?>((Int16?)(v.ToInt()))).MaxBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Int16?>((Int16?)(v.ToInt16()))).MaxBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MaxBy Int16 Nullable Array",  ExpectedResult = 6)]
 		[TestCase(new[] {1},             TestName = "MaxBy Int16 Nullable Single", ExpectedResult = 1)]
@@ -602,7 +602,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MaxBySByteNullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<SByte?>((SByte?)(v.ToInt()))).MaxBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<SByte?>((SByte?)(v.ToSByte()))).MaxBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MaxBy SByte Nullable Array",  ExpectedResult = 6)]
 		[TestCase(new[] {1},             TestName = "MaxBy SByte Nullable Single", ExpectedResult = 1)]
@@ -635,7 +635,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MaxByUInt32NullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<UInt32?>((UInt32?)(v.ToInt()))).MaxBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<UInt32?>((UInt32?)(v.ToUInt32()))).MaxBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MaxBy UInt32 Nullable Array",  ExpectedResult = 6)]
 		[TestCase(new[] {1},             TestName = "MaxBy UInt32 Nullable Single", ExpectedResult = 1)]
@@ -668,7 +668,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MaxByUInt64NullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<UInt64?>((UInt64?)(v.ToInt()))).MaxBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<UInt64?>((UInt64?)(v.ToUInt64()))).MaxBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MaxBy UInt64 Nullable Array",  ExpectedResult = 6)]
 		[TestCase(new[] {1},             TestName = "MaxBy UInt64 Nullable Single", ExpectedResult = 1)]
@@ -701,7 +701,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MaxByUInt16NullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<UInt16?>((UInt16?)(v.ToInt()))).MaxBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<UInt16?>((UInt16?)(v.ToUInt16()))).MaxBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MaxBy UInt16 Nullable Array",  ExpectedResult = 6)]
 		[TestCase(new[] {1},             TestName = "MaxBy UInt16 Nullable Single", ExpectedResult = 1)]
@@ -734,7 +734,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void MaxByByteNullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Byte?>((Byte?)(v.ToInt()))).MaxBy(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<Byte?>((Byte?)(v.ToByte()))).MaxBy(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "MaxBy Byte Nullable Array",  ExpectedResult = 6)]
 		[TestCase(new[] {1},             TestName = "MaxBy Byte Nullable Single", ExpectedResult = 1)]

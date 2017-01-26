@@ -51,7 +51,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
 		public void <#= info.Method #><#= type #>NullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<<#= type #>?>((<#= type #>?)(v.ToInt()))).<#= info.Method #>(i => i.Value));
+			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<<#= type #>?>((<#= type #>?)(v.To<#= type #>()))).<#= info.Method #>(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "<#= info.Method #> <#= type #> Nullable Array",  ExpectedResult = <#= info.Result #>)]
 		[TestCase(new[] {1},             TestName = "<#= info.Method #> <#= type #> Nullable Single", ExpectedResult = 1)]

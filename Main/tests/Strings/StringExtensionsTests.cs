@@ -101,7 +101,7 @@ namespace CodeJam.Strings
 		[TestCase("a1", ExpectedResult = null)]
 		[TestCase("2 1", ExpectedResult = null)]
 		[TestCase("1 2", ExpectedResult = null)]
-		public int? ToInt(string str) => str.ToInt(provider: CultureInfo.InvariantCulture);
+		public int? ToInt(string str) => str.ToInt32(provider: CultureInfo.InvariantCulture);
 
 		[TestCase("1", ExpectedResult = 1.0)]
 		[TestCase("1.0", ExpectedResult = 1.0)]
@@ -134,13 +134,13 @@ namespace CodeJam.Strings
 		[TestCase(" 1.0", ExpectedResult = 1.0)]
 		[TestCase("1.0 ", ExpectedResult = 1.0)]
 		[TestCase(" \r\n\t\t \v -1.0 \r\n", ExpectedResult = -1.0)]
-		[TestCase("1.3e3", ExpectedResult = 1300.0)]
+		[TestCase("1.3e3", ExpectedResult = null)]
 		[TestCase("NaN", ExpectedResult = null)]
 		[TestCase("-Infinity", ExpectedResult = null)]
 		[TestCase("-∞", ExpectedResult = null)]
 		[TestCase("-infinity", ExpectedResult = null)]
 		[TestCase("- 1.0 ", ExpectedResult = null)]
-		[TestCase("1,0", ExpectedResult = null)]
+		[TestCase("1,0", ExpectedResult = 10.0)] // thousand separators
 		[TestCase("1.0a", ExpectedResult = null)]
 		[TestCase("1.0 a", ExpectedResult = null)]
 		[TestCase("a 1.0", ExpectedResult = null)]
