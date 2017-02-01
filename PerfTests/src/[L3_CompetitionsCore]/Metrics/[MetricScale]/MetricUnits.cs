@@ -134,7 +134,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <value>The <see cref="MetricUnit" />.</value>
 		/// <param name="enumValue">The enum value.</param>
 		/// <returns>The <see cref="MetricUnit" /> with the specified coefficient.</returns>
-		public MetricUnit this[Enum enumValue] => IsEmpty ? MetricUnit.Empty : _unitsByEnumValue.GetValueOrDefault(enumValue);
+		public MetricUnit this[Enum enumValue] => IsEmpty || enumValue == null ? MetricUnit.Empty : _unitsByEnumValue.GetValueOrDefault(enumValue);
 
 		/// <summary>Gets the <see cref="MetricUnit" /> with the specified name.</summary>
 		/// <value>The <see cref="MetricUnit" />.</value>

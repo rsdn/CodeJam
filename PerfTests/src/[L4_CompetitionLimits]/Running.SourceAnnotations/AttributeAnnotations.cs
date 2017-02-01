@@ -71,7 +71,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				result = metricInfo.MetricUnits[unitValue];
 
-				if (result.IsEmpty)
+				if (unitValue != null && result.IsEmpty)
 				{
 					competitionState.WriteMessage(
 						MessageSource.Analyser, MessageSeverity.SetupError,
@@ -106,7 +106,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				result = metricInfo.MetricUnits[unitValue];
 
-				if (result.IsEmpty)
+				if (unitValue != null && result.IsEmpty)
 				{
 					competitionState.WriteMessage(
 						MessageSource.Analyser, MessageSeverity.SetupError,

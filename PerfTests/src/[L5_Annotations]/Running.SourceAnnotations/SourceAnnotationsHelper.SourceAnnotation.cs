@@ -52,13 +52,15 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			}
 
 			public RuntimeMethodHandle Method { get; }
-			public int BenchmarkAttributeLineNumber { get; }
+			public int BenchmarkAttributeLineNumber { get; private set; }
 			public Range<int> AttributeCandidateLineNumbers { get; private set; }
 
 			public IReadOnlyDictionary<RuntimeTypeHandle, int> AttributeLineNumbers => _attributeLineNumbers;
 
-			private int FixOnInsert(int lineNumber, int insertLineNumber)
-				=> lineNumber < insertLineNumber ? lineNumber : lineNumber + 1;
+			private int FixOnInsertFrom(int lineNumber, int insertLineNumber) =>
+				insertLineNumber < lineNumber ? lineNumber + 1 : lineNumber;
+			private int FixOnInsertTo(int lineNumber, int insertLineNumber) =>
+				insertLineNumber <= lineNumber ? lineNumber + 1 : lineNumber;
 
 			public void FixOnInsert(int insertLineNumber)
 			{
@@ -68,14 +70,15 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				if (range.EndsBefore(insertLineNumber))
 					return;
 
-				int newFrom = FixOnInsert(range.FromValue, insertLineNumber);
-				int newTo = FixOnInsert(range.ToValue, insertLineNumber);
+				BenchmarkAttributeLineNumber = FixOnInsertTo(BenchmarkAttributeLineNumber, insertLineNumber);
+				int newFrom = FixOnInsertFrom(range.FromValue, insertLineNumber);
+				int newTo = FixOnInsertTo(range.ToValue, insertLineNumber);
 				AttributeCandidateLineNumbers = Range.Create(newFrom, newTo);
 
 				foreach (var method in _attributeLineNumbers.Keys.ToArray())
 				{
 					var line = _attributeLineNumbers[method];
-					if (line >= insertLineNumber)
+					if (insertLineNumber <= line)
 					{
 						_attributeLineNumbers[method] = line + 1;
 					}
@@ -143,7 +146,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				MarkAsChanged();
 			}
 			public void InsertLineWithAttribute(
-				int insertLineNumber, string newLine, 
+				int insertLineNumber, string newLine,
 				RuntimeMethodHandle method,
 				RuntimeTypeHandle attributeType)
 			{
@@ -409,10 +412,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					{
 						var whitespacePrefix = GetWhitespacePrefix(sourceCodeFile[benchmarkMethod.BenchmarkAttributeLineNumber]);
 						var newLine = GetNewAnnotationLine(whitespacePrefix, metricValue);
-						var insertLineNumber = benchmarkMethod.BenchmarkAttributeLineNumber;
+						var insertLineNumber = benchmarkMethod.BenchmarkAttributeLineNumber + 1;
 
 						sourceCodeFile.InsertLineWithAttribute(
-							insertLineNumber, 
+							insertLineNumber,
 							newLine,
 							benchmarkMethod.Method,
 							attributeTypeHandle);
@@ -525,14 +528,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 					if (!metricUnit.IsEmpty)
 					{
-						DebugCode.BugIf(
+						Code.BugIf(
 							metricEnumType == null || metricUnit.EnumValue == null ||
 								!Enum.IsDefined(metricEnumType, metricUnit.EnumValue),
 							"Bad enum value.");
 
 						result
 							.Append(", ")
-							.Append(metricEnumType)
+							.Append(metricEnumType.Name)
 							.Append(".")
 							.Append(metricUnit.EnumValue);
 					}
