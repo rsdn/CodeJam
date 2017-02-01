@@ -147,34 +147,32 @@ namespace CodeJam.PerfTests.Running.Core
 		#region Run logic
 		/// <summary>Runs the benchmark for specified benchmark type.</summary>
 		/// <param name="benchmarkType">Type of the benchmark.</param>
-		/// <param name="benchmarkConfig">Config for the benchmark.</param>
-		/// <param name="competitionOptions">Competition options.</param>
+		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>Competition state for the run.</returns>
 		[NotNull]
 		internal static CompetitionState Run(
 			[NotNull] Type benchmarkType,
-			[NotNull] IConfig benchmarkConfig,
-			CompetitionOptions competitionOptions)
+			[NotNull] ICompetitionConfig competitionConfig)
 		{
 			Code.NotNull(benchmarkType, nameof(benchmarkType));
-			Code.NotNull(benchmarkConfig, nameof(benchmarkConfig));
+			Code.NotNull(competitionConfig, nameof(competitionConfig));
 
-			var runStateSlots = benchmarkConfig.GetValidators().OfType<RunStateSlots>();
+			var runStateSlots = competitionConfig.GetValidators().OfType<RunStateSlots>();
 			if (runStateSlots.Count() != 1)
 			{
 				throw CodeExceptions.Argument(
-					nameof(benchmarkConfig),
+					nameof(competitionConfig),
 					$"The competition config should include single instance of {nameof(RunStateSlots)} validator.");
 			}
 
-			var competitionState = RunState[benchmarkConfig];
+			var competitionState = RunState[competitionConfig];
 
 			try
 			{
-				competitionState.FirstTimeInit(benchmarkType, benchmarkConfig, competitionOptions);
+				competitionState.FirstTimeInit(benchmarkType, competitionConfig);
 				var logger = competitionState.Logger;
 
-				using (BeginLogImportant(benchmarkConfig))
+				using (BeginLogImportant(competitionConfig))
 				{
 					logger.WriteLine();
 					logger.WriteSeparatorLine(benchmarkType.Name, true);
@@ -218,7 +216,7 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 			finally
 			{
-				FlushLoggers(benchmarkConfig);
+				FlushLoggers(competitionConfig);
 			}
 
 			competitionState.CompetitionCompleted();

@@ -5,7 +5,7 @@ using CodeJam.PerfTests.Configs.Factories;
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>
-	/// Sets the <see cref="CompetitionLimitsMode.RerunsIfValidationFailed"/> config value.
+	/// Sets the <see cref="CompetitionCheckMode.RerunsIfValidationFailed"/> config value.
 	/// Sets maximum count of retries performed if the limit checking failed.
 	/// </summary>
 	/// <seealso cref="CodeJam.PerfTests.CompetitionModifierAttribute" />
@@ -23,7 +23,7 @@ namespace CodeJam.PerfTests.Configs
 			public void Modify(ManualCompetitionConfig competitionConfig) =>
 				competitionConfig.ApplyModifier(new CompetitionOptions()
 				{
-					Limits = { RerunsIfValidationFailed = _rerunsIfValidationFailed }
+					Checks = { RerunsIfValidationFailed = _rerunsIfValidationFailed }
 				});
 		}
 

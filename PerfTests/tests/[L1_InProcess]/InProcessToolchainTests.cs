@@ -54,7 +54,7 @@ namespace CodeJam.PerfTests
 				.WithModifier(
 					new CompetitionOptions()
 					{
-						Limits = { TooFastBenchmarkLimit = TimeSpan.Zero }
+						Checks = { TooFastBenchmarkLimit = TimeSpan.Zero }
 					});
 			var summary = SelfTestCompetition
 				.Run<InProcessBenchmarkAllCases>(config)
@@ -90,7 +90,7 @@ namespace CodeJam.PerfTests
 				.WithModifier(
 					new CompetitionOptions()
 					{
-						Limits = { TooFastBenchmarkLimit = TimeSpan.Zero }
+						Checks = { TooFastBenchmarkLimit = TimeSpan.Zero }
 					});
 			var summary = SelfTestCompetition
 				.Run<InProcessBenchmarkAllCases>(config)
@@ -121,7 +121,7 @@ namespace CodeJam.PerfTests
 				.WithModifier(
 					new CompetitionOptions()
 					{
-						Limits = { TooFastBenchmarkLimit = TimeSpan.Zero }
+						Checks = { TooFastBenchmarkLimit = TimeSpan.Zero }
 					});
 			var summary = SelfTestCompetition
 				.Run<InProcessBenchmarkAllCases>(config)
@@ -157,7 +157,7 @@ namespace CodeJam.PerfTests
 				.WithModifier(
 					new CompetitionOptions()
 					{
-						Limits = { TooFastBenchmarkLimit = TimeSpan.Zero }
+						Checks = { TooFastBenchmarkLimit = TimeSpan.Zero }
 					});
 			var summary = SelfTestCompetition
 				.Run<InProcessBenchmarkAllCases>(config)

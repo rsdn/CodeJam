@@ -1,7 +1,13 @@
 ﻿using System;
 
+using BenchmarkDotNet.Running;
+
+using CodeJam.PerfTests.Metrics;
+using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Limits;
+using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Reflection;
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -40,20 +46,74 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				attribute.UseFullTypeName);
 		}
 
-		/// <summary>
-		/// Creates <see cref="LimitRange"/> from <see cref="CompetitionBenchmarkAttribute"/>.
-		/// </summary>
-		/// <param name="competitionAttribute">The attribute with competition limits.</param>
-		/// <returns>
-		/// A new instance of the <see cref="LimitRange"/> class
-		/// filled with the properties from <see cref="CompetitionBenchmarkAttribute"/>
-		/// </returns>
-		public static LimitRange ParseCompetitionLimit(
-			[NotNull] CompetitionBenchmarkAttribute competitionAttribute)
+		/// <summary>Parses and checks the measurement unit value.</summary>
+		/// <param name="target">The target.</param>
+		/// <param name="unitValue">The unit value.</param>
+		/// <param name="metricInfo">The metric information.</param>
+		/// <param name="competitionState">State of the run.</param>
+		public static MetricUnit ParseUnitValue(
+			Target target,
+			string unitValue,
+			CompetitionMetricInfo metricInfo,
+			CompetitionState competitionState)
 		{
-			Code.NotNull(competitionAttribute, nameof(competitionAttribute));
+			var result = MetricUnit.Empty;
+			if (metricInfo.MetricUnits.IsEmpty)
+			{
+				if (unitValue.NotNullNorEmpty())
+				{
+					competitionState.WriteMessage(
+						MessageSource.Analyser, MessageSeverity.SetupError,
+						$"XML annotation for {target.MethodDisplayInfo}, metric {metricInfo}. Unit value should be null as metric has empty units scale.");
+				}
+			}
+			else
+			{
+				result = metricInfo.MetricUnits[unitValue];
 
-			return LimitRange.CreateRatioLimit(competitionAttribute.MinRatio, competitionAttribute.MaxRatio);
+				if (result.IsEmpty)
+				{
+					competitionState.WriteMessage(
+						MessageSource.Analyser, MessageSeverity.SetupError,
+						$"XML annotation for {target.MethodDisplayInfo}, metric {metricInfo}: unknown unit value {unitValue}.");
+				}
+			}
+			return result;
+		}
+
+		/// <summary>Parses and checks the measurement unit value.</summary>
+		/// <param name="target">The target.</param>
+		/// <param name="unitValue">The unit value.</param>
+		/// <param name="metricInfo">The metric information.</param>
+		/// <param name="competitionState">State of the run.</param>
+		public static MetricUnit ParseUnitValue(
+			Target target,
+			Enum unitValue,
+			CompetitionMetricInfo metricInfo,
+			CompetitionState competitionState)
+		{
+			var result = MetricUnit.Empty;
+			if (metricInfo.MetricUnits.IsEmpty)
+			{
+				if (unitValue != null)
+				{
+					competitionState.WriteMessage(
+						MessageSource.Analyser, MessageSeverity.SetupError,
+						$"Annotation for {target.MethodDisplayInfo}, metric {metricInfo}. Unit value should be null as metric has empty units scale.");
+				}
+			}
+			else
+			{
+				result = metricInfo.MetricUnits[unitValue];
+
+				if (result.IsEmpty)
+				{
+					competitionState.WriteMessage(
+						MessageSource.Analyser, MessageSeverity.SetupError,
+						$"Annotation for {target.MethodDisplayInfo}, metric {metricInfo}: unknown unit value {unitValue}.");
+				}
+			}
+			return result;
 		}
 	}
 }

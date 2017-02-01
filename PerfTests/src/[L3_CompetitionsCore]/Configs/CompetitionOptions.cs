@@ -17,13 +17,17 @@ namespace CodeJam.PerfTests.Configs
 		public static readonly Characteristic<CompetitionRunMode> RunOptionsCharacteristic = Characteristic.Create(
 			(CompetitionOptions o) => o.RunOptions);
 
-		/// <summary>Competition limit parameters characteristic.</summary>
-		public static readonly Characteristic<CompetitionLimitsMode> LimitsCharacteristic = Characteristic.Create(
-			(CompetitionOptions o) => o.Limits);
+		/// <summary>Competition annotations parameters characteristic.</summary>
+		public static readonly Characteristic<CompetitionAnnotationMode> AnnotationsCharacteristic = Characteristic.Create(
+			(CompetitionOptions o) => o.Annotations);
 
-		/// <summary>Source annotation parameters characteristic.</summary>
-		public static readonly Characteristic<SourceAnnotationsMode> SourceAnnotationsCharacteristic = Characteristic.Create(
-			(CompetitionOptions o) => o.SourceAnnotations);
+		/// <summary>Competition validation parameters characteristic.</summary>
+		public static readonly Characteristic<CompetitionCheckMode> ChecksCharacteristic = Characteristic.Create(
+			(CompetitionOptions o) => o.Checks);
+
+		/// <summary>Competition adjustment parameters characteristic.</summary>
+		public static readonly Characteristic<CompetitionAdjustmentMode> AdjustmentsCharacteristic = Characteristic.Create(
+			(CompetitionOptions o) => o.Adjustments);
 		#endregion
 
 		#region .ctors
@@ -35,8 +39,9 @@ namespace CodeJam.PerfTests.Configs
 		public CompetitionOptions(string id) : base(id)
 		{
 			RunOptionsCharacteristic[this] = new CompetitionRunMode();
-			LimitsCharacteristic[this] = new CompetitionLimitsMode();
-			SourceAnnotationsCharacteristic[this] = new SourceAnnotationsMode();
+			AnnotationsCharacteristic[this] = new CompetitionAnnotationMode();
+			ChecksCharacteristic[this] = new CompetitionCheckMode();
+			AdjustmentsCharacteristic[this] = new CompetitionAdjustmentMode();
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionOptions"/> class.</summary>
@@ -69,12 +74,16 @@ namespace CodeJam.PerfTests.Configs
 		/// <value>Competition run parameters.</value>
 		public CompetitionRunMode RunOptions => RunOptionsCharacteristic[this];
 
-		/// <summary>Competition limit parameters.</summary>
-		/// <value>Competition limit parameters.</value>
-		public CompetitionLimitsMode Limits => LimitsCharacteristic[this];
+		/// <summary>Competition annotations parameters.</summary>
+		/// <value>Competition annotations parameters.</value>
+		public CompetitionAnnotationMode Annotations => AnnotationsCharacteristic[this];
 
-		/// <summary>Source annotation parameters.</summary>
-		/// <value>Source annotation parameters.</value>
-		public SourceAnnotationsMode SourceAnnotations => SourceAnnotationsCharacteristic[this];
+		/// <summary>Competition validation parameters.</summary>
+		/// <value>Competition validation parameters.</value>
+		public CompetitionCheckMode Checks => ChecksCharacteristic[this];
+
+		/// <summary>Competition adjustment parameters.</summary>
+		/// <value>Competition adjustment parameters.</value>
+		public CompetitionAdjustmentMode Adjustments => AdjustmentsCharacteristic[this];
 	}
 }

@@ -10,9 +10,11 @@
 ## TODOs:
 
 ### Types:
- * Competition target: refactor metadata ref to parent.
+ * TargetCacheKey: remove?
+ * Sealed types: unseal where it looks like a good idea.
 
 ### Behavior:
+ * Check Code.BugIf assertions. Replace with messages where possible.
  * Concurrency: lock should be performed on entire benchmark run.
  * Rerun if sources were adjusted from log?
  * Prev run log : cache + reread only if local & size/date/checksum(?) changed!!!

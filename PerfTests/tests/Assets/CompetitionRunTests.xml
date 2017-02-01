@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="XmlTaskOkBenchmark">
-		<Candidate Target="BaselineAsync" Baseline="true" />
-		<Candidate Target="SlowerX5Async" MinRatio="2" MaxRatio="7" />
+		<BaselineAsync Target="" Baseline="true" />
+		<SlowerX5Async Min="2" Max="7" />
 	</Competition>
 	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionRunTests+XmlFullAnnotationBenchmark, CodeJam.PerfTests-Tests">
-		<Candidate Target="Baseline" Baseline="true" />
-		<Candidate Target="SlowerX20" MinRatio="10" MaxRatio="30" />
+		<Baseline Baseline="true" />
+		<SlowerX20 Min="10" Max="30" />
 	</Competition>
 	<Competition Target="XmlBaselineChangedBenchmark">
-		<Candidate Target="Baseline" MinRatio="10" MaxRatio="30" />
-		<Candidate Target="SlowerX20" Baseline="true" />
+		<Baseline Min="10" Max="30" />
+		<SlowerX20 Baseline="true" />
 	</Competition>
 </CompetitionBenchmarks>

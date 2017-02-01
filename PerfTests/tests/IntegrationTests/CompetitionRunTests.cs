@@ -71,7 +71,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(messages.Length, 1);
 
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
+			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition metrics are ok.");
 		}
 
 		[Test]
@@ -87,7 +87,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(messages.Length, 1);
 
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
+			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition metrics are ok.");
 		}
 
 		[Test]
@@ -105,10 +105,10 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"XML anotation for Baseline: baseline flag on the method and in the annotation do not match.");
+				"XML annotation for Baseline: baseline flag on the method and in the annotation do not match.");
 			Assert.AreEqual(
 				messages[1].MessageText,
-				"XML anotation for SlowerX20: baseline flag on the method and in the annotation do not match.");
+				"XML annotation for SlowerX20: baseline flag on the method and in the annotation do not match.");
 		}
 
 		[Test]
@@ -124,7 +124,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(messages.Length, 1);
 
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition limits are ok.");
+			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition metrics are ok.");
 		}
 		[Test]
 		public static void CompetitionNoBaselineOkBenchmark()
@@ -182,7 +182,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.That(
 				messages[0].MessageText,
 				Does.StartWith(
-					"Benchmark SlowerX10: results ignored as benchmark limits are empty."));
+					"Benchmark SlowerX10: results ignored as benchmark metric limits are empty."));
 		}
 
 		[Test]
@@ -209,7 +209,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[1].RunMessageNumber, 2);
 			Assert.AreEqual(messages[1].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[1].MessageSource, MessageSource.Runner);
-			Assert.AreEqual(messages[1].MessageText, "Requesting 1 run(s): Limit checking failed.");
+			Assert.AreEqual(messages[1].MessageText, "Requesting 1 run(s): Metrics check failed.");
 
 			Assert.AreEqual(messages[2].RunNumber, 2);
 			Assert.AreEqual(messages[2].RunMessageNumber, 1);
@@ -222,7 +222,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[3].RunMessageNumber, 2);
 			Assert.AreEqual(messages[3].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[3].MessageSource, MessageSource.Runner);
-			Assert.AreEqual(messages[3].MessageText, "Requesting 1 run(s): Limit checking failed.");
+			Assert.AreEqual(messages[3].MessageText, "Requesting 1 run(s): Metrics check failed.");
 
 			Assert.AreEqual(messages[4].RunNumber, 3);
 			Assert.AreEqual(messages[4].RunMessageNumber, 1);
@@ -259,7 +259,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"Benchmark SlowerX10: results ignored as benchmark limits are empty.");
+				"Benchmark SlowerX10: results ignored as benchmark metric limits are empty.");
 		}
 
 		#region Perf test helpers
@@ -388,10 +388,18 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public class NoBaselineFailBenchmark
 		{
 			[Benchmark]
-			public void Benchmark1() => Interlocked.Increment(ref _callCounter);
+			public void Benchmark1()
+			{
+				Interlocked.Increment(ref _callCounter);
+				CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
+			}
 
 			[CompetitionBenchmark]
-			public void Benchmark2() => Interlocked.Increment(ref _callCounter);
+			public void Benchmark2()
+			{
+				Interlocked.Increment(ref _callCounter);
+				CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
+			}
 		}
 
 		public class BadLimitsBenchmark

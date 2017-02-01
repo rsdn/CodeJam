@@ -3,87 +3,46 @@
 using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Jobs;
 
-using CodeJam.PerfTests.Running.Limits;
-
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Configs
 {
-	/// <summary>Competition limit parameters class.</summary>
+	/// <summary>Competition validation parameters class.</summary>
 	/// <seealso cref="BenchmarkDotNet.Jobs.JobMode{CompetitionLimitsMode}"/>
 	[PublicAPI]
-	public sealed class CompetitionLimitsMode : JobMode<CompetitionLimitsMode>
+	public sealed class CompetitionCheckMode : JobMode<CompetitionCheckMode>
 	{
-		/// <summary>Ignore existing limit annotations characteristic.</summary>
-		public static readonly Characteristic<bool> IgnoreExistingAnnotationsCharacteristic = Characteristic.Create(
-			(CompetitionLimitsMode m) => m.IgnoreExistingAnnotations);
-
-		/// <summary>Log competition limits annotations characteristic.</summary>
-		public static readonly Characteristic<bool> LogAnnotationsCharacteristic = Characteristic.Create(
-			(CompetitionLimitsMode m) => m.LogAnnotations);
-
-		/// <summary>Competition limit provider characteristic.</summary>
-		public static readonly Characteristic<ICompetitionLimitProvider> LimitProviderCharacteristic = Characteristic.Create(
-			(CompetitionLimitsMode m) => m.LimitProvider,
-			LogNormalLimitProvider.Instance);
+		/// <summary>Check competition limits characteristic. Enabled by default.</summary>
+		public static readonly Characteristic<bool> CheckLimitsCharacteristic = Characteristic.Create(
+			(CompetitionCheckMode m) => m.CheckLimits, true);
 
 		/// <summary>Timing limit to detect too fast benchmarks characteristic. Default is 1000 ns.</summary>
 		public static readonly Characteristic<TimeSpan> TooFastBenchmarkLimitCharacteristic = Characteristic.Create(
-			(CompetitionLimitsMode m) => m.TooFastBenchmarkLimit,
+			(CompetitionCheckMode m) => m.TooFastBenchmarkLimit,
 			new TimeSpan(10)); // 1000 ns
 
 		/// <summary>Timing limit to detect long-running benchmarks characteristic. Default is 500 ms.</summary>
 		public static readonly Characteristic<TimeSpan> LongRunningBenchmarkLimitCharacteristic = Characteristic.Create(
-			(CompetitionLimitsMode m) => m.LongRunningBenchmarkLimit,
+			(CompetitionCheckMode m) => m.LongRunningBenchmarkLimit,
 			TimeSpan.FromMilliseconds(500));
 
 		/// <summary>
 		/// Maximum count of retries performed if the limit checking failed characteristic. Default is 3.
 		/// </summary>
 		public static readonly Characteristic<int> RerunsIfValidationFailedCharacteristic = Characteristic.Create(
-			(CompetitionLimitsMode m) => m.RerunsIfValidationFailed, 3);
+			(CompetitionCheckMode m) => m.RerunsIfValidationFailed, 3);
 
-		/// <summary>The analyser should ignore existing limit annotations.</summary>
-		/// <value><c>true</c> if the analyser should ignore existing limit annotations.</value>
-		public bool IgnoreExistingAnnotations
+		/// <summary>Check competition limits. Enabled by default.</summary>
+		/// <value><c>true</c> if competition limit checks should be performed.</value>
+		public bool CheckLimits
 		{
 			get
 			{
-				return IgnoreExistingAnnotationsCharacteristic[this];
+				return CheckLimitsCharacteristic[this];
 			}
 			set
 			{
-				IgnoreExistingAnnotationsCharacteristic[this] = value;
-			}
-		}
-
-		/// <summary>Log competition limits annotations.</summary>
-		/// <value>
-		/// <c>true</c> if result competition limit annotations should be logged; otherwise, <c>false</c>.
-		/// </value>
-		public bool LogAnnotations
-		{
-			get
-			{
-				return LogAnnotationsCharacteristic[this];
-			}
-			set
-			{
-				LogAnnotationsCharacteristic[this] = value;
-			}
-		}
-
-		/// <summary>Competition limit provider.</summary>
-		/// <value>The competition limit provider.</value>
-		public ICompetitionLimitProvider LimitProvider
-		{
-			get
-			{
-				return LimitProviderCharacteristic[this];
-			}
-			set
-			{
-				LimitProviderCharacteristic[this] = value;
+				CheckLimitsCharacteristic[this] = value;
 			}
 		}
 

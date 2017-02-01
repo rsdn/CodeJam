@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Security.Cryptography;
 
 using CodeJam.Collections;
+using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Strings;
@@ -79,7 +80,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				[NotNull] CompetitionTarget target,
 				[NotNull] CompetitionState competitionState)
 			{
-				Code.BugIf(target.CompetitionMetadata != null, $"Use{nameof(GetXmlAnnotationFile)}() instead.");
 				lock (_lockKey)
 				{
 					return _sourceAnnotationsCache.GetOrAdd(target.TargetKey, t => GetSourceCodeFileCore(target, competitionState));
@@ -99,7 +99,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				var result = (SourceCodeFile)_filesCache.GetOrAdd(sourcePath, p => SourceAnnotation.Parse(target, sourcePath, competitionState));
 				if (result.Parsed)
 				{
-					foreach (var method in result.BenchmarkAttributeLines.Keys)
+					foreach (var method in result.BenchmarkMethods.Keys)
 					{
 						if (method != key.TargetMethod)
 							_sourceAnnotationsCache.Add(new TargetCacheKey(target.TargetKey.TargetType, method), result);
@@ -109,34 +109,47 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			}
 
 			public XmlAnnotationFile GetXmlAnnotationFile(
-				[NotNull] CompetitionTarget target,
+				[NotNull] Type targetType,
+				[NotNull] CompetitionMetadata competitionMetadata,
 				[NotNull] CompetitionState competitionState)
 			{
-				Code.BugIf(target.CompetitionMetadata == null, $"Use{nameof(GetSourceCodeFile)}() instead.");
 				lock (_lockKey)
 				{
 					return _xmlAnnotationsCache.GetOrAdd(
-						target.TargetKey.TargetType,
-						t => GetXmlAnnotationFileCore(target, competitionState));
+						targetType.TypeHandle,
+						t => GetXmlAnnotationFileCore(targetType, competitionMetadata, competitionState));
 				}
 			}
 
 			private XmlAnnotationFile GetXmlAnnotationFileCore(
-				[NotNull] CompetitionTarget target,
+				[NotNull] Type targetType,
+				[NotNull] CompetitionMetadata competitionMetadata,
 				[NotNull] CompetitionState competitionState)
 			{
-				// TODO: use declared method for the target
-				var key = target.TargetKey;
-				var sourcePath = SymbolHelper.TryGetSourcePath(MethodBase.GetMethodFromHandle(key.TargetMethod), competitionState);
+				var bf =
+					BindingFlags.Static | BindingFlags.Instance |
+					BindingFlags.Public | BindingFlags.NonPublic |
+					BindingFlags.DeclaredOnly;
+
+				// TODO: better sort?
+				MethodBase anyMethod = targetType.GetMethods(bf).OrderBy(m => m.MetadataToken).FirstOrDefault();
+				if (anyMethod == null)
+					return null;
+
+				anyMethod = targetType.GetConstructors(bf).OrderBy(m => m.MetadataToken).FirstOrDefault();
+				if (anyMethod == null)
+					return null;
+
+				var sourcePath = SymbolHelper.TryGetSourcePath(anyMethod, competitionState);
 				if (sourcePath == null)
 					return null;
 
 				// ReSharper disable once AssignNullToNotNullAttribute
-				var resourceFileName = XmlAnnotation.GetResourcePath(sourcePath, target.CompetitionMetadata);
+				var resourceFileName = XmlAnnotation.GetResourcePath(sourcePath, competitionMetadata);
 
 				return (XmlAnnotationFile)_filesCache.GetOrAdd(
-					resourceFileName, 
-					p => XmlAnnotation.Parse(resourceFileName, target.CompetitionMetadata, competitionState));
+					resourceFileName,
+					p => XmlAnnotation.Parse(resourceFileName, competitionMetadata, competitionState));
 			}
 
 
@@ -237,16 +250,18 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		}
 		#endregion
 
-		private static readonly Lazy<AnnotationContext> _annotationContext = 
+		private static readonly Lazy<AnnotationContext> _annotationContext =
 			Lazy.Create(() => new AnnotationContext());
 
 		/// <summary>Tries to annotate source files with competition limits.</summary>
-		/// <param name="targetsToAnnotate">Benchmarks to annotate.</param>
+		/// <param name="targetsToAnnotate">Targets to annotate.</param>
+		/// <param name="competitionMetadata">The competition metadata.</param>
 		/// <param name="competitionState">State of the run.</param>
 		/// <returns>Array of successfully annotated benchmarks.</returns>
 		[NotNull]
 		public static CompetitionTarget[] TryAnnotateBenchmarkFiles(
 			[NotNull] CompetitionTarget[] targetsToAnnotate,
+			[CanBeNull] CompetitionMetadata competitionMetadata,
 			[NotNull] CompetitionState competitionState)
 		{
 			Code.NotNull(targetsToAnnotate, nameof(targetsToAnnotate));
@@ -258,38 +273,51 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			var annotatedTargets = new List<CompetitionTarget>();
 			var annContext = _annotationContext.Value;
 
+			var xmlAnnotationDoc = competitionMetadata == null
+				? null
+				: annContext.GetXmlAnnotationFile(competitionState.BenchmarkType, competitionMetadata, competitionState);
+
+			if (competitionMetadata != null && xmlAnnotationDoc == null)
+			{
+				competitionState.WriteMessage(
+					MessageSource.Analyser, MessageSeverity.Warning,
+					"Could not find XML annotation source file for the benchmark.");
+				return new CompetitionTarget[0];
+			}
+
 			foreach (var targetToAnnotate in targetsToAnnotate)
 			{
 				var target = targetToAnnotate.Target;
 				var targetMethodTitle = target.MethodDisplayInfo;
 
-				competitionState.WriteVerbose(
-					$"Method {targetMethodTitle}: updating time limits {targetToAnnotate.Limits.ToDisplayString()}.");
+				var metrics = targetToAnnotate.MetricValues.Where(m => m.HasUnsavedChanges).ToArray();
+				if (metrics.Length == 0)
+					continue;
 
-				if (targetToAnnotate.CompetitionMetadata != null)
+				foreach (var metricValue in metrics)
 				{
-					var doc = annContext.GetXmlAnnotationFile(targetToAnnotate, competitionState);
-					if (doc == null)
-					{
-						competitionState.WriteMessage(
-							MessageSource.Analyser, MessageSeverity.Warning,
-							$"Method {targetMethodTitle}: could not find source file for the method.");
-						continue;
-					}
+					competitionState.WriteVerbose(
+						$"Method {targetMethodTitle}: updating metric {metricValue.Metric} {metricValue}.");
+				}
 
+				if (competitionMetadata != null)
+				{
 					competitionState.WriteVerboseHint(
-						$"Method {targetMethodTitle}: annotating resource file '{doc.Path}'.");
-					var annotated = XmlAnnotation.TryUpdate(doc, targetToAnnotate);
+						$"Method {targetMethodTitle}: annotating resource file '{xmlAnnotationDoc.Path}'.");
+					var annotated = XmlAnnotation.TryUpdate(xmlAnnotationDoc, competitionMetadata, targetToAnnotate);
 					if (!annotated)
 					{
 						competitionState.WriteMessage(
 							MessageSource.Analyser, MessageSeverity.Warning,
-							$"Method {targetMethodTitle}: could not find annotations in resource file '{doc.Path}'.");
+							$"Method {targetMethodTitle}: could not find annotations in resource file '{xmlAnnotationDoc.Path}'.");
 					}
 					else
 					{
-						competitionState.WriteVerboseHint(
-							$"Method {targetMethodTitle}: updated with time limits {targetToAnnotate.Limits.ToDisplayString()}.");
+						foreach (var metricValue in metrics)
+						{
+							competitionState.WriteVerboseHint(
+								$"Method {targetMethodTitle}: metric {metricValue.Metric} {metricValue} updated.");
+						}
 						annotatedTargets.Add(targetToAnnotate);
 					}
 				}
@@ -316,8 +344,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					}
 					else
 					{
-						competitionState.WriteVerboseHint(
-							$"Method {targetMethodTitle}: updated with time limits {targetToAnnotate.Limits.ToDisplayString()}.");
+						foreach (var metricValue in metrics)
+						{
+							competitionState.WriteVerboseHint(
+								$"Method {targetMethodTitle}: metric {metricValue.Metric} {metricValue} updated.");
+						}
 						annotatedTargets.Add(targetToAnnotate);
 					}
 				}

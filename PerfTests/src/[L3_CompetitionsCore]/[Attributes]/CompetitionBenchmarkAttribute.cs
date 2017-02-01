@@ -2,7 +2,11 @@
 
 using BenchmarkDotNet.Attributes;
 
+using CodeJam.PerfTests.Metrics;
+
 using JetBrains.Annotations;
+
+using static CodeJam.PerfTests.Metrics.MetricRange;
 
 namespace CodeJam.PerfTests
 {
@@ -12,41 +16,49 @@ namespace CodeJam.PerfTests
 	// ReSharper disable once RedundantAttributeUsageProperty
 	[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
 	[PublicAPI, MeansImplicitUse]
-	public class CompetitionBenchmarkAttribute : BenchmarkAttribute
+	public class CompetitionBenchmarkAttribute : BenchmarkAttribute,
+		IMetricAttribute<CompetitionBenchmarkAttribute.RelativeTimeValuesProvider>
 	{
-		/// <summary>Constructor for competition benchmark attribute.</summary>
-		public CompetitionBenchmarkAttribute() { }
-
-		/// <summary>Marks the competition benchmark.</summary>
-		/// <param name="maxRatio">
-		/// The maximum timing ratio relative to the baseline.
-		/// Use <c>0</c> (used by default)
-		/// to mark the limit as unset but updateable during the annotation.
-		/// Use negative value to ignore the limit.
-		/// </param>
-		public CompetitionBenchmarkAttribute(double maxRatio)
+		/// <summary>
+		/// Implementation of <see cref="IMetricValuesProvider"/> for the see <see cref="CompetitionBenchmarkAttribute"/>.
+		/// </summary>
+		internal class RelativeTimeValuesProvider : TimeMetricValuesProvider
 		{
-			MinRatio = -1;
-			MaxRatio = maxRatio;
+			/// <summary>Initializes a new instance of the <see cref="RelativeTimeValuesProvider"/> class.</summary>
+			public RelativeTimeValuesProvider() : base(LogNormalMetricCalculator.Instance, true) { }
 		}
 
 		/// <summary>Marks the competition benchmark.</summary>
-		/// <param name="minRatio">
-		/// The minimum timing ratio relative to the baseline.
-		/// Use <c>0</c> (used by default)
-		/// to mark the limit as unset but updateable during the annotation.
-		/// Use negative value to ignore the limit.
-		/// </param>
-		/// <param name="maxRatio">
-		/// The maximum timing ratio relative to the baseline.
-		/// Use <c>0</c> (used by default)
-		/// to mark the limit as unset but updateable during the annotation.
-		/// Use negative value to ignore the limit.
-		/// </param>
-		public CompetitionBenchmarkAttribute(double minRatio, double maxRatio)
+		public CompetitionBenchmarkAttribute() : this(EmptyMetricValue, EmptyMetricValue)
 		{
-			MinRatio = minRatio;
-			MaxRatio = maxRatio;
+		}
+
+		/// <summary>Marks the competition benchmark.</summary>
+		/// <param name="max">
+		/// The maximum value.
+		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
+		/// Use <seealso cref="double.PositiveInfinity" /> returned if value is positive infinity (ignored, essentially).
+		/// </param>
+		public CompetitionBenchmarkAttribute(double max): this(FromNegativeInfinity, max)
+		{
+		}
+
+		/// <summary>Marks the competition benchmark.</summary>
+		/// <param name="min">
+		/// The minimum value.
+		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
+		/// The <seealso cref="double.NegativeInfinity" /> should be used if value is negative infinity (ignored, essentially).
+		/// </param>
+		/// <param name="max">
+		/// The maximum value.
+		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
+		/// Use <seealso cref="double.PositiveInfinity" /> returned if value is positive infinity (ignored, essentially).
+		/// </param>
+		public CompetitionBenchmarkAttribute(double min, double max)
+		{
+			Min = min;
+			Max = max;
+			UnitOfMeasurement = null;
 		}
 
 		/// <summary>Exclude the benchmark from competition.</summary>
@@ -56,22 +68,34 @@ namespace CodeJam.PerfTests
 		/// </value>
 		public bool DoesNotCompete { get; set; }
 
-		/// <summary>
-		/// The minimum timing ratio relative to the baseline.
-		/// Set to <c>0</c> (used by default)
-		/// to mark the limit as unset but updateable during the annotation.
-		/// Set to negative value to ignore the limit.
-		/// </summary>
-		/// <value>The minimum timing ratio relative to the baseline.</value>
-		public double MinRatio { get; private set; }
+		/// <summary>Minimum value.</summary>
+		/// <value>
+		/// The minimum value.
+		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
+		/// The <seealso cref="double.NegativeInfinity" /> returned if value is negative infinity (ignored, essentially).
+		/// IMPORTANT: If the <see cref="UnitOfMeasurement" /> is not <c>null</c>
+		/// both <see cref="Min" /> and <see cref="Max" /> values are scaled.
+		/// Use the <see cref="MetricUnits" /> to normalize them.
+		/// </value>
+		public double Min { get; }
 
-		/// <summary>
-		/// The maximum timing ratio relative to the baseline.
-		/// Set to <c>0</c> (used by default)
-		/// to mark the limit as unset but updateable during the annotation.
-		/// Set to negative value to ignore the limit.
-		/// </summary>
-		/// <value>The maximum timing ratio relative to the baseline.</value>
-		public double MaxRatio { get; private set; }
+		/// <summary>Maximum value.</summary>
+		/// <value>
+		/// The maximum value.
+		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
+		/// Use <seealso cref="double.PositiveInfinity" /> returned if value is positive infinity (ignored, essentially).
+		/// IMPORTANT: If the <see cref="UnitOfMeasurement" /> is not <c>null</c>
+		/// both <see cref="Min" /> and <see cref="Max" /> values are scaled.
+		/// Use the <see cref="MetricUnits" /> to normalize them.
+		/// </value>
+		public double Max { get; }
+
+		/// <summary>The value that represents measurement unit for the metric value.</summary>
+		/// <value>The value that represents measurement unit for the metric value.</value>
+		public Enum UnitOfMeasurement { get; set; }
+
+		/// <summary>Gets the type of the attribute used for metric annotation.</summary>
+		/// <value>The type of the attribute used for metric annotation.</value>
+		Type IStoredMetricSource.MetricAttributeType => typeof(CompetitionBenchmarkAttribute);
 	}
 }

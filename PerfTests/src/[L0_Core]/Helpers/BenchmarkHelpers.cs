@@ -192,6 +192,22 @@ namespace BenchmarkDotNet.Helpers
 		/// <returns>The short form of assembly qualified type name.</returns>
 		public static string GetShortAssemblyQualifiedName([NotNull] this Type type) =>
 			type.FullName + ", " + type.Assembly.GetName().Name;
+
+		/// <summary>Gets the name of the attribute without 'Attribute' suffix.</summary>
+		/// <param name="attributeType">Type of the attribute.</param>
+		/// <returns>Name of the attribute without 'Attribute' suffix.</returns>
+		public static string GetAttributeName([NotNull] this Type attributeType)
+		{
+			if (!typeof(Attribute).IsAssignableFrom(attributeType))
+				throw CodeExceptions.Argument(
+					nameof(attributeType), $"The {nameof(attributeType)} should be derived from {typeof(Attribute)}");
+
+			var attributeName = attributeType.Name;
+			if (attributeName.EndsWith(nameof(Attribute)))
+				attributeName = attributeName.Substring(0, attributeName.Length - nameof(Attribute).Length);
+
+			return attributeName;
+		}
 		#endregion
 
 		#region Priority & affinity
@@ -583,6 +599,9 @@ namespace BenchmarkDotNet.Helpers
 
 		private static int GetAutoscaleDigits(double value)
 		{
+			if (double.IsNaN(value) || double.IsInfinity(value))
+				return 0;
+
 			// Same logic for positive & negative values.
 			value = Math.Abs(value);
 

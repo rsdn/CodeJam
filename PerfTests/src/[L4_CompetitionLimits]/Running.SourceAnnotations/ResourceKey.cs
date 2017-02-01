@@ -27,18 +27,16 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		public string ResourceName { get; }
 
 		#region Equality members
-		/// <summary>Equalses the specified other.</summary>
-		/// <param name="other">The other.</param>
-		/// <returns>
-		///   <c>true</c> if the <paramref name="other"/> is equal to this instance; otherwise, <c>false</c>.
-		/// </returns>
+		/// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+		/// <param name="other">An object to compare with this object.</param>
+		/// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
 		public bool Equals(ResourceKey other) =>
 			Equals(Assembly, other.Assembly) && Equals(ResourceName, other.ResourceName);
 
 		/// <summary>Determines whether the <paramref name="obj"/> is equal to this instance.</summary>
 		/// <param name="obj">The <see cref="object"/> to compare with this instance.</param>
 		/// <returns>
-		///   <c>true</c> if the <paramref name="obj"/> is equal to this instance; otherwise, <c>false</c>.
+		/// <c>true</c> if the <paramref name="obj"/> is equal to this instance; otherwise, <c>false</c>.
 		/// </returns>
 		public override bool Equals(object obj) => obj is ResourceKey && Equals((ResourceKey)obj);
 

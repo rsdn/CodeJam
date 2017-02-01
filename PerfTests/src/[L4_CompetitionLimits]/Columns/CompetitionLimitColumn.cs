@@ -134,22 +134,23 @@ namespace CodeJam.PerfTests.Columns
 			}
 			else if (CompetitionLimitProvider == null)
 			{
-				var limitProvider = CompetitionCore.RunState[summary].Options.Limits.LimitProvider;
-				switch (_kind)
-				{
-					case Kind.Min:
-						result = CompetitionAnalysis.TargetsSlot[summary][benchmark.Target]?.Limits.MinRatioText;
-						break;
-					case Kind.Value:
-						result = limitProvider?.TryGetMeanValue(benchmark, summary)?.ToString("F2", c);
-						break;
-					case Kind.Max:
-						result = CompetitionAnalysis.TargetsSlot[summary][benchmark.Target]?.Limits.MaxRatioText;
-						break;
-					case Kind.Variance:
-						result = limitProvider?.TryGetVariance(benchmark, summary)?.ToString("F2", c);
-						break;
-				}
+				// TODO: !!!
+				//var limitProvider = CompetitionCore.RunState[summary].Options.Limits.LimitProvider;
+				//switch (_kind)
+				//{
+				//	case Kind.Min:
+				//		result = CompetitionAnalysis.TargetsSlot[summary][benchmark.Target]?.Limits.MinRatioText;
+				//		break;
+				//	case Kind.Value:
+				//		result = limitProvider?.TryGetMeanValue(benchmark, summary)?.ToString("F2", c);
+				//		break;
+				//	case Kind.Max:
+				//		result = CompetitionAnalysis.TargetsSlot[summary][benchmark.Target]?.Limits.MaxRatioText;
+				//		break;
+				//	case Kind.Variance:
+				//		result = limitProvider?.TryGetVariance(benchmark, summary)?.ToString("F2", c);
+				//		break;
+				//}
 			}
 			else
 			{

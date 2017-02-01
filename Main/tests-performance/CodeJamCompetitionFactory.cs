@@ -74,8 +74,8 @@ namespace CodeJam
 		{
 			var result = base.CreateCompetitionOptionsUnfrozen(metadataSource, competitionFeatures);
 
-			if (!result.HasValue(SourceAnnotationsMode.SkipRunsBeforeAdjustLimitsCharacteristic))
-				result.SourceAnnotations.SkipRunsBeforeAdjustLimits = 1;
+			if (!result.HasValue(CompetitionAdjustmentMode.SkipRunsBeforeAdjustmentCharacteristic))
+				result.Adjustments.SkipRunsBeforeAdjustment = 1;
 
 			return result;
 		}

@@ -44,7 +44,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				if (competitionMetadata.MetadataResourcePath.NotNullNorEmpty())
 				{
-					// ReSharper disable once AssignNullToNotNullAttribute
 					return Path.Combine(
 						Path.GetDirectoryName(sourcePath),
 						competitionMetadata.MetadataResourcePath);
@@ -101,9 +100,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			public static bool TryUpdate(
 				[NotNull] XmlAnnotationFile xmlAnnotationFile,
+				[NotNull] CompetitionMetadata competitionMetadata,
 				[NotNull] CompetitionTarget competitionTarget)
 			{
-				Code.NotNull(competitionTarget.CompetitionMetadata, nameof(competitionTarget.CompetitionMetadata));
 				if (!xmlAnnotationFile.Parsed)
 					return false;
 
@@ -111,7 +110,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				XmlAnnotations.AddOrUpdateXmlAnnotation(
 					xmlAnnotationFile.XmlAnnotationDoc,
 					competitionTarget,
-					competitionTarget.CompetitionMetadata.UseFullTypeName);
+					competitionMetadata.UseFullTypeName);
 
 				xmlAnnotationFile.MarkAsChanged();
 

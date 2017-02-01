@@ -1,19 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 using BenchmarkDotNet.Running;
 
 using CodeJam.Collections;
+using CodeJam.PerfTests.Running.SourceAnnotations;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.SourceAnnotations
+namespace CodeJam.PerfTests.Analysers
 {
 	/// <summary>Storage class for competition targets.</summary>
 	internal sealed class CompetitionTargets : IReadOnlyCollection<CompetitionTarget>
 	{
 		private readonly Dictionary<TargetCacheKey, CompetitionTarget> _targets = new Dictionary<TargetCacheKey, CompetitionTarget>();
+		private CompetitionMetadata _competitionMetadata;
 
 		/// <summary>Gets the <see cref="CompetitionTarget"/> for the specified target.</summary>
 		/// <value>The <see cref="CompetitionTarget"/>.</value>
@@ -30,6 +33,22 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <summary>Gets number of targets in the competition.</summary>
 		public int Count => _targets.Count;
 
+		/// <summary>Description of embedded resource containing xml document with competition limits.</summary>
+		/// <value>Description of embedded resource containing xml document with competition limits.</value>
+		[CanBeNull]
+		public CompetitionMetadata CompetitionMetadata
+		{
+			get
+			{
+				return _competitionMetadata;
+			}
+			set
+			{
+				Code.AssertState(!Initialized, "The targets is initialized already.");
+				_competitionMetadata = value;
+			}
+		}
+
 		/// <summary>Adds the specified competition target.</summary>
 		/// <param name="competitionTarget">The competition target.</param>
 		public void Add(CompetitionTarget competitionTarget)
@@ -44,6 +63,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			Code.AssertState(!Initialized, "The targets is initialized already.");
 			Initialized = true;
 		}
+
+		/// <summary>Gets a value indicating whether there's a target with unsaved changes.</summary>
+		/// <value>
+		/// <c>true</c> if there's a target with unsaved changes; otherwise, <c>false</c>.
+		/// </value>
+		public bool HasUnsavedChanges => _targets.Values.Any(t => t.MetricValues.Any(m => m.HasUnsavedChanges));
 
 		/// <summary>Returns an enumerator that iterates through the collection.</summary>
 		/// <returns>An enumerator that can be used to iterate through the collection.</returns>

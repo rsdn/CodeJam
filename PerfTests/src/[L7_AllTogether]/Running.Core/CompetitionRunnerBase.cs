@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 
 using BenchmarkDotNet.Characteristics;
-using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
@@ -18,6 +17,7 @@ using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Configs.Factories;
 using CodeJam.PerfTests.Loggers;
+using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Strings;
 
@@ -220,10 +220,7 @@ namespace CodeJam.PerfTests.Running.Core
 				SetCurrentDirectoryIfNotNull(currentDirectory);
 				try
 				{
-					competitionState = CompetitionCore.Run(
-						benchmarkType,
-						new ReadOnlyConfig(competitionConfig),
-						competitionConfig.Options);
+					competitionState = CompetitionCore.Run(benchmarkType, competitionConfig);
 
 					ProcessRunComplete(competitionState);
 				}
@@ -347,7 +344,9 @@ namespace CodeJam.PerfTests.Running.Core
 			var result = new ManualCompetitionConfig(
 				competitionConfig ??
 					CompetitionConfigFactory.FindFactoryAndCreate(benchmarkType, competitionFeatures));
+
 			InitCompetitionConfigOverride(result);
+
 			FixCompetitionConfig(result);
 
 			return result.AsReadOnly();
@@ -360,6 +359,7 @@ namespace CodeJam.PerfTests.Running.Core
 			FixConfigLoggers(competitionConfig);
 			FixConfigValidators(competitionConfig);
 			FixConfigAnalysers(competitionConfig);
+			FixConfigMetrics(competitionConfig);
 		}
 
 		private static void FixConfigJobs(ManualCompetitionConfig competitionConfig)
@@ -407,7 +407,7 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				validators.RemoveAll(v => v is JitOptimizationsValidator);
 			}
-			else if (competitionOptions.SourceAnnotations.AdjustLimits &&
+			else if (competitionOptions.Adjustments.AdjustLimits &&
 				!validators.OfType<JitOptimizationsValidator>().Any())
 			{
 				validators.Insert(0, JitOptimizationsValidator.FailOnError);
@@ -427,13 +427,24 @@ namespace CodeJam.PerfTests.Running.Core
 				competitionConfig.Analysers.OfType<CompetitionAnalyser>().Any(),
 				"The config analysers should not contain instances of CompetitionAnalyser.");
 
-			var annotationsMode = competitionConfig.Options.SourceAnnotations;
+			competitionConfig.Analysers.Insert(0, new CompetitionPreconditionsAnalyser());
 
 			// DONTTOUCH: the CompetitionAnnotateAnalyser should be last analyser in the chain.
-			var analyzer = annotationsMode.AdjustLimits
-				? new CompetitionAnnotateAnalyser()
-				: new CompetitionAnalyser();
-			competitionConfig.Analysers.Add(analyzer);
+			competitionConfig.Analysers.Add(new CompetitionAnalyser());
+		}
+
+		private void FixConfigMetrics(ManualCompetitionConfig competitionConfig)
+		{
+			var metrics = competitionConfig.Metrics;
+			var metricAttributes = new HashSet<Type>();
+			competitionConfig.Metrics.RemoveAll(m => !metricAttributes.Add(m.AttributeType));
+
+			var primaryMetric = CompetitionMetricInfo.RelativeTime;
+			var hasPrimaryMetric = metrics.Any(m => m.AttributeType == primaryMetric.AttributeType);
+			if (!hasPrimaryMetric)
+			{
+				metrics.Insert(0, primaryMetric);
+			}
 		}
 
 		/// <summary>Customize competition config.</summary>
@@ -500,7 +511,7 @@ namespace CodeJam.PerfTests.Running.Core
 				allMessages.AddRange(infoMessages);
 			}
 
-			var messageText = string.Join(Environment.NewLine, allMessages);
+			var messageText = allMessages.Join(Environment.NewLine);
 			var runOptions = competitionState.Options.RunOptions;
 			if (hasCriticalMessages)
 			{

@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 
-using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 
+using CodeJam.Collections;
+using CodeJam.PerfTests.Analysers;
+using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
-using CodeJam.PerfTests.Running.Limits;
 using CodeJam.PerfTests.Running.Messages;
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -39,33 +39,52 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		private const string CompetitionBenchmarksRootNode = "CompetitionBenchmarks";
 		private const string CompetitionNode = "Competition";
-		private const string CandidateNode = "Candidate";
 		private const string TargetAttribute = "Target";
 		private const string BaselineAttribute = "Baseline";
-		private const string MinRatioAttribute = "MinRatio";
-		private const string MaxRatioAttribute = "MaxRatio";
+		private const string MinAttribute = "Min";
+		private const string MaxAttribute = "Max";
+		private const string UnitAttribute = "Unit";
 		#endregion
 
-		#region XML doc loading
+		private static readonly CompetitionMetricInfo _targetMetric = CompetitionMetricInfo.RelativeTime;
+
+		#region XML doc loading / saving
 
 		#region Core logic for XML annotations
 		[NotNull]
+		private static XmlReaderSettings GetXmlReaderSettings() =>
+			new XmlReaderSettings
+			{
+				DtdProcessing = DtdProcessing.Prohibit
+			};
+
+		[NotNull]
+		private static XmlWriterSettings GetXmlWriterSettings(bool omitXmlDeclaration = false) =>
+			new XmlWriterSettings
+			{
+				OmitXmlDeclaration = omitXmlDeclaration,
+				Indent = true,
+				IndentChars = "\t",
+				NewLineChars = "\r\n"
+			};
+
+		[NotNull]
 		// ReSharper disable once SuggestBaseTypeForParameter
-		private static string GetCompetitionName(this Target target, bool useFullTypeName) =>
+		private static string GetTargetTypeName(this Target target, bool useFullTypeName) =>
 			useFullTypeName
 				? target.Type.GetShortAssemblyQualifiedName()
 				: target.Type.Name;
 
 		[NotNull]
-		private static string GetCandidateName(this Target target) =>
-			target.MethodDisplayInfo;
+		private static string GetTargetMethodName(this Target target) =>
+			target.Method.Name;
 
 		[NotNull]
 		// ReSharper disable once SuggestBaseTypeForParameter
 		private static XElement GetOrAddElement(this XElement parent, XName elementName, string targetName)
 		{
-			if (targetName == null)
-				throw new ArgumentNullException(nameof(targetName));
+			Code.NotNull(elementName, nameof(elementName));
+			Code.NotNull(parent, nameof(parent));
 
 			var result = parent
 				.Elements(elementName)
@@ -75,6 +94,22 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				result = new XElement(elementName);
 				result.SetAttribute(TargetAttribute, targetName);
+				parent.Add(result);
+			}
+
+			return result;
+		}
+
+		[NotNull]
+		// ReSharper disable once SuggestBaseTypeForParameter
+		private static XElement GetOrAddElement(this XElement parent, XName elementName)
+		{
+			Code.NotNull(elementName, nameof(elementName));
+
+			var result = parent.Element(elementName);
+			if (result == null)
+			{
+				result = new XElement(elementName);
 				parent.Add(result);
 			}
 
@@ -105,23 +140,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			return result;
 		}
-
-		[NotNull]
-		private static XmlReaderSettings GetXmlReaderSettings() =>
-			new XmlReaderSettings
-			{
-				DtdProcessing = DtdProcessing.Prohibit
-			};
-
-		[NotNull]
-		private static XmlWriterSettings GetXmlWriterSettings(bool omitXmlDeclaration = false) =>
-			new XmlWriterSettings
-			{
-				OmitXmlDeclaration = omitXmlDeclaration,
-				Indent = true,
-				IndentChars = "\t",
-				NewLineChars = "\r\n"
-			};
 		#endregion
 
 		#region XML annotations
@@ -365,15 +383,16 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		}
 		#endregion
 
-		#region CompetitionLimit-related
-		/// <summary>Parses competition limit from the xml annotation document.</summary>
+		#region Competition metrics-related
+		#region Parse
+		/// <summary>Parses metrics for target from the the xml annotation document.</summary>
 		/// <param name="target">The target.</param>
 		/// <param name="xmlAnnotationDoc">The xml annotation document.</param>
 		/// <param name="useFullTypeName">Use full type name in XML annotations.</param>
 		/// <param name="competitionState">State of the run.</param>
-		/// <returns>Parsed competition limit or <c>null</c> if there is no xml annotation for the target.</returns>
-		[CanBeNull]
-		public static LimitRange? TryParseCompetitionLimit(
+		/// <returns>Parsed metrics for target.</returns>
+		[NotNull]
+		public static IStoredMetricSource[] TryParseMetrics(
 			[NotNull] Target target,
 			[NotNull] XDocument xmlAnnotationDoc,
 			bool useFullTypeName,
@@ -383,42 +402,110 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			Code.NotNull(xmlAnnotationDoc, nameof(xmlAnnotationDoc));
 			Code.NotNull(competitionState, nameof(competitionState));
 
-			var competitionName = target.GetCompetitionName(useFullTypeName);
-			var candidateName = target.GetCandidateName();
+			var targetTypeName = target.GetTargetTypeName(useFullTypeName);
+			var targetMethodName = target.GetTargetMethodName();
 
 			var matchingNodes =
 				// ReSharper disable once PossibleNullReferenceException
 				from competition in xmlAnnotationDoc.Element(CompetitionBenchmarksRootNode).Elements(CompetitionNode)
-				where competition.Attribute(TargetAttribute)?.Value == competitionName
-				from candidate in competition.Elements(CandidateNode)
-				where candidate.Attribute(TargetAttribute)?.Value == candidateName
+				where competition.Attribute(TargetAttribute)?.Value == targetTypeName
+				from candidate in competition.Elements(targetMethodName)
 				select candidate;
 
-			var competitionNode = matchingNodes.SingleOrDefault();
-			if (competitionNode == null)
+			var targetNode = matchingNodes.SingleOrDefault();
+			if (targetNode == null)
 			{
-				return null;
+				return Array<IStoredMetricSource>.Empty;
 			}
 
-			var baseline = TryParseFlagValue(target, competitionNode, BaselineAttribute, competitionState);
-			var minRatio = TryParseLimitValue(target, competitionNode, MinRatioAttribute, competitionState);
-			var maxRatio = TryParseLimitValue(target, competitionNode, MaxRatioAttribute, competitionState);
-
+			var baseline = TryParseBooleanValue(target, targetNode, BaselineAttribute, competitionState);
 			if (baseline.GetValueOrDefault() != target.Baseline)
 			{
 				competitionState.WriteMessage(
 					MessageSource.Analyser, MessageSeverity.SetupError,
-					$"XML anotation for {target.MethodDisplayInfo}: baseline flag on the method and in the annotation do not match.");
-				return null;
+					$"XML annotation for {target.MethodDisplayInfo}: baseline flag on the method and in the annotation do not match.");
+				return Array<IStoredMetricSource>.Empty;
 			}
-			return LimitRange.CreateRatioLimit(minRatio, maxRatio);
+
+			var metricsByName = competitionState.Config.GetMetrics().ToDictionary(m => m.Name);
+			var result = new List<IStoredMetricSource>(metricsByName.Count)
+			{
+				ParseStoredMetric(target, targetNode, _targetMetric, competitionState)
+			};
+
+			foreach (var metricNode in targetNode.Elements())
+			{
+				if (!metricsByName.TryGetValue(metricNode.Name.LocalName, out var metricInfo))
+				{
+					competitionState.WriteMessage(
+						MessageSource.Analyser, MessageSeverity.Informational,
+						$"XML annotation for {target.MethodDisplayInfo}, unknown metric {metricNode.Name}, skipped.");
+					continue;
+				}
+
+				result.Add(
+					ParseStoredMetric(target, metricNode, metricInfo, competitionState));
+			}
+			return result.ToArray();
 		}
+
+		private static IStoredMetricSource ParseStoredMetric(
+			Target target, XElement targetNode,
+			CompetitionMetricInfo targetMetric,
+			CompetitionState competitionState)
+		{
+			var min = TryParseDoubleValue(target, targetNode, MinAttribute, competitionState);
+			var max = TryParseDoubleValue(target, targetNode, MaxAttribute, competitionState);
+			var unitName = targetNode.Attribute(UnitAttribute)?.Value;
+
+			if (max == null)
+			{
+				max = double.NaN;
+				min = double.NaN;
+			}
+			else if (min == null)
+			{
+				min = MetricRange.FromNegativeInfinity;
+			}
+
+			Enum unitValue = AttributeAnnotations.ParseUnitValue(
+				target, unitName, targetMetric, competitionState).EnumValue;
+			if (unitName.NotNullNorEmpty())
+			{
+				unitValue = targetMetric.MetricUnits[unitName].EnumValue;
+
+				if (unitValue == null)
+				{
+					competitionState.WriteMessage(
+						MessageSource.Analyser, MessageSeverity.SetupError,
+						$"XML annotation for {target.MethodDisplayInfo}, metric {targetMetric}: could not parse unit value {unitName}.");
+				}
+			}
+
+			return new StoredMetricValue(targetMetric.AttributeType, min.Value, max.Value, unitValue);
+		}
+
+		// ReSharper disable ConvertClosureToMethodGroup
+		private static double? TryParseDoubleValue(
+			Target target, XElement competitionNode, string limitProperty, CompetitionState competitionState) =>
+				TryParseCore(
+					target, competitionNode,
+					limitProperty, competitionState,
+					s => XmlConvert.ToDouble(s));
+
+		private static bool? TryParseBooleanValue(
+			Target target, XElement competitionNode, string limitProperty, CompetitionState competitionState) =>
+				TryParseCore(
+					target, competitionNode,
+					limitProperty, competitionState,
+					s => XmlConvert.ToBoolean(s));
+		// ReSharper restore ConvertClosureToMethodGroup
 
 		private static T? TryParseCore<T>(
 			Target target, XElement competitionNode,
 			string limitProperty,
 			CompetitionState competitionState,
-			Func<string, T?> tryParseCallback)
+			Func<string, T> parseCallback)
 			where T : struct
 		{
 			T? result = null;
@@ -426,37 +513,22 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			var limitText = competitionNode.Attribute(limitProperty)?.Value;
 			if (limitText != null)
 			{
-				result = tryParseCallback(limitText);
-				if (result == null)
+				try
 				{
-					competitionState.WriteMessage(
+					result = parseCallback(limitText);
+				}
+				catch (FormatException ex)
+				{
+					competitionState.WriteExceptionMessage(
 						MessageSource.Analyser, MessageSeverity.SetupError,
-						$"XML anotation for {target.MethodDisplayInfo}: could not parse {limitProperty}.");
+						$"XML annotation for {target.MethodDisplayInfo}: could not parse {limitProperty}.",
+						ex);
 				}
 			}
 
 			return result;
 		}
-
-		private static double? TryParseLimitValue(
-			Target target, XElement competitionNode,
-			string limitProperty,
-			CompetitionState competitionState) =>
-				TryParseCore(
-					target, competitionNode,
-					limitProperty, competitionState,
-					s => double.TryParse(s, NumberStyles.Any, HostEnvironmentInfo.MainCultureInfo, out var result)
-						? result
-						: default(double?));
-
-		private static bool? TryParseFlagValue(
-			Target target, XElement competitionNode,
-			string limitProperty,
-			CompetitionState competitionState) =>
-				TryParseCore(
-					target, competitionNode,
-					limitProperty, competitionState,
-					s => bool.TryParse(s, out var result) ? result : default(bool?));
+		#endregion
 
 		/// <summary>Adds or updates xml annotation for the competition target.</summary>
 		/// <param name="xmlAnnotationDoc">The xml annotation document that will be updated.</param>
@@ -470,25 +542,56 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			Code.NotNull(xmlAnnotationDoc, nameof(xmlAnnotationDoc));
 			Code.NotNull(competitionTarget, nameof(competitionTarget));
 
-			var competitionName = competitionTarget.Target.GetCompetitionName(useFullTypeName);
-			var candidateName = competitionTarget.Target.GetCandidateName();
+			var targetTypeName = competitionTarget.Target.GetTargetTypeName(useFullTypeName);
+			var targetMethodName = competitionTarget.Target.GetTargetMethodName();
 			var isBaseline = competitionTarget.Baseline;
 
-			var competition = xmlAnnotationDoc
+			var competitionNode = xmlAnnotationDoc
 				.Element(CompetitionBenchmarksRootNode)
-				.GetOrAddElement(CompetitionNode, competitionName);
-			var candidate = competition.GetOrAddElement(CandidateNode, candidateName);
+				.GetOrAddElement(CompetitionNode, targetTypeName);
+
+			var targetNode = competitionNode.GetOrAddElement(targetMethodName);
+			bool forceUpdate = !targetNode.HasElements;
 
 			var baselineText = isBaseline ? XmlConvert.ToString(true) : null;
-			var minText = competitionTarget.Limits.MinRatioText;
-			var maxText = competitionTarget.Limits.MaxRatioText;
+			targetNode.SetAttribute(BaselineAttribute, baselineText);
 
-			// Informational only, ignored on parse
-			candidate.SetAttribute(BaselineAttribute, baselineText);
+			var targetMetricValue = competitionTarget.MetricValues.FirstOrDefault(f => f.Metric == _targetMetric);
+			UpdateStoredMetric(targetNode, targetMetricValue, forceUpdate);
 
-			candidate.SetAttribute(MaxRatioAttribute, minText);
-			candidate.SetAttribute(MinRatioAttribute, maxText);
+			foreach (var metricValue in competitionTarget.MetricValues.Where(m => m != targetMetricValue))
+			{
+				var metricNode = GetOrAddElement(targetNode, metricValue.Metric.Name);
+				UpdateStoredMetric(metricNode, metricValue, forceUpdate);
+			}
 		}
-		#endregion
+
+		private static void UpdateStoredMetric(
+			[NotNull] XElement targetNode, [CanBeNull] CompetitionMetricValue metricValue, bool forceUpdate)
+		{
+			if (forceUpdate || (metricValue?.HasUnsavedChanges ?? false) || !targetNode.HasAttributes)
+			{
+				if (metricValue == null || metricValue.ValuesRange.IsEmpty)
+				{
+					targetNode.SetAttribute(MinAttribute, null);
+					targetNode.SetAttribute(MaxAttribute, null);
+					targetNode.SetAttribute(UnitAttribute, null);
+				}
+				else
+				{
+					var valuesRange = metricValue.ValuesRange;
+					var unit = metricValue.DisplayMetricUnit;
+					targetNode.SetAttribute(MinAttribute, valuesRange.Min.ToXmlString(unit));
+					targetNode.SetAttribute(MaxAttribute, valuesRange.Max.ToXmlString(unit));
+					targetNode.SetAttribute(UnitAttribute, unit.IsEmpty ? null : unit.Name);
+				}
+			}
+		}
+
+		private static string ToXmlString(this double value, MetricUnit metricUnit) =>
+			value.IsSpecialMetricValue()
+				? XmlConvert.ToString(value)
+				: value.ToString(metricUnit, true);
 	}
+	#endregion
 }

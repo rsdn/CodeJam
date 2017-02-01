@@ -13,6 +13,8 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Validators;
 
+using CodeJam.PerfTests.Metrics;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Configs
@@ -87,6 +89,10 @@ namespace CodeJam.PerfTests.Configs
 				_options = value?.Freeze();
 			}
 		}
+
+		/// <summary>Gets the jobs.</summary>
+		/// <value>The jobs.</value>
+		public List<CompetitionMetricInfo> Metrics { get; } = new List<CompetitionMetricInfo>();
 		#endregion
 
 		#region Add methods
@@ -233,6 +239,10 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Gets the union rule.</summary>
 		/// <value>The union rule.</value>
 		ConfigUnionRule IConfig.UnionRule => ConfigUnionRule.Union;
+
+		/// <summary>Gets competition metrics.</summary>
+		/// <returns>Competition metrics.</returns>
+		public IEnumerable<CompetitionMetricInfo> GetMetrics() => Metrics;
 		#endregion
 
 		/// <summary>Returns read-only wrapper for the config.</summary>

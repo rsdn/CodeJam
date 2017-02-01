@@ -6,6 +6,7 @@ using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Reports;
 
+using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.SourceAnnotations;
@@ -38,22 +39,27 @@ namespace CodeJam.PerfTests.Analysers
 
 		/// <summary>Enumerates the targets as defined by <see cref="IOrderProvider"/>.</summary>
 		/// <returns></returns>
-		public IEnumerable<CompetitionTarget> SummaryOrderTargets() =>
+		public IEnumerable<CompetitionTarget> GetSummaryOrderTargets() =>
 			Summary
 				.GetSummaryOrderBenchmarks()
 				.Select(b => Targets[b.Target])
 				.Where(t => t != null)
 				.Distinct();
 
-		/// <summary>The limit parameters.</summary>
-		/// <value>The limit parameters.</value>
+		/// <summary>Competition validation parameters.</summary>
+		/// <value>Competition validation parameters.</value>
 		[NotNull]
-		public CompetitionLimitsMode Limits => RunState.Options.Limits;
+		public CompetitionCheckMode Checks => RunState.Options.Checks;
 
-		/// <summary>The source annotation parameters.</summary>
-		/// <value>The source annotation parameters.</value>
+		/// <summary>Competition annotation parameters.</summary>
+		/// <value>Competition annotation parameters.</value>
 		[NotNull]
-		public SourceAnnotationsMode Annotations => RunState.Options.SourceAnnotations;
+		public CompetitionAnnotationMode Annotations => RunState.Options.Annotations;
+
+		/// <summary>Competition adjustment parameters.</summary>
+		/// <value>Competition adjustment parameters.</value>
+		[NotNull]
+		public CompetitionAdjustmentMode Adjustments => RunState.Options.Adjustments;
 
 		/// <summary><c>true</c> if rerun should be performed as analysis was failed.</summary>
 		/// <value><c>true</c> if rerun should be performed as analysis was failed.</value>

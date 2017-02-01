@@ -33,7 +33,7 @@ namespace CodeJam.PerfTests
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CompetitionAnnotateSourcesAttribute"/> class.
 		/// </summary>
-		/// <param name="previousRunLogUri">Sets the <see cref="SourceAnnotationsMode.PreviousRunLogUri"/> to the specified value.</param>
+		/// <param name="previousRunLogUri">Sets the <see cref="CompetitionAdjustmentMode.PreviousRunLogUri"/> to the specified value.</param>
 		public CompetitionAnnotateSourcesAttribute(string previousRunLogUri)
 		{
 			AnnotateSources = true;

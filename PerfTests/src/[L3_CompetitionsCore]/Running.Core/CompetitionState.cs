@@ -68,7 +68,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>The config for the competition.</summary>
 		/// <value>The config.</value>
-		public IConfig Config { get; private set; }
+		public ICompetitionConfig Config { get; private set; }
 
 		/// <summary>The type of the benchmark.</summary>
 		/// <value>The type of the benchmark.</value>
@@ -76,7 +76,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Competition options.</summary>
 		/// <value>Competition options.</value>
-		public CompetitionOptions Options { get; private set; }
+		public CompetitionOptions Options => Config.Options;
 
 		/// <summary>The logger for the competition.</summary>
 		/// <value>The logger.</value>
@@ -135,15 +135,13 @@ namespace CodeJam.PerfTests.Running.Core
 		#region State modification
 		/// <summary>Init the competition state.</summary>
 		/// <param name="benchmarkType">Type of the benchmark.</param>
-		/// <param name="config">The config for the competition.</param>
-		/// <param name="competitionOptions">Competition options.</param>
+		/// <param name="competitionConfig">The config for the competition.</param>
 		internal void FirstTimeInit(
 			[NotNull] Type benchmarkType,
-			[NotNull] IConfig config,
-			[NotNull] CompetitionOptions competitionOptions)
+			[NotNull] ICompetitionConfig competitionConfig)
 		{
-			Code.NotNull(competitionOptions, nameof(competitionOptions));
-			Code.NotNull(config, nameof(config));
+			Code.NotNull(benchmarkType, nameof(benchmarkType));
+			Code.NotNull(competitionConfig, nameof(competitionConfig));
 
 			lock (_messages)
 			{
@@ -152,9 +150,8 @@ namespace CodeJam.PerfTests.Running.Core
 				_stopwatch.Restart();
 
 				BenchmarkType = benchmarkType;
-				Options = competitionOptions;
-				Config = config;
-				Logger = config.GetCompositeLogger();
+				Config = competitionConfig;
+				Logger = competitionConfig.GetCompositeLogger();
 
 				RunNumber = 0;
 				RunsLeft = 1;

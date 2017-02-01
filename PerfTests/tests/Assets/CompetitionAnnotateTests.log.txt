@@ -4,8 +4,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBaselineChangedBenchmark, CodeJam.PerfTests-Tests">
-		<Candidate Target="Baseline" MinRatio="20" MaxRatio="20" />
-		<Candidate Target="SlowerX20" Baseline="true" />
+		<Baseline Min="5" Max="100" />
+		<SlowerX20 Baseline="true" />
 	</Competition>
 </CompetitionBenchmarks>
 // !--> ------- xml_annotation_end -------
@@ -16,8 +16,8 @@ some log text
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests-Tests">
-		<Candidate Target="Baseline" Baseline="true" />
-		<Candidate Target="SlowerX20" MinRatio="20" MaxRatio="20" />
+		<Baseline Baseline="true" />
+		<SlowerX20 Min="20" Max="20" />
 	</Competition>
 </CompetitionBenchmarks>
 // !--> ------- xml_annotation_end -------
@@ -27,8 +27,8 @@ some log text
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests-Tests">
-		<Candidate Target="Baseline" Baseline="true" />
-		<Candidate Target="SlowerX20" MinRatio="15" MaxRatio="25" />
+		<Baseline Baseline="true" />
+		<SlowerX20 Min="15" Max="25" />
 	</Competition>
 </CompetitionBenchmarks>
 // !--> ------- xml_annotation_end -------
@@ -38,8 +38,8 @@ some log text
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests-Tests">
-		<Candidate Target="Baseline" Baseline="true" />
-		<Candidate Target="SlowerX20" MinRatio="10" MaxRatio="30" />
+		<Baseline Baseline="true" />
+		<SlowerX20 Min="10" Max="30" />
 	</Competition>
 </CompetitionBenchmarks>
 // !--> ------- xml_annotation_end -------
@@ -49,8 +49,8 @@ some log text
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests-Tests">
-		<Candidate Target="Baseline" Baseline="true" />
-		<Candidate Target="SlowerX20" MinRatio="12" MaxRatio="28" />
+		<Baseline Baseline="true" />
+		<SlowerX20 Min="12" Max="28" />
 	</Competition>
 </CompetitionBenchmarks>
 // !--> ------- xml_annotation_end -------
@@ -63,8 +63,8 @@ some log text
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="OTHERTARGET">
-		<Candidate Target="Baseline" Baseline="true" />
-		<Candidate Target="SlowerX20" MinRatio="1" MaxRatio="100" />
+		<Baseline Baseline="true" />
+		<SlowerX20 Min="1" Max="100" />
 	</Competition>
 </CompetitionBenchmarks>
 // !--> ------- xml_annotation_end -------
@@ -72,8 +72,8 @@ some log text
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
 	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests-Tests">
-		<Candidate Target="Baseline" Baseline="true" />
-		<Candidate Target="SlowerX20" MinRatio="1" MaxRatio="100" />
+		<Baseline Baseline="true" />
+		<SlowerX20 Min="1" Max="100" />
 	</Competition>
 </CompetitionBenchmarks>
 // !--> ------ xml_annotation_end1 ------- ---bad region

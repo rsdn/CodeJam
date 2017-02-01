@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
 
-using BenchmarkDotNet.Running;
-
-using CodeJam.PerfTests.Running.Limits;
-using CodeJam.PerfTests.Running.SourceAnnotations;
-
+using CodeJam.PerfTests.Analysers;
+using CodeJam.PerfTests.Metrics;
 using NUnit.Framework;
 
 namespace CodeJam.PerfTests
@@ -16,128 +12,62 @@ namespace CodeJam.PerfTests
 	public static class CompetitionTargetTests
 	{
 		[Test]
-		public static void TestCompetitionLimitEmpty()
+		public static void TestCompetitionMetricUnion()
 		{
-			var method = (MethodInfo)MethodBase.GetCurrentMethod();
-			var target = new Target(method.DeclaringType, method);
-			var result = new CompetitionTarget(target, LimitRange.Empty, false);
-			Assert.AreEqual(result.Limits.ToDisplayString(), "∅");
-			Assert.AreEqual(result.Limits.MinRatioText, null);
-			Assert.AreEqual(result.Limits.MaxRatioText, null);
-			Assert.IsTrue(result.Limits.IsEmpty);
+			var metric = CompetitionMetricInfo.AbsoluteTime;
+			var msUnit = metric.MetricUnits[TimeUnit.Millisecond];
+			var secUnit = metric.MetricUnits[TimeUnit.Second];
+
+			var result = new CompetitionMetricValue(metric, MetricRange.Empty, msUnit);
+			Assert.AreEqual(result.ToString(), "∅");
+			Assert.AreEqual(result.ValuesRange.Min, double.NaN);
+			Assert.AreEqual(result.ValuesRange.Max, double.NaN);
+			Assert.IsTrue(result.ValuesRange.IsEmpty);
 			Assert.IsFalse(result.HasUnsavedChanges);
 
-			result.UnionWith(LimitRange.Empty);
-			Assert.IsTrue(result.Limits.IsEmpty);
+			result.UnionWith(
+				new CompetitionMetricValue(metric));
+			Assert.IsTrue(result.ValuesRange.IsEmpty);
 			Assert.IsFalse(result.HasUnsavedChanges);
 
-			result.UnionWith(LimitRange.CreateRatioLimit(1, 2));
-			Assert.AreEqual(result.Limits.ToDisplayString(), "[1.00..2.00]");
-			Assert.AreEqual(result.Limits.MinRatioText, "1.00");
-			Assert.AreEqual(result.Limits.MaxRatioText, "2.00");
-			Assert.IsFalse(result.Limits.IsEmpty);
+			result.UnionWith(
+				new CompetitionMetricValue(
+					metric,
+					MetricRange.Create(1 * (int)TimeUnit.Millisecond, 2 * (int)TimeUnit.Millisecond),
+					secUnit));
+			Assert.AreEqual(result.ToString(), "[0.00100..0.00200] sec");
+			Assert.AreEqual(result.ValuesRange.Min, 1 * 1000 * 1000);
+			Assert.AreEqual(result.ValuesRange.Max, 2 * 1000 * 1000);
+			Assert.IsFalse(result.ValuesRange.IsEmpty);
 			Assert.IsTrue(result.HasUnsavedChanges);
 
-			result.UnionWith(LimitRange.CreateRatioLimit(0.5, null));
-			Assert.AreEqual(result.Limits.ToDisplayString(), "[0.50..+∞)");
-			Assert.AreEqual(result.Limits.MinRatioText, "0.50");
-			Assert.AreEqual(result.Limits.MaxRatioText, "-1");
-			Assert.IsFalse(result.Limits.IsEmpty);
+			result.UnionWith(
+				new CompetitionMetricValue(metric));
+			Assert.AreEqual(result.ToString(), "[0.00100..0.00200] sec");
+			Assert.AreEqual(result.ValuesRange.Min, 1 * 1000 * 1000);
+			Assert.AreEqual(result.ValuesRange.Max, 2 * 1000 * 1000);
+			Assert.IsFalse(result.ValuesRange.IsEmpty);
 			Assert.IsTrue(result.HasUnsavedChanges);
 
-			result.UnionWith(LimitRange.CreateRatioLimit(null, 0.25));
-			Assert.AreEqual(result.Limits.ToDisplayString(), "(-∞..+∞)");
-			Assert.AreEqual(result.Limits.MinRatioText, "-1");
-			Assert.AreEqual(result.Limits.MaxRatioText, "-1");
-			Assert.IsFalse(result.Limits.IsEmpty);
+
+			result.UnionWith(
+				new CompetitionMetricValue(metric, MetricRange.Create(0.0005, null).ToNormalizedMetricValues(secUnit), msUnit));
+			Assert.AreEqual(result.ToString(), "[0.50..+∞) ms");
+			Assert.AreEqual(result.ValuesRange.Min, 0.5 * 1000 * 1000);
+			Assert.AreEqual(result.ValuesRange.Max, double.PositiveInfinity);
+			Assert.IsFalse(result.ValuesRange.IsEmpty);
+			Assert.IsTrue(result.HasUnsavedChanges);
+
+			result.UnionWith(
+				new CompetitionMetricValue(metric, MetricRange.Create(null, 1), MetricUnit.Empty));
+			Assert.AreEqual(result.ToString(), "(-∞..+∞) sec");
+			Assert.AreEqual(result.ValuesRange.Min, double.NegativeInfinity);
+			Assert.AreEqual(result.ValuesRange.Max, double.PositiveInfinity);
+			Assert.IsFalse(result.ValuesRange.IsEmpty);
 			Assert.IsTrue(result.HasUnsavedChanges);
 
 			result.MarkAsSaved();
-			Assert.IsFalse(result.Limits.IsEmpty);
-			Assert.IsFalse(result.HasUnsavedChanges);
-		}
-
-		[Test]
-		public static void TestCompetitionLimitInfinite()
-		{
-			var method = (MethodInfo)MethodBase.GetCurrentMethod();
-			var target = new Target(method.DeclaringType, method);
-			var result = new CompetitionTarget(target, LimitRange.CreateRatioLimit(-1, -1), false);
-			Assert.AreEqual(result.Limits.ToDisplayString(), "(-∞..+∞)");
-			Assert.AreEqual(result.Limits.MinRatioText, "-1");
-			Assert.AreEqual(result.Limits.MaxRatioText, "-1");
-			Assert.IsFalse(result.Limits.IsEmpty);
-			Assert.IsFalse(result.HasUnsavedChanges);
-
-			result.UnionWith(LimitRange.Empty);
-			Assert.IsFalse(result.Limits.IsEmpty);
-			Assert.IsFalse(result.HasUnsavedChanges);
-
-			result.UnionWith(LimitRange.CreateRatioLimit(1, 2));
-			Assert.AreEqual(result.Limits.ToDisplayString(), "(-∞..+∞)");
-			Assert.AreEqual(result.Limits.MinRatioText, "-1");
-			Assert.AreEqual(result.Limits.MaxRatioText, "-1");
-			Assert.IsFalse(result.Limits.IsEmpty);
-			Assert.IsFalse(result.HasUnsavedChanges);
-
-			result.UnionWith(LimitRange.CreateRatioLimit(0.5, null));
-			Assert.AreEqual(result.Limits.ToDisplayString(), "(-∞..+∞)");
-			Assert.AreEqual(result.Limits.MinRatioText, "-1");
-			Assert.AreEqual(result.Limits.MaxRatioText, "-1");
-			Assert.IsFalse(result.Limits.IsEmpty);
-			Assert.IsFalse(result.HasUnsavedChanges);
-
-			result.UnionWith(LimitRange.CreateRatioLimit(null, 0.25));
-			Assert.AreEqual(result.Limits.ToDisplayString(), "(-∞..+∞)");
-			Assert.AreEqual(result.Limits.MinRatioText, "-1");
-			Assert.AreEqual(result.Limits.MaxRatioText, "-1");
-			Assert.IsFalse(result.Limits.IsEmpty);
-			Assert.IsFalse(result.HasUnsavedChanges);
-
-			result.MarkAsSaved();
-			Assert.IsFalse(result.Limits.IsEmpty);
-			Assert.IsFalse(result.HasUnsavedChanges);
-		}
-
-		[Test]
-		public static void TestCompetitionLimitWithValues()
-		{
-			var method = (MethodInfo)MethodBase.GetCurrentMethod();
-			var target = new Target(method.DeclaringType, method);
-			var result = new CompetitionTarget(target, LimitRange.CreateRatioLimit(3, 4), false);
-			Assert.AreEqual(result.Limits.ToDisplayString(), "[3.00..4.00]");
-			Assert.AreEqual(result.Limits.MinRatioText, "3.00");
-			Assert.AreEqual(result.Limits.MaxRatioText, "4.00");
-			Assert.IsFalse(result.Limits.IsEmpty);
-			Assert.IsFalse(result.HasUnsavedChanges);
-
-			result.UnionWith(LimitRange.Empty);
-			Assert.IsFalse(result.Limits.IsEmpty);
-			Assert.IsFalse(result.HasUnsavedChanges);
-
-			result.UnionWith(LimitRange.CreateRatioLimit(1, 2));
-			Assert.AreEqual(result.Limits.ToDisplayString(), "[1.00..4.00]");
-			Assert.AreEqual(result.Limits.MinRatioText, "1.00");
-			Assert.AreEqual(result.Limits.MaxRatioText, "4.00");
-			Assert.IsFalse(result.Limits.IsEmpty);
-			Assert.IsTrue(result.HasUnsavedChanges);
-
-			result.UnionWith(LimitRange.CreateRatioLimit(null, 0.25));
-			Assert.AreEqual(result.Limits.ToDisplayString(), "(-∞..4.00]");
-			Assert.AreEqual(result.Limits.MinRatioText, null);
-			Assert.AreEqual(result.Limits.MaxRatioText, "4.00");
-			Assert.IsFalse(result.Limits.IsEmpty);
-			Assert.IsTrue(result.HasUnsavedChanges);
-
-			result.UnionWith(LimitRange.CreateRatioLimit(6, null));
-			Assert.AreEqual(result.Limits.ToDisplayString(), "(-∞..+∞)");
-			Assert.AreEqual(result.Limits.MinRatioText, "-1");
-			Assert.AreEqual(result.Limits.MaxRatioText, "-1");
-			Assert.IsFalse(result.Limits.IsEmpty);
-			Assert.IsTrue(result.HasUnsavedChanges);
-
-			result.MarkAsSaved();
-			Assert.IsFalse(result.Limits.IsEmpty);
+			Assert.IsFalse(result.ValuesRange.IsEmpty);
 			Assert.IsFalse(result.HasUnsavedChanges);
 		}
 	}

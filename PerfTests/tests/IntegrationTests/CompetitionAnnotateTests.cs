@@ -16,7 +16,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		private static readonly ICompetitionConfig _remoteLogConfig = CompetitionHelpers
 			.CreateConfig(typeof(CompetitionAnnotateTests))
 			.WithPreviousRunLogUri(
-				"https://gist.githubusercontent.com/ig-sinicyn/91ac0badca95b19fc7de6f683a51b9d2/raw/03ddf13c1232b2dca585d5c258a7145d007b60b0/CompetitionAnnotateTests.log");
+				"https://gist.githubusercontent.com/ig-sinicyn/91ac0badca95b19fc7de6f683a51b9d2/raw/1995d15f0a433324c6c61af195bdf68f4c2833b3/CompetitionAnnotateTests.log");
 
 		private static readonly ICompetitionConfig _localLogConfig = _remoteLogConfig
 			.WithPreviousRunLogUri(@"Assets\CompetitionAnnotateTests.log.txt");

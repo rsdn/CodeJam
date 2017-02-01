@@ -1,40 +1,33 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Reflection;
-using System.Xml.Linq;
 
 using BenchmarkDotNet.Analysers;
-using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
+using CodeJam.Strings;
 using CodeJam.Collections;
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Running.Core;
-using CodeJam.PerfTests.Running.Limits;
+using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.SourceAnnotations;
-using CodeJam.Strings;
+using CodeJam.Reflection;
 
 using JetBrains.Annotations;
+
+using System.Xml.Linq;
+
+using CodeJam.PerfTests.Running.Core;
+using CodeJam.PerfTests.Running.Messages;
 
 namespace CodeJam.PerfTests.Analysers
 {
 	/// <summary>Basic competition analyser.</summary>
 	/// <seealso cref="IAnalyser"/>
-	[SuppressMessage("ReSharper", "MemberCanBeMadeStatic.Local")]
 	internal class CompetitionAnalyser : IAnalyser
 	{
-		#region Static members.
-		// DONTTOUCH: DO NOT replace with Memoize as the value reading depends on CompetitionState
-		// and should be called from callee thread only.
-		private static readonly ConcurrentDictionary<ResourceKey, XDocument> _xmlAnnotationsCache =
-			new ConcurrentDictionary<ResourceKey, XDocument>();
-		#endregion
+		// TODO: notify if not saved
 
 		#region Properties
 		/// <summary>Returns the identifier of the analyser.</summary>
@@ -43,7 +36,7 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		[AssertionMethod]
-		private void AssertNoErrors(Analysis analysis) =>
+		private void AssertNoErrors(CompetitionAnalysis analysis) =>
 			Code.BugIf(
 				!analysis.SafeToContinue,
 				"Bug: Trying to analyse failed competition run.");
@@ -57,9 +50,27 @@ namespace CodeJam.PerfTests.Analysers
 
 			var analysis = new CompetitionAnalysis(Id, summary);
 
-			if (CheckPreconditions(analysis) && PrepareTargets(analysis))
+			if (analysis.SafeToContinue && analysis.RunState.FirstRun)
 			{
-				var checkPassed = CheckTargets(analysis);
+				PrepareTargets(analysis);
+
+				PreparePreviousRunLog(analysis);
+
+				Code.BugIf(
+					analysis.Targets.Any(t => t.Target.Type != analysis.RunState.BenchmarkType),
+					"Trying to analyse code that does not belong to the benchmark.");
+
+				if (analysis.Targets.Any() && !GetBenchmarkTargets(analysis).Any(t => t.Baseline))
+				{
+					analysis.WriteSetupErrorMessage(
+						"No baseline method for benchmark. " +
+							$"Apply {nameof(CompetitionBaselineAttribute)} to the one of benchmark methods.");
+				}
+			}
+
+			if (analysis.SafeToContinue)
+			{
+				bool checkPassed = CheckTargets(analysis);
 
 				CheckPostconditions(analysis);
 
@@ -68,7 +79,7 @@ namespace CodeJam.PerfTests.Analysers
 
 			if (analysis.RunState.LooksLikeLastRun)
 			{
-				if (analysis.Limits.LogAnnotations || analysis.Targets.Any(t => t.HasUnsavedChanges))
+				if (analysis.Annotations.LogAnnotations || analysis.Targets.HasUnsavedChanges)
 				{
 					XmlAnnotations.LogXmlAnnotationDoc(analysis.Targets, analysis.RunState);
 				}
@@ -77,234 +88,252 @@ namespace CodeJam.PerfTests.Analysers
 			return analysis.Conclusions.ToArray();
 		}
 
-		#region Pre- & postconditions
-		private bool CheckPreconditions(CompetitionAnalysis analysis)
+		private void PreparePreviousRunLog(CompetitionAnalysis analysis)
 		{
-			// DONTTOUCH: DO NOT add return into the if clause.
-			// All preconditions should be checked.
-			var summary = analysis.Summary;
-			if (summary.HasCriticalValidationErrors)
+			if (!analysis.SafeToContinue)
+				return;
+
+			var logUri = analysis.Annotations.PreviousRunLogUri;
+			if (string.IsNullOrEmpty(logUri))
+				return;
+
+			var xmlAnnotationDocs = ReadXmlAnnotationDocsFromLog(logUri, analysis);
+			if (xmlAnnotationDocs.Length == 0 || !analysis.SafeToContinue)
+				return;
+
+			// ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
+			if (TryFillCompetitionTargetsFromLog(analysis, xmlAnnotationDocs))
 			{
-				analysis.WriteExecutionErrorMessage("Summary has validation errors.");
+				analysis.WriteInfoMessage($"Competition limits were updated from log file '{logUri}'.");
 			}
-
-			if (!summary.Benchmarks.Any())
+			else if (analysis.SafeToContinue)
 			{
-				analysis.WriteSetupErrorMessage(
-					$"No methods in benchmark. Apply one of {nameof(CompetitionBenchmarkAttribute)}, " +
-						$"{nameof(CompetitionBaselineAttribute)} or {nameof(BenchmarkAttribute)} to the benchmark methods.");
-			}
-
-			if (summary.Config.GetJobs().Skip(1).Any())
-			{
-				analysis.WriteSetupErrorMessage(
-					"Benchmark configuration includes multiple jobs. " +
-						"This is not supported as there's no way to store separate competition limits per each job.");
-			}
-
-			var benchmarksWithReports = summary.Reports
-				.Where(r => r.ExecuteResults.Any())
-				.Select(r => r.Benchmark);
-
-			var benchMissing = summary.GetSummaryOrderBenchmarks()
-				.Except(benchmarksWithReports)
-				.Select(b => b.Target.MethodDisplayInfo)
-				.Distinct()
-				.ToArray();
-
-			if (benchMissing.Any())
-			{
-				analysis.WriteExecutionErrorMessage("No reports for benchmarks: " + string.Join(", ", benchMissing));
-			}
-
-			if (analysis.Limits.LimitProvider == null)
-			{
-				var providerProperty = CompetitionLimitsMode.LimitProviderCharacteristic.FullId;
-				analysis.WriteSetupErrorMessage($"The {providerProperty} should be not null.");
-			}
-
-			return analysis.SafeToContinue;
-		}
-
-		private void CheckPostconditions(CompetitionAnalysis analysis)
-		{
-			AssertNoErrors(analysis);
-
-			var culture = HostEnvironmentInfo.MainCultureInfo;
-			var limitsMode = analysis.Limits;
-
-			if (limitsMode.TooFastBenchmarkLimit > TimeSpan.Zero)
-			{
-				var tooFastReports = GetTargetNames(
-					analysis,
-					r => r.Nanoseconds < limitsMode.TooFastBenchmarkLimit.TotalNanoseconds());
-
-				if (tooFastReports.Any())
-				{
-					var benchmarks = tooFastReports.Length == 1 ? "Benchmark" : "Benchmarks";
-					var timeMs = limitsMode.TooFastBenchmarkLimit.TotalMilliseconds.ToString(culture);
-					analysis.AddWarningConclusion(
-						$"{benchmarks} {string.Join(", ", tooFastReports)}: run takes less than {timeMs} ms. " +
-							"Results cannot be trusted.",
-						$"Hint: timing limit is configured via {CompetitionLimitsMode.TooFastBenchmarkLimitCharacteristic.FullId}.");
-				}
-			}
-
-			if (limitsMode.LongRunningBenchmarkLimit > TimeSpan.Zero)
-			{
-				var tooSlowReports = GetTargetNames(
-					analysis,
-					r => r.Nanoseconds > limitsMode.LongRunningBenchmarkLimit.TotalNanoseconds());
-
-				if (tooSlowReports.Any())
-				{
-					var benchmarks = tooSlowReports.Length == 1 ? "Benchmark" : "Benchmarks";
-					var timeSec = limitsMode.LongRunningBenchmarkLimit.TotalSeconds.ToString(culture);
-					analysis.AddWarningConclusion(
-						$"{benchmarks} {string.Join(", ", tooSlowReports)}: run takes more than {timeSec} sec. " +
-							"Consider to rewrite the test as peek timings will be hidden by averages.",
-						$"Hint: timing limit is configured via {CompetitionLimitsMode.LongRunningBenchmarkLimitCharacteristic.FullId}.");
-				}
-			}
-
-			if (!limitsMode.IgnoreExistingAnnotations)
-			{
-				var emptyLimits = analysis.SummaryOrderTargets()
-					.Where(t => t.HasRelativeLimits && t.Limits.IsEmpty)
-					.Select(rp => rp.Target.MethodDisplayInfo)
-					.ToArray();
-				if (emptyLimits.Any())
-				{
-					var benchmarks = emptyLimits.Length == 1 ? "Benchmark" : "Benchmarks";
-					analysis.AddWarningConclusion(
-						$"{benchmarks} {string.Join(", ", emptyLimits)}: results ignored as benchmark limits are empty.",
-						"Fill limit values to include benchmarks in the competition.");
-				}
+				analysis.WriteInfoMessage($"Competition limits do not require update. Log file: '{logUri}'.");
 			}
 		}
 
-		// ReSharper disable once MemberCanBeMadeStatic.Local
+
 		// ReSharper disable once SuggestBaseTypeForParameter
-		private string[] GetTargetNames(
-			CompetitionAnalysis analysis,
-			Func<Measurement, bool> measurementFilter) =>
-				analysis.Summary.GetSummaryOrderBenchmarks()
-					.Select(b => analysis.Summary[b])
-					.Where(rp => rp.GetResultRuns().Any(measurementFilter))
-					.Select(rp => rp.Benchmark.Target.MethodDisplayInfo)
-					.Distinct()
-					.ToArray();
+		[NotNull]
+		private XDocument[] ReadXmlAnnotationDocsFromLog(string logUri, CompetitionAnalysis analysis)
+		{
+			analysis.RunState.WriteVerbose($"Reading XML annotation documents from log '{logUri}'.");
+
+			var xmlAnnotationDocs = XmlAnnotations.TryParseXmlAnnotationDocsFromLog(logUri, analysis.RunState);
+
+			if (xmlAnnotationDocs == null)
+				return Array<XDocument>.Empty;
+
+			if (xmlAnnotationDocs.Length == 0 && analysis.SafeToContinue)
+			{
+				analysis.WriteWarningMessage($"No XML annotation documents in the log '{logUri}'.");
+			}
+
+			return xmlAnnotationDocs;
+		}
+
+		// ReSharper disable once SuggestBaseTypeForParameter
+		private bool TryFillCompetitionTargetsFromLog(
+			CompetitionAnalysis analysis, XDocument[] xmlAnnotationDocs)
+		{
+			analysis.RunState.WriteVerbose($"Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log.");
+
+			var updated = false;
+			foreach (var competitionTarget in analysis.Targets)
+			{
+				var metricsByType = competitionTarget.MetricValues.ToDictionary(m => m.Metric.AttributeType);
+				var hasAnnotations = false;
+
+				foreach (var doc in xmlAnnotationDocs)
+				{
+					var parsedMetrics = XmlAnnotations.TryParseMetrics(
+						competitionTarget.Target, doc, true, analysis.RunState);
+					foreach (var storedMetricValue in parsedMetrics)
+					{
+						if (!metricsByType.TryGetValue(storedMetricValue.MetricAttributeType, out var metricValue))
+							continue;
+
+						hasAnnotations = true;
+
+						updated |= metricValue.UnionWith(ToMetricValue(storedMetricValue, metricValue.Metric));
+					}
+				}
+
+				if (!hasAnnotations && analysis.SafeToContinue && metricsByType.Any())
+				{
+					analysis.WriteWarningMessage(
+						$"No logged XML annotation for {competitionTarget.Target.MethodDisplayInfo} found. Check if the method was renamed.");
+				}
+			}
+
+			return updated;
+		}
+
+		#region Skip logic
+		private bool PerformAdjustment(CompetitionAnalysis analysis) =>
+			analysis.Adjustments.AdjustLimits &&
+			analysis.RunState.RunNumber > analysis.Adjustments.SkipRunsBeforeAdjustment;
 		#endregion
 
-		#region PrepareTargets
-		private bool PrepareTargets(CompetitionAnalysis analysis)
+		#region Prepare targets
+		private void PrepareTargets(CompetitionAnalysis analysis)
 		{
-			AssertNoErrors(analysis);
-			if (analysis.Targets.Initialized)
-				return true;
+			// TODO: xmlAnnotationsDoc to lazy?
+			// -or- separate loop for ignore existing annotations
+			// TODO: cache stored metrics!
 
-			OnPrepareTargets(analysis);
-			Code.BugIf(
-				analysis.Targets.Any(t => t.Target.Type != analysis.RunState.BenchmarkType),
-				"Trying to analyse code that does not belongs to the benchmark.");
-
-			analysis.Targets.SetInitialized();
-
-			return analysis.SafeToContinue;
-		}
-
-		/// <summary>Fills competition targets collection.</summary>
-		/// <param name="analysis">Analyser pass results.</param>
-		protected virtual void OnPrepareTargets([NotNull] CompetitionAnalysis analysis)
-		{
 			// DONTTOUCH: DO NOT add return into the if clause.
 			// The competitionTargets should be filled with empty limits anyway.
-			if (analysis.Limits.IgnoreExistingAnnotations)
+			var ignoreExistingAnnotations = analysis.Annotations.IgnoreExistingAnnotations;
+			if (ignoreExistingAnnotations)
 			{
-				var ignoreCharacteristic = CompetitionLimitsMode.IgnoreExistingAnnotationsCharacteristic.FullId;
+				var ignoreCharacteristic = CompetitionAnnotationMode.IgnoreExistingAnnotationsCharacteristic.FullId;
 				analysis.WriteInfoMessage(
 					$"Existing benchmark limits are ignored due to {ignoreCharacteristic} setting.");
 			}
 
-			// TODO: to separate analyzer?
-			if (!analysis.Annotations.AdjustLimits && analysis.Annotations.PreviousRunLogUri.NotNullNorEmpty())
-			{
-				var adjustCharacteristic = SourceAnnotationsMode.AdjustLimitsCharacteristic.FullId;
-				analysis.WriteInfoMessage(
-					$"Previous run log results are ignored as {adjustCharacteristic} setting is disabled.");
-			}
-
-			var targets = analysis.Summary.GetSummaryOrderBenchmarks()
-				.Select(b => b.Target)
-				.Distinct()
-				.ToArray();
-			if (targets.Length == 0)
-				return;
-
 			var competitionMetadata = AttributeAnnotations.TryGetCompetitionMetadata(analysis.RunState.BenchmarkType);
-			foreach (var target in targets)
+			analysis.Targets.CompetitionMetadata = competitionMetadata;
+
+			var xmlAnnotationsDoc = ignoreExistingAnnotations || competitionMetadata == null
+				? null
+				: XmlAnnotations.TryParseXmlAnnotationDoc(
+					competitionMetadata.MetadataResourceKey,
+					analysis.RunState);
+
+			foreach (var target in GetBenchmarkTargets(analysis))
 			{
-				var competitionTarget = TryParseCompetitionTarget(target, competitionMetadata, analysis);
+				var competitionTarget = TryParseCompetitionTarget(target, xmlAnnotationsDoc, analysis);
 				if (competitionTarget != null)
 				{
 					analysis.Targets.Add(competitionTarget);
 				}
 			}
 
-			if (analysis.Targets.Any(c => c.HasRelativeLimits) &&
-				!analysis.Summary.Benchmarks.Any(t => t.Target.Baseline))
-			{
-				analysis.WriteSetupErrorMessage(
-					"No baseline method for benchmark. " +
-						$"Apply {nameof(CompetitionBaselineAttribute)} to the one of benchmark methods.");
-			}
+			analysis.Targets.SetInitialized();
 		}
 
 		[CanBeNull]
 		private CompetitionTarget TryParseCompetitionTarget(
-			Target target,
-			CompetitionMetadata competitionMetadata,
-			CompetitionAnalysis analysis)
+			[NotNull] Target target,
+			[CanBeNull] XDocument xmlAnnotationsDoc,
+			[NotNull] CompetitionAnalysis analysis)
 		{
-			var competitionAttribute = target.Method.GetCustomAttribute<CompetitionBenchmarkAttribute>(true);
-			if (competitionAttribute == null || competitionAttribute.DoesNotCompete)
+			var benchmarkAttribute = target.Method.TryGetMetadataAttribute<CompetitionBenchmarkAttribute>();
+			if (benchmarkAttribute == null || benchmarkAttribute.DoesNotCompete)
 				return null;
 
-			LimitRange limit;
-			if (analysis.Limits.IgnoreExistingAnnotations)
-				limit = LimitRange.Empty;
-			else if (competitionMetadata == null)
-				limit = AttributeAnnotations.ParseCompetitionLimit(competitionAttribute);
-			else
-				limit = TryParseXmlAnnotationLimit(target, competitionMetadata, analysis);
+			if (analysis.Annotations.IgnoreExistingAnnotations)
+			{
+				var metricValues = analysis.RunState.Config.GetMetrics()
+					.Where(m => !target.Baseline || !m.IsRelative)
+					.Select(m => new CompetitionMetricValue(m))
+					.ToArray();
+				return new CompetitionTarget(target, metricValues);
+			}
 
-			return new CompetitionTarget(target, limit, competitionAttribute.DoesNotCompete, competitionMetadata);
+			var result = new List<CompetitionMetricValue>();
+
+			var competitionMetadata = analysis.Targets.CompetitionMetadata;
+			var storedMetrics =
+				competitionMetadata == null
+				? GetAttributeMetrics(target, analysis)
+				: GetXmlAnnotationDocMetrics(target, xmlAnnotationsDoc, competitionMetadata, analysis);
+
+			bool hasMetrics = storedMetrics.Any();
+
+			var metricsByType = storedMetrics.ToDictionary(m => m.MetricAttributeType);
+			foreach (var metricInfo in analysis.RunState.Config.GetMetrics())
+			{
+				bool relativeApplicable = !target.Baseline || !metricInfo.IsRelative;
+				if (metricsByType.TryGetValue(metricInfo.AttributeType, out var storedMetric))
+				{
+					if (relativeApplicable)
+					{
+						result.Add(ToMetricValue(storedMetric, metricInfo));
+					}
+					else if (metricInfo.AttributeType != typeof(CompetitionBenchmarkAttribute)) // TODO: better check
+					{
+						analysis.WriteSetupErrorMessage(
+							$"Trying to apply relative metric {metricInfo.Name} to the baseline method {target.MethodDisplayInfo}. Skipped.");
+					}
+				}
+				else if (relativeApplicable)
+				{
+					if (hasMetrics)
+					{
+						analysis.WriteInfoMessage(
+							$"Annotation for {target.MethodDisplayInfo}, metric {metricInfo} not found, threated as empty.");
+					}
+
+					result.Add(new CompetitionMetricValue(metricInfo));
+				}
+			}
+
+			return new CompetitionTarget(target, result.ToArray());
 		}
 
-		// ReSharper disable once SuggestBaseTypeForParameter
-		private LimitRange TryParseXmlAnnotationLimit(
-			Target target,
-			CompetitionMetadata competitionMetadata,
-			CompetitionAnalysis analysis)
+		private static CompetitionMetricValue ToMetricValue(
+			IStoredMetricSource storedMetric,
+			CompetitionMetricInfo metricInfo)
 		{
-			var xmlAnnotationDoc = _xmlAnnotationsCache.GetOrAdd(
-				competitionMetadata.MetadataResourceKey,
-				key => XmlAnnotations.TryParseXmlAnnotationDoc(key, analysis.RunState));
+			Code.BugIf(
+				storedMetric.MetricAttributeType != metricInfo.AttributeType,
+				"storedMetric.MetricAttributeType != metricInfo.AttributeType");
 
-			if (xmlAnnotationDoc == null)
-				return LimitRange.Empty;
+			var metricUnit = metricInfo.MetricUnits[storedMetric.UnitOfMeasurement];
+			var scaledMetricValues = MetricRange.Create(storedMetric.Min, storedMetric.Max);
+			return new CompetitionMetricValue(
+				metricInfo,
+				scaledMetricValues.ToNormalizedMetricValues(metricUnit),
+				metricUnit);
+		}
 
-			var result = XmlAnnotations.TryParseCompetitionLimit(
-				target,
-				xmlAnnotationDoc,
+		private static Target[] GetBenchmarkTargets(CompetitionAnalysis analysis) =>
+			analysis.Summary.GetSummaryOrderBenchmarks()
+				.Select(b => b.Target)
+				.Distinct()
+				.ToArray();
+
+		private static IStoredMetricSource[] GetAttributeMetrics(Target target, CompetitionAnalysis analysis)
+		{
+			var metricsByType = analysis.RunState.Config.GetMetrics().ToDictionary(m => m.AttributeType);
+			var result = new List<IStoredMetricSource>(metricsByType.Count);
+
+			foreach (var targetMetric in target.Method.GetMetadataAttributes<IStoredMetricSource>().ToArray())
+			{
+				if (!metricsByType.TryGetValue(targetMetric.MetricAttributeType, out var metricInfo))
+				{
+					analysis.WriteInfoMessage(
+						$"Annotation for {target.MethodDisplayInfo}, unknown metric {targetMetric.MetricAttributeType.Name}, skipped.");
+					continue;
+				}
+
+				AttributeAnnotations.ParseUnitValue(target, targetMetric.UnitOfMeasurement, metricInfo, analysis.RunState);
+
+				result.Add(targetMetric);
+			}
+			return result.ToArray();
+		}
+
+		private static IStoredMetricSource[] GetXmlAnnotationDocMetrics(
+			Target target, XDocument xmlAnnotationsDoc, CompetitionMetadata competitionMetadata, CompetitionAnalysis analysis)
+		{
+			if (xmlAnnotationsDoc == null)
+				return Array<IStoredMetricSource>.Empty;
+
+			var result = XmlAnnotations.TryParseMetrics(
+				target, xmlAnnotationsDoc,
 				competitionMetadata.UseFullTypeName,
 				analysis.RunState);
 
-			if (result == null && analysis.SafeToContinue)
+			if (result.Length == 0 && analysis.SafeToContinue)
+			{
 				analysis.WriteWarningMessage(
 					$"No XML annotation for {target.MethodDisplayInfo} found. Check if the method was renamed.");
+			}
 
-			return result.GetValueOrDefault();
+			return result;
 		}
 		#endregion
 
@@ -316,13 +345,13 @@ namespace CodeJam.PerfTests.Analysers
 			var benchmarksByTarget = analysis.Summary
 				.GetSummaryOrderBenchmarks()
 				.GroupBy(b => analysis.Targets[b.Target])
-				.Where(g => g.Key != null && g.Key.DoesNotCompete == false);
+				.Where(g => g.Key != null);
 
 			var checkPassed = true;
 			foreach (var benchmarks in benchmarksByTarget)
 			{
 				var benchmarksForTarget = benchmarks.ToArray();
-				checkPassed &= OnCheckTarget(benchmarksForTarget, benchmarks.Key, analysis);
+				checkPassed &= OnCheckTarget(benchmarks.Key, benchmarksForTarget, analysis);
 
 				AssertNoErrors(analysis);
 			}
@@ -330,100 +359,176 @@ namespace CodeJam.PerfTests.Analysers
 			return checkPassed;
 		}
 
-		/// <summary>Check competition target limits.</summary>
-		/// <param name="benchmarksForTarget">Benchmarks for the target.</param>
-		/// <param name="competitionTarget">The competition target.</param>
-		/// <param name="analysis">Analyser pass results.</param>
-		/// <returns><c>true</c> if competition limits are ok.</returns>
-		protected virtual bool OnCheckTarget(
-			[NotNull] Benchmark[] benchmarksForTarget,
+		private bool OnCheckTarget(
 			[NotNull] CompetitionTarget competitionTarget,
+			[NotNull] Benchmark[] benchmarksForTarget,
 			[NotNull] CompetitionAnalysis analysis)
 		{
-			if (competitionTarget.Baseline || competitionTarget.Limits.IsEmpty)
-				return true;
-
 			var result = true;
-			foreach (var benchmark in benchmarksForTarget)
+			foreach (var metricValue in competitionTarget.MetricValues)
 			{
-				result &= CheckTargetBenchmark(benchmark, competitionTarget.Limits, analysis);
+				foreach (var benchmark in benchmarksForTarget)
+				{
+					result &= CheckTargetBenchmark(benchmark, metricValue, analysis);
+				}
 			}
 			return result;
 		}
 
 		private bool CheckTargetBenchmark(
 			Benchmark benchmark,
-			LimitRange competitionLimit,
+			CompetitionMetricValue metricValue,
 			CompetitionAnalysis analysis)
 		{
-			var limitsMode = analysis.Limits;
+			var targetMethodTitle = benchmark.Target.MethodDisplayInfo;
 			var summary = analysis.Summary;
-			var actualValues = limitsMode.LimitProvider.TryGetActualValues(benchmark, summary);
+			var metric = metricValue.Metric;
+
+			var actualValues = metric.ValuesProvider.TryGetActualValues(benchmark, summary);
 			if (actualValues.IsEmpty)
 			{
 				analysis.AddTestErrorConclusion(
-					$"Could not obtain competition limits for {benchmark.DisplayInfo}.",
+					$"Method {targetMethodTitle}: could not obtain {metric} metric values for {benchmark.DisplayInfo}.",
 					summary.TryGetBenchmarkReport(benchmark));
 
 				return true;
 			}
 
-			if (competitionLimit.Contains(actualValues))
+			if (metricValue.ValuesRange.Contains(actualValues))
 				return true;
 
-			var targetMethodTitle = benchmark.Target.MethodDisplayInfo;
+			bool result = metricValue.ValuesRange.IsEmpty;
+			if (!result)
+			{
+				analysis.AddTestErrorConclusion(
+					$"Method {targetMethodTitle}: {actualValues.ToString(metric.MetricUnits)} does not fit into limits {metricValue}.",
+					summary.TryGetBenchmarkReport(benchmark));
+			}
 
-			var meanColumn = BenchmarkDotNet.Columns.StatisticColumn.Mean;
-			var absoluteTime = meanColumn.GetValue(summary, benchmark);
-			var absoluteTimeBaseline = meanColumn.GetValue(summary, summary.TryGetBaseline(benchmark));
+			if (PerformAdjustment(analysis))
+			{
+				var limitValues = metric.ValuesProvider.TryGetLimitValues(benchmark, analysis.Summary);
+				metricValue.UnionWith(
+					new CompetitionMetricValue(
+						metric,
+						limitValues,
+						metric.MetricUnits[limitValues]));
 
-			analysis.AddTestErrorConclusion(
-				$"Method {targetMethodTitle} {actualValues.ToDisplayString()} does not fit into limits {competitionLimit.ToDisplayString()}.",
-				summary.TryGetBenchmarkReport(benchmark));
+				result = false;
+			}
 
-			// TODO: better message?
-			analysis.RunState.WriteVerboseHint(
-				$"Method {targetMethodTitle} mean time: {absoluteTime}. Baseline mean time: {absoluteTimeBaseline}.");
-
-			return false;
+			return result;
 		}
-		#endregion
 
-		#region CompleteCheckTargets
-		private void CompleteCheckTargets([NotNull] CompetitionAnalysis analysis, bool checkPassed)
+		private void CompleteCheckTargets(CompetitionAnalysis analysis, bool checkPassed)
 		{
-			OnCompleteCheckTargets(analysis);
+			if (!analysis.Annotations.DontSaveUpdatedLimits)
+			{
+				AnnotateTargets(analysis);
+			}
 
 			if (!checkPassed)
 			{
 				RequestReruns(analysis);
 			}
-			else if (analysis.Conclusions.Count == 0 && analysis.Targets.Any(c => c.HasRelativeLimits))
+			else if (analysis.Conclusions.Count == 0 && analysis.Targets.Any(t => t.MetricValues.Any()))
 			{
-				if (analysis.Targets.Any(c => c.HasUnsavedChanges))
+				if (analysis.Targets.HasUnsavedChanges)
 				{
-					analysis.WriteWarningMessage("There are competition limits unsaved. Check the log for details please.");
+					analysis.WriteWarningMessage(
+						"There are competition metrics unsaved. Check the log for details please.");
 				}
 				else
 				{
-					analysis.WriteInfoMessage($"{GetType().Name}: All competition limits are ok.");
+					analysis.WriteInfoMessage($"{GetType().Name}: All competition metrics are ok.");
 				}
 			}
 		}
 
-		/// <summary>Complete analysis.</summary>
-		/// <param name="analysis">Analyser pass results.</param>
-		protected virtual void OnCompleteCheckTargets([NotNull] CompetitionAnalysis analysis) { }
+		private void AnnotateTargets(CompetitionAnalysis analysis)
+		{
+			// TODO: messaging?
+			if (!analysis.SafeToContinue)
+			{
+				analysis.WriteWarningMessage(
+					"Source annotation skipped as there are critical errors in the run. Check the log please.");
+				return;
+			}
+
+			if (!analysis.Targets.HasUnsavedChanges)
+				return;
+
+			if (analysis.Annotations.DontSaveUpdatedLimits)
+			{
+				var message =
+					$"Source annotation skipped due to {CompetitionAnnotationMode.DontSaveUpdatedLimitsCharacteristic.FullId} setting.";
+				if (analysis.RunState.FirstRun)
+				{
+					analysis.RunState.WriteMessage(MessageSource.Analyser, MessageSeverity.Informational, message);
+				}
+				else
+				{
+					analysis.RunState.WriteVerbose(message);
+				}
+				foreach (var metric in analysis.Targets.SelectMany(t => t.MetricValues))
+				{
+					if (metric.HasUnsavedChanges)
+						metric.MarkAsSaved();
+				}
+			}
+			else
+			{
+				var annotatedTargets = SourceAnnotationsHelper.TryAnnotateBenchmarkFiles(
+					analysis.Targets.ToArray(), analysis.Targets.CompetitionMetadata, analysis.RunState);
+
+				if (annotatedTargets.Any())
+				{
+					analysis.WriteWarningMessage(
+						"The sources were updated with new annotations. Please check them before commiting the changes.");
+				}
+
+				foreach (var metric in annotatedTargets.SelectMany(t => t.MetricValues))
+				{
+					if (metric.HasUnsavedChanges)
+						metric.MarkAsSaved();
+				}
+			}
+		}
 
 		/// <summary>Requests reruns for the competition.</summary>
 		/// <param name="analysis">Analyser pass results.</param>
 		protected virtual void RequestReruns(CompetitionAnalysis analysis)
 		{
-			if (analysis.RunState.RunNumber < analysis.Limits.RerunsIfValidationFailed)
+			var adjustmentMode = analysis.Adjustments;
+
+			if (PerformAdjustment(analysis) && adjustmentMode.RerunsIfAdjusted > 0)
 			{
-				analysis.RunState.RequestReruns(1, "Limit checking failed.");
+				analysis.RunState.RequestReruns(adjustmentMode.RerunsIfAdjusted, "Metrics were adjusted.");
+			}
+			else if (analysis.RunState.RunNumber < analysis.Checks.RerunsIfValidationFailed)
+			{
+				analysis.RunState.RequestReruns(1, "Metrics check failed.");
 			}
 		}
 		#endregion
+
+		private void CheckPostconditions(CompetitionAnalysis analysis)
+		{
+			// TODO: improve
+			if (!analysis.Annotations.IgnoreExistingAnnotations)
+			{
+				var emptyMetrics = analysis.GetSummaryOrderTargets()
+					.Where(t => t.MetricValues.Any(m => m.ValuesRange.IsEmpty))
+					.Select(rp => rp.Target.MethodDisplayInfo)
+					.ToArray();
+				if (emptyMetrics.Any())
+				{
+					var benchmarks = emptyMetrics.Length == 1 ? "Benchmark" : "Benchmarks";
+					analysis.AddWarningConclusion(
+						$"{benchmarks} {emptyMetrics.Join(", ")}: results ignored as benchmark metric limits are empty.",
+						"Fill metric limits to include benchmarks in the competition.");
+				}
+			}
+		}
 	}
 }

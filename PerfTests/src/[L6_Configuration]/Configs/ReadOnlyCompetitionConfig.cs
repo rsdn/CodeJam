@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using BenchmarkDotNet.Configs;
+
+using CodeJam.PerfTests.Metrics;
 
 using JetBrains.Annotations;
 
@@ -27,5 +30,9 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Competition parameters.</summary>
 		/// <value>Competition parameters.</value>
 		public CompetitionOptions Options => _config.Options;
+
+		/// <summary>Gets competition metrics.</summary>
+		/// <returns>Competition metrics.</returns>
+		public IEnumerable<CompetitionMetricInfo> GetMetrics() => _config.GetMetrics();
 	}
 }

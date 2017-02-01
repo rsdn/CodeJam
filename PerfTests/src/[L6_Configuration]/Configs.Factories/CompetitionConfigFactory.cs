@@ -315,15 +315,15 @@ namespace CodeJam.PerfTests.Configs.Factories
 
 			if (competitionFeatures.AnnotateSources)
 			{
-				result.SourceAnnotations.AdjustLimits = true;
+				result.Adjustments.AdjustLimits = true;
 				if (competitionFeatures.IgnoreExistingAnnotations)
 				{
-					result.Limits.IgnoreExistingAnnotations = true;
-					result.SourceAnnotations.PreviousRunLogUri = null;
+					result.Annotations.IgnoreExistingAnnotations = true;
+					result.Annotations.PreviousRunLogUri = null;
 				}
 				else
 				{
-					result.SourceAnnotations.PreviousRunLogUri = competitionFeatures.PreviousRunLogUri;
+					result.Annotations.PreviousRunLogUri = competitionFeatures.PreviousRunLogUri;
 				}
 			}
 
@@ -346,9 +346,9 @@ namespace CodeJam.PerfTests.Configs.Factories
 			if (competitionFeatures.ContinuousIntegrationMode)
 			{
 				result.RunOptions.ContinuousIntegrationMode = true;
-				result.Limits.LogAnnotations = true;
-				result.SourceAnnotations.PreviousRunLogUri = null;
-				result.SourceAnnotations.DontSaveAdjustedLimits = true;
+				result.Annotations.LogAnnotations = true;
+				result.Annotations.PreviousRunLogUri = null;
+				result.Annotations.DontSaveUpdatedLimits = true;
 			}
 
 			return result;

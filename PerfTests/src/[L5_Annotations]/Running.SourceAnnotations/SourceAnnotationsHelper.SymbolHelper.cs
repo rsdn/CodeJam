@@ -36,6 +36,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			/// <summary>SHA1</summary>
 			Sha1
 		}
+
 		/// <summary>
 		/// Known language types
 		/// </summary>
@@ -56,13 +57,13 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		{
 			/// <summary>Initializes a new instance of the <see cref="SourceFileInfo"/> class.</summary>
 			/// <param name="path">The path to the source file.</param>
-			/// <param name="methodMap">Range that stores start/end lines for each method in the document.</param>
+			/// <param name="methodLinesMap">Range that stores start/end lines for each method in the document.</param>
 			/// <param name="languageType">Type of the language.</param>
 			/// <param name="checksumAlgorithm">The checksum algorithm.</param>
 			/// <param name="checksum">The checksum.</param>
 			public SourceFileInfo(
 				string path,
-				CompositeRange<int, MethodBase> methodMap,
+				CompositeRange<int, MethodBase> methodLinesMap,
 				LanguageType languageType,
 				ChecksumAlgorithm checksumAlgorithm,
 				byte[] checksum)
@@ -71,7 +72,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				Code.NotNull(checksum, nameof(checksum));
 
 				Path = path;
-				MethodMap = methodMap;
+				MethodLinesMap = methodLinesMap;
 				LanguageType = languageType;
 				ChecksumAlgorithm = checksumAlgorithm;
 				Checksum = checksum;
@@ -81,15 +82,19 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			/// <value>Path to the source file.</value>
 			[NotNull]
 			public string Path { get; }
+
 			/// <summary>Range that stores start/end lines for each method in the document..</summary>
 			/// <value>Range that stores start/end lines for each method in the document..</value>
-			public CompositeRange<int, MethodBase> MethodMap { get; }
+			public CompositeRange<int, MethodBase> MethodLinesMap { get; }
+
 			/// <summary>The type of the language.</summary>
 			/// <value>The type of the language.</value>
 			public LanguageType LanguageType { get; }
+
 			/// <summary>The checksum algorithm.</summary>
 			/// <value>The checksum algorithm.</value>
 			public ChecksumAlgorithm ChecksumAlgorithm { get; }
+
 			/// <summary>The checksum.</summary>
 			/// <value>The checksum.</value>
 			[NotNull]
@@ -196,7 +201,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 				var path = documentInfo.GetName();
 				// ReSharper disable once PossibleNullReferenceException
-				var methodMap = GetMethodMap(documentInfo, reader, method.DeclaringType.Assembly);
+				var methodLinesMap = GetMethodLinesMap(documentInfo, reader, method.DeclaringType.Assembly);
 				var languageType = LanguageType.Unknown;
 				var checksumAlgorithm = ChecksumAlgorithm.Unknown;
 				var checksum = documentInfo.GetChecksum();
@@ -221,7 +226,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					languageType = LanguageType.VisualBasic;
 				}
 
-				return new SourceFileInfo(path, methodMap, languageType, checksumAlgorithm, checksum);
+				return new SourceFileInfo(path, methodLinesMap, languageType, checksumAlgorithm, checksum);
 			}
 
 			#region Helpers
@@ -306,7 +311,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			/// <param name="reader">Pdb reader.</param>
 			/// <param name="assembly">Assembly that contains methods.</param>
 			/// <returns>Range that stores start/end lines for each method in the document.</returns>
-			private static CompositeRange<int, MethodBase> GetMethodMap(
+			private static CompositeRange<int, MethodBase> GetMethodLinesMap(
 				ISymUnmanagedDocument documentInfo,
 				ISymUnmanagedReader reader,
 				Assembly assembly)
