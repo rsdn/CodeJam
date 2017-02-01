@@ -78,10 +78,10 @@ namespace CodeJam.Ranges
 		[CompetitionBaseline]
 		public void Intersect() => IntersectNaive(_intersection);
 
-		[CompetitionBenchmark(0.083, 0.114)]
+		[CompetitionBenchmark(0.060, 0.114)]
 		public void IntersectTree() => _tree.Intersect(_intersection);
 
-		[CompetitionBenchmark(0.21, 0.27)]
+		[CompetitionBenchmark(0.143, 0.27)]
 		public void IntersectCostin() => _treeCostin.GetIntervalsOverlappingWith(_intersectionCostin).ToArray();
 	}
 }

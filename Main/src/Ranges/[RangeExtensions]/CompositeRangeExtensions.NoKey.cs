@@ -181,8 +181,27 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="value">The value to check.</param>
 		/// <returns>Ranges that has intersections with passed range.</returns>
-		public static RangeIntersection<T> GetIntersection<T>(this CompositeRange<T> compositeRange, T value) =>
-			GetIntersectionCore(compositeRange, Range.Create(value, value));
+		public static Range<T>[] GetIntersection<T>(this CompositeRange<T> compositeRange, T value)
+		{
+			{
+				var ranges = new List<Range<T>>();
+				if (!compositeRange.ContainingRange.Contains(value))
+					return
+#if (!FW452)
+						Array.Empty<Range<T>>();
+#else
+						Array<Range<T>>.Empty;
+#endif
+				foreach (var range in compositeRange.SubRanges)
+				{
+					if (range.StartsAfter(value))
+						break;
+					if (range.Contains(value))
+						ranges.Add(range);
+				}
+				return ranges.ToArray();
+			}
+		}
 
 		/// <summary>Returns ranges that has intersections with passed range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
