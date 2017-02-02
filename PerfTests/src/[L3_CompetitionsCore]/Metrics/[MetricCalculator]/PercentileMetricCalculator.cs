@@ -22,7 +22,7 @@ namespace CodeJam.PerfTests.Metrics
 		public static readonly IMetricCalculator P50 = new PercentileMetricCalculator(50, 5, 15);
 
 		/// <summary> Metric is based on 85th percentiles.</summary>
-		public static readonly IMetricCalculator P85 = new PercentileMetricCalculator(85, 0, 5);
+		public static readonly IMetricCalculator P85 = new PercentileMetricCalculator(85, 0, 10);
 
 		#region Helpers
 		private static bool CheckValues(double[] values) => values.NotNullNorEmpty();

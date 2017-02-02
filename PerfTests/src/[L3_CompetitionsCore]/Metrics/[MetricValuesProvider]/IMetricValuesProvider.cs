@@ -1,5 +1,8 @@
-﻿using BenchmarkDotNet.Reports;
+﻿using BenchmarkDotNet.Columns;
+using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
+
+using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Metrics
 {
@@ -37,5 +40,11 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="summary">Summary for the run.</param>
 		/// <returns>Range that describes expected limits for the benchmark (or empty range if none).</returns>
 		MetricRange TryGetLimitValues(Benchmark benchmark, Summary summary);
+
+		/// <summary>Gets column provider for the metric values.</summary>
+		/// <param name="metricInfo">The competition metric to get column for.</param>
+		/// <returns>Column provider for the metric values</returns>
+		[CanBeNull]
+		IColumnProvider GetColumnProvider(CompetitionMetricInfo metricInfo);
 	}
 }

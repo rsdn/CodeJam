@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Helpers;
 
 using CodeJam.Strings;
@@ -116,7 +117,12 @@ namespace CodeJam.PerfTests.Metrics
 		/// <value> <c>true</c> if the metric is relative; otherwise, <c>false</c>. </value>
 		public bool IsRelative => ValuesProvider.ResultIsRelative;
 		#endregion
-		
+
+		/// <summary>Gets column provider for the metric values.</summary>
+		/// <returns>Column provider for the metric values</returns>
+		[CanBeNull]
+		public IColumnProvider GetColumnProvider() => ValuesProvider.GetColumnProvider(this);
+
 		/// <summary>Returns a <see cref="System.String" /> that represents this instance.</summary>
 		/// <returns>A <see cref="System.String" /> that represents this instance.</returns>
 		public override string ToString() => Name;

@@ -1,8 +1,11 @@
 ﻿using System;
 
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
+
+using CodeJam.PerfTests.Columns;
 
 using JetBrains.Annotations;
 
@@ -62,7 +65,9 @@ namespace CodeJam.PerfTests.Metrics
 		/// <summary>Initializes a new instance of the <see cref="MetricValuesProviderBase"/> class.</summary>
 		/// <param name="calculator">The metric calculator.</param>
 		/// <param name="resultIsRelative"><c>true</c> if the metric is relative.</param>
-		protected MetricValuesProviderBase([NotNull] IMetricCalculator calculator, bool resultIsRelative)
+		protected MetricValuesProviderBase(
+			[NotNull] IMetricCalculator calculator,
+			bool resultIsRelative)
 		{
 			MetricCalculator = calculator;
 			ResultIsRelative = resultIsRelative;
@@ -164,7 +169,28 @@ namespace CodeJam.PerfTests.Metrics
 			}
 			return MetricRange.Empty;
 		}
+
+		/// <summary>Gets column provider for the metric values.</summary>
+		/// <param name="metricInfo">The competition metric to get column for.</param>
+		/// <returns>Column provider for the metric values</returns>
+		public IColumnProvider GetColumnProvider(CompetitionMetricInfo metricInfo)
+		{
+			Code.NotNull(metricInfo, nameof(metricInfo));
+			Code.AssertArgument(
+				metricInfo.ValuesProvider == this, nameof(metricInfo), 
+				"Passed ValuesProvider does not match to this one.");
+
+			return GetColumnProviderOverride(metricInfo);
+		}
 		#endregion
+
+		/// <summary>Gets column provider for the metric values.</summary>
+		/// <param name="metricInfo">The competition metric to get column for.</param>
+		/// <returns>Column provider for the metric values</returns>
+		protected virtual IColumnProvider GetColumnProviderOverride(CompetitionMetricInfo metricInfo)=>
+			new SimpleColumnProvider(
+				new CompetitionMetricColumn(metricInfo, CompetitionMetricColumn.Kind.Value),
+				new CompetitionMetricColumn(metricInfo, CompetitionMetricColumn.Kind.Variance));
 
 		/// <summary>Tries to get values for the relative metric.</summary>
 		/// <param name="benchmark">The benchmark.</param>

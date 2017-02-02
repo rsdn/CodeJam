@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -9,7 +10,7 @@ using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Toolchains.InProcess;
 
-using CodeJam.PerfTests.Columns;
+using CodeJam.PerfTests.Metrics;
 using CodeJam.Reflection;
 
 using JetBrains.Annotations;
@@ -32,7 +33,6 @@ namespace CodeJam.PerfTests.Configs.Factories
 			DefaultColumnProviders.Params,
 			DefaultColumnProviders.Diagnosers,
 			new SimpleColumnProvider(
-				CompetitionLimitColumn.LimitValue,
 				StatisticColumn.Mean,
 				StatisticColumn.StdDev,
 				BaselineScaledColumn.Scaled,
@@ -46,10 +46,15 @@ namespace CodeJam.PerfTests.Configs.Factories
 			DefaultColumnProviders.Diagnosers,
 			DefaultColumnProviders.Statistics,
 			new SimpleColumnProvider(
-				CompetitionLimitColumn.LimitValue,
-				CompetitionLimitColumn.LimitVariance,
 				StatisticColumn.Min,
 				StatisticColumn.Max));
+
+
+		/// <summary>Columns for troubleshooting mode config. </summary>
+		public static IReadOnlyList<CompetitionMetricInfo> DefaultMetrics = new CompetitionMetricInfo[]
+		{
+			CompetitionMetricInfo.RelativeTime
+		};
 
 		/// <summary>Creates competition config for type.</summary>
 		/// <param name="targetAssembly">Assembly to create config for.</param>
@@ -260,6 +265,8 @@ namespace CodeJam.PerfTests.Configs.Factories
 				}
 			}
 
+			result.Add(DefaultMetrics.ToArray());
+
 			return result;
 		}
 
@@ -316,6 +323,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 			if (competitionFeatures.AnnotateSources)
 			{
 				result.Adjustments.AdjustLimits = true;
+
 				if (competitionFeatures.IgnoreExistingAnnotations)
 				{
 					result.Annotations.IgnoreExistingAnnotations = true;

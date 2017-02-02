@@ -46,8 +46,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		private const string UnitAttribute = "Unit";
 		#endregion
 
-		private static readonly CompetitionMetricInfo _targetMetric = CompetitionMetricInfo.RelativeTime;
-
 		#region XML doc loading / saving
 
 		#region Core logic for XML annotations
@@ -428,14 +426,17 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			}
 
 			var metricsByName = competitionState.Config.GetMetrics().ToDictionary(m => m.Name);
-			var result = new List<IStoredMetricSource>(metricsByName.Count)
+			var primaryMetric = AttributeAnnotations.PrimaryMetric;
+			var result = new List<IStoredMetricSource>(metricsByName.Count);
+			if (metricsByName.TryGetValue(primaryMetric.Name, out var metricInfo))
 			{
-				ParseStoredMetric(target, targetNode, _targetMetric, competitionState)
-			};
+				result.Add(
+					ParseStoredMetric(target, targetNode, metricInfo, competitionState));
+			}
 
 			foreach (var metricNode in targetNode.Elements())
 			{
-				if (!metricsByName.TryGetValue(metricNode.Name.LocalName, out var metricInfo))
+				if (!metricsByName.TryGetValue(metricNode.Name.LocalName, out metricInfo))
 				{
 					competitionState.WriteMessage(
 						MessageSource.Analyser, MessageSeverity.Informational,
@@ -556,10 +557,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			var baselineText = isBaseline ? XmlConvert.ToString(true) : null;
 			targetNode.SetAttribute(BaselineAttribute, baselineText);
 
-			var targetMetricValue = competitionTarget.MetricValues.FirstOrDefault(f => f.Metric == _targetMetric);
+			var primaryMetric = AttributeAnnotations.PrimaryMetric;
+			var targetMetricValue = competitionTarget.MetricValues.FirstOrDefault(f => f.Metric == primaryMetric);
 			UpdateStoredMetric(targetNode, targetMetricValue, forceUpdate);
 
-			foreach (var metricValue in competitionTarget.MetricValues.Where(m => m != targetMetricValue))
+			foreach (var metricValue in competitionTarget.MetricValues.Where(m => m.Metric != primaryMetric))
 			{
 				var metricNode = GetOrAddElement(targetNode, metricValue.Metric.Name);
 				UpdateStoredMetric(metricNode, metricValue, forceUpdate);
@@ -569,22 +571,19 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		private static void UpdateStoredMetric(
 			[NotNull] XElement targetNode, [CanBeNull] CompetitionMetricValue metricValue, bool forceUpdate)
 		{
-			if (forceUpdate || (metricValue?.HasUnsavedChanges ?? false) || !targetNode.HasAttributes)
+			if (metricValue == null || metricValue.ValuesRange.IsEmpty)
 			{
-				if (metricValue == null || metricValue.ValuesRange.IsEmpty)
-				{
-					targetNode.SetAttribute(MinAttribute, null);
-					targetNode.SetAttribute(MaxAttribute, null);
-					targetNode.SetAttribute(UnitAttribute, null);
-				}
-				else
-				{
-					var valuesRange = metricValue.ValuesRange;
-					var unit = metricValue.DisplayMetricUnit;
-					targetNode.SetAttribute(MinAttribute, valuesRange.Min.ToXmlString(unit));
-					targetNode.SetAttribute(MaxAttribute, valuesRange.Max.ToXmlString(unit));
-					targetNode.SetAttribute(UnitAttribute, unit.IsEmpty ? null : unit.Name);
-				}
+				targetNode.SetAttribute(MinAttribute, null);
+				targetNode.SetAttribute(MaxAttribute, null);
+				targetNode.SetAttribute(UnitAttribute, null);
+			}
+			else if (forceUpdate || metricValue.HasUnsavedChanges || !targetNode.HasAttributes)
+			{
+				var valuesRange = metricValue.ValuesRange;
+				var unit = metricValue.DisplayMetricUnit;
+				targetNode.SetAttribute(MinAttribute, valuesRange.Min.ToXmlString(unit));
+				targetNode.SetAttribute(MaxAttribute, valuesRange.Max.ToXmlString(unit));
+				targetNode.SetAttribute(UnitAttribute, unit.IsEmpty ? null : unit.Name);
 			}
 		}
 

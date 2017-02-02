@@ -9,35 +9,15 @@ namespace CodeJam.PerfTests.Metrics
 	[AttributeUsage(AttributeTargets.Field)]
 	public class MetricUnitAttribute : Attribute
 	{
+		private double _scaleCoefficient;
+
 		/// <summary>Initializes a new instance of the <see cref="MetricUnitAttribute"/> class.</summary>
 		/// <param name="displayName">The display name.</param>
 		public MetricUnitAttribute([CanBeNull] string displayName)
 		{
 			DisplayName = displayName;
 			ScaleCoefficient = double.NaN;
-		}
-
-		/// <summary>Initializes a new instance of the <see cref="MetricUnitAttribute"/> class.</summary>
-		/// <param name="displayName">
-		/// The name of the metric unit. If is <c>null</c> the name of the enum member is used.
-		/// </param>
-		/// <param name="scaleCoefficient">
-		/// The scale coefficient for the metric unit. If equals to <see cref="double.NaN"/>
-		/// the value of the enum member is used as a coefficient.
-		/// </param>
-		public MetricUnitAttribute([CanBeNull] string displayName, double scaleCoefficient)
-		{
-			if (!double.IsNaN(scaleCoefficient))
-			{
-				Code.InRange(scaleCoefficient, nameof(scaleCoefficient), 0, double.PositiveInfinity);
-				Code.AssertArgument(
-					!scaleCoefficient.IsSpecialMetricValue(),
-					nameof(scaleCoefficient),
-					"The scale coefficient has to be a valid value.");
-			}
-
-			DisplayName = displayName;
-			ScaleCoefficient = scaleCoefficient;
+			AppliesFrom = double.NaN;
 		}
 
 		/// <summary>
@@ -51,7 +31,27 @@ namespace CodeJam.PerfTests.Metrics
 		/// the value of the enum member is used as a coefficient.
 		/// </summary>
 		/// <value>The scale coefficient for the metric unit.</value>
-		// TODO: to nullable?
-		public double ScaleCoefficient { get; }
+		public double ScaleCoefficient
+		{
+			get
+			{
+				return _scaleCoefficient;
+			}
+			set
+			{
+				if (!double.IsNaN(value))
+				{
+					Code.InRange(value, nameof(value), 0, double.MaxValue);
+				}
+				_scaleCoefficient = value;
+			}
+		}
+
+		/// <summary>
+		/// Gets apply threshold for the metric unit. If equals to <see cref="double.NaN"/>
+		/// the value of the enum member is used.
+		/// </summary>
+		/// <value>The apply threshold for the metric unit.</value>
+		public double AppliesFrom { get; set; }
 	}
 }

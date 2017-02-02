@@ -8,6 +8,7 @@ using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
 using CodeJam.PerfTests.Analysers;
+using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Limits;
 
@@ -15,62 +16,51 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Columns
 {
-	/// <summary>Displays metric (upper or lower boundary) for the benchmark to baseline comparison.</summary>
+	/// <summary>Displays metric for the benchmark.</summary>
 	/// <seealso cref="BenchmarkDotNet.Columns.IColumn"/>
 	[PublicAPI]
-	public class CompetitionLimitColumn : IColumn
+	public class CompetitionMetricColumn : IColumn
 	{
 		#region Static members & origin enum
 		// DONTTOUCH: order of the enum members matches to the order in columns
 		/// <summary>Limit column kind</summary>
 		public enum Kind
 		{
-			/// <summary>Min limit.</summary>
+			/// <summary>Min metric value.</summary>
 			Min,
-			/// <summary>Mean for limit.</summary>
+			/// <summary>Mean for metric.</summary>
 			Value,
-			/// <summary>Max limit.</summary>
+			/// <summary>Max metric value.</summary>
 			Max,
-			/// <summary>Limit variance.</summary>
+			/// <summary>Metric value variance.</summary>
 			Variance
 		}
 
 		private const int PriorityInCategoryOffset = 400;
-
-		/// <summary>Minimum limit column</summary>
-		public static readonly CompetitionLimitColumn LimitMin = new CompetitionLimitColumn(Kind.Min);
-
-		/// <summary>Actual value column</summary>
-		public static readonly CompetitionLimitColumn LimitValue = new CompetitionLimitColumn(Kind.Value);
-
-		/// <summary>Maximum limit column</summary>
-		public static readonly CompetitionLimitColumn LimitMax = new CompetitionLimitColumn(Kind.Max);
-
-		/// <summary>Maximum limit column</summary>
-		public static readonly CompetitionLimitColumn LimitVariance = new CompetitionLimitColumn(Kind.Variance);
 		#endregion
 
 		#region Fields & .ctor
 		private readonly Kind _kind;
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="CompetitionLimitColumn" /> class.
-		/// </summary>
-		/// <param name="competitionLimitProvider">The competition limit provider.</param>
-		/// <param name="kind">The kind.</param>
-		public CompetitionLimitColumn([CanBeNull] ICompetitionLimitProvider competitionLimitProvider, Kind kind)
-			: this(kind)
+		/// <summary>Initializes a new instance of the <see cref="CompetitionMetricColumn" /> class.</summary>
+		/// <param name="competitionMetric">The competitionMetric.</param>
+		/// <param name="kind">The kind of value to display.</param>
+		public CompetitionMetricColumn([NotNull] CompetitionMetricInfo competitionMetric, Kind kind) :
+			this(null, competitionMetric, kind)
 		{
-			ColumnName = (competitionLimitProvider?.ShortInfo ?? "Lim") + kind;
-			CompetitionLimitProvider = competitionLimitProvider;
 		}
 
-		private CompetitionLimitColumn(Kind kind)
+		/// <summary>Initializes a new instance of the <see cref="CompetitionMetricColumn" /> class.</summary>
+		/// <param name="name">The  column name.</param>
+		/// <param name="competitionMetric">The competitionMetric.</param>
+		/// <param name="kind">The kind of value to display.</param>
+		public CompetitionMetricColumn([CanBeNull]string name, [NotNull] CompetitionMetricInfo competitionMetric, Kind kind)
 		{
 			DebugEnumCode.Defined(kind, nameof(kind));
-
 			_kind = kind;
-			ColumnName = "Lim" + kind;
+
+			ColumnName = name?? (competitionMetric.Name + (kind == Kind.Value ? "" : kind.ToString()));
+			CompetitionMetric = competitionMetric;
 			PriorityInCategory = PriorityInCategoryOffset + (int)kind;
 		}
 		#endregion
@@ -78,6 +68,7 @@ namespace CodeJam.PerfTests.Columns
 		#region Properties
 		/// <summary>The name of the column.</summary>
 		/// <value>The name of the column.</value>
+		[NotNull]
 		public string ColumnName { get; }
 
 		/// <summary>
@@ -86,6 +77,7 @@ namespace CodeJam.PerfTests.Columns
 		/// If there are several columns with the same Id, only one of them will be shown in the summary.
 		/// </remarks>
 		/// </summary>
+		[NotNull]
 		public string Id => ColumnName;
 
 		/// <summary>Should be shown anyway.</summary>
@@ -104,10 +96,10 @@ namespace CodeJam.PerfTests.Columns
 		/// <value>Limit column kind.</value>
 		public Kind ColumnKind { get; }
 
-		/// <summary>Instance of competition limit provider.</summary>
-		/// <value>The competition limit provider.</value>
-		[CanBeNull]
-		public ICompetitionLimitProvider CompetitionLimitProvider { get; }
+		/// <summary>Instance of competition metric info.</summary>
+		/// <value>Competition metric info.</value>
+		[NotNull]
+		public CompetitionMetricInfo CompetitionMetric { get; }
 		#endregion
 
 		/// <summary>Returns value for the column.</summary>
@@ -116,63 +108,49 @@ namespace CodeJam.PerfTests.Columns
 		/// <returns>Metric value (upper or lower boundary) for the benchmark.</returns>
 		public string GetValue(Summary summary, Benchmark benchmark)
 		{
-			var c = HostEnvironmentInfo.MainCultureInfo;
-			string result = null;
-			if (benchmark.Target.Baseline)
+			double result;
+			var metric = CompetitionMetric;
+			if (metric.IsRelative && benchmark.Target.Baseline)
 			{
 				switch (_kind)
 				{
 					case Kind.Min:
 					case Kind.Value:
 					case Kind.Max:
-						result = 1.0.ToString("F2", c);
+						result = 1.0;
 						break;
 					case Kind.Variance:
-						result = 0.0.ToString("F2", c);
+						result = 0.0;
+						break;
+					default:
+						result = double.NaN;
 						break;
 				}
 			}
-			else if (CompetitionLimitProvider == null)
-			{
-				// TODO: !!!
-				//var limitProvider = CompetitionCore.RunState[summary].Options.Limits.LimitProvider;
-				//switch (_kind)
-				//{
-				//	case Kind.Min:
-				//		result = CompetitionAnalysis.TargetsSlot[summary][benchmark.Target]?.Limits.MinRatioText;
-				//		break;
-				//	case Kind.Value:
-				//		result = limitProvider?.TryGetMeanValue(benchmark, summary)?.ToString("F2", c);
-				//		break;
-				//	case Kind.Max:
-				//		result = CompetitionAnalysis.TargetsSlot[summary][benchmark.Target]?.Limits.MaxRatioText;
-				//		break;
-				//	case Kind.Variance:
-				//		result = limitProvider?.TryGetVariance(benchmark, summary)?.ToString("F2", c);
-				//		break;
-				//}
-			}
 			else
 			{
-				var limitProvider = CompetitionLimitProvider;
+				var valuesProvider = metric.ValuesProvider;
 				switch (_kind)
 				{
 					case Kind.Min:
-						result = limitProvider.TryGetCompetitionLimit(benchmark, summary).MinRatioText;
+						result = valuesProvider.TryGetLimitValues(benchmark, summary).Min;
 						break;
 					case Kind.Value:
-						result = limitProvider.TryGetMeanValue(benchmark, summary)?.ToString("F2", c);
+						result = valuesProvider.TryGetMeanValue(benchmark, summary) ?? double.NaN;
 						break;
 					case Kind.Max:
-						result = limitProvider.TryGetCompetitionLimit(benchmark, summary).MaxRatioText;
+						result = valuesProvider.TryGetLimitValues(benchmark, summary).Max;
 						break;
 					case Kind.Variance:
-						result = limitProvider.TryGetVariance(benchmark, summary)?.ToString("F2", c);
+						result = valuesProvider.TryGetVariance(benchmark, summary) ?? double.NaN;
+						break;
+					default:
+						result = double.NaN;
 						break;
 				}
 			}
 
-			return result ?? "?";
+			return double.IsNaN(result) ? "?" : result.ToString(metric.MetricUnits);
 		}
 
 		/// <summary>Determines whether the specified summary is default.</summary>

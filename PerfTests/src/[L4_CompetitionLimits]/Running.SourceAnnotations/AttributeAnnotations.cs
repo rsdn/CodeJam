@@ -18,6 +18,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	/// </summary>
 	internal static class AttributeAnnotations
 	{
+		/// <summary>The primary metric.</summary>
+		public static readonly CompetitionMetricInfo PrimaryMetric = CompetitionMetricInfo.RelativeTime;
+
 		/// <summary>
 		/// Returns the name of target resource if defined in <see cref="CompetitionMetadataAttribute"/>.
 		/// If the target type is nested all container types are checked too.

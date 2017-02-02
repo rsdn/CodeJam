@@ -33,7 +33,8 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="name">The name of the metric measurement unit.</param>
 		/// <param name="enumValue">Enum value for the measurement unit.</param>
 		/// <param name="scaleCoefficient">The scale coefficient for the metric measurement unit.</param>
-		public MetricUnit([NotNull] string name, [NotNull] Enum enumValue, double scaleCoefficient)
+		/// <param name="appliesFrom">The apply threshold for the metric unit.</param>
+		public MetricUnit([NotNull] string name, [NotNull] Enum enumValue, double scaleCoefficient, double appliesFrom)
 		{
 			Code.NotNullNorEmpty(name, nameof(name));
 			Code.NotNull(enumValue, nameof(enumValue));
@@ -42,10 +43,15 @@ namespace CodeJam.PerfTests.Metrics
 				!scaleCoefficient.IsSpecialMetricValue(),
 				nameof(scaleCoefficient),
 				"The scale coefficient has to be a numeric value.");
+			Code.AssertArgument(
+				!appliesFrom.IsSpecialMetricValue(),
+				nameof(appliesFrom),
+				"The applies from value has to be a numeric value.");
 
 			_name = name;
 			EnumValue = enumValue;
 			ScaleCoefficient = scaleCoefficient;
+			AppliesFrom = appliesFrom;
 		}
 		#endregion
 
@@ -69,6 +75,10 @@ namespace CodeJam.PerfTests.Metrics
 		/// <summary>Gets the scale coefficient for the metric measurement unit.</summary>
 		/// <value>The scale coefficient for the metric measurement unit.</value>
 		public double ScaleCoefficient { get; }
+
+		/// <summary> Gets apply threshold for the metric unit.</summary>
+		/// <value>The apply threshold for the metric unit.</value>
+		public double AppliesFrom { get; }
 		#endregion
 
 		#region Equality members

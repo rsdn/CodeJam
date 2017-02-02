@@ -8,17 +8,17 @@ namespace CodeJam.PerfTests.Metrics
 	public enum TimeUnit
 	{
 		/// <summary>Time measured in nanoseconds.</summary>
-		[MetricUnit("ns")]
+		[MetricUnit("ns", AppliesFrom = 0)]
 		Nanosecond = 1,
 		/// <summary>Time measured in microseconds.</summary>
-		[MetricUnit("us")]
+		[MetricUnit("us", AppliesFrom = (int)Microsecond * 0.8)]
 		Microsecond = Nanosecond * 1000,
 		/// <summary>Time measured in milliseconds.</summary>
-		[MetricUnit("ms")]
+		[MetricUnit("ms", AppliesFrom = (int)Millisecond * 0.8)]
 		Millisecond = Microsecond * 1000,
 		/// <summary>Time measured in seconds.</summary>
-		[MetricUnit("sec")]
-		Second = Millisecond * 1000,
+		[MetricUnit("sec", AppliesFrom = (int)Second * 0.8)]
+		Second = Millisecond * 1000
 	}
 
 	/// <summary>Absolute time metric attribute.</summary>

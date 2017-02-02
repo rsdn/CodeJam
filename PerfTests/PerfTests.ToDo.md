@@ -12,13 +12,18 @@
 ### Types:
  * TargetCacheKey: remove?
  * Sealed types: unseal where it looks like a good idea.
+ * IStoredMetricSource: Name attribute, EnumName attribute => simplify parse logic as marging will be moved to the analyser.
+ * Simplify collections of types. MappedCollection / Keyed collection where possible.
 
 ### Behavior:
+ * Optional relative time metric - better diagnostic if there's not empty attribute for it but the metric is not  listed in config.
  * Check Code.BugIf assertions. Replace with messages where possible.
+ * Metric columns: variance only on troubleshooting mode? Create a metric column provider? Add arg for MetricValuesProvider.GetColumnProvider?
  * Concurrency: lock should be performed on entire benchmark run.
  * Rerun if sources were adjusted from log?
  * Prev run log : cache + reread only if local & size/date/checksum(?) changed!!!
  * Xml annotation: use any method for declared type for the target!!!!
+ * Attribute annotation: analyse existing overloads (add string arg to IStoredMetricSource???)
 
 ### Messages:
  * Validate all messages, check that origin (benchmark target) is logged, add hints to them.

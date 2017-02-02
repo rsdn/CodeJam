@@ -439,12 +439,8 @@ namespace CodeJam.PerfTests.Running.Core
 			var metricAttributes = new HashSet<Type>();
 			competitionConfig.Metrics.RemoveAll(m => !metricAttributes.Add(m.AttributeType));
 
-			var primaryMetric = CompetitionMetricInfo.RelativeTime;
-			var hasPrimaryMetric = metrics.Any(m => m.AttributeType == primaryMetric.AttributeType);
-			if (!hasPrimaryMetric)
-			{
-				metrics.Insert(0, primaryMetric);
-			}
+			competitionConfig.Add(
+				metrics.Select(m => m.GetColumnProvider()).Where(c => c != null).ToArray());
 		}
 
 		/// <summary>Customize competition config.</summary>

@@ -9,6 +9,29 @@
 	</Competition>
 </CompetitionBenchmarks>
 // !--> ------- xml_annotation_end -------
+
+// !<-- ------ xml_annotation_begin ------
+<?xml version="1.0" encoding="utf-8"?>
+<CompetitionBenchmarks>
+	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedWithTimeBenchmark, CodeJam.PerfTests-Tests">
+		<Baseline Baseline="true">
+			<ExpectedTime Min="0" Max="10" Unit="Sec"/>
+		</Baseline>
+		<SlowerX20 Min="10" Max="30">
+			<ExpectedTime Min="0" Max="10" Unit="Sec"/>
+		</SlowerX20>
+	</Competition>
+	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedWithTimeOnlyBenchmark, CodeJam.PerfTests-Tests">
+		<Baseline Baseline="true">
+			<ExpectedTime Min="0" Max="5" Unit="Sec"/>
+		</Baseline>
+		<SlowerX20>
+			<ExpectedTime Min="0" Max="5" Unit="Sec"/>
+		</SlowerX20>
+	</Competition>
+</CompetitionBenchmarks>
+// !--> ------- xml_annotation_end -------
+
 some log text
 some log text
 

@@ -53,14 +53,20 @@ namespace CodeJam.PerfTests.Metrics
 					var metricUnit = f.GetCustomAttribute<MetricUnitAttribute>();
 					var enumValue = (Enum)f.GetValue(null);
 					var coeff = metricUnit?.ScaleCoefficient ?? double.NaN;
+					var appliesFrom = metricUnit?.AppliesFrom ?? double.NaN;
 					if (double.IsNaN(coeff))
 					{
 						coeff = Convert.ToDouble(enumValue, CultureInfo.InvariantCulture);
 					}
+					if (double.IsNaN(appliesFrom))
+					{
+						appliesFrom = Convert.ToDouble(enumValue, CultureInfo.InvariantCulture);
+					}
 					return new MetricUnit(
 						metricUnit?.DisplayName ?? f.Name,
 						enumValue,
-						coeff);
+						coeff,
+						appliesFrom);
 				});
 		#endregion
 
@@ -94,7 +100,7 @@ namespace CodeJam.PerfTests.Metrics
 			MetricEnumType = metricEnumType;
 
 			_unitScale = metricUnits
-				.ToCompositeRangeFrom(s => s.ScaleCoefficient)
+				.ToCompositeRangeFrom(s => s.AppliesFrom)
 				.ExtendFrom(RangeBoundaryFrom<double>.NegativeInfinity);
 
 			_unitsByEnumValue = metricUnits.ToDictionary(u => u.EnumValue);

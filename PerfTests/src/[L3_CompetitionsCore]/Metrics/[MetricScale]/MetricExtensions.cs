@@ -7,7 +7,6 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Metrics
 {
-	// TODO: get scaled/unscaled metric range?
 	/// <summary> Extension methods for <see cref="MetricUnit"/> and <see cref="MetricUnits"/>. </summary>
 	public static class MetricExtensions
 	{
@@ -16,7 +15,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="metricValues">The metric values.</param>
 		/// <returns>Value to use for metric unit search.</returns>
 		public static double GetUnitSearchValue(this MetricRange metricValues) =>
-			double.IsInfinity(metricValues.Min) && !double.IsInfinity(metricValues.Max)
+			double.IsInfinity(metricValues.Min)
 				? metricValues.Max
 				: metricValues.Min;
 

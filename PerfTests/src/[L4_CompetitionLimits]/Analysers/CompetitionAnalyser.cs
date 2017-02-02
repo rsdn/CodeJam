@@ -304,8 +304,11 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				if (!metricsByType.TryGetValue(targetMetric.MetricAttributeType, out var metricInfo))
 				{
-					analysis.WriteInfoMessage(
-						$"Annotation for {target.MethodDisplayInfo}, unknown metric {targetMetric.MetricAttributeType.Name}, skipped.");
+					if (targetMetric.MetricAttributeType != AttributeAnnotations.PrimaryMetric.AttributeType)
+					{
+						analysis.WriteInfoMessage(
+							$"Annotation for {target.MethodDisplayInfo}, unknown metric {targetMetric.MetricAttributeType.Name}, skipped.");
+					}
 					continue;
 				}
 
@@ -401,7 +404,7 @@ namespace CodeJam.PerfTests.Analysers
 			if (!result)
 			{
 				analysis.AddTestErrorConclusion(
-					$"Method {targetMethodTitle}: {actualValues.ToString(metric.MetricUnits)} does not fit into limits {metricValue}.",
+					$"Method {targetMethodTitle}: {metric} metric {actualValues.ToString(metric.MetricUnits)} does not fit into limits {metricValue}.",
 					summary.TryGetBenchmarkReport(benchmark));
 			}
 
