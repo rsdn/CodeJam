@@ -80,9 +80,9 @@ namespace CodeJam.PerfTests.IntegrationTests
 		}
 
 		[Test]
-		public static void TestAnnotateFromLocalLogTime()
+		public static void TestAnnotateFromLocalLogTimeAndGc()
 		{
-			var runState = SelfTestCompetition.Run<AnnotatedWithTimeBenchmark>();
+			var runState = SelfTestCompetition.Run<AnnotatedWithTimeAndGcBenchmark>();
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.HighestMessageSeverity, MessageSeverity.Warning);
 			Assert.IsTrue(runState.Completed);
@@ -94,9 +94,9 @@ namespace CodeJam.PerfTests.IntegrationTests
 		}
 
 		[Test]
-		public static void TestAnnotateFromLocalLogTimeOnly()
+		public static void TestAnnotateFromLocalLogTimeAndGcNoRelative()
 		{
-			var runState = SelfTestCompetition.Run<AnnotatedWithTimeOnlyBenchmark>();
+			var runState = SelfTestCompetition.Run<AnnotatedWithTimeAndGcNoRelativeBenchmark>();
 			var messages = runState.GetMessages();
 			Assert.AreEqual(runState.HighestMessageSeverity, MessageSeverity.Warning);
 			Assert.IsTrue(runState.Completed);
@@ -141,27 +141,31 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.RecommendedSpinCount);
 		}
 
-		[CompetitionMeasureTime]
-		public class AnnotatedWithTimeBenchmark
+		[CompetitionMeasureAll]
+		public class AnnotatedWithTimeAndGcBenchmark
 		{
 			[CompetitionBaseline]
+			[GcAllocations(0.00, 2.00, BinarySizeUnit.Kilobyte)]
 			[ExpectedTime(0.00, 10.00, TimeUnit.Second)]
 			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
 
 			[CompetitionBenchmark(10.00, 30.00)]
+			[GcAllocations(0.00, 3.00, BinarySizeUnit.Gigabyte)]
 			[ExpectedTime(0.00, 10.00, TimeUnit.Second)]
 			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.RecommendedSpinCount);
 		}
 
-		[CompetitionMeasureTime, CompetitionNoRelativeTime]
-		public class AnnotatedWithTimeOnlyBenchmark
+		[CompetitionMeasureAll, CompetitionNoRelativeTime]
+		public class AnnotatedWithTimeAndGcNoRelativeBenchmark
 		{
-			[CompetitionBaseline]
+			[CompetitionBenchmark]
 			[ExpectedTime(0.00, 5.00, TimeUnit.Second)]
-			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
+			[GcAllocations(0.00, 5.00, BinarySizeUnit.Kilobyte)]
+			public void BaseX1() => CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
 
 			[CompetitionBenchmark]
 			[ExpectedTime(0.00, 5.00, TimeUnit.Second)]
+			[GcAllocations(0.00, 1.00, BinarySizeUnit.Gigabyte)]
 			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.RecommendedSpinCount);
 		}
 		#endregion

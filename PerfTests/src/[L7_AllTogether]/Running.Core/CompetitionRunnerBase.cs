@@ -17,7 +17,6 @@ using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Configs.Factories;
 using CodeJam.PerfTests.Loggers;
-using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Strings;
 
@@ -248,7 +247,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="benchmarkType">Benchmark class to run.</param>
 		/// <param name="competitionConfig">The competition config.</param>
 		/// <returns>Competition state for the run.</returns>
-		protected virtual CompetitionState RunCore(Type benchmarkType, ICompetitionConfig competitionConfig) => 
+		protected virtual CompetitionState RunCore(Type benchmarkType, ICompetitionConfig competitionConfig) =>
 			CompetitionCore.Run(benchmarkType, competitionConfig);
 
 		#region Prepare & run completed logic
@@ -368,6 +367,7 @@ namespace CodeJam.PerfTests.Running.Core
 			FixConfigValidators(competitionConfig);
 			FixConfigAnalysers(competitionConfig);
 			FixConfigMetrics(competitionConfig);
+			FixConfigDuplicates(competitionConfig);
 		}
 
 		private static void FixConfigJobs(ManualCompetitionConfig competitionConfig)
@@ -444,11 +444,36 @@ namespace CodeJam.PerfTests.Running.Core
 		private void FixConfigMetrics(ManualCompetitionConfig competitionConfig)
 		{
 			var metrics = competitionConfig.Metrics;
-			var metricAttributes = new HashSet<Type>();
-			competitionConfig.Metrics.RemoveAll(m => !metricAttributes.Add(m.AttributeType));
 
 			competitionConfig.Add(
 				metrics.Select(m => m.GetColumnProvider()).Where(c => c != null).ToArray());
+
+			competitionConfig.Add(
+				metrics.Select(m => m.GetDiagnosers()).SelectMany(d => d).ToArray());
+		}
+
+		private static void FixConfigDuplicates(ManualCompetitionConfig competitionConfig)
+		{
+			RemoveDuplicates(competitionConfig.Analysers);
+			RemoveDuplicates(competitionConfig.ColumnProviders);
+			RemoveDuplicates(competitionConfig.Diagnosers);
+			RemoveDuplicates(competitionConfig.Exporters);
+			RemoveDuplicates(competitionConfig.Jobs);
+			RemoveDuplicates(competitionConfig.Loggers);
+			RemoveDuplicates(competitionConfig.Metrics, m => m.AttributeType);
+			RemoveDuplicates(competitionConfig.Validators);
+		}
+
+		private static void RemoveDuplicates<T>(List<T> valuesList)
+		{
+			var visitedValues = new HashSet<T>();
+			valuesList.RemoveAll(v => !visitedValues.Add(v));
+		}
+
+		private static void RemoveDuplicates<T, TKey>(List<T> valuesList, Func<T, TKey> keySelector)
+		{
+			var visitedValues = new HashSet<TKey>();
+			valuesList.RemoveAll(v => !visitedValues.Add(keySelector(v)));
 		}
 
 		/// <summary>Customize competition config.</summary>

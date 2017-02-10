@@ -91,8 +91,10 @@
     <Compile Include="[L2_RunState]\Running.Core\NamespaceDoc.cs" />
     <Compile Include="[L3_CompetitionsCore]\Analysers\NamespaceDoc.cs" />
     <Compile Include="[L3_CompetitionsCore]\Configs\CompetitionAnnotationMode.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Metrics\[Attributes]\GcAllocationsAttribute.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[Attributes]\IMetricAttribute.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[Attributes]\IStoredMetricSource.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricCalculator]\SingleValueMetricCalculator.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricScale]\MetricExtensions.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricScale]\MetricUnits.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricScale]\MetricUnitAttribute.cs" />
@@ -106,6 +108,7 @@
     <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricScale]\MetricUnit.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricCalculator]\PercentileMetricCalculator.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricValuesProvider]\MetricValuesProviderBase.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricValuesProvider]\GcMetricValuesProvider.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricValuesProvider]\TimeMetricValuesProvider.cs" />
     <Compile Include="[L4_CompetitionLimits]\Running.SourceAnnotations\CompetitionMetricValue.cs" />
     <Compile Include="[L4_CompetitionLimits]\Analysers\CompetitionPreconditionsAnalyser.cs" />
@@ -162,7 +165,7 @@
     <Compile Include="[L5_Annotations]\Running.SourceAnnotations\SymbolInterop.cs" />
     <Compile Include="[L6_Configuration]\Configs.Factories\CompetitionFactoryHelpers.cs" />
     <Compile Include="[L6_Configuration]\Configs.Factories\NamespaceDoc.cs" />
-    <Compile Include="[L6_Configuration]\Configs\CompetitionMeasureTimeAttribute.cs" />
+    <Compile Include="[L6_Configuration]\Configs\CompetitionMetricModifierAttribute.cs" />
     <Compile Include="[L6_Configuration]\Configs\ICompetitionFeatures.cs" />
     <Compile Include="[L6_Configuration]\[Attributes]\CompetitionConfigFactoryAttribute.cs" />
     <Compile Include="[L6_Configuration]\Configs.Factories\ICompetitionConfigFactory.cs" />

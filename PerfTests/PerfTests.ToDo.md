@@ -10,34 +10,42 @@
 ## TODOs:
 
 ### Types:
+ * !!! dump CompetitionOptions to summary (as columns)
  * BurstModeEngineFactory: sync with code in BDN
  * HACK: Remove console capture after update to BDN 10.3
  * TargetCacheKey: remove?
  * Sealed types: unseal where it looks like a good idea.
- * IStoredMetricSource: Name attribute, EnumName attribute => simplify parse logic as marging will be moved to the analyser.
+ * IStoredMetricSource: add MetricName attribute, EnumName attribute => simplify parse logic as merging will be moved to the analyser.
+   +Subtask: Attribute annotation: analyse existing overloads (add string arg to IStoredMetricSource???)
  * Simplify collections of types. MappedCollection / Keyed collection where possible.
 
 ### Behavior:
- * Optional relative time metric - better diagnostic if there's not empty attribute for it but the metric is not  listed in config.
+ * xUnit: improve capture of console output. Pass xUnitWriter as a logger instead.
+ * Auto annotate empty feature
+ * Metric annotation: no unit for default unit of measurement, to enable [GcAllocations(0)]
+ * Diagnosers: faster options for diagnosers run??
+ * Variance for SingleValueMetricCalculator / PercentileMetricCalculator
+ * Optional relative time metric - better diagnostic if there's not empty attribute for it but the metric is not listed in config.
  * Check Code.BugIf assertions. Replace with messages where possible.
  * Metric columns: variance only on troubleshooting mode? Create a metric column provider? Add arg for MetricValuesProvider.GetColumnProvider?
  * Concurrency: lock should be performed on entire benchmark run.
  * Rerun if sources were adjusted from log?
  * Prev run log : cache + reread only if local & size/date/checksum(?) changed!!!
- * Xml annotation: use any method for declared type for the target!!!!
- * Attribute annotation: analyse existing overloads (add string arg to IStoredMetricSource???)
+ * Display-only metrics (only as columns? .ctor arg to the metric? bad as will silently remove as duplicates (dups removed by AttributeType)
 
 ### Messages:
- * Validate all messages, check that origin (benchmark target) is logged, add hints to them.
+ * Validate all messages, check that origin (benchmark target) is logged, add hints (tyed arg) to them.
+ * Add typed method to force same naming for source of the messages (Target, Type, xmlFile etc).
  * Check WriteVerboseHint for source annotations
- * Message with absolute timings if limits failed: improve readability
+ * Write hint with absolute values if relative limits failed? 
+   (will require bool arg for metricValuesProvider, recheck columns and diagnosers, possible, they will have to honor this flag too)).
  * Message about updated annotations: improve readability
 
 ### Logging:
+ * Add advanced diagnostic for config-adjusting-time (logger as an arg of ConfigFactory + fix methods).
  * Logging: write validator messages immediately?
  * Print resulting competition options as common columns after https://github.com/dotnet/BenchmarkDotNet/pull/341
  * Check `+ Environment.NewLine` usages in `XunitCompetitionRunner.ReportXxx()` methods
- * Output: option to not log output from toolchain?
  * LogColors.Hint: use it for something?
 
 ### Tests:
@@ -45,19 +53,21 @@
  * High-priority test for TestProcessCycleTimeClock
  * Tests for broken log annotations.
  * app.config in the test integration projects: do we need it?
- * xUnit: tests: run as x64?
+ * xUnit: tests: force run as x64 (appveyor may run as x86)?
  * Test for standard analyser warnings - are they logged as messages?
  * out of process test
- * Test for run under CI (+ 1!)
+ * local test for run under CI (CI mode on) (+ 1!)
  * Test for bad encoding
+ * Memory limits + diagnoser - test for accuracy
+
+## Cleanup
+ * Remove and re-add resharper suppressions
 
 ## Long-term TODOs:
- * Support for multi-case benchmarks (separate limits)
- * Source annotations: append lines (required to add new attributes)
- * Validate the return results!!!
+ * Support for multi-case benchmarks (separate limits - discarded)
+ * Validate the return results!!! (partially done with introduction of IHostApi)
  * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix).
  * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion
- * Memory limits + diagnoser - whoops, https://github.com/dotnet/BenchmarkDotNet/issues/200 . Will need to replace MethodInvoker, delayed.
 
 ## Issues:
 https://github.com/dotnet/BenchmarkDotNet/issues/324

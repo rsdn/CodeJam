@@ -75,6 +75,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 				var engineParameters = new EngineParameters
 				{
 					//HostApi = hostApi,
+					IsDiagnoserAttached = hostApi.IsDiagnoserAttached,
 					MainAction = mainAction.InvokeMultiple,
 					//Dummy1Action = dummy1.InvokeSingle,
 					//Dummy2Action = dummy2.InvokeSingle,

@@ -138,8 +138,13 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 				anyMethod = targetType.GetConstructors(bf).OrderBy(m => m.MetadataToken).FirstOrDefault();
 				if (anyMethod == null)
-					return null;
+				{
+					competitionState.WriteMessage(
+						MessageSource.Analyser, MessageSeverity.SetupError,
+						$"Cannot find source file location as {targetType.Name} has no methods in it. Add a stub empty method to the type.");
 
+					return null;
+				}
 				var sourcePath = SymbolHelper.TryGetSourcePath(anyMethod, competitionState);
 				if (sourcePath == null)
 					return null;

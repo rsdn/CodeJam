@@ -389,7 +389,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					return false;
 
 				bool allFixed = true;
-				foreach (var metricValue in competitionTarget.MetricValues.Where(m => m.HasUnsavedChanges))
+				foreach (var metricValue in competitionTarget.MetricValues.Where(m => m.HasUnsavedChanges || m.ValuesRange.IsEmpty).Reverse())
 				{
 					var attributeTypeHandle = metricValue.Metric.AttributeType.TypeHandle;
 					if (benchmarkMethod.AttributeLineNumbers.TryGetValue(

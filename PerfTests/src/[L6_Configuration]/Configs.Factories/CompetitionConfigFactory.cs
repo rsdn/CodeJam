@@ -228,14 +228,16 @@ namespace CodeJam.PerfTests.Configs.Factories
 			var result = new ManualCompetitionConfig(BenchmarkDotNet.Configs.DefaultConfig.Instance);
 
 			// DONTTOUCH: competition should not use default
-			// Exporters, Loggers and Jobs.
-			// These are omitted intentionally.
+			// Jobs, Diagnosers, Exporters and Loggers.
+			// These omitted intentionally.
 			result.Jobs.Clear();
-			result.Loggers.Clear();
+			result.Diagnosers.Clear();
 			result.Exporters.Clear();
-			result.ColumnProviders.Clear();
+			result.Loggers.Clear();
 
 			// TODO: better columns.
+			// TODO: columns for options.
+			result.ColumnProviders.Clear();
 			result.Add(competitionFeatures.TroubleshootingMode ? TroubleshootingModeColumns : DefaultColumns);
 
 			var targetAssembly = GetAssembly(metadataSource);

@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Columns;
+using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
@@ -46,5 +47,11 @@ namespace CodeJam.PerfTests.Metrics
 		/// <returns>Column provider for the metric values</returns>
 		[CanBeNull]
 		IColumnProvider GetColumnProvider(CompetitionMetricInfo metricInfo);
+
+		/// <summary>Gets diagnosers for the metric values.</summary>
+		/// <param name="metricInfo">The competition metric to get diagnosers for.</param>
+		/// <returns>Diagnosers for the metric values</returns>
+		[NotNull]
+		IDiagnoser[] GetDiagnosers(CompetitionMetricInfo metricInfo);
 	}
 }

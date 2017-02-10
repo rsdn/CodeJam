@@ -2,6 +2,7 @@
 using System.Linq;
 
 using BenchmarkDotNet.Columns;
+using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Helpers;
 
 using CodeJam.Strings;
@@ -25,6 +26,10 @@ namespace CodeJam.PerfTests.Metrics
 		/// <summary>The absolute time metic, in nanoseconds.</summary>
 		public static readonly CompetitionMetricInfo<ExpectedTimeAttribute> AbsoluteTime =
 			new CompetitionMetricInfo<ExpectedTimeAttribute>();
+
+		/// <summary>Gc allocations metic, in bytes.</summary>
+		public static readonly CompetitionMetricInfo<GcAllocationsAttribute> GcAllocations =
+			new CompetitionMetricInfo<GcAllocationsAttribute>();
 		#endregion
 
 		#region Helpers
@@ -122,6 +127,11 @@ namespace CodeJam.PerfTests.Metrics
 		/// <returns>Column provider for the metric values</returns>
 		[CanBeNull]
 		public IColumnProvider GetColumnProvider() => ValuesProvider.GetColumnProvider(this);
+
+		/// <summary>Gets diagnosers for the metric values.</summary>
+		/// <returns>Diagnosers for the metric values</returns>
+		[NotNull]
+		public IDiagnoser[] GetDiagnosers() => ValuesProvider.GetDiagnosers(this);
 
 		/// <summary>Returns a <see cref="System.String" /> that represents this instance.</summary>
 		/// <returns>A <see cref="System.String" /> that represents this instance.</returns>

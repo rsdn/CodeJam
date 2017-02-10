@@ -60,7 +60,8 @@ namespace CodeJam.PerfTests.Analysers
 					analysis.Targets.Any(t => t.Target.Type != analysis.RunState.BenchmarkType),
 					"Trying to analyse code that does not belong to the benchmark.");
 
-				if (analysis.Targets.Any() && !GetBenchmarkTargets(analysis).Any(t => t.Baseline))
+				if (analysis.Targets.SelectMany(t=>t.MetricValues) .Any(m=>m.Metric.IsRelative) &&
+					!GetBenchmarkTargets(analysis).Any(t => t.Baseline))
 				{
 					analysis.WriteSetupErrorMessage(
 						"No baseline method for benchmark. " +

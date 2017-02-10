@@ -1,10 +1,12 @@
 ﻿using System;
 
 using BenchmarkDotNet.Columns;
+using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
+using CodeJam.Collections;
 using CodeJam.PerfTests.Columns;
 
 using JetBrains.Annotations;
@@ -182,24 +184,54 @@ namespace CodeJam.PerfTests.Metrics
 
 			return GetColumnProviderOverride(metricInfo);
 		}
+
+		/// <summary>Gets diagnosers the metric values.</summary>
+		/// <param name="metricInfo">The competition metric to get diagnosers for.</param>
+		/// <returns>Diagnosers for the metric values</returns>
+		public IDiagnoser[] GetDiagnosers(CompetitionMetricInfo metricInfo)
+		{
+			Code.NotNull(metricInfo, nameof(metricInfo));
+			Code.AssertArgument(
+				metricInfo.ValuesProvider == this, nameof(metricInfo),
+				"Passed ValuesProvider does not match to this one.");
+
+			return GetDiagnosersOverride(metricInfo);
+		}
 		#endregion
 
+		#region Default implementation (overridable)
 		/// <summary>Gets column provider for the metric values.</summary>
 		/// <param name="metricInfo">The competition metric to get column for.</param>
 		/// <returns>Column provider for the metric values</returns>
-		protected virtual IColumnProvider GetColumnProviderOverride(CompetitionMetricInfo metricInfo)=>
+		protected virtual IColumnProvider GetColumnProviderOverride(CompetitionMetricInfo metricInfo) =>
 			new SimpleColumnProvider(
 				new CompetitionMetricColumn(metricInfo, CompetitionMetricColumn.Kind.Value),
 				new CompetitionMetricColumn(metricInfo, CompetitionMetricColumn.Kind.Variance));
+
+
+		/// <summary>Gets diagnosers the metric values.</summary>
+		/// <param name="metricInfo">The competition metric to get diagnosers for.</param>
+		/// <returns>Diagnosers for the metric values</returns>
+		protected virtual IDiagnoser[] GetDiagnosersOverride(CompetitionMetricInfo metricInfo) => Array<IDiagnoser>.Empty;
 
 		/// <summary>Tries to get values for the relative metric.</summary>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <param name="summary">The summary.</param>
 		/// <param name="metricValues">The metric values.</param>
 		/// <returns><c>True</c> if values calculated successfully.</returns>
-		protected abstract bool TryGetValues(
+		protected virtual bool TryGetValues(
 			[NotNull] Benchmark benchmark, [NotNull] Summary summary,
-			out double[] metricValues);
+			out double[] metricValues)
+		{
+			metricValues = null;
+
+			if (!TryGetReport(benchmark, summary, out var benchmarkReport))
+				return false;
+
+			metricValues = GetValuesFromReport(benchmarkReport);
+
+			return true;
+		}
 
 		/// <summary>Tries to get values for the relative metric.</summary>
 		/// <param name="benchmark">The benchmark.</param>
@@ -207,8 +239,29 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="metricValues">The metric values.</param>
 		/// <param name="baselineMetricValues">The baseline metric values.</param>
 		/// <returns><c>True</c> if values calculated successfully.</returns>
-		protected abstract bool TryGetRelativeValues(
+		protected virtual bool TryGetRelativeValues(
 			[NotNull] Benchmark benchmark, [NotNull] Summary summary,
-			out double[] metricValues, out double[] baselineMetricValues);
+			out double[] metricValues, out double[] baselineMetricValues)
+		{
+			Code.NotNull(benchmark, nameof(benchmark));
+			Code.NotNull(summary, nameof(summary));
+
+			metricValues = null;
+			baselineMetricValues = null;
+
+			if (!TryGetReports(benchmark, summary, out var benchmarkReport, out var baselineReport))
+				return false;
+
+			metricValues = GetValuesFromReport(benchmarkReport);
+			baselineMetricValues = GetValuesFromReport(baselineReport);
+
+			return true;
+		} 
+		#endregion
+
+		/// <summary>Gets the values from benchmark report.</summary>
+		/// <param name="benchmarkReport">The benchmark report.</param>
+		/// <returns>Metric values from benchmark report</returns>
+		protected abstract double[] GetValuesFromReport(BenchmarkReport benchmarkReport);
 	}
 }

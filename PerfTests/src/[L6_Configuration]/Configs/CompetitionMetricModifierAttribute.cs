@@ -6,22 +6,23 @@ using CodeJam.PerfTests.Metrics;
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>
-	/// Adds the <see cref="CompetitionMetricInfo.AbsoluteTime"/> metric.
+	/// Adds the <see cref="CompetitionMetricInfo.AbsoluteTime"/> metric
+	/// and the <see cref="CompetitionMetricInfo.GcAllocations"/> metric.
 	/// </summary>
 	/// <seealso cref="CodeJam.PerfTests.CompetitionModifierAttribute" />
-	public sealed class CompetitionMeasureTimeAttribute : CompetitionModifierAttribute
+	public sealed class CompetitionMeasureAllAttribute : CompetitionModifierAttribute
 	{
 		private class ModifierImpl : ICompetitionModifier
 		{
 			public void Modify(ManualCompetitionConfig competitionConfig)
 			{
-				if (!competitionConfig.Metrics.Contains(CompetitionMetricInfo.AbsoluteTime))
-					competitionConfig.Metrics.Add(CompetitionMetricInfo.AbsoluteTime);
+				competitionConfig.Metrics.Add(CompetitionMetricInfo.AbsoluteTime);
+				competitionConfig.Metrics.Add(CompetitionMetricInfo.GcAllocations);
 			}
 		}
 
-		/// <summary>Initializes a new instance of the <see cref="CompetitionMeasureTimeAttribute" /> class.</summary>
-		public CompetitionMeasureTimeAttribute() : base(() => new ModifierImpl()) { }
+		/// <summary>Initializes a new instance of the <see cref="CompetitionMeasureAllAttribute" /> class.</summary>
+		public CompetitionMeasureAllAttribute() : base(() => new ModifierImpl()) { }
 	}
 
 	/// <summary>
@@ -36,7 +37,7 @@ namespace CodeJam.PerfTests.Configs
 				competitionConfig.Metrics.RemoveAll(m => m == CompetitionMetricInfo.RelativeTime);
 		}
 
-		/// <summary>Initializes a new instance of the <see cref="CompetitionMeasureTimeAttribute" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="CompetitionNoRelativeTimeAttribute" /> class.</summary>
 		public CompetitionNoRelativeTimeAttribute() : base(() => new ModifierImpl()) { }
 	}
 }

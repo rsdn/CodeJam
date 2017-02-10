@@ -20,56 +20,12 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="resultIsRelative"><c>true</c> if the metric is relative.</param>
 		public TimeMetricValuesProvider([NotNull] IMetricCalculator calculator, bool resultIsRelative) : base(calculator, resultIsRelative) { }
 
-		/// <summary>
-		/// Timings for the benchmark in nanoseconds.
-		/// </summary>
-		/// <param name="benchmark">The benchmark.</param>
-		/// <param name="summary">Summary for the run.</param>
-		/// <param name="benchmarkTimings">The benchmark timings.</param>
-		///  <returns><c>true</c> if benchmark timings are available.</returns>
-		protected override bool TryGetValues(Benchmark benchmark, Summary summary, out double[] benchmarkTimings)
-		{
-			benchmarkTimings = null;
-
-			if (!TryGetReport(benchmark, summary, out var benchmarkReport))
-				return false;
-
-			benchmarkTimings = benchmarkReport.GetResultRuns()
+		/// <summary>Timings for the benchmark report in nanoseconds.</summary>
+		/// <param name="benchmarkReport">The benchmark report.</param>
+		/// <returns>Metric values from benchmark report</returns>
+		protected override double[] GetValuesFromReport(BenchmarkReport benchmarkReport)=>
+			benchmarkReport.GetResultRuns()
 				.Select(r => r.GetAverageNanoseconds())
 				.ToArray();
-
-			return true;
-		}
-
-		/// <summary>
-		/// Timings for the benchmark and the baseline in nanoseconds.
-		/// </summary>
-		/// <param name="benchmark">The benchmark.</param>
-		/// <param name="summary">Summary for the run.</param>
-		/// <param name="benchmarkTimings">The benchmark timings.</param>
-		/// <param name="baselineTimings">The baseline timings.</param>
-		/// <returns><c>true</c> if both benchmark and baseline timings are available.</returns>
-		protected override bool TryGetRelativeValues(Benchmark benchmark, Summary summary, out double[] benchmarkTimings, out double[] baselineTimings)
-		{
-			Code.NotNull(benchmark, nameof(benchmark));
-			Code.NotNull(summary, nameof(summary));
-
-			benchmarkTimings = null;
-			baselineTimings = null;
-
-			if (!TryGetReports(benchmark, summary, out var benchmarkReport, out var baselineReport))
-				return false;
-
-			benchmarkTimings = benchmarkReport.GetResultRuns()
-				.Select(r => r.GetAverageNanoseconds())
-				.ToArray();
-			baselineTimings = baselineReport.GetResultRuns()
-				.Select(r => r.GetAverageNanoseconds())
-				.ToArray();
-
-			return true;
-		}
 	}
-
-
 }
