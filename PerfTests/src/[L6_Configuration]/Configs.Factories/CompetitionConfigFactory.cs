@@ -108,7 +108,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 			},
 			Infrastructure =
 			{
-				Toolchain = InProcessToolchain.Instance
+				Toolchain = InProcessToolchain.DontLogOutput
 			}
 		}.Freeze();
 
@@ -235,9 +235,6 @@ namespace CodeJam.PerfTests.Configs.Factories
 			result.Exporters.Clear();
 			result.ColumnProviders.Clear();
 
-			// TODO: fix diagnosers support ASAP
-			result.Diagnosers.Clear();
-
 			// TODO: better columns.
 			result.Add(competitionFeatures.TroubleshootingMode ? TroubleshootingModeColumns : DefaultColumns);
 
@@ -286,9 +283,6 @@ namespace CodeJam.PerfTests.Configs.Factories
 		{
 			var platform = competitionFeatures.ResolveValueAsNullable(CompetitionFeatures.PlatformCharacteristic);
 
-			if (jobId == null && platform == null)
-				return DefaultJob;
-
 			if (jobId != null)
 				jobId += platform;
 
@@ -300,6 +294,11 @@ namespace CodeJam.PerfTests.Configs.Factories
 			if (competitionFeatures.BurstMode)
 			{
 				job.Apply(BurstModeModifier);
+			}
+
+			if (competitionFeatures.TroubleshootingMode)
+			{
+				job.Apply(new InfrastructureMode() { Toolchain = InProcessToolchain.Instance });
 			}
 
 			return job;

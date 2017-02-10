@@ -6,8 +6,6 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.Results;
 
-// ReSharper disable once CheckNamespace
-
 namespace BenchmarkDotNet.Toolchains.InProcess
 {
 	/// <summary>
@@ -26,6 +24,6 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 			Benchmark benchmark, ILogger logger,
 			string rootArtifactsFolderPath, IConfig config,
 			IResolver resolver) =>
-				new GenerateResult(null, true, null);
+				GenerateResult.Success(null);
 	}
 }

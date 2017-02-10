@@ -6,8 +6,6 @@ using BenchmarkDotNet.Running;
 
 using JetBrains.Annotations;
 
-// ReSharper disable once CheckNamespace
-
 namespace BenchmarkDotNet.Toolchains.InProcess
 {
 	/// <summary>
@@ -20,22 +18,25 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 		/// <summary>The default toolchain instance.</summary>
 		public static readonly IToolchain Instance = new InProcessToolchain(true);
 
-		// TODO: remove as unused?
 		/// <summary>The toolchain instance without output logging.</summary>
 		public static readonly IToolchain DontLogOutput = new InProcessToolchain(false);
 
 		/// <summary>Initializes a new instance of the <see cref="InProcessToolchain"/> class.</summary>
 		/// <param name="logOutput"><c>true</c> if the output should be logged.</param>
-		private InProcessToolchain(bool logOutput) : this(TimeSpan.FromMinutes(5), logOutput) { }
+		public InProcessToolchain(bool logOutput) : this(
+			InProcessExecutor.DefaultTimeout,
+			BenchmarkActionCodegen.ReflectionEmit,
+			logOutput) { }
 
 		/// <summary>Initializes a new instance of the <see cref="InProcessToolchain"/> class.</summary>
 		/// <param name="timeout">Timeout for the run.</param>
+		/// <param name="codegenMode">Describes how benchmark action code is generated.</param>
 		/// <param name="logOutput"><c>true</c> if the output should be logged.</param>
-		private InProcessToolchain(TimeSpan timeout, bool logOutput)
+		public InProcessToolchain(TimeSpan timeout, BenchmarkActionCodegen codegenMode, bool logOutput)
 		{
 			Generator = new InProcessGenerator();
 			Builder = new InProcessBuilder();
-			Executor = new InProcessExecutor(timeout, logOutput);
+			Executor = new InProcessExecutor(timeout, codegenMode, logOutput);
 		}
 
 		/// <summary>Determines whether the specified benchmark is supported.</summary>
@@ -61,10 +62,8 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 		/// <value>The executor.</value>
 		public IExecutor Executor { get; }
 
-		#region Overrides of Object
 		/// <summary>Returns a <see cref="String"/> that represents this instance.</summary>
 		/// <returns>A <see cref="String"/> that represents this instance.</returns>
 		public override string ToString() => GetType().Name;
-		#endregion
 	}
 }

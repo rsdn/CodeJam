@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 
 using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Environments;
+using BenchmarkDotNet.Extensions;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
@@ -16,8 +18,6 @@ using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.Results;
 
 using JetBrains.Annotations;
-
-// ReSharper disable once CheckNamespace
 
 namespace BenchmarkDotNet.Toolchains.InProcess
 {
@@ -28,14 +28,23 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	public class InProcessExecutor : IExecutor
 	{
-		private static readonly TimeSpan _debugTimeout = TimeSpan.FromDays(1);
+		private static readonly TimeSpan _underDebuggerTimeout = TimeSpan.FromDays(1);
 
+		/// <summary> Default timeout for in-process benchmarks. </summary>
+		public static readonly TimeSpan DefaultTimeout = TimeSpan.FromMinutes(5);
+
+		#region .ctor & properties
 		/// <summary>Initializes a new instance of the <see cref="InProcessExecutor"/> class.</summary>
 		/// <param name="timeout">Timeout for the run.</param>
+		/// <param name="codegenMode">Describes how benchmark action code is generated.</param>
 		/// <param name="logOutput"><c>true</c> if the output should be logged.</param>
-		public InProcessExecutor(TimeSpan timeout, bool logOutput)
+		public InProcessExecutor(TimeSpan timeout, BenchmarkActionCodegen codegenMode, bool logOutput)
 		{
+			if (timeout == TimeSpan.Zero)
+				timeout = DefaultTimeout;
+
 			ExecutionTimeout = timeout;
+			CodegenMode = codegenMode;
 			LogOutput = logOutput;
 		}
 
@@ -43,12 +52,15 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 		/// <value>The timeout for the run.</value>
 		public TimeSpan ExecutionTimeout { get; }
 
+		/// <summary>Describes how benchmark action code is generated.</summary>
+		/// <value>Benchmark action code generation mode.</value>
+		public BenchmarkActionCodegen CodegenMode { get; }
+
 		/// <summary>Gets a value indicating whether the output should be logged.</summary>
 		/// <value><c>true</c> if the output should be logged; otherwise, <c>false</c>.</value>
 		public bool LogOutput { get; }
+		#endregion
 
-		// TODO: replace outputStream with something better?
-		// WAITINGFOR: https://github.com/PerfDotNet/BenchmarkDotNet/issues/177
 		/// <summary>Executes the specified benchmark.</summary>
 		/// <param name="buildResult">The build result.</param>
 		/// <param name="benchmark">The benchmark.</param>
@@ -57,62 +69,50 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 		/// <param name="diagnoser">The diagnoser.</param>
 		/// <returns>Execution result.</returns>
 		public ExecuteResult Execute(
-			BuildResult buildResult, Benchmark benchmark, ILogger logger, IResolver resolver, IDiagnoser diagnoser = null)
+			BuildResult buildResult, Benchmark benchmark, ILogger logger, IResolver resolver,
+			IDiagnoser diagnoser = null)
 		{
-			// TODO: with diagnoser.
-			if (diagnoser != null)
-				throw new NotSupportedException("Inline toolchain does not support diagnosers for now.");
+			// TODO: preallocate buffer for output (no direct logging)?
+			var hostApi = new InProcessHostApi(benchmark, LogOutput ? logger : null, diagnoser);
 
-			var runnableBenchmark = new RunnableBenchmark();
-			var factory = benchmark.Job.ResolveValue(
-				InfrastructureMode.EngineFactoryCharacteristic,
-				InfrastructureResolver.Instance);
-			var factoryType = factory.GetType();
-
-			var outputStream = new MemoryStream(80 * 1000);
-			var affinity = benchmark.Job.ResolveValueAsNullable(EnvMode.AffinityCharacteristic);
-			var runThread = new Thread(
-				() =>
-				{
-					using (BenchmarkHelpers.SetupHighestPriorityScope(affinity, logger))
-					{
-						RunCore(runnableBenchmark, benchmark, factoryType, outputStream, false, logger);
-					}
-				});
-
-			if (benchmark.Target.Method.GetCustomAttributes(false).OfType<STAThreadAttribute>().Any())
+			int exitCode = -1;
+			var runThread = new Thread(() => exitCode = ExecuteCore(hostApi, benchmark, logger));
+			if (benchmark.Target.Method.GetCustomAttributes<STAThreadAttribute>(false).Any())
 			{
-				runThread.SetApartmentState(ApartmentState.STA);
+				// TODO: runThread.SetApartmentState(ApartmentState.STA);
 			}
 			runThread.IsBackground = true;
 
-			var timeout = HostEnvironmentInfo.GetCurrent().HasAttachedDebugger ?
-				_debugTimeout : ExecutionTimeout;
+			var timeout = HostEnvironmentInfo.GetCurrent().HasAttachedDebugger ? _underDebuggerTimeout : ExecutionTimeout;
 
 			runThread.Start();
-			if (!runThread.Join(timeout))
+			// TODO: to timespan overload (not available for .Net Core for now).
+			if (!runThread.Join((int)timeout.TotalMilliseconds))
 				throw new InvalidOperationException(
 					$"Benchmark {benchmark.DisplayInfo} takes to long to run. " +
 						"Prefer to use out-of-process toolchains for long-running benchmarks.");
 
-			CodeJam.Code.BugIf(runThread.IsAlive, "The runThread.Join() did not work as expected.");
-
-			return ParseExecutionResult(outputStream, logger);
+			return GetExecutionResult(hostApi.RunResults, exitCode, logger);
 		}
 
-		private void RunCore(
-			RunnableBenchmark runnableBenchmark,
-			Benchmark benchmark,
-			Type factoryType,
-			Stream outputStream,
-			bool isDiagnoserAttached,
-			ILogger logger)
+		private int ExecuteCore(IHostApi hostApi, Benchmark benchmark, ILogger logger)
 		{
-			var outputWriter = new StreamWriter(outputStream);
+			int exitCode = -1;
+			var process = Process.GetCurrentProcess();
+			var oldPriority = process.PriorityClass;
+			var oldAffinity = process.ProcessorAffinity;
+
+			var affinity = benchmark.Job.ResolveValueAsNullable(EnvMode.AffinityCharacteristic);
 			try
 			{
-				runnableBenchmark.Init(benchmark, factoryType, outputWriter, isDiagnoserAttached);
-				runnableBenchmark.Run();
+				process.SetPriority(ProcessPriorityClass.High, logger);
+				if (affinity != null)
+				{
+					process.SetAffinity(affinity.Value, logger);
+				}
+				// TODO: set thread priority to highest
+
+				exitCode = InProcessRunner.Run(hostApi, benchmark, CodegenMode);
 			}
 			catch (Exception ex)
 			{
@@ -120,53 +120,43 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 			}
 			finally
 			{
-				outputWriter.Flush();
+				// TODO: restore thread priority
+
+				process.SetPriority(oldPriority, logger);
+				if (affinity != null)
+				{
+					process.EnsureProcessorAffinity(oldAffinity);
+				}
 			}
+
+			return exitCode;
 		}
 
-		private ExecuteResult ParseExecutionResult(MemoryStream outputStream, ILogger logger)
+		private ExecuteResult GetExecutionResult(RunResults runResults, int exitCode, ILogger logger)
 		{
-			outputStream.Position = 0;
-			var outputReader = new StreamReader(outputStream);
-			var lines = new List<string>();
-			var linesWithOutput = new List<string>();
-			string line;
-			while ((line = outputReader.ReadLine()) != null)
+			if (exitCode != 0)
 			{
-				if (LogOutput)
-				{
-					logger.WriteLine(line);
-				}
-
-				if (string.IsNullOrEmpty(line))
-					continue;
-
-				// TODO: diagnoser support.
-				// ReSharper disable ConvertIfStatementToSwitchStatement
-				if (!line.StartsWith("//"))
-				{
-					lines.Add(line);
-				}
-				else if (line == Engine.Signals.BeforeAnythingElse)
-				{
-					//diagnoser?.BeforeAnythingElse(process, benchmark);
-				}
-				else if (line == Engine.Signals.AfterSetup)
-				{
-					//diagnoser?.AfterSetup(process, benchmark);
-				}
-				else if (line == Engine.Signals.BeforeCleanup)
-				{
-					//diagnoser?.BeforeCleanup();
-				}
-				else
-				{
-					linesWithOutput.Add(line);
-				}
-				// ReSharper restore ConvertIfStatementToSwitchStatement
+				return new ExecuteResult(true, exitCode, new string[0], new string[0]);
 			}
 
-			return new ExecuteResult(true, 0, lines.ToArray(), linesWithOutput.ToArray());
+			var lines = new List<string>();
+			foreach (var measurement in runResults.GetMeasurements())
+			{
+				lines.Add(measurement.ToOutputLine());
+			}
+			var ops = (long)typeof(RunResults)
+				.GetField("totalOperationsCount", BindingFlags.Instance | BindingFlags.NonPublic)
+				.GetValue(runResults);
+
+			var s = runResults.GCStats.WithTotalOperations(ops);
+			var totalOpsOutput = string.Format(
+				"{0} {1} {2} {3} {4} {5}", (object)"GC: ",
+				s.Gen0Collections, s.Gen1Collections, s.Gen2Collections,
+				s.AllocatedBytes, s.TotalOperations);
+
+			lines.Add(totalOpsOutput);
+
+			return new ExecuteResult(true, 0, lines.ToArray(), new string[0]);
 		}
 	}
 }

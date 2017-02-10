@@ -10,6 +10,8 @@
 ## TODOs:
 
 ### Types:
+ * BurstModeEngineFactory: sync with code in BDN
+ * HACK: Remove console capture after update to BDN 10.3
  * TargetCacheKey: remove?
  * Sealed types: unseal where it looks like a good idea.
  * IStoredMetricSource: Name attribute, EnumName attribute => simplify parse logic as marging will be moved to the analyser.

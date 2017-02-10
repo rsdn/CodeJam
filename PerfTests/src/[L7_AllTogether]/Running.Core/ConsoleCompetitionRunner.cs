@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 
+using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
@@ -18,6 +20,20 @@ namespace CodeJam.PerfTests.Running.Core
 			/// <summary>Initializes a new instance of the <see cref="ConsoleHostLogger"/> class.</summary>
 			/// <param name="logMode">Host logging mode.</param>
 			public ConsoleHostLogger(HostLogMode logMode) : base(ConsoleLogger.Default, logMode) { }
+		}
+
+		/// <summary>Runs the competition - core implementation.</summary>
+		/// <param name="benchmarkType">Benchmark class to run.</param>
+		/// <param name="competitionConfig">The competition config.</param>
+		/// <returns>Competition state for the run.</returns>
+		protected override CompetitionState RunCore(Type benchmarkType, ICompetitionConfig competitionConfig)
+		{
+			// HACK: swallow console output
+			// TODO: remove after upgrade to BDN 10.3
+			using (BenchmarkHelpers.CaptureConsoleOutput(new StringWriter()))
+			{
+				return base.RunCore(benchmarkType, competitionConfig);
+			}
 		}
 
 		#region Host-related logic

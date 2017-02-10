@@ -28,9 +28,6 @@ namespace BenchmarkDotNet.Engines
 			if (engineParameters.TargetJob == null)
 				throw new ArgumentNullException(nameof(engineParameters.TargetJob));
 
-			if (engineParameters.IsDiagnoserAttached)
-				throw new ArgumentException("Diagnosers are not supported yet.", nameof(engineParameters.IsDiagnoserAttached));
-
 			var targetJob = engineParameters.TargetJob;
 			if (!targetJob.HasValue(RunMode.InvocationCountCharacteristic) ||
 				!targetJob.HasValue(RunMode.WarmupCountCharacteristic) ||

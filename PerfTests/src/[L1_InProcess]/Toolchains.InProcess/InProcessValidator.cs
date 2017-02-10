@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
-using BenchmarkDotNet.Toolchains.InProcess;
+using BenchmarkDotNet.Validators;
 
 using JetBrains.Annotations;
 
-// ReSharper disable once CheckNamespace
-
-namespace BenchmarkDotNet.Validators
+namespace BenchmarkDotNet.Toolchains.InProcess
 {
 	/// <summary>
 	/// Validator to be used together with <see cref="InProcessToolchain"/>
@@ -22,11 +21,11 @@ namespace BenchmarkDotNet.Validators
 	public class InProcessValidator : IValidator
 	{
 		#region Validation rules
+
 		// ReSharper disable HeapView.DelegateAllocation
 		private static readonly IReadOnlyDictionary<Characteristic, Func<Job, Characteristic, string>> _validationRules =
 			new Dictionary<Characteristic, Func<Job, Characteristic, string>>
 			{
-				// TODO: recheck all characteristics
 				{ EnvMode.AffinityCharacteristic, DontValidate },
 				{ EnvMode.JitCharacteristic, ValidateEnvironment },
 				{ EnvMode.PlatformCharacteristic, ValidatePlatform },
@@ -35,7 +34,7 @@ namespace BenchmarkDotNet.Validators
 				{ GcMode.ConcurrentCharacteristic, ValidateEnvironment },
 				{ GcMode.CpuGroupsCharacteristic, ValidateEnvironment },
 				{ GcMode.ForceCharacteristic, DontValidate },
-				{ GcMode.AllowVeryLargeObjectsCharacteristic, ValidateEnvironment },
+				{ GcMode.AllowVeryLargeObjectsCharacteristic, DontValidate },
 				{ RunMode.LaunchCountCharacteristic, DontValidate },
 				{ RunMode.RunStrategyCharacteristic, DontValidate },
 				{ RunMode.WarmupCountCharacteristic, DontValidate },
@@ -95,11 +94,11 @@ namespace BenchmarkDotNet.Validators
 
 		/// <summary>Gets a value indicating whether warnings are treated as errors.</summary>
 		/// <value>
-		/// <c>true</c> if treats warnings as errors; otherwise, <c>false</c>.
+		/// <c>true</c> if the validator should treat warnings as errors; otherwise, <c>false</c>.
 		/// </value>
 		public bool TreatsWarningsAsErrors { get; }
 
-		// TODO: check that all diagnosers can be run in-process
+		// TODO: check for diagnosers that cannot be run in-process?
 		/// <summary>Proofs that benchmarks' jobs match the environment.</summary>
 		/// <param name="validationParameters">The validation parameters.</param>
 		/// <returns>Enumerable of validation errors.</returns>
@@ -107,28 +106,37 @@ namespace BenchmarkDotNet.Validators
 		{
 			var result = new List<ValidationError>();
 
+			var targets = validationParameters.Benchmarks.Select(b => b.Target).Distinct();
+			foreach (var target in targets)
+			{
+				if (!string.IsNullOrEmpty(target.AdditionalLogic))
+					result.Add(
+						new ValidationError(
+							false,
+							$"Target {target} has {nameof(target.AdditionalLogic)} filled. AdditionalLogic is not supported by in-process toolchain."));
+			}
+
 			foreach (var job in validationParameters.Config.GetJobs())
 			{
 				foreach (var characteristic in job.GetCharacteristicsWithValues())
 				{
-					if (_validationRules.TryGetValue(characteristic, out var validationRule))
+					Func<Job, Characteristic, string> validationRule;
+					if (_validationRules.TryGetValue(characteristic, out validationRule))
 					{
 						var message = validationRule(job, characteristic);
 						if (!string.IsNullOrEmpty(message))
-						{
 							result.Add(
 								new ValidationError(
 									TreatsWarningsAsErrors,
 									$"Job {job}, {characteristic.FullId}: {message}"));
-						}
 					}
+#if DEBUG
 					else if (characteristic.DeterminesBehavior())
-					{
 						result.Add(
 							new ValidationError(
 								false,
 								$"Job {job}, {characteristic.FullId}: no validation rule specified."));
-					}
+#endif
 				}
 			}
 

@@ -220,7 +220,7 @@ namespace CodeJam.PerfTests.Running.Core
 				SetCurrentDirectoryIfNotNull(currentDirectory);
 				try
 				{
-					competitionState = CompetitionCore.Run(benchmarkType, competitionConfig);
+					competitionState = RunCore(benchmarkType, competitionConfig);
 
 					ProcessRunComplete(competitionState);
 				}
@@ -242,6 +242,14 @@ namespace CodeJam.PerfTests.Running.Core
 
 			return competitionState;
 		}
+
+		// TODO: HACK: Remove after update to BDN 10.3
+		/// <summary>Runs the competition - core implementation.</summary>
+		/// <param name="benchmarkType">Benchmark class to run.</param>
+		/// <param name="competitionConfig">The competition config.</param>
+		/// <returns>Competition state for the run.</returns>
+		protected virtual CompetitionState RunCore(Type benchmarkType, ICompetitionConfig competitionConfig) => 
+			CompetitionCore.Run(benchmarkType, competitionConfig);
 
 		#region Prepare & run completed logic
 		private void ProcessRunComplete(
