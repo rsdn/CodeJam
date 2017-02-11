@@ -29,11 +29,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			public BenchmarkMethodInfo(
 				RuntimeMethodHandle method,
-				int benchmarkAttributeLineNumber,
+				int primaryAttributeLineNumber,
 				Range<int> attributeCandidateLineNumbers,
 				Dictionary<RuntimeTypeHandle, int> attributeLineNumbers)
 			{
-				Code.InRange(benchmarkAttributeLineNumber, nameof(benchmarkAttributeLineNumber), 1, int.MaxValue);
+				Code.InRange(primaryAttributeLineNumber, nameof(primaryAttributeLineNumber), 1, int.MaxValue);
 
 				Code.AssertArgument(
 					Range.Create(1, int.MaxValue).Contains(attributeCandidateLineNumbers),
@@ -41,18 +41,18 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					"Incorrect line numbers range.");
 
 				Code.AssertArgument(
-					attributeCandidateLineNumbers.Contains(benchmarkAttributeLineNumber),
-					nameof(benchmarkAttributeLineNumber),
+					attributeCandidateLineNumbers.Contains(primaryAttributeLineNumber),
+					nameof(primaryAttributeLineNumber),
 					"Incorrect benchmark attribute line number.");
 
 				Method = method;
-				BenchmarkAttributeLineNumber = benchmarkAttributeLineNumber;
+				PrimaryAttributeLineNumber = primaryAttributeLineNumber;
 				AttributeCandidateLineNumbers = attributeCandidateLineNumbers;
 				_attributeLineNumbers = attributeLineNumbers;
 			}
 
 			public RuntimeMethodHandle Method { get; }
-			public int BenchmarkAttributeLineNumber { get; private set; }
+			public int PrimaryAttributeLineNumber { get; private set; }
 			public Range<int> AttributeCandidateLineNumbers { get; private set; }
 
 			public IReadOnlyDictionary<RuntimeTypeHandle, int> AttributeLineNumbers => _attributeLineNumbers;
@@ -70,7 +70,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				if (range.EndsBefore(insertLineNumber))
 					return;
 
-				BenchmarkAttributeLineNumber = FixOnInsertTo(BenchmarkAttributeLineNumber, insertLineNumber);
+				PrimaryAttributeLineNumber = FixOnInsertTo(PrimaryAttributeLineNumber, insertLineNumber);
 				int newFrom = FixOnInsertFrom(range.FromValue, insertLineNumber);
 				int newTo = FixOnInsertTo(range.ToValue, insertLineNumber);
 				AttributeCandidateLineNumbers = Range.Create(newFrom, newTo);
@@ -172,7 +172,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				)?
 				(?<Suffix>(?:\s*\,[^\]]+?)?\])";
 
-			private static Func<Type, Regex> _regexCache = Algorithms.Memoize(
+			private static readonly Func<Type, Regex> _regexCache = Algorithms.Memoize(
 				(Type attributeType) => new Regex(
 					string.Format(RegexPatternFormat, attributeType.GetAttributeName()),
 					RegexOptions.IgnorePatternWhitespace | RegexOptions.CultureInvariant | RegexOptions.Compiled));
@@ -299,7 +299,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				string sourcePath,
 				CompetitionState competitionState)
 			{
-				// TODO: same method=>multiple ranges.
+				// TODO: same method => multiple ranges.
 				var result = new List<BenchmarkMethodInfo>();
 				foreach (var candidateRange in candidateLines.SubRanges)
 				{
@@ -319,11 +319,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				string sourcePath,
 				CompetitionState competitionState)
 			{
-				var attribute = candidateRange.Key.GetCustomAttribute<CompetitionBenchmarkAttribute>();
-				if (attribute == null || attribute.GetType() != typeof(CompetitionBenchmarkAttribute))
+				var primaryAttribute = candidateRange.Key.GetCustomAttribute<CompetitionBenchmarkAttribute>();
+				if (primaryAttribute == null || primaryAttribute.GetType() != typeof(CompetitionBenchmarkAttribute))
 				{
-					attribute = candidateRange.Key.GetCustomAttribute<CompetitionBaselineAttribute>();
-					if (attribute == null || attribute.GetType() != typeof(CompetitionBaselineAttribute))
+					primaryAttribute = candidateRange.Key.GetCustomAttribute<CompetitionBaselineAttribute>();
+					if (primaryAttribute == null || primaryAttribute.GetType() != typeof(CompetitionBaselineAttribute))
 						return null;
 				}
 
@@ -345,15 +345,15 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					}
 				}
 
-				int line;
-				if (!attributeLines.TryGetValue(attribute.GetType().TypeHandle, out line))
+				int primaryAttributeLine;
+				if (!attributeLines.TryGetValue(primaryAttribute.GetType().TypeHandle, out primaryAttributeLine))
 				{
 					return null;
 				}
 
 				return new BenchmarkMethodInfo(
 					candidateRange.Key.MethodHandle,
-					line, candidateRange.WithoutKey(),
+					primaryAttributeLine, candidateRange.WithoutKey(),
 					attributeLines);
 			}
 
@@ -410,12 +410,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					}
 					else
 					{
-						var whitespacePrefix = GetWhitespacePrefix(sourceCodeFile[benchmarkMethod.BenchmarkAttributeLineNumber]);
+						var primaryLineNumber = benchmarkMethod.PrimaryAttributeLineNumber;
+						var whitespacePrefix = GetWhitespacePrefix(sourceCodeFile[primaryLineNumber]);
 						var newLine = GetNewAnnotationLine(whitespacePrefix, metricValue);
-						var insertLineNumber = benchmarkMethod.BenchmarkAttributeLineNumber + 1;
 
 						sourceCodeFile.InsertLineWithAttribute(
-							insertLineNumber,
+							primaryLineNumber  + 1,
 							newLine,
 							benchmarkMethod.Method,
 							attributeTypeHandle);
@@ -510,23 +510,24 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				var metricRange = metricValue.ValuesRange;
 				var metricUnit = metricValue.DisplayMetricUnit;
 				var metricEnumType = metricValue.Metric.MetricUnits.MetricEnumType;
-				if (metricRange.IsNotEmpty)
+
+				if (metricRange.IsZero)
+				{
+					result.Append("0");
+				}
+				else if (metricRange.IsNotEmpty)
 				{
 					if (!double.IsInfinity(metricRange.Min))
 					{
 						var minValue = metricRange.Min.ToString(metricUnit, true);
-
-						result
-							.Append(minValue)
-							.Append(", ");
+						result.Append(minValue).Append(", ");
 					}
-
 					var maxValue = double.IsInfinity(metricRange.Max) ?
 						"double.PositiveInfinity"
 						: metricRange.Max.ToString(metricUnit, true);
 					result.Append(maxValue);
 
-					if (!metricUnit.IsEmpty)
+					if (!metricValue.Metric.IsRelative)
 					{
 						Code.BugIf(
 							metricEnumType == null || metricUnit.EnumValue == null ||

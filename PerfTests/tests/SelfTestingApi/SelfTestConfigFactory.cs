@@ -13,6 +13,14 @@ namespace CodeJam.PerfTests
 	{
 		public SelfTestConfigFactory() : base("SelfTestConfig") { }
 
+		protected override ManualCompetitionConfig CreateEmptyConfig(
+			ICustomAttributeProvider metadataSource, CompetitionFeatures competitionFeatures)
+		{
+			var result = base.CreateEmptyConfig(metadataSource, competitionFeatures);
+			result.Metrics.RemoveAll(m => !m.IsPrimaryMetric);
+			return result;
+		}
+
 		protected override CompetitionFeatures CreateCompetitionFeaturesUnfrozen(
 			string jobId,
 			ICustomAttributeProvider metadataSource)

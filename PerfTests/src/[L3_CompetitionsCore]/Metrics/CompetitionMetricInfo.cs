@@ -88,6 +88,7 @@ namespace CodeJam.PerfTests.Metrics
 			Name = name;
 
 			AttributeType = attributeType;
+			IsPrimaryMetric = AttributeType == typeof(CompetitionBenchmarkAttribute);
 
 			ValuesProvider = (IMetricValuesProvider)Activator.CreateInstance(typeArgs[0]);
 
@@ -121,6 +122,15 @@ namespace CodeJam.PerfTests.Metrics
 		/// <summary>Gets a value indicating whether the metric is relative.</summary>
 		/// <value> <c>true</c> if the metric is relative; otherwise, <c>false</c>. </value>
 		public bool IsRelative => ValuesProvider.ResultIsRelative;
+
+		/// <summary>
+		/// Gets a value indicating whether this instance is a primary metric 
+		/// (used to annotate the <see cref="CompetitionBenchmarkAttribute"/>).
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if this instance is primary metric; otherwise, <c>false</c>.
+		/// </value>
+		public bool IsPrimaryMetric { get; }
 		#endregion
 
 		/// <summary>Gets column provider for the metric values.</summary>

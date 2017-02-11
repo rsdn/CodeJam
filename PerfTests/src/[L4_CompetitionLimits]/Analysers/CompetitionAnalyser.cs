@@ -253,7 +253,7 @@ namespace CodeJam.PerfTests.Analysers
 					{
 						result.Add(ToMetricValue(storedMetric, metricInfo));
 					}
-					else if (metricInfo.AttributeType != typeof(CompetitionBenchmarkAttribute)) // TODO: better check
+					else if (!metricInfo.IsPrimaryMetric)
 					{
 						analysis.WriteSetupErrorMessage(
 							$"Trying to apply relative metric {metricInfo.Name} to the baseline method {target.MethodDisplayInfo}. Skipped.");
@@ -283,6 +283,8 @@ namespace CodeJam.PerfTests.Analysers
 				"storedMetric.MetricAttributeType != metricInfo.AttributeType");
 
 			var metricUnit = metricInfo.MetricUnits[storedMetric.UnitOfMeasurement];
+			var min = storedMetric.Min;
+			var max = storedMetric.Max;
 			var scaledMetricValues = MetricRange.Create(storedMetric.Min, storedMetric.Max);
 			return new CompetitionMetricValue(
 				metricInfo,
@@ -301,21 +303,28 @@ namespace CodeJam.PerfTests.Analysers
 			var metricsByType = analysis.RunState.Config.GetMetrics().ToDictionary(m => m.AttributeType);
 			var result = new List<IStoredMetricSource>(metricsByType.Count);
 
-			foreach (var targetMetric in target.Method.GetMetadataAttributes<IStoredMetricSource>().ToArray())
+			foreach (var metricAttribute in target.Method.GetMetadataAttributes<IStoredMetricSource>().ToArray())
 			{
-				if (!metricsByType.TryGetValue(targetMetric.MetricAttributeType, out var metricInfo))
+				if (!metricsByType.TryGetValue(metricAttribute.MetricAttributeType, out var metricInfo))
 				{
-					if (targetMetric.MetricAttributeType != AttributeAnnotations.PrimaryMetric.AttributeType)
+					if (metricAttribute.MetricAttributeType != AttributeAnnotations.PrimaryMetric.AttributeType)
 					{
 						analysis.WriteInfoMessage(
-							$"Annotation for {target.MethodDisplayInfo}, unknown metric {targetMetric.MetricAttributeType.Name}, skipped.");
+							$"Annotation for {target.MethodDisplayInfo}, unknown metric {metricAttribute.MetricAttributeType.Name}, skipped.");
 					}
 					continue;
 				}
 
-				AttributeAnnotations.ParseUnitValue(target, targetMetric.UnitOfMeasurement, metricInfo, analysis.RunState);
+				AttributeAnnotations.ParseUnitValue(target, metricAttribute.UnitOfMeasurement, metricInfo, analysis.RunState);
 
-				result.Add(targetMetric);
+				var min = metricAttribute.Min;
+				var max = metricAttribute.Max;
+				if (min.Equals(MetricRange.FromNegativeInfinity) && max.Equals(0))
+				{
+					max = 0;
+				}
+				// new instance of StoredMetricValue to not hold reference to the metric attribute.
+				result.Add(new StoredMetricValue(metricAttribute.MetricAttributeType, min, max, metricAttribute.UnitOfMeasurement));
 			}
 			return result.ToArray();
 		}

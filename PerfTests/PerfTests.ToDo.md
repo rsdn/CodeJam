@@ -10,16 +10,21 @@
 ## TODOs:
 
 ### Types:
+ * IStoredMetricSource: add MetricName attribute, EnumName attribute => simplify parse logic as merging will be moved to the analyser.
+   +Subtask: Attribute annotation: analyse existing overloads (add string arg to IStoredMetricSource???)
+ * ??? Naming, IStoredMetricSource.MetricAttributeType => AttributeType, IMetricValuesProvider => IMetricProvider
+ * public metric atttributes etc => move to AllTogether level
+ * Namespace 4 attributes => CodeJam.PerfTests.
  * !!! dump CompetitionOptions to summary (as columns)
  * BurstModeEngineFactory: sync with code in BDN
  * HACK: Remove console capture after update to BDN 10.3
  * TargetCacheKey: remove?
  * Sealed types: unseal where it looks like a good idea.
- * IStoredMetricSource: add MetricName attribute, EnumName attribute => simplify parse logic as merging will be moved to the analyser.
-   +Subtask: Attribute annotation: analyse existing overloads (add string arg to IStoredMetricSource???)
  * Simplify collections of types. MappedCollection / Keyed collection where possible.
 
-### Behavior:
+### Behavior: 
+ * Revisit caching methods for analyser (all those members should contain `cache` in name).
+ * Add cache invalidation policy (limit of 1000)
  * xUnit: improve capture of console output. Pass xUnitWriter as a logger instead.
  * Auto annotate empty feature
  * Metric annotation: no unit for default unit of measurement, to enable [GcAllocations(0)]

@@ -1,6 +1,8 @@
 ﻿using System;
 
-namespace CodeJam.PerfTests.Metrics
+using CodeJam.PerfTests.Metrics;
+
+namespace CodeJam.PerfTests
 {
 	/// <summary>
 	/// Time measurement units

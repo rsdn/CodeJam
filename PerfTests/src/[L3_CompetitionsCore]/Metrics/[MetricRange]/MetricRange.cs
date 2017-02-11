@@ -108,6 +108,10 @@ namespace CodeJam.PerfTests.Metrics
 		/// <value><c>true</c> if the range is not empty; otherwise, <c>false</c>.</value>
 		public bool IsNotEmpty => _range.IsNotEmpty;
 
+		/// <summary>Checks if the range equals to [0, 0].</summary>
+		/// <value><c>true</c> if the range equals to [0, 0]; otherwise, <c>false</c>.</value>
+		public bool IsZero => _range == Range.Create(0.0, 0.0);
+
 		/// <summary>Determines whether the range contains another one.</summary>
 		/// <param name="other">The metric range to check.</param>
 		/// <returns><c>true</c>, if the range contains another one.</returns>

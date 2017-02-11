@@ -53,7 +53,8 @@ namespace CodeJam.PerfTests.Configs.Factories
 		/// <summary>Columns for troubleshooting mode config. </summary>
 		public static IReadOnlyList<CompetitionMetricInfo> DefaultMetrics = new CompetitionMetricInfo[]
 		{
-			CompetitionMetricInfo.RelativeTime
+			CompetitionMetricInfo.RelativeTime,
+			CompetitionMetricInfo.GcAllocations
 		};
 
 		/// <summary>Creates competition config for type.</summary>
@@ -308,12 +309,12 @@ namespace CodeJam.PerfTests.Configs.Factories
 
 		// TODO: pass id?
 		/// <summary>
-		/// Creates options for the competition. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
+		/// Creates options for the competition. The <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
 		/// </summary>
 		/// <param name="metadataSource">The metadata source.</param>
 		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>
-		/// Options for the competition. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
+		/// Options for the competition. The <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
 		/// </returns>
 		protected virtual CompetitionOptions CreateCompetitionOptionsUnfrozen(
 			[CanBeNull] ICustomAttributeProvider metadataSource,

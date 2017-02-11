@@ -17,6 +17,15 @@ namespace CodeJam
 	{
 		public CodeJamCompetitionFactory() : base("CodeJamCompetition") { }
 
+		// TEMP HACK: to perform GC annotations later
+		protected override ManualCompetitionConfig CreateEmptyConfig(
+			ICustomAttributeProvider metadataSource, CompetitionFeatures competitionFeatures)
+		{
+			var result = base.CreateEmptyConfig(metadataSource, competitionFeatures);
+			result.Metrics.RemoveAll(m => !m.IsPrimaryMetric);
+			return result;
+		}
+
 		/// <summary>Creates competition features. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.</summary>
 		/// <param name="jobId">The job identifier.</param>
 		/// <param name="metadataSource">The metadata source.</param>
@@ -62,12 +71,12 @@ namespace CodeJam
 
 		#region Overrides of CompetitionConfigFactory
 		/// <summary>
-		/// Creates options for the competition. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
+		/// Creates options for the competition. The <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
 		/// </summary>
 		/// <param name="metadataSource">The metadata source.</param>
 		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>
-		/// Options for the competition. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
+		/// Options for the competition. The <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
 		/// </returns>
 		protected override CompetitionOptions CreateCompetitionOptionsUnfrozen(
 			ICustomAttributeProvider metadataSource, CompetitionFeatures competitionFeatures)
