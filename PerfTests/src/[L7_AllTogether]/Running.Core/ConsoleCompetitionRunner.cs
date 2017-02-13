@@ -25,12 +25,14 @@ namespace CodeJam.PerfTests.Running.Core
 
 		// HACK: swallow console output
 		// TODO: remove after upgrade to BDN 10.3
+#pragma warning disable 1591
 		protected class TempLogger : HostLogger
 		{
 			public TempLogger(HostLogMode logMode) : base(new AccumulationLogger(), logMode) { }
 
 			public string GetLog() => ((AccumulationLogger)WrappedLogger).GetLog();
 		}
+#pragma warning restore 1591
 
 		/// <summary>Runs the competition - core implementation.</summary>
 		/// <param name="benchmarkType">Benchmark class to run.</param>

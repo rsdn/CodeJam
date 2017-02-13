@@ -23,7 +23,7 @@ namespace CodeJam.Examples.PerfTests
 		public int ListWithoutCapacity()
 		{
 			var data = new List<int>();
-			for (int i = 0; i < Count; i++)
+			for (var i = 0; i < Count; i++)
 				data.Add(i);
 			return data.Count;
 		}
@@ -32,7 +32,7 @@ namespace CodeJam.Examples.PerfTests
 		public int ListWithCapacity()
 		{
 			var data = new List<int>(Count);
-			for (int i = 0; i < Count; i++)
+			for (var i = 0; i < Count; i++)
 				data.Add(i);
 			return data.Count;
 		}

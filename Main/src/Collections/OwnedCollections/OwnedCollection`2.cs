@@ -84,6 +84,9 @@ namespace CodeJam.Collections
 			_keyGetter = keyGetter;
 		}
 
+		/// <summary>Gets a key for the item.</summary>
+		/// <param name="item">The item.</param>
+		/// <returns>Key for the item.</returns>
 		protected override TKey GetKey(TItem item) => _keyGetter(item);
 
 		#region Copied from OwnedCollection<TOwner, TItem>

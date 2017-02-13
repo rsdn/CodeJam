@@ -68,6 +68,8 @@ namespace CodeJam.PerfTests
 		{
 		}
 
+		/// <summary>Gets the unit of measurement for the metric.</summary>
+		/// <value>The unit of measurement.</value>
 		public new TimeUnit UnitOfMeasurement => (TimeUnit?)base.UnitOfMeasurement ?? TimeUnit.Nanosecond;
 	}
 }

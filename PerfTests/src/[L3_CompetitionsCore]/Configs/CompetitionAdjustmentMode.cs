@@ -9,7 +9,7 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Competition adjustment parameters class.</summary>
-	/// <seealso cref="BenchmarkDotNet.Jobs.CharacteristicObject{CompetitionLimitsMode}"/>
+	/// <seealso cref="CharacteristicObject{CompetitionLimitsMode}"/>
 	[PublicAPI]
 	public sealed class CompetitionAdjustmentMode : CharacteristicObject<CompetitionAdjustmentMode>
 	{

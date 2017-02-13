@@ -23,8 +23,8 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>
 		/// The code is being run on a CI server.
-		/// <seealso cref="CompetitionCheckMode.LogAnnotations"/>,
-		/// <seealso cref="CompetitionAdjustmentMode.DontSaveAdjustedLimits"/>
+		/// <seealso cref="CompetitionAnnotationMode.LogAnnotations"/>,
+		/// <seealso cref="CompetitionAnnotationMode.DontSaveUpdatedLimits"/>
 		/// and <see cref="CompetitionRunMode.ContinuousIntegrationMode"/> are enabled,
 		/// <see cref="PreviousRunLogUri"/> is ignored.
 		/// </summary>
@@ -48,8 +48,8 @@ namespace CodeJam.PerfTests.Configs
 		/// <value><c>true</c> if reannotation feature should be enabled.</value>
 		bool IgnoreExistingAnnotations { get; }
 
-		/// <summary>Sets the <see cref="CompetitionAdjustmentMode.PreviousRunLogUri"/> to the specified value.</summary>
-		/// <value>The value for <see cref="CompetitionAdjustmentMode.PreviousRunLogUri"/>.</value>
+		/// <summary>Sets the <see cref="CompetitionAnnotationMode.PreviousRunLogUri"/> to the specified value.</summary>
+		/// <value>The value for <see cref="CompetitionAnnotationMode.PreviousRunLogUri"/>.</value>
 		string PreviousRunLogUri { get; }
 
 		/// <summary>Fails tests if there are any warnings.</summary>

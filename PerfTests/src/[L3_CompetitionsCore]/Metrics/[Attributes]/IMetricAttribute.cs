@@ -25,6 +25,6 @@ namespace CodeJam.PerfTests.Metrics
 	{
 		/// <summary>Gets the unit of measurement for the metric.</summary>
 		/// <value>The unit of measurement.</value>
-		TUnitOfMeasurement UnitOfMeasurement { get; }
+		new TUnitOfMeasurement UnitOfMeasurement { get; }
 	}
 }

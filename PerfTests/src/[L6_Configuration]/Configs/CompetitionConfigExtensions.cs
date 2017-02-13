@@ -104,7 +104,7 @@ namespace CodeJam.PerfTests.Configs
 		/// <param name="value">
 		/// URI of the log that contains competition limits from previous run(s).
 		/// Relative paths, file paths and web URLs are supported.
-		/// Set the <see cref="CompetitionCheckMode.LogAnnotations"/> to <c>true</c> to enable logged annotations.
+		/// Set the <see cref="CompetitionAnnotationMode.LogAnnotations"/> to <c>true</c> to enable logged annotations.
 		/// </param>
 		/// <returns>A new config with applied parameters.</returns>
 		public static ICompetitionConfig WithPreviousRunLogUri(this ICompetitionConfig config, string value) =>

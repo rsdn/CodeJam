@@ -56,8 +56,8 @@ namespace CodeJam.PerfTests
 		#region Environment
 		/// <summary>
 		/// The code is being run on a CI server.
-		/// <seealso cref="CompetitionCheckMode.LogAnnotations"/>,
-		/// <seealso cref="CompetitionAdjustmentMode.DontSaveAdjustedLimits"/>
+		/// <seealso cref="CompetitionAnnotationMode.LogAnnotations"/>,
+		/// <seealso cref="CompetitionAnnotationMode.DontSaveUpdatedLimits"/>
 		/// and <see cref="CompetitionRunMode.ContinuousIntegrationMode"/> are enabled,
 		/// <see cref="PreviousRunLogUri"/> is ignored.
 		/// </summary>
@@ -123,8 +123,8 @@ namespace CodeJam.PerfTests
 			}
 		}
 
-		/// <summary>Sets the <see cref="CompetitionAdjustmentMode.PreviousRunLogUri"/> to the specified value.</summary>
-		/// <value>The value for <see cref="CompetitionAdjustmentMode.PreviousRunLogUri"/>.</value>
+		/// <summary>Sets the <see cref="CompetitionAnnotationMode.PreviousRunLogUri"/> to the specified value.</summary>
+		/// <value>The value for <see cref="CompetitionAnnotationMode.PreviousRunLogUri"/>.</value>
 		public string PreviousRunLogUri
 		{
 			get
