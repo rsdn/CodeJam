@@ -107,7 +107,7 @@ namespace CodeJam.Collections
 		#endregion
 	}
 
-	/// <summary>Base keyed collection type that allows to associate collection itens with the owner.</summary>
+	/// <summary>Base keyed collection type that allows to associate collection items with the owner.</summary>
 	/// <typeparam name="TOwner">The type of the owner.</typeparam>
 	/// <typeparam name="TKey">The type of the key.</typeparam>
 	/// <typeparam name="TItem">The type of the item.</typeparam>
