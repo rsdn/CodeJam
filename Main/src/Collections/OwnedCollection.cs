@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Collections
 {
 	// DONTTOUCH: please, DO NOT move the OwnedCollection<TKey, TItem, TOwner> into its own file.
 	// The code in it is a copy of the OwnedCollection<TItem, TOwner> and it's easier 
 	// to keep them in sync when both are in single file.
 
-	/// <summary>Base collection type that allows to associate collection itens with the owner.</summary>
+	/// <summary>Base collection type that allows to associate collection items with the owner.</summary>
 	/// <typeparam name="TItem">The type of the item.</typeparam>
 	/// <typeparam name="TOwner">The type of the owner.</typeparam>
 	/// <seealso cref="System.Collections.ObjectModel.Collection{TItem}"/>
+	[PublicAPI]
 	public abstract class OwnedCollection<TItem, TOwner> : Collection<TItem>
 		where TItem : class
 		where TOwner : class
@@ -109,6 +112,7 @@ namespace CodeJam.Collections
 	/// <typeparam name="TItem">The type of the item.</typeparam>
 	/// <typeparam name="TOwner">The type of the owner.</typeparam>
 	/// <seealso cref="System.Collections.ObjectModel.Collection{TItem}"/>
+	[PublicAPI]
 	public abstract class OwnedCollection<TKey, TItem, TOwner> : KeyedCollection<TKey, TItem>
 		where TItem : class
 		where TOwner : class
