@@ -130,7 +130,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 									$"Job {job}, {characteristic.FullId} {message}"));
 					}
 #if DEBUG
-					else if (characteristic.DeterminesBehavior())
+					else if (characteristic.IsPresentableCharacteristic())
 						result.Add(
 							new ValidationError(
 								false,

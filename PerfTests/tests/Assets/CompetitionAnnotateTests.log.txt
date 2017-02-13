@@ -16,7 +16,7 @@
 	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedWithTimeAndGcBenchmark, CodeJam.PerfTests-Tests">
 		<Baseline Baseline="true">
 			<ExpectedTime Min="0" Max="10" Unit="Sec"/>
-			<GcAllocations Min="0" Max="2" Unit="KB"/>
+			<GcAllocations Min="0" Max="6" Unit="KB"/>
 		</Baseline>
 		<SlowerX20 Min="10" Max="30">
 			<ExpectedTime Min="0" Max="10" Unit="Sec"/>
