@@ -145,14 +145,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				}
 				MarkAsChanged();
 			}
-			public void InsertLineWithAttribute(
-				int insertLineNumber, string newLine,
-				RuntimeMethodHandle method,
-				RuntimeTypeHandle attributeType)
-			{
-				InsertLine(insertLineNumber, newLine);
-				_benchmarkMethodInfo[method].AddAttribute(attributeType, insertLineNumber);
-			}
 
 			protected override void SaveCore() => BenchmarkHelpers.WriteFileContent(Path, _sourceLines.ToArray());
 		}
@@ -389,69 +381,84 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					return false;
 
 				bool allFixed = true;
-				foreach (var metricValue in competitionTarget.MetricValues.Where(m => m.HasUnsavedChanges || m.ValuesRange.IsEmpty).Reverse())
+
+				var metricsByCategory = competitionTarget.MetricValues.GroupBy(m => m.Metric.Category);
+
+				foreach (var metricGrouping in metricsByCategory.Select(x => x.ToArray()))
 				{
-					var attributeTypeHandle = metricValue.Metric.AttributeType.TypeHandle;
-					if (benchmarkMethod.AttributeLineNumbers.TryGetValue(
-						attributeTypeHandle,
-						out var attributeLineNumber))
+					var firstAttributeTypeHandle = metricGrouping[0].Metric.AttributeType.TypeHandle;
+					// BUG: first inplace member placed on primary line
+					// TODO: store attribute line & update it?
+					
+					if (!benchmarkMethod.AttributeLineNumbers.TryGetValue(firstAttributeTypeHandle, out var categoryAttributeLine))
 					{
-						var line = sourceCodeFile[attributeLineNumber];
-						var newLine = UpdateLine(line, metricValue, out var hasMatch);
-						if (hasMatch)
+						categoryAttributeLine = benchmarkMethod.PrimaryAttributeLineNumber;
+					}
+
+					var categoryAttributePosition = sourceCodeFile[categoryAttributeLine].LastIndexOf(']');
+					if (categoryAttributePosition < 0)
+					{
+						allFixed = false;
+						continue;
+					}
+
+					Array.Reverse(metricGrouping);
+
+					foreach (var metricValue in metricGrouping.Where(m => m.HasUnsavedChanges || m.ValuesRange.IsEmpty))
+					{
+						var attributeTypeHandle = metricValue.Metric.AttributeType.TypeHandle;
+
+						if (benchmarkMethod.AttributeLineNumbers.TryGetValue(
+							attributeTypeHandle,
+							out var attributeLineNumber))
 						{
-							if (newLine != line)
-								sourceCodeFile.ReplaceLine(attributeLineNumber, newLine);
+							allFixed &= TryUpdateLineWithAttribute(sourceCodeFile, attributeLineNumber, metricValue);
+						}
+						else if (metricValue.Metric.AnnotateInplace)
+						{
+							allFixed &= TryInsertAttributeInplace(
+								sourceCodeFile, categoryAttributeLine, categoryAttributePosition,
+								benchmarkMethod, metricValue,
+								attributeTypeHandle);
 						}
 						else
 						{
-							allFixed = false;
+							allFixed &= TryInsertLineWithAttribute(
+								sourceCodeFile, categoryAttributeLine,
+								benchmarkMethod, metricValue,
+								attributeTypeHandle);
 						}
-					}
-					else
-					{
-						var primaryLineNumber = benchmarkMethod.PrimaryAttributeLineNumber;
-						var whitespacePrefix = GetWhitespacePrefix(sourceCodeFile[primaryLineNumber]);
-						var newLine = GetNewAnnotationLine(whitespacePrefix, metricValue);
-
-						sourceCodeFile.InsertLineWithAttribute(
-							primaryLineNumber  + 1,
-							newLine,
-							benchmarkMethod.Method,
-							attributeTypeHandle);
 					}
 				}
 
 				return allFixed;
 			}
 
-			private static string UpdateLine(string line, CompetitionMetricValue metricValue, out bool hasMatch)
+			#region Update attribute
+			private static bool TryUpdateLineWithAttribute(
+				SourceCodeFile sourceCodeFile, int attributeLineNumber, CompetitionMetricValue metricValue)
 			{
-				var hasMatchLocal = false;
+				var line = sourceCodeFile[attributeLineNumber];
 
-				var regex = _regexCache(metricValue.Metric.AttributeType);
-				var result = regex.Replace(
-					line,
-					m => FixAttributeContent(m, metricValue, out hasMatchLocal),
-					1);
-				hasMatch = hasMatchLocal;
+				if (!TryUpdateLine(line, metricValue, out var newLine))
+					return false;
 
-				return result;
+				if (newLine != line)
+					sourceCodeFile.ReplaceLine(attributeLineNumber, newLine);
+				return true;
 			}
 
-			private static string GetWhitespacePrefix(string line) =>
-				new string(line.TakeWhile(c => c.IsWhiteSpace()).ToArray());
-
-			private static string GetNewAnnotationLine(string whitespacePrefix, CompetitionMetricValue metricValue)
+			private static bool TryUpdateLine(string line, CompetitionMetricValue metricValue, out string newLine)
 			{
-				var result = new StringBuilder();
-				result.Append(whitespacePrefix);
-				result.Append("[");
-				result.Append(metricValue.Metric.AttributeType.GetAttributeName());
-				result.Append("(");
-				AppendFirstAttributeArgs(metricValue, result);
-				result.Append(")]");
-				return result.ToString();
+				var hasMatch = false;
+
+				var regex = _regexCache(metricValue.Metric.AttributeType);
+				newLine = regex.Replace(
+					line,
+					m => FixAttributeContent(m, metricValue, out hasMatch),
+					1);
+
+				return hasMatch;
 			}
 
 			private static string FixAttributeContent(Match m, CompetitionMetricValue metricValue, out bool hasMatch)
@@ -511,23 +518,28 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				var metricUnit = metricValue.DisplayMetricUnit;
 				var metricEnumType = metricValue.Metric.MetricUnits.MetricEnumType;
 
-				if (metricRange.IsZero)
+				if (metricRange.Min.Equals(0) && metricRange.Max.Equals(0))
 				{
 					result.Append("0");
 				}
 				else if (metricRange.IsNotEmpty)
 				{
-					if (!double.IsInfinity(metricRange.Min))
-					{
-						var minValue = metricRange.Min.ToString(metricUnit, true);
-						result.Append(minValue).Append(", ");
-					}
-					var maxValue = double.IsInfinity(metricRange.Max) ?
-						"double.PositiveInfinity"
-						: metricRange.Max.ToString(metricUnit, true);
-					result.Append(maxValue);
+					var min = metricRange.GetMinMetricValueToStore(metricValue.Metric);
 
-					if (!metricValue.Metric.IsRelative)
+					if (min is double minValue)
+					{
+						var minValueText = double.IsInfinity(metricRange.Max) ?
+							$"double.{nameof(double.NegativeInfinity)}"
+							: minValue.ToString(metricUnit, true);
+						result.Append(minValueText).Append(", ");
+					}
+
+					var maxValueText = double.IsInfinity(metricRange.Max) ?
+						$"double.{nameof(double.PositiveInfinity)}"
+						: metricRange.Max.ToString(metricUnit, true);
+					result.Append(maxValueText);
+
+					if (!metricValue.Metric.MetricUnits.IsEmpty)
 					{
 						Code.BugIf(
 							metricEnumType == null || metricUnit.EnumValue == null ||
@@ -542,6 +554,65 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					}
 				}
 			}
+			#endregion
+
+			#region Insert attribute
+			private static bool TryInsertAttributeInplace(
+				SourceCodeFile sourceCodeFile, int inplaceLineNumber, int inplacePosition,
+				BenchmarkMethodInfo benchmarkMethod, CompetitionMetricValue metricValue,
+				RuntimeTypeHandle attributeTypeHandle)
+			{
+				var line = sourceCodeFile[inplaceLineNumber];
+				var appendText = GetAppendAnnotationText(metricValue);
+				line = line.Insert(inplacePosition, appendText);
+				sourceCodeFile.ReplaceLine(inplaceLineNumber, line);
+
+				benchmarkMethod.AddAttribute(attributeTypeHandle, inplaceLineNumber);
+
+				return true;
+			}
+
+			private static bool TryInsertLineWithAttribute(
+				SourceCodeFile sourceCodeFile, int insertLineNumber,
+				BenchmarkMethodInfo benchmarkMethod, CompetitionMetricValue metricValue,
+				RuntimeTypeHandle attributeTypeHandle)
+			{
+				var whitespacePrefix = GetWhitespacePrefix(sourceCodeFile[insertLineNumber]);
+				var newLine = GetNewAnnotationLine(whitespacePrefix, metricValue);
+
+				var newLineNumber = insertLineNumber + 1;
+				sourceCodeFile.InsertLine(newLineNumber, newLine);
+				benchmarkMethod.AddAttribute(attributeTypeHandle, newLineNumber);
+
+				return true;
+			}
+
+			private static string GetWhitespacePrefix(string line) =>
+				new string(line.TakeWhile(c => c.IsWhiteSpace()).ToArray());
+
+			private static string GetNewAnnotationLine(string whitespacePrefix, CompetitionMetricValue metricValue)
+			{
+				var result = new StringBuilder();
+				result.Append(whitespacePrefix);
+				result.Append("[");
+				result.Append(metricValue.Metric.AttributeType.GetAttributeName());
+				result.Append("(");
+				AppendFirstAttributeArgs(metricValue, result);
+				result.Append(")]");
+				return result.ToString();
+			}
+
+			private static string GetAppendAnnotationText(CompetitionMetricValue metricValue)
+			{
+				var result = new StringBuilder();
+				result.Append(", ");
+				result.Append(metricValue.Metric.AttributeType.GetAttributeName());
+				result.Append("(");
+				AppendFirstAttributeArgs(metricValue, result);
+				result.Append(")");
+				return result.ToString();
+			}
+			#endregion
 			#endregion
 		}
 	}

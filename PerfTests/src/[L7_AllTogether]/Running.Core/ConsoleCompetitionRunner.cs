@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 
+using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
@@ -22,6 +23,15 @@ namespace CodeJam.PerfTests.Running.Core
 			public ConsoleHostLogger(HostLogMode logMode) : base(ConsoleLogger.Default, logMode) { }
 		}
 
+		// HACK: swallow console output
+		// TODO: remove after upgrade to BDN 10.3
+		protected class TempLogger : HostLogger
+		{
+			public TempLogger(HostLogMode logMode) : base(new AccumulationLogger(), logMode) { }
+
+			public string GetLog() => ((AccumulationLogger)WrappedLogger).GetLog();
+		}
+
 		/// <summary>Runs the competition - core implementation.</summary>
 		/// <param name="benchmarkType">Benchmark class to run.</param>
 		/// <param name="competitionConfig">The competition config.</param>
@@ -41,13 +51,14 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="hostLogMode">The host log mode.</param>
 		/// <returns>An instance of <see cref="CompetitionRunnerBase.HostLogger"/></returns>
 		protected override HostLogger CreateHostLogger(HostLogMode hostLogMode) =>
-			new ConsoleHostLogger(hostLogMode);
+			new TempLogger(hostLogMode);
 
 		/// <summary>Reports the execution errors to user.</summary>
 		/// <param name="messages">The messages to report.</param>
 		/// <param name="competitionState">State of the run.</param>
 		protected override void ReportExecutionErrors(string messages, CompetitionState competitionState)
 		{
+			// TODO: remove after upgrade to BDN 10.3
 			var logger = competitionState.Logger;
 
 			logger.WriteLine();
@@ -81,7 +92,18 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="summary">The summary to report.</param>
 		protected override void ReportHostLogger(HostLogger logger, Summary summary)
 		{
-			// Do nothing. logger dumps output to the console.
+			// TODO: remove after upgrade to BDN 10.3
+
+			// Dumping all captured output
+			var outLogger = ConsoleLogger.Default;
+			var tempLogger = (TempLogger)logger;
+			outLogger.Write(tempLogger.GetLog());
+
+			if (summary != null)
+			{
+				// Dumping the benchmark results to console
+				MarkdownExporter.Console.ExportToLog(summary, outLogger);
+			}
 		}
 		#endregion
 

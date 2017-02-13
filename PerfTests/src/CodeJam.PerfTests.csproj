@@ -40,8 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BenchmarkDotNet.Core, Version=0.10.1.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\BenchmarkDotNet.Core.0.10.1\lib\net45\BenchmarkDotNet.Core.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\BenchmarkDotNet.Core.0.10.2\lib\net45\BenchmarkDotNet.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -94,10 +93,12 @@
     <Compile Include="[L3_CompetitionsCore]\Metrics\[Attributes]\GcAllocationsAttribute.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[Attributes]\IMetricAttribute.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[Attributes]\IStoredMetricSource.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Metrics\[Attributes]\MetricAttributeAttribute.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Metrics\MetricSingleValueMode.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricCalculator]\SingleValueMetricCalculator.cs" />
-    <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricScale]\MetricExtensions.cs" />
-    <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricScale]\MetricUnits.cs" />
-    <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricScale]\MetricUnitAttribute.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Metrics\MetricExtensions.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricUnits]\MetricUnits.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricUnits]\MetricUnitAttribute.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[Attributes]\MetricBaseAttribute.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[Attributes]\ExpectedTimeAttribute.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricCalculator]\IMetricCalculator.cs" />
@@ -105,7 +106,7 @@
     <Compile Include="[L3_CompetitionsCore]\Metrics\CompetitionMetricInfo.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricCalculator]\LogNormalMetricCalculator.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricRange]\MetricRange.cs" />
-    <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricScale]\MetricUnit.cs" />
+    <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricUnits]\MetricUnit.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricCalculator]\PercentileMetricCalculator.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricValuesProvider]\MetricValuesProviderBase.cs" />
     <Compile Include="[L3_CompetitionsCore]\Metrics\[MetricValuesProvider]\GcMetricValuesProvider.cs" />

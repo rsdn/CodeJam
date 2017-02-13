@@ -9,6 +9,8 @@
 
 ## TODOs:
 
+!!! bug: no detailed output for selftest (check NUnit and other unit test providers too)
+
 ### Types:
  * IStoredMetricSource: add MetricName attribute, EnumName attribute => simplify parse logic as merging will be moved to the analyser.
    +Subtask: Attribute annotation: analyse existing overloads (add string arg to IStoredMetricSource???)
@@ -21,8 +23,16 @@
  * TargetCacheKey: remove?
  * Sealed types: unseal where it looks like a good idea.
  * Simplify collections of types. MappedCollection / Keyed collection where possible.
+ 
+### Validations: 
+ * Unique method names
+ * Unique metric names
 
 ### Behavior: 
+ * ??? Integer metrics without unit scale (for total GC count)
+ * Scale for GC count per op ?
+ * Annotations: add category to annotation, use it for column and for annotation ordering
+ * Api for [MetricAttribute] => MetricAttributeBase.
  * Revisit caching methods for analyser (all those members should contain `cache` in name).
  * Add cache invalidation policy (limit of 1000)
  * xUnit: improve capture of console output. Pass xUnitWriter as a logger instead.
@@ -45,6 +55,7 @@
  * Write hint with absolute values if relative limits failed? 
    (will require bool arg for metricValuesProvider, recheck columns and diagnosers, possible, they will have to honor this flag too)).
  * Message about updated annotations: improve readability
+ * Message about ignored empty metrics: improve readability
 
 ### Logging:
  * Add advanced diagnostic for config-adjusting-time (logger as an arg of ConfigFactory + fix methods).
@@ -75,6 +86,8 @@
  * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion
 
 ## Issues:
+https://github.com/dotnet/BenchmarkDotNet/issues/361
+https://github.com/dotnet/BenchmarkDotNet/issues/360
 https://github.com/dotnet/BenchmarkDotNet/issues/324
 https://github.com/dotnet/BenchmarkDotNet/issues/319
 https://github.com/dotnet/BenchmarkDotNet/issues/307

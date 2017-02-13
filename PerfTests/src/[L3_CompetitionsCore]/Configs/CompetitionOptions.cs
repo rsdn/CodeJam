@@ -8,9 +8,9 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Competition options class.</summary>
-	/// <seealso cref="BenchmarkDotNet.Jobs.JobMode{CompetitionOptions}"/>
+	/// <seealso cref="CharacteristicObject"/>
 	[PublicAPI]
-	public sealed class CompetitionOptions : JobMode<CompetitionOptions>
+	public sealed class CompetitionOptions : CharacteristicObject<CompetitionOptions>
 	{
 		#region Characteristics
 		/// <summary>Competition run parameters characteristic.</summary>
@@ -30,6 +30,9 @@ namespace CodeJam.PerfTests.Configs
 			(CompetitionOptions o) => o.Adjustments);
 		#endregion
 
+		/// <summary>Default competition options.</summary>
+		public static readonly CompetitionOptions Default = new CompetitionOptions();
+
 		#region .ctors
 		/// <summary>Initializes a new instance of the <see cref="CompetitionOptions"/> class.</summary>
 		public CompetitionOptions() : this((string)null) { }
@@ -46,17 +49,17 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionOptions"/> class.</summary>
 		/// <param name="other">Mode to apply.</param>
-		public CompetitionOptions(JobMode other) : this((string)null, other) { }
+		public CompetitionOptions(CharacteristicObject other) : this((string)null, other) { }
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionOptions"/> class.</summary>
 		/// <param name="others">Modes to apply.</param>
 		// ReSharper disable once RedundantCast
-		public CompetitionOptions(params JobMode[] others) : this((string)null, others) { }
+		public CompetitionOptions(params CharacteristicObject[] others) : this((string)null, others) { }
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionOptions"/> class.</summary>
 		/// <param name="id">The identifier.</param>
 		/// <param name="other">Mode to apply.</param>
-		public CompetitionOptions(string id, JobMode other) : this(id)
+		public CompetitionOptions(string id, CharacteristicObject other) : this(id)
 		{
 			Apply(other);
 		}
@@ -64,7 +67,7 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Initializes a new instance of the <see cref="CompetitionOptions"/> class.</summary>
 		/// <param name="id">The identifier.</param>
 		/// <param name="others">Modes to apply.</param>
-		public CompetitionOptions(string id, params JobMode[] others) : this(id)
+		public CompetitionOptions(string id, params CharacteristicObject[] others) : this(id)
 		{
 			Apply(others);
 		}

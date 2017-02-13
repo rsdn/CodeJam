@@ -8,9 +8,9 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Competition run parameters class.</summary>
-	/// <seealso cref="BenchmarkDotNet.Jobs.JobMode{CompetitionRunMode}"/>
+	/// <seealso cref="BenchmarkDotNet.Jobs.CharacteristicObject{CompetitionRunMode}"/>
 	[PublicAPI]
-	public sealed class CompetitionRunMode : JobMode<CompetitionRunMode>
+	public sealed class CompetitionRunMode : CharacteristicObject<CompetitionRunMode>
 	{
 		/// <summary>The maximum run limit.</summary>
 		internal const int MaxRunLimit = 100;

@@ -178,9 +178,9 @@ namespace CodeJam.PerfTests.Configs
 			var options = _options;
 
 			string id = null;
-			if (options.HasValue(JobMode.IdCharacteristic))
+			if (options.HasValue(CharacteristicObject.IdCharacteristic))
 				id = options.Id;
-			if (optionsModifier.HasValue(JobMode.IdCharacteristic))
+			if (optionsModifier.HasValue(CharacteristicObject.IdCharacteristic))
 				id += optionsModifier.Id;
 
 			// DONTTOUCH: please DO NOT remove .Freeze() call.
@@ -199,9 +199,9 @@ namespace CodeJam.PerfTests.Configs
 				var job = jobs[i];
 
 				string id = null;
-				if (job.HasValue(JobMode.IdCharacteristic))
+				if (job.HasValue(CharacteristicObject.IdCharacteristic))
 					id = job.Id;
-				if (jobModifier.HasValue(JobMode.IdCharacteristic))
+				if (jobModifier.HasValue(CharacteristicObject.IdCharacteristic))
 					id += jobModifier.Id;
 
 				// DONTTOUCH: please DO NOT remove .Freeze() call.

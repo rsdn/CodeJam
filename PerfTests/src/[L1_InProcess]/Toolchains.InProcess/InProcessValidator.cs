@@ -4,7 +4,6 @@ using System.Linq;
 
 using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Environments;
-using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Validators;
 
@@ -64,7 +63,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 			var expected = resolver.Resolve(job, characteristic);
 			return Equals(actual, expected)
 				? null
-				: $"run as {actual} ({expected} expected). Fix your test runner options.";
+				: $"was run as {actual} ({expected} expected). Fix your test runner options.";
 		}
 
 		private static string ValidatePlatform(Job job, Characteristic characteristic)
@@ -78,7 +77,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 		private static string ValidateToolchain(Job job, Characteristic characteristic) =>
 			job.Infrastructure.Toolchain is InProcessToolchain
 				? null
-				: $"Should be instance of {nameof(InProcessToolchain)}.";
+				: $"should be instance of {nameof(InProcessToolchain)}.";
 		#endregion
 
 		/// <summary>The instance of validator that does NOT fail on error.</summary>
@@ -128,7 +127,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
 							result.Add(
 								new ValidationError(
 									TreatsWarningsAsErrors,
-									$"Job {job}, {characteristic.FullId}: {message}"));
+									$"Job {job}, {characteristic.FullId} {message}"));
 					}
 #if DEBUG
 					else if (characteristic.DeterminesBehavior())

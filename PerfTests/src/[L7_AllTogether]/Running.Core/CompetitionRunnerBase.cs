@@ -378,7 +378,7 @@ namespace CodeJam.PerfTests.Running.Core
 				var job = jobs[i];
 				if (job.Infrastructure.Toolchain == null)
 				{
-					var id = job.HasValue(JobMode.IdCharacteristic) ? job.Id : null;
+					var id = job.HasValue(CharacteristicObject.IdCharacteristic) ? job.Id : null;
 					jobs[i] = job
 						.With(InProcessToolchain.Instance)
 						.WithId(id);

@@ -8,9 +8,9 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Competition validation parameters class.</summary>
-	/// <seealso cref="BenchmarkDotNet.Jobs.JobMode{CompetitionLimitsMode}"/>
+	/// <seealso cref="BenchmarkDotNet.Jobs.CharacteristicObject{CompetitionLimitsMode}"/>
 	[PublicAPI]
-	public sealed class CompetitionCheckMode : JobMode<CompetitionCheckMode>
+	public sealed class CompetitionCheckMode : CharacteristicObject<CompetitionCheckMode>
 	{
 		/// <summary>Check competition limits characteristic. Enabled by default.</summary>
 		public static readonly Characteristic<bool> CheckLimitsCharacteristic = Characteristic.Create(

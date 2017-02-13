@@ -45,7 +45,7 @@ namespace CodeJam.PerfTests
 		/// <param name="max">
 		/// The maximum value.
 		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// Use <seealso cref="double.PositiveInfinity" /> returned if value is positive infinity (ignored, essentially).
+		/// Use <seealso cref="double.PositiveInfinity" /> if value is positive infinity (ignored, essentially).
 		/// </param>
 		/// <param name="timeUnit">The time unit.</param>
 		public ExpectedTimeAttribute(double max, TimeUnit timeUnit = TimeUnit.Nanosecond) : base(max, timeUnit)
@@ -61,7 +61,7 @@ namespace CodeJam.PerfTests
 		/// <param name="max">
 		/// The maximum value.
 		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// Use <seealso cref="double.PositiveInfinity" /> returned if value is positive infinity (ignored, essentially).
+		/// Use <seealso cref="double.PositiveInfinity" /> if value is positive infinity (ignored, essentially).
 		/// </param>
 		/// <param name="timeUnit">The time unit.</param>
 		public ExpectedTimeAttribute(double min, double max, TimeUnit timeUnit = TimeUnit.Nanosecond) : base(min, max, timeUnit)

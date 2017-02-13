@@ -26,10 +26,10 @@ namespace CodeJam
 			return result;
 		}
 
-		/// <summary>Creates competition features. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.</summary>
+		/// <summary>Creates competition features. <see cref="BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen"/> is false.</summary>
 		/// <param name="jobId">The job identifier.</param>
 		/// <param name="metadataSource">The metadata source.</param>
-		/// <returns>New competition features. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.</returns>
+		/// <returns>New competition features. <see cref="BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen"/> is false.</returns>
 		protected override CompetitionFeatures CreateCompetitionFeaturesUnfrozen(
 			string jobId,
 			ICustomAttributeProvider metadataSource)
@@ -71,12 +71,12 @@ namespace CodeJam
 
 		#region Overrides of CompetitionConfigFactory
 		/// <summary>
-		/// Creates options for the competition. The <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
+		/// Creates options for the competition. The <see cref="BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen"/> is false.
 		/// </summary>
 		/// <param name="metadataSource">The metadata source.</param>
 		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>
-		/// Options for the competition. The <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
+		/// Options for the competition. The <see cref="BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen"/> is false.
 		/// </returns>
 		protected override CompetitionOptions CreateCompetitionOptionsUnfrozen(
 			ICustomAttributeProvider metadataSource, CompetitionFeatures competitionFeatures)

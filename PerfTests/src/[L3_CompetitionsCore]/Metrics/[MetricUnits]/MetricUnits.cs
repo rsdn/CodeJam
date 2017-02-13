@@ -17,15 +17,12 @@ namespace CodeJam.PerfTests.Metrics
 	/// </summary>
 	public sealed class MetricUnits
 	{
-		// TODO: option for advanced scales (e.g: from 900 b => kilobytes)
-		// TODO: option for separate coefficients for negative values
-		// TODO: flag for integer values?
-		// TODO: custom display format?
-		// TODO: custom storage format?
-
 		#region Static members
 		/// <summary>Empty measurement scale.</summary>
 		public static readonly MetricUnits Empty = new MetricUnits();
+
+		private static readonly Func<RuntimeTypeHandle, MetricUnits> _metricUnitsCache = Algorithms.Memoize(
+			(RuntimeTypeHandle metricEnumType) => new MetricUnits(Type.GetTypeFromHandle(metricEnumType)));
 
 		/// <summary>Creates the metric measurement scale.</summary>
 		/// <param name="metricEnumType">
@@ -35,10 +32,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <returns>The metric measurement scale. Empty if <paramref name="metricEnumType"/> is <c>null</c>.</returns>
 		[NotNull]
 		public static MetricUnits TryCreate([CanBeNull] Type metricEnumType) =>
-			metricEnumType == null ? Empty : _scaleCache(metricEnumType);
-
-		private static readonly Func<Type, MetricUnits> _scaleCache = Algorithms.Memoize(
-			(Type metricEnumType) => new MetricUnits(metricEnumType));
+			metricEnumType == null ? Empty : _metricUnitsCache(metricEnumType.TypeHandle);
 
 		/// <summary>Helper method that returns measuremet units from the metric unit enum.</summary>
 		/// <param name="metricUnitEnumType">
@@ -66,7 +60,8 @@ namespace CodeJam.PerfTests.Metrics
 						metricUnit?.DisplayName ?? f.Name,
 						enumValue,
 						coeff,
-						appliesFrom);
+						appliesFrom,
+						metricUnit?.DisplayFormat);
 				});
 		#endregion
 
@@ -122,31 +117,39 @@ namespace CodeJam.PerfTests.Metrics
 		/// <value>The <see cref="MetricUnit" />.</value>
 		/// <param name="measuredValue">The measured value.</param>
 		/// <returns>The <see cref="MetricUnit" /> for the measured value.</returns>
+		[NotNull]
 		public MetricUnit this[double measuredValue] =>
-			_unitScale.GetIntersection(Math.Abs(measuredValue))
+			_unitScale.GetIntersection(measuredValue.GetUnitSearchValue())
 				.FirstOrDefault()
-				.Key;
+				.Key ?? MetricUnit.Empty;
 
 		/// <summary>Gets the best <see cref="MetricUnit" /> for the measured value.</summary>
 		/// <value>The <see cref="MetricUnit" />.</value>
 		/// <param name="measuredValues">Range of measured values.</param>
 		/// <returns>The <see cref="MetricUnit" /> for the measured value.</returns>
+		[NotNull]
 		public MetricUnit this[MetricRange measuredValues] =>
-			_unitScale.GetIntersection(Math.Abs(measuredValues.GetUnitSearchValue()))
+			_unitScale.GetIntersection(measuredValues.GetUnitSearchValue())
 				.FirstOrDefault()
-				.Key;
+				.Key ?? MetricUnit.Empty;
 
 		/// <summary>Gets the <see cref="MetricUnit" /> with the specified enum value.</summary>
 		/// <value>The <see cref="MetricUnit" />.</value>
 		/// <param name="enumValue">The enum value.</param>
 		/// <returns>The <see cref="MetricUnit" /> with the specified coefficient.</returns>
-		public MetricUnit this[Enum enumValue] => IsEmpty || enumValue == null ? MetricUnit.Empty : _unitsByEnumValue.GetValueOrDefault(enumValue);
+		[NotNull]
+		public MetricUnit this[Enum enumValue] => IsEmpty || enumValue == null 
+			? MetricUnit.Empty 
+			: (_unitsByEnumValue.GetValueOrDefault(enumValue) ?? MetricUnit.Empty);
 
 		/// <summary>Gets the <see cref="MetricUnit" /> with the specified name.</summary>
 		/// <value>The <see cref="MetricUnit" />.</value>
 		/// <param name="name">The name.</param>
 		/// <returns>The <see cref="MetricUnit" /> with the specified coefficient.</returns>
-		public MetricUnit this[string name] => IsEmpty ? MetricUnit.Empty : _unitsByName.GetValueOrDefault(name);
+		[NotNull]
+		public MetricUnit this[string name] => IsEmpty 
+			? MetricUnit.Empty
+			: (_unitsByName.GetValueOrDefault(name) ?? MetricUnit.Empty);
 		#endregion
 
 		/// <summary>Returns a <see cref="string" /> that represents this instance.</summary>

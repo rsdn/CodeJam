@@ -76,12 +76,15 @@ namespace CodeJam.Ranges
 		public void RunIntervalTreePerfTest() => Competition.Run(this);
 
 		[CompetitionBaseline]
+		[GcAllocations(218, BinarySizeUnit.Byte)]
 		public void Intersect() => IntersectNaive(_intersection);
 
 		[CompetitionBenchmark(0.060, 0.114)]
+		[GcAllocations(163, BinarySizeUnit.Byte)]
 		public void IntersectTree() => _tree.Intersect(_intersection);
 
 		[CompetitionBenchmark(0.143, 0.27)]
+		[GcAllocations(5.36, BinarySizeUnit.Kilobyte)]
 		public void IntersectCostin() => _treeCostin.GetIntervalsOverlappingWith(_intersectionCostin).ToArray();
 	}
 }

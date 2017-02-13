@@ -15,6 +15,9 @@ namespace CodeJam.PerfTests.Metrics
 	/// <seealso cref="MetricValuesProviderBase" />
 	public class TimeMetricValuesProvider : MetricValuesProviderBase
 	{
+		/// <summary>The category of metric values.</summary>
+		public const string Category = "Time";
+
 		/// <summary>Initializes a new instance of the <see cref="TimeMetricValuesProvider" /> class.</summary>
 		/// <param name="calculator">The metric calculator.</param>
 		/// <param name="resultIsRelative"><c>true</c> if the metric is relative.</param>

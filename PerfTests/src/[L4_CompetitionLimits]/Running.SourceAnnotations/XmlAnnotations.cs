@@ -466,7 +466,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			}
 			else if (min == null)
 			{
-				min = MetricRange.FromNegativeInfinity;
+				min = max.Value.GetMinMetricValue(targetMetric);
 			}
 
 			Enum unitValue = AttributeAnnotations.ParseUnitValue(

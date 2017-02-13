@@ -12,7 +12,7 @@ namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Features for competition.</summary>
 	[PublicAPI]
-	public sealed class CompetitionFeatures : JobMode<CompetitionFeatures>, ICompetitionFeatures
+	public sealed class CompetitionFeatures : CharacteristicObject<CompetitionFeatures>, ICompetitionFeatures
 	{
 		#region Characteristics
 		/// <summary>Burst mode characteristic</summary>
@@ -66,17 +66,17 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionFeatures"/> class.</summary>
 		/// <param name="other">Mode to apply.</param>
-		public CompetitionFeatures(JobMode other) : this((string)null, other) { }
+		public CompetitionFeatures(CharacteristicObject other) : this((string)null, other) { }
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionFeatures"/> class.</summary>
 		/// <param name="others">Modes to apply.</param>
 		// ReSharper disable once RedundantCast
-		public CompetitionFeatures(params JobMode[] others) : this((string)null, others) { }
+		public CompetitionFeatures(params CharacteristicObject[] others) : this((string)null, others) { }
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionFeatures"/> class.</summary>
 		/// <param name="id">The identifier.</param>
 		/// <param name="other">Mode to apply.</param>
-		public CompetitionFeatures(string id, JobMode other) : this(id)
+		public CompetitionFeatures(string id, CharacteristicObject other) : this(id)
 		{
 			Apply(other);
 		}
@@ -84,7 +84,7 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Initializes a new instance of the <see cref="CompetitionFeatures"/> class.</summary>
 		/// <param name="id">The identifier.</param>
 		/// <param name="others">Modes to apply.</param>
-		public CompetitionFeatures(string id, params JobMode[] others) : this(id)
+		public CompetitionFeatures(string id, params CharacteristicObject[] others) : this(id)
 		{
 			Apply(others);
 		}

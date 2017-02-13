@@ -39,6 +39,20 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public CompetitionRerannotateFromLogModifier(string previousRunLogUri) : base(() => new ModifierImpl(previousRunLogUri)) { }
 	}
 
+	public sealed class CompetitionMeasurementsFromLogModifier : CompetitionModifierAttribute
+	{
+		private class ModifierImpl : ICompetitionModifier
+		{
+			public void Modify(ManualCompetitionConfig competitionConfig)
+			{
+				competitionConfig.Metrics.Add(CompetitionMetricInfo.AbsoluteTime);
+				competitionConfig.Metrics.Add(CompetitionMetricInfo.GcAllocations);
+			}
+		}
+
+		public CompetitionMeasurementsFromLogModifier() : base(() => new ModifierImpl()) { }
+	}
+
 	[TestFixture(Category = "BenchmarkDotNet")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[CompetitionRerannotateFromLogModifier(@"Assets\CompetitionAnnotateTests.log.txt")]
@@ -141,7 +155,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.RecommendedSpinCount);
 		}
 
-		[CompetitionMeasureAll]
+		[CompetitionMeasurementsFromLogModifier]
 		public class AnnotatedWithTimeAndGcBenchmark
 		{
 			[CompetitionBaseline]
@@ -155,7 +169,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.RecommendedSpinCount);
 		}
 
-		[CompetitionMeasureAll, CompetitionNoRelativeTime]
+		[CompetitionMeasurementsFromLogModifier, CompetitionNoRelativeTime]
 		public class AnnotatedWithTimeAndGcNoRelativeBenchmark
 		{
 			[CompetitionBenchmark]

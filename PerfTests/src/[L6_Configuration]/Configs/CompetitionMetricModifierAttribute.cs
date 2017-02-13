@@ -18,6 +18,9 @@ namespace CodeJam.PerfTests.Configs
 			{
 				competitionConfig.Metrics.Add(CompetitionMetricInfo.AbsoluteTime);
 				competitionConfig.Metrics.Add(CompetitionMetricInfo.GcAllocations);
+				competitionConfig.Metrics.Add(CompetitionMetricInfo.Gc0);
+				competitionConfig.Metrics.Add(CompetitionMetricInfo.Gc1);
+				competitionConfig.Metrics.Add(CompetitionMetricInfo.Gc2);
 			}
 		}
 

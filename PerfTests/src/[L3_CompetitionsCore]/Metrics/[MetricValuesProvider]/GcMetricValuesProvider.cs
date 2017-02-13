@@ -11,8 +11,6 @@ namespace CodeJam.PerfTests.Metrics
 	/// </summary>
 	public enum GcMetricSource
 	{
-		/// <summary>The allocated bytes</summary>
-		AllocatedBytes,
 		/// <summary>The bytes allocated per operation</summary>
 		BytesAllocatedPerOperation,
 		/// <summary>The gen0 collections</summary>
@@ -29,6 +27,9 @@ namespace CodeJam.PerfTests.Metrics
 	/// <seealso cref="MetricValuesProviderBase" />
 	public class GcMetricValuesProvider : MetricValuesProviderBase
 	{
+		/// <summary>The category of metric values.</summary>
+		public const string Category = "GcMemory";
+
 		/// <summary>Initializes a new instance of the <see cref="TimeMetricValuesProvider" /> class.</summary>
 		/// <param name="metricSource">Property of the <see cref="GcStats"/> to be used as a GC metric value.</param>
 		/// <param name="resultIsRelative"><c>true</c> if the metric is relative.</param>
@@ -47,8 +48,6 @@ namespace CodeJam.PerfTests.Metrics
 		{
 			switch (metricSource)
 			{
-				case GcMetricSource.AllocatedBytes:
-					return gcStats.AllocatedBytes;
 				case GcMetricSource.BytesAllocatedPerOperation:
 					return gcStats.BytesAllocatedPerOperation;
 				case GcMetricSource.Gen0Collections:
@@ -72,6 +71,6 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="metricInfo">The competition metric to get diagnosers for.</param>
 		/// <returns>Diagnosers for the metric values</returns>
 		protected override IDiagnoser[] GetDiagnosersOverride(CompetitionMetricInfo metricInfo) =>
-			new[] { MemoryDiagnoser.Default };
+			new IDiagnoser[] { MemoryDiagnoser.Default };
 	}
 }

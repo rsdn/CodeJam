@@ -13,8 +13,10 @@ namespace CodeJam.PerfTests.Analysers
 	{
 		/// <summary>Initializes empty new instance of the <see cref="CompetitionMetricValue"/> class.</summary>
 		/// <param name="metric">The metric.</param>
-		public CompetitionMetricValue(CompetitionMetricInfo metric)
+		public CompetitionMetricValue([NotNull] CompetitionMetricInfo metric)
 		{
+			Code.NotNull(metric, nameof(metric));
+
 			Metric = metric;
 			ValuesRange = MetricRange.Empty;
 			DisplayMetricUnit = metric.MetricUnits[MetricRange.EmptyMetricValue];
@@ -24,8 +26,11 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="metric">The metric.</param>
 		/// <param name="valuesRange">The metric values range.</param>
 		/// <param name="displayMetricUnit">The preferred metric unit for the values range.</param>
-		public CompetitionMetricValue(CompetitionMetricInfo metric, MetricRange valuesRange, MetricUnit displayMetricUnit)
+		public CompetitionMetricValue([NotNull] CompetitionMetricInfo metric, MetricRange valuesRange, [NotNull] MetricUnit displayMetricUnit)
 		{
+			Code.NotNull(metric, nameof(metric));
+			Code.NotNull(displayMetricUnit, nameof(displayMetricUnit));
+
 			Metric = metric;
 			ValuesRange = valuesRange;
 			DisplayMetricUnit = displayMetricUnit;
@@ -33,6 +38,7 @@ namespace CodeJam.PerfTests.Analysers
 
 		/// <summary>Gets the metric.</summary>
 		/// <value>The metric.</value>
+		[NotNull]
 		public CompetitionMetricInfo Metric { get; }
 
 		/// <summary>Gets or sets the metric values range.</summary>
@@ -41,6 +47,7 @@ namespace CodeJam.PerfTests.Analysers
 
 		/// <summary>Gets the preferred metric unit for the values range.</summary>
 		/// <value>The preferred metric unit for the values range.</value>
+		[NotNull]
 		public MetricUnit DisplayMetricUnit { get; private set; }
 
 		/// <summary>The metric value is updated but not saved.</summary>
@@ -88,8 +95,8 @@ namespace CodeJam.PerfTests.Analysers
 		/// <summary>Marks value as saved (sets <see cref="HasUnsavedChanges"/> to <c>false</c>).</summary>
 		public void MarkAsSaved() => HasUnsavedChanges = false;
 
-		/// <summary>Returns a <see cref="System.String" /> that represents this instance.</summary>
-		/// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+		/// <summary>Returns a <see cref="string" /> that represents this instance.</summary>
+		/// <returns>A <see cref="string" /> that represents this instance.</returns>
 		public override string ToString() => ValuesRange.ToString(DisplayMetricUnit);
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -220,7 +221,7 @@ namespace CodeJam.PerfTests.Analysers
 			[CanBeNull] XDocument xmlAnnotationsDoc,
 			[NotNull] CompetitionAnalysis analysis)
 		{
-			var benchmarkAttribute = target.Method.TryGetMetadataAttribute<CompetitionBenchmarkAttribute>();
+			var benchmarkAttribute = target.Method.GetCustomAttribute<CompetitionBenchmarkAttribute>();
 			if (benchmarkAttribute == null || benchmarkAttribute.DoesNotCompete)
 				return null;
 
@@ -283,8 +284,6 @@ namespace CodeJam.PerfTests.Analysers
 				"storedMetric.MetricAttributeType != metricInfo.AttributeType");
 
 			var metricUnit = metricInfo.MetricUnits[storedMetric.UnitOfMeasurement];
-			var min = storedMetric.Min;
-			var max = storedMetric.Max;
 			var scaledMetricValues = MetricRange.Create(storedMetric.Min, storedMetric.Max);
 			return new CompetitionMetricValue(
 				metricInfo,
@@ -303,7 +302,7 @@ namespace CodeJam.PerfTests.Analysers
 			var metricsByType = analysis.RunState.Config.GetMetrics().ToDictionary(m => m.AttributeType);
 			var result = new List<IStoredMetricSource>(metricsByType.Count);
 
-			foreach (var metricAttribute in target.Method.GetMetadataAttributes<IStoredMetricSource>().ToArray())
+			foreach (var metricAttribute in target.Method.GetMetadataAttributes<IStoredMetricSource>(true).ToArray())
 			{
 				if (!metricsByType.TryGetValue(metricAttribute.MetricAttributeType, out var metricInfo))
 				{
@@ -315,16 +314,9 @@ namespace CodeJam.PerfTests.Analysers
 					continue;
 				}
 
+				// validates unit value.
 				AttributeAnnotations.ParseUnitValue(target, metricAttribute.UnitOfMeasurement, metricInfo, analysis.RunState);
-
-				var min = metricAttribute.Min;
-				var max = metricAttribute.Max;
-				if (min.Equals(MetricRange.FromNegativeInfinity) && max.Equals(0))
-				{
-					max = 0;
-				}
-				// new instance of StoredMetricValue to not hold reference to the metric attribute.
-				result.Add(new StoredMetricValue(metricAttribute.MetricAttributeType, min, max, metricAttribute.UnitOfMeasurement));
+				result.Add(metricAttribute);
 			}
 			return result.ToArray();
 		}
@@ -409,6 +401,8 @@ namespace CodeJam.PerfTests.Analysers
 
 			if (metricValue.ValuesRange.Contains(actualValues))
 				return true;
+
+			analysis.RunState.WriteVerboseHint($"Metric {metricValue} check failed, limits {actualValues}");
 
 			bool result = metricValue.ValuesRange.IsEmpty;
 			if (!result)

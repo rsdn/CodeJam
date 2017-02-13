@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 using BenchmarkDotNet.Running;
 
@@ -54,6 +55,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <param name="unitValue">The unit value.</param>
 		/// <param name="metricInfo">The metric information.</param>
 		/// <param name="competitionState">State of the run.</param>
+		[NotNull]
 		public static MetricUnit ParseUnitValue(
 			Target target,
 			string unitValue,
@@ -89,6 +91,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <param name="unitValue">The unit value.</param>
 		/// <param name="metricInfo">The metric information.</param>
 		/// <param name="competitionState">State of the run.</param>
+		[NotNull]
 		public static MetricUnit ParseUnitValue(
 			Target target,
 			Enum unitValue,

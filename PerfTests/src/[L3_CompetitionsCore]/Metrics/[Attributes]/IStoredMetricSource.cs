@@ -19,7 +19,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// The <seealso cref="double.NegativeInfinity"/> returned if value is negative infinity (ignored, essentially).
 		/// IMPORTANT: If the <see cref="UnitOfMeasurement"/> is not <c>null</c>
 		/// both <see cref="Min"/> and <see cref="Max"/> values are scaled.
-		/// Use the <see cref="MetricUnits"/> to normalize them.
+		/// Use the <see cref="MetricExtensions"/> to normalize them.
 		/// </value>
 		double Min { get; }
 
@@ -27,10 +27,10 @@ namespace CodeJam.PerfTests.Metrics
 		/// <value>
 		/// The maximum value.
 		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
-		/// Use <seealso cref="double.PositiveInfinity"/> returned if value is positive infinity (ignored, essentially).
+		/// The <seealso cref="double.PositiveInfinity"/> returned if value is positive infinity (ignored, essentially).
 		/// IMPORTANT: If the <see cref="UnitOfMeasurement"/> is not <c>null</c>
 		/// both <see cref="Min"/> and <see cref="Max"/> values are scaled.
-		/// Use the <see cref="MetricUnits"/> to normalize them.
+		/// Use the <see cref="MetricExtensions"/> to normalize them.
 		/// </value>
 		double Max { get; }
 

@@ -16,43 +16,43 @@ namespace CodeJam.PerfTests
 	// ReSharper disable once RedundantAttributeUsageProperty
 	[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
 	[PublicAPI, MeansImplicitUse]
+	[MetricAttribute("RelativeTime", Category = TimeMetricValuesProvider.Category)]
 	public class CompetitionBenchmarkAttribute : BenchmarkAttribute,
-		IMetricAttribute<CompetitionBenchmarkAttribute.RelativeTimeValuesProvider>
+		IMetricAttribute<CompetitionBenchmarkAttribute.ValuesProvider>
 	{
 		/// <summary>
 		/// Implementation of <see cref="IMetricValuesProvider"/> for the see <see cref="CompetitionBenchmarkAttribute"/>.
 		/// </summary>
-		internal class RelativeTimeValuesProvider : TimeMetricValuesProvider
+		internal class ValuesProvider : TimeMetricValuesProvider
 		{
-			/// <summary>Initializes a new instance of the <see cref="RelativeTimeValuesProvider"/> class.</summary>
-			public RelativeTimeValuesProvider() : base(LogNormalMetricCalculator.Instance, true) { }
+			/// <summary>Initializes a new instance of the <see cref="ValuesProvider"/> class.</summary>
+			public ValuesProvider() : base(LogNormalMetricCalculator.Instance, true) { }
 		}
 
 		/// <summary>Marks the competition benchmark.</summary>
-		public CompetitionBenchmarkAttribute() : this(EmptyMetricValue, EmptyMetricValue)
-		{
-		}
+		public CompetitionBenchmarkAttribute() : this(EmptyMetricValue, EmptyMetricValue) { }
 
 		/// <summary>Marks the competition benchmark.</summary>
 		/// <param name="max">
 		/// The maximum value.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// Use <seealso cref="double.PositiveInfinity" /> returned if value is positive infinity (ignored, essentially).
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// Use <seealso cref="double.PositiveInfinity"/> if value is positive infinity (ignored, essentially).
 		/// </param>
-		public CompetitionBenchmarkAttribute(double max): this(FromNegativeInfinity, max)
-		{
-		}
+		public CompetitionBenchmarkAttribute(double max)
+			: this(
+				max.GetMinMetricValue(MetricSingleValueMode.FromInfinityToMax),
+				max) { }
 
 		/// <summary>Marks the competition benchmark.</summary>
 		/// <param name="min">
 		/// The minimum value.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// The <seealso cref="double.NegativeInfinity" /> should be used if value is negative infinity (ignored, essentially).
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// The <seealso cref="double.NegativeInfinity"/> should be used if value is negative infinity (ignored, essentially).
 		/// </param>
 		/// <param name="max">
 		/// The maximum value.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// Use <seealso cref="double.PositiveInfinity" /> returned if value is positive infinity (ignored, essentially).
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// Use <seealso cref="double.PositiveInfinity"/> if value is positive infinity (ignored, essentially).
 		/// </param>
 		public CompetitionBenchmarkAttribute(double min, double max)
 		{
@@ -71,22 +71,22 @@ namespace CodeJam.PerfTests
 		/// <summary>Minimum value.</summary>
 		/// <value>
 		/// The minimum value.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// The <seealso cref="double.NegativeInfinity" /> returned if value is negative infinity (ignored, essentially).
-		/// IMPORTANT: If the <see cref="UnitOfMeasurement" /> is not <c>null</c>
-		/// both <see cref="Min" /> and <see cref="Max" /> values are scaled.
-		/// Use the <see cref="MetricUnits" /> to normalize them.
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// The <seealso cref="double.NegativeInfinity"/> returned if value is negative infinity (ignored, essentially).
+		/// IMPORTANT: If the <see cref="UnitOfMeasurement"/> is not <c>null</c>
+		/// both <see cref="Min"/> and <see cref="Max"/> values are scaled.
+		/// Use the <see cref="MetricExtensions"/> to normalize them.
 		/// </value>
 		public double Min { get; }
 
 		/// <summary>Maximum value.</summary>
 		/// <value>
 		/// The maximum value.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// Use <seealso cref="double.PositiveInfinity" /> returned if value is positive infinity (ignored, essentially).
-		/// IMPORTANT: If the <see cref="UnitOfMeasurement" /> is not <c>null</c>
-		/// both <see cref="Min" /> and <see cref="Max" /> values are scaled.
-		/// Use the <see cref="MetricUnits" /> to normalize them.
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// Use <seealso cref="double.PositiveInfinity"/> if value is positive infinity (ignored, essentially).
+		/// IMPORTANT: If the <see cref="UnitOfMeasurement"/> is not <c>null</c>
+		/// both <see cref="Min"/> and <see cref="Max"/> values are scaled.
+		/// Use the <see cref="MetricExtensions"/> to normalize them.
 		/// </value>
 		public double Max { get; }
 

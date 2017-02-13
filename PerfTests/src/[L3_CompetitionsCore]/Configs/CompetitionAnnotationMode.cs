@@ -8,9 +8,9 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Competition annotations parameters class.</summary>
-	/// <seealso cref="BenchmarkDotNet.Jobs.JobMode{CompetitionLimitsMode}"/>
+	/// <seealso cref="BenchmarkDotNet.Jobs.CharacteristicObject{CompetitionLimitsMode}"/>
 	[PublicAPI]
-	public sealed class CompetitionAnnotationMode : JobMode<CompetitionAnnotationMode>
+	public sealed class CompetitionAnnotationMode : CharacteristicObject<CompetitionAnnotationMode>
 	{
 		/// <summary>Ignore existing limit annotations characteristic.</summary>
 		public static readonly Characteristic<bool> IgnoreExistingAnnotationsCharacteristic = Characteristic.Create(

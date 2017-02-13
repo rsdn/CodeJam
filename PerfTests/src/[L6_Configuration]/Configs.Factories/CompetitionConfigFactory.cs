@@ -198,12 +198,12 @@ namespace CodeJam.PerfTests.Configs.Factories
 		}
 
 		/// <summary>
-		/// Creates competition features. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
+		/// Creates competition features. <see cref="BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen"/> is false.
 		/// </summary>
 		/// <param name="jobId">The job identifier.</param>
 		/// <param name="metadataSource">The metadata source.</param>
 		/// <returns>
-		/// New competition features. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
+		/// New competition features. <see cref="BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen"/> is false.
 		/// </returns>
 		protected virtual CompetitionFeatures CreateCompetitionFeaturesUnfrozen(
 			[CanBeNull] string jobId,
@@ -271,13 +271,13 @@ namespace CodeJam.PerfTests.Configs.Factories
 		}
 
 		/// <summary>
-		/// Creates job for the competition. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
+		/// Creates job for the competition. <see cref="BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen"/> is false.
 		/// </summary>
 		/// <param name="jobId">The job identifier.</param>
 		/// <param name="metadataSource">The metadata source.</param>
 		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>
-		/// New job for the competition. <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
+		/// New job for the competition. <see cref="BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen"/> is false.
 		/// </returns>
 		protected virtual Job CreateJobUnfrozen(
 			[CanBeNull] string jobId,
@@ -309,12 +309,12 @@ namespace CodeJam.PerfTests.Configs.Factories
 
 		// TODO: pass id?
 		/// <summary>
-		/// Creates options for the competition. The <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
+		/// Creates options for the competition. The <see cref="BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen"/> is false.
 		/// </summary>
 		/// <param name="metadataSource">The metadata source.</param>
 		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>
-		/// Options for the competition. The <see cref="BenchmarkDotNet.Characteristics.JobMode.Frozen"/> is false.
+		/// Options for the competition. The <see cref="BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen"/> is false.
 		/// </returns>
 		protected virtual CompetitionOptions CreateCompetitionOptionsUnfrozen(
 			[CanBeNull] ICustomAttributeProvider metadataSource,

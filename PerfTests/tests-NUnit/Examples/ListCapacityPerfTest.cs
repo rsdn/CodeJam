@@ -18,6 +18,7 @@ namespace CodeJam.Examples.PerfTests
 		public void RunListCapacityPerfTest() => Competition.Run(this);
 
 		[CompetitionBaseline]
+		[GcAllocations(224, BinarySizeUnit.Byte)]
 		public int ListWithoutCapacity()
 		{
 			var data = new List<int>();
@@ -27,6 +28,7 @@ namespace CodeJam.Examples.PerfTests
 		}
 
 		[CompetitionBenchmark(0.20, 0.50)]
+		[GcAllocations(104, BinarySizeUnit.Byte)]
 		public int ListWithCapacity()
 		{
 			var data = new List<int>(Count);
