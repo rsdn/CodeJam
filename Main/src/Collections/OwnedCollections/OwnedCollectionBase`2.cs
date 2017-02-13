@@ -49,7 +49,7 @@ namespace CodeJam.Collections
 		{
 			foreach (var item in Items)
 			{
-				Code.BugIf(item == null, "Bug: one of items in collection is null.");
+				Code.BugIf(item == null, "One of items in collection is null.");
 				SetOwner(item, null);
 			}
 			base.ClearItems();
@@ -65,7 +65,7 @@ namespace CodeJam.Collections
 		{
 			Code.NotNull(item, nameof(item));
 
-			Code.AssertState(GetOwner(item) == null, "Cannot add an item as it is mapped to another owner.");
+			Code.AssertArgument(GetOwner(item) == null, nameof(item), "Cannot add an item as it is mapped to another owner.");
 			base.InsertItem(index, item);
 			SetOwner(item, _owner);
 		}
@@ -78,7 +78,7 @@ namespace CodeJam.Collections
 		protected override void RemoveItem(int index)
 		{
 			var item = this[index];
-			Code.BugIf(item == null, "Bug: one of items in collection is null.");
+			Code.BugIf(item == null, "One of items in collection is null.");
 
 			base.RemoveItem(index);
 			SetOwner(item, null);
@@ -96,10 +96,10 @@ namespace CodeJam.Collections
 		protected override void SetItem(int index, [NotNull] TItem item)
 		{
 			Code.NotNull(item, nameof(item));
-			Code.AssertState(GetOwner(item) == null, "Cannot add an item as it is mapped to another owner.");
+			Code.AssertArgument(GetOwner(item) == null, nameof(item), "Cannot add an item as it is mapped to another owner.");
 
 			var oldItem = this[index];
-			Code.BugIf(oldItem == null, "Bug: one of items in collection is null.");
+			Code.BugIf(oldItem == null, "One of items in collection is null.");
 			SetOwner(oldItem, null);
 			base.SetItem(index, item);
 			SetOwner(item, _owner);
@@ -166,7 +166,7 @@ namespace CodeJam.Collections
 		{
 			foreach (var item in Items)
 			{
-				Code.BugIf(item == null, "Bug: one of items in collection is null.");
+				Code.BugIf(item == null, "One of items in collection is null.");
 				SetOwner(item, null);
 			}
 			base.ClearItems();
@@ -182,7 +182,7 @@ namespace CodeJam.Collections
 		{
 			Code.NotNull(item, nameof(item));
 
-			Code.AssertState(GetOwner(item) == null, "Cannot add an item as it is mapped to another owner.");
+			Code.AssertArgument(GetOwner(item) == null, nameof(item), "Cannot add an item as it is mapped to another owner.");
 			base.InsertItem(index, item);
 			SetOwner(item, _owner);
 		}
@@ -195,7 +195,7 @@ namespace CodeJam.Collections
 		protected override void RemoveItem(int index)
 		{
 			var item = this[index];
-			Code.BugIf(item == null, "Bug: one of items in collection is null.");
+			Code.BugIf(item == null, "One of items in collection is null.");
 
 			base.RemoveItem(index);
 			SetOwner(item, null);
@@ -213,10 +213,10 @@ namespace CodeJam.Collections
 		protected override void SetItem(int index, [NotNull] TItem item)
 		{
 			Code.NotNull(item, nameof(item));
-			Code.AssertState(GetOwner(item) == null, "Cannot add an item as it is mapped to another owner.");
+			Code.AssertArgument(GetOwner(item) == null, nameof(item), "Cannot add an item as it is mapped to another owner.");
 
 			var oldItem = this[index];
-			Code.BugIf(oldItem == null, "Bug: one of items in collection is null.");
+			Code.BugIf(oldItem == null, "One of items in collection is null.");
 			SetOwner(oldItem, null);
 			base.SetItem(index, item);
 			SetOwner(item, _owner);

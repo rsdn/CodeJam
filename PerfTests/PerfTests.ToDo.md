@@ -9,7 +9,8 @@
 
 ## TODOs:
 
-!!! bug: no detailed output for selftest (check NUnit and other unit test providers too)
+!!! bug: gc accidentally reports 4kb allocations for non-allocationg methods. No idea how to fix.
+! xUnit: tests: force run as x64 (appveyor may run as x86)?
 
 ### Types:
  * IStoredMetricSource: add MetricName attribute, EnumName attribute => simplify parse logic as merging will be moved to the analyser.
@@ -69,7 +70,6 @@
  * High-priority test for TestProcessCycleTimeClock
  * Tests for broken log annotations.
  * app.config in the test integration projects: do we need it?
- * xUnit: tests: force run as x64 (appveyor may run as x86)?
  * Test for standard analyser warnings - are they logged as messages?
  * out of process test
  * local test for run under CI (CI mode on) (+ 1!)

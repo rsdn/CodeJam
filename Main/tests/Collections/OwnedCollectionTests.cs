@@ -77,14 +77,14 @@ namespace CodeJam.Collections
 			// Failures
 			Throws<ArgumentNullException>(() => owner1.Items.Add(null));
 			Throws<ArgumentNullException>(() => owner1.KeyedItems.Add(null));
-			Throws<InvalidOperationException>(() => owner1.Items.Add(item1));
-			Throws<InvalidOperationException>(() => owner1.Items.Add(item2));
-			Throws<InvalidOperationException>(() => owner1.KeyedItems.Add(item1));
-			Throws<InvalidOperationException>(() => owner1.KeyedItems.Add(item2));
-			Throws<InvalidOperationException>(() => owner2.Items.Add(item1));
-			Throws<InvalidOperationException>(() => owner2.Items.Add(item2));
-			Throws<InvalidOperationException>(() => owner2.KeyedItems.Add(item1));
-			Throws<InvalidOperationException>(() => owner2.KeyedItems.Add(item2));
+			Throws<ArgumentException>(() => owner1.Items.Add(item1));
+			Throws<ArgumentException>(() => owner1.Items.Add(item2));
+			Throws<ArgumentException>(() => owner1.KeyedItems.Add(item1));
+			Throws<ArgumentException>(() => owner1.KeyedItems.Add(item2));
+			Throws<ArgumentException>(() => owner2.Items.Add(item1));
+			Throws<ArgumentException>(() => owner2.Items.Add(item2));
+			Throws<ArgumentException>(() => owner2.KeyedItems.Add(item1));
+			Throws<ArgumentException>(() => owner2.KeyedItems.Add(item2));
 		}
 
 		[Test]
@@ -138,10 +138,10 @@ namespace CodeJam.Collections
 			// Failures
 			Throws<ArgumentNullException>(() => owner1.Items.Insert(0, null));
 			Throws<ArgumentNullException>(() => owner1.KeyedItems.Insert(0, null));
-			Throws<InvalidOperationException>(() => owner1.Items.Insert(0, item1));
-			Throws<InvalidOperationException>(() => owner1.Items.Insert(0, item2));
-			Throws<InvalidOperationException>(() => owner1.KeyedItems.Insert(0, item1));
-			Throws<InvalidOperationException>(() => owner1.KeyedItems.Insert(0, item2));
+			Throws<ArgumentException>(() => owner1.Items.Insert(0, item1));
+			Throws<ArgumentException>(() => owner1.Items.Insert(0, item2));
+			Throws<ArgumentException>(() => owner1.KeyedItems.Insert(0, item1));
+			Throws<ArgumentException>(() => owner1.KeyedItems.Insert(0, item2));
 		}
 
 		[Test]
@@ -166,8 +166,8 @@ namespace CodeJam.Collections
 			AreEqual(owner.Items[0], item2);
 
 			DoesNotThrow(() => owner.KeyedItems.Add(item1));
-			Throws<InvalidOperationException>(() => owner.Items[0] = owner.Items[0]);
-			Throws<InvalidOperationException>(() => owner.KeyedItems[0] = owner.Items[0]);
+			Throws<ArgumentException>(() => owner.Items[0] = owner.Items[0]);
+			Throws<ArgumentException>(() => owner.KeyedItems[0] = owner.Items[0]);
 
 			AreEqual(item1.Owner, owner);
 			AreEqual(item2.Owner, owner);
@@ -189,8 +189,8 @@ namespace CodeJam.Collections
 			AreEqual(item2.Owner, owner);
 			AreEqual(owner.Items[0], item1);
 			AreEqual(owner.KeyedItems[0], item2);
-			Throws<InvalidOperationException>(() => owner.Items.Add(item1));
-			Throws<InvalidOperationException>(() => owner.KeyedItems.Add(item2));
+			Throws<ArgumentException>(() => owner.Items.Add(item1));
+			Throws<ArgumentException>(() => owner.KeyedItems.Add(item2));
 
 			owner.Items.Clear();
 			AreEqual(item1.Owner, null);
@@ -222,8 +222,8 @@ namespace CodeJam.Collections
 			AreEqual(item2.Owner, owner);
 			AreEqual(owner.Items[0], item1);
 			AreEqual(owner.KeyedItems[0], item2);
-			Throws<InvalidOperationException>(() => owner.Items.Add(item1));
-			Throws<InvalidOperationException>(() => owner.KeyedItems.Add(item2));
+			Throws<ArgumentException>(() => owner.Items.Add(item1));
+			Throws<ArgumentException>(() => owner.KeyedItems.Add(item2));
 
 			owner.Items.RemoveAt(0);
 			AreEqual(item1.Owner, null);

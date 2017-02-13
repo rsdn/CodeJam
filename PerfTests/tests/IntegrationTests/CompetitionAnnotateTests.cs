@@ -159,7 +159,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public class AnnotatedWithTimeAndGcBenchmark
 		{
 			[CompetitionBaseline]
-			[GcAllocations(0.00, 2.00, BinarySizeUnit.Kilobyte)]
+			[GcAllocations(0.00, 6.00, BinarySizeUnit.Kilobyte)]
 			[ExpectedTime(0.00, 10.00, TimeUnit.Second)]
 			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
 
