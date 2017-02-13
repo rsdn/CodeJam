@@ -15,6 +15,7 @@ namespace CodeJam.Collections
 		/// <param name="ownerGetter">Owner getter for the item.</param>
 		/// <param name="ownerSetter">Owner setter for the item.</param>
 		/// <returns>A new instance of the <see cref="OwnedCollection{TOwner, TItem}" /> class.</returns>
+		[NotNull]
 		public static OwnedCollection<TOwner, TItem> Create<TOwner, TItem>(
 			[NotNull] TOwner owner,
 			[NotNull] Func<TItem, TOwner> ownerGetter,
@@ -32,6 +33,7 @@ namespace CodeJam.Collections
 		/// <param name="ownerSetter">Owner setter for the item.</param>
 		/// <param name="keyGetter">Key getter for the item.</param>
 		/// <returns>A new instance of the <see cref="OwnedCollection{TOwner, TKey, TItem}" /> class.</returns>
+		[NotNull]
 		public static OwnedCollection<TOwner, TKey, TItem> Create<TOwner, TKey, TItem>(
 			[NotNull] TOwner owner,
 			[NotNull] Func<TItem, TOwner> ownerGetter,
