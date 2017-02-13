@@ -138,7 +138,9 @@
     <Compile Include="Collections\Enumerable\EnumerableExtensions.Page.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensions.Slice.cs" />
     <Compile Include="Collections\NamespaceDoc.cs" />
-    <Compile Include="Collections\OwnedCollection.cs" />
+    <Compile Include="Collections\OwnedCollections\OwnedCollectionBase`2.cs" />
+    <Compile Include="Collections\OwnedCollections\OwnedCollection.cs" />
+    <Compile Include="Collections\OwnedCollections\OwnedCollection`2.cs" />
     <Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
     <Compile Include="Collections\QueryableExtensions.cs" />
     <Compile Include="Assertions\EnumCode.cs" />

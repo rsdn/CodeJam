@@ -5,42 +5,42 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
-	// DONTTOUCH: please, DO NOT move the OwnedCollection<TKey, TItem, TOwner> into its own file.
-	// The code in it is a copy of the OwnedCollection<TItem, TOwner> and it's easier 
-	// to keep them in sync when both are in single file.
+	// DONTTOUCH: please, DO NOT move the OwnedCollectionBase<TOwner, TKey, TItem> into its own file.
+	// The code in it is a copy of the OwnedCollectionBase<TOwner, TItem> and it's easier 
+	// to keep them in sync when both are in a single file.
 
 	/// <summary>Base collection type that allows to associate collection items with the owner.</summary>
-	/// <typeparam name="TItem">The type of the item.</typeparam>
 	/// <typeparam name="TOwner">The type of the owner.</typeparam>
+	/// <typeparam name="TItem">The type of the item.</typeparam>
 	/// <seealso cref="System.Collections.ObjectModel.Collection{TItem}"/>
 	[PublicAPI]
-	public abstract class OwnedCollection<TItem, TOwner> : Collection<TItem>
-		where TItem : class
+	public abstract class OwnedCollectionBase<TOwner, TItem> : Collection<TItem>
 		where TOwner : class
+		where TItem : class
 	{
 		private readonly TOwner _owner;
-		private readonly Func<TItem, TOwner> _ownerGetter;
-		private readonly Action<TItem, TOwner> _ownerSetter;
 
-		/// <summary>Initializes a new instance of the <see cref="OwnedCollection{TItem, TOwner}"/> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="OwnedCollectionBase{TOwner, TItem}"/> class.</summary>
 		/// <param name="owner">The owner for the collection.</param>
-		/// <param name="ownerGetter">Item getter for the owner.</param>
-		/// <param name="ownerSetter">Item setter for the owner.</param>
-		protected OwnedCollection(
-			TOwner owner,
-			Func<TItem, TOwner> ownerGetter,
-			Action<TItem, TOwner> ownerSetter)
+		protected OwnedCollectionBase([NotNull] TOwner owner)
 		{
 			Code.NotNull(owner, nameof(owner));
-			Code.NotNull(ownerGetter, nameof(ownerGetter));
-			Code.NotNull(ownerSetter, nameof(ownerSetter));
 
 			_owner = owner;
-			_ownerGetter = ownerGetter;
-			_ownerSetter = ownerSetter;
 		}
 
-		#region Copy this into OwnedCollection<TKey, TItem, TOwner>
+		#region Copy this into OwnedCollectionBase<TKey, TItem, TOwner>
+		/// <summary>Gets the owner of the item.</summary>
+		/// <param name="item">The item.</param>
+		/// <returns>Owner of the item.</returns>
+		[CanBeNull]
+		protected abstract TOwner GetOwner([NotNull] TItem item);
+
+		/// <summary>Sets the owner of the item.</summary>
+		/// <param name="item">The item.</param>
+		/// <param name="owner">The owner of the item.</param>
+		protected abstract void SetOwner([NotNull] TItem item, [CanBeNull] TOwner owner);
+
 		/// <summary>
 		/// Removes all elements from the <see cref="T:System.Collections.ObjectModel.Collection`1"/>.
 		/// Clears owner for the items being removed.
@@ -50,7 +50,7 @@ namespace CodeJam.Collections
 			foreach (var item in Items)
 			{
 				Code.BugIf(item == null, "Bug: one of items in collection is null.");
-				_ownerSetter(item, null);
+				SetOwner(item, null);
 			}
 			base.ClearItems();
 		}
@@ -61,13 +61,13 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param>
 		/// <param name="item">The object to insert. The value can be null for reference types.</param>
-		protected override void InsertItem(int index, TItem item)
+		protected override void InsertItem(int index, [NotNull] TItem item)
 		{
 			Code.NotNull(item, nameof(item));
 
-			Code.AssertState(_ownerGetter(item) == null, "Cannot add an item as it is mapped to another owner.");
+			Code.AssertState(GetOwner(item) == null, "Cannot add an item as it is mapped to another owner.");
 			base.InsertItem(index, item);
-			_ownerSetter(item, _owner);
+			SetOwner(item, _owner);
 		}
 
 		/// <summary>
@@ -81,7 +81,7 @@ namespace CodeJam.Collections
 			Code.BugIf(item == null, "Bug: one of items in collection is null.");
 
 			base.RemoveItem(index);
-			_ownerSetter(item, null);
+			SetOwner(item, null);
 		}
 
 		/// <summary>
@@ -93,70 +93,71 @@ namespace CodeJam.Collections
 		/// <param name="item">
 		/// The new value for the element at the specified index. The value can be null for reference types.
 		/// </param>
-		protected override void SetItem(int index, TItem item)
+		protected override void SetItem(int index, [NotNull] TItem item)
 		{
 			Code.NotNull(item, nameof(item));
-			Code.AssertState(_ownerGetter(item) == null, "Cannot add an item as it is mapped to another owner.");
+			Code.AssertState(GetOwner(item) == null, "Cannot add an item as it is mapped to another owner.");
 
 			var oldItem = this[index];
 			Code.BugIf(oldItem == null, "Bug: one of items in collection is null.");
-			_ownerSetter(oldItem, null);
+			SetOwner(oldItem, null);
 			base.SetItem(index, item);
-			_ownerSetter(item, _owner);
+			SetOwner(item, _owner);
 		}
 		#endregion
 	}
 
 	/// <summary>Base keyed collection type that allows to associate collection itens with the owner.</summary>
+	/// <typeparam name="TOwner">The type of the owner.</typeparam>
 	/// <typeparam name="TKey">The type of the key.</typeparam>
 	/// <typeparam name="TItem">The type of the item.</typeparam>
-	/// <typeparam name="TOwner">The type of the owner.</typeparam>
-	/// <seealso cref="System.Collections.ObjectModel.Collection{TItem}"/>
+	/// <seealso cref="System.Collections.ObjectModel.KeyedCollection{TKey, TItem}"/>
 	[PublicAPI]
-	public abstract class OwnedCollection<TKey, TItem, TOwner> : KeyedCollection<TKey, TItem>
-		where TItem : class
+	public abstract class OwnedCollectionBase<TOwner, TKey, TItem> : KeyedCollection<TKey, TItem>
 		where TOwner : class
+		where TItem : class
 	{
 		private readonly TOwner _owner;
-		private readonly Func<TItem, TKey> _keyGetter;
-		private readonly Func<TItem, TOwner> _ownerGetter;
-		private readonly Action<TItem, TOwner> _ownerSetter;
 
 		/// <summary>Initializes a new instance of the <see cref="OwnedCollection{TItem, TOwner}"/> class.</summary>
 		/// <param name="owner">The owner for the collection.</param>
-		/// <param name="keyGetter">The get key.</param>
-		/// <param name="ownerGetter">Item getter for the owner.</param>
-		/// <param name="ownerSetter">Item setter for the owner.</param>
-		protected OwnedCollection(
-			TOwner owner,
-			Func<TItem, TKey> keyGetter,
-			Func<TItem, TOwner> ownerGetter,
-			Action<TItem, TOwner> ownerSetter)
+		protected OwnedCollectionBase([NotNull] TOwner owner)
 		{
 			Code.NotNull(owner, nameof(owner));
-			Code.NotNull(keyGetter, nameof(keyGetter));
-			Code.NotNull(ownerGetter, nameof(ownerGetter));
-			Code.NotNull(ownerSetter, nameof(ownerSetter));
 
 			_owner = owner;
-			_keyGetter = keyGetter;
-			_ownerGetter = ownerGetter;
-			_ownerSetter = ownerSetter;
 		}
 
-		/// <summary>
-		/// Получение ключа для элемента
-		/// </summary>
-		protected override TKey GetKeyForItem(TItem item)
+		/// <summary>When implemented in a derived class, extracts the key from the specified element.</summary>
+		/// <param name="item">The element from which to extract the key.</param>
+		/// <returns>The key for the specified element.</returns>
+		protected override sealed TKey GetKeyForItem([NotNull] TItem item)
 		{
 			Code.NotNull(item, nameof(item));
 
-			var result = _keyGetter(item);
+			var result = GetKey(item);
 			Code.AssertState(result != null, "The key of the item should be not null.");
 			return result;
 		}
 
-		#region Copied from OwnedCollection<TKey, TItem, TOwner>
+		/// <summary>Gets a key for the item.</summary>
+		/// <param name="item">The item.</param>
+		/// <returns>Key for the item.</returns>
+		[NotNull]
+		protected abstract TKey GetKey([NotNull] TItem item);
+
+		#region Copied from OwnedCollectionBase<TOwner, TItem>
+		/// <summary>Gets the owner of the item.</summary>
+		/// <param name="item">The item.</param>
+		/// <returns>Owner of the item.</returns>
+		[CanBeNull]
+		protected abstract TOwner GetOwner([NotNull] TItem item);
+
+		/// <summary>Sets the owner of the item.</summary>
+		/// <param name="item">The item.</param>
+		/// <param name="owner">The owner of the item.</param>
+		protected abstract void SetOwner([NotNull] TItem item, [CanBeNull] TOwner owner);
+
 		/// <summary>
 		/// Removes all elements from the <see cref="T:System.Collections.ObjectModel.Collection`1"/>.
 		/// Clears owner for the items being removed.
@@ -166,7 +167,7 @@ namespace CodeJam.Collections
 			foreach (var item in Items)
 			{
 				Code.BugIf(item == null, "Bug: one of items in collection is null.");
-				_ownerSetter(item, null);
+				SetOwner(item, null);
 			}
 			base.ClearItems();
 		}
@@ -177,13 +178,13 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param>
 		/// <param name="item">The object to insert. The value can be null for reference types.</param>
-		protected override void InsertItem(int index, TItem item)
+		protected override void InsertItem(int index, [NotNull] TItem item)
 		{
 			Code.NotNull(item, nameof(item));
 
-			Code.AssertState(_ownerGetter(item) == null, "Cannot add an item as it is mapped to another owner.");
+			Code.AssertState(GetOwner(item) == null, "Cannot add an item as it is mapped to another owner.");
 			base.InsertItem(index, item);
-			_ownerSetter(item, _owner);
+			SetOwner(item, _owner);
 		}
 
 		/// <summary>
@@ -197,7 +198,7 @@ namespace CodeJam.Collections
 			Code.BugIf(item == null, "Bug: one of items in collection is null.");
 
 			base.RemoveItem(index);
-			_ownerSetter(item, null);
+			SetOwner(item, null);
 		}
 
 		/// <summary>
@@ -209,14 +210,16 @@ namespace CodeJam.Collections
 		/// <param name="item">
 		/// The new value for the element at the specified index. The value can be null for reference types.
 		/// </param>
-		protected override void SetItem(int index, TItem item)
+		protected override void SetItem(int index, [NotNull] TItem item)
 		{
 			Code.NotNull(item, nameof(item));
-			Code.AssertState(_ownerGetter(item) == null, "Cannot add an item as it is mapped to another owner.");
+			Code.AssertState(GetOwner(item) == null, "Cannot add an item as it is mapped to another owner.");
 
-			_ownerSetter(this[index], null);
+			var oldItem = this[index];
+			Code.BugIf(oldItem == null, "Bug: one of items in collection is null.");
+			SetOwner(oldItem, null);
 			base.SetItem(index, item);
-			_ownerSetter(item, _owner);
+			SetOwner(item, _owner);
 		}
 		#endregion
 	}

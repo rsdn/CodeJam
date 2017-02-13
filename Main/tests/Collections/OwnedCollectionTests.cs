@@ -26,16 +26,16 @@ namespace CodeJam.Collections
 			public Owner Owner { get; set; }
 		}
 
-		public class MyCollection : OwnedCollection<Item, Owner>
+		public class MyCollection : OwnedCollection<Owner, Item>
 		{
 			public MyCollection(Owner owner)
 				: base(owner, i => i.Owner, (i, o) => i.Owner = o) { }
 		}
 
-		public class MyKeyedCollection : OwnedCollection<Guid, Item, Owner>
+		public class MyKeyedCollection : OwnedCollection<Owner, Guid, Item>
 		{
 			public MyKeyedCollection(Owner owner)
-				: base(owner, i => i.Key, i => i.Owner, (i, o) => i.Owner = o) { }
+				: base(owner, i => i.Owner, (i, o) => i.Owner = o, i => i.Key) { }
 		}
 
 		[Test]
