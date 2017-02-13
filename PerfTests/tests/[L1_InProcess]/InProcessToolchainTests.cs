@@ -199,7 +199,7 @@ namespace CodeJam.PerfTests
 			Assert.IsTrue(summary?.ValidationErrors[0].IsCritical);
 			Assert.AreEqual(
 				summary?.ValidationErrors[0].Message,
-				"Job SelfTestConfigX86, EnvMode.Platform was as X64 (X86 expected). Fix your test runner options.");
+				"Job SelfTestConfigX86, EnvMode.Platform was run as X64 (X86 expected). Fix your test runner options.");
 		}
 
 		public class InProcessBenchmarkAllCases
