@@ -136,7 +136,9 @@ namespace CodeJam.Collections
 			Code.NotNull(item, nameof(item));
 
 			var result = GetKey(item);
-			Code.AssertState(result != null, "The key of the item should be not null.");
+			if (result == null)
+				throw CodeExceptions.Argument(nameof(item), "The key of the item should be not null.");
+
 			return result;
 		}
 
