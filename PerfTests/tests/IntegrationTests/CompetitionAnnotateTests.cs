@@ -26,7 +26,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 				{
 					Adjustments =
 					{
-						AdjustLimits = true
+						AdjustLimits = false
 					},
 					Annotations =
 					{
