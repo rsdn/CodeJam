@@ -71,6 +71,7 @@
     <Compile Include="Collections\Enumerable\MinMaxByTests.cs" />
     <Compile Include="Collections\ArrayExtensionsTest.cs" />
     <Compile Include="Collections\ComparerBuilderTests.cs" />
+    <Compile Include="Collections\OwnedCollectionTests.cs" />
     <Compile Include="Collections\QueryableExtensionsTests.ApplyOrder.cs" />
     <Compile Include="Collections\DictionaryExtensionsTest.cs" />
     <Compile Include="Collections\Enumerable\MinMaxByTests.generated.cs">
