@@ -36,11 +36,27 @@ namespace CodeJam.PerfTests.Configs
 	{
 		private class ModifierImpl : ICompetitionModifier
 		{
-			public void Modify(ManualCompetitionConfig competitionConfig) => 
+			public void Modify(ManualCompetitionConfig competitionConfig) =>
 				competitionConfig.Metrics.RemoveAll(m => m == CompetitionMetricInfo.RelativeTime);
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionNoRelativeTimeAttribute" /> class.</summary>
 		public CompetitionNoRelativeTimeAttribute() : base(() => new ModifierImpl()) { }
+	}
+
+	/// <summary>
+	/// Adds the <see cref="CompetitionMetricInfo.AbsoluteTime"/> metric.
+	/// </summary>
+	/// <seealso cref="CodeJam.PerfTests.CompetitionModifierAttribute" />
+	public sealed class CompetitionNoGcModifierAttribute : CompetitionModifierAttribute
+	{
+		private class ModifierImpl : ICompetitionModifier
+		{
+			public void Modify(ManualCompetitionConfig competitionConfig) =>
+				competitionConfig.Metrics.RemoveAll(m => m.Category == GcMetricValuesProvider.Category);
+		}
+
+		/// <summary>Initializes a new instance of the <see cref="CompetitionNoRelativeTimeAttribute" /> class.</summary>
+		public CompetitionNoGcModifierAttribute() : base(() => new ModifierImpl()) { }
 	}
 }

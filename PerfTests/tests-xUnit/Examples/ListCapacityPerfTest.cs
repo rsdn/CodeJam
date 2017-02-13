@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using CodeJam.PerfTests;
+using CodeJam.PerfTests.Configs;
 
 using Xunit;
 
@@ -10,6 +11,7 @@ using Xunit;
 namespace CodeJam.Examples.PerfTests
 {
 	[Trait("Category", "PerfTests: xUnit examples")]
+	[CompetitionNoGcModifier]
 	public class ListCapacityPerfTest
 	{
 		private const int Count = 10;
@@ -18,7 +20,6 @@ namespace CodeJam.Examples.PerfTests
 		public void RunListCapacityPerfTest() => Competition.Run(this);
 
 		[CompetitionBaseline]
-		[GcAllocations(224, BinarySizeUnit.Byte)]
 		public int ListWithoutCapacity()
 		{
 			var data = new List<int>();
@@ -28,7 +29,6 @@ namespace CodeJam.Examples.PerfTests
 		}
 
 		[CompetitionBenchmark(0.20, 0.50)]
-		[GcAllocations(104, BinarySizeUnit.Byte)]
 		public int ListWithCapacity()
 		{
 			var data = new List<int>(Count);
