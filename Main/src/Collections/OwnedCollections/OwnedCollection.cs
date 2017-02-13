@@ -8,7 +8,7 @@ namespace CodeJam.Collections
 	[PublicAPI]
 	public static class OwnedCollection
 	{
-		/// <summary>Initializes a new instance of the <see cref="OwnedCollection{TOwner, TItem}" /> class.</summary>
+		/// <summary>Creates a new instance of the <see cref="OwnedCollection{TOwner, TItem}" /> class.</summary>
 		/// <typeparam name="TOwner">The type of the owner.</typeparam>
 		/// <typeparam name="TItem">The type of the item.</typeparam>
 		/// <param name="owner">The owner for the collection.</param>
@@ -24,7 +24,7 @@ namespace CodeJam.Collections
 			where TItem : class =>
 				new OwnedCollection<TOwner, TItem>(owner, ownerGetter, ownerSetter);
 
-		/// <summary>Initializes a new instance of the <see cref="OwnedCollection{TOwner, TKey, TItem}" /> class.</summary>
+		/// <summary>Creates a new instance of the <see cref="OwnedCollection{TOwner, TKey, TItem}" /> class.</summary>
 		/// <typeparam name="TOwner">The type of the owner.</typeparam>
 		/// <typeparam name="TKey">The type of the key.</typeparam>
 		/// <typeparam name="TItem">The type of the item.</typeparam>

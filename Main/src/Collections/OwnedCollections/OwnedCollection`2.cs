@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 namespace CodeJam.Collections
 {
 	// DONTTOUCH: please, DO NOT move the OwnedCollection<TOwner, TKey, TItem> into its own file.
-	// The code in it is a copy of the OwnedCollection<TOwner, TItem> and it's easier 
+	// The code in it is a copy of the OwnedCollection<TOwner, TItem> and it's easier
 	// to keep them in sync when both are in a single file.
 
 	/// <summary>Collection type that allows to associate collection items with the owner.</summary>

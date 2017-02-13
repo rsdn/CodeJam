@@ -6,13 +6,13 @@ using JetBrains.Annotations;
 namespace CodeJam.Collections
 {
 	// DONTTOUCH: please, DO NOT move the OwnedCollectionBase<TOwner, TKey, TItem> into its own file.
-	// The code in it is a copy of the OwnedCollectionBase<TOwner, TItem> and it's easier 
+	// The code in it is a copy of the OwnedCollectionBase<TOwner, TItem> and it's easier
 	// to keep them in sync when both are in a single file.
 
 	/// <summary>Base collection type that allows to associate collection items with the owner.</summary>
 	/// <typeparam name="TOwner">The type of the owner.</typeparam>
 	/// <typeparam name="TItem">The type of the item.</typeparam>
-	/// <seealso cref="System.Collections.ObjectModel.Collection{TItem}"/>
+	/// <seealso cref="Collection{TItem}"/>
 	[PublicAPI]
 	public abstract class OwnedCollectionBase<TOwner, TItem> : Collection<TItem>
 		where TOwner : class
@@ -42,7 +42,7 @@ namespace CodeJam.Collections
 		protected abstract void SetOwner([NotNull] TItem item, [CanBeNull] TOwner owner);
 
 		/// <summary>
-		/// Removes all elements from the <see cref="T:System.Collections.ObjectModel.Collection`1"/>.
+		/// Removes all elements from the <see cref="Collection{T}"/>.
 		/// Clears owner for the items being removed.
 		/// </summary>
 		protected override void ClearItems()
@@ -56,7 +56,7 @@ namespace CodeJam.Collections
 		}
 
 		/// <summary>
-		/// Inserts an element into the <see cref="T:System.Collections.ObjectModel.Collection`1"/> at the specified index.
+		/// Inserts an element into the <see cref="Collection{T}"/> at the specified index.
 		/// Sets owner for the items being added.
 		/// </summary>
 		/// <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param>
@@ -71,7 +71,7 @@ namespace CodeJam.Collections
 		}
 
 		/// <summary>
-		/// Removes the element at the specified index of the <see cref="T:System.Collections.ObjectModel.Collection`1"/>.
+		/// Removes the element at the specified index of the <see cref="Collection{T}"/>.
 		/// Clears owner for the item being removed.
 		/// </summary>
 		/// <param name="index">The zero-based index of the element to remove.</param>
@@ -111,7 +111,7 @@ namespace CodeJam.Collections
 	/// <typeparam name="TOwner">The type of the owner.</typeparam>
 	/// <typeparam name="TKey">The type of the key.</typeparam>
 	/// <typeparam name="TItem">The type of the item.</typeparam>
-	/// <seealso cref="System.Collections.ObjectModel.KeyedCollection{TKey, TItem}"/>
+	/// <seealso cref="KeyedCollection{TKey, TItem}"/>
 	[PublicAPI]
 	public abstract class OwnedCollectionBase<TOwner, TKey, TItem> : KeyedCollection<TKey, TItem>
 		where TOwner : class
@@ -136,11 +136,11 @@ namespace CodeJam.Collections
 		{
 			Code.NotNull(item, nameof(item));
 
-			var result = GetKey(item);
-			if (result == null)
+			var key = GetKey(item);
+			if (key == null)
 				throw CodeExceptions.Argument(nameof(item), "The key of the item should be not null.");
 
-			return result;
+			return key;
 		}
 
 		/// <summary>Gets a key for the item.</summary>
@@ -162,7 +162,7 @@ namespace CodeJam.Collections
 		protected abstract void SetOwner([NotNull] TItem item, [CanBeNull] TOwner owner);
 
 		/// <summary>
-		/// Removes all elements from the <see cref="T:System.Collections.ObjectModel.Collection`1"/>.
+		/// Removes all elements from the <see cref="Collection{T}"/>.
 		/// Clears owner for the items being removed.
 		/// </summary>
 		protected override void ClearItems()
@@ -176,7 +176,7 @@ namespace CodeJam.Collections
 		}
 
 		/// <summary>
-		/// Inserts an element into the <see cref="T:System.Collections.ObjectModel.Collection`1"/> at the specified index.
+		/// Inserts an element into the <see cref="Collection{T}"/> at the specified index.
 		/// Sets owner for the items being added.
 		/// </summary>
 		/// <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param>
@@ -191,7 +191,7 @@ namespace CodeJam.Collections
 		}
 
 		/// <summary>
-		/// Removes the element at the specified index of the <see cref="T:System.Collections.ObjectModel.Collection`1"/>.
+		/// Removes the element at the specified index of the <see cref="Collection{T}"/>.
 		/// Clears owner for the item being removed.
 		/// </summary>
 		/// <param name="index">The zero-based index of the element to remove.</param>
