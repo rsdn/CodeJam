@@ -123,11 +123,21 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the constructor.
 		/// </summary>
+		/// <returns>
+		/// The <see cref="ConstructorInfo"/> instance.
+		/// </returns>
+		[Pure]
+		public static ConstructorInfo Constructor<T>() where T : new() =>
+			Expression.New(typeof(T)).Constructor;
+
+		/// <summary>
+		/// Returns the constructor.
+		/// </summary>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="ConstructorInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
+		[Pure]
 		public static ConstructorInfo Constructor<T>([NotNull] Expression<Func<T>> expression) =>
 			expression.GetConstructor();
 		#endregion

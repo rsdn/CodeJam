@@ -54,7 +54,7 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="ConstructorInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
+		[Pure]
 		public static ConstructorInfo Constructor([NotNull] Expression<Func<T>> expression) =>
 			expression.GetConstructor();
 

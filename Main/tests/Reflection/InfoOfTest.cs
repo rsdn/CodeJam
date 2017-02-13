@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 
 using JetBrains.Annotations;
 
@@ -67,6 +68,40 @@ namespace CodeJam.Reflection
 
 			Assert.AreEqual(expected, ctor1, "#1");
 			Assert.AreEqual(expected, ctor2, "#2");
+		}
+
+		[Test]
+		public void ExtractingDefaultClassCtor()
+		{
+			var expected = typeof(User).GetConstructors().First(c => c.GetParameters().Length == 0);
+			var ctor1 = InfoOf.Constructor<User>();
+			var ctor2 = InfoOf.Constructor(() => new User());
+			var ctor3 = InfoOf<User>.Constructor(() => new User());
+			var ctor4 = Expression.New(typeof(User)).Constructor;
+
+			Assert.NotNull(ctor1, "#1");
+			Assert.NotNull(ctor2, "#2");
+			Assert.NotNull(ctor3, "#3");
+			Assert.NotNull(ctor4, "#4");
+
+			Assert.AreEqual(expected, ctor1);
+			Assert.AreEqual(expected, ctor2);
+			Assert.AreEqual(expected, ctor3);
+			Assert.AreEqual(expected, ctor4);
+		}
+
+		[Test]
+		public void ExtractingDefaultStructCtor()
+		{
+			var ctor1 = InfoOf.Constructor<Guid>();
+			var ctor2 = InfoOf.Constructor(() => new Guid());
+			var ctor3 = InfoOf<Guid>.Constructor(() => new Guid());
+			var ctor4 = Expression.New(typeof(Guid)).Constructor;
+
+			Assert.Null(ctor1, "#1");
+			Assert.Null(ctor2, "#2");
+			Assert.Null(ctor3, "#3");
+			Assert.Null(ctor4, "#4");
 		}
 
 		[Test]
