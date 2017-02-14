@@ -7,7 +7,7 @@ namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>
 	/// Adds the <see cref="CompetitionMetricInfo.AbsoluteTime"/> metric
-	/// and the <see cref="CompetitionMetricInfo.GcAllocations"/> metric.
+	/// and GC metrics.
 	/// </summary>
 	/// <seealso cref="CodeJam.PerfTests.CompetitionModifierAttribute" />
 	public sealed class CompetitionMeasureAllAttribute : CompetitionModifierAttribute
@@ -29,7 +29,7 @@ namespace CodeJam.PerfTests.Configs
 	}
 
 	/// <summary>
-	/// Adds the <see cref="CompetitionMetricInfo.AbsoluteTime"/> metric.
+	/// Removes the <see cref="CompetitionMetricInfo.RelativeTime"/> metric.
 	/// </summary>
 	/// <seealso cref="CodeJam.PerfTests.CompetitionModifierAttribute" />
 	public sealed class CompetitionNoRelativeTimeAttribute : CompetitionModifierAttribute
@@ -45,10 +45,26 @@ namespace CodeJam.PerfTests.Configs
 	}
 
 	/// <summary>
-	/// Adds the <see cref="CompetitionMetricInfo.AbsoluteTime"/> metric.
+	/// Adds the <see cref="CompetitionMetricInfo.GcAllocations"/> metric.
 	/// </summary>
 	/// <seealso cref="CodeJam.PerfTests.CompetitionModifierAttribute" />
-	public sealed class CompetitionNoGcModifierAttribute : CompetitionModifierAttribute
+	public sealed class CompetitionMeasureAllocationsAttribute : CompetitionModifierAttribute
+	{
+		private class ModifierImpl : ICompetitionModifier
+		{
+			public void Modify(ManualCompetitionConfig competitionConfig) =>
+				competitionConfig.Metrics.Add(CompetitionMetricInfo.GcAllocations);
+		}
+
+		/// <summary>Initializes a new instance of the <see cref="CompetitionNoRelativeTimeAttribute" /> class.</summary>
+		public CompetitionMeasureAllocationsAttribute() : base(() => new ModifierImpl()) { }
+	}
+
+	/// <summary>
+	/// Removes GC metrics (all with category equal to <see cref="GcMetricValuesProvider.Category"/>).
+	/// </summary>
+	/// <seealso cref="CodeJam.PerfTests.CompetitionModifierAttribute" />
+	public sealed class CompetitionIgnoreAllocationsAttribute : CompetitionModifierAttribute
 	{
 		private class ModifierImpl : ICompetitionModifier
 		{
@@ -57,6 +73,6 @@ namespace CodeJam.PerfTests.Configs
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionNoRelativeTimeAttribute" /> class.</summary>
-		public CompetitionNoGcModifierAttribute() : base(() => new ModifierImpl()) { }
+		public CompetitionIgnoreAllocationsAttribute() : base(() => new ModifierImpl()) { }
 	}
 }

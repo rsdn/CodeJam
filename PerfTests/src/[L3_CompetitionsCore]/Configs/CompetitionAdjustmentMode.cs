@@ -17,6 +17,10 @@ namespace CodeJam.PerfTests.Configs
 		public static readonly Characteristic<bool> AdjustLimitsCharacteristic = Characteristic.Create(
 			(CompetitionAdjustmentMode m) => m.AdjustLimits);
 
+		/// <summary>Force adjustment of empty competition limits characteristic.</summary>
+		public static readonly Characteristic<bool> ForceEmptyLimitsAdjustmentCharacteristic = Characteristic.Create(
+			(CompetitionAdjustmentMode m) => m.ForceEmptyLimitsAdjustment);
+
 		/// <summary>Characteristic for number of runs performed before adjusting competition limits.</summary>
 		public static readonly Characteristic<int> SkipRunsBeforeAdjustmentCharacteristic = Characteristic.Create(
 			(CompetitionAdjustmentMode m) => m.SkipRunsBeforeAdjustment);
@@ -39,6 +43,22 @@ namespace CodeJam.PerfTests.Configs
 			set
 			{
 				AdjustLimitsCharacteristic[this] = value;
+			}
+		}
+
+		/// <summary>Force adjustment of empty competition limits.</summary>
+		/// <value>
+		/// <c>true</c> to perform adjustment of empty limits even if <see cref="AdjustLimits"/> is disabled; otherwise, <c>false</c>.
+		/// </value>
+		public bool ForceEmptyLimitsAdjustment
+		{
+			get
+			{
+				return ForceEmptyLimitsAdjustmentCharacteristic[this];
+			}
+			set
+			{
+				ForceEmptyLimitsAdjustmentCharacteristic[this] = value;
 			}
 		}
 

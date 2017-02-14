@@ -19,5 +19,18 @@ namespace CodeJam
 
 		public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random rnd) =>
 			source.OrderBy(i => rnd.Next());
+
+		public static IEnumerable<Holder<T>> Wrap<T>(this IEnumerable<T> source) =>
+			source.Select(i => new Holder<T>(i));
+	}
+
+	public class Holder<T>
+	{
+		public Holder(T item)
+		{
+			Value = item;
+		}
+
+		public T Value { get; }
 	}
 }

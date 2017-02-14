@@ -20,6 +20,13 @@ namespace CodeJam.Collections
 			AreEqual(new int?[0].MinOrDefault(42), 42);
 			AreEqual(new string[0].MinOrDefault(), null);
 			AreEqual(new string[0].MinOrDefault("Hello!"), "Hello!");
+
+			AreEqual(new int[0].Wrap().MinOrDefault(i => i.Value), 0);
+			AreEqual(new int[0].Wrap().MinOrDefault(i => i.Value, 42), 42);
+			AreEqual(new int?[0].Wrap().MinOrDefault(i => i.Value), null);
+			AreEqual(new int?[0].Wrap().MinOrDefault(i => i.Value, 42), 42);
+			AreEqual(new string[0].Wrap().MinOrDefault(i => i.Value), null);
+			AreEqual(new string[0].Wrap().MinOrDefault(i => i.Value, "Hello!"), "Hello!");
 		}
 
 		[TestCase(new[] { 1.0 }, 1.0)]
@@ -37,6 +44,13 @@ namespace CodeJam.Collections
 			AreEqual(source.Shuffle(rnd).MinOrDefault(123), expected);
 			AreEqual(source.Shuffle(rnd).MinOrDefault(), expected);
 			AreEqual(source.Shuffle(rnd).Min(), expected);
+
+			AreEqual(source.Wrap().MinOrDefault(i => i.Value, 123), expected);
+			AreEqual(source.Wrap().MinOrDefault(i => i.Value), expected);
+			AreEqual(source.Wrap().Min(i => i.Value), expected);
+			AreEqual(source.Wrap().Shuffle(rnd).MinOrDefault(i => i.Value, 123), expected);
+			AreEqual(source.Wrap().Shuffle(rnd).MinOrDefault(i => i.Value), expected);
+			AreEqual(source.Wrap().Shuffle(rnd).Min(i => i.Value), expected);
 		}
 
 		[TestCase(new[] { 1.0 }, 1.0)]
@@ -61,12 +75,19 @@ namespace CodeJam.Collections
 			AreEqual(items.Shuffle(rnd).MinOrDefault(123), expectedItem);
 			AreEqual(items.Shuffle(rnd).MinOrDefault(), expectedItem);
 			AreEqual(items.Shuffle(rnd).Min(), expectedItem);
+
+			AreEqual(items.Wrap().MinOrDefault(i => i.Value, 123), expectedItem);
+			AreEqual(items.Wrap().MinOrDefault(i => i.Value), expectedItem);
+			AreEqual(items.Wrap().Min(i => i.Value), expectedItem);
+			AreEqual(items.Wrap().Shuffle(rnd).MinOrDefault(i => i.Value, 123), expectedItem);
+			AreEqual(items.Wrap().Shuffle(rnd).MinOrDefault(i => i.Value), expectedItem);
+			AreEqual(items.Wrap().Shuffle(rnd).Min(i => i.Value), expectedItem);
 		}
 
 		[TestCase(new[] { "A" }, "A")]
 		[TestCase(new[] { "A", "B", "C", "D", "E" }, "A")]
 		[TestCase(new string[] { null, null, null }, null)]
-		[TestCase(new [] { null, null, "A", null }, "A")]
+		[TestCase(new[] { null, null, "A", null }, "A")]
 		public void MinOrDefaultString(string[] source, string expected)
 		{
 			var rnd = TestTools.GetTestRandom();
@@ -77,6 +98,13 @@ namespace CodeJam.Collections
 			AreEqual(source.Shuffle(rnd).MinOrDefault("!"), expected);
 			AreEqual(source.Shuffle(rnd).MinOrDefault(), expected);
 			AreEqual(source.Shuffle(rnd).Min(), expected);
+
+			AreEqual(source.Wrap().MinOrDefault(i => i.Value, "!"), expected);
+			AreEqual(source.Wrap().MinOrDefault(i => i.Value), expected);
+			AreEqual(source.Wrap().Min(i => i.Value), expected);
+			AreEqual(source.Wrap().Shuffle(rnd).MinOrDefault(i => i.Value, "!"), expected);
+			AreEqual(source.Wrap().Shuffle(rnd).MinOrDefault(i => i.Value), expected);
+			AreEqual(source.Wrap().Shuffle(rnd).Min(i => i.Value), expected);
 		}
 		#endregion
 
@@ -90,6 +118,13 @@ namespace CodeJam.Collections
 			AreEqual(new int?[0].MaxOrDefault(42), 42);
 			AreEqual(new string[0].MaxOrDefault(), null);
 			AreEqual(new string[0].MaxOrDefault("Hello!"), "Hello!");
+
+			AreEqual(new int[0].Wrap().MaxOrDefault(i => i.Value), 0);
+			AreEqual(new int[0].Wrap().MaxOrDefault(i => i.Value, 42), 42);
+			AreEqual(new int?[0].Wrap().MaxOrDefault(i => i.Value), null);
+			AreEqual(new int?[0].Wrap().MaxOrDefault(i => i.Value, 42), 42);
+			AreEqual(new string[0].Wrap().MaxOrDefault(i => i.Value), null);
+			AreEqual(new string[0].Wrap().MaxOrDefault(i => i.Value, "Hello!"), "Hello!");
 		}
 
 		[TestCase(new[] { 1.0 }, 1.0)]
@@ -107,6 +142,13 @@ namespace CodeJam.Collections
 			AreEqual(source.Shuffle(rnd).MaxOrDefault(123), expected);
 			AreEqual(source.Shuffle(rnd).MaxOrDefault(), expected);
 			AreEqual(source.Shuffle(rnd).Max(), expected);
+
+			AreEqual(source.Wrap().MaxOrDefault(i => i.Value, 123), expected);
+			AreEqual(source.Wrap().MaxOrDefault(i => i.Value), expected);
+			AreEqual(source.Wrap().Max(i => i.Value), expected);
+			AreEqual(source.Wrap().Shuffle(rnd).MaxOrDefault(i => i.Value, 123), expected);
+			AreEqual(source.Wrap().Shuffle(rnd).MaxOrDefault(i => i.Value), expected);
+			AreEqual(source.Wrap().Shuffle(rnd).Max(i => i.Value), expected);
 		}
 
 		[TestCase(new[] { 1.0 }, 1.0)]
@@ -131,6 +173,13 @@ namespace CodeJam.Collections
 			AreEqual(items.Shuffle(rnd).MaxOrDefault(123), expectedItem);
 			AreEqual(items.Shuffle(rnd).MaxOrDefault(), expectedItem);
 			AreEqual(items.Shuffle(rnd).Max(), expectedItem);
+
+			AreEqual(items.Wrap().MaxOrDefault(i => i.Value,123), expectedItem);
+			AreEqual(items.Wrap().MaxOrDefault(i => i.Value), expectedItem);
+			AreEqual(items.Wrap().Max(i => i.Value), expectedItem);
+			AreEqual(items.Wrap().Shuffle(rnd).MaxOrDefault(i => i.Value,123), expectedItem);
+			AreEqual(items.Wrap().Shuffle(rnd).MaxOrDefault(i => i.Value), expectedItem);
+			AreEqual(items.Wrap().Shuffle(rnd).Max(i => i.Value), expectedItem);
 		}
 
 		[TestCase(new[] { "A" }, "A")]
@@ -147,6 +196,13 @@ namespace CodeJam.Collections
 			AreEqual(source.Shuffle(rnd).MaxOrDefault("!"), expected);
 			AreEqual(source.Shuffle(rnd).MaxOrDefault(), expected);
 			AreEqual(source.Shuffle(rnd).Max(), expected);
+
+			AreEqual(source.Wrap().MaxOrDefault(i => i.Value,"!"), expected);
+			AreEqual(source.Wrap().MaxOrDefault(i => i.Value), expected);
+			AreEqual(source.Wrap().Max(i => i.Value), expected);
+			AreEqual(source.Wrap().Shuffle(rnd).MaxOrDefault(i => i.Value,"!"), expected);
+			AreEqual(source.Wrap().Shuffle(rnd).MaxOrDefault(i => i.Value), expected);
+			AreEqual(source.Wrap().Shuffle(rnd).Max(i => i.Value), expected);
 		}
 		#endregion
 

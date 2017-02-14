@@ -11,7 +11,7 @@ using Xunit;
 namespace CodeJam.Examples.PerfTests
 {
 	[Trait("Category", "PerfTests: xUnit examples")]
-	[CompetitionNoGcModifier]
+	[CompetitionIgnoreAllocations]
 	public class ListCapacityPerfTest
 	{
 		private const int Count = 10;

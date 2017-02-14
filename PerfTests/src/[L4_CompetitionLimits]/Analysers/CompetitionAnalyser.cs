@@ -175,6 +175,13 @@ namespace CodeJam.PerfTests.Analysers
 		private bool PerformAdjustment(CompetitionAnalysis analysis) =>
 			analysis.Adjustments.AdjustLimits &&
 			analysis.RunState.RunNumber > analysis.Adjustments.SkipRunsBeforeAdjustment;
+
+		private bool PerformAdjustment(CompetitionAnalysis analysis, CompetitionMetricValue metricValue)
+		{
+			if (analysis.Adjustments.AdjustLimits || (metricValue.ValuesRange.IsEmpty && analysis.Adjustments.ForceEmptyLimitsAdjustment))
+				return analysis.RunState.RunNumber > analysis.Adjustments.SkipRunsBeforeAdjustment;
+			return false;
+		}
 		#endregion
 
 		#region Prepare targets
@@ -404,15 +411,22 @@ namespace CodeJam.PerfTests.Analysers
 
 			analysis.RunState.WriteVerboseHint($"Metric {metricValue} check failed, limits {actualValues}");
 
-			bool result = metricValue.ValuesRange.IsEmpty;
-			if (!result)
+			bool checkPassed;
+			if (metricValue.ValuesRange.IsEmpty)
+			{
+				// Check passed if empty & adjustment is disabled.
+				checkPassed = !analysis.Adjustments.AdjustLimits && !analysis.Adjustments.ForceEmptyLimitsAdjustment;
+			}
+			else
 			{
 				analysis.AddTestErrorConclusion(
 					$"Method {targetMethodTitle}: {metric} metric {actualValues.ToString(metric.MetricUnits)} does not fit into limits {metricValue}.",
 					summary.TryGetBenchmarkReport(benchmark));
+
+				checkPassed = false;
 			}
 
-			if (PerformAdjustment(analysis))
+			if (PerformAdjustment(analysis, metricValue))
 			{
 				var limitValues = metric.ValuesProvider.TryGetLimitValues(benchmark, analysis.Summary);
 				metricValue.UnionWith(
@@ -420,11 +434,9 @@ namespace CodeJam.PerfTests.Analysers
 						metric,
 						limitValues,
 						metric.MetricUnits[limitValues]));
-
-				result = false;
 			}
 
-			return result;
+			return checkPassed;
 		}
 
 		private void CompleteCheckTargets(CompetitionAnalysis analysis, bool checkPassed)
