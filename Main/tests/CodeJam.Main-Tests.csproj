@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Assertions\EnumCodeTests.cs" />
     <Compile Include="Assertions\CodeTests.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensionTests.MinMaxOrDefault.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensionTests.With.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensionTests.GroupWhile.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensionTests.TopoSort.cs" />
@@ -112,6 +113,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="TestTools.cs" />
     <Compile Include="Reflection\AssemblyExtensionsTest.cs" />
     <Compile Include="Reflection\CreateInstanceTests.cs" />
     <Compile Include="Expressions\ExprTests.cs" />

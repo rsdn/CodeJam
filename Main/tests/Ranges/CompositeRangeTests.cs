@@ -133,15 +133,12 @@ namespace CodeJam.Ranges
 		public static void TestCompositeRangeCreate(
 			string ranges, string expected)
 		{
-			var seed = new Random().Next();
-			Console.WriteLine(
-				$"{MethodBase.GetCurrentMethod().Name}: Rnd seed: {seed} (use the seed to reproduce test results).");
-			var rnd = new Random(seed);
+			var rnd = TestTools.GetTestRandom();
 
 			var compositeRange = ParseCompositeRangeDouble(ranges);
 			AreEqual(compositeRange.ToString(CultureInfo.InvariantCulture), expected);
 
-			var compositeRange2 = compositeRange.SubRanges.OrderBy(r => rnd.Next()).ToCompositeRange();
+			var compositeRange2 = compositeRange.SubRanges.Shuffle(rnd).ToCompositeRange();
 			AreEqual(compositeRange2.ToString(CultureInfo.InvariantCulture), expected);
 		}
 
@@ -448,17 +445,14 @@ namespace CodeJam.Ranges
 			false)]
 		public static void TestCompositeRangeWithKeyEquality(string range1, string range2, bool expected)
 		{
-			var seed = new Random().Next();
-			Console.WriteLine(
-				$"{MethodBase.GetCurrentMethod().Name}: Rnd seed: {seed} (use the seed to reproduce test results).");
-			var rnd = new Random(seed);
+			var rnd = TestTools.GetTestRandom();
 
 			var compositeRange1 = ParseCompositeKeyedRangeInt32(range1);
 			var compositeRange2 = ParseCompositeKeyedRangeInt32(range2);
 
 			// Shuffle keys
-			var compositeRange1Rnd = compositeRange1.SubRanges.OrderBy(r => rnd.Next()).ToCompositeRange();
-			var compositeRange2Rnd = compositeRange2.SubRanges.OrderBy(r => rnd.Next()).ToCompositeRange();
+			var compositeRange1Rnd = compositeRange1.SubRanges.Shuffle(rnd).ToCompositeRange();
+			var compositeRange2Rnd = compositeRange2.SubRanges.Shuffle(rnd).ToCompositeRange();
 
 			AreEqual(compositeRange1.Equals(compositeRange1Rnd), true);
 			AreEqual(compositeRange2.Equals(compositeRange2Rnd), true);
