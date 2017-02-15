@@ -9,8 +9,12 @@
 
 ## TODOs:
 
-!!! bug: gc accidentally reports 4kb allocations for non-allocationg methods. No idea how to fix.
+### TODO NOW:
+!!! BUG: gc accidentally reports 4kb allocations for non-allocationg methods.
+    Add IgnoreFirstPageAllocation to metric values provider?
 ! xUnit: tests: force run as x64 (appveyor may run as x86)?
+! limit checking: ignore rounding errors due to string formatting.
+  Add metricRange.ScaleAndAutoRound(metricUnit) to metric extensions
 
 ### Types:
  * IStoredMetricSource: add MetricName attribute, EnumName attribute => simplify parse logic as merging will be moved to the analyser.

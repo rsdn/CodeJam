@@ -514,9 +514,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			private static void AppendFirstAttributeArgs(CompetitionMetricValue metricValue, StringBuilder result)
 			{
+				var metric = metricValue.Metric;
 				var metricRange = metricValue.ValuesRange;
 				var metricUnit = metricValue.DisplayMetricUnit;
-				var metricEnumType = metricValue.Metric.MetricUnits.MetricEnumType;
 
 				if (metricRange.Min.Equals(0) && metricRange.Max.Equals(0))
 				{
@@ -524,23 +524,37 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				}
 				else if (metricRange.IsNotEmpty)
 				{
-					var min = metricRange.GetMinMetricValueToStore(metricValue.Metric);
-
-					if (min is double minValue)
-					{
-						var minValueText = double.IsInfinity(metricRange.Max) ?
-							$"double.{nameof(double.NegativeInfinity)}"
-							: minValue.ToString(metricUnit, true);
-						result.Append(minValueText).Append(", ");
-					}
-
+					var minValueText = double.IsInfinity(metricRange.Min) ?
+						$"double.{nameof(double.NegativeInfinity)}"
+						: metricRange.Min.ToString(metricUnit, true);
 					var maxValueText = double.IsInfinity(metricRange.Max) ?
 						$"double.{nameof(double.PositiveInfinity)}"
 						: metricRange.Max.ToString(metricUnit, true);
+
+					switch (metric.SingleValueMode)
+					{
+						case MetricSingleValueMode.FromInfinityToMax:
+							if (!double.IsInfinity(metricRange.Min))
+							{
+								result.Append(minValueText).Append(", ");
+							}
+							break;
+						case MetricSingleValueMode.BothMinAndMax:
+							if (double.IsInfinity(metricRange.Min) || minValueText != maxValueText)
+							{
+								result.Append(minValueText).Append(", ");
+							}
+							break;
+						default:
+							throw CodeExceptions.UnexpectedValue(
+								$"Unknown single value mode of metric {metric}: {metric.SingleValueMode}.");
+					}
+
 					result.Append(maxValueText);
 
-					if (!metricValue.Metric.MetricUnits.IsEmpty)
+					if (!metric.MetricUnits.IsEmpty)
 					{
+						var metricEnumType = metric.MetricUnits.MetricEnumType;
 						Code.BugIf(
 							metricEnumType == null || metricUnit.EnumValue == null ||
 								!Enum.IsDefined(metricEnumType, metricUnit.EnumValue),

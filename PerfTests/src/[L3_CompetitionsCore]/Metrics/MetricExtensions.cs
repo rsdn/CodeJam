@@ -28,34 +28,6 @@ namespace CodeJam.PerfTests.Metrics
 		/// <returns>Minimum metric value.</returns>
 		public static double GetMinMetricValue(this double metricMaxValue, [NotNull] CompetitionMetricInfo metricInfo) =>
 			GetMinMetricValue(metricMaxValue, metricInfo.SingleValueMode);
-
-		/// <summary>Returns minimum metric value to be stored as a source annotation.</summary>
-		/// <param name="metricValues">Range of metric values.</param>
-		/// <param name="singleValueMode">How single-value annotations are threated.</param>
-		/// <returns>Minimum metric value to be stored as a source annotation.</returns>
-		public static double? GetMinMetricValueToStore(this MetricRange metricValues, MetricSingleValueMode singleValueMode)
-		{
-			Code.AssertArgument(metricValues.IsNotEmpty, nameof(metricValues), "The metric values range should be not empty.");
-			if (metricValues.Min.Equals(0) && metricValues.Max.Equals(0))
-				return 0;
-
-			switch (singleValueMode)
-			{
-				case MetricSingleValueMode.FromInfinityToMax:
-					return double.IsNegativeInfinity(metricValues.Min) ? null : (double?)metricValues.Min;
-				case MetricSingleValueMode.BothMinAndMax:
-					return metricValues.Min.Equals(metricValues.Max) ? null : (double?)metricValues.Min;
-				default:
-					throw CodeExceptions.UnexpectedArgumentValue(nameof(singleValueMode), singleValueMode);
-			}
-		}
-
-		/// <summary>Returns minimum metric value to be stored as a source annotation.</summary>
-		/// <param name="metricValues">Range of metric values.</param>
-		/// <param name="metricInfo">The metric information.</param>
-		/// <returns>Minimum metric value to be stored as a source annotation.</returns>
-		public static double? GetMinMetricValueToStore(this MetricRange metricValues, [NotNull] CompetitionMetricInfo metricInfo) =>
-			GetMinMetricValueToStore(metricValues, metricInfo.SingleValueMode);
 		#endregion
 
 		#region Scaled
