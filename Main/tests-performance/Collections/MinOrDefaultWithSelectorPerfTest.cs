@@ -7,8 +7,6 @@ using BenchmarkDotNet.Attributes;
 using CodeJam.PerfTests;
 using CodeJam.PerfTests.Configs;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 namespace CodeJam.Collections
@@ -16,6 +14,7 @@ namespace CodeJam.Collections
 	[CompetitionMeasureAllocations]
 	public class MinOrDefaultWithSelectorPerfTest
 	{
+		#region PerfTest helpers
 		public class Holder<T>
 		{
 			public Holder(T item)
@@ -26,15 +25,9 @@ namespace CodeJam.Collections
 			public T Value { get; }
 		}
 
-		private static T MinOrDefaultStruct<TSource, T>(
-			IEnumerable<TSource> source, Func<TSource, T> selector)
-			where T : struct =>
-				MinOrDefaultStruct(source, selector, null, default(T));
-
-		private static T MinOrDefaultStruct<TSource, T>(
-			[NotNull, InstantHandle] IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, T> selector,
-			[CanBeNull]IComparer<T> comparer, T defaultValue)
+		private static T MinOrDefaultComparer<TSource, T>(
+			IEnumerable<TSource> source, Func<TSource, T> selector,
+			IComparer<T> comparer, T defaultValue)
 			where T : struct
 		{
 			Code.NotNull(source, nameof(source));
@@ -58,6 +51,28 @@ namespace CodeJam.Collections
 			}
 		}
 
+		private static int MinOrDefaultHardcoded(Holder<int>[] source, int defaultValue)
+		{
+			Code.NotNull(source, nameof(source));
+
+			if (source.Length == 0)
+				return defaultValue;
+
+			var result = source[0].Value;
+			for (int i = 1; i < source.Length; i++)
+			{
+				var candidate = source[i].Value;
+				if (result > candidate)
+					result = candidate;
+			}
+			return result;
+		}
+
+
+		private static T MinByOrDefaultGeneric<T, T2>(T[] data, Func<T, T2> selector) =>
+			data.MinByOrDefault(selector);
+		#endregion
+
 		private Holder<int>[] _data;
 
 		[Setup]
@@ -74,16 +89,24 @@ namespace CodeJam.Collections
 		[GcAllocations(56, BinarySizeUnit.Byte)]
 		public int LinqMin() => _data.Min(i => i.Value);
 
-		[CompetitionBenchmark(1.07, 1.15)]
+		[CompetitionBenchmark(0.84, 1.15)]
 		[GcAllocations(32, BinarySizeUnit.Byte)]
 		public int MinOrDefault() => _data.MinOrDefault(i => i.Value);
 
-		[CompetitionBenchmark(1.07, 1.15)]
+		[CompetitionBenchmark(1.07, 1.16)]
 		[GcAllocations(32, BinarySizeUnit.Byte)]
-		public int MinOrDefaultStruct() => MinOrDefaultStruct(_data, i => i.Value);
-		
-		[CompetitionBenchmark(0.83, 0.87)]
+		public int MinOrDefaultComparer() => MinOrDefaultComparer(_data, i => i.Value, null, 0);
+
+		[CompetitionBenchmark(1.10, 1.19)]
 		[GcAllocations(32, BinarySizeUnit.Byte)]
-		public Holder<int> MinByOrDefault() => _data.MinByOrDefault(i => i.Value);
+		public Holder<int> MinByOrDefaultGeneric() => MinByOrDefaultGeneric(_data, i => i.Value);
+
+		[CompetitionBenchmark(0.102, 0.111)]
+		[GcAllocations(0)]
+		public int MinOrDefaultHardcoded() => MinOrDefaultHardcoded(_data, 0);
+
+		[CompetitionBenchmark(0.83, 0.90)]
+		[GcAllocations(32, BinarySizeUnit.Byte)]
+		public Holder<int> MinByOrDefaultHardcoded() => _data.MinByOrDefault(i => i.Value);
 	}
 }
