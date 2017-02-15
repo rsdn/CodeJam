@@ -99,10 +99,10 @@ namespace CodeJam.Collections
 
 						if (candidate != null)
 						{
-							bool candiudateIsNan = _hasNaN && areNotEqual(candidate, candidate);
+							bool candidateIsNan = _hasNaN && areNotEqual(candidate, candidate);
 
 							// DONTTOUCH: !greaterThan used for result NaN handling
-							if (result == null || (!candiudateIsNan && !greaterThan(result, candidate)))
+							if (result == null || (!candidateIsNan && !greaterThan(result, candidate)))
 							{
 								result = candidate;
 							}
@@ -133,10 +133,10 @@ namespace CodeJam.Collections
 
 						if (candidate != null)
 						{
-							bool candiudateIsNan = _hasNaN && areNotEqual(candidate, candidate);
+							bool candidateIsNan = _hasNaN && areNotEqual(candidate, candidate);
 
 							// DONTTOUCH: !greaterThan used for result NaN handling
-							if (result == null || (!candiudateIsNan && !greaterThan(result, candidate)))
+							if (result == null || (!candidateIsNan && !greaterThan(result, candidate)))
 							{
 								result = candidate;
 							}
