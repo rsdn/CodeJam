@@ -383,26 +383,15 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				bool allFixed = true;
 
 				var metricsByCategory = competitionTarget.MetricValues.GroupBy(m => m.Metric.Category);
-
 				foreach (var metricGrouping in metricsByCategory.Select(x => x.ToArray()))
 				{
-					var firstAttributeTypeHandle = metricGrouping[0].Metric.AttributeType.TypeHandle;
-					// BUG: first inplace member placed on primary line
-					// TODO: store attribute line & update it?
-					
-					if (!benchmarkMethod.AttributeLineNumbers.TryGetValue(firstAttributeTypeHandle, out var categoryAttributeLine))
-					{
-						categoryAttributeLine = benchmarkMethod.PrimaryAttributeLineNumber;
-					}
-
-					var categoryAttributePosition = sourceCodeFile[categoryAttributeLine].LastIndexOf(']');
-					if (categoryAttributePosition < 0)
-					{
-						allFixed = false;
-						continue;
-					}
-
-					Array.Reverse(metricGrouping);
+					var metricAttributes = metricGrouping.Select(m => m.Metric.AttributeType.TypeHandle).ToHashSet();
+					var attributeAppendLineNumber = benchmarkMethod.AttributeLineNumbers
+						.Where(p => metricAttributes.Contains(p.Key))
+						.MinOrDefault(p => p.Value, -1);
+					var attributeInsertLineNumber = benchmarkMethod.AttributeLineNumbers
+						.Where(p => metricAttributes.Contains(p.Key))
+						.MaxOrDefault(p => p.Value, benchmarkMethod.PrimaryAttributeLineNumber);
 
 					foreach (var metricValue in metricGrouping.Where(m => m.HasUnsavedChanges || m.ValuesRange.IsEmpty))
 					{
@@ -412,21 +401,36 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 							attributeTypeHandle,
 							out var attributeLineNumber))
 						{
-							allFixed &= TryUpdateLineWithAttribute(sourceCodeFile, attributeLineNumber, metricValue);
-						}
-						else if (metricValue.Metric.AnnotateInplace)
-						{
-							allFixed &= TryInsertAttributeInplace(
-								sourceCodeFile, categoryAttributeLine, categoryAttributePosition,
-								benchmarkMethod, metricValue,
-								attributeTypeHandle);
+							bool updated = TryUpdateLineWithAttribute(sourceCodeFile, attributeLineNumber, metricValue);
+
+							if (updated && attributeAppendLineNumber <= 0)
+							{
+								attributeAppendLineNumber = attributeLineNumber;
+							}
+							allFixed &= updated;
 						}
 						else
 						{
-							allFixed &= TryInsertLineWithAttribute(
-								sourceCodeFile, categoryAttributeLine,
-								benchmarkMethod, metricValue,
-								attributeTypeHandle);
+							bool inserted = false;
+							if (metricValue.Metric.AnnotateInplace && attributeAppendLineNumber > 0)
+							{
+								inserted = TryInsertAttributeInplace(
+									sourceCodeFile, attributeAppendLineNumber,
+									benchmarkMethod, metricValue,
+									attributeTypeHandle);
+							}
+
+							if (!inserted)
+							{
+								attributeInsertLineNumber = InsertLineWithAttribute(
+									sourceCodeFile, attributeInsertLineNumber,
+									benchmarkMethod, metricValue,
+									attributeTypeHandle);
+								if (attributeAppendLineNumber <= 0)
+								{
+									attributeAppendLineNumber = attributeInsertLineNumber;
+								}
+							}
 						}
 					}
 				}
@@ -572,11 +576,15 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			#region Insert attribute
 			private static bool TryInsertAttributeInplace(
-				SourceCodeFile sourceCodeFile, int inplaceLineNumber, int inplacePosition,
+				SourceCodeFile sourceCodeFile, int inplaceLineNumber,
 				BenchmarkMethodInfo benchmarkMethod, CompetitionMetricValue metricValue,
 				RuntimeTypeHandle attributeTypeHandle)
 			{
 				var line = sourceCodeFile[inplaceLineNumber];
+				var inplacePosition = line.LastIndexOf(']');
+				if (inplacePosition < 0)
+					return false;
+
 				var appendText = GetAppendAnnotationText(metricValue);
 				line = line.Insert(inplacePosition, appendText);
 				sourceCodeFile.ReplaceLine(inplaceLineNumber, line);
@@ -586,7 +594,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				return true;
 			}
 
-			private static bool TryInsertLineWithAttribute(
+			private static int InsertLineWithAttribute(
 				SourceCodeFile sourceCodeFile, int insertLineNumber,
 				BenchmarkMethodInfo benchmarkMethod, CompetitionMetricValue metricValue,
 				RuntimeTypeHandle attributeTypeHandle)
@@ -598,7 +606,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				sourceCodeFile.InsertLine(newLineNumber, newLine);
 				benchmarkMethod.AddAttribute(attributeTypeHandle, newLineNumber);
 
-				return true;
+				return newLineNumber;
 			}
 
 			private static string GetWhitespacePrefix(string line) =>

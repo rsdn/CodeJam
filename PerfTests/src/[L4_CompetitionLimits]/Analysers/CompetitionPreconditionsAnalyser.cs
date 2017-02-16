@@ -6,6 +6,7 @@ using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
+using BenchmarkDotNet.Running;
 
 using CodeJam.Strings;
 using CodeJam.Collections;
@@ -119,12 +120,14 @@ namespace CodeJam.PerfTests.Analysers
 			var checksMode = analysis.Checks;
 			if (checksMode.CheckLimits)
 			{
+				var timeProvider = CompetitionMetricInfo.AbsoluteTime.ValuesProvider;
 				var timeUnits = CompetitionMetricInfo.AbsoluteTime.MetricUnits;
+
 				if (checksMode.TooFastBenchmarkLimit > TimeSpan.Zero)
 				{
 					var tooFastReports = GetTargetNames(
 						analysis,
-						r => r.Nanoseconds < checksMode.TooFastBenchmarkLimit.TotalNanoseconds());
+						b => timeProvider.TryGetMeanValue(b, analysis.Summary) < checksMode.TooFastBenchmarkLimit.TotalNanoseconds());
 
 					if (tooFastReports.Any())
 					{
@@ -141,9 +144,10 @@ namespace CodeJam.PerfTests.Analysers
 
 				if (checksMode.LongRunningBenchmarkLimit > TimeSpan.Zero)
 				{
+
 					var tooSlowReports = GetTargetNames(
 						analysis,
-						r => r.Nanoseconds > checksMode.LongRunningBenchmarkLimit.TotalNanoseconds());
+						b => timeProvider.TryGetMeanValue(b, analysis.Summary) > checksMode.LongRunningBenchmarkLimit.TotalNanoseconds());
 
 					if (tooSlowReports.Any())
 					{
@@ -164,11 +168,10 @@ namespace CodeJam.PerfTests.Analysers
 		// ReSharper disable once SuggestBaseTypeForParameter
 		private string[] GetTargetNames(
 			CompetitionAnalysis analysis,
-			Func<Measurement, bool> measurementFilter) =>
+			Func<Benchmark, bool> benchmarkFilter) =>
 				analysis.Summary.GetSummaryOrderBenchmarks()
-					.Select(b => analysis.Summary[b])
-					.Where(rp => rp.GetResultRuns().Any(measurementFilter))
-					.Select(rp => rp.Benchmark.Target.MethodDisplayInfo)
+					.Where(benchmarkFilter)
+					.Select(b => b.Target.MethodDisplayInfo)
 					.Distinct()
 					.ToArray();
 		#endregion

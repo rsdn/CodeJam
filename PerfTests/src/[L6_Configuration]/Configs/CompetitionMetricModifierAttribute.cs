@@ -16,11 +16,11 @@ namespace CodeJam.PerfTests.Configs
 		{
 			public void Modify(ManualCompetitionConfig competitionConfig)
 			{
-				competitionConfig.Metrics.Add(CompetitionMetricInfo.AbsoluteTime);
 				competitionConfig.Metrics.Add(CompetitionMetricInfo.GcAllocations);
 				competitionConfig.Metrics.Add(CompetitionMetricInfo.Gc0);
 				competitionConfig.Metrics.Add(CompetitionMetricInfo.Gc1);
 				competitionConfig.Metrics.Add(CompetitionMetricInfo.Gc2);
+				competitionConfig.Metrics.Add(CompetitionMetricInfo.AbsoluteTime);
 			}
 		}
 

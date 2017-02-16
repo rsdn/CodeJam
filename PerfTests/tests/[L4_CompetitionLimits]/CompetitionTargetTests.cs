@@ -26,7 +26,7 @@ namespace CodeJam.PerfTests
 			Assert.IsFalse(result.HasUnsavedChanges);
 
 			result.UnionWith(
-				new CompetitionMetricValue(metric));
+				new CompetitionMetricValue(metric), true);
 			Assert.IsTrue(result.ValuesRange.IsEmpty);
 			Assert.IsFalse(result.HasUnsavedChanges);
 
@@ -34,15 +34,15 @@ namespace CodeJam.PerfTests
 				new CompetitionMetricValue(
 					metric,
 					MetricRange.Create(1 * (int)TimeUnit.Millisecond, 2 * (int)TimeUnit.Millisecond),
-					secUnit));
+					secUnit),
+				true);
 			Assert.AreEqual(result.ToString(), "[0.00100..0.00200] sec");
 			Assert.AreEqual(result.ValuesRange.Min, 1 * 1000 * 1000);
 			Assert.AreEqual(result.ValuesRange.Max, 2 * 1000 * 1000);
 			Assert.IsFalse(result.ValuesRange.IsEmpty);
 			Assert.IsTrue(result.HasUnsavedChanges);
 
-			result.UnionWith(
-				new CompetitionMetricValue(metric));
+			result.UnionWith(new CompetitionMetricValue(metric), true);
 			Assert.AreEqual(result.ToString(), "[0.00100..0.00200] sec");
 			Assert.AreEqual(result.ValuesRange.Min, 1 * 1000 * 1000);
 			Assert.AreEqual(result.ValuesRange.Max, 2 * 1000 * 1000);
@@ -51,7 +51,8 @@ namespace CodeJam.PerfTests
 
 
 			result.UnionWith(
-				new CompetitionMetricValue(metric, MetricRange.Create(0.0005, null).ToNormalizedMetricValues(secUnit), msUnit));
+				new CompetitionMetricValue(metric, MetricRange.Create(0.0005, null).ToNormalizedMetricValues(secUnit), msUnit),
+				true);
 			Assert.AreEqual(result.ToString(), "[0.50..+∞) ms");
 			Assert.AreEqual(result.ValuesRange.Min, 0.5 * 1000 * 1000);
 			Assert.AreEqual(result.ValuesRange.Max, double.PositiveInfinity);
@@ -59,7 +60,8 @@ namespace CodeJam.PerfTests
 			Assert.IsTrue(result.HasUnsavedChanges);
 
 			result.UnionWith(
-				new CompetitionMetricValue(metric, MetricRange.Create(null, 1), MetricUnit.Empty));
+				new CompetitionMetricValue(metric, MetricRange.Create(null, 1), MetricUnit.Empty),
+				true);
 			Assert.AreEqual(result.ToString(), "(-∞..+∞) sec");
 			Assert.AreEqual(result.ValuesRange.Min, double.NegativeInfinity);
 			Assert.AreEqual(result.ValuesRange.Max, double.PositiveInfinity);

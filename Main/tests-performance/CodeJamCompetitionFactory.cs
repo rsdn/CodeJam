@@ -83,11 +83,15 @@ namespace CodeJam
 		{
 			var result = base.CreateCompetitionOptionsUnfrozen(metadataSource, competitionFeatures);
 
+			if (competitionFeatures.ContinuousIntegrationMode)
+			{
+				if (!result.HasValue(CompetitionAdjustmentMode.SkipRunsBeforeAdjustmentCharacteristic))
+					result.Adjustments.SkipRunsBeforeAdjustment = 1;
+			}
+
 			if (!result.HasValue(CompetitionAdjustmentMode.ForceEmptyLimitsAdjustmentCharacteristic))
 				result.Adjustments.ForceEmptyLimitsAdjustment = true;
 
-			if (!result.HasValue(CompetitionAdjustmentMode.SkipRunsBeforeAdjustmentCharacteristic))
-				result.Adjustments.SkipRunsBeforeAdjustment = 1;
 			return result;
 		}
 		#endregion

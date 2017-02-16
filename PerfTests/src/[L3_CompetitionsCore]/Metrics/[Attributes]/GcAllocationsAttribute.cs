@@ -1,5 +1,7 @@
 ﻿using System;
 
+using BenchmarkDotNet.Engines;
+
 using CodeJam.PerfTests.Metrics;
 
 namespace CodeJam.PerfTests
@@ -26,7 +28,11 @@ namespace CodeJam.PerfTests
 		Petabyte = Gigabyte * 1024
 	}
 
-	/// <summary>Gc allocations metric attribute.</summary>
+	/// <summary>
+	/// Gc allocations metric attribute.
+	/// As perftests may be run inprocess and there can be accidental allocation from test enfine, first page allocation is ignored.
+	/// If <see cref="GcStats.AllocatedBytes"/> less than or equal to <c>4096</c> bytes zero allocation is reported).
+	/// </summary>
 	[MetricAttribute(MetricSingleValueMode.BothMinAndMax, Category = GcMetricValuesProvider.Category)]
 	public class GcAllocationsAttribute : MetricBaseAttribute, IMetricAttribute<GcAllocationsAttribute.ValuesProvider, BinarySizeUnit>
 	{
@@ -37,7 +43,7 @@ namespace CodeJam.PerfTests
 		internal class ValuesProvider : GcMetricValuesProvider
 		{
 			/// <summary>Initializes a new instance of the <see cref="ValuesProvider"/> class.</summary>
-			public ValuesProvider() : base(GcMetricSource.BytesAllocatedPerOperation, false) { }
+			public ValuesProvider() : base(GcMetricSource.BytesAllocatedPerOperationIgnoreFirstPage, false) { }
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="GcAllocationsAttribute"/> class.</summary>
@@ -77,8 +83,8 @@ namespace CodeJam.PerfTests
 		public new BinarySizeUnit UnitOfMeasurement => (BinarySizeUnit?)base.UnitOfMeasurement ?? BinarySizeUnit.Byte;
 	}
 
-	/// <summary>GC 0 count metric attribute.</summary>
-	[MetricAttribute(MetricSingleValueMode.BothMinAndMax, AnnotateInplace=true, Category = GcMetricValuesProvider.Category)]
+	/// <summary>GC 0 count per 1000 operations metric attribute.</summary>
+	[MetricAttribute(AnnotateInplace=true, Category = GcMetricValuesProvider.Category)]
 	public class Gc0Attribute : MetricBaseAttribute, IMetricAttribute<Gc0Attribute.ValuesProvider>
 	{
 		/// <summary>
@@ -88,7 +94,7 @@ namespace CodeJam.PerfTests
 		internal class ValuesProvider : GcMetricValuesProvider
 		{
 			/// <summary>Initializes a new instance of the <see cref="ValuesProvider"/> class.</summary>
-			public ValuesProvider() : base(GcMetricSource.Gen0Collections, false) { }
+			public ValuesProvider() : base(GcMetricSource.Gen0CollectionsPer1000, false) { }
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="Gc0Attribute"/> class.</summary>
@@ -98,7 +104,7 @@ namespace CodeJam.PerfTests
 
 		/// <summary>Initializes a new instance of the <see cref="Gc0Attribute"/> class.</summary>
 		/// <param name="value">
-		/// Count of GC.
+		/// Count of GC per 1000 operations.
 		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
 		/// Use <seealso cref="double.PositiveInfinity" /> if value is positive infinity (ignored, essentially).
 		/// </param>
@@ -122,8 +128,8 @@ namespace CodeJam.PerfTests
 		}
 	}
 
-	/// <summary>GC 1 count metric attribute.</summary>
-	[MetricAttribute(MetricSingleValueMode.BothMinAndMax, AnnotateInplace = true, Category = GcMetricValuesProvider.Category)]
+	/// <summary>GC 1 count per 1000 operations metric attribute.</summary>
+	[MetricAttribute(AnnotateInplace = true, Category = GcMetricValuesProvider.Category)]
 	public class Gc1Attribute : MetricBaseAttribute, IMetricAttribute<Gc1Attribute.ValuesProvider>
 	{
 		/// <summary>
@@ -133,7 +139,7 @@ namespace CodeJam.PerfTests
 		internal class ValuesProvider : GcMetricValuesProvider
 		{
 			/// <summary>Initializes a new instance of the <see cref="ValuesProvider"/> class.</summary>
-			public ValuesProvider() : base(GcMetricSource.Gen1Collections, false) { }
+			public ValuesProvider() : base(GcMetricSource.Gen1CollectionsPer1000, false) { }
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="Gc1Attribute"/> class.</summary>
@@ -143,7 +149,7 @@ namespace CodeJam.PerfTests
 
 		/// <summary>Initializes a new instance of the <see cref="Gc1Attribute"/> class.</summary>
 		/// <param name="value">
-		/// Count of GC.
+		/// Count of GC per 1000 operations.
 		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
 		/// Use <seealso cref="double.PositiveInfinity" /> if value is positive infinity (ignored, essentially).
 		/// </param>
@@ -167,8 +173,8 @@ namespace CodeJam.PerfTests
 		}
 	}
 
-	/// <summary>GC 2 count metric attribute.</summary>
-	[MetricAttribute(MetricSingleValueMode.BothMinAndMax, AnnotateInplace = true, Category = GcMetricValuesProvider.Category)]
+	/// <summary>GC 2 count per 1000 operations metric attribute.</summary>
+	[MetricAttribute(AnnotateInplace = true, Category = GcMetricValuesProvider.Category)]
 	public class Gc2Attribute : MetricBaseAttribute, IMetricAttribute<Gc2Attribute.ValuesProvider>
 	{
 		/// <summary>
@@ -178,7 +184,7 @@ namespace CodeJam.PerfTests
 		internal class ValuesProvider : GcMetricValuesProvider
 		{
 			/// <summary>Initializes a new instance of the <see cref="ValuesProvider"/> class.</summary>
-			public ValuesProvider() : base(GcMetricSource.Gen2Collections, false) { }
+			public ValuesProvider() : base(GcMetricSource.Gen2CollectionsPer1000, false) { }
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="Gc2Attribute"/> class.</summary>
@@ -188,7 +194,7 @@ namespace CodeJam.PerfTests
 
 		/// <summary>Initializes a new instance of the <see cref="Gc2Attribute"/> class.</summary>
 		/// <param name="value">
-		/// Count of GC.
+		/// Count of GC per 1000 operations.
 		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
 		/// Use <seealso cref="double.PositiveInfinity" /> if value is positive infinity (ignored, essentially).
 		/// </param>

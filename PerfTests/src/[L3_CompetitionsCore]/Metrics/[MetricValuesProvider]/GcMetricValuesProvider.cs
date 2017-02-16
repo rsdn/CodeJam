@@ -13,12 +13,14 @@ namespace CodeJam.PerfTests.Metrics
 	{
 		/// <summary>The bytes allocated per operation</summary>
 		BytesAllocatedPerOperation,
-		/// <summary>The gen0 collections</summary>
-		Gen0Collections,
-		/// <summary>The gen1 collections</summary>
-		Gen1Collections,
-		/// <summary>The gen2 collections</summary>
-		Gen2Collections
+		/// <summary>The bytes allocated per operation. Allocations less than 4kb (single page allocations) returned as <c>0</c></summary>
+		BytesAllocatedPerOperationIgnoreFirstPage,
+		/// <summary>The gen0 collections per 1000 ops.</summary>
+		Gen0CollectionsPer1000,
+		/// <summary>The gen1 collections per 1000 ops.</summary>
+		Gen1CollectionsPer1000,
+		/// <summary>The gen2 collections per 1000 ops.</summary>
+		Gen2CollectionsPer1000
 	}
 
 	/// <summary>
@@ -44,18 +46,21 @@ namespace CodeJam.PerfTests.Metrics
 		/// <value>Property of the <see cref="GcStats"/> to be used as a GC metric value.</value>
 		public GcMetricSource MetricSource { get; }
 
-		private long GetGcValuesFromReport(GcStats gcStats, GcMetricSource metricSource)
+		private double GetGcValuesFromReport(GcStats gcStats, GcMetricSource metricSource)
 		{
+			const long SinglePage = 4096;
 			switch (metricSource)
 			{
 				case GcMetricSource.BytesAllocatedPerOperation:
 					return gcStats.BytesAllocatedPerOperation;
-				case GcMetricSource.Gen0Collections:
-					return gcStats.Gen0Collections;
-				case GcMetricSource.Gen1Collections:
-					return gcStats.Gen1Collections;
-				case GcMetricSource.Gen2Collections:
-					return gcStats.Gen2Collections;
+				case GcMetricSource.BytesAllocatedPerOperationIgnoreFirstPage:
+					return gcStats.AllocatedBytes <= SinglePage ? 0 : gcStats.BytesAllocatedPerOperation;
+				case GcMetricSource.Gen0CollectionsPer1000:
+					return 1000.0 * gcStats.Gen0Collections / gcStats.TotalOperations;
+				case GcMetricSource.Gen1CollectionsPer1000:
+					return 1000.0 * gcStats.Gen1Collections / gcStats.TotalOperations;
+				case GcMetricSource.Gen2CollectionsPer1000:
+					return 1000.0 * gcStats.Gen2Collections / gcStats.TotalOperations;
 				default:
 					throw CodeExceptions.UnexpectedArgumentValue(nameof(metricSource), metricSource);
 			}
@@ -65,7 +70,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="benchmarkReport">The benchmark report.</param>
 		/// <returns>Metric values from benchmark report</returns>
 		protected override double[] GetValuesFromReport(BenchmarkReport benchmarkReport) =>
-			new double[] { GetGcValuesFromReport(benchmarkReport.GcStats, MetricSource)};
+			new[] { GetGcValuesFromReport(benchmarkReport.GcStats, MetricSource) };
 
 		/// <summary>Gets diagnosers the metric values.</summary>
 		/// <param name="metricInfo">The competition metric to get diagnosers for.</param>

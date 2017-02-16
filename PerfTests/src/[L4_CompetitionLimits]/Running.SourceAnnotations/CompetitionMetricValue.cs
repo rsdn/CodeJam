@@ -19,7 +19,7 @@ namespace CodeJam.PerfTests.Analysers
 
 			Metric = metric;
 			ValuesRange = MetricRange.Empty;
-			DisplayMetricUnit = metric.MetricUnits[MetricRange.EmptyMetricValue];
+			DisplayMetricUnit = MetricUnit.Empty;
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionMetricValue"/> class.</summary>
@@ -55,36 +55,42 @@ namespace CodeJam.PerfTests.Analysers
 		public bool HasUnsavedChanges { get; private set; }
 
 		/// <summary>Adjusts metric values with specified ones.</summary>
-		/// <param name="metricValue">The metric value to merge with current one.</param>
+		/// <param name="other">The metric value to merge with current one.</param>
+		/// <param name="overrideMetricUnit">
+		/// If set to <c>true</c>existing <see cref="DisplayMetricUnit"/> is updated even if it is not empty.
+		/// </param>
 		/// <returns><c>true</c> if was updated.</returns>
-		public bool UnionWith([NotNull] CompetitionMetricValue metricValue)
+		public bool UnionWith([NotNull] CompetitionMetricValue other, bool overrideMetricUnit)
 		{
-			if (metricValue.Metric != Metric)
+			if (other.Metric != Metric)
 				throw CodeExceptions.Argument(
-					nameof(metricValue),
-					$"Passed value metric {metricValue.Metric} does not match to this one {Metric}.");
+					nameof(other),
+					$"Passed value metric {other.Metric} does not match to this one {Metric}.");
 
-			if (metricValue.ValuesRange.IsEmpty)
+			if (other.ValuesRange.IsEmpty)
 				return false;
 
 			bool result = false;
 
-			var newValues = ValuesRange.Union(metricValue.ValuesRange);
+			var newValues = ValuesRange.Union(other.ValuesRange);
 			if (newValues != ValuesRange)
 			{
 				ValuesRange = newValues;
 				result = true;
 			}
 
-			var metricUnit = metricValue.DisplayMetricUnit;
-			if (metricUnit.IsEmpty)
+			if (DisplayMetricUnit.IsEmpty || overrideMetricUnit)
 			{
-				metricUnit = Metric.MetricUnits[ValuesRange];
-			}
-			if (DisplayMetricUnit != metricUnit)
-			{
-				DisplayMetricUnit = metricUnit;
-				result = true;
+				var metricUnit = other.DisplayMetricUnit;
+				if (metricUnit.IsEmpty)
+				{
+					metricUnit = Metric.MetricUnits[ValuesRange];
+				}
+				if (DisplayMetricUnit != metricUnit)
+				{
+					DisplayMetricUnit = metricUnit;
+					result = true;
+				}
 			}
 
 			HasUnsavedChanges |= result;

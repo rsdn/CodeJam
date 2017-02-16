@@ -80,6 +80,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Arithmetic\OperatorsBaseCase.cs" />
+    <Compile Include="CalibrationBenchmarks\AllMetricsTest.cs" />
     <Compile Include="CodeJamCompetitionFactory.cs" />
     <Compile Include="CodeJamPerfTestsAssembly.cs" />
     <Compile Include="Assertions\CodePerfTests.cs" />

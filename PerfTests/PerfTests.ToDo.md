@@ -10,15 +10,15 @@
 ## TODOs:
 
 ### TODO NOW:
-!!! BUG: gc accidentally reports 4kb allocations for non-allocationg methods.
-    Add IgnoreFirstPageAllocation to metric values provider?
-! xUnit: tests: force run as x64 (appveyor may run as x86)?
-! limit checking: ignore rounding errors due to string formatting.
-  Add metricRange.ScaleAndAutoRound(metricUnit) to metric extensions
+ ! xUnit: tests: force run as x64 (appveyor may run as x86)?
+ ! limit checking: ignore rounding errors due to string formatting.
+   +Subtask: Add metricRange.ScaleAndAutoRound(metricUnit) to metric extensions
+   +Subtask: MetricUnit.RoundDigits value, use it to format both min and max values.
 
 ### Types:
  * IStoredMetricSource: add MetricName attribute, EnumName attribute => simplify parse logic as merging will be moved to the analyser.
    +Subtask: Attribute annotation: analyse existing overloads (add string arg to IStoredMetricSource???)
+   +Subtask: Ensure that unknown unit in prev run log results in warning
  * ??? Naming, IStoredMetricSource.MetricAttributeType => AttributeType, IMetricValuesProvider => IMetricProvider
  * public metric atttributes etc => move to AllTogether level
  * Namespace 4 attributes => CodeJam.PerfTests.
@@ -29,11 +29,12 @@
  * Sealed types: unseal where it looks like a good idea.
  * Simplify collections of types. MappedCollection / Keyed collection where possible.
  
-### Validations: 
+### Validations:
  * Unique method names
  * Unique metric names
 
 ### Behavior: 
+ * Preserve existing unit on merge
  * ??? Integer metrics without unit scale (for total GC count)
  * Scale for GC count per op ?
  * Annotations: add category to annotation, use it for column and for annotation ordering

@@ -65,33 +65,39 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="metricValue">The metric value.</param>
 		/// <param name="metricUnit">The metric measurement unit.</param>
 		/// <returns>Scaled metric value.</returns>
-		public static double ToScaledValue(this double metricValue, [NotNull] MetricUnit metricUnit) =>
+		private static double ToScaledValue(this double metricValue, [NotNull] MetricUnit metricUnit) =>
 			metricUnit.IsEmpty ? metricValue : metricValue / metricUnit.ScaleCoefficient;
 
 		/// <summary>Scales metric value using the metric measurement unit.</summary>
 		/// <param name="metricValue">The metric value.</param>
 		/// <param name="metricUnits">The metric units.</param>
 		/// <returns>Scaled metric value.</returns>
-		public static double ToScaledValue(this double metricValue, [NotNull] MetricUnits metricUnits) =>
+		private static double ToScaledValue(this double metricValue, [NotNull] MetricUnits metricUnits) =>
 			ToScaledValue(metricValue, metricUnits[metricValue]);
 
 		/// <summary>Scales range of metric values using the metric measurement unit.</summary>
 		/// <param name="metricValues">Range of metric values.</param>
 		/// <param name="metricUnit">The metric measurement unit.</param>
 		/// <returns>Scaled range of metric values.</returns>
-		public static MetricRange ToScaledValues(this MetricRange metricValues, [NotNull] MetricUnit metricUnit) =>
-			metricUnit.IsEmpty
-			? metricValues
-			: MetricRange.Create(
-				metricValues.Min.ToScaledValue(metricUnit),
-				metricValues.Max.ToScaledValue(metricUnit));
+		public static MetricRange ToScaledValuesRounded(this MetricRange metricValues, [NotNull] MetricUnit metricUnit)
+		{
+			var min = metricValues.Min.ToScaledValue(metricUnit);
+			var max = metricValues.Max.ToScaledValue(metricUnit);
+			var roundDigits = Math.Max(
+				BenchmarkHelpers.GetRoundDigits(min),
+				BenchmarkHelpers.GetRoundDigits(max));
+
+			return MetricRange.Create(
+				Math.Round(min, roundDigits, MidpointRounding.AwayFromZero),
+				Math.Round(max, roundDigits, MidpointRounding.AwayFromZero));
+		}
 
 		/// <summary>Scales range of metric values using the metric measurement unit.</summary>
 		/// <param name="metricValues">Range of metric values.</param>
 		/// <param name="metricUnits">The metric units.</param>
 		/// <returns>Scaled range of metric values.</returns>
-		public static MetricRange ToScaledValues(this MetricRange metricValues, [NotNull] MetricUnits metricUnits) =>
-			ToScaledValues(metricValues, metricUnits[metricValues]);
+		public static MetricRange ToScaledValuesRounded(this MetricRange metricValues, [NotNull] MetricUnits metricUnits) =>
+			ToScaledValuesRounded(metricValues, metricUnits[metricValues]);
 
 		/// <summary>Normalizes metric value using the metric measurement unit.</summary>
 		/// <param name="scaledMetricValue">Scaled metric value.</param>
@@ -148,7 +154,7 @@ namespace CodeJam.PerfTests.Metrics
 		public static string ToString(
 			this MetricRange metricValues, [NotNull] MetricUnit metricUnit, bool withoutUnitName = false)
 		{
-			metricValues = metricValues.ToScaledValues(metricUnit);
+			metricValues = metricValues.ToScaledValuesRounded(metricUnit);
 
 			var displayFormat = metricUnit.DisplayFormat ?? BenchmarkHelpers.GetAutoscaledFormat(metricValues.GetUnitSearchValue());
 			var formattedValue = metricValues.ToString(displayFormat, HostEnvironmentInfo.MainCultureInfo);

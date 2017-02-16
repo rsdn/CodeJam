@@ -157,7 +157,7 @@ namespace CodeJam.PerfTests.Analysers
 
 						hasAnnotations = true;
 
-						updated |= metricValue.UnionWith(ToMetricValue(storedMetricValue, metricValue.Metric));
+						updated |= metricValue.UnionWith(ToMetricValue(storedMetricValue, metricValue.Metric), true);
 					}
 				}
 
@@ -381,13 +381,13 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				foreach (var benchmark in benchmarksForTarget)
 				{
-					result &= CheckTargetBenchmark(benchmark, metricValue, analysis);
+					result &= CheckBenchmark(benchmark, metricValue, analysis);
 				}
 			}
 			return result;
 		}
 
-		private bool CheckTargetBenchmark(
+		private bool CheckBenchmark(
 			Benchmark benchmark,
 			CompetitionMetricValue metricValue,
 			CompetitionAnalysis analysis)
@@ -406,10 +406,14 @@ namespace CodeJam.PerfTests.Analysers
 				return true;
 			}
 
-			if (metricValue.ValuesRange.Contains(actualValues))
+			var scaledMetricValues = metricValue.ValuesRange.ToScaledValuesRounded(metricValue.DisplayMetricUnit);
+			var actualScaledMetricValues = actualValues.ToScaledValuesRounded(metricValue.DisplayMetricUnit);
+
+			if (scaledMetricValues.Contains(actualScaledMetricValues))
 				return true;
 
-			analysis.RunState.WriteVerboseHint($"Metric {metricValue} check failed, limits {actualValues}");
+			analysis.RunState.WriteVerboseHint(
+				$"Metric {metricValue.Metric} {metricValue} check failed, limits {actualValues.ToString(metricValue.DisplayMetricUnit)}");
 
 			bool checkPassed;
 			if (metricValue.ValuesRange.IsEmpty)
@@ -420,7 +424,7 @@ namespace CodeJam.PerfTests.Analysers
 			else
 			{
 				analysis.AddTestErrorConclusion(
-					$"Method {targetMethodTitle}: {metric} metric {actualValues.ToString(metric.MetricUnits)} does not fit into limits {metricValue}.",
+					$"Method {targetMethodTitle}: {metric} actual value {actualValues.ToString(metric.MetricUnits)} is out of limit {metricValue}.",
 					summary.TryGetBenchmarkReport(benchmark));
 
 				checkPassed = false;
@@ -433,7 +437,8 @@ namespace CodeJam.PerfTests.Analysers
 					new CompetitionMetricValue(
 						metric,
 						limitValues,
-						metric.MetricUnits[limitValues]));
+						metric.MetricUnits[limitValues]),
+					false);
 			}
 
 			return checkPassed;

@@ -597,7 +597,10 @@ namespace BenchmarkDotNet.Helpers
 		#region Formatting
 		private const double ScaleCoefficient = 1.89; // Empirical value.
 
-		private static int GetAutoscaleDigits(double value)
+		/// <summary>Returns number of fractional digits for rounding same scale values.</summary>
+		/// <param name="value">The value.</param>
+		/// <returns>Number of fractional digits for rounding same scale values.</returns>
+		public static int GetRoundDigits(double value)
 		{
 			if (double.IsNaN(value) || double.IsInfinity(value))
 				return 0;
@@ -628,7 +631,7 @@ namespace BenchmarkDotNet.Helpers
 		/// <param name="value">The value.</param>
 		/// <returns>Autoscaled format for the value</returns>
 		public static string GetAutoscaledFormat(double value) =>
-			"F" + GetAutoscaleDigits(value);
+			"F" + GetRoundDigits(value);
 		#endregion
 	}
 }
