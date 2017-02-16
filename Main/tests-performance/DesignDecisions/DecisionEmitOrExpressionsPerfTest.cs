@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -115,7 +115,7 @@ namespace CodeJam.DesignDecisions
 			}
 		}
 
-		[CompetitionBenchmark(0.53, 0.61), GcAllocations(0)]
+		[CompetitionBenchmark(0.53, 0.81), GcAllocations(0)]
 		public void MinMethod()
 		{
 			for (int i = 0; i < N; i++)
@@ -125,7 +125,7 @@ namespace CodeJam.DesignDecisions
 			}
 		}
 
-		[CompetitionBenchmark(0.37, 0.43), GcAllocations(0)]
+		[CompetitionBenchmark(0.37, 0.65), GcAllocations(0)]
 		public void MinHardcoded()
 		{
 			for (int i = 0; i < N; i++)
@@ -135,7 +135,7 @@ namespace CodeJam.DesignDecisions
 			}
 		}
 
-		[CompetitionBenchmark(0.56, 0.65), GcAllocations(0)]
+		[CompetitionBenchmark(0.56, 0.92), GcAllocations(0)]
 		public void MinOperators()
 		{
 			for (int i = 0; i < N; i++)
@@ -145,7 +145,7 @@ namespace CodeJam.DesignDecisions
 			}
 		}
 
-		[CompetitionBenchmark(0.56, 0.71), GcAllocations(0)]
+		[CompetitionBenchmark(0.56, 1.04), GcAllocations(0)]
 		public void MinExpression()
 		{
 			for (int i = 0; i < N; i++)
@@ -165,7 +165,7 @@ namespace CodeJam.DesignDecisions
 			}
 		}
 
-		[CompetitionBenchmark(0.91, 1.05), GcAllocations(0)]
+		[CompetitionBenchmark(0.91, 1.22), GcAllocations(0)]
 		public void MinDynamicMethodAssociated()
 		{
 			for (int i = 0; i < N; i++)
@@ -185,7 +185,7 @@ namespace CodeJam.DesignDecisions
 			}
 		}
 
-		[CompetitionBenchmark(0.94, 1.06), GcAllocations(0)]
+		[CompetitionBenchmark(0.94, 1.19), GcAllocations(0)]
 		public void MinTbExpression()
 		{
 			for (int i = 0; i < N; i++)
