@@ -55,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IntegrationTests\CompetitionAccuracyTests.cs" />
-    <Compile Include="IntegrationTests\CompetitionAllMetricsTest.cs" />
     <Compile Include="IntegrationTests\CompetitionAnnotateTests.cs" />
     <Compile Include="IntegrationTests\CompetitionConfigAttributeTests.cs" />
     <Compile Include="IntegrationTests\CompetitionRunConcurrentTest.cs" />
