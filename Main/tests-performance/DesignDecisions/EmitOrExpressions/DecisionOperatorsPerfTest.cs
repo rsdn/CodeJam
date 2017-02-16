@@ -12,19 +12,25 @@ using CodeJam.PerfTests.Configs;
 
 using NUnit.Framework;
 
-namespace CodeJam.DesignDecisions
+namespace CodeJam.DesignDecisions.EmitOrExpressions
 {
 	/// <summary>
 	/// Proofs that Expression.Compile() is the fastest way to emit less than comparison
 	/// (at least for Int32)
-	/// IMPORTANT: DO NOT trust the perftest if your code do something except simple arithmetic.
+	/// IMPORTANT: Compiled expressions have overhead if your code perrform member access.
+	/// RECOMMENDED: Triple check ALL of the following before using Reflection.Emit instead of compiled expressions:
+	/// * The body of emitted method is a simple statement that performs member access only.
+	/// * The emitted method is on hotpath and there's a perftest that proofs that total boost from 
+	///   swtching to il-emit is at least 10%.
+	/// * You're not targeting .net Native (.net Native does not include JIT, either way emitted code will be interpreted)
 	/// See http://stackoverflow.com/questions/4211418/why-is-func-created-from-expressionfunc-slower-than-func-declared-direct
 	/// See http://stackoverflow.com/questions/5053032/performance-of-compiled-to-delegate-expression
 	/// </summary>
+	/// <seealso cref="DecisionMappingPerfTest"/>
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Design decisions")]
 	[CompetitionBurstMode]
 	[CompetitionMeasureAllocations]
-	public class DecisionOperatorsEmitOrExpressionsPerfTest
+	public class DecisionOperatorsPerfTest
 	{
 		#region Benchmark helpers
 		private static readonly Func<int, int, bool> _lessThanDelegate;
@@ -46,7 +52,7 @@ namespace CodeJam.DesignDecisions
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		private static bool LessThan(int a, int b) => a < b;
 
-		static DecisionOperatorsEmitOrExpressionsPerfTest()
+		static DecisionOperatorsPerfTest()
 		{
 			_lessThanDelegate = LessThan;
 			_lessThanOperators = Operators<int>.LessThan;
@@ -103,7 +109,7 @@ namespace CodeJam.DesignDecisions
 		#endregion
 
 		[Test]
-		public void RunDecisionOperatorsEmitOrExpressionsPerfTest() => Competition.Run(this);
+		public void RunDecisionOperatorsPerfTest() => Competition.Run(this);
 
 		[CompetitionBaseline, GcAllocations(0)]
 		public void MinDelegate()

@@ -95,7 +95,8 @@
     <Compile Include="CalibrationBenchmarks\SensitivityPerfTests.cs" />
     <Compile Include="Collections\MinOrDefaultWithSelectorPerfTest.cs" />
     <Compile Include="Collections\MinOrDefaultPerfTest.cs" />
-    <Compile Include="DesignDecisions\DecisionEmitOrExpressionsPerfTest.cs" />
+    <Compile Include="DesignDecisions\EmitOrExpressions\DecisionMappingPerfTest.cs" />
+    <Compile Include="DesignDecisions\EmitOrExpressions\DecisionOperatorsPerfTest.cs" />
     <Compile Include="Enums\EnumHelperPerfTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangesAlternatives\RangeAlternatives.cs" />
