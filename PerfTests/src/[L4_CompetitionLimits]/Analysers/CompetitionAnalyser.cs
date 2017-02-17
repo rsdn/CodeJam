@@ -412,8 +412,11 @@ namespace CodeJam.PerfTests.Analysers
 			if (scaledMetricValues.Contains(actualScaledMetricValues))
 				return true;
 
-			analysis.RunState.WriteVerboseHint(
-				$"Metric {metricValue.Metric} {metricValue} check failed, limits {actualValues.ToString(metricValue.DisplayMetricUnit)}");
+			if (metric == CompetitionMetricInfo.GcAllocations)
+			{
+				analysis.RunState.WriteVerboseHint(
+					$"Debug {metric}: {analysis.Summary[benchmark].GcStats}.");
+			}
 
 			bool checkPassed;
 			if (metricValue.ValuesRange.IsEmpty)
@@ -424,7 +427,7 @@ namespace CodeJam.PerfTests.Analysers
 			else
 			{
 				analysis.AddTestErrorConclusion(
-					$"Method {targetMethodTitle}: {metric} actual value {actualValues.ToString(metric.MetricUnits)} is out of limit {metricValue}.",
+					$"{targetMethodTitle}, {metric} {actualValues.ToString(metric.MetricUnits)} is out of limit {metricValue}.",
 					summary.TryGetBenchmarkReport(benchmark));
 
 				checkPassed = false;

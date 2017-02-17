@@ -12,7 +12,7 @@ namespace CodeJam.PerfTests
 	public enum BinarySizeUnit : long
 	{
 		/// <summary>Binary size in bytes.</summary>
-		[MetricUnit("B", AppliesFrom = 0, DisplayFormat = "F0")]
+		[MetricUnit("B", AppliesFrom = 0, RoundingDigits = 0)]
 		Byte = 1,
 		/// <summary>Binary size in kilobytes.</summary>
 		[MetricUnit("KB", AppliesFrom = (long)Kilobyte / 2.0)]

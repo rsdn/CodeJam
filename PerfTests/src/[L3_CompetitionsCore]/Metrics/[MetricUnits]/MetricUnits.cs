@@ -48,6 +48,7 @@ namespace CodeJam.PerfTests.Metrics
 					var enumValue = (Enum)f.GetValue(null);
 					var coeff = metricUnit?.ScaleCoefficient ?? double.NaN;
 					var appliesFrom = metricUnit?.AppliesFrom ?? double.NaN;
+					var roundingDigits = metricUnit?.RoundingDigits;
 					if (double.IsNaN(coeff))
 					{
 						coeff = Convert.ToDouble(enumValue, CultureInfo.InvariantCulture);
@@ -56,13 +57,26 @@ namespace CodeJam.PerfTests.Metrics
 					{
 						appliesFrom = Convert.ToDouble(enumValue, CultureInfo.InvariantCulture);
 					}
+					if (roundingDigits < 0)
+					{
+						roundingDigits = null;
+					}
 					return new MetricUnit(
 						metricUnit?.DisplayName ?? f.Name,
 						enumValue,
 						coeff,
 						appliesFrom,
-						metricUnit?.DisplayFormat);
+						metricUnit?.GetRoundingDigitsNullable());
 				});
+
+		// DONTTOUCH: empty (double.NaN) values are handled automatically.
+		private static double GetUnitSearchValue(MetricRange metricValues)
+		{
+			var min = Math.Abs(metricValues.Min);
+			var max = Math.Abs(metricValues.Max);
+
+			return double.IsNaN(min) ? max : Math.Min(min, max);
+		}
 		#endregion
 
 		#region Fields, .ctor & properties
@@ -118,8 +132,8 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="measuredValue">The measured value.</param>
 		/// <returns>The <see cref="MetricUnit" /> for the measured value.</returns>
 		[NotNull]
-		public MetricUnit this[double measuredValue] =>
-			_unitScale.GetIntersection(measuredValue.GetUnitSearchValue())
+		public MetricUnit this[double measuredValue] => 
+			_unitScale.GetIntersection(measuredValue)
 				.FirstOrDefault()
 				.Key ?? MetricUnit.Empty;
 
@@ -128,8 +142,8 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="measuredValues">Range of measured values.</param>
 		/// <returns>The <see cref="MetricUnit" /> for the measured value.</returns>
 		[NotNull]
-		public MetricUnit this[MetricRange measuredValues] =>
-			_unitScale.GetIntersection(measuredValues.GetUnitSearchValue())
+		public MetricUnit this[MetricRange measuredValues] => 
+			_unitScale.GetIntersection(GetUnitSearchValue(measuredValues))
 				.FirstOrDefault()
 				.Key ?? MetricUnit.Empty;
 

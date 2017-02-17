@@ -579,18 +579,19 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			}
 			else if (forceUpdate || metricValue.HasUnsavedChanges || !targetNode.HasAttributes)
 			{
-				var valuesRange = metricValue.ValuesRange;
+				var metricRange = metricValue.ValuesRange;
+				metricValue.ValuesRange.GetStringMinMax(metricValue.DisplayMetricUnit, out var minValueText, out var maxValueText);
+				if (double.IsInfinity(metricRange.Min))
+					minValueText = XmlConvert.ToString(metricRange.Min);
+				if (double.IsInfinity(metricRange.Max))
+					maxValueText = XmlConvert.ToString(metricRange.Max);
+
 				var unit = metricValue.DisplayMetricUnit;
-				targetNode.SetAttribute(MinAttribute, valuesRange.Min.ToXmlString(unit));
-				targetNode.SetAttribute(MaxAttribute, valuesRange.Max.ToXmlString(unit));
+				targetNode.SetAttribute(MinAttribute, minValueText);
+				targetNode.SetAttribute(MaxAttribute, maxValueText);
 				targetNode.SetAttribute(UnitAttribute, unit.IsEmpty ? null : unit.Name);
 			}
 		}
-
-		private static string ToXmlString(this double value, MetricUnit metricUnit) =>
-			value.IsSpecialMetricValue()
-				? XmlConvert.ToString(value)
-				: value.ToString(metricUnit, true);
 	}
 	#endregion
 }

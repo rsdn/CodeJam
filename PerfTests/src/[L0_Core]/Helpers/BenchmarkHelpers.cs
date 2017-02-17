@@ -600,7 +600,7 @@ namespace BenchmarkDotNet.Helpers
 		/// <summary>Returns number of fractional digits for rounding same scale values.</summary>
 		/// <param name="value">The value.</param>
 		/// <returns>Number of fractional digits for rounding same scale values.</returns>
-		public static int GetRoundDigits(double value)
+		public static int GetRoundingDigits(double value)
 		{
 			if (double.IsNaN(value) || double.IsInfinity(value))
 				return 0;
@@ -631,7 +631,7 @@ namespace BenchmarkDotNet.Helpers
 		/// <param name="value">The value.</param>
 		/// <returns>Autoscaled format for the value</returns>
 		public static string GetAutoscaledFormat(double value) =>
-			"F" + GetRoundDigits(value);
+			"F" + GetRoundingDigits(value);
 		#endregion
 	}
 }

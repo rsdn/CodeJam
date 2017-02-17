@@ -528,12 +528,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				}
 				else if (metricRange.IsNotEmpty)
 				{
-					var minValueText = double.IsInfinity(metricRange.Min) ?
-						$"double.{nameof(double.NegativeInfinity)}"
-						: metricRange.Min.ToString(metricUnit, true);
-					var maxValueText = double.IsInfinity(metricRange.Max) ?
-						$"double.{nameof(double.PositiveInfinity)}"
-						: metricRange.Max.ToString(metricUnit, true);
+					metricRange.GetStringMinMax(metricUnit, out var minValueText, out var maxValueText);
+					if (double.IsInfinity(metricRange.Min))
+						minValueText = $"double.{nameof(double.NegativeInfinity)}";
+					if (double.IsInfinity(metricRange.Max))
+						maxValueText = $"double.{nameof(double.PositiveInfinity)}";
 
 					switch (metric.SingleValueMode)
 					{

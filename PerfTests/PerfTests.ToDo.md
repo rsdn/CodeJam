@@ -10,15 +10,11 @@
 ## TODOs:
 
 ### TODO NOW:
- ! xUnit: tests: force run as x64 (appveyor may run as x86)?
- ! limit checking: ignore rounding errors due to string formatting.
-   +Subtask: Add metricRange.ScaleAndAutoRound(metricUnit) to metric extensions
-   +Subtask: MetricUnit.RoundDigits value, use it to format both min and max values.
-
-### Types:
  * IStoredMetricSource: add MetricName attribute, EnumName attribute => simplify parse logic as merging will be moved to the analyser.
    +Subtask: Attribute annotation: analyse existing overloads (add string arg to IStoredMetricSource???)
    +Subtask: Ensure that unknown unit in prev run log results in warning
+
+### Types:
  * ??? Naming, IStoredMetricSource.MetricAttributeType => AttributeType, IMetricValuesProvider => IMetricProvider
  * public metric atttributes etc => move to AllTogether level
  * Namespace 4 attributes => CodeJam.PerfTests.
@@ -33,17 +29,13 @@
  * Unique method names
  * Unique metric names
 
-### Behavior: 
- * Preserve existing unit on merge
+### Behavior:
+ * Merge failed & adjusted messages into one?
+ * MetricSingleValueMode: FromZeroToMax | or allov negative flag for metric info 
  * ??? Integer metrics without unit scale (for total GC count)
- * Scale for GC count per op ?
- * Annotations: add category to annotation, use it for column and for annotation ordering
- * Api for [MetricAttribute] => MetricAttributeBase.
  * Revisit caching methods for analyser (all those members should contain `cache` in name).
  * Add cache invalidation policy (limit of 1000)
  * xUnit: improve capture of console output. Pass xUnitWriter as a logger instead.
- * Auto annotate empty feature
- * Metric annotation: no unit for default unit of measurement, to enable [GcAllocations(0)]
  * Diagnosers: faster options for diagnosers run??
  * Variance for SingleValueMetricCalculator / PercentileMetricCalculator
  * Optional relative time metric - better diagnostic if there's not empty attribute for it but the metric is not listed in config.
@@ -53,13 +45,14 @@
  * Rerun if sources were adjusted from log?
  * Prev run log : cache + reread only if local & size/date/checksum(?) changed!!!
  * Display-only metrics (only as columns? .ctor arg to the metric? bad as will silently remove as duplicates (dups removed by AttributeType)
+ * Expected time metric: to 95th percentile.
 
 ### Messages:
  * Validate all messages, check that origin (benchmark target) is logged, add hints (tyed arg) to them.
  * Add typed method to force same naming for source of the messages (Target, Type, xmlFile etc).
  * Check WriteVerboseHint for source annotations
  * Write hint with absolute values if relative limits failed? 
-   (will require bool arg for metricValuesProvider, recheck columns and diagnosers, possible, they will have to honor this flag too)).
+   (will require bool arg for metricValuesProvider, recheck columns and diagnosers, maybe they will have to honor this flag too)).
  * Message about updated annotations: improve readability
  * Message about ignored empty metrics: improve readability
 
@@ -71,6 +64,7 @@
  * LogColors.Hint: use it for something?
 
 ### Tests:
+ * xUnit: tests: force run as x64 (appveyor may run as x86)?
  * Source annotations: test for partial files / methods
  * High-priority test for TestProcessCycleTimeClock
  * Tests for broken log annotations.
@@ -85,9 +79,9 @@
  * Remove and re-add resharper suppressions
 
 ## Long-term TODOs:
- * Support for multi-case benchmarks (separate limits - discarded)
+ * Support for multi-case benchmarks (discarded)
  * Validate the return results!!! (partially done with introduction of IHostApi)
- * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix).
+ * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix). Use case: load testing.
  * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion
 
 ## Issues:

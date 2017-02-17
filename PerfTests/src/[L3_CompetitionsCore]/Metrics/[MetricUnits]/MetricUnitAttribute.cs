@@ -1,5 +1,7 @@
 using System;
 
+using BenchmarkDotNet.Helpers;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Metrics
@@ -10,6 +12,7 @@ namespace CodeJam.PerfTests.Metrics
 	public class MetricUnitAttribute : Attribute
 	{
 		private double _scaleCoefficient;
+		private int _roundingDigits = -1;
 
 		/// <summary>Initializes a new instance of the <see cref="MetricUnitAttribute"/> class.</summary>
 		/// <param name="displayName">The display name.</param>
@@ -18,6 +21,7 @@ namespace CodeJam.PerfTests.Metrics
 			DisplayName = displayName;
 			ScaleCoefficient = double.NaN;
 			AppliesFrom = double.NaN;
+			RoundingDigits = -1;
 		}
 
 		/// <summary>
@@ -56,11 +60,29 @@ namespace CodeJam.PerfTests.Metrics
 		public double AppliesFrom { get; set; }
 
 		/// <summary>
-		/// Gets or sets custom display format for metric unit.
-		/// As example, if the unit is integer value (bytes allocated, as example) you can use <c>F0</c> format.
-		/// Also you can use <c>R</c> format string to store the values as-is.</summary>
-		/// <value>Custom display format for metric unit.</value>
-		[CanBeNull]
-		public string DisplayFormat { get; set; }
+		/// Gets or sets number of fractional digits for storing and comparing metric values.
+		/// Use the <c>-1</c> to use auto-rounding feature 
+		/// (used by default, behavior matches to <see cref="BenchmarkHelpers.GetRoundingDigits"/>)
+		/// </summary>
+		/// <value>Count of rounding digits.</value>
+		public int RoundingDigits
+		{
+			get
+			{
+				return _roundingDigits;
+			}
+			set
+			{
+				Code.InRange(value, nameof(value), -1, MetricUnit.MaxRoundingDigits);
+				_roundingDigits = value;
+			}
+		}
+
+		/// <summary>Gets number of fractional digits for storing and comparing metric values.</summary>
+		/// <returns> 
+		/// Number of fractional digits for storing and comparing metric values
+		/// or <c>null</c> if auto-rounding feature shold be used.
+		/// </returns>
+		public int? GetRoundingDigitsNullable() => _roundingDigits > 0 ? _roundingDigits : default(int?);
 	}
 }

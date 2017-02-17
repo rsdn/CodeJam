@@ -75,15 +75,15 @@ namespace CodeJam.Collections
 		[GcAllocations(32, BinarySizeUnit.Byte)]
 		public int LinqMin() => _data.Min();
 
-		[CompetitionBenchmark(1.07, 1.48)]
+		[CompetitionBenchmark(0.87, 1.48)]
 		[GcAllocations(32, BinarySizeUnit.Byte)]
 		public int MinOrDefault() => _data.MinOrDefault();
 
-		[CompetitionBenchmark(1.20, 1.46)]
+		[CompetitionBenchmark(1.12, 1.57)]
 		[GcAllocations(32, BinarySizeUnit.Byte)]
 		public int MinOrDefaultComparer() => MinOrDefaultComparer(_data, null, 0);
 
-		[CompetitionBenchmark(1.67, 1.96)]
+		[CompetitionBenchmark(1.28, 1.96)]
 		[GcAllocations(32, BinarySizeUnit.Byte)]
 		public int MinByOrDefaultGeneric() => MinByOrDefaultGeneric(_data, i => i);
 
@@ -91,7 +91,7 @@ namespace CodeJam.Collections
 		[GcAllocations(0)]
 		public int MinOrDefaultHardcoded() => MinOrDefaultHardcoded(_data, 0);
 
-		[CompetitionBenchmark(1.02, 1.28)]
+		[CompetitionBenchmark(0.87, 1.44)]
 		[GcAllocations(32, BinarySizeUnit.Byte)]
 		public int MinByOrDefaultHardcoded() => _data.MinByOrDefault(i => i);
 	}
