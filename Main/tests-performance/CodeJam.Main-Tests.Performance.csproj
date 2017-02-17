@@ -86,7 +86,7 @@
     <Compile Include="Assertions\CodePerfTests.cs" />
     <Compile Include="Assertions\DebugCodePerfTests.cs" />
     <Compile Include="CalibrationBenchmarks\AggressiveInliningPerfTests.cs" />
-    <Compile Include="CalibrationBenchmarks\JitOptimizedFeatureSwitchPerfTests.cs" />
+    <Compile Include="DesignDecisions\JitOptimized\DecisionFeatureSwitchPerfTest.cs" />
     <Compile Include="CalibrationBenchmarks\NestedStructAccessPerfTests.cs" />
     <Compile Include="CalibrationBenchmarks\CallCostPerfTests.cs" />
     <Compile Include="CalibrationBenchmarks\CallCostParamsPerfTests.cs" />
