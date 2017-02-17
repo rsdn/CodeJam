@@ -40,10 +40,10 @@ namespace CodeJam
 		{
 			var bp1 = p1;
 			var bp2 = p2;
-			var len = count;
 
 			if (count >= 32)
 			{
+				var len = count;
 				do
 				{
 					if (*(long*)bp1 != *(long*)bp2
@@ -59,7 +59,7 @@ namespace CodeJam
 				while (len >= 32);
 			}
 
-			if ((len & 16) != 0)
+			if ((count & 16) != 0)
 			{
 				if (*(long*)bp1 != *(long*)bp2
 					|| *(long*)(bp1 + 8) != *(long*)(bp2 + 8))
@@ -67,40 +67,36 @@ namespace CodeJam
 
 				bp1 += 16;
 				bp2 += 16;
-				len -= 16;
 			}
 
-			if ((len & 8) != 0)
+			if ((count & 8) != 0)
 			{
 				if (*(long*)bp1 != *(long*)bp2)
 					return false;
 
 				bp1 += 8;
 				bp2 += 8;
-				len -= 8;
 			}
 
-			if ((len & 4) != 0)
+			if ((count & 4) != 0)
 			{
 				if (*(int*)bp1 != *(int*)bp2)
 					return false;
 
 				bp1 += 4;
 				bp2 += 4;
-				len -= 4;
 			}
 
-			if ((len & 2) != 0)
+			if ((count & 2) != 0)
 			{
 				if (*(short*)bp1 != *(short*)bp2)
 					return false;
 
 				bp1 += 2;
 				bp2 += 2;
-				len -= 2;
 			}
 
-			return len == 0 || *bp1 == *bp2;
+			return (count & 1) == 0 || *bp1 == *bp2;
 		}
 	}
 }
