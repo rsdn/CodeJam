@@ -68,6 +68,7 @@
     <Compile Include="[L1_InProcess]\InProcessToolchainTests.cs" />
     <Compile Include="[L3_CompetitionsCore]\HostLoggerTests.cs" />
     <Compile Include="[L3_CompetitionsCore]\MetricRangeTests.cs" />
+    <Compile Include="[L3_CompetitionsCore]\MetricValueTests.cs" />
     <Compile Include="[L4_CompetitionLimits]\CompetitionTargetTests.cs" />
   </ItemGroup>
   <ItemGroup>

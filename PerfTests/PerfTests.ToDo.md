@@ -10,7 +10,6 @@
 ## TODOs:
 
 ### TODO NOW:
- * BUG: custom rounding ignored for GC alloc metric.
  * IStoredMetricSource: add MetricName attribute, EnumName attribute => simplify parse logic as merging will be moved to the analyser.
    +Subtask: Attribute annotation: analyse existing overloads (add string arg to IStoredMetricSource???)
    +Subtask: Ensure that unknown unit in prev run log results in warning

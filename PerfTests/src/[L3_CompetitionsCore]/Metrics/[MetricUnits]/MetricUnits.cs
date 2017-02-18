@@ -31,7 +31,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// </param>
 		/// <returns>The metric measurement scale. Empty if <paramref name="metricEnumType"/> is <c>null</c>.</returns>
 		[NotNull]
-		public static MetricUnits TryCreate([CanBeNull] Type metricEnumType) =>
+		public static MetricUnits GetMetricUnits([CanBeNull] Type metricEnumType) =>
 			metricEnumType == null ? Empty : _metricUnitsCache(metricEnumType.TypeHandle);
 
 		/// <summary>Helper method that returns measuremet units from the metric unit enum.</summary>
@@ -40,7 +40,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// Use the <see cref="MetricUnitAttribute"/> on enum members to override display name or scaling coefficient.
 		/// </param>
 		/// <returns>Composite range that describes measurement units</returns>
-		private static MetricUnit[] GetMetricUnits(Type metricUnitEnumType) =>
+		private static MetricUnit[] GetMetricUnitsCore(Type metricUnitEnumType) =>
 			ReflectionEnumHelper.GetFields(metricUnitEnumType).ConvertAll(
 				f =>
 				{
@@ -66,7 +66,7 @@ namespace CodeJam.PerfTests.Metrics
 						enumValue,
 						coeff,
 						appliesFrom,
-						metricUnit?.GetRoundingDigitsNullable());
+						roundingDigits);
 				});
 
 		// DONTTOUCH: empty (double.NaN) values are handled automatically.
@@ -104,7 +104,7 @@ namespace CodeJam.PerfTests.Metrics
 		{
 			Code.NotNull(metricEnumType, nameof(metricEnumType));
 
-			var metricUnits = GetMetricUnits(metricEnumType);
+			var metricUnits = GetMetricUnitsCore(metricEnumType);
 
 			MetricEnumType = metricEnumType;
 

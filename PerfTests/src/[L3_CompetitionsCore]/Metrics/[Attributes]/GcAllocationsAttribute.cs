@@ -11,27 +11,27 @@ namespace CodeJam.PerfTests
 	/// </summary>
 	public enum BinarySizeUnit : long
 	{
-		/// <summary>Binary size in bytes.</summary>
+		/// <summary>Binary size in bytes, B.</summary>
 		[MetricUnit("B", AppliesFrom = 0, RoundingDigits = 0)]
 		Byte = 1,
-		/// <summary>Binary size in kilobytes.</summary>
+		/// <summary>Binary size in kilobytes, KB.</summary>
 		[MetricUnit("KB", AppliesFrom = (long)Kilobyte / 2.0)]
 		Kilobyte = Byte * 1024,
-		/// <summary>Binary size in megabytes.</summary>
+		/// <summary>Binary size in megabytes, MB.</summary>
 		[MetricUnit("MB", AppliesFrom = (long)Megabyte / 2.0)]
 		Megabyte = Kilobyte * 1024,
-		/// <summary>Binary size in gigabytes.</summary>
+		/// <summary>Binary size in gigabytes, GB.</summary>
 		[MetricUnit("GB", AppliesFrom = (long)Gigabyte / 2.0)]
 		Gigabyte = Megabyte * 1024,
-		/// <summary>Binary size in petabytes.</summary>
+		/// <summary>Binary size in petabytes, PB.</summary>
 		[MetricUnit("PB", AppliesFrom = (long)Petabyte / 2.0)]
 		Petabyte = Gigabyte * 1024
 	}
 
 	/// <summary>
 	/// Gc allocations metric attribute.
-	/// As perftests may be run inprocess and there can be accidental allocation from test enfine, first page allocation is ignored.
-	/// If <see cref="GcStats.AllocatedBytes"/> less than or equal to <see cref="GcMetricValuesProvider.MinimalGcAllocation"/> zero allocation is reported.
+	/// As perftest may be run inprocess, noise allocations 
+	/// (total bytes allocated less than <see cref="GcMetricValuesProvider.MinimalGcAllocation"/>) are reported as <c>0</c> 
 	/// </summary>
 	[MetricAttribute(MetricSingleValueMode.BothMinAndMax, Category = GcMetricValuesProvider.Category)]
 	public class GcAllocationsAttribute : MetricBaseAttribute, IMetricAttribute<GcAllocationsAttribute.ValuesProvider, BinarySizeUnit>

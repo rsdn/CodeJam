@@ -118,7 +118,7 @@ namespace CodeJam.PerfTests.Metrics
 			var enumType = typeArgs.Length < 2 ? null : typeArgs[1];
 			MetricUnits = enumType == null
 				? MetricUnits.Empty
-				: MetricUnits.TryCreate(enumType);
+				: MetricUnits.GetMetricUnits(enumType);
 
 			if (metricMeta != null)
 			{

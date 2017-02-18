@@ -16,7 +16,8 @@ namespace CodeJam.PerfTests.Metrics
 
 		/// <summary>
 		/// Bytes allocated per operation.
-		/// Noise allocation (total bytes allocated less than <see cref="GcMetricValuesProvider.MinimalGcAllocation"/>) returned as <c>0</c>.</summary>
+		/// Noise allocation (total bytes allocated less than <see cref="GcMetricValuesProvider.MinimalGcAllocation"/>) returned as <c>0</c>.
+		/// </summary>
 		BytesAllocatedPerOperationIgnoreNoise,
 
 		/// <summary>Gen0 collections per 1000 ops.</summary>

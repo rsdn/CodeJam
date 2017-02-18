@@ -119,7 +119,7 @@ namespace CodeJam.PerfTests.Analysers
 			var checksMode = analysis.Checks;
 			if (checksMode.CheckLimits)
 			{
-				var timeUnits = CompetitionMetricInfo.AbsoluteTime.MetricUnits;
+				var timeUnits = MetricUnits.GetMetricUnits(typeof(TimeUnit));
 
 				if (checksMode.TooFastBenchmarkLimit > TimeSpan.Zero)
 				{
