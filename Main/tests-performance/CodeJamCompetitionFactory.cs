@@ -12,19 +12,9 @@ using static CodeJam.PerfTests.Configs.Factories.CompetitionFactoryHelpers;
 
 namespace CodeJam
 {
-
 	public class CodeJamCompetitionFactory : CompetitionConfigFactory
 	{
 		public CodeJamCompetitionFactory() : base("CodeJamCompetition") { }
-
-		// TEMP HACK: to perform GC annotations later
-		protected override ManualCompetitionConfig CreateEmptyConfig(
-			ICustomAttributeProvider metadataSource, CompetitionFeatures competitionFeatures)
-		{
-			var result = base.CreateEmptyConfig(metadataSource, competitionFeatures);
-			result.Metrics.RemoveAll(m => !m.IsPrimaryMetric);
-			return result;
-		}
 
 		/// <summary>Creates competition features. <see cref="BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen"/> is false.</summary>
 		/// <param name="jobId">The job identifier.</param>
@@ -66,10 +56,10 @@ namespace CodeJam
 			var result = base.CreateJobUnfrozen(jobId, metadataSource, competitionFeatures);
 			if (competitionFeatures.Platform == Platform.X64)
 				result.Apply(EnvMode.RyuJitX64);
+
 			return result;
 		}
-
-		#region Overrides of CompetitionConfigFactory
+		
 		/// <summary>
 		/// Creates options for the competition. The <see cref="BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen"/> is false.
 		/// </summary>
@@ -94,6 +84,5 @@ namespace CodeJam
 
 			return result;
 		}
-		#endregion
 	}
 }

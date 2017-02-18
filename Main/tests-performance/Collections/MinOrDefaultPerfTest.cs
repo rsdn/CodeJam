@@ -83,7 +83,7 @@ namespace CodeJam.Collections
 		[GcAllocations(32, BinarySizeUnit.Byte)]
 		public int MinOrDefaultComparer() => MinOrDefaultComparer(_data, null, 0);
 
-		[CompetitionBenchmark(1.28, 1.96)]
+		[CompetitionBenchmark(1.28, 2.02)]
 		[GcAllocations(32, BinarySizeUnit.Byte)]
 		public int MinByOrDefaultGeneric() => MinByOrDefaultGeneric(_data, i => i);
 

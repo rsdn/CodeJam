@@ -28,7 +28,7 @@ namespace CodeJam.RangesAlternatives
 		[PublicAPI]
 		public class RangeAlternativesIntCase
 		{
-			private static readonly int Count = RecommendedSpinCount / 16;
+			private static readonly int Count = BurstModeLoopCount / 16;
 
 			private readonly KeyValuePair<int, int>[] _data;
 			private readonly RangeStub<int>[] _rangeData;
@@ -58,6 +58,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBaseline]
+			[GcAllocations(0)]
 			public KeyValuePair<int, int> Test00DirectCompare()
 			{
 				var result = _data[0];
@@ -71,6 +72,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBenchmark(10.53, 18.78)]
+			[GcAllocations(0)]
 			public RangeStub<int> Test01Range()
 			{
 				var result = _rangeData[0];
@@ -82,6 +84,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBenchmark(10.33, 19.38)]
+			[GcAllocations(0)]
 			public RangeStub<int, string> Test02KeyRange()
 			{
 				var result = _rangeKeyData[0];
@@ -92,7 +95,8 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(30.44, 53.20)]
+			[CompetitionBenchmark(30.44, 59.10)]
+			[GcAllocations(0)]
 			public RangeStubCompact<int> Test03CompactRange()
 			{
 				var result = _rangeCompactData[0];
@@ -104,6 +108,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBenchmark(14.74, 27.89)]
+			[GcAllocations(0)]
 			public Range<int> Test04RangeImpl()
 			{
 				var result = _rangeDataImpl[0];
@@ -115,6 +120,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBenchmark(16.45, 33.38)]
+			[GcAllocations(0)]
 			public Range<int, string> Test05RangeKeyImpl()
 			{
 				var result = _rangeKeyDataImpl[0];
@@ -133,7 +139,7 @@ namespace CodeJam.RangesAlternatives
 		[PublicAPI]
 		public class RangeAlternativesNullableIntCase
 		{
-			private static readonly int Count = RecommendedFastSpinCount;
+			private static readonly int Count = SmallLoopCount;
 			private readonly KeyValuePair<int?, int?>[] _data;
 			private readonly RangeStub<int?>[] _rangeData;
 			private readonly RangeStub<int?, string>[] _rangeKeyData;
@@ -162,6 +168,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBaseline]
+			[GcAllocations(0)]
 			public KeyValuePair<int?, int?> Test00DirectCompare()
 			{
 				var result = _data[0];
@@ -174,7 +181,8 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(3.02, 6.11)]
+			[CompetitionBenchmark(2.93, 6.11)]
+			[GcAllocations(0)]
 			public RangeStub<int?> Test01Range()
 			{
 				var result = _rangeData[0];
@@ -186,6 +194,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBenchmark(3.15, 7.32)]
+			[GcAllocations(0)]
 			public RangeStub<int?, string> Test02KeyRange()
 			{
 				var result = _rangeKeyData[0];
@@ -197,6 +206,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBenchmark(10.94, 17.87)]
+			[GcAllocations(0)]
 			public RangeStubCompact<int?> Test03CompactRange()
 			{
 				var result = _rangeCompactData[0];
@@ -207,7 +217,8 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(4.77, 8.10)]
+			[CompetitionBenchmark(4.77, 8.67)]
+			[GcAllocations(0)]
 			public Range<int?> Test04RangeImpl()
 			{
 				var result = _rangeDataImpl[0];
@@ -219,6 +230,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBenchmark(5.35, 11.14)]
+			[GcAllocations(0)]
 			public Range<int?, string> Test05RangeKeyImpl()
 			{
 				var result = _rangeKeyDataImpl[0];

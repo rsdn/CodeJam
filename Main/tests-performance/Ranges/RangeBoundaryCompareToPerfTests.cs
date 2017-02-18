@@ -28,6 +28,7 @@ namespace CodeJam.Ranges
 		public class RangeBoundaryCompareToIntCase : IntRangeBoundaryBaseCase
 		{
 			[CompetitionBaseline]
+			[GcAllocations(0)]
 			public int Test00DirectCompare()
 			{
 				var result = 0;
@@ -36,7 +37,8 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(2.91, 6.00)]
+			[CompetitionBenchmark(2.91, 6.75)]
+			[GcAllocations(0)]
 			public int Test01Operators()
 			{
 				var result = 0;
@@ -46,6 +48,7 @@ namespace CodeJam.Ranges
 			}
 
 			[CompetitionBenchmark(2.78, 8.27)]
+			[GcAllocations(0)]
 			public int Test02BoundaryValuesOperators()
 			{
 				var result = 0;
@@ -55,6 +58,7 @@ namespace CodeJam.Ranges
 			}
 
 			[CompetitionBenchmark(1.66, 4.06)]
+			[GcAllocations(0)]
 			public int Test03BoundariesCompareFrom()
 			{
 				var result = 0;
@@ -64,6 +68,7 @@ namespace CodeJam.Ranges
 			}
 
 			[CompetitionBenchmark(1.54, 4.33)]
+			[GcAllocations(0)]
 			public int Test03BoundariesCompareFromTo()
 			{
 				var result = 0;
@@ -73,6 +78,7 @@ namespace CodeJam.Ranges
 			}
 
 			[CompetitionBenchmark(5.62, 13.80)]
+			[GcAllocations(0)]
 			public int Test04BoundaryToValueCompare()
 			{
 				var result = 0;
@@ -90,6 +96,7 @@ namespace CodeJam.Ranges
 		public class RangeBoundaryCompareToNullableIntCase : NullableIntRangeBoundaryBaseCase
 		{
 			[CompetitionBaseline]
+			[GcAllocations(0)]
 			public int Test00DirectCompare()
 			{
 				var comparer = Comparer<int?>.Default;
@@ -100,6 +107,7 @@ namespace CodeJam.Ranges
 			}
 
 			[CompetitionBenchmark(1.35, 3.71)]
+			[GcAllocations(0)]
 			public int Test01Operators()
 			{
 				var result = 0;
@@ -109,6 +117,7 @@ namespace CodeJam.Ranges
 			}
 
 			[CompetitionBenchmark(2.32, 4.11)]
+			[GcAllocations(0)]
 			public int Test02BoundaryValuesOperators()
 			{
 				var result = 0;
@@ -117,7 +126,8 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(1.46, 2.87)]
+			[CompetitionBenchmark(1.42, 2.87)]
+			[GcAllocations(0)]
 			public int Test03BoundariesCompareFrom()
 			{
 				var result = 0;
@@ -126,7 +136,8 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(1.27, 2.52)]
+			[CompetitionBenchmark(1.27, 2.60)]
+			[GcAllocations(0)]
 			public int Test03BoundariesCompareFromTo()
 			{
 				var result = 0;
@@ -136,6 +147,7 @@ namespace CodeJam.Ranges
 			}
 
 			[CompetitionBenchmark(3.44, 6.64)]
+			[GcAllocations(0)]
 			public int Test04BoundaryToValueCompare()
 			{
 				var result = 0;

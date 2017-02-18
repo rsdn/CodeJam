@@ -27,7 +27,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			return data.Count;
 		}
 
-		[CompetitionBenchmark(0.33, 1.13)]
+		[CompetitionBenchmark(0.33, 1.43)]
 		[GcAllocations(4.08, BinarySizeUnit.Kilobyte), Gc0(0), Gc1(0), Gc2(0)]
 		[ExpectedTime(3.90, 8.15, TimeUnit.Microsecond)]
 		public int ListWithCapacity()
@@ -38,9 +38,9 @@ namespace CodeJam.PerfTests.IntegrationTests
 			return data.Count;
 		}
 
-		[CompetitionBenchmark(0.097, 0.27)]
+		[CompetitionBenchmark(0.088, 0.338)]
 		[GcAllocations(4.03, 4.05, BinarySizeUnit.Kilobyte), Gc0(0), Gc1(0), Gc2(0)]
-		[ExpectedTime(1.44, 2.44, TimeUnit.Microsecond)]
+		[ExpectedTime(1.40, 2.44, TimeUnit.Microsecond)]
 		public int Array()
 		{
 			var data = new int[Count];

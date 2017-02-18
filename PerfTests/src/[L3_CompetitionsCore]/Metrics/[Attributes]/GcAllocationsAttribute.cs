@@ -31,7 +31,7 @@ namespace CodeJam.PerfTests
 	/// <summary>
 	/// Gc allocations metric attribute.
 	/// As perftests may be run inprocess and there can be accidental allocation from test enfine, first page allocation is ignored.
-	/// If <see cref="GcStats.AllocatedBytes"/> less than or equal to <c>4096</c> bytes zero allocation is reported).
+	/// If <see cref="GcStats.AllocatedBytes"/> less than or equal to <see cref="GcMetricValuesProvider.MinimalGcAllocation"/> zero allocation is reported.
 	/// </summary>
 	[MetricAttribute(MetricSingleValueMode.BothMinAndMax, Category = GcMetricValuesProvider.Category)]
 	public class GcAllocationsAttribute : MetricBaseAttribute, IMetricAttribute<GcAllocationsAttribute.ValuesProvider, BinarySizeUnit>
@@ -43,7 +43,7 @@ namespace CodeJam.PerfTests
 		internal class ValuesProvider : GcMetricValuesProvider
 		{
 			/// <summary>Initializes a new instance of the <see cref="ValuesProvider"/> class.</summary>
-			public ValuesProvider() : base(GcMetricSource.BytesAllocatedPerOperationIgnoreFirstPage, false) { }
+			public ValuesProvider() : base(GcMetricSource.BytesAllocatedPerOperationIgnoreNoise, false) { }
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="GcAllocationsAttribute"/> class.</summary>

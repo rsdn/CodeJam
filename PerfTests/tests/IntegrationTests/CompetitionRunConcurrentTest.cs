@@ -98,10 +98,10 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public class ConcurrentRunBenchmark
 		{
 			[CompetitionBaseline]
-			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
+			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
 
 			[CompetitionBenchmark(5, 20)]
-			public void SlowerX10() => CompetitionHelpers.Delay(10 * CompetitionHelpers.RecommendedSpinCount);
+			public void SlowerX10() => CompetitionHelpers.Delay(10 * CompetitionHelpers.BurstModeLoopCount);
 		}
 		#endregion
 	}

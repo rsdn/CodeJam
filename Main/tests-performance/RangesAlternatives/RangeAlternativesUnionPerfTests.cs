@@ -28,7 +28,7 @@ namespace CodeJam.RangesAlternatives
 		[PublicAPI]
 		public class RangeUnionIntCase
 		{
-			private static readonly int Count = RecommendedSpinCount / 16;
+			private static readonly int Count = BurstModeLoopCount / 16;
 
 			private readonly KeyValuePair<int, int>[] _data;
 			private readonly KeyValuePair<int, int>[] _data2;
@@ -60,6 +60,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBaseline]
+			[GcAllocations(0)]
 			public KeyValuePair<int, int> Test00DirectCompare()
 			{
 				var result = _data[0];
@@ -73,6 +74,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBenchmark(8.58, 17.92)]
+			[GcAllocations(0)]
 			public RangeStub<int> Test01RangeInstance()
 			{
 				var result = _rangeData[0];
@@ -84,6 +86,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBenchmark(8.99, 20.38)]
+			[GcAllocations(0)]
 			public RangeStub<int> Test02RangeExtension()
 			{
 				var result = _rangeData[0];
@@ -95,6 +98,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBenchmark(8.77, 24.48)]
+			[GcAllocations(0)]
 			public RangeStub<int> Test02RangeExtensionAlt()
 			{
 				var result = _rangeData[0];
@@ -105,7 +109,8 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(9.41, 18.58)]
+			[CompetitionBenchmark(9.41, 20.18)]
+			[GcAllocations(0)]
 			public RangeStub<int> Test03RangeImpl()
 			{
 				var result = _rangeData[0];
@@ -123,7 +128,7 @@ namespace CodeJam.RangesAlternatives
 		[PublicAPI]
 		public class RangeUnionNIntCase
 		{
-			private static readonly int Count = RecommendedSpinCount / 16;
+			private static readonly int Count = BurstModeLoopCount / 16;
 			private readonly KeyValuePair<int?, int?>[] _data;
 			private readonly KeyValuePair<int?, int?>[] _data2;
 			private readonly RangeStub<int?>[] _rangeData;
@@ -157,6 +162,7 @@ namespace CodeJam.RangesAlternatives
 			private static int? Max(int? a, int? b) => a < b ? b : a;
 
 			[CompetitionBaseline]
+			[GcAllocations(0)]
 			public KeyValuePair<int?, int?> Test00DirectCompare()
 			{
 				var result = _data[0];
@@ -171,6 +177,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBenchmark(1.26, 1.99)]
+			[GcAllocations(0)]
 			public RangeStub<int?> Test01RangeInstance()
 			{
 				var result = _rangeData[0];
@@ -182,6 +189,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBenchmark(1.48, 2.92)]
+			[GcAllocations(0)]
 			public RangeStub<int?> Test02RangeExtension()
 			{
 				var result = _rangeData[0];
@@ -193,6 +201,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBenchmark(1.45, 2.55)]
+			[GcAllocations(0)]
 			public RangeStub<int?> Test02RangeExtensionAlt()
 			{
 				var result = _rangeData[0];
@@ -204,6 +213,7 @@ namespace CodeJam.RangesAlternatives
 			}
 
 			[CompetitionBenchmark(1.41, 2.55)]
+			[GcAllocations(0)]
 			public RangeStub<int?> Test03RangeImpl()
 			{
 				var result = _rangeData[0];

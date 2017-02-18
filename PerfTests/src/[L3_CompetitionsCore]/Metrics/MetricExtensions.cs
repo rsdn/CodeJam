@@ -20,7 +20,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// </returns>
 		public static bool IsSpecialMetricValue(this double metricValue) =>
 			double.IsInfinity(metricValue) || double.IsNaN(metricValue);
-		
+
 		#region GetMinMetricValue
 		/// <summary>Returns minimum metric value.</summary>
 		/// <param name="metricMaxValue">The maximum metric value.</param>
@@ -41,16 +41,16 @@ namespace CodeJam.PerfTests.Metrics
 					: MetricRange.FromNegativeInfinity);
 		#endregion
 
-		#region GetRoundingDigits
-		private static int GetRoundingDigits(double value, MetricUnit metricUnit) =>
+		#region GetRoundingDigitsForScaled helpers
+		private static int GetRoundingDigitsForScaled(double scaledMetricValue, MetricUnit metricUnit) =>
 			metricUnit.RoundingDigits ??
-				BenchmarkHelpers.GetRoundingDigits(value);
+				BenchmarkHelpers.GetRoundingDigits(scaledMetricValue);
 
-		private static int GetRoundingDigits(double min, double max, MetricUnit metricUnit) =>
+		private static int GetRoundingDigitsForScaled(MetricRange scaledMetricValues, MetricUnit metricUnit) =>
 			metricUnit.RoundingDigits ??
 				Math.Max(
-					BenchmarkHelpers.GetRoundingDigits(min),
-					BenchmarkHelpers.GetRoundingDigits(max));
+					BenchmarkHelpers.GetRoundingDigits(scaledMetricValues.Min),
+					BenchmarkHelpers.GetRoundingDigits(scaledMetricValues.Max));
 		#endregion
 
 		#region Scaled
@@ -60,13 +60,25 @@ namespace CodeJam.PerfTests.Metrics
 		/// <returns>Scaled range of metric values.</returns>
 		public static MetricRange ToScaledValuesRounded(this MetricRange metricValues, [NotNull] MetricUnit metricUnit)
 		{
-			var min = metricValues.Min.ToScaledValue(metricUnit);
-			var max = metricValues.Max.ToScaledValue(metricUnit);
-			var roundingDigits = GetRoundingDigits(min, max, metricUnit);
+			if (metricValues.IsEmpty)
+				return metricValues;
+
+			metricValues = metricValues.ToScaledValues(metricUnit);
+			var roundingDigits = GetRoundingDigitsForScaled(metricValues, metricUnit);
 
 			return MetricRange.Create(
-				Math.Round(min, roundingDigits, MidpointRounding.AwayFromZero),
-				Math.Round(max, roundingDigits, MidpointRounding.AwayFromZero));
+				Math.Round(metricValues.Min, roundingDigits, MidpointRounding.AwayFromZero),
+				Math.Round(metricValues.Max, roundingDigits, MidpointRounding.AwayFromZero));
+		}
+
+		private static MetricRange ToScaledValues(this MetricRange metricValues, MetricUnit metricUnit)
+		{
+			if (metricValues.IsEmpty || metricUnit.IsEmpty)
+				return metricValues;
+
+			var min = metricValues.Min.ToScaledValue(metricUnit);
+			var max = metricValues.Max.ToScaledValue(metricUnit);
+			return MetricRange.Create(min, max);
 		}
 
 		private static double ToScaledValue(this double metricValue, [NotNull] MetricUnit metricUnit) =>
@@ -78,7 +90,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <returns>Normalized range of metric values.</returns>
 		public static MetricRange ToNormalizedMetricValues(
 			this MetricRange scaledMetricValues, [NotNull] MetricUnit metricUnit) =>
-				metricUnit.IsEmpty
+				(scaledMetricValues.IsEmpty || metricUnit.IsEmpty)
 					? scaledMetricValues
 					: MetricRange.Create(
 						scaledMetricValues.Min.ToNormalizedMetricValue(metricUnit),
@@ -105,7 +117,7 @@ namespace CodeJam.PerfTests.Metrics
 			this double metricValue, [NotNull] MetricUnit metricUnit)
 		{
 			metricValue = metricValue.ToScaledValue(metricUnit);
-			var roundingDigits = GetRoundingDigits(metricValue, metricUnit);
+			var roundingDigits = GetRoundingDigitsForScaled(metricValue, metricUnit);
 			var displayFormat = "F" + roundingDigits;
 
 			var formattedValue = metricValue.ToString(displayFormat, HostEnvironmentInfo.MainCultureInfo);
@@ -129,9 +141,8 @@ namespace CodeJam.PerfTests.Metrics
 		public static string ToString(
 			this MetricRange metricValues, [NotNull] MetricUnit metricUnit)
 		{
-			var min = metricValues.Min.ToScaledValue(metricUnit);
-			var max = metricValues.Max.ToScaledValue(metricUnit);
-			var roundingDigits = GetRoundingDigits(min, max, metricUnit);
+			metricValues = ToScaledValues(metricValues, metricUnit);
+			var roundingDigits = GetRoundingDigitsForScaled(metricValues, metricUnit);
 			var displayFormat = "F" + roundingDigits;
 
 			var formattedValue = metricValues.ToString(displayFormat, HostEnvironmentInfo.MainCultureInfo);
@@ -148,13 +159,12 @@ namespace CodeJam.PerfTests.Metrics
 		public static void GetStringMinMax(
 			this MetricRange metricValues, [NotNull] MetricUnit metricUnit, out string minString, out string maxString)
 		{
-			var min = metricValues.Min.ToScaledValue(metricUnit);
-			var max = metricValues.Max.ToScaledValue(metricUnit);
-			var roundingDigits = GetRoundingDigits(min, max, metricUnit);
+			metricValues = ToScaledValues(metricValues, metricUnit);
+			var roundingDigits = GetRoundingDigitsForScaled(metricValues, metricUnit);
 			var displayFormat = "F" + roundingDigits;
 
-			minString = min.ToString(displayFormat, HostEnvironmentInfo.MainCultureInfo);
-			maxString = max.ToString(displayFormat, HostEnvironmentInfo.MainCultureInfo);
+			minString = metricValues.Min.ToString(displayFormat, HostEnvironmentInfo.MainCultureInfo);
+			maxString = metricValues.Max.ToString(displayFormat, HostEnvironmentInfo.MainCultureInfo);
 		}
 		#endregion
 	}

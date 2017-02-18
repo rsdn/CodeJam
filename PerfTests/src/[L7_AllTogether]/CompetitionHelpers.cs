@@ -7,6 +7,7 @@ using BenchmarkDotNet.Horology;
 
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Configs.Factories;
+using CodeJam.PerfTests.Metrics;
 
 using JetBrains.Annotations;
 
@@ -27,12 +28,48 @@ namespace CodeJam.PerfTests
 			"Temporary disabled as the results are unstable. Please, run the test manually from the Test Explorer window.";
 		#endregion
 
-		#region Benchmark-related
-		/// <summary>Default count for performance test spin count loops.</summary>
-		public static readonly int RecommendedSpinCount = (int)(ThreadCycleTimeClock.Instance.Frequency.Hertz / (64 * 1024));
+		#region Benchmark loops
+		/// <summary>
+		/// Empirically found constant loop count that provides accurate results 
+		/// for <see cref="CompetitionMetricInfo.RelativeTime"/> metric on different hardware.
+		/// Equals to 10000;
+		/// Best if used together with <see cref="ICompetitionFeatures.BurstMode"/>=<c>true</c> (<see cref="CompetitionBurstModeAttribute"/>).
+		/// </summary>
+		public const int BurstModeLoopCount = 10000;
 
-		/// <summary>Default count for performance test fast spin loops.</summary>
-		public static readonly int RecommendedFastSpinCount = RecommendedSpinCount / 128;
+		/// <summary>
+		/// Empirically found short loop count that provides accurate results 
+		/// for <see cref="CompetitionMetricInfo.RelativeTime"/> metric on different hardware.
+		/// Equals to 128;
+		/// May provide inaccurate results if used together with <see cref="ICompetitionFeatures.BurstMode"/>=<c>true</c>.
+		/// </summary>
+		public const int SmallLoopCount = 128;
+
+		/// <summary>
+		/// Empirically found long loop count that provides accurate results.
+		/// for <see cref="CompetitionMetricInfo.RelativeTime"/> metric on different hardware.
+		/// IMPORTANT:
+		/// DO NOT use the value together with absolute metrics as the value is not constant.
+		/// The <see cref="BurstModeLoopCount"/> constant should be used instead.
+		/// As example, the <see cref="GcAllocationsAttribute"/> will report different values for each run
+		/// due to varying loop count.
+		/// Depending on CPU clock frequency, loop count is expected to somewhere between 10000..40000;
+		/// Best if used together with <see cref="ICompetitionFeatures.BurstMode"/>=<c>true</c> (<see cref="CompetitionBurstModeAttribute"/>).
+		/// </summary>
+		public static readonly int BurstModeLoopCountForRelativeAuto = (int)(ThreadCycleTimeClock.Instance.Frequency.Hertz / (64 * 1024));
+
+		/// <summary>
+		/// Empirically found short loop count that provides accurate results 
+		/// for <see cref="CompetitionMetricInfo.RelativeTime"/> metric on different hardware.
+		/// IMPORTANT:
+		/// DO NOT use the value together with absolute metrics as the value is not constant.
+		/// The <see cref="BurstModeLoopCount"/> constant should be used instead.
+		/// As example, the <see cref="GcAllocationsAttribute"/> will report different values for each run
+		/// due to varying loop count.
+		/// Depending on CPU clock frequency, loop count is expected to somewhere between 80..300;
+		/// May provide inaccurate results if used together with <see cref="ICompetitionFeatures.BurstMode"/>=<c>true</c>.
+		/// </summary>
+		public static readonly int SmallLoopCountForRelativeAuto = BurstModeLoopCountForRelativeAuto / 128;
 
 		/// <summary>Default delay implementation. Performs delay for specified number of cycles.</summary>
 		/// <param name="cycles">The number of cycles to delay.</param>
@@ -48,7 +85,7 @@ namespace CodeJam.PerfTests
 			(Assembly a) => CreateConfig(a, null),
 			true);
 
-		/// <summary>Default configuration for calling assembly that should be used for most performance tests.</summary>
+		/// <summary>Default configuration that ignores calling assembly configuration attributes.</summary>
 		/// <value>Default competition configuration.</value>
 		public static ICompetitionConfig DefaultConfig => _defaultConfigLazy.Value;
 

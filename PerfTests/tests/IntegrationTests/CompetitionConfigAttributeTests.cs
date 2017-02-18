@@ -108,14 +108,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
+				CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
 			}
 
 			[CompetitionBenchmark(4, 20)]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(10 * CompetitionHelpers.RecommendedSpinCount);
+				CompetitionHelpers.Delay(10 * CompetitionHelpers.BurstModeLoopCount);
 			}
 		}
 

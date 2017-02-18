@@ -28,6 +28,7 @@ namespace CodeJam
 		}
 
 		[CompetitionBaseline]
+		[GcAllocations(0)]
 		public int Test00Baseline()
 		{
 			var a = 0;
@@ -40,6 +41,7 @@ namespace CodeJam
 		}
 
 		[CompetitionBenchmark(1.2, 5.2)]
+		[GcAllocations(0)]
 		public int Test01PlusOne()
 		{
 			var a = 0;

@@ -10,6 +10,7 @@
 ## TODOs:
 
 ### TODO NOW:
+ * BUG: custom rounding ignored for GC alloc metric.
  * IStoredMetricSource: add MetricName attribute, EnumName attribute => simplify parse logic as merging will be moved to the analyser.
    +Subtask: Attribute annotation: analyse existing overloads (add string arg to IStoredMetricSource???)
    +Subtask: Ensure that unknown unit in prev run log results in warning
@@ -30,6 +31,7 @@
  * Unique metric names
 
 ### Behavior:
+ * CompetitionHelpers.CountForRelativeAuto values - remove them?
  * Merge failed & adjusted messages into one?
  * MetricSingleValueMode: FromZeroToMax | or allov negative flag for metric info 
  * ??? Integer metrics without unit scale (for total GC count)
@@ -48,6 +50,7 @@
  * Expected time metric: to 95th percentile.
 
 ### Messages:
+ * 'No logged XML annotation for Test00Baseline found. Check if the method was renamed.' => add metric names to message
  * Validate all messages, check that origin (benchmark target) is logged, add hints (tyed arg) to them.
  * Add typed method to force same naming for source of the messages (Target, Type, xmlFile etc).
  * Check WriteVerboseHint for source annotations
@@ -75,8 +78,12 @@
  * Test for bad encoding
  * Memory limits + diagnoser - test for accuracy
 
-## Cleanup
+### Cleanup
  * Remove and re-add resharper suppressions
+
+### Features to test & to document
+* Gc metrics (byte-precise allocation monitoring, gc collection metrics)
+
 
 ## Long-term TODOs:
  * Support for multi-case benchmarks (discarded)

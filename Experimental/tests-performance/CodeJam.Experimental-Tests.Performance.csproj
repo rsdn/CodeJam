@@ -70,6 +70,10 @@
       <Project>{2f2046cc-fb47-4318-b335-5a82b04b6c40}</Project>
       <Name>CodeJam.Main</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Main\tests-performance\CodeJam.Main-Tests.Performance.csproj">
+      <Project>{8edf4429-251a-416d-bb68-93f227191bcf}</Project>
+      <Name>CodeJam.Main-Tests.Performance</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\PerfTests\src-NUnit\CodeJam.PerfTests.NUnit.csproj">
       <Project>{8abf1a06-4643-49d6-a546-b7473db10102}</Project>
       <Name>CodeJam.PerfTests.NUnit</Name>

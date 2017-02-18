@@ -121,7 +121,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(0.53, 0.81), GcAllocations(0)]
+		[CompetitionBenchmark(0.51, 0.81), GcAllocations(0)]
 		public void MinMethod()
 		{
 			for (int i = 0; i < N; i++)
@@ -181,7 +181,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(0.80, 1.05), GcAllocations(0)]
+		[CompetitionBenchmark(0.80, 1.09), GcAllocations(0)]
 		public void MinTypeBuilder()
 		{
 			for (int i = 0; i < N; i++)

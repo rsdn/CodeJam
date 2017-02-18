@@ -39,7 +39,7 @@ namespace CodeJam
 		private const string Fx = "X";
 		#endregion
 
-		private static readonly int Count = RecommendedSpinCount / 16;
+		private static readonly int Count = BurstModeLoopCount / 16;
 
 		[Test]
 		public void RunIsDefinedCase() => Competition.Run<IsDefinedCase>();
@@ -47,6 +47,7 @@ namespace CodeJam
 		public class IsDefinedCase
 		{
 			[CompetitionBaseline]
+			[GcAllocations(0)]
 			public bool Test00IsDefined()
 			{
 				var a = false;
@@ -56,6 +57,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(0.44, 1.38)]
+			[GcAllocations(0)]
 			public bool Test01IsDefinedUndefined()
 			{
 				var a = false;
@@ -65,6 +67,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(20.99, 56.07)]
+			[GcAllocations(29.31, BinarySizeUnit.Kilobyte)]
 			public bool Test02EnumIsDefined()
 			{
 				var a = false;
@@ -74,6 +77,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(14.57, 62.21)]
+			[GcAllocations(29.31, BinarySizeUnit.Kilobyte)]
 			public bool Test03EnumIsDefinedUndefined()
 			{
 				var a = false;
@@ -89,6 +93,7 @@ namespace CodeJam
 		public class TryParseCase
 		{
 			[CompetitionBaseline]
+			[GcAllocations(0)]
 			public F Test00TryParse()
 			{
 				var a = F.Zero;
@@ -98,6 +103,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(5.20, 11.34)]
+			[GcAllocations(53.73, BinarySizeUnit.Kilobyte)]
 			public F Test01TryParseUndefined()
 			{
 				var a = F.Zero;
@@ -107,6 +113,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(6.30, 18.75)]
+			[GcAllocations(68.37, BinarySizeUnit.Kilobyte)]
 			public F Test02EnumTryParse()
 			{
 				var a = F.Zero;
@@ -116,6 +123,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(3.69, 8.37)]
+			[GcAllocations(53.73, BinarySizeUnit.Kilobyte)]
 			public F Test03EnumTryParseUndefined()
 			{
 				var a = F.Zero;
@@ -137,6 +145,7 @@ namespace CodeJam
 			private static readonly Func<int, int, bool> _isFlagSetIntOp = OperatorsFactory.IsFlagSetOperator<int>();
 
 			[CompetitionBaseline]
+			[GcAllocations(0)]
 			public bool Test00Baseline()
 			{
 				var a = false;
@@ -146,6 +155,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(0.99, 1.85)]
+			[GcAllocations(0)]
 			public bool Test01IsFlagSet()
 			{
 				var a = false;
@@ -155,6 +165,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(0.68, 1.65)]
+			[GcAllocations(0)]
 			public bool Test02IsFlagSetEnumOp()
 			{
 				var a = false;
@@ -164,6 +175,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(0.65, 1.24)]
+			[GcAllocations(0)]
 			public bool Test03IsFlagSetIntOp()
 			{
 				var a = false;
@@ -173,6 +185,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(7.18, 20.77)]
+			[GcAllocations(29.31, BinarySizeUnit.Kilobyte)]
 			public bool Test04EnumHasFlag()
 			{
 				var a = false;
@@ -194,6 +207,7 @@ namespace CodeJam
 			private static readonly Func<int, int, bool> _isAnyFlagSetIntOp = OperatorsFactory.IsAnyFlagSetOperator<int>();
 
 			[CompetitionBaseline]
+			[GcAllocations(0)]
 			public bool Test00Baseline()
 			{
 				var a = false;
@@ -203,6 +217,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(0.86, 2.27)]
+			[GcAllocations(0)]
 			public bool Test01IsAnyFlagSet()
 			{
 				var a = false;
@@ -212,6 +227,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(0.53, 1.22)]
+			[GcAllocations(0)]
 			public bool Test02IsAnyFlagSetEnumOp()
 			{
 				var a = false;
@@ -221,6 +237,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(0.51, 1.95)]
+			[GcAllocations(0)]
 			public bool Test03IsAnyFlagSetIntOp()
 			{
 				var a = false;
@@ -242,6 +259,7 @@ namespace CodeJam
 			private static readonly Func<int, int, int> _setFlagIntOp = OperatorsFactory.SetFlagOperator<int>();
 
 			[CompetitionBaseline]
+			[GcAllocations(0)]
 			public F Test00Baseline()
 			{
 				var a = F.A;
@@ -250,7 +268,8 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.59, 1.66)]
+			[CompetitionBenchmark(0.59, 1.79)]
+			[GcAllocations(0)]
 			public F Test01SetFlag()
 			{
 				var a = F.A;
@@ -259,7 +278,8 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.35, 1.05)]
+			[CompetitionBenchmark(0.35, 1.16)]
+			[GcAllocations(0)]
 			public F Test02SetFlagEnumOp()
 			{
 				var a = F.A;
@@ -269,6 +289,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(0.34, 1.00)]
+			[GcAllocations(0)]
 			public int Test03SetFlagIntOp()
 			{
 				var a = 1;
@@ -290,6 +311,7 @@ namespace CodeJam
 			private static readonly Func<int, int, int> _clearFlagIntOp = OperatorsFactory.ClearFlagOperator<int>();
 
 			[CompetitionBaseline]
+			[GcAllocations(0)]
 			public F Test00Baseline()
 			{
 				var a = F.A;
@@ -299,6 +321,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(1.05, 2.16)]
+			[GcAllocations(0)]
 			public F Test01ClearFlag()
 			{
 				var a = F.A;
@@ -307,7 +330,8 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.76, 1.15)]
+			[CompetitionBenchmark(0.76, 1.29)]
+			[GcAllocations(0)]
 			public F Test02ClearFlagEnumOp()
 			{
 				var a = F.A;
@@ -317,6 +341,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(0.59, 1.00)]
+			[GcAllocations(0)]
 			public int Test03ClearFlagIntOp()
 			{
 				var a = 1;

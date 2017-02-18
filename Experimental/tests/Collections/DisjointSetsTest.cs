@@ -18,7 +18,7 @@ namespace CodeJam.Collections
 		{
 			for (var i = 1; i <= ElementsNumber; i += 1 + i / (10 + _random.Next(0, 10)))
 			{
-				Console.WriteLine($"i = {i}");
+				//Console.WriteLine($"i = {i}");
 				var djs = new DisjointSets(ElementsNumber);
 				foreach (var el in RandomShuffle(_seq))
 				{
@@ -33,7 +33,7 @@ namespace CodeJam.Collections
 		{
 			for (var i = 1; i <= ElementsNumber; i += 1 + i / (10 + _random.Next(0, 10)))
 			{
-				Console.WriteLine($"i = {i}");
+				//Console.WriteLine($"i = {i}");
 				var rs = RandomShuffle(_seq).ToList();
 				var djs = new DisjointSets<int>(rs);
 				foreach (var el in rs)

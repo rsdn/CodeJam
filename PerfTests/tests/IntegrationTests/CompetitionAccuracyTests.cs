@@ -133,7 +133,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[CompetitionModifier(typeof(CompetitionHighAccuracyModifier))]
 		public class HighAccuracyBenchmark
 		{
-			private static readonly int _count = CompetitionHelpers.RecommendedSpinCount;
+			private static readonly int _count = CompetitionHelpers.BurstModeLoopCount;
 
 			[CompetitionBaseline]
 			public void Baseline() => CompetitionHelpers.Delay(_count);
@@ -153,7 +153,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		public class HighAccuracyBenchmarkOutOfProcess
 		{
-			private static readonly int _count = CompetitionHelpers.RecommendedSpinCount;
+			private static readonly int _count = CompetitionHelpers.BurstModeLoopCount;
 
 			[CompetitionBaseline]
 			public void Baseline() => CompetitionHelpers.Delay(_count);

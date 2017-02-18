@@ -16,7 +16,7 @@ namespace CodeJam.Examples.PerfTests
 	[CompetitionRerunsModifier(10)]
 	public class SimplePerfTest
 	{
-		private static readonly int _count = CompetitionHelpers.RecommendedSpinCount;
+		private static readonly int _count = CompetitionHelpers.BurstModeLoopCount;
 
 		// Perf test runner method.
 		[Test]

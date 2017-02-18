@@ -140,19 +140,19 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public class AnnotatedBenchmark
 		{
 			[CompetitionBaseline]
-			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
+			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
 
 			[CompetitionBenchmark(10.00, 30.00)]
-			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.RecommendedSpinCount);
+			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.BurstModeLoopCount);
 		}
 
 		public class AnnotatedBaselineChangedBenchmark
 		{
 			[CompetitionBaseline]
-			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
+			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
 
 			[CompetitionBenchmark]
-			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.RecommendedSpinCount);
+			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.BurstModeLoopCount);
 		}
 
 		[CompetitionMeasurementsFromLogModifier]
@@ -161,12 +161,12 @@ namespace CodeJam.PerfTests.IntegrationTests
 			[CompetitionBaseline]
 			[GcAllocations(0.00, 6.00, BinarySizeUnit.Kilobyte)]
 			[ExpectedTime(0.00, 10.00, TimeUnit.Second)]
-			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
+			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
 
 			[CompetitionBenchmark(10.00, 30.00)]
 			[GcAllocations(0.00, 3.00, BinarySizeUnit.Gigabyte)]
 			[ExpectedTime(0.00, 10.00, TimeUnit.Second)]
-			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.RecommendedSpinCount);
+			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.BurstModeLoopCount);
 		}
 
 		[CompetitionMeasurementsFromLogModifier, CompetitionNoRelativeTime]
@@ -175,12 +175,12 @@ namespace CodeJam.PerfTests.IntegrationTests
 			[CompetitionBenchmark]
 			[ExpectedTime(0.00, 5.00, TimeUnit.Second)]
 			[GcAllocations(0.00, 5.00, BinarySizeUnit.Kilobyte)]
-			public void BaseX1() => CompetitionHelpers.Delay(CompetitionHelpers.RecommendedSpinCount);
+			public void BaseX1() => CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
 
 			[CompetitionBenchmark]
 			[ExpectedTime(0.00, 5.00, TimeUnit.Second)]
 			[GcAllocations(0.00, 1.00, BinarySizeUnit.Gigabyte)]
-			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.RecommendedSpinCount);
+			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.BurstModeLoopCount);
 		}
 		#endregion
 	}
