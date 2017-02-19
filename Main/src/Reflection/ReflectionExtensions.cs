@@ -20,20 +20,28 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="assembly">The assembly to check.</param>
 		/// <returns><c>true</c> if the assembly was build with optimizations disabled.</returns>
-		public static bool IsDebugAssembly([NotNull] this Assembly assembly) =>
-			assembly.GetCustomAttribute<DebuggableAttribute>()?.IsJITOptimizerDisabled ?? false;
+		[Pure]
+		public static bool IsDebugAssembly([NotNull] this Assembly assembly)
+		{
+			Code.NotNull(assembly, nameof(assembly));
+			return assembly.GetCustomAttribute<DebuggableAttribute>()?.IsJITOptimizerDisabled ?? false;
+		}
 
 		/// <summary>
 		/// Gets the short form of assembly qualified type name (without assembly version or assembly ley).
 		/// </summary>
 		/// <example>
-		/// //  CodeJam.Reflection.ReflectionExtensions, CodeJam
-		/// typeof(ReflectionExtensions).GetShortAssemblyQualifiedName();
+		/// // result is "CodeJam.Reflection.ReflectionExtensions, CodeJam";
+		/// var shortNameWithAssembly = typeof(ReflectionExtensions).GetShortAssemblyQualifiedName();
 		/// </example>
 		/// <param name="type">The type to get the name for.</param>
 		/// <returns>The short form of assembly qualified type name.</returns>
-		public static string GetShortAssemblyQualifiedName([NotNull] this Type type) =>
-			type + ", " + type.Assembly.GetName().Name;
+		[Pure]
+		public static string GetShortAssemblyQualifiedName([NotNull] this Type type)
+		{
+			Code.NotNull(type, nameof(type));
+			return type + ", " + type.Assembly.GetName().Name;
+		}
 
 		/// <summary>
 		/// Gets a value indicating whether the <paramref name="type"/> can be instantiated.
