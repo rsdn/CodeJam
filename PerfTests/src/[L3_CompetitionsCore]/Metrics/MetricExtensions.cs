@@ -1,7 +1,8 @@
 using System;
 
 using BenchmarkDotNet.Environments;
-using BenchmarkDotNet.Helpers;
+
+using CodeJam.PerfTests.Internal;
 
 using JetBrains.Annotations;
 
@@ -44,13 +45,13 @@ namespace CodeJam.PerfTests.Metrics
 		#region GetRoundingDigitsForScaled helpers
 		private static int GetRoundingDigitsForScaled(double scaledMetricValue, MetricUnit metricUnit) =>
 			metricUnit.RoundingDigits ??
-				BenchmarkHelpers.GetRoundingDigits(scaledMetricValue);
+				CompetitionInternalHelpers.GetRoundingDigits(scaledMetricValue);
 
 		private static int GetRoundingDigitsForScaled(MetricRange scaledMetricValues, MetricUnit metricUnit) =>
 			metricUnit.RoundingDigits ??
 				Math.Max(
-					BenchmarkHelpers.GetRoundingDigits(scaledMetricValues.Min),
-					BenchmarkHelpers.GetRoundingDigits(scaledMetricValues.Max));
+					CompetitionInternalHelpers.GetRoundingDigits(scaledMetricValues.Min),
+					CompetitionInternalHelpers.GetRoundingDigits(scaledMetricValues.Max));
 		#endregion
 
 		#region Scaled
@@ -101,18 +102,18 @@ namespace CodeJam.PerfTests.Metrics
 		#endregion
 
 		#region ToString
-		/// <summary>Returns a <see cref="string" /> representation of a metric value.</summary>
+		/// <summary>Returns a <see cref="string"/> representation of a metric value.</summary>
 		/// <param name="metricValue">The metric value.</param>
 		/// <param name="metricUnits">The metric units.</param>
-		/// <returns>A <see cref="string" /> that represents the metric value.</returns>
+		/// <returns>A <see cref="string"/> that represents the metric value.</returns>
 		public static string ToString(
 			this double metricValue, [NotNull] MetricUnits metricUnits) =>
 				ToString(metricValue, metricUnits[metricValue]);
 
-		/// <summary>Returns a <see cref="string" /> representation of a metric value.</summary>
+		/// <summary>Returns a <see cref="string"/> representation of a metric value.</summary>
 		/// <param name="metricValue">The metric value.</param>
 		/// <param name="metricUnit">The metric measurement unit.</param>
-		/// <returns>A <see cref="string" /> that represents the metric value.</returns>
+		/// <returns>A <see cref="string"/> that represents the metric value.</returns>
 		public static string ToString(
 			this double metricValue, [NotNull] MetricUnit metricUnit)
 		{
@@ -126,18 +127,18 @@ namespace CodeJam.PerfTests.Metrics
 				: formattedValue + " " + metricUnit.Name;
 		}
 
-		/// <summary>Returns a <see cref="string" /> representation of a metric value.</summary>
+		/// <summary>Returns a <see cref="string"/> representation of a metric value.</summary>
 		/// <param name="metricValues">Range of metric values.</param>
 		/// <param name="metricUnits">The metric units.</param>
-		/// <returns>A <see cref="string" /> that represents the metric value.</returns>
+		/// <returns>A <see cref="string"/> that represents the metric value.</returns>
 		public static string ToString(
 			this MetricRange metricValues, [NotNull] MetricUnits metricUnits) =>
 				ToString(metricValues, metricUnits[metricValues]);
 
-		/// <summary>Returns a <see cref="string" /> representation of a metric value.</summary>
+		/// <summary>Returns a <see cref="string"/> representation of a metric value.</summary>
 		/// <param name="metricValues">Range of metric values.</param>
 		/// <param name="metricUnit">The metric measurement unit.</param>
-		/// <returns>A <see cref="string" /> that represents the metric value.</returns>
+		/// <returns>A <see cref="string"/> that represents the metric value.</returns>
 		public static string ToString(
 			this MetricRange metricValues, [NotNull] MetricUnit metricUnit)
 		{
@@ -151,7 +152,7 @@ namespace CodeJam.PerfTests.Metrics
 				: formattedValue + " " + metricUnit.Name;
 		}
 
-		/// <summary>Returns a <see cref="string" /> representation of min and max parts of a metric value.</summary>
+		/// <summary>Returns a <see cref="string"/> representation of min and max parts of a metric value.</summary>
 		/// <param name="metricValues">Range of metric values.</param>
 		/// <param name="metricUnit">The metric measurement unit.</param>
 		/// <param name="minString">String representation of min part of a metric value.</param>

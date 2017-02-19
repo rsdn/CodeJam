@@ -2,11 +2,11 @@
 using System.IO;
 
 using BenchmarkDotNet.Exporters;
-using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
 using CodeJam.PerfTests.Configs;
+using CodeJam.PerfTests.Internal;
 using CodeJam.PerfTests.Loggers;
 
 namespace CodeJam.PerfTests.Running.Core
@@ -42,7 +42,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			// HACK: swallow console output
 			// TODO: remove after upgrade to BDN 10.3
-			using (BenchmarkHelpers.CaptureConsoleOutput(new StringWriter()))
+			using (CompetitionInternalHelpers.CaptureConsoleOutput(new StringWriter()))
 			{
 				return base.RunCore(benchmarkType, competitionConfig);
 			}

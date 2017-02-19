@@ -7,7 +7,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	/// <summary>
 	/// Cache key for the <see cref="Target"/>. Can be persisted in the current appdomain only.
 	/// </summary>
-	/// <seealso cref="System.IEquatable{TargetKey}" />
+	/// <seealso cref="System.IEquatable{TargetKey}"/>
 	// DONTTOUCH: DO NOT mark the type as serializable & DO NOT add equality operators
 	public struct TargetCacheKey : IEquatable<TargetCacheKey>
 	{
@@ -33,14 +33,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#region Equality members
 		/// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
 		/// <param name="other">An object to compare with this object.</param>
-		/// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+		/// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
 		public bool Equals(TargetCacheKey other) =>
 			TargetType.Equals(other.TargetType) && TargetMethod.Equals(other.TargetMethod);
 
 		/// <summary>Determines whether the <paramref name="obj"/> is equal to this instance.</summary>
 		/// <param name="obj">The <see cref="object"/> to compare with this instance.</param>
 		/// <returns>
-		///   <c>true</c> if the <paramref name="obj"/> is equal to this instance; otherwise, <c>false</c>.
+		/// <c>true</c> if the <paramref name="obj"/> is equal to this instance; otherwise, <c>false</c>.
 		/// </returns>
 		public override bool Equals(object obj) => obj is TargetCacheKey && Equals((TargetCacheKey)obj);
 

@@ -8,7 +8,7 @@ namespace CodeJam.PerfTests.Configs
 	/// Sets the <see cref="CompetitionCheckMode.RerunsIfValidationFailed"/> config value.
 	/// Sets maximum count of retries performed if the limit checking failed.
 	/// </summary>
-	/// <seealso cref="CodeJam.PerfTests.CompetitionModifierAttribute" />
+	/// <seealso cref="CodeJam.PerfTests.CompetitionModifierAttribute"/>
 	public sealed class CompetitionRerunsModifierAttribute : CompetitionModifierAttribute
 	{
 		private class ModifierImpl : ICompetitionModifier
@@ -21,14 +21,16 @@ namespace CodeJam.PerfTests.Configs
 			}
 
 			public void Modify(ManualCompetitionConfig competitionConfig) =>
-				competitionConfig.ApplyModifier(new CompetitionOptions()
-				{
-					Checks = { RerunsIfValidationFailed = _rerunsIfValidationFailed }
-				});
+				competitionConfig.ApplyModifier(
+					new CompetitionOptions()
+					{
+						Checks = { RerunsIfValidationFailed = _rerunsIfValidationFailed }
+					});
 		}
 
-		/// <summary>Initializes a new instance of the <see cref="CompetitionRerunsModifierAttribute" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="CompetitionRerunsModifierAttribute"/> class.</summary>
 		/// <param name="rerunsIfValidationFailed">Maximum count of retries performed if the limit checking failed.</param>
-		public CompetitionRerunsModifierAttribute(int rerunsIfValidationFailed) : base(() => new ModifierImpl(rerunsIfValidationFailed)) { }
+		public CompetitionRerunsModifierAttribute(int rerunsIfValidationFailed)
+			: base(() => new ModifierImpl(rerunsIfValidationFailed)) { }
 	}
 }

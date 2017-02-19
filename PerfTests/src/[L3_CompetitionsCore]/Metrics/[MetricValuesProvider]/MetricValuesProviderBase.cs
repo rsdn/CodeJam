@@ -16,7 +16,7 @@ namespace CodeJam.PerfTests.Metrics
 	/// <summary>
 	/// Base implementation of the <see cref="IMetricValuesProvider"/>
 	/// </summary>
-	/// <seealso cref="IMetricValuesProvider" />
+	/// <seealso cref="IMetricValuesProvider"/>
 	public abstract class MetricValuesProviderBase : IMetricValuesProvider
 	{
 		#region Helpers
@@ -29,8 +29,7 @@ namespace CodeJam.PerfTests.Metrics
 			[NotNull] Benchmark benchmark, [NotNull] Summary summary,
 			out BenchmarkReport benchmarkReport)
 		{
-			benchmarkReport = summary.TryGetBenchmarkReport(benchmark);
-
+			benchmarkReport = summary[benchmark];
 			return benchmarkReport?.ResultStatistics != null;
 		}
 
@@ -51,11 +50,11 @@ namespace CodeJam.PerfTests.Metrics
 			if (baselineBenchmark == null)
 				return false;
 
-			benchmarkReport = summary.TryGetBenchmarkReport(benchmark);
+			benchmarkReport = summary[benchmark];
 			if (benchmarkReport?.ResultStatistics == null)
 				return false;
 
-			baselineReport = summary.TryGetBenchmarkReport(baselineBenchmark);
+			baselineReport = summary[baselineBenchmark];
 			if (baselineReport?.ResultStatistics == null)
 				return false;
 
@@ -179,7 +178,7 @@ namespace CodeJam.PerfTests.Metrics
 		{
 			Code.NotNull(metricInfo, nameof(metricInfo));
 			Code.AssertArgument(
-				metricInfo.ValuesProvider == this, nameof(metricInfo), 
+				metricInfo.ValuesProvider == this, nameof(metricInfo),
 				"Passed ValuesProvider does not match to this one.");
 
 			return GetColumnProviderOverride(metricInfo);
@@ -207,7 +206,6 @@ namespace CodeJam.PerfTests.Metrics
 			new SimpleColumnProvider(
 				new CompetitionMetricColumn(metricInfo, CompetitionMetricColumn.Kind.Value),
 				new CompetitionMetricColumn(metricInfo, CompetitionMetricColumn.Kind.Variance));
-
 
 		/// <summary>Gets diagnosers the metric values.</summary>
 		/// <param name="metricInfo">The competition metric to get diagnosers for.</param>
@@ -256,7 +254,7 @@ namespace CodeJam.PerfTests.Metrics
 			baselineMetricValues = GetValuesFromReport(baselineReport);
 
 			return true;
-		} 
+		}
 		#endregion
 
 		/// <summary>Gets the values from benchmark report.</summary>

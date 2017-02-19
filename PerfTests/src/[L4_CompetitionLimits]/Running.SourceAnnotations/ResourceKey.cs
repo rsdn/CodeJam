@@ -6,11 +6,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	/// <summary>
 	/// Key for assembly resources. Can be persisted in the current appdomain only.
 	/// </summary>
-	/// <seealso cref="System.IEquatable{TargetKey}" />
+	/// <seealso cref="System.IEquatable{TargetKey}"/>
 	// DONTTOUCH: DO NOT mark the type as serializable & DO NOT add equality operators
 	public struct ResourceKey : IEquatable<ResourceKey>
 	{
-		/// <summary>Initializes a new instance of the <see cref="ResourceKey" /> struct.</summary>
+		/// <summary>Initializes a new instance of the <see cref="ResourceKey"/> struct.</summary>
 		/// <param name="assembly">The assembly that contains resource.</param>
 		/// <param name="resourceName">The name of the resource.</param>
 		public ResourceKey(Assembly assembly, string resourceName)
@@ -29,7 +29,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#region Equality members
 		/// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
 		/// <param name="other">An object to compare with this object.</param>
-		/// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+		/// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
 		public bool Equals(ResourceKey other) =>
 			Equals(Assembly, other.Assembly) && Equals(ResourceName, other.ResourceName);
 
@@ -45,7 +45,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
 		/// </returns>
 		public override int GetHashCode() => HashCode.Combine(
-			Assembly?.GetHashCode()??0,
+			Assembly?.GetHashCode() ?? 0,
 			ResourceName?.GetHashCode() ?? 0);
 		#endregion
 	}

@@ -7,15 +7,16 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 
-using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 
 using CodeJam.Collections;
 using CodeJam.PerfTests.Analysers;
+using CodeJam.PerfTests.Internal;
 using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
+using CodeJam.Reflection;
 using CodeJam.Strings;
 
 using JetBrains.Annotations;
@@ -234,7 +235,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			competitionState.WriteVerbose($"Downloading '{logUri}'.");
 
-			using (var reader = BenchmarkHelpers.TryGetTextFromUri(logUri, TimeSpan.FromSeconds(15)))
+			using (var reader = CompetitionInternalHelpers.TryGetTextFromUri(logUri, TimeSpan.FromSeconds(15)))
 			{
 				if (reader == null)
 				{
@@ -382,6 +383,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#endregion
 
 		#region Competition metrics-related
+
 		#region Parse
 		/// <summary>Parses metrics for target from the the xml annotation document.</summary>
 		/// <param name="target">The target.</param>
@@ -500,6 +502,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					target, competitionNode,
 					limitProperty, competitionState,
 					s => XmlConvert.ToBoolean(s));
+
 		// ReSharper restore ConvertClosureToMethodGroup
 
 		private static T? TryParseCore<T>(

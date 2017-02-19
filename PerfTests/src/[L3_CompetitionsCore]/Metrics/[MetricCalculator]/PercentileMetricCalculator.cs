@@ -79,12 +79,12 @@ namespace CodeJam.PerfTests.Metrics
 				minRatio = maxRatio;
 
 			return MetricRange.Create(minRatio, maxRatio);
-		} 
+		}
 		#endregion
 
 		#region .ctor & properties
 		/// <summary>
-		/// Initializes a new instance of the <see cref="PercentileMetricCalculator" /> class.
+		/// Initializes a new instance of the <see cref="PercentileMetricCalculator"/> class.
 		/// </summary>
 		/// <param name="meanPercentile">The mean percentile.</param>
 		/// <param name="actualValuesPercentileDelta">Actual values percentile delta.</param>
@@ -185,9 +185,9 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="values">Set of values.</param>
 		/// <returns>Actual values range for for the set of values (or empty range if none).</returns>
 		[Pure]
-		public MetricRange TryGetActualValues(double[] values) => 
+		public MetricRange TryGetActualValues(double[] values) =>
 			TryGetMetricRange(
-				values, 
+				values,
 				MeanPercentile - ActualValuesPercentileDelta,
 				MeanPercentile + ActualValuesPercentileDelta);
 

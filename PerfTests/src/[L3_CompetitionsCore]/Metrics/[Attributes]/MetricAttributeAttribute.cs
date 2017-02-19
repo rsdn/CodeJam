@@ -10,7 +10,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <summary>Initializes a new instance of the <see cref="MetricAttributeAttribute"/> class.</summary>
 		public MetricAttributeAttribute() { }
 
-		/// <summary>Initializes a new instance of the <see cref="MetricAttributeAttribute" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="MetricAttributeAttribute"/> class.</summary>
 		/// <param name="displayName">The name of the metric.</param>
 		public MetricAttributeAttribute(string displayName)
 		{
@@ -36,9 +36,12 @@ namespace CodeJam.PerfTests.Metrics
 		/// <value>How single-value annotations are threated.</value>
 		public MetricSingleValueMode SingleValueMode { get; set; }
 
-		/// <summary>The attribute should be added to the line with <see cref="CompetitionBenchmarkAttribute" />.</summary>
+		/// <summary>
+		/// The attribute should be added to the line with <see cref="CompetitionBenchmarkAttribute"/>.
+		/// </summary>
 		/// <value>
-		/// <c>true</c> if the attribute should be added to the line with <see cref="CompetitionBenchmarkAttribute" />; otherwise, <c>false</c>.</value>
+		/// <c>true</c> if the attribute should be added to the line with <see cref="CompetitionBenchmarkAttribute"/>; otherwise, <c>false</c>.
+		/// </value>
 		public bool AnnotateInplace { get; set; }
 	}
 }

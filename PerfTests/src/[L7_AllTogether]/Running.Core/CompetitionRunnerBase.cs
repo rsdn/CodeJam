@@ -16,6 +16,7 @@ using BenchmarkDotNet.Validators;
 using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Configs.Factories;
+using CodeJam.PerfTests.Internal;
 using CodeJam.PerfTests.Loggers;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Strings;

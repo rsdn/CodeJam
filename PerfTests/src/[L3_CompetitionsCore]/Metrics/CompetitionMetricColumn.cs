@@ -2,15 +2,10 @@
 using System.Linq;
 
 using BenchmarkDotNet.Columns;
-using BenchmarkDotNet.Environments;
-using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
-using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Metrics;
-using CodeJam.PerfTests.Running.Core;
-using CodeJam.PerfTests.Running.Limits;
 
 using JetBrains.Annotations;
 
@@ -28,10 +23,13 @@ namespace CodeJam.PerfTests.Columns
 		{
 			/// <summary>Min metric value.</summary>
 			Min,
+
 			/// <summary>Mean for metric.</summary>
 			Value,
+
 			/// <summary>Max metric value.</summary>
 			Max,
+
 			/// <summary>Metric value variance.</summary>
 			Variance
 		}
@@ -42,24 +40,22 @@ namespace CodeJam.PerfTests.Columns
 		#region Fields & .ctor
 		private readonly Kind _kind;
 
-		/// <summary>Initializes a new instance of the <see cref="CompetitionMetricColumn" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="CompetitionMetricColumn"/> class.</summary>
 		/// <param name="competitionMetric">The competitionMetric.</param>
 		/// <param name="kind">The kind of value to display.</param>
 		public CompetitionMetricColumn([NotNull] CompetitionMetricInfo competitionMetric, Kind kind) :
-			this(null, competitionMetric, kind)
-		{
-		}
+			this(null, competitionMetric, kind) { }
 
-		/// <summary>Initializes a new instance of the <see cref="CompetitionMetricColumn" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="CompetitionMetricColumn"/> class.</summary>
 		/// <param name="name">The  column name.</param>
 		/// <param name="competitionMetric">The competitionMetric.</param>
 		/// <param name="kind">The kind of value to display.</param>
-		public CompetitionMetricColumn([CanBeNull]string name, [NotNull] CompetitionMetricInfo competitionMetric, Kind kind)
+		public CompetitionMetricColumn([CanBeNull] string name, [NotNull] CompetitionMetricInfo competitionMetric, Kind kind)
 		{
 			DebugEnumCode.Defined(kind, nameof(kind));
 			_kind = kind;
 
-			ColumnName = name?? (competitionMetric.Name + (kind == Kind.Value ? "" : kind.ToString()));
+			ColumnName = name ?? (competitionMetric.Name + (kind == Kind.Value ? "" : kind.ToString()));
 			CompetitionMetric = competitionMetric;
 			PriorityInCategory = PriorityInCategoryOffset + (int)kind;
 		}

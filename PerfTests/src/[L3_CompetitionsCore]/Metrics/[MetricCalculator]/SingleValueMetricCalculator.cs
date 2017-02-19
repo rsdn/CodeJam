@@ -1,8 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
-
-using BenchmarkDotNet.Mathematics;
 
 using CodeJam.Collections;
 
@@ -25,8 +21,9 @@ namespace CodeJam.PerfTests.Metrics
 			if (values.IsNullOrEmpty())
 				return null;
 
-			if (values.Length >1)
-				throw CodeExceptions.InvalidOperation($"The {nameof(SingleValueMetricCalculator)} should be used for single-item arrays only.");
+			if (values.Length > 1)
+				throw CodeExceptions.InvalidOperation(
+					$"The {nameof(SingleValueMetricCalculator)} should be used for single-item arrays only.");
 
 			return values[0];
 		}

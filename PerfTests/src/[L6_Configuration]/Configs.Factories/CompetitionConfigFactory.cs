@@ -49,7 +49,6 @@ namespace CodeJam.PerfTests.Configs.Factories
 				StatisticColumn.Min,
 				StatisticColumn.Max));
 
-
 		/// <summary>Columns for troubleshooting mode config. </summary>
 		public static IReadOnlyList<CompetitionMetricInfo> DefaultMetrics = new CompetitionMetricInfo[]
 		{

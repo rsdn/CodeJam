@@ -15,7 +15,9 @@ namespace CodeJam.PerfTests.Analysers
 	/// <summary>Storage class for competition targets.</summary>
 	internal sealed class CompetitionTargets : IReadOnlyCollection<CompetitionTarget>
 	{
-		private readonly Dictionary<TargetCacheKey, CompetitionTarget> _targets = new Dictionary<TargetCacheKey, CompetitionTarget>();
+		private readonly Dictionary<TargetCacheKey, CompetitionTarget> _targets =
+			new Dictionary<TargetCacheKey, CompetitionTarget>();
+
 		private CompetitionMetadata _competitionMetadata;
 
 		/// <summary>Gets the <see cref="CompetitionTarget"/> for the specified target.</summary>

@@ -4,8 +4,8 @@ using System.Reflection;
 
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Diagnosers;
-using BenchmarkDotNet.Helpers;
 
+using CodeJam.PerfTests.Internal;
 using CodeJam.Strings;
 
 using JetBrains.Annotations;
@@ -21,19 +21,21 @@ namespace CodeJam.PerfTests.Metrics
 		private static readonly Func<RuntimeTypeHandle, CompetitionMetricInfo> _metricsCache = Algorithms.Memoize(
 			(RuntimeTypeHandle t) => (CompetitionMetricInfo)Activator.CreateInstance(Type.GetTypeFromHandle(t), true));
 
-		/// <summary>Creates instance of the <see cref="CompetitionMetricInfo{TAttribute}" /> class.</summary>
+		/// <summary>Creates instance of the <see cref="CompetitionMetricInfo{TAttribute}"/> class.</summary>
 		/// <typeparam name="TAttribute">
 		/// Type of the attribute used for metric annotation.
-		/// Should implement <see cref="IMetricAttribute{TMetricProvider}"/> or 
+		/// Should implement <see cref="IMetricAttribute{TMetricProvider}"/> or
 		/// <see cref="IMetricAttribute{TMetricProvider, TUnitOfMeasurement}"/>;
 		/// you can use <see cref="MetricBaseAttribute"/> as a base implementation.
 		/// </typeparam>
-		/// <returns>Instance of the <see cref="CompetitionMetricInfo{TAttribute}" />.</returns>
-		public static CompetitionMetricInfo<TAttribute> Create<TAttribute>() where TAttribute : Attribute, IStoredMetricSource =>
-			(CompetitionMetricInfo<TAttribute>)_metricsCache(typeof(CompetitionMetricInfo<TAttribute>).TypeHandle);
+		/// <returns>Instance of the <see cref="CompetitionMetricInfo{TAttribute}"/>.</returns>
+		public static CompetitionMetricInfo<TAttribute> Create<TAttribute>()
+			where TAttribute : Attribute, IStoredMetricSource =>
+				(CompetitionMetricInfo<TAttribute>)_metricsCache(typeof(CompetitionMetricInfo<TAttribute>).TypeHandle);
 		#endregion
 
 		// TODO: to L7 all together
+
 		#region Known metrics
 		/// <summary>The relative time metric. </summary>
 		public static readonly CompetitionMetricInfo<CompetitionBenchmarkAttribute> RelativeTime =
@@ -57,7 +59,6 @@ namespace CodeJam.PerfTests.Metrics
 		public static readonly CompetitionMetricInfo<Gc2Attribute> Gc2 = Create<Gc2Attribute>();
 		#endregion
 
-
 		#region Helpers
 		private static Type[] GetMetricAttributeTypeArgs(Type attributeType)
 		{
@@ -68,7 +69,7 @@ namespace CodeJam.PerfTests.Metrics
 				.ToArray();
 			var metricAttribute =
 				attGenericInterfaces.FirstOrDefault(t => t.GetGenericTypeDefinition() == typeof(IMetricAttribute<,>))
-				?? attGenericInterfaces.FirstOrDefault(t => t.GetGenericTypeDefinition() == typeof(IMetricAttribute<>));
+					?? attGenericInterfaces.FirstOrDefault(t => t.GetGenericTypeDefinition() == typeof(IMetricAttribute<>));
 
 			if (metricAttribute != null)
 			{
@@ -85,7 +86,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <summary>Initializes a new instance of the <see cref="CompetitionMetricInfo"/> class.</summary>
 		/// <param name="attributeType">
 		/// Type of the attribute used for metric annotation.
-		/// Should implement <see cref="IMetricAttribute{TMetricProvider}"/> or 
+		/// Should implement <see cref="IMetricAttribute{TMetricProvider}"/> or
 		/// <see cref="IMetricAttribute{TMetricProvider, TUnitOfMeasurement}"/>;
 		/// you can use <see cref="MetricBaseAttribute"/> as a base implementation.
 		/// </param>
@@ -157,9 +158,12 @@ namespace CodeJam.PerfTests.Metrics
 		/// <value>How single-value annotations are threated.</value>
 		public MetricSingleValueMode SingleValueMode { get; }
 
-		/// <summary>The attribute should be added to the line with <see cref="CompetitionBenchmarkAttribute" />.</summary>
+		/// <summary>
+		/// The attribute should be added to the line with <see cref="CompetitionBenchmarkAttribute"/>.
+		/// </summary>
 		/// <value>
-		/// <c>true</c> if the attribute should be added to the line with <see cref="CompetitionBenchmarkAttribute" />; otherwise, <c>false</c>.</value>
+		/// <c>true</c> if the attribute should be added to the line with <see cref="CompetitionBenchmarkAttribute"/>; otherwise, <c>false</c>.
+		/// </value>
 		public bool AnnotateInplace { get; }
 
 		/// <summary>Gets a value indicating whether the metric is relative.</summary>
@@ -167,7 +171,7 @@ namespace CodeJam.PerfTests.Metrics
 		public bool IsRelative => ValuesProvider.ResultIsRelative;
 
 		/// <summary>
-		/// Gets a value indicating whether this instance is a primary metric 
+		/// Gets a value indicating whether this instance is a primary metric
 		/// (used to annotate the <see cref="CompetitionBenchmarkAttribute"/>).
 		/// </summary>
 		/// <value>
@@ -186,22 +190,22 @@ namespace CodeJam.PerfTests.Metrics
 		[NotNull]
 		public IDiagnoser[] GetDiagnosers() => ValuesProvider.GetDiagnosers(this);
 
-		/// <summary>Returns a <see cref="System.String" /> that represents this instance.</summary>
-		/// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+		/// <summary>Returns a <see cref="System.String"/> that represents this instance.</summary>
+		/// <returns>A <see cref="System.String"/> that represents this instance.</returns>
 		public override string ToString() => Name;
 	}
 
 	/// <summary>Typed competition metric description.</summary>
 	/// <typeparam name="TAttribute">
 	/// Type of the attribute used for metric annotation.
-	/// Should implement <see cref="IMetricAttribute{TMetricProvider}"/> or 
+	/// Should implement <see cref="IMetricAttribute{TMetricProvider}"/> or
 	/// <see cref="IMetricAttribute{TMetricProvider, TUnitOfMeasurement}"/>;
 	/// you can use <see cref="MetricBaseAttribute"/> as a base implementation.
 	/// </typeparam>
 	public sealed class CompetitionMetricInfo<TAttribute> : CompetitionMetricInfo
 		where TAttribute : Attribute, IStoredMetricSource
 	{
-		/// <summary>Initializes a new instance of the <see cref="CompetitionMetricInfo{TAttribute}" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="CompetitionMetricInfo{TAttribute}"/> class.</summary>
 		internal CompetitionMetricInfo() : base(typeof(TAttribute)) { }
 	}
 }

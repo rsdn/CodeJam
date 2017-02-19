@@ -6,7 +6,6 @@ using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Reports;
 
-using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.SourceAnnotations;

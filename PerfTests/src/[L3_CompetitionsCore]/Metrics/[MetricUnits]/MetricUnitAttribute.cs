@@ -61,7 +61,7 @@ namespace CodeJam.PerfTests.Metrics
 
 		/// <summary>
 		/// Gets or sets number of fractional digits for storing and comparing metric values.
-		/// Use the <c>-1</c> to use auto-rounding feature 
+		/// Use the <c>-1</c> to use auto-rounding feature
 		/// (used by default, behavior matches to <see cref="BenchmarkHelpers.GetRoundingDigits"/>)
 		/// </summary>
 		/// <value>Count of rounding digits.</value>
@@ -79,7 +79,7 @@ namespace CodeJam.PerfTests.Metrics
 		}
 
 		/// <summary>Gets number of fractional digits for storing and comparing metric values.</summary>
-		/// <returns> 
+		/// <returns>
 		/// Number of fractional digits for storing and comparing metric values
 		/// or <c>null</c> if auto-rounding feature shold be used.
 		/// </returns>

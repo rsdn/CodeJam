@@ -7,6 +7,7 @@ namespace CodeJam.PerfTests.Metrics
 	{
 		/// <summary>The value is max limit, min limit is negative infinity.</summary>
 		FromInfinityToMax,
+
 		/// <summary>Exact match: value specifies both min and max limits.</summary>
 		BothMinAndMax
 	}

@@ -1,4 +1,6 @@
-﻿using BenchmarkDotNet.Columns;
+﻿using System;
+
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;

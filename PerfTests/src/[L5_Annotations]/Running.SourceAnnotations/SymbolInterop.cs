@@ -13,10 +13,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	/// Code taken from the pre-release version of Microsoft.DiaSymReader package.
 	/// Embedded as there is no way to add non-transitive reference to the package
 	/// BASEDON:
-	///  https://github.com/Microsoft/msbuild/blob/d00f784379da5082c417b8b03478e12e27b9e71b/src/XMakeTasks/NativeMethods.cs#L83
-	///  https://github.com/dotnet/symreader/tree/master/src/Microsoft.DiaSymReader/Shared
-	///  https://stackoverflow.com/questions/40616611/nuspec-non-transitive-package-dependencies
-	///  https://github.com/NuGet/Home/issues/3964
+	/// https://github.com/Microsoft/msbuild/blob/d00f784379da5082c417b8b03478e12e27b9e71b/src/XMakeTasks/NativeMethods.cs#L83
+	/// https://github.com/dotnet/symreader/tree/master/src/Microsoft.DiaSymReader/Shared
+	/// https://stackoverflow.com/questions/40616611/nuspec-non-transitive-package-dependencies
+	/// https://github.com/NuGet/Home/issues/3964
 	/// </summary>
 	[SuppressMessage("ReSharper", "ArrangeThisQualifier")]
 	[SuppressMessage("ReSharper", "ConvertMethodToExpressionBody")]
@@ -52,8 +52,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		// PERF: The purpose of all this code duplication is to avoid allocating any display class instances.
 		// Effectively, we will use the stack frames themselves as display classes.
 		private delegate int CountGetter<TEntity>(TEntity entity, out int count);
+
 		private delegate int ItemsGetter<TEntity, TItem>(TEntity entity, int bufferLength, out int count, TItem[] buffer);
-		private delegate int ItemsGetter<TEntity, TArg1, TItem>(TEntity entity, TArg1 arg1, int bufferLength, out int count, TItem[] buffer);
+
+		private delegate int ItemsGetter<TEntity, TArg1, TItem>(
+			TEntity entity, TArg1 arg1, int bufferLength, out int count, TItem[] buffer);
 
 		private static string BufferToString(char[] buffer)
 		{
@@ -69,7 +72,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			}
 		}
 
-		private static TItem[] GetItems<TEntity, TItem>(TEntity entity, CountGetter<TEntity> countGetter, ItemsGetter<TEntity, TItem> itemsGetter)
+		private static TItem[] GetItems<TEntity, TItem>(
+			TEntity entity, CountGetter<TEntity> countGetter, ItemsGetter<TEntity, TItem> itemsGetter)
 		{
 			int count;
 			ThrowExceptionForHR(countGetter(entity, out count));
@@ -99,7 +103,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return result;
 		}
 
-		private static TItem[] GetItems<TEntity, TArg1, TItem>(TEntity entity, TArg1 arg1, ItemsGetter<TEntity, TArg1, TItem> getter)
+		private static TItem[] GetItems<TEntity, TArg1, TItem>(
+			TEntity entity, TArg1 arg1, ItemsGetter<TEntity, TArg1, TItem> getter)
 		{
 			int count;
 			ThrowExceptionForHR(getter(entity, arg1, 0, out count, null));
@@ -165,7 +170,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			int[] endColumns = new int[numAvailable];
 
 			int numRead;
-			ThrowExceptionForHR(method.GetSequencePoints(numAvailable, out numRead, offsets, documents, startLines, startColumns, endLines, endColumns));
+			ThrowExceptionForHR(
+				method.GetSequencePoints(
+					numAvailable, out numRead, offsets, documents, startLines, startColumns, endLines, endColumns));
 			ValidateItems(numRead, offsets.Length);
 
 			for (int i = 0; i < numRead; i++)
@@ -268,15 +275,19 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#endregion
 
 		#region Reader
-		public static ISymUnmanagedMethod[] GetMethodsInDocument(this ISymUnmanagedReader reader, ISymUnmanagedDocument symDocument)
+		public static ISymUnmanagedMethod[] GetMethodsInDocument(
+			this ISymUnmanagedReader reader, ISymUnmanagedDocument symDocument)
 		{
 			if (reader == null)
 			{
 				throw new ArgumentNullException(nameof(reader));
 			}
 
-			return NullToEmpty(GetItems((ISymUnmanagedReader2)reader, symDocument,
-				(ISymUnmanagedReader2 a, ISymUnmanagedDocument b, int c, out int d, ISymUnmanagedMethod[] e) => a.GetMethodsInDocument(b, c, out d, e)));
+			return NullToEmpty(
+				GetItems(
+					(ISymUnmanagedReader2)reader, symDocument,
+					(ISymUnmanagedReader2 a, ISymUnmanagedDocument b, int c, out int d, ISymUnmanagedMethod[] e) =>
+						a.GetMethodsInDocument(b, c, out d, e)));
 		}
 
 		public static ISymUnmanagedMethod GetMethod(this ISymUnmanagedReader reader, int methodToken)
@@ -284,7 +295,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return GetMethodByVersion(reader, methodToken, methodVersion: 1);
 		}
 
-		public static ISymUnmanagedMethod GetMethodByVersion(this ISymUnmanagedReader reader, int methodToken, int methodVersion)
+		public static ISymUnmanagedMethod GetMethodByVersion(
+			this ISymUnmanagedReader reader, int methodToken, int methodVersion)
 		{
 			if (reader == null)
 			{
@@ -347,7 +359,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			object DefineScope([In] ref Guid rclsid, [In] uint dwCreateFlags, [In] ref Guid riid);
 
 			[return: MarshalAs(UnmanagedType.Interface)]
-			object OpenScope([In][MarshalAs(UnmanagedType.LPWStr)] string szScope, [In] uint dwOpenFlags, [In] ref Guid riid);
+			object OpenScope([In] [MarshalAs(UnmanagedType.LPWStr)] string szScope, [In] uint dwOpenFlags, [In] ref Guid riid);
 
 			[return: MarshalAs(UnmanagedType.Interface)]
 			object OpenScopeOnMemory([In] IntPtr pData, [In] uint cbData, [In] uint dwOpenFlags, [In] ref Guid riid);
@@ -788,7 +800,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		public interface ISymUnmanagedReader2 : ISymUnmanagedReader
 		{
 			#region ISymUnmanagedReader methods
-
 			[PreserveSig]
 			new int GetDocument(
 				[MarshalAs(UnmanagedType.LPWStr)] string url,
@@ -878,15 +889,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				[In, Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] ISymUnmanagedMethod[] methods);
 
 			[PreserveSig]
-			new int GetDocumentVersion(ISymUnmanagedDocument document, out int version, [MarshalAs(UnmanagedType.Bool)]out bool isCurrent);
+			new int GetDocumentVersion(
+				ISymUnmanagedDocument document, out int version, [MarshalAs(UnmanagedType.Bool)] out bool isCurrent);
 
 			[PreserveSig]
 			new int GetMethodVersion(ISymUnmanagedMethod method, out int version);
-
 			#endregion
 
 			#region ISymUnmanagedReader2 methods
-
 			[PreserveSig]
 			int GetMethodByVersionPreRemap(
 				int methodToken,
@@ -907,7 +917,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				int bufferLength,
 				out int count,
 				[In, Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] ISymUnmanagedMethod[] methods);
-
 			#endregion
 		}
 		#endregion

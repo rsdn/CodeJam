@@ -1,14 +1,13 @@
 ﻿using System;
 
 using BenchmarkDotNet.Characteristics;
-using BenchmarkDotNet.Jobs;
 
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Competition run parameters class.</summary>
-	/// <seealso cref="CharacteristicObject{CompetitionRunMode}"/>
+	/// <seealso cref="CharacteristicObject{T}"/>
 	[PublicAPI]
 	public sealed class CompetitionRunMode : CharacteristicObject<CompetitionRunMode>
 	{

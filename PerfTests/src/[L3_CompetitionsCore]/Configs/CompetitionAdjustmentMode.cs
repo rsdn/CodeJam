@@ -2,14 +2,13 @@
 using System.ComponentModel;
 
 using BenchmarkDotNet.Characteristics;
-using BenchmarkDotNet.Jobs;
 
 using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>Competition adjustment parameters class.</summary>
-	/// <seealso cref="CharacteristicObject{CompetitionLimitsMode}"/>
+	/// <seealso cref="CharacteristicObject{T}"/>
 	[PublicAPI]
 	public sealed class CompetitionAdjustmentMode : CharacteristicObject<CompetitionAdjustmentMode>
 	{

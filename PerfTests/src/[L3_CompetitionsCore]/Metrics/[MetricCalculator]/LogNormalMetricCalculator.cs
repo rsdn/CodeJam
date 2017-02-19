@@ -37,7 +37,7 @@ namespace CodeJam.PerfTests.Metrics
 			values = values.ConvertAll(a => a <= 0 ? 0 : Math.Log(a));
 			baselineValues = baselineValues.ConvertAll(a => a <= 0 ? 0 : Math.Log(a));
 			return true;
-		} 
+		}
 		#endregion
 
 		/// <summary>

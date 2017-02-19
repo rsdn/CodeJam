@@ -15,14 +15,13 @@ namespace CodeJam.PerfTests.Analysers
 	[PublicAPI]
 	public class Analysis
 	{
-		/// <summary>Initializes a new instance of the <see cref="Analysis" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="Analysis"/> class.</summary>
 		/// <param name="id">The identifier.</param>
 		/// <param name="summary">The summary.</param>
 		public Analysis([NotNull] string id, [NotNull] Summary summary)
-			: this(id, summary, MessageSource.Analyser)
-		{}
+			: this(id, summary, MessageSource.Analyser) { }
 
-		/// <summary>Initializes a new instance of the <see cref="Analysis" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="Analysis"/> class.</summary>
 		/// <param name="id">The identifier.</param>
 		/// <param name="summary">The summary.</param>
 		/// <param name="messageSource">Source for the messages.</param>

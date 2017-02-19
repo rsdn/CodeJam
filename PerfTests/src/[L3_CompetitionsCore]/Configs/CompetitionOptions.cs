@@ -1,7 +1,6 @@
 ﻿using System;
 
 using BenchmarkDotNet.Characteristics;
-using BenchmarkDotNet.Jobs;
 
 using JetBrains.Annotations;
 

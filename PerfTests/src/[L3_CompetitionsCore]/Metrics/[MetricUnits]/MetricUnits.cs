@@ -84,7 +84,7 @@ namespace CodeJam.PerfTests.Metrics
 		private readonly IReadOnlyDictionary<Enum, MetricUnit> _unitsByEnumValue;
 		private readonly IReadOnlyDictionary<string, MetricUnit> _unitsByName;
 
-		/// <summary>Initializes a new instance of empty <see cref="MetricUnits" /> class.</summary>
+		/// <summary>Initializes a new instance of empty <see cref="MetricUnits"/> class.</summary>
 		private MetricUnits()
 		{
 			MetricEnumType = null;
@@ -95,8 +95,9 @@ namespace CodeJam.PerfTests.Metrics
 			_unitsByName = new Dictionary<string, MetricUnit>();
 		}
 
-		/// <summary>Initializes a new instance of the <see cref="MetricUnits" /> class.</summary>
-		/// <param name="metricEnumType">Type of the metric enum.
+		/// <summary>Initializes a new instance of the <see cref="MetricUnits"/> class.</summary>
+		/// <param name="metricEnumType">
+		/// Type of the metric enum.
 		/// Type of the metric unit enum.
 		/// Use the <see cref="MetricUnitAttribute"/> on enum members to override display name or scaling coefficient.
 		/// </param>
@@ -127,47 +128,47 @@ namespace CodeJam.PerfTests.Metrics
 		#endregion
 
 		#region Indexers
-		/// <summary>Gets the best <see cref="MetricUnit" /> for the measured value.</summary>
-		/// <value>The <see cref="MetricUnit" />.</value>
+		/// <summary>Gets the best <see cref="MetricUnit"/> for the measured value.</summary>
+		/// <value>The <see cref="MetricUnit"/>.</value>
 		/// <param name="measuredValue">The measured value.</param>
-		/// <returns>The <see cref="MetricUnit" /> for the measured value.</returns>
+		/// <returns>The <see cref="MetricUnit"/> for the measured value.</returns>
 		[NotNull]
-		public MetricUnit this[double measuredValue] => 
+		public MetricUnit this[double measuredValue] =>
 			_unitScale.GetIntersection(measuredValue)
 				.FirstOrDefault()
 				.Key ?? MetricUnit.Empty;
 
-		/// <summary>Gets the best <see cref="MetricUnit" /> for the measured value.</summary>
-		/// <value>The <see cref="MetricUnit" />.</value>
+		/// <summary>Gets the best <see cref="MetricUnit"/> for the measured value.</summary>
+		/// <value>The <see cref="MetricUnit"/>.</value>
 		/// <param name="measuredValues">Range of measured values.</param>
-		/// <returns>The <see cref="MetricUnit" /> for the measured value.</returns>
+		/// <returns>The <see cref="MetricUnit"/> for the measured value.</returns>
 		[NotNull]
-		public MetricUnit this[MetricRange measuredValues] => 
+		public MetricUnit this[MetricRange measuredValues] =>
 			_unitScale.GetIntersection(GetUnitSearchValue(measuredValues))
 				.FirstOrDefault()
 				.Key ?? MetricUnit.Empty;
 
-		/// <summary>Gets the <see cref="MetricUnit" /> with the specified enum value.</summary>
-		/// <value>The <see cref="MetricUnit" />.</value>
+		/// <summary>Gets the <see cref="MetricUnit"/> with the specified enum value.</summary>
+		/// <value>The <see cref="MetricUnit"/>.</value>
 		/// <param name="enumValue">The enum value.</param>
-		/// <returns>The <see cref="MetricUnit" /> with the specified coefficient.</returns>
+		/// <returns>The <see cref="MetricUnit"/> with the specified coefficient.</returns>
 		[NotNull]
-		public MetricUnit this[Enum enumValue] => IsEmpty || enumValue == null 
-			? MetricUnit.Empty 
+		public MetricUnit this[Enum enumValue] => IsEmpty || enumValue == null
+			? MetricUnit.Empty
 			: (_unitsByEnumValue.GetValueOrDefault(enumValue) ?? MetricUnit.Empty);
 
-		/// <summary>Gets the <see cref="MetricUnit" /> with the specified name.</summary>
-		/// <value>The <see cref="MetricUnit" />.</value>
+		/// <summary>Gets the <see cref="MetricUnit"/> with the specified name.</summary>
+		/// <value>The <see cref="MetricUnit"/>.</value>
 		/// <param name="name">The name.</param>
-		/// <returns>The <see cref="MetricUnit" /> with the specified coefficient.</returns>
+		/// <returns>The <see cref="MetricUnit"/> with the specified coefficient.</returns>
 		[NotNull]
-		public MetricUnit this[string name] => IsEmpty 
+		public MetricUnit this[string name] => IsEmpty
 			? MetricUnit.Empty
 			: (_unitsByName.GetValueOrDefault(name) ?? MetricUnit.Empty);
 		#endregion
 
-		/// <summary>Returns a <see cref="string" /> that represents this instance.</summary>
-		/// <returns>A <see cref="string" /> that represents this instance.</returns>
+		/// <summary>Returns a <see cref="string"/> that represents this instance.</summary>
+		/// <returns>A <see cref="string"/> that represents this instance.</returns>
 		public override string ToString() => MetricEnumType?.Name ?? MetricUnit.Empty.Name;
 	}
 }

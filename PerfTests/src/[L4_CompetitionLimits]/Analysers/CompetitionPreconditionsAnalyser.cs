@@ -7,10 +7,10 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
 
-using CodeJam.Strings;
 using CodeJam.Collections;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Metrics;
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -142,7 +142,6 @@ namespace CodeJam.PerfTests.Analysers
 
 				if (checksMode.LongRunningBenchmarkLimit > TimeSpan.Zero)
 				{
-
 					var tooSlowReports = GetTargetNames(
 						analysis,
 						r => r.GetResultRuns().Average(run => run.Nanoseconds) > checksMode.LongRunningBenchmarkLimit.TotalNanoseconds());
@@ -168,7 +167,7 @@ namespace CodeJam.PerfTests.Analysers
 			CompetitionAnalysis analysis,
 			Func<BenchmarkReport, bool> benchmarkReportFilter) =>
 				analysis.Summary.GetSummaryOrderBenchmarks()
-					.Select(b => analysis.Summary.TryGetBenchmarkReport(b))
+					.Select(b => analysis.Summary[b])
 					.Where(r => r != null && benchmarkReportFilter(r))
 					.Select(r => r.Benchmark.Target.MethodDisplayInfo)
 					.Distinct()

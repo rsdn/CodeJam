@@ -4,10 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 
 using CodeJam.Collections;
+using CodeJam.PerfTests.Internal;
 using CodeJam.PerfTests.Loggers;
 using CodeJam.Reflection;
 
@@ -149,7 +149,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 		/// Checks that run is performed under continuous integration.
 		/// </summary>
 		public static bool RunsUnderContinuousIntegration() =>
-			BenchmarkHelpers.HasAnyEnvironmentVariable(WellKnownCiVariables.ToArray());
+			CompetitionInternalHelpers.HasAnyEnvironmentVariable(WellKnownCiVariables.ToArray());
 		#endregion
 
 		#region Appcongfig support
@@ -159,7 +159,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 		/// <summary>Reads <see cref="CompetitionFeatures"/> from assembly level options config section.</summary>
 		/// <param name="targetAssembly">Assembly to create config for.</param>
 		/// <returns>
-		///  <see cref="CompetitionFeatures"/> section filled from first of app.config, <paramref name="targetAssembly"/> or CodeJam.PerfTests assembly.
+		/// <see cref="CompetitionFeatures"/> section filled from first of app.config, <paramref name="targetAssembly"/> or CodeJam.PerfTests assembly.
 		/// </returns>
 		[CanBeNull]
 		private static CompetitionFeatures FeaturesFromAppConfig([NotNull] this Assembly targetAssembly) =>
@@ -168,12 +168,12 @@ namespace CodeJam.PerfTests.Configs.Factories
 		/// <summary>Reads <see cref="CompetitionFeatures"/> from assembly level options config section.</summary>
 		/// <param name="assembliesToCheck">Assemblies to check for the config section if the app.config does not contain the section.</param>
 		/// <returns>
-		///  <see cref="CompetitionFeatures"/> section filled from first of app.config, <paramref name="assembliesToCheck"/> or CodeJam.PerfTests assembly.
+		/// <see cref="CompetitionFeatures"/> section filled from first of app.config, <paramref name="assembliesToCheck"/> or CodeJam.PerfTests assembly.
 		/// </returns>
 		[CanBeNull]
 		public static CompetitionFeatures FeaturesFromAppConfig(params Assembly[] assembliesToCheck)
 		{
-			var section = BenchmarkHelpers.ParseConfigurationSection<PerfTestsSection>(
+			var section = CompetitionInternalHelpers.ParseConfigurationSection<PerfTestsSection>(
 				SectionName,
 				assembliesToCheck.Concat(typeof(CompetitionFactoryHelpers).Assembly));
 

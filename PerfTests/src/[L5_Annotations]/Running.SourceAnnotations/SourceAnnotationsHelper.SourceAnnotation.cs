@@ -6,10 +6,9 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
-using BenchmarkDotNet.Helpers;
-
 using CodeJam.Collections;
 using CodeJam.PerfTests.Analysers;
+using CodeJam.PerfTests.Internal;
 using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
@@ -59,6 +58,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			private int FixOnInsertFrom(int lineNumber, int insertLineNumber) =>
 				insertLineNumber < lineNumber ? lineNumber + 1 : lineNumber;
+
 			private int FixOnInsertTo(int lineNumber, int insertLineNumber) =>
 				insertLineNumber <= lineNumber ? lineNumber + 1 : lineNumber;
 
@@ -146,7 +146,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				MarkAsChanged();
 			}
 
-			protected override void SaveCore() => BenchmarkHelpers.WriteFileContent(Path, _sourceLines.ToArray());
+			protected override void SaveCore() => CompetitionInternalHelpers.WriteFileContent(Path, _sourceLines.ToArray());
 		}
 
 		private static class SourceAnnotation
@@ -257,7 +257,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				try
 				{
-					return BenchmarkHelpers.ReadFileContent(file);
+					return CompetitionInternalHelpers.ReadFileContent(file);
 				}
 				catch (IOException ex)
 				{
@@ -634,6 +634,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				return result.ToString();
 			}
 			#endregion
+
 			#endregion
 		}
 	}

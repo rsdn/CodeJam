@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-using BenchmarkDotNet.Environments;
-
 using CodeJam.Ranges;
 
 namespace CodeJam.PerfTests.Metrics
@@ -43,7 +41,7 @@ namespace CodeJam.PerfTests.Metrics
 
 		/// <summary>
 		/// Infinite metric values range (ignored, essentially).
-		/// The <see cref="Min"/> and <see cref="Max"/> are set to 
+		/// The <see cref="Min"/> and <see cref="Max"/> are set to
 		/// <see cref="FromNegativeInfinity"/> and <see cref="ToPositiveInfinity"/>, respectively.
 		/// </summary>
 		public static readonly MetricRange Infinite = new MetricRange(Range<double>.Infinite);
@@ -141,7 +139,7 @@ namespace CodeJam.PerfTests.Metrics
 		#region Equality members
 		/// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
 		/// <param name="other">An object to compare with this object.</param>
-		/// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+		/// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
 		public bool Equals(MetricRange other) => _range.Equals(other._range);
 
 		/// <summary>Determines whether the <paramref name="obj"/> is equal to this instance.</summary>

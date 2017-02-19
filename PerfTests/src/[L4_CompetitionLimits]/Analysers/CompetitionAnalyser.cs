@@ -1,26 +1,24 @@
 ﻿using System;
-using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Xml.Linq;
 
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
-using CodeJam.Strings;
 using CodeJam.Collections;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Metrics;
-using CodeJam.PerfTests.Running.SourceAnnotations;
-using CodeJam.Reflection;
-
-using JetBrains.Annotations;
-
-using System.Xml.Linq;
-
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
+using CodeJam.PerfTests.Running.SourceAnnotations;
+using CodeJam.Reflection;
+using CodeJam.Strings;
+
+using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Analysers
 {
@@ -61,7 +59,7 @@ namespace CodeJam.PerfTests.Analysers
 					analysis.Targets.Any(t => t.Target.Type != analysis.RunState.BenchmarkType),
 					"Trying to analyse code that does not belong to the benchmark.");
 
-				if (analysis.Targets.SelectMany(t=>t.MetricValues) .Any(m=>m.Metric.IsRelative) &&
+				if (analysis.Targets.SelectMany(t => t.MetricValues).Any(m => m.Metric.IsRelative) &&
 					!GetBenchmarkTargets(analysis).Any(t => t.Baseline))
 				{
 					analysis.WriteSetupErrorMessage(
@@ -113,7 +111,6 @@ namespace CodeJam.PerfTests.Analysers
 				analysis.WriteInfoMessage($"Competition limits do not require update. Log file: '{logUri}'.");
 			}
 		}
-
 
 		// ReSharper disable once SuggestBaseTypeForParameter
 		[NotNull]
@@ -174,11 +171,12 @@ namespace CodeJam.PerfTests.Analysers
 		#region Skip logic
 		private bool PerformAdjustment(CompetitionAnalysis analysis) =>
 			analysis.Adjustments.AdjustLimits &&
-			analysis.RunState.RunNumber > analysis.Adjustments.SkipRunsBeforeAdjustment;
+				analysis.RunState.RunNumber > analysis.Adjustments.SkipRunsBeforeAdjustment;
 
 		private bool PerformAdjustment(CompetitionAnalysis analysis, CompetitionMetricValue metricValue)
 		{
-			if (analysis.Adjustments.AdjustLimits || (metricValue.ValuesRange.IsEmpty && analysis.Adjustments.ForceEmptyLimitsAdjustment))
+			if (analysis.Adjustments.AdjustLimits
+				|| (metricValue.ValuesRange.IsEmpty && analysis.Adjustments.ForceEmptyLimitsAdjustment))
 				return analysis.RunState.RunNumber > analysis.Adjustments.SkipRunsBeforeAdjustment;
 			return false;
 		}
@@ -246,8 +244,8 @@ namespace CodeJam.PerfTests.Analysers
 			var competitionMetadata = analysis.Targets.CompetitionMetadata;
 			var storedMetrics =
 				competitionMetadata == null
-				? GetAttributeMetrics(target, analysis)
-				: GetXmlAnnotationDocMetrics(target, xmlAnnotationsDoc, competitionMetadata, analysis);
+					? GetAttributeMetrics(target, analysis)
+					: GetXmlAnnotationDocMetrics(target, xmlAnnotationsDoc, competitionMetadata, analysis);
 
 			bool hasMetrics = storedMetrics.Any();
 
@@ -401,7 +399,7 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				analysis.AddTestErrorConclusion(
 					$"Method {targetMethodTitle}: could not obtain {metric} metric values for {benchmark.DisplayInfo}.",
-					summary.TryGetBenchmarkReport(benchmark));
+					summary[benchmark]);
 
 				return true;
 			}
@@ -428,7 +426,7 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				analysis.AddTestErrorConclusion(
 					$"{targetMethodTitle}, {metric} {actualValues.ToString(metric.MetricUnits)} is out of limit {metricValue}.",
-					summary.TryGetBenchmarkReport(benchmark));
+					summary[benchmark]);
 
 				checkPassed = false;
 			}

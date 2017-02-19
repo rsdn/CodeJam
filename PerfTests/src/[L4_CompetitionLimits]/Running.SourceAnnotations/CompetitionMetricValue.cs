@@ -26,7 +26,8 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="metric">The metric.</param>
 		/// <param name="valuesRange">The metric values range.</param>
 		/// <param name="displayMetricUnit">The preferred metric unit for the values range.</param>
-		public CompetitionMetricValue([NotNull] CompetitionMetricInfo metric, MetricRange valuesRange, [NotNull] MetricUnit displayMetricUnit)
+		public CompetitionMetricValue(
+			[NotNull] CompetitionMetricInfo metric, MetricRange valuesRange, [NotNull] MetricUnit displayMetricUnit)
 		{
 			Code.NotNull(metric, nameof(metric));
 			Code.NotNull(displayMetricUnit, nameof(displayMetricUnit));
@@ -101,8 +102,8 @@ namespace CodeJam.PerfTests.Analysers
 		/// <summary>Marks value as saved (sets <see cref="HasUnsavedChanges"/> to <c>false</c>).</summary>
 		public void MarkAsSaved() => HasUnsavedChanges = false;
 
-		/// <summary>Returns a <see cref="string" /> that represents this instance.</summary>
-		/// <returns>A <see cref="string" /> that represents this instance.</returns>
+		/// <summary>Returns a <see cref="string"/> that represents this instance.</summary>
+		/// <returns>A <see cref="string"/> that represents this instance.</returns>
 		public override string ToString() => ValuesRange.ToString(DisplayMetricUnit);
 	}
 }

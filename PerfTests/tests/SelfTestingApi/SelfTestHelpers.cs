@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -36,7 +37,8 @@ namespace CodeJam.PerfTests
 		public static void IgnoreIfDebug()
 		{
 			var caller = Assembly.GetCallingAssembly();
-			if (caller.IsDebugAssembly() && !HostEnvironmentInfo.GetCurrent().HasAttachedDebugger)
+			if ((caller.GetCustomAttribute<DebuggableAttribute>()?.IsJITOptimizerDisabled ?? false) &&
+				!HostEnvironmentInfo.GetCurrent().HasAttachedDebugger)
 			{
 				Assert.Ignore("Please run as a release build");
 			}

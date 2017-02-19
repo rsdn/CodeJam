@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -13,6 +14,27 @@ namespace CodeJam.Reflection
 	[PublicAPI]
 	public static partial class ReflectionExtensions
 	{
+		/// <summary>
+		/// Checks that the assembly is build with <see cref="DebuggableAttribute.IsJITOptimizerDisabled"/>
+		/// set to <c>false</c>.
+		/// </summary>
+		/// <param name="assembly">The assembly to check.</param>
+		/// <returns><c>true</c> if the assembly was build with optimizations disabled.</returns>
+		public static bool IsDebugAssembly([NotNull] this Assembly assembly) =>
+			assembly.GetCustomAttribute<DebuggableAttribute>()?.IsJITOptimizerDisabled ?? false;
+
+		/// <summary>
+		/// Gets the short form of assembly qualified type name (without assembly version or assembly ley).
+		/// </summary>
+		/// <example>
+		/// //  CodeJam.Reflection.ReflectionExtensions, CodeJam
+		/// typeof(ReflectionExtensions).GetShortAssemblyQualifiedName();
+		/// </example>
+		/// <param name="type">The type to get the name for.</param>
+		/// <returns>The short form of assembly qualified type name.</returns>
+		public static string GetShortAssemblyQualifiedName([NotNull] this Type type) =>
+			type + ", " + type.Assembly.GetName().Name;
+
 		/// <summary>
 		/// Gets a value indicating whether the <paramref name="type"/> can be instantiated.
 		/// </summary>
@@ -291,12 +313,18 @@ namespace CodeJam.Reflection
 
 			switch (memberInfo.MemberType)
 			{
-				case MemberTypes.Property    : return ((PropertyInfo)memberInfo).PropertyType;
-				case MemberTypes.Field       : return ((FieldInfo)   memberInfo).FieldType;
-				case MemberTypes.Method      : return ((MethodInfo)  memberInfo).ReturnType;
-				case MemberTypes.Constructor : return                memberInfo. DeclaringType;
-				case MemberTypes.Event       : return ((EventInfo)   memberInfo).EventHandlerType;
-				default                      : throw new InvalidOperationException();
+				case MemberTypes.Property:
+					return ((PropertyInfo)memberInfo).PropertyType;
+				case MemberTypes.Field:
+					return ((FieldInfo)memberInfo).FieldType;
+				case MemberTypes.Method:
+					return ((MethodInfo)memberInfo).ReturnType;
+				case MemberTypes.Constructor:
+					return memberInfo.DeclaringType;
+				case MemberTypes.Event:
+					return ((EventInfo)memberInfo).EventHandlerType;
+				default:
+					throw new InvalidOperationException();
 			}
 		}
 
@@ -328,7 +356,8 @@ namespace CodeJam.Reflection
 		[Pure]
 		public static ConstructorInfo GetDefaultConstructor([NotNull] this Type type, bool exceptionIfNotExists = false)
 		{
-			if (type == null) throw new ArgumentNullException(nameof(type));
+			if (type == null)
+				throw new ArgumentNullException(nameof(type));
 
 			var info = type.GetConstructor(
 				BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public,

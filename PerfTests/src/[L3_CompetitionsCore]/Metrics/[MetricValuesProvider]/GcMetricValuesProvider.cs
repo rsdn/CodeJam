@@ -33,7 +33,7 @@ namespace CodeJam.PerfTests.Metrics
 	/// <summary>
 	/// Implementation of <see cref="IMetricValuesProvider"/> that returns various values from Benchmark's GcStats
 	/// </summary>
-	/// <seealso cref="MetricValuesProviderBase" />
+	/// <seealso cref="MetricValuesProviderBase"/>
 	public class GcMetricValuesProvider : MetricValuesProviderBase
 	{
 		/// <summary>The category of metric values.</summary>
@@ -62,13 +62,12 @@ namespace CodeJam.PerfTests.Metrics
 				var tmp = new object();
 				result = GC.GetTotalMemory(false) - result;
 				GC.KeepAlive(tmp);
-
 			} while (result <= 0);
 
 			return result;
 		}
 
-		/// <summary>Initializes a new instance of the <see cref="TimeMetricValuesProvider" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="TimeMetricValuesProvider"/> class.</summary>
 		/// <param name="metricSource">Property of the <see cref="GcStats"/> to be used as a GC metric value.</param>
 		/// <param name="resultIsRelative"><c>true</c> if the metric is relative.</param>
 		public GcMetricValuesProvider(GcMetricSource metricSource, bool resultIsRelative) :

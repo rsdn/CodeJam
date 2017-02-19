@@ -18,14 +18,14 @@ namespace CodeJam.PerfTests.Metrics
 		#region Fields & .ctor
 		private const string EmptyMetricName = "(" + nameof(Empty) + ")";
 
-		/// <summary>Initializes a new instance of the <see cref="MetricUnit" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="MetricUnit"/> class.</summary>
 		private MetricUnit()
 		{
 			Name = EmptyMetricName;
 			IsEmpty = true;
 		}
 
-		/// <summary>Initializes a new instance of the <see cref="MetricUnit" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="MetricUnit"/> class.</summary>
 		/// <param name="name">The name of the metric measurement unit.</param>
 		/// <param name="enumValue">Enum value for the measurement unit.</param>
 		/// <param name="scaleCoefficient">The scale coefficient for the metric measurement unit.</param>
@@ -50,7 +50,7 @@ namespace CodeJam.PerfTests.Metrics
 				nameof(appliesFrom),
 				"The applies from value has to be zero or positive numeric value.");
 			Code.InRange(roundingDigits ?? 0, nameof(roundingDigits), 0, MaxRoundingDigits);
-			
+
 			Name = name;
 			IsEmpty = false;
 			EnumValue = enumValue;

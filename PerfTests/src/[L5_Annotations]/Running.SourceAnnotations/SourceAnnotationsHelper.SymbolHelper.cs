@@ -20,7 +20,6 @@ using static CodeJam.PerfTests.Running.SourceAnnotations.SymbolInterop;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
-
 	internal static partial class SourceAnnotationsHelper
 	{
 		/// <summary>
@@ -31,8 +30,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			/// <summary>Unknown</summary>
 			[UsedImplicitly]
 			Unknown = 0,
+
 			/// <summary>MD5</summary>
 			Md5,
+
 			/// <summary>SHA1</summary>
 			Sha1
 		}
@@ -44,8 +45,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		{
 			[UsedImplicitly]
 			Unknown = 0,
+
 			/// <summary>C#</summary>
 			CSharp,
+
 			/// <summary>Visual Basic</summary>
 			VisualBasic
 		}
@@ -103,9 +106,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		/// <summary>
 		/// BASEDON:
-		///  http://sorin.serbans.net/blog/2010/08/how-to-read-pdb-files/257/
-		///  http://stackoverflow.com/questions/13911069/how-to-get-global-variables-definition-from-symbols-tables
-		///  http://stackoverflow.com/questions/36649271/check-that-pdb-file-matches-to-the-source
+		/// http://sorin.serbans.net/blog/2010/08/how-to-read-pdb-files/257/
+		/// http://stackoverflow.com/questions/13911069/how-to-get-global-variables-definition-from-symbols-tables
+		/// http://stackoverflow.com/questions/36649271/check-that-pdb-file-matches-to-the-source
 		/// </summary>
 		private static class SymbolHelper
 		{
@@ -332,10 +335,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				var module = assembly.ManifestModule;
 				var methods =
 					(from m in reader.GetMethodsInDocument(documentInfo)
-					 select module.ResolveMethod(m.GetToken()) into method
-					 orderby IsCompilerGenerated(method) ? 0 : 1 // non-generated wins
-					 select method)
-					.ToArray();
+						select module.ResolveMethod(m.GetToken())
+						into method
+						orderby IsCompilerGenerated(method) ? 0 : 1 // non-generated wins
+						select method)
+						.ToArray();
 
 				var methodLineMapping = new Dictionary<int, MethodBase>();
 				foreach (var method in methods)
@@ -383,6 +387,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				}
 			}
 			#endregion
+
 			#endregion
 		}
 	}

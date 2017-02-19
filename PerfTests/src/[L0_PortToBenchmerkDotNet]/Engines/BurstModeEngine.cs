@@ -8,12 +8,12 @@ using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Reports;
 
 using CodeJam;
-using CodeJam.Collections;
 
 // ReSharper disable once CheckNamespace
 
 namespace BenchmarkDotNet.Engines
 {
+	// TODO: update to be in sync with BDN
 	/// <summary>
 	/// Burst mode measurements engine (a lot of runs, measure each).
 	/// Recommended for use if call time >> than timer resolution (recommended minimum is 1000 ns).
@@ -144,7 +144,7 @@ namespace BenchmarkDotNet.Engines
 			RunCore(IterationMode.MainTarget, TargetCount, TargetList);
 
 			var results = new RunResults(
-				IdleTargetList.IsNullOrEmpty() ? null : IdleTargetList,
+				(IdleTargetList?.Count ?? 0) == 0 ? null : IdleTargetList,
 				TargetList,
 				RemoveOutliers,
 				new GcStats());
@@ -159,9 +159,12 @@ namespace BenchmarkDotNet.Engines
 				{
 					Console.WriteLine(measurement.ToOutputLine());
 				}
-				foreach (var measurement in IdleTargetList)
+				if (IdleTargetList != null)
 				{
-					Console.WriteLine(measurement.ToOutputLine());
+					foreach (var measurement in IdleTargetList)
+					{
+						Console.WriteLine(measurement.ToOutputLine());
+					}
 				}
 				foreach (var measurement in TargetList)
 				{

@@ -130,7 +130,6 @@ namespace CodeJam.PerfTests.Configs
 			// DONTTOUCH: please DO NOT remove .Freeze() call.
 			Jobs.AddRange(newJobs.Select(j => j.Freeze()));
 
-
 		/// <summary>Adds the specified new competition metrics.</summary>
 		/// <param name="newMetrics">The new competition metrics.</param>
 		public void Add(params CompetitionMetricInfo[] newMetrics) => Metrics.AddRange(newMetrics);

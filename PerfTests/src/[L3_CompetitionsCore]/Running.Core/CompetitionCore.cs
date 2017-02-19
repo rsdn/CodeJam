@@ -5,9 +5,7 @@ using System.Reflection;
 using System.Threading;
 
 using BenchmarkDotNet.Analysers;
-using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Environments;
-using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
@@ -15,7 +13,9 @@ using BenchmarkDotNet.Toolchains;
 using BenchmarkDotNet.Toolchains.InProcess;
 
 using CodeJam.PerfTests.Configs;
+using CodeJam.PerfTests.Internal;
 using CodeJam.PerfTests.Running.Messages;
+using CodeJam.Reflection;
 
 using JetBrains.Annotations;
 

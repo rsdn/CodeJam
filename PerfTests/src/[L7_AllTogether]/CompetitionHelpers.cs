@@ -30,7 +30,7 @@ namespace CodeJam.PerfTests
 
 		#region Benchmark loops
 		/// <summary>
-		/// Empirically found constant loop count that provides accurate results 
+		/// Empirically found constant loop count that provides accurate results
 		/// for <see cref="CompetitionMetricInfo.RelativeTime"/> metric on different hardware.
 		/// Equals to 10000;
 		/// Best if used together with <see cref="ICompetitionFeatures.BurstMode"/>=<c>true</c> (<see cref="CompetitionBurstModeAttribute"/>).
@@ -38,7 +38,7 @@ namespace CodeJam.PerfTests
 		public const int BurstModeLoopCount = 10000;
 
 		/// <summary>
-		/// Empirically found short loop count that provides accurate results 
+		/// Empirically found short loop count that provides accurate results
 		/// for <see cref="CompetitionMetricInfo.RelativeTime"/> metric on different hardware.
 		/// Equals to 128;
 		/// May provide inaccurate results if used together with <see cref="ICompetitionFeatures.BurstMode"/>=<c>true</c>.
@@ -56,10 +56,11 @@ namespace CodeJam.PerfTests
 		/// Depending on CPU clock frequency, loop count is expected to somewhere between 10000..40000;
 		/// Best if used together with <see cref="ICompetitionFeatures.BurstMode"/>=<c>true</c> (<see cref="CompetitionBurstModeAttribute"/>).
 		/// </summary>
-		public static readonly int BurstModeLoopCountForRelativeAuto = (int)(ThreadCycleTimeClock.Instance.Frequency.Hertz / (64 * 1024));
+		public static readonly int BurstModeLoopCountForRelativeAuto =
+			(int)(ThreadCycleTimeClock.Instance.Frequency.Hertz / (64 * 1024));
 
 		/// <summary>
-		/// Empirically found short loop count that provides accurate results 
+		/// Empirically found short loop count that provides accurate results
 		/// for <see cref="CompetitionMetricInfo.RelativeTime"/> metric on different hardware.
 		/// IMPORTANT:
 		/// DO NOT use the value together with absolute metrics as the value is not constant.

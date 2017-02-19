@@ -1,7 +1,5 @@
 ﻿using System;
 
-using BenchmarkDotNet.Engines;
-
 using CodeJam.PerfTests.Metrics;
 
 namespace CodeJam.PerfTests
@@ -14,15 +12,19 @@ namespace CodeJam.PerfTests
 		/// <summary>Binary size in bytes, B.</summary>
 		[MetricUnit("B", AppliesFrom = 0, RoundingDigits = 0)]
 		Byte = 1,
+
 		/// <summary>Binary size in kilobytes, KB.</summary>
 		[MetricUnit("KB", AppliesFrom = (long)Kilobyte / 2.0)]
 		Kilobyte = Byte * 1024,
+
 		/// <summary>Binary size in megabytes, MB.</summary>
 		[MetricUnit("MB", AppliesFrom = (long)Megabyte / 2.0)]
 		Megabyte = Kilobyte * 1024,
+
 		/// <summary>Binary size in gigabytes, GB.</summary>
 		[MetricUnit("GB", AppliesFrom = (long)Gigabyte / 2.0)]
 		Gigabyte = Megabyte * 1024,
+
 		/// <summary>Binary size in petabytes, PB.</summary>
 		[MetricUnit("PB", AppliesFrom = (long)Petabyte / 2.0)]
 		Petabyte = Gigabyte * 1024
@@ -30,11 +32,12 @@ namespace CodeJam.PerfTests
 
 	/// <summary>
 	/// Gc allocations metric attribute.
-	/// As perftest may be run inprocess, noise allocations 
-	/// (total bytes allocated less than <see cref="GcMetricValuesProvider.MinimalGcAllocation"/>) are reported as <c>0</c> 
+	/// As perftest may be run inprocess, noise allocations
+	/// (total bytes allocated less than <see cref="GcMetricValuesProvider.MinimalGcAllocation"/>) are reported as <c>0</c>
 	/// </summary>
 	[MetricAttribute(MetricSingleValueMode.BothMinAndMax, Category = GcMetricValuesProvider.Category)]
-	public class GcAllocationsAttribute : MetricBaseAttribute, IMetricAttribute<GcAllocationsAttribute.ValuesProvider, BinarySizeUnit>
+	public class GcAllocationsAttribute : MetricBaseAttribute,
+		IMetricAttribute<GcAllocationsAttribute.ValuesProvider, BinarySizeUnit>
 	{
 		/// <summary>
 		/// Implementation of <see cref="IMetricValuesProvider"/> for the see <see cref="GcAllocationsAttribute"/>.
@@ -47,36 +50,31 @@ namespace CodeJam.PerfTests
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="GcAllocationsAttribute"/> class.</summary>
-		public GcAllocationsAttribute()
-		{
-		}
+		public GcAllocationsAttribute() { }
 
 		/// <summary>Initializes a new instance of the <see cref="GcAllocationsAttribute"/> class.</summary>
 		/// <param name="value">
 		/// Exact amout of allocations.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// Use <seealso cref="double.PositiveInfinity" /> if value is positive infinity (ignored, essentially).
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// Use <seealso cref="double.PositiveInfinity"/> if value is positive infinity (ignored, essentially).
 		/// </param>
 		/// <param name="binarySize">The binary size unit.</param>
-		public GcAllocationsAttribute(double value, BinarySizeUnit binarySize = BinarySizeUnit.Byte) : base(value, binarySize)
-		{
-		}
+		public GcAllocationsAttribute(double value, BinarySizeUnit binarySize = BinarySizeUnit.Byte) : base(value, binarySize) { }
 
 		/// <summary>Initializes a new instance of the <see cref="GcAllocationsAttribute"/> class.</summary>
 		/// <param name="min">
 		/// The minimum value.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// The <seealso cref="double.NegativeInfinity" /> should be used if value is negative infinity (ignored, essentially).
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// The <seealso cref="double.NegativeInfinity"/> should be used if value is negative infinity (ignored, essentially).
 		/// </param>
 		/// <param name="max">
 		/// The maximum value.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// Use <seealso cref="double.PositiveInfinity" /> if value is positive infinity (ignored, essentially).
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// Use <seealso cref="double.PositiveInfinity"/> if value is positive infinity (ignored, essentially).
 		/// </param>
 		/// <param name="binarySize">The binary size unit.</param>
-		public GcAllocationsAttribute(double min, double max, BinarySizeUnit binarySize = BinarySizeUnit.Byte) : base(min, max, binarySize)
-		{
-		}
+		public GcAllocationsAttribute(double min, double max, BinarySizeUnit binarySize = BinarySizeUnit.Byte)
+			: base(min, max, binarySize) { }
 
 		/// <summary>Gets the unit of measurement for the metric.</summary>
 		/// <value>The unit of measurement.</value>
@@ -84,7 +82,7 @@ namespace CodeJam.PerfTests
 	}
 
 	/// <summary>GC 0 count per 1000 operations metric attribute.</summary>
-	[MetricAttribute(AnnotateInplace=true, Category = GcMetricValuesProvider.Category)]
+	[MetricAttribute(AnnotateInplace = true, Category = GcMetricValuesProvider.Category)]
 	public class Gc0Attribute : MetricBaseAttribute, IMetricAttribute<Gc0Attribute.ValuesProvider>
 	{
 		/// <summary>
@@ -98,34 +96,28 @@ namespace CodeJam.PerfTests
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="Gc0Attribute"/> class.</summary>
-		public Gc0Attribute()
-		{
-		}
+		public Gc0Attribute() { }
 
 		/// <summary>Initializes a new instance of the <see cref="Gc0Attribute"/> class.</summary>
 		/// <param name="value">
 		/// Count of GC per 1000 operations.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// Use <seealso cref="double.PositiveInfinity" /> if value is positive infinity (ignored, essentially).
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// Use <seealso cref="double.PositiveInfinity"/> if value is positive infinity (ignored, essentially).
 		/// </param>
-		public Gc0Attribute(double value) : base(value)
-		{
-		}
+		public Gc0Attribute(double value) : base(value) { }
 
 		/// <summary>Initializes a new instance of the <see cref="Gc0Attribute"/> class.</summary>
 		/// <param name="min">
 		/// The minimum value.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// The <seealso cref="double.NegativeInfinity" /> should be used if value is negative infinity (ignored, essentially).
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// The <seealso cref="double.NegativeInfinity"/> should be used if value is negative infinity (ignored, essentially).
 		/// </param>
 		/// <param name="max">
 		/// The maximum value.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// Use <seealso cref="double.PositiveInfinity" /> if value is positive infinity (ignored, essentially).
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// Use <seealso cref="double.PositiveInfinity"/> if value is positive infinity (ignored, essentially).
 		/// </param>
-		public Gc0Attribute(double min, double max) : base(min, max)
-		{
-		}
+		public Gc0Attribute(double min, double max) : base(min, max) { }
 	}
 
 	/// <summary>GC 1 count per 1000 operations metric attribute.</summary>
@@ -143,34 +135,28 @@ namespace CodeJam.PerfTests
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="Gc1Attribute"/> class.</summary>
-		public Gc1Attribute()
-		{
-		}
+		public Gc1Attribute() { }
 
 		/// <summary>Initializes a new instance of the <see cref="Gc1Attribute"/> class.</summary>
 		/// <param name="value">
 		/// Count of GC per 1000 operations.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// Use <seealso cref="double.PositiveInfinity" /> if value is positive infinity (ignored, essentially).
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// Use <seealso cref="double.PositiveInfinity"/> if value is positive infinity (ignored, essentially).
 		/// </param>
-		public Gc1Attribute(double value) : base(value)
-		{
-		}
+		public Gc1Attribute(double value) : base(value) { }
 
 		/// <summary>Initializes a new instance of the <see cref="Gc1Attribute"/> class.</summary>
 		/// <param name="min">
 		/// The minimum value.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// The <seealso cref="double.NegativeInfinity" /> should be used if value is negative infinity (ignored, essentially).
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// The <seealso cref="double.NegativeInfinity"/> should be used if value is negative infinity (ignored, essentially).
 		/// </param>
 		/// <param name="max">
 		/// The maximum value.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// Use <seealso cref="double.PositiveInfinity" /> if value is positive infinity (ignored, essentially).
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// Use <seealso cref="double.PositiveInfinity"/> if value is positive infinity (ignored, essentially).
 		/// </param>
-		public Gc1Attribute(double min, double max) : base(min, max)
-		{
-		}
+		public Gc1Attribute(double min, double max) : base(min, max) { }
 	}
 
 	/// <summary>GC 2 count per 1000 operations metric attribute.</summary>
@@ -188,33 +174,27 @@ namespace CodeJam.PerfTests
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="Gc2Attribute"/> class.</summary>
-		public Gc2Attribute()
-		{
-		}
+		public Gc2Attribute() { }
 
 		/// <summary>Initializes a new instance of the <see cref="Gc2Attribute"/> class.</summary>
 		/// <param name="value">
 		/// Count of GC per 1000 operations.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// Use <seealso cref="double.PositiveInfinity" /> if value is positive infinity (ignored, essentially).
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// Use <seealso cref="double.PositiveInfinity"/> if value is positive infinity (ignored, essentially).
 		/// </param>
-		public Gc2Attribute(double value) : base(value)
-		{
-		}
+		public Gc2Attribute(double value) : base(value) { }
 
 		/// <summary>Initializes a new instance of the <see cref="Gc2Attribute"/> class.</summary>
 		/// <param name="min">
 		/// The minimum value.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// The <seealso cref="double.NegativeInfinity" /> should be used if value is negative infinity (ignored, essentially).
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// The <seealso cref="double.NegativeInfinity"/> should be used if value is negative infinity (ignored, essentially).
 		/// </param>
 		/// <param name="max">
 		/// The maximum value.
-		/// The <see cref="double.NaN" /> marks the value as unset but updateable during the annotation.
-		/// Use <seealso cref="double.PositiveInfinity" /> if value is positive infinity (ignored, essentially).
+		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
+		/// Use <seealso cref="double.PositiveInfinity"/> if value is positive infinity (ignored, essentially).
 		/// </param>
-		public Gc2Attribute(double min, double max) : base(min, max)
-		{
-		}
+		public Gc2Attribute(double min, double max) : base(min, max) { }
 	}
 }

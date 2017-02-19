@@ -9,17 +9,17 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	/// <summary>
 	/// Transport class for stored metric
 	/// </summary>
-	/// <seealso cref="CodeJam.PerfTests.Metrics.IStoredMetricSource" />
+	/// <seealso cref="CodeJam.PerfTests.Metrics.IStoredMetricSource"/>
 	internal class StoredMetricValue : IStoredMetricSource
 	{
-		/// <summary>Initializes a new instance of the <see cref="StoredMetricValue" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="StoredMetricValue"/> class.</summary>
 		/// <param name="metricAttributeType">Type of the metric attribute.</param>
 		/// <param name="min">The minimum value.</param>
 		/// <param name="max">The maximum value.</param>
 		/// <param name="unitOfMeasurement">The unit of measurement.</param>
 		public StoredMetricValue(
 			[NotNull] Type metricAttributeType,
-			double min, double max, 
+			double min, double max,
 			[CanBeNull] Enum unitOfMeasurement)
 		{
 			Code.NotNull(metricAttributeType, nameof(metricAttributeType));

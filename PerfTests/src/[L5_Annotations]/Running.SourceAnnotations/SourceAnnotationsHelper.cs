@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 
 using CodeJam.Collections;
-using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Strings;
@@ -73,6 +72,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			// First-level cache that stores match competition target => annotation document.
 			private readonly Dictionary<TargetCacheKey, SourceCodeFile> _sourceAnnotationsCache =
 				new Dictionary<TargetCacheKey, SourceCodeFile>();
+
 			private readonly Dictionary<RuntimeTypeHandle, XmlAnnotationFile> _xmlAnnotationsCache =
 				new Dictionary<RuntimeTypeHandle, XmlAnnotationFile>();
 
@@ -96,7 +96,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				if (sourcePath == null)
 					return null;
 
-				var result = (SourceCodeFile)_filesCache.GetOrAdd(sourcePath, p => SourceAnnotation.Parse(target, sourcePath, competitionState));
+				var result =
+					(SourceCodeFile)_filesCache.GetOrAdd(sourcePath, p => SourceAnnotation.Parse(target, sourcePath, competitionState));
 				if (result.Parsed)
 				{
 					foreach (var method in result.BenchmarkMethods.Keys)
@@ -128,8 +129,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				var bf =
 					BindingFlags.Static | BindingFlags.Instance |
-					BindingFlags.Public | BindingFlags.NonPublic |
-					BindingFlags.DeclaredOnly;
+						BindingFlags.Public | BindingFlags.NonPublic |
+						BindingFlags.DeclaredOnly;
 
 				// TODO: better sort?
 				MethodBase anyMethod = targetType.GetMethods(bf).OrderBy(m => m.MetadataToken).FirstOrDefault();
@@ -156,7 +157,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					resourceFileName,
 					p => XmlAnnotation.Parse(resourceFileName, competitionMetadata, competitionState));
 			}
-
 
 			public void Save()
 			{

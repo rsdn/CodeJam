@@ -11,33 +11,62 @@ namespace CodeJam.Reflection
 	[TestFixture(Category = "Reflection")]
 	public partial class ReflectionExtensionsTest
 	{
-		[TestCase(typeof (List<int>),     typeof (IList<int>),       ExpectedResult = true)]
-		[TestCase(typeof (List<int>),     typeof (IList),            ExpectedResult = true)]
-		[TestCase(typeof (List<int>),     typeof (IList<>),          ExpectedResult = true)]
-		[TestCase(typeof (List<int>),     typeof (IEnumerable<int>), ExpectedResult = true)]
-		[TestCase(typeof (List<int>),     typeof (IEnumerable),      ExpectedResult = true)]
-		[TestCase(typeof (List<int>),     typeof (IEnumerable<>),    ExpectedResult = true)]
-		[TestCase(typeof (IList<int>),    typeof (IEnumerable<>),    ExpectedResult = true)]
-		[TestCase(typeof (IList<>),       typeof (IEnumerable<>),    ExpectedResult = true)]
-		[TestCase(typeof (IEnumerable<>), typeof (IEnumerable),      ExpectedResult = true)]
-		[TestCase(typeof (List<int>),     typeof (List<int>),        ExpectedResult = false)]
-		[TestCase(typeof (IList<>),       typeof (ISet<>),           ExpectedResult = false)]
+		[Test]
+		public void IsDebugAssemblyTest()
+		{
+			bool isDebug = false;
+#if DEBUG
+			isDebug = true;
+#endif
+			// ReSharper disable once ConditionIsAlwaysTrueOrFalse
+			Assert.AreEqual(typeof(ReflectionExtensionsTest).Assembly.IsDebugAssembly(), isDebug);
+		}
+
+		[TestCase(typeof(List<int>), "System.Collections.Generic.List`1[System.Int32], mscorlib")]
+		[TestCase(typeof(List<>), "System.Collections.Generic.List`1[T], mscorlib")]
+		[TestCase(typeof(IList<int>), "System.Collections.Generic.IList`1[System.Int32], mscorlib")]
+		[TestCase(typeof(int), "System.Int32, mscorlib")]
+		[TestCase(typeof(int[]), "System.Int32[], mscorlib")]
+		[TestCase(typeof(int[,]), "System.Int32[,], mscorlib")]
+		[TestCase(typeof(int[][]), "System.Int32[][], mscorlib")]
+		[TestCase(typeof(int?[,]), "System.Nullable`1[System.Int32][,], mscorlib")]
+		[TestCase(typeof(ReflectionExtensions), "CodeJam.Reflection.ReflectionExtensions, CodeJam")]
+		public void GetShortAssemblyQualifiedNameTest(Type type, string expected)
+		{
+			Assert.AreEqual(type.GetShortAssemblyQualifiedName(), expected);
+			if (!type.IsGenericTypeDefinition)
+			{
+				Assert.AreEqual(Type.GetType(type.GetShortAssemblyQualifiedName()), type);
+			}
+		}
+
+		[TestCase(typeof(List<int>), typeof(IList<int>), ExpectedResult = true)]
+		[TestCase(typeof(List<int>), typeof(IList), ExpectedResult = true)]
+		[TestCase(typeof(List<int>), typeof(IList<>), ExpectedResult = true)]
+		[TestCase(typeof(List<int>), typeof(IEnumerable<int>), ExpectedResult = true)]
+		[TestCase(typeof(List<int>), typeof(IEnumerable), ExpectedResult = true)]
+		[TestCase(typeof(List<int>), typeof(IEnumerable<>), ExpectedResult = true)]
+		[TestCase(typeof(IList<int>), typeof(IEnumerable<>), ExpectedResult = true)]
+		[TestCase(typeof(IList<>), typeof(IEnumerable<>), ExpectedResult = true)]
+		[TestCase(typeof(IEnumerable<>), typeof(IEnumerable), ExpectedResult = true)]
+		[TestCase(typeof(List<int>), typeof(List<int>), ExpectedResult = false)]
+		[TestCase(typeof(IList<>), typeof(ISet<>), ExpectedResult = false)]
 		public bool IsSubClassTest(Type type, Type check) => type.IsSubClass(check);
 
-		[TestCase(typeof (int),                       ExpectedResult = true)]
-		[TestCase(typeof (List<int>),                 ExpectedResult = true)]
-		[TestCase(typeof (List<>),                    ExpectedResult = false)]
-		[TestCase(typeof (int[]),                     ExpectedResult = false)]
-		[TestCase(typeof (IList),                     ExpectedResult = false)]
-		[TestCase(typeof (ReflectionExtensions),      ExpectedResult = false)]
-		[TestCase(typeof (KeyedCollection<int, int>), ExpectedResult = false)]
+		[TestCase(typeof(int), ExpectedResult = true)]
+		[TestCase(typeof(List<int>), ExpectedResult = true)]
+		[TestCase(typeof(List<>), ExpectedResult = false)]
+		[TestCase(typeof(int[]), ExpectedResult = false)]
+		[TestCase(typeof(IList), ExpectedResult = false)]
+		[TestCase(typeof(ReflectionExtensions), ExpectedResult = false)]
+		[TestCase(typeof(KeyedCollection<int, int>), ExpectedResult = false)]
 		public bool IsInstantiableTypeTest(Type type) => type.IsInstantiable();
 
-		[TestCase(typeof (int),                       ExpectedResult = false)]
-		[TestCase(typeof (int?),                      ExpectedResult = true)]
-		[TestCase(typeof (string),                    ExpectedResult = false)]
-		[TestCase(typeof (double),                    ExpectedResult = false)]
-		[TestCase(typeof (double?),                   ExpectedResult = true)]
+		[TestCase(typeof(int), ExpectedResult = false)]
+		[TestCase(typeof(int?), ExpectedResult = true)]
+		[TestCase(typeof(string), ExpectedResult = false)]
+		[TestCase(typeof(double), ExpectedResult = false)]
+		[TestCase(typeof(double?), ExpectedResult = true)]
 		public bool IsIsNullableTypeTest(Type type) => type.IsNullable();
 
 		[TestCase(typeof(sbyte), ExpectedResult = true)]
@@ -180,8 +209,8 @@ namespace CodeJam.Reflection
 
 		[TestAnonymousCase]
 		[TestCase(typeof(NotAnonymousType<int>), ExpectedResult = false)]
-		[TestCase(typeof(DateTime?),        ExpectedResult = false)]
-		[TestCase(typeof(DateTime),         ExpectedResult = false)]
+		[TestCase(typeof(DateTime?), ExpectedResult = false)]
+		[TestCase(typeof(DateTime), ExpectedResult = false)]
 		public bool IsAnonymous(Type type) => type.IsAnonymous();
 	}
 }

@@ -2,7 +2,6 @@
 
 using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Environments;
-using BenchmarkDotNet.Jobs;
 
 using CodeJam.PerfTests.Exporters;
 
