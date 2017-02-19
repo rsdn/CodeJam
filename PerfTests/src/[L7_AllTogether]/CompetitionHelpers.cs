@@ -3,8 +3,6 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
-using BenchmarkDotNet.Horology;
-
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Configs.Factories;
 using CodeJam.PerfTests.Metrics;
@@ -44,33 +42,6 @@ namespace CodeJam.PerfTests
 		/// May provide inaccurate results if used together with <see cref="ICompetitionFeatures.BurstMode"/>=<c>true</c>.
 		/// </summary>
 		public const int SmallLoopCount = 128;
-
-		/// <summary>
-		/// Empirically found long loop count that provides accurate results.
-		/// for <see cref="CompetitionMetricInfo.RelativeTime"/> metric on different hardware.
-		/// IMPORTANT:
-		/// DO NOT use the value together with absolute metrics as the value is not constant.
-		/// The <see cref="BurstModeLoopCount"/> constant should be used instead.
-		/// As example, the <see cref="GcAllocationsAttribute"/> will report different values for each run
-		/// due to varying loop count.
-		/// Depending on CPU clock frequency, loop count is expected to somewhere between 10000..40000;
-		/// Best if used together with <see cref="ICompetitionFeatures.BurstMode"/>=<c>true</c> (<see cref="CompetitionBurstModeAttribute"/>).
-		/// </summary>
-		public static readonly int BurstModeLoopCountForRelativeAuto =
-			(int)(ThreadCycleTimeClock.Instance.Frequency.Hertz / (64 * 1024));
-
-		/// <summary>
-		/// Empirically found short loop count that provides accurate results
-		/// for <see cref="CompetitionMetricInfo.RelativeTime"/> metric on different hardware.
-		/// IMPORTANT:
-		/// DO NOT use the value together with absolute metrics as the value is not constant.
-		/// The <see cref="BurstModeLoopCount"/> constant should be used instead.
-		/// As example, the <see cref="GcAllocationsAttribute"/> will report different values for each run
-		/// due to varying loop count.
-		/// Depending on CPU clock frequency, loop count is expected to somewhere between 80..300;
-		/// May provide inaccurate results if used together with <see cref="ICompetitionFeatures.BurstMode"/>=<c>true</c>.
-		/// </summary>
-		public static readonly int SmallLoopCountForRelativeAuto = BurstModeLoopCountForRelativeAuto / 128;
 
 		/// <summary>Default delay implementation. Performs delay for specified number of cycles.</summary>
 		/// <param name="cycles">The number of cycles to delay.</param>
