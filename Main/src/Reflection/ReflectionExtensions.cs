@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Text;
+
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -28,19 +31,117 @@ namespace CodeJam.Reflection
 		}
 
 		/// <summary>
-		/// Gets the short form of assembly qualified type name (without assembly version or assembly ley).
+		/// Gets the short form of assembly qualified type name (without assembly version or assembly key).
 		/// </summary>
 		/// <example>
+		/// <code>
 		/// // result is "CodeJam.Reflection.ReflectionExtensions, CodeJam";
 		/// var shortNameWithAssembly = typeof(ReflectionExtensions).GetShortAssemblyQualifiedName();
+		/// </code>
 		/// </example>
 		/// <param name="type">The type to get the name for.</param>
 		/// <returns>The short form of assembly qualified type name.</returns>
+		[NotNull]
 		[Pure]
 		public static string GetShortAssemblyQualifiedName([NotNull] this Type type)
 		{
 			Code.NotNull(type, nameof(type));
-			return type + ", " + type.Assembly.GetName().Name;
+
+			void WriteAssemblyName(StringBuilder sb, Type t)
+			{
+				sb.Append(", ");
+
+				var index = -1;
+				var assemblyFullName = t.Assembly.FullName;
+
+				while (true)
+				{
+					index = assemblyFullName.IndexOf(',', index + 1);
+
+					if (index < 0)
+					{
+						sb.Append(assemblyFullName);
+						break;
+					}
+
+					if (assemblyFullName[index - 1] != '\\')
+					{
+						sb.Append(assemblyFullName, 0, index);
+						break;
+					}
+				}
+
+			}
+
+			bool WriteArrayType(StringBuilder sb, Type t)
+			{
+				var elementType = t.GetElementType();
+				if (elementType.IsArray)
+				{
+					if (!WriteArrayType(sb, elementType))
+						return false;
+
+					sb.Append('[');
+					sb.Append(',', t.GetArrayRank() - 1);
+					sb.Append(']');
+					return true;
+				}
+
+				var underlyingType = Nullable.GetUnderlyingType(elementType);
+				if ((object)underlyingType == null)
+					return false;
+
+				sb.Append("Nullable`1[[");
+				Build(sb, underlyingType);
+				sb.Append("]][");
+				sb.Append(',', t.GetArrayRank() - 1);
+				sb.Append(']');
+				return true;
+			}
+
+			void Build(StringBuilder sb, Type t)
+			{
+				if (t.Namespace.NotNullNorEmpty())
+				{
+					sb.Append(t.Namespace);
+					sb.Append('.');
+				}
+
+				if (!t.IsArray || !WriteArrayType(sb, t))
+				{
+					sb.Append(t.Name);
+				}
+
+				if (t.IsGenericType)
+				{
+					sb.Append('[');
+					var arguments = t.GetGenericArguments();
+					for (var i = 0; i < arguments.Length; i++)
+					{
+						if (i != 0)
+							sb.Append(',');
+
+						if (t.IsGenericTypeDefinition)
+						{
+							sb.Append(arguments[i].Name);
+						}
+						else
+						{
+							sb.Append('[');
+							Build(sb, arguments[i]);
+							sb.Append(']');
+						}
+					}
+
+					sb.Append(']');
+				}
+
+				WriteAssemblyName(sb, t);
+			}
+
+			var builder = new StringBuilder();
+			Build(builder, type);
+			return builder.ToString();
 		}
 
 		/// <summary>

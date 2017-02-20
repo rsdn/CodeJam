@@ -14,29 +14,61 @@ namespace CodeJam.Reflection
 		[Test]
 		public void IsDebugAssemblyTest()
 		{
-			bool isDebug = false;
 #if DEBUG
-			isDebug = true;
+			const bool isDebug = true;
+#else
+			const bool isDebug = false;
 #endif
 			// ReSharper disable once ConditionIsAlwaysTrueOrFalse
 			Assert.AreEqual(typeof(ReflectionExtensionsTest).Assembly.IsDebugAssembly(), isDebug);
 		}
 
-		[TestCase(typeof(List<int>), "System.Collections.Generic.List`1[System.Int32], mscorlib")]
+		[TestCase(typeof(List<int>), "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib")]
 		[TestCase(typeof(List<>), "System.Collections.Generic.List`1[T], mscorlib")]
-		[TestCase(typeof(IList<int>), "System.Collections.Generic.IList`1[System.Int32], mscorlib")]
+		[TestCase(typeof(IList<int>), "System.Collections.Generic.IList`1[[System.Int32, mscorlib]], mscorlib")]
+		[TestCase(typeof(Dictionary<,>), "System.Collections.Generic.Dictionary`2[TKey,TValue], mscorlib")]
+		[TestCase(typeof(Dictionary<int, string>), "System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.String, mscorlib]], mscorlib")]
+		[TestCase(typeof(Dictionary<int, List<int>>), "System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib]], mscorlib")]
 		[TestCase(typeof(int), "System.Int32, mscorlib")]
+		[TestCase(typeof(int?), "System.Nullable`1[[System.Int32, mscorlib]], mscorlib")]
+		[TestCase(typeof(KeyValuePair<int, string>?), "System.Nullable`1[[System.Collections.Generic.KeyValuePair`2[[System.Int32, mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib")]
 		[TestCase(typeof(int[]), "System.Int32[], mscorlib")]
 		[TestCase(typeof(int[,]), "System.Int32[,], mscorlib")]
+		[TestCase(typeof(int[,][]), "System.Int32[][,], mscorlib")]
+		[TestCase(typeof(int[][,]), "System.Int32[,][], mscorlib")]
 		[TestCase(typeof(int[][]), "System.Int32[][], mscorlib")]
-		[TestCase(typeof(int?[,]), "System.Nullable`1[System.Int32][,], mscorlib")]
+		[TestCase(typeof(int[][][]), "System.Int32[][][], mscorlib")]
+		[TestCase(typeof(int[][,,][]), "System.Int32[][,,][], mscorlib")]
+		[TestCase(typeof(int[,][,,][]), "System.Int32[][,,][,], mscorlib")]
+		[TestCase(typeof(int[][,,][,]), "System.Int32[,][,,][], mscorlib")]
+		[TestCase(typeof(int[,][,,][,]), "System.Int32[,][,,][,], mscorlib")]
+		[TestCase(typeof(int?[]), "System.Nullable`1[[System.Int32, mscorlib]][], mscorlib")]
+		[TestCase(typeof(int?[,]), "System.Nullable`1[[System.Int32, mscorlib]][,], mscorlib")]
+		[TestCase(typeof(int?[,][]), "System.Nullable`1[[System.Int32, mscorlib]][][,], mscorlib")]
+		[TestCase(typeof(int?[][,]), "System.Nullable`1[[System.Int32, mscorlib]][,][], mscorlib")]
+		[TestCase(typeof(int?[][]), "System.Nullable`1[[System.Int32, mscorlib]][][], mscorlib")]
+		[TestCase(typeof(int?[][][]), "System.Nullable`1[[System.Int32, mscorlib]][][][], mscorlib")]
+		[TestCase(typeof(int?[][,,][]), "System.Nullable`1[[System.Int32, mscorlib]][][,,][], mscorlib")]
+		[TestCase(typeof(int?[,][,,][]), "System.Nullable`1[[System.Int32, mscorlib]][][,,][,], mscorlib")]
+		[TestCase(typeof(int?[][,,][,]), "System.Nullable`1[[System.Int32, mscorlib]][,][,,][], mscorlib")]
+		[TestCase(typeof(int?[,][,,][,]), "System.Nullable`1[[System.Int32, mscorlib]][,][,,][,], mscorlib")]
+		[TestCase(typeof(List<int?>), "System.Collections.Generic.List`1[[System.Nullable`1[[System.Int32, mscorlib]], mscorlib]], mscorlib")]
+		[TestCase(typeof(List<int?[]>), "System.Collections.Generic.List`1[[System.Nullable`1[[System.Int32, mscorlib]][], mscorlib]], mscorlib")]
+		[TestCase(typeof(List<int?[,,]>), "System.Collections.Generic.List`1[[System.Nullable`1[[System.Int32, mscorlib]][,,], mscorlib]], mscorlib")]
+		[TestCase(typeof(List<int?[][,,]>), "System.Collections.Generic.List`1[[System.Nullable`1[[System.Int32, mscorlib]][,,][], mscorlib]], mscorlib")]
+		[TestCase(typeof(List<int?[,][]>), "System.Collections.Generic.List`1[[System.Nullable`1[[System.Int32, mscorlib]][][,], mscorlib]], mscorlib")]
 		[TestCase(typeof(ReflectionExtensions), "CodeJam.Reflection.ReflectionExtensions, CodeJam")]
 		public void GetShortAssemblyQualifiedNameTest(Type type, string expected)
 		{
-			Assert.AreEqual(type.GetShortAssemblyQualifiedName(), expected);
+			var shortAssemblyQualifiedName = type.GetShortAssemblyQualifiedName();
+			Console.WriteLine(shortAssemblyQualifiedName);
+			Console.WriteLine(type.AssemblyQualifiedName);
+
+			Assert.AreEqual(expected, shortAssemblyQualifiedName);
+
 			if (!type.IsGenericTypeDefinition)
 			{
-				Assert.AreEqual(Type.GetType(type.GetShortAssemblyQualifiedName()), type);
+				Assert.AreEqual(type, Type.GetType(type.GetShortAssemblyQualifiedName()));
 			}
 		}
 
