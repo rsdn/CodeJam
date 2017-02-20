@@ -115,6 +115,7 @@ namespace CodeJam.Reflection
 				if (t.IsGenericType && !t.IsGenericTypeDefinition)
 				{
 					sb.Append('[');
+
 					var arguments = t.GetGenericArguments();
 					for (var i = 0; i < arguments.Length; i++)
 					{
