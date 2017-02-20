@@ -57,33 +57,40 @@ namespace CodeJam.Reflection
 				while (true)
 				{
 					index = assemblyFullName.IndexOf(',', index + 1);
+					DebugCode.BugIf(index == 0, "Invalid assembly name");
 
 					if (index < 0)
 					{
 						sb.Append(assemblyFullName);
-						break;
+						return;
 					}
 
 					if (assemblyFullName[index - 1] != '\\')
 					{
 						sb.Append(assemblyFullName, 0, index);
-						break;
+						return;
 					}
 				}
-
 			}
 
-			bool WriteArrayType(StringBuilder sb, Type t)
+			bool WriteElementType(StringBuilder sb, Type t)
 			{
 				var elementType = t.GetElementType();
-				if (elementType.IsArray)
+				if (elementType.IsArray || elementType.IsPointer || elementType.IsByRef)
 				{
-					if (!WriteArrayType(sb, elementType))
+					if (!WriteElementType(sb, elementType))
 						return false;
 
-					sb.Append('[');
-					sb.Append(',', t.GetArrayRank() - 1);
-					sb.Append(']');
+					if (t.IsArray)
+					{
+						sb.Append('[');
+						sb.Append(',', t.GetArrayRank() - 1);
+						sb.Append(']');
+						return true;
+					}
+
+					DebugCode.AssertState(t.IsPointer || t.IsByRef, "t.IsPointer || t.IsByRef");
+					sb.Append(t.IsPointer ? '*' : '&');
 					return true;
 				}
 
@@ -93,9 +100,18 @@ namespace CodeJam.Reflection
 
 				sb.Append("Nullable`1[[");
 				Build(sb, underlyingType);
-				sb.Append("]][");
-				sb.Append(',', t.GetArrayRank() - 1);
-				sb.Append(']');
+				sb.Append("]]");
+
+				if (t.IsArray)
+				{
+					sb.Append('[');
+					sb.Append(',', t.GetArrayRank() - 1);
+					sb.Append(']');
+					return true;
+				}
+
+				DebugCode.AssertState(t.IsPointer || t.IsByRef, "t.IsPointer || t.IsByRef");
+				sb.Append(t.IsPointer ? '*' : '&');
 				return true;
 			}
 
@@ -107,7 +123,7 @@ namespace CodeJam.Reflection
 					sb.Append('.');
 				}
 
-				if (!t.IsArray || !WriteArrayType(sb, t))
+				if (!(t.IsArray || t.IsPointer || t.IsByRef) || !WriteElementType(sb, t))
 				{
 					sb.Append(t.Name);
 				}
