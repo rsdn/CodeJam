@@ -112,7 +112,7 @@ namespace CodeJam.Reflection
 					sb.Append(t.Name);
 				}
 
-				if (t.IsGenericType)
+				if (t.IsGenericType && !t.IsGenericTypeDefinition)
 				{
 					sb.Append('[');
 					var arguments = t.GetGenericArguments();
@@ -121,16 +121,9 @@ namespace CodeJam.Reflection
 						if (i != 0)
 							sb.Append(',');
 
-						if (t.IsGenericTypeDefinition)
-						{
-							sb.Append(arguments[i].Name);
-						}
-						else
-						{
-							sb.Append('[');
-							Build(sb, arguments[i]);
-							sb.Append(']');
-						}
+						sb.Append('[');
+						Build(sb, arguments[i]);
+						sb.Append(']');
 					}
 
 					sb.Append(']');

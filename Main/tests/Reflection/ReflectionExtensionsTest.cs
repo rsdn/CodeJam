@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 
 using NUnit.Framework;
 
@@ -24,9 +25,9 @@ namespace CodeJam.Reflection
 		}
 
 		[TestCase(typeof(List<int>), "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib")]
-		[TestCase(typeof(List<>), "System.Collections.Generic.List`1[T], mscorlib")]
+		[TestCase(typeof(List<>), "System.Collections.Generic.List`1, mscorlib")]
 		[TestCase(typeof(IList<int>), "System.Collections.Generic.IList`1[[System.Int32, mscorlib]], mscorlib")]
-		[TestCase(typeof(Dictionary<,>), "System.Collections.Generic.Dictionary`2[TKey,TValue], mscorlib")]
+		[TestCase(typeof(Dictionary<,>), "System.Collections.Generic.Dictionary`2, mscorlib")]
 		[TestCase(typeof(Dictionary<int, string>), "System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.String, mscorlib]], mscorlib")]
 		[TestCase(typeof(Dictionary<int, List<int>>), "System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib]], mscorlib")]
 		[TestCase(typeof(int), "System.Int32, mscorlib")]
@@ -60,16 +61,14 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(ReflectionExtensions), "CodeJam.Reflection.ReflectionExtensions, CodeJam")]
 		public void GetShortAssemblyQualifiedNameTest(Type type, string expected)
 		{
-			var shortAssemblyQualifiedName = type.GetShortAssemblyQualifiedName();
-			Console.WriteLine(shortAssemblyQualifiedName);
-			Console.WriteLine(type.AssemblyQualifiedName);
+			var qualifiedName = type.GetShortAssemblyQualifiedName();
 
-			Assert.AreEqual(expected, shortAssemblyQualifiedName);
+			var regex = new Regex(@"(?:, (?:\w+=[\w\d-\.]+))*");
+			Console.WriteLine("Result:   {0}", qualifiedName);
+			Console.WriteLine("Expected: {0}", regex.Replace(type.AssemblyQualifiedName ?? "", ""));
 
-			if (!type.IsGenericTypeDefinition)
-			{
-				Assert.AreEqual(type, Type.GetType(type.GetShortAssemblyQualifiedName()));
-			}
+			Assert.AreEqual(expected, qualifiedName);
+			Assert.AreEqual(type, Type.GetType(qualifiedName));
 		}
 
 		[TestCase(typeof(List<int>), typeof(IList<int>), ExpectedResult = true)]
