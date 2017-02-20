@@ -14,15 +14,15 @@ namespace CodeJam.Reflection
 	{
 		private static object[] _source =
 		{
-			new object[] {typeof(List<int>), "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib"},
-			new object[] {typeof(List<>), "System.Collections.Generic.List`1, mscorlib"},
-			new object[] {typeof(IList<int>), "System.Collections.Generic.IList`1[[System.Int32, mscorlib]], mscorlib"},
-			new object[] {typeof(Dictionary<,>), "System.Collections.Generic.Dictionary`2, mscorlib"},
-			new object[] {typeof(Dictionary<int, string>), "System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.String, mscorlib]], mscorlib"},
-			new object[] {typeof(Dictionary<int, List<int>>), "System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib]], mscorlib"},
+			new object[] {typeof(List<int>), "System.Collections.Generic.List`1[System.Int32], mscorlib"},
+			new object[] {typeof(List<>), "System.Collections.Generic.List`1[T], mscorlib"},
+			new object[] {typeof(IList<int>), "System.Collections.Generic.IList`1[System.Int32], mscorlib"},
+			new object[] {typeof(Dictionary<,>), "System.Collections.Generic.Dictionary`2[TKey,TValue], mscorlib"},
+			new object[] {typeof(Dictionary<int, string>), "System.Collections.Generic.Dictionary`2[System.Int32,System.String], mscorlib"},
+			new object[] {typeof(Dictionary<int, List<int>>), "System.Collections.Generic.Dictionary`2[System.Int32,System.Collections.Generic.List`1[System.Int32]], mscorlib"},
 			new object[] {typeof(int), "System.Int32, mscorlib"},
-			new object[] {typeof(int?), "System.Nullable`1[[System.Int32, mscorlib]], mscorlib"},
-			new object[] {typeof(KeyValuePair<int, string>?), "System.Nullable`1[[System.Collections.Generic.KeyValuePair`2[[System.Int32, mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib"},
+			new object[] {typeof(int?), "System.Nullable`1[System.Int32], mscorlib"},
+			new object[] {typeof(KeyValuePair<int, string>?), "System.Nullable`1[System.Collections.Generic.KeyValuePair`2[System.Int32,System.String]], mscorlib"},
 			new object[] {typeof(int[]), "System.Int32[], mscorlib"},
 			new object[] {typeof(int[,]), "System.Int32[,], mscorlib"},
 			new object[] {typeof(int[,][]), "System.Int32[][,], mscorlib"},
@@ -33,21 +33,21 @@ namespace CodeJam.Reflection
 			new object[] {typeof(int[,][,,][]), "System.Int32[][,,][,], mscorlib"},
 			new object[] {typeof(int[][,,][,]), "System.Int32[,][,,][], mscorlib"},
 			new object[] {typeof(int[,][,,][,]), "System.Int32[,][,,][,], mscorlib"},
-			new object[] {typeof(int?[]), "System.Nullable`1[[System.Int32, mscorlib]][], mscorlib"},
-			new object[] {typeof(int?[,]), "System.Nullable`1[[System.Int32, mscorlib]][,], mscorlib"},
-			new object[] {typeof(int?[,][]), "System.Nullable`1[[System.Int32, mscorlib]][][,], mscorlib"},
-			new object[] {typeof(int?[][,]), "System.Nullable`1[[System.Int32, mscorlib]][,][], mscorlib"},
-			new object[] {typeof(int?[][]), "System.Nullable`1[[System.Int32, mscorlib]][][], mscorlib"},
-			new object[] {typeof(int?[][][]), "System.Nullable`1[[System.Int32, mscorlib]][][][], mscorlib"},
-			new object[] {typeof(int?[][,,][]), "System.Nullable`1[[System.Int32, mscorlib]][][,,][], mscorlib"},
-			new object[] {typeof(int?[,][,,][]), "System.Nullable`1[[System.Int32, mscorlib]][][,,][,], mscorlib"},
-			new object[] {typeof(int?[][,,][,]), "System.Nullable`1[[System.Int32, mscorlib]][,][,,][], mscorlib"},
-			new object[] {typeof(int?[,][,,][,]), "System.Nullable`1[[System.Int32, mscorlib]][,][,,][,], mscorlib"},
-			new object[] {typeof(List<int?>), "System.Collections.Generic.List`1[[System.Nullable`1[[System.Int32, mscorlib]], mscorlib]], mscorlib"},
-			new object[] {typeof(List<int?[]>), "System.Collections.Generic.List`1[[System.Nullable`1[[System.Int32, mscorlib]][], mscorlib]], mscorlib"},
-			new object[] {typeof(List<int?[,,]>), "System.Collections.Generic.List`1[[System.Nullable`1[[System.Int32, mscorlib]][,,], mscorlib]], mscorlib"},
-			new object[] {typeof(List<int?[][,,]>), "System.Collections.Generic.List`1[[System.Nullable`1[[System.Int32, mscorlib]][,,][], mscorlib]], mscorlib"},
-			new object[] {typeof(List<int?[,][]>), "System.Collections.Generic.List`1[[System.Nullable`1[[System.Int32, mscorlib]][][,], mscorlib]], mscorlib"},
+			new object[] {typeof(int?[]), "System.Nullable`1[System.Int32][], mscorlib"},
+			new object[] {typeof(int?[,]), "System.Nullable`1[System.Int32][,], mscorlib"},
+			new object[] {typeof(int?[,][]), "System.Nullable`1[System.Int32][][,], mscorlib"},
+			new object[] {typeof(int?[][,]), "System.Nullable`1[System.Int32][,][], mscorlib"},
+			new object[] {typeof(int?[][]), "System.Nullable`1[System.Int32][][], mscorlib"},
+			new object[] {typeof(int?[][][]), "System.Nullable`1[System.Int32][][][], mscorlib"},
+			new object[] {typeof(int?[][,,][]), "System.Nullable`1[System.Int32][][,,][], mscorlib"},
+			new object[] {typeof(int?[,][,,][]), "System.Nullable`1[System.Int32][][,,][,], mscorlib"},
+			new object[] {typeof(int?[][,,][,]), "System.Nullable`1[System.Int32][,][,,][], mscorlib"},
+			new object[] {typeof(int?[,][,,][,]), "System.Nullable`1[System.Int32][,][,,][,], mscorlib"},
+			new object[] {typeof(List<int?>), "System.Collections.Generic.List`1[System.Nullable`1[System.Int32]], mscorlib"},
+			new object[] {typeof(List<int?[]>), "System.Collections.Generic.List`1[System.Nullable`1[System.Int32][]], mscorlib"},
+			new object[] {typeof(List<int?[,,]>), "System.Collections.Generic.List`1[System.Nullable`1[System.Int32][,,]], mscorlib"},
+			new object[] {typeof(List<int?[][,,]>), "System.Collections.Generic.List`1[System.Nullable`1[System.Int32][,,][]], mscorlib"},
+			new object[] {typeof(List<int?[,][]>), "System.Collections.Generic.List`1[System.Nullable`1[System.Int32][][,]], mscorlib"},
 			new object[] {typeof(ReflectionExtensions), "CodeJam.Reflection.ReflectionExtensions, CodeJam"},
 			new object[] {typeof(int).MakePointerType(), "System.Int32*, mscorlib"},
 			new object[] {typeof(int).MakePointerType().MakeArrayType(), "System.Int32*[], mscorlib"},
@@ -58,18 +58,18 @@ namespace CodeJam.Reflection
 			new object[] {typeof(int).MakeByRefType(), "System.Int32&, mscorlib"},
 			new object[] {typeof(int[]).MakeByRefType(), "System.Int32[]&, mscorlib"},
 			new object[] {typeof(int[][,][,,]).MakeByRefType(), "System.Int32[,,][,][]&, mscorlib"},
-			new object[] {typeof(int?[]).MakeByRefType(), "System.Nullable`1[[System.Int32, mscorlib]][]&, mscorlib"},
-			new object[] {typeof(int?[][,]).MakeByRefType(), "System.Nullable`1[[System.Int32, mscorlib]][,][]&, mscorlib"},
-			new object[] {typeof(int?[,][]).MakeByRefType(), "System.Nullable`1[[System.Int32, mscorlib]][][,]&, mscorlib"},
-			new object[] {typeof(int?[,][][,,]).MakeByRefType(), "System.Nullable`1[[System.Int32, mscorlib]][,,][][,]&, mscorlib"},
-			new object[] {typeof(int?[,][][,,]).MakePointerType(), "System.Nullable`1[[System.Int32, mscorlib]][,,][][,]*, mscorlib"},
-			new object[] {typeof(int?).MakePointerType(), "System.Nullable`1[[System.Int32, mscorlib]]*, mscorlib"},
-			new object[] {typeof(int?).MakePointerType().MakeByRefType(), "System.Nullable`1[[System.Int32, mscorlib]]*&, mscorlib"},
-			new object[] {typeof(int?).MakePointerType().MakePointerType().MakeByRefType(), "System.Nullable`1[[System.Int32, mscorlib]]**&, mscorlib"},
-			new object[] {typeof(int?).MakeByRefType(), "System.Nullable`1[[System.Int32, mscorlib]]&, mscorlib"},
-			new object[] {typeof(int?).MakePointerType().MakeArrayType(), "System.Nullable`1[[System.Int32, mscorlib]]*[], mscorlib"},
-			new object[] {typeof(int?).MakePointerType().MakeArrayType().MakeArrayType(2), "System.Nullable`1[[System.Int32, mscorlib]]*[][,], mscorlib"},
-			new object[] {typeof(int?).MakePointerType().MakeArrayType().MakeArrayType(2).MakeByRefType(), "System.Nullable`1[[System.Int32, mscorlib]]*[][,]&, mscorlib"},
+			new object[] {typeof(int?[]).MakeByRefType(), "System.Nullable`1[System.Int32][]&, mscorlib"},
+			new object[] {typeof(int?[][,]).MakeByRefType(), "System.Nullable`1[System.Int32][,][]&, mscorlib"},
+			new object[] {typeof(int?[,][]).MakeByRefType(), "System.Nullable`1[System.Int32][][,]&, mscorlib"},
+			new object[] {typeof(int?[,][][,,]).MakeByRefType(), "System.Nullable`1[System.Int32][,,][][,]&, mscorlib"},
+			new object[] {typeof(int?[,][][,,]).MakePointerType(), "System.Nullable`1[System.Int32][,,][][,]*, mscorlib"},
+			new object[] {typeof(int?).MakePointerType(), "System.Nullable`1[System.Int32]*, mscorlib"},
+			new object[] {typeof(int?).MakePointerType().MakeByRefType(), "System.Nullable`1[System.Int32]*&, mscorlib"},
+			new object[] {typeof(int?).MakePointerType().MakePointerType().MakeByRefType(), "System.Nullable`1[System.Int32]**&, mscorlib"},
+			new object[] {typeof(int?).MakeByRefType(), "System.Nullable`1[System.Int32]&, mscorlib"},
+			new object[] {typeof(int?).MakePointerType().MakeArrayType(), "System.Nullable`1[System.Int32]*[], mscorlib"},
+			new object[] {typeof(int?).MakePointerType().MakeArrayType().MakeArrayType(2), "System.Nullable`1[System.Int32]*[][,], mscorlib"},
+			new object[] {typeof(int?).MakePointerType().MakeArrayType().MakeArrayType(2).MakeByRefType(), "System.Nullable`1[System.Int32]*[][,]&, mscorlib"},
 		};
 
 		[Test]
@@ -94,7 +94,11 @@ namespace CodeJam.Reflection
 			Console.WriteLine("Expected: {0}", regex.Replace(type.AssemblyQualifiedName ?? "", ""));
 
 			Assert.AreEqual(expected, qualifiedName);
-			Assert.AreEqual(type, Type.GetType(qualifiedName));
+
+			if (!type.IsGenericTypeDefinition)
+			{
+				Assert.AreEqual(type, Type.GetType(qualifiedName));
+			}
 		}
 
 		[TestCase(typeof(List<int>), typeof(IList<int>), ExpectedResult = true)]
