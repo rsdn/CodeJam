@@ -2,19 +2,21 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 
 using CodeJam.PerfTests;
+using CodeJam.PerfTests.Configs;
 
 using NUnit.Framework;
 
 namespace CodeJam.DesignDecisions.JitOptimized
 {
 	/// <summary>
-	/// Proofs that JIT eliminates code brnaches that are under static readonly variable condition
+	/// Proofs that JIT eliminates code branches that are under static readonly variable condition
 	/// Use case:
 	/// 1. We have a generic class that handles some features depending on the type args.
 	/// 2. We want to skip feature-related code as fast as it is possible.
 	/// </summary>
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Design decisions")]
-	[CompetitionBurstMode]
+	[SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
+	[SuppressMessage("ReSharper", "HeuristicUnreachableCode")]
 	public class DecisionFeatureSwitchPerfTest
 	{
 		#region PerfTest helpers
@@ -23,26 +25,30 @@ namespace CodeJam.DesignDecisions.JitOptimized
 		{
 			public static readonly bool FeatureDisabledReadonly = bool.Parse("false"); // calculated at runtime
 		}
-		private const bool FeatureDisabledConst = false;
-		private static readonly bool _featureEnabledReadonly = bool.Parse("true"); // calculated at runtime
+
+		private const bool FeatureDisabledConstValue = false;
+		private static readonly bool _featureEnabledReadonly = !AnotherClass.FeatureDisabledReadonly;
 
 		// ReSharper disable once FieldCanBeMadeReadOnly.Local
-		private static bool _featureMutableFlag = bool.Parse("false"); // calculated at runtime
+		private static bool _featureMutableFlag = AnotherClass.FeatureDisabledReadonly;
 
-		private static readonly bool _featureDisabledReadonly = bool.Parse("false"); // calculated at runtime
+		private static readonly bool _featureDisabledReadonly = AnotherClass.FeatureDisabledReadonly;
+
+		private static readonly int _featureInt5Readonly = int.Parse("5"); // calculated at runtime
 		
 		private static bool AdditionalFeatureCheck(int a) => a > 1;
 		private static int OnFeatureEnabled(int a) => a * a / a;
 		private static int DefaultAction(int a) => a + 1;
 		#endregion
 
-		private static readonly int Count = CompetitionHelpers.RecommendedSpinCount;
+		private static readonly int Count = CompetitionHelpers.SmallLoopCount;
 
 		[Test]
 		public void RunDecisionFeatureSwitchPerfTest() => Competition.Run(this);
 
 		[CompetitionBaseline]
-		public int Test0000NoFeatureHardcoded()
+		[GcAllocations(0)]
+		public int NoFeatureHardcoded()
 		{
 			var a = 0;
 			for (var i = 0; i < Count; i++)
@@ -52,16 +58,15 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(0.95, 1.06)]
-		[SuppressMessage("ReSharper", "HeuristicUnreachableCode")]
-		[SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
-		public int Test0101FeatureDisabledConst()
+		[CompetitionBenchmark(0.97, 1.01)]
+		[GcAllocations(0)]
+		public int FeatureDisabledConst()
 		{
 			var a = 0;
 			for (var i = 0; i < Count; i++)
 			{
 #pragma warning disable 162
-				if (FeatureDisabledConst && AdditionalFeatureCheck(a))
+				if (FeatureDisabledConstValue && AdditionalFeatureCheck(a))
 					a = OnFeatureEnabled(a);
 #pragma warning restore 162
 				a = DefaultAction(a);
@@ -69,16 +74,15 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(0.91, 1.08)]
-		[SuppressMessage("ReSharper", "HeuristicUnreachableCode")]
-		[SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
-		public int Test0102FeatureDisabledConstTwoIf()
+		[CompetitionBenchmark(0.99, 1.03)]
+		[GcAllocations(0)]
+		public int FeatureDisabledConstTwoIf()
 		{
 			var a = 0;
 			for (var i = 0; i < Count; i++)
 			{
 #pragma warning disable 162
-				if (FeatureDisabledConst)
+				if (FeatureDisabledConstValue)
 					if (AdditionalFeatureCheck(a))
 						a = OnFeatureEnabled(a);
 #pragma warning restore 162
@@ -87,8 +91,9 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(0.94, 1.05)]
-		public int Test0201FeatureDisabledReadonly()
+		[CompetitionBenchmark(0.95, 1.02)]
+		[GcAllocations(0)]
+		public int FeatureDisabledReadonly()
 		{
 			var a = 0;
 			for (var i = 0; i < Count; i++)
@@ -100,8 +105,9 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(0.93, 1.04)]
-		public int Test0202FeatureDisabledReadonlyTwoIf()
+		[CompetitionBenchmark(0.95, 1.02)]
+		[GcAllocations(0)]
+		public int FeatureDisabledReadonlyTwoIf()
 		{
 			var a = 0;
 			for (var i = 0; i < Count; i++)
@@ -114,8 +120,9 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(0.96, 1.08)]
-		public int Test0203AnotherClassFeatureDisabledReadonly()
+		[CompetitionBenchmark(0.94, 1.03)]
+		[GcAllocations(0)]
+		public int AnotherClassFeatureDisabledReadonly()
 		{
 			var a = 0;
 			for (var i = 0; i < Count; i++)
@@ -127,8 +134,9 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(0.94, 1.06)]
-		public int Test0204NotFeatureEnabledReadonly()
+		[CompetitionBenchmark(0.96, 1.03)]
+		[GcAllocations(0)]
+		public int NotFeatureEnabledReadonly()
 		{
 			var a = 0;
 			for (var i = 0; i < Count; i++)
@@ -140,8 +148,23 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(1.77, 1.98)]
-		public int Test0301FeatureMutableFlag()
+		[CompetitionBenchmark(0.95, 1.01)]
+		[GcAllocations(0)]
+		public int FeatureIntGreaterThanReadonly()
+		{
+			var a = 0;
+			for (var i = 0; i < Count; i++)
+			{
+				if (_featureInt5Readonly > 10 && AdditionalFeatureCheck(a))
+					a = OnFeatureEnabled(a);
+				a = DefaultAction(a);
+			}
+			return a;
+		}
+
+		[CompetitionBenchmark(1.58, 1.72)]
+		[GcAllocations(0)]
+		public int FeatureMutableFlag()
 		{
 			var a = 0;
 			for (var i = 0; i < Count; i++)
@@ -153,8 +176,9 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(1.84, 2.05)]
-		public int Test0302FeatureMutableFlagTwoIf()
+		[CompetitionBenchmark(1.59, 1.73)]
+		[GcAllocations(0)]
+		public int FeatureMutableFlagTwoIf()
 		{
 			var a = 0;
 			for (var i = 0; i < Count; i++)
@@ -167,8 +191,9 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(14.17, 16.58)]
-		public int Test0401FeatureEnabledReadonly()
+		[CompetitionBenchmark(18.19, 19.37)]
+		[GcAllocations(0)]
+		public int FeatureEnabledReadonly()
 		{
 			var a = 0;
 			for (var i = 0; i < Count; i++)
@@ -180,8 +205,9 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(14.18, 16.52)]
-		public int Test0401FeatureEnabledReadonlyTwoIf()
+		[CompetitionBenchmark(18.14, 19.62)]
+		[GcAllocations(0)]
+		public int FeatureEnabledReadonlyTwoIf()
 		{
 			var a = 0;
 			for (var i = 0; i < Count; i++)

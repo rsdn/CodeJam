@@ -104,6 +104,12 @@ https://github.com/nunit/nunit/issues/668
 https://github.com/nunit/nunit/issues/1586
 https://github.com/xunit/xunit/issues/908
 
+## DOCS:
+* guidleines for use cases:
+  - dead code elimination : use prev value
+  - relatively cost action such as method invocation: use arrays.
+
+
 ## layered design: Bench.NET part
 
 ### Layer 0: Bench.Net helpers
