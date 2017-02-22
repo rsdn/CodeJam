@@ -194,7 +194,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(1.24, 1.34)]
+		[CompetitionBenchmark(0.98, 1.39)]
 		[GcAllocations(0)]
 		public void MinInstanceDelegate()
 		{
@@ -205,7 +205,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(0.77, 0.80), GcAllocations(0)]
+		[CompetitionBenchmark(0.50, 0.93), GcAllocations(0)]
 		public void MinMethod()
 		{
 			for (int i = 0; i < Count; i++)
@@ -215,7 +215,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(0.59, 0.62), GcAllocations(0)]
+		[CompetitionBenchmark(0.42, 0.70), GcAllocations(0)]
 		public void MinHardcoded()
 		{
 			for (int i = 0; i < Count; i++)
@@ -225,7 +225,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(3.23, 3.44), GcAllocations(0)]
+		[CompetitionBenchmark(2.45, 3.91), GcAllocations(0)]
 		public void MinExpression()
 		{
 			for (int i = 0; i < Count; i++)
@@ -235,7 +235,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(3.35, 3.59), GcAllocations(0)]
+		[CompetitionBenchmark(2.32, 4.86), GcAllocations(0)]
 		public void MinDynamicMethod()
 		{
 			for (int i = 0; i < Count; i++)
@@ -245,7 +245,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(0.96, 1.00), GcAllocations(0)]
+		[CompetitionBenchmark(0.66, 1.22), GcAllocations(0)]
 		public void MinDynamicMethodAssociated()
 		{
 			for (int i = 0; i < Count; i++)
@@ -256,7 +256,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 		}
 
 
-		[CompetitionBenchmark(1.27, 1.37), GcAllocations(0)]
+		[CompetitionBenchmark(0.97, 1.60), GcAllocations(0)]
 		public void MinDynamicMethodAssociatedInstance()
 		{
 			for (int i = 0; i < Count; i++)
@@ -266,7 +266,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(0.93, 1.00), GcAllocations(0)]
+		[CompetitionBenchmark(0.66, 1.46), GcAllocations(0)]
 		public void MinTypeBuilder()
 		{
 			for (int i = 0; i < Count; i++)
@@ -276,7 +276,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(1.30, 1.35), GcAllocations(0)]
+		[CompetitionBenchmark(0.92, 1.75), GcAllocations(0)]
 		public void MinTypeBuilderInstance()
 		{
 			for (int i = 0; i < Count; i++)
@@ -286,7 +286,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(0.94, 1.01), GcAllocations(0)]
+		[CompetitionBenchmark(0.62, 1.42), GcAllocations(0)]
 		public void MinTbExpression()
 		{
 			for (int i = 0; i < Count; i++)

@@ -58,7 +58,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(0.97, 1.01)]
+		[CompetitionBenchmark(0.92, 1.10)]
 		[GcAllocations(0)]
 		public int FeatureDisabledConst()
 		{
@@ -74,7 +74,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(0.99, 1.03)]
+		[CompetitionBenchmark(0.89, 1.19)]
 		[GcAllocations(0)]
 		public int FeatureDisabledConstTwoIf()
 		{
@@ -91,7 +91,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(0.95, 1.02)]
+		[CompetitionBenchmark(0.91, 1.14)]
 		[GcAllocations(0)]
 		public int FeatureDisabledReadonly()
 		{
@@ -105,7 +105,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(0.95, 1.02)]
+		[CompetitionBenchmark(0.82, 1.47)]
 		[GcAllocations(0)]
 		public int FeatureDisabledReadonlyTwoIf()
 		{
@@ -120,7 +120,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(0.94, 1.03)]
+		[CompetitionBenchmark(0.85, 1.43)]
 		[GcAllocations(0)]
 		public int AnotherClassFeatureDisabledReadonly()
 		{
@@ -134,7 +134,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(0.96, 1.03)]
+		[CompetitionBenchmark(0.90, 1.45)]
 		[GcAllocations(0)]
 		public int NotFeatureEnabledReadonly()
 		{
@@ -148,7 +148,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(0.95, 1.01)]
+		[CompetitionBenchmark(0.83, 1.53)]
 		[GcAllocations(0)]
 		public int FeatureIntGreaterThanReadonly()
 		{
@@ -162,7 +162,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(1.58, 1.72)]
+		[CompetitionBenchmark(1.54, 2.75)]
 		[GcAllocations(0)]
 		public int FeatureMutableFlag()
 		{
@@ -176,7 +176,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(1.59, 1.73)]
+		[CompetitionBenchmark(1.51, 2.20)]
 		[GcAllocations(0)]
 		public int FeatureMutableFlagTwoIf()
 		{
@@ -191,7 +191,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(18.19, 19.37)]
+		[CompetitionBenchmark(18.19, 24.80)]
 		[GcAllocations(0)]
 		public int FeatureEnabledReadonly()
 		{
@@ -205,7 +205,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(18.14, 19.62)]
+		[CompetitionBenchmark(18.14, 24.66)]
 		[GcAllocations(0)]
 		public int FeatureEnabledReadonlyTwoIf()
 		{
