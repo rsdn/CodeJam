@@ -46,7 +46,114 @@ namespace CodeJam.Reflection
 		public static string GetShortAssemblyQualifiedName([NotNull] this Type type)
 		{
 			Code.NotNull(type, nameof(type));
-			return type + ", " + type.Assembly.GetName().Name;
+
+			void WriteAssemblyName(StringBuilder sb, Type t)
+			{
+				sb.Append(", ");
+
+				var index = -1;
+				var assemblyFullName = t.Assembly.FullName;
+
+				while (true)
+				{
+					index = assemblyFullName.IndexOf(',', index + 1);
+					DebugCode.BugIf(index == 0, "Invalid assembly name");
+
+					if (index < 0)
+					{
+						sb.Append(assemblyFullName);
+						return;
+					}
+
+					if (assemblyFullName[index - 1] != '\\')
+					{
+						sb.Append(assemblyFullName, 0, index);
+						return;
+					}
+				}
+			}
+
+			void WriteGenericArguments(StringBuilder sb, Type t)
+			{
+				DebugCode.AssertState(t.IsGenericType && !t.IsGenericTypeDefinition, "Invalid type");
+
+				sb.Append('[');
+
+				var arguments = t.GetGenericArguments();
+				for (var i = 0; i < arguments.Length; i++)
+				{
+					if (i != 0)
+						sb.Append(',');
+
+					sb.Append('[');
+					WriteFull(sb, arguments[i]);
+					sb.Append(']');
+				}
+
+				sb.Append(']');
+			}
+
+			void WriteElementType(StringBuilder sb, Type t)
+			{
+				DebugCode.AssertState(t.IsArray || t.IsPointer || t.IsByRef, "Invalid type");
+
+				Write(sb, t.GetElementType());
+
+				if (t.IsArray)
+				{
+					sb.Append('[');
+					sb.Append(',', t.GetArrayRank() - 1);
+					sb.Append(']');
+				}
+				else
+				{
+					sb.Append(t.IsPointer ? '*' : '&');
+				}
+			}
+
+			void WriteType(StringBuilder sb, Type t)
+			{
+				if (t.DeclaringType != null)
+				{
+					WriteType(sb, t.DeclaringType);
+					sb.Append('+');
+				}
+
+				sb.Append(t.Name);
+			}
+
+			void Write(StringBuilder sb, Type t)
+			{
+				if (t.IsGenericType && !t.IsGenericTypeDefinition)
+				{
+					WriteType(sb, t);
+					WriteGenericArguments(sb, t);
+				}
+				else if (t.IsArray || t.IsPointer || t.IsByRef)
+				{
+					WriteElementType(sb, t);
+				}
+				else
+				{
+					WriteType(sb, t);
+				}
+			}
+
+			void WriteFull(StringBuilder sb, Type t)
+			{
+				if (t.Namespace.NotNullNorEmpty())
+				{
+					sb.Append(t.Namespace);
+					sb.Append('.');
+				}
+
+				Write(sb, t);
+				WriteAssemblyName(sb, t);
+			}
+
+			var builder = new StringBuilder();
+			WriteFull(builder, type);
+			return builder.ToString();
 		}
 
 		/// <summary>
