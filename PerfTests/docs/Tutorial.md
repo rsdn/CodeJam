@@ -353,7 +353,7 @@ public void RunByteArrayEqualityPerfTest()
 
 ### 2.4 Results from Continuous Integration build
 
-Ok, we have some methods that looks like a good candidates for replacing the baseline implementation. Should we choose one right now? Nope! Remember, the results are taken on single machine only. The best thing we can do here is to run the test on different hardware.  We have one as we've setup CI build earlier. There are summary table with results including output [from CI build](https://ci.appveyor.com/project/ig-sinicyn/codejam-examples/build/0.0.1.4#L36). Also, I've added results from low-end notebook to proof the results are accurate on mobile CPUs too.
+Ok, we have some methods that looks like a good candidates for replacing the baseline implementation. Should we choose one right now? Nope! Remember, the results are taken on single machine only. The best thing we can do here is to run the test on different hardware.  We have one as we've setup CI build earlier. There are summary table with results including output [from CI build](https://ci.appveyor.com/project/ig-sinicyn/codejam-examples/build/0.0.1.4#L36). Also, I've added results from notebook to proof the results are accurate on mobile CPUs too.
 
 | Method                  | Scaled    | Scaled (x86) | Scaled (CI) | Scaled (NB) |
 | ----------------------- | --------- | ------------ | ----------- | ----------- |

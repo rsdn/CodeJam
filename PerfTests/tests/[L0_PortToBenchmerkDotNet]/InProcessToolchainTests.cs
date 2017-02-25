@@ -115,7 +115,10 @@ namespace CodeJam.PerfTests
 					{
 						Infrastructure =
 						{
+#pragma warning disable 618 
+							// TODO: remove pragma after BurstModeEngine will be fixed
 							EngineFactory = BurstModeEngineFactory.Instance
+#pragma warning restore 618
 						}
 					})
 				.WithModifier(
@@ -146,7 +149,10 @@ namespace CodeJam.PerfTests
 					{
 						Infrastructure =
 						{
+#pragma warning disable 618 
+							// TODO: remove pragma after BurstModeEngine will be fixed
 							EngineFactory = BurstModeEngineFactory.Instance
+#pragma warning restore 618
 						},
 						Run =
 						{

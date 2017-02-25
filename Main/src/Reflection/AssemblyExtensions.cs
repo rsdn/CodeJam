@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -12,6 +15,19 @@ namespace CodeJam.Reflection
 	[PublicAPI]
 	public static class AssemblyExtensions
 	{
+		/// <summary>
+		/// Checks that the assembly is build with <see cref="DebuggableAttribute.IsJITOptimizerDisabled"/>
+		/// set to <c>false</c>.
+		/// </summary>
+		/// <param name="assembly">The assembly to check.</param>
+		/// <returns><c>true</c> if the assembly was build with optimizations disabled.</returns>
+		[Pure]
+		public static bool IsDebugAssembly([NotNull] this Assembly assembly)
+		{
+			Code.NotNull(assembly, nameof(assembly));
+			return assembly.GetCustomAttribute<DebuggableAttribute>()?.IsJITOptimizerDisabled ?? false;
+		}
+
 		/// <summary>
 		/// Loads the specified manifest resource from this assembly, and checks if it exists.
 		/// </summary>
@@ -44,15 +60,19 @@ namespace CodeJam.Reflection
 		{
 			Code.NotNull(assembly, nameof(assembly));
 
-			var codeBase = assembly.CodeBase;
-			if (codeBase == null)
+			// DONTTOUCH: we cannot use Location to detect the path as it may refer to shadow-copied assembly.
+			// DONTTOUCH: at the same time we cannot check CodeBase as it may refer to the loader codebase:
+			//   If the assembly was loaded as a byte array, using an overload of the Load method that takes an array of bytes,
+			//   this property returns the location of the caller of the method, not the location of the loaded assembly.
+			// (c) https://msdn.microsoft.com/en-us/library/system.reflection.assembly.codebase(v=vs.110).aspx
+			if (assembly.Location.IsNullOrEmpty())
 				throw CodeExceptions.Argument(nameof(assembly), $"Assembly {assembly} has no physical code base.");
 
-			var uri = new Uri(codeBase);
+			var uri = new Uri(assembly.CodeBase);
 			if (uri.IsFile)
 				return uri.LocalPath;
 
-			throw CodeExceptions.Argument(nameof(assembly), $"Assembly '{assembly}' placed not on local disk.");
+			throw CodeExceptions.Argument(nameof(assembly), $"Assembly '{assembly}' has no local path.");
 		}
 
 		/// <summary>

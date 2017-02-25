@@ -19,6 +19,7 @@ using BenchmarkDotNet.Toolchains.Results;
 
 using JetBrains.Annotations;
 
+// ReSharper disable once CheckNamespace
 namespace BenchmarkDotNet.Toolchains.InProcess
 {
 	/// <summary>

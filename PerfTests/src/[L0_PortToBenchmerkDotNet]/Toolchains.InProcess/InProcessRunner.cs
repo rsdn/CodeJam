@@ -8,6 +8,7 @@ using BenchmarkDotNet.Running;
 
 using JetBrains.Annotations;
 
+// ReSharper disable once CheckNamespace
 namespace BenchmarkDotNet.Toolchains.InProcess
 {
 	internal class InProcessRunner

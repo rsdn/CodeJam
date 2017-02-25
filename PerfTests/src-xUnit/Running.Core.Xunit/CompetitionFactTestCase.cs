@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 using BenchmarkDotNet.Helpers;
 
-using CodeJam.PerfTests.Internal;
-
 using JetBrains.Annotations;
 
 using Xunit;
@@ -102,7 +100,7 @@ namespace CodeJam.PerfTests.Running.Core.Xunit
 			protected override async Task<Tuple<decimal, string>> InvokeTestAsync(ExceptionAggregator aggregator)
 			{
 				var writer = new StringWriter();
-				using (CompetitionInternalHelpers.CaptureConsoleOutput(writer))
+				using (ConsoleHelpers.CaptureConsoleOutput(writer))
 				{
 					var result = await base.InvokeTestAsync(aggregator);
 

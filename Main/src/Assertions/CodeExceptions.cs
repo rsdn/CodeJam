@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -40,7 +41,16 @@ namespace CodeJam
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[StringFormatMethod("messageFormat")]
 		private static string FormatMessage([NotNull] string messageFormat, [CanBeNull] params object[] args) =>
-			(args == null || args.Length == 0) ? messageFormat : string.Format(messageFormat, args);
+			(args == null || args.Length == 0)
+				? messageFormat
+				: string.Format(CultureInfo.InvariantCulture, messageFormat, args);
+
+		private static string ToInv<T>(this T value)
+		{
+			if (value is IFormattable f)
+				return f.ToString(null, CultureInfo.InvariantCulture);
+			return value.ToString();
+		}
 
 		/// <summary>Returns trace source for code exceptions.</summary>
 		/// <value>The code trace source.</value>
@@ -167,7 +177,7 @@ namespace CodeJam
 			return new ArgumentOutOfRangeException(
 				argumentName,
 				value,
-				$"The value of '{argumentName}' ({value}) should be between {fromValue} and {toValue}.")
+				$"The value of '{argumentName}' ({value.ToInv()}) should be between {fromValue.ToInv()} and {toValue.ToInv()}.")
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -187,7 +197,7 @@ namespace CodeJam
 			return new ArgumentOutOfRangeException(
 				argumentName,
 				value,
-				$"The value of '{argumentName}' ({value}) should be between {fromValue} and {toValue}.")
+				$"The value of '{argumentName}' ({value.ToInv()}) should be between {fromValue.ToInv()} and {toValue.ToInv()}.")
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -208,7 +218,7 @@ namespace CodeJam
 			return new ArgumentOutOfRangeException(
 				argumentName,
 				value,
-				$"The value of '{argumentName}' ('{value}') should be between '{fromValue}' and '{toValue}'.")
+				$"The value of '{argumentName}' ('{value.ToInv()}') should be between '{fromValue.ToInv()}' and '{toValue.ToInv()}'.")
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -226,7 +236,7 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new IndexOutOfRangeException(
-				$"The value of '{argumentName}' ({value}) should be greater than or equal to {startIndex} and less than {length}.")
+				$"The value of '{argumentName}' ({value.ToInv()}) should be greater than or equal to {startIndex.ToInv()} and less than {length.ToInv()}.")
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 		#endregion
@@ -287,7 +297,7 @@ namespace CodeJam
 			BreakIfAttached();
 			var valueType = value?.GetType() ?? typeof(T);
 			return new ArgumentOutOfRangeException(
-				argumentName, value, $"Unexpected value '{value}' of type '{valueType.FullName}'.")
+				argumentName, value, $"Unexpected value '{value.ToInv()}' of type '{valueType.FullName}'.")
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -331,7 +341,7 @@ namespace CodeJam
 			var valueType = value?.GetType() ?? typeof(T);
 			return
 				new InvalidOperationException(
-					$"Unexpected value '{value}' of type '{valueType.FullName}'.")
+					$"Unexpected value '{value.ToInv()}' of type '{valueType.FullName}'.")
 					.LogToCodeTraceSourceBeforeThrow();
 		}
 

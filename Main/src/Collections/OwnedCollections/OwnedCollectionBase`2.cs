@@ -18,18 +18,21 @@ namespace CodeJam.Collections
 		where TOwner : class
 		where TItem : class
 	{
-		private readonly TOwner _owner;
-
 		/// <summary>Initializes a new instance of the <see cref="OwnedCollectionBase{TOwner, TItem}"/> class.</summary>
 		/// <param name="owner">The owner for the collection.</param>
 		protected OwnedCollectionBase([NotNull] TOwner owner)
 		{
 			Code.NotNull(owner, nameof(owner));
 
-			_owner = owner;
+			Owner = owner;
 		}
 
 		#region Copy this into OwnedCollectionBase<TKey, TItem, TOwner>
+		/// <summary>Gets owner for the collection.</summary>
+		/// <value>The owner for the collection.</value>
+		[NotNull]
+		protected TOwner Owner { get; }
+
 		/// <summary>Gets the owner of the item.</summary>
 		/// <param name="item">The item.</param>
 		/// <returns>Owner of the item.</returns>
@@ -67,7 +70,7 @@ namespace CodeJam.Collections
 
 			Code.AssertArgument(GetOwner(item) == null, nameof(item), "Cannot add an item as it is mapped to another owner.");
 			base.InsertItem(index, item);
-			SetOwner(item, _owner);
+			SetOwner(item, Owner);
 		}
 
 		/// <summary>
@@ -102,7 +105,7 @@ namespace CodeJam.Collections
 			Code.BugIf(oldItem == null, "One of items in collection is null.");
 			SetOwner(oldItem, null);
 			base.SetItem(index, item);
-			SetOwner(item, _owner);
+			SetOwner(item, Owner);
 		}
 		#endregion
 	}
@@ -117,15 +120,13 @@ namespace CodeJam.Collections
 		where TOwner : class
 		where TItem : class
 	{
-		private readonly TOwner _owner;
-
 		/// <summary>Initializes a new instance of the <see cref="OwnedCollection{TItem, TOwner}"/> class.</summary>
 		/// <param name="owner">The owner for the collection.</param>
 		protected OwnedCollectionBase([NotNull] TOwner owner)
 		{
 			Code.NotNull(owner, nameof(owner));
 
-			_owner = owner;
+			Owner = owner;
 		}
 
 		/// <summary>When implemented in a derived class, extracts the key from the specified element.</summary>
@@ -150,6 +151,11 @@ namespace CodeJam.Collections
 		protected abstract TKey GetKey([NotNull] TItem item);
 
 		#region Copied from OwnedCollectionBase<TOwner, TItem>
+		/// <summary>Gets owner for the collection.</summary>
+		/// <value>The owner for the collection.</value>
+		[NotNull]
+		protected TOwner Owner { get; }
+
 		/// <summary>Gets the owner of the item.</summary>
 		/// <param name="item">The item.</param>
 		/// <returns>Owner of the item.</returns>
@@ -187,7 +193,7 @@ namespace CodeJam.Collections
 
 			Code.AssertArgument(GetOwner(item) == null, nameof(item), "Cannot add an item as it is mapped to another owner.");
 			base.InsertItem(index, item);
-			SetOwner(item, _owner);
+			SetOwner(item, Owner);
 		}
 
 		/// <summary>
@@ -222,7 +228,7 @@ namespace CodeJam.Collections
 			Code.BugIf(oldItem == null, "One of items in collection is null.");
 			SetOwner(oldItem, null);
 			base.SetItem(index, item);
-			SetOwner(item, _owner);
+			SetOwner(item, Owner);
 		}
 		#endregion
 	}

@@ -65,12 +65,14 @@
     <Compile Include="SelfTestingApi\SelfTestConfigFactory.cs" />
     <Compile Include="SelfTestingApi\SelfTestHelpers.cs" />
     <Compile Include="[L0_PortToBenchmerkDotNet]\BenchmarkDotNetTests.cs" />
-    <Compile Include="[L1_InfrastructureAndHelpers]\CompetitionInternalHelpersTests.cs" />
+    <Compile Include="[L1_CompetitionApi]\EnvironmentHelpersTests.cs" />
+    <Compile Include="[L1_CompetitionApi]\MetricValueHelpersTests.cs" />
+    <Compile Include="[L1_CompetitionApi]\MetricUnitScaleTests.cs" />
+    <Compile Include="[L1_CompetitionApi]\MetricRangeTests.cs" />
+    <Compile Include="[L1_CompetitionApi]\IoHelpersTests.cs" />
     <Compile Include="[L0_PortToBenchmerkDotNet]\InProcessToolchainTests.cs" />
-    <Compile Include="[L3_CompetitionsCore]\HostLoggerTests.cs" />
-    <Compile Include="[L3_CompetitionsCore]\MetricRangeTests.cs" />
-    <Compile Include="[L3_CompetitionsCore]\MetricValueTests.cs" />
-    <Compile Include="[L4_CompetitionLimits]\CompetitionTargetTests.cs" />
+    <Compile Include="[L2_CompetitionCore]\FilteringLoggerTests.cs" />
+    <Compile Include="[L3_CompetitionAnalysers]\CompetitionTargetTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

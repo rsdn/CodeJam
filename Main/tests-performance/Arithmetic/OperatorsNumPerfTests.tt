@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace CodeJam.Arithmetic
 {
 	[TestFixture(Category = CompetitionHelpers.PerfTestCategory + ": Operators<T>.Numeric")]
-	[CompetitionMetadata("CodeJam.Arithmetic.OperatorsNumPerfTests.generated.xml")]
+	[CompetitionXmlAnnotation("CodeJam.Arithmetic.OperatorsNumPerfTests.generated.xml")]
 	[Explicit(CompetitionHelpers.TemporarilyExcludedReason)]
 	public class OperatorsNumPerfTests
 	{

@@ -31,7 +31,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
-			Assert.AreEqual(messages.Length, 1);
+			Assert.AreEqual(messages.Length, 3);
 
 			Assert.AreEqual(messages[0].RunNumber, 1);
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
@@ -40,6 +40,24 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(
 				messages[0].MessageText,
 				"Benchmarks TooFast, TooFastX5: run takes less than 1.00 us. Results cannot be trusted.");
+
+
+			Assert.AreEqual(messages[1].RunNumber, 1);
+			Assert.AreEqual(messages[1].RunMessageNumber, 2);
+			Assert.AreEqual(messages[1].MessageSeverity, MessageSeverity.Informational);
+			Assert.AreEqual(messages[1].MessageSource, MessageSource.Analyser);
+			Assert.AreEqual(
+				messages[1].MessageText,
+				"Target TooFast. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
+
+
+			Assert.AreEqual(messages[2].RunNumber, 1);
+			Assert.AreEqual(messages[2].RunMessageNumber, 3);
+			Assert.AreEqual(messages[2].MessageSeverity, MessageSeverity.Informational);
+			Assert.AreEqual(messages[2].MessageSource, MessageSource.Analyser);
+			Assert.AreEqual(
+				messages[2].MessageText,
+				"Target TooFastX5. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
 		}
 
 		[Test]

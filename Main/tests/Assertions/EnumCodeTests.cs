@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.IO;
 using System.Reflection;
-using System.Threading;
-
-using JetBrains.Annotations;
 
 using NUnit.Framework;
 
@@ -17,31 +13,6 @@ namespace CodeJam.Assertions
 	[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
 	public class EnumCodeTests
 	{
-		#region Test helpers
-		private bool? _breakOnException;
-		private CultureInfo _previousCulture;
-
-		[OneTimeSetUp]
-		[UsedImplicitly]
-		public void SetUp()
-		{
-			_breakOnException = CodeExceptions.BreakOnException;
-			_previousCulture = Thread.CurrentThread.CurrentUICulture;
-			CodeExceptions.BreakOnException = false;
-			Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
-		}
-
-		[OneTimeTearDown]
-		[UsedImplicitly]
-		public void TearDown()
-		{
-			Code.NotNull(_breakOnException, nameof(_breakOnException));
-			Code.NotNull(_previousCulture, nameof(_previousCulture));
-			CodeExceptions.BreakOnException = _breakOnException.GetValueOrDefault();
-			Thread.CurrentThread.CurrentUICulture = _previousCulture;
-		}
-		#endregion
-
 		[Test]
 		public void TestDefined()
 		{

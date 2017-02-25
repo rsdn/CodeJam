@@ -58,7 +58,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition metrics are ok.");
+			Assert.AreEqual(messages[0].MessageText, "All competition metrics are ok.");
 			AssertColumn(runState, StatisticColumn.Kurtosis, 0);
 			AssertColumn(runState, BaselineScaledColumn.WelchTTestPValue, 0);
 			AssertColumn(runState, StatisticColumn.Skewness, 0);
@@ -76,7 +76,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition metrics are ok.");
+			Assert.AreEqual(messages[0].MessageText, "All competition metrics are ok.");
 			AssertColumn(runState, BaselineScaledColumn.WelchTTestPValue, 1);
 			AssertColumn(runState, StatisticColumn.Kurtosis, 0);
 			AssertColumn(runState, StatisticColumn.Skewness, 1);
@@ -88,7 +88,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(messages.Length, 1);
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition metrics are ok.");
+			Assert.AreEqual(messages[0].MessageText, "All competition metrics are ok.");
 			AssertColumn(runState, BaselineScaledColumn.WelchTTestPValue, 1);
 			AssertColumn(runState, StatisticColumn.Kurtosis, 1);
 			AssertColumn(runState, StatisticColumn.Skewness, 1);

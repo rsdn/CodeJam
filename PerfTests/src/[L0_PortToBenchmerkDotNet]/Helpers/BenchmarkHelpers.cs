@@ -196,7 +196,7 @@ namespace BenchmarkDotNet.Helpers
 			var thread = Thread.CurrentThread;
 
 			var oldThreadPriority = thread.Priority;
-			var oldProcdessPriority = process.PriorityClass;
+			var oldProcessPriority = process.PriorityClass;
 			var oldAffinity = process.ProcessorAffinity;
 
 			process.SetPriority(ProcessPriorityClass.RealTime, logger);
@@ -214,7 +214,7 @@ namespace BenchmarkDotNet.Helpers
 					{
 						process.SetAffinity(oldAffinity, logger);
 					}
-					process.SetPriority(oldProcdessPriority, logger);
+					process.SetPriority(oldProcessPriority, logger);
 				});
 		}
 		#endregion

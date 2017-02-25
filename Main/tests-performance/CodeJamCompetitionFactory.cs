@@ -79,8 +79,8 @@ namespace CodeJam
 					result.Adjustments.SkipRunsBeforeAdjustment = 1;
 			}
 
-			if (!result.HasValue(CompetitionAdjustmentMode.ForceEmptyLimitsAdjustmentCharacteristic))
-				result.Adjustments.ForceEmptyLimitsAdjustment = true;
+			if (!result.HasValue(CompetitionAdjustmentMode.ForceEmptyMetricAdjustmentCharacteristic))
+				result.Adjustments.ForceEmptyMetricsAdjustment = true;
 
 			return result;
 		}

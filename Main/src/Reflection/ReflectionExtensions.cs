@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
-
-using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -18,16 +15,23 @@ namespace CodeJam.Reflection
 	public static partial class ReflectionExtensions
 	{
 		/// <summary>
-		/// Checks that the assembly is build with <see cref="DebuggableAttribute.IsJITOptimizerDisabled"/>
-		/// set to <c>false</c>.
+		/// Returns path to the <paramref name="module"/> file.
 		/// </summary>
-		/// <param name="assembly">The assembly to check.</param>
-		/// <returns><c>true</c> if the assembly was build with optimizations disabled.</returns>
+		/// <param name="module">Assembly.</param>
+		/// <returns>Path to <paramref name="module"/>.</returns>
+		[NotNull]
 		[Pure]
-		public static bool IsDebugAssembly([NotNull] this Assembly assembly)
+		public static string GetModulePath([NotNull] this Module module)
 		{
-			Code.NotNull(assembly, nameof(assembly));
-			return assembly.GetCustomAttribute<DebuggableAttribute>()?.IsJITOptimizerDisabled ?? false;
+			Code.NotNull(module, nameof(module));
+
+			var assemblyPath = module.Assembly.GetAssemblyPath();
+
+			return module == module.Assembly.ManifestModule
+				? assemblyPath
+				: Path.Combine(
+					Path.GetDirectoryName(assemblyPath),
+					module.Name);
 		}
 
 		/// <summary>

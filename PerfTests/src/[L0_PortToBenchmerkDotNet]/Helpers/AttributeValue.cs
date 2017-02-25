@@ -24,7 +24,7 @@ namespace BenchmarkDotNet.Helpers
 			if (valueType == null)
 				throw new ArgumentNullException(argName);
 			if (!typeof(T).GetTypeInfo().IsAssignableFrom(valueType))
-				throw new ArgumentNullException($"The {argName} does not implement {typeof(T)}.");
+				throw new ArgumentNullException($"The {argName} is not derived from {typeof(T)}.");
 
 			_valueLazy = new Lazy<T>(
 				() => (T)Activator.CreateInstance(valueType),
@@ -33,12 +33,11 @@ namespace BenchmarkDotNet.Helpers
 
 		/// <summary>Initializes a new instance of the <see cref="AttributeValue{T}"/> class.</summary>
 		/// <param name="valueFactory">The value factory.</param>
-		/// <param name="argName">Name of the argument. Passed to ArgumentException if arg validation failed.</param>
 		/// <exception cref="ArgumentNullException"><paramref name="valueFactory"/> is <c>null</c>.</exception>
-		public AttributeValue(Func<T> valueFactory, string argName)
+		public AttributeValue(Func<T> valueFactory)
 		{
 			if (valueFactory == null)
-				throw new ArgumentNullException(argName);
+				throw new ArgumentNullException(nameof(valueFactory));
 
 			_valueLazy = new Lazy<T>(
 				valueFactory,

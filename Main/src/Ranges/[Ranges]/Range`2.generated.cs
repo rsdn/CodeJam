@@ -9,7 +9,10 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Runtime.CompilerServices;
+
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -77,7 +80,8 @@ namespace CodeJam.Ranges
 			{
 				if (to < from)
 				{
-					throw CodeExceptions.Argument(nameof(to), $"Invalid range {from}..{to}.");
+					throw CodeExceptions.Argument(nameof(to), 
+						$"Invalid range {from.ToInvariantString()}..{to.ToInvariantString()}.");
 				}
 			}
 

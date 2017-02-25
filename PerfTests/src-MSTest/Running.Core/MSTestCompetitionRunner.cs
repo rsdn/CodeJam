@@ -7,7 +7,6 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Internal;
 using CodeJam.PerfTests.Loggers;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -23,7 +22,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			/// <summary>Initializes a new instance of the <see cref="MSTestHostLogger"/> class.</summary>
 			/// <param name="logMode">Host logging mode.</param>
-			public MSTestHostLogger(HostLogMode logMode) : base(new AccumulationLogger(), logMode) { }
+			public MSTestHostLogger(LogFilter logMode) : base(new AccumulationLogger(), logMode) { }
 
 			/// <summary>Get string with the log content.</summary>
 			/// <returns>String with the log content.</returns>
@@ -45,7 +44,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			// HACK: swallow console output
 			// TODO: remove after upgrade to BDN 10.3
-			using (CompetitionInternalHelpers.CaptureConsoleOutput(new StringWriter()))
+			using (ConsoleHelpers.CaptureConsoleOutput(new StringWriter()))
 			{
 				return base.RunCore(benchmarkType, competitionConfig);
 			}
@@ -56,7 +55,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Creates a host logger.</summary>
 		/// <param name="hostLogMode">The host log mode.</param>
 		/// <returns>An instance of <see cref="CompetitionRunnerBase.HostLogger"/></returns>
-		protected override HostLogger CreateHostLogger(HostLogMode hostLogMode) =>
+		protected override HostLogger CreateHostLogger(LogFilter hostLogMode) =>
 			new MSTestHostLogger(hostLogMode);
 
 		/// <summary>Reports content of the host logger to user.</summary>

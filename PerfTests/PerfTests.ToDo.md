@@ -10,12 +10,15 @@
 ## TODOs:
 
 ### TODO NOW:
- * IStoredMetricSource: add MetricName attribute, EnumName attribute => simplify parse logic as merging will be moved to the analyser.
-   +Subtask: Attribute annotation: analyse existing overloads (add string arg to IStoredMetricSource???)
+ * bug: test prints output twice. Update BDN, then fix.
+ * IStoredMetricValue: add MetricName attribute, EnumName attribute => simplify parse logic as merging will be moved to the analyser.
+   +Subtask: Attribute annotation: analyse existing overloads (add string arg to IStoredMetricValue???)
    +Subtask: Ensure that unknown unit in prev run log results in warning
 
 ### Types:
- * ??? Naming, IStoredMetricSource.MetricAttributeType => AttributeType, IMetricValuesProvider => IMetricProvider
+ * ??? non-generic IMetricAttribute interface with Type metricProviderType + Type metricEnumType? (discarded as not needed actually)
+ * Naming: remove limit keyword when non needed.
+ * ??? Naming, IStoredMetricValue.MetricAttributeType => AttributeType, IMetricValuesProvider => IMetricProvider
  * public metric atttributes etc => move to AllTogether level
  * Namespace 4 attributes => CodeJam.PerfTests.
  * !!! dump CompetitionOptions to summary (as columns)
@@ -30,9 +33,13 @@
  * Unique metric names
 
 ### Behavior:
- * CompetitionHelpers.CountForRelativeAuto values - remove them?
+ * Annotation: check for baseline attribute: move out of annotation storage.
+ * "Cannot detect encoding" checks for anything that reads streams as text?
+ * ??? concurrent runs. Disallowed as it will break concurrent file annotations
+ * metric info: flags enum of column kinds to add into summary
+ * Rule to ignore individual metric annotations (do not annotate / current only etc?)
  * Merge failed & adjusted messages into one?
- * MetricSingleValueMode: FromZeroToMax | or allov negative flag for metric info 
+ * ??? positive values only flag for metric info (discarded as there is SingleValueMode.FromZero)
  * ??? Integer metrics without unit scale (for total GC count)
  * Revisit caching methods for analyser (all those members should contain `cache` in name).
  * Add cache invalidation policy (limit of 1000)
@@ -41,19 +48,19 @@
  * Variance for SingleValueMetricCalculator / PercentileMetricCalculator
  * Optional relative time metric - better diagnostic if there's not empty attribute for it but the metric is not listed in config.
  * Check Code.BugIf assertions. Replace with messages where possible.
- * Metric columns: variance only on troubleshooting mode? Create a metric column provider? Add arg for MetricValuesProvider.GetColumnProvider?
  * Concurrency: lock should be performed on entire benchmark run.
  * Rerun if sources were adjusted from log?
  * Prev run log : cache + reread only if local & size/date/checksum(?) changed!!!
  * Display-only metrics (only as columns? .ctor arg to the metric? bad as will silently remove as duplicates (dups removed by AttributeType)
  * Expected time metric: to 95th percentile.
+ * Interface for last run analysis - discarded, no real use case for it.
 
 ### Messages:
  * 'No logged XML annotation for Test00Baseline found. Check if the method was renamed.' => add metric names to message
  * Validate all messages, check that origin (benchmark target) is logged, add hints (tyed arg) to them.
  * Add typed method to force same naming for source of the messages (Target, Type, xmlFile etc).
  * Check WriteVerboseHint for source annotations
- * Write hint with absolute values if relative limits failed? 
+ * ??? Write hint with absolute values if relative limits failed? (discarded)
    (will require bool arg for metricValuesProvider, recheck columns and diagnosers, maybe they will have to honor this flag too)).
  * Message about updated annotations: improve readability
  * Message about ignored empty metrics: improve readability
@@ -64,6 +71,13 @@
  * Print resulting competition options as common columns after https://github.com/dotnet/BenchmarkDotNet/pull/341
  * Check `+ Environment.NewLine` usages in `XunitCompetitionRunner.ReportXxx()` methods
  * LogColors.Hint: use it for something?
+
+### Design decisions:
+ * Review: issue: annotation context is stored as
+   `static readonly Lazy<AnnotationContext> _annotationContext`
+   so concurrent runs will overwrite each other.
+   (have no idea fow to fix without breaking scenario "multiple tests over same type")
+   +Subtask: Ensure that all attribute lines are read during source file parsing.
 
 ### Tests:
  * xUnit: tests: force run as x64 (appveyor may run as x86)?
@@ -150,9 +164,12 @@ https://github.com/xunit/xunit/issues/908
 
 
 ##Long-term task: reusable limits, draft notes
-* Support for third-party limits, use limit provider + id
-* Target stores limits as a `Dictionary<provider_id, LimitRange>`
-* Limit provider specifies attribute name and additional parameters to be applied
-  TODO: exact format?
-  TODO: Use same properties for XML annotations or prefer something better?
-  TODO: Range extension method: Min/MaxValue to infinity?
+ * Support for third-party limits, use limit provider + id (proof with package that uses GLAD)
+ * Support third-party annotations provider. Use case: to store them as a database file
+   + Subtask: exporter-only version to collect actual metric values
+   + ??? Advanced subtask: collect raw metric values (discarded, too much data without a gain).
+ * Target stores limits as a `Dictionary<provider_id, LimitRange>`
+ * Limit provider specifies attribute name and additional parameters to be applied
+   TODO: exact format?
+   TODO: Use same properties for XML annotations or prefer something better?
+   TODO: Range extension method: Min/MaxValue to infinity?

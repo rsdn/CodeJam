@@ -6,6 +6,7 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.Results;
 
+// ReSharper disable once CheckNamespace
 namespace BenchmarkDotNet.Toolchains.InProcess
 {
 	/// <summary>

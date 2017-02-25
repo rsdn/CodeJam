@@ -22,21 +22,23 @@ namespace CodeJam.PerfTests.IntegrationTests
 			}
 
 			public void Modify(ManualCompetitionConfig competitionConfig) =>
-				competitionConfig.ApplyModifier(new CompetitionOptions()
-				{
-					Adjustments =
+				competitionConfig.ApplyModifier(
+					new CompetitionOptions()
 					{
-						AdjustLimits = false
-					},
-					Annotations =
-					{
-						IgnoreExistingAnnotations = true,
-						PreviousRunLogUri = _previousRunLogUri
-					}
-				});
+						Adjustments =
+						{
+							AdjustMetrics = false
+						},
+						Annotations =
+						{
+							IgnoreExistingAnnotations = true,
+							PreviousRunLogUri = _previousRunLogUri
+						}
+					});
 		}
 
-		public CompetitionRerannotateFromLogModifier(string previousRunLogUri) : base(() => new ModifierImpl(previousRunLogUri)) { }
+		public CompetitionRerannotateFromLogModifier(string previousRunLogUri)
+			: base(() => new ModifierImpl(previousRunLogUri)) { }
 	}
 
 	public sealed class CompetitionMeasurementsFromLogModifier : CompetitionModifierAttribute
@@ -45,8 +47,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			public void Modify(ManualCompetitionConfig competitionConfig)
 			{
-				competitionConfig.Metrics.Add(CompetitionMetricInfo.AbsoluteTime);
-				competitionConfig.Metrics.Add(CompetitionMetricInfo.GcAllocations);
+				competitionConfig.Metrics.Add(WellKnownMetrics.AbsoluteTime);
+				competitionConfig.Metrics.Add(WellKnownMetrics.GcAllocations);
 			}
 		}
 
@@ -120,7 +122,6 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(runState.LooksLikeLastRun, true);
 			Assert.AreEqual(messages.Length, 4);
 		}
-
 
 		[Test]
 		public static void TestAnnotateBaselineChangedFromLocalLog()

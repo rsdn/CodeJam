@@ -11,6 +11,7 @@ namespace BenchmarkDotNet.Engines
 	/// Recommended for use if call time >> than timer resolution (recommended minimum is 1000 ns).
 	/// </summary>
 	/// <seealso cref="IEngineFactory"/>
+	[Obsolete("The implementation is not complete and will be rewritten in near future. Do not use it yet.")]
 	public class BurstModeEngineFactory : IEngineFactory
 	{
 		/// <summary>The default instance of <see cref="BurstModeEngineFactory"/></summary>

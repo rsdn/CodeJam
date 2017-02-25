@@ -11,6 +11,7 @@ using BenchmarkDotNet.Running;
 
 using JetBrains.Annotations;
 
+// ReSharper disable once CheckNamespace
 namespace BenchmarkDotNet.Toolchains.InProcess
 {
 	/// <summary>Host API for in-process benchmarks.</summary>

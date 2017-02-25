@@ -21,7 +21,7 @@ namespace BenchmarkDotNet.Toolchains.InProcess
         4. There can be multiple benchmark actions per single target instance (target, setup, cleanup methods),
             so target instantiation is not a responsibility of the benchmark action.
         5. Implementation should match to the code in BenchmarkProgram.txt.
-            As example, this code emits loop unroll only, task waithng is implemented as a delegate call.
+            As example, this code emits loop unroll only, task waiting is implemented as a delegate call.
             Outofproc code uses TaskMethodInvoker.ExecuteBlocking callback for this.
      */
 

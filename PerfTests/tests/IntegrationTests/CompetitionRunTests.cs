@@ -52,10 +52,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			AssertCompetitionCompleted(runState, MessageSeverity.SetupError);
 			Assert.AreEqual(messages.Length, 1);
 
-			Assert.AreEqual(
-				messages[0].MessageText,
-				"No methods in benchmark. Apply one of CompetitionBenchmarkAttribute, CompetitionBaselineAttribute " +
-					"or BenchmarkAttribute to the benchmark methods.");
+			Assert.AreEqual(messages[0].MessageText, "Nothing to check as there is no methods in benchmark.");
 		}
 
 		[Test]
@@ -71,7 +68,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(messages.Length, 1);
 
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition metrics are ok.");
+			Assert.AreEqual(messages[0].MessageText, "All competition metrics are ok.");
 		}
 
 		[Test]
@@ -85,9 +82,11 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(_callCounter, 2 * ExpectedRunCount);
 			AssertCompetitionCompleted(runState, MessageSeverity.Informational);
 
-			Assert.AreEqual(messages.Length, 1);
+			Assert.AreEqual(messages.Length, 3);
 
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition metrics are ok.");
+			Assert.AreEqual(messages[0].MessageText, "Target SlowerX2Async. Metric validation skipped as the method is marked with CompetitionBenchmarkAttribute.DoesNotCompete set to true.");
+			Assert.AreEqual(messages[1].MessageText, "Target SlowerX3Async. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
+			Assert.AreEqual(messages[2].MessageText, "All competition metrics are ok.");
 		}
 
 		[Test]
@@ -105,10 +104,10 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"XML annotation for Baseline: baseline flag on the method and in the annotation do not match.");
+				"Target Baseline. Baseline flag on the method and in the annotation do not match.");
 			Assert.AreEqual(
 				messages[1].MessageText,
-				"XML annotation for SlowerX20: baseline flag on the method and in the annotation do not match.");
+				"Target SlowerX20. Baseline flag on the method and in the annotation do not match.");
 		}
 
 		[Test]
@@ -124,7 +123,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(messages.Length, 1);
 
-			Assert.AreEqual(messages[0].MessageText, "CompetitionAnalyser: All competition metrics are ok.");
+			Assert.AreEqual(messages[0].MessageText, "All competition metrics are ok.");
 		}
 		[Test]
 		public static void CompetitionNoBaselineOkBenchmark()
@@ -135,9 +134,11 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			AssertCompetitionCompleted(runState, MessageSeverity.Verbose);
+			AssertCompetitionCompleted(runState, MessageSeverity.Informational);
 
-			Assert.AreEqual(messages.Length, 0);
+			Assert.AreEqual(messages.Length, 2);
+			Assert.AreEqual(messages[0].MessageText, "Target Benchmark1. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
+			Assert.AreEqual(messages[1].MessageText, "Target Benchmark2. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
 		}
 
 		[Test]
@@ -151,14 +152,22 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			AssertCompetitionCompleted(runState, MessageSeverity.SetupError);
 
-			Assert.AreEqual(messages.Length, 1);
+			Assert.AreEqual(messages.Length, 2);
 
 			Assert.AreEqual(messages[0].RunNumber, 1);
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
-			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.SetupError);
+			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
+				"Target Benchmark1. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
+
+			Assert.AreEqual(messages[1].RunNumber, 1);
+			Assert.AreEqual(messages[1].RunMessageNumber, 2);
+			Assert.AreEqual(messages[1].MessageSeverity, MessageSeverity.SetupError);
+			Assert.AreEqual(messages[1].MessageSource, MessageSource.Analyser);
+			Assert.AreEqual(
+				messages[1].MessageText,
 				"No baseline method for benchmark. Apply CompetitionBaselineAttribute to the one of benchmark methods.");
 		}
 
@@ -171,18 +180,17 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var messages = runState.GetMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
-			AssertCompetitionCompleted(runState, MessageSeverity.Warning, skipSummary: false);
+			AssertCompetitionCompleted(runState, MessageSeverity.ExecutionError, skipSummary: true);
 
 			Assert.AreEqual(messages.Length, 1);
 
 			Assert.AreEqual(messages[0].RunNumber, 1);
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
-			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.Warning);
-			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
+			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.ExecutionError);
+			Assert.AreEqual(messages[0].MessageSource, MessageSource.Runner);
 			Assert.That(
 				messages[0].MessageText,
-				Does.StartWith(
-					"Benchmark SlowerX10: results ignored as benchmark metric limits are empty."));
+					Does.StartWith("Benchmark BadLimitsBenchmark failed. Exception: Invalid range [20.2..5.5]."));
 		}
 
 		[Test]
@@ -202,33 +210,33 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[0].MessageText, Does.StartWith("SlowerX10, RelativeTime"));
+			Assert.That(messages[0].MessageText, Does.StartWith("Target SlowerX10. Metric RelativeTime"));
 			Assert.That(messages[0].MessageText, Does.Contain(" is out of limit "));
 
 			Assert.AreEqual(messages[1].RunNumber, 1);
 			Assert.AreEqual(messages[1].RunMessageNumber, 2);
 			Assert.AreEqual(messages[1].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[1].MessageSource, MessageSource.Runner);
-			Assert.AreEqual(messages[1].MessageText, "Requesting 1 run(s): Metrics check failed.");
+			Assert.AreEqual(messages[1].MessageText, "Metrics check failed, requesting 1 run(s).");
 
 			Assert.AreEqual(messages[2].RunNumber, 2);
 			Assert.AreEqual(messages[2].RunMessageNumber, 1);
 			Assert.AreEqual(messages[2].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[2].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[2].MessageText, Does.StartWith("SlowerX10, RelativeTime"));
+			Assert.That(messages[2].MessageText, Does.StartWith("Target SlowerX10. Metric RelativeTime"));
 			Assert.That(messages[2].MessageText, Does.Contain(" is out of limit "));
 
 			Assert.AreEqual(messages[3].RunNumber, 2);
 			Assert.AreEqual(messages[3].RunMessageNumber, 2);
 			Assert.AreEqual(messages[3].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[3].MessageSource, MessageSource.Runner);
-			Assert.AreEqual(messages[3].MessageText, "Requesting 1 run(s): Metrics check failed.");
+			Assert.AreEqual(messages[3].MessageText, "Metrics check failed, requesting 1 run(s).");
 
 			Assert.AreEqual(messages[4].RunNumber, 3);
 			Assert.AreEqual(messages[4].RunMessageNumber, 1);
 			Assert.AreEqual(messages[4].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[4].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[4].MessageText, Does.StartWith("SlowerX10, RelativeTime"));
+			Assert.That(messages[4].MessageText, Does.StartWith("Target SlowerX10. Metric RelativeTime"));
 			Assert.That(messages[4].MessageText, Does.Contain(" is out of limit "));
 
 			Assert.AreEqual(messages[5].RunNumber, 3);
@@ -259,7 +267,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"Benchmark SlowerX10: results ignored as benchmark metric limits are empty.");
+				"Some benchmark metrics are empty and were ignored. Empty metrics are: SlowerX10: RelativeTime.");
 		}
 
 		#region Perf test helpers
@@ -288,9 +296,9 @@ namespace CodeJam.PerfTests.IntegrationTests
 			}
 		}
 
-		[CompetitionMetadata(
+		[CompetitionXmlAnnotation(
 			"CodeJam.PerfTests.Assets.CompetitionRunTests.xml",
-			MetadataResourcePath = @"..\Assets\CompetitionRunTests.xml")]
+			ResourcePath = @"..\Assets\CompetitionRunTests.xml")]
 		public class XmlTaskOkBenchmark
 		{
 			private const int AwaitDelayMs = 50;
@@ -327,9 +335,9 @@ namespace CodeJam.PerfTests.IntegrationTests
 			}
 		}
 
-		[CompetitionMetadata(
+		[CompetitionXmlAnnotation(
 			"CodeJam.PerfTests.Assets.CompetitionRunTests.xml",
-			MetadataResourcePath = @"..\Assets\CompetitionRunTests.xml")]
+			ResourcePath = @"..\Assets\CompetitionRunTests.xml")]
 		public class XmlBaselineChangedBenchmark
 		{
 			[CompetitionBaseline]
@@ -347,9 +355,9 @@ namespace CodeJam.PerfTests.IntegrationTests
 			}
 		}
 
-		[CompetitionMetadata(
+		[CompetitionXmlAnnotation(
 			"CodeJam.PerfTests.Assets.CompetitionRunTests.xml",
-			MetadataResourcePath = @"..\Assets\CompetitionRunTests.xml",
+			ResourcePath = @"..\Assets\CompetitionRunTests.xml",
 			UseFullTypeName = true)]
 		public class XmlFullAnnotationBenchmark
 		{

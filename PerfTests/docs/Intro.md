@@ -79,7 +79,7 @@ yep, it's magic:)
 
  > **NOTE**
  >
- > This test is known to provide inaccurate results on on low-end notebooks / nettops with mobile CPUs due to aggressive frequency scaling and throttling.
+ > This test is known to provide inaccurate results on notebooks / nettops with mobile CPUs due to aggressive frequency scaling and throttling.
  >
  > There're two workarounds. First, you can set `Count` to `CompetitionHelpers.RecommendedFastSpinCount`. Second, you can use `CompetitionHelpers.RecommendedSpinCount` together with `[CompetitionBurstMode]` attribute. 
 
