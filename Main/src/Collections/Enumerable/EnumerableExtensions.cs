@@ -438,5 +438,131 @@ namespace CodeJam.Collections
 			foreach (var obj in source)
 				yield return obj?.ToString() ?? "";
 		}
+
+		/// <summary>
+		/// Checks, if <paramref name="item"/> is first element of <paramref name="source"/>.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to check.</param>
+		/// <param name="item">Source item to compare with first element.</param>
+		/// <returns>
+		/// <c>true</c>, if <paramref name="source"/> has at least one element and first element is equals to
+		/// <paramref name="item"/>, otherwise <c>false</c>.
+		/// </returns>
+		public static bool IsFirst<TSource>([NotNull] this IEnumerable<TSource> source, TSource item)
+		{
+			Code.NotNull(source, nameof(source));
+
+			// Fast path
+			// ReSharper disable once CollectionNeverUpdated.Local
+			if (source is IList<TSource> list)
+				return Equals(item, list[0]);
+
+			foreach (var current in source)
+				return Equals(item, current);
+			return false;
+		}
+
+		/// <summary>
+		/// Checks, if <paramref name="item"/> is first element of <paramref name="source"/>.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to check.</param>
+		/// <param name="item">Source item to compare with first element.</param>
+		/// <param name="comparer">The comparer.</param>
+		/// <returns>
+		/// <c>true</c>, if <paramref name="source"/> has at least one element and first element is equals to
+		/// <paramref name="item"/>, otherwise <c>false</c>.
+		/// </returns>
+		public static bool IsFirst<TSource>(
+			[NotNull] this IEnumerable<TSource> source,
+			TSource item,
+			[CanBeNull] IEqualityComparer<TSource> comparer)
+		{
+			Code.NotNull(source, nameof(source));
+
+			comparer = comparer ?? EqualityComparer<TSource>.Default;
+
+			// Fast path
+			// ReSharper disable once CollectionNeverUpdated.Local
+			if (source is IList<TSource> list)
+				return comparer.Equals(item, list[0]);
+
+			foreach (var current in source)
+				return comparer.Equals(item, current);
+			return false;
+		}
+
+		/// <summary>
+		/// Checks, if <paramref name="item"/> is last element of <paramref name="source"/>.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to check.</param>
+		/// <param name="item">Source item to compare with last element.</param>
+		/// <returns>
+		/// <c>true</c>, if <paramref name="source"/> has at least one element and last element is equals to
+		/// <paramref name="item"/>, otherwise <c>false</c>.
+		/// </returns>
+		public static bool IsLast<TSource>([NotNull] this IEnumerable<TSource> source, TSource item)
+		{
+			Code.NotNull(source, nameof(source));
+
+			// Fast path
+			// ReSharper disable once CollectionNeverUpdated.Local
+			if (source is IList<TSource> list)
+				return Equals(item, list[list.Count - 1]);
+
+			using (var en = source.GetEnumerator())
+				if (en.MoveNext())
+				{
+					TSource current;
+					do
+					{
+						current = en.Current;
+					} while (en.MoveNext());
+					return Equals(item, current);
+				}
+				else
+					return false;
+		}
+
+		/// <summary>
+		/// Checks, if <paramref name="item"/> is last element of <paramref name="source"/>.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to check.</param>
+		/// <param name="item">Source item to compare with last element.</param>
+		/// <param name="comparer">The comparer.</param>
+		/// <returns>
+		/// <c>true</c>, if <paramref name="source"/> has at least one element and last element is equals to
+		/// <paramref name="item"/>, otherwise <c>false</c>.
+		/// </returns>
+		public static bool IsLast<TSource>(
+			[NotNull] this IEnumerable<TSource> source,
+			TSource item,
+			[CanBeNull] IEqualityComparer<TSource> comparer)
+		{
+			Code.NotNull(source, nameof(source));
+
+			comparer = comparer ?? EqualityComparer<TSource>.Default;
+
+			// Fast path
+			// ReSharper disable once CollectionNeverUpdated.Local
+			if (source is IList<TSource> list)
+				return comparer.Equals(item, list[list.Count - 1]);
+
+			using (var en = source.GetEnumerator())
+				if (en.MoveNext())
+				{
+					TSource current;
+					do
+					{
+						current = en.Current;
+					} while (en.MoveNext());
+					return comparer.Equals(item, current);
+				}
+				else
+					return false;
+		}
 	}
 }
