@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using CodeJam.Strings;
@@ -32,6 +33,7 @@ namespace CodeJam.Collections
 			=> input.Prepend(prepend).Join(", ");
 
 		[Test]
+		[SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
 		public void IsFirst()
 		{
 			var src = new[] { "a", "b", "c" };
@@ -46,17 +48,37 @@ namespace CodeJam.Collections
 
 			// Slow path
 			var enSrc = src.Select(i => i);
-			// ReSharper disable PossibleMultipleEnumeration
 			Assert.IsTrue(enSrc.IsFirst("a"), "#A06");
 			Assert.IsFalse(enSrc.IsFirst("b"), "#A07");
 
 			Assert.IsTrue(enSrc.IsFirst("a", null), "#A08");
 			Assert.IsFalse(enSrc.IsFirst("A", null), "#A09");
 			Assert.IsTrue(enSrc.IsFirst("A", StringComparer.OrdinalIgnoreCase), "#A10");
-			// ReSharper restore PossibleMultipleEnumeration
 		}
 
 		[Test]
+		[SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
+		public void IsFirstForEmptyCollections()
+		{
+			var src = new string[0];
+
+			// Fast path
+			Assert.IsFalse(src.IsFirst("a"), "#A01");
+			Assert.IsFalse(src.IsFirst("b"), "#A02");
+			Assert.IsFalse(src.IsFirst("A", null), "#A03");
+			Assert.IsFalse(src.IsFirst("A", StringComparer.OrdinalIgnoreCase), "#A04");
+
+			// Slow path
+			var enSrc = src.Select(i => i);
+			Assert.IsFalse(enSrc.IsFirst("a"), "#A05");
+			Assert.IsFalse(enSrc.IsFirst("b"), "#A06");
+
+			Assert.IsFalse(enSrc.IsFirst("a", null), "#A07");
+			Assert.IsFalse(enSrc.IsFirst("A", StringComparer.OrdinalIgnoreCase), "#A08");
+		}
+
+		[Test]
+		[SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
 		public void IsLast()
 		{
 			var src = new[] { "a", "b", "c" };
@@ -71,14 +93,32 @@ namespace CodeJam.Collections
 
 			// Slow path
 			var enSrc = src.Select(i => i);
-			// ReSharper disable PossibleMultipleEnumeration
 			Assert.IsTrue(enSrc.IsLast("c"), "#A06");
 			Assert.IsFalse(enSrc.IsLast("b"), "#A07");
 
 			Assert.IsTrue(enSrc.IsLast("c", null), "#A08");
 			Assert.IsFalse(enSrc.IsLast("C", null), "#A09");
 			Assert.IsTrue(enSrc.IsLast("C", StringComparer.OrdinalIgnoreCase), "#A10");
-			// ReSharper restore PossibleMultipleEnumeration
+		}
+
+		[Test]
+		[SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
+		public void IsLastForEmptyCollections()
+		{
+			var src = new string[0];
+
+			// Fast path
+			Assert.IsFalse(src.IsLast("c"), "#A01");
+			Assert.IsFalse(src.IsLast("b"), "#A02");
+			Assert.IsFalse(src.IsLast("c", null), "#A03");
+			Assert.IsFalse(src.IsLast("C", StringComparer.OrdinalIgnoreCase), "#A04");
+
+			// Slow path
+			var enSrc = src.Select(i => i);
+			Assert.IsFalse(enSrc.IsLast("c"), "#A05");
+			Assert.IsFalse(enSrc.IsLast("b"), "#A06");
+			Assert.IsFalse(enSrc.IsLast("C", null), "#A07");
+			Assert.IsFalse(enSrc.IsLast("C", StringComparer.OrdinalIgnoreCase), "#A08");
 		}
 	}
 }

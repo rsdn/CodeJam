@@ -477,7 +477,7 @@ namespace CodeJam.Collections
 			// Fast path
 			// ReSharper disable once CollectionNeverUpdated.Local
 			if (source is IList<TSource> list)
-				return comparer.Equals(item, list[0]);
+				return list.Count != 0 && comparer.Equals(item, list[0]);
 
 			foreach (var current in source)
 				return comparer.Equals(item, current);
@@ -522,7 +522,10 @@ namespace CodeJam.Collections
 			// Fast path
 			// ReSharper disable once CollectionNeverUpdated.Local
 			if (source is IList<TSource> list)
-				return comparer.Equals(item, list[list.Count - 1]);
+			{
+				var count = list.Count;
+				return count != 0 && comparer.Equals(item, list[count - 1]);
+			}
 
 			using (var en = source.GetEnumerator())
 				if (en.MoveNext())
