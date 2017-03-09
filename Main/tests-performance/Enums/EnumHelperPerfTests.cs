@@ -67,7 +67,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(20.99, 56.07)]
-			[GcAllocations(29.31, BinarySizeUnit.Kilobyte)]
+			[GcAllocations(29.31, 29.33, BinarySizeUnit.Kilobyte)]
 			public bool Test02EnumIsDefined()
 			{
 				var a = false;
@@ -77,7 +77,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(14.57, 62.21)]
-			[GcAllocations(29.31, BinarySizeUnit.Kilobyte)]
+			[GcAllocations(29.31, 29.32, BinarySizeUnit.Kilobyte)]
 			public bool Test03EnumIsDefinedUndefined()
 			{
 				var a = false;
@@ -113,7 +113,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(6.30, 18.75)]
-			[GcAllocations(68.37, BinarySizeUnit.Kilobyte)]
+			[GcAllocations(68.37, 68.40, BinarySizeUnit.Kilobyte)]
 			public F Test02EnumTryParse()
 			{
 				var a = F.Zero;
@@ -185,7 +185,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(7.18, 20.77)]
-			[GcAllocations(29.31, BinarySizeUnit.Kilobyte)]
+			[GcAllocations(29.30, 29.31, BinarySizeUnit.Kilobyte)]
 			public bool Test04EnumHasFlag()
 			{
 				var a = false;
@@ -268,7 +268,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.59, 1.79)]
+			[CompetitionBenchmark(0.59, 1.93)]
 			[GcAllocations(0)]
 			public F Test01SetFlag()
 			{
@@ -288,7 +288,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.34, 1.00)]
+			[CompetitionBenchmark(0.34, 1.07)]
 			[GcAllocations(0)]
 			public int Test03SetFlagIntOp()
 			{

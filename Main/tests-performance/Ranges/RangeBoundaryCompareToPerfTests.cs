@@ -116,7 +116,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(2.32, 4.11)]
+			[CompetitionBenchmark(2.26, 4.11)]
 			[GcAllocations(0)]
 			public int Test02BoundaryValuesOperators()
 			{
@@ -126,7 +126,7 @@ namespace CodeJam.Ranges
 				return result;
 			}
 
-			[CompetitionBenchmark(1.42, 2.87)]
+			[CompetitionBenchmark(1.20, 2.95)]
 			[GcAllocations(0)]
 			public int Test03BoundariesCompareFrom()
 			{

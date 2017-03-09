@@ -58,7 +58,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(0.92, 1.10)]
+		[CompetitionBenchmark(0.85, 1.26)]
 		[GcAllocations(0)]
 		public int FeatureDisabledConst()
 		{
@@ -74,7 +74,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(0.89, 1.19)]
+		[CompetitionBenchmark(0.84, 1.19)]
 		[GcAllocations(0)]
 		public int FeatureDisabledConstTwoIf()
 		{
@@ -134,7 +134,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(0.90, 1.45)]
+		[CompetitionBenchmark(0.78, 1.45)]
 		[GcAllocations(0)]
 		public int NotFeatureEnabledReadonly()
 		{
@@ -191,7 +191,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(18.19, 24.80)]
+		[CompetitionBenchmark(13.22, 25.35)]
 		[GcAllocations(0)]
 		public int FeatureEnabledReadonly()
 		{
@@ -205,7 +205,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(18.14, 24.66)]
+		[CompetitionBenchmark(13.23, 25.25)]
 		[GcAllocations(0)]
 		public int FeatureEnabledReadonlyTwoIf()
 		{

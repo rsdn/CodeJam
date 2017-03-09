@@ -71,7 +71,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(10.53, 18.78)]
+			[CompetitionBenchmark(10.53, 29.99)]
 			[GcAllocations(0)]
 			public RangeStub<int> Test01Range()
 			{
@@ -83,7 +83,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(10.33, 19.38)]
+			[CompetitionBenchmark(10.33, 29.58)]
 			[GcAllocations(0)]
 			public RangeStub<int, string> Test02KeyRange()
 			{
@@ -95,7 +95,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(30.44, 59.10)]
+			[CompetitionBenchmark(30.44, 87.87)]
 			[GcAllocations(0)]
 			public RangeStubCompact<int> Test03CompactRange()
 			{
@@ -107,7 +107,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(14.74, 27.89)]
+			[CompetitionBenchmark(14.74, 42.21)]
 			[GcAllocations(0)]
 			public Range<int> Test04RangeImpl()
 			{
@@ -119,7 +119,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(16.45, 33.38)]
+			[CompetitionBenchmark(16.45, 44.15)]
 			[GcAllocations(0)]
 			public Range<int, string> Test05RangeKeyImpl()
 			{

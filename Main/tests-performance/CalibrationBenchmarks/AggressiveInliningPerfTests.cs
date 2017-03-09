@@ -213,6 +213,7 @@ namespace CodeJam
 			#endregion
 
 			[CompetitionBaseline]
+			[GcAllocations(0)]
 			public int Test00Baseline()
 			{
 				var a = 0;
@@ -221,7 +222,8 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(15.22, 16.94)]
+			[CompetitionBenchmark(12.69, 16.94)]
+			[GcAllocations(0)]
 			public int Test01Auto()
 			{
 				var a = 0;
@@ -230,7 +232,8 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(16.34, 18.08)]
+			[CompetitionBenchmark(12.22, 18.08)]
+			[GcAllocations(0)]
 			public int Test02NoInline()
 			{
 				var a = 0;
@@ -239,7 +242,8 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(7.21, 8.04)]
+			[CompetitionBenchmark(5.18, 8.04)]
+			[GcAllocations(0)]
 			public int Test03AggressiveInline()
 			{
 				var a = 0;

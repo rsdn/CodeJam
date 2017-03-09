@@ -17,8 +17,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public void RunCompetitionAllMetricsTest() => Competition.Run(this);
 
 		[CompetitionBaseline]
-		[GcAllocations(8.24, 8.27, BinarySizeUnit.Kilobyte), Gc0(0), Gc1(0), Gc2(0)]
-		[ExpectedTime(4.84, 14.45, TimeUnit.Microsecond)]
+		[GcAllocations(8.24, 8.27, BinarySizeUnit.Kilobyte), Gc0(0.00, 3.33), Gc1(0), Gc2(0)]
+		[ExpectedTime(4.82, 14.45, TimeUnit.Microsecond)]
 		public int ListWithoutCapacity()
 		{
 			var data = new List<int>();
@@ -29,7 +29,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		[CompetitionBenchmark(0.33, 1.43)]
 		[GcAllocations(4.08, BinarySizeUnit.Kilobyte), Gc0(0), Gc1(0), Gc2(0)]
-		[ExpectedTime(3.90, 8.15, TimeUnit.Microsecond)]
+		[ExpectedTime(3.59, 8.33, TimeUnit.Microsecond)]
 		public int ListWithCapacity()
 		{
 			var data = new List<int>(Count);
@@ -40,7 +40,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		[CompetitionBenchmark(0.088, 0.338)]
 		[GcAllocations(4.03, 4.05, BinarySizeUnit.Kilobyte), Gc0(0), Gc1(0), Gc2(0)]
-		[ExpectedTime(1.40, 2.44, TimeUnit.Microsecond)]
+		[ExpectedTime(1.40, 3.03, TimeUnit.Microsecond)]
 		public int Array()
 		{
 			var data = new int[Count];

@@ -200,7 +200,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(1.45, 2.55)]
+			[CompetitionBenchmark(1.36, 2.55)]
 			[GcAllocations(0)]
 			public RangeStub<int?> Test02RangeExtensionAlt()
 			{
@@ -212,7 +212,7 @@ namespace CodeJam.RangesAlternatives
 				return result;
 			}
 
-			[CompetitionBenchmark(1.41, 2.55)]
+			[CompetitionBenchmark(1.33, 2.55)]
 			[GcAllocations(0)]
 			public RangeStub<int?> Test03RangeImpl()
 			{
