@@ -1,5 +1,19 @@
-CodeJam 1.3.0-beta4 Release Notes
+CodeJam 1.3.0-beta5 Release Notes
 ---------------------------------
+
+What's new in 1.3.0-beta5
+-------------------------
+* New package icon
+* Fix CompareBuilder bugs and performance
+* ToXxx/XxxInvariant parse methods for common primitives
+* Ranges performance improved
+* OwnedCollection class
+* InfoOf.Constructor overloads
+* EnumerableExtensions.MinOrDefault/MaxOrDefault methods
+* Memory.CompareInline method
+* ReflectionExtensions IsDebugAssembly and GetShortAssemblyQualifiedName methods
+* EnumerableExtensions.IsFirst/IsLast
+* Code cleanup and fixes
 
 What's new in 1.3.0-beta4
 -------------------------
