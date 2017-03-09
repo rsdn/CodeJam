@@ -30,9 +30,9 @@ namespace CodeJam.Threading
 			[NotNull, InstantHandle] Action<TTarget> consumerAction,
 			string processName = "ParallelProcess")
 		{
-			if (source         == null) throw new ArgumentNullException(nameof(source));
-			if (providerFunc   == null) throw new ArgumentNullException(nameof(providerFunc));
-			if (consumerAction == null) throw new ArgumentNullException(nameof(consumerAction));
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(providerFunc, nameof(providerFunc));
+			Code.NotNull(consumerAction, nameof(consumerAction));
 
 			using (var providerQueue = new ParallelQueue(providerCount, processName + "_provider_"))
 			using (var consumerQueue = new ParallelQueue(consumerCount, processName + "_consumer_"))

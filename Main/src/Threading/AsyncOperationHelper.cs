@@ -31,8 +31,8 @@ namespace CodeJam.Threading
 		/// </param>
 		public static void Post([NotNull] this AsyncOperation asyncOp, [NotNull, InstantHandle] Action runner)
 		{
-			if (asyncOp == null) throw new ArgumentNullException(nameof(asyncOp));
-			if (runner == null) throw new ArgumentNullException(nameof(runner));
+			Code.NotNull(asyncOp, nameof(asyncOp));
+			Code.NotNull(runner, nameof(runner));
 			asyncOp.Post(state => runner(), null);
 		}
 
@@ -41,12 +41,10 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <param name="asyncOp"></param>
 		/// <param name="runner">A <see cref="Action"/> that wraps the delegate to be called when the operation ends.</param>
-		public static void PostOperationCompleted(
-			[NotNull] this AsyncOperation asyncOp,
-			[NotNull, InstantHandle] Action runner)
+		public static void PostOperationCompleted([NotNull] this AsyncOperation asyncOp, [NotNull, InstantHandle] Action runner)
 		{
-			if (asyncOp == null) throw new ArgumentNullException(nameof(asyncOp));
-			if (runner == null) throw new ArgumentNullException(nameof(runner));
+			Code.NotNull(asyncOp, nameof(asyncOp));
+			Code.NotNull(runner, nameof(runner));
 			asyncOp.PostOperationCompleted(state => runner(), null);
 		}
 
@@ -58,7 +56,7 @@ namespace CodeJam.Threading
 		/// <param name="runner">
 		/// A <see cref="Action"/> that wraps the delegate to be called when the operation ends.
 		/// </param>
-		public static void Send([NotNull] this AsyncOperation asyncOp, [NotNull] Action runner)
+		public static void Send([NotNull] this AsyncOperation asyncOp, [NotNull, InstantHandle] Action runner)
 		{
 			if (asyncOp == null) throw new ArgumentNullException(nameof(asyncOp));
 			if (runner == null) throw new ArgumentNullException(nameof(runner));
@@ -75,10 +73,11 @@ namespace CodeJam.Threading
 		/// A <see cref="Func{TResult}"/> that wraps the delegate to be called when the operation ends.
 		/// </param>
 		/// <returns>Result of <paramref name="runner"/> execution.</returns>
-		public static T Send<T>([NotNull] this AsyncOperation asyncOp, [NotNull] Func<T> runner)
+		public static T Send<T>([NotNull] this AsyncOperation asyncOp, [NotNull, InstantHandle] Func<T> runner)
 		{
-			if (asyncOp == null) throw new ArgumentNullException(nameof(asyncOp));
-			if (runner == null) throw new ArgumentNullException(nameof(runner));
+			Code.NotNull(asyncOp, nameof(asyncOp));
+			Code.NotNull(runner, nameof(runner));
+
 			var result = default(T);
 			asyncOp.SynchronizationContext.Send(state => result = runner(), null);
 			return result;
@@ -87,11 +86,10 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Gets thread from pool and run <paramref name="runner"/> inside it.
 		/// </summary>
-		/// <param name="runner">Action to run inside created thread</param>
-		public static void RunAsync([NotNull] Action<AsyncOperation> runner)
+		/// <param name="runner">Action to run inside created thread.</param>
+		public static void RunAsync([NotNull, InstantHandle] Action<AsyncOperation> runner)
 		{
-			if (runner == null)
-				throw new ArgumentNullException(nameof(runner));
+			Code.NotNull(runner, nameof(runner));
 
 			var asyncOp = CreateOperation();
 			ThreadPool.QueueUserWorkItem(state => runner(asyncOp));
@@ -100,18 +98,16 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Gets thread from pool and run <paramref name="runner"/> inside it.
 		/// </summary>
-		/// <param name="runner">Action to run inside created thread</param>
+		/// <param name="runner">Action to run inside created thread.</param>
 		/// <param name="completeHandler">
 		/// Action called after <paramref name="runner"/> complete execution. Synchronized with method calling thread.
 		/// </param>
 		public static void RunAsync(
-			Action<AsyncOperation> runner,
-			Action completeHandler)
+			[NotNull, InstantHandle] Action<AsyncOperation> runner,
+			[NotNull, InstantHandle] Action completeHandler)
 		{
-			if (runner == null)
-				throw new ArgumentNullException(nameof(runner));
-			if (completeHandler == null)
-				throw new ArgumentNullException(nameof(completeHandler));
+			Code.NotNull(runner, nameof(runner));
+			Code.NotNull(completeHandler, nameof(completeHandler));
 
 			var asyncOp = CreateOperation();
 			ThreadPool.QueueUserWorkItem(
