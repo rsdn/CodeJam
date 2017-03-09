@@ -449,19 +449,9 @@ namespace CodeJam.Collections
 		/// <c>true</c>, if <paramref name="source"/> has at least one element and first element is equals to
 		/// <paramref name="item"/>, otherwise <c>false</c>.
 		/// </returns>
-		public static bool IsFirst<TSource>([NotNull] this IEnumerable<TSource> source, TSource item)
-		{
-			Code.NotNull(source, nameof(source));
-
-			// Fast path
-			// ReSharper disable once CollectionNeverUpdated.Local
-			if (source is IList<TSource> list)
-				return Equals(item, list[0]);
-
-			foreach (var current in source)
-				return Equals(item, current);
-			return false;
-		}
+		[Pure]
+		public static bool IsFirst<TSource>([NotNull] this IEnumerable<TSource> source, TSource item) =>
+			source.IsFirst(item, EqualityComparer<TSource>.Default);
 
 		/// <summary>
 		/// Checks, if <paramref name="item"/> is first element of <paramref name="source"/>.
@@ -474,6 +464,7 @@ namespace CodeJam.Collections
 		/// <c>true</c>, if <paramref name="source"/> has at least one element and first element is equals to
 		/// <paramref name="item"/>, otherwise <c>false</c>.
 		/// </returns>
+		[Pure]
 		public static bool IsFirst<TSource>(
 			[NotNull] this IEnumerable<TSource> source,
 			TSource item,
@@ -503,28 +494,9 @@ namespace CodeJam.Collections
 		/// <c>true</c>, if <paramref name="source"/> has at least one element and last element is equals to
 		/// <paramref name="item"/>, otherwise <c>false</c>.
 		/// </returns>
-		public static bool IsLast<TSource>([NotNull] this IEnumerable<TSource> source, TSource item)
-		{
-			Code.NotNull(source, nameof(source));
-
-			// Fast path
-			// ReSharper disable once CollectionNeverUpdated.Local
-			if (source is IList<TSource> list)
-				return Equals(item, list[list.Count - 1]);
-
-			using (var en = source.GetEnumerator())
-				if (en.MoveNext())
-				{
-					TSource current;
-					do
-					{
-						current = en.Current;
-					} while (en.MoveNext());
-					return Equals(item, current);
-				}
-				else
-					return false;
-		}
+		[Pure]
+		public static bool IsLast<TSource>([NotNull] this IEnumerable<TSource> source, TSource item) =>
+			source.IsLast(item, EqualityComparer<TSource>.Default);
 
 		/// <summary>
 		/// Checks, if <paramref name="item"/> is last element of <paramref name="source"/>.
@@ -537,6 +509,7 @@ namespace CodeJam.Collections
 		/// <c>true</c>, if <paramref name="source"/> has at least one element and last element is equals to
 		/// <paramref name="item"/>, otherwise <c>false</c>.
 		/// </returns>
+		[Pure]
 		public static bool IsLast<TSource>(
 			[NotNull] this IEnumerable<TSource> source,
 			TSource item,
