@@ -85,15 +85,15 @@ namespace CodeJam.Expressions
 				case ExpressionType.AddAssignChecked:
 				case ExpressionType.MultiplyAssignChecked:
 				case ExpressionType.SubtractAssignChecked:
-					{
-						var e = (BinaryExpression)expr;
+				{
+					var e = (BinaryExpression)expr;
 
-						VisitInternal(e.Conversion, func);
-						VisitInternal(e.Left,       func);
-						VisitInternal(e.Right,      func);
+					VisitInternal(e.Conversion, func);
+					VisitInternal(e.Left, func);
+					VisitInternal(e.Right, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.ArrayLength:
 				case ExpressionType.Convert:
@@ -115,200 +115,225 @@ namespace CodeJam.Expressions
 				case ExpressionType.PostIncrementAssign:
 				case ExpressionType.PostDecrementAssign:
 				case ExpressionType.OnesComplement:
-					{
-						VisitInternal(((UnaryExpression)expr).Operand, func);
-						break;
-					}
+				{
+					VisitInternal(((UnaryExpression)expr).Operand, func);
+					break;
+				}
 
 				case ExpressionType.Call:
-					{
-						var e = (MethodCallExpression)expr;
+				{
+					var e = (MethodCallExpression)expr;
 
-						VisitInternal(e.Object,    func);
-						VisitInternal(e.Arguments, func);
+					VisitInternal(e.Object, func);
+					VisitInternal(e.Arguments, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Conditional:
-					{
-						var e = (ConditionalExpression)expr;
+				{
+					var e = (ConditionalExpression)expr;
 
-						VisitInternal(e.Test,    func);
-						VisitInternal(e.IfTrue,  func);
-						VisitInternal(e.IfFalse, func);
+					VisitInternal(e.Test, func);
+					VisitInternal(e.IfTrue, func);
+					VisitInternal(e.IfFalse, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Invoke:
-					{
-						var e = (InvocationExpression)expr;
+				{
+					var e = (InvocationExpression)expr;
 
-						VisitInternal(e.Expression, func);
-						VisitInternal(e.Arguments,  func);
+					VisitInternal(e.Expression, func);
+					VisitInternal(e.Arguments, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Lambda:
-					{
-						var e = (LambdaExpression)expr;
+				{
+					var e = (LambdaExpression)expr;
 
-						VisitInternal(e.Body,       func);
-						VisitInternal(e.Parameters, func);
+					VisitInternal(e.Body, func);
+					VisitInternal(e.Parameters, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.ListInit:
-					{
-						var e = (ListInitExpression)expr;
+				{
+					var e = (ListInitExpression)expr;
 
-						VisitInternal(e.NewExpression, func);
-						VisitInternal(e.Initializers,  ex => VisitInternal(ex.Arguments, func));
+					VisitInternal(e.NewExpression, func);
+					VisitInternal(e.Initializers, ex => VisitInternal(ex.Arguments, func));
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.MemberAccess:
-					{
-						VisitInternal(((MemberExpression)expr).Expression, func);
-						break;
-					}
+				{
+					VisitInternal(((MemberExpression)expr).Expression, func);
+					break;
+				}
 
 				case ExpressionType.MemberInit:
+				{
+					void Action(MemberBinding b)
 					{
-						Action<MemberBinding> visit = null; visit = b =>
+						switch (b.BindingType)
 						{
-							switch (b.BindingType)
-							{
-								case MemberBindingType.Assignment    : VisitInternal(((MemberAssignment)b). Expression,   func);                                  break;
-								case MemberBindingType.ListBinding   : VisitInternal(((MemberListBinding)b).Initializers, p => VisitInternal(p.Arguments, func)); break;
-								case MemberBindingType.MemberBinding : VisitInternal(((MemberMemberBinding)b).Bindings,   visit);                                 break;
-							}
-						};
-
-						var e = (MemberInitExpression)expr;
-
-						VisitInternal(e.NewExpression, func);
-						VisitInternal(e.Bindings,      visit);
-
-						break;
+							case MemberBindingType.Assignment:
+								VisitInternal(((MemberAssignment)b).Expression, func);
+								break;
+							case MemberBindingType.ListBinding:
+								VisitInternal(((MemberListBinding)b).Initializers, p => VisitInternal(p.Arguments, func));
+								break;
+							case MemberBindingType.MemberBinding:
+								VisitInternal(((MemberMemberBinding)b).Bindings, (Action<MemberBinding>)Action);
+								break;
+						}
 					}
 
-				case ExpressionType.New            : VisitInternal(((NewExpression)       expr).Arguments,   func); break;
-				case ExpressionType.NewArrayBounds : VisitInternal(((NewArrayExpression)  expr).Expressions, func); break;
-				case ExpressionType.NewArrayInit   : VisitInternal(((NewArrayExpression)  expr).Expressions, func); break;
-				case ExpressionType.TypeEqual      :
-				case ExpressionType.TypeIs         : VisitInternal(((TypeBinaryExpression)expr).Expression,  func); break;
+					var e = (MemberInitExpression)expr;
+
+					VisitInternal(e.NewExpression, func);
+					VisitInternal(e.Bindings, (Action<MemberBinding>)Action);
+
+					break;
+				}
+
+				case ExpressionType.New:
+					VisitInternal(((NewExpression)expr).Arguments, func);
+					break;
+				case ExpressionType.NewArrayBounds:
+					VisitInternal(((NewArrayExpression)expr).Expressions, func);
+					break;
+				case ExpressionType.NewArrayInit:
+					VisitInternal(((NewArrayExpression)expr).Expressions, func);
+					break;
+				case ExpressionType.TypeEqual:
+				case ExpressionType.TypeIs:
+					VisitInternal(((TypeBinaryExpression)expr).Expression, func);
+					break;
 
 				case ExpressionType.Block:
-					{
-						var e = (BlockExpression)expr;
+				{
+					var e = (BlockExpression)expr;
 
-						VisitInternal(e.Expressions, func);
-						VisitInternal(e.Variables,   func);
+					VisitInternal(e.Expressions, func);
+					VisitInternal(e.Variables, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Dynamic:
-					{
-						var e = (DynamicExpression)expr;
+				{
+					var e = (DynamicExpression)expr;
 
-						VisitInternal(e.Arguments, func);
+					VisitInternal(e.Arguments, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Goto:
-					{
-						var e = (GotoExpression)expr;
+				{
+					var e = (GotoExpression)expr;
 
-						VisitInternal(e.Value, func);
+					VisitInternal(e.Value, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Index:
-					{
-						var e = (IndexExpression)expr;
+				{
+					var e = (IndexExpression)expr;
 
-						VisitInternal(e.Object,    func);
-						VisitInternal(e.Arguments, func);
+					VisitInternal(e.Object, func);
+					VisitInternal(e.Arguments, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Label:
-					{
-						var e = (LabelExpression)expr;
+				{
+					var e = (LabelExpression)expr;
 
-						VisitInternal(e.DefaultValue, func);
+					VisitInternal(e.DefaultValue, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.RuntimeVariables:
-					{
-						var e = (RuntimeVariablesExpression)expr;
+				{
+					var e = (RuntimeVariablesExpression)expr;
 
-						VisitInternal(e.Variables, func);
+					VisitInternal(e.Variables, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Loop:
-					{
-						var e = (LoopExpression)expr;
+				{
+					var e = (LoopExpression)expr;
 
-						VisitInternal(e.Body, func);
+					VisitInternal(e.Body, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Switch:
-					{
-						var e = (SwitchExpression)expr;
+				{
+					var e = (SwitchExpression)expr;
 
-						VisitInternal(e.SwitchValue, func);
-						VisitInternal(e.Cases, cs => { VisitInternal(cs.TestValues, func); VisitInternal(cs.Body, func); });
-						VisitInternal(e.DefaultBody, func);
+					VisitInternal(e.SwitchValue, func);
+					VisitInternal(
+						e.Cases, cs =>
+						{
+							VisitInternal(cs.TestValues, func);
+							VisitInternal(cs.Body, func);
+						});
+					VisitInternal(e.DefaultBody, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Try:
-					{
-						var e = (TryExpression)expr;
+				{
+					var e = (TryExpression)expr;
 
-						VisitInternal(e.Body, func);
-						VisitInternal(e.Handlers, h => { VisitInternal(h.Variable, func); VisitInternal(h.Filter, func); VisitInternal(h.Body, func); });
-						VisitInternal(e.Finally, func);
-						VisitInternal(e.Fault, func);
+					VisitInternal(e.Body, func);
+					VisitInternal(
+						e.Handlers, h =>
+						{
+							VisitInternal(h.Variable, func);
+							VisitInternal(h.Filter, func);
+							VisitInternal(h.Body, func);
+						});
+					VisitInternal(e.Finally, func);
+					VisitInternal(e.Fault, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Extension:
-					{
-						if (expr.CanReduce)
-							VisitInternal(expr.Reduce(), func);
-						break;
-					}
+				{
+					if (expr.CanReduce)
+						VisitInternal(expr.Reduce(), func);
+					break;
+				}
 			}
 
 			func(expr);
 		}
 
-		private static void VisitInternal<T>(IEnumerable<T> source, Func<T,bool> func)
+		private static void VisitInternal<T>(IEnumerable<T> source, Func<T, bool> func)
 		{
 			foreach (var item in source)
 				func(item);
 		}
 
-		private static void VisitInternal<T>(IEnumerable<T> source, Func<Expression,bool> func)
+		private static void VisitInternal<T>(IEnumerable<T> source, Func<Expression, bool> func)
 			where T : Expression
 		{
 			foreach (var item in source)
@@ -320,7 +345,7 @@ namespace CodeJam.Expressions
 		/// </summary>
 		/// <param name="expr"><see cref="Expression"/> to visit.</param>
 		/// <param name="func">Visit function. Return true to stop.</param>
-		public static void Visit([CanBeNull] this Expression expr, [NotNull] Func<Expression,bool> func)
+		public static void Visit([CanBeNull] this Expression expr, [NotNull] Func<Expression, bool> func)
 		{
 			if (func == null) throw new ArgumentNullException(nameof(func));
 
@@ -328,7 +353,7 @@ namespace CodeJam.Expressions
 		}
 
 		[SuppressMessage("ReSharper", "TailRecursiveCall")]
-		private static void VisitInternal(this Expression expr, Func<Expression,bool> func)
+		private static void VisitInternal(this Expression expr, Func<Expression, bool> func)
 		{
 			if (expr == null || !func(expr))
 				return;
@@ -374,15 +399,15 @@ namespace CodeJam.Expressions
 				case ExpressionType.AddAssignChecked:
 				case ExpressionType.MultiplyAssignChecked:
 				case ExpressionType.SubtractAssignChecked:
-					{
-						var e = (BinaryExpression)expr;
+				{
+					var e = (BinaryExpression)expr;
 
-						VisitInternal(e.Conversion, func);
-						VisitInternal(e.Left,       func);
-						VisitInternal(e.Right,      func);
+					VisitInternal(e.Conversion, func);
+					VisitInternal(e.Left, func);
+					VisitInternal(e.Right, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.ArrayLength:
 				case ExpressionType.Convert:
@@ -404,193 +429,219 @@ namespace CodeJam.Expressions
 				case ExpressionType.PostIncrementAssign:
 				case ExpressionType.PostDecrementAssign:
 				case ExpressionType.OnesComplement:
-					{
-						VisitInternal(((UnaryExpression)expr).Operand, func);
-						break;
-					}
+				{
+					VisitInternal(((UnaryExpression)expr).Operand, func);
+					break;
+				}
 
 				case ExpressionType.Call:
-					{
-						var e = (MethodCallExpression)expr;
+				{
+					var e = (MethodCallExpression)expr;
 
-						VisitInternal(e.Object,    func);
-						VisitInternal(e.Arguments, func);
+					VisitInternal(e.Object, func);
+					VisitInternal(e.Arguments, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Conditional:
-					{
-						var e = (ConditionalExpression)expr;
+				{
+					var e = (ConditionalExpression)expr;
 
-						VisitInternal(e.Test,    func);
-						VisitInternal(e.IfTrue,  func);
-						VisitInternal(e.IfFalse, func);
+					VisitInternal(e.Test, func);
+					VisitInternal(e.IfTrue, func);
+					VisitInternal(e.IfFalse, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Invoke:
-					{
-						var e = (InvocationExpression)expr;
+				{
+					var e = (InvocationExpression)expr;
 
-						VisitInternal(e.Expression, func);
-						VisitInternal(e.Arguments,  func);
+					VisitInternal(e.Expression, func);
+					VisitInternal(e.Arguments, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Lambda:
-					{
-						var e = (LambdaExpression)expr;
+				{
+					var e = (LambdaExpression)expr;
 
-						VisitInternal(e.Body,       func);
-						VisitInternal(e.Parameters, func);
+					VisitInternal(e.Body, func);
+					VisitInternal(e.Parameters, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.ListInit:
-					{
-						var e = (ListInitExpression)expr;
+				{
+					var e = (ListInitExpression)expr;
 
-						VisitInternal(e.NewExpression, func);
-						VisitInternal(e.Initializers,  ex => VisitInternal(ex.Arguments, func));
+					VisitInternal(e.NewExpression, func);
+					VisitInternal(e.Initializers, ex => VisitInternal(ex.Arguments, func));
 
-						break;
-					}
+					break;
+				}
 
-				case ExpressionType.MemberAccess: VisitInternal(((MemberExpression)expr).Expression, func); break;
+				case ExpressionType.MemberAccess:
+					VisitInternal(((MemberExpression)expr).Expression, func);
+					break;
 
 				case ExpressionType.MemberInit:
+				{
+					bool Modify(MemberBinding b)
 					{
-						Func<MemberBinding,bool> modify = null; modify = b =>
+						switch (b.BindingType)
 						{
-							switch (b.BindingType)
-							{
-								case MemberBindingType.Assignment    : VisitInternal(((MemberAssignment)b). Expression,   func);                          break;
-								case MemberBindingType.ListBinding   : VisitInternal(((MemberListBinding)b).Initializers, p => VisitInternal(p.Arguments, func)); break;
-								case MemberBindingType.MemberBinding : VisitInternal(((MemberMemberBinding)b).Bindings,   modify);                        break;
-							}
+							case MemberBindingType.Assignment:
+								VisitInternal(((MemberAssignment)b).Expression, func);
+								break;
+							case MemberBindingType.ListBinding:
+								VisitInternal(((MemberListBinding)b).Initializers, p => VisitInternal(p.Arguments, func));
+								break;
+							case MemberBindingType.MemberBinding:
+								VisitInternal(((MemberMemberBinding)b).Bindings, Modify);
+								break;
+						}
 
-							return true;
-						};
-
-						var e = (MemberInitExpression)expr;
-
-						VisitInternal(e.NewExpression, func);
-						VisitInternal(e.Bindings,      modify);
-
-						break;
+						return true;
 					}
 
-				case ExpressionType.New            : VisitInternal(((NewExpression)       expr).Arguments,   func); break;
-				case ExpressionType.NewArrayBounds : VisitInternal(((NewArrayExpression)  expr).Expressions, func); break;
-				case ExpressionType.NewArrayInit   : VisitInternal(((NewArrayExpression)  expr).Expressions, func); break;
-				case ExpressionType.TypeEqual      :
-				case ExpressionType.TypeIs         : VisitInternal(((TypeBinaryExpression)expr).Expression,  func); break;
+					var e = (MemberInitExpression)expr;
+
+					VisitInternal(e.NewExpression, func);
+					VisitInternal(e.Bindings, Modify);
+
+					break;
+				}
+
+				case ExpressionType.New:
+					VisitInternal(((NewExpression)expr).Arguments, func);
+					break;
+				case ExpressionType.NewArrayBounds:
+					VisitInternal(((NewArrayExpression)expr).Expressions, func);
+					break;
+				case ExpressionType.NewArrayInit:
+					VisitInternal(((NewArrayExpression)expr).Expressions, func);
+					break;
+				case ExpressionType.TypeEqual:
+				case ExpressionType.TypeIs:
+					VisitInternal(((TypeBinaryExpression)expr).Expression, func);
+					break;
 
 				case ExpressionType.Block:
-					{
-						var e = (BlockExpression)expr;
+				{
+					var e = (BlockExpression)expr;
 
-						VisitInternal(e.Expressions, func);
-						VisitInternal(e.Variables,   func);
+					VisitInternal(e.Expressions, func);
+					VisitInternal(e.Variables, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Dynamic:
-					{
-						var e = (DynamicExpression)expr;
+				{
+					var e = (DynamicExpression)expr;
 
-						VisitInternal(e.Arguments, func);
+					VisitInternal(e.Arguments, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Goto:
-					{
-						var e = (GotoExpression)expr;
+				{
+					var e = (GotoExpression)expr;
 
-						VisitInternal(e.Value, func);
+					VisitInternal(e.Value, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Index:
-					{
-						var e = (IndexExpression)expr;
+				{
+					var e = (IndexExpression)expr;
 
-						VisitInternal(e.Object,    func);
-						VisitInternal(e.Arguments, func);
+					VisitInternal(e.Object, func);
+					VisitInternal(e.Arguments, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Label:
-					{
-						var e = (LabelExpression)expr;
+				{
+					var e = (LabelExpression)expr;
 
-						VisitInternal(e.DefaultValue, func);
+					VisitInternal(e.DefaultValue, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.RuntimeVariables:
-					{
-						var e = (RuntimeVariablesExpression)expr;
+				{
+					var e = (RuntimeVariablesExpression)expr;
 
-						VisitInternal(e.Variables, func);
+					VisitInternal(e.Variables, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Loop:
-					{
-						var e = (LoopExpression)expr;
+				{
+					var e = (LoopExpression)expr;
 
-						VisitInternal(e.Body, func);
+					VisitInternal(e.Body, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Switch:
-					{
-						var e = (SwitchExpression)expr;
+				{
+					var e = (SwitchExpression)expr;
 
-						VisitInternal(e.SwitchValue, func);
-						VisitInternal(e.Cases, cs => { VisitInternal(cs.TestValues, func); VisitInternal(cs.Body, func); });
-						VisitInternal(e.DefaultBody, func);
+					VisitInternal(e.SwitchValue, func);
+					VisitInternal(
+						e.Cases, cs =>
+						{
+							VisitInternal(cs.TestValues, func);
+							VisitInternal(cs.Body, func);
+						});
+					VisitInternal(e.DefaultBody, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Try:
-					{
-						var e = (TryExpression)expr;
+				{
+					var e = (TryExpression)expr;
 
-						VisitInternal(e.Body, func);
-						VisitInternal(e.Handlers, h => { VisitInternal(h.Variable, func); VisitInternal(h.Filter, func); VisitInternal(h.Body, func); });
-						VisitInternal(e.Finally, func);
-						VisitInternal(e.Fault, func);
+					VisitInternal(e.Body, func);
+					VisitInternal(
+						e.Handlers, h =>
+						{
+							VisitInternal(h.Variable, func);
+							VisitInternal(h.Filter, func);
+							VisitInternal(h.Body, func);
+						});
+					VisitInternal(e.Finally, func);
+					VisitInternal(e.Fault, func);
 
-						break;
-					}
+					break;
+				}
 
 				case ExpressionType.Extension:
-					{
-						if (expr.CanReduce)
-							VisitInternal(expr.Reduce(), func);
-						break;
-					}
+				{
+					if (expr.CanReduce)
+						VisitInternal(expr.Reduce(), func);
+					break;
+				}
 			}
 		}
-
 		#endregion
 
 		#region Find
-		private static Expression FindInternal<T>(IEnumerable<T> source, Func<T,Expression> func)
+		private static Expression FindInternal<T>(IEnumerable<T> source, Func<T, Expression> func)
 		{
 			foreach (var item in source)
 			{
@@ -602,7 +653,7 @@ namespace CodeJam.Expressions
 			return null;
 		}
 
-		private static Expression FindInternal<T>(IEnumerable<T> source, Func<Expression,bool> func)
+		private static Expression FindInternal<T>(IEnumerable<T> source, Func<Expression, bool> func)
 			where T : Expression
 		{
 			foreach (var item in source)
@@ -636,7 +687,7 @@ namespace CodeJam.Expressions
 		/// <param name="func">Find function. Return true if expression is found.</param>
 		/// <returns>Found expression or null.</returns>
 		[Pure]
-		public static Expression Find([CanBeNull] this Expression expr, [NotNull] Func<Expression,bool> func)
+		public static Expression Find([CanBeNull] this Expression expr, [NotNull] Func<Expression, bool> func)
 		{
 			if (func == null) throw new ArgumentNullException(nameof(func));
 
@@ -644,7 +695,7 @@ namespace CodeJam.Expressions
 		}
 
 		[SuppressMessage("ReSharper", "TailRecursiveCall")]
-		private static Expression FindInternal(this Expression expr, Func<Expression,bool> func)
+		private static Expression FindInternal(this Expression expr, Func<Expression, bool> func)
 		{
 			if (expr == null || func(expr))
 				return expr;
@@ -690,14 +741,14 @@ namespace CodeJam.Expressions
 				case ExpressionType.AddAssignChecked:
 				case ExpressionType.MultiplyAssignChecked:
 				case ExpressionType.SubtractAssignChecked:
-					{
-						var e = (BinaryExpression)expr;
+				{
+					var e = (BinaryExpression)expr;
 
-						return
-							FindInternal(e.Conversion, func) ??
-							FindInternal(e.Left,       func) ??
-							FindInternal(e.Right,      func);
-					}
+					return
+						FindInternal(e.Conversion, func) ??
+							FindInternal(e.Left, func) ??
+								FindInternal(e.Right, func);
+				}
 
 				case ExpressionType.ArrayLength:
 				case ExpressionType.Convert:
@@ -722,160 +773,166 @@ namespace CodeJam.Expressions
 					return FindInternal(((UnaryExpression)expr).Operand, func);
 
 				case ExpressionType.Call:
-					{
-						var e = (MethodCallExpression)expr;
+				{
+					var e = (MethodCallExpression)expr;
 
-						return
-							FindInternal(e.Object,    func) ??
+					return
+						FindInternal(e.Object, func) ??
 							FindInternal(e.Arguments, func);
-					}
+				}
 
 				case ExpressionType.Conditional:
-					{
-						var e = (ConditionalExpression)expr;
+				{
+					var e = (ConditionalExpression)expr;
 
-						return
-							FindInternal(e.Test,    func) ??
-							FindInternal(e.IfTrue,  func) ??
-							FindInternal(e.IfFalse, func);
-					}
+					return
+						FindInternal(e.Test, func) ??
+							FindInternal(e.IfTrue, func) ??
+								FindInternal(e.IfFalse, func);
+				}
 
 				case ExpressionType.Invoke:
-					{
-						var e = (InvocationExpression)expr;
+				{
+					var e = (InvocationExpression)expr;
 
-						return
-							FindInternal(e.Expression, func) ??
-							FindInternal(e.Arguments,  func);
-					}
+					return
+						FindInternal(e.Expression, func) ??
+							FindInternal(e.Arguments, func);
+				}
 
 				case ExpressionType.Lambda:
-					{
-						var e = (LambdaExpression)expr;
+				{
+					var e = (LambdaExpression)expr;
 
-						return
-							FindInternal(e.Body,       func) ??
+					return
+						FindInternal(e.Body, func) ??
 							FindInternal(e.Parameters, func);
-					}
+				}
 
 				case ExpressionType.ListInit:
-					{
-						var e = (ListInitExpression)expr;
+				{
+					var e = (ListInitExpression)expr;
 
-						return
-							FindInternal(e.NewExpression, func) ??
-							FindInternal(e.Initializers,  ex => FindInternal(ex.Arguments, func));
-					}
+					return
+						FindInternal(e.NewExpression, func) ??
+							FindInternal(e.Initializers, ex => FindInternal(ex.Arguments, func));
+				}
 
 				case ExpressionType.MemberAccess:
 					return FindInternal(((MemberExpression)expr).Expression, func);
 
 				case ExpressionType.MemberInit:
+				{
+					Expression Func(MemberBinding b)
 					{
-						Func<MemberBinding,Expression> find = null; find = b =>
+						switch (b.BindingType)
 						{
-							switch (b.BindingType)
-							{
-								case MemberBindingType.Assignment    : return FindInternal(((MemberAssignment)b).   Expression,   func);
-								case MemberBindingType.ListBinding   : return FindInternal(((MemberListBinding)b).  Initializers, p => FindInternal(p.Arguments, func));
-								case MemberBindingType.MemberBinding : return FindInternal(((MemberMemberBinding)b).Bindings,     find);
-							}
+							case MemberBindingType.Assignment:
+								return FindInternal(((MemberAssignment)b).Expression, func);
+							case MemberBindingType.ListBinding:
+								return FindInternal(((MemberListBinding)b).Initializers, p => FindInternal(p.Arguments, func));
+							case MemberBindingType.MemberBinding:
+								return FindInternal(((MemberMemberBinding)b).Bindings, Func);
+						}
 
-							return null;
-						};
-
-						var e = (MemberInitExpression)expr;
-
-						return
-							FindInternal(e.NewExpression, func) ??
-							FindInternal(e.Bindings,      find);
+						return null;
 					}
 
-				case ExpressionType.New            : return FindInternal(((NewExpression)       expr).Arguments,   func);
-				case ExpressionType.NewArrayBounds : return FindInternal(((NewArrayExpression)  expr).Expressions, func);
-				case ExpressionType.NewArrayInit   : return FindInternal(((NewArrayExpression)  expr).Expressions, func);
-				case ExpressionType.TypeEqual      :
-				case ExpressionType.TypeIs         : return FindInternal(((TypeBinaryExpression)expr).Expression,  func);
+					var e = (MemberInitExpression)expr;
+
+					return FindInternal(e.NewExpression, func) ?? FindInternal(e.Bindings, Func);
+				}
+
+				case ExpressionType.New:
+					return FindInternal(((NewExpression)expr).Arguments, func);
+				case ExpressionType.NewArrayBounds:
+					return FindInternal(((NewArrayExpression)expr).Expressions, func);
+				case ExpressionType.NewArrayInit:
+					return FindInternal(((NewArrayExpression)expr).Expressions, func);
+				case ExpressionType.TypeEqual:
+				case ExpressionType.TypeIs:
+					return FindInternal(((TypeBinaryExpression)expr).Expression, func);
 
 				case ExpressionType.Block:
-					{
-						var e = (BlockExpression)expr;
+				{
+					var e = (BlockExpression)expr;
 
-						return
-							FindInternal(e.Expressions, func) ??
-							FindInternal(e.Variables,   func);
-					}
+					return
+						FindInternal(e.Expressions, func) ??
+							FindInternal(e.Variables, func);
+				}
 
 				case ExpressionType.Dynamic:
-					{
-						var e = (DynamicExpression)expr;
+				{
+					var e = (DynamicExpression)expr;
 
-						return
-							FindInternal(e.Arguments, func);
-					}
+					return
+						FindInternal(e.Arguments, func);
+				}
 
 				case ExpressionType.Goto:
-					{
-						var e = (GotoExpression)expr;
+				{
+					var e = (GotoExpression)expr;
 
-						return
-							FindInternal(e.Value, func);
-					}
+					return
+						FindInternal(e.Value, func);
+				}
 
 				case ExpressionType.Index:
-					{
-						var e = (IndexExpression)expr;
+				{
+					var e = (IndexExpression)expr;
 
-						return
-							FindInternal(e.Object,    func) ??
+					return
+						FindInternal(e.Object, func) ??
 							FindInternal(e.Arguments, func);
-					}
+				}
 
 				case ExpressionType.Label:
-					{
-						var e = (LabelExpression)expr;
+				{
+					var e = (LabelExpression)expr;
 
-						return
-							FindInternal(e.DefaultValue, func);
-					}
+					return
+						FindInternal(e.DefaultValue, func);
+				}
 
 				case ExpressionType.RuntimeVariables:
-					{
-						var e = (RuntimeVariablesExpression)expr;
+				{
+					var e = (RuntimeVariablesExpression)expr;
 
-						return
-							FindInternal(e.Variables, func);
-					}
+					return
+						FindInternal(e.Variables, func);
+				}
 
 				case ExpressionType.Loop:
-					{
-						var e = (LoopExpression)expr;
+				{
+					var e = (LoopExpression)expr;
 
-						return
-							FindInternal(e.Body, func);
-					}
-
+					return
+						FindInternal(e.Body, func);
+				}
 
 				case ExpressionType.Switch:
-					{
-						var e = (SwitchExpression)expr;
+				{
+					var e = (SwitchExpression)expr;
 
-						return
-							FindInternal(e.SwitchValue, func) ??
+					return
+						FindInternal(e.SwitchValue, func) ??
 							FindInternal(e.Cases, cs => FindInternal(cs.TestValues, func) ?? FindInternal(cs.Body, func)) ??
-							FindInternal(e.DefaultBody, func);
-					}
+								FindInternal(e.DefaultBody, func);
+				}
 
 				case ExpressionType.Try:
-					{
-						var e = (TryExpression)expr;
+				{
+					var e = (TryExpression)expr;
 
-						return
-							FindInternal(e.Body,     func) ??
-							FindInternal(e.Handlers, h => FindInternal(h.Variable, func) ?? FindInternal(h.Filter, func) ?? FindInternal(h.Body, func)) ??
-							FindInternal(e.Finally,  func) ??
-							FindInternal(e.Fault,    func);
-					}
+					return
+						FindInternal(e.Body, func) ??
+							FindInternal(
+								e.Handlers, h => FindInternal(h.Variable, func) ?? FindInternal(h.Filter, func) ?? FindInternal(h.Body, func))
+								??
+								FindInternal(e.Finally, func) ??
+									FindInternal(e.Fault, func);
+				}
 
 				case ExpressionType.Extension:
 					if (expr.CanReduce)
@@ -885,11 +942,9 @@ namespace CodeJam.Expressions
 
 			return null;
 		}
-
 		#endregion
 
 		#region Transform
-
 		/// <summary>
 		/// Replaces lambda body parameter and returns modified body.
 		/// </summary>
@@ -900,7 +955,7 @@ namespace CodeJam.Expressions
 		public static Expression ReplaceParameters(
 			[NotNull] this LambdaExpression lambda, [NotNull] Expression exprToReplaceParameter)
 		{
-			if (lambda == null)                 throw new ArgumentNullException(nameof(lambda));
+			if (lambda == null) throw new ArgumentNullException(nameof(lambda));
 			if (exprToReplaceParameter == null) throw new ArgumentNullException(nameof(exprToReplaceParameter));
 
 			if (lambda.Parameters.Count == 0)
@@ -919,26 +974,27 @@ namespace CodeJam.Expressions
 		public static Expression ReplaceParameters(
 			[NotNull] this LambdaExpression lambda, [NotNull] params Expression[] exprToReplaceParameter)
 		{
-			if (lambda == null)                 throw new ArgumentNullException(nameof(lambda));
+			if (lambda == null) throw new ArgumentNullException(nameof(lambda));
 			if (exprToReplaceParameter == null) throw new ArgumentNullException(nameof(exprToReplaceParameter));
 
-			return TransformInternal(lambda.Body, e =>
-			{
-				for (var i = 0; i < lambda.Parameters.Count && i < exprToReplaceParameter.Length; i++)
+			return TransformInternal(
+				lambda.Body, e =>
 				{
-					if (e == lambda.Parameters[i])
-						return exprToReplaceParameter[i];
-				}
+					for (var i = 0; i < lambda.Parameters.Count && i < exprToReplaceParameter.Length; i++)
+					{
+						if (e == lambda.Parameters[i])
+							return exprToReplaceParameter[i];
+					}
 
-				return e;
-			});
+					return e;
+				});
 		}
 
-		private static IEnumerable<T> TransformInternal<T>(ICollection<T> source, Func<T,T> func)
+		private static IEnumerable<T> TransformInternal<T>(ICollection<T> source, Func<T, T> func)
 			where T : class
 		{
 			var modified = false;
-			var list     = new List<T>();
+			var list = new List<T>();
 
 			foreach (var item in source)
 			{
@@ -950,11 +1006,11 @@ namespace CodeJam.Expressions
 			return modified ? list : source;
 		}
 
-		private static IEnumerable<T> TransformInternal<T>(ICollection<T> source, Func<Expression,Expression> func)
+		private static IEnumerable<T> TransformInternal<T>(ICollection<T> source, Func<Expression, Expression> func)
 			where T : Expression
 		{
 			var modified = false;
-			var list     = new List<T>();
+			var list = new List<T>();
 
 			foreach (var item in source)
 			{
@@ -973,7 +1029,7 @@ namespace CodeJam.Expressions
 		/// <param name="func">Transform function.</param>
 		/// <returns>Modified expression.</returns>
 		[Pure]
-		public static T Transform<T>([CanBeNull] this T expr, [NotNull] Func<Expression,Expression> func)
+		public static T Transform<T>([CanBeNull] this T expr, [NotNull] Func<Expression, Expression> func)
 			where T : LambdaExpression
 		{
 			if (func == null) throw new ArgumentNullException(nameof(func));
@@ -988,14 +1044,14 @@ namespace CodeJam.Expressions
 		/// <param name="func">Transform function.</param>
 		/// <returns>Modified expression.</returns>
 		[Pure]
-		public static Expression Transform([CanBeNull] this Expression expr, [NotNull] Func<Expression,Expression> func)
+		public static Expression Transform([CanBeNull] this Expression expr, [NotNull] Func<Expression, Expression> func)
 		{
 			if (func == null) throw new ArgumentNullException(nameof(func));
 
 			return TransformInternal(expr, func);
 		}
 
-		private static Expression TransformInternal(this Expression expr, Func<Expression,Expression> func)
+		private static Expression TransformInternal(this Expression expr, Func<Expression, Expression> func)
 		{
 			if (expr == null)
 				return null;
@@ -1047,13 +1103,13 @@ namespace CodeJam.Expressions
 				case ExpressionType.AddAssignChecked:
 				case ExpressionType.MultiplyAssignChecked:
 				case ExpressionType.SubtractAssignChecked:
-					{
-						var e = (BinaryExpression)expr;
-						return e.Update(
-							TransformInternal(e.Left,  func),
-							(LambdaExpression)TransformInternal(e.Conversion, func),
-							TransformInternal(e.Right, func));
-					}
+				{
+					var e = (BinaryExpression)expr;
+					return e.Update(
+						TransformInternal(e.Left, func),
+						(LambdaExpression)TransformInternal(e.Conversion, func),
+						TransformInternal(e.Right, func));
+				}
 
 				case ExpressionType.ArrayLength:
 				case ExpressionType.Convert:
@@ -1075,200 +1131,206 @@ namespace CodeJam.Expressions
 				case ExpressionType.PostIncrementAssign:
 				case ExpressionType.PostDecrementAssign:
 				case ExpressionType.OnesComplement:
-					{
-						var e = (UnaryExpression)expr;
-						return e.Update(TransformInternal(e.Operand, func));
-					}
+				{
+					var e = (UnaryExpression)expr;
+					return e.Update(TransformInternal(e.Operand, func));
+				}
 
 				case ExpressionType.Call:
-					{
-						var e = (MethodCallExpression)expr;
-						return e.Update(
-							TransformInternal(e.Object,    func),
-							TransformInternal(e.Arguments, func));
-					}
+				{
+					var e = (MethodCallExpression)expr;
+					return e.Update(
+						TransformInternal(e.Object, func),
+						TransformInternal(e.Arguments, func));
+				}
 
 				case ExpressionType.Conditional:
-					{
-						var e = (ConditionalExpression)expr;
-						return e.Update(
-							TransformInternal(e.Test,    func),
-							TransformInternal(e.IfTrue,  func),
-							TransformInternal(e.IfFalse, func));
-					}
+				{
+					var e = (ConditionalExpression)expr;
+					return e.Update(
+						TransformInternal(e.Test, func),
+						TransformInternal(e.IfTrue, func),
+						TransformInternal(e.IfFalse, func));
+				}
 
 				case ExpressionType.Invoke:
-					{
-						var e = (InvocationExpression)expr;
-						return e.Update(
-							TransformInternal(e.Expression, func),
-							TransformInternal(e.Arguments,  func));
-					}
+				{
+					var e = (InvocationExpression)expr;
+					return e.Update(
+						TransformInternal(e.Expression, func),
+						TransformInternal(e.Arguments, func));
+				}
 
 				case ExpressionType.Lambda:
-					{
-						var e = (LambdaExpression)expr;
-						var b = TransformInternal(e.Body,       func);
-						var p = TransformInternal(e.Parameters, func);
+				{
+					var e = (LambdaExpression)expr;
+					var b = TransformInternal(e.Body, func);
+					var p = TransformInternal(e.Parameters, func);
 
-						return b != e.Body || !ReferenceEquals(p, e.Parameters) ? Expression.Lambda(expr.Type, b, p.ToArray()) : expr;
-					}
+					return b != e.Body || !ReferenceEquals(p, e.Parameters) ? Expression.Lambda(expr.Type, b, p.ToArray()) : expr;
+				}
 
 				case ExpressionType.ListInit:
-					{
-						var e = (ListInitExpression)expr;
-						return e.Update(
-							(NewExpression)TransformInternal(e.NewExpression, func),
-							TransformInternal(e.Initializers,  p =>
+				{
+					var e = (ListInitExpression)expr;
+					return e.Update(
+						(NewExpression)TransformInternal(e.NewExpression, func),
+						TransformInternal(
+							e.Initializers, p =>
 							{
 								var args = TransformInternal(p.Arguments, func);
-								return !ReferenceEquals(args, p.Arguments)? Expression.ElementInit(p.AddMethod, args): p;
+								return !ReferenceEquals(args, p.Arguments) ? Expression.ElementInit(p.AddMethod, args) : p;
 							}));
-					}
+				}
 
 				case ExpressionType.MemberAccess:
-					{
-						var e = (MemberExpression)expr;
-						return e.Update(TransformInternal(e.Expression, func));
-					}
+				{
+					var e = (MemberExpression)expr;
+					return e.Update(TransformInternal(e.Expression, func));
+				}
 
 				case ExpressionType.MemberInit:
+				{
+					MemberBinding Modify(MemberBinding b)
 					{
-						Func<MemberBinding,MemberBinding> modify = null; modify = b =>
+						switch (b.BindingType)
 						{
-							switch (b.BindingType)
+							case MemberBindingType.Assignment:
 							{
-								case MemberBindingType.Assignment:
-									{
-										var ma = (MemberAssignment)b;
-										return ma.Update(TransformInternal(ma.Expression, func));
-									}
-
-								case MemberBindingType.ListBinding:
-									{
-										var ml = (MemberListBinding)b;
-										return ml.Update(
-											TransformInternal(ml.Initializers, p =>
-											{
-												var args = TransformInternal(p.Arguments, func);
-												return !ReferenceEquals(args, p.Arguments)? Expression.ElementInit(p.AddMethod, args): p;
-											}));
-									}
-
-								case MemberBindingType.MemberBinding:
-									{
-										var mm = (MemberMemberBinding)b;
-										return mm.Update(TransformInternal(mm.Bindings, modify));
-									}
+								var ma = (MemberAssignment)b;
+								return ma.Update(TransformInternal(ma.Expression, func));
 							}
 
-							return b;
-						};
+							case MemberBindingType.ListBinding:
+							{
+								var ml = (MemberListBinding)b;
+								return ml.Update(TransformInternal(ml.Initializers, p =>
+								{
+									var args = TransformInternal(p.Arguments, func);
+									return !ReferenceEquals(args, p.Arguments) ? Expression.ElementInit(p.AddMethod, args) : p;
+								}));
+							}
 
-						var e = (MemberInitExpression)expr;
-						return e.Update(
-							(NewExpression)TransformInternal(e.NewExpression, func),
-							TransformInternal(e.Bindings, modify));
+							case MemberBindingType.MemberBinding:
+							{
+								var mm = (MemberMemberBinding)b;
+								return mm.Update(TransformInternal(mm.Bindings, Modify));
+							}
+						}
+
+						return b;
 					}
+
+					var e = (MemberInitExpression)expr;
+					return e.Update(
+						(NewExpression)TransformInternal(e.NewExpression, func),
+						TransformInternal(e.Bindings, Modify));
+				}
 
 				case ExpressionType.New:
-					{
-						var e = (NewExpression)expr;
-						return e.Update(TransformInternal(e.Arguments, func));
-					}
+				{
+					var e = (NewExpression)expr;
+					return e.Update(TransformInternal(e.Arguments, func));
+				}
 
 				case ExpressionType.NewArrayBounds:
 				case ExpressionType.NewArrayInit:
-					{
-						var e = (NewArrayExpression)expr;
-						return e.Update(TransformInternal(e.Expressions, func));
-					}
+				{
+					var e = (NewArrayExpression)expr;
+					return e.Update(TransformInternal(e.Expressions, func));
+				}
 
 				case ExpressionType.TypeEqual:
 				case ExpressionType.TypeIs:
-					{
-						var e = (TypeBinaryExpression)expr;
-						return e.Update(TransformInternal(e.Expression, func));
-					}
+				{
+					var e = (TypeBinaryExpression)expr;
+					return e.Update(TransformInternal(e.Expression, func));
+				}
 
 				case ExpressionType.Block:
-					{
-						var e = (BlockExpression)expr;
-						return e.Update(
-							TransformInternal(e.Variables,   func),
-							TransformInternal(e.Expressions, func));
-					}
+				{
+					var e = (BlockExpression)expr;
+					return e.Update(
+						TransformInternal(e.Variables, func),
+						TransformInternal(e.Expressions, func));
+				}
 
 				case ExpressionType.DebugInfo:
-				case ExpressionType.Default  :
+				case ExpressionType.Default:
 				case ExpressionType.Extension:
-				case ExpressionType.Constant :
-				case ExpressionType.Parameter: return expr;
+				case ExpressionType.Constant:
+				case ExpressionType.Parameter:
+					return expr;
 
 				case ExpressionType.Dynamic:
-					{
-						var e = (DynamicExpression)expr;
-						return e.Update(TransformInternal(e.Arguments, func));
-					}
+				{
+					var e = (DynamicExpression)expr;
+					return e.Update(TransformInternal(e.Arguments, func));
+				}
 
 				case ExpressionType.Goto:
-					{
-						var e = (GotoExpression)expr;
-						return e.Update(e.Target, TransformInternal(e.Value, func));
-					}
+				{
+					var e = (GotoExpression)expr;
+					return e.Update(e.Target, TransformInternal(e.Value, func));
+				}
 
 				case ExpressionType.Index:
-					{
-						var e = (IndexExpression)expr;
-						return e.Update(
-							TransformInternal(e.Object,    func),
-							TransformInternal(e.Arguments, func));
-					}
+				{
+					var e = (IndexExpression)expr;
+					return e.Update(
+						TransformInternal(e.Object, func),
+						TransformInternal(e.Arguments, func));
+				}
 
 				case ExpressionType.Label:
-					{
-						var e = (LabelExpression)expr;
-						return e.Update(e.Target, TransformInternal(e.DefaultValue, func));
-					}
+				{
+					var e = (LabelExpression)expr;
+					return e.Update(e.Target, TransformInternal(e.DefaultValue, func));
+				}
 
 				case ExpressionType.RuntimeVariables:
-					{
-						var e = (RuntimeVariablesExpression)expr;
-						return e.Update(TransformInternal(e.Variables, func));
-					}
+				{
+					var e = (RuntimeVariablesExpression)expr;
+					return e.Update(TransformInternal(e.Variables, func));
+				}
 
 				case ExpressionType.Loop:
-					{
-						var e = (LoopExpression)expr;
-						return e.Update(e.BreakLabel, e.ContinueLabel, TransformInternal(e.Body, func));
-					}
+				{
+					var e = (LoopExpression)expr;
+					return e.Update(e.BreakLabel, e.ContinueLabel, TransformInternal(e.Body, func));
+				}
 
 				case ExpressionType.Switch:
-					{
-						var e = (SwitchExpression)expr;
-						return e.Update(
-							TransformInternal(e.SwitchValue, func),
-							TransformInternal(e.Cases,       cs => cs.Update(TransformInternal(cs.TestValues, func), TransformInternal(cs.Body, func))),
-							TransformInternal(e.DefaultBody, func));
-					}
+				{
+					var e = (SwitchExpression)expr;
+					return e.Update(
+						TransformInternal(e.SwitchValue, func),
+						TransformInternal(
+							e.Cases, cs => cs.Update(TransformInternal(cs.TestValues, func), TransformInternal(cs.Body, func))),
+						TransformInternal(e.DefaultBody, func));
+				}
 
 				case ExpressionType.Try:
-					{
-						var e = (TryExpression)expr;
-						return e.Update(
-							TransformInternal(e.Body,     func),
-							TransformInternal(e.Handlers, h => h.Update((ParameterExpression)TransformInternal(h.Variable, func), TransformInternal(h.Filter, func), TransformInternal(h.Body, func))),
-							TransformInternal(e.Finally,  func),
-							TransformInternal(e.Fault,    func));
-					}
+				{
+					var e = (TryExpression)expr;
+					return e.Update(
+						TransformInternal(e.Body, func),
+						TransformInternal(
+							e.Handlers,
+							h =>
+								h.Update(
+									(ParameterExpression)TransformInternal(h.Variable, func), TransformInternal(h.Filter, func),
+									TransformInternal(h.Body, func))),
+						TransformInternal(e.Finally, func),
+						TransformInternal(e.Fault, func));
+				}
 			}
 
 			throw new InvalidOperationException();
 		}
-
 		#endregion
 
-		private static Func<Expression,string> _getDebugView;
+		private static Func<Expression, string> _getDebugView;
 
 		/// <summary>
 		/// Gets the DebugView internal property value of provided expression.
@@ -1285,7 +1347,7 @@ namespace CodeJam.Expressions
 
 				try
 				{
-					var l = Expression.Lambda<Func<Expression,string>>(
+					var l = Expression.Lambda<Func<Expression, string>>(
 						Expression.PropertyOrField(p, "DebugView"),
 						p);
 
@@ -1293,7 +1355,7 @@ namespace CodeJam.Expressions
 				}
 				catch (ArgumentException)
 				{
-					var l = Expression.Lambda<Func<Expression,string>>(
+					var l = Expression.Lambda<Func<Expression, string>>(
 						Expression.Call(p, InfoOf<Expression>.Method(e => e.ToString())),
 						p);
 
@@ -1305,4 +1367,5 @@ namespace CodeJam.Expressions
 		}
 	}
 }
+
 #endif

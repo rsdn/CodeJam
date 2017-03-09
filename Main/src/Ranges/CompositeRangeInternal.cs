@@ -79,6 +79,7 @@ namespace CodeJam.Ranges
 		/// <param name="comparer">The comparer.</param>
 		/// <param name="skipDuplicates">If set to <c>true</c> duplicates are not inserted.</param>
 		/// <returns>Index of the inserted item (or existing one if <paramref name="skipDuplicates"/> is set to <c>true</c>).</returns>
+		// ReSharper disable once UnusedMethodReturnValue.Global
 		internal static int InsertInSortedList<T>(
 			[NotNull] List<T> sortedList,
 			T value,

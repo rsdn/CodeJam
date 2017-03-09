@@ -2,11 +2,14 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.ConstrainedExecution;
 
+using JetBrains.Annotations;
+
 namespace CodeJam
 {
 	/// <summary>
 	/// The utility class for working with arrays of primitive types.
 	/// </summary>
+	[PublicAPI]
 	public static unsafe class Memory
 	{
 		/// <summary>

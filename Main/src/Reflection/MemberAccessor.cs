@@ -61,32 +61,32 @@ namespace CodeJam.Reflection
 					{
 						var ret = Expression.Variable(Type, "ret");
 
-						Func<Expression,int,Expression> makeGetter = null; makeGetter = (ex, i) =>
+						Expression MakeGetter(Expression ex, int i)
 						{
-							var info = infos[i];
-							var next = Expression.MakeMemberAccess(ex, info.member);
-
-							if (i == infos.Length - 1)
-								return Expression.Assign(ret, next);
-
-							if (next.Type.IsClass || next.Type.IsNullable())
+							while (true)
 							{
-								var local = Expression.Variable(next.Type);
+								var info = infos[i];
+								var next = Expression.MakeMemberAccess(ex, info.member);
 
-								return Expression.Block(
-									new[] { local },
-									Expression.Assign(local, next) as Expression,
-									Expression.IfThen(Expression.NotEqual(local, Expression.Constant(null)),
-									makeGetter(local, i + 1)));
+								if (i == infos.Length - 1)
+									return Expression.Assign(ret, next);
+
+								if (next.Type.IsClass || next.Type.IsNullable())
+								{
+									var local = Expression.Variable(next.Type);
+
+									return Expression.Block(new[] { local }, Expression.Assign(local, next) as Expression, Expression.IfThen(Expression.NotEqual(local, Expression.Constant(null)), MakeGetter(local, i + 1)));
+								}
+
+								ex = next;
+								i = i + 1;
 							}
-
-							return makeGetter(next, i + 1);
-						};
+						}
 
 						expr = Expression.Block(
 							new[] { ret },
 							Expression.Assign(ret, Expression.Constant(GetDefaultValue(Type), Type)),
-							makeGetter(objParam, 0),
+							MakeGetter(objParam, 0),
 							ret);
 					}
 					else
@@ -113,41 +113,41 @@ namespace CodeJam.Reflection
 							var vars  = new List<ParameterExpression>();
 							var exprs = new List<Expression>();
 
-							Action<Expression,int> makeSetter = null; makeSetter = (ex, i) =>
+							void MakeSetter(Expression ex, int i)
 							{
-								var info = infos[i];
-								var next = Expression.MakeMemberAccess(ex, info.member);
+								while (true)
+								{
+									var info = infos[i];
+									var next = Expression.MakeMemberAccess(ex, info.member);
 
-								if (i == infos.Length - 1)
-								{
-									exprs.Add(Expression.Assign(next, valueParam));
-								}
-								else
-								{
-									if (next.Type.IsClass || next.Type.IsNullable())
+									if (i == infos.Length - 1)
 									{
-										var local = Expression.Variable(next.Type);
-
-										vars.Add(local);
-
-										exprs.Add(Expression.Assign(local, next));
-										exprs.Add(
-											Expression.IfThen(
-												Expression.Equal(local, Expression.Constant(null)),
-												Expression.Block(
-													Expression.Assign(local, Expression.New(local.Type)),
-													Expression.Assign(next, local))));
-
-										makeSetter(local, i + 1);
+										exprs.Add(Expression.Assign(next, valueParam));
 									}
 									else
 									{
-										makeSetter(next, i + 1);
-									}
-								}
-							};
+										if (next.Type.IsClass || next.Type.IsNullable())
+										{
+											var local = Expression.Variable(next.Type);
 
-							makeSetter(objParam, 0);
+											vars.Add(local);
+
+											exprs.Add(Expression.Assign(local, next));
+											exprs.Add(Expression.IfThen(Expression.Equal(local, Expression.Constant(null)), Expression.Block(Expression.Assign(local, Expression.New(local.Type)), Expression.Assign(next, local))));
+
+											ex = local;
+											i = i + 1;
+											continue;
+										}
+										ex = next;
+										i = i + 1;
+										continue;
+									}
+									break;
+								}
+							}
+
+							MakeSetter(objParam, 0);
 
 							expr = Expression.Block(vars, exprs);
 						}
