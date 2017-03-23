@@ -23,7 +23,8 @@ namespace CodeJam.Collections
 		/// <param name="comparer">Key comparer.</param>
 		public LazyDictionary([NotNull] Func<TKey, TValue> valueFactory, IEqualityComparer<TKey> comparer)
 		{
-			if (valueFactory == null) throw new ArgumentNullException(nameof(valueFactory));
+			Code.NotNull(valueFactory,nameof(valueFactory));
+
 			_valueFactory = valueFactory;
 			_comparer = comparer;
 			_map = new Dictionary<TKey, TValue>(comparer);
