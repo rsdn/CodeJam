@@ -189,5 +189,56 @@ namespace CodeJam.Collections
 		{
 			yield return elementFactory();
 		}
+
+		/// <summary>
+		/// Creates infinite sequence of random int numbers;
+		/// </summary>
+		/// <param name="seed">
+		/// A number used to calculate a starting value for the pseudo-random number sequence. If a negative number is
+		/// specified, the absolute value of the number is used.
+		/// </param>
+		/// <param name="minValue">The inclusive lower bound of the random number returned.</param>
+		/// <param name="maxValue">
+		/// The exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.
+		/// </param>
+		/// <returns>Infinite random sequence.</returns>
+		[NotNull]
+		[Pure]
+		public static IEnumerable<int> Random(int minValue, int maxValue, int seed)
+		{
+			var rnd = new Random(seed);
+			while (true)
+				yield return rnd.Next(minValue, maxValue);
+			// ReSharper disable once IteratorNeverReturns
+		}
+
+		/// <summary>
+		/// Creates infinite sequence of random int numbers;
+		/// </summary>
+		/// <param name="minValue">The inclusive lower bound of the random number returned.</param>
+		/// <param name="maxValue">
+		/// The exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.
+		/// </param>
+		/// <returns>Infinite random sequence.</returns>
+		[NotNull]
+		[Pure]
+		public static IEnumerable<int> Random(int minValue, int maxValue)
+		{
+			var rnd = new Random();
+			while (true)
+				yield return rnd.Next(minValue, maxValue);
+			// ReSharper disable once IteratorNeverReturns
+		}
+
+		/// <summary>
+		/// Creates infinite sequence of random int numbers;
+		/// </summary>
+		/// <param name="maxValue">
+		/// The exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.
+		/// </param>
+		/// <returns>Infinite random sequence.</returns>
+		[NotNull]
+		[Pure]
+		public static IEnumerable<int> Random(int maxValue = int.MaxValue) => Random(0, maxValue);
 	}
 }
