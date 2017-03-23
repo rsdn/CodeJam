@@ -36,8 +36,7 @@ namespace CodeJam.Collections
 		/// <param name="keySelector">The function to extract the key for each element.</param>
 		public KeyEqualityComparer([NotNull] Func<T, TKey> keySelector)
 		{
-			if (keySelector == null)
-				throw new ArgumentNullException(nameof(keySelector));
+			Code.NotNull(keySelector, nameof (keySelector));
 
 			KeySelector = keySelector;
 			Comparer = EqualityComparer<TKey>.Default;
@@ -50,8 +49,7 @@ namespace CodeJam.Collections
 		/// <param name="comparer">The equality comparer to use to compare the keys.</param>
 		public KeyEqualityComparer([NotNull] Func<T, TKey> keySelector, IEqualityComparer<TKey> comparer)
 		{
-			if (keySelector == null)
-				throw new ArgumentNullException(nameof(keySelector));
+			Code.NotNull(keySelector, nameof(keySelector));
 
 			KeySelector = keySelector;
 			Comparer = comparer ?? EqualityComparer<TKey>.Default;
