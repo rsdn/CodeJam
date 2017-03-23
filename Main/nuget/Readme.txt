@@ -1,5 +1,10 @@
-CodeJam 1.3.0-beta5 Release Notes
+CodeJam 1.3.0-rc1 Release Notes
 ---------------------------------
+
+What's new in 1.3.0-rc1
+-------------------------
+* Sequence.Random methods
+* Code cleanup and fixes
 
 What's new in 1.3.0-beta5
 -------------------------
