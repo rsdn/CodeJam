@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Text;
+
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
