@@ -16,7 +16,7 @@ namespace CodeJam.PerfTests.Columns
 	/// <summary>
 	/// Column that displays one of <see cref="CompetitionOptions"/> characteristic.
 	/// </summary>
-	/// <seealso cref="BenchmarkDotNet.Columns.IColumn"/>
+	/// <seealso cref="IColumn"/>
 	public class CompetitionCharacteristicColumn : IColumn
 	{
 		#region Static members

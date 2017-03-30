@@ -17,8 +17,7 @@ namespace CodeJam.PerfTests.Columns
 	public class MetricValueColumn : IColumn
 	{
 		#region Static members & origin enum
-		// DONTTOUCH: order of the enum members matches to the order in columns
-		/// <summary>Limit column kind</summary>
+		/// <summary>Metric column value.</summary>
 		public enum Kind
 		{
 			/// <summary>Mean for metric.</summary>

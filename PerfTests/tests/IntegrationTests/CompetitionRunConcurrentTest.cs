@@ -66,7 +66,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			var warningMessageCount = messages.Count(
 				m => m.MessageText ==
 					"Competition run skipped. Competitions cannot be run in parallel, be sure to disable parallel test execution.");
-			var okCount = messages.Count(m => m.MessageText == "CompetitionAnalyser: All competition limits are ok.");
+			var okCount = messages.Count(m => m.MessageText == "All competition metrics are ok.");
 
 			switch (concurrentRunBehavior)
 			{

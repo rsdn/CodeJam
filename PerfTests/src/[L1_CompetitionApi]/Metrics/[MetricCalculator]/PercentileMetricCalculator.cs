@@ -92,19 +92,19 @@ namespace CodeJam.PerfTests.Metrics
 		/// </summary>
 		/// <param name="meanPercentile">The mean percentile.</param>
 		/// <param name="actualValuesPercentileDelta">Actual values percentile delta.</param>
-		/// <param name="limitsValuesPercentileDelta">Limits percentile delta.</param>
+		/// <param name="limitValuesPercentileDelta">Limits percentile delta.</param>
 		public PercentileMetricCalculator(
 			int meanPercentile,
 			int actualValuesPercentileDelta,
-			int limitsValuesPercentileDelta)
+			int limitValuesPercentileDelta)
 		{
 			Code.InRange(meanPercentile, nameof(meanPercentile), 0, 100);
 			Code.InRange(actualValuesPercentileDelta, nameof(actualValuesPercentileDelta), 0, 100);
-			Code.InRange(limitsValuesPercentileDelta, nameof(limitsValuesPercentileDelta), 0, 100);
+			Code.InRange(limitValuesPercentileDelta, nameof(limitValuesPercentileDelta), 0, 100);
 
 			MeanPercentile = meanPercentile;
 			ActualValuesPercentileDelta = actualValuesPercentileDelta;
-			LimitsValuesPercentileDelta = limitsValuesPercentileDelta;
+			LimitValuesPercentileDelta = limitValuesPercentileDelta;
 		}
 
 		/// <summary>The mean percentile.</summary>
@@ -117,7 +117,7 @@ namespace CodeJam.PerfTests.Metrics
 
 		/// <summary>Limits percentile delta.</summary>
 		/// <value>Limits percentile deltas.</value>
-		public int LimitsValuesPercentileDelta { get; }
+		public int LimitValuesPercentileDelta { get; }
 		#endregion
 
 		/// <summary>Gets actual value for the set of values.</summary>
@@ -213,8 +213,8 @@ namespace CodeJam.PerfTests.Metrics
 		public MetricRange TryGetLimitValues(double[] values) =>
 			TryGetMetricRange(
 				values,
-				MeanPercentile - LimitsValuesPercentileDelta,
-				MeanPercentile + LimitsValuesPercentileDelta);
+				MeanPercentile - LimitValuesPercentileDelta,
+				MeanPercentile + LimitValuesPercentileDelta);
 
 		/// <summary>Gets expected limits range for the set of values (relative metric).</summary>
 		/// <param name="values">Set of values.</param>
@@ -224,7 +224,7 @@ namespace CodeJam.PerfTests.Metrics
 		public MetricRange TryGetRelativeLimitValues(double[] values, double[] baselineValues) =>
 			TryGetMetricRange(
 				values, baselineValues,
-				MeanPercentile - LimitsValuesPercentileDelta,
-				MeanPercentile + LimitsValuesPercentileDelta);
+				MeanPercentile - LimitValuesPercentileDelta,
+				MeanPercentile + LimitValuesPercentileDelta);
 	}
 }

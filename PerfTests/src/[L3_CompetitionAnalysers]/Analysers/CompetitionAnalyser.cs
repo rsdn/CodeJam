@@ -20,7 +20,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Analysers
 {
-	/// <summary>Basic competition analyser.</summary>
+	/// <summary>Competition analyser.</summary>
 	/// <seealso cref="IAnalyser"/>
 	internal sealed class CompetitionAnalyser : IAnalyser
 	{
@@ -81,11 +81,11 @@ namespace CodeJam.PerfTests.Analysers
 				xmlAnnotationDocs,
 				analysis))
 			{
-				analysis.WriteInfoMessage($"Competition limits were updated from log file '{logUri}'.");
+				analysis.WriteInfoMessage($"Competition metric limits were updated from log file '{logUri}'.");
 			}
 			else if (analysis.SafeToContinue)
 			{
-				analysis.WriteInfoMessage($"Competition limits do not require update. Log file: '{logUri}'.");
+				analysis.WriteInfoMessage($"Competition metric limits do not require update. Log file: '{logUri}'.");
 			}
 		}
 
@@ -338,7 +338,7 @@ namespace CodeJam.PerfTests.Analysers
 		/// <value>The identifier of the analyser.</value>
 		public string Id => GetType().Name;
 
-		/// <summary>Performs limit checking for competition benchmarks.</summary>
+		/// <summary>Competition metric limit checks and adjustments.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <returns>Enumerable with warnings for the benchmarks.</returns>
 		public IEnumerable<Conclusion> Analyse([NotNull] Summary summary)

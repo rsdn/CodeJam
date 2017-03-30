@@ -37,7 +37,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Total time limit for competition run. Set to two hours for now, may change in future.</summary>
 		internal static readonly TimeSpan TotalWaitTimeout = TimeSpan.FromHours(2);
 
-		/// <summary>Total time limit for competition run. Set to two hours for now, may change in future.</summary>
+		/// <summary>Total time limit for spin wait time. Set to one minute for now, may change in future.</summary>
 		internal static readonly TimeSpan SpinWaitRunTimeout = TimeSpan.FromMinutes(1);
 		#endregion
 

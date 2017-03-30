@@ -9,22 +9,15 @@
 
 ## TODOs:
 
-### TODO NOW:
- * bug: test prints output twice. Update BDN, then fix.
- * IStoredMetricValue: add MetricName attribute, EnumName attribute => simplify parse logic as merging will be moved to the analyser.
-   +Subtask: Attribute annotation: analyse existing overloads (add string arg to IStoredMetricValue???)
-   +Subtask: Ensure that unknown unit in prev run log results in warning
+### TODO now:
+* Cache metric values (same as annotation context but for parsing the anotations).
+* Output contains pup of messages printed under `*** Warnings ***` section. Have no idea what to do with it.
+  Need non-printable analyzer warnings:)
 
 ### Types:
- * ??? non-generic IMetricAttribute interface with Type metricProviderType + Type metricEnumType? (discarded as not needed actually)
- * Naming: remove limit keyword when non needed.
- * ??? Naming, IStoredMetricValue.MetricAttributeType => AttributeType, IMetricValuesProvider => IMetricProvider
- * public metric atttributes etc => move to AllTogether level
- * Namespace 4 attributes => CodeJam.PerfTests.
- * !!! dump CompetitionOptions to summary (as columns)
  * BurstModeEngineFactory: sync with code in BDN
  * HACK: Remove console capture after update to BDN 10.4
- * TargetCacheKey: remove?
+ * xUnit: improve capture of console output. Pass xUnitWriter as a logger instead.
  * Sealed types: unseal where it looks like a good idea.
  * Simplify collections of types. MappedCollection / Keyed collection where possible.
  
@@ -33,27 +26,23 @@
  * Unique metric names
 
 ### Behavior:
- * Annotation: check for baseline attribute: move out of annotation storage.
  * "Cannot detect encoding" checks for anything that reads streams as text?
- * ??? concurrent runs. Disallowed as it will break concurrent file annotations
+ * Concurrency: lock should be performed on entire benchmark run.
+   + Subtask: Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix). Use case: load testing.
+   + Subtask: concurrent runs. Disallowed as it will break concurrent file annotations
  * metric info: flags enum of column kinds to add into summary
  * Rule to ignore individual metric annotations (do not annotate / current only etc?)
- * Merge failed & adjusted messages into one?
- * ??? positive values only flag for metric info (discarded as there is SingleValueMode.FromZero)
+ * Merge failed & adjusted messages for multiple benchmarks into single message?
  * ??? Integer metrics without unit scale (for total GC count)
  * Revisit caching methods for analyser (all those members should contain `cache` in name).
  * Add cache invalidation policy (limit of 1000)
- * xUnit: improve capture of console output. Pass xUnitWriter as a logger instead.
- * Diagnosers: faster options for diagnosers run??
+ * ??? Diagnosers: faster options for diagnosers run?
  * Variance for SingleValueMetricCalculator / PercentileMetricCalculator
  * Optional relative time metric - better diagnostic if there's not empty attribute for it but the metric is not listed in config.
  * Check Code.BugIf assertions. Replace with messages where possible.
- * Concurrency: lock should be performed on entire benchmark run.
  * Rerun if sources were adjusted from log?
  * Prev run log : cache + reread only if local & size/date/checksum(?) changed!!!
- * Display-only metrics (only as columns? .ctor arg to the metric? bad as will silently remove as duplicates (dups removed by AttributeType)
- * Expected time metric: to 95th percentile.
- * Interface for last run analysis - discarded, no real use case for it.
+ * Display-only metrics (only as columns? .ctor arg to the metric? bad idea as these will be removed silently as duplicates (dups removed by AttributeType)
 
 ### Messages:
  * 'No logged XML annotation for Test00Baseline found. Check if the method was renamed.' => add metric names to message
@@ -67,17 +56,8 @@
 
 ### Logging:
  * Add advanced diagnostic for config-adjusting-time (logger as an arg of ConfigFactory + fix methods).
- * Logging: write validator messages immediately?
- * Print resulting competition options as common columns after https://github.com/dotnet/BenchmarkDotNet/pull/341
  * Check `+ Environment.NewLine` usages in `XunitCompetitionRunner.ReportXxx()` methods
  * LogColors.Hint: use it for something?
-
-### Design decisions:
- * Review: issue: annotation context is stored as
-   `static readonly Lazy<AnnotationContext> _annotationContext`
-   so concurrent runs will overwrite each other.
-   (have no idea fow to fix without breaking scenario "multiple tests over same type")
-   +Subtask: Ensure that all attribute lines are read during source file parsing.
 
 ### Tests:
  * xUnit: tests: force run as x64 (appveyor may run as x86)?
@@ -90,6 +70,9 @@
  * local test for run under CI (CI mode on) (+ 1!)
  * Test for bad encoding
  * Memory limits + diagnoser - test for accuracy
+ * Ensure that unknown unit in prev run log results in warning
+ * Ensure that all attribute lines are read during source file parsing.
+ * Validate the return results!!! (partially done with introduction of IHostApi)
 
 ### Cleanup
  * Remove and re-add resharper suppressions
@@ -97,25 +80,16 @@
 ### Features to test & to document
 * Gc metrics (byte-precise allocation monitoring, gc collection metrics)
 
-
 ## Long-term TODOs:
- * Support for multi-case benchmarks (discarded)
- * Validate the return results!!! (partially done with introduction of IHostApi)
- * Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix). Use case: load testing.
- * replace LooksLikeLastRun property usages with some extension point that should run on competition test completion
 
 ## Issues:
 https://github.com/dotnet/BenchmarkDotNet/issues/361
 https://github.com/dotnet/BenchmarkDotNet/issues/360
+https://github.com/dotnet/BenchmarkDotNet/issues/327
 https://github.com/dotnet/BenchmarkDotNet/issues/324
-https://github.com/dotnet/BenchmarkDotNet/issues/319
-https://github.com/dotnet/BenchmarkDotNet/issues/307
-https://github.com/dotnet/BenchmarkDotNet/issues/234
-https://github.com/dotnet/BenchmarkDotNet/pull/341
+https://github.com/dotnet/BenchmarkDotNet/issues/319 -- ready. Update the code.
+https://github.com/dotnet/BenchmarkDotNet/issues/136
 
-https://github.com/nunit/nunit-console/issues/62#issuecomment-262599181
-https://github.com/nunit/nunit/issues/668
-https://github.com/nunit/nunit/issues/1586
 https://github.com/xunit/xunit/issues/908
 
 ## DOCS:
@@ -126,50 +100,28 @@ https://github.com/xunit/xunit/issues/908
 
 ## layered design: Bench.NET part
 
-### Layer 0: Bench.Net helpers
- * Simple API fixes / additions
+### Layer 0: things to port to BDN
+ Thats it.
 
-### Layer 1: In-process toolchain
- * Allows to run benchmark in process
- * Includes validator to proof that current process matches the job.
- * Adds BurstModeEngine for more stable results
- * BenchmarkActionFactory - codegen free benchmark runner factory (should work for .Net Native too).
+### Layer 1: Common competition api to be used by end customers and for extensibility.
+ Options, netrics, various helpers.
 
-### Layer 2: RunState
- * Helper to store state during benchmark run.
+### Layer 2: CompetitionCore
+ Core api to be used during competition run. Logging and messages.
 
-### Layer 3: CompetitionsCore
- * Core logic & api for competition runs.
- * Competition options
- * Limit range & limit providers
- * Competition attributes
- * Competition state (api to be used during competition run)
- * Messages to be reported to user
- * CsvTimingsExporter
- * HostLogger (log filtering)
+### Layer 3: Competition analysers
+ Competition metric related things: analysers and annotation storages.
 
-### Layer 4: CompetitionAnalyser
- * Analyser to check the limits.
- * Limit columns
- * API to read source annotations
+### Layer 4: Configuration
+ Configuration subsystem & predefined implementations of exporters, metric providers etc.
 
-### Layer 5: CompetitionAnnotateAnalyser
- * Extended version of analyser from L4 with ability to annotate sources from actual running results
-
-### Layer 6: Configuration
- * Base CompetitionConfig APIs and attributes
-
-### Layer 7: Reusable parts of the runners
- * Cpmpetition runners & helpers.
+### Layer 5: All together
+ Reusable competition run API.
 
 
-##Long-term task: reusable limits, draft notes
- * Support for third-party limits, use limit provider + id (proof with package that uses GLAD)
- * Support third-party annotations provider. Use case: to store them as a database file
-   + Subtask: exporter-only version to collect actual metric values
+## Long-term plans for v2
+ * Advanced metrics (proof that api is done with package that uses GLAD)
+ * Make annotations storage API public. Use case: to store them as a database file
+   + ??? Subtask: exporter-only version to collect actual metric values
    + ??? Advanced subtask: collect raw metric values (discarded, too much data without a gain).
- * Target stores limits as a `Dictionary<provider_id, LimitRange>`
- * Limit provider specifies attribute name and additional parameters to be applied
-   TODO: exact format?
-   TODO: Use same properties for XML annotations or prefer something better?
-   TODO: Range extension method: Min/MaxValue to infinity?
+ * Support for multi-case benchmarks (discarded)

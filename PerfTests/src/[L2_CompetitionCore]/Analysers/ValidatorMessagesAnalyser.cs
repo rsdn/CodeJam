@@ -14,7 +14,7 @@ namespace CodeJam.PerfTests.Analysers
 	/// <summary>
 	/// Analyser that dumps validation messages.
 	/// </summary>
-	/// <seealso cref="BenchmarkDotNet.Analysers.IAnalyser" />
+	/// <seealso cref="IAnalyser" />
 	internal sealed class ValidatorMessagesAnalyser : IAnalyser
 	{
 		/// <summary>The instance of <see cref="ValidatorMessagesAnalyser"/>.</summary>
@@ -26,7 +26,7 @@ namespace CodeJam.PerfTests.Analysers
 		/// <value>The identifier of the analyser.</value>
 		public string Id => GetType().Name;
 
-		/// <summary>Performs limit checking for competition benchmarks.</summary>
+		/// <summary>Dumps validation messages.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <returns>Enumerable with warnings for the benchmarks.</returns>
 		public IEnumerable<Conclusion> Analyse([NotNull] Summary summary)

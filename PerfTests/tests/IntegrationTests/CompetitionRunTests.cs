@@ -210,7 +210,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[0].MessageText, Does.StartWith("Target SlowerX10. Metric RelativeTime"));
+			Assert.That(messages[0].MessageText, Does.StartWith("Target SlowerX10. Metric Scaled"));
 			Assert.That(messages[0].MessageText, Does.Contain(" is out of limit "));
 
 			Assert.AreEqual(messages[1].RunNumber, 1);
@@ -223,7 +223,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[2].RunMessageNumber, 1);
 			Assert.AreEqual(messages[2].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[2].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[2].MessageText, Does.StartWith("Target SlowerX10. Metric RelativeTime"));
+			Assert.That(messages[2].MessageText, Does.StartWith("Target SlowerX10. Metric Scaled"));
 			Assert.That(messages[2].MessageText, Does.Contain(" is out of limit "));
 
 			Assert.AreEqual(messages[3].RunNumber, 2);
@@ -236,7 +236,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[4].RunMessageNumber, 1);
 			Assert.AreEqual(messages[4].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[4].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[4].MessageText, Does.StartWith("Target SlowerX10. Metric RelativeTime"));
+			Assert.That(messages[4].MessageText, Does.StartWith("Target SlowerX10. Metric Scaled"));
 			Assert.That(messages[4].MessageText, Does.Contain(" is out of limit "));
 
 			Assert.AreEqual(messages[5].RunNumber, 3);
@@ -267,7 +267,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"Some benchmark metrics are empty and were ignored. Empty metrics are: SlowerX10: RelativeTime.");
+				"Some benchmark metrics are empty and were ignored. Empty metrics are: SlowerX10: Scaled.");
 		}
 
 		#region Perf test helpers

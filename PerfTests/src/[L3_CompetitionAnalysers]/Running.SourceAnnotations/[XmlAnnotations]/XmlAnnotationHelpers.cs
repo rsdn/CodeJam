@@ -105,7 +105,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		}
 
 		/// <summary>Parses xml annotation document from the resource.</summary>
-		/// <param name="annotationResourceKey">Name of the xml resource with competition limits.</param>
+		/// <param name="annotationResourceKey">Name of the xml resource with xml annotation document.</param>
 		/// <param name="messageLogger">The message logger.</param>
 		/// <returns>XML annotation document or <c>null</c> if parsing failed.</returns>
 		[CanBeNull]
@@ -537,46 +537,49 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		// ReSharper disable ConvertClosureToMethodGroup
 		private static double? TryParseDoubleValue(
 			Target target, XElement competitionNode,
-			string attribute, double fallbackValue,
+			string xmlAttributeName, double fallbackValue,
 			IMessageLogger messageLogger) =>
 				TryParseCore(
 					target, competitionNode,
-					attribute, fallbackValue,
+					xmlAttributeName,
 					s => XmlConvert.ToDouble(s),
+					fallbackValue,
 					messageLogger);
 
 		private static bool? TryParseBooleanValue(
 			Target target, XElement competitionNode,
-			string attribute, IMessageLogger messageLogger) =>
+			string xmlAttributeName, IMessageLogger messageLogger) =>
 				TryParseCore(
 					target, competitionNode,
-					attribute, false,
+					xmlAttributeName,
 					s => XmlConvert.ToBoolean(s),
+					false,
 					messageLogger);
 
 		// ReSharper restore ConvertClosureToMethodGroup
 
 		private static T? TryParseCore<T>(
 			Target target, XElement competitionNode,
-			string limitProperty,
-			T fallbackValue,
+			string xmlAttributeName,
 			Func<string, T> parseCallback,
+			T fallbackValue,
 			IMessageLogger messageLogger)
 			where T : struct
 		{
-			var limitText = competitionNode.Attribute(limitProperty)?.Value;
-			if (limitText == null)
+			var attributeValue = competitionNode.Attribute(xmlAttributeName)?.Value;
+			if (attributeValue == null)
 				return fallbackValue;
+
 			try
 			{
-				return parseCallback(limitText);
+				return parseCallback(attributeValue);
 			}
 			catch (FormatException ex)
 			{
 				messageLogger.WriteExceptionMessage(
 					MessageSeverity.SetupError,
 					target,
-					$"XML annotation for {target.MethodDisplayInfo}: could not parse {limitProperty}.",
+					$"XML annotation for {target.MethodDisplayInfo}: could not parse {xmlAttributeName}.",
 					ex);
 				return null;
 			}

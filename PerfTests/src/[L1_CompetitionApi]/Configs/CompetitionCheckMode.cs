@@ -74,7 +74,7 @@ namespace CodeJam.PerfTests.Configs
 		}
 
 		/// <summary>
-		/// Maximum count of retries performed if metric limits check. Default is 3.
+		/// Maximum count of retries performed if metric limits check failed. Default is 3.
 		/// Set this to zero to disable retries and fail on first run.
 		/// Set this to non-zero positive value to detect case when metric limits are too tight and the benchmark fails occasionally.
 		/// </summary>

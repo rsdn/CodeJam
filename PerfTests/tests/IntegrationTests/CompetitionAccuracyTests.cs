@@ -108,7 +108,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			var runState = SelfTestCompetition.Run<HighAccuracyBenchmark>();
 			var messages = runState.GetMessages();
-			if (messages.All(m => m.MessageText != "CompetitionAnalyser: All competition limits are ok."))
+			if (messages.All(m => m.MessageText != "All competition metrics are ok."))
 			{
 				Assert.Ignore("The environment does not provide accurate timings. Test results cannot be trusted.");
 			}

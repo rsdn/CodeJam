@@ -56,14 +56,14 @@ namespace CodeJam.PerfTests
 		}
 	}
 
-	/// <summary>Enables limits preview feature (new limits are logged but sources will not be updated.</summary>
+	/// <summary>Enables metric preview feature (new metric values are logged but sources will not be updated.</summary>
 	[PublicAPI]
-	public class CompetitionPreviewLimitsAttribute : CompetitionFeaturesAttribute
+	public class CompetitionPreviewMetricsAttribute : CompetitionFeaturesAttribute
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="CompetitionPreviewLimitsAttribute"/> class.
+		/// Initializes a new instance of the <see cref="CompetitionPreviewMetricsAttribute"/> class.
 		/// </summary>
-		public CompetitionPreviewLimitsAttribute()
+		public CompetitionPreviewMetricsAttribute()
 		{
 			AnnotateSources = true;
 			IgnoreExistingAnnotations = true;

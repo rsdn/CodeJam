@@ -17,7 +17,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Analysers
 {
-	/// <summary>Basic competition analyser.</summary>
+	/// <summary>Competition preconditions analyser.</summary>
 	/// <seealso cref="IAnalyser"/>
 	internal sealed class CompetitionPreconditionsAnalyser : IAnalyser
 	{
@@ -175,7 +175,7 @@ namespace CodeJam.PerfTests.Analysers
 		/// <value>The identifier of the analyser.</value>
 		public string Id => GetType().Name;
 
-		/// <summary>Performs limit checking for competition benchmarks.</summary>
+		/// <summary>Checks preconditions for competition analysis.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <returns>Enumerable with warnings for the benchmarks.</returns>
 		public IEnumerable<Conclusion> Analyse([NotNull] Summary summary)
