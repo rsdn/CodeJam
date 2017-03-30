@@ -242,7 +242,7 @@ namespace CodeJam.PerfTests.Running.Core
 			return competitionState;
 		}
 
-		// TODO: HACK: Remove after update to BDN 10.3
+		// TODO: HACK: Remove after update to BDN 10.4
 		/// <summary>Runs the competition - core implementation.</summary>
 		/// <param name="benchmarkType">Benchmark class to run.</param>
 		/// <param name="competitionConfig">The competition config.</param>
@@ -398,7 +398,7 @@ namespace CodeJam.PerfTests.Running.Core
 			competitionConfig.Loggers.Insert(0, CreateHostLogger(hostLogMode));
 		}
 
-		private void FixConfigValidators(ManualCompetitionConfig competitionConfig)
+		private static void FixConfigValidators(ManualCompetitionConfig competitionConfig)
 		{
 			var competitionOptions = competitionConfig.Options;
 			var debugMode = competitionOptions.RunOptions.AllowDebugBuilds;
@@ -429,7 +429,7 @@ namespace CodeJam.PerfTests.Running.Core
 			validators.Insert(0, new RunStateSlots());
 		}
 
-		private void FixConfigAnalysers(ManualCompetitionConfig competitionConfig)
+		private static void FixConfigAnalysers(ManualCompetitionConfig competitionConfig)
 		{
 			Code.BugIf(
 				competitionConfig.Analysers.OfType<CompetitionAnalyser>().Any(),
@@ -443,7 +443,7 @@ namespace CodeJam.PerfTests.Running.Core
 			competitionConfig.Analysers.Add(CompetitionAnalyser.Instance);
 		}
 
-		private void FixConfigMetrics(ManualCompetitionConfig competitionConfig)
+		private static void FixConfigMetrics(ManualCompetitionConfig competitionConfig)
 		{
 			var metrics = competitionConfig.Metrics;
 

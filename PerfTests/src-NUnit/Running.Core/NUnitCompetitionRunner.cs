@@ -58,7 +58,7 @@ namespace CodeJam.PerfTests.Running.Core
 		protected override CompetitionState RunCore(Type benchmarkType, ICompetitionConfig competitionConfig)
 		{
 			// HACK: swallow console output
-			// TODO: remove after upgrade to BDN 10.3
+			// TODO: remove after upgrade to BDN 10.4
 			using (ConsoleHelpers.CaptureConsoleOutput(new StringWriter()))
 			{
 				return base.RunCore(benchmarkType, competitionConfig);

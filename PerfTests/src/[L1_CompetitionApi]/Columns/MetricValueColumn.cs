@@ -24,8 +24,8 @@ namespace CodeJam.PerfTests.Columns
 			/// <summary>Mean for metric.</summary>
 			Value,
 
-			/// <summary>Metric value variance.</summary>
-			Variance,
+			/// <summary>Metric value standard deviation.</summary>
+			StdDev,
 			
 			/// <summary>Min metric value.</summary>
 			Min,
@@ -55,7 +55,7 @@ namespace CodeJam.PerfTests.Columns
 			DebugEnumCode.Defined(kind, nameof(kind));
 			_kind = kind;
 
-			ColumnName = name ?? (metric.DisplayName + (kind == Kind.Value ? "" : kind.ToString()));
+			ColumnName = name ?? (metric.DisplayName + (kind == Kind.Value ? "" : "-" + kind));
 			Metric = metric;
 			PriorityInCategory = PriorityInCategoryStartValue;
 		}
@@ -115,7 +115,7 @@ namespace CodeJam.PerfTests.Columns
 					case Kind.Max:
 						result = 1.0;
 						break;
-					case Kind.Variance:
+					case Kind.StdDev:
 						result = 0.0;
 						break;
 					default:
@@ -137,7 +137,7 @@ namespace CodeJam.PerfTests.Columns
 					case Kind.Max:
 						result = valuesProvider.TryGetLimitValues(benchmark, summary).Max;
 						break;
-					case Kind.Variance:
+					case Kind.StdDev:
 						result = valuesProvider.TryGetVariance(benchmark, summary) ?? double.NaN;
 						break;
 					default:

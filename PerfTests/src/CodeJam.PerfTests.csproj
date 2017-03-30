@@ -64,6 +64,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="[L0_PortToBenchmerkDotNet]\Configs\NamespaceDoc.cs" />
     <Compile Include="[L0_PortToBenchmerkDotNet]\Helpers\AttributeValue.cs" />
+    <Compile Include="[L1_CompetitionApi]\Columns\CompetitionOptionsColumnProvider.cs" />
     <Compile Include="[L1_CompetitionApi]\Metrics\MetricInfoHelpers.cs" />
     <Compile Include="[L1_CompetitionApi]\Metrics\MetricInfo`1.cs" />
     <Compile Include="[L1_CompetitionApi]\Metrics\NamespaceDoc.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="[L3_CompetitionAnalysers]\Running.SourceAnnotations\[SourceAnnotations]\SourceLanguage.cs" />
     <Compile Include="[L3_CompetitionAnalysers]\Running.SourceAnnotations\[XmlAnnotations]\XmlAnnotationFile.cs" />
     <Compile Include="[L3_CompetitionAnalysers]\Running.SourceAnnotations\[XmlAnnotations]\XmlAnnotationStorage.cs" />
+    <Compile Include="[L1_CompetitionApi]\Columns\CompetitionCharacteristicColumn.cs" />
     <Compile Include="[L4_Configuration]\[Attributes]\GcAllocationsAttribute.cs" />
     <Compile Include="[L1_CompetitionApi]\Metrics\[MetricAttributeBase]\IMetricAttribute.cs" />
     <Compile Include="[L1_CompetitionApi]\Metrics\[MetricAttributeBase]\IStoredMetricValue.cs" />

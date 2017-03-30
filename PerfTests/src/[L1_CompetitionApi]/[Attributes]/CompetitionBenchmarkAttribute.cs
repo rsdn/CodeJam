@@ -19,7 +19,7 @@ namespace CodeJam.PerfTests
 	[MetricInfo(
 		TimeMetricValuesProvider.Category,
 		MetricSingleValueMode.FromZeroToMax,
-		DisplayName = "RelativeTime",
+		DisplayName = "Relative",
 		ReportVariance = true)]
 	public class CompetitionBenchmarkAttribute : BenchmarkAttribute,
 		IMetricAttribute<CompetitionBenchmarkAttribute.ValuesProvider>

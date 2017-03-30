@@ -1,5 +1,6 @@
 ﻿using System;
 
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Reports;
@@ -36,6 +37,26 @@ namespace CodeJam.PerfTests.Metrics
 	/// <seealso cref="MetricValuesProviderBase"/>
 	public class GcMetricValuesProvider : MetricValuesProviderBase
 	{
+		/// <summary>
+		/// Memory diagnoser that does not report any columns.
+		/// </summary>
+		/// <seealso cref="BenchmarkDotNet.Diagnosers.MemoryDiagnoser" />
+		/// <seealso cref="BenchmarkDotNet.Diagnosers.IDiagnoser" />
+		private sealed class MemoryDiagnoserNoColumns : MemoryDiagnoser, IDiagnoser
+		{
+			/// <summary>Instance of the memory diagnoser.</summary>
+			public static readonly new MemoryDiagnoserNoColumns Default = new MemoryDiagnoserNoColumns();
+
+			/// <summary>Prevents a default instance of the <see cref="MemoryDiagnoserNoColumns"/> class from being created.</summary>
+			private MemoryDiagnoserNoColumns() { }
+
+			/// <summary>Gets the column provider.</summary>
+			/// <returns>The column provider.</returns>
+			public new IColumnProvider GetColumnProvider() =>
+				// no columns, uses implementation from values provider;
+				new SimpleColumnProvider();
+		}
+
 		/// <summary>The category of metric values.</summary>
 		public const string Category = "GcMemory";
 
@@ -110,6 +131,6 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="metric">The metric to get diagnosers for.</param>
 		/// <returns>Diagnosers for the metric values</returns>
 		protected override IDiagnoser[] GetDiagnosersOverride(MetricInfo metric) =>
-			new IDiagnoser[] { MemoryDiagnoser.Default };
+			new IDiagnoser[] { MemoryDiagnoserNoColumns.Default };
 	}
 }

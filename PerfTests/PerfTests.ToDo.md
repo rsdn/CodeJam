@@ -23,7 +23,7 @@
  * Namespace 4 attributes => CodeJam.PerfTests.
  * !!! dump CompetitionOptions to summary (as columns)
  * BurstModeEngineFactory: sync with code in BDN
- * HACK: Remove console capture after update to BDN 10.3
+ * HACK: Remove console capture after update to BDN 10.4
  * TargetCacheKey: remove?
  * Sealed types: unseal where it looks like a good idea.
  * Simplify collections of types. MappedCollection / Keyed collection where possible.

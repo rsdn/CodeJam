@@ -23,7 +23,7 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		// HACK: swallow console output
-		// TODO: remove after upgrade to BDN 10.3
+		// TODO: remove after upgrade to BDN 10.4
 #pragma warning disable 1591
 		protected class TempLogger : HostLogger
 		{
@@ -40,7 +40,7 @@ namespace CodeJam.PerfTests.Running.Core
 		protected override CompetitionState RunCore(Type benchmarkType, ICompetitionConfig competitionConfig)
 		{
 			// HACK: swallow console output
-			// TODO: remove after upgrade to BDN 10.3
+			// TODO: remove after upgrade to BDN 10.4
 			using (ConsoleHelpers.CaptureConsoleOutput(new StringWriter()))
 			{
 				return base.RunCore(benchmarkType, competitionConfig);
@@ -59,7 +59,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="competitionState">State of the run.</param>
 		protected override void ReportExecutionErrors(string messages, CompetitionState competitionState)
 		{
-			// TODO: remove after upgrade to BDN 10.3
+			// TODO: remove after upgrade to BDN 10.4
 			var logger = competitionState.Logger;
 
 			logger.WriteLine();
@@ -93,18 +93,18 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="summary">The summary to report.</param>
 		protected override void ReportHostLogger(HostLogger logger, Summary summary)
 		{
-			// TODO: remove after upgrade to BDN 10.3
+			// TODO: remove after upgrade to BDN 10.4
 
 			// Dumping all captured output
 			var outLogger = ConsoleLogger.Default;
 			var tempLogger = (TempLogger)logger;
 			outLogger.Write(tempLogger.GetLog());
 
-			if (summary != null)
-			{
-				// Dumping the benchmark results to console
-				MarkdownExporter.Console.ExportToLog(summary, outLogger);
-			}
+			//if (summary != null)
+			//{
+			//	// Dumping the benchmark results to console
+			//	MarkdownExporter.Console.ExportToLog(summary, outLogger);
+			//}
 		}
 		#endregion
 

@@ -208,7 +208,7 @@ namespace CodeJam.PerfTests.Metrics
 			if (metric.ReportVariance)
 				return new SimpleColumnProvider(
 					new MetricValueColumn(metric, MetricValueColumn.Kind.Value),
-					new MetricValueColumn(metric, MetricValueColumn.Kind.Variance));
+					new MetricValueColumn(metric, MetricValueColumn.Kind.StdDev));
 
 			return new SimpleColumnProvider(
 				new MetricValueColumn(metric, MetricValueColumn.Kind.Value));

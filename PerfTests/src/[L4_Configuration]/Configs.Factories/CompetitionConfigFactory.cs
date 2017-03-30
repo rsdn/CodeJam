@@ -10,6 +10,7 @@ using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Toolchains.InProcess;
 
+using CodeJam.PerfTests.Columns;
 using CodeJam.PerfTests.Metrics;
 using CodeJam.Reflection;
 
@@ -29,23 +30,27 @@ namespace CodeJam.PerfTests.Configs.Factories
 		/// <summary>Columns for default config. </summary>
 		public static IColumnProvider DefaultColumns = new CompositeColumnProvider(
 			DefaultColumnProviders.Target,
+			CompetitionOptionsColumnProvider.Instance,
 			DefaultColumnProviders.Job,
 			DefaultColumnProviders.Params,
 			DefaultColumnProviders.Diagnosers,
 			new SimpleColumnProvider(
 				StatisticColumn.Mean,
-				StatisticColumn.StdDev,
-				BaselineScaledColumn.Scaled,
-				BaselineScaledColumn.ScaledStdDev));
+				StatisticColumn.StdDev));
 
 		/// <summary>Columns for troubleshooting mode config. </summary>
 		public static IColumnProvider TroubleshootingModeColumns = new CompositeColumnProvider(
 			DefaultColumnProviders.Target,
+			CompetitionOptionsColumnProvider.Instance,
 			DefaultColumnProviders.Job,
 			DefaultColumnProviders.Params,
 			DefaultColumnProviders.Diagnosers,
 			DefaultColumnProviders.Statistics,
 			new SimpleColumnProvider(
+				StatisticColumn.Mean,
+				StatisticColumn.StdDev,
+				BaselineScaledColumn.Scaled,
+				BaselineScaledColumn.ScaledStdDev,
 				StatisticColumn.Min,
 				StatisticColumn.Max));
 
