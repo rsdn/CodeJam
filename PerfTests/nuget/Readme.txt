@@ -1,6 +1,14 @@
 CodeJam.PerfTests Release Notes
 -------------------------------
 
+# 0.1.0-alpha
+* Major rewrite of perftests that enables new features.
+* New: custom metrics API.
+* New: Gc allocations metric.
+* New: hints for common warnings / errors.
+* Upd: default output is simplified.
+* Upd: In-process benchmarks accuracy improved.
+
 # 0.0.11-beta
 * Annotation fails on damaged/invalid encoding files.
 * Auto-adjust limit scale for annotations (more decimal places for too small values).
@@ -11,7 +19,7 @@ CodeJam.PerfTests Release Notes
 # 0.0.9-alpha
 * Public API improvements: allow to pass CompetitionFeatures as an arg to `Competition.Run()`.
 * Test output: readability improved.
-* CompetitionPreviewLimitsAttribute added.
+* CompetitionPreviewMetricsAttribute added.
 
 # 0.0.8-alpha
 * Minor improvements for idle measurement accuracy.

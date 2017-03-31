@@ -28,7 +28,8 @@ namespace CodeJam.Examples.PerfTests
 		[CompetitionFact]
 		public void RunSimplePerfTest() => Competition.Run(this);
 
-		// Baseline competition member. Other competition members will be compared with this.
+		// Baseline competition member.
+		// All relative metrics will be compared with metrics of the baseline method.
 		[CompetitionBaseline]
 		public void Baseline() => Thread.SpinWait(Count);
 
@@ -47,45 +48,57 @@ namespace CodeJam.Examples.PerfTests
 }
 ```
 
-4. Switch to **Release** configuration and run the `RunSimplePerfTest` test. You should get something like this (look at `[CompetitionBenchmark]` parameters):
+4. Switch to **Release** configuration and run the `RunSimplePerfTest` test. You should get something like this (look at attribute parameters):
 ```c#
+		// Baseline competition member. Other competition members will be compared with this.
+		[CompetitionBaseline]
+		[GcAllocations(0)]                 // does not allocate
+		public void Baseline() => Thread.SpinWait(Count);
+
 		// Competition member #1. Should take ~3x more time to run.
-		[CompetitionBenchmark(2.96, 3.08)]
+		[CompetitionBenchmark(2.96, 3.08)] // ~3x to baseline
+		[GcAllocations(0)]                 // does not allocate
 		public void SlowerX3() => Thread.SpinWait(3 * Count);
 
 		// Competition member #2. Should take ~5x more time to run.
-		[CompetitionBenchmark(4.94, 5.14)]
+		[CompetitionBenchmark(4.94, 5.14)] // ~5x to baseline
+		[GcAllocations(0)]                 // does not allocate
 		public void SlowerX5() => Thread.SpinWait(5 * Count);
 
 		// Competition member #3. Should take ~7x more time to run.
-		[CompetitionBenchmark(6.89, 7.17)]
+		[CompetitionBenchmark(6.89, 7.17)] // ~7x to baseline
+		[GcAllocations(0)]                 // does not allocate
 		public void SlowerX7() => Thread.SpinWait(7 * Count);
 ```
 yep, it's magic:)
 
  > **NOTE**
  >
- > This test is known to provide inaccurate results on notebooks / nettops with mobile CPUs due to aggressive frequency scaling and throttling.
+ > This test is known to provide inaccurate results on notebooks / nettops with mobile CPUs due to aggressive frequency scaling and throttling. There're two workarounds:
  >
- > There're two workarounds. First, you can set `Count` to `CompetitionHelpers.RecommendedFastSpinCount`. Second, you can use `CompetitionHelpers.RecommendedSpinCount` together with `[CompetitionBurstMode]` attribute. 
+ > First, you can set loop count ( `Count`) to the `CompetitionHelpers.SmallLoopCount`. That constant (currently it is equal to 256, was found empirically) provides most accurate results for small loops on different hardware 
+ >
+ > As a second option, you can set loop count ( `Count`) to the `CompetitionHelpers.BurstModeLoopCount` that should be used for large loops (10k or so). Large methods (single run takes 1 ms or more) should be used together with `[CompetitionBurstMode]` attribute applied to the competition class. The attribute adjusts competition options to improve running time for long-executing competition members.
 
-5. After `[CompetitionBenchmark]` attributes are filled with timing limits, you can disable source auto-annotation. To do this, just remove the `[CompetitionAnnotateSources]` attribute.
+5. After competition members are annotated with actual metrics you can disable source auto-annotation. To do this, just remove the `[CompetitionAnnotateSources]` attribute.
 
-6. Now the test will fail if timings do not fit into limits. To proof, change implementation for any competiton method and run the test. As example:
+6. Now the test will fail if metric do not fit into limits. To proof, change implementation for any competition method and run the test. As example:
 ```c#
 		[CompetitionBenchmark(6.89, 7.17)]
+		[GcAllocations(10, BinarySizeUnit.Gigabyte)]
 		public void SlowerX7() => Thread.SpinWait(10 * Count); // 10x slower
 ```
  The test should fail with text like this:
  ```
 Test failed, details below.
 Failed assertions:
-    * Run #3: Method SlowerX7 [9.96..9.96] does not fit into limits [6.89..7.17]
+	* Run #3: Target SlowerX7. Metric Scaled [10.15..10.15] is out of limit [6.89..7.17].
+	* Run #3: Target SlowerX7. Metric GcAllocations [0..0] B is out of limit [10.00..10.00] GB.
 Warnings:
-    * Run #3: The benchmark was run 3 time(s), check log for details.
+	* Run #3: The benchmark was run 3 time(s), check log for details.
 Diagnostic messages:
-    * Run #1: Requesting 1 run(s): Limit checking failed.
-    * Run #2: Requesting 1 run(s): Limit checking failed.
+	* Run #1: Metrics check failed, requesting 1 run(s).
+	* Run #2: Metrics check failed, requesting 1 run(s).
  ```
 
 7. Well, that's all.
