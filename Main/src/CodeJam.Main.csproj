@@ -1,72 +1,89 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2F2046CC-FB47-4318-B335-5A82B04B6C40}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <TargetFrameworks>net4.5.2;net3.5;net4.0;net4.5;net4.6</TargetFrameworks>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <Version>1.3.0-rc1</Version>
+    <Authors>Andrew Koryavchenko, Igor Sinicyn, Igor Tkachev, rameel</Authors>
+    <Company>RSDN.ru</Company>
+    <PackageId>CodeJam</PackageId>
+    <Product>CodeJam</Product>
+    <Description>CodeJam is a set of handy reusable .NET components that can simplify your daily work and save your time when you copy and paste your favorite helper methods and classes from one project to another.</Description>
+    <Copyright>RSDN.ru, 2017</Copyright>
+    <PackageType>DotNetCliTool, 1.0.0.0;Dependency, 2.0.0.0</PackageType>
+    <PackageTags>list string collection data-structure threading xml reflection async assertion IO extension algorithms structures utilities suffix-tree range tagged-union discriminated union discriminated-union variant variant-record disjoint-union sum-type</PackageTags>
+    <PackageLicenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/Main/nuget/CodeJam.Main.Icon.png</PackageIconUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
+    <PackageReleaseNotes>..\build\Readme.txt</PackageReleaseNotes>
+    <AssemblyVersion>1.3.0.0</AssemblyVersion>
+    <FileVersion>1.3.0.0</FileVersion>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild> 
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\CodeJam.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>False</DelaySign>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CodeJam</RootNamespace>
     <AssemblyName>CodeJam</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;FW461;FW46;FW452</DefineConstants>
+    <DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DocumentationFile>bin\Debug\CodeJam.XML</DocumentationFile>
+    <DocumentationFile>$(OutputPath)\CodeJam.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;FW461;FW46;FW452</DefineConstants>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DocumentationFile>bin\Release\CodeJam.XML</DocumentationFile>
+    <DocumentationFile>$(OutputPath)\CodeJam.XML</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net3.5' ">
+    <DefineConstants>$(DefineConstants);FW461;FW46;FW452;FW451;FW45;FW40;FW35</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\..\CodeJam.snk</AssemblyOriginatorKeyFile>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net4.0' ">
+    <DefineConstants>$(DefineConstants);FW461;FW46;FW452;FW451;FW45;FW40</DefineConstants>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net4.5' ">
+    <DefineConstants>$(DefineConstants);FW461;FW46;FW452;FW451;FW45</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net4.5.2' ">
+    <DefineConstants>$(DefineConstants);FW461;FW46;FW452</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net4.6' ">
+    <DefineConstants>$(DefineConstants);FW461;FW46</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net4.6.1' ">
+    <DefineConstants>$(DefineConstants);FW461</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
+    <DefineConstants>$(DefineConstants);FW461</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" $(DefineConstants.Contains('FW35')) ">
+   <PackageReference Include="TaskParallelLibrary" Version="1.0.2856.0" />
   </ItemGroup>
-  <Choose>
-    <When Condition="$(DefineConstants.Contains('FW35'))">
-      <ItemGroup>
-        <Reference Include="System.Threading, Version=1.0.2856.102, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-          <HintPath>..\..\packages\TaskParallelLibrary.1.0.2856.0\lib\Net35\System.Threading.dll</HintPath>
-          <Private>True</Private>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="!$(DefineConstants.Contains('FW40'))">
-      <ItemGroup>
-        <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-          <HintPath>..\..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-          <Private>True</Private>
-          <Aliases>global</Aliases>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
+  <ItemGroup Condition=" !$(DefineConstants.Contains('FW40')) ">
+    <PackageReference Include="System.ValueTuple" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Algorithms\Algorithms.EqualRange.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </Content>
+  </ItemGroup>
+
   <ItemGroup>
     <Compile Include="..\..\Jetbrains.Annotations.cs">
       <Link>Jetbrains.Annotations.cs</Link>
@@ -378,11 +395,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\Enumerable\EnumerableExtensions.MinMaxBy.cs" />
-    <None Include="Compile.cmd">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Compile.tt</DependentUpon>
-    </None>
+    <None Include="Compile.cmd" />
     <Compile Include="Reflection\ReflectionExtensions.CreateInstance.cs" />
     <None Include="packages.config" />
     <None Include="Ranges\RangesPlannedChanges.md" />
@@ -512,21 +525,8 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EnumerableExtensions.MinMaxBy.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Compile.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Compile.cmd</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
