@@ -1,6 +1,6 @@
 ## TL;DR (MS Test version)
 
-1. Create a new MS unit test project (*~Set targeting to .net 4.5.2+, previous FW versions are not supported for now~*).
+1. Create a new MS unit test project (*--Set targeting to .net 4.6+, previous FW versions are not supported for now--*).
 2. Add a reference to the [CodeJam.PerfTests.MSTest](https://www.nuget.org/packages/CodeJam.PerfTests.MSTest) nuget package.
 3. Add a file with the following code:
 ```c#
@@ -78,7 +78,7 @@ yep, it's magic:)
 
 5. After competition members are annotated with actual metrics you can disable source auto-annotation. To do this, just remove the `[CompetitionAnnotateSources]` attribute.
 
-6. Now the test will fail if metric do not fit into limits. To proof, change implementation for any competition method and run the test. As example:
+6. Now the test will fail if metrics do not fit into limits. To proof, change implementation for any competition method and run the test. As example:
 ```c#
 		[CompetitionBenchmark(6.89, 7.17)]
 		[GcAllocations(10, BinarySizeUnit.Gigabyte)]

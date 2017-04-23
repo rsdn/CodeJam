@@ -36,6 +36,8 @@ namespace BenchmarkDotNet.Engines
 				InfrastructureResolver.Instance,
 				EngineResolver.Instance);
 
+			Host = engineParameters.Host;
+
 			var targetJob = engineParameters.TargetJob;
 			Clock = targetJob.ResolveValue(InfrastructureMode.ClockCharacteristic, Resolver);
 			ForceAllocations = targetJob.ResolveValue(GcMode.ForceCharacteristic, Resolver);
@@ -175,6 +177,10 @@ namespace BenchmarkDotNet.Engines
 			return results;
 		}
 
+		/// <summary>Gets the host.</summary>
+		/// <value>The host.</value>
+		public IHost Host { get; }
+
 		/// <summary>Runs the iteration.</summary>
 		/// <param name="data">The data.</param>
 		/// <returns>Measurement for the iteration</returns>
@@ -221,7 +227,7 @@ namespace BenchmarkDotNet.Engines
 		/// <value>
 		/// <c>true</c> if this run has diagnoser attached; otherwise, <c>false</c>.
 		/// </value>
-		public bool IsDiagnoserAttached => _engineParameters.IsDiagnoserAttached;
+		public bool IsDiagnoserAttached => Host.IsDiagnoserAttached;
 		/// <summary>Gets the resolver.</summary>
 		/// <value>The resolver.</value>
 		public IResolver Resolver { get; }

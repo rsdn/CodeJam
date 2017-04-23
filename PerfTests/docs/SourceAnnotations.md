@@ -1,14 +1,14 @@
-# CodeJam.PerfTests Source Annotations
+# CodeJam.PerfTests Metric Annotations
 
 > **META-NOTE**
 >
-> Places to update are marked with *~…~*.
+> Places to update are marked with *--…--*.
 
 [TOC]
 
-## Source annotations
+## Competition metric annotations
 
-Source annotations provides a way to specify limits for the competition. Current implementation supports limits for relative-to-baseline timings only, *~memory limits coming soon~*.
+Metric annotations provides a way to store metric limits for the competition. Current implementation supports various metrics such as execution time, GC allocations, GC collection count and so on. Also, there is public API for adding your own metrics.
 
 ## Annotate sources using attributes
 

@@ -2,7 +2,7 @@
 
 > **META-NOTE**
 >
-> Places to update are marked with *~…~*.
+> Places to update are marked with *--…--*.
 
 [TOC]
 
@@ -18,7 +18,7 @@ It allows to collect and to compare various metrics (such as execution time, mem
 >
 >Here and below all samples are based on NUnit framework. Actually there's no significant difference, only things to change are package name and test frameworks attributes. For example how to use CodeJam.PerfTests with other test frameworks check  [MS perftest example](Example.MSTest.md) and [xUnit perftest test example](Example.xUnit.md).
 
-1. Create a new unit test project (*~Set targeting to .net 4.5.2+, previous FW versions are not supported for now~*).
+1. Create a new unit test project (*--Set targeting to .net 4.6+, previous FW versions are not supported for now--*).
 2. Add a reference to the [CodeJam.PerfTests.NUnit](https://www.nuget.org/packages/CodeJam.PerfTests.NUnit) nuget package.
 3. Add a file with the following code:
 ```c#
@@ -96,7 +96,7 @@ yep, it's magic:)
 
 5. After competition members are annotated with actual metrics you can disable source auto-annotation. To do this, just remove the `[CompetitionAnnotateSources]` attribute.
 
-6. Now the test will fail if metric do not fit into limits. To proof, change implementation for any competition method and run the test. As example:
+6. Now the test will fail if metrics do not fit into limits. To proof, change implementation for any competition method and run the test. As example:
 ```c#
 		[CompetitionBenchmark(6.89, 7.17)]
 		[GcAllocations(10, BinarySizeUnit.Gigabyte)]
@@ -142,10 +142,10 @@ As a benchmarking framework, CodeJam.PerfTests do not provide anything that Benc
 
 6. **It just works: real-world use cases.**  The design of the framework is heavily inspired by dogfooding experience and use cases from our real projects. If there're sane use cases uncovered we're going to add them. What's done so far:
 
-   * Support for most popular testing frameworks and base types for adding new ones. NUnit, xUnit (*~not stable yet~*) and MS Test perftest packages are available out of the box.
+   * Support for most popular testing frameworks and base types for adding new ones. NUnit, xUnit (*--not stable yet--*) and MS Test perftest packages are available out of the box.
    * Support for perftests over dynamically generated or emitted codebase. Code annotations for such tests are stored as xml resource files, therefore you can change the code without transferring the competition limits from old code to new one.
    * Continuous Integration support. CodeJam.PerfTests detects common CI services automatically (AppVeyor, Jenkins, TFS, TeamCity and Travis CI are supported for now) and adjusts its settings appropriately. E.g., by default we do not update source annotations during CI runs, as they may be unavailable. Instead, adjusted limits are logged and will be applied during perftest run on a developer's machine.
-   * Custom metrics support (*~experimental as we did not document it yet ~*). Want to compare implementations by sql queries time, network activity or JIT time? Bring your own metric for it:)
+   * Custom metrics support (*--experimental as we did not document it yet --*). Want to compare implementations by sql queries time, network activity or JIT time? Bring your own metric for it:)
    * Configuration via per-assembly `.appconfig` files, assembly- and type-level attributes. Setup once, use everywhere.
    * Competition configuration system was rewritten. It is much simpler to create custom competition configs and to modify existing ones now.
    * Console perftest runner. In case you need it.

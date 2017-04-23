@@ -10,6 +10,7 @@
 ## TODOs:
 
 ### TODO now:
+* IColumn implementation - fix after update to BDN 10.4
 * Cache metric values (same as annotation context but for parsing the anotations).
 * Output contains pup of messages printed under `*** Warnings ***` section. Have no idea what to do with it.
   Need non-printable analyzer warnings:)

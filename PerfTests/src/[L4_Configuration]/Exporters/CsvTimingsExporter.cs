@@ -70,9 +70,9 @@ namespace CodeJam.PerfTests.Exporters
 				select new[]
 				{
 					(sWithIndex.i + 1).ToString(c),
-					CsvHelper.Escape(benchmark.Job.ToString()),
-					CsvHelper.Escape(benchmark.Target.MethodDisplayInfo),
-					CsvHelper.Escape(benchmark.Parameters.DisplayInfo),
+					CsvHelper.Escape(benchmark.Job.ToString(), _separator),
+					CsvHelper.Escape(benchmark.Target.MethodDisplayInfo, _separator),
+					CsvHelper.Escape(benchmark.Parameters.DisplayInfo, _separator),
 					measurement.m.LaunchIndex.ToString(c),
 					measurement.i.ToString(c),
 					measurement.m.IterationMode.ToString(),

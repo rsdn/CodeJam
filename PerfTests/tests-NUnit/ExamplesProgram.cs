@@ -1,7 +1,5 @@
 ﻿using System;
 
-using BenchmarkDotNet.Helpers;
-
 using CodeJam.PerfTests.Running.Console;
 using CodeJam.PerfTests.Running.Core;
 

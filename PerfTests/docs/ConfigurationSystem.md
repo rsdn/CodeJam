@@ -2,7 +2,7 @@
 
 > **META-NOTE**
 >
-> Places to update are marked with *~…~*.
+> Places to update are marked with *--…--*.
 >
 
 [TOC]
@@ -33,7 +33,7 @@ In cases when multiple attributes allowed (`CompetitionFeaturesAttribute` as exa
 >
 >  Explicit config passing is an advanced technique and should be used only when you want to have a perfect control over the configuration. It skips entire configuration pipeline and therefore it's up to you to pass correct config into competition.
 
-Competition config stores all settings that apply to the competition. It's derived from BenchmarkDotNet's `IConfig` and adds some new members (`Options` property and `GetMetrics()` method, as example) *~TODO: link competition options~*.
+Competition config stores all settings that apply to the competition. It's derived from BenchmarkDotNet's `IConfig` and adds some new members (`Options` property and `GetMetrics()` method, as example) *--TODO: link competition options--*.
 
 ### 1.1 Pass config as a competition arg
 
@@ -181,7 +181,7 @@ The syntax is following:
 
 ### 2.3 Update default competition features from the environment
 
-> ***~THINGS TO CHANGE~***
+> ***--THINGS TO CHANGE--***
 >
 > There can be more auto-detected features in the future, documentation will be updated.
 
@@ -208,7 +208,7 @@ Want to add CI service or have a idea how to make the feature better? [Create is
 
 ### 2.4 Set competition features via attributes 
 
-While default features can be good for most perftests there always are tests that require own feature set. If you want to add (or disable) some particular features, apply the `[CompetitionFeatures]` attribute (or any derived attribute) to the competition class, container type (if the competition class is a nested type) or to the competition's assembly. Check the *~Attribute annotations TODO: link*~* section for explanation how the attributes are applied.
+While default features can be good for most perftests there always are tests that require own feature set. If you want to add (or disable) some particular features, apply the `[CompetitionFeatures]` attribute (or any derived attribute) to the competition class, container type (if the competition class is a nested type) or to the competition's assembly. Check the *--Attribute annotations TODO: link*--* section for explanation how the attributes are applied.
 
 Here's example that covers possible annotations for the competition features.
 
@@ -298,7 +298,7 @@ and apply it to the competition class, it's container class (if the competition 
 	}
 ```
 
-As with `CompetitionFeaturesAttribute`, modifiers can be combined together. Check the *~Attribute annotations TODO: link*~* section for explanation how modifier attributes are applied.
+As with `CompetitionFeaturesAttribute`, modifiers can be combined together. Check the *--Attribute annotations TODO: link*--* section for explanation how modifier attributes are applied.
 
 
 

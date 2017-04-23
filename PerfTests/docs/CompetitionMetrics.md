@@ -2,7 +2,7 @@
 
 > **META-NOTE**
 >
-> Places to update are marked with *~…~*.
+> Places to update are marked with *--…--*.
 
 > **DRAFT**
 >

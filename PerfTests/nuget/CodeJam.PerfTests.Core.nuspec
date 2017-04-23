@@ -13,8 +13,8 @@
 		<copyright>RSDN.ru, 2017</copyright>
 		<tags>benchmark benchmarking performance</tags>
 		<dependencies>
-			<dependency id="CodeJam" version="1.3.0-rc1" />
-			<dependency id="BenchmarkDotNet.Core" version="0.10.3" />
+			<dependency id="CodeJam" version="1.3.0" />
+			<dependency id="BenchmarkDotNet.Core" version="0.10.4" />
 		</dependencies>
 	</metadata>
 	<files>
