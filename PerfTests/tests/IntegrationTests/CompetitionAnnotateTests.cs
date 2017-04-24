@@ -156,6 +156,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.BurstModeLoopCount);
 		}
 
+		[CompetitionTroubleshootingMode]
 		[CompetitionMeasurementsFromLogModifier]
 		public class AnnotatedWithTimeAndGcBenchmark
 		{
