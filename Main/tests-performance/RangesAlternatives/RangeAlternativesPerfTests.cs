@@ -28,7 +28,7 @@ namespace CodeJam.RangesAlternatives
 		[PublicAPI]
 		public class RangeAlternativesIntCase
 		{
-			private static readonly int Count = BurstModeLoopCount / 16;
+			private static readonly int Count = CompetitionRunHelpers.BurstModeLoopCount / 16;
 
 			private readonly KeyValuePair<int, int>[] _data;
 			private readonly RangeStub<int>[] _rangeData;
@@ -139,7 +139,7 @@ namespace CodeJam.RangesAlternatives
 		[PublicAPI]
 		public class RangeAlternativesNullableIntCase
 		{
-			private static readonly int Count = SmallLoopCount;
+			private static readonly int Count = CompetitionRunHelpers.SmallLoopCount;
 			private readonly KeyValuePair<int?, int?>[] _data;
 			private readonly RangeStub<int?>[] _rangeData;
 			private readonly RangeStub<int?, string>[] _rangeKeyData;

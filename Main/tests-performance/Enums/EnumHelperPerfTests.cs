@@ -39,7 +39,7 @@ namespace CodeJam
 		private const string Fx = "X";
 		#endregion
 
-		private static readonly int Count = BurstModeLoopCount / 16;
+		private static readonly int Count = CompetitionRunHelpers.BurstModeLoopCount / 16;
 
 		[Test]
 		public void RunIsDefinedCase() => Competition.Run<IsDefinedCase>();

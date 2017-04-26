@@ -18,7 +18,7 @@ namespace CodeJam.Ranges
 	[CompetitionBurstMode]
 	public class RangeBoundaryFactoryPerfTests
 	{
-		private static readonly int Count = SmallLoopCount;
+		private static readonly int Count = CompetitionRunHelpers.SmallLoopCount;
 
 		[Test]
 		public void RunRangeBoundaryFactoryPerfTests() => Competition.Run(this);

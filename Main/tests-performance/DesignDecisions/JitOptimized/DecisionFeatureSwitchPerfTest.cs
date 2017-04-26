@@ -41,7 +41,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 		private static int DefaultAction(int a) => a + 1;
 		#endregion
 
-		private static readonly int Count = CompetitionHelpers.SmallLoopCount;
+		private static readonly int Count = CompetitionRunHelpers.SmallLoopCount;
 
 		[Test]
 		public void RunDecisionFeatureSwitchPerfTest() => Competition.Run(this);

@@ -90,9 +90,9 @@ yep, it's magic:)
  >
  > This test is known to provide inaccurate results on notebooks / nettops with mobile CPUs due to aggressive frequency scaling and throttling. There're two workarounds:
  >
- > First, you can set loop count ( `Count`) to the `CompetitionHelpers.SmallLoopCount`. That constant (currently it is equal to 256, was found empirically) provides most accurate results for small loops on different hardware 
+ > First, you can set loop count ( `Count`) to the `CompetitionRunHelpers.SmallLoopCount`. That constant (currently it is equal to 256, was found empirically) provides most accurate results for small loops on different hardware 
  >
- > As a second option, you can set loop count ( `Count`) to the `CompetitionHelpers.BurstModeLoopCount` that should be used for large loops (10k or so). Large methods (single run takes 1 ms or more) should be used together with `[CompetitionBurstMode]` attribute applied to the competition class. The attribute adjusts competition options to improve running time for long-executing competition members.
+ > As a second option, you can set loop count ( `Count`) to the `CompetitionRunHelpers.BurstModeLoopCount` that should be used for large loops (10k or so). Large methods (single run takes 1 ms or more) should be used together with `[CompetitionBurstMode]` attribute applied to the competition class. The attribute adjusts competition options to improve running time for long-executing competition members.
 
 5. After competition members are annotated with actual metrics you can disable source auto-annotation. To do this, just remove the `[CompetitionAnnotateSources]` attribute.
 

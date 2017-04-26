@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>CodeJam.PerfTests.Core</id>
-		<version>0.1.0-beta</version>
+		<version>0.1.1-beta</version>
 		<title>CodeJam.PerfTests Core Library</title>
 		<authors>ig-sinicyn</authors>
 		<licenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</licenseUrl>
@@ -14,7 +14,7 @@
 		<tags>benchmark benchmarking performance</tags>
 		<dependencies>
 			<dependency id="CodeJam" version="1.3.0" />
-			<dependency id="BenchmarkDotNet.Core" version="0.10.4" />
+			<dependency id="BenchmarkDotNet.Core" version="0.10.5" />
 		</dependencies>
 	</metadata>
 	<files>

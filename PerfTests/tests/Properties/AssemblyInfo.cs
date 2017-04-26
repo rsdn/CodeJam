@@ -39,7 +39,5 @@ using NUnit.Framework;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-
-[assembly: Parallelizable(ParallelScope.None)]
 [assembly: CompetitionFeatures(ContinuousIntegrationMode = false)]
 [assembly: CompetitionConfigFactory(typeof(SelfTestConfigFactory))]

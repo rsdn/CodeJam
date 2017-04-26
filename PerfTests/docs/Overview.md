@@ -26,7 +26,7 @@ Each perftest has some key parts:
 		// (Visual Studio collapses regions by default).
 		#region Helpers
 		// Constants / fields
-		private const int Count = CompetitionHelpers.BurstModeLoopCount;
+		private const int Count = CompetitionRunHelpers.BurstModeLoopCount;
 
 		// Optional setup method. Same as in BenchmarkDotNet.
 		[Setup]
