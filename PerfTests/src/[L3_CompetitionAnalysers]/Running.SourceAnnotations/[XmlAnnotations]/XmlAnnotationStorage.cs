@@ -108,7 +108,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		#region .ctor & properties
 		/// <summary>Initializes a new instance of the <see cref="XmlAnnotationStorage"/> class.</summary>
-		/// <param name="resourcePath">The relative path to the resource containing xml document with metric annotations.</param>
+		/// <param name="resourcePath">The relative path to the resource containing xml document with source annotations.</param>
 		/// <param name="useFullTypeName">Use full type name in XML annotations.</param>
 		/// <param name="resourceName">The name of the resource.</param>
 		public XmlAnnotationStorage(
@@ -127,11 +127,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		public string ResourceName { get; }
 
 		/// <summary>
-		/// Gets path to the resource containing xml document with metric annotations.
+		/// Gets path to the resource containing xml document with source annotations.
 		/// Should be relative to the source file the attribute is applied to.
 		/// If not set then path to the resource should be same as path to the source file (resource's extension should be '.xml').
 		/// </summary>
-		/// <value>The relative path to the resource containing xml document with metric annotations.</value>
+		/// <value>The relative path to the resource containing xml document with source annotations.</value>
 		[CanBeNull]
 		public string ResourcePath { get; }
 

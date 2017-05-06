@@ -5,8 +5,6 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
-using BenchmarkDotNet.Helpers;
-
 using JetBrains.Annotations;
 
 using Xunit;
@@ -16,11 +14,23 @@ using Xunit.Sdk;
 namespace CodeJam.PerfTests.Running.Core.Xunit
 {
 	/// <summary>
-	/// Enables console output capture, allows to break the test dynamically by throwing <see cref="SkipTestException"/>.
+	/// Provides additional output stream and
+	/// allows to break the test dynamically by throwing <see cref="SkipTestException"/>.
 	/// </summary>
 	// DAMNEDCODE: hacks xUnit internals to make it work. I hope you'll hate it as much as I do.
 	internal class CompetitionFactTestCase : XunitTestCase
 	{
+		private static readonly AsyncLocal<TextWriter> _output = new AsyncLocal<TextWriter>();
+
+		/// <summary>The output for the test</summary>
+		public static TextWriter Output => _output.Value;
+
+		private static void AssertNoOutput()
+		{
+			if (_output.Value != null)
+				throw new InvalidOperationException("Bug: trying to override output of concurrent test");
+		}
+
 		/// <inheritdoc/>
 		[Obsolete("Called by the de-serializer; should only be called by deriving classes for de-serialization purposes")]
 		[UsedImplicitly]
@@ -42,11 +52,15 @@ namespace CodeJam.PerfTests.Running.Core.Xunit
 		{
 			var skipMessageBus = new SkipTestMessageBus(messageBus);
 
+			AssertNoOutput();
+			
 			var result = await new HackTestCaseRunner(
 				this, DisplayName, SkipReason,
 				constructorArguments, TestMethodArguments,
 				skipMessageBus, aggregator,
 				cancellationTokenSource).RunAsync();
+
+			AssertNoOutput();
 
 			if (skipMessageBus.DynamicallySkippedTestCount > 0)
 			{
@@ -99,18 +113,25 @@ namespace CodeJam.PerfTests.Running.Core.Xunit
 			/// <inheritdoc/>
 			protected override async Task<Tuple<decimal, string>> InvokeTestAsync(ExceptionAggregator aggregator)
 			{
+				AssertNoOutput();
+
 				var writer = new StringWriter();
-				using (ConsoleHelpers.CaptureConsoleOutput(writer))
+				_output.Value = writer;
+				try
 				{
 					var result = await base.InvokeTestAsync(aggregator);
-
 					writer.Flush();
+
 					var output = writer.GetStringBuilder();
 					if (output.Length == 0)
 					{
 						return result;
 					}
 					return new Tuple<decimal, string>(result.Item1, result.Item2 + output);
+				}
+				finally
+				{
+					_output.Value = null;
 				}
 			}
 		}

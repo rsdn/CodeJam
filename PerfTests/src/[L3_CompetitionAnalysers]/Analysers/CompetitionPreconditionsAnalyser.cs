@@ -100,14 +100,14 @@ namespace CodeJam.PerfTests.Analysers
 			var benchMissing = summary.GetSummaryOrderBenchmarks()
 				.Except(benchmarksWithReports)
 				.Select(b => b.Target.MethodDisplayInfo)
-				.Distinct()
-				.ToArray();
+				.Distinct().
+				ToArray();
 
 			if (benchMissing.Any())
 			{
 				var benchmarks = benchMissing.Length == 1 ? "benchmark" : "benchmarks";
 				analysis.WriteExecutionErrorMessage(
-					$"No reports for {benchmarks}: {benchMissing.Join(", ")}.",
+					$"No result reports for {benchmarks}: {benchMissing.Join(", ")}.",
 					"Ensure that benchmarks were run successfully and did not throw any exceptions.");
 			}
 
@@ -161,7 +161,7 @@ namespace CodeJam.PerfTests.Analysers
 			Func<BenchmarkReport, bool> benchmarkReportFilter) =>
 				analysis.Summary.GetSummaryOrderBenchmarks()
 					.Select(b => analysis.Summary[b])
-					.Where(r => r != null && benchmarkReportFilter(r))
+					.Where(r => r != null && r.ExecuteResults.Any() && benchmarkReportFilter(r))
 					.Select(r => r.Benchmark.Target.MethodDisplayInfo)
 					.Distinct()
 					.ToArray();

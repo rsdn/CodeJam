@@ -219,7 +219,7 @@ namespace CodeJam.PerfTests.Running.Core
 				SetCurrentDirectoryIfNotNull(currentDirectory);
 				try
 				{
-					competitionState = RunCore(benchmarkType, competitionConfig);
+					competitionState = CompetitionCore.Run(benchmarkType, competitionConfig);
 
 					ProcessRunComplete(competitionState);
 				}
@@ -242,14 +242,6 @@ namespace CodeJam.PerfTests.Running.Core
 			return competitionState;
 		}
 
-		// TODO: HACK: Remove after update to BDN 10.4
-		/// <summary>Runs the competition - core implementation.</summary>
-		/// <param name="benchmarkType">Benchmark class to run.</param>
-		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>Competition state for the run.</returns>
-		protected virtual CompetitionState RunCore(Type benchmarkType, ICompetitionConfig competitionConfig) =>
-			CompetitionCore.Run(benchmarkType, competitionConfig);
-
 		#region Prepare & run completed logic
 		private void ProcessRunComplete(
 			[NotNull] CompetitionState competitionState)
@@ -257,8 +249,10 @@ namespace CodeJam.PerfTests.Running.Core
 			var logger = competitionState.Logger;
 			var summary = competitionState.LastRunSummary;
 
-			if (logger == null)
+			if (logger == null || summary == null)
 				return;
+
+			logger.WriteVerbose($"{competitionState.BenchmarkType.Name} completed.");
 
 			if (competitionState.Options.RunOptions.DetailedLogging)
 			{
@@ -275,10 +269,12 @@ namespace CodeJam.PerfTests.Running.Core
 				else
 				{
 					logger.WriteSeparatorLine();
-					logger.WriteLineInfo($"{FilteringLogger.LogVerbosePrefix} No messages in run.");
+					logger.WriteVerbose("No messages in run.");
 				}
+
+				logger.WriteLine();
 			}
-			else if (summary != null)
+			else
 			{
 				using (FilteringLogger.BeginLogImportant(summary.Config))
 				{
@@ -293,6 +289,8 @@ namespace CodeJam.PerfTests.Running.Core
 					// Dumping the benchmark summary
 					summaryLogger.WriteSeparatorLine("Summary");
 					MarkdownExporter.Console.ExportToLog(summary, summaryLogger);
+
+					logger.WriteLine();
 				}
 			}
 		}

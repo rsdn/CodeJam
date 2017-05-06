@@ -13,6 +13,7 @@ using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
+using CodeJam.Strings;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
@@ -22,8 +23,16 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	/// <seealso cref="CodeJam.PerfTests.Running.SourceAnnotations.IAnnotationStorage" />
 	internal abstract class AnnotationStorageBase : IAnnotationStorage
 	{
+		private enum MetricParseEvent
+		{
+			ThreatedAsEmpty,
+			NotApplicableToBaseline,
+			UnitValueMissing,
+			UnitValueNotrequired
+		}
+
 		#region Static members
-		#region Parse comprtition target
+		#region Parse competition target
 		/// <summary>Tries to parse competition target.</summary>
 		/// <param name="target">The target.</param>
 		/// <param name="metrics">The metrics to parse.</param>
@@ -37,8 +46,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					[CanBeNull] StoredTargetInfo storedTarget,
 					[NotNull] IMessageLogger messageLogger)
 		{
-			var result = new List<CompetitionMetricValue>();
-
 			if (storedTarget == null)
 			{
 				messageLogger.WriteInfoMessage(
@@ -46,7 +53,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					"Has no annotations applied, all metrics will be threated as empty.",
 					"Check if the method was renamed; add annnotations for the method or enable auto-annotation feature.");
 
-				return new CompetitionTarget(target, result.ToArray());
+				return new CompetitionTarget(target, Array<CompetitionMetricValue>.Empty);
 			}
 
 			if (storedTarget.Baseline != null && storedTarget.Baseline != target.Baseline)
@@ -57,9 +64,21 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					"Check if the method was renamed. Rename it back or update previous run log with new method name.");
 			}
 
-			var hasAnyMetric = storedTarget.MetricValues.Any();
+			var parseEvents = new List<(MetricInfo metric, MetricParseEvent parseEvent)>();
+			var result = ParseCompetitionTarget(target, metrics, storedTarget, parseEvents);
 
-			// TODO: group messages into one?
+			ReportParseEventSummary(target, parseEvents, messageLogger);
+
+			return new CompetitionTarget(target, result.ToArray());
+		}
+
+		private static List<CompetitionMetricValue> ParseCompetitionTarget(
+			Target target,
+			MetricInfo[] metrics,
+			StoredTargetInfo storedTarget,
+			List<(MetricInfo, MetricParseEvent)> parseEvents)
+		{
+			var result = new List<CompetitionMetricValue>();
 			var metricsByType = storedTarget.MetricValues.ToDictionary(m => m.MetricAttributeType);
 			foreach (var metric in metrics)
 			{
@@ -69,64 +88,93 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					if (metricIsApplicable)
 					{
 						var metricValue = storedMetric.ToMetricValue(metric);
-						if (CheckMetricValue(target, metricValue, messageLogger))
+						if (CheckMetricValue(metricValue, parseEvents))
 						{
 							result.Add(storedMetric.ToMetricValue(metric));
 						}
 					}
 					else if (!metric.IsPrimaryMetric)
 					{
-						messageLogger.WriteSetupErrorMessage(
-							target,
-							$"Annotation for relative metric {metric} cannot be applied as the target is baseline.",
-							"Check if baseline method for the competition was changed.");
+						parseEvents.Add((metric, MetricParseEvent.NotApplicableToBaseline));
 					}
 				}
 				else if (metricIsApplicable)
 				{
-					if (hasAnyMetric)
-					{
-						messageLogger.WriteInfoMessage(
-							target,
-							$"Annotation for metric {metric} not found, threated as empty.",
-							"Add annnotation for the metric or enable auto-annotation feature.");
-					}
-
+					parseEvents.Add((metric, MetricParseEvent.ThreatedAsEmpty));
 					result.Add(new CompetitionMetricValue(metric));
 				}
 			}
-
-			return new CompetitionTarget(target, result.ToArray());
+			return result;
 		}
 
 		private static bool CheckMetricValue(
-			Target target,
 			CompetitionMetricValue metricValue,
-			IMessageLogger messageLogger)
+			List<(MetricInfo, MetricParseEvent)> parseEvents)
 		{
 			var metric = metricValue.Metric;
+			var hasDisplayMetricUnit = !metricValue.DisplayMetricUnit.IsEmpty;
 			if (metric.MetricUnits.IsEmpty)
 			{
-				if (!metricValue.DisplayMetricUnit.IsEmpty)
+				if (hasDisplayMetricUnit)
 				{
-					messageLogger.WriteSetupErrorMessage(
-						target,
-						$"{metric} metric value was parsed incorrectly. Unit value should be null as metric has empty units scale.",
-						"Ensure that annotation does not include metric unit.");
+					parseEvents.Add((metric, MetricParseEvent.UnitValueNotrequired));
 					return false;
 				}
 			}
-			else if (metricValue.DisplayMetricUnit.IsEmpty)
+			else if (!hasDisplayMetricUnit && !metricValue.ValuesRange.IsEmpty)
 			{
-				messageLogger.WriteSetupErrorMessage(
-					target,
-					$"{metric} metric value was parsed incorrectly. Unit value should be not null as metric has empty units scale.",
-					"Ensure that annotation does include metric unit.");
+				parseEvents.Add((metric, MetricParseEvent.UnitValueMissing));
 				return false;
 			}
 			return true;
 		}
-		#endregion 
+
+		private static void ReportParseEventSummary(
+			Target target,
+			List<(MetricInfo metric, MetricParseEvent parseEvent)> parseEvents,
+			IMessageLogger messageLogger)
+		{
+			var eventsGrouped = parseEvents
+				.GroupBy(g => g.parseEvent, g => g.metric)
+				.OrderBy(g => (int)g.Key)
+				.Select(g => (parseEvent: g.Key, names: g.Select(m => m.DisplayName).Join(", ")));
+
+			foreach (var g in eventsGrouped)
+			{
+				var metricQuantifier = g.names.Length == 1 ? "metric" : "metrics";
+
+				switch (g.parseEvent)
+				{
+					case MetricParseEvent.ThreatedAsEmpty:
+						messageLogger.WriteInfoMessage(
+							target,
+							$"Annotation for {metricQuantifier} {g.names} not found, threated as empty.",
+							$"Add annnotation for the {metricQuantifier} or enable auto-annotation feature.");
+						break;
+					case MetricParseEvent.NotApplicableToBaseline:
+						messageLogger.WriteInfoMessage(
+							target,
+							$"Annotation for {metricQuantifier} {g.names} not found, threated as empty.",
+							$"Add annnotation for the {metricQuantifier} or enable auto-annotation feature.");
+						break;
+					case MetricParseEvent.UnitValueMissing:
+						messageLogger.WriteSetupErrorMessage(
+							target,
+							$"{g.names} metric value was parsed incorrectly. Unit value should be not null as metric' units scale is not emtpy.",
+							"Ensure that annotation does include metric unit.");
+						break;
+					case MetricParseEvent.UnitValueNotrequired:
+						messageLogger.WriteSetupErrorMessage(
+							target,
+							$"{g.names} metric value was parsed incorrectly. Unit value should be null as metric' units scale is emtpy.",
+							"Ensure that annotation does not include metric unit.");
+						break;
+					default:
+						throw CodeExceptions.UnexpectedValue(g.parseEvent);
+				}
+			}
+		}
+		#endregion
 		#endregion
 
 		// TODO: notify if save method failed.
@@ -150,7 +198,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				FillTargetsFromAnnotations(targets, analysis);
 			}
 
-			return analysis.SafeToContinue? targets.ToArray(): Array<CompetitionTarget>.Empty;
+			return analysis.SafeToContinue ? targets.ToArray() : Array<CompetitionTarget>.Empty;
 		}
 
 		/// <summary>Fills competition targets with empty metric values.</summary>
@@ -160,7 +208,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		{
 			var ignoreCharacteristic = CompetitionAnnotationMode.IgnoreExistingAnnotationsCharacteristic.FullId;
 			analysis.WriteInfoMessage(
-				$"Existing metric annotations are ignored due to {ignoreCharacteristic} setting.");
+				$"Existing source annotations are ignored due to {ignoreCharacteristic} setting.");
 
 			var metrics = analysis.RunState.Config.GetMetrics().ToArray();
 

@@ -35,20 +35,6 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <c>true</c> if the last run summary should be dumped into host logger; otherwise, <c>false</c>.
 		/// </value>
 		protected override bool DumpSummaryToHostLogger => false;
-
-		/// <summary>Runs the competition - core implementation.</summary>
-		/// <param name="benchmarkType">Benchmark class to run.</param>
-		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>Competition state for the run.</returns>
-		protected override CompetitionState RunCore(Type benchmarkType, ICompetitionConfig competitionConfig)
-		{
-			// HACK: swallow console output
-			// TODO: remove after upgrade to BDN 10.4
-			using (ConsoleHelpers.CaptureConsoleOutput(new StringWriter()))
-			{
-				return base.RunCore(benchmarkType, competitionConfig);
-			}
-		}
 		#endregion
 
 		#region Host-related logic

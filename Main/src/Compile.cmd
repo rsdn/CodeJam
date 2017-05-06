@@ -1,4 +1,4 @@
-﻿"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe" CodeJam.Main.csproj /target:Clean   /property:Configuration=Debug   /property:OutputPath=bin\Debug.3.5\
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe" CodeJam.Main.csproj /target:Clean   /property:Configuration=Debug   /property:OutputPath=bin\Debug.3.5\
 "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe" CodeJam.Main.csproj /target:Clean   /property:Configuration=Release /property:OutputPath=bin\Release.3.5\
 "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe" CodeJam.Main.csproj /target:ReBuild /property:Configuration=Debug   /property:OutputPath=bin\Debug.3.5\   /property:TargetFrameworkVersion=v3.5 /p:DefineConstants="FW461;FW46;FW452;FW451;FW45;FW40;FW35"
 "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe" CodeJam.Main.csproj /target:ReBuild /property:Configuration=Release /property:OutputPath=bin\Release.3.5\ /property:TargetFrameworkVersion=v3.5 /p:DefineConstants="FW461;FW46;FW452;FW451;FW45;FW40;FW35"

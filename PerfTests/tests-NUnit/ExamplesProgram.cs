@@ -15,7 +15,7 @@ namespace CodeJam.Examples.PerfTests
 		private static void Main()
 		{
 			Console.WindowWidth = 135;
-			Console.WindowHeight = 54;
+			Console.WindowHeight = 40;
 
 			ConsoleCompetition.Run(typeof(ListCapacityPerfTest).Assembly);
 

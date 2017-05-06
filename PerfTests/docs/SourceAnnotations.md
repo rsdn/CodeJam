@@ -1,4 +1,4 @@
-# CodeJam.PerfTests Metric Annotations
+# CodeJam.PerfTests Source Annotations
 
 > **META-NOTE**
 >
@@ -6,27 +6,103 @@
 
 [TOC]
 
-## Competition metric annotations
-
-Metric annotations provides a way to store metric limits for the competition. Current implementation supports various metrics such as execution time, GC allocations, GC collection count and so on. Also, there is public API for adding your own metrics.
+Source annotations provide a way to store metric limits for the competition. By default CodeJam.PerfTests will only check the limits you've set but there's auto-annotation feature that will adjust  limits with actual values and update sources for you.
 
 ## Annotate sources using attributes
 
-A perftest always should have baseline (or reference) implementation method (annotate it with `[CompetitionBaseline]` attribute) and one or more competing implementations methods annotated with `[CompetitionBenchmark]`.
+By default CodeJam.Perftests uses attributes to store competition limits. There's own attribute for each competition metric (`[ExpectedTime]` for measuring expected execution time, `[GcAllocations]` for guess what and so on). All of these attributes have overload with min and max metric values. In addition, some of attributes may use metric unit enum for value scaling. As example:
 
-If there's none of them the test will fail with
-
-```
-No methods in benchmark. Apply one of CompetitionBenchmarkAttribute, CompetitionBaselineAttribute or BenchmarkAttribute to the benchmark methods.
-```
-
-or
-
-```
-No baseline method for benchmark. Apply CompetitionBaselineAttribute to the one of benchmark methods.
+```c#
+[ExpectedTime(2.4, 2.8, TimeUnit.Millisecond)] // takes 2.4..2.8 ms to run
+public void DoSomething() { ... }
 ```
 
-message.
+For ignore min and ignore max value you may use `double.NegativeInfinity` and `double.PositiveInfinity`, respectively. For convenience these constants are exposed as a members of `MetricRange` type:
+
+  ```c#
+// takes at least 2.8 ms to run
+[ExpectedTime(2.4, MetricRange.ToPositiveInfinity, TimeUnit.Millisecond)]
+public void DoSomething() { ... }
+  ```
+
+Some metric attributes has another overload, with only one metric value. Its meaning is determined by metric values provider so be sure to check XML docs for the overload. As example,
+
+```c#
+[ExpectedTime(0.5, TimeUnit.Second)]
+```
+
+means that the method takes no more than half a a second to run. And
+
+```c#
+[GcAllocatios(16.3, TimeUnit.Kilobyte)]
+```
+
+means that each call of the method allocates exactly 16.3 KB of managed memory.
+
+
+
+## Attributes used by competition methods
+
+### Including methods in competition
+
+Each method you want to collect competition metrics for should be included in competition by annotating the method with `[CompetitionBenchmark]` attribute. 
+
+```c#
+		[CompetitionBenchmark]
+		public void SlowerX3() => Thread.SpinWait(3 * Count);
+```
+
+In addition, if you have relative metrics to measure, the competition should include a method marked with a `[CompetitionBaseline]` attribute,
+
+```c#
+		[CompetitionBaseline]
+		public void Baseline() => Thread.SpinWait(Count);
+```
+
+If there's no baseline attribute the test will fail with following message:
+
+```
+Test completed with errors, details below.
+Errors:
+    * Run #1: No baseline method for benchmark. Apply CompetitionBaselineAttribute to the one of benchmark methods.
+```
+
+
+
+If you want to exclude some methods from competition you may either apply `[Benchmark]` attribute instead of `[CompetitionBenchmark]` attribute or mark the method with `[CompetitionBenchmark(DoesNotCompete = true)]`.
+
+The competition result log will you inform you about ignored methods with messages like this:
+
+```
+    * Run #1: Target Baseline. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.
+    * Run #1: Target SlowerX3. Metric validation skipped as the method is marked with CompetitionBenchmarkAttribute.DoesNotCompete set to true.
+```
+
+
+
+## Perform manual source annotation using attributes
+
+ In addition you should annotate each of the methods with attribute for each metric you want to collect and analyze, result should look like this:
+
+```c#
+		// Competition member #1. Should take ~3x more time to run.
+		[CompetitionBenchmark(2.98, 3.18)]
+		[GcAllocations(0), Gc0(0), Gc1(0), Gc2(0)]
+		[ExpectedTime(271.4, 321.0, TimeUnit.Microsecond)]
+		public void SlowerX3() => Thread.SpinWait(3 * 16 * 1024);
+```
+
+In addition, if you have relative metrics to measure, the competition should include a method marked with a `[CompetitionBaseline]` attribute,
+
+```c#
+		// Baseline competition member. Other competition members will be compared with this.
+		[CompetitionBaseline]
+		[GcAllocations(0), Gc0(0), Gc1(0), Gc2(0)]
+		[ExpectedTime(82.09, 101.26, TimeUnit.Microsecond)]
+		public void Baseline() => Thread.SpinWait(Count);
+```
+
+This method cannot be annotated with attributes for relative metrics. Instead of this all relative metrics for all other methods in competition will be calculated based on the baseline results. If there's no baseline attribute the test will fail with
 
 ### Choosing a baseline method
 

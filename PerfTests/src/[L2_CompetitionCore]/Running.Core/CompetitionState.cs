@@ -57,7 +57,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// Is null if the current run is not completed.
 		/// Can be null if the run was completed with errors.
 		/// </summary>
-		/// <value>The summary for the last completed run.</value>
+		/// <value>The summary for the last completed run or <c>null</c> if the run failed.</value>
 		[CanBeNull]
 		public Summary LastRunSummary { get; private set; }
 

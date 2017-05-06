@@ -183,21 +183,16 @@ TST10
 
 			output = new AccumulationLogger();
 			logger = new FilteringLogger(output, LogFilter.PrefixedOrErrors);
-			var i = 0;
 			foreach (var line in lines)
 			{
-				if (i++ % 2 == 0)
-					logger.WriteLineError(line);
-				else
-					logger.WriteLineHint(line);
+				logger.WriteLineError(line);
 			}
 			Assert.AreEqual(output.GetLog(), LogInput + "\r\n");
 
 			output = new AccumulationLogger();
 			logger = new FilteringLogger(output, LogFilter.PrefixedOrErrors);
 			LogMessages(logger);
-			const string Expected = @"AH
-TST0
+			const string Expected = @"A
 // !TST1
 // !<--
 TST3

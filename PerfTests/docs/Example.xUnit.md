@@ -1,10 +1,14 @@
-## TL;DR (xUnit version)
+## TL;DR (xUnit edition)
+
+> **META-NOTE**
+>
+> Places to update are marked with *--…--*.
 
 > ***--WARNING--***
 >
-> The xUnit integration is very-alpha version and has some known issues ([xunit/#908](https://github.com/xunit/xunit/issues/908) as example) we're going to fix sooner or later.
+> The xUnit integration is very-alpha version and has some known issues we're going to fix sooner or later.
 
-1. Create a new unit test project (*--Set targeting to .net 4.6+, previous FW versions are not supported for now--*).
+1. Create a new unit test project (*--Be sure to set targeting to the .net 4.6+, previous FW versions are not supported for now--*).
 2. Add a reference to the [CodeJam.PerfTests.xUnit](https://www.nuget.org/packages/CodeJam.PerfTests.xUnit) nuget package.
 3. Add a file with the following code:
 ```c#
@@ -48,7 +52,7 @@ namespace CodeJam.Examples.PerfTests
 }
 ```
 
-4. Switch to **Release** configuration and run the `RunSimplePerfTest` test. You should get something like this (look at attribute parameters):
+4. Switch to **Release** configuration and run the `RunSimplePerfTest` test. You should get something like this (look at attributes):
 ```c#
 		// Baseline competition member. Other competition members will be compared with this.
 		[CompetitionBaseline]
@@ -76,7 +80,7 @@ yep, it's magic:)
  >
  > This test is known to provide inaccurate results on notebooks / nettops with mobile CPUs due to aggressive frequency scaling and throttling. There're two workarounds:
  >
- > First, you can set loop count ( `Count`) to the `CompetitionRunHelpers.SmallLoopCount`. That constant (currently it is equal to 256, was found empirically) provides most accurate results for small loops on different hardware 
+ > First, you can set loop count ( `Count`) to the `CompetitionRunHelpers.SmallLoopCount`. That constant (currently it is equal to 256, was found empirically) provides more accurate results for small loops. 
  >
  > As a second option, you can set loop count ( `Count`) to the `CompetitionRunHelpers.BurstModeLoopCount` that should be used for large loops (10k or so). Large methods (single run takes 1 ms or more) should be used together with `[CompetitionBurstMode]` attribute applied to the competition class. The attribute adjusts competition options to improve running time for long-executing competition members.
 

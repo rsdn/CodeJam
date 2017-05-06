@@ -1,7 +1,7 @@
 CodeJam.PerfTests Release Notes
 -------------------------------
 
-# 0.1.0-beta
+# 0.1.1-beta
 * Update BenchmarkDotNet to fix false allocation detection
 
 # 0.1.0-beta

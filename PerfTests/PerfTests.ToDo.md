@@ -12,13 +12,12 @@
 ### TODO now:
 * IColumn implementation - fix after update to BDN 10.4
 * Cache metric values (same as annotation context but for parsing the anotations).
-* Output contains pup of messages printed under `*** Warnings ***` section. Have no idea what to do with it.
-  Need non-printable analyzer warnings:)
+* Output contains messages printed under `*** Warnings ***` section. Have no idea what to do with it.
+  Need non-printable analyzer warnings :)
 
 ### Types:
+ * ??? Rrename Xxx annotations to metric annotations? Not sure, may be a bad idea if we're going to store something except metrics.'
  * BurstModeEngineFactory: sync with code in BDN
- * HACK: Remove console capture after update to BDN 10.4
- * xUnit: improve capture of console output. Pass xUnitWriter as a logger instead.
  * Sealed types: unseal where it looks like a good idea.
  * Simplify collections of types. MappedCollection / Keyed collection where possible.
  
@@ -47,7 +46,7 @@
 
 ### Messages:
  * 'No logged XML annotation for Test00Baseline found. Check if the method was renamed.' => add metric names to message
- * Validate all messages, check that origin (benchmark target) is logged, add hints (tyed arg) to them.
+ * Validate all messages, check that origin (benchmark target) is logged, add hints to them.
  * Add typed method to force same naming for source of the messages (Target, Type, xmlFile etc).
  * Check WriteVerboseHint for source annotations
  * ??? Write hint with absolute values if relative limits failed? (discarded)

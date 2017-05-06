@@ -29,7 +29,7 @@ namespace CodeJam.PerfTests.Configs
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionRerunsModifierAttribute"/> class.</summary>
-		/// <param name="rerunsIfValidationFailed">Maximum count of retries performed if metric limits check failed.</param>
+		/// <param name="rerunsIfValidationFailed">Amount of reruns performed if validation failed.</param>
 		public CompetitionRerunsModifierAttribute(int rerunsIfValidationFailed)
 			: base(() => new ModifierImpl(rerunsIfValidationFailed)) { }
 	}

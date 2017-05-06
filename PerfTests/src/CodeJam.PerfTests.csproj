@@ -88,6 +88,7 @@
     <Compile Include="[L0_PortToBenchmerkDotNet]\Engines\BurstModeEngine.cs" />
     <Compile Include="[L0_PortToBenchmerkDotNet]\Engines\NamespaceDoc.cs" />
     <Compile Include="[L2_CompetitionCore]\Analysers\ValidatorMessagesAnalyser.cs" />
+    <Compile Include="[L2_CompetitionCore]\Loggers\RedirectLogger.cs" />
     <Compile Include="[L2_CompetitionCore]\Loggers\LoggerHelpers.cs" />
     <Compile Include="[L1_CompetitionApi]\Running.Core\EnvironmentHelpers.cs" />
     <Compile Include="[L1_CompetitionApi]\Running.Core\IoHelpers.cs" />
