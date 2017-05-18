@@ -1,5 +1,11 @@
-CodeJam 1.3.0 Release Notes
+CodeJam 1.4.0-beta1 Release Notes
 ---------------------------------
+
+What's new in 1.4.0-beta1
+-------------------
+* IsDebugAssembly moved from ReflectionExtension to AssemblyExtension
+* ReflectionExtension.GetModulePath method added
+* Refactoring and code cleanup
 
 What's new in 1.3.0
 -------------------
