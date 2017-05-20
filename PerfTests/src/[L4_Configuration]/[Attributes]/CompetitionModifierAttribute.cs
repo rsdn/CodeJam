@@ -18,14 +18,17 @@ namespace CodeJam.PerfTests
 		private readonly AttributeValue<ICompetitionModifier> _value;
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionModifierAttribute"/> class.</summary>
-		/// <param name="valueType">Type of the competition modifier. Should have a public parameterless constructor.</param>
-		public CompetitionModifierAttribute([NotNull] Type valueType)
+		/// <param name="competitionModifierType">
+		/// Type of the competition modifier.
+		/// Should implement the <see cref="ICompetitionModifier"/> interface and have a public parameterless constructor.
+		/// </param>
+		public CompetitionModifierAttribute([NotNull] Type competitionModifierType)
 		{
-			_value = new AttributeValue<ICompetitionModifier>(valueType, nameof(valueType));
+			_value = new AttributeValue<ICompetitionModifier>(competitionModifierType, nameof(competitionModifierType));
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionModifierAttribute"/> class.</summary>
-		/// <param name="valueFactory">The value factory.</param>
+		/// <param name="valueFactory">The competition modifier factory.</param>
 		protected CompetitionModifierAttribute([NotNull] Func<ICompetitionModifier> valueFactory)
 		{
 			_value = new AttributeValue<ICompetitionModifier>(valueFactory);

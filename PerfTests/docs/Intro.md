@@ -10,15 +10,15 @@
 
 CodeJam.PerfTests is a framework for .net apps aimed to make perfomance testing as easy as normal unit tests are (NUnit, xUnit and MsTest test frameworks are supported right now, others - as requested). 
 
-The final goal of perftest is to proof your code will not break performance contract no matter under what conditions it is being run. To achieve that CodeJam.PerfTests collects, stores and validates various performance metrics during each perf test run.
+The goal of perftest is to proof your code will not break performance contract no matter under what conditions it is being run. To achieve that CodeJam.PerfTests collects, stores and validates various performance metrics during each perf test run.
 
-In addition there is a set of features such as metric limits auto-adjustment, Continuous Integration support, running perftests over dynamically emitted code and so on that enables perf tests on a real-world projects.
+In addition there is a set of features that are essential for real-world projects. To name a few: metric limits auto-adjustment, Continuous Integration support, support for perftests over dynamically emitted code and so on.
 
 ## TL;DR (NUnit edition)
 
 >**NOTE**
 >
->Here and below all samples are based on NUnit framework. Actually there's no significant difference, only things to change are the package name and test frameworks attributes. Check  [MS perftest example](Example.MSTest.md) and [xUnit perftest test example](Example.xUnit.md) to see how to use CodeJam.PerfTests with other test frameworks.
+>Here and below all samples are based on NUnit framework. Actually there's no significant difference, only things to change are the package name and test frameworks attributes. Check  [MSTest example](Example.MSTest.md) and [xUnit example](Example.xUnit.md) to see how to use CodeJam.PerfTests with other test frameworks.
 
 1. Create a new unit test project (*--Be sure to set targeting to the .net 4.6+, previous FW versions are not supported for now--*).
 2. Add a reference to the [CodeJam.PerfTests.NUnit](https://www.nuget.org/packages/CodeJam.PerfTests.NUnit) nuget package.
@@ -144,7 +144,7 @@ As a benchmarking framework, CodeJam.PerfTests do not provide anything that Benc
 
 5. **It just works: diagnostics.** As said above, benchmarking is hard. CodeJam.PerfTests tries to take the burden from you by providing various diagnostic messages and warnings when something goes wrong. Running a debug build, benchmark results cannot be trusted or the source version does not match to binaries? There is warning for it. At the same time we are trying not to bother you with garbage messages: by default output contains only really important things. Of course, it's configurable.
 
-6. **It just works: real-world use cases.**  The design of the framework is heavily inspired by dogfooding experience and use cases from our real projects. If there're sane use cases uncovered we're going to add them. What's done so far:
+6. **It just works: real-world use cases.**  The design of the framework is heavily inspired by dogfooding experience and use cases from our real projects. If there're sane use cases uncovered we are going to add them. What was done so far:
 
    * Support for most popular testing frameworks and public API for adding new ones. NUnit, xUnit (*--not stable yet--*) and MS Test perftest packages are available out of the box.
    * Support for perftests over dynamically generated or emitted codebase. Source annotations for such tests can be stored as xml resource files, therefore you can regenerate the code without loosing collected perf test metrics.
@@ -159,7 +159,7 @@ As a benchmarking framework, CodeJam.PerfTests do not provide anything that Benc
    * Advanced diagnostics. Warnings about inactual metric limits, LOH allocations and so on.
    * .Net Core and UAP support.
    * F# and VB source annotations support.
-   * Have we missed anything? Create an issue for it!
+   * Have we missed anything? [Create an issue](https://github.com/rsdn/CodeJam/issues) for it!
 
 
 

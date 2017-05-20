@@ -4,9 +4,9 @@
 
 CodeJam.PerfTests is a framework for .net apps aimed to make perfomance testing as easy as normal unit tests are (NUnit, xUnit and MsTest test frameworks are supported right now, others - as requested). 
 
-The final goal of perftest is to proof your code will not break performance contract no matter under what conditions it is being run. To achieve that CodeJam.PerfTests collects, stores and validates various performance metrics during each perf test run.
+The goal of perftest is to proof your code will not break performance contract no matter under what conditions it is being run. To achieve that CodeJam.PerfTests collects, stores and validates various performance metrics during each perf test run.
 
-In addition there is a set of features such as metric limits auto-adjustment, Continuous Integration support, running perftests over dynamically emitted code and so on that enables perf tests on a real-world projects.
+In addition there is a set of features that are essential for real-world projects. To name a few: metric limits auto-adjustment, Continuous Integration support, support for perftests over dynamically emitted code and so on.
 
 
 
@@ -14,9 +14,9 @@ In addition there is a set of features such as metric limits auto-adjustment, Co
 
 * [Intro](docs/Intro.md)
 * [Overview](docs/Overview.md)
+  * [Source Annotations](docs/SourceAnnotations.md) 
   * [Configuration System](docs/ConfigurationSystem.md)
   * [Competition Metric API](docs/CompetitionMetrics.md)
-  * [Source Annotations](docs/SourceAnnotations.md) 
 * [Tutorial](docs/Tutorial.md) (in progress).
 
 

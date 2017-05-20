@@ -82,9 +82,9 @@ The main thing introduced by CodeJam.PerfTests is a concept of _competition_. Co
 
 CodeJam.PerfTests allows to collect, store and validate a bunch of performance metrics for each member of competition. Out of the box there are metric value providers for execution time, memory allocations, GC calls and so on. Also there's public API for adding third-party metric value providers (*--not stable; not documented yet--*) so if you're missing something (SQLexecution time? network IO?) you'll be able to measure it.
 
-Some of providers do support so-called relative metrics: instead of reporting absolute values results are scaled to results for chosen Baseline competition member. These are especially useful when absolute metric values highly depends on environment or hardware and therefore may vary from run to run. 
+Some of providers do support so-called relative metrics: instead of reporting absolute values results are scaled to baseline competition member. Relative metrics are especially useful when absolute metric values highly depends on environment or hardware and therefore may vary from run to run. A great example of such metric is execution time. Default config does not ensure absolute execution time at all. Instead of this competitions use Scaled metric that exposes execution time of the member compared to the baseline member. 
 
-A great example of such metric is execution time. Default config does not ensure absolute execution time at all. Instead of this competition uses the Scaled metric that exposes execution time of the member compared to the baseline member. If competition uses a relative metric but there's no baseline member in competition the perftest will fail with
+If competition uses a relative metric but there's no baseline member in competition the perftest will fail with
 
 ```
 No baseline method for benchmark. Apply CompetitionBaselineAttribute to the one of benchmark methods.
@@ -96,13 +96,13 @@ List of metrics used in competition run can be set up via configuration API, see
 
 ### Source annotations
 
-Each member of competition should be annotated with expected values for each metric used in competition. By default metric limits are performed via c# attributes but there may be other metric storage providers. Out of the box there's XML annotation provider that allows to store source annotations as embedded XML resources. *--Future releases--* will include public api for third-party storage providers to enable advanced scenarios such as storing results of all runs in a database.
+Each member of competition should be annotated with expected values for each metric used in competition. By default metric limits are performed via c# attributes but there may be other metric storage providers. Out of the box there's XML annotation provider that allows to store source annotations as embedded XML resources. *--Future releases--* will include public api for third-party storage providers to enable advanced scenarios such as storing results from all runs in a database.
 
 The annotations may be applied by developer or added (and updated) automatically depending on competition configuration. Check [Source Annotations](SourceAnnotations.md) document for more.
 
 ### Competition runner
 
-There's a separate API (`Competition.Run()` methods) that should be used instead of BenchmarkDotNet's `BenchmarkRunner.Run()` method. This is required because single competition run may include multiple benchmark reruns performed after metric limit adjustment or simply to ignore occasionally out-of-limit runs that are common on cloud VMs or on a low-end hardware. 
+There are `Competition.Run()` methods that should be used instead of BenchmarkDotNet's `BenchmarkRunner.Run()` method. This is required because CodeJam.Perftest extends default benchmark execution logic in a miltiple ways. As example, single competition run may include multiple benchmark runs performed after metric limit adjustment or simply to ignore occasionally out-of-limit runs that are common on cloud VMs or on a low-end hardware. 
 
 In fact, there are multiple competition runner classes. There's one for each test framework supported and also there is a `ConsoleCompetition` runner that allows to run perftests as a console app. All runners do expose same public API so you can switch from one test framework to another by changing a reference to the unit-test-integration assembly (as example, from `CodeJam.PerfTests.NUnit` to `CodeJam.PerfTests.xUnit`).
 
@@ -139,7 +139,31 @@ By default CodeJam.PerfTests is set up to perform very fast perftest runs, avera
 
 This is critical if you have a several hundreds or thousands of perftest as no one wants to wait several hours for tests completion. Also, these quick-snap results are closer to what you will see in production as measured metrics do include worst-case runs, in contrast to clean-room conditions created by default BenchmarkDotNet configuration. Remember, perftests are not about accuracy, they are about to proof your code will not break performance contract described as a set of metric annotations.
 
-If this is not what you want you may apply your own competition config on solution or assembly level. Check the "Configuration system" section for more.
+If the default behavior is not what you want you may apply your own competition config on solution or assembly level. Check the "Configuration system" section for more.
+
+### Out-of-proc perftests
+
+By default all perftests are run in-process as this allows to speedup test execution. *--As it is for now there's no user-friendly API--* to run the perftest out-of-process. As a workaround you may add a reference to the [BenchmarkDotNet.Toolchains.Roslyn](https://www.nuget.org/packages/BenchmarkDotNet.Toolchains.Roslyn/) package, add the following config modifier:
+
+```c#
+	public class OutOfProcessCompetitionAttribute : CompetitionModifierAttribute
+	{
+		private class ModifierImpl : ICompetitionModifier
+		{
+			public void Modify(ManualCompetitionConfig config)
+			{
+				config.Jobs.Clear();
+				config.Jobs.Add(Job.Default.With(new RoslynToolchain()));
+			}
+		}
+
+		public OutOfProcessCompetitionAttribute() : base(typeof(ModifierImpl)) { }
+	}
+```
+
+and then apply the attribute to the perftest class or to the entire assembly. 
+
+Note that modifier replaces job supplied by CodeJam.PerfTests with default one from BenchmarkDotNet. This is done because we currently do not provide any settings usable with out-of proc toolchain.
 
 ### Multi-case perf tests.
 
@@ -185,6 +209,6 @@ CodeJam.PerfTests uses own configuration system that is incompatible with Benchm
 
 >  **EXPLANATION**
 >
-> The competition infrastructure requires the config to be created and all config modifiers to be applied exactly one time before the competition is actually run. This is a principal design decision that cannot be changed or there will be a risk of accidentally breaking the config in a way that cannot be easily detected. We had such experience and it was very disappointing to find some of our tests were reporting false postives for a month or so.
+>  The competition infrastructure requires the config to be created and all config modifiers to be applied exactly one time before the competition is actually run. This is a principal design decision that cannot be changed or there will be a risk of accidentally breaking the config in a way that cannot be easily detected. We had such experience and it was very disappointing to find some of our tests were reporting false postives for a month or so.
 >
-> *--This may be fixed on BenchmarkDotNet side and we're going to do a PR for it some time later--*.
+>  *--This may be fixed on BenchmarkDotNet side and we're going to do a PR for it some time later--*.
