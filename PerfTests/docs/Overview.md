@@ -146,24 +146,32 @@ If the default behavior is not what you want you may apply your own competition 
 By default all perftests are run in-process as this allows to speedup test execution. *--As it is for now there's no user-friendly API--* to run the perftest out-of-process. As a workaround you may add a reference to the [BenchmarkDotNet.Toolchains.Roslyn](https://www.nuget.org/packages/BenchmarkDotNet.Toolchains.Roslyn/) package, add the following config modifier:
 
 ```c#
-	public class OutOfProcessCompetitionAttribute : CompetitionModifierAttribute
+	public class CompetitionOutOfProcessAttribute : CompetitionModifierAttribute
 	{
 		private class ModifierImpl : ICompetitionModifier
 		{
 			public void Modify(ManualCompetitionConfig config)
 			{
+				// Using default BenchmarkDotNet job
+				// as PerfTests's one does not work well with out-of-process runs.
 				config.Jobs.Clear();
 				config.Jobs.Add(Job.Default.With(new RoslynToolchain()));
+
+				// Same level of output that is used by BenchmarkDotNet
+				config.ApplyModifier(new CompetitionOptions()
+				{
+					RunOptions = { DetailedLogging = true }
+				});
 			}
 		}
 
-		public OutOfProcessCompetitionAttribute() : base(typeof(ModifierImpl)) { }
+		public CompetitionOutOfProcessAttribute() : base(typeof(ModifierImpl)) { }
 	}
 ```
 
 and then apply the attribute to the perftest class or to the entire assembly. 
 
-Note that modifier replaces job supplied by CodeJam.PerfTests with default one from BenchmarkDotNet. This is done because we currently do not provide any settings usable with out-of proc toolchain.
+Note that modifier replaces job supplied by CodeJam.PerfTests with default one from BenchmarkDotNet. This is done because we currently do not provide any good job settings for out-of proc toolchain.
 
 ### Multi-case perf tests.
 

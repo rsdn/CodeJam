@@ -60,6 +60,7 @@ namespace CodeJam.Ranges
 		#region Operations
 		/// <summary>Returns simplified composite range. Adjacent ranges with same keys will be merged.</summary>
 		/// <returns>Simplified composite range.</returns>
+		[Pure]
 		public CompositeRange<T> Merge()
 		{
 			if (IsMerged)

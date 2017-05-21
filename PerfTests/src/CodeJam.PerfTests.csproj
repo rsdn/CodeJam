@@ -189,7 +189,7 @@
     <Compile Include="[L4_Configuration]\Configs\CompetitionConfigExtensions.cs" />
     <Compile Include="[L4_Configuration]\Configs\ICompetitionConfigSource.cs" />
     <Compile Include="[L4_Configuration]\[Attributes]\CompetitionFeaturesAttribute.cs" />
-    <Compile Include="[L4_Configuration]\Configs\CompetitionRerunsModifierAttribute.cs" />
+    <Compile Include="[L4_Configuration]\Configs\CompetitionMaximumRerunsAttribute.cs" />
     <Compile Include="[L5_AllTogether]\CompetitionRunHelpers.cs" />
     <Compile Include="[L5_AllTogether]\Running.Console\NamespaceDoc.cs" />
     <Compile Include="[L5_AllTogether]\Running.Core\ConsoleCompetitionRunner.cs" />

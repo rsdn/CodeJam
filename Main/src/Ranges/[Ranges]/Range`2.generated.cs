@@ -80,7 +80,8 @@ namespace CodeJam.Ranges
 			{
 				if (to < from)
 				{
-					throw CodeExceptions.Argument(nameof(to), 
+					throw CodeExceptions.Argument(
+						nameof(to), 
 						$"Invalid range {from.ToInvariantString()}..{to.ToInvariantString()}.");
 				}
 			}

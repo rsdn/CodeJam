@@ -39,7 +39,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"Benchmarks TooFast, TooFastX5: run takes less than 1.00 us. Results cannot be trusted.");
+				"Benchmarks TooFast, TooFastX5: measured run time is less than 1.00 us. " +
+					"Timings are imprecise as they are too close to the timer resolution.");
 
 
 			Assert.AreEqual(messages[1].RunNumber, 1);
@@ -79,8 +80,9 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"Benchmark TooSlow: run takes more than 500.0 ms." +
-					" Consider to rewrite the test as peek timings will be hidden by averages.");
+				"Benchmark TooSlow: measured run time is greater than 500.0 ms. " +
+					"There's a risk the peak timings were hidden by averages. " +
+					"Consider to reduce the number of iterations performed per each measurement.");
 		}
 
 		[Test]

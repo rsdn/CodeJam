@@ -129,9 +129,9 @@ namespace CodeJam.PerfTests.Analysers
 							.TotalNanoseconds()
 							.ToString(timeUnits);
 						analysis.AddWarningConclusion(
-							$"{benchmarks} {tooFastReports.Join(", ")}: run takes less than {time}. " +
-								"Results cannot be trusted.",
-							$"Timing limit is configured via {CompetitionCheckMode.TooFastBenchmarkLimitCharacteristic.FullId}.");
+							$"{benchmarks} {tooFastReports.Join(", ")}: measured run time is less than {time}. " +
+								"Timings are imprecise as they are too close to the timer resolution.",
+							$"Timing limit for this warning is configured via {CompetitionCheckMode.TooFastBenchmarkLimitCharacteristic.FullId}.");
 					}
 				}
 
@@ -148,9 +148,10 @@ namespace CodeJam.PerfTests.Analysers
 							.TotalNanoseconds()
 							.ToString(timeUnits);
 						analysis.AddWarningConclusion(
-							$"{benchmarks} {string.Join(", ", tooSlowReports)}: run takes more than {time}. " +
-								"Consider to rewrite the test as peek timings will be hidden by averages.",
-							$"Timing limit is configured via {CompetitionCheckMode.LongRunningBenchmarkLimitCharacteristic.FullId}.");
+							$"{benchmarks} {string.Join(", ", tooSlowReports)}: measured run time is greater than {time}. " +
+								"There's a risk the peak timings were hidden by averages. "+ 
+								"Consider to reduce the number of iterations performed per each measurement.",
+							$"Timing limit for this warning is configured via {CompetitionCheckMode.LongRunningBenchmarkLimitCharacteristic.FullId}.");
 					}
 				}
 			}
@@ -165,7 +166,7 @@ namespace CodeJam.PerfTests.Analysers
 					.Select(r => r.Benchmark.Target.MethodDisplayInfo)
 					.Distinct()
 					.ToArray();
-		#endregion 
+		#endregion
 		#endregion
 
 		/// <summary>Prevents a default instance of the <see cref="CompetitionPreconditionsAnalyser"/> class from being created.</summary>

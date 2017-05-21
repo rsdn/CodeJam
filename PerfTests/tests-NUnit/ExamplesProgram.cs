@@ -19,7 +19,7 @@ namespace CodeJam.Examples.PerfTests
 
 			ConsoleCompetition.Run(typeof(ListCapacityPerfTest).Assembly);
 
-			ConsoleHelpers.ConsoleDoneWaitForConfirmation();
+			ConsoleHelpers.NotifyWorkDoneAndWaitForConfirmation();
 		}
 	}
 }

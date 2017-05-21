@@ -31,6 +31,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey">The type of the range key</typeparam>
 		/// <param name="range">The range.</param>
 		/// <returns>A new composite range.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> ToCompositeRange<T, TKey>(this Range<T, TKey> range)
 			=> new CompositeRange<T, TKey>(range);
 
@@ -39,6 +40,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey">The type of the range key</typeparam>
 		/// <param name="ranges">The ranges.</param>
 		/// <returns>A new composite range.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> ToCompositeRange<T, TKey>([NotNull] this IEnumerable<Range<T, TKey>> ranges)
 			=> new CompositeRange<T, TKey>(ranges);
 		#endregion
@@ -53,6 +55,7 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a new value for the From boundary. Used if the boundary is exclusive.</param>
 		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if the boundary is exclusive.</param>
 		/// <returns>A range with inclusive boundaries.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> MakeInclusive<T, TKey>(
 			this CompositeRange<T, TKey> compositeRange,
 			[NotNull, InstantHandle] Func<T, T> fromValueSelector,
@@ -75,6 +78,7 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a new value for the From boundary. Used if the boundary is inclusive.</param>
 		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if the boundary is inclusive.</param>
 		/// <returns>A range with exclusive boundaries.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> MakeExclusive<T, TKey>(
 			this CompositeRange<T, TKey> compositeRange,
 			[NotNull, InstantHandle] Func<T, T> fromValueSelector,
@@ -96,6 +100,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="newValueSelector">The value of the new key.</param>
 		/// <returns>A new composite range with the key specified.</returns>
+		[Pure]
 		public static CompositeRange<T2, TKey> WithValues<T, TKey, T2>(
 			this CompositeRange<T, TKey> compositeRange,
 			[NotNull, InstantHandle] Func<T, T2> newValueSelector) =>
@@ -111,6 +116,7 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a new value for the From boundary. Used if boundary has a value.</param>
 		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if boundary has a value.</param>
 		/// <returns>A new composite range with the key specified.</returns>
+		[Pure]
 		public static CompositeRange<T2, TKey> WithValues<T, TKey, T2>(
 			this CompositeRange<T, TKey> compositeRange,
 			[NotNull, InstantHandle] Func<T, T2> fromValueSelector,
@@ -133,7 +139,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey">The type of the range key</typeparam>
 		/// <param name="compositeRange">The source range.</param>
 		/// <returns>All range intersections from the composite range.</returns>
-		[NotNull]
+		[Pure, NotNull]
 		public static IEnumerable<RangeIntersection<T, TKey>> GetIntersections<T, TKey>(this CompositeRange<T, TKey> compositeRange)
 		{
 			if (compositeRange.IsEmpty)
@@ -198,6 +204,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="value">The value to check.</param>
 		/// <returns>Ranges that has intersections with passed range.</returns>
+		[Pure]
 		public static Range<T, TKey>[] GetIntersection<T, TKey>(this CompositeRange<T, TKey> compositeRange, T value)
 		{
 			{
@@ -227,6 +234,7 @@ namespace CodeJam.Ranges
 		/// <param name="from">The boundary From value of the range to check.</param>
 		/// <param name="to">The boundary To value of the range to check.</param>
 		/// <returns>Ranges that has intersections with passed range.</returns>
+		[Pure]
 		public static RangeIntersection<T, TKey> GetIntersection<T, TKey>(this CompositeRange<T, TKey> compositeRange, T from, T to) =>
 			GetIntersectionCore(compositeRange, Range.Create(from, to));
 
@@ -236,6 +244,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The range to check.</param>
 		/// <returns>Ranges that has intersections with passed range.</returns>
+		[Pure]
 		public static RangeIntersection<T, TKey> GetIntersection<T, TKey>(
 			this CompositeRange<T, TKey> compositeRange,
 
@@ -253,6 +262,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The range to check.</param>
 		/// <returns>Ranges that has intersections with passed range.</returns>
+		[Pure]
 		public static RangeIntersection<T, TKey> GetIntersection<T, TKey, TKey2>(
 			this CompositeRange<T, TKey> compositeRange, Range<T, TKey2> other) =>
 				GetIntersectionCore(compositeRange, other);
@@ -297,6 +307,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="value">The value to check.</param>
 		/// <returns><c>true</c>, if the composite range contains the value.</returns>
+		[Pure]
 		public static bool Contains<T, TKey>(this CompositeRange<T, TKey> compositeRange, T value) =>
 			compositeRange.ContainingRange.Contains(value) &&
 				compositeRange.SubRanges.Any(r => r.Contains(value));
@@ -307,6 +318,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The boundary to check.</param>
 		/// <returns><c>true</c>, if the composite range contains the boundary.</returns>
+		[Pure]
 		public static bool Contains<T, TKey>(this CompositeRange<T, TKey> compositeRange, RangeBoundaryFrom<T> other) =>
 			compositeRange.ContainingRange.Contains(other) &&
 				compositeRange.SubRanges.Any(r => r.Contains(other));
@@ -317,6 +329,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The boundary to check.</param>
 		/// <returns><c>true</c>, if the composite range contains the boundary.</returns>
+		[Pure]
 		public static bool Contains<T, TKey>(this CompositeRange<T, TKey> compositeRange, RangeBoundaryTo<T> other) =>
 			compositeRange.ContainingRange.Contains(other) &&
 				compositeRange.SubRanges.Any(r => r.Contains(other));
@@ -328,6 +341,7 @@ namespace CodeJam.Ranges
 		/// <param name="from">The boundary From value of the range to check.</param>
 		/// <param name="to">The boundary To value of the range to check.</param>
 		/// <returns><c>true</c>, if the composite range contains another range.</returns>
+		[Pure]
 		public static bool Contains<T, TKey>(this CompositeRange<T, TKey> compositeRange, T from, T to) =>
 			Contains(compositeRange, Range.Create(from, to));
 
@@ -337,6 +351,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the composite range contains another range.</returns>
+		[Pure]
 		public static bool Contains<T, TKey>(
 			this CompositeRange<T, TKey> compositeRange,
 
@@ -355,6 +370,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the composite range contains another range.</returns>
+		[Pure]
 		public static bool Contains<T, TKey, TKey2>(
 			this CompositeRange<T, TKey> compositeRange, Range<T, TKey2> other) =>
 				compositeRange.ContainingRange.Contains(other) &&
@@ -367,6 +383,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the composite range contains another range.</returns>
+		[Pure]
 		public static bool Contains<T, TKey, TCompositeRange>(
 			this CompositeRange<T, TKey> compositeRange, TCompositeRange other)
 			where TCompositeRange : ICompositeRange<T>
@@ -411,6 +428,7 @@ namespace CodeJam.Ranges
 		/// <param name="from">The boundary From value of the range to check.</param>
 		/// <param name="to">The boundary To value of the range to check.</param>
 		/// <returns><c>true</c>, if the composite range has intersection with another range.</returns>
+		[Pure]
 		public static bool HasIntersection<T, TKey>(
 			this CompositeRange<T, TKey> compositeRange,
 			T from, T to) =>
@@ -422,6 +440,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the composite range has intersection with another range.</returns>
+		[Pure]
 		public static bool HasIntersection<T, TKey>(
 			this CompositeRange<T, TKey> compositeRange,
 
@@ -440,6 +459,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the composite range has intersection with another range.</returns>
+		[Pure]
 		public static bool HasIntersection<T, TKey, TKey2>(
 			this CompositeRange<T, TKey> compositeRange, Range<T, TKey2> other) =>
 				compositeRange.ContainingRange.HasIntersection(other) &&
@@ -452,6 +472,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the composite range has intersection with another range.</returns>
+		[Pure]
 		public static bool HasIntersection<T, TKey, TCompositeRange>(
 			this CompositeRange<T, TKey> compositeRange, TCompositeRange other)
 			where TCompositeRange : ICompositeRange<T>
@@ -495,6 +516,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The range to union with.</param>
 		/// <returns>A union range containing all subranges.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> Union<T, TKey>(this CompositeRange<T, TKey> compositeRange, Range<T, TKey> other) =>
 				Union(compositeRange, other.ToCompositeRange());
 
@@ -504,6 +526,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The range to union with.</param>
 		/// <returns>A union range containing all subranges.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> Union<T, TKey>(
 			this CompositeRange<T, TKey> compositeRange, CompositeRange<T, TKey> other)
 		{
@@ -554,6 +577,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// A range with a new From boundary or the source fange if the new boundary is greater than original.
 		/// </returns>
+		[Pure]
 		public static CompositeRange<T, TKey> ExtendFrom<T, TKey>(this CompositeRange<T, TKey> compositeRange, T from) =>
 			ExtendFrom(compositeRange, Range.BoundaryFrom(from));
 
@@ -565,6 +589,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// A range with a new From boundary or the source fange if the new boundary is greater than original.
 		/// </returns>
+		[Pure]
 		public static CompositeRange<T, TKey> ExtendFrom<T, TKey>(this CompositeRange<T, TKey> compositeRange, RangeBoundaryFrom<T> from)
 		{
 			if (compositeRange.IsEmpty || from.IsEmpty || from >= compositeRange.ContainingRange.From)
@@ -589,6 +614,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// A range with a new To boundary or the source fange if the new boundary is less than original.
 		/// </returns>
+		[Pure]
 		public static CompositeRange<T, TKey> ExtendTo<T, TKey>(this CompositeRange<T, TKey> compositeRange, T to) =>
 			ExtendTo(compositeRange, Range.BoundaryTo(to));
 
@@ -600,6 +626,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// A range with a new To boundary or the source fange if the new boundary is less than original.
 		/// </returns>
+		[Pure]
 		public static CompositeRange<T, TKey> ExtendTo<T, TKey>(this CompositeRange<T, TKey> compositeRange, RangeBoundaryTo<T> to)
 		{
 			if (compositeRange.IsEmpty || to.IsEmpty || to <= compositeRange.ContainingRange.To)
@@ -625,6 +652,7 @@ namespace CodeJam.Ranges
 		/// <param name="from">The boundary From value.</param>
 		/// <param name="to">The boundary To value.</param>
 		/// <returns>An intersection range or empty range if the ranges do not intersect.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> Intersect<T, TKey>(this CompositeRange<T, TKey> compositeRange, T from, T to) =>
 			Intersect(compositeRange, Range.Create(from, to).ToCompositeRange());
 
@@ -634,6 +662,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The range to intersect with.</param>
 		/// <returns>An intersection range or empty range if the ranges do not intersect.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> Intersect<T, TKey>(
 			this CompositeRange<T, TKey> compositeRange,
 
@@ -651,6 +680,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The range to intersect with.</param>
 		/// <returns>An intersection range or empty range if the ranges do not intersect.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> Intersect<T, TKey, TKey2>(this CompositeRange<T, TKey> compositeRange, Range<T, TKey2> other) =>
 			Intersect(compositeRange, other.ToCompositeRange());
 
@@ -661,6 +691,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The range to intersect with.</param>
 		/// <returns>An intersection range or empty range if the ranges do not intersect.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> Intersect<T, TKey, TCompositeRange>(
 			this CompositeRange<T, TKey> compositeRange, TCompositeRange other)
 			where TCompositeRange : ICompositeRange<T>
@@ -729,6 +760,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="from">A new value From.</param>
 		/// <returns>A range trimmed with a new From boundary.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> TrimFrom<T, TKey>(this CompositeRange<T, TKey> compositeRange, T from) =>
 			TrimFrom(compositeRange, Range.BoundaryFrom(from));
 
@@ -738,6 +770,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="from">A new boundary From.</param>
 		/// <returns>A range trimmed with a new From boundary.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> TrimFrom<T, TKey>(this CompositeRange<T, TKey> compositeRange, RangeBoundaryFrom<T> from) =>
 			compositeRange.Intersect(Range.TryCreate(from, RangeBoundaryTo<T>.PositiveInfinity));
 
@@ -747,6 +780,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="to">A new value To.</param>
 		/// <returns>A range trimmed with a new To boundary.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> TrimTo<T, TKey>(this CompositeRange<T, TKey> compositeRange, T to) =>
 			TrimTo(compositeRange, Range.BoundaryTo(to));
 
@@ -756,6 +790,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="to">A new boundary To.</param>
 		/// <returns>A range trimmed with a new To boundary.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> TrimTo<T, TKey>(this CompositeRange<T, TKey> compositeRange, RangeBoundaryTo<T> to) =>
 			compositeRange.Intersect(Range.TryCreate(RangeBoundaryFrom<T>.NegativeInfinity, to));
 
@@ -766,6 +801,7 @@ namespace CodeJam.Ranges
 		/// <param name="from">The boundary From value.</param>
 		/// <param name="to">The boundary To value.</param>
 		/// <returns>Source range with other range excluded.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> Except<T, TKey>(this CompositeRange<T, TKey> compositeRange, T from, T to) =>
 			Except(compositeRange, Range.Create(from, to).ToCompositeRange());
 
@@ -775,6 +811,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The range to intersect with.</param>
 		/// <returns>Source range with other range excluded.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> Except<T, TKey>(
 			this CompositeRange<T, TKey> compositeRange,
 
@@ -792,6 +829,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The range to intersect with.</param>
 		/// <returns>Source range with other range excluded.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> Except<T, TKey, TKey2>(this CompositeRange<T, TKey> compositeRange, Range<T, TKey2> other) =>
 			Except(compositeRange, other.ToCompositeRange());
 
@@ -802,6 +840,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="other">The range to intersect with.</param>
 		/// <returns>Source range with other range excluded.</returns>
+		[Pure]
 		public static CompositeRange<T, TKey> Except<T, TKey, TCompositeRange>(
 			this CompositeRange<T, TKey> compositeRange, TCompositeRange other)
 			where TCompositeRange : ICompositeRange<T>
