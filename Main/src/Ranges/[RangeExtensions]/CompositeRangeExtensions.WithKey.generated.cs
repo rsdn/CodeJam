@@ -204,7 +204,7 @@ namespace CodeJam.Ranges
 		/// <param name="compositeRange">The source range.</param>
 		/// <param name="value">The value to check.</param>
 		/// <returns>Ranges that has intersections with passed range.</returns>
-		[Pure]
+		[Pure, NotNull]
 		public static Range<T, TKey>[] GetIntersection<T, TKey>(this CompositeRange<T, TKey> compositeRange, T value)
 		{
 			{
