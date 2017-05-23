@@ -33,6 +33,7 @@ namespace CodeJam.Reflection
 			return module == module.Assembly.ManifestModule
 				? assemblyPath
 				: Path.Combine(
+					// ReSharper disable once AssignNullToNotNullAttribute
 					Path.GetDirectoryName(assemblyPath),
 					module.Name);
 		}
