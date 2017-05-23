@@ -110,11 +110,18 @@
     <Compile Include="Arithmetic\Operators.cs" />
     <Compile Include="Assertions\Code.NonDebug.cs" />
     <Compile Include="Assertions\Code.cs" />
+    <Compile Include="Assertions\DebugUriCode.generated.cs">
+      <DependentUpon>DebugUriCode.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Assertions\DebugEnumCode.generated.cs">
       <DependentUpon>DebugEnumCode.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Assertions\UriCodeExceptions.cs" />
+    <Compile Include="Assertions\UriCode.cs" />
     <Compile Include="Assertions\EnumCodeExceptions.cs" />
     <Compile Include="Assertions\CodeExceptions.cs" />
     <Compile Include="Assertions\DebugCode.cs" />
@@ -409,6 +416,10 @@
     <Content Include="Arithmetic\Operators.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Operators.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Assertions\DebugUriCode.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DebugUriCode.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Assertions\DebugEnumCode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -62,6 +62,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OperatorsTests.tt</DependentUpon>
     </Compile>
+    <Compile Include="Assertions\UriCodeTests.cs" />
     <Compile Include="Assertions\EnumCodeTests.cs" />
     <Compile Include="Assertions\CodeTests.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensionTests.MinMaxOrDefault.cs" />
