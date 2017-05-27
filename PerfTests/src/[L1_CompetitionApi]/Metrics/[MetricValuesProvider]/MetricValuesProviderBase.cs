@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Diagnosers;
@@ -20,7 +22,30 @@ namespace CodeJam.PerfTests.Metrics
 	[PublicAPI]
 	public abstract class MetricValuesProviderBase : IMetricValuesProvider
 	{
+		private static readonly IReadOnlyDictionary<MetricValueColumns, MetricValueColumn.Kind> _columnKinds =
+			new Dictionary<MetricValueColumns, MetricValueColumn.Kind>
+			{
+				{ MetricValueColumns.Mean, MetricValueColumn.Kind.Mean },
+				{ MetricValueColumns.StdDev, MetricValueColumn.Kind.StdDev },
+				{ MetricValueColumns.Min, MetricValueColumn.Kind.Min },
+				{ MetricValueColumns.Max, MetricValueColumn.Kind.Max }
+			};
+
 		#region Helpers
+		/// <summary>Creates the column provider for the metric columns.</summary>
+		/// <param name="metric">The metric to get columns for.</param>
+		/// <param name="columns">The columns to include.</param>
+		/// <returns>Column provider for the metric columns</returns>
+		protected static IColumnProvider CreateColumnProvider([NotNull] MetricInfo metric, MetricValueColumns columns)
+		{
+			var resultColumns = _columnKinds
+				.Where(p => columns.IsFlagSet(p.Key))
+				.Select(p => (IColumn)new MetricValueColumn(metric, p.Value))
+				.ToArray();
+
+			return new SimpleColumnProvider(resultColumns);
+		}
+
 		/// <summary>Gets report for the benchmark.</summary>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <param name="summary">Summary for the run.</param>
@@ -173,16 +198,18 @@ namespace CodeJam.PerfTests.Metrics
 		}
 
 		/// <summary>Gets column provider for the metric values.</summary>
-		/// <param name="metric">The metric to get column for.</param>
+		/// <param name="metric">The metric to get columns for.</param>
+		/// <param name="columns">The columns to include.</param>
 		/// <returns>Column provider for the metric values</returns>
-		public IColumnProvider GetColumnProvider(MetricInfo metric)
+		public IColumnProvider GetColumnProvider(MetricInfo metric, MetricValueColumns columns)
 		{
 			Code.NotNull(metric, nameof(metric));
+			EnumCode.FlagsDefined(columns, nameof(columns));
 			Code.AssertArgument(
 				metric.ValuesProvider == this, nameof(metric),
 				"Passed ValuesProvider does not match to this one.");
 
-			return GetColumnProviderOverride(metric);
+			return GetColumnProviderOverride(metric, columns);
 		}
 
 		/// <summary>Gets diagnosers the metric values.</summary>
@@ -201,17 +228,18 @@ namespace CodeJam.PerfTests.Metrics
 
 		#region Default implementation (overridable)
 		/// <summary>Gets column provider for the metric values.</summary>
-		/// <param name="metric">The metric to get column for.</param>
+		/// <param name="metric">The metric to get columns for.</param>
+		/// <param name="columns">The columns to include.</param>
 		/// <returns>Column provider for the metric values</returns>
-		protected virtual IColumnProvider GetColumnProviderOverride(MetricInfo metric)
+		protected virtual IColumnProvider GetColumnProviderOverride(MetricInfo metric, MetricValueColumns columns)
 		{
-			if (metric.ReportVariance)
-				return new SimpleColumnProvider(
-					new MetricValueColumn(metric, MetricValueColumn.Kind.Value),
-					new MetricValueColumn(metric, MetricValueColumn.Kind.StdDev));
+			if (columns == MetricValueColumns.Auto)
+				columns = metric.MetricColumns;
 
-			return new SimpleColumnProvider(
-				new MetricValueColumn(metric, MetricValueColumn.Kind.Value));
+			if (columns == MetricValueColumns.Auto)
+				columns = MetricValueColumns.Mean;
+
+			return CreateColumnProvider(metric, columns);
 		}
 
 		/// <summary>Gets diagnosers the metric values.</summary>

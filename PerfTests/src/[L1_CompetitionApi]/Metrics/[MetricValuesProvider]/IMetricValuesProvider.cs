@@ -43,10 +43,11 @@ namespace CodeJam.PerfTests.Metrics
 		MetricRange TryGetLimitValues(Benchmark benchmark, Summary summary);
 
 		/// <summary>Gets column provider for the metric values.</summary>
-		/// <param name="metric">The metric to get column for.</param>
+		/// <param name="metric">The metric to get columns for.</param>
+		/// <param name="columns">The columns to include.</param>
 		/// <returns>Column provider for the metric values</returns>
 		[CanBeNull]
-		IColumnProvider GetColumnProvider(MetricInfo metric);
+		IColumnProvider GetColumnProvider(MetricInfo metric, MetricValueColumns columns);
 
 		/// <summary>Gets diagnosers for the metric values.</summary>
 		/// <param name="metric">The metric to get diagnosers for.</param>

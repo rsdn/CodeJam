@@ -21,16 +21,16 @@ namespace CodeJam.PerfTests.Columns
 		public enum Kind
 		{
 			/// <summary>Mean for metric.</summary>
-			Value,
+			Mean = MetricValueColumns.Mean,
 
 			/// <summary>Metric value standard deviation.</summary>
-			StdDev,
+			StdDev = MetricValueColumns.StdDev,
 			
 			/// <summary>Min metric value.</summary>
-			Min,
+			Min = MetricValueColumns.Min,
 
 			/// <summary>Max metric value.</summary>
-			Max
+			Max =  MetricValueColumns.Max
 		}
 
 		private const int PriorityInCategoryStartValue = 400;
@@ -54,7 +54,7 @@ namespace CodeJam.PerfTests.Columns
 			DebugEnumCode.Defined(kind, nameof(kind));
 			_kind = kind;
 
-			ColumnName = name ?? (metric.DisplayName + (kind == Kind.Value ? "" : "-" + kind));
+			ColumnName = name ?? (metric.DisplayName + (kind == Kind.Mean ? "" : "-" + kind));
 			Metric = metric;
 			PriorityInCategory = PriorityInCategoryStartValue;
 		}
@@ -103,7 +103,7 @@ namespace CodeJam.PerfTests.Columns
 
 		/// <summary>Defines if the column's value represents a number.</summary>
 		/// <value><c>true</c> if the column's value represents a number.</value>
-		public bool IsNumeric => false;
+		public bool IsNumeric => true;
 
 		/// <summary>Defines how to format column's value.</summary>
 		/// <value>Format column mode.</value>
@@ -130,7 +130,7 @@ namespace CodeJam.PerfTests.Columns
 				switch (_kind)
 				{
 					case Kind.Min:
-					case Kind.Value:
+					case Kind.Mean:
 					case Kind.Max:
 						result = 1.0;
 						break;
@@ -150,7 +150,7 @@ namespace CodeJam.PerfTests.Columns
 					case Kind.Min:
 						result = valuesProvider.TryGetLimitValues(benchmark, summary).Min;
 						break;
-					case Kind.Value:
+					case Kind.Mean:
 						result = valuesProvider.TryGetMeanValue(benchmark, summary) ?? double.NaN;
 						break;
 					case Kind.Max:

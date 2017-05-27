@@ -106,10 +106,10 @@ namespace CodeJam.PerfTests.Metrics
 
 			if (metricMeta != null)
 			{
-				SingleValueMode = metricMeta.SingleValueMode;
 				Category = metricMeta.Category;
 				AnnotateInplace = metricMeta.AnnotateInplace;
-				ReportVariance = metricMeta.ReportVariance;
+				SingleValueMode = metricMeta.SingleValueMode;
+				MetricColumns = metricMeta.MetricColumns;
 			}
 		}
 		#endregion
@@ -153,14 +153,6 @@ namespace CodeJam.PerfTests.Metrics
 		[CanBeNull]
 		public string Category { get; }
 
-		/// <summary>Gets single value treatment mode.</summary>
-		/// <value>The single value treatment mode.</value>
-		public MetricSingleValueMode SingleValueMode { get; }
-
-		/// <summary>Gets whether the variance column should be added into summary output.</summary>
-		/// <value><c>true</c> if the variance column should be added into summary output.</value>
-		public bool ReportVariance { get; }
-
 		/// <summary>
 		/// Gets inplace annotation mode (all inplace attributes for same category will be placed at the same line).
 		/// </summary>
@@ -168,12 +160,26 @@ namespace CodeJam.PerfTests.Metrics
 		/// <c>true</c> if the inplace annotation mode is enabled; otherwise, <c>false</c>.
 		/// </value>
 		public bool AnnotateInplace { get; }
+
+		/// <summary>Gets single value treatment mode.</summary>
+		/// <value>The single value treatment mode.</value>
+		public MetricSingleValueMode SingleValueMode { get; }
+
+		/// <summary>Gets columns to include into summary output.</summary>
+		/// <value>The columns to include into summary output.</value>
+		public MetricValueColumns MetricColumns { get; }
 		#endregion
 
 		/// <summary>Gets column provider for the metric values.</summary>
 		/// <returns>Column provider for the metric values</returns>
 		[CanBeNull]
-		public IColumnProvider GetColumnProvider() => ValuesProvider.GetColumnProvider(this);
+		public IColumnProvider GetColumnProvider() => ValuesProvider.GetColumnProvider(this, MetricValueColumns.Auto);
+
+		/// <summary>Gets column provider for the metric values.</summary>
+		/// <param name="columns">The columns to include.</param>
+		/// <returns>Column provider for the metric values</returns>
+		[CanBeNull]
+		public IColumnProvider GetColumnProvider(MetricValueColumns columns) => ValuesProvider.GetColumnProvider(this, columns);
 
 		/// <summary>Gets diagnosers for the metric values.</summary>
 		/// <returns>Diagnosers for the metric values</returns>

@@ -3,7 +3,6 @@
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Engines;
-using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Reports;
 
 namespace CodeJam.PerfTests.Metrics

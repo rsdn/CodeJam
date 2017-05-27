@@ -7,6 +7,10 @@
 
 [TOC]
 
+> **WARNING**
+>
+> Please do not use the BenchmarkDotNet config attributes for competitions. *--As it is for now--* they are unsupported and result behavior is undefined.
+
 CodeJam.PerfTests configuration uses almost same approach the BenchmarkDotNet does. However, there are additions aimed to ease configuration of large projects with hundreds or thousands of perftests. Here's how it works:
 
 ## Attribute annotations

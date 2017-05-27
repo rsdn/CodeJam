@@ -40,10 +40,9 @@ namespace CodeJam.PerfTests.Metrics
 		[CanBeNull]
 		public string DisplayName { get; set; }
 
-		// TODO: flags enum of column kinds
-		/// <summary>Gets or sets whether the variance column should be added into summary output.</summary>
-		/// <value><c>true</c> if the variance column should be added into summary output.</value>
-		public bool ReportVariance { get; set; }
+		/// <summary>Gets columns to include into summary output.</summary>
+		/// <value>The columns to include into summary output.</value>
+		public MetricValueColumns MetricColumns { get; set; }
 
 		/// <summary>
 		/// Gets or sets inplace annotation mode (all inplace attributes for same category will be placed at the same line).

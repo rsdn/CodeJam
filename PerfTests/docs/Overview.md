@@ -80,9 +80,15 @@ The main thing introduced by CodeJam.PerfTests is a concept of _competition_. Co
 
 ### Competition metrics
 
-CodeJam.PerfTests allows to collect, store and validate a bunch of performance metrics for each member of competition. Out of the box there are metric value providers for execution time, memory allocations, GC calls and so on. Also there's public API for adding third-party metric value providers (*--not stable; not documented yet--*) so if you're missing something (SQLexecution time? network IO?) you'll be able to measure it.
+CodeJam.PerfTests allows to collect, store and validate a bunch of performance metrics for each member of competition. Out of the box there are metric value providers for execution time, memory allocations, GC calls and so on. Also there's public API for adding third-party metric value providers (*--not stable; not documented yet--*) so if you're missing something (SQL execution time? network IO?) you'll be able to measure it.
 
 Some of providers do support so-called relative metrics: instead of reporting absolute values results are scaled to baseline competition member. Relative metrics are especially useful when absolute metric values highly depends on environment or hardware and therefore may vary from run to run. A great example of such metric is execution time. Default config does not ensure absolute execution time at all. Instead of this competitions use Scaled metric that exposes execution time of the member compared to the baseline member. 
+
+> **ITS MATH TIME**
+>
+> The Scaled metric provided by CodeJam.Perftests assumes that timing measurements do belong to lognormal distribution. In contrast to normal distribution model used in BenchmarkDotNet the former one provides more accurate results on measurements with long tail distribution.
+>
+> Explanation for humans: the results from Scaled columns in the output of BenchmarkDotNet and CodeJam.PerfTests may differ and its fine.
 
 If competition uses a relative metric but there's no baseline member in competition the perftest will fail with
 
@@ -92,19 +98,19 @@ No baseline method for benchmark. Apply CompetitionBaselineAttribute to the one 
 
 message.
 
-List of metrics used in competition run can be set up via configuration API, see "Configuration system" section for more. 
-
-### Source annotations
-
-Each member of competition should be annotated with expected values for each metric used in competition. By default metric limits are performed via c# attributes but there may be other metric storage providers. Out of the box there's XML annotation provider that allows to store source annotations as embedded XML resources. *--Future releases--* will include public api for third-party storage providers to enable advanced scenarios such as storing results from all runs in a database.
-
-The annotations may be applied by developer or added (and updated) automatically depending on competition configuration. Check [Source Annotations](SourceAnnotations.md) document for more.
+List of metrics used in competition run can be set up via configuration API, see "Configuration system" section. 
 
 ### Competition runner
 
 There are `Competition.Run()` methods that should be used instead of BenchmarkDotNet's `BenchmarkRunner.Run()` method. This is required because CodeJam.Perftest extends default benchmark execution logic in a miltiple ways. As example, single competition run may include multiple benchmark runs performed after metric limit adjustment or simply to ignore occasionally out-of-limit runs that are common on cloud VMs or on a low-end hardware. 
 
 In fact, there are multiple competition runner classes. There's one for each test framework supported and also there is a `ConsoleCompetition` runner that allows to run perftests as a console app. All runners do expose same public API so you can switch from one test framework to another by changing a reference to the unit-test-integration assembly (as example, from `CodeJam.PerfTests.NUnit` to `CodeJam.PerfTests.xUnit`).
+
+### Source annotations
+
+Each member of competition should be annotated with expected values for each metric used in competition. By default metric limits are performed via c# attributes but there may be other metric storage providers. Out of the box there's XML annotation provider that allows to store source annotations as embedded XML resources. *--Future releases--* will include public API for third-party storage providers to enable advanced scenarios such as storing results from all runs in a database.
+
+The annotations may be applied by developer or added (and updated) automatically depending on competition configuration. Check [Source Annotations](SourceAnnotations.md) document for more.
 
 ### Configuration system
 
