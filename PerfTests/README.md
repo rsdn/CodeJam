@@ -20,11 +20,11 @@ In addition there is a set of features that are essential for real-world project
 * [Tutorial](docs/Tutorial.md) (in progress).
 
 
+
+
 ## Contributing
 
 Nothing special, use common [CONTRIBUTING guide](../CONTRIBUTING.md) for the CodeJam project.
-
-
 
 > **WANTED: REWRITERS!**
 >

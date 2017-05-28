@@ -6,11 +6,57 @@
 
 [TOC]
 
-Source annotations provide a way to store metric limits for the competition. By default CodeJam.PerfTests will only check the limits you've set but there's auto-annotation feature that will adjust  limits with actual values and update sources for you.
+Each member of competition should be annotated with expected values for each metric used in competition. By default source annotations use c# attributes to store limits but there may be other metric storage providers. Out of the box there's XML annotation provider that allows to store source annotations as embedded XML resources. *--Future releases--* will include public API for third-party storage providers to enable advanced scenarios such as storing results from all runs in a database.
+
+
 
 ## Annotate sources using attributes
 
-By default CodeJam.Perftests uses attributes to store competition limits. There's own attribute for each competition metric (`[ExpectedTime]` for measuring expected execution time, `[GcAllocations]` for guess what and so on). All of these attributes have overload with min and max metric values. In addition, some of attributes may use metric unit enum for value scaling. As example:
+There's own attribute for each competition metric (`[ExpectedTime]` for measuring expected execution time, `[GcAllocations]` for guess what and so on). All of these attributes have constructor overloads with same signatures. Most full one allows to specify the minimum limit value, the maximum limit value and a scaling factor applied to both min and max limits (if the measurements are not dimensionless). As example
+
+```c#
+[ExpectedTime(2.4, 2.8, TimeUnit.Millisecond)] // takes 2.4..2.8 ms to run
+public void DoSomething() { ... }
+
+[ExpectedTime(2.4, 2.8, TimeUnit.Second)] // takes 2.4..2.8 second to run
+public void DoSomethingElse() { ... }
+```
+
+If you want to skip setting min or max limits you may pass `double.NegativeInfinity` / `double.PositiveInfinity` respectively. For convenience these constants are exposed as a members of `MetricRange` type:
+
+```c#
+// takes at least 2.4 ms to run
+[ExpectedTime(2.4, MetricRange.ToPositiveInfinity, TimeUnit.Millisecond)]
+public void DoSomething() { ... }
+
+// takes no more than 2.8 us to run
+[ExpectedTime(MetricRange.FromPositiveInfinity, 2.8, TimeUnit.Microsecond)]
+public void DoSomething() { ... }
+```
+
+Most of metrics allows to omit minimum limit value, so this one will work too:
+
+```c#
+// takes no more than 2.8 us to run
+[ExpectedTime(2.8, TimeUnit.Microsecond)]
+public void DoSomething() { ... }
+```
+
+The exception of this rule are high precision metrics such as Gc Allocation metric. They assume single-value limit denotes both min and max boundary:
+
+```c#
+// takes no more than 2.8 us to run
+[GcAllocation(42)]
+public void PleaseAllocate42Bytes() { ... }
+
+// takes no more than 2.8 us to run
+[GcAllocation(1.0, )]
+public void PleaseAllocate1Mb() { ... }
+```
+
+
+
+ or more of following similar constructor overloads. Most and the overload with min and max metric values is supported by all . In addition, some of attributes may use metric unit enum for value scaling. As example:
 
 ```c#
 [ExpectedTime(2.4, 2.8, TimeUnit.Millisecond)] // takes 2.4..2.8 ms to run
@@ -284,3 +330,13 @@ You have two options there.
 **First**, you can enable source annotations mode, add the log into build artifacts, setup previous run log URI, and just run perftests. Limit adjustments performed during CI run will be applied to sources on local run. Check previous section for more.
 
 **Second**, you can explicitly disable the `ContinuousIntegrationMode` feature, enable source annotations and setup CI server to auto-commit sources if tests succeed. As example, here's how to do it [with AppVeyor builds](https://www.appveyor.com/docs/how-to/git-push/). We do not recommend this approach. If performance will degrade unexpectedly there will be's no notifications and the limits will be silently overwritten.
+
+
+
+
+
+
+
+Source annotations store expected values for each metric used in competition. By default CodeJam.PerfTests uses c# attributes to annotate sources but there are other metric storage providers. Out of the box there's an XML annotation provider that allows to store annotations out of the code, as embedded XML resource. XML annotations provider is especially useful for perftests over dynamically generated code as the annotations will not be overwritten during codegen. *--Future releases--* will include public API for third-party storage providers to enable advanced scenarios such as storing results from all runs in a database.
+
+All storage providers support value updates so stored limits may be updated with actual values automatically.

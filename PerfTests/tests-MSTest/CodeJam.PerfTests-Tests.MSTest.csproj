@@ -76,6 +76,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Examples\ListCapacityPerfTest.cs" />
+    <Compile Include="Examples\SimpleAllocPerfTest.cs" />
     <Compile Include="Examples\SimplePerfTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

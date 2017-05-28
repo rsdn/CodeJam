@@ -14,19 +14,19 @@ namespace CodeJam.PerfTests
 		Byte = 1,
 
 		/// <summary>Binary size in kilobytes, KB.</summary>
-		[MetricUnit("KB", AppliesFrom = (long)Kilobyte / 2.0)]
+		[MetricUnit("KB", AppliesFrom = (long)Kilobyte * 0.75)]
 		Kilobyte = Byte * 1024,
 
 		/// <summary>Binary size in megabytes, MB.</summary>
-		[MetricUnit("MB", AppliesFrom = (long)Megabyte / 2.0)]
+		[MetricUnit("MB", AppliesFrom = (long)Megabyte * 0.75)]
 		Megabyte = Kilobyte * 1024,
 
 		/// <summary>Binary size in gigabytes, GB.</summary>
-		[MetricUnit("GB", AppliesFrom = (long)Gigabyte / 2.0)]
+		[MetricUnit("GB", AppliesFrom = (long)Gigabyte * 0.75)]
 		Gigabyte = Megabyte * 1024,
 
 		/// <summary>Binary size in petabytes, PB.</summary>
-		[MetricUnit("PB", AppliesFrom = (long)Petabyte / 2.0)]
+		[MetricUnit("PB", AppliesFrom = (long)Petabyte * 0.75)]
 		Petabyte = Gigabyte * 1024
 	}
 

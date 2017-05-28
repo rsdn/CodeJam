@@ -105,8 +105,8 @@ namespace CodeJam.PerfTests.Configs.Factories
 			Run =
 			{
 				LaunchCount = 1,
-				WarmupCount = 100,
-				TargetCount = 300,
+				WarmupCount = 128,
+				TargetCount = 256,
 				RunStrategy = RunStrategy.Throughput,
 				UnrollFactor = 16,
 				InvocationCount = 256
@@ -301,6 +301,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 			if (competitionFeatures.BurstMode)
 			{
 				job.Apply(BurstModeModifier);
+				job.Run.TargetCount *= 2;
 			}
 
 			if (competitionFeatures.TroubleshootingMode)

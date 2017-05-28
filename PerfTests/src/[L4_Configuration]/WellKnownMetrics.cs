@@ -13,7 +13,7 @@ namespace CodeJam.PerfTests
 			MetricInfo.PrimaryMetric;
 
 		/// <summary>The expected execution time metic based on 95th percentile.</summary>
-		public static readonly MetricInfo<ExpectedTimeAttribute> AbsoluteTime =
+		public static readonly MetricInfo<ExpectedTimeAttribute> ExpectedTime =
 			MetricInfo.FromAttribute<ExpectedTimeAttribute>();
 
 		/// <summary>The mean execution time metic.</summary>

@@ -47,7 +47,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			public void Modify(ManualCompetitionConfig competitionConfig)
 			{
-				competitionConfig.Metrics.Add(WellKnownMetrics.AbsoluteTime);
+				competitionConfig.Metrics.Add(WellKnownMetrics.ExpectedTime);
 				competitionConfig.Metrics.Add(WellKnownMetrics.GcAllocations);
 			}
 		}

@@ -24,6 +24,7 @@ namespace CodeJam.PerfTests.Metrics
 
 			Category = category;
 			SingleValueMode = singleValueMode;
+			MetricColumns = MetricValueColumns.Default;
 		}
 
 		/// <summary>Gets category of the metric.</summary>

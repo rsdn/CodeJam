@@ -6,7 +6,7 @@ using CodeJam.PerfTests.Metrics;
 namespace CodeJam.PerfTests.Configs
 {
 	/// <summary>
-	/// Adds the <see cref="WellKnownMetrics.AbsoluteTime"/> metric
+	/// Adds the <see cref="WellKnownMetrics.ExpectedTime"/> metric
 	/// and GC metrics.
 	/// </summary>
 	/// <seealso cref="CodeJam.PerfTests.CompetitionModifierAttribute"/>
@@ -20,7 +20,7 @@ namespace CodeJam.PerfTests.Configs
 				competitionConfig.Metrics.Add(WellKnownMetrics.Gc0);
 				competitionConfig.Metrics.Add(WellKnownMetrics.Gc1);
 				competitionConfig.Metrics.Add(WellKnownMetrics.Gc2);
-				competitionConfig.Metrics.Add(WellKnownMetrics.AbsoluteTime);
+				competitionConfig.Metrics.Add(WellKnownMetrics.ExpectedTime);
 			}
 		}
 

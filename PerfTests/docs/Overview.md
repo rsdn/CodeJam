@@ -74,9 +74,13 @@ Each perftest has some key parts, listed in comments:
 
 
 
+
+
 ## Compared to BenchmarkDotNet
 
 The main thing introduced by CodeJam.PerfTests is a concept of _competition_. Competition classes are pretty match the same BenchmarkDotNet benchmark classes; they contain benchmark methods, setup/cleanup methods and may be annotated with config attributes to modify default setup. The main difference is, there are additional subsystems that ease usage of the BenchmarkDotNet as a performance tests runner.
+
+
 
 ### Competition metrics
 
@@ -88,7 +92,7 @@ Some of providers do support so-called relative metrics: instead of reporting ab
 >
 > The Scaled metric provided by CodeJam.Perftests assumes that timing measurements do belong to lognormal distribution. In contrast to normal distribution model used in BenchmarkDotNet the former one provides more accurate results on measurements with long tail distribution.
 >
-> Explanation for humans: the results from Scaled columns in the output of BenchmarkDotNet and CodeJam.PerfTests may differ and its fine.
+> Explanation for humans: the values from Scaled columns in the output of BenchmarkDotNet and CodeJam.PerfTests may differ and its fine.
 
 If competition uses a relative metric but there's no baseline member in competition the perftest will fail with
 
@@ -100,17 +104,23 @@ message.
 
 List of metrics used in competition run can be set up via configuration API, see "Configuration system" section. 
 
+
+
 ### Competition runner
 
 There are `Competition.Run()` methods that should be used instead of BenchmarkDotNet's `BenchmarkRunner.Run()` method. This is required because CodeJam.Perftest extends default benchmark execution logic in a miltiple ways. As example, single competition run may include multiple benchmark runs performed after metric limit adjustment or simply to ignore occasionally out-of-limit runs that are common on cloud VMs or on a low-end hardware. 
 
 In fact, there are multiple competition runner classes. There's one for each test framework supported and also there is a `ConsoleCompetition` runner that allows to run perftests as a console app. All runners do expose same public API so you can switch from one test framework to another by changing a reference to the unit-test-integration assembly (as example, from `CodeJam.PerfTests.NUnit` to `CodeJam.PerfTests.xUnit`).
 
+
+
 ### Source annotations
 
-Each member of competition should be annotated with expected values for each metric used in competition. By default metric limits are performed via c# attributes but there may be other metric storage providers. Out of the box there's XML annotation provider that allows to store source annotations as embedded XML resources. *--Future releases--* will include public API for third-party storage providers to enable advanced scenarios such as storing results from all runs in a database.
+Each member of competition should be annotated with expected values for each metric used in competition. By default source annotations use c# attributes to store limits but there may be other metric storage providers. Out of the box there's XML annotation provider that allows to store source annotations as embedded XML resources. *--Future releases--* will include public API for third-party storage providers to enable advanced scenarios such as storing results from all runs in a database.
 
 The annotations may be applied by developer or added (and updated) automatically depending on competition configuration. Check [Source Annotations](SourceAnnotations.md) document for more.
+
+
 
 ### Configuration system
 
@@ -137,15 +147,66 @@ If you want to have full control over configuration there's advanced API availab
 
 
 
+
+
 ## Limitations
 
 ### Accuracy of measurements
 
 By default CodeJam.PerfTests is set up to perform very fast perftest runs, average timing for each test is seconds, not minutes. 
 
-This is critical if you have a several hundreds or thousands of perftest as no one wants to wait several hours for tests completion. Also, these quick-snap results are closer to what you will see in production as measured metrics do include worst-case runs, in contrast to clean-room conditions created by default BenchmarkDotNet configuration. Remember, perftests are not about accuracy, they are about to proof your code will not break performance contract described as a set of metric annotations.
+This is critical if you have a several hundreds or thousands of perftests as no one wants to wait several hours for tests completion. Also, these quick-snap results are closer to what you will see in production as measured metrics do include worst-case runs, in contrast to clean-room conditions created by default BenchmarkDotNet configuration. Remember, perftests are not about accuracy, they are about to proof your code will not break performance contract described as a set of metric annotations.
 
 If the default behavior is not what you want you may apply your own competition config on solution or assembly level. Check the "Configuration system" section for more.
+
+#### Timing metrics accuracy
+
+Our measurements show that for microsecond-level benchmarks most of hardware provides following variance of timings:
+
+* ±10% for relative execution time metric and
+* ±3% accuracy for absolute execution time metrics;
+
+This is fine as real variance of execution time even for large loops are the same ±3% for real hardware and up to ±7% for VPS hosting.
+
+#### GC allocations metric accuracy
+
+Default config provides single-byte accuracy of allocation measurements. Please note that all CLR objects are aligned by size of pointer so the size of payload of the object actually is rounded up to 4 byte multiplier on x86 and up to 4 byte multiplier on x64. As a proof:
+
+```c#
+		[CompetitionBenchmark]
+		[GcAllocations(256, BinarySizeUnit.Byte)]
+		public void Allocates256Bytes()
+		{
+			// object header (2x ptr) + array length (int); data is aligned.
+			var overhead = 3 * IntPtr.Size;
+			var bytes = new byte[256 - overhead];
+			Thread.SpinWait(_count);
+			GC.KeepAlive(bytes);
+		}
+```
+
+Accuracy on custom configs may be lower. Most of CLR implementations has minimum memory allocation quantum of 8kb so the `new object()` may be measured as a multiple kb allocation. Default setup performs multiple iterations per single measurement but config modifiers may alter the number. As example, accuracy of allocations metric for runs performed with enabled BurstMode feature is 16 bytes.
+
+#### GC collections metrics accuracy
+
+The values of GC collections metrics are scaled per 1000 iterations (same as BenchmarkDotNet). So
+
+```c#
+		[CompetitionBenchmark]
+		[GcAllocations(1.00, BinarySizeUnit.Kilobyte), Gc0(0.31, 0.47), Gc1(0), Gc2(0)]
+		public void Allocates1Kb()
+		{
+			// 2x ptr - object header + array length; data is aligned.
+			var overhead = 3 * IntPtr.Size;
+			var bytes = new byte[1024 - overhead];
+			Thread.SpinWait(_count);
+			GC.KeepAlive(bytes);
+		}
+```
+
+means that the code is expected to perform from 3 to 5 GC0 collections per 10 000 of iterations. Please note that amount of GC collections highly depends on environment and GC settings so this metric have very large variance.
+
+
 
 ### Out-of-proc perftests
 
@@ -178,6 +239,8 @@ By default all perftests are run in-process as this allows to speedup test execu
 and then apply the attribute to the perftest class or to the entire assembly. 
 
 Note that modifier replaces job supplied by CodeJam.PerfTests with default one from BenchmarkDotNet. This is done because we currently do not provide any good job settings for out-of proc toolchain.
+
+
 
 ### Multi-case perf tests.
 
@@ -216,6 +279,8 @@ CodeJam.PerfTests do not support configurations that uses multiple jobs and repo
 > If you want to do detailed investigation on multiple cases, consider to use raw BenchmarkDotNet benchmark.
 >
 > Have a idea how to make it better? Please, [create issue for it](https://github.com/rsdn/CodeJam/issues)!
+
+
 
 ### BenchmarkDotNet configuration attributes
 

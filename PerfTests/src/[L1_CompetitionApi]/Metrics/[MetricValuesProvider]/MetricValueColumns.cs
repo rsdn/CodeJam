@@ -31,6 +31,11 @@ namespace CodeJam.PerfTests.Metrics
 		ValueAndStdDev = Mean | StdDev,
 
 		/// <summary>The min and max values columns.</summary>
-		MinAndMax = Min | Max
+		MinAndMax = Min | Max,
+
+		/// <summary>
+		/// Default (mean only)
+		/// </summary>
+		Default = Mean
 	}
 }
