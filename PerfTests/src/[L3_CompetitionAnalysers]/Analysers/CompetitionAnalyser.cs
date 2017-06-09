@@ -102,7 +102,7 @@ namespace CodeJam.PerfTests.Analysers
 				!analysis.Summary.GetBenchmarkTargets().Any(t => t.Baseline))
 			{
 				analysis.WriteSetupErrorMessage(
-					"No baseline method for benchmark. " +
+					"No baseline member found. " +
 						$"Apply {nameof(CompetitionBaselineAttribute)} to the one of benchmark methods.");
 			}
 		}
@@ -279,7 +279,7 @@ namespace CodeJam.PerfTests.Analysers
 					$"Source annotation skipped due to {CompetitionAnnotationMode.DontSaveUpdatedAnnotationsCharacteristic.FullId} setting.";
 				if (analysis.RunState.IsFirstRun)
 				{
-					analysis.WriteMessage(MessageSeverity.Informational, message);
+					analysis.WriteInfoMessage(message);
 				}
 				else
 				{

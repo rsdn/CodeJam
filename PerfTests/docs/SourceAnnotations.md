@@ -6,31 +6,37 @@
 
 [TOC]
 
-Each member of competition should be annotated with expected values for each metric used in competition. By default source annotations use c# attributes to store limits but there may be other metric storage providers. Out of the box there's XML annotation provider that allows to store source annotations as embedded XML resources. *--Future releases--* will include public API for third-party storage providers to enable advanced scenarios such as storing results from all runs in a database.
+Source annotations allows to set metric limits for competition members. By default metric limits are applied as c# attributes  but there may be other metric storage providers. Out of the box there's XML annotation provider that allows to store source annotations as embedded XML resources. *--Future releases--* will include public API for third-party storage providers to enable advanced scenarios such as storing results from all runs in a database.
+
+
 
 
 
 ## Annotate sources using attributes
 
-There's own attribute for each competition metric (`[ExpectedTime]` for measuring expected execution time, `[GcAllocations]` for guess what and so on). All of these attributes have constructor overloads with same signatures. Most full one allows to specify the minimum limit value, the maximum limit value and a scaling factor applied to both min and max limits (if the measurements are not dimensionless). As example
+Each competition methic comes with attribute (`[ExpectedTime]` for measuring expected execution time, `[GcAllocations]` for guess what and so on). All of the attributes have constructor overloads with same signatures. Most full one allows to specify the minimum limit value, the maximum limit value and a scaling factor (unit of measurement) applied to both min and max limits. The scaling factor is omitted if the measurements are dimensionless. As example,
 
 ```c#
+[CompetitionBaseline]
 [ExpectedTime(2.4, 2.8, TimeUnit.Millisecond)] // takes 2.4..2.8 ms to run
 public void DoSomething() { ... }
 
+[CompetitionBenchmark(950, 1050)]         // ~1000x slower, the metric value is dimensionless
 [ExpectedTime(2.4, 2.8, TimeUnit.Second)] // takes 2.4..2.8 second to run
 public void DoSomethingElse() { ... }
 ```
 
-If you want to skip setting min or max limits you may pass `double.NegativeInfinity` / `double.PositiveInfinity` respectively. For convenience these constants are exposed as a members of `MetricRange` type:
+If you want to skip setting the min or the max limits you may pass `double.NegativeInfinity` / `double.PositiveInfinity` respectively. For convenience these constants are exposed as a members of `MetricRange` type:
 
 ```c#
 // takes at least 2.4 ms to run
+[CompetitionBenchmark]
 [ExpectedTime(2.4, MetricRange.ToPositiveInfinity, TimeUnit.Millisecond)]
 public void DoSomething() { ... }
 
 // takes no more than 2.8 us to run
-[ExpectedTime(MetricRange.FromPositiveInfinity, 2.8, TimeUnit.Microsecond)]
+[CompetitionBenchmark]
+[ExpectedTime(MetricRange.FromNegativeInfinity, 2.8, TimeUnit.Microsecond)]
 public void DoSomething() { ... }
 ```
 
@@ -38,93 +44,163 @@ Most of metrics allows to omit minimum limit value, so this one will work too:
 
 ```c#
 // takes no more than 2.8 us to run
+[CompetitionBenchmark]
 [ExpectedTime(2.8, TimeUnit.Microsecond)]
 public void DoSomething() { ... }
 ```
 
-The exception of this rule are high precision metrics such as Gc Allocation metric. They assume single-value limit denotes both min and max boundary:
+The exception of this rule are high precision metrics such as GC Allocation metric. They assume single-value limit denotes both min and max boundaries:
 
 ```c#
-// takes no more than 2.8 us to run
-[GcAllocation(42)]
+// Allocates EXACTLY 48 bytes
+[CompetitionBenchmark]
+[GcAllocation(48, BinarySizeUnit.Byte)]
 public void PleaseAllocate42Bytes() { ... }
 
-// takes no more than 2.8 us to run
-[GcAllocation(1.0, )]
+// Allocates EXACTLY 1 MB
+[CompetitionBenchmark]
+[GcAllocation(1.0, BinarySizeUnit.Megabyte)]
 public void PleaseAllocate1Mb() { ... }
 ```
 
-
-
- or more of following similar constructor overloads. Most and the overload with min and max metric values is supported by all . In addition, some of attributes may use metric unit enum for value scaling. As example:
+Finally, if the scaling factor is 1 (bytes for BinarySizeUnit, nanoseconds for TimeUnit and so on) the measurement unit arg may be omitted too:
 
 ```c#
-[ExpectedTime(2.4, 2.8, TimeUnit.Millisecond)] // takes 2.4..2.8 ms to run
-public void DoSomething() { ... }
+// Allocates EXACTLY 48 bytes
+[CompetitionBenchmark]
+[GcAllocation(48)]
+public void PleaseAllocate42Bytes() { ... }
 ```
 
-For ignore min and ignore max value you may use `double.NegativeInfinity` and `double.PositiveInfinity`, respectively. For convenience these constants are exposed as a members of `MetricRange` type:
+Please note that all metrics you do want to measure should present in collection returned by `ICompetitionConfig.GetMetrics()` method. If you run perftest with some metric applied as an attribute but not listed in config you'll get the following message:
 
-  ```c#
-// takes at least 2.8 ms to run
-[ExpectedTime(2.4, MetricRange.ToPositiveInfinity, TimeUnit.Millisecond)]
-public void DoSomething() { ... }
-  ```
-
-Some metric attributes has another overload, with only one metric value. Its meaning is determined by metric values provider so be sure to check XML docs for the overload. As example,
-
-```c#
-[ExpectedTime(0.5, TimeUnit.Second)]
+```
+// Metric ExpectedTime is not listed in config and therefore is ignored.
+// ! Hint: List of metrics is exposed as ICompetitionConfig.GetMetrics().
 ```
 
-means that the method takes no more than half a a second to run. And
-
-```c#
-[GcAllocatios(16.3, TimeUnit.Kilobyte)]
-```
-
-means that each call of the method allocates exactly 16.3 KB of managed memory.
+Read [Configuration System](ConfigurationSystem.md) document for information about how to alter competition configuration.
 
 
 
-## Attributes used by competition methods
+### Other attributes used by competitions
 
-### Including methods in competition
+In addition to metric attributes there are few more used to alter execution of perftests. First, there are [config modifier attributes](ConfigurationSystem.md) that are applied on type- or assembly-level and allow to change competition configuration. Second, there are standard  `[GlobalSetup]`, `[IterationSetup]`, `[GlobalCleanup]` and `[IterationCleanup]` [BenchmarkDotNet attributes](http://benchmarkdotnet.org/Advanced/Setup.htm) that mark setup and cleanup methods. And finally, there are `[CompetitionBenchmark]`/`[CompetitionBaseline]` attributes that allows to include methods competition. 
 
-Each method you want to collect competition metrics for should be included in competition by annotating the method with `[CompetitionBenchmark]` attribute. 
+#### Including methods in competition
 
-```c#
-		[CompetitionBenchmark]
-		public void SlowerX3() => Thread.SpinWait(3 * Count);
-```
-
-In addition, if you have relative metrics to measure, the competition should include a method marked with a `[CompetitionBaseline]` attribute,
-
-```c#
-		[CompetitionBaseline]
-		public void Baseline() => Thread.SpinWait(Count);
-```
-
-If there's no baseline attribute the test will fail with following message:
+Each method you want to be run and to be measured during competition run should be annotated with `[CompetitionBenchmark]` or `[CompetitionBaseline]` attribute. The latter one should be used in case the competition includes one or more relative competition metrics. If there's no baseline attribute the test will fail with following message:
 
 ```
 Test completed with errors, details below.
 Errors:
-    * Run #1: No baseline method for benchmark. Apply CompetitionBaselineAttribute to the one of benchmark methods.
+    * Run #1: No baseline member found. Apply CompetitionBaselineAttribute to the one of benchmark methods.
 ```
 
+#### Excluding members from competition
 
+If you want to exclude member from competition completely  you should remove it-is-benchmark attribute (one of `[CompetitionBenchmark]`, `[CompetitionBaseline]` or `[Benchmark]`) from it. If you want to inlude a member but ignore it's metric values there's `[CompetitionBenchmark(DoesNotCompete = true)]`. As example:
 
-If you want to exclude some methods from competition you may either apply `[Benchmark]` attribute instead of `[CompetitionBenchmark]` attribute or mark the method with `[CompetitionBenchmark(DoesNotCompete = true)]`.
+```c#
+[CompetitionBenchmark(DoesNotCompete = true]
+[ExpectedTime(10, 20, TimeUnit.Second)]
+public void DoSomething() { ... }
+```
 
 The competition result log will you inform you about ignored methods with messages like this:
 
 ```
-    * Run #1: Target Baseline. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.
-    * Run #1: Target SlowerX3. Metric validation skipped as the method is marked with CompetitionBenchmarkAttribute.DoesNotCompete set to true.
+    * Run #1: Target DoSomething. Metric validation skipped as the method is marked with CompetitionBenchmarkAttribute.DoesNotCompete set to true.
 ```
 
 
+
+
+
+## Annotate sources using XML file
+
+Setting competition limits via attribute annotations does not work well with dynamically emitted or generated code. Code generation does not preserve limit annotations so you need to store the limits somewhere else. Meet the XML source annotations.
+
+### Adding empty XML annotation file
+
+To enable XML annotations you will need to add a new XML file with following content
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<CompetitionBenchmarks>
+</CompetitionBenchmarks>
+```
+
+It's recommended to locate the file at the same directory the perftest source is located and to give it the same name the source file has. Next, set Build Action for the file to the Embedded Resource. Like this:
+
+![XmlAnnotationsFile](images/XmlAnnotationsFile.png)
+
+Finally, annotate the perftest with `CompetitionXmlAnnotationAttribute`:
+
+```c#
+	[CompetitionXmlAnnotation(
+		// Case-sensitive name of the manifest resource stream
+		"CodeJam.Examples.PerfTests.SimplePerfTest.xml")]
+	public class SimplePerfTest
+	{
+		...
+	}
+```
+
+> **HINT** 
+>
+> As far as I know the exact logic the resource names are generated is undocumented. You can use [this answer](https://social.msdn.microsoft.com/Forums/vstudio/en-US/632d6914-8c90-450e-8ea0-fa60d2c3b6b6/manifest-name-for-embedded-resources?forum=msbuild) as a quick reference or [check the implementation](https://github.com/Microsoft/msbuild/blob/master/src/XMakeTasks/CreateCSharpManifestResourceName.cs) for more details.
+
+Next, copy limits obtained from run with `[CompetitionPreviewLimits]` attribute into XML file:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<CompetitionBenchmarks>
+	<Competition Target="CodeJam.Examples.PerfTests.SimplePerfTest, CodeJam.Examples.PerfTests">
+		<Candidate Target="Baseline" Baseline="true" />
+		<Candidate Target="SlowerX3" MinRatio="2.97" MaxRatio="3.09" />
+		<Candidate Target="SlowerX5" MinRatio="4.90" MaxRatio="5.10" />
+		<Candidate Target="SlowerX7" MinRatio="6.85" MaxRatio="7.13" />
+	</Competition>
+</CompetitionBenchmarks>
+```
+
+By default target type name format is full type name followed with name of type's assembly. You may shorten it to simple type name, `Target="SimplePerfTest"`. Don't forget to remove the `UseFullTypeName = true` from `[CompetitionMetadata]` annotation then.
+
+> **HINT**
+>
+> Nested type names uses '+' symbol as a separator, as example
+>
+> General rule is, if you're unsure what the target name should be, just run the perftest with `CompetitionPreviewLimitsAttribute` applied and check the output.
+
+
+
+### Using existing XML annotations file
+
+If you want to reuse existing XML annotations file you had to specify path to it explicitly. The same applies if name of the XML annotations file does not match to the sources file name. Here's how to do it:
+
+Let's say you have source file 'PerfTests\SimplePerfTest.cs' and the XML annotations file is located at `Assets\PerfTestAnnotations.xml`.
+
+![XmlAnnotationsReuseFile](images/XmlAnnotationsReuseFile.png)
+
+Use the `MetadataResourcePath` property to set path to the XML annotations file.
+
+```c#
+	[CompetitionMetadata(
+		// Case-sensitive name of the manifest resource stream
+		"CodeJam.Examples.Assets.PerfTestAnnotations.xml",
+		// Path (should be relative to the perftest source file path)
+		MetadataResourcePath = @"..\Assets\PerfTestAnnotations.xml",
+		UseFullTypeName = true)]
+	public class SimplePerfTest
+	{
+		...
+	}
+```
+
+
+
+Handling missing annotations
 
 ## Perform manual source annotation using attributes
 
@@ -198,80 +274,6 @@ Third, if you do want to obtain actual limits without updating the sources, appl
 Now you can add new limits into `[CompetitionBenchmark]` annotations manually or store the annotations as a XML file
 
 
-
-## Annotate sources using XML file
-
-Setting competition limits using `[CompetitionBenchamrk]` does not work well with dynamically emitted or generated code. Code generation does not preserve source changes so you need to store the limits somewhere else. Meet the XML source annotations.
-
-### Adding new XML annotation file
-
-Add a new empty XML file into your project and mark it as an Embedded Resource. It's recommended to locate it near corresponding source file and to give it the same name the file has. Like this:
-
-![XmlAnnotationsFile](images/XmlAnnotationsFile.png)
-
-Next, annotate the perftest with `CompetitionMetadataAttribute`:
-
-```c#
-	[CompetitionMetadata(
-		// Case-sensitive name of the manifest resource stream
-		"CodeJam.Examples.PerfTests.SimplePerfTest.xml",
-		UseFullTypeName = true)]
-	public class SimplePerfTest
-	{
-		...
-	}
-```
-
-> **HINT** 
->
-> As far as I know the exact logic the resource names are generated is undocumented. You can use [this answer](https://social.msdn.microsoft.com/Forums/vstudio/en-US/632d6914-8c90-450e-8ea0-fa60d2c3b6b6/manifest-name-for-embedded-resources?forum=msbuild) as a quick reference or [check the implementation](https://github.com/Microsoft/msbuild/blob/master/src/XMakeTasks/CreateCSharpManifestResourceName.cs) for more details.
-
-Next, copy limits obtained from run with `[CompetitionPreviewLimits]` attribute into XML file:
-
-```xml
-<?xml version="1.0" encoding="utf-8" ?>
-<CompetitionBenchmarks>
-	<Competition Target="CodeJam.Examples.PerfTests.SimplePerfTest, CodeJam.Examples.PerfTests">
-		<Candidate Target="Baseline" Baseline="true" />
-		<Candidate Target="SlowerX3" MinRatio="2.97" MaxRatio="3.09" />
-		<Candidate Target="SlowerX5" MinRatio="4.90" MaxRatio="5.10" />
-		<Candidate Target="SlowerX7" MinRatio="6.85" MaxRatio="7.13" />
-	</Competition>
-</CompetitionBenchmarks>
-```
-
-By default target type name format is full type name followed with name of type's assembly. You may shorten it to simple type name, `Target="SimplePerfTest"`. Don't forget to remove the `UseFullTypeName = true` from `[CompetitionMetadata]` annotation then.
-
-> **HINT**
->
-> Nested type names uses '+' symbol as a separator, as example
->
-> General rule is, if you're unsure what the target name should be, just run the perftest with `CompetitionPreviewLimitsAttribute` applied and check the output.
-
-
-
-### Using existing XML annotations file
-
-If you want to reuse existing XML annotations file you had to specify path to it explicitly. The same applies if name of the XML annotations file does not match to the sources file name. Here's how to do it:
-
-Let's say you have source file 'PerfTests\SimplePerfTest.cs' and the XML annotations file is located at `Assets\PerfTestAnnotations.xml`.
-
-![XmlAnnotationsReuseFile](images/XmlAnnotationsReuseFile.png)
-
-Use the `MetadataResourcePath` property to set path to the XML annotations file.
-
-```c#
-	[CompetitionMetadata(
-		// Case-sensitive name of the manifest resource stream
-		"CodeJam.Examples.Assets.PerfTestAnnotations.xml",
-		// Path (should be relative to the perftest source file path)
-		MetadataResourcePath = @"..\Assets\PerfTestAnnotations.xml",
-		UseFullTypeName = true)]
-	public class SimplePerfTest
-	{
-		...
-	}
-```
 
 
 

@@ -29,12 +29,20 @@ Each perftest has some key parts, listed in comments:
 		private const int Count = CompetitionRunHelpers.BurstModeLoopCount;
 
 		// Optional setup method. Same as in BenchmarkDotNet.
-		[Setup]
+		[GlobalSetup]
 		public void Setup() { /* We have nothing to do here. */ }
 
 		// Optional cleanup method. Same as in BenchmarkDotNet.
-		[Cleanup]
+		[GlobalCleanup]
 		public void Cleanup() { /* We have nothing to do here. */ }
+      
+		// Optional per-iteration setup method. Same as in BenchmarkDotNet.
+		[IterationSetup]
+		public void IterationSetup() { /* We have nothing to do here. */ }
+
+		// Optional per-iteration cleanup method. Same as in BenchmarkDotNet.
+		[IterationCleanup]
+		public void IterationCleanup() { /* We have nothing to do here. */ }
 		#endregion
 
 		// Perftest runner method. Recommended naming pattern is $"Run{nameof(PerfTestClass)}".
@@ -97,7 +105,7 @@ Some of providers do support so-called relative metrics: instead of reporting ab
 If competition uses a relative metric but there's no baseline member in competition the perftest will fail with
 
 ```
-No baseline method for benchmark. Apply CompetitionBaselineAttribute to the one of benchmark methods.
+No baseline member found. Apply CompetitionBaselineAttribute to the one of benchmark methods.
 ```
 
 message.

@@ -8,6 +8,7 @@ using BenchmarkDotNet.Running;
 
 using CodeJam.Collections;
 using CodeJam.PerfTests.Analysers;
+using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
@@ -61,9 +62,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					if (metricAttribute.MetricAttributeType != MetricInfo.PrimaryMetric.AttributeType)
 					{
 						// TODO: common API for unknown metrics, refactor it to base?
+						var metricName = metricAttribute.MetricAttributeType.GetShortAttributeName();
 						messageLogger.WriteInfoMessage(
 							target,
-							$"unknown metric {metricAttribute.MetricAttributeType.Name}, ignored.");
+							$"Metric {metricName} not listed in config and therefore is ignored.",
+							$"List of metrics is exposed as {nameof(ICompetitionConfig)}.{nameof(ICompetitionConfig.GetMetrics)}().");
 					}
 					continue;
 				}

@@ -13,7 +13,8 @@ namespace CodeJam.PerfTests.Running.Messages
 		/// <value>The logger.</value>
 		ILogger Logger { get; }
 
-	/// <summary>Adds a message for the competition.</summary>
+		// TODO: overload that takes exception.
+		/// <summary>Adds a message for the competition.</summary>
 		/// <param name="messageSeverity">Severity of the message.</param>
 		/// <param name="message">Text of the message.</param>
 		/// <param name="hint">Hints for the message.</param>

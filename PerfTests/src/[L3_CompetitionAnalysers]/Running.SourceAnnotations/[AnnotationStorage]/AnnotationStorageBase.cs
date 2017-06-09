@@ -25,13 +25,27 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	{
 		private enum MetricParseEvent
 		{
-			ThreatedAsEmpty,
+			TreatedAsEmpty,
 			NotApplicableToBaseline,
 			UnitValueMissing,
-			UnitValueNotrequired
+			UnitValueNotRequired
 		}
 
 		#region Static members
+		/// <summary>Creates empty competition target.</summary>
+		/// <param name="target">The target.</param>
+		/// <param name="metrics">The metrics.</param>
+		/// <returns>A new empty competition target.</returns>
+		protected static CompetitionTarget CreateEmptyCompetitionTarget(Target target, MetricInfo[] metrics)
+		{
+			var metricValues = metrics
+				.Where(m => !target.Baseline || !m.IsRelative)
+				.Select(m => new CompetitionMetricValue(m))
+				.ToArray();
+
+			return new CompetitionTarget(target, metricValues);
+		}
+
 		#region Parse competition target
 		/// <summary>Tries to parse competition target.</summary>
 		/// <param name="target">The target.</param>
@@ -50,10 +64,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				messageLogger.WriteInfoMessage(
 					target,
-					"Has no annotations applied, all metrics will be threated as empty.",
-					"Check if the method was renamed; add annnotations for the method or enable auto-annotation feature.");
+					"Has no annotations applied, all metrics will be treated as empty.",
+					"Check if the method was renamed; add annotations for the method or enable auto-annotation feature.");
 
-				return new CompetitionTarget(target, Array<CompetitionMetricValue>.Empty);
+				return CreateEmptyCompetitionTarget(target, metrics);
 			}
 
 			if (storedTarget.Baseline != null && storedTarget.Baseline != target.Baseline)
@@ -65,14 +79,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			}
 
 			var parseEvents = new List<(MetricInfo metric, MetricParseEvent parseEvent)>();
-			var result = ParseCompetitionTarget(target, metrics, storedTarget, parseEvents);
+			var result = ParseCompetitionMetricValues(target, metrics, storedTarget, parseEvents);
 
 			ReportParseEventSummary(target, parseEvents, messageLogger);
 
 			return new CompetitionTarget(target, result.ToArray());
 		}
 
-		private static List<CompetitionMetricValue> ParseCompetitionTarget(
+		private static List<CompetitionMetricValue> ParseCompetitionMetricValues(
 			Target target,
 			MetricInfo[] metrics,
 			StoredTargetInfo storedTarget,
@@ -100,7 +114,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				}
 				else if (metricIsApplicable)
 				{
-					parseEvents.Add((metric, MetricParseEvent.ThreatedAsEmpty));
+					parseEvents.Add((metric, MetricParseEvent.TreatedAsEmpty));
 					result.Add(new CompetitionMetricValue(metric));
 				}
 			}
@@ -117,7 +131,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				if (hasDisplayMetricUnit)
 				{
-					parseEvents.Add((metric, MetricParseEvent.UnitValueNotrequired));
+					parseEvents.Add((metric, MetricParseEvent.UnitValueNotRequired));
 					return false;
 				}
 			}
@@ -137,36 +151,37 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			var eventsGrouped = parseEvents
 				.GroupBy(g => g.parseEvent, g => g.metric)
 				.OrderBy(g => (int)g.Key)
-				.Select(g => (parseEvent: g.Key, names: g.Select(m => m.DisplayName).Join(", ")));
+				.Select(g => (parseEvent: g.Key, metricNames: g.Select(m => m.DisplayName).ToArray()));
 
 			foreach (var g in eventsGrouped)
 			{
-				var metricQuantifier = g.names.Length == 1 ? "metric" : "metrics";
+				var names = g.metricNames.Join(", ");
+				var metricQuantifier = g.metricNames.Length == 1 ? "metric" : "metrics";
 
 				switch (g.parseEvent)
 				{
-					case MetricParseEvent.ThreatedAsEmpty:
+					case MetricParseEvent.TreatedAsEmpty:
 						messageLogger.WriteInfoMessage(
 							target,
-							$"Annotation for {metricQuantifier} {g.names} not found, threated as empty.",
-							$"Add annnotation for the {metricQuantifier} or enable auto-annotation feature.");
+							$"Annotation for {metricQuantifier} {names} not found, treated as empty.",
+							$"Add annotation for missing {metricQuantifier} or enable auto-annotation feature.");
 						break;
 					case MetricParseEvent.NotApplicableToBaseline:
 						messageLogger.WriteInfoMessage(
 							target,
-							$"Annotation for {metricQuantifier} {g.names} not found, threated as empty.",
-							$"Add annnotation for the {metricQuantifier} or enable auto-annotation feature.");
+							$"The relative {metricQuantifier} {names} cannot be applied to the target as the target is baseline.",
+							"Check if the baseline of the competition was accidentally changed. If not, remove the annotations.");
 						break;
 					case MetricParseEvent.UnitValueMissing:
 						messageLogger.WriteSetupErrorMessage(
 							target,
-							$"{g.names} metric value was parsed incorrectly. Unit value should be not null as metric' units scale is not emtpy.",
+							$"{names} metric value was parsed incorrectly. Unit value should be not null as metric' units scale is not empty.",
 							"Ensure that annotation does include metric unit.");
 						break;
-					case MetricParseEvent.UnitValueNotrequired:
+					case MetricParseEvent.UnitValueNotRequired:
 						messageLogger.WriteSetupErrorMessage(
 							target,
-							$"{g.names} metric value was parsed incorrectly. Unit value should be null as metric' units scale is emtpy.",
+							$"{names} metric value was parsed incorrectly. Unit value should be null as metric' units scale is empty.",
 							"Ensure that annotation does not include metric unit.");
 						break;
 					default:
@@ -217,12 +232,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				.Where(t => CheckCompetitionAttribute(t, analysis));
 			foreach (var target in targetsToFill)
 			{
-				var metricValues = metrics
-					.Where(m => !target.Baseline || !m.IsRelative)
-					.Select(m => new CompetitionMetricValue(m))
-					.ToArray();
-
-				var competitionTarget = new CompetitionTarget(target, metricValues);
+				var competitionTarget = CreateEmptyCompetitionTarget(target, metrics);
 				targets.Add(competitionTarget);
 			}
 		}

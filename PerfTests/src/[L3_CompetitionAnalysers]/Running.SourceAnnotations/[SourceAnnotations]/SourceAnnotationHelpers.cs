@@ -61,8 +61,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			foreach (var candidateRange in candidateLines.SubRanges)
 			{
 				var benchmarkMethodInfo = TryParseBenchmarkMethodInfo(
-					candidateRange, 
-					sourceLines, sourcePath, 
+					candidateRange,
+					sourceLines, sourcePath,
 					messageLogger);
 				if (benchmarkMethodInfo != null)
 				{
@@ -104,8 +104,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				}
 			}
 
-			int primaryAttributeLine;
-			if (!attributeLines.TryGetValue(primaryAttribute.GetType().TypeHandle, out primaryAttributeLine))
+			if (!attributeLines.TryGetValue(primaryAttribute.GetType().TypeHandle, out var primaryAttributeLine))
 			{
 				return null;
 			}
@@ -115,7 +114,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				primaryAttributeLine, candidateRange.WithoutKey(),
 				attributeLines);
 		}
-		#endregion
 
 		private static int? TryParseBenchmarkAttributeLine(
 			Type attributeType,
@@ -133,8 +131,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			return null;
 		}
+		#endregion
 
-		#region source lines API
+		#region Source lines API
 		public static bool TryUpdateLineWithAttribute(
 			SourceAnnotationFile sourceFile, int attributeLineNumber,
 			CompetitionMetricValue metricValue)

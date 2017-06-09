@@ -168,7 +168,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[1].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[1].MessageText,
-				"No baseline method for benchmark. Apply CompetitionBaselineAttribute to the one of benchmark methods.");
+				"No baseline member found. Apply CompetitionBaselineAttribute to the one of benchmark methods.");
 		}
 
 		[Test]

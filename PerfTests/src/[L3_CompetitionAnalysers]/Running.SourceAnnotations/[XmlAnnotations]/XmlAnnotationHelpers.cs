@@ -12,6 +12,7 @@ using BenchmarkDotNet.Running;
 
 using CodeJam.Collections;
 using CodeJam.PerfTests.Analysers;
+using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
@@ -54,15 +55,21 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				DtdProcessing = DtdProcessing.Prohibit
 			};
 
+		private const string IndentChars = "\t";
+		private const string NewLineChars = "\r\n";
+
 		[NotNull]
-		private static XmlWriterSettings GetXmlWriterSettings(bool omitXmlDeclaration = false) =>
-			new XmlWriterSettings
+		private static XmlWriterSettings GetXmlWriterSettings(bool omitXmlDeclaration = false)
+		{
+			return new XmlWriterSettings
 			{
 				OmitXmlDeclaration = omitXmlDeclaration,
+				NewLineOnAttributes = false,
 				Indent = true,
-				IndentChars = "\t",
-				NewLineChars = "\r\n"
+				IndentChars = IndentChars,
+				NewLineChars = NewLineChars
 			};
+		}
 		#endregion
 
 		#region XML doc loading
@@ -114,9 +121,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			[NotNull] IMessageLogger messageLogger)
 		{
 			Code.NotNull(messageLogger, nameof(messageLogger));
+			Code.BugIf(annotationResourceKey.Assembly == null, "annotationResourceKey.Assembly == null");
+
 			var assembly = annotationResourceKey.Assembly;
 			var resourceName = annotationResourceKey.ResourceName;
-
 			using (var resourceStream = assembly.GetManifestResourceStream(resourceName))
 			{
 				if (resourceStream == null)
@@ -128,6 +136,43 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				}
 
 				return TryParseXmlAnnotationDoc(resourceStream, $"Resource '{resourceName}'", messageLogger);
+			}
+		}
+
+		/// <summary>Parses xml annotation document from the file.</summary>
+		/// <param name="resourcePath">The path to xml annotation document.</param>
+		/// <param name="messageLogger">The message logger.</param>
+		/// <returns>XML annotation document or <c>null</c> if parsing failed.</returns>
+		[CanBeNull]
+		public static XDocument TryParseXmlAnnotationDoc(
+			string resourcePath,
+			IMessageLogger messageLogger)
+		{
+			try
+			{
+				using (var stream = File.OpenRead(resourcePath))
+				{
+					return TryParseXmlAnnotationDoc(
+						stream,
+						$"XML annotation '{resourcePath}'",
+						messageLogger);
+				}
+			}
+			catch (IOException ex)
+			{
+				messageLogger.WriteExceptionMessage(
+					MessageSeverity.SetupError,
+					$"Could not access file '{resourcePath}'.", ex);
+
+				return null;
+			}
+			catch (UnauthorizedAccessException ex)
+			{
+				messageLogger.WriteExceptionMessage(
+					MessageSeverity.SetupError,
+					$"Could not access file '{resourcePath}'.", ex);
+
+				return null;
 			}
 		}
 
@@ -145,20 +190,20 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				try
 				{
-					xmlAnnotationDoc = XDocument.Load(reader);
+					xmlAnnotationDoc = XDocument.Load(reader, LoadOptions.PreserveWhitespace | LoadOptions.SetLineInfo);
 				}
 				catch (ArgumentException ex)
 				{
 					messageLogger.WriteExceptionMessage(
 						MessageSeverity.SetupError,
-						$"{sourceDescription}: Could not parse annotation.", ex);
+						$"{sourceDescription}: Could not parse XML annotation.", ex);
 					return null;
 				}
 				catch (XmlException ex)
 				{
 					messageLogger.WriteExceptionMessage(
 						MessageSeverity.SetupError,
-						$"{sourceDescription}: Could not parse annotation.", ex);
+						$"{sourceDescription}: Could not parse XML annotation.", ex);
 					return null;
 				}
 			}
@@ -171,6 +216,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				return null;
 			}
 
+			messageLogger.Logger.WriteVerbose($"{sourceDescription}: XML annotation parsed.");
 			return xmlAnnotationDoc;
 		}
 
@@ -339,7 +385,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		[NotNull]
 		// ReSharper disable once SuggestBaseTypeForParameter
-		private static XElement GetOrAddElement(this XElement parent, XName elementName, string targetName)
+		private static XElement GetOrAddTargetElement(this XElement parent, XName elementName, string targetName)
 		{
 			Code.NotNull(elementName, nameof(elementName));
 			Code.NotNull(parent, nameof(parent));
@@ -352,7 +398,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				result = new XElement(elementName);
 				result.SetAttribute(TargetAttribute, targetName);
-				parent.Add(result);
+				parent.AddPreserveFormat(result, null);
 			}
 
 			return result;
@@ -360,7 +406,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		[NotNull]
 		// ReSharper disable once SuggestBaseTypeForParameter
-		private static XElement GetOrAddElement(this XElement parent, XName elementName)
+		private static XElement GetOrAddElement(
+			this XElement parent, XName elementName, [CanBeNull] XElement insertAfterElement)
 		{
 			Code.NotNull(elementName, nameof(elementName));
 
@@ -368,10 +415,75 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			if (result == null)
 			{
 				result = new XElement(elementName);
-				parent.Add(result);
+				parent.AddPreserveFormat(result, insertAfterElement);
 			}
 
 			return result;
+		}
+
+		[NotNull]
+		private static IEnumerable<XNode> ScanUp([NotNull] this XNode node) =>
+			node
+				.NodesBeforeSelf().Prepend(node)
+				.Concat(
+					node
+						.Ancestors()
+						.SelectMany(n => n.NodesBeforeSelf().Prepend(n)));
+
+		[CanBeNull]
+		private static XText FirstIndentNodeOrDefault([NotNull] this IEnumerable<XNode> nodes) =>
+			nodes
+				.OfType<XText>()
+				.FirstOrDefault(n => n.Value.Contains('\n'));
+
+		private static void AddPreserveFormat(
+			[NotNull] this XElement parentNode,
+			[NotNull] XElement newElement,
+			[CanBeNull] XElement insertAfterElement)
+		{
+			Code.NotNull(parentNode, nameof(parentNode));
+			Code.NotNull(newElement, nameof(newElement));
+			Code.AssertState(parentNode.Document != null, "The parent node should be attached to document.");
+			Code.AssertState(newElement.Document == null, "The new node should not be attached to document.");
+
+			// The node after that we'll insert new one
+			var insertNode = insertAfterElement ?? parentNode.Nodes().LastOrDefault(n => !(n is XText));
+
+			// Find indentation text for item and for closing parent node (lazily)
+			var closeTagIndentText = Lazy.Create(
+				() =>
+					parentNode.ScanUp().FirstIndentNodeOrDefault()?.Value
+						?? NewLineChars);
+			var indentText =
+				insertNode?.NodesBeforeSelf().FirstIndentNodeOrDefault()?.Value
+					?? (closeTagIndentText.Value + IndentChars);
+			var indentNode = new XText(indentText);
+
+			if (insertNode != null)
+			{
+				// There's element or comment in parent: add indent and new node after it
+				insertNode.AddAfterSelf(indentNode);
+				indentNode.AddAfterSelf(newElement);
+			}
+			else
+			{
+				// Parent has no elements: search new line indent for closing parent node
+				var closeTagIndentNode = parentNode.Nodes().FirstIndentNodeOrDefault();
+
+				if (closeTagIndentNode != null)
+				{
+					// There is indent for closing parent node: insert before it
+					closeTagIndentNode.AddBeforeSelf(indentNode);
+					indentNode.AddAfterSelf(newElement);
+				}
+				else
+				{
+					// Add indent, new node and indent for closing parent node
+					parentNode.Add(indentNode);
+					indentNode.AddAfterSelf(newElement);
+					newElement.AddAfterSelf(new XText(closeTagIndentText.Value));
+				}
+			}
 		}
 
 		[CanBeNull]
@@ -433,7 +545,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				 where competition.Attribute(TargetAttribute)?.Value == targetTypeName
 				 from candidate in competition.Elements()
 				 select candidate)
-				.ToDictionary(c => c.Name);
+					.ToDictionary(c => c.Name);
 
 			foreach (var target in targets)
 			{
@@ -477,9 +589,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				if (!metricsByName.TryGetValue(metricNode.Name.LocalName, out var metric))
 				{
-					messageLogger.WriteSetupErrorMessage(
+					messageLogger.WriteWarningMessage(
 						target,
-						$"XML annotation contains unknown metric {metricNode.Name}, it will be skipped.");
+						$"XML annotation contains metric {metricNode.Name} not listed in config; the metric is ignored.",
+						$"List of metrics is exposed as {nameof(ICompetitionConfig)}.{nameof(ICompetitionConfig.GetMetrics)}().");
 					continue;
 				}
 
@@ -604,25 +717,28 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			var targetTypeName = benchmarkType.GetTargetTypeName(useFullTypeName);
 			var competitionNode = xmlAnnotationDoc
 				.Element(CompetitionBenchmarksRootNode)
-				.GetOrAddElement(CompetitionNode, targetTypeName);
+				.GetOrAddTargetElement(CompetitionNode, targetTypeName);
+
+			XElement lastTargetNode = null;
 			foreach (var competitionTarget in competitionTargets)
 			{
 				var targetMethodName = competitionTarget.Target.GetTargetMethodName();
 				var isBaseline = competitionTarget.Baseline;
 
-				var targetNode = competitionNode.GetOrAddElement(targetMethodName);
-				bool forceUpdate = !targetNode.HasElements;
+				lastTargetNode = competitionNode.GetOrAddElement(targetMethodName, lastTargetNode);
+				bool forceUpdate = !lastTargetNode.HasElements;
 
 				var baselineText = isBaseline ? XmlConvert.ToString(true) : null;
-				targetNode.SetAttribute(BaselineAttribute, baselineText);
+				lastTargetNode.SetAttribute(BaselineAttribute, baselineText);
 
 				var targetMetricValue = competitionTarget.MetricValues.SingleOrDefault(f => f.Metric.IsPrimaryMetric);
-				UpdateStoredMetric(targetNode, targetMetricValue, forceUpdate);
+				UpdateStoredMetric(lastTargetNode, targetMetricValue, forceUpdate);
 
+				XElement lastMetricNode = null;
 				foreach (var metricValue in competitionTarget.MetricValues.Where(m => !m.Metric.IsPrimaryMetric))
 				{
-					var metricNode = GetOrAddElement(targetNode, metricValue.Metric.DisplayName);
-					UpdateStoredMetric(metricNode, metricValue, forceUpdate);
+					lastMetricNode = GetOrAddElement(lastTargetNode, metricValue.Metric.DisplayName, lastMetricNode);
+					UpdateStoredMetric(lastMetricNode, metricValue, forceUpdate);
 				}
 			}
 		}
