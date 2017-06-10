@@ -87,9 +87,6 @@
     <Compile Include="[L0_PortToBenchmerkDotNet]\Loggers\IFlushableLogger.cs" />
     <Compile Include="[L0_PortToBenchmerkDotNet]\Loggers\LazySynchronizedStreamLogger.cs" />
     <Compile Include="[L0_PortToBenchmerkDotNet]\Loggers\NamespaceDoc.cs" />
-    <Compile Include="[L0_PortToBenchmerkDotNet]\Engines\BurstModeEngineFactory.cs" />
-    <Compile Include="[L0_PortToBenchmerkDotNet]\Engines\BurstModeEngine.cs" />
-    <Compile Include="[L0_PortToBenchmerkDotNet]\Engines\NamespaceDoc.cs" />
     <Compile Include="[L2_CompetitionCore]\Analysers\ValidatorMessagesAnalyser.cs" />
     <Compile Include="[L2_CompetitionCore]\Loggers\RedirectLogger.cs" />
     <Compile Include="[L2_CompetitionCore]\Loggers\LoggerHelpers.cs" />

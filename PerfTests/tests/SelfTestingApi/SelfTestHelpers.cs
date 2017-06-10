@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 
 using BenchmarkDotNet.Environments;
-using BenchmarkDotNet.Helpers;
 
 using CodeJam.PerfTests.Configs;
 
@@ -24,13 +23,25 @@ namespace CodeJam.PerfTests
 
 		public static int GetExpectedCount(ICompetitionConfig config, int methodsCount)
 		{
+			var runMode = config.GetJobs().Single().Run;
+			var unrollFactor = runMode.UnrollFactor;
+			return GetExpectedCountCore(config, methodsCount, unrollFactor);
+		}
+
+		public static int GetExpectedCountIgnoreUnroll(ICompetitionConfig config, int methodsCount)
+		{
+			return GetExpectedCountCore(config, methodsCount, 1);
+		}
+
+		private static int GetExpectedCountCore(ICompetitionConfig config, int methodsCount, int unrollFactor)
+		{
 			const int JittingCount = 1;
 			var runMode = config.GetJobs().Single().Run;
 
-			var sigleLaunchCount = JittingCount * runMode.UnrollFactor +
+			var singleLaunchCount = JittingCount * unrollFactor +
 				(runMode.WarmupCount + runMode.TargetCount) * runMode.InvocationCount;
 
-			return sigleLaunchCount * runMode.LaunchCount * methodsCount;
+			return singleLaunchCount * runMode.LaunchCount * methodsCount;
 		}
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
