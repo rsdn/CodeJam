@@ -545,13 +545,13 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				 where competition.Attribute(TargetAttribute)?.Value == targetTypeName
 				 from candidate in competition.Elements()
 				 select candidate)
-					.ToDictionary(c => c.Name);
+					.ToLookup(c => c.Name);
 
 			foreach (var target in targets)
 			{
 				var targetMethodName = target.GetTargetMethodName();
-				var targetNode = targetNodesByName.GetValueOrDefault(targetMethodName);
-				var storedTarget = TryParseTargetMetrics(target, targetNode, metricsByName, analysis);
+				var targetNodes = targetNodesByName[targetMethodName].ToArray();
+				var storedTarget = TryParseTargetMetrics(target, targetNodes, metricsByName, analysis);
 				if (storedTarget != null)
 				{
 					result.Add(target, storedTarget);
@@ -563,43 +563,46 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		[CanBeNull]
 		private static StoredTargetInfo TryParseTargetMetrics(
-			Target target, XElement targetNode,
+			Target target, XElement[] targetNodes,
 			Dictionary<string, MetricInfo> metricsByName,
 			IMessageLogger messageLogger)
 		{
-			if (targetNode == null)
+			if (targetNodes.IsNullOrEmpty())
 			{
 				return null;
 			}
 
-			var baseline = TryParseBooleanValue(target, targetNode, BaselineAttribute, messageLogger);
+			bool? baseline = null;
 			var metrics = new List<StoredMetricValue>();
-
 			var primaryMetric = metricsByName.Values.SingleOrDefault(m => m.IsPrimaryMetric);
-			if (primaryMetric != null)
+			foreach (var targetNode in targetNodes)
 			{
-				var storedMetric = TryParseTargetMetric(target, targetNode, primaryMetric, messageLogger);
-				if (storedMetric != null)
+				baseline = baseline ?? TryParseBooleanValue(target, targetNode, BaselineAttribute, messageLogger);
+				if (primaryMetric != null)
 				{
-					metrics.Add(storedMetric);
-				}
-			}
-
-			foreach (var metricNode in targetNode.Elements())
-			{
-				if (!metricsByName.TryGetValue(metricNode.Name.LocalName, out var metric))
-				{
-					messageLogger.WriteWarningMessage(
-						target,
-						$"XML annotation contains metric {metricNode.Name} not listed in config; the metric is ignored.",
-						$"List of metrics is exposed as {nameof(ICompetitionConfig)}.{nameof(ICompetitionConfig.GetMetrics)}().");
-					continue;
+					var storedMetric = TryParseTargetMetric(target, targetNode, primaryMetric, messageLogger);
+					if (storedMetric != null)
+					{
+						metrics.Add(storedMetric);
+					}
 				}
 
-				var storedMetric = TryParseTargetMetric(target, metricNode, metric, messageLogger);
-				if (storedMetric != null)
+				foreach (var metricNode in targetNode.Elements())
 				{
-					metrics.Add(storedMetric);
+					if (!metricsByName.TryGetValue(metricNode.Name.LocalName, out var metric))
+					{
+						messageLogger.WriteWarningMessage(
+							target,
+							$"XML annotation contains metric {metricNode.Name} not listed in config; the metric is ignored.",
+							$"List of metrics is exposed as {nameof(ICompetitionConfig)}.{nameof(ICompetitionConfig.GetMetrics)}().");
+						continue;
+					}
+
+					var storedMetric = TryParseTargetMetric(target, metricNode, metric, messageLogger);
+					if (storedMetric != null)
+					{
+						metrics.Add(storedMetric);
+					}
 				}
 			}
 

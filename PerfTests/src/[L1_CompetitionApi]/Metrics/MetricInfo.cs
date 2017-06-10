@@ -107,7 +107,7 @@ namespace CodeJam.PerfTests.Metrics
 			if (metricMeta != null)
 			{
 				Category = metricMeta.Category;
-				AnnotateInplace = metricMeta.AnnotateInplace;
+				AnnotateInPlace = metricMeta.AnnotateInPlace;
 				SingleValueMode = metricMeta.SingleValueMode;
 				MetricColumns = metricMeta.MetricColumns;
 			}
@@ -154,12 +154,12 @@ namespace CodeJam.PerfTests.Metrics
 		public string Category { get; }
 
 		/// <summary>
-		/// Gets inplace annotation mode (all inplace attributes for same category will be placed at the same line).
+		/// Gets in-place annotation mode (all in-place attributes for same category will be placed at the same line).
 		/// </summary>
 		/// <value>
-		/// <c>true</c> if the inplace annotation mode is enabled; otherwise, <c>false</c>.
+		/// <c>true</c> if the in-place annotation mode is enabled; otherwise, <c>false</c>.
 		/// </value>
-		public bool AnnotateInplace { get; }
+		public bool AnnotateInPlace { get; }
 
 		/// <summary>Gets single value treatment mode.</summary>
 		/// <value>The single value treatment mode.</value>

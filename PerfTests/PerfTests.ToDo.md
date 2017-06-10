@@ -10,14 +10,12 @@
 ## TODOs:
 
 ### TODO now:
-* IColumn implementation - fix after update to BDN 10.4
 * Cache metric values (same as annotation context but for parsing the anotations).
 * Output contains messages printed under `*** Warnings ***` section. Have no idea what to do with it.
   Need non-printable analyzer warnings :)
 
 ### Types:
- * ??? Rrename Xxx annotations to metric annotations? Not sure, may be a bad idea if we're going to store something except metrics.'
- * BurstModeEngineFactory: sync with code in BDN
+ * ??? Rename Xxx annotations to metric annotations? Not sure, may be a bad idea if we're going to store something except metrics.'
  * Sealed types: unseal where it looks like a good idea.
  * Simplify collections of types. MappedCollection / Keyed collection where possible.
  

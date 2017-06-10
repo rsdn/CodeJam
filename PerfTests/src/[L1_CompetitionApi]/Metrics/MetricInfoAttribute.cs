@@ -46,11 +46,11 @@ namespace CodeJam.PerfTests.Metrics
 		public MetricValueColumns MetricColumns { get; set; }
 
 		/// <summary>
-		/// Gets or sets inplace annotation mode (all inplace attributes for same category will be placed at the same line).
+		/// Gets or sets in-place annotation mode (all in-place attributes for same category will be placed at the same line).
 		/// </summary>
 		/// <value>
-		/// <c>true</c> if the inplace annotation mode is enabled; otherwise, <c>false</c>.
+		/// <c>true</c> if the in-place annotation mode is enabled; otherwise, <c>false</c>.
 		/// </value>
-		public bool AnnotateInplace { get; set; }
+		public bool AnnotateInPlace { get; set; }
 	}
 }

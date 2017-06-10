@@ -148,23 +148,23 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return true;
 		}
 
-		public static bool TryInsertAttributeInplace(
-			SourceAnnotationFile sourceCodeFile, int inplaceLineNumber,
+		public static bool TryInsertAttributeInPlace(
+			SourceAnnotationFile sourceCodeFile, int inPlaceLineNumber,
 			TargetSourceLines benchmarkMethod,
 			CompetitionMetricValue metricValue)
 		{
-			var line = sourceCodeFile[inplaceLineNumber];
+			var line = sourceCodeFile[inPlaceLineNumber];
 
-			var inplacePosition = line.LastIndexOf(']');
-			if (inplacePosition < 0)
+			var inPlacePosition = line.LastIndexOf(']');
+			if (inPlacePosition < 0)
 				return false;
 
-			var appendText = GetInplaceAnnotationText(metricValue);
+			var appendText = GetInPlaceAnnotationText(metricValue);
 
-			line = line.Insert(inplacePosition, appendText);
-			sourceCodeFile.ReplaceLine(inplaceLineNumber, line);
+			line = line.Insert(inPlacePosition, appendText);
+			sourceCodeFile.ReplaceLine(inPlaceLineNumber, line);
 			var attributeTypeHandle = metricValue.Metric.AttributeType.TypeHandle;
-			benchmarkMethod.AddAttribute(attributeTypeHandle, inplaceLineNumber);
+			benchmarkMethod.AddAttribute(attributeTypeHandle, inPlaceLineNumber);
 
 			return true;
 		}
@@ -202,7 +202,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return result.ToString();
 		}
 
-		private static string GetInplaceAnnotationText(CompetitionMetricValue metricValue)
+		private static string GetInPlaceAnnotationText(CompetitionMetricValue metricValue)
 		{
 			var result = new StringBuilder();
 			result.Append(", ");

@@ -28,7 +28,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			TreatedAsEmpty,
 			NotApplicableToBaseline,
 			UnitValueMissing,
-			UnitValueNotRequired
+			UnitValueNotRequired,
+			MultipleAnnotations
 		}
 
 		#region Static members
@@ -93,23 +94,29 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			List<(MetricInfo, MetricParseEvent)> parseEvents)
 		{
 			var result = new List<CompetitionMetricValue>();
-			var metricsByType = storedTarget.MetricValues.ToDictionary(m => m.MetricAttributeType);
+			var metricsByType = storedTarget.MetricValues.ToLookup(m => m.MetricAttributeType);
 			foreach (var metric in metrics)
 			{
 				var metricIsApplicable = !target.Baseline || !metric.IsRelative;
-				if (metricsByType.TryGetValue(metric.AttributeType, out var storedMetric))
+				var storedMetrics = metricsByType[metric.AttributeType].ToArray();
+				if (storedMetrics.Length > 0)
 				{
 					if (metricIsApplicable)
 					{
-						var metricValue = storedMetric.ToMetricValue(metric);
+						var metricValue = storedMetrics[0].ToMetricValue(metric);
 						if (CheckMetricValue(metricValue, parseEvents))
 						{
-							result.Add(storedMetric.ToMetricValue(metric));
+							result.Add(metricValue);
 						}
 					}
 					else if (!metric.IsPrimaryMetric)
 					{
 						parseEvents.Add((metric, MetricParseEvent.NotApplicableToBaseline));
+					}
+
+					if (storedMetrics.Length > 1)
+					{
+						parseEvents.Add((metric, MetricParseEvent.MultipleAnnotations));
 					}
 				}
 				else if (metricIsApplicable)
@@ -175,14 +182,20 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					case MetricParseEvent.UnitValueMissing:
 						messageLogger.WriteSetupErrorMessage(
 							target,
-							$"{names} metric value was parsed incorrectly. Unit value should be not null as metric' units scale is not empty.",
+							$"Parsing error for {names} {metricQuantifier}. Unit value should be not null as metric' units scale is not empty.",
 							"Ensure that annotation does include metric unit.");
 						break;
 					case MetricParseEvent.UnitValueNotRequired:
 						messageLogger.WriteSetupErrorMessage(
 							target,
-							$"{names} metric value was parsed incorrectly. Unit value should be null as metric' units scale is empty.",
+							$"Parsing error for {names} {metricQuantifier}. Unit value should be null as metric' units scale is empty.",
 							"Ensure that annotation does not include metric unit.");
+						break;
+					case MetricParseEvent.MultipleAnnotations:
+						messageLogger.WriteWarningMessage(
+							target,
+							$"{names} {metricQuantifier} has multiple annotations. Only first one was applied, others were ignored.",
+							"Remove annotation duplicates.");
 						break;
 					default:
 						throw CodeExceptions.UnexpectedValue(g.parseEvent);
