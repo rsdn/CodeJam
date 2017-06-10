@@ -202,7 +202,7 @@ Next, add setup / cleanup methods if you do need them. In our case we will use `
 		private ulong[] _arrayA2;
 		private ulong[] _arrayB2;
 
-		[Setup]
+		[GlobalSetup]
 		public void Setup()
 		{
 			// Constant rnd seed to get repeatable results

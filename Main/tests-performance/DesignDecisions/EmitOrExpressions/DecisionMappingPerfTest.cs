@@ -166,7 +166,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 		private const int Count = CompetitionRunHelpers.SmallLoopCount;
 		private HInt32[] _a, _b, _c;
 
-		[Setup]
+		[GlobalSetup]
 		public void Setup()
 		{
 			var rnd = new Random(0);

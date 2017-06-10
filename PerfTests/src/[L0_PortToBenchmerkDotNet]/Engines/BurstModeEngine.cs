@@ -211,12 +211,12 @@ namespace BenchmarkDotNet.Engines
 		/// <summary>Gets the operations per invoke.</summary>
 		/// <value>The operations per invoke.</value>
 		public long OperationsPerInvoke => _engineParameters.OperationsPerInvoke;
-		/// <summary>Gets the setup action.</summary>
-		/// <value>The setup action.</value>
-		public Action SetupAction => _engineParameters.SetupAction;
-		/// <summary>Gets the cleanup action.</summary>
-		/// <value>The cleanup action.</value>
-		public Action CleanupAction => _engineParameters.CleanupAction;
+		/// <summary>Gets the global setup action.</summary>
+		/// <value>The global setup action.</value>
+		public Action GlobalSetupAction => _engineParameters.GlobalSetupAction;
+		/// <summary>Gets the global cleanup action.</summary>
+		/// <value>The global cleanup action.</value>
+		public Action GlobalCleanupAction => _engineParameters.GlobalCleanupAction;
 		/// <summary>Gets the idle action.</summary>
 		/// <value>The idle action.</value>
 		public Action<long> IdleAction => _engineParameters.IdleAction;

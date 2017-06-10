@@ -5,6 +5,7 @@ using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Exporters;
+using BenchmarkDotNet.Filters;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Order;
@@ -68,6 +69,10 @@ namespace BenchmarkDotNet.Configs
 		/// <summary>Gets hardware counters.</summary>
 		/// <returns>Hardware counters</returns>
 		public IEnumerable<HardwareCounter> GetHardwareCounters() => _config.GetHardwareCounters();
+
+		/// <summary>Gets the filters.</summary>
+		/// <returns>Filters</returns>
+		public IEnumerable<IFilter> GetFilters() => _config.GetFilters();
 
 		/// <summary>Get order provider.</summary>
 		/// <returns>Order provider.</returns>

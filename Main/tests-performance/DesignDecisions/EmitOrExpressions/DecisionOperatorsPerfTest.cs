@@ -148,7 +148,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 		private const int Count = CompetitionRunHelpers.SmallLoopCount;
 		private int[] _a, _b, _c;
 
-		[Setup]
+		[GlobalSetup]
 		public void Setup()
 		{
 			var rnd = new Random(0);
@@ -197,7 +197,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(0.179, 0.650), GcAllocations(0)]
+		[CompetitionBenchmark(0.167, 0.650), GcAllocations(0)]
 		public void MinHardcoded()
 		{
 			for (int i = 0; i < Count; i++)

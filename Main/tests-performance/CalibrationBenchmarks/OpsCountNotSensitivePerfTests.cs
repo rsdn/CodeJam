@@ -20,7 +20,7 @@ namespace CodeJam
 		#region PerfTest helpers
 		private int _result;
 
-		[Setup]
+		[GlobalSetup]
 		public void Setup() => _result = 0;
 		#endregion
 
