@@ -56,7 +56,7 @@ Each perftest has some key parts, listed in comments:
 		// Marks method as a Baseline competition member. 
 		// Other competition members will be compared with this.
 		[CompetitionBaseline]
-         // GC Allocations metric annotation. Assumes that the method does not allocate.
+		// GC Allocations metric annotation. Assumes that the method does not allocate.
 		[GcAllocations(0)]
 		public void Baseline() => Thread.SpinWait(Count);
 

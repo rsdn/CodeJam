@@ -17,7 +17,6 @@
 		</dependencies>
 	</metadata>
 	<files>
-		<file src="Readme.txt" target="" />
 		<file src="..\src-MSTest\bin\Release\CodeJam.PerfTests.MSTest.dll" target="lib\net46" />
 		<file src="..\src-MSTest\bin\Release\CodeJam.PerfTests.MSTest.pdb" target="lib\net46" />
 		<file src="..\src-MSTest\bin\Release\CodeJam.PerfTests.MSTest.xml" target="lib\net46" />

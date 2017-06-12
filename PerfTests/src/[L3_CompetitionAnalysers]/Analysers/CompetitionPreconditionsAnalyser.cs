@@ -93,7 +93,7 @@ namespace CodeJam.PerfTests.Analysers
 				analysis.WriteExecutionErrorMessage("Summary has validation errors.");
 			}
 
-			if (summary.Benchmarks.IsNullOrEmpty())
+			if (!summary.HasCriticalValidationErrors && summary.Benchmarks.IsNullOrEmpty())
 			{
 				analysis.WriteSetupErrorMessage(
 					"Nothing to check as there is no methods in benchmark.",
