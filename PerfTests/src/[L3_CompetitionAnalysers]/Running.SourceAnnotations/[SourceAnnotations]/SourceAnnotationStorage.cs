@@ -71,7 +71,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					continue;
 				}
 
-				// Transport object used to not hold ref to the attribute.
+				// Transport object allows to not hold ref to the attribute.
 				var storedMetric = new StoredMetricValue(
 					metricAttribute.MetricAttributeType,
 					metricAttribute.Min,

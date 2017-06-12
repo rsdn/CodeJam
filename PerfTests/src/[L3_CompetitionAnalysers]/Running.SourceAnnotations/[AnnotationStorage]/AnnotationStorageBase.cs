@@ -194,7 +194,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					case MetricParseEvent.MultipleAnnotations:
 						messageLogger.WriteWarningMessage(
 							target,
-							$"{names} {metricQuantifier} has multiple annotations. Only first one was applied, others were ignored.",
+							$"Multiple annotations found for {names} {metricQuantifier}. Only first annotation was applied, others were ignored.",
 							"Remove annotation duplicates.");
 						break;
 					default:

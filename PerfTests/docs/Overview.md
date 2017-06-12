@@ -178,7 +178,7 @@ This is fine as real variance of execution time even for large loops are the sam
 
 #### GC allocations metric accuracy
 
-Default config provides single-byte accuracy of allocation measurements. Please note that all CLR objects are aligned by size of pointer so the size of payload of the object actually is rounded up to 4 byte multiplier on x86 and up to 4 byte multiplier on x64. As a proof:
+Default config provides single-byte accuracy of allocation measurements. Please note that all CLR objects are aligned by size of pointer so the size of payload of the object actually is rounded up to 4 byte multiplier on x86 and up to 8 byte multiplier on x64. As a proof:
 
 ```c#
 		[CompetitionBenchmark]
@@ -193,11 +193,11 @@ Default config provides single-byte accuracy of allocation measurements. Please 
 		}
 ```
 
-Accuracy on custom configs may be lower. Most of CLR implementations has minimum memory allocation quantum of 8kb so the `new object()` may be measured as a multiple kb allocation. Default setup performs multiple iterations per single measurement but config modifiers may alter the number. As example, accuracy of allocations metric for runs performed with enabled BurstMode feature is 16 bytes.
+Accuracy on custom configs may be lower. Most of CLR implementations has minimum memory allocation quantum of 8 KB so the single `new object()` may be measured as a multiple kb allocation. Default setup performs multiple iterations per single measurement but config modifiers may alter the number. As example, accuracy of allocations metric for runs performed with BurstMode feature enabled is 16 bytes.
 
 #### GC collections metrics accuracy
 
-The values of GC collections metrics are scaled per 1000 iterations (same as BenchmarkDotNet). So
+The values of GC collections metrics are scaled per 1000 iterations (same as in BenchmarkDotNet). So
 
 ```c#
 		[CompetitionBenchmark]
@@ -233,10 +233,11 @@ By default all perftests are run in-process as this allows to speedup test execu
 				config.Jobs.Add(Job.Default.With(new RoslynToolchain()));
 
 				// Same level of output that is used by BenchmarkDotNet
-				config.ApplyModifier(new CompetitionOptions()
-				{
-					RunOptions = { DetailedLogging = true }
-				});
+				config.ApplyModifier(
+					new CompetitionOptions()
+					{
+						RunOptions = { DetailedLogging = true }
+					});
 			}
 		}
 
@@ -261,14 +262,14 @@ CodeJam.PerfTests do not support configurations that uses multiple jobs and repo
 > There are four possible combinations so annotation for each method in competition will look like this:
 >
 > ```c#
-> [CompetitionBenchmark(2.88, 3.11, Case="Parameters=Fast, GC.Force=True")]
-> [CompetitionBenchmark(12.21, 15.45, Case="Parameters=Slow, GC.Force=True")]
-> [CompetitionBenchmark(2.35, 2.88, Case="Parameters=Fast, GC.Force=False")]
-> [CompetitionBenchmark(10.81, 13.40, Case="Parameters=Slow, GC.Force=False")]
-> [GcAllocations(1.22, 1.25, BinarySizeUnit.Kilobyte,  Case="Parameters=Fast, GC.Force=True")]
-> [GcAllocations(0.41, 0.45, BinarySizeUnit.Kilobyte, Case="Parameters=Slow, GC.Force=True")]
-> [GcAllocations(1.22, 1.25, BinarySizeUnit.Kilobyte, Case="Parameters=Fast, GC.Force=False")]
-> [GcAllocations(0.41, 0.45, BinarySizeUnit.Kilobyte, Case="Parameters=Slow, GC.Force=False")] 
+> [CompetitionBenchmark(2.88, 3.11, Case = "Parameters=Fast, GC.Force=True")]
+> [CompetitionBenchmark(12.21, 15.45, Case = "Parameters=Slow, GC.Force=True")]
+> [CompetitionBenchmark(2.35, 2.88, Case = "Parameters=Fast, GC.Force=False")]
+> [CompetitionBenchmark(10.81, 13.40, Case = "Parameters=Slow, GC.Force=False")]
+> [GcAllocations(1.22, 1.25, BinarySizeUnit.Kilobyte, Case = "Parameters=Fast, GC.Force=True")]
+> [GcAllocations(0.41, 0.45, BinarySizeUnit.Kilobyte, Case = "Parameters=Slow, GC.Force=True")]
+> [GcAllocations(1.22, 1.25, BinarySizeUnit.Kilobyte, Case = "Parameters=Fast, GC.Force=False")]
+> [GcAllocations(0.41, 0.45, BinarySizeUnit.Kilobyte, Case = "Parameters=Slow, GC.Force=False")] 
 > public void SomeMethod() => ...
 > ```
 >

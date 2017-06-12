@@ -351,8 +351,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			var logger = messageLogger.Logger;
 			logger.WriteLineInfo(LogAnnotationStart);
-			logger.WriteLineInfo(xmlDocContent.ToString());
-			logger.WriteLineInfo(LogAnnotationEnd);
+			try
+			{
+				logger.WriteLineInfo(xmlDocContent.ToString());
+			}
+			finally
+			{
+				logger.WriteLineInfo(LogAnnotationEnd);
+			}
 		}
 
 		/// <summary>Saves the specified xml annotation document.</summary>

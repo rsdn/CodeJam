@@ -13,6 +13,7 @@
 * Cache metric values (same as annotation context but for parsing the anotations).
 * Output contains messages printed under `*** Warnings ***` section. Have no idea what to do with it.
   Need non-printable analyzer warnings :)
+* Config modifier attributes. Do some thing with names and discoverability. May be some naming convention for modifiers?
 
 ### Types:
  * ??? Rename Xxx annotations to metric annotations? Not sure, may be a bad idea if we're going to store something except metrics.'
@@ -20,13 +21,13 @@
  * Simplify collections of types. MappedCollection / Keyed collection where possible.
  
 ### Validations:
- * Unique method names
- * Unique metric names
+ * No Benchmark / Setup attribute duplication
 
 ### Behavior:
+ * Future versions of BDN: each member in competition may have its own target type (multiple targets for single run). Ensure that our code is prepared to it.
  * "Cannot detect encoding" checks for anything that reads streams as text?
  * Concurrency: lock should be performed on entire benchmark run.
-   + Subtask: Support for concurrent competiton runs (stub code were removed at master afd9977, restore, then fix). Use case: load testing.
+   + Subtask: Support for concurrent competiton run s (stub code were removed at master afd9977, restore, then fix). Use case: load testing.
    + Subtask: concurrent runs. Disallowed as it will break concurrent file annotations
  * metric info: flags enum of column kinds to add into summary
  * Rule to ignore individual metric annotations (do not annotate / current only etc?)
@@ -76,6 +77,7 @@
  * Remove and re-add resharper suppressions
 
 ### Features to test & to document
+* FAQ (minimum metric values)
 * Gc metrics (byte-precise allocation monitoring, gc collection metrics)
 
 ## Long-term TODOs:
@@ -85,7 +87,6 @@ https://github.com/dotnet/BenchmarkDotNet/issues/361
 https://github.com/dotnet/BenchmarkDotNet/issues/360
 https://github.com/dotnet/BenchmarkDotNet/issues/327
 https://github.com/dotnet/BenchmarkDotNet/issues/324
-https://github.com/dotnet/BenchmarkDotNet/issues/319 -- ready. Update the code.
 https://github.com/dotnet/BenchmarkDotNet/issues/136
 
 https://github.com/xunit/xunit/issues/908
@@ -101,11 +102,11 @@ https://github.com/xunit/xunit/issues/908
 ### Layer 0: things to port to BDN
  Thats it.
 
-### Layer 1: Common competition api to be used by end customers and for extensibility.
- Options, netrics, various helpers.
+### Layer 1: Common competition api to be used by end customers and by the competition itself.
+ Options, metrics, various helpers.
 
 ### Layer 2: CompetitionCore
- Core api to be used during competition run. Logging and messages.
+ Core api to be used during competition run. Not meant to be exposed to end users but is available for third-party extensions. Icludes logging and messages.
 
 ### Layer 3: Competition analysers
  Competition metric related things: analysers and annotation storages.
@@ -119,6 +120,7 @@ https://github.com/xunit/xunit/issues/908
 
 ## Long-term plans for v2
  * Advanced metrics (proof that api is done with package that uses GLAD)
+ * Backup for auto-annotations
  * Make annotations storage API public. Use case: to store them as a database file
    + ??? Subtask: exporter-only version to collect actual metric values
    + ??? Advanced subtask: collect raw metric values (discarded, too much data without a gain).

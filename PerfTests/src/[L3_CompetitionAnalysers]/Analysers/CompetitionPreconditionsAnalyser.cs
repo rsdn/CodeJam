@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
+using BenchmarkDotNet.Running;
 
 using CodeJam.Collections;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
+using CodeJam.PerfTests.Running.SourceAnnotations;
 using CodeJam.Strings;
 
 using JetBrains.Annotations;
@@ -24,6 +27,59 @@ namespace CodeJam.PerfTests.Analysers
 		#region Static members
 		/// <summary>The instance of <see cref="ValidatorMessagesAnalyser"/>.</summary>
 		public static readonly CompetitionPreconditionsAnalyser Instance = new CompetitionPreconditionsAnalyser();
+
+		#region Helpers
+		private static readonly IReadOnlyList<Type> _knownUniqueMemberLevelAttributes = new[]
+		{
+			typeof(BenchmarkAttribute),
+			typeof(GlobalSetupAttribute),
+			typeof(GlobalCleanupAttribute),
+			typeof(IterationSetupAttribute),
+			typeof(IterationCleanupAttribute)
+		};
+		private static readonly IReadOnlyList<Type> _knownUniqueTypeLevelAttributes = new[]
+		{
+			typeof(GlobalSetupAttribute),
+			typeof(GlobalCleanupAttribute),
+			typeof(IterationSetupAttribute),
+			typeof(IterationCleanupAttribute)
+		};
+
+
+		private static IEnumerable<MethodInfo> GetInvokedMethods(Target target)
+		{
+			yield return target.Method;
+
+			if (target.GlobalSetupMethod != null)
+				yield return target.GlobalSetupMethod;
+			if (target.IterationSetupMethod != null)
+				yield return target.IterationSetupMethod;
+			if (target.IterationCleanupMethod != null)
+				yield return target.IterationCleanupMethod;
+			if (target.GlobalCleanupMethod != null)
+				yield return target.GlobalCleanupMethod;
+		}
+
+		private static string[] GetTargetNames(
+			Analysis analysis,
+			Func<BenchmarkReport, bool> benchmarkReportFilter) =>
+				analysis.Summary.GetSummaryOrderBenchmarks()
+					.Select(b => analysis.Summary[b])
+					.Where(r => r != null && r.ExecuteResults.Any() && benchmarkReportFilter(r))
+					.Select(r => r.Benchmark.Target.MethodDisplayInfo)
+					.Distinct()
+					.ToArray();
+
+		private static string[] GetDuplicates<T, TKey>(
+			IEnumerable<T> source,
+			Func<T, TKey> keySelector,
+			Func<T, string> fullNameSelector) =>
+				source
+					.GroupBy(keySelector)
+					.Where(g => g.Skip(1).Any())
+					.Select(g => $"{g.Key} {g.Select(fullNameSelector).Join("; ")}")
+					.ToArray();
+		#endregion
 
 		#region Check setup
 		private static bool CheckSetup(Analysis analysis)
@@ -59,9 +115,67 @@ namespace CodeJam.PerfTests.Analysers
 						"Note that results for each parameter set will be merged.");
 			}
 
+			CheckMembers(analysis);
+
 			CheckMetrics(analysis);
 
 			return analysis.SafeToContinue;
+		}
+
+		private static void CheckMembers(Analysis analysis)
+		{
+			var summary = analysis.Summary;
+
+			// No duplicate names
+			var targets = summary.GetBenchmarkTargets();
+			var duplicateTargets = GetDuplicates(
+				targets,
+				t => t.Method.Name,
+				t => $"\r\n\t\t  {t.Method.DeclaringType}.{t.Method.Name}()");
+
+			if (duplicateTargets.NotNullNorEmpty())
+			{
+				analysis.WriteSetupErrorMessage(
+					$"There are multiple methods with same name: {duplicateTargets.Join(",\r\n\t\t")}.",
+					"Rename methods to avoid duplicates.");
+			}
+
+			// No conflict on attributes
+			var targetMethodsWithAttributes = targets
+				.SelectMany(GetInvokedMethods)
+				.Distinct()
+				.SelectMany(
+					m =>
+						m.GetCustomAttributes(true)
+							.Select(a =>
+								(method: m, attributeType: a.GetType(), baseAttribute: _knownUniqueMemberLevelAttributes.FirstOrDefault(ka => ka.IsInstanceOfType(a))))
+							.Where(t => t.baseAttribute != null))
+				.ToArray();
+
+			var conflictingAttributes = GetDuplicates(
+				targetMethodsWithAttributes,
+				t => $"{t.method.DeclaringType}.{t.method.Name}()",
+				t => $"\r\n\t\t  {t.attributeType.FullName}");
+
+			if (conflictingAttributes.NotNullNorEmpty())
+			{
+				analysis.WriteSetupErrorMessage(
+					$"There are conflicting attributes: {conflictingAttributes.Join(",\r\n\t\t")}.",
+					"There can be only one.");
+			}
+
+			// No multiple methods for an attribute
+			var conflictingMethods = GetDuplicates(
+				targetMethodsWithAttributes.Where(t => _knownUniqueTypeLevelAttributes.Contains(t.baseAttribute)),
+				t => t.baseAttribute.FullName,
+				t => $"\r\n\t\t  {t.method.DeclaringType}.{t.method.Name}() ({t.attributeType.FullName})");
+
+			if (conflictingMethods.NotNullNorEmpty())
+			{
+				analysis.WriteSetupErrorMessage(
+					$"There are conflicting methods: {conflictingMethods.Join(",\r\n\t\t")}.",
+					"Leave only one method for each attribute.");
+			}
 		}
 
 		private static void CheckMetrics(Analysis analysis)
@@ -71,10 +185,19 @@ namespace CodeJam.PerfTests.Analysers
 			{
 				Code.BugIf(
 					metrics.DistinctBy(m => m.AttributeType).Count() != metrics.Length,
-					"Duplicate metrics (by attribute type) were not removed during cofig preparation.");
-				Code.BugIf(
-					metrics.DistinctBy(m => m.DisplayName).Count() != metrics.Length,
-					"Duplicate metrics (by name) were not removed during cofig preparation.");
+					"Duplicate metrics (by attribute type) were not removed during config preparation.");
+
+				var duplicateMetrics = GetDuplicates(
+						metrics,
+						m => m.DisplayName,
+						m => "\r\n\t\t  " + m.AttributeType.FullName);
+
+				if (duplicateMetrics.NotNullNorEmpty())
+				{
+					analysis.WriteSetupErrorMessage(
+						$"There are multiple metrics with same display name: {duplicateMetrics.Join(",\r\n\t\t")}.",
+						$"Remove metric duplicates from {nameof(ICompetitionConfig)}.");
+				}
 			}
 			else
 			{
@@ -149,23 +272,13 @@ namespace CodeJam.PerfTests.Analysers
 							.ToString(timeUnits);
 						analysis.AddWarningConclusion(
 							$"{benchmarks} {string.Join(", ", tooSlowReports)}: measured run time is greater than {time}. " +
-								"There's a risk the peak timings were hidden by averages. "+ 
+								"There's a risk the peak timings were hidden by averages. " +
 								"Consider to reduce the number of iterations performed per each measurement.",
 							$"Timing limit for this warning is configured via {CompetitionCheckMode.LongRunningBenchmarkLimitCharacteristic.FullId}.");
 					}
 				}
 			}
 		}
-
-		private static string[] GetTargetNames(
-			Analysis analysis,
-			Func<BenchmarkReport, bool> benchmarkReportFilter) =>
-				analysis.Summary.GetSummaryOrderBenchmarks()
-					.Select(b => analysis.Summary[b])
-					.Where(r => r != null && r.ExecuteResults.Any() && benchmarkReportFilter(r))
-					.Select(r => r.Benchmark.Target.MethodDisplayInfo)
-					.Distinct()
-					.ToArray();
 		#endregion
 		#endregion
 

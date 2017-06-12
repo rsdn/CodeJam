@@ -2,19 +2,19 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>CodeJam.PerfTests.Core</id>
-		<version>0.1.1-beta3</version>
+		<version>0.1.4-beta1</version>
 		<title>CodeJam.PerfTests Core Library</title>
 		<authors>ig-sinicyn</authors>
 		<licenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</licenseUrl>
 		<iconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/PerfTests/nuget/CodeJam.PerfTests.Icon.png</iconUrl>
 		<projectUrl>https://github.com/rsdn/CodeJam</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>CodeJam.PerfTests.Core is a core infrastruture package that enables BenchmarkDotNet-driven performance tests.</description>
+		<description>CodeJam.PerfTests.Core is a core infrastructure package that enables BenchmarkDotNet-driven performance tests.</description>
 		<copyright>RSDN.ru, 2017</copyright>
 		<tags>benchmark benchmarking performance</tags>
 		<dependencies>
 			<dependency id="CodeJam" version="1.4.0-beta1" />
-			<dependency id="BenchmarkDotNet.Core" version="0.10.6" />
+			<dependency id="BenchmarkDotNet.Core" version="0.10.8" />
 		</dependencies>
 	</metadata>
 	<files>

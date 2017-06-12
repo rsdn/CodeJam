@@ -29,7 +29,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 		[CompetitionBenchmark(0.33, 1.43)]
 		[GcAllocations(4.08, BinarySizeUnit.Kilobyte), Gc0(0), Gc1(0), Gc2(0)]
-		[ExpectedTime(3.54, 8.33, TimeUnit.Microsecond)]
+		[ExpectedTime(3.54, 8.52, TimeUnit.Microsecond)]
 		public int ListWithCapacity()
 		{
 			var data = new List<int>(Count);

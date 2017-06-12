@@ -32,7 +32,7 @@ namespace CodeJam.PerfTests
 
 	/// <summary>
 	/// Gc allocations metric attribute.
-	/// As perftest may be run inprocess, noise allocations
+	/// As perftest may be run in-process, noise allocations
 	/// (total bytes allocated less than minimum gc allocation quantum) are reported as <c>0</c>
 	/// </summary>
 	[MetricInfo(GcMetricValuesProvider.Category, MetricSingleValueMode.BothMinAndMax)]
@@ -54,7 +54,7 @@ namespace CodeJam.PerfTests
 
 		/// <summary>Initializes a new instance of the <see cref="GcAllocationsAttribute"/> class.</summary>
 		/// <param name="value">
-		/// Exact amout of allocations.
+		/// Exact amount of allocations.
 		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
 		/// Use <seealso cref="double.PositiveInfinity"/> if value is positive infinity (ignored, essentially).
 		/// </param>

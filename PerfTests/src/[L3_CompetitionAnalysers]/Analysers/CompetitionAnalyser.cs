@@ -248,7 +248,7 @@ namespace CodeJam.PerfTests.Analysers
 			}
 			else if (analysis.Conclusions.Count == 0 && analysis.Targets.Any(t => t.MetricValues.Any()))
 			{
-				if (analysis.Targets.HasUnsavedChanges)
+				if (analysis.RunState.LooksLikeLastRun && analysis.Targets.HasUnsavedChanges)
 				{
 					analysis.WriteWarningMessage(
 						"There are competition metrics unsaved. Check the log for details please.");
@@ -304,7 +304,7 @@ namespace CodeJam.PerfTests.Analysers
 				if (annotatedTargets.Any())
 				{
 					analysis.WriteWarningMessage(
-						"The sources were updated with new annotations. Please check them before commiting the changes.");
+						"The sources were updated with new annotations. Please check them before committing the changes.");
 				}
 
 				foreach (var metric in annotatedTargets.SelectMany(t => t.MetricValues))
