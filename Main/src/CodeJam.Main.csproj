@@ -375,6 +375,7 @@
     <Compile Include="Threading\ParallelExtensions.cs" />
     <Compile Include="Threading\ParallelQueue.cs" />
     <Compile Include="Threading\ReaderWriterLockSlimExtensions.cs" />
+    <Compile Include="UriHelper.cs" />
     <Compile Include="Utilities\HGlobal.cs" />
     <Compile Include="Utilities\HGlobalScope.cs" />
     <Compile Include="Utilities\HGlobalScope`1.cs" />
