@@ -76,11 +76,11 @@ namespace CodeJam.Ranges
 		public void RunIntervalTreePerfTest() => Competition.Run(this);
 
 		[CompetitionBaseline]
-		[GcAllocations(218, BinarySizeUnit.Byte)]
+		[GcAllocations(208, 218, BinarySizeUnit.Byte)]
 		public void Intersect() => IntersectNaive(_intersection);
 
 		[CompetitionBenchmark(0.060, 0.114)]
-		[GcAllocations(163, 164, BinarySizeUnit.Byte)]
+		[GcAllocations(163, 176, BinarySizeUnit.Byte)]
 		public void IntersectTree() => _tree.Intersect(_intersection);
 
 		[CompetitionBenchmark(0.143, 0.27)]

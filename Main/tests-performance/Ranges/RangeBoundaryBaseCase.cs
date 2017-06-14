@@ -73,7 +73,7 @@ namespace CodeJam.Ranges
 		/// <summary>
 		/// Called by unit test runner
 		/// </summary>
-		[Setup]
+		[GlobalSetup]
 		[UsedImplicitly]
 		public void Setup()
 		{

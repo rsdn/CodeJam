@@ -14,17 +14,15 @@ In addition there is a set of features that are essential for real-world project
 
 * [Intro](docs/Intro.md)
 * [Overview](docs/Overview.md)
-  * [Source Annotations](docs/SourceAnnotations.md) 
-  * [Configuration System](docs/ConfigurationSystem.md)
-  * [Competition Metric API](docs/CompetitionMetrics.md)
-* [Tutorial](docs/Tutorial.md) (in progress).
+* [Source Annotations](docs/SourceAnnotations.md) 
+* [Configuration System](docs/ConfigurationSystem.md)
+
+  ​
 
 
 ## Contributing
 
 Nothing special, use common [CONTRIBUTING guide](../CONTRIBUTING.md) for the CodeJam project.
-
-
 
 > **WANTED: REWRITERS!**
 >

@@ -75,7 +75,7 @@ namespace CodeJam.Collections
 
 		private Holder<int>[] _data;
 
-		[Setup]
+		[GlobalSetup]
 		public void Setup()
 		{
 			var rnd = new Random(0);
@@ -97,15 +97,15 @@ namespace CodeJam.Collections
 		[GcAllocations(32, BinarySizeUnit.Byte)]
 		public int MinOrDefaultComparer() => MinOrDefaultComparer(_data, i => i.Value, null, 0);
 
-		[CompetitionBenchmark(0.62, 1.27)]
+		[CompetitionBenchmark(0.55, 1.27)]
 		[GcAllocations(32, BinarySizeUnit.Byte)]
 		public Holder<int> MinByOrDefaultGeneric() => MinByOrDefaultGeneric(_data, i => i.Value);
 
-		[CompetitionBenchmark(0.056, 0.111)]
+		[CompetitionBenchmark(0.056, 0.129)]
 		[GcAllocations(0)]
 		public int MinOrDefaultHardcoded() => MinOrDefaultHardcoded(_data, 0);
 
-		[CompetitionBenchmark(0.45, 0.90)]
+		[CompetitionBenchmark(0.45, 1.03)]
 		[GcAllocations(32, BinarySizeUnit.Byte)]
 		public Holder<int> MinByOrDefaultHardcoded() => _data.MinByOrDefault(i => i.Value);
 	}

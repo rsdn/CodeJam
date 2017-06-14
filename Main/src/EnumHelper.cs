@@ -13,7 +13,7 @@ using JetBrains.Annotations;
 
 using static CodeJam.PlatformDependent;
 
-using EnumClass =
+using EnumTargetingHelpers =
 #if FW35
 	CodeJam.Targeting.EnumTargeting
 #else
@@ -310,7 +310,7 @@ namespace CodeJam
 		public static bool TryParse<TEnum>(string name, bool ignoreCase, out TEnum result)
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				Holder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out result) ||
-					EnumClass.TryParse(name, ignoreCase, out result);
+					EnumTargetingHelpers.TryParse(name, ignoreCase, out result);
 
 		/// <summary>Try to parse the enum value.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
@@ -321,8 +321,7 @@ namespace CodeJam
 		public static TEnum? TryParse<TEnum>(string name, bool ignoreCase = false)
 			where TEnum : struct, IComparable, IFormattable, IConvertible
 		{
-			TEnum result;
-			return TryParse(name, ignoreCase, out result) ? result : (TEnum?)null;
+			return TryParse(name, ignoreCase, out TEnum result) ? result : (TEnum?)null;
 		}
 
 		/// <summary>Parse the enum value.</summary>
@@ -334,8 +333,7 @@ namespace CodeJam
 		public static TEnum Parse<TEnum>(string name, bool ignoreCase = false)
 			where TEnum : struct, IComparable, IFormattable, IConvertible
 		{
-			TEnum result;
-			if (Holder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out result))
+			if (Holder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out TEnum result))
 				return result;
 			return (TEnum)Enum.Parse(typeof(TEnum), name, ignoreCase);
 		}

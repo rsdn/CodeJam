@@ -7,7 +7,13 @@
 
 [TOC]
 
+> **WARNING**
+>
+> Please do not use the BenchmarkDotNet config attributes for competitions. *--As it is for now--* they are unsupported and result behavior is undefined.
+
 CodeJam.PerfTests configuration uses almost same approach the BenchmarkDotNet does. However, there are additions aimed to ease configuration of large projects with hundreds or thousands of perftests. Here's how it works:
+
+
 
 ## Attribute annotations
 
@@ -27,6 +33,8 @@ In cases when multiple attributes allowed (`CompetitionFeaturesAttribute` as exa
 
 
 
+
+
 ## 1. Run competition with explicit config
 
 >  **NOTE**
@@ -34,6 +42,8 @@ In cases when multiple attributes allowed (`CompetitionFeaturesAttribute` as exa
 >  Explicit config passing is an advanced technique and should be used only when you want to have a perfect control over the configuration. It skips entire configuration pipeline and therefore it's up to you to pass correct config into competition.
 
 Competition config stores all settings that apply to the competition. It's derived from BenchmarkDotNet's `IConfig` and adds some new members (`Options` property and `GetMetrics()` method, as example) *--TODO: link to competition options help page--*.
+
+
 
 ### 1.1 Pass config as a competition arg
 
@@ -115,6 +125,8 @@ When the test is run the configuration system will check the competition type, i
 
 
 
+
+
 ## 2. Declarative approach. Use competition features
 
 > **NOTE**
@@ -178,6 +190,8 @@ The syntax is following:
  		DetailedLogger="false"/>
 </configuration>
 ```
+
+
 
 ### 2.3 Update default competition features from the environment
 
@@ -243,6 +257,8 @@ Here's example that covers possible annotations for the competition features.
 		}
 	}
 ```
+
+
 
 
 
@@ -333,7 +349,8 @@ As with `CompetitionFeaturesAttribute`, modifiers can be combined together. Chec
 
 
 
-## 4. Get magic under control. Custom competition config factories 
+
+## 4. Get magic under control. Custom competition config factories
 
 > **NOTE**
 >

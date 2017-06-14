@@ -8,6 +8,7 @@ using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Exporters;
+using BenchmarkDotNet.Filters;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Order;
@@ -66,7 +67,10 @@ namespace CodeJam.PerfTests.Configs
 		public List<IValidator> Validators { get; } = new List<IValidator>();
 		/// <summary>Gets hardware counters.</summary>
 		/// <returns>The hardware counters</returns>
-		public List<HardwareCounter> HardwareCounters { get; set; } = new List<HardwareCounter>();
+		public List<HardwareCounter> HardwareCounters { get; } = new List<HardwareCounter>();
+		/// <summary>Gets the filters.</summary>
+		/// <returns>Filters</returns>
+		public List<IFilter> Filters { get; } = new List<IFilter>();
 		/// <summary>Gets the jobs.</summary>
 		/// <value>The jobs.</value>
 		public List<Job> Jobs { get; } = new List<Job>();
@@ -178,8 +182,7 @@ namespace CodeJam.PerfTests.Configs
 			Set(config.GetSummaryStyle());
 			KeepBenchmarkFiles |= config.KeepBenchmarkFiles;
 
-			var competitionConfig = config as ICompetitionConfig;
-			if (competitionConfig != null)
+			if (config is ICompetitionConfig competitionConfig)
 			{
 				Add(competitionConfig.GetMetrics().ToArray());
 				Set(competitionConfig.Options);
@@ -255,6 +258,10 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Gets hardware counters.</summary>
 		/// <returns>Hardware counters</returns>
 		IEnumerable<HardwareCounter> IConfig.GetHardwareCounters() => HardwareCounters;
+
+		/// <summary>Gets the filters.</summary>
+		/// <returns>Filters</returns>
+		public IEnumerable<IFilter> GetFilters() => Filters;
 
 		/// <summary>Gets the jobs.</summary>
 		/// <returns>The jobs.</returns>

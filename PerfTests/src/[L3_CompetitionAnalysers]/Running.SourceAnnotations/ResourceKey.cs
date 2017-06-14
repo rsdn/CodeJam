@@ -30,10 +30,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		/// <summary>Gets the assembly that contains resource.</summary>
 		/// <value>The assembly that contains resource.</value>
+		[CanBeNull]
 		public Assembly Assembly { get; }
 
 		/// <summary>Gets the name of the resource.</summary>
 		/// <value>The name of the resource.</value>
+		[CanBeNull]
 		public string ResourceName { get; }
 
 		#region Equality members
@@ -58,5 +60,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			Assembly?.GetHashCode() ?? 0,
 			ResourceName?.GetHashCode() ?? 0);
 		#endregion
+
+		/// <summary>Returns a <see cref="string" /> that represents this instance.</summary>
+		/// <returns>A <see cref="string" /> that represents this instance.</returns>
+		public override string ToString() => IsEmpty ? "N/A" : $"{ResourceName}@{Assembly?.GetName().Name}";
 	}
 }

@@ -8,6 +8,7 @@ using BenchmarkDotNet.Running;
 
 using CodeJam.Collections;
 using CodeJam.PerfTests.Analysers;
+using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Messages;
@@ -61,18 +62,20 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					if (metricAttribute.MetricAttributeType != MetricInfo.PrimaryMetric.AttributeType)
 					{
 						// TODO: common API for unknown metrics, refactor it to base?
+						var metricName = metricAttribute.MetricAttributeType.GetShortAttributeName();
 						messageLogger.WriteInfoMessage(
 							target,
-							$"unknown metric {metricAttribute.MetricAttributeType.Name}, ignored.");
+							$"Metric {metricName} not listed in config and therefore is ignored.",
+							$"List of metrics is exposed as {nameof(ICompetitionConfig)}.{nameof(ICompetitionConfig.GetMetrics)}().");
 					}
 					continue;
 				}
 
-				// Transport object used to not hold ref to the attribute.
+				// Transport object allows to not hold ref to the attribute.
 				var storedMetric = new StoredMetricValue(
 					metricAttribute.MetricAttributeType,
-					metricAttribute.Min, 
-					metricAttribute.Max, 
+					metricAttribute.Min,
+					metricAttribute.Max,
 					metricAttribute.UnitOfMeasurement);
 
 				result.Add(storedMetric);
@@ -86,22 +89,22 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <param name="analysis">State of the analysis.</param>
 		/// <returns>Saved targets, if any.</returns>
 		protected override CompetitionTarget[] TrySaveAnnotationsCore(
-			IReadOnlyCollection<CompetitionTarget> competitionTargets, 
-			AnnotationContext annotationContext, 
+			IReadOnlyCollection<CompetitionTarget> competitionTargets,
+			AnnotationContext annotationContext,
 			Analysis analysis)
 		{
 			var result = new List<CompetitionTarget>();
 			foreach (var targetToAnnotate in competitionTargets)
 			{
-				TrySaveAnnotationCore(targetToAnnotate,annotationContext, result, analysis);
+				TrySaveAnnotationCore(targetToAnnotate, annotationContext, result, analysis);
 			}
 			return result.ToArray();
 		}
 
 		private static void TrySaveAnnotationCore(
-			CompetitionTarget targetToAnnotate, 
+			CompetitionTarget targetToAnnotate,
 			AnnotationContext annotationContext,
-			List<CompetitionTarget> result, 
+			List<CompetitionTarget> result,
 			IMessageLogger messageLogger)
 		{
 			var metrics = targetToAnnotate.MetricValues.Where(m => m.HasUnsavedChanges).ToArray();
@@ -349,9 +352,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					else
 					{
 						bool inserted = false;
-						if (metricValue.Metric.AnnotateInplace && attributeAppendLineNumber > 0)
+						if (metricValue.Metric.AnnotateInPlace && attributeAppendLineNumber > 0)
 						{
-							inserted = TryInsertAttributeInplace(
+							inserted = TryInsertAttributeInPlace(
 								sourceCodeFile, attributeAppendLineNumber,
 								benchmarkMethod, metricValue);
 						}

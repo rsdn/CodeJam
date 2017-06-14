@@ -33,7 +33,7 @@ namespace CodeJam.Ranges
 			return result;
 		}
 
-		[CompetitionBenchmark(0.50, 1.04)]
+		[CompetitionBenchmark(0.42, 1.04)]
 		[GcAllocations(0)]
 		public RangeBoundaryFrom<int> Test01NoValidation()
 		{
