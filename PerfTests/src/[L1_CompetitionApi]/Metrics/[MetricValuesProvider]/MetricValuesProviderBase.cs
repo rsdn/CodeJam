@@ -242,11 +242,11 @@ namespace CodeJam.PerfTests.Metrics
 			return CreateColumnProvider(metric, columns);
 		}
 
+		// TODO: better name
 		/// <summary>Gets diagnosers the metric values.</summary>
 		/// <param name="metric">The metric to get diagnosers for.</param>
 		/// <returns>Diagnosers for the metric values</returns>
-		protected virtual IDiagnoser[] GetDiagnosersOverride(MetricInfo metric) =>
-			Array<IDiagnoser>.Empty;
+		protected abstract IDiagnoser[] GetDiagnosersOverride(MetricInfo metric);
 
 		/// <summary>Tries to get values for the relative metric.</summary>
 		/// <param name="benchmark">The benchmark.</param>
@@ -262,7 +262,7 @@ namespace CodeJam.PerfTests.Metrics
 			if (!TryGetReport(benchmark, summary, out var benchmarkReport))
 				return false;
 
-			metricValues = GetValuesFromReport(benchmarkReport);
+			metricValues = GetValuesFromReport(benchmarkReport, summary);
 
 			return true;
 		}
@@ -286,8 +286,8 @@ namespace CodeJam.PerfTests.Metrics
 			if (!TryGetReports(benchmark, summary, out var benchmarkReport, out var baselineReport))
 				return false;
 
-			metricValues = GetValuesFromReport(benchmarkReport);
-			baselineMetricValues = GetValuesFromReport(baselineReport);
+			metricValues = GetValuesFromReport(benchmarkReport, summary);
+			baselineMetricValues = GetValuesFromReport(baselineReport, summary);
 
 			return true;
 		}
@@ -295,7 +295,8 @@ namespace CodeJam.PerfTests.Metrics
 
 		/// <summary>Gets the values from benchmark report.</summary>
 		/// <param name="benchmarkReport">The benchmark report.</param>
+		/// <param name="summary">The summary.</param>
 		/// <returns>Metric values from benchmark report</returns>
-		protected abstract double[] GetValuesFromReport(BenchmarkReport benchmarkReport);
+		protected abstract double[] GetValuesFromReport(BenchmarkReport benchmarkReport, Summary summary);
 	}
 }

@@ -97,8 +97,9 @@ namespace CodeJam.PerfTests.Metrics
 
 		/// <summary>Timings for the benchmark report in nanoseconds.</summary>
 		/// <param name="benchmarkReport">The benchmark report.</param>
+		/// <param name="summary">The summary.</param>
 		/// <returns>Metric values from benchmark report</returns>
-		protected override double[] GetValuesFromReport(BenchmarkReport benchmarkReport) =>
+		protected override double[] GetValuesFromReport(BenchmarkReport benchmarkReport, Summary summary) =>
 			new[] { GetGcValuesFromReport(benchmarkReport.GcStats, MetricSource) };
 
 		/// <summary>Gets diagnosers the metric values.</summary>

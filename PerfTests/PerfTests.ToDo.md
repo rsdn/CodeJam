@@ -24,6 +24,7 @@
  * No Benchmark / Setup attribute duplication
 
 ### Behavior:
+ * Annotation adjustments: options for metric unt selection: preserve / autoscale; per-metric adjustment?
  * Future versions of BDN: each member in competition may have its own target type (multiple targets for single run). Ensure that our code is prepared to it.
  * "Cannot detect encoding" checks for anything that reads streams as text?
  * Concurrency: lock should be performed on entire benchmark run.
