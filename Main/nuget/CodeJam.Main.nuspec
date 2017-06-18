@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>CodeJam</id>
-		<version>1.4.0-beta1</version>
+		<version>1.4.0-beta2</version>
 		<title>CodeJam .NET Library</title>
 		<authors>Andrew Koryavchenko, ig-sinicyn, Igor Tkachev, rameel</authors>
 		<licenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</licenseUrl>
@@ -20,6 +20,8 @@
 			</group>
 			<group targetFramework="net45">
 				<dependency id="System.ValueTuple" version="4.3.1" />
+			</group>
+			<group targetFramework="net47">
 			</group>
 		</dependencies>
 	</metadata>
@@ -41,5 +43,9 @@
 		<file src="..\src\bin\Release.4.6\CodeJam.dll" target="lib\net46" />
 		<file src="..\src\bin\Release.4.6\CodeJam.pdb" target="lib\net46" />
 		<file src="..\src\bin\Release.4.6\CodeJam.xml" target="lib\net46" />
+
+		<file src="..\src\bin\Release.4.7\CodeJam.dll" target="lib\net47" />
+		<file src="..\src\bin\Release.4.7\CodeJam.pdb" target="lib\net47" />
+		<file src="..\src\bin\Release.4.7\CodeJam.xml" target="lib\net47" />
 	</files>
 </package>

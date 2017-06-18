@@ -1,5 +1,11 @@
-CodeJam 1.4.0-beta1 Release Notes
+CodeJam 1.4.0-beta2 Release Notes
 ---------------------------------
+
+What's new in 1.4.0-beta2
+-------------------
+* .NET FW 4.7 support (remove dependency from System.ValueTuple package)
+* System.Uri assertions and helper
+* Refactoring and code cleanup
 
 What's new in 1.4.0-beta1
 -------------------
