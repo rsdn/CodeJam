@@ -105,7 +105,7 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="!$(DefineConstants.Contains('FW40'))">
+    <When Condition="!$(DefineConstants.Contains('FW40')) AND $(DefineConstants.Contains('FW462'))">
       <ItemGroup>
         <Reference Include="System.ValueTuple, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
           <HintPath>..\..\packages\System.ValueTuple.4.3.1\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
