@@ -30,7 +30,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
 		/// in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, TKey key)
 			=> GetValueOrDefault(dictionary, key, default(TValue));
 
@@ -47,7 +47,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
 			TKey key,
@@ -76,7 +76,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this IDictionary<TKey, TValue> dictionary,
 				TKey key,
@@ -191,7 +191,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
 		/// in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, TKey key)
 			=> GetValueOrDefault(dictionary, key, default(TValue));
 
@@ -208,7 +208,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
 			TKey key,
@@ -237,7 +237,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
 				TKey key,
@@ -352,7 +352,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
 		/// in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this Dictionary<TKey, TValue> dictionary, TKey key)
 			=> GetValueOrDefault(dictionary, key, default(TValue));
 
@@ -369,7 +369,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this Dictionary<TKey, TValue> dictionary,
 			TKey key,
@@ -398,7 +398,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this Dictionary<TKey, TValue> dictionary,
 				TKey key,
@@ -513,7 +513,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
 		/// in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this ConcurrentDictionary<TKey, TValue> dictionary, TKey key)
 			=> GetValueOrDefault(dictionary, key, default(TValue));
 
@@ -530,7 +530,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
 			TKey key,
@@ -559,7 +559,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
 				TKey key,
