@@ -21,6 +21,7 @@ namespace CodeJam
 			string uri,
 			[NotNull, InvokerParameterName] string argName)
 		{
+			Code.NotNullNorEmpty(uri, argName);
 			if (!Uri.IsWellFormedUriString(uri, UriKind.RelativeOrAbsolute))
 				throw UriCodeExceptions.ArgumentNotWellFormedUri(argName, uri, UriKind.RelativeOrAbsolute);
 		}
@@ -34,6 +35,7 @@ namespace CodeJam
 			string uri,
 			[NotNull, InvokerParameterName] string argName)
 		{
+			Code.NotNullNorEmpty(uri, argName);
 			if (!Uri.IsWellFormedUriString(uri, UriKind.Absolute))
 				throw UriCodeExceptions.ArgumentNotWellFormedUri(argName, uri, UriKind.Absolute);
 		}
@@ -47,6 +49,7 @@ namespace CodeJam
 			string uri,
 			[NotNull, InvokerParameterName] string argName)
 		{
+			Code.NotNullNorEmpty(uri, argName);
 			if (!Uri.IsWellFormedUriString(uri, UriKind.Relative))
 				throw UriCodeExceptions.ArgumentNotWellFormedUri(argName, uri, UriKind.Relative);
 		}

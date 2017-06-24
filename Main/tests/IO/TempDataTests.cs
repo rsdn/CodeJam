@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace CodeJam.IO
 {
-	[TestFixture(Category = "Temp data")]
+	[TestFixture(Category = "IO")]
 	public class TempDataTests
 	{
 		#region Test helpers

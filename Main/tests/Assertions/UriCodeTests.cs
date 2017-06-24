@@ -16,6 +16,12 @@ namespace CodeJam.Assertions
 			Assert.That(ex.Message, Does.Contain("arg00"));
 			Assert.That(ex.Message, Does.Contain("some text"));
 
+			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedUri("", "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
+
+			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedUri(null, "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
+
 			Assert.DoesNotThrow(() => UriCode.IsWellFormedUri("maybe/uri", "arg00"));
 		}
 
@@ -46,15 +52,19 @@ namespace CodeJam.Assertions
 			Assert.That(ex.Message, Does.Contain("arg00"));
 			Assert.That(ex.Message, Does.Contain("d:\\maybe\\uri"));
 
-
 			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedAbsoluteUri("/some/uri", "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 			Assert.That(ex.Message, Does.Contain("/some/uri"));
 
-
 			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedAbsoluteUri("~/some/uri", "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 			Assert.That(ex.Message, Does.Contain("~/some/uri"));
+
+			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedAbsoluteUri("", "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
+
+			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedAbsoluteUri(null, "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
 
 
 			Assert.DoesNotThrow(() => UriCode.IsWellFormedAbsoluteUri("http://www.example.com", "arg00"));
@@ -70,6 +80,12 @@ namespace CodeJam.Assertions
 			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedRelativeUri("d:\\maybe\\uri", "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 			Assert.That(ex.Message, Does.Contain("d:\\maybe\\uri"));
+
+			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedRelativeUri("", "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
+
+			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedRelativeUri(null, "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
 
 			Assert.DoesNotThrow(() => UriCode.IsWellFormedRelativeUri("/some/uri", "arg00"));
 			Assert.DoesNotThrow(() => UriCode.IsWellFormedRelativeUri("~/some/uri", "arg00"));

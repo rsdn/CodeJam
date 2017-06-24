@@ -94,9 +94,11 @@
     <Compile Include="FnTests.cs" />
     <Compile Include="EnumHelperTests.cs" />
     <Compile Include="Expressions\ExpressionExtensionsTests.cs" />
+    <Compile Include="IO\PathHelpersTests.cs" />
     <Compile Include="IO\TempDataTests.cs" />
     <Compile Include="DisposableTests.cs" />
     <Compile Include="Collections\QueryableExtensionsTests.cs" />
+    <Compile Include="IO\IoCodeTests.cs" />
     <Compile Include="Ranges\CompositeRangeTests.cs" />
     <Compile Include="Ranges\RangeBoundaryFromTests.cs" />
     <Compile Include="Ranges\RangeBoundaryFromToTests.cs" />
