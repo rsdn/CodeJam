@@ -2,8 +2,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
-using CodeJam.IO;
-
 using NUnit.Framework;
 
 namespace CodeJam.IO

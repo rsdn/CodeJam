@@ -19,7 +19,7 @@ namespace CodeJam.IO
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedPath(
-			string path,
+			[NotNull] string path,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(path, argName);
@@ -32,7 +32,7 @@ namespace CodeJam.IO
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedAbsolutePath(
-			string path,
+			[NotNull] string path,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(path, argName);
@@ -46,7 +46,7 @@ namespace CodeJam.IO
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedRelativePath(
-			string path,
+			[NotNull] string path,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(path, argName);
@@ -60,7 +60,7 @@ namespace CodeJam.IO
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedContainerPath(
-			string path,
+			[NotNull] string path,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(path, argName);
@@ -74,7 +74,7 @@ namespace CodeJam.IO
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedSimpleName(
-			string path,
+			[NotNull] string path,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(path, argName);
@@ -89,9 +89,10 @@ namespace CodeJam.IO
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void FileExists(
-			string filePath,
+			[NotNull] string filePath,
 			[NotNull, InvokerParameterName] string argName)
 		{
+			Code.NotNull(filePath, argName);
 			if (!File.Exists(filePath))
 				throw Directory.Exists(filePath)
 					? IoCodeExceptions.ArgumentDirectoryExistsFileExpected(argName, filePath)
@@ -104,7 +105,7 @@ namespace CodeJam.IO
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void DirectoryExists(
-			string directoryPath,
+			[NotNull] string directoryPath,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			if (!Directory.Exists(directoryPath))
