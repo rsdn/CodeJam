@@ -13,20 +13,15 @@ namespace CodeJam.IO
 	public static class PathHelpers
 	{
 		private static readonly char[] _invalidFileNameChars = Path.GetInvalidFileNameChars();
+
 		private static readonly char[] _separatorChars =
 		{
 			Path.DirectorySeparatorChar,
 			Path.AltDirectorySeparatorChar,
 			Path.VolumeSeparatorChar
 		};
-		private static readonly char[] _directorySeparatorChars =
-		{
-			Path.DirectorySeparatorChar,
-			Path.AltDirectorySeparatorChar
-		};
 
 		#region Checks
-
 		/// <summary>
 		/// Determines whether the path is either absolute or relative not rooted path.
 		/// </summary>
@@ -41,12 +36,8 @@ namespace CodeJam.IO
 				// DONTTOUCH: order is important as GetFullPath performs path validation
 				return Path.GetFullPath(path) == path || !Path.IsPathRooted(path);
 			}
-			catch (ArgumentException)
-			{
-			}
-			catch (NotSupportedException)
-			{
-			}
+			catch (ArgumentException) { }
+			catch (NotSupportedException) { }
 			return false;
 		}
 
@@ -63,12 +54,8 @@ namespace CodeJam.IO
 			{
 				return Path.GetFullPath(path) == path;
 			}
-			catch (ArgumentException)
-			{
-			}
-			catch (NotSupportedException)
-			{
-			}
+			catch (ArgumentException) { }
+			catch (NotSupportedException) { }
 			return false;
 		}
 
@@ -88,12 +75,8 @@ namespace CodeJam.IO
 				// DONTTOUCH:GetFullPath performs path validation
 				return Path.GetFullPath(path) != path;
 			}
-			catch (ArgumentException)
-			{
-			}
-			catch (NotSupportedException)
-			{
-			}
+			catch (ArgumentException) { }
+			catch (NotSupportedException) { }
 			return false;
 		}
 

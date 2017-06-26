@@ -27,10 +27,12 @@ namespace CodeJam.IO
 			[NotNull] string path)
 		{
 			BreakIfAttached();
-			return new ArgumentException(argumentName,
+			return new ArgumentException(
+				argumentName,
 				$"The path '{path}' is not a valid absolute or not-rooted relative path.")
 				.LogToCodeTraceSourceBeforeThrow();
 		}
+
 		/// <summary>Creates <seealso cref="ArgumentException"/> for invalid full path.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="path">The path being checked.</param>
@@ -43,7 +45,8 @@ namespace CodeJam.IO
 			[NotNull] string path)
 		{
 			BreakIfAttached();
-			return new ArgumentException(argumentName,
+			return new ArgumentException(
+				argumentName,
 				$"The path '{path}' is not a valid full path.")
 				.LogToCodeTraceSourceBeforeThrow();
 		}
@@ -60,7 +63,8 @@ namespace CodeJam.IO
 			[NotNull] string path)
 		{
 			BreakIfAttached();
-			return new ArgumentException(argumentName,
+			return new ArgumentException(
+				argumentName,
 				$"The path '{path}' is not a valid not-rooted relative path.")
 				.LogToCodeTraceSourceBeforeThrow();
 		}
@@ -77,11 +81,11 @@ namespace CodeJam.IO
 			[NotNull] string path)
 		{
 			BreakIfAttached();
-			return new ArgumentException(argumentName,
+			return new ArgumentException(
+				argumentName,
 				$"The path '{path}' is not a valid name of the file or a directory.")
 				.LogToCodeTraceSourceBeforeThrow();
 		}
-
 
 		/// <summary>Creates <seealso cref="ArgumentException"/> if path does not ends with one of path separator chars.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
@@ -95,7 +99,8 @@ namespace CodeJam.IO
 			[NotNull] string path)
 		{
 			BreakIfAttached();
-			return new ArgumentException(argumentName,
+			return new ArgumentException(
+				argumentName,
 				$"The path '{path}' should end with volume or directory separator chars.")
 				.LogToCodeTraceSourceBeforeThrow();
 		}
