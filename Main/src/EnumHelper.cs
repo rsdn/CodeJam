@@ -350,7 +350,7 @@ namespace CodeJam
 			{
 				var result =
 #if FW40
-					new DictionaryWithReadOnly<TEnum, EnumFieldDisplay>();
+					new DictionaryWithReadOnly<TEnum, EnumValueDisplay>();
 #else
 					new Dictionary<TEnum, EnumValueDisplay>();
 #endif
@@ -579,6 +579,7 @@ namespace CodeJam
 			/// </summary>
 			public string Description { get; }
 
+			/// <inheritdoc/>
 			public override string ToString()
 			{
 				return DisplayName + (Description != null ? $" ({Description})" : "");
