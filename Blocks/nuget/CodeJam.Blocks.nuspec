@@ -4,21 +4,16 @@
 		<id>CodeJam.Blocks</id>
 		<version>1.3.0</version>
 		<title>CodeJam.Blocks Library</title>
-		<authors>Andrew Koryavchenko, ig-sinicyn, Igor Tkachev</authors>
+		<authors>Andrew Koryavchenko, ig-sinicyn, Igor Tkachev, rameel</authors>
 		<licenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</licenseUrl>
 		<iconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/Blocks/nuget/CodeJam.Blocks.Icon.png</iconUrl>
 		<projectUrl>https://github.com/rsdn/CodeJam</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>CodeJam.Blocks is a set of handy reusable .NET components that can simplify your daily work and save your time when you copy and paste your favorite helper methods and classes from one project to another.</description>
-		<copyright>RSDN.ru, 2017</copyright>
+		<copyright>RSDN, 2017</copyright>
 		<tags>mapper services csv</tags>
 		<dependencies>
-			<group targetFramework="net40">
-				<dependency id="CodeJam" version="1.3.0" />
-			</group>
-			<group targetFramework="net45">
-				<dependency id="CodeJam" version="1.3.0" />
-			</group>
+			<dependency id="CodeJam" version="1.3.0" />
 		</dependencies>
 	</metadata>
 	<files>
@@ -39,5 +34,9 @@
 		<file src="..\src\bin\Release.4.6\CodeJam.Blocks.dll" target="lib\net46" />
 		<file src="..\src\bin\Release.4.6\CodeJam.Blocks.pdb" target="lib\net46" />
 		<file src="..\src\bin\Release.4.6\CodeJam.Blocks.xml" target="lib\net46" />
+
+		<file src="..\src\bin\Release.4.6\CodeJam.Blocks.dll" target="lib\net47" />
+		<file src="..\src\bin\Release.4.6\CodeJam.Blocks.pdb" target="lib\net47" />
+		<file src="..\src\bin\Release.4.6\CodeJam.Blocks.xml" target="lib\net47" />
 	</files>
 </package>
