@@ -1,7 +1,7 @@
-CodeJam.Blocks 1.3.0 Release Notes
+CodeJam.Blocks 1.3.1 Release Notes
 ----------------------------------------
 
-What's new in 1.3.0
+What's new in 1.3.1
 -------------------------
 * .NET Framework 4.7 support
 * Code cleanup
