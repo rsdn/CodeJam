@@ -39,7 +39,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		public static Expression<Func<TFrom,TTo>> Expression
 		{
-			get { return _expression; }
+			get => _expression;
 			set
 			{
 				var setDefault = _expression != null;
@@ -69,7 +69,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		public static Func<TFrom,TTo> Lambda
 		{
-			get { return _lambda; }
+			get => _lambda;
 			set
 			{
 				var setDefault = _expression != null;

@@ -26,14 +26,10 @@ namespace CodeJam.Mapping
 		/// </summary>
 		public MappingSchema MappingSchema
 		{
-			get { return _mappingSchema; }
-			set
-			{
-				if (value == null)
-					throw new ArgumentNullException(nameof(value), "MappingSchema cannot be null.");
-
-				_mappingSchema = value;
-			}
+			get => _mappingSchema;
+			set =>
+				// ReSharper disable once ConstantNullCoalescingCondition
+				_mappingSchema = value ?? throw new ArgumentNullException(nameof(value), "MappingSchema cannot be null.");
 		}
 
 		/// <summary>

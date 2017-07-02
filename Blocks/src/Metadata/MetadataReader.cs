@@ -12,12 +12,8 @@ namespace CodeJam.Metadata
 		public static readonly MetadataReader Default =
 			new MetadataReader(new AttributeReader());
 
-		public MetadataReader([NotNull] params IMetadataReader[] readers)
-		{
-			if (readers == null) throw new ArgumentNullException(nameof(readers));
-
-			_readers = readers;
-		}
+		public MetadataReader([NotNull] params IMetadataReader[] readers) =>
+			_readers = readers ?? throw new ArgumentNullException(nameof(readers));
 
 		private readonly IMetadataReader[] _readers;
 

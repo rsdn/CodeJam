@@ -14,13 +14,9 @@
 		<tags>mapper services csv</tags>
 		<dependencies>
 			<group targetFramework="net40">
-				<dependency id="CodeJam" version="1.3.0-beta4" />
+				<dependency id="CodeJam" version="1.3.0" />
 			</group>
 			<group targetFramework="net45">
-				<dependency id="CodeJam" version="1.3.0" />
-				<dependency id="System.ValueTuple" version="4.3.1" />
-			</group>
-			<group targetFramework="net47">
 				<dependency id="CodeJam" version="1.3.0" />
 			</group>
 		</dependencies>
@@ -43,9 +39,5 @@
 		<file src="..\src\bin\Release.4.6\CodeJam.Blocks.dll" target="lib\net46" />
 		<file src="..\src\bin\Release.4.6\CodeJam.Blocks.pdb" target="lib\net46" />
 		<file src="..\src\bin\Release.4.6\CodeJam.Blocks.xml" target="lib\net46" />
-
-		<file src="..\src\bin\Release.4.7\CodeJam.Blocks.dll" target="lib\net47" />
-		<file src="..\src\bin\Release.4.7\CodeJam.Blocks.pdb" target="lib\net47" />
-		<file src="..\src\bin\Release.4.7\CodeJam.Blocks.xml" target="lib\net47" />
 	</files>
 </package>
