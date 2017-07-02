@@ -110,7 +110,7 @@ namespace CodeJam
 		/// <param name="option"><see cref="Option"/> instance.</param>
 		/// <param name="defaultValue">Default value.</param>
 		/// <returns>Value, or <paramref name="defaultValue"/> if <paramref name="option"/> has no value.</returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static T GetValueOrDefault<T>([NotNull] this IOption<T> option, T defaultValue = default(T)) =>
 			option.HasValue ? option.Value : defaultValue;
 

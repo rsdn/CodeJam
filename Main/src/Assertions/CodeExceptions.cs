@@ -40,7 +40,7 @@ namespace CodeJam
 		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[StringFormatMethod("messageFormat")]
-		private static string FormatMessage([NotNull] string messageFormat, [CanBeNull] params object[] args) =>
+		internal static string FormatMessage([NotNull] string messageFormat, [CanBeNull] params object[] args) =>
 			(args == null || args.Length == 0)
 				? messageFormat
 				: string.Format(CultureInfo.InvariantCulture, messageFormat, args);

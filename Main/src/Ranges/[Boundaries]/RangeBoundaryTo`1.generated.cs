@@ -267,7 +267,7 @@ namespace CodeJam.Ranges
 		/// The value of the boundary or the default(T) if <see cref="HasValue"/> property equals to <c>false</c>.
 		/// </summary>
 		/// <returns>he value of the boundary or default(T).</returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public T GetValueOrDefault() => _value;
 
 		/// <summary>

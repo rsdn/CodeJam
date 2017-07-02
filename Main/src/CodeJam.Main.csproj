@@ -186,7 +186,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Expr.tt</DependentUpon>
     </Compile>
+    <Compile Include="IO\DebugIoCode.generated.cs">
+      <DependentUpon>DebugIoCode.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="IO\IoCode.cs" />
+    <Compile Include="IO\IoCodeExceptions.cs" />
     <Compile Include="IO\NamespaceDoc.cs" />
+    <Compile Include="IO\PathHelpers.cs" />
     <Compile Include="Lazy.cs" />
     <Compile Include="NamespaceDoc.cs" />
     <Compile Include="NullableHelper.cs" />
@@ -446,6 +454,10 @@
     <Content Include="Expressions\Expr.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Expr.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="IO\DebugIoCode.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DebugIoCode.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Ranges\CompositeRange.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
