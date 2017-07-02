@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
@@ -61,6 +62,17 @@ namespace CodeJam
 
 		private const NoFlags EfU = NoFlags.E | NoFlags.F | NoFlagsUndef;
 		// ReSharper restore BitwiseOperatorOnEnumWithoutFlags
+
+		public enum NameDescEnum
+		{
+			[Display(Name = "Field 1", Description = "Field 1 Desc")]
+			Field1,
+
+			[Display]
+			Field2,
+
+			Field3
+		}
 		#endregion
 
 		[Test]
@@ -322,6 +334,30 @@ namespace CodeJam
 			AreEqual(Abc.SetFlag(Abcd, false), Zero);
 			AreEqual(Abc.SetFlag(Bd, false), Flags.A | Flags.C);
 			AreEqual(Abc.SetFlag(D, false), Abc);
+		}
+
+		[TestCase(NameDescEnum.Field1, ExpectedResult = "Field 1")]
+		[TestCase(NameDescEnum.Field2, ExpectedResult = "Field2")]
+		[TestCase(NameDescEnum.Field3, ExpectedResult = "Field3")]
+		public string GetDisplayName(NameDescEnum value)
+		{
+			return EnumHelper.GetDisplayName(value);
+		}
+
+		[TestCase(NameDescEnum.Field1, ExpectedResult = "Field 1 Desc")]
+		[TestCase(NameDescEnum.Field2, ExpectedResult = null)]
+		[TestCase(NameDescEnum.Field3, ExpectedResult = null)]
+		public string GetDescription(NameDescEnum value)
+		{
+			return EnumHelper.GetDescription(value);
+		}
+
+		[TestCase(NameDescEnum.Field1, ExpectedResult = "Field 1 (Field 1 Desc)")]
+		[TestCase(NameDescEnum.Field2, ExpectedResult = "Field2")]
+		[TestCase(NameDescEnum.Field3, ExpectedResult = "Field3")]
+		public string GetDisplay(NameDescEnum value)
+		{
+			return EnumHelper.GetDisplay(value).ToString();
 		}
 	}
 }

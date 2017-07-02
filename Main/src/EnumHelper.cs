@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -29,6 +30,271 @@ namespace CodeJam
 	[PublicAPI]
 	public static class EnumHelper
 	{
+		#region Metadata checks
+		/// <summary>Determines whether the specified value is defined.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The value to check.</param>
+		/// <returns>True, if enum defines the value.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static bool IsDefined<TEnum>(TEnum value)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.IsDefined(value);
+
+		/// <summary>Determines whether all bits of the flags combination are defined.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="flags">The flags to check.</param>
+		/// <returns>True, if enum defines all bits of the flags combination.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static bool AreFlagsDefined<TEnum>(TEnum flags)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.AreFlagsDefined(flags);
+
+		/// <summary>Determines whether the enum has flags modifier.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <returns>True, if the enum is flags enum</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static bool IsFlagsEnum<TEnum>()
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.IsFlagsEnum;
+
+		/// <summary>Returns a combination of all flags declared in the enum.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <returns>
+		/// A combination of all flags declared in the enum, or <c>default(TEnum)</c> if <see cref="IsFlagsEnum{TEnum}"/> is false.
+		/// </returns>
+		[MethodImpl(AggressiveInlining)]
+		public static TEnum GetFlagsMask<TEnum>()
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.FlagsMask;
+
+		/// <summary>Try to parse the enum value.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="name">The name.</param>
+		/// <param name="result">The parsed value.</param>
+		/// <returns><c>true</c>, if parsing was successful; <c>false</c> otherwise.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static bool TryParse<TEnum>(string name, out TEnum result)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				TryParse(name, false, out result);
+
+		/// <summary>Try to parse the enum value.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="name">The name.</param>
+		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
+		/// <param name="result">The parsed value.</param>
+		/// <returns><c>true</c>, if parsing was successful; <c>false</c> otherwise.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static bool TryParse<TEnum>(string name, bool ignoreCase, out TEnum result)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out result) ||
+					EnumTargetingHelpers.TryParse(name, ignoreCase, out result);
+
+		/// <summary>Try to parse the enum value.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="name">The name.</param>
+		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
+		/// <returns>Parsed value, if parsing was successful; <c>null</c> otherwise.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static TEnum? TryParse<TEnum>(string name, bool ignoreCase = false)
+			where TEnum : struct, IComparable, IFormattable, IConvertible
+		{
+			return TryParse(name, ignoreCase, out TEnum result) ? result : (TEnum?)null;
+		}
+
+		/// <summary>Parse the enum value.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="name">The name.</param>
+		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
+		/// <returns>Parsed value.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static TEnum Parse<TEnum>(string name, bool ignoreCase = false)
+			where TEnum : struct, IComparable, IFormattable, IConvertible
+		{
+			if (Holder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out TEnum result))
+				return result;
+			return (TEnum)Enum.Parse(typeof(TEnum), name, ignoreCase);
+		}
+
+		/// <summary>Returns a dictionary containing the enum names and their values.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
+		/// <returns>Returns a dictionary containing the enum names and their values.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static IReadOnlyDictionary<string, TEnum> GetNameValues<TEnum>(bool ignoreCase = false)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.GetNameValues(ignoreCase);
+
+		/// <summary>
+		/// Retrieves an array of the names of the constants in a specified enumeration.
+		/// </summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
+		/// <returns>A string array of the names of the constants in enumType.</returns>
+		[NotNull]
+		[Pure]
+		public static string[] GetNames<TEnum>(bool ignoreCase = false)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.GetNameValues(ignoreCase).Keys.ToArray();
+
+		/// <summary>
+		/// Retrieves an array of the values of the constants in a specified enumeration.
+		/// </summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <returns>An array that contains the values of the constants in enumType.</returns>
+		[NotNull]
+		[Pure]
+		public static TEnum[] GetValues<TEnum>()
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.GetNameValues(false).Values.ToArray();
+
+		/// <summary>Returns the name of the enum value.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The enum value.</param>
+		/// <returns>The name of the enum value, or <c>null</c> if there is no value defined.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static string GetName<TEnum>(TEnum value)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.ValueNames.GetValueOrDefault(value);
+
+		/// <summary>
+		/// Returns member info of enum field.
+		/// </summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The enum value.</param>
+		/// <returns><see cref="MemberInfo"/> corresponding to <paramref name="value"/>.</returns>
+		[NotNull]
+		[Pure]
+		public static MemberInfo GetMember<TEnum>(TEnum value)
+				where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			typeof(TEnum).GetMember(GetName(value))[0];
+		#endregion
+
+		#region Flag checks
+		/// <summary>Determines whether the specified flag is set.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The value.</param>
+		/// <param name="flag">The flag.</param>
+		/// <returns><c>true</c> if the value includes all bits of the flag or the flag is zero.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static bool IsFlagSet<TEnum>(this TEnum value, TEnum flag)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.IsFlagSetCallback(value, flag);
+
+		/// <summary>Determines whether any bit from specified flag is not set.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The value.</param>
+		/// <param name="flag">The flag.</param>
+		/// <returns><c>true</c> if the value does not include all bits of the flag.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static bool IsAnyFlagUnset<TEnum>(this TEnum value, TEnum flag)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				!Holder<TEnum>.IsFlagSetCallback(value, flag);
+
+		/// <summary>Determines whether any bit from specified flag is set.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The value.</param>
+		/// <param name="flags">The bitwise combinations of the flags.</param>
+		/// <returns><c>true</c> if the value includes any bit of the flags or the flag is zero.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static bool IsAnyFlagSet<TEnum>(this TEnum value, TEnum flags)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.IsAnyFlagSetCallback(value, flags);
+
+		/// <summary>Determines whether the specified flag is not set.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The value.</param>
+		/// <param name="flags">The bitwise combinations of the flags.</param>
+		/// <returns><c>true</c> if the value does not include any bit of the flags.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static bool IsFlagUnset<TEnum>(this TEnum value, TEnum flags)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				!Holder<TEnum>.IsAnyFlagSetCallback(value, flags);
+		#endregion
+
+		#region Flag operations
+		/// <summary>Sets the flag.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The value.</param>
+		/// <param name="flag">The flag.</param>
+		/// <returns>Bitwise combination of the flag and the value</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static TEnum SetFlag<TEnum>(this TEnum value, TEnum flag)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.SetFlagCallback(value, flag);
+
+		/// <summary>Clears the flag.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The value.</param>
+		/// <param name="flag">The flag.</param>
+		/// <returns>The bits of the value excluding the ones from the flag.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static TEnum ClearFlag<TEnum>(this TEnum value, TEnum flag)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.ClearFlagCallback(value, flag);
+
+		/// <summary>Sets or clears the flag depending on <paramref name="enabled"/> value.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The value.</param>
+		/// <param name="flag">The flag.</param>
+		/// <param name="enabled">Determines whether the flag should be set or cleared.</param>
+		/// <returns>
+		/// Bitwise combination of the flag and the value if the <paramref name="enabled"/> is <c>true</c>;
+		/// otherwise, the result is the bits of the value excluding the ones from the flag.
+		/// </returns>
+		[MethodImpl(AggressiveInlining)]
+		public static TEnum SetFlag<TEnum>(this TEnum value, TEnum flag, bool enabled)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				enabled
+			? SetFlag(value, flag)
+			: ClearFlag(value, flag);
+		#endregion
+
+		#region DisplayName/Description
+		/// <summary>
+		/// Returns display name of enum field.
+		/// </summary>
+		/// <typeparam name="TEnum">Enum type</typeparam>
+		/// <param name="value">Enum value.</param>
+		/// <remarks>
+		/// Returns name of enum field specified by <see cref="DisplayAttribute"/>, or value name if attribute not specified.
+		/// </remarks>
+		[Pure]
+		[NotNull]
+		public static string GetDisplayName<TEnum>(TEnum value)
+				where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			Holder<TEnum>.GetDisplays()[value].DisplayName;
+
+		/// <summary>
+		/// Returns description of enum field.
+		/// </summary>
+		/// <typeparam name="TEnum">Enum type</typeparam>
+		/// <param name="value">Enum value.</param>
+		/// <remarks>
+		/// Returns description of enum field specified by <see cref="DisplayAttribute"/>, or <c>null</c> if no attribute
+		/// specified.
+		/// </remarks>
+		[Pure]
+		[CanBeNull]
+		public static string GetDescription<TEnum>(TEnum value)
+				where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			Holder<TEnum>.GetDisplays()[value].Description;
+
+		/// <summary>
+		/// Returns description of enum field.
+		/// </summary>
+		/// <typeparam name="TEnum">Enum type</typeparam>
+		/// <param name="value">Enum value.</param>
+		/// <remarks>
+		/// Returns description of enum field specified by <see cref="DisplayAttribute"/>, or <c>null</c> if no attribute
+		/// specified.
+		/// </remarks>
+		[Pure]
+		public static EnumValueDisplay GetDisplay<TEnum>(TEnum value)
+				where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			Holder<TEnum>.GetDisplays()[value];
+		#endregion
+
+		#region Holder struct
 		private static class Holder<TEnum>
 			where TEnum : struct
 		{
@@ -77,6 +343,32 @@ namespace CodeJam
 			private static readonly Func<TEnum, TEnum, TEnum> _clearFlagCallback = _isEnum || _isNullableEnum
 				? OperatorsFactory.ClearFlagOperator<TEnum>()
 				: null;
+
+			private static readonly IReadOnlyDictionary<TEnum, EnumValueDisplay> _valueDisplays = GetDisplaysCore(_enumType);
+
+			private static IReadOnlyDictionary<TEnum, EnumValueDisplay> GetDisplaysCore(Type enumType)
+			{
+				var result =
+#if FW40
+					new DictionaryWithReadOnly<TEnum, EnumFieldDisplay>();
+#else
+					new Dictionary<TEnum, EnumValueDisplay>();
+#endif
+				var members =
+					enumType
+						.GetMembers(BindingFlags.Public | BindingFlags.Static)
+						.ToDictionary(m => m.Name, StringComparer.Ordinal);
+				foreach (var pair in _nameValues)
+				{
+					var attr = members[pair.Key].TryGetMetadataAttribute<DisplayAttribute>();
+					result.Add(
+						pair.Value,
+						new EnumValueDisplay(
+							attr?.GetName() ?? pair.Key,
+							attr?.GetDescription()));
+				}
+				return result;
+			}
 			#endregion
 
 			#region Init helpers
@@ -250,214 +542,48 @@ namespace CodeJam
 					return _clearFlagCallback;
 				}
 			}
+
+			public static IReadOnlyDictionary<TEnum, EnumValueDisplay> GetDisplays()
+			{
+				return _valueDisplays;
+			}
 			#endregion
 		}
-
-		#region Metadata checks
-		/// <summary>Determines whether the specified value is defined.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="value">The value to check.</param>
-		/// <returns>True, if enum defines the value.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static bool IsDefined<TEnum>(TEnum value)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.IsDefined(value);
-
-		/// <summary>Determines whether all bits of the flags combination are defined.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="flags">The flags to check.</param>
-		/// <returns>True, if enum defines all bits of the flags combination.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static bool AreFlagsDefined<TEnum>(TEnum flags)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.AreFlagsDefined(flags);
-
-		/// <summary>Determines whether the enum has flags modifier.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <returns>True, if the enum is flags enum</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static bool IsFlagsEnum<TEnum>()
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.IsFlagsEnum;
-
-		/// <summary>Returns a combination of all flags declared in the enum.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <returns>
-		/// A combination of all flags declared in the enum, or <c>default(TEnum)</c> if <see cref="IsFlagsEnum{TEnum}"/> is false.
-		/// </returns>
-		[MethodImpl(AggressiveInlining)]
-		public static TEnum GetFlagsMask<TEnum>()
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.FlagsMask;
-
-		/// <summary>Try to parse the enum value.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="name">The name.</param>
-		/// <param name="result">The parsed value.</param>
-		/// <returns><c>true</c>, if parsing was successful; <c>false</c> otherwise.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static bool TryParse<TEnum>(string name, out TEnum result)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				TryParse(name, false, out result);
-
-		/// <summary>Try to parse the enum value.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="name">The name.</param>
-		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
-		/// <param name="result">The parsed value.</param>
-		/// <returns><c>true</c>, if parsing was successful; <c>false</c> otherwise.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static bool TryParse<TEnum>(string name, bool ignoreCase, out TEnum result)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out result) ||
-					EnumTargetingHelpers.TryParse(name, ignoreCase, out result);
-
-		/// <summary>Try to parse the enum value.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="name">The name.</param>
-		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
-		/// <returns>Parsed value, if parsing was successful; <c>null</c> otherwise.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static TEnum? TryParse<TEnum>(string name, bool ignoreCase = false)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
-		{
-			return TryParse(name, ignoreCase, out TEnum result) ? result : (TEnum?)null;
-		}
-
-		/// <summary>Parse the enum value.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="name">The name.</param>
-		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
-		/// <returns>Parsed value.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static TEnum Parse<TEnum>(string name, bool ignoreCase = false)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
-		{
-			if (Holder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out TEnum result))
-				return result;
-			return (TEnum)Enum.Parse(typeof(TEnum), name, ignoreCase);
-		}
-
-		/// <summary>Returns a dictionary containing the enum names and their values.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
-		/// <returns>Returns a dictionary containing the enum names and their values.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static IReadOnlyDictionary<string, TEnum> GetNameValues<TEnum>(bool ignoreCase = false)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.GetNameValues(ignoreCase);
-
-		/// <summary>
-		/// Retrieves an array of the names of the constants in a specified enumeration.
-		/// </summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
-		/// <returns>A string array of the names of the constants in enumType.</returns>
-		[NotNull]
-		[Pure]
-		public static string[] GetNames<TEnum>(bool ignoreCase = false)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.GetNameValues(ignoreCase).Keys.ToArray();
-
-		/// <summary>
-		/// Retrieves an array of the values of the constants in a specified enumeration.
-		/// </summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <returns>An array that contains the values of the constants in enumType.</returns>
-		[NotNull]
-		[Pure]
-		public static TEnum[] GetValues<TEnum>()
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.GetNameValues(false).Values.ToArray();
-
-		/// <summary>Returns the name of the enum value.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="value">The enum value.</param>
-		/// <returns>The name of the enum value, or <c>null</c> if there is no value defined.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static string GetName<TEnum>(TEnum value)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.ValueNames.GetValueOrDefault(value);
 		#endregion
 
-		#region Flag checks
-		/// <summary>Determines whether the specified flag is set.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="value">The value.</param>
-		/// <param name="flag">The flag.</param>
-		/// <returns><c>true</c> if the value includes all bits of the flag or the flag is zero.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static bool IsFlagSet<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.IsFlagSetCallback(value, flag);
+		#region EnumFieldDisplay struct
+		/// <summary>
+		/// Enum field display information.
+		/// </summary>
+		[PublicAPI]
+		public struct EnumValueDisplay
+		{
+			/// <summary>
+			/// Initialize instance.
+			/// </summary>
+			/// <param name="displayName">Display name.</param>
+			/// <param name="description">Description</param>
+			public EnumValueDisplay(string displayName, string description)
+			{
+				DisplayName = displayName;
+				Description = description;
+			}
 
-		/// <summary>Determines whether any bit from specified flag is not set.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="value">The value.</param>
-		/// <param name="flag">The flag.</param>
-		/// <returns><c>true</c> if the value does not include all bits of the flag.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static bool IsAnyFlagUnset<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				!Holder<TEnum>.IsFlagSetCallback(value, flag);
+			/// <summary>
+			/// Enum field display name.
+			/// </summary>
+			public string DisplayName { get; }
 
-		/// <summary>Determines whether any bit from specified flag is set.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="value">The value.</param>
-		/// <param name="flags">The bitwise combinations of the flags.</param>
-		/// <returns><c>true</c> if the value includes any bit of the flags or the flag is zero.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static bool IsAnyFlagSet<TEnum>(this TEnum value, TEnum flags)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.IsAnyFlagSetCallback(value, flags);
+			/// <summary>
+			/// Enum field description.
+			/// </summary>
+			public string Description { get; }
 
-		/// <summary>Determines whether the specified flag is not set.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="value">The value.</param>
-		/// <param name="flags">The bitwise combinations of the flags.</param>
-		/// <returns><c>true</c> if the value does not include any bit of the flags.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static bool IsFlagUnset<TEnum>(this TEnum value, TEnum flags)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				!Holder<TEnum>.IsAnyFlagSetCallback(value, flags);
-		#endregion
-
-		#region Flag operations
-		/// <summary>Sets the flag.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="value">The value.</param>
-		/// <param name="flag">The flag.</param>
-		/// <returns>Bitwise combination of the flag and the value</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static TEnum SetFlag<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.SetFlagCallback(value, flag);
-
-		/// <summary>Clears the flag.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="value">The value.</param>
-		/// <param name="flag">The flag.</param>
-		/// <returns>The bits of the value excluding the ones from the flag.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static TEnum ClearFlag<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.ClearFlagCallback(value, flag);
-
-		/// <summary>Sets or clears the flag depending on <paramref name="enabled"/> value.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="value">The value.</param>
-		/// <param name="flag">The flag.</param>
-		/// <param name="enabled">Determines whether the flag should be set or cleared.</param>
-		/// <returns>
-		/// Bitwise combination of the flag and the value if the <paramref name="enabled"/> is <c>true</c>;
-		/// otherwise, the result is the bits of the value excluding the ones from the flag.
-		/// </returns>
-		[MethodImpl(AggressiveInlining)]
-		public static TEnum SetFlag<TEnum>(this TEnum value, TEnum flag, bool enabled)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				enabled
-			? SetFlag(value, flag)
-			: ClearFlag(value, flag);
+			public override string ToString()
+			{
+				return DisplayName + (Description != null ? $" ({Description})" : "");
+			}
+		}
 		#endregion
 	}
 }
