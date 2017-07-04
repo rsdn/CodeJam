@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <!-- The configuration and platform will be used to determine which assemblies to include from solution and
 				 project documentation sources -->
@@ -37,25 +37,27 @@
     <DocumentationSources>
       <DocumentationSource sourceFile="Main\src\bin\Debug\CodeJam.XML" />
       <DocumentationSource sourceFile="Main\src\bin\Debug\CodeJam.dll" />
+      <DocumentationSource sourceFile="Blocks\src\bin\Debug\CodeJam.Blocks.dll" />
+      <DocumentationSource sourceFile="Blocks\src\bin\Debug\CodeJam.Blocks.xml" />
     </DocumentationSources>
     <ProjectSummary>CodeJam library</ProjectSummary>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="(global)" isDocumented="False">&lt;summary&gt;CodeJam library&lt;/summary&gt;</NamespaceSummaryItem>
       <NamespaceSummaryItem name="CodeJam (Group)" isGroup="True" isDocumented="True">&lt;summary&gt;CodeJam library&lt;/summary&gt;</NamespaceSummaryItem>
     </NamespaceSummaries>
-    <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, Namespace, AutoDocumentDispose</MissingTags>
+    <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, Namespace, TypeParameter, AutoDocumentDispose</MissingTags>
     <VisibleItems>Attributes, InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected</VisibleItems>
-    <CopyrightText>RSDN, 2016</CopyrightText>
+    <CopyrightText>RSDN, 2016-2017</CopyrightText>
     <PlugInConfigurations />
     <ComponentConfigurations>
       <ComponentConfig id="Code Block Component" enabled="True">
         <component id="Code Block Component">
-  <basePath value="{@HtmlEncProjectFolder}" />
-  <outputPaths>{@HelpFormatOutputPaths}</outputPaths>
-  <allowMissingSource value="false" />
-  <removeRegionMarkers value="false" />
-  <colorizer syntaxFile="{@SHFBFolder}PresentationStyles\Colorizer\highlight.xml" styleFile="{@SHFBFolder}PresentationStyles\Colorizer\highlight.xsl" stylesheet="{@SHFBFolder}PresentationStyles\Colorizer\highlight.css" scriptFile="{@SHFBFolder}PresentationStyles\Colorizer\highlight.js" disabled="{@DisableCodeBlockComponent}" language="cs" tabSize="2" numberLines="false" outlining="true" keepSeeTags="false" defaultTitle="true" />
-</component>
+          <basePath value="{@HtmlEncProjectFolder}" />
+          <outputPaths>{@HelpFormatOutputPaths}</outputPaths>
+          <allowMissingSource value="false" />
+          <removeRegionMarkers value="false" />
+          <colorizer syntaxFile="{@SHFBFolder}PresentationStyles\Colorizer\highlight.xml" styleFile="{@SHFBFolder}PresentationStyles\Colorizer\highlight.xsl" stylesheet="{@SHFBFolder}PresentationStyles\Colorizer\highlight.css" scriptFile="{@SHFBFolder}PresentationStyles\Colorizer\highlight.js" disabled="{@DisableCodeBlockComponent}" language="cs" tabSize="2" numberLines="false" outlining="true" keepSeeTags="false" defaultTitle="true" />
+        </component>
       </ComponentConfig>
     </ComponentConfigurations>
   </PropertyGroup>
@@ -92,6 +94,10 @@
     <ProjectReference Include="Main\src\CodeJam.Main.csproj">
       <Name>CodeJam</Name>
       <Project>{2F2046CC-FB47-4318-B335-5A82B04B6C40}</Project>
+    </ProjectReference>
+    <ProjectReference Include="Blocks\src\CodeJam.Blocks.csproj">
+      <Name>CodeJam.Blocks</Name>
+      <Project>{0DFF0859-2400-4487-83AD-0ED10203D6D9}</Project>
     </ProjectReference>
   </ItemGroup>
 </Project>

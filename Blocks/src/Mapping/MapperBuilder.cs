@@ -345,7 +345,7 @@ namespace CodeJam.Mapping
 		/// <returns>Returns this mapper.</returns>
 		/// <example>
 		/// This example shows how to explicitly convert one value to another.
-		/// <code source="Main\tests\Mapping\Examples\MapMemberTests.cs" region="Example" lang="C#"/>
+		/// <code source="Blocks\tests\Mapping\Examples\MapMemberTests.cs" region="Example" lang="C#"/>
 		/// </example>
 		public MapperBuilder<TFrom,TTo> MapMember<T>(Expression<Func<TTo,T>> toMember, Expression<Func<TFrom,T>> setter)
 		{

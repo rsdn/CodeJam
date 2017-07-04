@@ -12,7 +12,7 @@ namespace CodeJam.Metadata
 	/// </summary>
 	/// <example>
 	/// This example shows how to map one object to another.
-	/// <code source="Main\tests\Mapping\Examples\MapTests.cs" region="Example" lang="C#"/>
+	/// <code source="Blocks\tests\Mapping\Examples\MapTests.cs" region="Example" lang="C#"/>
 	/// </example>
 	[UsedImplicitly]
 	[CompilerGenerated]
