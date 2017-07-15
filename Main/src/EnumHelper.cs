@@ -263,6 +263,15 @@ namespace CodeJam
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				Holder<TEnum>.IsDefined(value);
 
+		/// <summary>Determines whether the string representation of value is defined.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">String representation of value to check.</param>
+		/// <returns>True, if enum defines the value.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static bool IsDefined<TEnum>(string value)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				TryParse<TEnum>(value, out var parsed) && Holder<TEnum>.IsDefined(parsed);
+
 		/// <summary>Determines whether all bits of the flags combination are defined.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="flags">The flags to check.</param>

@@ -104,6 +104,13 @@ namespace CodeJam
 			IsFalse(EnumHelper.AreFlagsDefined(EfU));
 		}
 
+		[TestCase("A", ExpectedResult = true)]
+		[TestCase("B", ExpectedResult = true)]
+		[TestCase("C", ExpectedResult = true)]
+		[TestCase("CD", ExpectedResult = true)]
+		[TestCase("Undef", ExpectedResult = false)]
+		public bool IsDefinedStr(string value) => EnumHelper.IsDefined<Flags>(value);
+
 		[Test]
 		public void Test0002FlagsVsNoFlags()
 		{
