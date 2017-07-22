@@ -16,10 +16,7 @@ namespace CodeJam
 		/// <param name="baseUri">Base uri</param>
 		/// <param name="relativeUri">Relative uri</param>
 		/// <returns>Combined uri.</returns>
-		public static Uri Combine(this Uri baseUri, Uri relativeUri)
-		{
-			return new Uri(baseUri, relativeUri);
-		}
+		public static Uri Combine(this Uri baseUri, Uri relativeUri) => new Uri(baseUri, relativeUri);
 
 		/// <summary>
 		/// Combine two uris.
@@ -27,10 +24,7 @@ namespace CodeJam
 		/// <param name="baseUri">Base uri</param>
 		/// <param name="relativeUri">Relative uri</param>
 		/// <returns>Combined uri.</returns>
-		public static Uri Combine(this Uri baseUri, string relativeUri)
-		{
-			return new Uri(baseUri, relativeUri);
-		}
+		public static Uri Combine(this Uri baseUri, string relativeUri) => new Uri(baseUri, relativeUri);
 
 		/// <summary>
 		/// Combine two uris.

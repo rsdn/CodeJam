@@ -105,10 +105,8 @@ namespace CodeJam
 		/// <returns>Parsed value, if parsing was successful; <c>null</c> otherwise.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static TEnum? TryParse<TEnum>(string name, bool ignoreCase = false)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
-		{
-			return TryParse(name, ignoreCase, out TEnum result) ? result : (TEnum?)null;
-		}
+				where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			TryParse(name, ignoreCase, out TEnum result) ? result : (TEnum?)null;
 
 		/// <summary>Parse the enum value.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
@@ -355,7 +353,7 @@ namespace CodeJam
 
 			private static readonly IReadOnlyDictionary<TEnum, EnumValueDisplay> _valueDisplays = GetDisplaysCore(_enumType);
 
-			private static IReadOnlyDictionary<TEnum, EnumValueDisplay> GetDisplaysCore(Type enumType)
+			private static IReadOnlyDictionary<TEnum, EnumValueDisplay> GetDisplaysCore(IReflect enumType)
 			{
 				var result =
 #if FW40
@@ -552,10 +550,7 @@ namespace CodeJam
 				}
 			}
 
-			public static IReadOnlyDictionary<TEnum, EnumValueDisplay> GetDisplays()
-			{
-				return _valueDisplays;
-			}
+			public static IReadOnlyDictionary<TEnum, EnumValueDisplay> GetDisplays() => _valueDisplays;
 			#endregion
 		}
 		#endregion
@@ -589,10 +584,7 @@ namespace CodeJam
 			public string Description { get; }
 
 			/// <inheritdoc/>
-			public override string ToString()
-			{
-				return DisplayName + (Description != null ? $" ({Description})" : "");
-			}
+			public override string ToString() => DisplayName + (Description != null ? $" ({Description})" : "");
 		}
 		#endregion
 	}

@@ -137,10 +137,7 @@ namespace CodeJam
 			/// Initializes a new instance to the specified value.
 			/// </summary>
 			/// <param name="value">The value.</param>
-			public Some(T value)
-			{
-				Value = value;
-			}
+			public Some(T value) => Value = value;
 
 			/// <summary>
 			/// Gets the value of the current object.

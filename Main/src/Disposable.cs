@@ -33,10 +33,7 @@ namespace CodeJam
 
 			/// <summary>Initialize instance.</summary>
 			/// <param name="disposeAction">The dispose action.</param>
-			internal AnonymousDisposable(Action disposeAction)
-			{
-				_disposeAction = disposeAction;
-			}
+			internal AnonymousDisposable(Action disposeAction) => _disposeAction = disposeAction;
 
 			/// <summary>
 			/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
