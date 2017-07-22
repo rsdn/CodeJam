@@ -579,7 +579,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		public IMetadataReader MetadataReader
 		{
-			get { return Schemas[0].MetadataReader; }
+			get => Schemas[0].MetadataReader;
 			set
 			{
 				Schemas[0].MetadataReader = value;
@@ -797,10 +797,7 @@ namespace CodeJam.Mapping
 
 		#region DefaultMappingSchema
 
-		internal MappingSchema(MappingSchemaInfo mappingSchemaInfo)
-		{
-			Schemas = new[] { mappingSchemaInfo };
-		}
+		internal MappingSchema(MappingSchemaInfo mappingSchemaInfo) => Schemas = new[] { mappingSchemaInfo };
 
 		/// <summary>
 		/// Default mapping schema.
