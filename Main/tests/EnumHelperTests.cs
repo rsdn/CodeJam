@@ -9,6 +9,7 @@ using CodeJam.Strings;
 using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
+
 namespace CodeJam
 {
 	[TestFixture(Category = "EnumHelper")]
@@ -278,8 +279,8 @@ namespace CodeJam
 		[SuppressMessage("ReSharper", "LocalVariableHidesMember")]
 		public static void Test0603IsFlagSetInt()
 		{
-			Func<int, int, bool> isFlagSet = (value, flag) => (value & flag) == flag;
-			Func<int, int, bool> isAnyFlagSet = (value, flag) => (flag == 0) || ((value & flag) != 0);
+			bool IsFlagSet(int value, int flag) => (value & flag) == flag;
+			bool IsAnyFlagSet(int value, int flag) => (flag == 0) || ((value & flag) != 0);
 
 			const int Abc = (int)EnumHelperTests.Abc;
 			const int Abcd = (int)EnumHelperTests.Abcd;
@@ -288,19 +289,19 @@ namespace CodeJam
 			const int D = (int)EnumHelperTests.D;
 			const int Zero = (int)EnumHelperTests.Zero;
 
-			IsTrue(isFlagSet(Abc, Zero));
-			IsTrue(isFlagSet(Abc, Bc));
-			IsTrue(isFlagSet(Abc, Abc));
-			IsFalse(isFlagSet(Abc, Abcd));
-			IsFalse(isFlagSet(Abc, Bd));
-			IsFalse(isFlagSet(Abc, D));
+			IsTrue(IsFlagSet(Abc, Zero));
+			IsTrue(IsFlagSet(Abc, Bc));
+			IsTrue(IsFlagSet(Abc, Abc));
+			IsFalse(IsFlagSet(Abc, Abcd));
+			IsFalse(IsFlagSet(Abc, Bd));
+			IsFalse(IsFlagSet(Abc, D));
 
-			IsTrue(isAnyFlagSet(Abc, Zero));
-			IsTrue(isAnyFlagSet(Abc, Bc));
-			IsTrue(isAnyFlagSet(Abc, Abc));
-			IsTrue(isAnyFlagSet(Abc, Abcd));
-			IsTrue(isAnyFlagSet(Abc, Bd));
-			IsFalse(isAnyFlagSet(Abc, D));
+			IsTrue(IsAnyFlagSet(Abc, Zero));
+			IsTrue(IsAnyFlagSet(Abc, Bc));
+			IsTrue(IsAnyFlagSet(Abc, Abc));
+			IsTrue(IsAnyFlagSet(Abc, Abcd));
+			IsTrue(IsAnyFlagSet(Abc, Bd));
+			IsFalse(IsAnyFlagSet(Abc, D));
 		}
 
 		[Test]
@@ -346,25 +347,16 @@ namespace CodeJam
 		[TestCase(NameDescEnum.Field1, ExpectedResult = "Field 1")]
 		[TestCase(NameDescEnum.Field2, ExpectedResult = "Field2")]
 		[TestCase(NameDescEnum.Field3, ExpectedResult = "Field3")]
-		public string GetDisplayName(NameDescEnum value)
-		{
-			return EnumHelper.GetDisplayName(value);
-		}
+		public string GetDisplayName(NameDescEnum value) => EnumHelper.GetDisplayName(value);
 
 		[TestCase(NameDescEnum.Field1, ExpectedResult = "Field 1 Desc")]
 		[TestCase(NameDescEnum.Field2, ExpectedResult = null)]
 		[TestCase(NameDescEnum.Field3, ExpectedResult = null)]
-		public string GetDescription(NameDescEnum value)
-		{
-			return EnumHelper.GetDescription(value);
-		}
+		public string GetDescription(NameDescEnum value) => EnumHelper.GetDescription(value);
 
 		[TestCase(NameDescEnum.Field1, ExpectedResult = "Field 1 (Field 1 Desc)")]
 		[TestCase(NameDescEnum.Field2, ExpectedResult = "Field2")]
 		[TestCase(NameDescEnum.Field3, ExpectedResult = "Field3")]
-		public string GetDisplay(NameDescEnum value)
-		{
-			return EnumHelper.GetDisplay(value).ToString();
-		}
+		public string GetDisplay(NameDescEnum value) => EnumHelper.GetDisplay(value).ToString();
 	}
 }

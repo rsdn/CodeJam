@@ -351,7 +351,15 @@ namespace CodeJam
 				? OperatorsFactory.ClearFlagOperator<TEnum>()
 				: null;
 
-			private static readonly IReadOnlyDictionary<TEnum, EnumValueDisplay> _valueDisplays = GetDisplaysCore(_enumType);
+			private static readonly IReadOnlyDictionary<TEnum, EnumValueDisplay> _valueDisplays =
+				_isEnum
+					? GetDisplaysCore(_enumType)
+					:
+#if FW40
+						new DictionaryWithReadOnly<TEnum, EnumValueDisplay>();
+#else
+						new Dictionary<TEnum, EnumValueDisplay>();
+#endif
 
 			private static IReadOnlyDictionary<TEnum, EnumValueDisplay> GetDisplaysCore(IReflect enumType)
 			{
@@ -365,14 +373,15 @@ namespace CodeJam
 					enumType
 						.GetMembers(BindingFlags.Public | BindingFlags.Static)
 						.ToDictionary(m => m.Name, StringComparer.Ordinal);
-				foreach (var pair in _nameValues)
+				foreach (var pair in _nameValues.OrderBy(p => p.Value))
 				{
 					var attr = members[pair.Key].TryGetMetadataAttribute<DisplayAttribute>();
-					result.Add(
-						pair.Value,
-						new EnumValueDisplay(
-							attr?.GetName() ?? pair.Key,
-							attr?.GetDescription()));
+					if (!result.ContainsKey(pair.Value))
+						result.Add(
+							pair.Value,
+							new EnumValueDisplay(
+								attr?.GetName() ?? pair.Key,
+								attr?.GetDescription()));
 				}
 				return result;
 			}
