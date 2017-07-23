@@ -10,6 +10,10 @@ using CodeJam.Reflection;
 
 using JetBrains.Annotations;
 
+#if FW35
+using CodeJam.Targeting;
+#endif
+
 namespace CodeJam
 {
 	/// <summary>
