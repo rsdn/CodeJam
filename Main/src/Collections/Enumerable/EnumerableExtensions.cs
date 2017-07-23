@@ -7,11 +7,82 @@ using JetBrains.Annotations;
 namespace CodeJam.Collections
 {
 	/// <summary>
+	/// Defines behavior for duplicates in lookup source
+	/// </summary>
+	public enum DictionaryDuplicate
+	{
+		/// <summary>An exception will be thrown.</summary>
+		Throw,
+		/// <summary>The first item in lookup wins.</summary>
+		FirstWins,
+		/// <summary>The last item in lookup wins.</summary>
+		LastWins
+	}
+
+	/// <summary>
 	/// Extensions for <see cref="IEnumerable{T}"/>
 	/// </summary>
 	[PublicAPI]
 	public static partial class EnumerableExtensions
 	{
+		/// <summary>Creates a lookup dictionary.</summary>
+		/// <typeparam name="T"></typeparam>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <param name="source">The source.</param>
+		/// <param name="keySelector">The key selector.</param>
+		/// <param name="duplicateHandling">Policy for duplicate handling.</param>
+		/// <returns>A lookup dictionary</returns>
+		[Pure, NotNull]
+		public static Dictionary<TKey, T> ToLookupDictionary<T, TKey>(
+			[NotNull] this IEnumerable<T> source,
+			[NotNull] Func<T, TKey> keySelector,
+			DictionaryDuplicate duplicateHandling) =>
+				ToLookupDictionary(source, keySelector, null, duplicateHandling);
+
+		/// <summary>Creates a lookup dictionary.</summary>
+		/// <typeparam name="T"></typeparam>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <param name="source">The source.</param>
+		/// <param name="keySelector">The key selector.</param>
+		/// <param name="comparer">The comparer.</param>
+		/// <param name="duplicateHandling">Policy for duplicate handling.</param>
+		/// <returns>A lookup dictionary</returns>
+		[Pure, NotNull]
+		public static Dictionary<TKey, T> ToLookupDictionary<T, TKey>(
+			[NotNull] this IEnumerable<T> source,
+			[NotNull] Func<T, TKey> keySelector,
+			[CanBeNull] IEqualityComparer<TKey> comparer,
+			DictionaryDuplicate duplicateHandling)
+		{
+			switch (duplicateHandling)
+			{
+				case DictionaryDuplicate.Throw:
+					return source.ToDictionary(keySelector, comparer);
+				case DictionaryDuplicate.FirstWins:
+					{
+						var result = new Dictionary<TKey, T>();
+						foreach (var item in source)
+						{
+							var key = keySelector(item);
+							result.GetOrAdd(key, item);
+						}
+						return result;
+					}
+				case DictionaryDuplicate.LastWins:
+					{
+						var result = new Dictionary<TKey, T>();
+						foreach (var item in source)
+						{
+							var key = keySelector(item);
+							result[key] = item;
+						}
+						return result;
+					}
+				default:
+					throw CodeExceptions.UnexpectedArgumentValue(nameof(duplicateHandling), duplicateHandling);
+			}
+		}
+
 		/// <summary>
 		/// Produces the set union of two sequences by using the default equality comparer.
 		/// </summary>

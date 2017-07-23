@@ -171,7 +171,9 @@
     <Compile Include="Dates\DateTimeRangeExtensions.cs" />
     <Compile Include="Dates\DateTimeExtensions.cs" />
     <Compile Include="Dates\NamespaceDoc.cs" />
+    <Compile Include="EnumValue.cs" />
     <Compile Include="EnumHelper.cs" />
+    <Compile Include="EnumValues.cs" />
     <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="Expressions\NamespaceDoc.cs" />
     <Compile Include="Fn.generated.cs">

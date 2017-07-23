@@ -102,6 +102,16 @@ namespace CodeJam
 				return a;
 			}
 
+			[CompetitionBenchmark(3.80, 4.67)]
+			[GcAllocations(160, BinarySizeUnit.Kilobyte)]
+			public F Test02CheckViaEnumInfo()
+			{
+				var a = F.Zero;
+				for (var i = 0; i < Count; i++)
+					EnumHelper.GetEnumValues<F>().IsDefined(Fa);
+				return a;
+			}
+
 			[CompetitionBenchmark(5.20, 11.34)]
 			[GcAllocations(53.73, 88.02, BinarySizeUnit.Kilobyte)]
 			public F Test01TryParseUndefined()
@@ -123,7 +133,7 @@ namespace CodeJam
 			}
 
 			[CompetitionBenchmark(3.69, 8.37)]
-			[GcAllocations(53.73, 88.02, BinarySizeUnit.Kilobyte)]
+			[GcAllocations(53.73, 88.03, BinarySizeUnit.Kilobyte)]
 			public F Test03EnumTryParseUndefined()
 			{
 				var a = F.Zero;

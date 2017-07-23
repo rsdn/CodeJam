@@ -357,6 +357,6 @@ namespace CodeJam
 		[TestCase(NameDescEnum.Field1, ExpectedResult = "Field 1 (Field 1 Desc)")]
 		[TestCase(NameDescEnum.Field2, ExpectedResult = "Field2")]
 		[TestCase(NameDescEnum.Field3, ExpectedResult = "Field3")]
-		public string GetDisplay(NameDescEnum value) => EnumHelper.GetDisplay(value).ToString();
+		public string GetDisplay(NameDescEnum value) => EnumHelper.GetEnumValue(value).ToString();
 	}
 }

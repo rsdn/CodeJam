@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Threading;
 
 using CodeJam.Arithmetic;
 using CodeJam.Collections;
@@ -30,7 +31,7 @@ namespace CodeJam
 	[PublicAPI]
 	public static class EnumHelper
 	{
-		#region Metadata checks
+		#region Perf-critical metadata checks
 		/// <summary>Determines whether the specified value is defined.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value to check.</param>
@@ -105,8 +106,8 @@ namespace CodeJam
 		/// <returns>Parsed value, if parsing was successful; <c>null</c> otherwise.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static TEnum? TryParse<TEnum>(string name, bool ignoreCase = false)
-				where TEnum : struct, IComparable, IFormattable, IConvertible =>
-			TryParse(name, ignoreCase, out TEnum result) ? result : (TEnum?)null;
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				TryParse(name, ignoreCase, out TEnum result) ? result : (TEnum?)null;
 
 		/// <summary>Parse the enum value.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
@@ -121,59 +122,6 @@ namespace CodeJam
 				return result;
 			return (TEnum)Enum.Parse(typeof(TEnum), name, ignoreCase);
 		}
-
-		/// <summary>Returns a dictionary containing the enum names and their values.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
-		/// <returns>Returns a dictionary containing the enum names and their values.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static IReadOnlyDictionary<string, TEnum> GetNameValues<TEnum>(bool ignoreCase = false)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.GetNameValues(ignoreCase);
-
-		/// <summary>
-		/// Retrieves an array of the names of the constants in a specified enumeration.
-		/// </summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
-		/// <returns>A string array of the names of the constants in enumType.</returns>
-		[NotNull]
-		[Pure]
-		public static string[] GetNames<TEnum>(bool ignoreCase = false)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.GetNameValues(ignoreCase).Keys.ToArray();
-
-		/// <summary>
-		/// Retrieves an array of the values of the constants in a specified enumeration.
-		/// </summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <returns>An array that contains the values of the constants in enumType.</returns>
-		[NotNull]
-		[Pure]
-		public static TEnum[] GetValues<TEnum>()
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.GetNameValues(false).Values.ToArray();
-
-		/// <summary>Returns the name of the enum value.</summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="value">The enum value.</param>
-		/// <returns>The name of the enum value, or <c>null</c> if there is no value defined.</returns>
-		[MethodImpl(AggressiveInlining)]
-		public static string GetName<TEnum>(TEnum value)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
-				Holder<TEnum>.ValueNames.GetValueOrDefault(value);
-
-		/// <summary>
-		/// Returns member info of enum field.
-		/// </summary>
-		/// <typeparam name="TEnum">The type of the enum.</typeparam>
-		/// <param name="value">The enum value.</param>
-		/// <returns><see cref="MemberInfo"/> corresponding to <paramref name="value"/>.</returns>
-		[NotNull]
-		[Pure]
-		public static MemberInfo GetMember<TEnum>(TEnum value)
-				where TEnum : struct, IComparable, IFormattable, IConvertible =>
-			typeof(TEnum).GetMember(GetName(value))[0];
 		#endregion
 
 		#region Flag checks
@@ -252,71 +200,138 @@ namespace CodeJam
 		public static TEnum SetFlag<TEnum>(this TEnum value, TEnum flag, bool enabled)
 			where TEnum : struct, IComparable, IFormattable, IConvertible =>
 				enabled
-			? SetFlag(value, flag)
-			: ClearFlag(value, flag);
+					? SetFlag(value, flag)
+					: ClearFlag(value, flag);
+		#endregion
+
+		#region Enum values
+
+		/// <summary>Returns a dictionary containing the enum names and their values.</summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
+		/// <returns>Returns a dictionary containing the enum names and their values.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static IReadOnlyDictionary<string, TEnum> GetNameValues<TEnum>(bool ignoreCase = false)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.GetNameValues(ignoreCase);
+
+		/// <summary>
+		/// Retrieves an array of the names of the constants in a specified enumeration.
+		/// </summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
+		/// <returns>A string array of the names of the constants in enumType.</returns>
+		[Pure, NotNull]
+		public static string[] GetNames<TEnum>(bool ignoreCase = false)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.GetNameValues(ignoreCase).Keys.ToArray();
+
+		/// <summary>
+		/// Retrieves an array of the values of the constants in a specified enumeration.
+		/// </summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <returns>An array that contains the values of the constants in enumType.</returns>
+		[Pure, NotNull]
+		public static TEnum[] GetValues<TEnum>()
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				Holder<TEnum>.GetNameValues(false).Values.ToArray();
 		#endregion
 
 		#region DisplayName/Description
-		/// <summary>
-		/// Returns display name of enum field.
-		/// </summary>
+		/// <summary>Gets enum values collection that contains information about enum type and its values.</summary>
+		/// <typeparam name="TEnum">Enum type</typeparam>
+		/// <returns>The enum values collection.</returns>
+		[Pure, NotNull]
+		public static EnumValues GetEnumValues<TEnum>()
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			_enumValuesCache[typeof(TEnum)];
+
+		/// <summary>Returns enum values collection that contains information about enum type and its values.</summary>
+		/// <param name="enumType">Type of the enum.</param>
+		/// <returns>The enum values collection.</returns>
+		[Pure, NotNull]
+		public static EnumValues GetEnumValues(Type enumType) => _enumValuesCache[enumType];
+
+		/// <summary>Gets metadata about enum value.</summary>
 		/// <typeparam name="TEnum">Enum type</typeparam>
 		/// <param name="value">Enum value.</param>
-		/// <remarks>
-		/// Returns name of enum field specified by <see cref="DisplayAttribute"/>, or value name if attribute not specified.
-		/// </remarks>
-		[Pure]
-		[NotNull]
-		public static string GetDisplayName<TEnum>(TEnum value)
-				where TEnum : struct, IComparable, IFormattable, IConvertible =>
-			Holder<TEnum>.GetDisplays()[value].DisplayName;
+		/// <returns>The enum values collection.</returns>
+		[Pure, NotNull]
+		public static EnumValue GetEnumValue<TEnum>(TEnum value)
+			where TEnum : struct, IComparable, IFormattable, IConvertible => GetEnumValues<TEnum>().GetByValue(value);
+
+
+		/// <summary>Returns name of the enum value.</summary>
+		/// <typeparam name="TEnum">Enum type</typeparam>
+		/// <param name="value">The enum value.</param>
+		/// <returns>The name of the enum value.</returns>
+		[MethodImpl(AggressiveInlining)]
+		public static string GetName<TEnum>(TEnum value)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				GetEnumValue(value).Name;
 
 		/// <summary>
-		/// Returns description of enum field.
+		/// Returns description of enum value.
 		/// </summary>
 		/// <typeparam name="TEnum">Enum type</typeparam>
 		/// <param name="value">Enum value.</param>
 		/// <remarks>
-		/// Returns description of enum field specified by <see cref="DisplayAttribute"/>, or <c>null</c> if no attribute
+		/// Returns description of enum value specified by <see cref="DisplayAttribute"/>, or <c>null</c> if no attribute
+		/// specified.
+		/// </remarks>
+		[Pure, NotNull]
+		public static string GetDisplayName<TEnum>(TEnum value)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				GetEnumValue(value).GetDisplayName();
+
+		/// <summary>
+		/// Returns description of enum value.
+		/// </summary>
+		/// <typeparam name="TEnum">Enum type</typeparam>
+		/// <param name="value">Enum value.</param>
+		/// <remarks>
+		/// Returns description of enum value specified by <see cref="DisplayAttribute"/>, or <c>null</c> if no attribute
 		/// specified.
 		/// </remarks>
 		[Pure]
 		[CanBeNull]
 		public static string GetDescription<TEnum>(TEnum value)
-				where TEnum : struct, IComparable, IFormattable, IConvertible =>
-			Holder<TEnum>.GetDisplays()[value].Description;
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				GetEnumValue(value).Description;
+
 
 		/// <summary>
-		/// Returns description of enum field.
+		/// Gets field info of enum value.
 		/// </summary>
-		/// <typeparam name="TEnum">Enum type</typeparam>
-		/// <param name="value">Enum value.</param>
-		/// <remarks>
-		/// Returns description of enum field specified by <see cref="DisplayAttribute"/>, or <c>null</c> if no attribute
-		/// specified.
-		/// </remarks>
-		[Pure]
-		public static EnumValueDisplay GetDisplay<TEnum>(TEnum value)
-				where TEnum : struct, IComparable, IFormattable, IConvertible =>
-			Holder<TEnum>.GetDisplays()[value];
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <param name="value">The enum value.</param>
+		/// <returns><see cref="FieldInfo"/> corresponding to <paramref name="value"/>.</returns>
+		[Pure, NotNull]
+		public static FieldInfo GetField<TEnum>(TEnum value)
+			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+				GetEnumValue(value).UnderlyingField;
 		#endregion
 
 		#region Holder struct
+		private static readonly ILazyDictionary<Type, EnumValues> _enumValuesCache = LazyDictionary.Create(
+			(Type enumType) => new EnumValues(enumType.ToNullableUnderlying()),
+			LazyThreadSafetyMode.ExecutionAndPublication);
+
 		private static class Holder<TEnum>
 			where TEnum : struct
 		{
 			#region Static fields
 			// DONTTOUCH: the ordering of the fields represents the dependencies between them.
 			// DO NOT change it until the initialization logic is changed.
-
-			private static readonly bool _isEnum = typeof(TEnum).IsEnum;
-			private static readonly bool _isNullableEnum = typeof(TEnum).IsNullableEnum();
-
 			private static readonly Type _enumType = typeof(TEnum).ToNullableUnderlying();
+
+			// DONTTOUCH: The static readonly field is used by jitter to simplify boolean checks expressions
+			// ReSharper disable once StaticMemberInGenericType
+			private static readonly bool _isEnum = _enumType.IsEnum;
 
 			// ReSharper disable once StaticMemberInGenericType
 			private static readonly bool _isFlagsEnum =
-				(_isEnum || _isNullableEnum) &&
+				_enumType.IsEnum &&
 					_enumType.GetCustomAttribute<FlagsAttribute>() != null;
 
 			private static readonly HashSet<TEnum> _values = _enumType.IsEnum
@@ -325,66 +340,30 @@ namespace CodeJam
 
 			private static readonly IReadOnlyDictionary<string, TEnum> _nameValues = GetNameValuesCore(_enumType, false);
 			private static readonly IReadOnlyDictionary<string, TEnum> _nameValuesIgnoreCase = GetNameValuesCore(_enumType, true);
-			private static readonly IReadOnlyDictionary<TEnum, string> _valueNames = GetValueNamesCore(_enumType);
 
 			private static readonly TEnum _flagsMask = _isFlagsEnum ? GetFlagsMaskCore(_values.ToArray()) : default(TEnum);
 			#endregion
 
 			#region Flag operations emit
 			[CanBeNull]
-			private static readonly Func<TEnum, TEnum, bool> _isFlagSetCallback = _isEnum || _isNullableEnum
+			private static readonly Func<TEnum, TEnum, bool> _isFlagSetCallback = _enumType.IsEnum
 				? OperatorsFactory.IsFlagSetOperator<TEnum>()
 				: null;
 
 			[CanBeNull]
-			private static readonly Func<TEnum, TEnum, bool> _isAnyFlagSetCallback = _isEnum || _isNullableEnum
+			private static readonly Func<TEnum, TEnum, bool> _isAnyFlagSetCallback = _enumType.IsEnum
 				? OperatorsFactory.IsAnyFlagSetOperator<TEnum>()
 				: null;
 
 			[CanBeNull]
-			private static readonly Func<TEnum, TEnum, TEnum> _setFlagCallback = _isEnum || _isNullableEnum
+			private static readonly Func<TEnum, TEnum, TEnum> _setFlagCallback = _enumType.IsEnum
 				? OperatorsFactory.SetFlagOperator<TEnum>()
 				: null;
 
 			[CanBeNull]
-			private static readonly Func<TEnum, TEnum, TEnum> _clearFlagCallback = _isEnum || _isNullableEnum
+			private static readonly Func<TEnum, TEnum, TEnum> _clearFlagCallback = _enumType.IsEnum
 				? OperatorsFactory.ClearFlagOperator<TEnum>()
 				: null;
-
-			private static readonly IReadOnlyDictionary<TEnum, EnumValueDisplay> _valueDisplays =
-				_isEnum
-					? GetDisplaysCore(_enumType)
-					:
-#if FW40
-						new DictionaryWithReadOnly<TEnum, EnumValueDisplay>();
-#else
-						new Dictionary<TEnum, EnumValueDisplay>();
-#endif
-
-			private static IReadOnlyDictionary<TEnum, EnumValueDisplay> GetDisplaysCore(IReflect enumType)
-			{
-				var result =
-#if FW40
-					new DictionaryWithReadOnly<TEnum, EnumValueDisplay>();
-#else
-					new Dictionary<TEnum, EnumValueDisplay>();
-#endif
-				var members =
-					enumType
-						.GetMembers(BindingFlags.Public | BindingFlags.Static)
-						.ToDictionary(m => m.Name, StringComparer.Ordinal);
-				foreach (var pair in _nameValues.OrderBy(p => p.Value))
-				{
-					var attr = members[pair.Key].TryGetMetadataAttribute<DisplayAttribute>();
-					if (!result.ContainsKey(pair.Value))
-						result.Add(
-							pair.Value,
-							new EnumValueDisplay(
-								attr?.GetName() ?? pair.Key,
-								attr?.GetDescription()));
-				}
-				return result;
-			}
 			#endregion
 
 			#region Init helpers
@@ -413,30 +392,6 @@ namespace CodeJam
 				return result;
 			}
 
-			private static IReadOnlyDictionary<TEnum, string> GetValueNamesCore(Type enumType)
-			{
-				var result =
-#if FW40
-					new DictionaryWithReadOnly<TEnum, string>();
-#else
-					new Dictionary<TEnum, string>();
-#endif
-
-				if (enumType.IsEnum)
-				{
-					var names = Enum.GetNames(enumType);
-					var values = (TEnum[])Enum.GetValues(enumType);
-					for (var i = 0; i < names.Length; i++)
-					{
-						if (result.ContainsKey(values[i]))
-							continue;
-
-						result.Add(values[i], names[i]);
-					}
-				}
-				return result;
-			}
-
 			// ReSharper disable once SuggestBaseTypeForParameter
 			private static TEnum GetFlagsMaskCore(TEnum[] values)
 			{
@@ -456,7 +411,7 @@ namespace CodeJam
 			[AssertionMethod]
 			private static void AssertUsage()
 			{
-				if (!_isEnum && !_isNullableEnum)
+				if (!_isEnum)
 				{
 					throw CodeExceptions.Argument(
 						typeof(TEnum).Name,
@@ -470,15 +425,6 @@ namespace CodeJam
 			{
 				AssertUsage();
 				return ignoreCase ? _nameValuesIgnoreCase : _nameValues;
-			}
-
-			public static IReadOnlyDictionary<TEnum, string> ValueNames
-			{
-				get
-				{
-					AssertUsage();
-					return _valueNames;
-				}
 			}
 
 			public static bool IsFlagsEnum
@@ -558,42 +504,7 @@ namespace CodeJam
 					return _clearFlagCallback;
 				}
 			}
-
-			public static IReadOnlyDictionary<TEnum, EnumValueDisplay> GetDisplays() => _valueDisplays;
 			#endregion
-		}
-		#endregion
-
-		#region EnumFieldDisplay struct
-		/// <summary>
-		/// Enum field display information.
-		/// </summary>
-		[PublicAPI]
-		public struct EnumValueDisplay
-		{
-			/// <summary>
-			/// Initialize instance.
-			/// </summary>
-			/// <param name="displayName">Display name.</param>
-			/// <param name="description">Description</param>
-			public EnumValueDisplay(string displayName, string description)
-			{
-				DisplayName = displayName;
-				Description = description;
-			}
-
-			/// <summary>
-			/// Enum field display name.
-			/// </summary>
-			public string DisplayName { get; }
-
-			/// <summary>
-			/// Enum field description.
-			/// </summary>
-			public string Description { get; }
-
-			/// <inheritdoc/>
-			public override string ToString() => DisplayName + (Description != null ? $" ({Description})" : "");
 		}
 		#endregion
 	}
