@@ -12,10 +12,7 @@ namespace CodeJam.Mapping
 
 	internal class MappingSchemaInfo
 	{
-		public MappingSchemaInfo(string configuration)
-		{
-			Configuration = configuration;
-		}
+		public MappingSchemaInfo(string configuration) => Configuration = configuration;
 
 		public readonly string Configuration;
 		public IMetadataReader MetadataReader;

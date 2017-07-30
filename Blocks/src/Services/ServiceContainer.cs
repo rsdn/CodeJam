@@ -121,10 +121,7 @@ namespace CodeJam.Services
 		private class InstanceBag : IServiceBag
 		{
 			private readonly object _instance;
-			public InstanceBag(object instance)
-			{
-				_instance = instance;
-			}
+			public InstanceBag(object instance) => _instance = instance;
 
 			#region Overrides of ServiceBag
 			public object GetInstance(IServicePublisher publisher, Type serviceType) => _instance;
@@ -140,10 +137,7 @@ namespace CodeJam.Services
 			private object _instance;
 
 			/// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
-			public FactoryBag(Func<IServicePublisher, object> factory)
-			{
-				_factory = factory;
-			}
+			public FactoryBag(Func<IServicePublisher, object> factory) => _factory = factory;
 
 			#region Overrides of ServiceBag
 			public object GetInstance(IServicePublisher publisher, Type serviceType)

@@ -25,10 +25,7 @@ namespace CodeJam.Mapping
 		private Func<TFrom,TTo,IDictionary<object,object>,TTo>             _mapper;
 		private Func<TFrom,TTo>                                            _mapperEx;
 
-		internal Mapper(MapperBuilder<TFrom,TTo> mapperBuilder)
-		{
-			_mapperBuilder = mapperBuilder;
-		}
+		internal Mapper(MapperBuilder<TFrom,TTo> mapperBuilder) => _mapperBuilder = mapperBuilder;
 
 		/// <summary>
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.

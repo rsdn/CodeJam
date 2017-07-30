@@ -203,10 +203,7 @@ namespace CodeJam.Mapping
 		private const FieldAttributes _enumField =
 			FieldAttributes.Public | FieldAttributes.Static | FieldAttributes.Literal;
 
-		private static object ThrowLinqToDBException(string text)
-		{
-			throw new CodeJamConvertException(text);
-		}
+		private static object ThrowLinqToDBException(string text) => throw new CodeJamConvertException(text);
 
 		private static readonly MethodInfo _throwLinqToDBConvertException = InfoOf.Method(() => ThrowLinqToDBException(null));
 

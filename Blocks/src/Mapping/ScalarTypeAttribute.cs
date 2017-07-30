@@ -15,19 +15,13 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Defines target type as scalar type.
 		/// </summary>
-		public ScalarTypeAttribute()
-		{
-			IsScalar = true;
-		}
+		public ScalarTypeAttribute() => IsScalar = true;
 
 		/// <summary>
 		/// Defines target type as scalar type.
 		/// </summary>
 		/// <param name="isScalar"><i>true</i> if target type is a scalar type.</param>
-		public ScalarTypeAttribute(bool isScalar)
-		{
-			IsScalar = isScalar;
-		}
+		public ScalarTypeAttribute(bool isScalar) => IsScalar = isScalar;
 
 		/// <summary>
 		/// Defines target type as scalar type.

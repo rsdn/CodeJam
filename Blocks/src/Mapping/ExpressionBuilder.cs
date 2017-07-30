@@ -21,10 +21,7 @@ namespace CodeJam.Mapping
 	{
 		private class BuilderData
 		{
-			public BuilderData(ValueTuple<MemberInfo[],LambdaExpression>[] memberMappers)
-			{
-				MemberMappers = memberMappers;
-			}
+			public BuilderData(ValueTuple<MemberInfo[],LambdaExpression>[] memberMappers) => MemberMappers = memberMappers;
 
 			public readonly ValueTuple<MemberInfo[],LambdaExpression>[]           MemberMappers;
 			public readonly Dictionary<ValueTuple<Type,Type>,ParameterExpression> Mappers     = new Dictionary<ValueTuple<Type,Type>, ParameterExpression>();
@@ -41,10 +38,8 @@ namespace CodeJam.Mapping
 		}
 
 		public ExpressionBuilder(IMapperBuilder mapperBuilder, ValueTuple<MemberInfo[],LambdaExpression>[] memberMappers)
-			: this(mapperBuilder, new BuilderData(memberMappers))
-		{
+			: this(mapperBuilder, new BuilderData(memberMappers)) =>
 			_processCrossReferences = mapperBuilder.ProcessCrossReferences == true;
-		}
 
 		private ExpressionBuilder(IMapperBuilder mapperBuilder, BuilderData data)
 		{
