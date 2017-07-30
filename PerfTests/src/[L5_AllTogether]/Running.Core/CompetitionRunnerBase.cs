@@ -16,6 +16,7 @@ using BenchmarkDotNet.Validators;
 using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Configs.Factories;
+using CodeJam.PerfTests.Exporters;
 using CodeJam.PerfTests.Loggers;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Strings;
@@ -363,6 +364,7 @@ namespace CodeJam.PerfTests.Running.Core
 			FixConfigJobs(competitionConfig);
 			FixConfigLoggers(competitionConfig);
 			FixConfigValidators(competitionConfig);
+			FixConfigExporters(competitionConfig);
 			FixConfigAnalysers(competitionConfig);
 			FixConfigMetrics(competitionConfig);
 			FixConfigDuplicates(competitionConfig);
@@ -425,6 +427,15 @@ namespace CodeJam.PerfTests.Running.Core
 
 			// DONTTOUCH: the RunStateSlots should be first in the chain.
 			validators.Insert(0, new RunStateSlots());
+		}
+
+		private void FixConfigExporters(ManualCompetitionConfig competitionConfig)
+		{
+			// HACK: shuts up the ConfigValidator
+			if (competitionConfig.Exporters.Count == 0)
+			{
+				competitionConfig.Exporters.Add(new StubExporter());
+			}
 		}
 
 		private static void FixConfigAnalysers(ManualCompetitionConfig competitionConfig)

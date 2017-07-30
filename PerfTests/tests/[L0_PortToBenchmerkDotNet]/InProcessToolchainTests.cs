@@ -28,9 +28,11 @@ namespace CodeJam.PerfTests
 		private static int _afterGlobalSetupCounter;
 		private static int _afterIterationSetupCounter;
 		private static int _globalSetupCounter;
+		private static int _globalSetupTargetCounter;
 		private static int _iterationSetupCounter;
 		private static int _globalCleanupCounter;
 		private static int _iterationCleanupCounter;
+		private static int _iterationCleanupTargetCounter;
 
 		private static void ResetCounters()
 		{
@@ -38,9 +40,11 @@ namespace CodeJam.PerfTests
 			Interlocked.Exchange(ref _afterGlobalSetupCounter, 0);
 			Interlocked.Exchange(ref _afterIterationSetupCounter, 0);
 			Interlocked.Exchange(ref _globalSetupCounter, 0);
+			Interlocked.Exchange(ref _globalSetupTargetCounter, 0);
 			Interlocked.Exchange(ref _iterationSetupCounter, 0);
 			Interlocked.Exchange(ref _globalCleanupCounter, 0);
 			Interlocked.Exchange(ref _iterationCleanupCounter, 0);
+			Interlocked.Exchange(ref _iterationCleanupTargetCounter, 0);
 		}
 
 		[Test]
@@ -74,12 +78,19 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(_callCounter, GetExpectedCount(config, MethodsCount));
 			Assert.AreEqual(_afterGlobalSetupCounter, GetExpectedCount(config, 1));
 			Assert.AreEqual(_afterIterationSetupCounter, invocationCount);
-			Assert.AreEqual(_globalSetupCounter, MethodsCount);
+			Assert.AreEqual(_globalSetupCounter, MethodsCount - 1);
+			Assert.AreEqual(_globalSetupTargetCounter, 1);
 			//Assert.AreEqual(_iterationSetupCounter, MethodsCount * iterationsNoUnroll);
 			Assert.AreEqual(_globalCleanupCounter, MethodsCount);
-			//Assert.AreEqual(_iterationCleanupCounter, MethodsCount * iterationsNoUnroll);
+			//Assert.AreEqual(_iterationCleanupCounter, (MethodsCount - 1) * iterationsNoUnroll);
+			//Assert.AreEqual(_iterationCleanupTargetCounter, 1 * iterationsNoUnroll);
 
-			Assert.IsFalse(summary?.ValidationErrors.Any());
+			var a = summary?.ValidationErrors.ToArray();
+			foreach (var validationError in a)
+			{
+				Console.WriteLine(validationError.Message);
+			}
+			Assert.IsFalse(a.Any());
 		}
 
 		[Test]
@@ -118,10 +129,12 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(_callCounter, GetExpectedCount(config, MethodsCount));
 			Assert.AreEqual(_afterGlobalSetupCounter, GetExpectedCount(config, 1));
 			Assert.AreEqual(_afterIterationSetupCounter, invocationCount);
-			Assert.AreEqual(_globalSetupCounter, MethodsCount);
+			Assert.AreEqual(_globalSetupCounter, MethodsCount - 1);
+			Assert.AreEqual(_globalSetupTargetCounter, 1);
 			//Assert.AreEqual(_iterationSetupCounter, MethodsCount * iterationsNoUnroll);
 			Assert.AreEqual(_globalCleanupCounter, MethodsCount);
-			//Assert.AreEqual(_iterationCleanupCounter, MethodsCount * iterationsNoUnroll);
+			//Assert.AreEqual(_iterationCleanupCounter, (MethodsCount - 1) * iterationsNoUnroll);
+			//Assert.AreEqual(_iterationCleanupTargetCounter, 1 * iterationsNoUnroll);
 
 			Assert.IsFalse(summary?.ValidationErrors.Any());
 		}
@@ -149,9 +162,11 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(_afterGlobalSetupCounter, 0);
 			Assert.AreEqual(_afterIterationSetupCounter, 0);
 			Assert.AreEqual(_globalSetupCounter, 0);
+			Assert.AreEqual(_globalSetupTargetCounter, 0);
 			Assert.AreEqual(_iterationSetupCounter, 0);
 			Assert.AreEqual(_globalCleanupCounter, 0);
 			Assert.AreEqual(_iterationCleanupCounter, 0);
+			Assert.AreEqual(_iterationCleanupTargetCounter, 0);
 
 			Assert.AreEqual(summary?.ValidationErrors.Length, 1);
 			Assert.IsTrue(summary?.ValidationErrors[0].IsCritical);
@@ -163,6 +178,14 @@ namespace CodeJam.PerfTests
 		public class InProcessBenchmarkAllCases
 		{
 			// TODO: custom type results.
+			[GlobalSetup(Target = nameof(InvokeOnceVoid))]
+			public static void GlobalSetupInvokeOnceVoid()
+			{
+				//await Task.Yield();
+				Interlocked.Increment(ref _globalSetupTargetCounter);
+				Interlocked.Exchange(ref _afterGlobalSetupCounter, 0);
+			}
+
 			[GlobalSetup]
 			public static void GlobalSetup()
 			{
@@ -181,6 +204,9 @@ namespace CodeJam.PerfTests
 				Interlocked.Increment(ref _iterationSetupCounter);
 				Interlocked.Exchange(ref _afterIterationSetupCounter, 0);
 			}
+
+			[IterationCleanup(Target = nameof(InvokeOnceVoid))]
+			public void /*decimal*/ IterationCleanupInvokeOnceVoid() => Interlocked.Increment(ref _iterationCleanupTargetCounter);
 
 			[IterationCleanup]
 			public void /*decimal*/ IterationCleanup() => Interlocked.Increment(ref _iterationCleanupCounter);

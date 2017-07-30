@@ -148,13 +148,16 @@ namespace CodeJam.PerfTests.Analysers
 					m =>
 						m.GetCustomAttributes(true)
 							.Select(a =>
-								(method: m, attributeType: a.GetType(), baseAttribute: _knownUniqueMemberLevelAttributes.FirstOrDefault(ka => ka.IsInstanceOfType(a))))
+								(method: m,
+								 attributeType: a.GetType(),
+								 baseAttribute: _knownUniqueMemberLevelAttributes.FirstOrDefault(ka => ka.IsInstanceOfType(a)),
+								 target: (a as TargetedAttribute)?.Target))
 							.Where(t => t.baseAttribute != null))
 				.ToArray();
 
 			var conflictingAttributes = GetDuplicates(
 				targetMethodsWithAttributes,
-				t => $"{t.method.DeclaringType}.{t.method.Name}()",
+				t => $"{t.method.DeclaringType}.{t.method.Name}({t.target})",
 				t => $"\r\n\t\t  {t.attributeType.FullName}");
 
 			if (conflictingAttributes.NotNullNorEmpty())
@@ -167,7 +170,7 @@ namespace CodeJam.PerfTests.Analysers
 			// No multiple methods for an attribute
 			var conflictingMethods = GetDuplicates(
 				targetMethodsWithAttributes.Where(t => _knownUniqueTypeLevelAttributes.Contains(t.baseAttribute)),
-				t => t.baseAttribute.FullName,
+				t => $"{t.baseAttribute.FullName}({t.target})",
 				t => $"\r\n\t\t  {t.method.DeclaringType}.{t.method.Name}() ({t.attributeType.FullName})");
 
 			if (conflictingMethods.NotNullNorEmpty())

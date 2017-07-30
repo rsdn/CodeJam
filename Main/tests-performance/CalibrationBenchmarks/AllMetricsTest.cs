@@ -39,8 +39,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 		}
 
 		[CompetitionBenchmark(0.088, 0.338)]
-		[GcAllocations(4.03, 4.05, BinarySizeUnit.Kilobyte), Gc0(0), Gc1(0), Gc2(0)]
-		[ExpectedTime(1.35, 3.03, TimeUnit.Microsecond)]
+		[GcAllocations(4.03, 4.06, BinarySizeUnit.Kilobyte), Gc0(0), Gc1(0), Gc2(0)]
+		[ExpectedTime(1.35, 3.57, TimeUnit.Microsecond)]
 		public int Array()
 		{
 			var data = new int[Count];
