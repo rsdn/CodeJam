@@ -34,7 +34,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;FW47;FW462;FW461;FW46;FW452</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -44,7 +44,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <DefineConstants>TRACE;FW47;FW462;FW461;FW46;FW452</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -82,11 +82,32 @@
     <PackageReference Include="System.ValueTuple" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Algorithms\Algorithms.EqualRange.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-    </Content>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
-
+  <Choose>
+    <When Condition="$(DefineConstants.Contains('FW35'))">
+      <ItemGroup>
+        <Reference Include="System.Threading, Version=1.0.2856.102, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+          <HintPath>..\..\packages\TaskParallelLibrary.1.0.2856.0\lib\Net35\System.Threading.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="!$(DefineConstants.Contains('FW40')) AND $(DefineConstants.Contains('FW462'))">
+      <ItemGroup>
+        <Reference Include="System.ValueTuple, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\..\packages\System.ValueTuple.4.3.1\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+          <Aliases>global</Aliases>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
   <ItemGroup>
     <Compile Include="..\..\Jetbrains.Annotations.cs">
       <Link>Jetbrains.Annotations.cs</Link>
@@ -131,11 +152,18 @@
     <Compile Include="Arithmetic\Operators.cs" />
     <Compile Include="Assertions\Code.NonDebug.cs" />
     <Compile Include="Assertions\Code.cs" />
+    <Compile Include="Assertions\DebugUriCode.generated.cs">
+      <DependentUpon>DebugUriCode.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Assertions\DebugEnumCode.generated.cs">
       <DependentUpon>DebugEnumCode.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Assertions\UriCodeExceptions.cs" />
+    <Compile Include="Assertions\UriCode.cs" />
     <Compile Include="Assertions\EnumCodeExceptions.cs" />
     <Compile Include="Assertions\CodeExceptions.cs" />
     <Compile Include="Assertions\DebugCode.cs" />
@@ -184,7 +212,9 @@
     <Compile Include="Dates\DateTimeRangeExtensions.cs" />
     <Compile Include="Dates\DateTimeExtensions.cs" />
     <Compile Include="Dates\NamespaceDoc.cs" />
+    <Compile Include="EnumValue.cs" />
     <Compile Include="EnumHelper.cs" />
+    <Compile Include="EnumValues.cs" />
     <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="Expressions\NamespaceDoc.cs" />
     <Compile Include="Fn.generated.cs">
@@ -199,7 +229,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Expr.tt</DependentUpon>
     </Compile>
+    <Compile Include="IO\DebugIoCode.generated.cs">
+      <DependentUpon>DebugIoCode.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="IO\IoCode.cs" />
+    <Compile Include="IO\IoCodeExceptions.cs" />
     <Compile Include="IO\NamespaceDoc.cs" />
+    <Compile Include="IO\PathHelpers.cs" />
     <Compile Include="Lazy.cs" />
     <Compile Include="NamespaceDoc.cs" />
     <Compile Include="NullableHelper.cs" />
@@ -315,6 +353,8 @@
     <Compile Include="Reflection\InfoOf`1.cs" />
     <Compile Include="Reflection\ParamInfo.cs" />
     <Compile Include="Structures\Option\Option`1.cs" />
+    <Compile Include="Targeting\FW35\DisplayAttribute.cs" />
+    <Compile Include="Targeting\FW35\LocalizableString.cs" />
     <Compile Include="Targeting\FW35\Tuple.cs" />
     <Compile Include="Targeting\FW40\ValueTuple\TupleElementNamesAttribute.cs" />
     <Compile Include="Targeting\FW40\CustomAttributeExtensions.cs" />
@@ -389,6 +429,7 @@
     <Compile Include="Threading\ParallelExtensions.cs" />
     <Compile Include="Threading\ParallelQueue.cs" />
     <Compile Include="Threading\ReaderWriterLockSlimExtensions.cs" />
+    <Compile Include="UriHelper.cs" />
     <Compile Include="Utilities\HGlobal.cs" />
     <Compile Include="Utilities\HGlobalScope.cs" />
     <Compile Include="Utilities\HGlobalScope`1.cs" />
@@ -426,6 +467,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Operators.generated.cs</LastGenOutput>
     </Content>
+    <Content Include="Assertions\DebugUriCode.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DebugUriCode.generated.cs</LastGenOutput>
+    </Content>
     <Content Include="Assertions\DebugEnumCode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DebugEnumCode.generated.cs</LastGenOutput>
@@ -449,6 +494,10 @@
     <Content Include="Expressions\Expr.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Expr.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="IO\DebugIoCode.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DebugIoCode.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Ranges\CompositeRange.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -26,7 +26,7 @@ namespace CodeJam.Ranges
 		/// <param name="range">The source range.</param>
 		/// <param name="newValueSelector">Callback to obtain a new value for the boundaries. Used if boundary has a value.</param>
 		/// <returns>A range with new values.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T2> WithValues<T, T2>(
 			this Range<T> range,
 			[NotNull, InstantHandle] Func<T, T2> newValueSelector)
@@ -43,7 +43,7 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a new value for the From boundary. Used if boundary has a value.</param>
 		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if boundary has a value.</param>
 		/// <returns>A range with new values.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T2> WithValues<T, T2>(
 			this Range<T> range,
 			[NotNull, InstantHandle] Func<T, T2> fromValueSelector,
@@ -61,7 +61,7 @@ namespace CodeJam.Ranges
 		/// <param name="range">The source range.</param>
 		/// <param name="newValueSelector">Callback to obtain a new value for the boundaries. Used if boundary has a value.</param>
 		/// <returns>A range with new values.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T2, TKey> WithValues<T, T2, TKey>(
 			this Range<T, TKey> range,
 			[NotNull, InstantHandle] Func<T, T2> newValueSelector)
@@ -78,7 +78,7 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a new value for the From boundary. Used if boundary has a value.</param>
 		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if boundary has a value.</param>
 		/// <returns>A range with new values.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T2, TKey> WithValues<T, T2, TKey>(
 			this Range<T, TKey> range,
 			[NotNull, InstantHandle] Func<T, T2> fromValueSelector,
@@ -94,7 +94,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey">The type of the key.</typeparam>
 		/// <param name="range">The range to remove key from.</param>
 		/// <returns>A new range without a key.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T> WithoutKey<T, TKey>(this Range<T, TKey> range) =>
 			Range.Create(range.From, range.To);
 	}

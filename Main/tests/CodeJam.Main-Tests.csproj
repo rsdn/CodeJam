@@ -39,15 +39,15 @@
     <AssemblyOriginatorKeyFile>..\..\CodeJam.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.7.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.ValueTuple, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.3.1\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -63,6 +63,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OperatorsTests.tt</DependentUpon>
     </Compile>
+    <Compile Include="Assertions\UriCodeTests.cs" />
     <Compile Include="Assertions\EnumCodeTests.cs" />
     <Compile Include="Assertions\CodeTests.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensionTests.MinMaxOrDefault.cs" />
@@ -94,9 +95,11 @@
     <Compile Include="FnTests.cs" />
     <Compile Include="EnumHelperTests.cs" />
     <Compile Include="Expressions\ExpressionExtensionsTests.cs" />
+    <Compile Include="IO\PathHelpersTests.cs" />
     <Compile Include="IO\TempDataTests.cs" />
     <Compile Include="DisposableTests.cs" />
     <Compile Include="Collections\QueryableExtensionsTests.cs" />
+    <Compile Include="IO\IoCodeTests.cs" />
     <Compile Include="Ranges\CompositeRangeTests.cs" />
     <Compile Include="Ranges\RangeBoundaryFromTests.cs" />
     <Compile Include="Ranges\RangeBoundaryFromToTests.cs" />

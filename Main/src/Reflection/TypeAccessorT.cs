@@ -82,15 +82,11 @@ namespace CodeJam.Reflection
 			}
 		}
 
-		private static T ThrowException()
-		{
+		private static T ThrowException() =>
 			throw new InvalidOperationException($"The '{typeof(T).FullName}' type must have default or init constructor.");
-		}
 
-		private static T ThrowAbstractException()
-		{
+		private static T ThrowAbstractException() =>
 			throw new InvalidOperationException($"Cant create an instance of abstract class '{typeof(T).FullName}'.");
-		}
 
 		// ReSharper disable once StaticMemberInGenericType
 		private static readonly List<MemberInfo> _members = new List<MemberInfo>();

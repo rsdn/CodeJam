@@ -63,7 +63,7 @@ namespace CodeJam
 		private double[] _testData;
 		private int _increment;
 
-		[Setup]
+		[GlobalSetup]
 		public void SetupData()
 		{
 			var rnd = new Random();

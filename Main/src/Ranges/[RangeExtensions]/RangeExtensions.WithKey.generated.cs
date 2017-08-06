@@ -31,6 +31,7 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a new value for the From boundary. Used if the boundary is exclusive.</param>
 		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if the boundary is exclusive.</param>
 		/// <returns>A range with inclusive boundaries.</returns>
+		[Pure]
 		public static Range<T, TKey> MakeInclusive<T, TKey>(
 			this Range<T, TKey> range,
 			[NotNull, InstantHandle] Func<T, T> fromValueSelector,
@@ -64,6 +65,7 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a new value for the From boundary. Used if the boundary is inclusive.</param>
 		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if the boundary is inclusive.</param>
 		/// <returns>A range with exclusive boundaries.</returns>
+		[Pure]
 		public static Range<T, TKey> MakeExclusive<T, TKey>(
 			this Range<T, TKey> range,
 			[NotNull, InstantHandle] Func<T, T> fromValueSelector,
@@ -95,7 +97,7 @@ namespace CodeJam.Ranges
 		/// <param name="range">The source range.</param>
 		/// <param name="key">The value of the new key.</param>
 		/// <returns>A new range with the key specified.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey2> WithKey<T, TKey, TKey2>(this Range<T, TKey> range, TKey2 key) =>
 			Range.Create(range.From, range.To, key);
 		#endregion
@@ -107,7 +109,7 @@ namespace CodeJam.Ranges
 		/// <param name="range">The source range.</param>
 		/// <param name="value">The value to check.</param>
 		/// <returns><c>true</c>, if the range contains the value.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static bool Contains<T, TKey>(this Range<T, TKey> range, T value) =>
 			RangeBoundaryFrom<T>.IsValid(value)
 				? Contains(range, Range.BoundaryFrom(value))
@@ -119,7 +121,7 @@ namespace CodeJam.Ranges
 		/// <param name="range">The source range.</param>
 		/// <param name="other">The boundary to check.</param>
 		/// <returns><c>true</c>, if the range contains the boundary.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static bool Contains<T, TKey>(this Range<T, TKey> range, RangeBoundaryFrom<T> other)
 		{
 			if (range.IsEmpty)
@@ -135,7 +137,7 @@ namespace CodeJam.Ranges
 		/// <param name="range">The source range.</param>
 		/// <param name="other">The boundary to check.</param>
 		/// <returns><c>true</c>, if the range contains the boundary.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static bool Contains<T, TKey>(this Range<T, TKey> range, RangeBoundaryTo<T> other)
 		{
 			if (range.IsEmpty)
@@ -152,7 +154,7 @@ namespace CodeJam.Ranges
 		/// <param name="from">The boundary From value of the range to check.</param>
 		/// <param name="to">The boundary To value of the range to check.</param>
 		/// <returns><c>true</c>, if the range contains another range.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static bool Contains<T, TKey>(this Range<T, TKey> range, T from, T to) =>
 			Contains(range, Range.Create(from, to));
 
@@ -165,7 +167,7 @@ namespace CodeJam.Ranges
 		/// <returns><c>true</c>, if the range contains another range.</returns>
 		// DONTTOUCH: The last parameter should be nongeneric to avoid overload resolution conflicts
 		// WAITINGFOR: https://github.com/dotnet/roslyn/issues/250 (case 2)
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static bool Contains<T, TKey, TRange>(this TRange range, Range<T, TKey> other)
 			where TRange : IRange<T>
 		{
@@ -183,7 +185,7 @@ namespace CodeJam.Ranges
 		/// <param name="from">The boundary From value of the range to check.</param>
 		/// <param name="to">The boundary To value of the range to check.</param>
 		/// <returns><c>true</c>, if the range has intersection with another range.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static bool HasIntersection<T, TKey>(this Range<T, TKey> range, T from, T to) =>
 			HasIntersection(range, Range.Create(from, to));
 
@@ -194,7 +196,7 @@ namespace CodeJam.Ranges
 		/// <param name="range">The source range.</param>
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the range has intersection with another range.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static bool HasIntersection<T, TKey, TRange>(this Range<T, TKey> range, TRange other)
 			where TRange : IRange<T>
 		{
@@ -214,6 +216,7 @@ namespace CodeJam.Ranges
 		/// <param name="value">The value to be adjusted.</param>
 		/// <exception cref="ArgumentException">The range is empty or any of its boundaries is exclusive.</exception>
 		/// <returns>A new value that fits into a range specified</returns>
+		[Pure]
 		public static T Clamp<T, TKey>(this Range<T, TKey> range, T value)
 		{
 			Code.AssertArgument(
@@ -248,7 +251,7 @@ namespace CodeJam.Ranges
 		/// <param name="range">The source range.</param>
 		/// <param name="value">The value to check.</param>
 		/// <returns><c>true</c>, if the range starts after the value.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static bool StartsAfter<T, TKey>(this Range<T, TKey> range, T value) =>
 			RangeBoundaryFrom<T>.IsValid(value) && range.From > Range.BoundaryFrom(value);
 
@@ -258,7 +261,7 @@ namespace CodeJam.Ranges
 		/// <param name="range">The source range.</param>
 		/// <param name="other">The boundary to check.</param>
 		/// <returns><c>true</c>, if the range starts after the boundary.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static bool StartsAfter<T, TKey>(this Range<T, TKey> range, RangeBoundaryFrom<T> other) =>
 			other.IsNotEmpty && range.From > other;
 
@@ -268,7 +271,7 @@ namespace CodeJam.Ranges
 		/// <param name="range">The source range.</param>
 		/// <param name="other">The boundary to check.</param>
 		/// <returns><c>true</c>, if the range starts after the boundary.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static bool StartsAfter<T, TKey>(this Range<T, TKey> range, RangeBoundaryTo<T> other) =>
 			other.IsNotEmpty && range.From > other;
 
@@ -281,7 +284,7 @@ namespace CodeJam.Ranges
 		/// <returns><c>true</c>, if the range starts after another range.</returns>
 		// DONTTOUCH: The last parameter should be nongeneric to avoid overload resolution conflicts
 		// WAITINGFOR: https://github.com/dotnet/roslyn/issues/250 (case 2)
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static bool StartsAfter<T, TKey, TRange>(this TRange range, Range<T, TKey> other)
 			where TRange : IRange<T> =>
 				other.IsNotEmpty && range.From > other.To;
@@ -292,7 +295,7 @@ namespace CodeJam.Ranges
 		/// <param name="range">The source range.</param>
 		/// <param name="value">The value to check.</param>
 		/// <returns><c>true</c>, if the range ends before the value.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static bool EndsBefore<T, TKey>(this Range<T, TKey> range, T value) =>
 			range.IsNotEmpty && RangeBoundaryTo<T>.IsValid(value) && range.To < Range.BoundaryTo(value);
 
@@ -302,7 +305,7 @@ namespace CodeJam.Ranges
 		/// <param name="range">The source range.</param>
 		/// <param name="other">The boundary to check.</param>
 		/// <returns><c>true</c>, if the range ends before the boundary.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static bool EndsBefore<T, TKey>(this Range<T, TKey> range, RangeBoundaryFrom<T> other) =>
 			range.IsNotEmpty && other.IsNotEmpty && range.To < other;
 
@@ -312,7 +315,7 @@ namespace CodeJam.Ranges
 		/// <param name="range">The source range.</param>
 		/// <param name="other">The boundary to check.</param>
 		/// <returns><c>true</c>, if the range ends before the boundary.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static bool EndsBefore<T, TKey>(this Range<T, TKey> range, RangeBoundaryTo<T> other) =>
 			range.IsNotEmpty && other.IsNotEmpty && range.To < other;
 
@@ -325,7 +328,7 @@ namespace CodeJam.Ranges
 		/// <returns><c>true</c>, if the range ends before another range.</returns>
 		// DONTTOUCH: The last parameter should be nongeneric to avoid overload resolution conflicts
 		// WAITINGFOR: https://github.com/dotnet/roslyn/issues/250 (case 2)
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static bool EndsBefore<T, TKey, TRange>(this TRange range, Range<T, TKey> other)
 			where TRange : IRange<T> =>
 				range.IsNotEmpty && other.IsNotEmpty && range.To < other.From;
@@ -339,7 +342,7 @@ namespace CodeJam.Ranges
 		/// <param name="from">The boundary From value.</param>
 		/// <param name="to">The boundary To value.</param>
 		/// <returns>A union range containing both of the ranges.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> Union<T, TKey>(this Range<T, TKey> range, T from, T to) =>
 			Union(range, Range.Create(from, to));
 
@@ -350,7 +353,7 @@ namespace CodeJam.Ranges
 		/// <param name="range">The source range.</param>
 		/// <param name="other">The range to union with.</param>
 		/// <returns>A union range containing both of the ranges.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> Union<T, TKey, TRange>(this Range<T, TKey> range, TRange other)
 			where TRange : IRange<T>
 		{
@@ -373,7 +376,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// A range with a new From boundary or the source fange if the new boundary is greater than original.
 		/// </returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> ExtendFrom<T, TKey>(this Range<T, TKey> range, T from) =>
 			ExtendFrom(range, Range.BoundaryFrom(from));
 
@@ -385,7 +388,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// A range with a new From boundary or the source fange if the new boundary is greater than original.
 		/// </returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> ExtendFrom<T, TKey>(this Range<T, TKey> range, RangeBoundaryFrom<T> from)
 		{
 			if (range.IsEmpty || from.IsEmpty)
@@ -404,7 +407,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// A range with a new To boundary or the source fange if the new boundary is less than original.
 		/// </returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> ExtendTo<T, TKey>(this Range<T, TKey> range, T to) =>
 			ExtendTo(range, Range.BoundaryTo(to));
 
@@ -416,7 +419,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// A range with a new To boundary or the source fange if the new boundary is less than original.
 		/// </returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> ExtendTo<T, TKey>(this Range<T, TKey> range, RangeBoundaryTo<T> to)
 		{
 			if (range.IsEmpty || to.IsEmpty)
@@ -436,7 +439,7 @@ namespace CodeJam.Ranges
 		/// <param name="from">The boundary From value.</param>
 		/// <param name="to">The boundary To value.</param>
 		/// <returns>An intersection range or empty range if the ranges do not intersect.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> Intersect<T, TKey>(this Range<T, TKey> range, T from, T to) =>
 			Intersect(range, Range.Create(from, to));
 
@@ -447,7 +450,7 @@ namespace CodeJam.Ranges
 		/// <param name="range">The source range.</param>
 		/// <param name="other">The range to intersect with.</param>
 		/// <returns>An intersection range or empty range if the ranges do not intersect.</returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> Intersect<T, TKey, TRange>(this Range<T, TKey> range, TRange other)
 			where TRange : IRange<T> =>
 				range.TryCreateRange(
@@ -464,7 +467,7 @@ namespace CodeJam.Ranges
 		/// or the source fange if the new boundary is less than original
 		/// or an empty range if the new From boundary is greater than To boundary of the range.
 		/// </returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> TrimFrom<T, TKey>(this Range<T, TKey> range, T from) =>
 			TrimFrom(range, Range.BoundaryFrom(from));
 
@@ -478,7 +481,7 @@ namespace CodeJam.Ranges
 		/// or the source fange if the new boundary is less than original
 		/// or an empty range if the new From boundary is greater than To boundary of the range.
 		/// </returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> TrimFrom<T, TKey>(this Range<T, TKey> range, RangeBoundaryFrom<T> from) =>
 			from.IsNotEmpty && range.From >= from
 				? range
@@ -494,7 +497,7 @@ namespace CodeJam.Ranges
 		/// or the source fange if the new boundary is greater than original
 		/// or an empty range if the new To boundary is less than From boundary of the range.
 		/// </returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> TrimTo<T, TKey>(this Range<T, TKey> range, T to) =>
 			TrimTo(range, Range.BoundaryTo(to));
 
@@ -508,7 +511,7 @@ namespace CodeJam.Ranges
 		/// or the source fange if the new boundary is greater than original
 		/// or an empty range if the new To boundary is less than From boundary of the range.
 		/// </returns>
-		[MethodImpl(AggressiveInlining)]
+		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> TrimTo<T, TKey>(this Range<T, TKey> range, RangeBoundaryTo<T> to) =>
 			to.IsNotEmpty && range.To <= to
 				? range

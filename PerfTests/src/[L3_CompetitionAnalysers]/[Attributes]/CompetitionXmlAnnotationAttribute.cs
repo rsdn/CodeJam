@@ -8,14 +8,14 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests
 {
-	/// <summary>Attribute for benchmark classes that stores metric annotations as embedded xml resource.</summary>
+	/// <summary>Attribute for benchmark classes that stores source annotations as embedded xml resource.</summary>
 	/// <remarks>
 	/// In case the <see cref="ResourcePath"/> is not set:
 	/// Let's say there's benchmark class with full type name 'MyNamespace.MyBenchmark'
 	/// and it is located at
 	/// <code>%project_root%\Some Dir\AnotherDir\Benchmarks.cs</code>.
 	/// The default namespace for the project is 'MyAmazingNamespace'.
-	/// The resource containing metric annotations should be located at
+	/// The resource containing source annotations should be located at
 	/// <code>%project_root%\Some Dir\AnotherDir\Benchmarks.xml</code>.
 	/// And the attribute should be declared as
 	/// <code>
@@ -33,7 +33,7 @@ namespace CodeJam.PerfTests
 
 		/// <summary>Constructor for xml annotation attribute.</summary>
 		/// <param name="resourceName">
-		/// The name of the resource containing xml document with metric annotations.
+		/// The name of the resource containing xml document with source annotations.
 		/// If the <see cref="ResourcePath"/> is not set
 		/// the resource file should be placed in the direcory with the source file for the benchmark.
 		/// See remarks section at attribute documentation for detailed example.
@@ -49,18 +49,18 @@ namespace CodeJam.PerfTests
 		}
 
 		/// <summary>
-		/// Gets name of the resource containing xml document with metric annotations.
+		/// Gets name of the resource containing xml document with source annotations.
 		/// </summary>
-		/// <value>The name of the resource containing xml document with metric annotations.</value>
+		/// <value>The name of the resource containing xml document with source annotations.</value>
 		[NotNull]
 		public string ResourceName { get; }
 
 		/// <summary>
-		/// Gets or sets path to the resource containing xml document with metric annotations.
+		/// Gets or sets path to the resource containing xml document with source annotations.
 		/// Should be relative to the source file the attribute is applied to.
 		/// If not set then path to the resource should be same as path to the source file (resource's extension should be '.xml').
 		/// </summary>
-		/// <value>The relative path to the resource containing xml document with metric annotations.</value>
+		/// <value>The relative path to the resource containing xml document with source annotations.</value>
 		[CanBeNull]
 		public string ResourcePath { get; set; }
 

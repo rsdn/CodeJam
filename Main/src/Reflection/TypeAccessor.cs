@@ -39,11 +39,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <returns>An instance of the accessed type.</returns>
 		[DebuggerStepThrough]
-		public virtual object CreateInstance()
-		{
+		public virtual object CreateInstance() =>
 			throw new InvalidOperationException($"The '{Type.Name}' type must have public default or init constructor.");
-		}
-
 		#endregion
 
 		#region Public Members

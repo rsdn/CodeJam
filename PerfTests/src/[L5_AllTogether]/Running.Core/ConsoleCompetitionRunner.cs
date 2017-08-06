@@ -22,48 +22,23 @@ namespace CodeJam.PerfTests.Running.Core
 			public ConsoleHostLogger(LogFilter logMode) : base(ConsoleLogger.Default, logMode) { }
 		}
 
-		// HACK: swallow console output
-		// TODO: remove after upgrade to BDN 10.4
-#pragma warning disable 1591
-		protected class TempLogger : HostLogger
-		{
-			public TempLogger(LogFilter logMode) : base(new AccumulationLogger(), logMode) { }
-
-			public string GetLog() => ((AccumulationLogger)WrappedLogger).GetLog();
-		}
-#pragma warning restore 1591
-
-		/// <summary>Runs the competition - core implementation.</summary>
-		/// <param name="benchmarkType">Benchmark class to run.</param>
-		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>Competition state for the run.</returns>
-		protected override CompetitionState RunCore(Type benchmarkType, ICompetitionConfig competitionConfig)
-		{
-			// HACK: swallow console output
-			// TODO: remove after upgrade to BDN 10.4
-			using (ConsoleHelpers.CaptureConsoleOutput(new StringWriter()))
-			{
-				return base.RunCore(benchmarkType, competitionConfig);
-			}
-		}
-
 		#region Host-related logic
 		/// <summary>Creates a host logger.</summary>
 		/// <param name="hostLogMode">The host log mode.</param>
 		/// <returns>An instance of <see cref="CompetitionRunnerBase.HostLogger"/></returns>
 		protected override HostLogger CreateHostLogger(LogFilter hostLogMode) =>
-			new TempLogger(hostLogMode);
+			new ConsoleHostLogger(hostLogMode);
 
 		/// <summary>Reports the execution errors to user.</summary>
 		/// <param name="messages">The messages to report.</param>
 		/// <param name="competitionState">State of the run.</param>
 		protected override void ReportExecutionErrors(string messages, CompetitionState competitionState)
 		{
-			// TODO: remove after upgrade to BDN 10.4
-			var logger = competitionState.Logger;
+			var logger = ConsoleLogger.Default;
 
 			logger.WriteLine();
 			logger.WriteLineError(messages);
+			logger.WriteLine();
 		}
 
 		/// <summary>Reports failed assertions to user.</summary>
@@ -71,10 +46,11 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="competitionState">State of the run.</param>
 		protected override void ReportAssertionsFailed(string messages, CompetitionState competitionState)
 		{
-			var logger = competitionState.Logger;
+			var logger = ConsoleLogger.Default;
 
 			logger.WriteLine();
 			logger.WriteLineError(messages);
+			logger.WriteLine();
 		}
 
 		/// <summary>Reports warnings to user.</summary>
@@ -82,10 +58,11 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="competitionState">State of the run.</param>
 		protected override void ReportWarnings(string messages, CompetitionState competitionState)
 		{
-			var logger = competitionState.Logger;
+			var logger = ConsoleLogger.Default;
 
 			logger.WriteLine();
 			logger.WriteLineInfo(messages);
+			logger.WriteLine();
 		}
 
 		/// <summary>Reports content of the host logger to user.</summary>
@@ -93,18 +70,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="summary">The summary to report.</param>
 		protected override void ReportHostLogger(HostLogger logger, Summary summary)
 		{
-			// TODO: remove after upgrade to BDN 10.4
-
-			// Dumping all captured output
-			var outLogger = ConsoleLogger.Default;
-			var tempLogger = (TempLogger)logger;
-			outLogger.Write(tempLogger.GetLog());
-
-			//if (summary != null)
-			//{
-			//	// Dumping the benchmark results to console
-			//	MarkdownExporter.Console.ExportToLog(summary, outLogger);
-			//}
+			// Nothing to do here, ConsoleHostLogger dumps output directly to the console.
 		}
 		#endregion
 

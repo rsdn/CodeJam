@@ -1,6 +1,7 @@
 ﻿#if !FW35
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -145,6 +146,7 @@ namespace CodeJam.Collections
 				var pi = eq.GetProperty("Default");
 				var mi = eq.GetMethods().Single(m => m.IsPublic && m.Name == "Equals" && m.GetParameters().Length == 2);
 
+				Debug.Assert(pi != null, "pi != null");
 				return (Expression)Expression.Call(Expression.Property(null, pi), mi, arg0, arg1);
 			});
 
@@ -172,6 +174,7 @@ namespace CodeJam.Collections
 					var pi = eq.GetProperty("Default");
 					var mi = eq.GetMethods().Single(m => m.IsPublic && m.Name == "GetHashCode" && m.GetParameters().Length == 1);
 
+					Debug.Assert(pi != null, "pi != null");
 					return Expression.Add(
 						Expression.Multiply(e, Expression.Constant(-1521134295)),
 						Expression.Call(Expression.Property(null, pi), mi, ma));

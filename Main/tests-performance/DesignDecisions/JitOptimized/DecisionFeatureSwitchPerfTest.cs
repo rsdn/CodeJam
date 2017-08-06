@@ -41,7 +41,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 		private static int DefaultAction(int a) => a + 1;
 		#endregion
 
-		private static readonly int Count = CompetitionHelpers.SmallLoopCount;
+		private static readonly int Count = CompetitionRunHelpers.SmallLoopCount;
 
 		[Test]
 		public void RunDecisionFeatureSwitchPerfTest() => Competition.Run(this);
@@ -162,7 +162,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(1.54, 2.75)]
+		[CompetitionBenchmark(1.49, 2.75)]
 		[GcAllocations(0)]
 		public int FeatureMutableFlag()
 		{
@@ -176,7 +176,7 @@ namespace CodeJam.DesignDecisions.JitOptimized
 			return a;
 		}
 
-		[CompetitionBenchmark(1.51, 2.20)]
+		[CompetitionBenchmark(1.43, 2.20)]
 		[GcAllocations(0)]
 		public int FeatureMutableFlagTwoIf()
 		{

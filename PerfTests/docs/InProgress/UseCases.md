@@ -4,7 +4,7 @@ Until this use with care.
 
 >  **META-NOTE**
 >
->  Places to update are marked with *~…~*.
+>  Places to update are marked with *--…--*.
 
 [TOC]
 

@@ -1,5 +1,21 @@
-CodeJam 1.3.0-rc1 Release Notes
+CodeJam 1.4.0-beta2 Release Notes
 ---------------------------------
+
+What's new in 1.4.0-beta2
+-------------------
+* .NET FW 4.7 support (remove dependency from System.ValueTuple package)
+* System.Uri assertions and helper
+* Refactoring and code cleanup
+
+What's new in 1.4.0-beta1
+-------------------
+* IsDebugAssembly moved from ReflectionExtension to AssemblyExtension
+* ReflectionExtension.GetModulePath method added
+* Refactoring and code cleanup
+
+What's new in 1.3.0
+-------------------
+* Code cleanup
 
 What's new in 1.3.0-rc1
 -------------------------

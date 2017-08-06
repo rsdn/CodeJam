@@ -13,10 +13,10 @@ namespace CodeJam.Examples.PerfTests
 	// A perf test class.
 	[Trait("Category", "PerfTests: xUnit examples")]
 	[CompetitionBurstMode]
-	[CompetitionRerunsModifier(10)]
+	[CompetitionMaximumReruns(10)]
 	public class SimplePerfTest
 	{
-		private static readonly int _count = CompetitionHelpers.BurstModeLoopCount;
+		private static readonly int _count = CompetitionRunHelpers.BurstModeLoopCount;
 
 		// Perf test runner method.
 		[CompetitionFact]

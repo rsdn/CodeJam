@@ -117,8 +117,7 @@ namespace CodeJam.PerfTests.Loggers
 		protected virtual bool ShouldWrite(LogKind logKind) =>
 			LogFilter == LogFilter.AllMessages ||
 				_importantAreaCount > 0 ||
-				// ReSharper disable once ArrangeRedundantParentheses
-				((logKind == LogKind.Error || logKind == LogKind.Hint) && LogFilter == LogFilter.PrefixedOrErrors);
+				(logKind == LogKind.Error && LogFilter == LogFilter.PrefixedOrErrors);
 
 		/// <summary>Handles well-known prefixes for the line.</summary>
 		/// <param name="text">The text of the log line.</param>
@@ -165,7 +164,7 @@ namespace CodeJam.PerfTests.Loggers
 			}
 		}
 
-		/// <summary>Write the line.</summary>
+		/// <summary>Writes line.</summary>
 		/// <param name="logKind">Kind of text.</param>
 		/// <param name="text">The text to write.</param>
 		public virtual void WriteLine(LogKind logKind, string text)
@@ -178,7 +177,7 @@ namespace CodeJam.PerfTests.Loggers
 			}
 		}
 
-		/// <summary>Write the text.</summary>
+		/// <summary>Writes text.</summary>
 		/// <param name="logKind">Kind of text.</param>
 		/// <param name="text">The text to write.</param>
 		public virtual void Write(LogKind logKind, string text)

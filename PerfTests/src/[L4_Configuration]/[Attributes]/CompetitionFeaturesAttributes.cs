@@ -8,11 +8,15 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests
 {
-	/// <summary>Enables burst mode measurements feature.</summary>
+	/// <summary>
+	/// Enables burst mode feature.
+	/// Benchmark code is called once per measurement.
+	/// Recommended for use if single call time >> than timer resolution (recommended minimum is 1000 ns).
+	/// </summary>
 	[PublicAPI]
 	public class CompetitionBurstModeAttribute : CompetitionFeaturesAttribute
 	{
-		/// <summary>Initializes a new instance of the <see cref="CompetitionAnnotateSourcesAttribute"/> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="CompetitionBurstModeAttribute"/> class.</summary>
 		public CompetitionBurstModeAttribute()
 		{
 			BurstMode = true;

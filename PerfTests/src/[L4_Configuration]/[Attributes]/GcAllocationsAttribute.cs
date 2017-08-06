@@ -14,26 +14,26 @@ namespace CodeJam.PerfTests
 		Byte = 1,
 
 		/// <summary>Binary size in kilobytes, KB.</summary>
-		[MetricUnit("KB", AppliesFrom = (long)Kilobyte / 2.0)]
+		[MetricUnit("KB", AppliesFrom = (long)Kilobyte * 0.75)]
 		Kilobyte = Byte * 1024,
 
 		/// <summary>Binary size in megabytes, MB.</summary>
-		[MetricUnit("MB", AppliesFrom = (long)Megabyte / 2.0)]
+		[MetricUnit("MB", AppliesFrom = (long)Megabyte * 0.75)]
 		Megabyte = Kilobyte * 1024,
 
 		/// <summary>Binary size in gigabytes, GB.</summary>
-		[MetricUnit("GB", AppliesFrom = (long)Gigabyte / 2.0)]
+		[MetricUnit("GB", AppliesFrom = (long)Gigabyte * 0.75)]
 		Gigabyte = Megabyte * 1024,
 
 		/// <summary>Binary size in petabytes, PB.</summary>
-		[MetricUnit("PB", AppliesFrom = (long)Petabyte / 2.0)]
+		[MetricUnit("PB", AppliesFrom = (long)Petabyte * 0.75)]
 		Petabyte = Gigabyte * 1024
 	}
 
 	/// <summary>
 	/// Gc allocations metric attribute.
-	/// As perftest may be run inprocess, noise allocations
-	/// (total bytes allocated less than <see cref="GcMetricValuesProvider.MinimalGcAllocation"/>) are reported as <c>0</c>
+	/// As perftest may be run in-process, noise allocations
+	/// (total bytes allocated less than minimum gc allocation quantum) are reported as <c>0</c>
 	/// </summary>
 	[MetricInfo(GcMetricValuesProvider.Category, MetricSingleValueMode.BothMinAndMax)]
 	public class GcAllocationsAttribute : MetricAttributeBase,
@@ -46,7 +46,7 @@ namespace CodeJam.PerfTests
 		internal class ValuesProvider : GcMetricValuesProvider
 		{
 			/// <summary>Initializes a new instance of the <see cref="ValuesProvider"/> class.</summary>
-			public ValuesProvider() : base(GcMetricSource.BytesAllocatedPerOperationIgnoreNoise, false) { }
+			public ValuesProvider() : base(GcMetricSource.BytesAllocatedPerOperation, false) { }
 		}
 
 		/// <summary>Initializes a new instance of the <see cref="GcAllocationsAttribute"/> class.</summary>
@@ -54,7 +54,7 @@ namespace CodeJam.PerfTests
 
 		/// <summary>Initializes a new instance of the <see cref="GcAllocationsAttribute"/> class.</summary>
 		/// <param name="value">
-		/// Exact amout of allocations.
+		/// Exact amount of allocations.
 		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
 		/// Use <seealso cref="double.PositiveInfinity"/> if value is positive infinity (ignored, essentially).
 		/// </param>
@@ -82,7 +82,7 @@ namespace CodeJam.PerfTests
 	}
 
 	/// <summary>GC 0 count per 1000 operations metric attribute.</summary>
-	[MetricInfo(GcMetricValuesProvider.Category, AnnotateInplace = true)]
+	[MetricInfo(GcMetricValuesProvider.Category, AnnotateInPlace = true)]
 	public class Gc0Attribute : MetricAttributeBase, IMetricAttribute<Gc0Attribute.ValuesProvider>
 	{
 		/// <summary>
@@ -121,7 +121,7 @@ namespace CodeJam.PerfTests
 	}
 
 	/// <summary>GC 1 count per 1000 operations metric attribute.</summary>
-	[MetricInfo(GcMetricValuesProvider.Category, AnnotateInplace = true)]
+	[MetricInfo(GcMetricValuesProvider.Category, AnnotateInPlace = true)]
 	public class Gc1Attribute : MetricAttributeBase, IMetricAttribute<Gc1Attribute.ValuesProvider>
 	{
 		/// <summary>
@@ -160,7 +160,7 @@ namespace CodeJam.PerfTests
 	}
 
 	/// <summary>GC 2 count per 1000 operations metric attribute.</summary>
-	[MetricInfo(GcMetricValuesProvider.Category, AnnotateInplace = true)]
+	[MetricInfo(GcMetricValuesProvider.Category, AnnotateInPlace = true)]
 	public class Gc2Attribute : MetricAttributeBase, IMetricAttribute<Gc2Attribute.ValuesProvider>
 	{
 		/// <summary>

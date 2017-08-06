@@ -12,9 +12,13 @@ namespace CodeJam.PerfTests
 		public static readonly MetricInfo<CompetitionBenchmarkAttribute> RelativeTime =
 			MetricInfo.PrimaryMetric;
 
-		/// <summary>The absolute time metic, in nanoseconds.</summary>
-		public static readonly MetricInfo<ExpectedTimeAttribute> AbsoluteTime =
+		/// <summary>The expected execution time metic based on 95th percentile.</summary>
+		public static readonly MetricInfo<ExpectedTimeAttribute> ExpectedTime =
 			MetricInfo.FromAttribute<ExpectedTimeAttribute>();
+
+		/// <summary>The mean execution time metic.</summary>
+		public static readonly MetricInfo<MeanTimeAttribute> MeanTime =
+			MetricInfo.FromAttribute<MeanTimeAttribute>();
 
 		/// <summary>GC allocations metic, in bytes.</summary>
 		public static readonly MetricInfo<GcAllocationsAttribute> GcAllocations =

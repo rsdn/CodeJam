@@ -25,16 +25,26 @@ namespace CodeJam.PerfTests
 		private const int MethodsCount = 12; // 12 benchmark methods.
 
 		private static int _callCounter;
-		private static int _afterSetupCounter;
-		private static int _setupCounter;
-		private static int _cleanupCounter;
+		private static int _afterGlobalSetupCounter;
+		private static int _afterIterationSetupCounter;
+		private static int _globalSetupCounter;
+		private static int _globalSetupTargetCounter;
+		private static int _iterationSetupCounter;
+		private static int _globalCleanupCounter;
+		private static int _iterationCleanupCounter;
+		private static int _iterationCleanupTargetCounter;
 
 		private static void ResetCounters()
 		{
 			Interlocked.Exchange(ref _callCounter, 0);
-			Interlocked.Exchange(ref _afterSetupCounter, 0);
-			Interlocked.Exchange(ref _setupCounter, 0);
-			Interlocked.Exchange(ref _cleanupCounter, 0);
+			Interlocked.Exchange(ref _afterGlobalSetupCounter, 0);
+			Interlocked.Exchange(ref _afterIterationSetupCounter, 0);
+			Interlocked.Exchange(ref _globalSetupCounter, 0);
+			Interlocked.Exchange(ref _globalSetupTargetCounter, 0);
+			Interlocked.Exchange(ref _iterationSetupCounter, 0);
+			Interlocked.Exchange(ref _globalCleanupCounter, 0);
+			Interlocked.Exchange(ref _iterationCleanupCounter, 0);
+			Interlocked.Exchange(ref _iterationCleanupTargetCounter, 0);
 		}
 
 		[Test]
@@ -42,6 +52,8 @@ namespace CodeJam.PerfTests
 		{
 			ResetCounters();
 
+			var invocationCount = 1;
+
 			var config = CompetitionHelpers.ConfigForAssembly
 				.WithModifier(
 					new Job
@@ -60,12 +72,25 @@ namespace CodeJam.PerfTests
 				.Run<InProcessBenchmarkAllCases>(config)
 				.LastRunSummary;
 
-			Assert.AreEqual(_callCounter, GetExpectedCount(config, MethodsCount));
-			Assert.AreEqual(_afterSetupCounter, GetExpectedCount(config, 1));
-			Assert.AreEqual(_setupCounter, MethodsCount);
-			Assert.AreEqual(_cleanupCounter, MethodsCount);
+			// TODO: uncomment after https://github.com/dotnet/BenchmarkDotNet/issues/464
+			//var iterationsNoUnroll = GetExpectedCountIgnoreUnroll(config, 1);
 
-			Assert.IsFalse(summary?.ValidationErrors.Any());
+			Assert.AreEqual(_callCounter, GetExpectedCount(config, MethodsCount));
+			Assert.AreEqual(_afterGlobalSetupCounter, GetExpectedCount(config, 1));
+			Assert.AreEqual(_afterIterationSetupCounter, invocationCount);
+			Assert.AreEqual(_globalSetupCounter, MethodsCount - 1);
+			Assert.AreEqual(_globalSetupTargetCounter, 1);
+			//Assert.AreEqual(_iterationSetupCounter, MethodsCount * iterationsNoUnroll);
+			Assert.AreEqual(_globalCleanupCounter, MethodsCount);
+			//Assert.AreEqual(_iterationCleanupCounter, (MethodsCount - 1) * iterationsNoUnroll);
+			//Assert.AreEqual(_iterationCleanupTargetCounter, 1 * iterationsNoUnroll);
+
+			var a = summary?.ValidationErrors.ToArray();
+			foreach (var validationError in a)
+			{
+				Console.WriteLine(validationError.Message);
+			}
+			Assert.IsFalse(a.Any());
 		}
 
 		[Test]
@@ -73,6 +98,8 @@ namespace CodeJam.PerfTests
 		{
 			ResetCounters();
 
+			var invocationCount = 20;
+
 			var config = CompetitionHelpers.ConfigForAssembly
 				.WithModifier(
 					new Job
@@ -83,7 +110,7 @@ namespace CodeJam.PerfTests
 						},
 						Run =
 						{
-							InvocationCount = 20,
+							InvocationCount = invocationCount,
 							UnrollFactor = 5
 						}
 					})
@@ -96,83 +123,18 @@ namespace CodeJam.PerfTests
 				.Run<InProcessBenchmarkAllCases>(config)
 				.LastRunSummary;
 
-			Assert.AreEqual(_callCounter, GetExpectedCount(config, MethodsCount));
-			Assert.AreEqual(_afterSetupCounter, GetExpectedCount(config, 1));
-			Assert.AreEqual(_setupCounter, MethodsCount);
-			Assert.AreEqual(_cleanupCounter, MethodsCount);
-
-			Assert.IsFalse(summary?.ValidationErrors.Any());
-		}
-
-		[Test]
-		public static void TestInProcessBenchmarkBurstMode()
-		{
-			ResetCounters();
-
-			var config = CompetitionHelpers.ConfigForAssembly
-				.WithModifier(
-					new Job
-					{
-						Infrastructure =
-						{
-#pragma warning disable 618 
-							// TODO: remove pragma after BurstModeEngine will be fixed
-							EngineFactory = BurstModeEngineFactory.Instance
-#pragma warning restore 618
-						}
-					})
-				.WithModifier(
-					new CompetitionOptions()
-					{
-						Checks = { TooFastBenchmarkLimit = TimeSpan.Zero }
-					});
-			var summary = SelfTestCompetition
-				.Run<InProcessBenchmarkAllCases>(config)
-				.LastRunSummary;
+			// TODO: uncomment after https://github.com/dotnet/BenchmarkDotNet/issues/464
+			//var iterationsNoUnroll = GetExpectedCountIgnoreUnroll(config, 1);
 
 			Assert.AreEqual(_callCounter, GetExpectedCount(config, MethodsCount));
-			Assert.AreEqual(_afterSetupCounter, GetExpectedCount(config, 1));
-			Assert.AreEqual(_setupCounter, MethodsCount);
-			Assert.AreEqual(_cleanupCounter, MethodsCount);
-
-			Assert.IsFalse(summary?.ValidationErrors.Any());
-		}
-
-		[Test]
-		public static void TestInProcessBenchmarkBurstModeUnroll()
-		{
-			ResetCounters();
-
-			var config = CompetitionHelpers.ConfigForAssembly
-				.WithModifier(
-					new Job
-					{
-						Infrastructure =
-						{
-#pragma warning disable 618 
-							// TODO: remove pragma after BurstModeEngine will be fixed
-							EngineFactory = BurstModeEngineFactory.Instance
-#pragma warning restore 618
-						},
-						Run =
-						{
-							InvocationCount = 10, // BUG: works fine with ZERO!!!
-							UnrollFactor = 5
-						}
-					})
-				.WithModifier(
-					new CompetitionOptions()
-					{
-						Checks = { TooFastBenchmarkLimit = TimeSpan.Zero }
-					});
-			var summary = SelfTestCompetition
-				.Run<InProcessBenchmarkAllCases>(config)
-				.LastRunSummary;
-
-			Assert.AreEqual(_callCounter, GetExpectedCount(config, MethodsCount));
-			Assert.AreEqual(_afterSetupCounter, GetExpectedCount(config, 1));
-			Assert.AreEqual(_setupCounter, MethodsCount);
-			Assert.AreEqual(_cleanupCounter, MethodsCount);
+			Assert.AreEqual(_afterGlobalSetupCounter, GetExpectedCount(config, 1));
+			Assert.AreEqual(_afterIterationSetupCounter, invocationCount);
+			Assert.AreEqual(_globalSetupCounter, MethodsCount - 1);
+			Assert.AreEqual(_globalSetupTargetCounter, 1);
+			//Assert.AreEqual(_iterationSetupCounter, MethodsCount * iterationsNoUnroll);
+			Assert.AreEqual(_globalCleanupCounter, MethodsCount);
+			//Assert.AreEqual(_iterationCleanupCounter, (MethodsCount - 1) * iterationsNoUnroll);
+			//Assert.AreEqual(_iterationCleanupTargetCounter, 1 * iterationsNoUnroll);
 
 			Assert.IsFalse(summary?.ValidationErrors.Any());
 		}
@@ -197,9 +159,14 @@ namespace CodeJam.PerfTests
 				.LastRunSummary;
 
 			Assert.AreEqual(_callCounter, 0);
-			Assert.AreEqual(_afterSetupCounter, 0);
-			Assert.AreEqual(_setupCounter, 0);
-			Assert.AreEqual(_cleanupCounter, 0);
+			Assert.AreEqual(_afterGlobalSetupCounter, 0);
+			Assert.AreEqual(_afterIterationSetupCounter, 0);
+			Assert.AreEqual(_globalSetupCounter, 0);
+			Assert.AreEqual(_globalSetupTargetCounter, 0);
+			Assert.AreEqual(_iterationSetupCounter, 0);
+			Assert.AreEqual(_globalCleanupCounter, 0);
+			Assert.AreEqual(_iterationCleanupCounter, 0);
+			Assert.AreEqual(_iterationCleanupTargetCounter, 0);
 
 			Assert.AreEqual(summary?.ValidationErrors.Length, 1);
 			Assert.IsTrue(summary?.ValidationErrors[0].IsCritical);
@@ -211,23 +178,46 @@ namespace CodeJam.PerfTests
 		public class InProcessBenchmarkAllCases
 		{
 			// TODO: custom type results.
-			[Setup]
-			public static void Setup()
+			[GlobalSetup(Target = nameof(InvokeOnceVoid))]
+			public static void GlobalSetupInvokeOnceVoid()
 			{
 				//await Task.Yield();
-				Interlocked.Increment(ref _setupCounter);
-				Interlocked.Exchange(ref _afterSetupCounter, 0);
+				Interlocked.Increment(ref _globalSetupTargetCounter);
+				Interlocked.Exchange(ref _afterGlobalSetupCounter, 0);
 			}
 
-			[Cleanup]
-			public void /*decimal*/ Cleanup() => Interlocked.Increment(ref _cleanupCounter);
+			[GlobalSetup]
+			public static void GlobalSetup()
+			{
+				//await Task.Yield();
+				Interlocked.Increment(ref _globalSetupCounter);
+				Interlocked.Exchange(ref _afterGlobalSetupCounter, 0);
+			}
+
+			[GlobalCleanup]
+			public void /*decimal*/ GlobalCleanup() => Interlocked.Increment(ref _globalCleanupCounter);
+
+			[IterationSetup]
+			public static void IterationSetup()
+			{
+				//await Task.Yield();
+				Interlocked.Increment(ref _iterationSetupCounter);
+				Interlocked.Exchange(ref _afterIterationSetupCounter, 0);
+			}
+
+			[IterationCleanup(Target = nameof(InvokeOnceVoid))]
+			public void /*decimal*/ IterationCleanupInvokeOnceVoid() => Interlocked.Increment(ref _iterationCleanupTargetCounter);
+
+			[IterationCleanup]
+			public void /*decimal*/ IterationCleanup() => Interlocked.Increment(ref _iterationCleanupCounter);
 
 			#region Instance members
 			[Benchmark]
 			public void InvokeOnceVoid()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Interlocked.Increment(ref _afterSetupCounter);
+				Interlocked.Increment(ref _afterGlobalSetupCounter);
+				Interlocked.Increment(ref _afterIterationSetupCounter);
 			}
 
 			[Benchmark]
@@ -235,14 +225,16 @@ namespace CodeJam.PerfTests
 			{
 				await Task.Yield();
 				Interlocked.Increment(ref _callCounter);
-				Interlocked.Increment(ref _afterSetupCounter);
+				Interlocked.Increment(ref _afterGlobalSetupCounter);
+				Interlocked.Increment(ref _afterIterationSetupCounter);
 			}
 
 			[Benchmark]
 			public string InvokeOnceRefType()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Interlocked.Increment(ref _afterSetupCounter);
+				Interlocked.Increment(ref _afterGlobalSetupCounter);
+				Interlocked.Increment(ref _afterIterationSetupCounter);
 				return "";
 			}
 
@@ -250,7 +242,8 @@ namespace CodeJam.PerfTests
 			public decimal InvokeOnceValueType()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Interlocked.Increment(ref _afterSetupCounter);
+				Interlocked.Increment(ref _afterGlobalSetupCounter);
+				Interlocked.Increment(ref _afterIterationSetupCounter);
 				return 0;
 			}
 
@@ -259,7 +252,8 @@ namespace CodeJam.PerfTests
 			{
 				await Task.Yield();
 				Interlocked.Increment(ref _callCounter);
-				Interlocked.Increment(ref _afterSetupCounter);
+				Interlocked.Increment(ref _afterGlobalSetupCounter);
+				Interlocked.Increment(ref _afterIterationSetupCounter);
 				return "";
 			}
 
@@ -267,7 +261,8 @@ namespace CodeJam.PerfTests
 			public ValueTask<decimal> InvokeOnceValueTaskOfT()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Interlocked.Increment(ref _afterSetupCounter);
+				Interlocked.Increment(ref _afterGlobalSetupCounter);
+				Interlocked.Increment(ref _afterIterationSetupCounter);
 				return new ValueTask<decimal>(11);
 			}
 			#endregion
@@ -277,7 +272,8 @@ namespace CodeJam.PerfTests
 			public static void InvokeOnceVoidStatic()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Interlocked.Increment(ref _afterSetupCounter);
+				Interlocked.Increment(ref _afterGlobalSetupCounter);
+				Interlocked.Increment(ref _afterIterationSetupCounter);
 			}
 
 			[Benchmark]
@@ -285,14 +281,16 @@ namespace CodeJam.PerfTests
 			{
 				await Task.Yield();
 				Interlocked.Increment(ref _callCounter);
-				Interlocked.Increment(ref _afterSetupCounter);
+				Interlocked.Increment(ref _afterGlobalSetupCounter);
+				Interlocked.Increment(ref _afterIterationSetupCounter);
 			}
 
 			[Benchmark]
 			public static string InvokeOnceRefTypeStatic()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Interlocked.Increment(ref _afterSetupCounter);
+				Interlocked.Increment(ref _afterGlobalSetupCounter);
+				Interlocked.Increment(ref _afterIterationSetupCounter);
 				return "";
 			}
 
@@ -300,7 +298,8 @@ namespace CodeJam.PerfTests
 			public static decimal InvokeOnceValueTypeStatic()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Interlocked.Increment(ref _afterSetupCounter);
+				Interlocked.Increment(ref _afterGlobalSetupCounter);
+				Interlocked.Increment(ref _afterIterationSetupCounter);
 				return 0;
 			}
 
@@ -309,7 +308,8 @@ namespace CodeJam.PerfTests
 			{
 				await Task.Yield();
 				Interlocked.Increment(ref _callCounter);
-				Interlocked.Increment(ref _afterSetupCounter);
+				Interlocked.Increment(ref _afterGlobalSetupCounter);
+				Interlocked.Increment(ref _afterIterationSetupCounter);
 				return "";
 			}
 
@@ -317,7 +317,8 @@ namespace CodeJam.PerfTests
 			public static ValueTask<decimal> InvokeOnceValueTaskOfTStatic()
 			{
 				Interlocked.Increment(ref _callCounter);
-				Interlocked.Increment(ref _afterSetupCounter);
+				Interlocked.Increment(ref _afterGlobalSetupCounter);
+				Interlocked.Increment(ref _afterIterationSetupCounter);
 				return new ValueTask<decimal>(11);
 			}
 			#endregion

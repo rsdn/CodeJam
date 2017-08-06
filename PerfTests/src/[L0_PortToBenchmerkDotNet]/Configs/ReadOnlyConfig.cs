@@ -5,9 +5,11 @@ using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Exporters;
+using BenchmarkDotNet.Filters;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Order;
+using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Validators;
 
 using JetBrains.Annotations;
@@ -64,9 +66,21 @@ namespace BenchmarkDotNet.Configs
 		/// <returns>Benchmark validators.</returns>
 		public IEnumerable<IValidator> GetValidators() => _config.GetValidators();
 
+		/// <summary>Gets hardware counters.</summary>
+		/// <returns>Hardware counters</returns>
+		public IEnumerable<HardwareCounter> GetHardwareCounters() => _config.GetHardwareCounters();
+
+		/// <summary>Gets the filters.</summary>
+		/// <returns>Filters</returns>
+		public IEnumerable<IFilter> GetFilters() => _config.GetFilters();
+
 		/// <summary>Get order provider.</summary>
 		/// <returns>Order provider.</returns>
 		public IOrderProvider GetOrderProvider() => _config.GetOrderProvider();
+
+		/// <summary>Gets summary style.</summary>
+		/// <returns>Summary style</returns>
+		public ISummaryStyle GetSummaryStyle() => _config.GetSummaryStyle();
 
 		/// <summary>Get union rule.</summary>
 		/// <returns>Union rule.</returns>

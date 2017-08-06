@@ -8,9 +8,11 @@ using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Exporters;
+using BenchmarkDotNet.Filters;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Order;
+using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Validators;
 
 using CodeJam.PerfTests.Metrics;
@@ -63,12 +65,22 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Gets the validators.</summary>
 		/// <value>The validators.</value>
 		public List<IValidator> Validators { get; } = new List<IValidator>();
+		/// <summary>Gets hardware counters.</summary>
+		/// <returns>The hardware counters</returns>
+		public List<HardwareCounter> HardwareCounters { get; } = new List<HardwareCounter>();
+		/// <summary>Gets the filters.</summary>
+		/// <returns>Filters</returns>
+		public List<IFilter> Filters { get; } = new List<IFilter>();
 		/// <summary>Gets the jobs.</summary>
 		/// <value>The jobs.</value>
 		public List<Job> Jobs { get; } = new List<Job>();
 		/// <summary>Gets or sets the order provider.</summary>
 		/// <value>The order provider.</value>
 		public IOrderProvider OrderProvider { get; set; }
+		/// <summary>Gets summary style.</summary>
+		/// <returns>The summary style</returns>
+		public ISummaryStyle SummaryStyle { get; set; }
+
 		/// <summary>
 		/// determines if all auto-generated files should be kept or removed after running benchmarks
 		/// </summary>
@@ -134,9 +146,18 @@ namespace CodeJam.PerfTests.Configs
 		/// <param name="newMetrics">The new competition metrics.</param>
 		public void Add(params MetricInfo[] newMetrics) => Metrics.AddRange(newMetrics);
 
+
+		/// <summary>Adds the specified new hardware counters.</summary>
+		/// <param name="counters">The new hardware counters.</param>
+		public void Add(params HardwareCounter[] counters) => HardwareCounters.AddRange(counters);
+
 		/// <summary>Sets the specified provider.</summary>
 		/// <param name="provider">The provider.</param>
 		public void Set(IOrderProvider provider) => OrderProvider = provider ?? OrderProvider;
+
+		/// <summary>Sets the specified summary style.</summary>
+		/// <param name="summaryStyle">The summary style.</param>
+		public void Set(ISummaryStyle summaryStyle) => SummaryStyle = summaryStyle ?? SummaryStyle;
 
 		/// <summary>Sets the specified competition options.</summary>
 		/// <param name="competitionOptions">Competition options.</param>
@@ -156,11 +177,12 @@ namespace CodeJam.PerfTests.Configs
 			Add(config.GetAnalysers().ToArray());
 			Add(config.GetJobs().ToArray());
 			Add(config.GetValidators().ToArray());
+			Add(config.GetHardwareCounters().ToArray());
 			Set(config.GetOrderProvider());
+			Set(config.GetSummaryStyle());
 			KeepBenchmarkFiles |= config.KeepBenchmarkFiles;
 
-			var competitionConfig = config as ICompetitionConfig;
-			if (competitionConfig != null)
+			if (config is ICompetitionConfig competitionConfig)
 			{
 				Add(competitionConfig.GetMetrics().ToArray());
 				Set(competitionConfig.Options);
@@ -233,6 +255,14 @@ namespace CodeJam.PerfTests.Configs
 		/// <returns>The validators.</returns>
 		IEnumerable<IValidator> IConfig.GetValidators() => Validators;
 
+		/// <summary>Gets hardware counters.</summary>
+		/// <returns>Hardware counters</returns>
+		IEnumerable<HardwareCounter> IConfig.GetHardwareCounters() => HardwareCounters;
+
+		/// <summary>Gets the filters.</summary>
+		/// <returns>Filters</returns>
+		public IEnumerable<IFilter> GetFilters() => Filters;
+
 		/// <summary>Gets the jobs.</summary>
 		/// <returns>The jobs.</returns>
 		IEnumerable<Job> IConfig.GetJobs() => Jobs;
@@ -241,17 +271,21 @@ namespace CodeJam.PerfTests.Configs
 		/// <returns>The order provider.</returns>
 		IOrderProvider IConfig.GetOrderProvider() => OrderProvider;
 
+		/// <summary>Gets summary style.</summary>
+		/// <returns>The summary style</returns>
+		ISummaryStyle IConfig.GetSummaryStyle() => SummaryStyle;
+
 		/// <summary>Gets the union rule.</summary>
 		/// <value>The union rule.</value>
 		ConfigUnionRule IConfig.UnionRule => ConfigUnionRule.Union;
 
 		/// <summary>Gets competition metrics.</summary>
-		/// <returns>Competition metrics.</returns>
+		/// <returns>The competition metrics.</returns>
 		public IEnumerable<MetricInfo> GetMetrics() => Metrics;
 		#endregion
 
 		/// <summary>Returns read-only wrapper for the config.</summary>
-		/// <returns>Read-only wrapper for the config</returns>
+		/// <returns>The read-only wrapper for the config</returns>
 		public ICompetitionConfig AsReadOnly() => new ReadOnlyCompetitionConfig(this);
 	}
 }

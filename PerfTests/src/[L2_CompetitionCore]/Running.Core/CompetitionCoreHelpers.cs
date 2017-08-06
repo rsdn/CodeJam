@@ -96,7 +96,7 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 			if (message.HintText.NotNullNorEmpty())
 			{
-				logger.WriteLineInfo($"{LogImportantInfoPrefix} {message.HintText}");
+				logger.WriteLineInfo($"{LogImportantInfoPrefix} Hint: {message.HintText}");
 			}
 		}
 

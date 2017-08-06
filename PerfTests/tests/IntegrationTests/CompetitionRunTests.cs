@@ -168,7 +168,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[1].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[1].MessageText,
-				"No baseline method for benchmark. Apply CompetitionBaselineAttribute to the one of benchmark methods.");
+				"No baseline member found. Apply CompetitionBaselineAttribute to the one of benchmark methods.");
 		}
 
 		[Test]
@@ -284,7 +284,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
+				CompetitionRunHelpers.Delay(CompetitionRunHelpers.BurstModeLoopCount);
 			}
 
 			// Limits loosed as perftest is run only four times and timings on appveyor are very inaccurate
@@ -292,7 +292,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(10 * CompetitionHelpers.BurstModeLoopCount);
+				CompetitionRunHelpers.Delay(10 * CompetitionRunHelpers.BurstModeLoopCount);
 			}
 		}
 
@@ -344,14 +344,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
+				CompetitionRunHelpers.Delay(CompetitionRunHelpers.BurstModeLoopCount);
 			}
 
 			[CompetitionBenchmark]
 			public void SlowerX20()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(20 * CompetitionHelpers.BurstModeLoopCount);
+				CompetitionRunHelpers.Delay(20 * CompetitionRunHelpers.BurstModeLoopCount);
 			}
 		}
 
@@ -365,14 +365,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
+				CompetitionRunHelpers.Delay(CompetitionRunHelpers.BurstModeLoopCount);
 			}
 
 			[CompetitionBenchmark]
 			public void SlowerX20()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(20 * CompetitionHelpers.BurstModeLoopCount);
+				CompetitionRunHelpers.Delay(20 * CompetitionRunHelpers.BurstModeLoopCount);
 			}
 		}
 
@@ -382,14 +382,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Benchmark1()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
+				CompetitionRunHelpers.Delay(CompetitionRunHelpers.BurstModeLoopCount);
 			}
 
 			[Benchmark]
 			public void Benchmark2()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
+				CompetitionRunHelpers.Delay(CompetitionRunHelpers.BurstModeLoopCount);
 			}
 		}
 
@@ -399,14 +399,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Benchmark1()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
+				CompetitionRunHelpers.Delay(CompetitionRunHelpers.BurstModeLoopCount);
 			}
 
 			[CompetitionBenchmark]
 			public void Benchmark2()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
+				CompetitionRunHelpers.Delay(CompetitionRunHelpers.BurstModeLoopCount);
 			}
 		}
 
@@ -416,14 +416,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
+				CompetitionRunHelpers.Delay(CompetitionRunHelpers.BurstModeLoopCount);
 			}
 
 			[CompetitionBenchmark(20.2, 5.5)]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(10 * CompetitionHelpers.BurstModeLoopCount);
+				CompetitionRunHelpers.Delay(10 * CompetitionRunHelpers.BurstModeLoopCount);
 			}
 		}
 
@@ -433,14 +433,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
+				CompetitionRunHelpers.Delay(CompetitionRunHelpers.BurstModeLoopCount);
 			}
 
 			[CompetitionBenchmark(1, 1)]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(10 * CompetitionHelpers.BurstModeLoopCount);
+				CompetitionRunHelpers.Delay(10 * CompetitionRunHelpers.BurstModeLoopCount);
 			}
 		}
 
@@ -450,14 +450,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			public void Baseline()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
+				CompetitionRunHelpers.Delay(CompetitionRunHelpers.BurstModeLoopCount);
 			}
 
 			[CompetitionBenchmark]
 			public void SlowerX10()
 			{
 				Interlocked.Increment(ref _callCounter);
-				CompetitionHelpers.Delay(10 * CompetitionHelpers.BurstModeLoopCount);
+				CompetitionRunHelpers.Delay(10 * CompetitionRunHelpers.BurstModeLoopCount);
 			}
 		}
 		#endregion

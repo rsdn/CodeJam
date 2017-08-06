@@ -40,7 +40,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource, TValue>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, TValue> selector,
@@ -134,7 +134,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource, TValue>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, TValue> selector,
@@ -226,7 +226,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource, TValue>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, TValue> selector,
@@ -319,7 +319,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource, TValue>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, TValue> selector,

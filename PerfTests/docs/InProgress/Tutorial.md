@@ -2,7 +2,7 @@
 
 > **META-NOTE**
 >
-> Places to update are marked with *~…~*.
+> Places to update are marked with *--…--*.
 
 > **HERE BE PROOFS**
 >
@@ -202,7 +202,7 @@ Next, add setup / cleanup methods if you do need them. In our case we will use `
 		private ulong[] _arrayA2;
 		private ulong[] _arrayB2;
 
-		[Setup]
+		[GlobalSetup]
 		public void Setup()
 		{
 			// Constant rnd seed to get repeatable results
@@ -408,4 +408,4 @@ There are conclusions:
 * If you want to solve the task as it was formulated at start (store the hashes as a byte arrays), the best choice is to use array comparison implementation from the CodeJam library.
 * If it's ok to use ulong arrays there are additional options: you may use CodeJam lib again, may prefer to use hardcoded version or (if the perfomance is not so critical) use baseline implementation adopted to `UInt64`.
 
-We are done for now. In future chapters (*~will be added later~*) we will look for advanced scenarios such as using multiple case perftests, storing annotations outside of sources and customizing the competition config to make the test more accurate (in cost of additional execution time, of course). Stay tuned!
+We are done for now. In future chapters (*--will be added later--*) we will look for advanced scenarios such as using multiple case perftests, storing annotations outside of sources and customizing the competition config to make the test more accurate (in cost of additional execution time, of course). Stay tuned!

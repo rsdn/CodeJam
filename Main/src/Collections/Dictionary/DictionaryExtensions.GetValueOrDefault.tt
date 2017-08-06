@@ -52,7 +52,7 @@ private void Header1(string type) {#>
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
 		/// in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this <#=type#><TKey, TValue> dictionary, TKey key)
 <#+}
 
@@ -81,7 +81,7 @@ private void Header2(string type) {#>
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this <#=type#><TKey, TValue> dictionary,
 			TKey key,
@@ -122,7 +122,7 @@ private void Header3(string type) {#>
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this <#=type#><TKey, TValue> dictionary,
 				TKey key,

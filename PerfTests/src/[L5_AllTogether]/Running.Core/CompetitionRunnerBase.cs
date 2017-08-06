@@ -16,6 +16,7 @@ using BenchmarkDotNet.Validators;
 using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Configs.Factories;
+using CodeJam.PerfTests.Exporters;
 using CodeJam.PerfTests.Loggers;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Strings;
@@ -219,7 +220,7 @@ namespace CodeJam.PerfTests.Running.Core
 				SetCurrentDirectoryIfNotNull(currentDirectory);
 				try
 				{
-					competitionState = RunCore(benchmarkType, competitionConfig);
+					competitionState = CompetitionCore.Run(benchmarkType, competitionConfig);
 
 					ProcessRunComplete(competitionState);
 				}
@@ -242,14 +243,6 @@ namespace CodeJam.PerfTests.Running.Core
 			return competitionState;
 		}
 
-		// TODO: HACK: Remove after update to BDN 10.4
-		/// <summary>Runs the competition - core implementation.</summary>
-		/// <param name="benchmarkType">Benchmark class to run.</param>
-		/// <param name="competitionConfig">The competition config.</param>
-		/// <returns>Competition state for the run.</returns>
-		protected virtual CompetitionState RunCore(Type benchmarkType, ICompetitionConfig competitionConfig) =>
-			CompetitionCore.Run(benchmarkType, competitionConfig);
-
 		#region Prepare & run completed logic
 		private void ProcessRunComplete(
 			[NotNull] CompetitionState competitionState)
@@ -257,8 +250,10 @@ namespace CodeJam.PerfTests.Running.Core
 			var logger = competitionState.Logger;
 			var summary = competitionState.LastRunSummary;
 
-			if (logger == null)
+			if (logger == null || summary == null)
 				return;
+
+			logger.WriteVerbose($"{competitionState.BenchmarkType.Name} completed.");
 
 			if (competitionState.Options.RunOptions.DetailedLogging)
 			{
@@ -275,10 +270,12 @@ namespace CodeJam.PerfTests.Running.Core
 				else
 				{
 					logger.WriteSeparatorLine();
-					logger.WriteLineInfo($"{FilteringLogger.LogVerbosePrefix} No messages in run.");
+					logger.WriteVerbose("No messages in run.");
 				}
+
+				logger.WriteLine();
 			}
-			else if (summary != null)
+			else
 			{
 				using (FilteringLogger.BeginLogImportant(summary.Config))
 				{
@@ -293,6 +290,8 @@ namespace CodeJam.PerfTests.Running.Core
 					// Dumping the benchmark summary
 					summaryLogger.WriteSeparatorLine("Summary");
 					MarkdownExporter.Console.ExportToLog(summary, summaryLogger);
+
+					logger.WriteLine();
 				}
 			}
 		}
@@ -365,6 +364,7 @@ namespace CodeJam.PerfTests.Running.Core
 			FixConfigJobs(competitionConfig);
 			FixConfigLoggers(competitionConfig);
 			FixConfigValidators(competitionConfig);
+			FixConfigExporters(competitionConfig);
 			FixConfigAnalysers(competitionConfig);
 			FixConfigMetrics(competitionConfig);
 			FixConfigDuplicates(competitionConfig);
@@ -427,6 +427,15 @@ namespace CodeJam.PerfTests.Running.Core
 
 			// DONTTOUCH: the RunStateSlots should be first in the chain.
 			validators.Insert(0, new RunStateSlots());
+		}
+
+		private void FixConfigExporters(ManualCompetitionConfig competitionConfig)
+		{
+			// HACK: shuts up the ConfigValidator
+			if (competitionConfig.Exporters.Count == 0)
+			{
+				competitionConfig.Exporters.Add(new StubExporter());
+			}
 		}
 
 		private static void FixConfigAnalysers(ManualCompetitionConfig competitionConfig)

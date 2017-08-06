@@ -163,10 +163,10 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			Assert.True(_lessThanTbExpression(a1, a2));
 		}
 
-		private const int Count = CompetitionHelpers.SmallLoopCount;
+		private const int Count = CompetitionRunHelpers.SmallLoopCount;
 		private HInt32[] _a, _b, _c;
 
-		[Setup]
+		[GlobalSetup]
 		public void Setup()
 		{
 			var rnd = new Random(0);

@@ -84,10 +84,7 @@ namespace CodeJam.Strings
 		/// <summary>
 		/// Initializes a new instance of the <see cref="NaturalOrderStringComparer"/> class.
 		/// </summary>
-		private NaturalOrderStringComparer(bool ignoreCase)
-		{
-			_ignoreCase = ignoreCase;
-		}
+		private NaturalOrderStringComparer(bool ignoreCase) => _ignoreCase = ignoreCase;
 
 		/// <summary>
 		/// Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.

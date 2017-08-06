@@ -3,6 +3,7 @@
 	{
 		EmitBinaryOpCore(type, "int", caseName, "Compare", rawAbCode, "", null);
 	}
+
 	private void EmitEqualityOpCase(string type, string caseName, bool equals)
 	{
 		EmitBinaryOpCore(

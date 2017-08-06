@@ -14,7 +14,7 @@ namespace CodeJam.Mapping
 	/// <typeparam name="TTo">Type to map to.</typeparam>
 	/// <example>
 	/// This example shows how to map one object to another.
-	/// <code source="Main\tests\Mapping\Examples\MapTests.cs" region="Example" lang="C#"/>
+	/// <code source="Blocks\tests\Mapping\Examples\MapTests.cs" region="Example" lang="C#"/>
 	/// </example>
 	[PublicAPI]
 	public class Mapper<TFrom,TTo>
@@ -25,10 +25,7 @@ namespace CodeJam.Mapping
 		private Func<TFrom,TTo,IDictionary<object,object>,TTo>             _mapper;
 		private Func<TFrom,TTo>                                            _mapperEx;
 
-		internal Mapper(MapperBuilder<TFrom,TTo> mapperBuilder)
-		{
-			_mapperBuilder = mapperBuilder;
-		}
+		internal Mapper(MapperBuilder<TFrom,TTo> mapperBuilder) => _mapperBuilder = mapperBuilder;
 
 		/// <summary>
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.

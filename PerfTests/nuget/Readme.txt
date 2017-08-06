@@ -1,7 +1,13 @@
 CodeJam.PerfTests Release Notes
 -------------------------------
 
-# 0.1.0-alpha
+# 0.1.4-beta
+* First beta release. Docs actualised, improvements for diagnostics and log output.
+
+# 0.1.1-beta
+* Update BenchmarkDotNet to fix false allocation detection
+
+# 0.1.0-beta
 * Major rewrite of perftests that enables new features.
 * New: custom metrics API.
 * New: Gc allocations metric.
@@ -14,7 +20,7 @@ CodeJam.PerfTests Release Notes
 * Auto-adjust limit scale for annotations (more decimal places for too small values).
 
 # 0.0.10-beta
-* Doc files complete. First public preview.
+* Doc files. First public preview.
 
 # 0.0.9-alpha
 * Public API improvements: allow to pass CompetitionFeatures as an arg to `Competition.Run()`.

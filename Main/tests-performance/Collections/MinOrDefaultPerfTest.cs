@@ -61,7 +61,7 @@ namespace CodeJam.Collections
 
 		private int[] _data;
 
-		[Setup]
+		[GlobalSetup]
 		public void Setup()
 		{
 			var rnd = new Random(0);

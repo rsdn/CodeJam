@@ -39,7 +39,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"Benchmarks TooFast, TooFastX5: run takes less than 1.00 us. Results cannot be trusted.");
+				"Benchmarks TooFast, TooFastX5: measured run time is less than 1.00 us. " +
+					"Timings are imprecise as they are too close to the timer resolution.");
 
 
 			Assert.AreEqual(messages[1].RunNumber, 1);
@@ -79,8 +80,9 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"Benchmark TooSlow: run takes more than 500.0 ms." +
-					" Consider to rewrite the test as peek timings will be hidden by averages.");
+				"Benchmark TooSlow: measured run time is greater than 500.0 ms. " +
+					"There's a risk the peak timings were hidden by averages. " +
+					"Consider to reduce the number of iterations performed per each measurement.");
 		}
 
 		[Test]
@@ -151,42 +153,42 @@ namespace CodeJam.PerfTests.IntegrationTests
 		[CompetitionModifier(typeof(CompetitionHighAccuracyModifier))]
 		public class HighAccuracyBenchmark
 		{
-			private static readonly int _count = CompetitionHelpers.BurstModeLoopCount;
+			private static readonly int _count = CompetitionRunHelpers.BurstModeLoopCount;
 
 			[CompetitionBaseline]
-			public void Baseline() => CompetitionHelpers.Delay(_count);
+			public void Baseline() => CompetitionRunHelpers.Delay(_count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run1() => CompetitionHelpers.Delay(2 * _count);
+			public void SlowerX2Run1() => CompetitionRunHelpers.Delay(2 * _count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run2() => CompetitionHelpers.Delay(2 * _count);
+			public void SlowerX2Run2() => CompetitionRunHelpers.Delay(2 * _count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run3() => CompetitionHelpers.Delay(2 * _count);
+			public void SlowerX2Run3() => CompetitionRunHelpers.Delay(2 * _count);
 
 			[CompetitionBenchmark(4.65, 5.35)]
-			public void SlowerX5() => CompetitionHelpers.Delay(5 * _count);
+			public void SlowerX5() => CompetitionRunHelpers.Delay(5 * _count);
 		}
 
 		public class HighAccuracyBenchmarkOutOfProcess
 		{
-			private static readonly int _count = CompetitionHelpers.BurstModeLoopCount;
+			private static readonly int _count = CompetitionRunHelpers.BurstModeLoopCount;
 
 			[CompetitionBaseline]
-			public void Baseline() => CompetitionHelpers.Delay(_count);
+			public void Baseline() => CompetitionRunHelpers.Delay(_count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run1() => CompetitionHelpers.Delay(2 * _count);
+			public void SlowerX2Run1() => CompetitionRunHelpers.Delay(2 * _count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run2() => CompetitionHelpers.Delay(2 * _count);
+			public void SlowerX2Run2() => CompetitionRunHelpers.Delay(2 * _count);
 
 			[CompetitionBenchmark(1.85, 2.15)]
-			public void SlowerX2Run3() => CompetitionHelpers.Delay(2 * _count);
+			public void SlowerX2Run3() => CompetitionRunHelpers.Delay(2 * _count);
 
 			[CompetitionBenchmark(4.65, 5.35)]
-			public void SlowerX5() => CompetitionHelpers.Delay(5 * _count);
+			public void SlowerX5() => CompetitionRunHelpers.Delay(5 * _count);
 		}
 		#endregion
 	}

@@ -26,14 +26,10 @@ namespace CodeJam.Mapping
 		/// </summary>
 		public MappingSchema MappingSchema
 		{
-			get { return _mappingSchema; }
-			set
-			{
-				if (value == null)
-					throw new ArgumentNullException(nameof(value), "MappingSchema cannot be null.");
-
-				_mappingSchema = value;
-			}
+			get => _mappingSchema;
+			set =>
+				// ReSharper disable once ConstantNullCoalescingCondition
+				_mappingSchema = value ?? throw new ArgumentNullException(nameof(value), "MappingSchema cannot be null.");
 		}
 
 		/// <summary>
@@ -349,7 +345,7 @@ namespace CodeJam.Mapping
 		/// <returns>Returns this mapper.</returns>
 		/// <example>
 		/// This example shows how to explicitly convert one value to another.
-		/// <code source="Main\tests\Mapping\Examples\MapMemberTests.cs" region="Example" lang="C#"/>
+		/// <code source="Blocks\tests\Mapping\Examples\MapMemberTests.cs" region="Example" lang="C#"/>
 		/// </example>
 		public MapperBuilder<TFrom,TTo> MapMember<T>(Expression<Func<TTo,T>> toMember, Expression<Func<TFrom,T>> setter)
 		{

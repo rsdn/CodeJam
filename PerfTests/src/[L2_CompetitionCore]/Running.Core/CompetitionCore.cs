@@ -73,7 +73,6 @@ namespace CodeJam.PerfTests.Running.Core
 
 				using (BeginLogImportant(competitionConfig))
 				{
-					logger.WriteLine();
 					logger.WriteSeparatorLine(benchmarkType.Name, true);
 					logger.WriteLineHelp($"{LogInfoPrefix} {benchmarkType.GetShortAssemblyQualifiedName()}");
 				}

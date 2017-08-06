@@ -2,19 +2,25 @@
 
 > **META-NOTE**
 >
-> Places to update are marked with *~…~*.
+> Places to update are marked with *--…--*.
 >
 
 [TOC]
 
+> **WARNING**
+>
+> Please do not use the BenchmarkDotNet config attributes for competitions. *--As it is for now--* they are unsupported and result behavior is undefined.
+
 CodeJam.PerfTests configuration uses almost same approach the BenchmarkDotNet does. However, there are additions aimed to ease configuration of large projects with hundreds or thousands of perftests. Here's how it works:
+
+
 
 ## Attribute annotations
 
 Almost all configuration features rely on attribute annotations. Attributes are checked in following order:
 
 1. Attributes applied to the competition class or to it's base types.
-2. Attributes applied to the container types or to it's base types (if the competition class is a nested type).
+2. Attributes applied to the container types or to container type's base types (if the competition class is a nested type).
 3. Attributes applied to the assembly.
 
 If the configuration system expects only one attribute (as with `CompetitionConfigAttribute`), first found attribute wins.
@@ -27,13 +33,17 @@ In cases when multiple attributes allowed (`CompetitionFeaturesAttribute` as exa
 
 
 
+
+
 ## 1. Run competition with explicit config
 
 >  **NOTE**
 >
 >  Explicit config passing is an advanced technique and should be used only when you want to have a perfect control over the configuration. It skips entire configuration pipeline and therefore it's up to you to pass correct config into competition.
 
-Competition config stores all settings that apply to the competition. It's derived from BenchmarkDotNet's `IConfig` and adds some new members (`Options` property and `GetMetrics()` method, as example) *~TODO: link competition options~*.
+Competition config stores all settings that apply to the competition. It's derived from BenchmarkDotNet's `IConfig` and adds some new members (`Options` property and `GetMetrics()` method, as example) *--TODO: link to competition options help page--*.
+
+
 
 ### 1.1 Pass config as a competition arg
 
@@ -115,19 +125,21 @@ When the test is run the configuration system will check the competition type, i
 
 
 
+
+
 ## 2. Declarative approach. Use competition features
 
 > **NOTE**
 >
 > All declarative config annotations do apply only if the config was not passed explicitly (as a `Competition.Run()` argument or via `CompetitionConfigAttribute`).
 
-It should be obvious for now that CodeJam.PerfTests has very complex configuration system. At the same time most end-user use cases are very simple. You may want to enable/disable source annotations or specify target platform or just enable troubleshooting mode. You do not want to know anything about the configs or what properties should be changed to enable particular scenario. Meet the `CompetitionFeatures`.
+It should be obvious for now that CodeJam.PerfTests has very complex configuration system. At the same time most end-user use cases are simple. You may want to enable/disable source annotations or specify target platform or enable troubleshooting mode. You do not want to know anything about the configs or what properties should be changed to enable particular scenario. Meet the `CompetitionFeatures`.
 
 
 
 ### 2.1 Pass competition features explicitly
 
-As with explicit config scenario, features should be passed explicitly only when you want to override all other ways to set a competition feature. Here's how to do it:
+As with explicit config scenario, features should be passed explicitly only when you want to override all other ways to set up a competition feature. Here's how to do it:
 
 ```c#
 		[Test]
@@ -153,7 +165,7 @@ As with explicit config scenario, features should be passed explicitly only when
 
 ### 2.2 Set default competition features via app.config
 
-If you want to set up competition features for entire assembly you can add it into default app.config, assembly's app.config or into `CodeJam.PerfTests.dll.config`. First found config with `<CodeJam.PerfTests/>` section wins.
+If you want to set up competition features for entire assembly you can add it into default app.config, perftest assembly's app.config or into `CodeJam.PerfTests.dll.config`. First found config with `<CodeJam.PerfTests/>` section wins.
 
 The syntax is following:
 
@@ -179,9 +191,11 @@ The syntax is following:
 </configuration>
 ```
 
+
+
 ### 2.3 Update default competition features from the environment
 
-> ***~THINGS TO CHANGE~***
+> ***--THINGS TO CHANGE--***
 >
 > There can be more auto-detected features in the future, documentation will be updated.
 
@@ -208,7 +222,7 @@ Want to add CI service or have a idea how to make the feature better? [Create is
 
 ### 2.4 Set competition features via attributes 
 
-While default features can be good for most perftests there always are tests that require own feature set. If you want to add (or disable) some particular features, apply the `[CompetitionFeatures]` attribute (or any derived attribute) to the competition class, container type (if the competition class is a nested type) or to the competition's assembly. Check the *~Attribute annotations TODO: link*~* section for explanation how the attributes are applied.
+While default features can be good for most perftests there always are tests that require own feature set. If you want to add (or disable) some particular features, apply the `[CompetitionFeatures]` attribute (or any derived attribute) to the competition class, container type (if the competition class is a nested type) or to the competition's assembly. Check the *--Attribute annotations TODO: link--* section for explanation how the attributes are applied.
 
 Here's example that covers possible annotations for the competition features.
 
@@ -222,19 +236,18 @@ Here's example that covers possible annotations for the competition features.
 	{
 		// Container type level: Overrides the target platform
 		[CompetitionPlatform(Platform.X86)]
- 		// BADCODE: DO NOT do this, random platform will be applied
+ 		// BADCODE: DO NOT do this, random (X86|X64) platform will be applied
 		[CompetitionFeatures(Platform = Platform.X64)]
 		public class AnotherContainerType
 		{
 			// Perftest class: enables source annotations and disables target platorm check
 			[CompetitionAnnotateSources]
-			[CompetitionPlatform(Platform.AnyCpu)]
 			public class SimplePerfTest
 			{
 				// Runs the competition. Resulting features are
 				// * DetailedLogger = false
 				// * ImportantInfoLogger = true
-				// * Platform = Platform.AnyCpu
+				// * Platform = <unknown> (one of X86|X64 will be applied)
 				// * AnnotateSources = true
 				[Test]
 				public void RunSimplePerfTest() => Competition.Run(this);
@@ -247,16 +260,17 @@ Here's example that covers possible annotations for the competition features.
 
 
 
+
+
 ## 3. Declarative approach. Modify resulting config
 
 > **NOTE**
 >
 > All declarative config annotations do apply only if the config was not passed explicitly (as a `Competition.Run()` argument or via `CompetitionConfigAttribute`).
 
-Okay, you've set up competition features but you do want to change some options that are not exposed as a competition features. CodeJam.PerfTests provide `ICompetitionModifier` interface for tasks like this. Implement your own:
+Okay, you've set up competition features but you do want to change some options that are not exposed as a competition features. CodeJam.PerfTests provide `ICompetitionModifier` interface for competition config modifiers and `CompetitionModifierAttribute` attribute to apply the modifiers to the competitions. As example:
 
 ```c#
-
 	public class MyCompetitionModifier : ICompetitionModifier
 	{
 		// ICompetitionModifier implementation
@@ -281,14 +295,46 @@ Okay, you've set up competition features but you do want to change some options 
 	}
 ```
 
-and apply it to the competition class, it's container class (if the competition class is a nested type) or to the competition's assembly:
+If you need to pass some args to the modifier, here's how to do it:
 
 ```c#
-	// Apply modifier to the SimplePerfTest class
+	// Custom modifier attribute
+	public sealed class CompetitionRerunsModifierAttribute : CompetitionModifierAttribute
+	{
+		// ICompetitionModifier implementation
+		private class ModifierImpl : ICompetitionModifier
+		{
+			private readonly int _rerunsIfValidationFailed;
+
+			public ModifierImpl(int rerunsIfValidationFailed)
+			{
+				_rerunsIfValidationFailed = rerunsIfValidationFailed;
+			}
+ 
+			public void Modify(ManualCompetitionConfig competitionConfig) =>
+				competitionConfig.ApplyModifier(
+					new CompetitionOptions
+					{
+						Checks = { RerunsIfValidationFailed = _rerunsIfValidationFailed }
+					});
+		}
+
+		// Passing arg(s) to the implementation.
+		public CompetitionRerunsModifierAttribute(int rerunsIfValidationFailed)
+			: base(() => new ModifierImpl(rerunsIfValidationFailed)) { }
+	}
+```
+
+Modifiers can be applied to the competition class, it's container class (if the competition class is a nested type) or to the competition's assembly:
+
+```c#
+	// Modifier will be applied to all competition classes in the assembly.
+	[assembly: CompetitionModifier(typeof(AnotherCompetitionModifier))]
+
+	// Appling modifiers to the SimplePerfTest class
 	// and to all nested or derived classes (if they do exist).
 	[CompetitionModifier(typeof(MyCompetitionModifier))]
-	// Add another modifier, it will be applied to the entire assembly.
-	[assembly: CompetitionModifier(typeof(AnotherCompetitionModifier))]
+	[CompetitionRerunsModifier(5)]
 	public class SimplePerfTest
 	{
 		[Test]
@@ -298,11 +344,13 @@ and apply it to the competition class, it's container class (if the competition 
 	}
 ```
 
-As with `CompetitionFeaturesAttribute`, modifiers can be combined together. Check the *~Attribute annotations TODO: link*~* section for explanation how modifier attributes are applied.
+As with `CompetitionFeaturesAttribute`, modifiers can be combined together. Check the *--Attribute annotations TODO: link--* section for explanation how modifier attributes are applied.
 
 
 
-## 4. Get magic under control. Custom competition config factories 
+
+
+## 4. Get magic under control. Custom competition config factories
 
 > **NOTE**
 >
@@ -312,7 +360,7 @@ As with `CompetitionFeaturesAttribute`, modifiers can be combined together. Chec
 >
 > As with explicit config passing, this is an advanced feature and it is recommended to check for existing implementations and study them at first. There's no safety net anymore.
 
-If all of the above is not enough for you there's a backdoor: you can override entire config factory pipeline. Implement `ICompetitionConfigFactory` or derive from existing one:
+If all of the above is not enough there's a backdoor: you can override entire config factory pipeline. Implement `ICompetitionConfigFactory` or derive from existing one:
 
 ```c#
 	public class MyCompetitionFactory : CompetitionConfigFactory

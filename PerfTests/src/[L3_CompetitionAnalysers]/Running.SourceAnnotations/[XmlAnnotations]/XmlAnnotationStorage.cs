@@ -25,14 +25,13 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	internal class XmlAnnotationStorage : AnnotationStorageBase
 	{
 		#region Static members, parse from log
-
 		/// <summary>Writes xml annotation document for the competition targets to the log.</summary>
 		/// <param name="competitionTargets">The competition targets to log.</param>
 		/// <param name="messageLogger">The message logger.</param>
 		public static void LogXmlAnnotationDoc(
 			[NotNull] IReadOnlyCollection<CompetitionTarget> competitionTargets,
 			[NotNull] IMessageLogger messageLogger) =>
-			XmlAnnotationHelpers.LogXmlAnnotationDoc(competitionTargets, messageLogger);
+				XmlAnnotationHelpers.LogXmlAnnotationDoc(competitionTargets, messageLogger);
 
 		/// <summary>Reads the XML annotation docs from the log.</summary>
 		/// <param name="logUri">The log URI.</param>
@@ -108,7 +107,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		#region .ctor & properties
 		/// <summary>Initializes a new instance of the <see cref="XmlAnnotationStorage"/> class.</summary>
-		/// <param name="resourcePath">The relative path to the resource containing xml document with metric annotations.</param>
+		/// <param name="resourcePath">The relative path to the resource containing xml document with source annotations.</param>
 		/// <param name="useFullTypeName">Use full type name in XML annotations.</param>
 		/// <param name="resourceName">The name of the resource.</param>
 		public XmlAnnotationStorage(
@@ -127,11 +126,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		public string ResourceName { get; }
 
 		/// <summary>
-		/// Gets path to the resource containing xml document with metric annotations.
+		/// Gets path to the resource containing xml document with source annotations.
 		/// Should be relative to the source file the attribute is applied to.
 		/// If not set then path to the resource should be same as path to the source file (resource's extension should be '.xml').
 		/// </summary>
-		/// <value>The relative path to the resource containing xml document with metric annotations.</value>
+		/// <value>The relative path to the resource containing xml document with source annotations.</value>
 		[CanBeNull]
 		public string ResourcePath { get; }
 
@@ -151,9 +150,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		protected override IReadOnlyDictionary<Target, StoredTargetInfo> GetStoredTargets(
 			Target[] targets, Analysis analysis)
 		{
-			var xmlAnnotationDoc = XmlAnnotationHelpers.TryParseXmlAnnotationDoc(
-				GetResourceKey(analysis.RunState.BenchmarkType),
-				analysis);
+			var resourceKey = GetResourceKey(analysis.RunState.BenchmarkType);
+
+			var xmlAnnotationDoc = XmlAnnotationHelpers.TryParseXmlAnnotationDoc(resourceKey, analysis);
 
 			if (xmlAnnotationDoc == null)
 				return new Dictionary<Target, StoredTargetInfo>();
@@ -167,7 +166,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			return result;
 		}
-
 		#endregion
 
 		#region Save
@@ -231,16 +229,15 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				}
 			}
 
-
 			analysis.Logger.WriteVerboseHint(
 				$"Annotating resource file '{annotationFile.Origin}'.");
 
 			XmlAnnotationHelpers.AddOrUpdateXmlAnnotation(
-					// ReSharper disable once AssignNullToNotNullAttribute
-					xmlAnnotationFile.XmlAnnotationDoc,
-					result,
-					analysis.RunState.BenchmarkType,
-					UseFullTypeName);
+				// ReSharper disable once AssignNullToNotNullAttribute
+				xmlAnnotationFile.XmlAnnotationDoc,
+				result,
+				analysis.RunState.BenchmarkType,
+				UseFullTypeName);
 
 			foreach (var targetToAnnotate in competitionTargets)
 			{
@@ -320,41 +317,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				return new XmlAnnotationFile(resourceFileName, null);
 			}
 
-			var xmlAnnotationDoc = TryParseXmlAnnotationDoc(resourceFileName, messageLogger);
+			var xmlAnnotationDoc = XmlAnnotationHelpers.TryParseXmlAnnotationDoc(resourceFileName, messageLogger);
 			return new XmlAnnotationFile(resourceFileName, xmlAnnotationDoc);
-		}
-
-		[CanBeNull]
-		private static XDocument TryParseXmlAnnotationDoc(
-			string resourcePath,
-			IMessageLogger messageLogger)
-		{
-			try
-			{
-				using (var stream = File.OpenRead(resourcePath))
-				{
-					return XmlAnnotationHelpers.TryParseXmlAnnotationDoc(
-						stream,
-						$"XML annotation '{resourcePath}'",
-						messageLogger);
-				}
-			}
-			catch (IOException ex)
-			{
-				messageLogger.WriteExceptionMessage(
-					MessageSeverity.SetupError,
-					$"Could not access file '{resourcePath}'.", ex);
-
-				return null;
-			}
-			catch (UnauthorizedAccessException ex)
-			{
-				messageLogger.WriteExceptionMessage(
-					MessageSeverity.SetupError,
-					$"Could not access file '{resourcePath}'.", ex);
-
-				return null;
-			}
 		}
 		#endregion
 	}

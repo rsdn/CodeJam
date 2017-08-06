@@ -47,7 +47,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			public void Modify(ManualCompetitionConfig competitionConfig)
 			{
-				competitionConfig.Metrics.Add(WellKnownMetrics.AbsoluteTime);
+				competitionConfig.Metrics.Add(WellKnownMetrics.ExpectedTime);
 				competitionConfig.Metrics.Add(WellKnownMetrics.GcAllocations);
 			}
 		}
@@ -141,19 +141,19 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public class AnnotatedBenchmark
 		{
 			[CompetitionBaseline]
-			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
+			public void Baseline() => CompetitionRunHelpers.Delay(CompetitionRunHelpers.BurstModeLoopCount);
 
 			[CompetitionBenchmark(10.00, 30.00)]
-			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.BurstModeLoopCount);
+			public void SlowerX20() => CompetitionRunHelpers.Delay(20 * CompetitionRunHelpers.BurstModeLoopCount);
 		}
 
 		public class AnnotatedBaselineChangedBenchmark
 		{
 			[CompetitionBaseline]
-			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
+			public void Baseline() => CompetitionRunHelpers.Delay(CompetitionRunHelpers.BurstModeLoopCount);
 
 			[CompetitionBenchmark]
-			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.BurstModeLoopCount);
+			public void SlowerX20() => CompetitionRunHelpers.Delay(20 * CompetitionRunHelpers.BurstModeLoopCount);
 		}
 
 		[CompetitionMeasurementsFromLogModifier]
@@ -162,12 +162,12 @@ namespace CodeJam.PerfTests.IntegrationTests
 			[CompetitionBaseline]
 			[GcAllocations(0.00, 6.00, BinarySizeUnit.Kilobyte)]
 			[ExpectedTime(0.00, 10.00, TimeUnit.Second)]
-			public void Baseline() => CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
+			public void Baseline() => CompetitionRunHelpers.Delay(CompetitionRunHelpers.BurstModeLoopCount);
 
 			[CompetitionBenchmark(10.00, 30.00)]
 			[GcAllocations(0.00, 3.00, BinarySizeUnit.Gigabyte)]
 			[ExpectedTime(0.00, 10.00, TimeUnit.Second)]
-			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.BurstModeLoopCount);
+			public void SlowerX20() => CompetitionRunHelpers.Delay(20 * CompetitionRunHelpers.BurstModeLoopCount);
 		}
 
 		[CompetitionMeasurementsFromLogModifier, CompetitionNoRelativeTime]
@@ -176,12 +176,12 @@ namespace CodeJam.PerfTests.IntegrationTests
 			[CompetitionBenchmark]
 			[ExpectedTime(0.00, 5.00, TimeUnit.Second)]
 			[GcAllocations(0.00, 5.00, BinarySizeUnit.Kilobyte)]
-			public void BaseX1() => CompetitionHelpers.Delay(CompetitionHelpers.BurstModeLoopCount);
+			public void BaseX1() => CompetitionRunHelpers.Delay(CompetitionRunHelpers.BurstModeLoopCount);
 
 			[CompetitionBenchmark]
 			[ExpectedTime(0.00, 5.00, TimeUnit.Second)]
 			[GcAllocations(0.00, 1.00, BinarySizeUnit.Gigabyte)]
-			public void SlowerX20() => CompetitionHelpers.Delay(20 * CompetitionHelpers.BurstModeLoopCount);
+			public void SlowerX20() => CompetitionRunHelpers.Delay(20 * CompetitionRunHelpers.BurstModeLoopCount);
 		}
 		#endregion
 	}
