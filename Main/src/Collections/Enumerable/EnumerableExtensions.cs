@@ -46,7 +46,7 @@ namespace CodeJam.Collections
 		/// <param name="keySelector">The key selector.</param>
 		/// <param name="comparer">The comparer.</param>
 		/// <param name="duplicateHandling">Policy for duplicate handling.</param>
-		/// <returns>A lookup dictionary</returns>
+		/// <returns>A lookup dictionary.</returns>
 		[Pure, NotNull]
 		public static Dictionary<TKey, T> ToLookupDictionary<T, TKey>(
 			[NotNull] this IEnumerable<T> source,
@@ -60,7 +60,7 @@ namespace CodeJam.Collections
 					return source.ToDictionary(keySelector, comparer);
 				case DictionaryDuplicate.FirstWins:
 					{
-						var result = new Dictionary<TKey, T>();
+						var result = new Dictionary<TKey, T>(comparer);
 						foreach (var item in source)
 						{
 							var key = keySelector(item);
@@ -70,7 +70,7 @@ namespace CodeJam.Collections
 					}
 				case DictionaryDuplicate.LastWins:
 					{
-						var result = new Dictionary<TKey, T>();
+						var result = new Dictionary<TKey, T>(comparer);
 						foreach (var item in source)
 						{
 							var key = keySelector(item);
