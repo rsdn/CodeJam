@@ -14,11 +14,11 @@ namespace CodeJam
 	public static class EnumCodeExceptions
 	{
 		#region Defined
-		/// <summary>Creates <seealso cref="ArgumentOutOfRangeException"/> for undefined enum value.</summary>
+		/// <summary>Creates <see cref="ArgumentOutOfRangeException"/> for undefined enum value.</summary>
 		/// <typeparam name="TEnum">The type of the enum value.</typeparam>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
-		/// <returns>Initialized instance of <seealso cref="ArgumentOutOfRangeException"/></returns>
+		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static ArgumentOutOfRangeException ArgumentNotDefinedException<TEnum>(
@@ -36,12 +36,12 @@ namespace CodeJam
 		#endregion
 
 		#region Flags
-		/// <summary>Creates <seealso cref="ArgumentException"/> for flag is set case.</summary>
+		/// <summary>Creates <see cref="ArgumentException"/> for flag is set case.</summary>
 		/// <typeparam name="TEnum">The type of the enum value.</typeparam>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
 		/// <param name="flag">The flag.</param>
-		/// <returns>Initialized instance of <seealso cref="ArgumentException"/></returns>
+		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static ArgumentException ArgumentFlagSet<TEnum>(
@@ -51,17 +51,17 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"The value of the {argumentName} argument ('{value}') should not include flag '{flag}'.", 
+				$"The value of the {argumentName} argument ('{value}') should not include flag '{flag}'.",
 				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentException"/> for any bit from flag is not set case.</summary>
+		/// <summary>Creates <see cref="ArgumentException"/> for any bit from flag is not set case.</summary>
 		/// <typeparam name="TEnum">The type of the enum value.</typeparam>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
 		/// <param name="flags">The bitwise combinations of the flags.</param>
-		/// <returns>Initialized instance of <seealso cref="ArgumentException"/></returns>
+		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static ArgumentException ArgumentAnyFlagUnset<TEnum>(
@@ -76,12 +76,12 @@ namespace CodeJam
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentException"/> for any bit from flag is set case.</summary>
+		/// <summary>Creates <see cref="ArgumentException"/> for any bit from flag is set case.</summary>
 		/// <typeparam name="TEnum">The type of the enum value.</typeparam>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
 		/// <param name="flags">The bitwise combinations of the flags.</param>
-		/// <returns>Initialized instance of <seealso cref="ArgumentException"/></returns>
+		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static ArgumentException ArgumentAnyFlagSet<TEnum>(
@@ -96,12 +96,12 @@ namespace CodeJam
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentException"/> for flag is not set case.</summary>
+		/// <summary>Creates <see cref="ArgumentException"/> for flag is not set case.</summary>
 		/// <typeparam name="TEnum">The type of the enum value.</typeparam>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
 		/// <param name="flag">The flag.</param>
-		/// <returns>Initialized instance of <seealso cref="ArgumentException"/></returns>
+		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static ArgumentException ArgumentFlagUnset<TEnum>(

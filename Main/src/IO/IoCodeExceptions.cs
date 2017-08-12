@@ -15,7 +15,7 @@ namespace CodeJam.IO
 	public static class IoCodeExceptions
 	{
 		#region Path
-		/// <summary>Creates <seealso cref="ArgumentException"/> for invalid path.</summary>
+		/// <summary>Creates <see cref="ArgumentException"/> for invalid path.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="path">The path being checked.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
@@ -33,7 +33,7 @@ namespace CodeJam.IO
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentException"/> for invalid full path.</summary>
+		/// <summary>Creates <see cref="ArgumentException"/> for invalid full path.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="path">The path being checked.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
@@ -51,7 +51,7 @@ namespace CodeJam.IO
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentException"/> for invalid relative path.</summary>
+		/// <summary>Creates <see cref="ArgumentException"/> for invalid relative path.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="path">The path being checked.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
@@ -69,7 +69,7 @@ namespace CodeJam.IO
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentException"/> for invalid simple name.</summary>
+		/// <summary>Creates <see cref="ArgumentException"/> for invalid simple name.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="path">The path being checked.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
@@ -87,7 +87,7 @@ namespace CodeJam.IO
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentException"/> if path does not ends with one of path separator chars.</summary>
+		/// <summary>Creates <see cref="ArgumentException"/> if path does not ends with one of path separator chars.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="path">The path being checked.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
@@ -107,10 +107,10 @@ namespace CodeJam.IO
 		#endregion
 
 		#region File / Directory
-		/// <summary>Creates <seealso cref="FileNotFoundException" /> for missing file when there is a dictionary.</summary>
+		/// <summary>Creates <see cref="FileNotFoundException" /> for missing file when there is a dictionary.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="filePath">The file being checked.</param>
-		/// <returns>Initialized instance of <seealso cref="FileNotFoundException" />.</returns>
+		/// <returns>Initialized instance of <see cref="FileNotFoundException" />.</returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static FileNotFoundException ArgumentDirectoryExistsFileExpected(
@@ -123,10 +123,10 @@ namespace CodeJam.IO
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="DirectoryNotFoundException" /> for missing directory when there is a file.</summary>
+		/// <summary>Creates <see cref="DirectoryNotFoundException" /> for missing directory when there is a file.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="directoryPath">The directory being checked.</param>
-		/// <returns>Initialized instance of <seealso cref="DirectoryNotFoundException" />.</returns>
+		/// <returns>Initialized instance of <see cref="DirectoryNotFoundException" />.</returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static DirectoryNotFoundException ArgumentFileExistsDirectoryExpected(
@@ -139,10 +139,10 @@ namespace CodeJam.IO
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="FileNotFoundException" /> for missing file.</summary>
+		/// <summary>Creates <see cref="FileNotFoundException" /> for missing file.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="filePath">The file being checked.</param>
-		/// <returns>Initialized instance of <seealso cref="FileNotFoundException" />.</returns>
+		/// <returns>Initialized instance of <see cref="FileNotFoundException" />.</returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static FileNotFoundException ArgumentFileNotFound(
@@ -154,10 +154,10 @@ namespace CodeJam.IO
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="DirectoryNotFoundException" /> for missing directory.</summary>
+		/// <summary>Creates <see cref="DirectoryNotFoundException" /> for missing directory.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="directoryPath">The directory being checked.</param>
-		/// <returns>Initialized instance of <seealso cref="DirectoryNotFoundException" />.</returns>
+		/// <returns>Initialized instance of <see cref="DirectoryNotFoundException" />.</returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static DirectoryNotFoundException ArgumentDirectoryNotFound(
@@ -169,7 +169,7 @@ namespace CodeJam.IO
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="IOException"/></summary>
+		/// <summary>Creates <see cref="IOException"/>.</summary>
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="IOException"/>.</returns>
@@ -187,9 +187,9 @@ namespace CodeJam.IO
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="IOException" /> for file that should not exist.</summary>
+		/// <summary>Creates <see cref="IOException" /> for file that should not exist.</summary>
 		/// <param name="filePath">The file being checked.</param>
-		/// <returns>Initialized instance of <seealso cref="IOException" />.</returns>
+		/// <returns>Initialized instance of <see cref="IOException" />.</returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static IOException FileExists([NotNull] string filePath)
@@ -199,9 +199,9 @@ namespace CodeJam.IO
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="IOException" /> for directory that should not exist.</summary>
+		/// <summary>Creates <see cref="IOException" /> for directory that should not exist.</summary>
 		/// <param name="directoryPath">The directory being checked.</param>
-		/// <returns>Initialized instance of <seealso cref="IOException" />.</returns>
+		/// <returns>Initialized instance of <see cref="IOException" />.</returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		public static IOException DirectoryExists([NotNull] string directoryPath)

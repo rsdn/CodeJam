@@ -23,7 +23,7 @@ namespace CodeJam
 		/// <value><c>true</c> if the execution will break on exception creation; otherwise, <c>false</c>.</value>
 		public static bool BreakOnException { get; set; } = true;
 
-		/// <summary>BreaksExecution if debugger attached</summary>
+		/// <summary>BreaksExecution if debugger attached.</summary>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		public static void BreakIfAttached()
 		{
@@ -32,7 +32,7 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Formats message or returns <paramref name="messageFormat"/> as it is if <paramref name="args"/> are null or empty
+		/// Formats message or returns <paramref name="messageFormat"/> as it is if <paramref name="args"/> are null or empty.
 		/// </summary>
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
@@ -73,7 +73,7 @@ namespace CodeJam
 		/// <summary>Logs the exception that will be thrown to the <see cref="CodeTraceSource"/>.</summary>
 		/// <typeparam name="TException">The type of the exception.</typeparam>
 		/// <param name="exception">The exception.</param>
-		/// <returns>The original exception</returns>
+		/// <returns>The original exception.</returns>
 		internal static TException LogToCodeTraceSourceBeforeThrow<TException>(this TException exception)
 			where TException : Exception
 		{
@@ -91,7 +91,7 @@ namespace CodeJam
 		/// <summary>Logs the catched exception to the <see cref="CodeTraceSource"/>.</summary>
 		/// <typeparam name="TException">The type of the exception.</typeparam>
 		/// <param name="exception">The exception.</param>
-		/// <returns>The original exception</returns>
+		/// <returns>The original exception.</returns>
 		internal static TException LogToCodeTraceSourceCatched<TException>(this TException exception)
 			where TException : Exception
 		{
@@ -109,7 +109,7 @@ namespace CodeJam
 		#endregion
 
 		#region Argument validation
-		/// <summary>Creates <seealso cref="ArgumentNullException"/>.</summary>
+		/// <summary>Creates <see cref="ArgumentNullException"/>.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentNullException"/>.</returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
@@ -120,7 +120,7 @@ namespace CodeJam
 			return new ArgumentNullException(argumentName).LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentNullException"/>.</summary>
+		/// <summary>Creates <see cref="ArgumentNullException"/>.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
@@ -133,7 +133,7 @@ namespace CodeJam
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentException"/> for empty string</summary>
+		/// <summary>Creates <see cref="ArgumentException"/> for empty string.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
@@ -147,7 +147,7 @@ namespace CodeJam
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentException"/> for empty (or whitespace) string</summary>
+		/// <summary>Creates <see cref="ArgumentException"/> for empty (or whitespace) string.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
 		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
@@ -161,7 +161,7 @@ namespace CodeJam
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentOutOfRangeException"/></summary>
+		/// <summary>Creates <see cref="ArgumentOutOfRangeException"/>.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
 		/// <param name="fromValue">From value (inclusive).</param>
@@ -181,7 +181,7 @@ namespace CodeJam
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentOutOfRangeException"/></summary>
+		/// <summary>Creates <see cref="ArgumentOutOfRangeException"/>.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
 		/// <param name="fromValue">From value (inclusive).</param>
@@ -201,7 +201,7 @@ namespace CodeJam
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="ArgumentOutOfRangeException"/></summary>
+		/// <summary>Creates <see cref="ArgumentOutOfRangeException"/>.</summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
@@ -222,7 +222,7 @@ namespace CodeJam
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="IndexOutOfRangeException"/></summary>
+		/// <summary>Creates <see cref="IndexOutOfRangeException"/>.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
 		/// <param name="startIndex">The start index.</param>
@@ -242,7 +242,7 @@ namespace CodeJam
 		#endregion
 
 		#region General purpose exceptions
-		/// <summary>Creates <seealso cref="ArgumentException"/></summary>
+		/// <summary>Creates <see cref="ArgumentException"/>.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
@@ -261,7 +261,7 @@ namespace CodeJam
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <seealso cref="InvalidOperationException"/></summary>
+		/// <summary>Creates <see cref="InvalidOperationException"/>.</summary>
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="InvalidOperationException"/>.</returns>
@@ -281,7 +281,7 @@ namespace CodeJam
 
 		#region Exceptions for specific scenarios
 		/// <summary>
-		/// Creates <seealso cref="ArgumentOutOfRangeException"/>.
+		/// Creates <see cref="ArgumentOutOfRangeException"/>.
 		/// Used to be thrown from the default: switch clause
 		/// </summary>
 		/// <typeparam name="T">The type of the value. Auto-inferred.</typeparam>
@@ -302,7 +302,7 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Creates <seealso cref="ArgumentOutOfRangeException"/>.
+		/// Creates <see cref="ArgumentOutOfRangeException"/>.
 		/// Used to be thrown from default: switch clause
 		/// </summary>
 		/// <typeparam name="T">The type of the value. Auto-inferred.</typeparam>
@@ -327,7 +327,7 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Creates <seealso cref="InvalidOperationException"/>.
+		/// Creates <see cref="InvalidOperationException"/>.
 		/// Used to be thrown from the default: switch clause
 		/// </summary>
 		/// <typeparam name="T">The type of the value. Auto-inferred.</typeparam>
@@ -346,7 +346,7 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Creates <seealso cref="InvalidOperationException"/>.
+		/// Creates <see cref="InvalidOperationException"/>.
 		/// Used to be thrown from default: switch clause
 		/// </summary>
 		/// <param name="messageFormat">The message format.</param>

@@ -7,7 +7,7 @@ namespace CodeJam.Collections
 {
 	partial class EnumerableExtensions
 	{
-		/// <summary>Implements <see cref="IGrouping{TKey,TElement}"/> </summary>
+		/// <summary>Implements <see cref="IGrouping{TKey,TElement}"/>.</summary>
 		/// <typeparam name="TKey">The type of the key.</typeparam>
 		/// <typeparam name="TElement">The type of the element.</typeparam>
 		/// <seealso cref="System.Linq.IGrouping{TKey, TElement}" />
