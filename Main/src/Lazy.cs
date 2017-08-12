@@ -17,6 +17,8 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="T">The type of object that is being lazily initialized.</typeparam>
 		/// <returns>New <see cref="Lazy{T}"/> instance.</returns>
+		[Pure]
+		[NotNull]
 		public static Lazy<T> Create<T>() => new Lazy<T>();
 
 		/// <summary>
@@ -29,6 +31,8 @@ namespace CodeJam
 		/// usable by only one thread at a time.
 		/// </param>
 		/// <returns>New <see cref="Lazy{T}"/> instance.</returns>
+		[Pure]
+		[NotNull]
 		public static Lazy<T> Create<T>(bool isThreadSafe) => new Lazy<T>(isThreadSafe);
 
 		/// <summary>
@@ -40,7 +44,9 @@ namespace CodeJam
 		/// The delegate that is invoked to produce the lazily initialized value when it is needed.
 		/// </param>
 		/// <returns>New <see cref="Lazy{T}"/> instance.</returns>
-		public static Lazy<T> Create<T>(Func<T> valueFactory) => new Lazy<T>(valueFactory);
+		[Pure]
+		[NotNull]
+		public static Lazy<T> Create<T>([NotNull] Func<T> valueFactory) => new Lazy<T>(valueFactory);
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Lazy{T}"/> class. When lazy initialization occurs, the default
@@ -49,6 +55,8 @@ namespace CodeJam
 		/// <typeparam name="T">The type of object that is being lazily initialized.</typeparam>
 		/// <param name="mode">One of the enumeration values that specifies the thread safety mode.</param>
 		/// <returns>New <see cref="Lazy{T}"/> instance.</returns>
+		[Pure]
+		[NotNull]
 		public static Lazy<T> Create<T>(LazyThreadSafetyMode mode) => new Lazy<T>(mode);
 
 		/// <summary>
@@ -64,7 +72,9 @@ namespace CodeJam
 		/// usable by only one thread at a time.
 		/// </param>
 		/// <returns>New <see cref="Lazy{T}"/> instance.</returns>
-		public static Lazy<T> Create<T>(Func<T> valueFactory, bool isThreadSafe) => new Lazy<T>(valueFactory, isThreadSafe);
+		[Pure]
+		[NotNull]
+		public static Lazy<T> Create<T>([NotNull] Func<T> valueFactory, bool isThreadSafe) => new Lazy<T>(valueFactory, isThreadSafe);
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Lazy{T}"/> class. When lazy initialization occurs, the default
@@ -76,6 +86,8 @@ namespace CodeJam
 		/// </param>
 		/// <param name="mode">One of the enumeration values that specifies the thread safety mode.</param>
 		/// <returns>New <see cref="Lazy{T}"/> instance.</returns>
-		public static Lazy<T> Create<T>(Func<T> valueFactory, LazyThreadSafetyMode mode) => new Lazy<T>(valueFactory, mode);
+		[Pure]
+		[NotNull]
+		public static Lazy<T> Create<T>([NotNull] Func<T> valueFactory, LazyThreadSafetyMode mode) => new Lazy<T>(valueFactory, mode);
 	}
 }

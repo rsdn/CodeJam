@@ -20,8 +20,11 @@ namespace CodeJam
 		/// <param name="exception">Exception to process.</param>
 		/// <param name="stringBuilder"><see cref="StringBuilder"/> instance.</param>
 		/// <returns>Detailed exception text.</returns>
-		public static StringBuilder ToDiagnosticString(this Exception exception, StringBuilder stringBuilder)
+		[NotNull]
+		public static StringBuilder ToDiagnosticString(this Exception exception, [NotNull] StringBuilder stringBuilder)
 		{
+			Code.NotNull(stringBuilder, nameof(stringBuilder));
+
 			// ReSharper disable once PossibleNullReferenceException
 			for (var ex = exception; ex != null; ex = ex.InnerException)
 			{
@@ -85,6 +88,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="exception">Exception to process.</param>
 		/// <returns>Detailed exception text.</returns>
+		[Pure]
+		[NotNull]
 		public static string ToDiagnosticString(this Exception exception)
 			=> exception.ToDiagnosticString(new StringBuilder()).ToString();
 	}

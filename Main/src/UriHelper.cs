@@ -16,7 +16,8 @@ namespace CodeJam
 		/// <param name="baseUri">Base uri</param>
 		/// <param name="relativeUri">Relative uri</param>
 		/// <returns>Combined uri.</returns>
-		public static Uri Combine(this Uri baseUri, Uri relativeUri) => new Uri(baseUri, relativeUri);
+		[NotNull, Pure]
+		public static Uri Combine([NotNull] this Uri baseUri, [NotNull] Uri relativeUri) => new Uri(baseUri, relativeUri);
 
 		/// <summary>
 		/// Combine two uris.
@@ -24,7 +25,8 @@ namespace CodeJam
 		/// <param name="baseUri">Base uri</param>
 		/// <param name="relativeUri">Relative uri</param>
 		/// <returns>Combined uri.</returns>
-		public static Uri Combine(this Uri baseUri, string relativeUri) => new Uri(baseUri, relativeUri);
+		[NotNull, Pure]
+		public static Uri Combine([NotNull] this Uri baseUri, [NotNull] string relativeUri) => new Uri(baseUri, relativeUri);
 
 		/// <summary>
 		/// Combine two uris.
@@ -32,7 +34,8 @@ namespace CodeJam
 		/// <param name="baseUri">Base uri</param>
 		/// <param name="relativeUri">Relative uri</param>
 		/// <returns>Combined uri.</returns>
-		public static Uri Combine(string baseUri, string relativeUri)
+		[NotNull, Pure]
+		public static Uri Combine([NotNull] string baseUri, [NotNull] string relativeUri)
 		{
 			var baseParsed = new Uri(baseUri);
 			Code.AssertArgument(!baseParsed.IsAbsoluteUri, nameof(baseUri), "Base uri must be absolute");
