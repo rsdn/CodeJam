@@ -22,7 +22,7 @@ namespace CodeJam.Collections
 		///   The value for the key. This will be either the existing value for the key if the key is already in the
 		///   dictionary, or the new value if the key was not in the dictionary.
 		/// </returns>
-		public static TValue GetOrAdd<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, TKey key)
+		public static TValue GetOrAdd<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, [NotNull] TKey key)
 			where TValue : new()
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
@@ -48,7 +48,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		public static TValue GetOrAdd<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
-			TKey key,
+			[NotNull] TKey key,
 			TValue value)
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
@@ -74,7 +74,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		public static TValue GetOrAdd<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
-			TKey key,
+			[NotNull] TKey key,
 			[NotNull, InstantHandle] Func<TKey, TValue> valueFactory)
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
@@ -106,7 +106,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		public static TValue AddOrUpdate<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
-			TKey key,
+			[NotNull] TKey key,
 			TValue addValue,
 			[NotNull, InstantHandle] Func<TKey, TValue, TValue> updateValueFactory)
 		{
@@ -141,7 +141,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		public static TValue AddOrUpdate<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
-			TKey key,
+			[NotNull] TKey key,
 			[NotNull, InstantHandle] Func<TKey, TValue> addValueFactory,
 			[NotNull, InstantHandle] Func<TKey, TValue, TValue> updateValueFactory)
 		{
@@ -172,7 +172,7 @@ namespace CodeJam.Collections
 		/// <returns>The new value for the key.</returns>
 		public static TValue AddOrUpdate<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
-			TKey key,
+			[NotNull] TKey key,
 			[NotNull, InstantHandle] Func<TKey, TValue> valueFactory)
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
@@ -200,7 +200,7 @@ namespace CodeJam.Collections
 		/// <returns>The new value for the key.</returns>
 		public static TValue AddOrUpdate<TKey, TValue>(
 			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
-			TKey key,
+			[NotNull] TKey key,
 			[NotNull, InstantHandle] Func<TKey, TValue> valueFactory)
 		{
 			Code.NotNull(dictionary, nameof(dictionary));

@@ -53,7 +53,7 @@ private void Header1(string type) {#>
 		/// in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure, CanBeNull]
-		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this <#=type#><TKey, TValue> dictionary, TKey key)
+		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this <#=type#><TKey, TValue> dictionary, [NotNull] TKey key)
 <#+}
 
 private void Body1() {#>
@@ -84,7 +84,7 @@ private void Header2(string type) {#>
 		[Pure, CanBeNull]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this <#=type#><TKey, TValue> dictionary,
-			TKey key,
+			[NotNull] TKey key,
 			TValue defaultValue)
 <#+}
 
@@ -125,7 +125,7 @@ private void Header3(string type) {#>
 		[Pure, CanBeNull]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this <#=type#><TKey, TValue> dictionary,
-				TKey key,
+				[NotNull] TKey key,
 				[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector)
 <#+}
 
@@ -159,7 +159,7 @@ private void Header4(string type) {#>
 		[Pure]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this <#=type#><TKey, TValue> dictionary,
-			TKey key,
+			[NotNull] TKey key,
 			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			TResult defaultValue)
 <#+}
@@ -201,7 +201,7 @@ private void Header5(string type) {#>
 		[Pure]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this <#=type#><TKey, TValue> dictionary,
-			TKey key,
+			[NotNull] TKey key,
 			[NotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory)
 <#+}
 
@@ -244,7 +244,7 @@ private void Header5(string type) {#>
 		[Pure]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this <#=type#><TKey, TValue> dictionary,
-			TKey key,
+			[NotNull] TKey key,
 			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			[NotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory)
 <#+}

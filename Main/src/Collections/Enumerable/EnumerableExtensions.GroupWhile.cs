@@ -15,6 +15,8 @@ namespace CodeJam.Collections
 		/// <param name="source">The source.</param>
 		/// <param name="keySelector">The grouping key selector.</param>
 		/// <returns>Grouped items with grouping key.</returns>
+		[Pure]
+		[NotNull, ItemNotNull]
 		public static IEnumerable<IGrouping<TKey, T>> GroupWhileEquals<T, TKey>(
 			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, TKey> keySelector) =>
@@ -27,6 +29,8 @@ namespace CodeJam.Collections
 		/// <param name="keySelector">The grouping key selector.</param>
 		/// <param name="comparer">The comparer.</param>
 		/// <returns>Grouped items with grouping key.</returns>
+		[Pure]
+		[NotNull, ItemNotNull]
 		public static IEnumerable<IGrouping<TKey, T>> GroupWhileEquals<T, TKey>(
 			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, TKey> keySelector,
@@ -73,6 +77,8 @@ namespace CodeJam.Collections
 		/// <param name="keySelector">The grouping key selector.</param>
 		/// <param name="itemSelector">The item selector.</param>
 		/// <returns>Grouped items with grouping key.</returns>
+		[Pure]
+		[NotNull, ItemNotNull]
 		public static IEnumerable<IGrouping<TKey, TItem>> GroupWhileEquals<T, TItem, TKey>(
 			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, TKey> keySelector,
@@ -88,6 +94,8 @@ namespace CodeJam.Collections
 		/// <param name="itemSelector">The item selector.</param>
 		/// <param name="comparer">The comparer.</param>
 		/// <returns>Grouped items with grouping key.</returns>
+		[Pure]
+		[NotNull, ItemNotNull]
 		public static IEnumerable<IGrouping<TKey, TItem>> GroupWhileEquals<T, TItem, TKey>(
 			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, TKey> keySelector,
@@ -136,6 +144,8 @@ namespace CodeJam.Collections
 		/// <param name="source">The source.</param>
 		/// <param name="predicate">Gropung predicate.</param>
 		/// <returns>Grouped items.</returns>
+		[Pure]
+		[NotNull, ItemNotNull]
 		public static IEnumerable<T[]> GroupWhile<T>(
 			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, T, bool> predicate)
