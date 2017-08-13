@@ -86,33 +86,22 @@ namespace CodeJam.Collections
 			[CanBeNull] IEqualityComparer<TKey> comparer,
 			DictionaryDuplicate duplicateHandling)
 		{
-			switch (duplicateHandling)
+			Code.InRange((int)duplicateHandling, nameof(duplicateHandling), (int)DictionaryDuplicate.Throw, (int)DictionaryDuplicate.LastWins);
+
+			if (duplicateHandling == DictionaryDuplicate.Throw)
 			{
-				case DictionaryDuplicate.Throw:
-					return source.ToDictionary(keySelector, elementSelector, comparer);
-				case DictionaryDuplicate.FirstWins:
-					{
-						var result = new Dictionary<TKey, TElement>(comparer);
-						foreach (var item in source)
-						{
-							var key = keySelector(item);
-							result.GetOrAdd(key, elementSelector(item));
-						}
-						return result;
-					}
-				case DictionaryDuplicate.LastWins:
-					{
-						var result = new Dictionary<TKey, TElement>(comparer);
-						foreach (var item in source)
-						{
-							var key = keySelector(item);
-							result[key] = elementSelector(item);
-						}
-						return result;
-					}
-				default:
-					throw CodeExceptions.UnexpectedArgumentValue(nameof(duplicateHandling), duplicateHandling);
+				return source.ToDictionary(keySelector, elementSelector, comparer);
 			}
+
+			var result = new Dictionary<TKey, TElement>(comparer);
+			foreach (var item in source)
+			{
+				var key = keySelector(item);
+				if (duplicateHandling == DictionaryDuplicate.LastWins || !result.ContainsKey(key))
+					result[key] = elementSelector(item);
+			}
+
+			return result;
 		}
 	}
 }
