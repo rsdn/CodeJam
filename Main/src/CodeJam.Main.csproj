@@ -140,6 +140,7 @@
     <Compile Include="Collections\Enumerable\EnumerableExtensions.AggregateOrDefault.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensions.Grouping.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensions.MinMaxOrDefault.cs" />
+    <Compile Include="Collections\Enumerable\EnumerableExtensions.ToLookupDictionary.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensions.With.cs" />
     <Compile Include="Collections\Enumerable\EnumerableExtensions.GroupWhile.cs" />
     <Compile Include="Collections\Enumerable\IndexedItem.cs" />
