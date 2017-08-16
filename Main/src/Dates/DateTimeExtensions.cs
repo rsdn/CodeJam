@@ -49,10 +49,9 @@ namespace CodeJam.Dates
 			var result = date.AddMonths(monthOffset);
 			if (useLastDay)
 			{
-				var daysInMonth = date.DaysInMonth();
-				if (date.Day == daysInMonth)
+				if (date.Day == date.DaysInMonth())
 				{
-					result = result.WithDay(daysInMonth);
+					result = result.WithDay(result.DaysInMonth());
 				}
 			}
 
@@ -87,10 +86,9 @@ namespace CodeJam.Dates
 			var result = date.AddYears(yearOffset);
 			if (useLastDay)
 			{
-				var daysInMonth = date.DaysInMonth();
-				if (date.Day == daysInMonth)
+				if (date.Day == date.DaysInMonth())
 				{
-					result = result.WithDay(daysInMonth);
+					result = result.WithDay(result.DaysInMonth());
 				}
 			}
 

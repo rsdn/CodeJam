@@ -37,6 +37,16 @@ namespace CodeJam.Dates
 		}
 
 		[Test]
+		public static void UseLastDayTests()
+		{
+			var d = new DateTime(2017, 2, 28);
+			AreEqual(31, d.AddMonths(1, true).Day, "AddMonths");
+			AreEqual(31, d.WithMonth(3, true).Day, "WithMonth");
+			AreEqual(29, d.AddYears(3, true).Day, "AddYears");
+			AreEqual(29, d.WithYear(2020, true).Day, "WithYear");
+		}
+
+		[Test]
 		public static void TestDateTimeOffsetExtensions()
 		{
 			var d = DateTime.Today.FirstDayOfMonth().AddHours(12);
