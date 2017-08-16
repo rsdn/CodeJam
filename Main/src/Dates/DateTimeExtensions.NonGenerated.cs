@@ -11,7 +11,8 @@ namespace CodeJam.Dates
 	public static partial class DateTimeExtensions
 	{
 		private static DateTime Create(DateTime origin, int year, int month, int day) =>
-			new DateTime(year, month, day);
+			new DateTime(year, month, day, 0, 0, 0, origin.Kind);
+
 		private static DateTimeOffset Create(DateTimeOffset origin, int year, int month, int day) =>
 			new DateTimeOffset(year, month, day, 0, 0, 0, origin.Offset);
 
