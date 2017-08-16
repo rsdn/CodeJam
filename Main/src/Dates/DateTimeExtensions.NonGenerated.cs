@@ -19,19 +19,25 @@ namespace CodeJam.Dates
 		/// <summary>Returns count of days in month.</summary>
 		/// <param name="date">The date.</param>
 		/// <returns>Count of days in month.</returns>
+		[Pure]
 		public static int DaysInMonth(this DateTime date) => DateTime.DaysInMonth(date.Year, date.Month);
+
 		/// <summary>Returns count of days in month.</summary>
 		/// <param name="date">The date.</param>
 		/// <returns>Count of days in month.</returns>
+		[Pure]
 		public static int DaysInMonth(this DateTimeOffset date) => DateTime.DaysInMonth(date.Year, date.Month);
 
 		/// <summary>Returns count of days in year.</summary>
 		/// <param name="date">The date.</param>
 		/// <returns>Count of days in year.</returns>
+		[Pure]
 		public static int DaysInYear(this DateTime date) => DateTime.IsLeapYear(date.Year) ? 366 : 365;
+
 		/// <summary>Returns count of days in year.</summary>
 		/// <param name="date">The date.</param>
 		/// <returns>Count of days in year.</returns>
+		[Pure]
 		public static int DaysInYear(this DateTimeOffset date) => DateTime.IsLeapYear(date.Year) ? 366 : 365;
 	}
 }

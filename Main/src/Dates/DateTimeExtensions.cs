@@ -1,5 +1,7 @@
 ﻿using System;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Dates
 {
 	/// <summary>
@@ -12,6 +14,7 @@ namespace CodeJam.Dates
 		/// <param name="date">The date.</param>
 		/// <param name="day">The day.</param>
 		/// <returns>Updated date.</returns>
+		[Pure]
 		public static DateTime WithDay(this DateTime date, int day)
 		{
 			Code.InRange(day, nameof(day), 1, date.DaysInMonth());
@@ -24,6 +27,7 @@ namespace CodeJam.Dates
 		/// <param name="date">The date.</param>
 		/// <param name="month">The month.</param>
 		/// <returns>Updated date.</returns>
+		[Pure]
 		public static DateTime WithMonth(this DateTime date, int month) => WithMonth(date, month, false);
 
 		/// <summary>Updates the month of the date.</summary>
@@ -31,6 +35,7 @@ namespace CodeJam.Dates
 		/// <param name="month">The month.</param>
 		/// <param name="useLastDay">if set to <c>true</c>, the call preserves last day of the month, 2000/02/28 => 2000/01/31.</param>
 		/// <returns>Updated date.</returns>
+		[Pure]
 		public static DateTime WithMonth(this DateTime date, int month, bool useLastDay)
 		{
 			Code.InRange(month, nameof(month), 1, 12);
@@ -44,6 +49,7 @@ namespace CodeJam.Dates
 		/// <param name="monthOffset">The month offset.</param>
 		/// <param name="useLastDay">if set to <c>true</c>, the call preserves last day of the month, 2000/02/28 => 2000/01/31.</param>
 		/// <returns>Updated date.</returns>
+		[Pure]
 		public static DateTime AddMonths(this DateTime date, int monthOffset, bool useLastDay)
 		{
 			var result = date.AddMonths(monthOffset);
@@ -62,6 +68,7 @@ namespace CodeJam.Dates
 		/// <param name="date">The date.</param>
 		/// <param name="year">The year.</param>
 		/// <returns>Updated date.</returns>
+		[Pure]
 		public static DateTime WithYear(this DateTime date, int year) => WithYear(date, year, false);
 
 		/// <summary>Updates the year of the date.</summary>
@@ -69,6 +76,7 @@ namespace CodeJam.Dates
 		/// <param name="year">The year.</param>
 		/// <param name="useLastDay">if set to <c>true</c>, the call preserves last day of the month, 2001/02/28 => 2004/02/29.</param>
 		/// <returns>Updated date.</returns>
+		[Pure]
 		public static DateTime WithYear(this DateTime date, int year, bool useLastDay)
 		{
 			var yearOffset = year - date.Year;
@@ -81,6 +89,7 @@ namespace CodeJam.Dates
 		/// <param name="yearOffset">The year offset.</param>
 		/// <param name="useLastDay">if set to <c>true</c>, the call preserves last day of the month, 2001/02/28 => 2004/02/29.</param>
 		/// <returns>Updated date.</returns>
+		[Pure]
 		public static DateTime AddYears(this DateTime date, int yearOffset, bool useLastDay)
 		{
 			var result = date.AddYears(yearOffset);
@@ -100,6 +109,7 @@ namespace CodeJam.Dates
 		/// <param name="month">The month.</param>
 		/// <param name="day">The day.</param>
 		/// <returns>Updated date.</returns>
+		[Pure]
 		public static DateTime WithMonthAndDay(this DateTime date, int month, int day) =>
 			WithMonthAndDay(date, month, day, false);
 
@@ -109,6 +119,7 @@ namespace CodeJam.Dates
 		/// <param name="day">The day.</param>
 		/// <param name="useLastDay">if set to <c>true</c>, the call preserves last day of the month, 2001/02/28 =&gt; 2004/02/29.</param>
 		/// <returns>Updated date.</returns>
+		[Pure]
 		public static DateTime WithMonthAndDay(this DateTime date, int month, int day, bool useLastDay) =>
 			date
 				.WithMonth(month, useLastDay)
@@ -119,6 +130,7 @@ namespace CodeJam.Dates
 		/// <param name="month">The month.</param>
 		/// <param name="year">The year.</param>
 		/// <returns>Updated date.</returns>
+		[Pure]
 		public static DateTime WithYearAndMonth(this DateTime date, int year, int month) =>
 			WithYearAndMonth(date, year, month, false);
 
@@ -128,6 +140,7 @@ namespace CodeJam.Dates
 		/// <param name="year">The year.</param>
 		/// <param name="useLastDay">if set to <c>true</c>, the call preserves last day of the month, 2001/02/28 => 2004/02/29.</param>
 		/// <returns>Updated date.</returns>
+		[Pure]
 		public static DateTime WithYearAndMonth(this DateTime date, int year, int month, bool useLastDay) =>
 			date
 				.WithYear(year, useLastDay)
@@ -138,31 +151,37 @@ namespace CodeJam.Dates
 		/// <summary>Returns previous day of the date.</summary>
 		/// <param name="date">The date.</param>
 		/// <returns>Previous date.</returns>
+		[Pure]
 		public static DateTime PrevDay(this DateTime date) => date.AddDays(-1);
 
 		/// <summary>Returns next day of the date.</summary>
 		/// <param name="date">The date.</param>
 		/// <returns>Next day.</returns>
+		[Pure]
 		public static DateTime NextDay(this DateTime date) => date.AddDays(1);
 
 		/// <summary>Returns previous month of the date.</summary>
 		/// <param name="date">The date.</param>
 		/// <returns>Previous month.</returns>
+		[Pure]
 		public static DateTime PrevMonth(this DateTime date) => date.AddMonths(-1);
 
 		/// <summary>Returns next month of the date.</summary>
 		/// <param name="date">The date.</param>
 		/// <returns>Next month.</returns>
+		[Pure]
 		public static DateTime NextMonth(this DateTime date) => date.AddMonths(1);
 
 		/// <summary>Returns previous year of the date.</summary>
 		/// <param name="date">The date.</param>
 		/// <returns>Previous year.</returns>
+		[Pure]
 		public static DateTime PrevYear(this DateTime date) => date.AddYears(-1);
 
 		/// <summary>Returns next year of the date.</summary>
 		/// <param name="date">The date.</param>
 		/// <returns>Next year.</returns>
+		[Pure]
 		public static DateTime NextYear(this DateTime date) => date.AddYears(1);
 		#endregion
 
@@ -170,11 +189,13 @@ namespace CodeJam.Dates
 		/// <summary>Returns the first day of month.</summary>
 		/// <param name="date">The date.</param>
 		/// <returns>The first day of month.</returns>
+		[Pure]
 		public static DateTime FirstDayOfMonth(this DateTime date) => Create(date, date.Year, date.Month, 1);
 
 		/// <summary>Returns the last day of month.</summary>
 		/// <param name="date">The date.</param>
 		/// <returns>The last day of month.</returns>
+		[Pure]
 		public static DateTime LastDayOfMonth(this DateTime date) => Create(
 			date,
 			date.Year,
@@ -184,11 +205,13 @@ namespace CodeJam.Dates
 		/// <summary>Returns the first day of year.</summary>
 		/// <param name="date">The date.</param>
 		/// <returns>The first day of year.</returns>
+		[Pure]
 		public static DateTime FirstDayOfYear(this DateTime date) => Create(date, date.Year, 1, 1);
 
 		/// <summary>Returns the last day of year.</summary>
 		/// <param name="date">The date.</param>
 		/// <returns>The last day of year.</returns>
+		[Pure]
 		public static DateTime LastDayOfYear(this DateTime date) => Create(date, date.Year, 12, 31);
 		#endregion
 	}
