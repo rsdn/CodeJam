@@ -127,6 +127,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OneOfTests.tt</DependentUpon>
     </Compile>
+    <Compile Include="Threading\AsyncLockTest.cs" />
     <Compile Include="Threading\InterlockedOperationsTests.generated.cs">
       <DependentUpon>InterlockedOperationsTests.tt</DependentUpon>
       <AutoGen>True</AutoGen>
