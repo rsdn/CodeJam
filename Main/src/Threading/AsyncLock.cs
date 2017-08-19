@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW40
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -80,3 +81,4 @@ namespace CodeJam.Threading
 		public Task<IDisposable> Acquire() => Acquire(-1);
 	}
 }
+#endif

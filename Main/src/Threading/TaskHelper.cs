@@ -106,6 +106,7 @@ namespace CodeJam.Threading
 		public static void WaitAll(this IEnumerable<Task> tasks) => Task.WaitAll(tasks.ToArray());
 		#endregion
 
+#if !FW40
 		#region WhenAll
 		/// <summary>
 		/// Creates a task that will complete when all of the <see cref="Task"/> objects in an enumerable collection
@@ -152,5 +153,6 @@ namespace CodeJam.Threading
 		[ItemNotNull]
 		public static Task<Task> WhenAny(this IEnumerable<Task> tasks) => Task.WhenAny(tasks);
 		#endregion
+#endif
 	}
 }
