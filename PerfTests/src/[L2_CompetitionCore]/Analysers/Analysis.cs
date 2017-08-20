@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 
-using BenchmarkDotNet.Analysers;
+using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
@@ -14,38 +13,28 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Analysers
 {
-	/// <summary>Helper class to store competition analysis results.</summary>
+	/// <summary>Helper class to trace competition analysis.</summary>
 	[PublicAPI]
 	public class Analysis : IMessageLogger
 	{
-		/// <summary>Initializes a new instance of the <see cref="Analysis"/> class.</summary>
-		/// <param name="id">The identifier.</param>
-		/// <param name="summary">The summary.</param>
-		public Analysis([NotNull] string id, [NotNull] Summary summary)
-			: this(id, summary, MessageSource.Analyser) { }
+		/// <summary>Initializes a new instance of the <see cref="Analysis" /> class.</summary>
+		/// <param name="config">The config.</param>
+		public Analysis([NotNull] IConfig config)
+			: this(config, MessageSource.Analyser) { }
 
 		/// <summary>Initializes a new instance of the <see cref="Analysis"/> class.</summary>
-		/// <param name="id">The identifier.</param>
-		/// <param name="summary">The summary.</param>
+		/// <param name="config">The config.</param>
 		/// <param name="messageSource">Source for the messages.</param>
-		public Analysis([NotNull] string id, [NotNull] Summary summary, MessageSource messageSource)
+		public Analysis([NotNull] IConfig config, MessageSource messageSource)
 		{
-			Code.NotNullNorEmpty(id, nameof(id));
-			Code.NotNull(summary, nameof(summary));
+			Code.NotNull(config, nameof(config));
 			DebugEnumCode.Defined(messageSource, nameof(messageSource));
 
-			Id = id;
-			Summary = summary;
-			RunState = CompetitionCore.RunState[summary];
+			RunState = CompetitionCore.RunState[config];
 			MessageSource = messageSource;
 		}
 
 		#region Properties
-		/// <summary>Gets the analysis identifier.</summary>
-		/// <value>The analysis identifier.</value>
-		[NotNull]
-		public string Id { get; }
-
 		/// <summary>Source for the messages.</summary>
 		/// <value>Source for the messages.</value>
 		public MessageSource MessageSource { get; }
@@ -55,11 +44,6 @@ namespace CodeJam.PerfTests.Analysers
 		[NotNull]
 		public CompetitionState RunState { get; }
 
-		/// <summary>The summary.</summary>
-		/// <value>The summary.</value>
-		[NotNull]
-		public Summary Summary { get; }
-
 		/// <summary>Config for the competition.</summary>
 		/// <value>The config.</value>
 		public ICompetitionConfig Config => RunState.Config;
@@ -67,16 +51,6 @@ namespace CodeJam.PerfTests.Analysers
 		/// <summary>Competition options.</summary>
 		/// <value>Competition options.</value>
 		public CompetitionOptions Options => RunState.Config.Options;
-
-		/// <summary>Analysis conclusions.</summary>
-		/// <value>Analysis conclusions.</value>
-		[NotNull]
-		public IReadOnlyCollection<Conclusion> Conclusions => ConclusionsList;
-
-		/// <summary>The conclusions list.</summary>
-		/// <value>The conclusions list.</value>
-		[NotNull]
-		protected List<Conclusion> ConclusionsList { get; } = new List<Conclusion>();
 
 		/// <summary>Analysis has no execution or setup errors so far and can be safely performed.</summary>
 		/// <value><c>true</c> if analysis has no errors; otherwise, <c>false</c>.</value>
@@ -87,41 +61,35 @@ namespace CodeJam.PerfTests.Analysers
 		/// <summary>Reports test error conclusion.</summary>
 		/// <param name="message">Message text.</param>
 		/// <param name="report">The report the message belongs to.</param>
-		public void AddTestErrorConclusion(
+		public virtual void AddTestErrorConclusion(
 			[NotNull] string message,
 			BenchmarkReport report = null)
 		{
 			this.WriteTestErrorMessage(message);
-			ConclusionsList.Add(Conclusion.CreateWarning(Id, message, report));
 		}
 
 		/// <summary>Reports test error conclusion.</summary>
 		/// <param name="target">Target the message applies for.</param>
 		/// <param name="message">Message text.</param>
 		/// <param name="report">The report the message belongs to.</param>
-		public void AddTestErrorConclusion(
+		public virtual void AddTestErrorConclusion(
 			[NotNull] Target target,
 			[NotNull] string message,
 			BenchmarkReport report = null)
 		{
 			this.WriteTestErrorMessage(target, message);
-			ConclusionsList.Add(
-				Conclusion.CreateWarning(
-					Id, $"Target {target.MethodDisplayInfo}. {message}",
-					report));
 		}
 
 		/// <summary>Reports analyser warning conclusion.</summary>
 		/// <param name="message">Message text.</param>
 		/// <param name="hint">Hint how to fix the warning.</param>
 		/// <param name="report">The report the message belongs to.</param>
-		public void AddWarningConclusion(
+		public virtual void AddWarningConclusion(
 			[NotNull] string message,
 			[NotNull] string hint,
 			BenchmarkReport report = null)
 		{
 			this.WriteWarningMessage(message, hint);
-			ConclusionsList.Add(Conclusion.CreateWarning(Id, message, report));
 		}
 
 		/// <summary>Reports analyser warning conclusion.</summary>
@@ -129,17 +97,13 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="message">Message text.</param>
 		/// <param name="hint">Hint how to fix the warning.</param>
 		/// <param name="report">The report the message belongs to.</param>
-		public void AddWarningConclusion(
+		public virtual void AddWarningConclusion(
 			[NotNull] Target target,
 			[NotNull] string message,
 			[NotNull] string hint,
 			BenchmarkReport report = null)
 		{
 			this.WriteWarningMessage(target, message, hint);
-			ConclusionsList.Add(
-				Conclusion.CreateWarning(
-					Id, $"Target {target.MethodDisplayInfo}. {message}",
-					report));
 		}
 		#endregion
 

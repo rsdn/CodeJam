@@ -14,30 +14,38 @@ namespace CodeJam.PerfTests.Running.Core
 	/// </summary>
 	internal class RunStateSlots : IValidator
 	{
-		private readonly ConcurrentDictionary<Type, object> _stateSlots = new ConcurrentDictionary<Type, object>();
+		private readonly ConcurrentDictionary<RunStateKey, object> _stateSlots = new ConcurrentDictionary<RunStateKey, object>();
 
 		/// <summary>
 		/// Value for the <see cref="RunState{T}"/>.
 		/// There can be only one value of each type stored as a run state so typed slot works as an singleton storage.
 		/// </summary>
-		/// <typeparam name="T">The type of the running state instance.</typeparam>
 		/// <returns>The value for the <see cref="RunState{T}"/>.</returns>
 		[NotNull]
-		public T GetSlot<T>() where T : class, new() =>
-			(T)_stateSlots.GetOrAdd(typeof(T), t => new T());
+		public object GetSlot(RunStateKey key, Func<object> valueFactory) => _stateSlots.GetOrAdd(key, _ => valueFactory());
 
-		#region IValidator stub implementation
+		#region IValidator implementation
 		/// <summary>Gets a value indicating whether warnings are treated as errors.</summary>
 		/// <value>
 		/// <c>true</c> if treats warnings as errors; otherwise, <c>false</c>.
 		/// </value>
 		bool IValidator.TreatsWarningsAsErrors => false;
 
-		/// <summary>Validates the specified benchmarks (stub implementation, does nothing).</summary>
+		/// <summary>Validates the specified benchmarks (cleans per-run slots).</summary>
 		/// <param name="validationParameters">The validation parameters.</param>
 		/// <returns>Enumerable of validation errors.</returns>
-		IEnumerable<ValidationError> IValidator.Validate(ValidationParameters validationParameters) =>
-			Enumerable.Empty<ValidationError>();
+		IEnumerable<ValidationError> IValidator.Validate(ValidationParameters validationParameters)
+		{
+			foreach (var pair in _stateSlots.ToArray())
+			{
+				if (pair.Key.ClearBeforeEachRun)
+				{
+					_stateSlots.TryRemove(pair.Key, out var _);
+				}
+			}
+
+			return Enumerable.Empty<ValidationError>();
+		}
 		#endregion
 	}
 }

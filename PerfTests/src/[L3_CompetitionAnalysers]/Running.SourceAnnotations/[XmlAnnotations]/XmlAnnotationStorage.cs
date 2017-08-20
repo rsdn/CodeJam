@@ -177,7 +177,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <c>true</c>, if metrics were saved successfully.
 		/// </returns>
 		protected override CompetitionTarget[] TrySaveAnnotationsCore(
-			IReadOnlyCollection<CompetitionTarget> competitionTargets, AnnotationContext annotationContext, Analysis analysis)
+			IReadOnlyCollection<CompetitionTarget> competitionTargets, AnnotationContext annotationContext, ResultAnalysis analysis)
 		{
 			var benchmarkType = analysis.RunState.BenchmarkType;
 			var targetKey = new AnnotationTargetKey(benchmarkType.TypeHandle);

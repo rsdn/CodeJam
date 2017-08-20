@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -66,6 +66,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Jetbrains.Annotations.cs">
+      <Link>Properties\Jetbrains.Annotations.cs</Link>
+    </Compile>
+    <Compile Include="IntegrationTests\CompetitionMetricAccuracyTests.cs" />
     <Compile Include="IntegrationTests\CompetitionAccuracyTests.cs" />
     <Compile Include="IntegrationTests\CompetitionAnnotateTests.cs" />
     <Compile Include="IntegrationTests\CompetitionConfigAttributeTests.cs" />
@@ -91,6 +95,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\src-Etw\CodeJam.PerfTests.Etw.csproj">
+      <Project>{0f9c7a70-2b31-4364-bd7f-ee5bb6f3e38d}</Project>
+      <Name>CodeJam.PerfTests.EtwMetrics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\src\CodeJam.PerfTests.csproj">
       <Project>{1D650545-A151-4211-8C29-C38A939403A6}</Project>
       <Name>CodeJam.PerfTests</Name>

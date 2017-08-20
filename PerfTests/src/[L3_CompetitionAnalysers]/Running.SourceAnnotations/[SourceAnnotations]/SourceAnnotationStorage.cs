@@ -88,10 +88,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <param name="annotationContext">The annotation context.</param>
 		/// <param name="analysis">State of the analysis.</param>
 		/// <returns>Saved targets, if any.</returns>
-		protected override CompetitionTarget[] TrySaveAnnotationsCore(
-			IReadOnlyCollection<CompetitionTarget> competitionTargets,
-			AnnotationContext annotationContext,
-			Analysis analysis)
+		protected override CompetitionTarget[] TrySaveAnnotationsCore(IReadOnlyCollection<CompetitionTarget> competitionTargets, AnnotationContext annotationContext, ResultAnalysis analysis)
 		{
 			var result = new List<CompetitionTarget>();
 			foreach (var targetToAnnotate in competitionTargets)

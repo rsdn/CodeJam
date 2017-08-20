@@ -7,20 +7,19 @@ namespace CodeJam.PerfTests
 	/// </summary>
 	public static class WellKnownMetrics
 	{
-		#region Known metrics
 		/// <summary>The relative time metric. </summary>
 		public static readonly MetricInfo<CompetitionBenchmarkAttribute> RelativeTime =
 			MetricInfo.PrimaryMetric;
 
-		/// <summary>The expected execution time metic based on 95th percentile.</summary>
+		/// <summary>The expected execution time metric based on 95th percentile.</summary>
 		public static readonly MetricInfo<ExpectedTimeAttribute> ExpectedTime =
 			MetricInfo.FromAttribute<ExpectedTimeAttribute>();
 
-		/// <summary>The mean execution time metic.</summary>
+		/// <summary>The mean execution time metric.</summary>
 		public static readonly MetricInfo<MeanTimeAttribute> MeanTime =
 			MetricInfo.FromAttribute<MeanTimeAttribute>();
 
-		/// <summary>GC allocations metic, in bytes.</summary>
+		/// <summary>GC allocations metric, in bytes.</summary>
 		public static readonly MetricInfo<GcAllocationsAttribute> GcAllocations =
 			MetricInfo.FromAttribute<GcAllocationsAttribute>();
 
@@ -35,7 +34,5 @@ namespace CodeJam.PerfTests
 		/// <summary>GC 2 count metric.</summary>
 		public static readonly MetricInfo<Gc2Attribute> Gc2 =
 			MetricInfo.FromAttribute<Gc2Attribute>();
-		#endregion
-
 	}
 }

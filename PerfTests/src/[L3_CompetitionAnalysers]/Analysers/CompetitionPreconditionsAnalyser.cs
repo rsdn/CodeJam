@@ -61,7 +61,7 @@ namespace CodeJam.PerfTests.Analysers
 		}
 
 		private static string[] GetTargetNames(
-			Analysis analysis,
+			ResultAnalysis analysis,
 			Func<BenchmarkReport, bool> benchmarkReportFilter) =>
 				analysis.Summary.GetSummaryOrderBenchmarks()
 					.Select(b => analysis.Summary[b])
@@ -82,7 +82,7 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		#region Check setup
-		private static bool CheckSetup(Analysis analysis)
+		private static bool CheckSetup(ResultAnalysis analysis)
 		{
 			var summary = analysis.Summary;
 
@@ -122,7 +122,7 @@ namespace CodeJam.PerfTests.Analysers
 			return analysis.SafeToContinue;
 		}
 
-		private static void CheckMembers(Analysis analysis)
+		private static void CheckMembers(ResultAnalysis analysis)
 		{
 			var summary = analysis.Summary;
 
@@ -212,7 +212,7 @@ namespace CodeJam.PerfTests.Analysers
 		#endregion
 
 		#region Check execution
-		private static void CheckExecution(Analysis analysis)
+		private static void CheckExecution(ResultAnalysis analysis)
 		{
 			var summary = analysis.Summary;
 
@@ -299,7 +299,7 @@ namespace CodeJam.PerfTests.Analysers
 		{
 			Code.NotNull(summary, nameof(summary));
 
-			var analysis = new Analysis(Id, summary);
+			var analysis = new ResultAnalysis(Id, summary);
 			var checkExecution = true;
 
 			if (analysis.RunState.IsFirstRun)

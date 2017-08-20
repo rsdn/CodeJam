@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\CodeJam.PerfTests.XML</DocumentationFile>
@@ -87,6 +87,7 @@
     <Compile Include="[L0_PortToBenchmerkDotNet]\Loggers\IFlushableLogger.cs" />
     <Compile Include="[L0_PortToBenchmerkDotNet]\Loggers\LazySynchronizedStreamLogger.cs" />
     <Compile Include="[L0_PortToBenchmerkDotNet]\Loggers\NamespaceDoc.cs" />
+    <Compile Include="[L2_CompetitionCore]\Analysers\ResultAnalysis.cs" />
     <Compile Include="[L2_CompetitionCore]\Analysers\ValidatorMessagesAnalyser.cs" />
     <Compile Include="[L2_CompetitionCore]\Loggers\RedirectLogger.cs" />
     <Compile Include="[L2_CompetitionCore]\Loggers\LoggerHelpers.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="[L2_CompetitionCore]\Running.Core\NamespaceDoc.cs" />
     <Compile Include="[L2_CompetitionCore]\Analysers\NamespaceDoc.cs" />
     <Compile Include="[L1_CompetitionApi]\Configs\CompetitionAnnotationMode.cs" />
+    <Compile Include="[L2_CompetitionCore]\Running.Core\[RunState]\RunStateKey.cs" />
     <Compile Include="[L2_CompetitionCore]\Running.Messages\IMessageLogger.cs" />
     <Compile Include="[L3_CompetitionAnalysers]\Running.SourceAnnotations\[AnnotationContext]\AnnotationContext.cs" />
     <Compile Include="[L3_CompetitionAnalysers]\Running.SourceAnnotations\[AnnotationContext]\AnnotationDocument.cs" />

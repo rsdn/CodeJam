@@ -10,6 +10,8 @@
 ## TODOs:
 
 ### TODO now:
+* check metric if no annotations (test succeed???)
+* check exception if stored metrics are invalid (min > max)
 * Cache metric values (same as annotation context but for parsing the anotations).
 * Output contains messages printed under `*** Warnings ***` section. Have no idea what to do with it.
   Need non-printable analyzer warnings :)

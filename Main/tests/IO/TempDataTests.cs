@@ -50,6 +50,25 @@ namespace CodeJam.IO
 				GC.Collect();
 				Assert.IsFalse(Directory.Exists(dir2Path), "Directory should NOT exist");
 			}
+
+			// test for SuppressDelete()
+			{
+				var dir2 = TempData.CreateDirectory();
+				var dir2Path = dir2.Path;
+				try
+				{
+					dir2.SuppressDelete();
+					Assert.AreNotEqual(dirPath, dir2Path, "Path should not match");
+					Assert.IsNotNull(dir2.Info, "Info is null");
+					Assert.IsTrue(dir2.Info.Exists, "Directory should exist");
+					dir2.Dispose();
+					Assert.IsTrue(Directory.Exists(dir2Path), "Directory should exist");
+				}
+				finally
+				{
+					Directory.Delete(dir2Path);
+				}
+			}
 		}
 
 		[Test]
@@ -134,6 +153,25 @@ namespace CodeJam.IO
 				GC.WaitForPendingFinalizers();
 				GC.Collect();
 				Assert.IsFalse(File.Exists(file2Path), "File should NOT exist");
+			}
+
+			// test for SuppressDelete()
+			{
+				var file2 = TempData.CreateFile();
+				var file2Path = file2.Path;
+				try
+				{
+					file2.SuppressDelete();
+					Assert.AreNotEqual(filePath, file2Path, "Path should not match");
+					Assert.IsNotNull(file2.Info, "Info is null");
+					Assert.IsTrue(file2.Info.Exists, "File should exist");
+					file2.Dispose();
+					Assert.IsTrue(File.Exists(file2Path), "File should exist");
+				}
+				finally
+				{
+					File.Delete(file2Path);
+				}
 			}
 		}
 

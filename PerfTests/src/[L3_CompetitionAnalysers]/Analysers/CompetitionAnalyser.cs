@@ -11,7 +11,6 @@ using CodeJam.Collections;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
-using CodeJam.PerfTests.Running.Messages;
 using CodeJam.PerfTests.Running.SourceAnnotations;
 using CodeJam.Reflection;
 using CodeJam.Strings;
@@ -150,7 +149,7 @@ namespace CodeJam.PerfTests.Analysers
 		private static bool OnCheckTarget(
 			[NotNull] CompetitionTarget competitionTarget,
 			[NotNull] Benchmark[] benchmarksForTarget,
-			[NotNull] Analysis analysis)
+			[NotNull] ResultAnalysis analysis)
 		{
 			var result = true;
 			foreach (var metricValue in competitionTarget.MetricValues)
@@ -166,7 +165,7 @@ namespace CodeJam.PerfTests.Analysers
 		private static bool CheckBenchmark(
 			Benchmark benchmark,
 			CompetitionMetricValue metricValue,
-			Analysis analysis)
+			ResultAnalysis analysis)
 		{
 			var summary = analysis.Summary;
 			var metric = metricValue.Metric;

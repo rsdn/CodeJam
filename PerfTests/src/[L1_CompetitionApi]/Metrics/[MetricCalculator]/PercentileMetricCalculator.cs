@@ -49,6 +49,10 @@ namespace CodeJam.PerfTests.Metrics
 			var minValue = statValues.Percentiles.Percentile(minPercentile);
 			var maxValue = statValues.Percentiles.Percentile(maxPercentile);
 
+			// NB: min may be less then max due to rounding errors
+			if (minValue > maxValue)
+				minValue = maxValue;
+
 			return MetricValueHelpers.CreateMetricRange(minValue, maxValue);
 		}
 

@@ -11,7 +11,7 @@ namespace CodeJam.PerfTests.Analysers
 {
 	/// <summary>Helper class to store <see cref="CompetitionAnalyser"/> results.</summary>
 	/// <seealso cref="CodeJam.PerfTests.Analysers.Analysis"/>
-	internal class CompetitionAnalysis : Analysis
+	internal class CompetitionAnalysis : ResultAnalysis
 	{
 		/// <summary>Run state slot for the competition targets.</summary>
 		private static readonly RunState<CompetitionTargets> _targetsSlot = new RunState<CompetitionTargets>();

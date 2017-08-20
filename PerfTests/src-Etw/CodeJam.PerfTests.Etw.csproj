@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{00E3881C-3D4D-4AE3-B1B4-CDCDC99F7E51}</ProjectGuid>
+    <ProjectGuid>{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CodeJam</RootNamespace>
-    <AssemblyName>CodeJam.Experimental-Tests.Performance</AssemblyName>
+    <RootNamespace>CodeJam.PerfTests</RootNamespace>
+    <AssemblyName>CodeJam.PerfTests.EtwMetrics</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\CodeJam.PerfTests.EtwMetrics.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\CodeJam.PerfTests.EtwMetrics.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -54,54 +56,52 @@
     <Reference Include="Microsoft.Win32.Registry, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Win32.Registry.4.3.0\lib\net46\Microsoft.Win32.Registry.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.7.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Management" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.ValueTuple.4.3.1\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IntervalTree\IntervalTreeCostin.cs" />
-    <Compile Include="IntervalTree\IntervalTree.cs" />
-    <Compile Include="IntervalTree\IntervalTreeTests.cs" />
-    <Compile Include="IntervalTree\IntervalTreePerfTest.cs" />
+    <Compile Include="..\..\Jetbrains.Annotations.cs">
+      <Link>Properties\Jetbrains.Annotations.cs</Link>
+    </Compile>
+    <Compile Include="ClrExceptionsAttribute.cs" />
+    <Compile Include="IoAttributes.cs" />
+    <Compile Include="Metrics.Etw\ClrExceptionsProvider.cs" />
+    <Compile Include="WellKnownEtwMetrics.cs" />
+    <Compile Include="Metrics.Etw\[Infrastructure]\DiagnoserTraceScopeEvent.cs" />
+    <Compile Include="Metrics.Etw\[Infrastructure]\DiagnoserEventSource.cs" />
+    <Compile Include="Metrics.Etw\[Infrastructure]\DiagnoserTimesProvider.cs" />
+    <Compile Include="Metrics.Etw\[Infrastructure]\EtwDiagnoser.cs" />
+    <Compile Include="Metrics.Etw\[Infrastructure]\EtwHelpers.cs" />
+    <Compile Include="Metrics.Etw\[Infrastructure]\EtwDiagnoserAnalysis.cs" />
+    <Compile Include="Metrics.Etw\FileIoMetricProvider.cs" />
+    <Compile Include="Metrics.Etw\[Infrastructure]\IEtwMetricValueProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ModifierAttributes.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="app.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj">
       <Project>{2f2046cc-fb47-4318-b335-5a82b04b6c40}</Project>
       <Name>CodeJam.Main</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Main\tests-performance\CodeJam.Main-Tests.Performance.csproj">
-      <Project>{8edf4429-251a-416d-bb68-93f227191bcf}</Project>
-      <Name>CodeJam.Main-Tests.Performance</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\PerfTests\src-NUnit\CodeJam.PerfTests.NUnit.csproj">
-      <Project>{8abf1a06-4643-49d6-a546-b7473db10102}</Project>
-      <Name>CodeJam.PerfTests.NUnit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\PerfTests\src\CodeJam.PerfTests.csproj">
+    <ProjectReference Include="..\src\CodeJam.PerfTests.csproj">
       <Project>{1d650545-a151-4211-8c29-c38a939403a6}</Project>
       <Name>CodeJam.PerfTests</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\src\CodeJam.Experimental.csproj">
-      <Project>{7bd77da2-a731-400c-a88e-215fc592e6e3}</Project>
-      <Name>CodeJam.Experimental</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

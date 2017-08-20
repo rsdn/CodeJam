@@ -32,8 +32,7 @@ namespace CodeJam.PerfTests
 
 	/// <summary>
 	/// Gc allocations metric attribute.
-	/// As perftest may be run in-process, noise allocations
-	/// (total bytes allocated less than minimum gc allocation quantum) are reported as <c>0</c>
+	/// NOTE: Noise allocations (total bytes allocated less than minimum gc allocation quantum) are reported as <c>0</c>
 	/// </summary>
 	[MetricInfo(GcMetricValuesProvider.Category, MetricSingleValueMode.BothMinAndMax)]
 	public class GcAllocationsAttribute : MetricAttributeBase,

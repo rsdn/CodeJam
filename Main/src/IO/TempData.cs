@@ -28,6 +28,7 @@ namespace CodeJam.IO
 				System.IO.Path.GetFullPath(path);
 
 			private volatile string _path;
+			private volatile bool _keepOnDispose;
 
 			/// <summary>Assertion on object dispose</summary>
 			protected void AssertNotDisposed() => Code.DisposedIfNull(_path, this);
@@ -53,6 +54,9 @@ namespace CodeJam.IO
 					return _path;
 				}
 			}
+
+			/// <summary>Suppresses item deletion on dispose.</summary>
+			public void SuppressDelete() => _keepOnDispose = true;
 
 			/// <summary>Finalize instance</summary>
 			~TempBase()
@@ -81,7 +85,7 @@ namespace CodeJam.IO
 #pragma warning disable 420 // Interlocked is safe to call on volatile fields.
 				var path = Interlocked.Exchange(ref _path, null);
 #pragma warning restore 420
-				if (path == null)
+				if (path == null || _keepOnDispose)
 					return;
 
 				DisposePath(path, disposing);
@@ -225,7 +229,13 @@ namespace CodeJam.IO
 		/// <summary>Returns a random name for a temp file or directory.</summary>
 		/// <returns>A random name</returns>
 		/// <remarks>The resulting name is a local name (does not include a base path)</remarks>
-		public static string GetTempName() => Guid.NewGuid() + ".tmp";
+		public static string GetTempName() => GetTempName(null);
+
+		/// <summary>Returns a random name for a temp file or directory.</summary>
+		/// <param name="extension">The extension for thew filename.</param>
+		/// <returns>A random name</returns>
+		/// <remarks>The resulting name is a local name (does not include a base path)</remarks>
+		public static string GetTempName([CanBeNull] string extension) => Guid.NewGuid() + (extension ?? ".tmp");
 
 		/// <summary>Creates temp directory and returns <see cref="IDisposable"/> to free it.</summary>
 		/// <returns>Temp directory to be freed on dispose.</returns>

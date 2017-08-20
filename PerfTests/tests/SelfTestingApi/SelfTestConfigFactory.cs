@@ -80,8 +80,25 @@ namespace CodeJam.PerfTests
 				Run =
 				{
 					LaunchCount = 1,
-					WarmupCount = 200,
-					TargetCount = 500
+					WarmupCount = 256,
+					TargetCount = 512
+				}
+			});
+	}
+	internal sealed class CompetitionHighAccuracyBurstModeModifier : ICompetitionModifier
+	{
+		/// <summary>Updates competition config.</summary>
+		/// <param name="competitionConfig">The competition config.</param>
+		public void Modify(ManualCompetitionConfig competitionConfig) => competitionConfig.ApplyModifier(
+			new Job
+			{
+				Run =
+				{
+					LaunchCount = 1,
+					WarmupCount = 10,
+					TargetCount = 10,
+					InvocationCount = 1,
+					UnrollFactor = 1
 				}
 			});
 	}
