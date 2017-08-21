@@ -177,6 +177,7 @@ namespace CodeJam.Metadata
 		{
 			MetaTypeInfo t;
 
+			Code.AssertState(type.FullName != null, "type.FullName != null");
 			if (_types.TryGetValue(type.FullName, out t) || _types.TryGetValue(type.Name, out t))
 				return t.GetAttribute(typeof(T)).Select(a => (T) a.MakeAttribute(typeof(T))).ToArray();
 
@@ -204,6 +205,7 @@ namespace CodeJam.Metadata
 			MetaTypeInfo t;
 
 			DebugCode.AssertState(type != null, "type != null");
+			DebugCode.AssertState(type.FullName != null, "type.FullName != null");
 			if (_types.TryGetValue(type.FullName, out t) || _types.TryGetValue(type.Name, out t))
 			{
 				MetaMemberInfo m;

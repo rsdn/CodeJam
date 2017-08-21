@@ -64,7 +64,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param>
 		/// <param name="item">The object to insert. The value can be null for reference types.</param>
-		protected override void InsertItem(int index, [NotNull] TItem item)
+		protected override void InsertItem(int index, TItem item)
 		{
 			Code.NotNull(item, nameof(item));
 
@@ -96,7 +96,7 @@ namespace CodeJam.Collections
 		/// <param name="item">
 		/// The new value for the element at the specified index. The value can be null for reference types.
 		/// </param>
-		protected override void SetItem(int index, [NotNull] TItem item)
+		protected override void SetItem(int index, TItem item)
 		{
 			Code.NotNull(item, nameof(item));
 			Code.AssertArgument(GetOwner(item) == null, nameof(item), "Cannot add an item as it is mapped to another owner.");
@@ -133,7 +133,7 @@ namespace CodeJam.Collections
 		/// <param name="item">The element from which to extract the key.</param>
 		/// <returns>The key for the specified element.</returns>
 		[NotNull]
-		protected override sealed TKey GetKeyForItem([NotNull] TItem item)
+		protected override sealed TKey GetKeyForItem(TItem item)
 		{
 			Code.NotNull(item, nameof(item));
 
@@ -187,7 +187,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param>
 		/// <param name="item">The object to insert. The value can be null for reference types.</param>
-		protected override void InsertItem(int index, [NotNull] TItem item)
+		protected override void InsertItem(int index, TItem item)
 		{
 			Code.NotNull(item, nameof(item));
 
@@ -219,7 +219,7 @@ namespace CodeJam.Collections
 		/// <param name="item">
 		/// The new value for the element at the specified index. The value can be null for reference types.
 		/// </param>
-		protected override void SetItem(int index, [NotNull] TItem item)
+		protected override void SetItem(int index, TItem item)
 		{
 			Code.NotNull(item, nameof(item));
 			Code.AssertArgument(GetOwner(item) == null, nameof(item), "Cannot add an item as it is mapped to another owner.");

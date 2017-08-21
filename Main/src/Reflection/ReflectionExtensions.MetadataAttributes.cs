@@ -21,7 +21,7 @@ namespace CodeJam.Reflection
 			public bool Equals(Type x, Type y) =>
 				x == null ? y == null : y != null && x.TypeHandle.Equals(y.TypeHandle);
 
-			public int GetHashCode(Type obj) => obj?.TypeHandle.GetHashCode() ?? 0;
+			public int GetHashCode(Type obj) => obj.TypeHandle.GetHashCode();
 		}
 
 		private sealed class MethodMethodHandleComparer : IEqualityComparer<MethodInfo>
@@ -29,7 +29,7 @@ namespace CodeJam.Reflection
 			public bool Equals(MethodInfo x, MethodInfo y) =>
 				x == null ? y == null : y != null && x.MethodHandle.Equals(y.MethodHandle);
 
-			public int GetHashCode(MethodInfo obj) => obj?.MethodHandle.GetHashCode() ?? 0;
+			public int GetHashCode(MethodInfo obj) => obj.MethodHandle.GetHashCode();
 		}
 
 		// DONTTOUCH: Direct compare may result in false negative.
@@ -134,13 +134,14 @@ namespace CodeJam.Reflection
 		{
 			Code.NotNull(attributeProvider, nameof(attributeProvider));
 
-			if (attributeProvider is Type type)
-				return type.GetAttributesForType<TAttribute>(thisLevelOnly);
-
-			if (attributeProvider is MemberInfo member)
-				return member.GetAttributesForMember<TAttribute>(thisLevelOnly);
-
-			return GetAttributesFromCandidates<TAttribute>(true, attributeProvider);
+			switch (attributeProvider) {
+				case Type type:
+					return type.GetAttributesForType<TAttribute>(thisLevelOnly);
+				case MemberInfo member:
+					return member.GetAttributesForMember<TAttribute>(thisLevelOnly);
+				default:
+					return GetAttributesFromCandidates<TAttribute>(true, attributeProvider);
+			}
 		}
 
 		private static IEnumerable<TAttribute> GetAttributesForType<TAttribute>(
@@ -223,17 +224,18 @@ namespace CodeJam.Reflection
 
 		private static bool IsOverriden(MemberInfo member)
 		{
-			if (member is Type)
-				throw CodeExceptions.Argument(nameof(member), "Member should not be a type.");
-
-			if (member is MethodInfo method)
-				return IsOverriden(method);
-			if (member is PropertyInfo property)
-				return IsOverriden(property.GetAccessors(true)[0]);
-			if (member is EventInfo eventInfo)
-				return IsOverriden(eventInfo.GetAddMethod(true));
-
-			return false;
+			switch (member) {
+				case Type _:
+					throw CodeExceptions.Argument(nameof(member), "Member should not be a type.");
+				case MethodInfo method:
+					return IsOverriden(method);
+				case PropertyInfo property:
+					return IsOverriden(property.GetAccessors(true)[0]);
+				case EventInfo eventInfo:
+					return IsOverriden(eventInfo.GetAddMethod(true));
+				default:
+					return false;
+			}
 		}
 
 		private static bool IsOverriden([CanBeNull] MethodInfo method) =>
@@ -253,14 +255,16 @@ namespace CodeJam.Reflection
 		private static MemberInfo[] GetOverrideChainDispatch(MemberInfo member)
 		{
 			// TODO: Use GetParentDefinition after https://github.com/dotnet/coreclr/issues/7135
-			if (member is MethodInfo method)
-				return GetOverrideChainCore(method, m => m, t => t.GetMethods(_thisTypeMembers));
-			if (member is PropertyInfo property)
-				return GetOverrideChainCore(property, p => p.GetAccessors(true)[0], t => t.GetProperties(_thisTypeMembers));
-			if (member is EventInfo eventInfo)
-				return GetOverrideChainCore(eventInfo, e => e.GetAddMethod(true), t => t.GetEvents(_thisTypeMembers));
-
-			return new[] { member };
+			switch (member) {
+				case MethodInfo method:
+					return GetOverrideChainCore(method, m => m, t => t.GetMethods(_thisTypeMembers));
+				case PropertyInfo property:
+					return GetOverrideChainCore(property, p => p.GetAccessors(true)[0], t => t.GetProperties(_thisTypeMembers));
+				case EventInfo eventInfo:
+					return GetOverrideChainCore(eventInfo, e => e.GetAddMethod(true), t => t.GetEvents(_thisTypeMembers));
+				default:
+					return new[] { member };
+			}
 		}
 
 		private static MemberInfo[] GetOverrideChainCore<TMember>(

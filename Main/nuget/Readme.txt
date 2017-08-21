@@ -1,14 +1,28 @@
-CodeJam 1.4.0-beta2 Release Notes
+CodeJam 1.4.0-rc1 Release Notes
 ---------------------------------
 
+What's new in 1.4.0-rc1
+-------------------------
+* PathHelpers + IoCode assertions
+* EnumHelper.GetDisplayName/Description/both
+* EnumHelper.IsDefined(string)
+* ToLookupDictionary() helper to fill lookup dictionaries
+* EnumValues class that stores enum value metadata
+* DateTimeExtensions fixes
+* Task.WaitAll/Any and WhenAll/Any (FW4.5+ only) infix helpers
+* AsyncLock class (FW4.5+ only)
+* TempData: SuppressDelete() method, overload for GetTempName() that accepts desired file extension
+* ValueTypes dependency update
+* Refactoring, fixes and code cleanup
+
 What's new in 1.4.0-beta2
--------------------
+-------------------------
 * .NET FW 4.7 support (remove dependency from System.ValueTuple package)
 * System.Uri assertions and helper
 * Refactoring and code cleanup
 
 What's new in 1.4.0-beta1
--------------------
+-------------------------
 * IsDebugAssembly moved from ReflectionExtension to AssemblyExtension
 * ReflectionExtension.GetModulePath method added
 * Refactoring and code cleanup

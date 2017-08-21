@@ -267,7 +267,7 @@ namespace CodeJam.Mapping
 			if (toType.IsGenericType && !toType.IsGenericTypeDefinition)
 			{
 				var toDefinition = toType.GetGenericTypeDefinition();
-
+				DebugCode.BugIf(toDefinition == null, "toDefinition == null");
 				if (toDefinition == typeof(List<>) || typeof(List<>).IsSubClass(toDefinition))
 					return Convert(
 						ToList(this, fromExpression, fromItemType, toItemType), toType);

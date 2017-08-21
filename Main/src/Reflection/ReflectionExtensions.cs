@@ -338,6 +338,7 @@ namespace CodeJam.Reflection
 				if (type.IsGenericType && !type.IsGenericTypeDefinition)
 				{
 					var definition = type.GetGenericTypeDefinition();
+					DebugCode.BugIf(definition == null, "definition == null");
 					if (definition == check || definition.IsSubClass(check))
 						return true;
 				}

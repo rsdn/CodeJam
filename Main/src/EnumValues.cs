@@ -19,6 +19,7 @@ namespace CodeJam
 	/// <summary>
 	/// Holds information about enum members
 	/// </summary>
+	[PublicAPI]
 	public class EnumValues : IReadOnlyCollection<EnumValue>
 	{
 		private static EnumValue[] GetValues(Type enumType)

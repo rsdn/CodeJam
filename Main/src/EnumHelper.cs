@@ -118,7 +118,7 @@ namespace CodeJam
 		public static TEnum Parse<TEnum>(string name, bool ignoreCase = false)
 			where TEnum : struct, IComparable, IFormattable, IConvertible
 		{
-			if (Holder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out TEnum result))
+			if (Holder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out var result))
 				return result;
 			return (TEnum)Enum.Parse(typeof(TEnum), name, ignoreCase);
 		}

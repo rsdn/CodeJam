@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>CodeJam.Blocks</id>
-		<version>1.3.2</version>
+		<version>1.4.0-rc1</version>
 		<title>CodeJam.Blocks Library</title>
 		<authors>Andrew Koryavchenko, ig-sinicyn, Igor Tkachev, rameel</authors>
 		<licenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</licenseUrl>
@@ -13,7 +13,7 @@
 		<copyright>RSDN, 2017</copyright>
 		<tags>mapper services csv</tags>
 		<dependencies>
-			<dependency id="CodeJam" version="1.3.0" />
+			<dependency id="CodeJam" version="1.4.0-rc1" />
 		</dependencies>
 	</metadata>
 	<files>

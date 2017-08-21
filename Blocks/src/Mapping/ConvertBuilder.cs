@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -158,14 +159,20 @@ namespace CodeJam.Mapping
 			if (from == typeof(string) && to.IsEnum)
 			{
 				var values = Enum.GetValues(to);
-				var names  = Enum.GetNames (to);
+				var names  = Enum.GetNames(to);
 
 				var dic = new Dictionary<string,object>();
 
 				for (var i = 0; i < values.Length; i++)
 				{
 					var val = values.GetValue(i);
-					var lv  = (long)Convert.ChangeType(val, typeof(long), Thread.CurrentThread.CurrentCulture);
+					var lv  =
+						// enum values always can be casted to long
+						// ReSharper disable once PossibleNullReferenceException
+						(long)Convert.ChangeType(
+							val,
+							typeof(long),
+							CultureInfo.CurrentCulture);
 
 					dic[lv.ToString()] = val;
 

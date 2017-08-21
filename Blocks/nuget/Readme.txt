@@ -1,8 +1,13 @@
-CodeJam.Blocks 1.3.2 Release Notes
+CodeJam.Blocks 1.4.0-rc1 Release Notes
 ----------------------------------------
 
-What's new in 1.3.2
+What's new in 1.4.0-rc1
 -------------------------
+* Update dependencies in nuget package
+* Code cleanup
+
+What's new in 1.3.2
+-------------------
 * .NET Framework 4.7 support
 * Code cleanup
 
