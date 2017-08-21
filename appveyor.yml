@@ -27,7 +27,7 @@ nuget:
 
 before_build:
 # Force install System.ValueTuple 4.3.1 for FWs 4.0-4.6 build, because 4.4.0 is incompatible with older BCLs
-- cmd: nuget install System.ValueTuple -Version 4.3.1
+- cmd: nuget install System.ValueTuple -Version 4.3.1 -OutputDirectory packages
 - cmd: nuget restore CodeJam.sln
 
 build:
