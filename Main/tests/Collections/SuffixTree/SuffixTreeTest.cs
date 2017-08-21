@@ -16,6 +16,9 @@ namespace CodeJam.Collections
 			=> new string(Enumerable.Range(0, length).Select(_ => _alphabet[_rnd.Next(0, _alphabet.Length)]).ToArray());
 
 		[Test]
+#if !DEFAULT_PLATFORM
+		[Ignore("Skipped as platform independent & takes too long 2 run")]
+#endif
 		public void Test14RandomSingle()
 		{
 			const int length = 500;
@@ -33,6 +36,9 @@ namespace CodeJam.Collections
 		}
 
 		[Test]
+#if !DEFAULT_PLATFORM
+		[Ignore("Skipped as platform independent & takes too long 2 run")]
+#endif
 		public void Test15RandomMultiple()
 		{
 			const int length = 100;
@@ -166,7 +172,7 @@ namespace CodeJam.Collections
 				{
 					var s = strings[i];
 					var pos = 0;
-					for (;;)
+					for (; ; )
 					{
 						pos = s.IndexOf(prefix, pos);
 						if (pos == -1)

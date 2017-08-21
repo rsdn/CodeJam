@@ -1,4 +1,4 @@
-﻿#if FW40
+﻿#if SUPPORTS_NET40
 
 using JetBrains.Annotations;
 

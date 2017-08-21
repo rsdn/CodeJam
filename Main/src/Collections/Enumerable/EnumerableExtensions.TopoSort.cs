@@ -113,7 +113,7 @@ namespace CodeJam.Collections
 				[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
 				[NotNull] IEqualityComparer<T> equalityComparer) =>
 			GroupTopoSort(source, dependsOnGetter, equalityComparer)
-#if FW35
+#if SUPPORTS_NET35
 				.Select(g => g.AsEnumerable())
 #endif
 				.SelectMany();
@@ -132,7 +132,7 @@ namespace CodeJam.Collections
 				[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
 				[NotNull] IEqualityComparer<T> equalityComparer) =>
 			GroupTopoSort(source, dependsOnGetter, equalityComparer)
-#if FW35
+#if SUPPORTS_NET35
 				.Select(g => g.AsEnumerable())
 #endif
 				.SelectMany();

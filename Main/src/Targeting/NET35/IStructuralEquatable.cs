@@ -1,4 +1,4 @@
-﻿#if FW35
+﻿#if SUPPORTS_NET35
 // BASEDON: https://github.com/dotnet/corert/blob/4376c55dd018d8b7b9fed82449728711231ba266/src/System.Private.CoreLib/src/System/Collections/IStructuralEquatable.cs
 
 // Licensed to the .NET Foundation under one or more agreements.

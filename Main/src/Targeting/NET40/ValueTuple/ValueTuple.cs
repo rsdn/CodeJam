@@ -1,4 +1,4 @@
-﻿#if FW40
+﻿#if SUPPORTS_NET40
 // BASEDON: https://github.com/dotnet/corefx/blob/master/src/System.ValueTuple/src/System/ValueTuple/ValueTuple.cs
 
 // Licensed to the .NET Foundation under one or more agreements.

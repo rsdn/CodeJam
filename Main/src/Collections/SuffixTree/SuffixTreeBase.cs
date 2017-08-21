@@ -328,14 +328,11 @@ namespace CodeJam.Collections
 		{
 			var sb = new StringBuilder();
 			var currentIndex = RootNodeIndex;
-			var stack =
-				new
-#if FW40
-				ListWithReadOnly
+#if SUPPORTS_NET40
+			var stack = new ListWithReadOnly<(int Start, int Length)>();
 #else
-					List
+			var stack = new List<(int Start, int Length)>();
 #endif
-					<(int Start, int Length)>();
 			for (;;)
 			{
 				PrintNodeWithPath(sb, currentIndex, stack);

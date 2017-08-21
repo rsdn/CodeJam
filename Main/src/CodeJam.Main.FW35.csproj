@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;FW461;FW46;FW452;FW451;FW45;FW40;FW35</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SUPPORTS_NET461;SUPPORTS_NET46;SUPPORTS_NET452;SUPPORTS_NET451;SUPPORTS_NET45;SUPPORTS_NET40;SUPPORTS_NET35</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -28,7 +28,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;FW461;FW46;FW452;FW451;FW45;FW40;FW35</DefineConstants>
+    <DefineConstants>TRACE;SUPPORTS_NET461;SUPPORTS_NET46;SUPPORTS_NET452;SUPPORTS_NET451;SUPPORTS_NET45;SUPPORTS_NET40;SUPPORTS_NET35</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -54,46 +54,46 @@
     <Compile Include="..\..\Jetbrains.Annotations.cs">
       <Link>Jetbrains.Annotations.cs</Link>
     </Compile>
-    <Compile Include="Algorithms\EqualRange.IComparable.cs" />
     <Compile Include="Algorithms\EqualRange.Comparer.cs" />
-    <Compile Include="Algorithms\HashCode.cs" />
     <Compile Include="Algorithms\EqualRange.generated.cs">
       <DependentUpon>EqualRange.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Algorithms\Memoize.cs" />
-    <Compile Include="Algorithms\Memoize.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Memoize.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Algorithms\UpperBound.generated.cs">
-      <DependentUpon>UpperBound.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <Compile Include="Algorithms\EqualRange.IComparable.cs" />
+    <Compile Include="Algorithms\HashCode.cs" />
+    <Compile Include="Algorithms\LowerBound.Comparer.cs" />
     <Compile Include="Algorithms\LowerBound.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LowerBound.tt</DependentUpon>
     </Compile>
     <Compile Include="Algorithms\LowerBound.IComparable.cs" />
+    <Compile Include="Algorithms\Memoize.cs" />
+    <Compile Include="Algorithms\Memoize.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Memoize.tt</DependentUpon>
+    </Compile>
     <Compile Include="Algorithms\PartitionPoint.cs" />
-    <Compile Include="Algorithms\LowerBound.Comparer.cs" />
     <Compile Include="Algorithms\Swap.cs" />
-    <Compile Include="Algorithms\UpperBound.IComparable.cs" />
     <Compile Include="Algorithms\UpperBound.Comparer.cs" />
+    <Compile Include="Algorithms\UpperBound.generated.cs">
+      <DependentUpon>UpperBound.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Algorithms\UpperBound.IComparable.cs" />
     <Compile Include="Arithmetic\NamespaceDoc.cs" />
+    <Compile Include="Arithmetic\Operators.cs" />
     <Compile Include="Arithmetic\Operators.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Operators.tt</DependentUpon>
     </Compile>
     <Compile Include="Arithmetic\OperatorsFactory.cs" />
-    <Compile Include="Arithmetic\Operators.cs" />
-    <Compile Include="Assertions\Code.NonDebug.cs" />
     <Compile Include="Assertions\Code.cs" />
+    <Compile Include="Assertions\Code.NonDebug.cs" />
     <Compile Include="Assertions\CodeExceptions.cs" />
     <Compile Include="Assertions\DebugCode.cs" />
     <Compile Include="Assertions\DebugCode.generated.cs">
@@ -101,34 +101,66 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DebugCode.tt</DependentUpon>
     </Compile>
+    <Compile Include="Collections\Array.cs" />
+    <Compile Include="Collections\ArrayExtensions.cs" />
+    <Compile Include="Collections\ArrayExtensions.generated.cs">
+      <DependentUpon>ArrayExtensions.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Collections\ArrayExtensions.Infix.cs" />
+    <Compile Include="Collections\CollectionExtensions.cs" />
     <Compile Include="Collections\ComparerBuilder.cs" />
+    <Compile Include="Collections\DictionaryExtensions.cs" />
     <Compile Include="Collections\DictionaryExtensions.GetValueOrDefault.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DictionaryExtensions.GetValueOrDefault.tt</DependentUpon>
     </Compile>
     <Compile Include="Collections\EnumerableExtensions.AggregateOrDefault.cs" />
+    <Compile Include="Collections\EnumerableExtensions.cs" />
+    <Compile Include="Collections\EnumerableExtensions.Flatten.cs" />
     <Compile Include="Collections\EnumerableExtensions.Index.cs" />
-    <Compile Include="Collections\IndexedItem.cs" />
+    <Compile Include="Collections\EnumerableExtensions.MinMaxBy.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnumerableExtensions.MinMaxBy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Collections\EnumerableExtensions.Page.cs" />
     <Compile Include="Collections\EnumerableExtensions.Slice.cs" />
+    <Compile Include="Collections\EnumerableExtensions.Split.cs" />
+    <Compile Include="Collections\EnumerableExtensions.TakeLast.cs" />
+    <Compile Include="Collections\EnumerableExtensions.TopoSort.cs" />
+    <Compile Include="Collections\ILazyDictionary.cs" />
+    <Compile Include="Collections\IndexedItem.cs" />
+    <Compile Include="Collections\KeyEqualityComparer.cs" />
+    <Compile Include="Collections\KeyEqualityComparer`1.cs" />
+    <Compile Include="Collections\LazyDictionary.cs" />
+    <Compile Include="Collections\LazyDictionary`2.cs" />
     <Compile Include="Collections\NamespaceDoc.cs" />
     <Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
     <Compile Include="Collections\QueryableExtensions.cs" />
+    <Compile Include="Disposable.cs" />
+    <Compile Include="DisposableExtensions.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="ExceptionExtensions.cs" />
-    <Compile Include="Fn.generated.cs">
-      <DependentUpon>Fn.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Expressions\ExpressionExtensions.cs" />
     <Compile Include="Expressions\Expr.generated.cs">
       <DependentUpon>ExpressionHelper.Func.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Expr.tt</DependentUpon>
     </Compile>
+    <Compile Include="Expressions\ExpressionExtensions.cs" />
+    <Compile Include="Expressions\ExpressionExtensions.GetMembers.cs" />
+    <Compile Include="Fn.cs" />
+    <Compile Include="Fn.generated.cs">
+      <DependentUpon>Fn.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Fn`1.cs" />
+    <Compile Include="IO\TempData.cs" />
+    <Compile Include="Lazy.cs" />
     <Compile Include="Mapping\CodeJamConvertException.cs" />
     <Compile Include="Mapping\CodeJamMappingException.cs" />
     <Compile Include="Mapping\ConvertBuilder.cs" />
@@ -139,10 +171,10 @@
     <Compile Include="Mapping\DefaultValue.cs" />
     <Compile Include="Mapping\DefaultValueExpression.cs" />
     <Compile Include="Mapping\DefaultValueT.cs" />
+    <Compile Include="Mapping\ExpressionBuilder.cs" />
     <Compile Include="Mapping\IGenericInfoProvider.cs" />
     <Compile Include="Mapping\IMapperBuilder.cs" />
     <Compile Include="Mapping\Map.cs" />
-    <Compile Include="Mapping\ExpressionBuilder.cs" />
     <Compile Include="Mapping\Mapper.cs" />
     <Compile Include="Mapping\MapperBuilder.cs" />
     <Compile Include="Mapping\MappingSchema.cs" />
@@ -158,35 +190,50 @@
     <Compile Include="Metadata\MetaMemberInfo.cs" />
     <Compile Include="Metadata\MetaTypeInfo.cs" />
     <Compile Include="Metadata\XmlAttributeReader.cs" />
-    <Compile Include="Lazy.cs" />
     <Compile Include="NullableHelper.cs" />
     <Compile Include="Objects.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\AssemblyExtensions.cs" />
+    <Compile Include="Reflection\InfoOf.cs" />
+    <Compile Include="Reflection\InfoOf`1.cs" />
     <Compile Include="Reflection\MemberAccessor.cs" />
     <Compile Include="Reflection\NamespaceDoc.cs" />
+    <Compile Include="Reflection\ParamInfo.cs" />
+    <Compile Include="Reflection\ReflectionEnumHelper.cs" />
+    <Compile Include="Reflection\ReflectionExtensions.cs" />
     <Compile Include="Reflection\TypeAccessor.cs" />
     <Compile Include="Reflection\TypeAccessorT.cs" />
+    <Compile Include="Services\IServicePublisher.cs" />
     <Compile Include="Services\NamespaceDoc.cs" />
-    <Compile Include="Strings\NamespaceDoc.cs" />
+    <Compile Include="Services\ServiceContainer.cs" />
+    <Compile Include="Services\ServiceProviderHelper.cs" />
+    <Compile Include="Strings\CharExtensions.cs" />
     <Compile Include="Strings\CharExtensions.Infix.generated.cs">
       <DependentUpon>CharExtensions.Infix.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Strings\NamespaceDoc.cs" />
+    <Compile Include="Strings\NaturalOrderStringComparer.cs" />
     <Compile Include="Strings\StringExtensions.CharInfix.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StringExtensions.CharInfix.tt</DependentUpon>
     </Compile>
+    <Compile Include="Strings\StringExtensions.cs" />
+    <Compile Include="Strings\StringExtensions.Infix.cs" />
+    <Compile Include="Strings\StringOrigin.cs" />
+    <Compile Include="Structures\IValueTuple.cs" />
     <Compile Include="Structures\Option\IOption.cs" />
     <Compile Include="Structures\Option\Option.cs" />
-    <Compile Include="Structures\Option\ValueOption.cs" />
-    <Compile Include="Reflection\InfoOf`1.cs" />
-    <Compile Include="Reflection\ParamInfo.cs" />
-    <Compile Include="Services\IServicePublisher.cs" />
-    <Compile Include="Services\ServiceContainer.cs" />
-    <Compile Include="Services\ServiceProviderHelper.cs" />
-    <Compile Include="Structures\IValueTuple.cs" />
     <Compile Include="Structures\Option\Option`1.cs" />
+    <Compile Include="Structures\Option\ValueOption.cs" />
+    <Compile Include="Structures\Option\ValueOption`1.cs" />
+    <Compile Include="Structures\ValueTuple.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValueTuple.tt</DependentUpon>
+    </Compile>
     <Compile Include="TableData\CsvFormat.cs" />
     <Compile Include="TableData\DataLine.cs" />
     <Compile Include="TableData\FixedWidthFormat.cs" />
@@ -204,58 +251,11 @@
     <Compile Include="Targeting\FW35\StringTargeting.cs" />
     <Compile Include="Targeting\FW35\Volatile.cs" />
     <Compile Include="Targeting\FW40\DictionaryWithReadOnly.cs" />
-    <Compile Include="Targeting\PlatformDependent.cs" />
-    <Compile Include="Collections\ArrayExtensions.cs" />
-    <Compile Include="Collections\ArrayExtensions.generated.cs">
-      <DependentUpon>ArrayExtensions.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Collections\EnumerableExtensions.Flatten.cs" />
-    <Compile Include="Collections\EnumerableExtensions.TakeLast.cs" />
-    <Compile Include="Collections\LazyDictionary.cs" />
-    <Compile Include="Collections\LazyDictionary`2.cs" />
-    <Compile Include="Collections\EnumerableExtensions.Split.cs" />
-    <Compile Include="Collections\KeyEqualityComparer.cs" />
-    <Compile Include="Collections\EnumerableExtensions.MinMaxBy.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EnumerableExtensions.MinMaxBy.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Collections\ILazyDictionary.cs" />
     <Compile Include="Targeting\FW40\IReadOnlyCollection.cs" />
     <Compile Include="Targeting\FW40\IReadOnlyDictionary.cs" />
-    <Compile Include="IO\TempData.cs" />
-    <Compile Include="Reflection\AssemblyExtensions.cs" />
-    <Compile Include="Structures\ValueTuple.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ValueTuple.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Targeting\PlatformDependent.cs" />
     <Compile Include="Threading\AsyncOperationHelper.cs" />
     <Compile Include="Threading\ConcurrentLazyDictionary.cs" />
-    <Compile Include="DisposableExtensions.cs" />
-    <Compile Include="Collections\EnumerableExtensions.TopoSort.cs" />
-    <Compile Include="Disposable.cs" />
-    <Compile Include="Fn.cs" />
-    <Compile Include="Collections\Array.cs" />
-    <Compile Include="Collections\ArrayExtensions.Infix.cs" />
-    <Compile Include="Collections\KeyEqualityComparer`1.cs" />
-    <Compile Include="Collections\CollectionExtensions.cs" />
-    <Compile Include="Collections\DictionaryExtensions.cs" />
-    <Compile Include="Collections\EnumerableExtensions.cs" />
-    <Compile Include="Fn`1.cs" />
-    <Compile Include="Structures\Option\ValueOption`1.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reflection\ReflectionEnumHelper.cs" />
-    <Compile Include="Expressions\ExpressionExtensions.GetMembers.cs" />
-    <Compile Include="Reflection\InfoOf.cs" />
-    <Compile Include="Reflection\ReflectionExtensions.cs" />
-    <Compile Include="Strings\CharExtensions.cs" />
-    <Compile Include="Strings\NaturalOrderStringComparer.cs" />
-    <Compile Include="Strings\StringExtensions.cs" />
-    <Compile Include="Strings\StringExtensions.Infix.cs" />
-    <Compile Include="Strings\StringOrigin.cs" />
     <Compile Include="Threading\InterlockedOperations.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -276,14 +276,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Compile.tt</DependentUpon>
     </None>
-    <Compile Include="Reflection\ReflectionExtensions.CreateInstance.cs" />
     <None Include="packages.config" />
+    <Compile Include="Reflection\ReflectionExtensions.CreateInstance.cs" />
     <None Include="Strings\CharMethods.ttinclude" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Algorithms\EqualRange.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EqualRange.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Algorithms\LowerBound.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LowerBound.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Algorithms\Memoize.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -293,37 +297,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>UpperBound.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Algorithms\LowerBound.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LowerBound.generated.cs</LastGenOutput>
-    </Content>
     <Content Include="Arithmetic\Operators.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Operators.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="Collections\DictionaryExtensions.GetValueOrDefault.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DictionaryExtensions.GetValueOrDefault.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="Fn.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Fn.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="Expressions\Expr.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Expr.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="Strings\CharExtensions.Infix.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CharExtensions.Infix.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="Strings\StringExtensions.CharInfix.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StringExtensions.CharInfix.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="Threading\InterlockedOperations.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>InterlockedOperations.generated.cs</LastGenOutput>
     </Content>
     <None Include="Arithmetic\Operators.ttinclude" />
     <Content Include="Assertions\DebugCode.tt">
@@ -334,6 +310,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ArrayExtensions.generated.cs</LastGenOutput>
     </Content>
+    <Content Include="Collections\DictionaryExtensions.GetValueOrDefault.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DictionaryExtensions.GetValueOrDefault.generated.cs</LastGenOutput>
+    </Content>
     <Content Include="Collections\EnumerableExtensions.MinMaxBy.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EnumerableExtensions.MinMaxBy.generated.cs</LastGenOutput>
@@ -342,9 +322,29 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Compile.cmd</LastGenOutput>
     </Content>
+    <Content Include="Expressions\Expr.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Expr.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Fn.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Fn.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Strings\CharExtensions.Infix.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CharExtensions.Infix.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Strings\StringExtensions.CharInfix.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StringExtensions.CharInfix.generated.cs</LastGenOutput>
+    </Content>
     <Content Include="Structures\ValueTuple.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ValueTuple.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Threading\InterlockedOperations.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>InterlockedOperations.generated.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

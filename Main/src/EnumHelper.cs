@@ -16,7 +16,7 @@ using JetBrains.Annotations;
 using static CodeJam.PlatformDependent;
 
 using EnumTargetingHelpers =
-#if FW35
+#if SUPPORTS_NET35
 	CodeJam.Targeting.EnumTargeting
 #else
 	System.Enum
@@ -370,7 +370,7 @@ namespace CodeJam
 			private static IReadOnlyDictionary<string, TEnum> GetNameValuesCore(Type enumType, bool ignoreCase)
 			{
 				var result =
-#if FW40
+#if SUPPORTS_NET40
 					new DictionaryWithReadOnly<string, TEnum>(ignoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
 #else
 					new Dictionary<string, TEnum>(ignoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);

@@ -10,7 +10,7 @@ using CodeJam.Reflection;
 
 using JetBrains.Annotations;
 
-#if FW35
+#if SUPPORTS_NET35
 using CodeJam.Targeting;
 #endif
 

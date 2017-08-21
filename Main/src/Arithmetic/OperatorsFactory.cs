@@ -78,7 +78,7 @@ namespace CodeJam.Arithmetic
 			}
 
 			body = PrepareResult(body, args[0].Type, resultTupe);
-#if FW35
+#if SUPPORTS_NET35
 			var result = Lambda<TDelegate>(body, args);
 #else
 			var result = Lambda<TDelegate>(body, methodName, args);
@@ -294,7 +294,7 @@ namespace CodeJam.Arithmetic
 				throw MethodNotSupported(compareMethod.DeclaringType, compareMethod.Name, ex);
 			}
 
-#if FW35
+#if SUPPORTS_NET35
 			var result = Lambda<Func<T, T, int>>(body, new[] { argA, argB });
 #else
 			const string compareToName = nameof(int.CompareTo);

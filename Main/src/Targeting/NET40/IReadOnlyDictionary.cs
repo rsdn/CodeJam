@@ -1,4 +1,4 @@
-﻿#if FW40
+﻿#if SUPPORTS_NET40
 // BASEDON: https://github.com/dotnet/coreclr/blob/775003a4c72f0acc37eab84628fcef541533ba4e/src/mscorlib/src/System/Collections/Generic/IReadOnlyDictionary.cs
 
 // Licensed to the .NET Foundation under one or more agreements.

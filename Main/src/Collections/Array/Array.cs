@@ -15,9 +15,12 @@ namespace CodeJam.Collections
 		/// Empty instance of <typeparamref name="T"/>[].
 		/// </summary>
 		[NotNull]
-#if !FW452
-		[Obsolete("Use System.Array.Empty<T>() method instead", false)]
+
+		public static readonly T[] Empty =
+#if LESSTHAN_NET46
+			new T[0];
+#else
+			Array.Empty<T>();
 #endif
-		public static readonly T[] Empty = new T[0];
 	}
 }

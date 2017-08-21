@@ -39,7 +39,7 @@ namespace CodeJam.Threading
 		public async Task LockCancellationTest()
 		{
 			var asyncLock = new AsyncLock();
-			var holdTime = TimeSpan.FromSeconds(8);
+			var holdTime = TimeSpan.FromSeconds(2);
 			var delayTime = TimeSpan.FromMilliseconds(200);
 
 			var lock1Started = new ManualResetEventSlim(false);

@@ -1,4 +1,4 @@
-﻿#if !FW35
+﻿#if !SUPPORTS_NET35
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

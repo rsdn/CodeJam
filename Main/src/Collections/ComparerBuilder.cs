@@ -1,4 +1,5 @@
-﻿#if !FW35
+﻿#if !SUPPORTS_NET35
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -50,7 +51,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <returns>GetHashCode function.</returns>
 		[NotNull, Pure]
-		public static Func<T,int> GetGetHashCodeFunc()
+		public static Func<T, int> GetGetHashCodeFunc()
 			=> GetGetHashCodeFunc(TypeAccessor.GetAccessor<T>().Members);
 
 		// ReSharper disable once StaticMemberInGenericType
@@ -62,7 +63,7 @@ namespace CodeJam.Collections
 		/// <param name="members">Members to compare.</param>
 		/// <returns>GetHashCode function.</returns>
 		[NotNull, Pure]
-		public static Func<T,int> GetGetHashCodeFunc([NotNull, InstantHandle] IEnumerable<MemberAccessor> members)
+		public static Func<T, int> GetGetHashCodeFunc([NotNull, InstantHandle] IEnumerable<MemberAccessor> members)
 			=> CreateGetHashCodeFunc(members.Select(m => m.GetterExpression));
 
 		/// <summary>
@@ -71,19 +72,19 @@ namespace CodeJam.Collections
 		/// <param name="members">Members to compare.</param>
 		/// <returns>GetHashCode function.</returns>
 		[NotNull, Pure]
-		public static Func<T,int> GetGetHashCodeFunc([NotNull] params Expression<Func<T, object>>[] members)
+		public static Func<T, int> GetGetHashCodeFunc([NotNull] params Expression<Func<T, object>>[] members)
 			=> CreateGetHashCodeFunc(members);
 
 		private class Comparer : EqualityComparer<T>
 		{
-			public Comparer(Func<T,T,bool> equals, Func<T,int> getHashCode)
+			public Comparer(Func<T, T, bool> equals, Func<T, int> getHashCode)
 			{
-				_equals      = equals;
+				_equals = equals;
 				_getHashCode = getHashCode;
 			}
 
-			private readonly Func<T,T,bool> _equals;
-			private readonly Func<T,int>    _getHashCode;
+			private readonly Func<T, T, bool> _equals;
+			private readonly Func<T, int> _getHashCode;
 
 			public override bool Equals(T x, T y)
 				=> x != null ? y != null && _equals(x, y) : y == null;
@@ -112,7 +113,7 @@ namespace CodeJam.Collections
 		[NotNull, Pure]
 		public static IEqualityComparer<T> GetEqualityComparer([NotNull] params Expression<Func<T, object>>[] membersToCompare)
 		{
-			Code.NotNull(membersToCompare, nameof (membersToCompare));
+			Code.NotNull(membersToCompare, nameof(membersToCompare));
 			return new Comparer(CreateEqualsFunc(membersToCompare), CreateGetHashCodeFunc(membersToCompare));
 		}
 

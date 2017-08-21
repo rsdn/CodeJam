@@ -1,4 +1,4 @@
-﻿#if FW35
+﻿#if SUPPORTS_NET35
 // BASEDON: https://github.com/dotnet/corefx/blob/bffef76f6af208e2042a2f27bc081ee908bb390b/src/System.Linq/src/System/Linq/Zip.cs
 
 using System;

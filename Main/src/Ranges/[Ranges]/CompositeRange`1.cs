@@ -10,7 +10,7 @@ using CodeJam.Strings;
 using JetBrains.Annotations;
 
 using StringClass =
-#if FW35
+#if SUPPORTS_NET35
 	CodeJam.Targeting.StringTargeting
 #else
 	System.String
@@ -125,7 +125,7 @@ namespace CodeJam.Ranges
 
 		#region Predefined values
 		private static readonly ReadOnlyCollection<Range<T>> _emptyRanges =
-#if (!FW452)
+#if (!LESSTHAN_NET46)
 			Array.Empty<Range<T>>()
 #else
 			Array<Range<T>>.Empty

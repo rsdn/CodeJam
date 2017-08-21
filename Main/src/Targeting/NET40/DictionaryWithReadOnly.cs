@@ -1,4 +1,4 @@
-﻿#if FW40
+﻿#if SUPPORTS_NET40
 using System.Runtime.Serialization;
 
 using JetBrains.Annotations;
@@ -10,7 +10,7 @@ namespace System.Collections.Generic
 	/// </summary>
 	/// <typeparam name="TKey">Key type.</typeparam>
 	/// <typeparam name="TValue">Value type.</typeparam>
-	/// <remarks>For FW40 targeting purposes only.</remarks>
+	/// <remarks>For SUPPORTS_NET40 targeting purposes only.</remarks>
 	public class DictionaryWithReadOnly<TKey, TValue> : Dictionary<TKey, TValue>, IReadOnlyDictionary<TKey, TValue>
 	{
 		/// <summary>Initializes a new instance of the <see cref="T:System.Collections.Generic.Dictionary`2" /> class that is empty, has the default initial capacity, and uses the default equality comparer for the key type.</summary>

@@ -15,19 +15,11 @@ namespace CodeJam.Collections
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.</exception>
 		[NotNull, Pure]
-		public static
-#if FW40
-			ReadOnlyCollectionWithReadOnly<T>
+#if SUPPORTS_NET40
+		public static ReadOnlyCollectionWithReadOnly<T> AsReadOnly<T>([NotNull] this T[] array) => new ReadOnlyCollectionWithReadOnly<T>(array);
 #else
-			ReadOnlyCollection<T>
+		public static ReadOnlyCollection<T> AsReadOnly<T>([NotNull] this T[] array) => Array.AsReadOnly(array);
 #endif
-			AsReadOnly<T>([NotNull] this T[] array) =>
-#if FW40
-			new ReadOnlyCollectionWithReadOnly<T>(array)
-#else
-			Array.AsReadOnly(array)
-#endif
-			;
 
 #region BinarySearch
 

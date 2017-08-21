@@ -1,0 +1,20 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<AppDesignerFolder>Properties</AppDesignerFolder>
+		<Configurations>Debug;Release;Publish</Configurations>
+		<TargetFrameworks>net461</TargetFrameworks>
+
+		<SignAssembly>True</SignAssembly>
+		<AssemblyOriginatorKeyFile>..\..\Build\CodeJam.snk</AssemblyOriginatorKeyFile>
+		<DelaySign>False</DelaySign>
+
+		<Version>1.4.1-alpha</Version>
+		<AssemblyVersion>1.4.1.0</AssemblyVersion>
+		<FileVersion>1.4.1.0</FileVersion>
+
+		<Company>RSDN.ru</Company>
+		<Copyright>RSDN.ru, 2017</Copyright>
+		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+</Project>

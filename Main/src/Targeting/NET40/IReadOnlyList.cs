@@ -1,4 +1,4 @@
-﻿#if FW40
+﻿#if SUPPORTS_NET40
 // BASEDON: https://github.com/dotnet/coreclr/blob/master/src/mscorlib/src/System/Collections/Generic/IReadOnlyList.cs
 
 // Licensed to the .NET Foundation under one or more agreements.
@@ -32,7 +32,7 @@ namespace System.Collections.Generic
 	/// </summary>
 	/// <typeparam name="T">The type of elements in the read-only list.</typeparam>
 	public interface IReadOnlyList<
-#if !FW35
+#if !SUPPORTS_NET35
 	out
 #endif
 	T> : IReadOnlyCollection<T>

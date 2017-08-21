@@ -11,7 +11,7 @@ namespace CodeJam.Reflection
 	public partial class ReflectionExtensions
 	{
 		private static bool IsOptional(this ParameterInfo prm) =>
-#if FW40
+#if SUPPORTS_NET40
 			(prm.Attributes & ParameterAttributes.HasDefault) == ParameterAttributes.HasDefault
 #else
 			prm.HasDefaultValue

@@ -1,4 +1,4 @@
-﻿#if FW35
+﻿#if SUPPORTS_NET35
 // BASEDON: https://github.com/dotnet/coreclr/blob/345e201f027eb35a7a01e1714afe36b831b6f1e3/src/mscorlib/src/System/Threading/Volatile.cs
 
 // Licensed to the .NET Foundation under one or more agreements.

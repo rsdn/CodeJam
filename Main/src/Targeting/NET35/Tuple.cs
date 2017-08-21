@@ -1,4 +1,4 @@
-﻿#if FW35
+﻿#if SUPPORTS_NET35
 // BASEDON: https://github.com/dotnet/coreclr/blob/master/src/mscorlib/src/System/Tuple.cs
 
 // Licensed to the .NET Foundation under one or more agreements.

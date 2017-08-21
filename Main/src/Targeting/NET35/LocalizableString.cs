@@ -1,4 +1,4 @@
-﻿#if FW35
+﻿#if SUPPORTS_NET35
 //BASEDON: https://github.com/dotnet/corefx/blob/master/src/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations/LocalizableString.cs
 
 // Licensed to the .NET Foundation under one or more agreements.
