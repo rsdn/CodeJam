@@ -25,6 +25,8 @@ namespace CodeJam.Threading
 		/// </param>
 		/// <param name="cancellation">The CancellationToken token to observe.</param>
 		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
+		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
+		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[NotNull, ItemNotNull]
 		public async Task<IDisposable> AcquireAsync(TimeSpan timeout, CancellationToken cancellation)
 		{
@@ -46,6 +48,8 @@ namespace CodeJam.Threading
 		/// </param>
 		/// <param name="cancellation">The CancellationToken token to observe.</param>
 		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
+		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
+		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[NotNull, ItemNotNull]
 		public Task<IDisposable> AcquireAsync(int timeout, CancellationToken cancellation) =>
 			AcquireAsync(TimeSpan.FromMilliseconds(timeout), cancellation);
@@ -58,6 +62,7 @@ namespace CodeJam.Threading
 		/// indefinitely, or a 0 to return immediately.
 		/// </param>
 		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
+		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[NotNull, ItemNotNull]
 		public Task<IDisposable> AcquireAsync(int timeout) => AcquireAsync(TimeSpan.FromMilliseconds(timeout), CancellationToken.None);
 
@@ -70,6 +75,7 @@ namespace CodeJam.Threading
 		/// to return immediately.
 		/// </param>
 		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
+		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[NotNull, ItemNotNull]
 		public Task<IDisposable> AcquireAsync(TimeSpan timeout) => AcquireAsync(timeout, CancellationToken.None);
 
@@ -78,6 +84,7 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <param name="cancellation">The CancellationToken token to observe.</param>
 		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
+		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
 		[NotNull, ItemNotNull]
 		public Task<IDisposable> AcquireAsync(CancellationToken cancellation) => AcquireAsync(-1, cancellation);
 
