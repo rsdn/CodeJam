@@ -75,6 +75,15 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Acquires async lock.
 		/// </summary>
+		/// <param name="cancellation">The CancellationToken token to observe.</param>
+		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
+		[NotNull]
+		[ItemNotNull]
+		public Task<IDisposable> Acquire(CancellationToken cancellation) => Acquire(-1, cancellation);
+
+		/// <summary>
+		/// Acquires async lock.
+		/// </summary>
 		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
 		[NotNull]
 		[ItemNotNull]

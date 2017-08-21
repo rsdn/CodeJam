@@ -1,5 +1,8 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 using NUnit.Framework;
@@ -38,6 +41,37 @@ namespace CodeJam.Threading
 			sw.Stop();
 			Assert.IsFalse(opActive);
 			Assert.GreaterOrEqual(sw.ElapsedMilliseconds, time * count + timeInc * count / 2);
+		}
+
+		[Test]
+		[SuppressMessage("ReSharper", "MethodSupportsCancellation")]
+		public async Task Cancellation()
+		{
+			var cts = new CancellationTokenSource();
+			var lck = new AsyncLock();
+			const int delay = 5000;
+			const int ensureLockInterval = 30;
+			Task.Run(
+				async () =>
+				{
+					using (await lck.Acquire())
+						await Task.Delay(delay);
+				});
+			await Task.Delay(ensureLockInterval);
+			var sw = Stopwatch.StartNew();
+			var task = Task.Run(
+				async () =>
+				{
+					using (await lck.Acquire(cts.Token))
+						sw.Stop();
+				});
+			cts.Cancel();
+			try
+			{
+				await task;
+			}
+			catch (TaskCanceledException) {}
+			Assert.Less(sw.ElapsedMilliseconds, delay - ensureLockInterval);
 		}
 	}
 }
