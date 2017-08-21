@@ -330,7 +330,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[NotNull]
 		[Pure]
-		public static string Unquote([NotNull] this string arg) => Unquote(arg, out _);
+		public static string Unquote([NotNull] this string arg) => Unquote(arg, out var _);
 
 		/// <summary>
 		/// Remove one set of leading and trailing double quote characters, if both are present.

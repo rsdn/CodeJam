@@ -35,8 +35,12 @@
 		<file src="..\src\bin\Release.4.6\CodeJam.Blocks.pdb" target="lib\net46" />
 		<file src="..\src\bin\Release.4.6\CodeJam.Blocks.xml" target="lib\net46" />
 
-		<file src="..\src\bin\Release.4.6\CodeJam.Blocks.dll" target="lib\net47" />
-		<file src="..\src\bin\Release.4.6\CodeJam.Blocks.pdb" target="lib\net47" />
-		<file src="..\src\bin\Release.4.6\CodeJam.Blocks.xml" target="lib\net47" />
+		<file src="..\src\bin\Release.4.6.1\CodeJam.Blocks.dll" target="lib\net461" />
+		<file src="..\src\bin\Release.4.6.1\CodeJam.Blocks.pdb" target="lib\net461" />
+		<file src="..\src\bin\Release.4.6.1\CodeJam.Blocks.xml" target="lib\net461" />
+
+		<file src="..\src\bin\Release.4.7\CodeJam.Blocks.dll" target="lib\net47" />
+		<file src="..\src\bin\Release.4.7\CodeJam.Blocks.pdb" target="lib\net47" />
+		<file src="..\src\bin\Release.4.7\CodeJam.Blocks.xml" target="lib\net47" />
 	</files>
 </package>

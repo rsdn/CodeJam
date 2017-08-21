@@ -19,6 +19,9 @@
 			<group targetFramework="net40">
 			</group>
 			<group targetFramework="net45">
+				<dependency id="System.ValueTuple" version="4.3.1" />
+			</group>
+			<group targetFramework="net461">
 				<dependency id="System.ValueTuple" version="4.4.0" />
 			</group>
 			<group targetFramework="net47">
@@ -43,6 +46,10 @@
 		<file src="..\src\bin\Release.4.6\CodeJam.dll" target="lib\net46" />
 		<file src="..\src\bin\Release.4.6\CodeJam.pdb" target="lib\net46" />
 		<file src="..\src\bin\Release.4.6\CodeJam.xml" target="lib\net46" />
+
+		<file src="..\src\bin\Release.4.6.1\CodeJam.dll" target="lib\net461" />
+		<file src="..\src\bin\Release.4.6.1\CodeJam.pdb" target="lib\net461" />
+		<file src="..\src\bin\Release.4.6.1\CodeJam.xml" target="lib\net461" />
 
 		<file src="..\src\bin\Release.4.7\CodeJam.dll" target="lib\net47" />
 		<file src="..\src\bin\Release.4.7\CodeJam.pdb" target="lib\net47" />
