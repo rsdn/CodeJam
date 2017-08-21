@@ -37,6 +37,7 @@ namespace CodeJam.IO
 			if (!PathHelpers.IsWellFormedPath(path))
 				throw IoCodeExceptions.ArgumentNotWellFormedPath(argName, path);
 		}
+
 		/// <summary>Asserts that specified path is well-formed full path.</summary>
 		/// <param name="path">The path.</param>
 		/// <param name="argName">Name of the argument.</param>
@@ -129,7 +130,7 @@ namespace CodeJam.IO
 		/// <param name="path">The path.</param>
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void PathIsFree(string path)
+		public static void PathIsFree([NotNull] string path)
 		{
 			if (Directory.Exists(path))
 				throw IoCodeExceptions.DirectoryExists(path);
