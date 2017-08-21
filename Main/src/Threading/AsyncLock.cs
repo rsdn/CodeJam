@@ -25,11 +25,15 @@ namespace CodeJam.Threading
 		/// </param>
 		/// <param name="cancellation">The CancellationToken token to observe.</param>
 		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
-		[NotNull]
-		[ItemNotNull]
-		public async Task<IDisposable> Acquire(TimeSpan timeout, CancellationToken cancellation)
+		[NotNull, ItemNotNull]
+		public async Task<IDisposable> AcquireAsync(TimeSpan timeout, CancellationToken cancellation)
 		{
-			await _semaphore.WaitAsync(timeout, cancellation);
+			var succeed = await _semaphore.WaitAsync(timeout, cancellation);
+			if (!succeed)
+			{
+				cancellation.ThrowIfCancellationRequested();
+				throw new TimeoutException($"Attempt to take lock timed out in {timeout}.");
+			}
 			return Disposable.Create(() => _semaphore.Release());
 		}
 
@@ -42,10 +46,9 @@ namespace CodeJam.Threading
 		/// </param>
 		/// <param name="cancellation">The CancellationToken token to observe.</param>
 		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
-		[NotNull]
-		[ItemNotNull]
-		public Task<IDisposable> Acquire(int timeout, CancellationToken cancellation) =>
-			Acquire(TimeSpan.FromMilliseconds(timeout), cancellation);
+		[NotNull, ItemNotNull]
+		public Task<IDisposable> AcquireAsync(int timeout, CancellationToken cancellation) =>
+			AcquireAsync(TimeSpan.FromMilliseconds(timeout), cancellation);
 
 		/// <summary>
 		/// Acquires async lock.
@@ -55,9 +58,8 @@ namespace CodeJam.Threading
 		/// indefinitely, or a 0 to return immediately.
 		/// </param>
 		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
-		[NotNull]
-		[ItemNotNull]
-		public Task<IDisposable> Acquire(int timeout) => Acquire(TimeSpan.FromMilliseconds(timeout), CancellationToken.None);
+		[NotNull, ItemNotNull]
+		public Task<IDisposable> AcquireAsync(int timeout) => AcquireAsync(TimeSpan.FromMilliseconds(timeout), CancellationToken.None);
 
 		/// <summary>
 		/// Acquires async lock.
@@ -68,26 +70,23 @@ namespace CodeJam.Threading
 		/// to return immediately.
 		/// </param>
 		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
-		[NotNull]
-		[ItemNotNull]
-		public Task<IDisposable> Acquire(TimeSpan timeout) => Acquire(timeout, CancellationToken.None);
+		[NotNull, ItemNotNull]
+		public Task<IDisposable> AcquireAsync(TimeSpan timeout) => AcquireAsync(timeout, CancellationToken.None);
 
 		/// <summary>
 		/// Acquires async lock.
 		/// </summary>
 		/// <param name="cancellation">The CancellationToken token to observe.</param>
 		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
-		[NotNull]
-		[ItemNotNull]
-		public Task<IDisposable> Acquire(CancellationToken cancellation) => Acquire(-1, cancellation);
+		[NotNull, ItemNotNull]
+		public Task<IDisposable> AcquireAsync(CancellationToken cancellation) => AcquireAsync(-1, cancellation);
 
 		/// <summary>
 		/// Acquires async lock.
 		/// </summary>
 		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
-		[NotNull]
-		[ItemNotNull]
-		public Task<IDisposable> Acquire() => Acquire(-1);
+		[NotNull, ItemNotNull]
+		public Task<IDisposable> AcquireAsync() => AcquireAsync(-1);
 	}
 }
 #endif
