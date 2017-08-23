@@ -44,7 +44,7 @@ after_build:
 
 - ps: $mainVer = (Get-Content Main\nuget\CodeJam.Main.nuspec).package.metadata.version
 - ps: "$mainVer"
-- ps: nuget pack Main\nuget\CodeJam.Main.nuspec -version "$env:nugetVersion"
+#- ps: nuget pack Main\nuget\CodeJam.Main.nuspec -version "$env:nugetVersion" # done via Compile.cmd
 - ps: nuget pack Blocks\nuget\CodeJam.Blocks.nuspec -version "$env:nugetVersion"
 - ps: nuget pack Experimental\nuget\CodeJam.Experimental.nuspec -version "$env:nugetVersion"
 - ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.Core.nuspec -version "$env:nugetVersion"
