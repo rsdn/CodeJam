@@ -396,6 +396,12 @@
     <Compile Include="Threading\ParallelExtensions.cs" />
     <Compile Include="Threading\ParallelQueue.cs" />
     <Compile Include="Threading\ReaderWriterLockSlimExtensions.cs" />
+    <Compile Include="Threading\TaskHelper.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TaskHelper.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Threading\TaskHelper.Marker.cs" />
     <Compile Include="Threading\TaskHelper.cs" />
     <Compile Include="UriHelper.cs" />
     <Compile Include="Utilities\HGlobal.cs" />
@@ -531,6 +537,10 @@
     <Content Include="Structures\OneOf\ValueOneOf.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ValueOneOf.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Threading\TaskHelper.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TaskHelper.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Threading\InterlockedOperations.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
