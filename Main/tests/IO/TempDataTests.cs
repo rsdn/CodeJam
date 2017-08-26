@@ -254,6 +254,7 @@ namespace CodeJam.IO
 			}
 		}
 
+#if DEFAULT_PLATFORM
 		[Test]
 		public void Test08FileStreamContent()
 		{
@@ -273,6 +274,7 @@ namespace CodeJam.IO
 			}
 			Assert.IsFalse(File.Exists(filePath), "File should NOT exist");
 		}
+#endif
 
 		[Test]
 		public void Test09FileStreamSpecificPath()

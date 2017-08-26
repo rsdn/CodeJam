@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !SUPPORTS_NET35
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -292,3 +293,4 @@ namespace CodeJam.Collections
 		}
 	}
 }
+#endif

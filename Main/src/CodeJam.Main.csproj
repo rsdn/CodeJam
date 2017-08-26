@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
 	<Import Project="..\..\Build\CodeJam.Default.props" />
 	<Import Project="..\..\Build\CodeJam.Targeting.props" />
-	
+
 	<PropertyGroup>
 		<AssemblyName>CodeJam</AssemblyName>
 		<RootNamespace>CodeJam</RootNamespace>
@@ -9,7 +10,8 @@
 		<EnableDefaultItems>false</EnableDefaultItems>
 		<OutputType>Library</OutputType>
 		<FileAlignment>512</FileAlignment>
-		
+		<TargetFrameworks>net461</TargetFrameworks>
+
 		<PackageId>CodeJam</PackageId>
 		<Authors>Andrew Koryavchenko, Igor Sinicyn, Igor Tkachev, rameel</Authors>
 		<Product>CodeJam</Product>
@@ -22,7 +24,18 @@
 		<PackageTags>list string collection data-structure threading xml reflection async assertion IO extension algorithms structures utilities suffix-tree range tagged-union discriminated union discriminated-union variant variant-record disjoint-union sum-type</PackageTags>
 		<PackageReleaseNotes>..\build\Readme.txt</PackageReleaseNotes>
 		<IncludeContentInPack>False</IncludeContentInPack>
+
+		<Company>RSDN.ru</Company>
+		<Copyright>RSDN.ru, 2017</Copyright>
+		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<TargetFrameworks>net461;netstandard2.0;net45;net40;net35</TargetFrameworks>
+	</PropertyGroup>
+
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<LangVersion>latest</LangVersion>
 		<DebugSymbols>true</DebugSymbols>
@@ -56,49 +69,26 @@
 		<WarningLevel>4</WarningLevel>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\CodeJam.xml</DocumentationFile>
-		
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<TargetFrameworks>net461;netstandard2.0;net45;net40;net35</TargetFrameworks>
 	</PropertyGroup>
-	
-	<Choose>
-		<When Condition="$(DefineConstants.Contains('NETSTANDARD'))">
-			<ItemGroup>
-				<PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
-			</ItemGroup>
-		</When>
-		<Otherwise>
-			<ItemGroup>
-				<Reference Include="System" />
-				<Reference Include="System.ComponentModel.DataAnnotations" />
-				<Reference Include="System.Core" />
-				<Reference Include="System.Xml" />
-				<Reference Include="System.Xml.Linq" />
-			</ItemGroup>
-		</Otherwise>
-	</Choose>
-	
-	<Choose>
-		<When Condition="$(DefineConstants.Contains('NETSTANDARD'))">
-			<ItemGroup>
-			</ItemGroup>
-		</When>
-		<When Condition="!$(DefineConstants.Contains('LESSTHAN_NET461;')) AND $(DefineConstants.Contains('LESSTHAN_NET471;'))">
-			<ItemGroup>
-				<PackageReference Include="System.ValueTuple" Version="4.4.0" />
-			</ItemGroup>
-		</When>
-		<When Condition="!$(DefineConstants.Contains('LESSTHAN_NET45;')) AND $(DefineConstants.Contains('LESSTHAN_NET461;'))">
-			<ItemGroup>
-				<PackageReference Include="System.ValueTuple" Version="4.3.0" />
-			</ItemGroup>
-		</When>
-		<When Condition="$(DefineConstants.Contains('SUPPORTS_NET35;'))">
-			<ItemGroup>
-				<PackageReference Include="TaskParallelLibrary" Version="1.0.2856.0" />
-			</ItemGroup>
-		</When>
-	</Choose>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net461'">
+		<Reference Include="System.ComponentModel.DataAnnotations" />
+		<PackageReference Include="System.ValueTuple" Version="4.4.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net45'">
+		<Reference Include="System.ComponentModel.DataAnnotations" />
+		<PackageReference Include="System.ValueTuple" Version="4.3.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net40'">
+		<Reference Include="System.ComponentModel.DataAnnotations" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net35'">
+		<Reference Include="System.ComponentModel.DataAnnotations" />
+		<PackageReference Include="TaskParallelLibrary" Version="1.0.2856.0" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Compile Include="..\..\Build\Jetbrains.Annotations.cs">
@@ -546,4 +536,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+
+	<!--<Target Name="TestMessage" BeforeTargets="Build">
+		<Message Text="Hi!" Importance="high" />
+		<Message Text="Building $(ProjectName) for $(TargetFramework). References:" Importance="high" />
+		<Message Text="* %(Reference.Identity)" Importance="high" />
+	</Target>-->
 </Project>

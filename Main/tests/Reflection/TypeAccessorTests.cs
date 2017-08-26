@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !SUPPORTS_NET35
+using System;
 
 using NUnit.Framework;
 
@@ -86,3 +87,4 @@ namespace CodeJam.Reflection
 		}
 	}
 }
+#endif

@@ -10,6 +10,12 @@ using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
 
+#if SUPPORTS_NET35
+using EnumTargetingHelpers = CodeJam.Targeting.EnumTargeting;
+#else
+using EnumTargetingHelpers = System.Enum;
+#endif
+
 namespace CodeJam
 {
 	[TestFixture(Category = "EnumHelper")]
@@ -138,7 +144,7 @@ namespace CodeJam
 		public void Test01Parse()
 		{
 			int wrongParse;
-			Throws<ArgumentException>(() => Enum.TryParse("2", out wrongParse));
+			Throws<ArgumentException>(() => EnumTargetingHelpers.TryParse("2", out wrongParse));
 			Throws<ArgumentException>(() => EnumHelper.TryParse("2", out wrongParse));
 			Throws<ArgumentException>(() => EnumHelper.TryParse<int>("2"));
 
@@ -146,39 +152,39 @@ namespace CodeJam
 			Flags result2;
 			AreEqual(
 				EnumHelper.TryParse(nameof(Flags.A), out result1),
-				Enum.TryParse(nameof(Flags.A), out result2));
+				EnumTargetingHelpers.TryParse(nameof(Flags.A), out result2));
 			AreEqual(result1, result2);
 			AreEqual(result1, EnumHelper.TryParse<Flags>(nameof(Flags.A)));
 
 			AreEqual(
 				EnumHelper.TryParse(Undef.ToString(), out result1),
-				Enum.TryParse(Undef.ToString(), out result2));
+				EnumTargetingHelpers.TryParse(Undef.ToString(), out result2));
 			AreEqual(result1, result2);
 			AreEqual(result1, EnumHelper.TryParse<Flags>(Undef.ToString()));
 
 			AreEqual(
 				EnumHelper.TryParse(nameof(Flags.CD), out result1),
-				Enum.TryParse(nameof(Flags.CD), out result2));
+				EnumTargetingHelpers.TryParse(nameof(Flags.CD), out result2));
 			AreEqual(result1, result2);
 
 			AreEqual(
 				EnumHelper.TryParse(Abcd.ToString(), out result1),
-				Enum.TryParse(Abcd.ToString(), out result2));
+				EnumTargetingHelpers.TryParse(Abcd.ToString(), out result2));
 			AreEqual(result1, result2);
 
 			AreEqual(
 				EnumHelper.TryParse(AbU.ToString(), out result1),
-				Enum.TryParse(AbU.ToString(), out result2));
+				EnumTargetingHelpers.TryParse(AbU.ToString(), out result2));
 			AreEqual(result1, result2);
 
 			AreEqual(
 				EnumHelper.TryParse("0", out result1),
-				Enum.TryParse("0", out result2));
+				EnumTargetingHelpers.TryParse("0", out result2));
 			AreEqual(result1, result2);
 
 			AreEqual(
 				EnumHelper.TryParse("1", out result1),
-				Enum.TryParse("1", out result2));
+				EnumTargetingHelpers.TryParse("1", out result2));
 			AreEqual(result1, result2);
 		}
 
@@ -209,13 +215,14 @@ namespace CodeJam
 		[Test]
 		public static void Test0601IsFlagSet()
 		{
+#if DEFAULT_PLATFORM
 			IsTrue(Abc.HasFlag(Zero));
 			IsTrue(Abc.HasFlag(Bc));
 			IsTrue(Abc.HasFlag(Abc));
 			IsFalse(Abc.HasFlag(Abcd));
 			IsFalse(Abc.HasFlag(Bd));
 			IsFalse(Abc.HasFlag(D));
-
+#endif
 			IsTrue(Abc.IsFlagSet(Zero));
 			IsTrue(Abc.IsFlagSet(Bc));
 			IsTrue(Abc.IsFlagSet(Abc));

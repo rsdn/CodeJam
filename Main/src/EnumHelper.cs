@@ -15,13 +15,11 @@ using JetBrains.Annotations;
 
 using static CodeJam.PlatformDependent;
 
-using EnumTargetingHelpers =
 #if SUPPORTS_NET35
-	CodeJam.Targeting.EnumTargeting
+using EnumTargetingHelpers = CodeJam.Targeting.EnumTargeting;
 #else
-	System.Enum
+using EnumTargetingHelpers = System.Enum;
 #endif
-	;
 
 namespace CodeJam
 {

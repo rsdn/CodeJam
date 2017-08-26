@@ -5,6 +5,10 @@ using CodeJam.Strings;
 
 using NUnit.Framework;
 
+#if SUPPORTS_NET35
+using CodeJam.Targeting;
+#endif
+
 namespace CodeJam.Collections
 {
 	[TestFixture]
@@ -32,7 +36,7 @@ namespace CodeJam.Collections
 				var list = Enumerable.Range(0, n).ToArray();
 
 				Assert.AreEqual(
-					list.CombineWithPrevious((prev,next)=> prev + next),
+					list.CombineWithPrevious((prev, next) => prev + next),
 					list.Zip(list.Skip(1), (prev, next) => prev + next));
 
 				Assert.AreEqual(

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !SUPPORTS_NET35
+using System;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -90,3 +91,4 @@ namespace CodeJam.Expressions
 		}
 	}
 }
+#endif

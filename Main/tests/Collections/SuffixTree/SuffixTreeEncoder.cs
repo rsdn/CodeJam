@@ -17,11 +17,12 @@ namespace CodeJam.Collections
 
 		static SuffixTreeEncoder()
 		{
-			_getRootMethod = typeof(SuffixTreeBase).GetProperty("Root", BindingFlags.Instance | BindingFlags.NonPublic).GetMethod;
+			var typeInfo = typeof(SuffixTreeBase);
+			_getRootMethod = typeInfo.GetProperty("Root", BindingFlags.Instance | BindingFlags.NonPublic).GetGetMethod(true);
 			_getRoot = tree => (Node)_getRootMethod.Invoke(tree, null);
-			_getNodeMethod = typeof(SuffixTreeBase).GetMethod("GetNode", BindingFlags.Instance | BindingFlags.NonPublic);
+			_getNodeMethod = typeInfo.GetMethod("GetNode", BindingFlags.Instance | BindingFlags.NonPublic);
 			_getNode = (tree, index) => (Node)_getNodeMethod.Invoke(tree, new object[] { index });
-			_getDataMethod = typeof(SuffixTreeBase).GetProperty("InternalData", BindingFlags.Instance | BindingFlags.NonPublic).GetMethod;
+			_getDataMethod = typeInfo.GetProperty("InternalData", BindingFlags.Instance | BindingFlags.NonPublic).GetGetMethod(true);
 			_getData = tree => (string)_getDataMethod.Invoke(tree, null);
 		}
 
