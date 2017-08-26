@@ -35,7 +35,7 @@ namespace CodeJam.Threading
 		/// <c>true</c> if all of the <see cref="Task"/> instances completed execution within the allotted time; otherwise,
 		/// <c>false</c>.
 		/// </returns>
-		public static bool WaitAll(this Task[] tasks, int timeout, CancellationToken cancellation) =>
+		public static bool WaitAll([NotNull] this Task[] tasks, int timeout, CancellationToken cancellation) =>
 			Task.WaitAll(tasks, timeout, cancellation);
 
 		/// <summary>
@@ -53,7 +53,7 @@ namespace CodeJam.Threading
 		/// <c>true</c> if all of the <see cref="Task"/> instances completed execution within the allotted time; otherwise,
 		/// <c>false</c>.
 		/// </returns>
-		public static bool WaitAll(this Task[] tasks, TimeSpan timeout, CancellationToken cancellation) =>
+		public static bool WaitAll([NotNull] this Task[] tasks, TimeSpan timeout, CancellationToken cancellation) =>
 			Task.WaitAll(tasks, (int)timeout.TotalMilliseconds, cancellation);
 
 		/// <summary>
@@ -68,7 +68,7 @@ namespace CodeJam.Threading
 		/// <c>true</c> if all of the <see cref="Task"/> instances completed execution within the allotted time; otherwise,
 		/// <c>false</c>.
 		/// </returns>
-		public static void WaitAll(this Task[] tasks, CancellationToken cancellation) =>
+		public static void WaitAll([NotNull] this Task[] tasks, CancellationToken cancellation) =>
 			Task.WaitAll(tasks, cancellation);
 
 		/// <summary>
@@ -83,7 +83,7 @@ namespace CodeJam.Threading
 		/// <c>true</c> if all of the <see cref="Task"/> instances completed execution within the allotted time; otherwise,
 		/// <c>false</c>.
 		/// </returns>
-		public static bool WaitAll(this Task[] tasks, int timeout) =>
+		public static bool WaitAll([NotNull] this Task[] tasks, int timeout) =>
 			Task.WaitAll(tasks, timeout);
 
 		/// <summary>
@@ -98,7 +98,7 @@ namespace CodeJam.Threading
 		/// <c>true</c> if all of the <see cref="Task"/> instances completed execution within the allotted time; otherwise,
 		/// <c>false</c>.
 		/// </returns>
-		public static bool WaitAll(this Task[] tasks, TimeSpan timeout) => Task.WaitAll(tasks, timeout);
+		public static bool WaitAll([NotNull] this Task[] tasks, TimeSpan timeout) => Task.WaitAll(tasks, timeout);
 
 		/// <summary>
 		/// Waits for all of the provided <see cref="Task"/> objects to complete execution.
@@ -108,7 +108,7 @@ namespace CodeJam.Threading
 		/// <c>true</c> if all of the <see cref="Task"/> instances completed execution within the allotted time; otherwise,
 		/// <c>false</c>.
 		/// </returns>
-		public static void WaitAll(this Task[] tasks) => Task.WaitAll(tasks);
+		public static void WaitAll([NotNull] this Task[] tasks) => Task.WaitAll(tasks);
 		#endregion
 
 #if !FW40
@@ -120,7 +120,7 @@ namespace CodeJam.Threading
 		/// <param name="tasks">The tasks to wait on for completion.</param>
 		/// <returns>A task that represents the completion of all of the supplied tasks.</returns>
 		[NotNull]
-		public static Task WhenAll(this Task[] tasks) => Task.WhenAll(tasks);
+		public static Task WhenAll([NotNull] this Task[] tasks) => Task.WhenAll(tasks);
 
 		/// <summary>
 		/// Creates a task that will complete when all of the <see cref="Task{TResult}"/> objects in an enumerable collection
@@ -131,7 +131,7 @@ namespace CodeJam.Threading
 		/// <returns>A task that represents the completion of all of the supplied tasks.</returns>
 		[NotNull]
 		[ItemNotNull]
-		public static Task<TResult[]> WhenAll<TResult>(this Task<TResult>[] tasks) => Task.WhenAll(tasks);
+		public static Task<TResult[]> WhenAll<TResult>([NotNull] this Task<TResult>[] tasks) => Task.WhenAll(tasks);
 		#endregion
 
 		#region WhenAny
@@ -146,7 +146,7 @@ namespace CodeJam.Threading
 		/// </returns>
 		[NotNull]
 		[ItemNotNull]
-		public static Task<Task<TResult>> WhenAny<TResult>(this Task<TResult>[] tasks) => Task.WhenAny(tasks);
+		public static Task<Task<TResult>> WhenAny<TResult>([NotNull] this Task<TResult>[] tasks) => Task.WhenAny(tasks);
 
 		/// <summary>
 		/// Creates a task that will complete when any of the supplied tasks have completed.
@@ -158,7 +158,7 @@ namespace CodeJam.Threading
 		/// </returns>
 		[NotNull]
 		[ItemNotNull]
-		public static Task<Task> WhenAny(this Task[] tasks) => Task.WhenAny(tasks);
+		public static Task<Task> WhenAny([NotNull] this Task[] tasks) => Task.WhenAny(tasks);
 		#endregion
 #endif
 	}
