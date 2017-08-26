@@ -29,11 +29,11 @@ namespace CodeJam.Collections
 		/// <param name="duplicateHandling">Policy for duplicate handling.</param>
 		/// <returns>A lookup dictionary.</returns>
 		[Pure, NotNull]
-		public static Dictionary<TKey, T> ToLookupDictionary<T, TKey>(
+		public static Dictionary<TKey, T> ToDictionary<T, TKey>(
 			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, TKey> keySelector,
 			DictionaryDuplicate duplicateHandling) =>
-				ToLookupDictionary(source, keySelector, Fn<T>.Self, null, duplicateHandling);
+				ToDictionary(source, keySelector, Fn<T>.Self, null, duplicateHandling);
 
 		/// <summary>Creates a lookup dictionary.</summary>
 		/// <typeparam name="T">The type of the elements of <paramref name="source"/>.</typeparam>
@@ -44,12 +44,12 @@ namespace CodeJam.Collections
 		/// <param name="duplicateHandling">Policy for duplicate handling.</param>
 		/// <returns>A lookup dictionary.</returns>
 		[Pure, NotNull]
-		public static Dictionary<TKey, T> ToLookupDictionary<T, TKey>(
+		public static Dictionary<TKey, T> ToDictionary<T, TKey>(
 			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, TKey> keySelector,
 			[CanBeNull] IEqualityComparer<TKey> comparer,
 			DictionaryDuplicate duplicateHandling) =>
-				ToLookupDictionary(source, keySelector, Fn<T>.Self, comparer, duplicateHandling);
+				ToDictionary(source, keySelector, Fn<T>.Self, comparer, duplicateHandling);
 
 		/// <summary>Creates a lookup dictionary.</summary>
 		/// <typeparam name="T">The type of the elements of <paramref name="source"/>.</typeparam>
@@ -61,12 +61,12 @@ namespace CodeJam.Collections
 		/// <param name="duplicateHandling">Policy for duplicate handling.</param>
 		/// <returns>A lookup dictionary.</returns>
 		[Pure, NotNull]
-		public static Dictionary<TKey, TElement> ToLookupDictionary<T, TKey, TElement>(
+		public static Dictionary<TKey, TElement> ToDictionary<T, TKey, TElement>(
 			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, TKey> keySelector,
 			[NotNull] Func<T, TElement> elementSelector,
 			DictionaryDuplicate duplicateHandling) =>
-				ToLookupDictionary(source, keySelector, elementSelector, null, duplicateHandling);
+				ToDictionary(source, keySelector, elementSelector, null, duplicateHandling);
 
 		/// <summary>Creates a lookup dictionary.</summary>
 		/// <typeparam name="T">The type of the elements of <paramref name="source"/>.</typeparam>
@@ -79,7 +79,7 @@ namespace CodeJam.Collections
 		/// <param name="duplicateHandling">Policy for duplicate handling.</param>
 		/// <returns>A lookup dictionary.</returns>
 		[Pure, NotNull]
-		public static Dictionary<TKey, TElement> ToLookupDictionary<T, TKey, TElement>(
+		public static Dictionary<TKey, TElement> ToDictionary<T, TKey, TElement>(
 			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, TKey> keySelector,
 			[NotNull] Func<T, TElement> elementSelector,
