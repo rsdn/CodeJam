@@ -4,17 +4,17 @@
 <#
 		Transform(
 			"TaskHelper.cs",
-            new ReplaceInfo
-            {
-                Pattern = @"IEnumerable\<(Task(?:\<\w+?\>)?)\>",
-                Replacement = "$1[]",
-                ThrowOnFail = true
-            },
-            new ReplaceInfo
-            {
-                Pattern = ".ToArray()",
-                Replacement = "",
-                ThrowOnFail = true,
-                EscapePattern = true
-            });
+			new ReplaceInfo
+			{
+				Pattern = @"IEnumerable\<(Task(?:\<\w+?\>)?)\>",
+				Replacement = "$1[]",
+				ThrowOnFail = true
+			},
+			new ReplaceInfo
+			{
+				Pattern = ".ToArray()",
+				Replacement = "",
+				ThrowOnFail = true,
+				EscapePattern = true
+			});
 #>
