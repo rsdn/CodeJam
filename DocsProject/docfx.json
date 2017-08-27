@@ -69,8 +69,8 @@
 			}
 		],
 		"dest": "../docs",
-		"template": [
-			"default"
-		]
+			"template": [
+				"default"
+			]
 	}
 }

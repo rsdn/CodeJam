@@ -26,7 +26,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/IMapperBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IMapperBuilder
     path: ../Blocks/src/Mapping/IMapperBuilder.cs
@@ -61,7 +61,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/IMapperBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MappingSchema
     path: ../Blocks/src/Mapping/IMapperBuilder.cs
@@ -95,7 +95,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/IMapperBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetMapperLambdaExpressionEx
     path: ../Blocks/src/Mapping/IMapperBuilder.cs
@@ -126,7 +126,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/IMapperBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetMapperLambdaExpression
     path: ../Blocks/src/Mapping/IMapperBuilder.cs
@@ -157,7 +157,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/IMapperBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MemberFilter
     path: ../Blocks/src/Mapping/IMapperBuilder.cs
@@ -191,7 +191,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/IMapperBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FromMappingDictionary
     path: ../Blocks/src/Mapping/IMapperBuilder.cs
@@ -225,7 +225,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/IMapperBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToMappingDictionary
     path: ../Blocks/src/Mapping/IMapperBuilder.cs
@@ -259,7 +259,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/IMapperBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MemberMappers
     path: ../Blocks/src/Mapping/IMapperBuilder.cs
@@ -293,7 +293,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/IMapperBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ProcessCrossReferences
     path: ../Blocks/src/Mapping/IMapperBuilder.cs
@@ -327,7 +327,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/IMapperBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DeepCopy
     path: ../Blocks/src/Mapping/IMapperBuilder.cs
@@ -361,7 +361,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/IMapperBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FromType
     path: ../Blocks/src/Mapping/IMapperBuilder.cs
@@ -396,7 +396,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/IMapperBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToType
     path: ../Blocks/src/Mapping/IMapperBuilder.cs

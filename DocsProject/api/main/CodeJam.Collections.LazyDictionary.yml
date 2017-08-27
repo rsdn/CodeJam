@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/LazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LazyDictionary
     path: ../Main/src/Collections/Dictionary/LazyDictionary.cs
@@ -63,7 +63,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/LazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Collections/Dictionary/LazyDictionary.cs
@@ -118,7 +118,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/LazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Collections/Dictionary/LazyDictionary.cs
@@ -170,7 +170,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/LazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Collections/Dictionary/LazyDictionary.cs
@@ -222,7 +222,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/LazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Collections/Dictionary/LazyDictionary.cs

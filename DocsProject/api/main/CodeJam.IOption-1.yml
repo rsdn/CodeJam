@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/IOption.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IOption
     path: ../Main/src/Structures/Option/IOption.cs
@@ -66,7 +66,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/IOption.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: HasValue
     path: ../Main/src/Structures/Option/IOption.cs
@@ -103,7 +103,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/IOption.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Value
     path: ../Main/src/Structures/Option/IOption.cs

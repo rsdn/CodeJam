@@ -35,7 +35,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: InterlockedOperations
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -79,7 +79,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Initialize
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -126,7 +126,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Initialize
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -176,7 +176,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Update
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -224,7 +224,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Update
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -275,7 +275,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Initialize
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -322,7 +322,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Initialize
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -372,7 +372,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Update
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -420,7 +420,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Update
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -471,7 +471,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Initialize
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -518,7 +518,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Initialize
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -568,7 +568,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Update
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -616,7 +616,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Update
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -667,7 +667,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Initialize
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -714,7 +714,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Initialize
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -764,7 +764,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Update
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -812,7 +812,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Update
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -863,7 +863,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Initialize
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -913,7 +913,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Initialize
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -966,7 +966,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Update
     path: ../Main/src/Threading/InterlockedOperations.generated.cs
@@ -1016,7 +1016,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/InterlockedOperations.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Update
     path: ../Main/src/Threading/InterlockedOperations.generated.cs

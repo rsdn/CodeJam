@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: Blocks/src/Metadata/MetadataException.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MetadataException
     path: ../Blocks/src/Metadata/MetadataException.cs
@@ -93,7 +93,7 @@ items:
   source:
     remote:
       path: Blocks/src/Metadata/MetadataException.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Metadata/MetadataException.cs
@@ -126,7 +126,7 @@ items:
   source:
     remote:
       path: Blocks/src/Metadata/MetadataException.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Metadata/MetadataException.cs
@@ -168,7 +168,7 @@ items:
   source:
     remote:
       path: Blocks/src/Metadata/MetadataException.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Metadata/MetadataException.cs
@@ -218,7 +218,7 @@ items:
   source:
     remote:
       path: Blocks/src/Metadata/MetadataException.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Metadata/MetadataException.cs
@@ -260,7 +260,7 @@ items:
   source:
     remote:
       path: Blocks/src/Metadata/MetadataException.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Metadata/MetadataException.cs

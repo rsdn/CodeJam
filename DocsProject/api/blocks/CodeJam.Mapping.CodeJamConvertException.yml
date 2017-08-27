@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/CodeJamConvertException.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CodeJamConvertException
     path: ../Blocks/src/Mapping/CodeJamConvertException.cs
@@ -93,7 +93,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/CodeJamConvertException.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Mapping/CodeJamConvertException.cs
@@ -126,7 +126,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/CodeJamConvertException.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Mapping/CodeJamConvertException.cs
@@ -168,7 +168,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/CodeJamConvertException.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Mapping/CodeJamConvertException.cs
@@ -218,7 +218,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/CodeJamConvertException.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Mapping/CodeJamConvertException.cs
@@ -260,7 +260,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/CodeJamConvertException.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Mapping/CodeJamConvertException.cs

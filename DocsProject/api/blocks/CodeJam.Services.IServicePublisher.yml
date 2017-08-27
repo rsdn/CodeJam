@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: Blocks/src/Services/IServicePublisher.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IServicePublisher
     path: ../Blocks/src/Services/IServicePublisher.cs
@@ -61,7 +61,7 @@ items:
   source:
     remote:
       path: Blocks/src/Services/IServicePublisher.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Publish
     path: ../Blocks/src/Services/IServicePublisher.cs
@@ -99,7 +99,7 @@ items:
   source:
     remote:
       path: Blocks/src/Services/IServicePublisher.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Publish
     path: ../Blocks/src/Services/IServicePublisher.cs

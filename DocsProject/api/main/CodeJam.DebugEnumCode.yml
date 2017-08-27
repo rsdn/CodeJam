@@ -29,7 +29,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugEnumCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DebugEnumCode
     path: ../Main/src/Assertions/DebugEnumCode.generated.cs
@@ -73,7 +73,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugEnumCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Defined
     path: ../Main/src/Assertions/DebugEnumCode.generated.cs
@@ -132,7 +132,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugEnumCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FlagsDefined
     path: ../Main/src/Assertions/DebugEnumCode.generated.cs
@@ -191,7 +191,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugEnumCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FlagSet
     path: ../Main/src/Assertions/DebugEnumCode.generated.cs
@@ -253,7 +253,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugEnumCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AnyFlagUnset
     path: ../Main/src/Assertions/DebugEnumCode.generated.cs
@@ -315,7 +315,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugEnumCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AnyFlagSet
     path: ../Main/src/Assertions/DebugEnumCode.generated.cs
@@ -377,7 +377,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugEnumCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FlagUnset
     path: ../Main/src/Assertions/DebugEnumCode.generated.cs
@@ -439,7 +439,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugEnumCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: StateFlagSet
     path: ../Main/src/Assertions/DebugEnumCode.generated.cs
@@ -501,7 +501,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugEnumCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: StateFlagSet
     path: ../Main/src/Assertions/DebugEnumCode.generated.cs
@@ -566,7 +566,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugEnumCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AnyStateFlagUnset
     path: ../Main/src/Assertions/DebugEnumCode.generated.cs
@@ -628,7 +628,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugEnumCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AnyStateFlagUnset
     path: ../Main/src/Assertions/DebugEnumCode.generated.cs
@@ -693,7 +693,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugEnumCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AnyStateFlagSet
     path: ../Main/src/Assertions/DebugEnumCode.generated.cs
@@ -755,7 +755,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugEnumCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AnyStateFlagSet
     path: ../Main/src/Assertions/DebugEnumCode.generated.cs
@@ -820,7 +820,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugEnumCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: StateFlagUnset
     path: ../Main/src/Assertions/DebugEnumCode.generated.cs
@@ -882,7 +882,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugEnumCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: StateFlagUnset
     path: ../Main/src/Assertions/DebugEnumCode.generated.cs

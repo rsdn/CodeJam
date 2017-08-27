@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: Blocks/src/Metadata/IMetadataReader.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IMetadataReader
     path: ../Blocks/src/Metadata/IMetadataReader.cs
@@ -52,7 +52,7 @@ items:
   source:
     remote:
       path: Blocks/src/Metadata/IMetadataReader.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetAttributes
     path: ../Blocks/src/Metadata/IMetadataReader.cs
@@ -96,7 +96,7 @@ items:
   source:
     remote:
       path: Blocks/src/Metadata/IMetadataReader.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetAttributes
     path: ../Blocks/src/Metadata/IMetadataReader.cs

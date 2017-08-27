@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/UriCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UriCodeExceptions
     path: ../Main/src/Assertions/UriCodeExceptions.cs
@@ -60,7 +60,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/UriCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ArgumentNotWellFormedUri
     path: ../Main/src/Assertions/UriCodeExceptions.cs

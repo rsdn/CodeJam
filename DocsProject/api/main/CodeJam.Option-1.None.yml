@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/Option`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: None
     path: ../Main/src/Structures/Option/Option`1.cs
@@ -88,7 +88,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/Option`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetHashCode
     path: ../Main/src/Structures/Option/Option`1.cs

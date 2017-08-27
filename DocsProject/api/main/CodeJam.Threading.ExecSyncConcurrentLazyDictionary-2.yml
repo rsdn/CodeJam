@@ -26,7 +26,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ExecSyncConcurrentLazyDictionary
     path: ../Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
@@ -281,7 +281,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
@@ -323,7 +323,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
@@ -362,7 +362,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Clear
     path: ../Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
@@ -399,7 +399,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<TKey,TValue>>.GetEnumerator
     path: ../Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
@@ -433,7 +433,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: System.Collections.IEnumerable.GetEnumerator
     path: ../Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
@@ -467,7 +467,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: System.Collections.Generic.IReadOnlyCollection<System.Collections.Generic.KeyValuePair<TKey,TValue>>.Count
     path: ../Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
@@ -505,7 +505,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ContainsKey
     path: ../Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
@@ -552,7 +552,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TryGetValue
     path: ../Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
@@ -603,7 +603,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: this[]
     path: ../Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
@@ -656,7 +656,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Keys
     path: ../Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
@@ -698,7 +698,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Values
     path: ../Main/src/Threading/ExecSyncConcurrentLazyDictionary.cs

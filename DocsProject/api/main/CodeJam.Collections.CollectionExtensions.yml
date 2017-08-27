@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/CollectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CollectionExtensions
     path: ../Main/src/Collections/CollectionExtensions.cs
@@ -67,7 +67,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/CollectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNullOrEmpty
     path: ../Main/src/Collections/CollectionExtensions.cs
@@ -117,7 +117,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/CollectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNullOrEmpty
     path: ../Main/src/Collections/CollectionExtensions.cs
@@ -167,7 +167,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/CollectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NotNullNorEmpty
     path: ../Main/src/Collections/CollectionExtensions.cs
@@ -217,7 +217,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/CollectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NotNullNorEmpty
     path: ../Main/src/Collections/CollectionExtensions.cs
@@ -267,7 +267,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/CollectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AddRange
     path: ../Main/src/Collections/CollectionExtensions.cs
@@ -318,7 +318,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/CollectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AddRange
     path: ../Main/src/Collections/CollectionExtensions.cs
@@ -369,7 +369,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/CollectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AddRange
     path: ../Main/src/Collections/CollectionExtensions.cs

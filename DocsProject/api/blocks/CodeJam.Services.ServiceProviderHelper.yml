@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: Blocks/src/Services/ServiceProviderHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ServiceProviderHelper
     path: ../Blocks/src/Services/ServiceProviderHelper.cs
@@ -65,7 +65,7 @@ items:
   source:
     remote:
       path: Blocks/src/Services/ServiceProviderHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetRequiredService
     path: ../Blocks/src/Services/ServiceProviderHelper.cs
@@ -113,7 +113,7 @@ items:
   source:
     remote:
       path: Blocks/src/Services/ServiceProviderHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetService
     path: ../Blocks/src/Services/ServiceProviderHelper.cs
@@ -164,7 +164,7 @@ items:
   source:
     remote:
       path: Blocks/src/Services/ServiceProviderHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetRequiredService
     path: ../Blocks/src/Services/ServiceProviderHelper.cs
@@ -215,7 +215,7 @@ items:
   source:
     remote:
       path: Blocks/src/Services/ServiceProviderHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Publish
     path: ../Blocks/src/Services/ServiceProviderHelper.cs
@@ -269,7 +269,7 @@ items:
   source:
     remote:
       path: Blocks/src/Services/ServiceProviderHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Publish
     path: ../Blocks/src/Services/ServiceProviderHelper.cs

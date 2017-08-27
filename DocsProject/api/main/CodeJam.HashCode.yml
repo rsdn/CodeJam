@@ -24,7 +24,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/HashCode.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: HashCode
     path: ../Main/src/Algorithms/HashCode.cs
@@ -68,7 +68,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/HashCode.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Combine
     path: ../Main/src/Algorithms/HashCode.cs
@@ -112,7 +112,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/HashCode.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Combine
     path: ../Main/src/Algorithms/HashCode.cs
@@ -159,7 +159,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/HashCode.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Combine
     path: ../Main/src/Algorithms/HashCode.cs
@@ -209,7 +209,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/HashCode.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Combine
     path: ../Main/src/Algorithms/HashCode.cs
@@ -262,7 +262,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/HashCode.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Combine
     path: ../Main/src/Algorithms/HashCode.cs
@@ -318,7 +318,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/HashCode.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Combine
     path: ../Main/src/Algorithms/HashCode.cs
@@ -377,7 +377,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/HashCode.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Combine
     path: ../Main/src/Algorithms/HashCode.cs
@@ -439,7 +439,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/HashCode.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CombineValues
     path: ../Main/src/Algorithms/HashCode.cs
@@ -485,7 +485,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/HashCode.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CombineValues
     path: ../Main/src/Algorithms/HashCode.cs

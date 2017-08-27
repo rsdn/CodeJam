@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/OwnedCollections/OwnedCollection`2.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: OwnedCollection
     path: ../Main/src/Collections/OwnedCollections/OwnedCollection`2.cs
@@ -364,7 +364,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/OwnedCollections/OwnedCollection`2.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Main/src/Collections/OwnedCollections/OwnedCollection`2.cs
@@ -412,7 +412,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/OwnedCollections/OwnedCollection`2.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetKey
     path: ../Main/src/Collections/OwnedCollections/OwnedCollection`2.cs
@@ -456,7 +456,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/OwnedCollections/OwnedCollection`2.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetOwner
     path: ../Main/src/Collections/OwnedCollections/OwnedCollection`2.cs
@@ -500,7 +500,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/OwnedCollections/OwnedCollection`2.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetOwner
     path: ../Main/src/Collections/OwnedCollections/OwnedCollection`2.cs

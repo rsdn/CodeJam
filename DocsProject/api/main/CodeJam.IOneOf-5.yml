@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/IOneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IOneOf
     path: ../Main/src/Structures/OneOf/IOneOf.generated.cs
@@ -76,7 +76,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/IOneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValue
     path: ../Main/src/Structures/OneOf/IOneOf.generated.cs
@@ -128,7 +128,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/IOneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Do
     path: ../Main/src/Structures/OneOf/IOneOf.generated.cs
@@ -175,7 +175,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/IOneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsCase1
     path: ../Main/src/Structures/OneOf/IOneOf.generated.cs
@@ -212,7 +212,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/IOneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsCase2
     path: ../Main/src/Structures/OneOf/IOneOf.generated.cs
@@ -249,7 +249,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/IOneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsCase3
     path: ../Main/src/Structures/OneOf/IOneOf.generated.cs
@@ -286,7 +286,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/IOneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsCase4
     path: ../Main/src/Structures/OneOf/IOneOf.generated.cs
@@ -323,7 +323,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/IOneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsCase5
     path: ../Main/src/Structures/OneOf/IOneOf.generated.cs

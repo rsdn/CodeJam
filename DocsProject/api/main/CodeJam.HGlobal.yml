@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: Main/src/Utilities/HGlobal.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: HGlobal
     path: ../Main/src/Utilities/HGlobal.cs
@@ -62,7 +62,7 @@ items:
   source:
     remote:
       path: Main/src/Utilities/HGlobal.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Utilities/HGlobal.cs
@@ -103,7 +103,7 @@ items:
   source:
     remote:
       path: Main/src/Utilities/HGlobal.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Utilities/HGlobal.cs
@@ -145,7 +145,7 @@ items:
   source:
     remote:
       path: Main/src/Utilities/HGlobal.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Utilities/HGlobal.cs

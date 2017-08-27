@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: OwnedCollectionBase
     path: ../Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
@@ -344,7 +344,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
@@ -382,7 +382,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Owner
     path: ../Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
@@ -422,7 +422,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetOwner
     path: ../Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
@@ -465,7 +465,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetOwner
     path: ../Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
@@ -508,7 +508,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ClearItems
     path: ../Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
@@ -545,7 +545,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: InsertItem
     path: ../Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
@@ -589,7 +589,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: RemoveItem
     path: ../Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
@@ -630,7 +630,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetItem
     path: ../Main/src/Collections/OwnedCollections/OwnedCollectionBase`2.cs

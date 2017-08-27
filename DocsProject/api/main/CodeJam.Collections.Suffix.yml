@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/Suffix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Suffix
     path: ../Main/src/Collections/SuffixTree/Suffix.cs
@@ -68,7 +68,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/Suffix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SourceIndex
     path: ../Main/src/Collections/SuffixTree/Suffix.cs
@@ -105,7 +105,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/Suffix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Offset
     path: ../Main/src/Collections/SuffixTree/Suffix.cs
@@ -142,7 +142,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/Suffix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Length
     path: ../Main/src/Collections/SuffixTree/Suffix.cs
@@ -179,7 +179,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/Suffix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Value
     path: ../Main/src/Collections/SuffixTree/Suffix.cs
@@ -216,7 +216,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/Suffix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Implicit
     path: ../Main/src/Collections/SuffixTree/Suffix.cs

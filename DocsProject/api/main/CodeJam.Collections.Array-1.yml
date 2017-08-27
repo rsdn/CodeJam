@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/Array.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Array
     path: ../Main/src/Collections/Array/Array.cs
@@ -66,7 +66,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/Array.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Empty
     path: ../Main/src/Collections/Array/Array.cs

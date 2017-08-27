@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTree.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SuffixTree
     path: ../Main/src/Collections/SuffixTree/SuffixTree.cs
@@ -88,7 +88,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTree.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: InvalidNodeIndex
     path: ../Main/src/Collections/SuffixTree/SuffixTree.cs
@@ -123,7 +123,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTree.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Main/src/Collections/SuffixTree/SuffixTree.cs
@@ -155,7 +155,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTree.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Compact
     path: ../Main/src/Collections/SuffixTree/SuffixTree.cs
@@ -188,7 +188,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTree.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: BuildFor
     path: ../Main/src/Collections/SuffixTree/SuffixTree.cs
@@ -228,7 +228,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTree.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AppendNodeText
     path: ../Main/src/Collections/SuffixTree/SuffixTree.cs

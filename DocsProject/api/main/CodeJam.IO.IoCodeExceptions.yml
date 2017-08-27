@@ -27,7 +27,7 @@ items:
   source:
     remote:
       path: Main/src/IO/IoCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IoCodeExceptions
     path: ../Main/src/IO/IoCodeExceptions.cs
@@ -71,7 +71,7 @@ items:
   source:
     remote:
       path: Main/src/IO/IoCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ArgumentNotWellFormedPath
     path: ../Main/src/IO/IoCodeExceptions.cs
@@ -115,7 +115,7 @@ items:
   source:
     remote:
       path: Main/src/IO/IoCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ArgumentNotWellFormedAbsolutePath
     path: ../Main/src/IO/IoCodeExceptions.cs
@@ -159,7 +159,7 @@ items:
   source:
     remote:
       path: Main/src/IO/IoCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ArgumentRootedOrNotRelativePath
     path: ../Main/src/IO/IoCodeExceptions.cs
@@ -203,7 +203,7 @@ items:
   source:
     remote:
       path: Main/src/IO/IoCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ArgumentNotSimpleName
     path: ../Main/src/IO/IoCodeExceptions.cs
@@ -247,7 +247,7 @@ items:
   source:
     remote:
       path: Main/src/IO/IoCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ArgumentNotVolumeOrDirectoryPath
     path: ../Main/src/IO/IoCodeExceptions.cs
@@ -291,7 +291,7 @@ items:
   source:
     remote:
       path: Main/src/IO/IoCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ArgumentDirectoryExistsFileExpected
     path: ../Main/src/IO/IoCodeExceptions.cs
@@ -335,7 +335,7 @@ items:
   source:
     remote:
       path: Main/src/IO/IoCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ArgumentFileExistsDirectoryExpected
     path: ../Main/src/IO/IoCodeExceptions.cs
@@ -379,7 +379,7 @@ items:
   source:
     remote:
       path: Main/src/IO/IoCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ArgumentFileNotFound
     path: ../Main/src/IO/IoCodeExceptions.cs
@@ -423,7 +423,7 @@ items:
   source:
     remote:
       path: Main/src/IO/IoCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ArgumentDirectoryNotFound
     path: ../Main/src/IO/IoCodeExceptions.cs
@@ -467,7 +467,7 @@ items:
   source:
     remote:
       path: Main/src/IO/IoCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IOException
     path: ../Main/src/IO/IoCodeExceptions.cs
@@ -514,7 +514,7 @@ items:
   source:
     remote:
       path: Main/src/IO/IoCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FileExists
     path: ../Main/src/IO/IoCodeExceptions.cs
@@ -555,7 +555,7 @@ items:
   source:
     remote:
       path: Main/src/IO/IoCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DirectoryExists
     path: ../Main/src/IO/IoCodeExceptions.cs

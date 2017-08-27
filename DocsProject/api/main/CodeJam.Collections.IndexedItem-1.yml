@@ -25,7 +25,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Enumerable/IndexedItem.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IndexedItem
     path: ../Main/src/Collections/Enumerable/IndexedItem.cs
@@ -80,7 +80,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Enumerable/IndexedItem.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Item
     path: ../Main/src/Collections/Enumerable/IndexedItem.cs
@@ -120,7 +120,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Enumerable/IndexedItem.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Index
     path: ../Main/src/Collections/Enumerable/IndexedItem.cs
@@ -160,7 +160,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Enumerable/IndexedItem.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsFirst
     path: ../Main/src/Collections/Enumerable/IndexedItem.cs
@@ -200,7 +200,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Enumerable/IndexedItem.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsLast
     path: ../Main/src/Collections/Enumerable/IndexedItem.cs
@@ -240,7 +240,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Enumerable/IndexedItem.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Main/src/Collections/Enumerable/IndexedItem.cs
@@ -287,7 +287,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Enumerable/IndexedItem.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Equals
     path: ../Main/src/Collections/Enumerable/IndexedItem.cs
@@ -331,7 +331,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Enumerable/IndexedItem.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Equals
     path: ../Main/src/Collections/Enumerable/IndexedItem.cs
@@ -375,7 +375,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Enumerable/IndexedItem.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetHashCode
     path: ../Main/src/Collections/Enumerable/IndexedItem.cs
@@ -415,7 +415,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Enumerable/IndexedItem.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Equality
     path: ../Main/src/Collections/Enumerable/IndexedItem.cs
@@ -462,7 +462,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Enumerable/IndexedItem.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Inequality
     path: ../Main/src/Collections/Enumerable/IndexedItem.cs

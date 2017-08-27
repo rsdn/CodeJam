@@ -26,7 +26,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/ValueOption`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ValueOption
     path: ../Main/src/Structures/Option/ValueOption`1.cs
@@ -88,7 +88,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/ValueOption`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Main/src/Structures/Option/ValueOption`1.cs
@@ -126,7 +126,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/ValueOption`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: HasValue
     path: ../Main/src/Structures/Option/ValueOption`1.cs
@@ -167,7 +167,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/ValueOption`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Value
     path: ../Main/src/Structures/Option/ValueOption`1.cs
@@ -208,7 +208,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/ValueOption`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Implicit
     path: ../Main/src/Structures/Option/ValueOption`1.cs
@@ -252,7 +252,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/ValueOption`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Explicit
     path: ../Main/src/Structures/Option/ValueOption`1.cs
@@ -296,7 +296,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/ValueOption`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Equality
     path: ../Main/src/Structures/Option/ValueOption`1.cs
@@ -343,7 +343,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/ValueOption`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Inequality
     path: ../Main/src/Structures/Option/ValueOption`1.cs
@@ -390,7 +390,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/ValueOption`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Equals
     path: ../Main/src/Structures/Option/ValueOption`1.cs
@@ -434,7 +434,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/ValueOption`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Equals
     path: ../Main/src/Structures/Option/ValueOption`1.cs
@@ -478,7 +478,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/ValueOption`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetHashCode
     path: ../Main/src/Structures/Option/ValueOption`1.cs
@@ -518,7 +518,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/ValueOption`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToString
     path: ../Main/src/Structures/Option/ValueOption`1.cs

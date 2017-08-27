@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/TypeAccessorT.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TypeAccessor
     path: ../Main/src/Reflection/TypeAccessorT.cs
@@ -84,7 +84,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/TypeAccessorT.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CreateInstanceExpression
     path: ../Main/src/Reflection/TypeAccessorT.cs
@@ -125,7 +125,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/TypeAccessorT.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CreateInstance
     path: ../Main/src/Reflection/TypeAccessorT.cs
@@ -165,7 +165,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/TypeAccessorT.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Reflection/TypeAccessorT.cs
@@ -202,7 +202,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/TypeAccessorT.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Type
     path: ../Main/src/Reflection/TypeAccessorT.cs
@@ -244,7 +244,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/TypeAccessorT.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetAccessor
     path: ../Main/src/Reflection/TypeAccessorT.cs

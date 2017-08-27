@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Main/src/Utilities/HGlobalScope.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: HGlobalScope
     path: ../Main/src/Utilities/HGlobalScope.cs
@@ -86,7 +86,7 @@ items:
   source:
     remote:
       path: Main/src/Utilities/HGlobalScope.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Finalize
     path: ../Main/src/Utilities/HGlobalScope.cs
@@ -118,7 +118,7 @@ items:
   source:
     remote:
       path: Main/src/Utilities/HGlobalScope.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Dispose
     path: ../Main/src/Utilities/HGlobalScope.cs
@@ -152,7 +152,7 @@ items:
   source:
     remote:
       path: Main/src/Utilities/HGlobalScope.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Length
     path: ../Main/src/Utilities/HGlobalScope.cs
@@ -189,7 +189,7 @@ items:
   source:
     remote:
       path: Main/src/Utilities/HGlobalScope.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Data
     path: ../Main/src/Utilities/HGlobalScope.cs

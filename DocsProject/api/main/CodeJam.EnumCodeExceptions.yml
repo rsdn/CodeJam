@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/EnumCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EnumCodeExceptions
     path: ../Main/src/Assertions/EnumCodeExceptions.cs
@@ -64,7 +64,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/EnumCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ArgumentNotDefinedException
     path: ../Main/src/Assertions/EnumCodeExceptions.cs
@@ -114,7 +114,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/EnumCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ArgumentFlagSet
     path: ../Main/src/Assertions/EnumCodeExceptions.cs
@@ -167,7 +167,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/EnumCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ArgumentAnyFlagUnset
     path: ../Main/src/Assertions/EnumCodeExceptions.cs
@@ -220,7 +220,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/EnumCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ArgumentAnyFlagSet
     path: ../Main/src/Assertions/EnumCodeExceptions.cs
@@ -273,7 +273,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/EnumCodeExceptions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ArgumentFlagUnset
     path: ../Main/src/Assertions/EnumCodeExceptions.cs

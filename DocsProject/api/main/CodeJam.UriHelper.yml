@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: Main/src/UriHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UriHelper
     path: ../Main/src/UriHelper.cs
@@ -63,7 +63,7 @@ items:
   source:
     remote:
       path: Main/src/UriHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Combine
     path: ../Main/src/UriHelper.cs
@@ -111,7 +111,7 @@ items:
   source:
     remote:
       path: Main/src/UriHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Combine
     path: ../Main/src/UriHelper.cs
@@ -158,7 +158,7 @@ items:
   source:
     remote:
       path: Main/src/UriHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Combine
     path: ../Main/src/UriHelper.cs

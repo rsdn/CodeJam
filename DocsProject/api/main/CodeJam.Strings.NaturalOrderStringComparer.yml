@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/NaturalOrderStringComparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NaturalOrderStringComparer
     path: ../Main/src/Strings/NaturalOrderStringComparer.cs
@@ -76,7 +76,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/NaturalOrderStringComparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Comparer
     path: ../Main/src/Strings/NaturalOrderStringComparer.cs
@@ -114,7 +114,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/NaturalOrderStringComparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IgnoreCaseComparer
     path: ../Main/src/Strings/NaturalOrderStringComparer.cs
@@ -152,7 +152,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/NaturalOrderStringComparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Comparison
     path: ../Main/src/Strings/NaturalOrderStringComparer.cs
@@ -190,7 +190,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/NaturalOrderStringComparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IgnoreCaseComparison
     path: ../Main/src/Strings/NaturalOrderStringComparer.cs
@@ -228,7 +228,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/NaturalOrderStringComparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Compare
     path: ../Main/src/Strings/NaturalOrderStringComparer.cs
@@ -272,7 +272,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/NaturalOrderStringComparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Compare
     path: ../Main/src/Strings/NaturalOrderStringComparer.cs
@@ -320,7 +320,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/NaturalOrderStringComparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: System.Collections.Generic.IComparer<System.String>.Compare
     path: ../Main/src/Strings/NaturalOrderStringComparer.cs

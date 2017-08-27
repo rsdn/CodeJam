@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryKind.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: RangeBoundaryFromKind
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryKind.cs
@@ -69,7 +69,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryKind.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Empty
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryKind.cs
@@ -103,7 +103,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryKind.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Infinite
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryKind.cs
@@ -137,7 +137,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryKind.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Inclusive
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryKind.cs
@@ -171,7 +171,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryKind.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Exclusive
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryKind.cs

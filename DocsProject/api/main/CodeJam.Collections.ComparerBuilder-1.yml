@@ -24,7 +24,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/ComparerBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ComparerBuilder
     path: ../Main/src/Collections/ComparerBuilder.cs
@@ -74,7 +74,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/ComparerBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetEqualsFunc
     path: ../Main/src/Collections/ComparerBuilder.cs
@@ -113,7 +113,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/ComparerBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetEqualsFunc
     path: ../Main/src/Collections/ComparerBuilder.cs
@@ -157,7 +157,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/ComparerBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetEqualsFunc
     path: ../Main/src/Collections/ComparerBuilder.cs
@@ -201,7 +201,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/ComparerBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetGetHashCodeFunc
     path: ../Main/src/Collections/ComparerBuilder.cs
@@ -240,7 +240,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/ComparerBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetGetHashCodeFunc
     path: ../Main/src/Collections/ComparerBuilder.cs
@@ -284,7 +284,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/ComparerBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetGetHashCodeFunc
     path: ../Main/src/Collections/ComparerBuilder.cs
@@ -328,7 +328,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/ComparerBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetEqualityComparer
     path: ../Main/src/Collections/ComparerBuilder.cs
@@ -367,7 +367,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/ComparerBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetEqualityComparer
     path: ../Main/src/Collections/ComparerBuilder.cs
@@ -411,7 +411,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/ComparerBuilder.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetEqualityComparer
     path: ../Main/src/Collections/ComparerBuilder.cs

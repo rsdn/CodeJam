@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/Converter.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Converter
     path: ../Blocks/src/Mapping/Converter.cs
@@ -62,7 +62,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/Converter.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetConverter
     path: ../Blocks/src/Mapping/Converter.cs
@@ -108,7 +108,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/Converter.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ChangeType
     path: ../Blocks/src/Mapping/Converter.cs
@@ -155,7 +155,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/Converter.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ChangeTypeTo
     path: ../Blocks/src/Mapping/Converter.cs

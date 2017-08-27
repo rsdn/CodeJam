@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DocsProject</RootNamespace>
     <AssemblyName>DocsProject</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -56,6 +56,9 @@
     <None Include="toc.yml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\CodeJam.Main.Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Blocks\src\CodeJam.Blocks.csproj">
       <Project>{0dff0859-2400-4487-83ad-0ed10203d6d9}</Project>
       <Name>CodeJam.Blocks</Name>
@@ -64,9 +67,6 @@
       <Project>{2f2046cc-fb47-4318-b335-5a82b04b6c40}</Project>
       <Name>CodeJam.Main</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="images\CodeJam.Main.Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\docfx.console.2.23.1\build\docfx.console.targets" Condition="Exists('..\packages\docfx.console.2.23.1\build\docfx.console.targets')" />

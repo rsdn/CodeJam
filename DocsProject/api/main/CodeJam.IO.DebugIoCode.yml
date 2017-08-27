@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: Main/src/IO/DebugIoCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DebugIoCode
     path: ../Main/src/IO/DebugIoCode.generated.cs
@@ -67,7 +67,7 @@ items:
   source:
     remote:
       path: Main/src/IO/DebugIoCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWellFormedPath
     path: ../Main/src/IO/DebugIoCode.generated.cs
@@ -120,7 +120,7 @@ items:
   source:
     remote:
       path: Main/src/IO/DebugIoCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWellFormedAbsolutePath
     path: ../Main/src/IO/DebugIoCode.generated.cs
@@ -173,7 +173,7 @@ items:
   source:
     remote:
       path: Main/src/IO/DebugIoCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWellFormedRelativePath
     path: ../Main/src/IO/DebugIoCode.generated.cs
@@ -226,7 +226,7 @@ items:
   source:
     remote:
       path: Main/src/IO/DebugIoCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWellFormedContainerPath
     path: ../Main/src/IO/DebugIoCode.generated.cs
@@ -279,7 +279,7 @@ items:
   source:
     remote:
       path: Main/src/IO/DebugIoCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWellFormedSimpleName
     path: ../Main/src/IO/DebugIoCode.generated.cs
@@ -332,7 +332,7 @@ items:
   source:
     remote:
       path: Main/src/IO/DebugIoCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FileExists
     path: ../Main/src/IO/DebugIoCode.generated.cs
@@ -385,7 +385,7 @@ items:
   source:
     remote:
       path: Main/src/IO/DebugIoCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DirectoryExists
     path: ../Main/src/IO/DebugIoCode.generated.cs
@@ -438,7 +438,7 @@ items:
   source:
     remote:
       path: Main/src/IO/DebugIoCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: PathIsFree
     path: ../Main/src/IO/DebugIoCode.generated.cs

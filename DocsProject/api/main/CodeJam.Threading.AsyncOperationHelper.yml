@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/AsyncOperationHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AsyncOperationHelper
     path: ../Main/src/Threading/AsyncOperationHelper.cs
@@ -66,7 +66,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/AsyncOperationHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CreateOperation
     path: ../Main/src/Threading/AsyncOperationHelper.cs
@@ -104,7 +104,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/AsyncOperationHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Post
     path: ../Main/src/Threading/AsyncOperationHelper.cs
@@ -149,7 +149,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/AsyncOperationHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: PostOperationCompleted
     path: ../Main/src/Threading/AsyncOperationHelper.cs
@@ -194,7 +194,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/AsyncOperationHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Send
     path: ../Main/src/Threading/AsyncOperationHelper.cs
@@ -239,7 +239,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/AsyncOperationHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Send
     path: ../Main/src/Threading/AsyncOperationHelper.cs
@@ -291,7 +291,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/AsyncOperationHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: RunAsync
     path: ../Main/src/Threading/AsyncOperationHelper.cs
@@ -332,7 +332,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/AsyncOperationHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: RunAsync
     path: ../Main/src/Threading/AsyncOperationHelper.cs

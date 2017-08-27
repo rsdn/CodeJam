@@ -61,7 +61,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DateTimeExtensions
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -106,7 +106,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.NonGenerated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DaysInMonth
     path: ../Main/src/Dates/DateTimeExtensions.NonGenerated.cs
@@ -151,7 +151,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.NonGenerated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DaysInMonth
     path: ../Main/src/Dates/DateTimeExtensions.NonGenerated.cs
@@ -196,7 +196,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.NonGenerated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DaysInYear
     path: ../Main/src/Dates/DateTimeExtensions.NonGenerated.cs
@@ -241,7 +241,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.NonGenerated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DaysInYear
     path: ../Main/src/Dates/DateTimeExtensions.NonGenerated.cs
@@ -286,7 +286,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithDay
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -334,7 +334,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithMonth
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -382,7 +382,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithMonth
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -433,7 +433,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AddMonths
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -484,7 +484,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithYear
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -532,7 +532,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithYear
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -583,7 +583,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AddYears
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -634,7 +634,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithMonthAndDay
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -685,7 +685,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithMonthAndDay
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -739,7 +739,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithYearAndMonth
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -790,7 +790,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithYearAndMonth
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -844,7 +844,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: PrevDay
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -889,7 +889,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NextDay
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -934,7 +934,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: PrevMonth
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -979,7 +979,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NextMonth
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -1024,7 +1024,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: PrevYear
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -1069,7 +1069,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NextYear
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -1114,7 +1114,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FirstDayOfMonth
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -1159,7 +1159,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LastDayOfMonth
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -1204,7 +1204,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FirstDayOfYear
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -1249,7 +1249,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LastDayOfYear
     path: ../Main/src/Dates/DateTimeExtensions.generated.cs
@@ -1294,7 +1294,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithDay
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -1342,7 +1342,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithMonth
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -1390,7 +1390,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithMonth
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -1441,7 +1441,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AddMonths
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -1492,7 +1492,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithYear
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -1540,7 +1540,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithYear
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -1591,7 +1591,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AddYears
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -1642,7 +1642,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithMonthAndDay
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -1693,7 +1693,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithMonthAndDay
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -1747,7 +1747,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithYearAndMonth
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -1798,7 +1798,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithYearAndMonth
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -1852,7 +1852,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: PrevDay
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -1897,7 +1897,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NextDay
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -1942,7 +1942,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: PrevMonth
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -1987,7 +1987,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NextMonth
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -2032,7 +2032,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: PrevYear
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -2077,7 +2077,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NextYear
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -2122,7 +2122,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FirstDayOfMonth
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -2167,7 +2167,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LastDayOfMonth
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -2212,7 +2212,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FirstDayOfYear
     path: ../Main/src/Dates/DateTimeExtensions.cs
@@ -2257,7 +2257,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LastDayOfYear
     path: ../Main/src/Dates/DateTimeExtensions.cs

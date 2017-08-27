@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/IRangeFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IRangeFactory
     path: ../Main/src/Ranges/[Ranges]/IRangeFactory.cs
@@ -75,7 +75,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/IRangeFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CreateRange
     path: ../Main/src/Ranges/[Ranges]/IRangeFactory.cs
@@ -116,7 +116,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/IRangeFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TryCreateRange
     path: ../Main/src/Ranges/[Ranges]/IRangeFactory.cs

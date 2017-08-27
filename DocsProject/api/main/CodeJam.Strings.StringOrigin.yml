@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringOrigin.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: StringOrigin
     path: ../Main/src/Strings/StringOrigin.cs
@@ -67,7 +67,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringOrigin.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Begin
     path: ../Main/src/Strings/StringOrigin.cs
@@ -101,7 +101,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringOrigin.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: End
     path: ../Main/src/Strings/StringOrigin.cs

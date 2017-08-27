@@ -24,7 +24,7 @@ items:
   source:
     remote:
       path: Main/src/IO/TempData.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TempBase
     path: ../Main/src/IO/TempData.cs
@@ -85,7 +85,7 @@ items:
   source:
     remote:
       path: Main/src/IO/TempData.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DebugAssertValidPath
     path: ../Main/src/IO/TempData.cs
@@ -135,7 +135,7 @@ items:
   source:
     remote:
       path: Main/src/IO/TempData.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AssertNotDisposed
     path: ../Main/src/IO/TempData.cs
@@ -167,7 +167,7 @@ items:
   source:
     remote:
       path: Main/src/IO/TempData.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Main/src/IO/TempData.cs
@@ -203,7 +203,7 @@ items:
   source:
     remote:
       path: Main/src/IO/TempData.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Path
     path: ../Main/src/IO/TempData.cs
@@ -241,7 +241,7 @@ items:
   source:
     remote:
       path: Main/src/IO/TempData.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SuppressDelete
     path: ../Main/src/IO/TempData.cs
@@ -273,7 +273,7 @@ items:
   source:
     remote:
       path: Main/src/IO/TempData.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Finalize
     path: ../Main/src/IO/TempData.cs
@@ -305,7 +305,7 @@ items:
   source:
     remote:
       path: Main/src/IO/TempData.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Dispose
     path: ../Main/src/IO/TempData.cs
@@ -339,7 +339,7 @@ items:
   source:
     remote:
       path: Main/src/IO/TempData.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Dispose
     path: ../Main/src/IO/TempData.cs
@@ -375,7 +375,7 @@ items:
   source:
     remote:
       path: Main/src/IO/TempData.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DisposePath
     path: ../Main/src/IO/TempData.cs

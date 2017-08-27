@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MapValueAttribute.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MapValueAttribute
     path: ../Blocks/src/Mapping/MapValueAttribute.cs
@@ -128,7 +128,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MapValueAttribute.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Mapping/MapValueAttribute.cs
@@ -160,7 +160,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MapValueAttribute.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Mapping/MapValueAttribute.cs
@@ -196,7 +196,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MapValueAttribute.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Mapping/MapValueAttribute.cs
@@ -235,7 +235,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MapValueAttribute.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Mapping/MapValueAttribute.cs
@@ -274,7 +274,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MapValueAttribute.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Mapping/MapValueAttribute.cs
@@ -316,7 +316,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MapValueAttribute.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Configuration
     path: ../Blocks/src/Mapping/MapValueAttribute.cs
@@ -353,7 +353,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MapValueAttribute.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Value
     path: ../Blocks/src/Mapping/MapValueAttribute.cs
@@ -390,7 +390,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MapValueAttribute.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsDefault
     path: ../Blocks/src/Mapping/MapValueAttribute.cs

@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: Main/src/IO/PathHelpers.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: PathHelpers
     path: ../Main/src/IO/PathHelpers.cs
@@ -67,7 +67,7 @@ items:
   source:
     remote:
       path: Main/src/IO/PathHelpers.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWellFormedPath
     path: ../Main/src/IO/PathHelpers.cs
@@ -108,7 +108,7 @@ items:
   source:
     remote:
       path: Main/src/IO/PathHelpers.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWellFormedAbsolutePath
     path: ../Main/src/IO/PathHelpers.cs
@@ -149,7 +149,7 @@ items:
   source:
     remote:
       path: Main/src/IO/PathHelpers.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWellFormedRelativePath
     path: ../Main/src/IO/PathHelpers.cs
@@ -190,7 +190,7 @@ items:
   source:
     remote:
       path: Main/src/IO/PathHelpers.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWellFormedContainerPath
     path: ../Main/src/IO/PathHelpers.cs
@@ -231,7 +231,7 @@ items:
   source:
     remote:
       path: Main/src/IO/PathHelpers.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWellFormedSimpleName
     path: ../Main/src/IO/PathHelpers.cs
@@ -272,7 +272,7 @@ items:
   source:
     remote:
       path: Main/src/IO/PathHelpers.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsSimpleName
     path: ../Main/src/IO/PathHelpers.cs
@@ -313,7 +313,7 @@ items:
   source:
     remote:
       path: Main/src/IO/PathHelpers.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsContainerPath
     path: ../Main/src/IO/PathHelpers.cs
@@ -354,7 +354,7 @@ items:
   source:
     remote:
       path: Main/src/IO/PathHelpers.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EnsureContainerPath
     path: ../Main/src/IO/PathHelpers.cs

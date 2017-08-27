@@ -15,7 +15,7 @@ items:
   source:
     remote:
       path: Blocks/src/TableData/TableDataParser.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Parser
     path: ../Blocks/src/TableData/TableDataParser.cs

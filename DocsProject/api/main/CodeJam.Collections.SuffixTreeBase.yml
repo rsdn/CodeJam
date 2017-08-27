@@ -33,7 +33,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SuffixTreeBase
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -87,7 +87,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: RootNodeIndex
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -122,7 +122,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Root
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -159,7 +159,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EdgeComparer
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -196,7 +196,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AddNode
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -235,7 +235,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpdateNode
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -274,7 +274,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetNode
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -313,7 +313,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NodesCount
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -350,7 +350,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: InternalData
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -387,7 +387,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: StringLocations
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -424,7 +424,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -456,7 +456,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Add
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -492,7 +492,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: All
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -528,7 +528,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Contains
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -567,7 +567,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ContainsSuffix
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -606,7 +606,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: StartingWith
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -645,7 +645,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: BuildFor
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -684,7 +684,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Print
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
@@ -719,7 +719,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AppendNodeText
     path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs

@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Main/src/Disposable.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Disposable
     path: ../Main/src/Disposable.cs
@@ -63,7 +63,7 @@ items:
   source:
     remote:
       path: Main/src/Disposable.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Empty
     path: ../Main/src/Disposable.cs
@@ -100,7 +100,7 @@ items:
   source:
     remote:
       path: Main/src/Disposable.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Disposable.cs
@@ -141,7 +141,7 @@ items:
   source:
     remote:
       path: Main/src/Disposable.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Merge
     path: ../Main/src/Disposable.cs
@@ -186,7 +186,7 @@ items:
   source:
     remote:
       path: Main/src/Disposable.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Merge
     path: ../Main/src/Disposable.cs

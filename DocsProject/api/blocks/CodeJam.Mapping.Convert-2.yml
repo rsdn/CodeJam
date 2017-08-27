@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/ConvertT.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Convert
     path: ../Blocks/src/Mapping/ConvertT.cs
@@ -70,7 +70,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/ConvertT.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Expression
     path: ../Blocks/src/Mapping/ConvertT.cs
@@ -111,7 +111,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/ConvertT.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Lambda
     path: ../Blocks/src/Mapping/ConvertT.cs
@@ -152,7 +152,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/ConvertT.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: From
     path: ../Blocks/src/Mapping/ConvertT.cs

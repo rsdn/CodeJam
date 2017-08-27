@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: Main/src/Disposable.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EmptyDisposable
     path: ../Main/src/Disposable.cs
@@ -68,7 +68,7 @@ items:
   source:
     remote:
       path: Main/src/Disposable.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Dispose
     path: ../Main/src/Disposable.cs

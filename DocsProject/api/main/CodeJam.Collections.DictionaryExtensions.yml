@@ -46,7 +46,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DictionaryExtensions
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.cs
@@ -91,7 +91,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -147,7 +147,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -206,7 +206,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -267,7 +267,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -331,7 +331,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -390,7 +390,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -454,7 +454,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -510,7 +510,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -569,7 +569,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -630,7 +630,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -694,7 +694,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -753,7 +753,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -817,7 +817,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -873,7 +873,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -932,7 +932,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -993,7 +993,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -1057,7 +1057,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -1116,7 +1116,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -1180,7 +1180,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -1236,7 +1236,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -1295,7 +1295,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -1356,7 +1356,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -1420,7 +1420,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -1479,7 +1479,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
@@ -1543,7 +1543,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetOrAdd
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.cs
@@ -1597,7 +1597,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetOrAdd
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.cs
@@ -1654,7 +1654,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetOrAdd
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.cs
@@ -1711,7 +1711,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AddOrUpdate
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.cs
@@ -1771,7 +1771,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AddOrUpdate
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.cs
@@ -1831,7 +1831,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AddOrUpdate
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.cs
@@ -1888,7 +1888,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/DictionaryExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AddOrUpdate
     path: ../Main/src/Collections/Dictionary/DictionaryExtensions.cs

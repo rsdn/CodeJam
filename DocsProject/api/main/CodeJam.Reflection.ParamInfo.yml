@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ParamInfo.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ParamInfo
     path: ../Main/src/Reflection/ParamInfo.cs
@@ -70,7 +70,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ParamInfo.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Main/src/Reflection/ParamInfo.cs
@@ -112,7 +112,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ParamInfo.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Param
     path: ../Main/src/Reflection/ParamInfo.cs
@@ -159,7 +159,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ParamInfo.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Name
     path: ../Main/src/Reflection/ParamInfo.cs
@@ -196,7 +196,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ParamInfo.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Value
     path: ../Main/src/Reflection/ParamInfo.cs
@@ -233,7 +233,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ParamInfo.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Required
     path: ../Main/src/Reflection/ParamInfo.cs

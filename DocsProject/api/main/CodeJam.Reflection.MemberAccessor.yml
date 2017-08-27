@@ -28,7 +28,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/MemberAccessor.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MemberAccessor
     path: ../Main/src/Reflection/MemberAccessor.cs
@@ -78,7 +78,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/MemberAccessor.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MemberInfo
     path: ../Main/src/Reflection/MemberAccessor.cs
@@ -115,7 +115,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/MemberAccessor.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TypeAccessor
     path: ../Main/src/Reflection/MemberAccessor.cs
@@ -152,7 +152,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/MemberAccessor.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: HasGetter
     path: ../Main/src/Reflection/MemberAccessor.cs
@@ -189,7 +189,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/MemberAccessor.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: HasSetter
     path: ../Main/src/Reflection/MemberAccessor.cs
@@ -226,7 +226,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/MemberAccessor.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Type
     path: ../Main/src/Reflection/MemberAccessor.cs
@@ -263,7 +263,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/MemberAccessor.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsComplex
     path: ../Main/src/Reflection/MemberAccessor.cs
@@ -300,7 +300,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/MemberAccessor.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetterExpression
     path: ../Main/src/Reflection/MemberAccessor.cs
@@ -337,7 +337,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/MemberAccessor.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetterExpression
     path: ../Main/src/Reflection/MemberAccessor.cs
@@ -374,7 +374,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/MemberAccessor.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Getter
     path: ../Main/src/Reflection/MemberAccessor.cs
@@ -411,7 +411,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/MemberAccessor.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Setter
     path: ../Main/src/Reflection/MemberAccessor.cs
@@ -448,7 +448,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/MemberAccessor.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Name
     path: ../Main/src/Reflection/MemberAccessor.cs
@@ -485,7 +485,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/MemberAccessor.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValue
     path: ../Main/src/Reflection/MemberAccessor.cs
@@ -524,7 +524,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/MemberAccessor.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetValue
     path: ../Main/src/Reflection/MemberAccessor.cs

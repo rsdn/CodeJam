@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/KeyEqualityComparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: KeyEqualityComparer
     path: ../Main/src/Collections/Dictionary/KeyEqualityComparer.cs
@@ -61,7 +61,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/KeyEqualityComparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Collections/Dictionary/KeyEqualityComparer.cs
@@ -110,7 +110,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/KeyEqualityComparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Collections/Dictionary/KeyEqualityComparer.cs

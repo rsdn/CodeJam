@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugUriCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DebugUriCode
     path: ../Main/src/Assertions/DebugUriCode.generated.cs
@@ -62,7 +62,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugUriCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWellFormedUri
     path: ../Main/src/Assertions/DebugUriCode.generated.cs
@@ -115,7 +115,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugUriCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWellFormedAbsoluteUri
     path: ../Main/src/Assertions/DebugUriCode.generated.cs
@@ -168,7 +168,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/DebugUriCode.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWellFormedRelativeUri
     path: ../Main/src/Assertions/DebugUriCode.generated.cs

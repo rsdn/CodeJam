@@ -25,7 +25,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/Option.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Option
     path: ../Main/src/Structures/Option/Option.cs
@@ -69,7 +69,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/Option.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Some
     path: ../Main/src/Structures/Option/Option.cs
@@ -116,7 +116,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/Option.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SomeHasValue
     path: ../Main/src/Structures/Option/Option.cs
@@ -163,7 +163,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/Option.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SomeHasValue
     path: ../Main/src/Structures/Option/Option.cs
@@ -210,7 +210,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/Option.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: None
     path: ../Main/src/Structures/Option/Option.cs
@@ -255,7 +255,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/Option.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Do
     path: ../Main/src/Structures/Option/Option.cs
@@ -309,7 +309,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/Option.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Structures/Option/Option.cs
@@ -368,7 +368,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/Option.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Structures/Option/Option.cs
@@ -422,7 +422,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/Option.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: With
     path: ../Main/src/Structures/Option/Option.cs
@@ -475,7 +475,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/Option.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: With
     path: ../Main/src/Structures/Option/Option.cs
@@ -531,7 +531,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/Option/Option.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: With
     path: ../Main/src/Structures/Option/Option.cs

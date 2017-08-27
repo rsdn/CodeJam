@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: Main/src/Fn`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Fn
     path: ../Main/src/Fn`1.cs
@@ -73,7 +73,7 @@ items:
   source:
     remote:
       path: Main/src/Fn`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: "True"
     path: ../Main/src/Fn`1.cs
@@ -112,7 +112,7 @@ items:
   source:
     remote:
       path: Main/src/Fn`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: "False"
     path: ../Main/src/Fn`1.cs
@@ -151,7 +151,7 @@ items:
   source:
     remote:
       path: Main/src/Fn`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TruePredicate
     path: ../Main/src/Fn`1.cs
@@ -190,7 +190,7 @@ items:
   source:
     remote:
       path: Main/src/Fn`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FalsePredicate
     path: ../Main/src/Fn`1.cs
@@ -229,7 +229,7 @@ items:
   source:
     remote:
       path: Main/src/Fn`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Self
     path: ../Main/src/Fn`1.cs
@@ -268,7 +268,7 @@ items:
   source:
     remote:
       path: Main/src/Fn`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SelfConverter
     path: ../Main/src/Fn`1.cs
@@ -307,7 +307,7 @@ items:
   source:
     remote:
       path: Main/src/Fn`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNull
     path: ../Main/src/Fn`1.cs
@@ -346,7 +346,7 @@ items:
   source:
     remote:
       path: Main/src/Fn`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNotNull
     path: ../Main/src/Fn`1.cs

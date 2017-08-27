@@ -39,7 +39,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.CreateInstance.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ReflectionExtensions
     path: ../Main/src/Reflection/ReflectionExtensions.CreateInstance.cs
@@ -84,7 +84,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TryGetMetadataAttribute
     path: ../Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs
@@ -136,7 +136,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TryGetMetadataAttribute
     path: ../Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs
@@ -191,7 +191,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetMetadataAttributes
     path: ../Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs
@@ -243,7 +243,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetMetadataAttributes
     path: ../Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs
@@ -298,7 +298,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetModulePath
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -343,7 +343,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetShortAssemblyQualifiedName
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -389,7 +389,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsInstantiable
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -434,7 +434,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsStatic
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -479,7 +479,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNullable
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -524,7 +524,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNumeric
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -569,7 +569,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsInteger
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -614,7 +614,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNullableNumeric
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -659,7 +659,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNullableInteger
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -704,7 +704,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNullableEnum
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -749,7 +749,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsSubClass
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -797,7 +797,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetDelegateParams
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -839,7 +839,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToUnderlying
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -884,7 +884,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToNullableUnderlying
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -929,7 +929,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToEnumUnderlying
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -974,7 +974,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetMemberType
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -1019,7 +1019,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsAnonymous
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -1064,7 +1064,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetDefaultConstructor
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -1115,7 +1115,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetItemType
     path: ../Main/src/Reflection/ReflectionExtensions.cs
@@ -1160,7 +1160,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/ReflectionExtensions.CreateInstance.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CreateInstance
     path: ../Main/src/Reflection/ReflectionExtensions.CreateInstance.cs

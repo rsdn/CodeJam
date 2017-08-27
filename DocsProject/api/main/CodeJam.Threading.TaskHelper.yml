@@ -35,7 +35,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TaskHelper
     path: ../Main/src/Threading/TaskHelper.cs
@@ -80,7 +80,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WaitAll
     path: ../Main/src/Threading/TaskHelper.generated.cs
@@ -134,7 +134,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WaitAll
     path: ../Main/src/Threading/TaskHelper.generated.cs
@@ -188,7 +188,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WaitAll
     path: ../Main/src/Threading/TaskHelper.generated.cs
@@ -236,7 +236,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WaitAll
     path: ../Main/src/Threading/TaskHelper.generated.cs
@@ -287,7 +287,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WaitAll
     path: ../Main/src/Threading/TaskHelper.generated.cs
@@ -338,7 +338,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WaitAll
     path: ../Main/src/Threading/TaskHelper.generated.cs
@@ -383,7 +383,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WhenAll
     path: ../Main/src/Threading/TaskHelper.generated.cs
@@ -431,7 +431,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WhenAll
     path: ../Main/src/Threading/TaskHelper.generated.cs
@@ -482,7 +482,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WhenAny
     path: ../Main/src/Threading/TaskHelper.generated.cs
@@ -533,7 +533,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WhenAny
     path: ../Main/src/Threading/TaskHelper.generated.cs
@@ -581,7 +581,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WaitAll
     path: ../Main/src/Threading/TaskHelper.cs
@@ -635,7 +635,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WaitAll
     path: ../Main/src/Threading/TaskHelper.cs
@@ -689,7 +689,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WaitAll
     path: ../Main/src/Threading/TaskHelper.cs
@@ -737,7 +737,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WaitAll
     path: ../Main/src/Threading/TaskHelper.cs
@@ -788,7 +788,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WaitAll
     path: ../Main/src/Threading/TaskHelper.cs
@@ -839,7 +839,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WaitAll
     path: ../Main/src/Threading/TaskHelper.cs
@@ -884,7 +884,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WhenAll
     path: ../Main/src/Threading/TaskHelper.cs
@@ -932,7 +932,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WhenAll
     path: ../Main/src/Threading/TaskHelper.cs
@@ -983,7 +983,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WhenAny
     path: ../Main/src/Threading/TaskHelper.cs
@@ -1034,7 +1034,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/TaskHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WhenAny
     path: ../Main/src/Threading/TaskHelper.cs

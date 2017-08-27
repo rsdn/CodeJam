@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/ICompositeRange`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ICompositeRange
     path: ../Main/src/Ranges/[Ranges]/ICompositeRange`1.cs
@@ -65,7 +65,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/ICompositeRange`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsEmpty
     path: ../Main/src/Ranges/[Ranges]/ICompositeRange`1.cs
@@ -103,7 +103,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/ICompositeRange`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNotEmpty
     path: ../Main/src/Ranges/[Ranges]/ICompositeRange`1.cs
@@ -141,7 +141,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/ICompositeRange`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ContainingRange
     path: ../Main/src/Ranges/[Ranges]/ICompositeRange`1.cs
@@ -179,7 +179,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/ICompositeRange`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetMergedRanges
     path: ../Main/src/Ranges/[Ranges]/ICompositeRange`1.cs

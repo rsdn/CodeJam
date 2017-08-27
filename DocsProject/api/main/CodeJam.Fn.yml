@@ -33,7 +33,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Fn
     path: ../Main/src/Fn.cs
@@ -77,7 +77,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Action
     path: ../Main/src/Fn.generated.cs
@@ -118,7 +118,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Action
     path: ../Main/src/Fn.generated.cs
@@ -165,7 +165,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Action
     path: ../Main/src/Fn.generated.cs
@@ -214,7 +214,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Action
     path: ../Main/src/Fn.generated.cs
@@ -265,7 +265,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Action
     path: ../Main/src/Fn.generated.cs
@@ -318,7 +318,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Action
     path: ../Main/src/Fn.generated.cs
@@ -373,7 +373,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Action
     path: ../Main/src/Fn.generated.cs
@@ -430,7 +430,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Action
     path: ../Main/src/Fn.generated.cs
@@ -489,7 +489,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Func
     path: ../Main/src/Fn.generated.cs
@@ -536,7 +536,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Func
     path: ../Main/src/Fn.generated.cs
@@ -585,7 +585,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Func
     path: ../Main/src/Fn.generated.cs
@@ -636,7 +636,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Func
     path: ../Main/src/Fn.generated.cs
@@ -689,7 +689,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Func
     path: ../Main/src/Fn.generated.cs
@@ -744,7 +744,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Func
     path: ../Main/src/Fn.generated.cs
@@ -801,7 +801,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Func
     path: ../Main/src/Fn.generated.cs
@@ -860,7 +860,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Func
     path: ../Main/src/Fn.generated.cs
@@ -921,7 +921,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: "True"
     path: ../Main/src/Fn.cs
@@ -958,7 +958,7 @@ items:
   source:
     remote:
       path: Main/src/Fn.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: "False"
     path: ../Main/src/Fn.cs

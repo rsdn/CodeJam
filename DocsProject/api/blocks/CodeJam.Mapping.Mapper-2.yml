@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/Mapper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Mapper
     path: ../Blocks/src/Mapping/Mapper.cs
@@ -76,7 +76,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/Mapper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetMapperExpressionEx
     path: ../Blocks/src/Mapping/Mapper.cs
@@ -113,7 +113,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/Mapper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetMapperExpression
     path: ../Blocks/src/Mapping/Mapper.cs
@@ -150,7 +150,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/Mapper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetMapperEx
     path: ../Blocks/src/Mapping/Mapper.cs
@@ -187,7 +187,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/Mapper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetMapper
     path: ../Blocks/src/Mapping/Mapper.cs
@@ -224,7 +224,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/Mapper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Map
     path: ../Blocks/src/Mapping/Mapper.cs
@@ -265,7 +265,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/Mapper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Map
     path: ../Blocks/src/Mapping/Mapper.cs
@@ -309,7 +309,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/Mapper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Map
     path: ../Blocks/src/Mapping/Mapper.cs

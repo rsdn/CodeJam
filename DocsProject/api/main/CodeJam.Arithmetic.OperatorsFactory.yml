@@ -29,7 +29,7 @@ items:
   source:
     remote:
       path: Main/src/Arithmetic/OperatorsFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: OperatorsFactory
     path: ../Main/src/Arithmetic/OperatorsFactory.cs
@@ -73,7 +73,7 @@ items:
   source:
     remote:
       path: Main/src/Arithmetic/OperatorsFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: HasNaN
     path: ../Main/src/Arithmetic/OperatorsFactory.cs
@@ -116,7 +116,7 @@ items:
   source:
     remote:
       path: Main/src/Arithmetic/OperatorsFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetNaN
     path: ../Main/src/Arithmetic/OperatorsFactory.cs
@@ -163,7 +163,7 @@ items:
   source:
     remote:
       path: Main/src/Arithmetic/OperatorsFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: HasNegativeInfinity
     path: ../Main/src/Arithmetic/OperatorsFactory.cs
@@ -206,7 +206,7 @@ items:
   source:
     remote:
       path: Main/src/Arithmetic/OperatorsFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetNegativeInfinity
     path: ../Main/src/Arithmetic/OperatorsFactory.cs
@@ -253,7 +253,7 @@ items:
   source:
     remote:
       path: Main/src/Arithmetic/OperatorsFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: HasPositiveInfinity
     path: ../Main/src/Arithmetic/OperatorsFactory.cs
@@ -296,7 +296,7 @@ items:
   source:
     remote:
       path: Main/src/Arithmetic/OperatorsFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetPositiveInfinity
     path: ../Main/src/Arithmetic/OperatorsFactory.cs
@@ -343,7 +343,7 @@ items:
   source:
     remote:
       path: Main/src/Arithmetic/OperatorsFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UnaryOperator
     path: ../Main/src/Arithmetic/OperatorsFactory.cs
@@ -390,7 +390,7 @@ items:
   source:
     remote:
       path: Main/src/Arithmetic/OperatorsFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: BinaryOperator
     path: ../Main/src/Arithmetic/OperatorsFactory.cs
@@ -437,7 +437,7 @@ items:
   source:
     remote:
       path: Main/src/Arithmetic/OperatorsFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Comparison
     path: ../Main/src/Arithmetic/OperatorsFactory.cs
@@ -484,7 +484,7 @@ items:
   source:
     remote:
       path: Main/src/Arithmetic/OperatorsFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ComparisonOperator
     path: ../Main/src/Arithmetic/OperatorsFactory.cs
@@ -531,7 +531,7 @@ items:
   source:
     remote:
       path: Main/src/Arithmetic/OperatorsFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsFlagSetOperator
     path: ../Main/src/Arithmetic/OperatorsFactory.cs
@@ -574,7 +574,7 @@ items:
   source:
     remote:
       path: Main/src/Arithmetic/OperatorsFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsAnyFlagSetOperator
     path: ../Main/src/Arithmetic/OperatorsFactory.cs
@@ -617,7 +617,7 @@ items:
   source:
     remote:
       path: Main/src/Arithmetic/OperatorsFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetFlagOperator
     path: ../Main/src/Arithmetic/OperatorsFactory.cs
@@ -660,7 +660,7 @@ items:
   source:
     remote:
       path: Main/src/Arithmetic/OperatorsFactory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ClearFlagOperator
     path: ../Main/src/Arithmetic/OperatorsFactory.cs

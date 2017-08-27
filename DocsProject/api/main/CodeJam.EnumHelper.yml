@@ -41,7 +41,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EnumHelper
     path: ../Main/src/EnumHelper.cs
@@ -85,7 +85,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsDefined
     path: ../Main/src/EnumHelper.cs
@@ -132,7 +132,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsDefined
     path: ../Main/src/EnumHelper.cs
@@ -179,7 +179,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AreFlagsDefined
     path: ../Main/src/EnumHelper.cs
@@ -226,7 +226,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsFlagsEnum
     path: ../Main/src/EnumHelper.cs
@@ -269,7 +269,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetFlagsMask
     path: ../Main/src/EnumHelper.cs
@@ -312,7 +312,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TryParse
     path: ../Main/src/EnumHelper.cs
@@ -362,7 +362,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TryParse
     path: ../Main/src/EnumHelper.cs
@@ -415,7 +415,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TryParse
     path: ../Main/src/EnumHelper.cs
@@ -465,7 +465,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Parse
     path: ../Main/src/EnumHelper.cs
@@ -516,7 +516,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsFlagSet
     path: ../Main/src/EnumHelper.cs
@@ -570,7 +570,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsAnyFlagUnset
     path: ../Main/src/EnumHelper.cs
@@ -624,7 +624,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsAnyFlagSet
     path: ../Main/src/EnumHelper.cs
@@ -678,7 +678,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsFlagUnset
     path: ../Main/src/EnumHelper.cs
@@ -732,7 +732,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetFlag
     path: ../Main/src/EnumHelper.cs
@@ -786,7 +786,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ClearFlag
     path: ../Main/src/EnumHelper.cs
@@ -840,7 +840,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetFlag
     path: ../Main/src/EnumHelper.cs
@@ -896,7 +896,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetNameValues
     path: ../Main/src/EnumHelper.cs
@@ -943,7 +943,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetNames
     path: ../Main/src/EnumHelper.cs
@@ -990,7 +990,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValues
     path: ../Main/src/EnumHelper.cs
@@ -1033,7 +1033,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetEnumValues
     path: ../Main/src/EnumHelper.cs
@@ -1076,7 +1076,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetEnumValues
     path: ../Main/src/EnumHelper.cs
@@ -1117,7 +1117,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetEnumValue
     path: ../Main/src/EnumHelper.cs
@@ -1164,7 +1164,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetName
     path: ../Main/src/EnumHelper.cs
@@ -1211,7 +1211,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetDisplayName
     path: ../Main/src/EnumHelper.cs
@@ -1258,7 +1258,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetDescription
     path: ../Main/src/EnumHelper.cs
@@ -1305,7 +1305,7 @@ items:
   source:
     remote:
       path: Main/src/EnumHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetField
     path: ../Main/src/EnumHelper.cs

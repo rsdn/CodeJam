@@ -35,7 +35,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.NonGenerated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CompositeRange
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.NonGenerated.cs
@@ -147,7 +147,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Equality
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
@@ -194,7 +194,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Inequality
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
@@ -241,7 +241,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Empty
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
@@ -280,7 +280,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Infinite
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
@@ -319,7 +319,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
@@ -358,7 +358,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
@@ -397,7 +397,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsMerged
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
@@ -437,7 +437,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsEmpty
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
@@ -479,7 +479,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNotEmpty
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
@@ -521,7 +521,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SubRanges
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
@@ -561,7 +561,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ContainingRange
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
@@ -603,7 +603,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToString
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
@@ -643,7 +643,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToString
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
@@ -684,7 +684,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToString
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
@@ -725,7 +725,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToString
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.generated.cs
@@ -772,7 +772,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.NonGenerated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CodeJam.Ranges.ICompositeRange<T>.GetMergedRanges
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.NonGenerated.cs
@@ -808,7 +808,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.NonGenerated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Merge
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.NonGenerated.cs
@@ -845,7 +845,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.NonGenerated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Equals
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.NonGenerated.cs
@@ -889,7 +889,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.NonGenerated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Equals
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.NonGenerated.cs
@@ -933,7 +933,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Ranges]/CompositeRange`2.NonGenerated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetHashCode
     path: ../Main/src/Ranges/[Ranges]/CompositeRange`2.NonGenerated.cs

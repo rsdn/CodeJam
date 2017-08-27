@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: Main/src/EnumValue.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EnumValue
     path: ../Main/src/EnumValue.cs
@@ -71,7 +71,7 @@ items:
   source:
     remote:
       path: Main/src/EnumValue.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Name
     path: ../Main/src/EnumValue.cs
@@ -108,7 +108,7 @@ items:
   source:
     remote:
       path: Main/src/EnumValue.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Value
     path: ../Main/src/EnumValue.cs
@@ -145,7 +145,7 @@ items:
   source:
     remote:
       path: Main/src/EnumValue.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UnderlyingField
     path: ../Main/src/EnumValue.cs
@@ -182,7 +182,7 @@ items:
   source:
     remote:
       path: Main/src/EnumValue.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DisplayName
     path: ../Main/src/EnumValue.cs
@@ -219,7 +219,7 @@ items:
   source:
     remote:
       path: Main/src/EnumValue.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetDisplayName
     path: ../Main/src/EnumValue.cs
@@ -254,7 +254,7 @@ items:
   source:
     remote:
       path: Main/src/EnumValue.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Description
     path: ../Main/src/EnumValue.cs
@@ -291,7 +291,7 @@ items:
   source:
     remote:
       path: Main/src/EnumValue.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToString
     path: ../Main/src/EnumValue.cs

@@ -26,7 +26,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Sequence.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Sequence
     path: ../Main/src/Collections/Sequence.cs
@@ -70,7 +70,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Sequence.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Collections/Sequence.cs
@@ -120,7 +120,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Sequence.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Collections/Sequence.cs
@@ -175,7 +175,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Sequence.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Collections/Sequence.cs
@@ -228,7 +228,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Sequence.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Collections/Sequence.cs
@@ -286,7 +286,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Sequence.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CreateWhileNotNull
     path: ../Main/src/Collections/Sequence.cs
@@ -336,7 +336,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Sequence.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CreateWhileNotNull
     path: ../Main/src/Collections/Sequence.cs
@@ -391,7 +391,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Sequence.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CreateSingle
     path: ../Main/src/Collections/Sequence.cs
@@ -438,7 +438,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Sequence.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CreateSingle
     path: ../Main/src/Collections/Sequence.cs
@@ -485,7 +485,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Sequence.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Random
     path: ../Main/src/Collections/Sequence.cs
@@ -532,7 +532,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Sequence.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Random
     path: ../Main/src/Collections/Sequence.cs
@@ -576,7 +576,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Sequence.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Random
     path: ../Main/src/Collections/Sequence.cs

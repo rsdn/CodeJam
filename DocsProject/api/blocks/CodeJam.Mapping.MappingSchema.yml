@@ -51,7 +51,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MappingSchema
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -96,7 +96,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -128,7 +128,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -167,7 +167,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -203,7 +203,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -245,7 +245,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetDefaultValue
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -284,7 +284,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetDefaultValue
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -323,7 +323,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ChangeTypeTo
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -368,7 +368,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ChangeType
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -410,7 +410,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EnumToValue
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -449,7 +449,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TryGetConvertExpression
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -493,7 +493,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetConvertExpression
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -536,7 +536,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetConvertExpression
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -584,7 +584,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetConverter
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -627,7 +627,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetConvertExpression
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -672,7 +672,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetConvertExpression
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -719,7 +719,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetConvertExpression
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -766,7 +766,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetConverter
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -810,7 +810,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetCultureInfo
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -846,7 +846,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MetadataReader
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -883,7 +883,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AddMetadataReader
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -919,7 +919,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetAttributes
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -967,7 +967,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetAttributes
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -1015,7 +1015,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetAttribute
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -1063,7 +1063,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetAttribute
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -1111,7 +1111,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetAttributes
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -1162,7 +1162,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetAttributes
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -1213,7 +1213,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetAttribute
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -1264,7 +1264,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetAttribute
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -1315,7 +1315,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ConfigurationID
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -1352,7 +1352,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ConfigurationList
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -1389,7 +1389,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Default
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -1424,7 +1424,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsStructIsScalarType
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -1461,7 +1461,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsScalarType
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -1500,7 +1500,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetScalarType
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -1539,7 +1539,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AddScalarType
     path: ../Blocks/src/Mapping/MappingSchema.cs
@@ -1578,7 +1578,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MappingSchema.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetMapValues
     path: ../Blocks/src/Mapping/MappingSchema.cs

@@ -31,7 +31,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Expr
     path: ../Main/src/Expressions/Expr.generated.cs
@@ -75,7 +75,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Action
     path: ../Main/src/Expressions/Expr.generated.cs
@@ -119,7 +119,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Action
     path: ../Main/src/Expressions/Expr.generated.cs
@@ -166,7 +166,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Action
     path: ../Main/src/Expressions/Expr.generated.cs
@@ -215,7 +215,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Action
     path: ../Main/src/Expressions/Expr.generated.cs
@@ -266,7 +266,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Action
     path: ../Main/src/Expressions/Expr.generated.cs
@@ -319,7 +319,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Action
     path: ../Main/src/Expressions/Expr.generated.cs
@@ -374,7 +374,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Action
     path: ../Main/src/Expressions/Expr.generated.cs
@@ -431,7 +431,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Action
     path: ../Main/src/Expressions/Expr.generated.cs
@@ -490,7 +490,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Func
     path: ../Main/src/Expressions/Expr.generated.cs
@@ -537,7 +537,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Func
     path: ../Main/src/Expressions/Expr.generated.cs
@@ -586,7 +586,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Func
     path: ../Main/src/Expressions/Expr.generated.cs
@@ -637,7 +637,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Func
     path: ../Main/src/Expressions/Expr.generated.cs
@@ -690,7 +690,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Func
     path: ../Main/src/Expressions/Expr.generated.cs
@@ -745,7 +745,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Func
     path: ../Main/src/Expressions/Expr.generated.cs
@@ -802,7 +802,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Func
     path: ../Main/src/Expressions/Expr.generated.cs
@@ -861,7 +861,7 @@ items:
   source:
     remote:
       path: Main/src/Expressions/Expr.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Func
     path: ../Main/src/Expressions/Expr.generated.cs

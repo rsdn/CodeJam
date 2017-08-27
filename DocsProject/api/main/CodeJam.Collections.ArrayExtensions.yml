@@ -69,7 +69,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ArrayExtensions
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -114,7 +114,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualsTo
     path: ../Main/src/Collections/Array/ArrayExtensions.cs
@@ -165,7 +165,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualsTo
     path: ../Main/src/Collections/Array/ArrayExtensions.cs
@@ -219,7 +219,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualsTo
     path: ../Main/src/Collections/Array/ArrayExtensions.cs
@@ -273,7 +273,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualsTo
     path: ../Main/src/Collections/Array/ArrayExtensions.cs
@@ -327,7 +327,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualsTo
     path: ../Main/src/Collections/Array/ArrayExtensions.cs
@@ -388,7 +388,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Any
     path: ../Main/src/Collections/Array/ArrayExtensions.cs
@@ -440,7 +440,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualsTo
     path: ../Main/src/Collections/Array/ArrayExtensions.generated.cs
@@ -491,7 +491,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualsTo
     path: ../Main/src/Collections/Array/ArrayExtensions.generated.cs
@@ -542,7 +542,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualsTo
     path: ../Main/src/Collections/Array/ArrayExtensions.generated.cs
@@ -593,7 +593,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualsTo
     path: ../Main/src/Collections/Array/ArrayExtensions.generated.cs
@@ -644,7 +644,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualsTo
     path: ../Main/src/Collections/Array/ArrayExtensions.generated.cs
@@ -695,7 +695,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualsTo
     path: ../Main/src/Collections/Array/ArrayExtensions.generated.cs
@@ -746,7 +746,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualsTo
     path: ../Main/src/Collections/Array/ArrayExtensions.generated.cs
@@ -797,7 +797,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualsTo
     path: ../Main/src/Collections/Array/ArrayExtensions.generated.cs
@@ -848,7 +848,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualsTo
     path: ../Main/src/Collections/Array/ArrayExtensions.generated.cs
@@ -899,7 +899,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualsTo
     path: ../Main/src/Collections/Array/ArrayExtensions.generated.cs
@@ -950,7 +950,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AsReadOnly
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -1005,7 +1005,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: BinarySearch
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -1066,7 +1066,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: BinarySearch
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -1133,7 +1133,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: BinarySearch
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -1206,7 +1206,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: BinarySearch
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -1282,7 +1282,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Clear
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -1337,7 +1337,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Clear
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -1383,7 +1383,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ConstrainedCopy
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -1456,7 +1456,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ConvertAll
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -1516,7 +1516,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Copy
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -1583,7 +1583,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Copy
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -1650,7 +1650,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Copy
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -1723,7 +1723,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Copy
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -1796,7 +1796,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Exists
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -1854,7 +1854,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Find
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -1912,7 +1912,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FindAll
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -1970,7 +1970,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FindIndex
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -2028,7 +2028,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FindIndex
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -2092,7 +2092,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FindIndex
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -2159,7 +2159,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FindLast
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -2217,7 +2217,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FindLastIndex
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -2275,7 +2275,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FindLastIndex
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -2339,7 +2339,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FindLastIndex
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -2406,7 +2406,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ForEach
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -2461,7 +2461,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IndexOf
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -2519,7 +2519,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IndexOf
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -2583,7 +2583,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IndexOf
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -2650,7 +2650,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LastIndexOf
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -2708,7 +2708,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LastIndexOf
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -2772,7 +2772,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LastIndexOf
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -2839,7 +2839,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Reverse
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -2888,7 +2888,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Reverse
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -2949,7 +2949,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Sort
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -3004,7 +3004,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Sort
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -3065,7 +3065,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Sort
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -3123,7 +3123,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Sort
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -3190,7 +3190,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Sort
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs
@@ -3260,7 +3260,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Array/ArrayExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TrueForAll
     path: ../Main/src/Collections/Array/ArrayExtensions.Infix.cs

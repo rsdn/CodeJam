@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: Blocks/src/Metadata/XmlAttributeReader.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: XmlAttributeReader
     path: ../Blocks/src/Metadata/XmlAttributeReader.cs
@@ -69,7 +69,7 @@ items:
   source:
     remote:
       path: Blocks/src/Metadata/XmlAttributeReader.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Metadata/XmlAttributeReader.cs
@@ -105,7 +105,7 @@ items:
   source:
     remote:
       path: Blocks/src/Metadata/XmlAttributeReader.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Metadata/XmlAttributeReader.cs
@@ -144,7 +144,7 @@ items:
   source:
     remote:
       path: Blocks/src/Metadata/XmlAttributeReader.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Metadata/XmlAttributeReader.cs
@@ -183,7 +183,7 @@ items:
   source:
     remote:
       path: Blocks/src/Metadata/XmlAttributeReader.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetAttributes
     path: ../Blocks/src/Metadata/XmlAttributeReader.cs
@@ -233,7 +233,7 @@ items:
   source:
     remote:
       path: Blocks/src/Metadata/XmlAttributeReader.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetAttributes
     path: ../Blocks/src/Metadata/XmlAttributeReader.cs

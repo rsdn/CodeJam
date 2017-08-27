@@ -101,7 +101,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: StringExtensions
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -146,7 +146,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsControl
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -194,7 +194,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsHighSurrogate
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -242,7 +242,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsLowSurrogate
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -290,7 +290,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsDigit
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -338,7 +338,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsDigit
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -383,7 +383,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsLetter
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -431,7 +431,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsLetter
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -476,7 +476,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsLetterOrDigit
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -524,7 +524,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsLetterOrDigit
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -569,7 +569,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsLower
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -617,7 +617,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsLower
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -662,7 +662,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsUpper
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -710,7 +710,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsUpper
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -755,7 +755,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNumber
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -803,7 +803,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNumber
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -848,7 +848,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsPunctuation
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -896,7 +896,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsPunctuation
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -941,7 +941,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsSeparator
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -989,7 +989,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsSeparator
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -1034,7 +1034,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsSurrogate
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -1082,7 +1082,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsSurrogatePair
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -1130,7 +1130,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsSymbol
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -1178,7 +1178,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsSymbol
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -1223,7 +1223,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWhiteSpace
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -1271,7 +1271,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.CharInfix.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWhiteSpace
     path: ../Main/src/Strings/StringExtensions.CharInfix.generated.cs
@@ -1316,7 +1316,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToInvariantString
     path: ../Main/src/Strings/StringExtensions.ToXxx.cs
@@ -1366,7 +1366,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToInvariantString
     path: ../Main/src/Strings/StringExtensions.ToXxx.cs
@@ -1419,7 +1419,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToDateTime
     path: ../Main/src/Strings/StringExtensions.ToXxx.cs
@@ -1470,7 +1470,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToDateTimeInvariant
     path: ../Main/src/Strings/StringExtensions.ToXxx.cs
@@ -1518,7 +1518,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToByte
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -1569,7 +1569,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToByteInvariant
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -1617,7 +1617,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToSByte
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -1668,7 +1668,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToSByteInvariant
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -1716,7 +1716,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToInt16
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -1767,7 +1767,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToInt16Invariant
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -1815,7 +1815,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToUInt16
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -1866,7 +1866,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToUInt16Invariant
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -1914,7 +1914,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToInt32
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -1965,7 +1965,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToInt32Invariant
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -2013,7 +2013,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToUInt32
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -2064,7 +2064,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToUInt32Invariant
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -2112,7 +2112,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToInt64
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -2163,7 +2163,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToInt64Invariant
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -2211,7 +2211,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToUInt64
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -2262,7 +2262,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToUInt64Invariant
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -2310,7 +2310,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToSingle
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -2361,7 +2361,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToSingleInvariant
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -2409,7 +2409,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToDouble
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -2460,7 +2460,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToDoubleInvariant
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -2508,7 +2508,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToDecimal
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -2559,7 +2559,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.ToXxx.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToDecimalInvariant
     path: ../Main/src/Strings/StringExtensions.ToXxx.generated.cs
@@ -2607,7 +2607,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Substring
     path: ../Main/src/Strings/StringExtensions.cs
@@ -2658,7 +2658,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Prefix
     path: ../Main/src/Strings/StringExtensions.cs
@@ -2706,7 +2706,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Suffix
     path: ../Main/src/Strings/StringExtensions.cs
@@ -2754,7 +2754,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TrimPrefix
     path: ../Main/src/Strings/StringExtensions.cs
@@ -2802,7 +2802,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TrimPrefix
     path: ../Main/src/Strings/StringExtensions.cs
@@ -2856,7 +2856,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TrimSuffix
     path: ../Main/src/Strings/StringExtensions.cs
@@ -2910,7 +2910,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TrimSuffix
     path: ../Main/src/Strings/StringExtensions.cs
@@ -2958,7 +2958,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToByteSizeString
     path: ../Main/src/Strings/StringExtensions.cs
@@ -3003,7 +3003,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToByteSizeString
     path: ../Main/src/Strings/StringExtensions.cs
@@ -3048,7 +3048,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToByteSizeString
     path: ../Main/src/Strings/StringExtensions.cs
@@ -3096,7 +3096,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToByteSizeString
     path: ../Main/src/Strings/StringExtensions.cs
@@ -3144,7 +3144,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SplitWithTrim
     path: ../Main/src/Strings/StringExtensions.cs
@@ -3195,7 +3195,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToHexString
     path: ../Main/src/Strings/StringExtensions.cs
@@ -3247,7 +3247,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToHexString
     path: ../Main/src/Strings/StringExtensions.cs
@@ -3302,7 +3302,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Unquote
     path: ../Main/src/Strings/StringExtensions.cs
@@ -3347,7 +3347,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Unquote
     path: ../Main/src/Strings/StringExtensions.cs
@@ -3398,7 +3398,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Unquote
     path: ../Main/src/Strings/StringExtensions.cs
@@ -3452,7 +3452,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Remove
     path: ../Main/src/Strings/StringExtensions.cs
@@ -3503,7 +3503,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNullOrEmpty
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -3548,7 +3548,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NotNullNorEmpty
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -3593,7 +3593,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNullOrWhiteSpace
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -3638,7 +3638,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NotNullNorWhiteSpace
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -3683,7 +3683,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FormatWith
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -3731,7 +3731,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FormatWith
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -3782,7 +3782,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FormatWith
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -3836,7 +3836,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FormatWith
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -3887,7 +3887,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Join
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -3939,7 +3939,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Join
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -3991,7 +3991,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Join
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -4044,7 +4044,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Join
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -4094,7 +4094,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Length
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -4139,7 +4139,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: FromBase64
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -4184,7 +4184,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToBase64
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -4235,7 +4235,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToBytes
     path: ../Main/src/Strings/StringExtensions.Infix.cs
@@ -4283,7 +4283,7 @@ items:
   source:
     remote:
       path: Main/src/Strings/StringExtensions.Infix.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToBytes
     path: ../Main/src/Strings/StringExtensions.Infix.cs

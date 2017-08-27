@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: Main/src/NullableHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NullableHelper
     path: ../Main/src/NullableHelper.cs
@@ -61,7 +61,7 @@ items:
   source:
     remote:
       path: Main/src/NullableHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/NullableHelper.cs
@@ -112,7 +112,7 @@ items:
   source:
     remote:
       path: Main/src/NullableHelper.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AsNullable
     path: ../Main/src/NullableHelper.cs

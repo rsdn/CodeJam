@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/CompositeRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CompositeRange
     path: ../Main/src/Ranges/CompositeRange.generated.cs
@@ -63,7 +63,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/CompositeRange.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Ranges/CompositeRange.cs
@@ -110,7 +110,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/CompositeRange.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Ranges/CompositeRange.cs
@@ -157,7 +157,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/CompositeRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Ranges/CompositeRange.generated.cs
@@ -206,7 +206,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/CompositeRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Ranges/CompositeRange.generated.cs

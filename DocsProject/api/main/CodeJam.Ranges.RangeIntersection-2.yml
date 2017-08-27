@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: RangeIntersection
     path: ../Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
@@ -87,7 +87,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IntersectionRange
     path: ../Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
@@ -127,7 +127,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Ranges
     path: ../Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
@@ -167,7 +167,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsEmpty
     path: ../Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
@@ -207,7 +207,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNotEmpty
     path: ../Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
@@ -247,7 +247,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToString
     path: ../Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
@@ -287,7 +287,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToString
     path: ../Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
@@ -328,7 +328,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToString
     path: ../Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
@@ -369,7 +369,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToString
     path: ../Main/src/Ranges/[Helper types]/RangeIntersection`2.generated.cs

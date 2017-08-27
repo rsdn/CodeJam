@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/DefaultValue.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DefaultValue
     path: ../Blocks/src/Mapping/DefaultValue.cs
@@ -62,7 +62,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/DefaultValue.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValue
     path: ../Blocks/src/Mapping/DefaultValue.cs
@@ -106,7 +106,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/DefaultValue.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValue
     path: ../Blocks/src/Mapping/DefaultValue.cs
@@ -149,7 +149,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/DefaultValue.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SetValue
     path: ../Blocks/src/Mapping/DefaultValue.cs

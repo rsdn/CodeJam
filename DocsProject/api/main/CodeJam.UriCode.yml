@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/UriCode.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UriCode
     path: ../Main/src/Assertions/UriCode.cs
@@ -62,7 +62,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/UriCode.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWellFormedUri
     path: ../Main/src/Assertions/UriCode.cs
@@ -103,7 +103,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/UriCode.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWellFormedAbsoluteUri
     path: ../Main/src/Assertions/UriCode.cs
@@ -144,7 +144,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/UriCode.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsWellFormedRelativeUri
     path: ../Main/src/Assertions/UriCode.cs

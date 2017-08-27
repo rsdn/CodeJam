@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: Main/src/DisposableExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DisposableExtensions
     path: ../Main/src/DisposableExtensions.cs
@@ -62,7 +62,7 @@ items:
   source:
     remote:
       path: Main/src/DisposableExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DisposeAll
     path: ../Main/src/DisposableExtensions.cs
@@ -110,7 +110,7 @@ items:
   source:
     remote:
       path: Main/src/DisposableExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DisposeAll
     path: ../Main/src/DisposableExtensions.cs

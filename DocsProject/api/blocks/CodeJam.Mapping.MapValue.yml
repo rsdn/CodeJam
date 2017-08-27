@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MapValue.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MapValue
     path: ../Blocks/src/Mapping/MapValue.cs
@@ -63,7 +63,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MapValue.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Mapping/MapValue.cs
@@ -105,7 +105,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MapValue.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: OrigValue
     path: ../Blocks/src/Mapping/MapValue.cs
@@ -142,7 +142,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/MapValue.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MapValues
     path: ../Blocks/src/Mapping/MapValue.cs

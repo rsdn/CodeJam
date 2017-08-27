@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/ConvertTo.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ConvertTo
     path: ../Blocks/src/Mapping/ConvertTo.cs
@@ -66,7 +66,7 @@ items:
   source:
     remote:
       path: Blocks/src/Mapping/ConvertTo.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: From
     path: ../Blocks/src/Mapping/ConvertTo.cs

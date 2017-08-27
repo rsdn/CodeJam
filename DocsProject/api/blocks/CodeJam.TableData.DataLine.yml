@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Blocks/src/TableData/DataLine.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DataLine
     path: ../Blocks/src/TableData/DataLine.cs
@@ -60,7 +60,7 @@ items:
   source:
     remote:
       path: Blocks/src/TableData/DataLine.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/TableData/DataLine.cs
@@ -102,7 +102,7 @@ items:
   source:
     remote:
       path: Blocks/src/TableData/DataLine.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LineNum
     path: ../Blocks/src/TableData/DataLine.cs
@@ -139,7 +139,7 @@ items:
   source:
     remote:
       path: Blocks/src/TableData/DataLine.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Values
     path: ../Blocks/src/TableData/DataLine.cs
@@ -176,7 +176,7 @@ items:
   source:
     remote:
       path: Blocks/src/TableData/DataLine.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToString
     path: ../Blocks/src/TableData/DataLine.cs

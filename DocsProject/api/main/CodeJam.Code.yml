@@ -42,7 +42,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Code
     path: ../Main/src/Assertions/Code.cs
@@ -86,7 +86,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.NonDebug.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DisposedIf
     path: ../Main/src/Assertions/Code.NonDebug.cs
@@ -133,7 +133,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.NonDebug.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DisposedIf
     path: ../Main/src/Assertions/Code.NonDebug.cs
@@ -183,7 +183,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.NonDebug.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DisposedIf
     path: ../Main/src/Assertions/Code.NonDebug.cs
@@ -236,7 +236,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.NonDebug.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DisposedIfNull
     path: ../Main/src/Assertions/Code.NonDebug.cs
@@ -285,7 +285,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.NonDebug.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DisposedIfNull
     path: ../Main/src/Assertions/Code.NonDebug.cs
@@ -337,7 +337,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.NonDebug.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DisposedIfNull
     path: ../Main/src/Assertions/Code.NonDebug.cs
@@ -392,7 +392,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NotNull
     path: ../Main/src/Assertions/Code.cs
@@ -439,7 +439,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ItemNotNull
     path: ../Main/src/Assertions/Code.cs
@@ -486,7 +486,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NotNullAndItemNotNull
     path: ../Main/src/Assertions/Code.cs
@@ -533,7 +533,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NotNull
     path: ../Main/src/Assertions/Code.cs
@@ -580,7 +580,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NotNullNorEmpty
     path: ../Main/src/Assertions/Code.cs
@@ -621,7 +621,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NotNullNorWhiteSpace
     path: ../Main/src/Assertions/Code.cs
@@ -662,7 +662,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AssertArgument
     path: ../Main/src/Assertions/Code.cs
@@ -706,7 +706,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AssertArgument
     path: ../Main/src/Assertions/Code.cs
@@ -756,7 +756,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: InRange
     path: ../Main/src/Assertions/Code.cs
@@ -803,7 +803,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: InRange
     path: ../Main/src/Assertions/Code.cs
@@ -850,7 +850,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: InRange
     path: ../Main/src/Assertions/Code.cs
@@ -903,7 +903,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ValidCount
     path: ../Main/src/Assertions/Code.cs
@@ -944,7 +944,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ValidCount
     path: ../Main/src/Assertions/Code.cs
@@ -988,7 +988,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ValidIndex
     path: ../Main/src/Assertions/Code.cs
@@ -1029,7 +1029,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ValidIndex
     path: ../Main/src/Assertions/Code.cs
@@ -1073,7 +1073,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ValidIndexPair
     path: ../Main/src/Assertions/Code.cs
@@ -1123,7 +1123,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ValidIndexAndCount
     path: ../Main/src/Assertions/Code.cs
@@ -1173,7 +1173,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AssertState
     path: ../Main/src/Assertions/Code.cs
@@ -1214,7 +1214,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AssertState
     path: ../Main/src/Assertions/Code.cs
@@ -1261,7 +1261,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: BugIf
     path: ../Main/src/Assertions/Code.cs
@@ -1302,7 +1302,7 @@ items:
   source:
     remote:
       path: Main/src/Assertions/Code.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: BugIf
     path: ../Main/src/Assertions/Code.cs

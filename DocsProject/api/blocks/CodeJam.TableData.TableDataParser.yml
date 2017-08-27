@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: Blocks/src/TableData/TableDataParser.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: TableDataParser
     path: ../Blocks/src/TableData/TableDataParser.cs
@@ -62,7 +62,7 @@ items:
   source:
     remote:
       path: Blocks/src/TableData/TableDataParser.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Parse
     path: ../Blocks/src/TableData/TableDataParser.cs
@@ -110,7 +110,7 @@ items:
   source:
     remote:
       path: Blocks/src/TableData/TableDataParser.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Parse
     path: ../Blocks/src/TableData/TableDataParser.cs

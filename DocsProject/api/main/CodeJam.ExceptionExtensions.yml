@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: Main/src/ExceptionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ExceptionExtensions
     path: ../Main/src/ExceptionExtensions.cs
@@ -62,7 +62,7 @@ items:
   source:
     remote:
       path: Main/src/ExceptionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToDiagnosticString
     path: ../Main/src/ExceptionExtensions.cs
@@ -110,7 +110,7 @@ items:
   source:
     remote:
       path: Main/src/ExceptionExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToDiagnosticString
     path: ../Main/src/ExceptionExtensions.cs

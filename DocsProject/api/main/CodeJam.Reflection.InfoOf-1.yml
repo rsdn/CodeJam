@@ -21,7 +21,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/InfoOf`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: InfoOf
     path: ../Main/src/Reflection/InfoOf`1.cs
@@ -70,7 +70,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/InfoOf`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Member
     path: ../Main/src/Reflection/InfoOf`1.cs
@@ -116,7 +116,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/InfoOf`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Property
     path: ../Main/src/Reflection/InfoOf`1.cs
@@ -162,7 +162,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/InfoOf`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Field
     path: ../Main/src/Reflection/InfoOf`1.cs
@@ -208,7 +208,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/InfoOf`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Constructor
     path: ../Main/src/Reflection/InfoOf`1.cs
@@ -252,7 +252,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/InfoOf`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Method
     path: ../Main/src/Reflection/InfoOf`1.cs
@@ -298,7 +298,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/InfoOf`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Method
     path: ../Main/src/Reflection/InfoOf`1.cs

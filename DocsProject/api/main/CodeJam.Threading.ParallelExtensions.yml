@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ParallelExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ParallelExtensions
     path: ../Main/src/Threading/ParallelExtensions.cs
@@ -68,7 +68,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ParallelExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: RunInParallel
     path: ../Main/src/Threading/ParallelExtensions.cs
@@ -133,7 +133,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ParallelExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: RunInParallel
     path: ../Main/src/Threading/ParallelExtensions.cs
@@ -195,7 +195,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ParallelExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: RunInParallel
     path: ../Main/src/Threading/ParallelExtensions.cs
@@ -257,7 +257,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ParallelExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: RunInParallel
     path: ../Main/src/Threading/ParallelExtensions.cs
@@ -316,7 +316,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ParallelExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: RunInParallel
     path: ../Main/src/Threading/ParallelExtensions.cs
@@ -367,7 +367,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ParallelExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: RunInParallel
     path: ../Main/src/Threading/ParallelExtensions.cs
@@ -415,7 +415,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ParallelExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: RunInParallel
     path: ../Main/src/Threading/ParallelExtensions.cs
@@ -472,7 +472,7 @@ items:
   source:
     remote:
       path: Main/src/Threading/ParallelExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: RunInParallel
     path: ../Main/src/Threading/ParallelExtensions.cs

@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: Main/src/Utilities/Memory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memory
     path: ../Main/src/Utilities/Memory.cs
@@ -61,7 +61,7 @@ items:
   source:
     remote:
       path: Main/src/Utilities/Memory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Compare
     path: ../Main/src/Utilities/Memory.cs
@@ -108,7 +108,7 @@ items:
   source:
     remote:
       path: Main/src/Utilities/Memory.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CompareInline
     path: ../Main/src/Utilities/Memory.cs

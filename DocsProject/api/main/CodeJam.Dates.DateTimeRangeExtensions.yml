@@ -45,7 +45,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DateTimeRangeExtensions
     path: ../Main/src/Dates/DateTimeRangeExtensions.cs
@@ -90,7 +90,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetMonthRange
     path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
@@ -135,7 +135,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetYearRange
     path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
@@ -180,7 +180,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetFromStartOfYearRange
     path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
@@ -225,7 +225,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetToEndOfYearRange
     path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
@@ -270,7 +270,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MakeInclusive
     path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
@@ -318,7 +318,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MakeExclusive
     path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
@@ -366,7 +366,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DifferenceInDays
     path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
@@ -414,7 +414,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CountOfDays
     path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
@@ -462,7 +462,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DifferenceInMonths
     path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
@@ -510,7 +510,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CountOfMonths
     path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
@@ -558,7 +558,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DaysBetween
     path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
@@ -606,7 +606,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MonthsBetween
     path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
@@ -654,7 +654,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: YearsBetween
     path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
@@ -702,7 +702,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SplitByMonths
     path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
@@ -750,7 +750,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SplitByYears
     path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
@@ -798,7 +798,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetMonthRange
     path: ../Main/src/Dates/DateTimeRangeExtensions.cs
@@ -843,7 +843,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetYearRange
     path: ../Main/src/Dates/DateTimeRangeExtensions.cs
@@ -888,7 +888,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetFromStartOfYearRange
     path: ../Main/src/Dates/DateTimeRangeExtensions.cs
@@ -933,7 +933,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetToEndOfYearRange
     path: ../Main/src/Dates/DateTimeRangeExtensions.cs
@@ -978,7 +978,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MakeInclusive
     path: ../Main/src/Dates/DateTimeRangeExtensions.cs
@@ -1026,7 +1026,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MakeExclusive
     path: ../Main/src/Dates/DateTimeRangeExtensions.cs
@@ -1074,7 +1074,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DifferenceInDays
     path: ../Main/src/Dates/DateTimeRangeExtensions.cs
@@ -1122,7 +1122,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CountOfDays
     path: ../Main/src/Dates/DateTimeRangeExtensions.cs
@@ -1170,7 +1170,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DifferenceInMonths
     path: ../Main/src/Dates/DateTimeRangeExtensions.cs
@@ -1218,7 +1218,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CountOfMonths
     path: ../Main/src/Dates/DateTimeRangeExtensions.cs
@@ -1266,7 +1266,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: DaysBetween
     path: ../Main/src/Dates/DateTimeRangeExtensions.cs
@@ -1314,7 +1314,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: MonthsBetween
     path: ../Main/src/Dates/DateTimeRangeExtensions.cs
@@ -1362,7 +1362,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: YearsBetween
     path: ../Main/src/Dates/DateTimeRangeExtensions.cs
@@ -1410,7 +1410,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SplitByMonths
     path: ../Main/src/Dates/DateTimeRangeExtensions.cs
@@ -1458,7 +1458,7 @@ items:
   source:
     remote:
       path: Main/src/Dates/DateTimeRangeExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: SplitByYears
     path: ../Main/src/Dates/DateTimeRangeExtensions.cs

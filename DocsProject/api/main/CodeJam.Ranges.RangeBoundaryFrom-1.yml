@@ -62,7 +62,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: RangeBoundaryFrom
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -134,7 +134,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Equality
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -181,7 +181,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Inequality
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -228,7 +228,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_GreaterThan
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -275,7 +275,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_GreaterThan
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -322,7 +322,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_GreaterThan
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -369,7 +369,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_GreaterThan
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -416,7 +416,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_GreaterThanOrEqual
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -463,7 +463,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_GreaterThanOrEqual
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -510,7 +510,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_GreaterThanOrEqual
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -557,7 +557,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_GreaterThanOrEqual
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -604,7 +604,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_LessThan
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -651,7 +651,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_LessThan
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -698,7 +698,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_LessThan
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -745,7 +745,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_LessThan
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -792,7 +792,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_LessThanOrEqual
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -839,7 +839,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_LessThanOrEqual
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -886,7 +886,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_LessThanOrEqual
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -933,7 +933,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_LessThanOrEqual
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs
@@ -980,7 +980,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Empty
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1019,7 +1019,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: NegativeInfinity
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1058,7 +1058,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1099,7 +1099,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Kind
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1139,7 +1139,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsEmpty
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1179,7 +1179,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNotEmpty
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1219,7 +1219,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsNegativeInfinity
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1259,7 +1259,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsInclusiveBoundary
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1299,7 +1299,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsExclusiveBoundary
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1339,7 +1339,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: HasValue
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1379,7 +1379,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Value
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1423,7 +1423,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1460,7 +1460,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValueOrDefault
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1501,7 +1501,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetComplementation
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1538,7 +1538,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsComplementationFor
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1580,7 +1580,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithValue
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1622,7 +1622,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: WithValue
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1667,7 +1667,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToExclusive
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1704,7 +1704,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToInclusive
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1741,7 +1741,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Equals
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1785,7 +1785,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Equals
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1829,7 +1829,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetHashCode
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1869,7 +1869,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CompareTo
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1913,7 +1913,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CompareTo
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -1957,7 +1957,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: CompareTo
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -2001,7 +2001,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: System.IComparable.CompareTo
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -2041,7 +2041,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToString
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -2081,7 +2081,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToString
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
@@ -2122,7 +2122,7 @@ items:
   source:
     remote:
       path: Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ToString
     path: ../Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs

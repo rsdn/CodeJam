@@ -43,7 +43,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: OneOf
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -116,7 +116,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsCase1
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -158,7 +158,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsCase2
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -200,7 +200,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsCase3
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -242,7 +242,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsCase4
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -284,7 +284,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsCase5
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -326,7 +326,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsCase6
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -368,7 +368,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsCase7
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -410,7 +410,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetValue
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -467,7 +467,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Do
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -520,7 +520,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Equals
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -563,7 +563,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Equals
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -604,7 +604,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetHashCode
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -642,7 +642,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Equality
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -689,7 +689,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Inequality
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -736,7 +736,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -779,7 +779,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Implicit
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -823,7 +823,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -866,7 +866,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Implicit
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -910,7 +910,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -953,7 +953,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Implicit
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -997,7 +997,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -1040,7 +1040,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Implicit
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -1084,7 +1084,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -1127,7 +1127,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Implicit
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -1171,7 +1171,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -1214,7 +1214,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Implicit
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -1258,7 +1258,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Create
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs
@@ -1301,7 +1301,7 @@ items:
   source:
     remote:
       path: Main/src/Structures/OneOf/OneOf.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: op_Implicit
     path: ../Main/src/Structures/OneOf/OneOf.generated.cs

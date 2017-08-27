@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/AssemblyExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: AssemblyExtensions
     path: ../Main/src/Reflection/AssemblyExtensions.cs
@@ -64,7 +64,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/AssemblyExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: IsDebugAssembly
     path: ../Main/src/Reflection/AssemblyExtensions.cs
@@ -109,7 +109,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/AssemblyExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetRequiredResourceStream
     path: ../Main/src/Reflection/AssemblyExtensions.cs
@@ -164,7 +164,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/AssemblyExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetAssemblyPath
     path: ../Main/src/Reflection/AssemblyExtensions.cs
@@ -209,7 +209,7 @@ items:
   source:
     remote:
       path: Main/src/Reflection/AssemblyExtensions.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetAssemblyDirectory
     path: ../Main/src/Reflection/AssemblyExtensions.cs

@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/ILazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ILazyDictionary
     path: ../Main/src/Collections/Dictionary/ILazyDictionary.cs
@@ -265,7 +265,7 @@ items:
   source:
     remote:
       path: Main/src/Collections/Dictionary/ILazyDictionary.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Clear
     path: ../Main/src/Collections/Dictionary/ILazyDictionary.cs

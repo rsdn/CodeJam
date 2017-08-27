@@ -98,7 +98,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.Comparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Algorithms
     path: ../Main/src/Algorithms/Algorithms.UpperBound.Comparer.cs
@@ -143,7 +143,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.IComparable.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.IComparable.cs
@@ -199,7 +199,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.IComparable.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.IComparable.cs
@@ -258,7 +258,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.IComparable.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.IComparable.cs
@@ -320,7 +320,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.Comparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.Comparer.cs
@@ -379,7 +379,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.Comparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.Comparer.cs
@@ -441,7 +441,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.Comparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.Comparer.cs
@@ -506,7 +506,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.generated.cs
@@ -557,7 +557,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.generated.cs
@@ -611,7 +611,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.generated.cs
@@ -668,7 +668,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.generated.cs
@@ -719,7 +719,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.generated.cs
@@ -773,7 +773,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.generated.cs
@@ -830,7 +830,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.generated.cs
@@ -881,7 +881,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.generated.cs
@@ -935,7 +935,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.generated.cs
@@ -992,7 +992,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.generated.cs
@@ -1043,7 +1043,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.generated.cs
@@ -1097,7 +1097,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.generated.cs
@@ -1154,7 +1154,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.generated.cs
@@ -1205,7 +1205,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.generated.cs
@@ -1259,7 +1259,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.EqualRange.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: EqualRange
     path: ../Main/src/Algorithms/Algorithms.EqualRange.generated.cs
@@ -1316,7 +1316,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Memoize.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memoize
     path: ../Main/src/Algorithms/Algorithms.Memoize.cs
@@ -1375,7 +1375,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Memoize.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memoize
     path: ../Main/src/Algorithms/Algorithms.Memoize.cs
@@ -1434,7 +1434,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Memoize.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memoize
     path: ../Main/src/Algorithms/Algorithms.Memoize.cs
@@ -1490,7 +1490,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Memoize.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memoize
     path: ../Main/src/Algorithms/Algorithms.Memoize.cs
@@ -1546,7 +1546,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Memoize.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memoize
     path: ../Main/src/Algorithms/Algorithms.Memoize.generated.cs
@@ -1604,7 +1604,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Memoize.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memoize
     path: ../Main/src/Algorithms/Algorithms.Memoize.generated.cs
@@ -1662,7 +1662,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Memoize.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memoize
     path: ../Main/src/Algorithms/Algorithms.Memoize.generated.cs
@@ -1722,7 +1722,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Memoize.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memoize
     path: ../Main/src/Algorithms/Algorithms.Memoize.generated.cs
@@ -1782,7 +1782,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Memoize.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memoize
     path: ../Main/src/Algorithms/Algorithms.Memoize.generated.cs
@@ -1844,7 +1844,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Memoize.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memoize
     path: ../Main/src/Algorithms/Algorithms.Memoize.generated.cs
@@ -1906,7 +1906,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Memoize.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memoize
     path: ../Main/src/Algorithms/Algorithms.Memoize.generated.cs
@@ -1970,7 +1970,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Memoize.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memoize
     path: ../Main/src/Algorithms/Algorithms.Memoize.generated.cs
@@ -2034,7 +2034,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Memoize.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memoize
     path: ../Main/src/Algorithms/Algorithms.Memoize.generated.cs
@@ -2100,7 +2100,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Memoize.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memoize
     path: ../Main/src/Algorithms/Algorithms.Memoize.generated.cs
@@ -2166,7 +2166,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Memoize.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memoize
     path: ../Main/src/Algorithms/Algorithms.Memoize.generated.cs
@@ -2234,7 +2234,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Memoize.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Memoize
     path: ../Main/src/Algorithms/Algorithms.Memoize.generated.cs
@@ -2302,7 +2302,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.generated.cs
@@ -2353,7 +2353,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.generated.cs
@@ -2407,7 +2407,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.generated.cs
@@ -2464,7 +2464,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.generated.cs
@@ -2515,7 +2515,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.generated.cs
@@ -2569,7 +2569,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.generated.cs
@@ -2626,7 +2626,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.generated.cs
@@ -2677,7 +2677,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.generated.cs
@@ -2731,7 +2731,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.generated.cs
@@ -2788,7 +2788,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.generated.cs
@@ -2839,7 +2839,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.generated.cs
@@ -2893,7 +2893,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.generated.cs
@@ -2950,7 +2950,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.generated.cs
@@ -3001,7 +3001,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.generated.cs
@@ -3055,7 +3055,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.generated.cs
@@ -3112,7 +3112,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.generated.cs
@@ -3163,7 +3163,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.generated.cs
@@ -3217,7 +3217,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.generated.cs
@@ -3274,7 +3274,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.generated.cs
@@ -3325,7 +3325,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.generated.cs
@@ -3379,7 +3379,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.generated.cs
@@ -3436,7 +3436,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.generated.cs
@@ -3487,7 +3487,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.generated.cs
@@ -3541,7 +3541,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.generated.cs
@@ -3598,7 +3598,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.generated.cs
@@ -3649,7 +3649,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.generated.cs
@@ -3703,7 +3703,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.generated.cs
@@ -3760,7 +3760,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.generated.cs
@@ -3811,7 +3811,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.generated.cs
@@ -3865,7 +3865,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.generated.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.generated.cs
@@ -3922,7 +3922,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.IComparable.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.IComparable.cs
@@ -3978,7 +3978,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.IComparable.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.IComparable.cs
@@ -4040,7 +4040,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.IComparable.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.IComparable.cs
@@ -4102,7 +4102,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.PartitionPoint.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: PartitionPoint
     path: ../Main/src/Algorithms/Algorithms.PartitionPoint.cs
@@ -4156,7 +4156,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.PartitionPoint.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: PartitionPoint
     path: ../Main/src/Algorithms/Algorithms.PartitionPoint.cs
@@ -4213,7 +4213,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.PartitionPoint.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: PartitionPoint
     path: ../Main/src/Algorithms/Algorithms.PartitionPoint.cs
@@ -4273,7 +4273,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.Comparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.Comparer.cs
@@ -4332,7 +4332,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.Comparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.Comparer.cs
@@ -4394,7 +4394,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.LowerBound.Comparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: LowerBound
     path: ../Main/src/Algorithms/Algorithms.LowerBound.Comparer.cs
@@ -4458,7 +4458,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.Swap.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Swap
     path: ../Main/src/Algorithms/Algorithms.Swap.cs
@@ -4506,7 +4506,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.IComparable.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.IComparable.cs
@@ -4562,7 +4562,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.IComparable.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.IComparable.cs
@@ -4621,7 +4621,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.IComparable.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.IComparable.cs
@@ -4683,7 +4683,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.Comparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.Comparer.cs
@@ -4742,7 +4742,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.Comparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.Comparer.cs
@@ -4804,7 +4804,7 @@ items:
   source:
     remote:
       path: Main/src/Algorithms/Algorithms.UpperBound.Comparer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: UpperBound
     path: ../Main/src/Algorithms/Algorithms.UpperBound.Comparer.cs

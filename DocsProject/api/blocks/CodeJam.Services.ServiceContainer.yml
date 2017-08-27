@@ -21,7 +21,7 @@ items:
   source:
     remote:
       path: Blocks/src/Services/ServiceContainer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: ServiceContainer
     path: ../Blocks/src/Services/ServiceContainer.cs
@@ -77,7 +77,7 @@ items:
   source:
     remote:
       path: Blocks/src/Services/ServiceContainer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Services/ServiceContainer.cs
@@ -116,7 +116,7 @@ items:
   source:
     remote:
       path: Blocks/src/Services/ServiceContainer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: .ctor
     path: ../Blocks/src/Services/ServiceContainer.cs
@@ -152,7 +152,7 @@ items:
   source:
     remote:
       path: Blocks/src/Services/ServiceContainer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: GetService
     path: ../Blocks/src/Services/ServiceContainer.cs
@@ -193,7 +193,7 @@ items:
   source:
     remote:
       path: Blocks/src/Services/ServiceContainer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Publish
     path: ../Blocks/src/Services/ServiceContainer.cs
@@ -237,7 +237,7 @@ items:
   source:
     remote:
       path: Blocks/src/Services/ServiceContainer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Publish
     path: ../Blocks/src/Services/ServiceContainer.cs
@@ -284,7 +284,7 @@ items:
   source:
     remote:
       path: Blocks/src/Services/ServiceContainer.cs
-      branch: feature/docfx
+      branch: master
       repo: https://andrewvk@github.com/rsdn/CodeJam.git
     id: Dispose
     path: ../Blocks/src/Services/ServiceContainer.cs
