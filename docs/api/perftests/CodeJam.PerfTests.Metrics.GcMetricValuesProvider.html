@@ -1,0 +1,429 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class GcMetricValuesProvider
+   | CodeJam </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class GcMetricValuesProvider
+   | CodeJam ">
+    <meta name="generator" content="docfx 2.23.1.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/CodeJam.Main.Icon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items"></div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CodeJam.PerfTests.Metrics.GcMetricValuesProvider">
+  
+  
+  <h1 id="CodeJam_PerfTests_Metrics_GcMetricValuesProvider" data-uid="CodeJam.PerfTests.Metrics.GcMetricValuesProvider" class="text-break">Class GcMetricValuesProvider
+  </h1>
+  <div class="markdown level0 summary"><p>Implementation of <a class="xref" href="CodeJam.PerfTests.Metrics.IMetricValuesProvider.html">IMetricValuesProvider</a> that returns various values from Benchmark&apos;s GcStats</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html">MetricValuesProviderBase</a></div>
+    <div class="level2"><span class="xref">GcMetricValuesProvider</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html#CodeJam_PerfTests_Metrics_MetricValuesProviderBase_CreateColumnProvider_CodeJam_PerfTests_Metrics_MetricInfo_CodeJam_PerfTests_Metrics_MetricValueColumns_">MetricValuesProviderBase.CreateColumnProvider(MetricInfo, MetricValueColumns)</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html#CodeJam_PerfTests_Metrics_MetricValuesProviderBase_TryGetReport_BenchmarkDotNet_Running_Benchmark_BenchmarkDotNet_Reports_Summary_BenchmarkDotNet_Reports_BenchmarkReport__">MetricValuesProviderBase.TryGetReport(Benchmark, Summary, BenchmarkReport)</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html#CodeJam_PerfTests_Metrics_MetricValuesProviderBase_TryGetReports_BenchmarkDotNet_Running_Benchmark_BenchmarkDotNet_Reports_Summary_BenchmarkDotNet_Reports_BenchmarkReport__BenchmarkDotNet_Reports_BenchmarkReport__">MetricValuesProviderBase.TryGetReports(Benchmark, Summary, BenchmarkReport, BenchmarkReport)</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html#CodeJam_PerfTests_Metrics_MetricValuesProviderBase_MetricCalculator">MetricValuesProviderBase.MetricCalculator</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html#CodeJam_PerfTests_Metrics_MetricValuesProviderBase_ResultIsRelative">MetricValuesProviderBase.ResultIsRelative</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html#CodeJam_PerfTests_Metrics_MetricValuesProviderBase_TryGetMeanValue_BenchmarkDotNet_Running_Benchmark_BenchmarkDotNet_Reports_Summary_">MetricValuesProviderBase.TryGetMeanValue(Benchmark, Summary)</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html#CodeJam_PerfTests_Metrics_MetricValuesProviderBase_TryGetVariance_BenchmarkDotNet_Running_Benchmark_BenchmarkDotNet_Reports_Summary_">MetricValuesProviderBase.TryGetVariance(Benchmark, Summary)</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html#CodeJam_PerfTests_Metrics_MetricValuesProviderBase_TryGetActualValues_BenchmarkDotNet_Running_Benchmark_BenchmarkDotNet_Reports_Summary_">MetricValuesProviderBase.TryGetActualValues(Benchmark, Summary)</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html#CodeJam_PerfTests_Metrics_MetricValuesProviderBase_TryGetLimitValues_BenchmarkDotNet_Running_Benchmark_BenchmarkDotNet_Reports_Summary_">MetricValuesProviderBase.TryGetLimitValues(Benchmark, Summary)</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html#CodeJam_PerfTests_Metrics_MetricValuesProviderBase_GetColumnProvider_CodeJam_PerfTests_Metrics_MetricInfo_CodeJam_PerfTests_Metrics_MetricValueColumns_">MetricValuesProviderBase.GetColumnProvider(MetricInfo, MetricValueColumns)</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html#CodeJam_PerfTests_Metrics_MetricValuesProviderBase_GetDiagnosers_CodeJam_PerfTests_Metrics_MetricInfo_">MetricValuesProviderBase.GetDiagnosers(MetricInfo)</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html#CodeJam_PerfTests_Metrics_MetricValuesProviderBase_GetColumnProviderOverride_CodeJam_PerfTests_Metrics_MetricInfo_CodeJam_PerfTests_Metrics_MetricValueColumns_">MetricValuesProviderBase.GetColumnProviderOverride(MetricInfo, MetricValueColumns)</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html#CodeJam_PerfTests_Metrics_MetricValuesProviderBase_TryGetValues_BenchmarkDotNet_Running_Benchmark_BenchmarkDotNet_Reports_Summary_System_Double____">MetricValuesProviderBase.TryGetValues(Benchmark, Summary, Double[])</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html#CodeJam_PerfTests_Metrics_MetricValuesProviderBase_TryGetRelativeValues_BenchmarkDotNet_Running_Benchmark_BenchmarkDotNet_Reports_Summary_System_Double____System_Double____">MetricValuesProviderBase.TryGetRelativeValues(Benchmark, Summary, Double[], Double[])</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CodeJam.PerfTests.Metrics.html">CodeJam.PerfTests.Metrics</a></h6>
+  <h6><strong>Assembly</strong>: CodeJam.PerfTests.dll</h6>
+  <h5 id="CodeJam_PerfTests_Metrics_GcMetricValuesProvider_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GcMetricValuesProvider : MetricValuesProviderBase, IMetricValuesProvider</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_GcMetricValuesProvider__ctor_CodeJam_PerfTests_Metrics_GcMetricSource_System_Boolean_.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.GcMetricValuesProvider.%23ctor(CodeJam.PerfTests.Metrics.GcMetricSource%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs/#L68">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Metrics_GcMetricValuesProvider__ctor_" data-uid="CodeJam.PerfTests.Metrics.GcMetricValuesProvider.#ctor*"></a>
+  <h4 id="CodeJam_PerfTests_Metrics_GcMetricValuesProvider__ctor_CodeJam_PerfTests_Metrics_GcMetricSource_System_Boolean_" data-uid="CodeJam.PerfTests.Metrics.GcMetricValuesProvider.#ctor(CodeJam.PerfTests.Metrics.GcMetricSource,System.Boolean)">GcMetricValuesProvider(GcMetricSource, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="CodeJam.PerfTests.Metrics.TimeMetricValuesProvider.html">TimeMetricValuesProvider</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GcMetricValuesProvider(GcMetricSource metricSource, bool resultIsRelative)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.PerfTests.Metrics.GcMetricSource.html">GcMetricSource</a></td>
+        <td><span class="parametername">metricSource</span></td>
+        <td><p>Property of the <span class="xref">BenchmarkDotNet.Engines.GcStats</span> to be used as a GC metric value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">resultIsRelative</span></td>
+        <td><p><code>true</code> if the metric is relative.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_GcMetricValuesProvider_Category.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.GcMetricValuesProvider.Category%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs/#L63">View Source</a>
+  </span>
+  <h4 id="CodeJam_PerfTests_Metrics_GcMetricValuesProvider_Category" data-uid="CodeJam.PerfTests.Metrics.GcMetricValuesProvider.Category">Category</h4>
+  <div class="markdown level1 summary"><p>The category of metric values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string Category = &quot;GcMemory&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_GcMetricValuesProvider_MetricSource.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.GcMetricValuesProvider.MetricSource%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs/#L77">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Metrics_GcMetricValuesProvider_MetricSource_" data-uid="CodeJam.PerfTests.Metrics.GcMetricValuesProvider.MetricSource*"></a>
+  <h4 id="CodeJam_PerfTests_Metrics_GcMetricValuesProvider_MetricSource" data-uid="CodeJam.PerfTests.Metrics.GcMetricValuesProvider.MetricSource">MetricSource</h4>
+  <div class="markdown level1 summary"><p>Property of the <span class="xref">BenchmarkDotNet.Engines.GcStats</span> to be used as a GC metric value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GcMetricSource MetricSource { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.PerfTests.Metrics.GcMetricSource.html">GcMetricSource</a></td>
+        <td><p>Property of the <span class="xref">BenchmarkDotNet.Engines.GcStats</span> to be used as a GC metric value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_GcMetricValuesProvider_GetDiagnosersOverride_CodeJam_PerfTests_Metrics_MetricInfo_.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.GcMetricValuesProvider.GetDiagnosersOverride(CodeJam.PerfTests.Metrics.MetricInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs/#L108">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Metrics_GcMetricValuesProvider_GetDiagnosersOverride_" data-uid="CodeJam.PerfTests.Metrics.GcMetricValuesProvider.GetDiagnosersOverride*"></a>
+  <h4 id="CodeJam_PerfTests_Metrics_GcMetricValuesProvider_GetDiagnosersOverride_CodeJam_PerfTests_Metrics_MetricInfo_" data-uid="CodeJam.PerfTests.Metrics.GcMetricValuesProvider.GetDiagnosersOverride(CodeJam.PerfTests.Metrics.MetricInfo)">GetDiagnosersOverride(MetricInfo)</h4>
+  <div class="markdown level1 summary"><p>Gets diagnosers the metric values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override IDiagnoser[] GetDiagnosersOverride(MetricInfo metric)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.PerfTests.Metrics.MetricInfo.html">MetricInfo</a></td>
+        <td><span class="parametername">metric</span></td>
+        <td><p>The metric to get diagnosers for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Diagnosers.IDiagnoser</span>[]</td>
+        <td><p>Diagnosers for the metric values</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html#CodeJam_PerfTests_Metrics_MetricValuesProviderBase_GetDiagnosersOverride_CodeJam_PerfTests_Metrics_MetricInfo_">MetricValuesProviderBase.GetDiagnosersOverride(MetricInfo)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_GcMetricValuesProvider_GetValuesFromReport_BenchmarkDotNet_Reports_BenchmarkReport_BenchmarkDotNet_Reports_Summary_.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.GcMetricValuesProvider.GetValuesFromReport(BenchmarkDotNet.Reports.BenchmarkReport%2CBenchmarkDotNet.Reports.Summary)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs/#L102">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Metrics_GcMetricValuesProvider_GetValuesFromReport_" data-uid="CodeJam.PerfTests.Metrics.GcMetricValuesProvider.GetValuesFromReport*"></a>
+  <h4 id="CodeJam_PerfTests_Metrics_GcMetricValuesProvider_GetValuesFromReport_BenchmarkDotNet_Reports_BenchmarkReport_BenchmarkDotNet_Reports_Summary_" data-uid="CodeJam.PerfTests.Metrics.GcMetricValuesProvider.GetValuesFromReport(BenchmarkDotNet.Reports.BenchmarkReport,BenchmarkDotNet.Reports.Summary)">GetValuesFromReport(BenchmarkReport, Summary)</h4>
+  <div class="markdown level1 summary"><p>Timings for the benchmark report in nanoseconds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override double[] GetValuesFromReport(BenchmarkReport benchmarkReport, Summary summary)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Reports.BenchmarkReport</span></td>
+        <td><span class="parametername">benchmarkReport</span></td>
+        <td><p>The benchmark report.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Reports.Summary</span></td>
+        <td><span class="parametername">summary</span></td>
+        <td><p>The summary.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><p>Metric values from benchmark report</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html#CodeJam_PerfTests_Metrics_MetricValuesProviderBase_GetValuesFromReport_BenchmarkDotNet_Reports_BenchmarkReport_BenchmarkDotNet_Reports_Summary_">MetricValuesProviderBase.GetValuesFromReport(BenchmarkReport, Summary)</a></div>
+  <h3 id="seealso">See Also</h3>
+  <div class="seealso">
+      <div><a class="xref" href="CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html">MetricValuesProviderBase</a></div>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_GcMetricValuesProvider.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.GcMetricValuesProvider%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs/#L40" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright � 2015-2017
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

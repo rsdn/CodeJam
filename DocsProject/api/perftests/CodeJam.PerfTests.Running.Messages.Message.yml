@@ -1,0 +1,839 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Running.Messages.Message
+  commentId: T:CodeJam.PerfTests.Running.Messages.Message
+  id: Message
+  parent: CodeJam.PerfTests.Running.Messages
+  children:
+  - CodeJam.PerfTests.Running.Messages.Message.#ctor(System.Int32,System.Int32,System.TimeSpan,CodeJam.PerfTests.Running.Messages.MessageSource,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.String)
+  - CodeJam.PerfTests.Running.Messages.Message.Elapsed
+  - CodeJam.PerfTests.Running.Messages.Message.HintText
+  - CodeJam.PerfTests.Running.Messages.Message.MessageSeverity
+  - CodeJam.PerfTests.Running.Messages.Message.MessageSource
+  - CodeJam.PerfTests.Running.Messages.Message.MessageText
+  - CodeJam.PerfTests.Running.Messages.Message.RunMessageNumber
+  - CodeJam.PerfTests.Running.Messages.Message.RunNumber
+  langs:
+  - csharp
+  - vb
+  name: Message
+  nameWithType: Message
+  fullName: CodeJam.PerfTests.Running.Messages.Message
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Message
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+    startLine: 8
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: Competition message.
+  example: []
+  syntax:
+    content: 'public class Message : IMessage'
+    content.vb: >-
+      Public Class Message
+          Implements IMessage
+  seealso:
+  - linkId: CodeJam.PerfTests.Running.Messages.IMessage
+    commentId: T:CodeJam.PerfTests.Running.Messages.IMessage
+  inheritance:
+  - System.Object
+  implements:
+  - CodeJam.PerfTests.Running.Messages.IMessage
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: CodeJam.PerfTests.Running.Messages.Message.#ctor(System.Int32,System.Int32,System.TimeSpan,CodeJam.PerfTests.Running.Messages.MessageSource,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Messages.Message.#ctor(System.Int32,System.Int32,System.TimeSpan,CodeJam.PerfTests.Running.Messages.MessageSource,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.String)
+  id: '#ctor(System.Int32,System.Int32,System.TimeSpan,CodeJam.PerfTests.Running.Messages.MessageSource,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.String)'
+  parent: CodeJam.PerfTests.Running.Messages.Message
+  langs:
+  - csharp
+  - vb
+  name: Message(Int32, Int32, TimeSpan, MessageSource, MessageSeverity, String, String)
+  nameWithType: Message.Message(Int32, Int32, TimeSpan, MessageSource, MessageSeverity, String, String)
+  fullName: CodeJam.PerfTests.Running.Messages.Message.Message(System.Int32, System.Int32, System.TimeSpan, CodeJam.PerfTests.Running.Messages.MessageSource, CodeJam.PerfTests.Running.Messages.MessageSeverity, System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+    startLine: 18
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: Initializes a new instance of the <xref href="CodeJam.PerfTests.Running.Messages.Message" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public Message(int runNumber, int runMessageNumber, TimeSpan elapsed, MessageSource messageSource, MessageSeverity messageSeverity, string messageText, string hintText)
+    parameters:
+    - id: runNumber
+      type: System.Int32
+      description: Number of the run the message belongs to.
+    - id: runMessageNumber
+      type: System.Int32
+      description: Number of the message in the run.
+    - id: elapsed
+      type: System.TimeSpan
+      description: Time elapsed from the start of the benchmark.
+    - id: messageSource
+      type: CodeJam.PerfTests.Running.Messages.MessageSource
+      description: Source of the message.
+    - id: messageSeverity
+      type: CodeJam.PerfTests.Running.Messages.MessageSeverity
+      description: Severity of the message.
+    - id: messageText
+      type: System.String
+      description: Text of the message.
+    - id: hintText
+      type: System.String
+      description: Hints for the message.
+    content.vb: Public Sub New(runNumber As Integer, runMessageNumber As Integer, elapsed As TimeSpan, messageSource As MessageSource, messageSeverity As MessageSeverity, messageText As String, hintText As String)
+  overload: CodeJam.PerfTests.Running.Messages.Message.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Running.Messages.Message.RunNumber
+  commentId: P:CodeJam.PerfTests.Running.Messages.Message.RunNumber
+  id: RunNumber
+  parent: CodeJam.PerfTests.Running.Messages.Message
+  langs:
+  - csharp
+  - vb
+  name: RunNumber
+  nameWithType: Message.RunNumber
+  fullName: CodeJam.PerfTests.Running.Messages.Message.RunNumber
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: RunNumber
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+    startLine: 44
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: Gets number of the run the message belongs to.
+  example: []
+  syntax:
+    content: public int RunNumber { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The number of the run the message belongs to.
+    content.vb: Public ReadOnly Property RunNumber As Integer
+  overload: CodeJam.PerfTests.Running.Messages.Message.RunNumber*
+  implements:
+  - CodeJam.PerfTests.Running.Messages.IMessage.RunNumber
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Running.Messages.Message.RunMessageNumber
+  commentId: P:CodeJam.PerfTests.Running.Messages.Message.RunMessageNumber
+  id: RunMessageNumber
+  parent: CodeJam.PerfTests.Running.Messages.Message
+  langs:
+  - csharp
+  - vb
+  name: RunMessageNumber
+  nameWithType: Message.RunMessageNumber
+  fullName: CodeJam.PerfTests.Running.Messages.Message.RunMessageNumber
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: RunMessageNumber
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+    startLine: 48
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: Gets number of the message in the run.
+  example: []
+  syntax:
+    content: public int RunMessageNumber { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The number of the message in the run.
+    content.vb: Public ReadOnly Property RunMessageNumber As Integer
+  overload: CodeJam.PerfTests.Running.Messages.Message.RunMessageNumber*
+  implements:
+  - CodeJam.PerfTests.Running.Messages.IMessage.RunMessageNumber
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Running.Messages.Message.Elapsed
+  commentId: P:CodeJam.PerfTests.Running.Messages.Message.Elapsed
+  id: Elapsed
+  parent: CodeJam.PerfTests.Running.Messages.Message
+  langs:
+  - csharp
+  - vb
+  name: Elapsed
+  nameWithType: Message.Elapsed
+  fullName: CodeJam.PerfTests.Running.Messages.Message.Elapsed
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Elapsed
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+    startLine: 52
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: Gets time elapsed since start of the competition.
+  example: []
+  syntax:
+    content: public TimeSpan Elapsed { get; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+      description: Time elapsed since start of the competition.
+    content.vb: Public ReadOnly Property Elapsed As TimeSpan
+  overload: CodeJam.PerfTests.Running.Messages.Message.Elapsed*
+  implements:
+  - CodeJam.PerfTests.Running.Messages.IMessage.Elapsed
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Running.Messages.Message.MessageSource
+  commentId: P:CodeJam.PerfTests.Running.Messages.Message.MessageSource
+  id: MessageSource
+  parent: CodeJam.PerfTests.Running.Messages.Message
+  langs:
+  - csharp
+  - vb
+  name: MessageSource
+  nameWithType: Message.MessageSource
+  fullName: CodeJam.PerfTests.Running.Messages.Message.MessageSource
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MessageSource
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+    startLine: 56
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: Gets source of the message.
+  example: []
+  syntax:
+    content: public MessageSource MessageSource { get; }
+    parameters: []
+    return:
+      type: CodeJam.PerfTests.Running.Messages.MessageSource
+      description: The source of the message.
+    content.vb: Public ReadOnly Property MessageSource As MessageSource
+  overload: CodeJam.PerfTests.Running.Messages.Message.MessageSource*
+  implements:
+  - CodeJam.PerfTests.Running.Messages.IMessage.MessageSource
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Running.Messages.Message.MessageSeverity
+  commentId: P:CodeJam.PerfTests.Running.Messages.Message.MessageSeverity
+  id: MessageSeverity
+  parent: CodeJam.PerfTests.Running.Messages.Message
+  langs:
+  - csharp
+  - vb
+  name: MessageSeverity
+  nameWithType: Message.MessageSeverity
+  fullName: CodeJam.PerfTests.Running.Messages.Message.MessageSeverity
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MessageSeverity
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+    startLine: 60
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: Gets severity of the message.
+  example: []
+  syntax:
+    content: public MessageSeverity MessageSeverity { get; }
+    parameters: []
+    return:
+      type: CodeJam.PerfTests.Running.Messages.MessageSeverity
+      description: The severity of the message.
+    content.vb: Public ReadOnly Property MessageSeverity As MessageSeverity
+  overload: CodeJam.PerfTests.Running.Messages.Message.MessageSeverity*
+  implements:
+  - CodeJam.PerfTests.Running.Messages.IMessage.MessageSeverity
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Running.Messages.Message.MessageText
+  commentId: P:CodeJam.PerfTests.Running.Messages.Message.MessageText
+  id: MessageText
+  parent: CodeJam.PerfTests.Running.Messages.Message
+  langs:
+  - csharp
+  - vb
+  name: MessageText
+  nameWithType: Message.MessageText
+  fullName: CodeJam.PerfTests.Running.Messages.Message.MessageText
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MessageText
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+    startLine: 64
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: Gets text of the message.
+  example: []
+  syntax:
+    content: public string MessageText { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The text of the message.
+    content.vb: Public ReadOnly Property MessageText As String
+  overload: CodeJam.PerfTests.Running.Messages.Message.MessageText*
+  implements:
+  - CodeJam.PerfTests.Running.Messages.IMessage.MessageText
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Running.Messages.Message.HintText
+  commentId: P:CodeJam.PerfTests.Running.Messages.Message.HintText
+  id: HintText
+  parent: CodeJam.PerfTests.Running.Messages.Message
+  langs:
+  - csharp
+  - vb
+  name: HintText
+  nameWithType: Message.HintText
+  fullName: CodeJam.PerfTests.Running.Messages.Message.HintText
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: HintText
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/Message.cs
+    startLine: 68
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: Gets text that describes possible solution of the problem or additional varbose info.
+  example: []
+  syntax:
+    content: public string HintText { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: Hints for the message.
+    content.vb: Public ReadOnly Property HintText As String
+  overload: CodeJam.PerfTests.Running.Messages.Message.HintText*
+  implements:
+  - CodeJam.PerfTests.Running.Messages.IMessage.HintText
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+references:
+- uid: CodeJam.PerfTests.Running.Messages.IMessage
+  commentId: T:CodeJam.PerfTests.Running.Messages.IMessage
+  parent: CodeJam.PerfTests.Running.Messages
+  isExternal: false
+  name: IMessage
+  nameWithType: IMessage
+  fullName: CodeJam.PerfTests.Running.Messages.IMessage
+- uid: CodeJam.PerfTests.Running.Messages
+  commentId: N:CodeJam.PerfTests.Running.Messages
+  isExternal: false
+  name: CodeJam.PerfTests.Running.Messages
+  nameWithType: CodeJam.PerfTests.Running.Messages
+  fullName: CodeJam.PerfTests.Running.Messages
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.PerfTests.Running.Messages.Message
+  commentId: T:CodeJam.PerfTests.Running.Messages.Message
+  isExternal: false
+  name: Message
+  nameWithType: Message
+  fullName: CodeJam.PerfTests.Running.Messages.Message
+- uid: CodeJam.PerfTests.Running.Messages.Message.#ctor*
+  commentId: Overload:CodeJam.PerfTests.Running.Messages.Message.#ctor
+  isExternal: false
+  name: Message
+  nameWithType: Message.Message
+  fullName: CodeJam.PerfTests.Running.Messages.Message.Message
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: CodeJam.PerfTests.Running.Messages.MessageSource
+  commentId: T:CodeJam.PerfTests.Running.Messages.MessageSource
+  parent: CodeJam.PerfTests.Running.Messages
+  isExternal: false
+  name: MessageSource
+  nameWithType: MessageSource
+  fullName: CodeJam.PerfTests.Running.Messages.MessageSource
+- uid: CodeJam.PerfTests.Running.Messages.MessageSeverity
+  commentId: T:CodeJam.PerfTests.Running.Messages.MessageSeverity
+  parent: CodeJam.PerfTests.Running.Messages
+  isExternal: false
+  name: MessageSeverity
+  nameWithType: MessageSeverity
+  fullName: CodeJam.PerfTests.Running.Messages.MessageSeverity
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: CodeJam.PerfTests.Running.Messages.Message.RunNumber*
+  commentId: Overload:CodeJam.PerfTests.Running.Messages.Message.RunNumber
+  isExternal: false
+  name: RunNumber
+  nameWithType: Message.RunNumber
+  fullName: CodeJam.PerfTests.Running.Messages.Message.RunNumber
+- uid: CodeJam.PerfTests.Running.Messages.IMessage.RunNumber
+  commentId: P:CodeJam.PerfTests.Running.Messages.IMessage.RunNumber
+  parent: CodeJam.PerfTests.Running.Messages.IMessage
+  isExternal: false
+  name: RunNumber
+  nameWithType: IMessage.RunNumber
+  fullName: CodeJam.PerfTests.Running.Messages.IMessage.RunNumber
+- uid: CodeJam.PerfTests.Running.Messages.Message.RunMessageNumber*
+  commentId: Overload:CodeJam.PerfTests.Running.Messages.Message.RunMessageNumber
+  isExternal: false
+  name: RunMessageNumber
+  nameWithType: Message.RunMessageNumber
+  fullName: CodeJam.PerfTests.Running.Messages.Message.RunMessageNumber
+- uid: CodeJam.PerfTests.Running.Messages.IMessage.RunMessageNumber
+  commentId: P:CodeJam.PerfTests.Running.Messages.IMessage.RunMessageNumber
+  parent: CodeJam.PerfTests.Running.Messages.IMessage
+  isExternal: false
+  name: RunMessageNumber
+  nameWithType: IMessage.RunMessageNumber
+  fullName: CodeJam.PerfTests.Running.Messages.IMessage.RunMessageNumber
+- uid: CodeJam.PerfTests.Running.Messages.Message.Elapsed*
+  commentId: Overload:CodeJam.PerfTests.Running.Messages.Message.Elapsed
+  isExternal: false
+  name: Elapsed
+  nameWithType: Message.Elapsed
+  fullName: CodeJam.PerfTests.Running.Messages.Message.Elapsed
+- uid: CodeJam.PerfTests.Running.Messages.IMessage.Elapsed
+  commentId: P:CodeJam.PerfTests.Running.Messages.IMessage.Elapsed
+  parent: CodeJam.PerfTests.Running.Messages.IMessage
+  isExternal: false
+  name: Elapsed
+  nameWithType: IMessage.Elapsed
+  fullName: CodeJam.PerfTests.Running.Messages.IMessage.Elapsed
+- uid: CodeJam.PerfTests.Running.Messages.Message.MessageSource*
+  commentId: Overload:CodeJam.PerfTests.Running.Messages.Message.MessageSource
+  isExternal: false
+  name: MessageSource
+  nameWithType: Message.MessageSource
+  fullName: CodeJam.PerfTests.Running.Messages.Message.MessageSource
+- uid: CodeJam.PerfTests.Running.Messages.IMessage.MessageSource
+  commentId: P:CodeJam.PerfTests.Running.Messages.IMessage.MessageSource
+  parent: CodeJam.PerfTests.Running.Messages.IMessage
+  isExternal: false
+  name: MessageSource
+  nameWithType: IMessage.MessageSource
+  fullName: CodeJam.PerfTests.Running.Messages.IMessage.MessageSource
+- uid: CodeJam.PerfTests.Running.Messages.Message.MessageSeverity*
+  commentId: Overload:CodeJam.PerfTests.Running.Messages.Message.MessageSeverity
+  isExternal: false
+  name: MessageSeverity
+  nameWithType: Message.MessageSeverity
+  fullName: CodeJam.PerfTests.Running.Messages.Message.MessageSeverity
+- uid: CodeJam.PerfTests.Running.Messages.IMessage.MessageSeverity
+  commentId: P:CodeJam.PerfTests.Running.Messages.IMessage.MessageSeverity
+  parent: CodeJam.PerfTests.Running.Messages.IMessage
+  isExternal: false
+  name: MessageSeverity
+  nameWithType: IMessage.MessageSeverity
+  fullName: CodeJam.PerfTests.Running.Messages.IMessage.MessageSeverity
+- uid: CodeJam.PerfTests.Running.Messages.Message.MessageText*
+  commentId: Overload:CodeJam.PerfTests.Running.Messages.Message.MessageText
+  isExternal: false
+  name: MessageText
+  nameWithType: Message.MessageText
+  fullName: CodeJam.PerfTests.Running.Messages.Message.MessageText
+- uid: CodeJam.PerfTests.Running.Messages.IMessage.MessageText
+  commentId: P:CodeJam.PerfTests.Running.Messages.IMessage.MessageText
+  parent: CodeJam.PerfTests.Running.Messages.IMessage
+  isExternal: false
+  name: MessageText
+  nameWithType: IMessage.MessageText
+  fullName: CodeJam.PerfTests.Running.Messages.IMessage.MessageText
+- uid: CodeJam.PerfTests.Running.Messages.Message.HintText*
+  commentId: Overload:CodeJam.PerfTests.Running.Messages.Message.HintText
+  isExternal: false
+  name: HintText
+  nameWithType: Message.HintText
+  fullName: CodeJam.PerfTests.Running.Messages.Message.HintText
+- uid: CodeJam.PerfTests.Running.Messages.IMessage.HintText
+  commentId: P:CodeJam.PerfTests.Running.Messages.IMessage.HintText
+  parent: CodeJam.PerfTests.Running.Messages.IMessage
+  isExternal: false
+  name: HintText
+  nameWithType: IMessage.HintText
+  fullName: CodeJam.PerfTests.Running.Messages.IMessage.HintText

@@ -25,6 +25,22 @@
 				}
 			],
 			"dest": "api/blocks"
+		},
+		{
+			"src": [
+				{
+					"src": "..",
+					"files": [
+						"PerfTests/src/CodeJam.PerfTests.csproj"
+					],
+					"exclude": [
+						"**/obj/**",
+						"**/bin/**"
+					]
+				}
+			],
+			"dest": "api/perftests",
+			"filter": "filterConfig.yml"
 		}
 	],
 	"build": {
@@ -69,8 +85,12 @@
 			}
 		],
 		"dest": "../docs",
-			"template": [
-				"default"
-			]
+		"template": [ "default" ],
+		"globalMetadata": {
+			"_appTitle": "CodeJam",
+			"_appFooter": "Copyright © 2015-2017",
+			"_enableSearch": true,
+			"_appLogoPath": "images/CodeJam.Main.Icon.png"
+		}
 	}
 }

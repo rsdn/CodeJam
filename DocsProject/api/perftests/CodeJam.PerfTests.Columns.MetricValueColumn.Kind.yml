@@ -1,0 +1,190 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Columns.MetricValueColumn.Kind
+  commentId: T:CodeJam.PerfTests.Columns.MetricValueColumn.Kind
+  id: MetricValueColumn.Kind
+  parent: CodeJam.PerfTests.Columns
+  children:
+  - CodeJam.PerfTests.Columns.MetricValueColumn.Kind.Max
+  - CodeJam.PerfTests.Columns.MetricValueColumn.Kind.Mean
+  - CodeJam.PerfTests.Columns.MetricValueColumn.Kind.Min
+  - CodeJam.PerfTests.Columns.MetricValueColumn.Kind.StdDev
+  langs:
+  - csharp
+  - vb
+  name: MetricValueColumn.Kind
+  nameWithType: MetricValueColumn.Kind
+  fullName: CodeJam.PerfTests.Columns.MetricValueColumn.Kind
+  type: Enum
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/MetricValueColumn.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Kind
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/MetricValueColumn.cs
+    startLine: 20
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Metric column value.
+  example: []
+  syntax:
+    content: public enum Kind
+    content.vb: Public Enum Kind
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: CodeJam.PerfTests.Columns.MetricValueColumn.Kind.Mean
+  commentId: F:CodeJam.PerfTests.Columns.MetricValueColumn.Kind.Mean
+  id: Mean
+  parent: CodeJam.PerfTests.Columns.MetricValueColumn.Kind
+  langs:
+  - csharp
+  - vb
+  name: Mean
+  nameWithType: MetricValueColumn.Kind.Mean
+  fullName: CodeJam.PerfTests.Columns.MetricValueColumn.Kind.Mean
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/MetricValueColumn.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Mean
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/MetricValueColumn.cs
+    startLine: 23
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Mean for metric.
+  example: []
+  syntax:
+    content: Mean = 2
+    return:
+      type: CodeJam.PerfTests.Columns.MetricValueColumn.Kind
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.Columns.MetricValueColumn.Kind.StdDev
+  commentId: F:CodeJam.PerfTests.Columns.MetricValueColumn.Kind.StdDev
+  id: StdDev
+  parent: CodeJam.PerfTests.Columns.MetricValueColumn.Kind
+  langs:
+  - csharp
+  - vb
+  name: StdDev
+  nameWithType: MetricValueColumn.Kind.StdDev
+  fullName: CodeJam.PerfTests.Columns.MetricValueColumn.Kind.StdDev
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/MetricValueColumn.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: StdDev
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/MetricValueColumn.cs
+    startLine: 26
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Metric value standard deviation.
+  example: []
+  syntax:
+    content: StdDev = 4
+    return:
+      type: CodeJam.PerfTests.Columns.MetricValueColumn.Kind
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.Columns.MetricValueColumn.Kind.Min
+  commentId: F:CodeJam.PerfTests.Columns.MetricValueColumn.Kind.Min
+  id: Min
+  parent: CodeJam.PerfTests.Columns.MetricValueColumn.Kind
+  langs:
+  - csharp
+  - vb
+  name: Min
+  nameWithType: MetricValueColumn.Kind.Min
+  fullName: CodeJam.PerfTests.Columns.MetricValueColumn.Kind.Min
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/MetricValueColumn.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Min
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/MetricValueColumn.cs
+    startLine: 29
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Min metric value.
+  example: []
+  syntax:
+    content: Min = 8
+    return:
+      type: CodeJam.PerfTests.Columns.MetricValueColumn.Kind
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.Columns.MetricValueColumn.Kind.Max
+  commentId: F:CodeJam.PerfTests.Columns.MetricValueColumn.Kind.Max
+  id: Max
+  parent: CodeJam.PerfTests.Columns.MetricValueColumn.Kind
+  langs:
+  - csharp
+  - vb
+  name: Max
+  nameWithType: MetricValueColumn.Kind.Max
+  fullName: CodeJam.PerfTests.Columns.MetricValueColumn.Kind.Max
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/MetricValueColumn.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Max
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/MetricValueColumn.cs
+    startLine: 32
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Max metric value.
+  example: []
+  syntax:
+    content: Max = 16
+    return:
+      type: CodeJam.PerfTests.Columns.MetricValueColumn.Kind
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: CodeJam.PerfTests.Columns
+  commentId: N:CodeJam.PerfTests.Columns
+  isExternal: false
+  name: CodeJam.PerfTests.Columns
+  nameWithType: CodeJam.PerfTests.Columns
+  fullName: CodeJam.PerfTests.Columns
+- uid: CodeJam.PerfTests.Columns.MetricValueColumn.Kind
+  commentId: T:CodeJam.PerfTests.Columns.MetricValueColumn.Kind
+  parent: CodeJam.PerfTests.Columns
+  isExternal: false
+  name: MetricValueColumn.Kind
+  nameWithType: MetricValueColumn.Kind
+  fullName: CodeJam.PerfTests.Columns.MetricValueColumn.Kind

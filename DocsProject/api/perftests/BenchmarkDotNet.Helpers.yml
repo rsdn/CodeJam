@@ -1,0 +1,68 @@
+### YamlMime:ManagedReference
+items:
+- uid: BenchmarkDotNet.Helpers
+  commentId: N:BenchmarkDotNet.Helpers
+  id: BenchmarkDotNet.Helpers
+  children:
+  - BenchmarkDotNet.Helpers.AttributeValue`1
+  - BenchmarkDotNet.Helpers.BenchmarkHelpers
+  langs:
+  - csharp
+  - vb
+  name: BenchmarkDotNet.Helpers
+  nameWithType: BenchmarkDotNet.Helpers
+  fullName: BenchmarkDotNet.Helpers
+  type: Namespace
+  assemblies:
+  - CodeJam.PerfTests
+references:
+- uid: BenchmarkDotNet.Helpers.AttributeValue`1
+  commentId: T:BenchmarkDotNet.Helpers.AttributeValue`1
+  isExternal: false
+  name: AttributeValue<T>
+  nameWithType: AttributeValue<T>
+  fullName: BenchmarkDotNet.Helpers.AttributeValue<T>
+  nameWithType.vb: AttributeValue(Of T)
+  fullName.vb: BenchmarkDotNet.Helpers.AttributeValue(Of T)
+  name.vb: AttributeValue(Of T)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Helpers.AttributeValue`1
+    name: AttributeValue
+    nameWithType: AttributeValue
+    fullName: BenchmarkDotNet.Helpers.AttributeValue
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: BenchmarkDotNet.Helpers.AttributeValue`1
+    name: AttributeValue
+    nameWithType: AttributeValue
+    fullName: BenchmarkDotNet.Helpers.AttributeValue
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Helpers.BenchmarkHelpers
+  commentId: T:BenchmarkDotNet.Helpers.BenchmarkHelpers
+  parent: BenchmarkDotNet.Helpers
+  isExternal: false
+  name: BenchmarkHelpers
+  nameWithType: BenchmarkHelpers
+  fullName: BenchmarkDotNet.Helpers.BenchmarkHelpers
+- uid: BenchmarkDotNet.Helpers
+  commentId: N:BenchmarkDotNet.Helpers
+  isExternal: false
+  name: BenchmarkDotNet.Helpers
+  nameWithType: BenchmarkDotNet.Helpers
+  fullName: BenchmarkDotNet.Helpers

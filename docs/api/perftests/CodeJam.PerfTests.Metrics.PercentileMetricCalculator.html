@@ -1,0 +1,847 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class PercentileMetricCalculator
+   | CodeJam </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class PercentileMetricCalculator
+   | CodeJam ">
+    <meta name="generator" content="docfx 2.23.1.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/CodeJam.Main.Icon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items"></div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator">
+  
+  
+  <h1 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator" class="text-break">Class PercentileMetricCalculator
+  </h1>
+  <div class="markdown level0 summary"><p>Metric calculator for absolute metrics (especially for long-runing benchmarks).
+Uses percentiles for results estimation.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">PercentileMetricCalculator</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CodeJam.PerfTests.Metrics.html">CodeJam.PerfTests.Metrics</a></h6>
+  <h6><strong>Assembly</strong>: CodeJam.PerfTests.dll</h6>
+  <h5 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class PercentileMetricCalculator : IMetricCalculator</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_PercentileMetricCalculator__ctor_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.PercentileMetricCalculator.%23ctor(System.Int32%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/PercentileMetricCalculator.cs/#L100">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator__ctor_" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.#ctor*"></a>
+  <h4 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator__ctor_System_Int32_System_Int32_System_Int32_" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.#ctor(System.Int32,System.Int32,System.Int32)">PercentileMetricCalculator(Int32, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.html">PercentileMetricCalculator</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PercentileMetricCalculator(int meanPercentile, int actualValuesPercentileDelta, int limitValuesPercentileDelta)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">meanPercentile</span></td>
+        <td><p>The mean percentile.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">actualValuesPercentileDelta</span></td>
+        <td><p>Actual values percentile delta.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">limitValuesPercentileDelta</span></td>
+        <td><p>Limits percentile delta.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_PercentileMetricCalculator_P50.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.PercentileMetricCalculator.P50%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/PercentileMetricCalculator.cs/#L23">View Source</a>
+  </span>
+  <h4 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_P50" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.P50">P50</h4>
+  <div class="markdown level1 summary"><p>Metric is based on 45..55th percentiles.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly IMetricCalculator P50</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.PerfTests.Metrics.IMetricCalculator.html">IMetricCalculator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_PercentileMetricCalculator_P85.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.PercentileMetricCalculator.P85%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/PercentileMetricCalculator.cs/#L26">View Source</a>
+  </span>
+  <h4 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_P85" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.P85">P85</h4>
+  <div class="markdown level1 summary"><p>Metric is based on 85th percentiles.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly IMetricCalculator P85</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.PerfTests.Metrics.IMetricCalculator.html">IMetricCalculator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_PercentileMetricCalculator_P95.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.PercentileMetricCalculator.P95%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/PercentileMetricCalculator.cs/#L29">View Source</a>
+  </span>
+  <h4 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_P95" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.P95">P95</h4>
+  <div class="markdown level1 summary"><p>Metric is based on 95th percentiles.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly IMetricCalculator P95</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.PerfTests.Metrics.IMetricCalculator.html">IMetricCalculator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_PercentileMetricCalculator_ActualValuesPercentileDelta.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.PercentileMetricCalculator.ActualValuesPercentileDelta%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/PercentileMetricCalculator.cs/#L120">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_ActualValuesPercentileDelta_" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.ActualValuesPercentileDelta*"></a>
+  <h4 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_ActualValuesPercentileDelta" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.ActualValuesPercentileDelta">ActualValuesPercentileDelta</h4>
+  <div class="markdown level1 summary"><p>Actual values percentile delta.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ActualValuesPercentileDelta { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Actual values percentile delta.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_PercentileMetricCalculator_LimitValuesPercentileDelta.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.PercentileMetricCalculator.LimitValuesPercentileDelta%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/PercentileMetricCalculator.cs/#L124">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_LimitValuesPercentileDelta_" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.LimitValuesPercentileDelta*"></a>
+  <h4 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_LimitValuesPercentileDelta" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.LimitValuesPercentileDelta">LimitValuesPercentileDelta</h4>
+  <div class="markdown level1 summary"><p>Limits percentile delta.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int LimitValuesPercentileDelta { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Limits percentile deltas.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_PercentileMetricCalculator_MeanPercentile.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.PercentileMetricCalculator.MeanPercentile%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/PercentileMetricCalculator.cs/#L116">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_MeanPercentile_" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.MeanPercentile*"></a>
+  <h4 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_MeanPercentile" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.MeanPercentile">MeanPercentile</h4>
+  <div class="markdown level1 summary"><p>The mean percentile.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MeanPercentile { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The mean percentile.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetActualValues_System_Double___.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetActualValues(System.Double%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/PercentileMetricCalculator.cs/#L195">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetActualValues_" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetActualValues*"></a>
+  <h4 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetActualValues_System_Double___" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetActualValues(System.Double[])">TryGetActualValues(Double[])</h4>
+  <div class="markdown level1 summary"><p>Gets actual values range for the set of values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MetricRange TryGetActualValues(double[] values)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Set of values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.PerfTests.Metrics.MetricRange.html">MetricRange</a></td>
+        <td><p>Actual values range for for the set of values (or empty range if none).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CodeJam.PerfTests.Metrics.IMetricCalculator.html#CodeJam_PerfTests_Metrics_IMetricCalculator_TryGetActualValues_System_Double___">IMetricCalculator.TryGetActualValues(Double[])</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetLimitValues_System_Double___.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetLimitValues(System.Double%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/PercentileMetricCalculator.cs/#L216">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetLimitValues_" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetLimitValues*"></a>
+  <h4 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetLimitValues_System_Double___" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetLimitValues(System.Double[])">TryGetLimitValues(Double[])</h4>
+  <div class="markdown level1 summary"><p>Gets expected limits range for the set of values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MetricRange TryGetLimitValues(double[] values)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Set of values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.PerfTests.Metrics.MetricRange.html">MetricRange</a></td>
+        <td><p>Limit values range for the set of values (or empty range if none).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CodeJam.PerfTests.Metrics.IMetricCalculator.html#CodeJam_PerfTests_Metrics_IMetricCalculator_TryGetLimitValues_System_Double___">IMetricCalculator.TryGetLimitValues(Double[])</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetMeanValue_System_Double___.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetMeanValue(System.Double%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/PercentileMetricCalculator.cs/#L130">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetMeanValue_" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetMeanValue*"></a>
+  <h4 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetMeanValue_System_Double___" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetMeanValue(System.Double[])">TryGetMeanValue(Double[])</h4>
+  <div class="markdown level1 summary"><p>Gets actual value for the set of values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double ? TryGetMeanValue(double[] values)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Set of values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Double</span>&gt;</td>
+        <td><p>Actual value for the set of values or <code>null</code> if none.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CodeJam.PerfTests.Metrics.IMetricCalculator.html#CodeJam_PerfTests_Metrics_IMetricCalculator_TryGetMeanValue_System_Double___">IMetricCalculator.TryGetMeanValue(Double[])</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetRelativeActualValues_System_Double___System_Double___.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetRelativeActualValues(System.Double%5B%5D%2CSystem.Double%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/PercentileMetricCalculator.cs/#L206">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetRelativeActualValues_" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetRelativeActualValues*"></a>
+  <h4 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetRelativeActualValues_System_Double___System_Double___" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetRelativeActualValues(System.Double[],System.Double[])">TryGetRelativeActualValues(Double[], Double[])</h4>
+  <div class="markdown level1 summary"><p>Gets actual values range for the set of values (relative metric).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MetricRange TryGetRelativeActualValues(double[] values, double[] baselineValues)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Set of values.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">baselineValues</span></td>
+        <td><p>The baseline values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.PerfTests.Metrics.MetricRange.html">MetricRange</a></td>
+        <td><p>Actual values range for the set of values (or empty range if none).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CodeJam.PerfTests.Metrics.IMetricCalculator.html#CodeJam_PerfTests_Metrics_IMetricCalculator_TryGetRelativeActualValues_System_Double___System_Double___">IMetricCalculator.TryGetRelativeActualValues(Double[], Double[])</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetRelativeLimitValues_System_Double___System_Double___.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetRelativeLimitValues(System.Double%5B%5D%2CSystem.Double%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/PercentileMetricCalculator.cs/#L227">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetRelativeLimitValues_" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetRelativeLimitValues*"></a>
+  <h4 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetRelativeLimitValues_System_Double___System_Double___" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetRelativeLimitValues(System.Double[],System.Double[])">TryGetRelativeLimitValues(Double[], Double[])</h4>
+  <div class="markdown level1 summary"><p>Gets expected limits range for the set of values (relative metric).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MetricRange TryGetRelativeLimitValues(double[] values, double[] baselineValues)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Set of values.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">baselineValues</span></td>
+        <td><p>The baseline values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.PerfTests.Metrics.MetricRange.html">MetricRange</a></td>
+        <td><p>Limit values range for the set of values (or empty range if none).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CodeJam.PerfTests.Metrics.IMetricCalculator.html#CodeJam_PerfTests_Metrics_IMetricCalculator_TryGetRelativeLimitValues_System_Double___System_Double___">IMetricCalculator.TryGetRelativeLimitValues(Double[], Double[])</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetRelativeMeanValue_System_Double___System_Double___.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetRelativeMeanValue(System.Double%5B%5D%2CSystem.Double%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/PercentileMetricCalculator.cs/#L143">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetRelativeMeanValue_" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetRelativeMeanValue*"></a>
+  <h4 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetRelativeMeanValue_System_Double___System_Double___" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetRelativeMeanValue(System.Double[],System.Double[])">TryGetRelativeMeanValue(Double[], Double[])</h4>
+  <div class="markdown level1 summary"><p>Gets actual value for the set of values (relative metric).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double ? TryGetRelativeMeanValue(double[] values, double[] baselineValues)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Set of values.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">baselineValues</span></td>
+        <td><p>The baseline values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Double</span>&gt;</td>
+        <td><p>Actual value for the set of values or <code>null</code> if none.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CodeJam.PerfTests.Metrics.IMetricCalculator.html#CodeJam_PerfTests_Metrics_IMetricCalculator_TryGetRelativeMeanValue_System_Double___System_Double___">IMetricCalculator.TryGetRelativeMeanValue(Double[], Double[])</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetRelativeVariance_System_Double___System_Double___.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetRelativeVariance(System.Double%5B%5D%2CSystem.Double%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/PercentileMetricCalculator.cs/#L169">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetRelativeVariance_" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetRelativeVariance*"></a>
+  <h4 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetRelativeVariance_System_Double___System_Double___" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetRelativeVariance(System.Double[],System.Double[])">TryGetRelativeVariance(Double[], Double[])</h4>
+  <div class="markdown level1 summary"><p>Gets variance for the set of values (relative metric).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double ? TryGetRelativeVariance(double[] values, double[] baselineValues)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Set of values.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">baselineValues</span></td>
+        <td><p>The baseline values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Double</span>&gt;</td>
+        <td><p>Variance for the set of values or <code>null</code> if none.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CodeJam.PerfTests.Metrics.IMetricCalculator.html#CodeJam_PerfTests_Metrics_IMetricCalculator_TryGetRelativeVariance_System_Double___System_Double___">IMetricCalculator.TryGetRelativeVariance(Double[], Double[])</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetVariance_System_Double___.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetVariance(System.Double%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/PercentileMetricCalculator.cs/#L162">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetVariance_" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetVariance*"></a>
+  <h4 id="CodeJam_PerfTests_Metrics_PercentileMetricCalculator_TryGetVariance_System_Double___" data-uid="CodeJam.PerfTests.Metrics.PercentileMetricCalculator.TryGetVariance(System.Double[])">TryGetVariance(Double[])</h4>
+  <div class="markdown level1 summary"><p>Gets variance for the set of values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double ? TryGetVariance(double[] values)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Set of values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Double</span>&gt;</td>
+        <td><p>Variance for the set of values or <code>null</code> if none.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CodeJam.PerfTests.Metrics.IMetricCalculator.html#CodeJam_PerfTests_Metrics_IMetricCalculator_TryGetVariance_System_Double___">IMetricCalculator.TryGetVariance(Double[])</a></div>
+  <h3 id="seealso">See Also</h3>
+  <div class="seealso">
+      <div><a class="xref" href="CodeJam.PerfTests.Metrics.IMetricCalculator.html">IMetricCalculator</a></div>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Metrics_PercentileMetricCalculator.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Metrics.PercentileMetricCalculator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/PercentileMetricCalculator.cs/#L17" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright � 2015-2017
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

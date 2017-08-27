@@ -1,0 +1,611 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider
+  commentId: T:CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider
+  id: CompetitionOptionsColumnProvider
+  parent: CodeJam.PerfTests.Columns
+  children:
+  - CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider.GetColumns(BenchmarkDotNet.Reports.Summary)
+  - CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider.Instance
+  langs:
+  - csharp
+  - vb
+  name: CompetitionOptionsColumnProvider
+  nameWithType: CompetitionOptionsColumnProvider
+  fullName: CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionOptionsColumnProvider.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CompetitionOptionsColumnProvider
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionOptionsColumnProvider.cs
+    startLine: 15
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: "\nA column provider for <xref href=\"CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: 'public sealed class CompetitionOptionsColumnProvider : IColumnProvider'
+    content.vb: >-
+      Public NotInheritable Class CompetitionOptionsColumnProvider
+          Implements IColumnProvider
+  seealso:
+  - linkId: BenchmarkDotNet.Columns.IColumnProvider
+    commentId: T:BenchmarkDotNet.Columns.IColumnProvider
+  - linkId: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+    commentId: T:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  inheritance:
+  - System.Object
+  implements:
+  - BenchmarkDotNet.Columns.IColumnProvider
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider.Instance
+  commentId: F:CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider.Instance
+  id: Instance
+  parent: CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider
+  langs:
+  - csharp
+  - vb
+  name: Instance
+  nameWithType: CompetitionOptionsColumnProvider.Instance
+  fullName: CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider.Instance
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionOptionsColumnProvider.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Instance
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionOptionsColumnProvider.cs
+    startLine: 18
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: The instance of column provider.
+  example: []
+  syntax:
+    content: public static readonly CompetitionOptionsColumnProvider Instance
+    return:
+      type: CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider
+    content.vb: Public Shared ReadOnly Instance As CompetitionOptionsColumnProvider
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider.GetColumns(BenchmarkDotNet.Reports.Summary)
+  commentId: M:CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider.GetColumns(BenchmarkDotNet.Reports.Summary)
+  id: GetColumns(BenchmarkDotNet.Reports.Summary)
+  parent: CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider
+  langs:
+  - csharp
+  - vb
+  name: GetColumns(Summary)
+  nameWithType: CompetitionOptionsColumnProvider.GetColumns(Summary)
+  fullName: CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider.GetColumns(BenchmarkDotNet.Reports.Summary)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionOptionsColumnProvider.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetColumns
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionOptionsColumnProvider.cs
+    startLine: 28
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Gets competition options columns.
+  example: []
+  syntax:
+    content: public IEnumerable<IColumn> GetColumns(Summary summary)
+    parameters:
+    - id: summary
+      type: BenchmarkDotNet.Reports.Summary
+      description: The summary.
+    return:
+      type: System.Collections.Generic.IEnumerable{BenchmarkDotNet.Columns.IColumn}
+      description: The competition options columns
+    content.vb: Public Function GetColumns(summary As Summary) As IEnumerable(Of IColumn)
+  overload: CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider.GetColumns*
+  implements:
+  - BenchmarkDotNet.Columns.IColumnProvider.GetColumns(BenchmarkDotNet.Reports.Summary)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  commentId: T:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  isExternal: false
+  name: CompetitionCharacteristicColumn
+  nameWithType: CompetitionCharacteristicColumn
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+- uid: BenchmarkDotNet.Columns.IColumnProvider
+  commentId: T:BenchmarkDotNet.Columns.IColumnProvider
+  parent: BenchmarkDotNet.Columns
+  isExternal: true
+  name: IColumnProvider
+  nameWithType: IColumnProvider
+  fullName: BenchmarkDotNet.Columns.IColumnProvider
+- uid: CodeJam.PerfTests.Columns
+  commentId: N:CodeJam.PerfTests.Columns
+  isExternal: false
+  name: CodeJam.PerfTests.Columns
+  nameWithType: CodeJam.PerfTests.Columns
+  fullName: CodeJam.PerfTests.Columns
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Columns
+  commentId: N:BenchmarkDotNet.Columns
+  isExternal: false
+  name: BenchmarkDotNet.Columns
+  nameWithType: BenchmarkDotNet.Columns
+  fullName: BenchmarkDotNet.Columns
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider
+  commentId: T:CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider
+  parent: CodeJam.PerfTests.Columns
+  isExternal: false
+  name: CompetitionOptionsColumnProvider
+  nameWithType: CompetitionOptionsColumnProvider
+  fullName: CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider
+- uid: CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider.GetColumns*
+  commentId: Overload:CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider.GetColumns
+  isExternal: false
+  name: GetColumns
+  nameWithType: CompetitionOptionsColumnProvider.GetColumns
+  fullName: CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider.GetColumns
+- uid: BenchmarkDotNet.Columns.IColumnProvider.GetColumns(BenchmarkDotNet.Reports.Summary)
+  commentId: M:BenchmarkDotNet.Columns.IColumnProvider.GetColumns(BenchmarkDotNet.Reports.Summary)
+  parent: BenchmarkDotNet.Columns.IColumnProvider
+  isExternal: true
+  name: GetColumns(Summary)
+  nameWithType: IColumnProvider.GetColumns(Summary)
+  fullName: BenchmarkDotNet.Columns.IColumnProvider.GetColumns(BenchmarkDotNet.Reports.Summary)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Columns.IColumnProvider.GetColumns(BenchmarkDotNet.Reports.Summary)
+    name: GetColumns
+    nameWithType: IColumnProvider.GetColumns
+    fullName: BenchmarkDotNet.Columns.IColumnProvider.GetColumns
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Columns.IColumnProvider.GetColumns(BenchmarkDotNet.Reports.Summary)
+    name: GetColumns
+    nameWithType: IColumnProvider.GetColumns
+    fullName: BenchmarkDotNet.Columns.IColumnProvider.GetColumns
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Reports.Summary
+  commentId: T:BenchmarkDotNet.Reports.Summary
+  parent: BenchmarkDotNet.Reports
+  isExternal: true
+  name: Summary
+  nameWithType: Summary
+  fullName: BenchmarkDotNet.Reports.Summary
+- uid: System.Collections.Generic.IEnumerable{BenchmarkDotNet.Columns.IColumn}
+  commentId: T:System.Collections.Generic.IEnumerable{BenchmarkDotNet.Columns.IColumn}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<IColumn>
+  nameWithType: IEnumerable<IColumn>
+  fullName: System.Collections.Generic.IEnumerable<BenchmarkDotNet.Columns.IColumn>
+  nameWithType.vb: IEnumerable(Of IColumn)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of BenchmarkDotNet.Columns.IColumn)
+  name.vb: IEnumerable(Of IColumn)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: BenchmarkDotNet.Columns.IColumn
+    name: IColumn
+    nameWithType: IColumn
+    fullName: BenchmarkDotNet.Columns.IColumn
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: BenchmarkDotNet.Columns.IColumn
+    name: IColumn
+    nameWithType: IColumn
+    fullName: BenchmarkDotNet.Columns.IColumn
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Reports
+  commentId: N:BenchmarkDotNet.Reports
+  isExternal: false
+  name: BenchmarkDotNet.Reports
+  nameWithType: BenchmarkDotNet.Reports
+  fullName: BenchmarkDotNet.Reports
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic

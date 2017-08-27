@@ -1,0 +1,669 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Running.Core.IoHelpers
+  commentId: T:CodeJam.PerfTests.Running.Core.IoHelpers
+  id: IoHelpers
+  parent: CodeJam.PerfTests.Running.Core
+  children:
+  - CodeJam.PerfTests.Running.Core.IoHelpers.ReadFileContent(System.String)
+  - CodeJam.PerfTests.Running.Core.IoHelpers.TryGetTextFromUri(System.String)
+  - CodeJam.PerfTests.Running.Core.IoHelpers.TryGetTextFromUri(System.String,System.Nullable{System.TimeSpan})
+  - CodeJam.PerfTests.Running.Core.IoHelpers.WriteFileContent(System.String,System.String[])
+  langs:
+  - csharp
+  - vb
+  name: IoHelpers
+  nameWithType: IoHelpers
+  fullName: CodeJam.PerfTests.Running.Core.IoHelpers
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Running.Core/IoHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IoHelpers
+    path: ../PerfTests/src/[L1_CompetitionApi]/Running.Core/IoHelpers.cs
+    startLine: 11
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: "\nIO helpers\n"
+  example: []
+  syntax:
+    content: public static class IoHelpers
+    content.vb: Public Module IoHelpers
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.PerfTests.Running.Core.IoHelpers.ReadFileContent(System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.IoHelpers.ReadFileContent(System.String)
+  id: ReadFileContent(System.String)
+  parent: CodeJam.PerfTests.Running.Core.IoHelpers
+  langs:
+  - csharp
+  - vb
+  name: ReadFileContent(String)
+  nameWithType: IoHelpers.ReadFileContent(String)
+  fullName: CodeJam.PerfTests.Running.Core.IoHelpers.ReadFileContent(System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Running.Core/IoHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ReadFileContent
+    path: ../PerfTests/src/[L1_CompetitionApi]/Running.Core/IoHelpers.cs
+    startLine: 16
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Reads file content and fails if not able to detect encoding.
+  example: []
+  syntax:
+    content: public static string[] ReadFileContent(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    return:
+      type: System.String[]
+      description: File lines.
+    content.vb: Public Shared Function ReadFileContent(path As String) As String()
+  overload: CodeJam.PerfTests.Running.Core.IoHelpers.ReadFileContent*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.IoHelpers.WriteFileContent(System.String,System.String[])
+  commentId: M:CodeJam.PerfTests.Running.Core.IoHelpers.WriteFileContent(System.String,System.String[])
+  id: WriteFileContent(System.String,System.String[])
+  parent: CodeJam.PerfTests.Running.Core.IoHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteFileContent(String, String[])
+  nameWithType: IoHelpers.WriteFileContent(String, String[])
+  fullName: CodeJam.PerfTests.Running.Core.IoHelpers.WriteFileContent(System.String, System.String[])
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Running.Core/IoHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteFileContent
+    path: ../PerfTests/src/[L1_CompetitionApi]/Running.Core/IoHelpers.cs
+    startLine: 42
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Writes file content without empty line at the end.
+  example: []
+  syntax:
+    content: public static void WriteFileContent(string path, string[] lines)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    - id: lines
+      type: System.String[]
+      description: The lines to write.
+    content.vb: Public Shared Sub WriteFileContent(path As String, lines As String())
+  overload: CodeJam.PerfTests.Running.Core.IoHelpers.WriteFileContent*
+  nameWithType.vb: IoHelpers.WriteFileContent(String, String())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.PerfTests.Running.Core.IoHelpers.WriteFileContent(System.String, System.String())
+  name.vb: WriteFileContent(String, String())
+- uid: CodeJam.PerfTests.Running.Core.IoHelpers.TryGetTextFromUri(System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.IoHelpers.TryGetTextFromUri(System.String)
+  id: TryGetTextFromUri(System.String)
+  parent: CodeJam.PerfTests.Running.Core.IoHelpers
+  langs:
+  - csharp
+  - vb
+  name: TryGetTextFromUri(String)
+  nameWithType: IoHelpers.TryGetTextFromUri(String)
+  fullName: CodeJam.PerfTests.Running.Core.IoHelpers.TryGetTextFromUri(System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Running.Core/IoHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetTextFromUri
+    path: ../PerfTests/src/[L1_CompetitionApi]/Running.Core/IoHelpers.cs
+    startLine: 65
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Tries to obtain text from the given URI.
+  example: []
+  syntax:
+    content: public static TextReader TryGetTextFromUri(string uri)
+    parameters:
+    - id: uri
+      type: System.String
+      description: The URI to geth the text from.
+    return:
+      type: System.IO.TextReader
+      description: The text reader or <code>null</code> if none.
+    content.vb: Public Shared Function TryGetTextFromUri(uri As String) As TextReader
+  overload: CodeJam.PerfTests.Running.Core.IoHelpers.TryGetTextFromUri*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.IoHelpers.TryGetTextFromUri(System.String,System.Nullable{System.TimeSpan})
+  commentId: M:CodeJam.PerfTests.Running.Core.IoHelpers.TryGetTextFromUri(System.String,System.Nullable{System.TimeSpan})
+  id: TryGetTextFromUri(System.String,System.Nullable{System.TimeSpan})
+  parent: CodeJam.PerfTests.Running.Core.IoHelpers
+  langs:
+  - csharp
+  - vb
+  name: TryGetTextFromUri(String, Nullable<TimeSpan>)
+  nameWithType: IoHelpers.TryGetTextFromUri(String, Nullable<TimeSpan>)
+  fullName: CodeJam.PerfTests.Running.Core.IoHelpers.TryGetTextFromUri(System.String, System.Nullable<System.TimeSpan>)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Running.Core/IoHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetTextFromUri
+    path: ../PerfTests/src/[L1_CompetitionApi]/Running.Core/IoHelpers.cs
+    startLine: 72
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Tries to obtain text from the given URI.
+  example: []
+  syntax:
+    content: public static TextReader TryGetTextFromUri(string uri, TimeSpan? timeOut)
+    parameters:
+    - id: uri
+      type: System.String
+      description: The URI to geth the text from.
+    - id: timeOut
+      type: System.Nullable{System.TimeSpan}
+      description: The timeout.
+    return:
+      type: System.IO.TextReader
+      description: The text reader or <code>null</code> if none.
+    content.vb: Public Shared Function TryGetTextFromUri(uri As String, timeOut As TimeSpan?) As TextReader
+  overload: CodeJam.PerfTests.Running.Core.IoHelpers.TryGetTextFromUri*
+  nameWithType.vb: IoHelpers.TryGetTextFromUri(String, Nullable(Of TimeSpan))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.PerfTests.Running.Core.IoHelpers.TryGetTextFromUri(System.String, System.Nullable(Of System.TimeSpan))
+  name.vb: TryGetTextFromUri(String, Nullable(Of TimeSpan))
+references:
+- uid: CodeJam.PerfTests.Running.Core
+  commentId: N:CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CodeJam.PerfTests.Running.Core
+  nameWithType: CodeJam.PerfTests.Running.Core
+  fullName: CodeJam.PerfTests.Running.Core
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.PerfTests.Running.Core.IoHelpers.ReadFileContent*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.IoHelpers.ReadFileContent
+  isExternal: false
+  name: ReadFileContent
+  nameWithType: IoHelpers.ReadFileContent
+  fullName: CodeJam.PerfTests.Running.Core.IoHelpers.ReadFileContent
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.String[]
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: CodeJam.PerfTests.Running.Core.IoHelpers.WriteFileContent*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.IoHelpers.WriteFileContent
+  isExternal: false
+  name: WriteFileContent
+  nameWithType: IoHelpers.WriteFileContent
+  fullName: CodeJam.PerfTests.Running.Core.IoHelpers.WriteFileContent
+- uid: CodeJam.PerfTests.Running.Core.IoHelpers.TryGetTextFromUri*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.IoHelpers.TryGetTextFromUri
+  isExternal: false
+  name: TryGetTextFromUri
+  nameWithType: IoHelpers.TryGetTextFromUri
+  fullName: CodeJam.PerfTests.Running.Core.IoHelpers.TryGetTextFromUri
+- uid: System.IO.TextReader
+  commentId: T:System.IO.TextReader
+  parent: System.IO
+  isExternal: true
+  name: TextReader
+  nameWithType: TextReader
+  fullName: System.IO.TextReader
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: false
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+- uid: System.Nullable{System.TimeSpan}
+  commentId: T:System.Nullable{System.TimeSpan}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<TimeSpan>
+  nameWithType: Nullable<TimeSpan>
+  fullName: System.Nullable<System.TimeSpan>
+  nameWithType.vb: Nullable(Of TimeSpan)
+  fullName.vb: System.Nullable(Of System.TimeSpan)
+  name.vb: Nullable(Of TimeSpan)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )

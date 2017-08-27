@@ -1,0 +1,258 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.TimeUnit
+  commentId: T:CodeJam.PerfTests.TimeUnit
+  id: TimeUnit
+  parent: CodeJam.PerfTests
+  children:
+  - CodeJam.PerfTests.TimeUnit.Microsecond
+  - CodeJam.PerfTests.TimeUnit.Millisecond
+  - CodeJam.PerfTests.TimeUnit.Nanosecond
+  - CodeJam.PerfTests.TimeUnit.Second
+  langs:
+  - csharp
+  - vb
+  name: TimeUnit
+  nameWithType: TimeUnit
+  fullName: CodeJam.PerfTests.TimeUnit
+  type: Enum
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/[Attributes]/TimeUnit.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TimeUnit
+    path: ../PerfTests/src/[L4_Configuration]/[Attributes]/TimeUnit.cs
+    startLine: 9
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: "\nTime measurement units\n"
+  example: []
+  syntax:
+    content: public enum TimeUnit
+    content.vb: Public Enum TimeUnit
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: CodeJam.PerfTests.TimeUnit.Nanosecond
+  commentId: F:CodeJam.PerfTests.TimeUnit.Nanosecond
+  id: Nanosecond
+  parent: CodeJam.PerfTests.TimeUnit
+  langs:
+  - csharp
+  - vb
+  name: Nanosecond
+  nameWithType: TimeUnit.Nanosecond
+  fullName: CodeJam.PerfTests.TimeUnit.Nanosecond
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/[Attributes]/TimeUnit.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Nanosecond
+    path: ../PerfTests/src/[L4_Configuration]/[Attributes]/TimeUnit.cs
+    startLine: 12
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: Time measured in nanoseconds, ns.
+  example: []
+  syntax:
+    content: >-
+      [MetricUnit("ns", AppliesFrom = 0)]
+
+      Nanosecond = 1
+    return:
+      type: CodeJam.PerfTests.TimeUnit
+    content.vb: >-
+      <MetricUnit("ns", AppliesFrom:=0)>
+
+      Nanosecond = 1
+  attributes:
+  - type: CodeJam.PerfTests.Metrics.MetricUnitAttribute
+    ctor: CodeJam.PerfTests.Metrics.MetricUnitAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: ns
+    namedArguments:
+    - name: AppliesFrom
+      type: System.Double
+      value: 0
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.TimeUnit.Microsecond
+  commentId: F:CodeJam.PerfTests.TimeUnit.Microsecond
+  id: Microsecond
+  parent: CodeJam.PerfTests.TimeUnit
+  langs:
+  - csharp
+  - vb
+  name: Microsecond
+  nameWithType: TimeUnit.Microsecond
+  fullName: CodeJam.PerfTests.TimeUnit.Microsecond
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/[Attributes]/TimeUnit.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Microsecond
+    path: ../PerfTests/src/[L4_Configuration]/[Attributes]/TimeUnit.cs
+    startLine: 16
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: Time measured in microseconds, us.
+  example: []
+  syntax:
+    content: >-
+      [MetricUnit("us", AppliesFrom = 800)]
+
+      Microsecond = 1000
+    return:
+      type: CodeJam.PerfTests.TimeUnit
+    content.vb: >-
+      <MetricUnit("us", AppliesFrom:=800)>
+
+      Microsecond = 1000
+  attributes:
+  - type: CodeJam.PerfTests.Metrics.MetricUnitAttribute
+    ctor: CodeJam.PerfTests.Metrics.MetricUnitAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: us
+    namedArguments:
+    - name: AppliesFrom
+      type: System.Double
+      value: 800
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.TimeUnit.Millisecond
+  commentId: F:CodeJam.PerfTests.TimeUnit.Millisecond
+  id: Millisecond
+  parent: CodeJam.PerfTests.TimeUnit
+  langs:
+  - csharp
+  - vb
+  name: Millisecond
+  nameWithType: TimeUnit.Millisecond
+  fullName: CodeJam.PerfTests.TimeUnit.Millisecond
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/[Attributes]/TimeUnit.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Millisecond
+    path: ../PerfTests/src/[L4_Configuration]/[Attributes]/TimeUnit.cs
+    startLine: 20
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: Time measured in milliseconds, ms.
+  example: []
+  syntax:
+    content: >-
+      [MetricUnit("ms", AppliesFrom = 800000)]
+
+      Millisecond = 1000000
+    return:
+      type: CodeJam.PerfTests.TimeUnit
+    content.vb: >-
+      <MetricUnit("ms", AppliesFrom:=800000)>
+
+      Millisecond = 1000000
+  attributes:
+  - type: CodeJam.PerfTests.Metrics.MetricUnitAttribute
+    ctor: CodeJam.PerfTests.Metrics.MetricUnitAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: ms
+    namedArguments:
+    - name: AppliesFrom
+      type: System.Double
+      value: 800000
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.TimeUnit.Second
+  commentId: F:CodeJam.PerfTests.TimeUnit.Second
+  id: Second
+  parent: CodeJam.PerfTests.TimeUnit
+  langs:
+  - csharp
+  - vb
+  name: Second
+  nameWithType: TimeUnit.Second
+  fullName: CodeJam.PerfTests.TimeUnit.Second
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/[Attributes]/TimeUnit.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Second
+    path: ../PerfTests/src/[L4_Configuration]/[Attributes]/TimeUnit.cs
+    startLine: 24
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: Time measured in seconds, sec.
+  example: []
+  syntax:
+    content: >-
+      [MetricUnit("sec", AppliesFrom = 800000000)]
+
+      Second = 1000000000
+    return:
+      type: CodeJam.PerfTests.TimeUnit
+    content.vb: >-
+      <MetricUnit("sec", AppliesFrom:=800000000)>
+
+      Second = 1000000000
+  attributes:
+  - type: CodeJam.PerfTests.Metrics.MetricUnitAttribute
+    ctor: CodeJam.PerfTests.Metrics.MetricUnitAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: sec
+    namedArguments:
+    - name: AppliesFrom
+      type: System.Double
+      value: 800000000
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: CodeJam.PerfTests
+  commentId: N:CodeJam.PerfTests
+  isExternal: false
+  name: CodeJam.PerfTests
+  nameWithType: CodeJam.PerfTests
+  fullName: CodeJam.PerfTests
+- uid: CodeJam.PerfTests.TimeUnit
+  commentId: T:CodeJam.PerfTests.TimeUnit
+  parent: CodeJam.PerfTests
+  isExternal: false
+  name: TimeUnit
+  nameWithType: TimeUnit
+  fullName: CodeJam.PerfTests.TimeUnit

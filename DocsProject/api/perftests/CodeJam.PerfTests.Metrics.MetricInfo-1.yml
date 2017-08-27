@@ -1,0 +1,674 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+  commentId: T:CodeJam.PerfTests.Metrics.MetricInfo`1
+  id: MetricInfo`1
+  parent: CodeJam.PerfTests.Metrics
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: MetricInfo<TAttribute>
+  nameWithType: MetricInfo<TAttribute>
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo<TAttribute>
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/MetricInfo`1.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MetricInfo
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/MetricInfo`1.cs
+    startLine: 19
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: "\nTyped metric description. \nUse <xref href=\"CodeJam.PerfTests.Metrics.MetricInfo.FromAttribute%60%601\" data-throw-if-not-resolved=\"false\"></xref> to create instance of the objec\n"
+  remarks: "\nInstances of this type are cached to enable equality by reference semantic.\nDO NOT expose API that enables creation of multiple instances of the same metric.\n"
+  example: []
+  syntax:
+    content: 'public sealed class MetricInfo<TAttribute> : MetricInfo where TAttribute : Attribute, IStoredMetricValue'
+    typeParameters:
+    - id: TAttribute
+      description: "\nType of the attribute used for metric annotation.\nShould implement <xref href=\"CodeJam.PerfTests.Metrics.IMetricAttribute%601\" data-throw-if-not-resolved=\"false\"></xref> or\n<xref href=\"CodeJam.PerfTests.Metrics.IMetricAttribute%602\" data-throw-if-not-resolved=\"false\"></xref>;\nyou can use <xref href=\"CodeJam.PerfTests.Metrics.MetricAttributeBase\" data-throw-if-not-resolved=\"false\"></xref> as a base implementation.\n"
+    content.vb: >-
+      Public NotInheritable Class MetricInfo(Of TAttribute As {Attribute, IStoredMetricValue})
+          Inherits MetricInfo
+  inheritance:
+  - System.Object
+  - CodeJam.PerfTests.Metrics.MetricInfo
+  inheritedMembers:
+  - CodeJam.PerfTests.Metrics.MetricInfo.FromAttribute``1
+  - CodeJam.PerfTests.Metrics.MetricInfo.PrimaryMetric
+  - CodeJam.PerfTests.Metrics.MetricInfo.DisplayName
+  - CodeJam.PerfTests.Metrics.MetricInfo.AttributeType
+  - CodeJam.PerfTests.Metrics.MetricInfo.MetricUnits
+  - CodeJam.PerfTests.Metrics.MetricInfo.ValuesProvider
+  - CodeJam.PerfTests.Metrics.MetricInfo.IsPrimaryMetric
+  - CodeJam.PerfTests.Metrics.MetricInfo.IsRelative
+  - CodeJam.PerfTests.Metrics.MetricInfo.Category
+  - CodeJam.PerfTests.Metrics.MetricInfo.AnnotateInPlace
+  - CodeJam.PerfTests.Metrics.MetricInfo.SingleValueMode
+  - CodeJam.PerfTests.Metrics.MetricInfo.MetricColumns
+  - CodeJam.PerfTests.Metrics.MetricInfo.GetColumnProvider
+  - CodeJam.PerfTests.Metrics.MetricInfo.GetColumnProvider(CodeJam.PerfTests.Metrics.MetricValueColumns)
+  - CodeJam.PerfTests.Metrics.MetricInfo.GetDiagnosers
+  - CodeJam.PerfTests.Metrics.MetricInfo.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  nameWithType.vb: MetricInfo(Of TAttribute)
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  fullName.vb: CodeJam.PerfTests.Metrics.MetricInfo(Of TAttribute)
+  name.vb: MetricInfo(Of TAttribute)
+references:
+- uid: CodeJam.PerfTests.Metrics.MetricInfo.FromAttribute``1
+  commentId: M:CodeJam.PerfTests.Metrics.MetricInfo.FromAttribute``1
+  parent: CodeJam.PerfTests.Metrics.MetricInfo
+  isExternal: false
+  name: FromAttribute<TAttribute>()
+  nameWithType: MetricInfo.FromAttribute<TAttribute>()
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo.FromAttribute<TAttribute>()
+  nameWithType.vb: MetricInfo.FromAttribute(Of TAttribute)()
+  fullName.vb: CodeJam.PerfTests.Metrics.MetricInfo.FromAttribute(Of TAttribute)()
+  name.vb: FromAttribute(Of TAttribute)()
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo.FromAttribute``1
+    name: FromAttribute<TAttribute>
+    nameWithType: MetricInfo.FromAttribute<TAttribute>
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo.FromAttribute<TAttribute>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo.FromAttribute``1
+    name: FromAttribute(Of TAttribute)
+    nameWithType: MetricInfo.FromAttribute(Of TAttribute)
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo.FromAttribute(Of TAttribute)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.IMetricAttribute`1
+  commentId: T:CodeJam.PerfTests.Metrics.IMetricAttribute`1
+  isExternal: false
+  name: IMetricAttribute<TMetricProvider>
+  nameWithType: IMetricAttribute<TMetricProvider>
+  fullName: CodeJam.PerfTests.Metrics.IMetricAttribute<TMetricProvider>
+  nameWithType.vb: IMetricAttribute(Of TMetricProvider)
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricAttribute(Of TMetricProvider)
+  name.vb: IMetricAttribute(Of TMetricProvider)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.IMetricAttribute`1
+    name: IMetricAttribute
+    nameWithType: IMetricAttribute
+    fullName: CodeJam.PerfTests.Metrics.IMetricAttribute
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TMetricProvider
+    nameWithType: TMetricProvider
+    fullName: TMetricProvider
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.IMetricAttribute`1
+    name: IMetricAttribute
+    nameWithType: IMetricAttribute
+    fullName: CodeJam.PerfTests.Metrics.IMetricAttribute
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TMetricProvider
+    nameWithType: TMetricProvider
+    fullName: TMetricProvider
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+  commentId: T:CodeJam.PerfTests.Metrics.IMetricAttribute`2
+  isExternal: false
+  name: IMetricAttribute<TMetricProvider, TUnitOfMeasurement>
+  nameWithType: IMetricAttribute<TMetricProvider, TUnitOfMeasurement>
+  fullName: CodeJam.PerfTests.Metrics.IMetricAttribute<TMetricProvider, TUnitOfMeasurement>
+  nameWithType.vb: IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement)
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement)
+  name.vb: IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+    name: IMetricAttribute
+    nameWithType: IMetricAttribute
+    fullName: CodeJam.PerfTests.Metrics.IMetricAttribute
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TMetricProvider
+    nameWithType: TMetricProvider
+    fullName: TMetricProvider
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TUnitOfMeasurement
+    nameWithType: TUnitOfMeasurement
+    fullName: TUnitOfMeasurement
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+    name: IMetricAttribute
+    nameWithType: IMetricAttribute
+    fullName: CodeJam.PerfTests.Metrics.IMetricAttribute
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TMetricProvider
+    nameWithType: TMetricProvider
+    fullName: TMetricProvider
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TUnitOfMeasurement
+    nameWithType: TUnitOfMeasurement
+    fullName: TUnitOfMeasurement
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.MetricAttributeBase
+  commentId: T:CodeJam.PerfTests.Metrics.MetricAttributeBase
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricAttributeBase
+  nameWithType: MetricAttributeBase
+  fullName: CodeJam.PerfTests.Metrics.MetricAttributeBase
+- uid: CodeJam.PerfTests.Metrics
+  commentId: N:CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: CodeJam.PerfTests.Metrics
+  nameWithType: CodeJam.PerfTests.Metrics
+  fullName: CodeJam.PerfTests.Metrics
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: CodeJam.PerfTests.Metrics.MetricInfo
+  commentId: T:CodeJam.PerfTests.Metrics.MetricInfo
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricInfo
+  nameWithType: MetricInfo
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo
+- uid: CodeJam.PerfTests.Metrics.MetricInfo.PrimaryMetric
+  commentId: F:CodeJam.PerfTests.Metrics.MetricInfo.PrimaryMetric
+  parent: CodeJam.PerfTests.Metrics.MetricInfo
+  isExternal: false
+  name: PrimaryMetric
+  nameWithType: MetricInfo.PrimaryMetric
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo.PrimaryMetric
+- uid: CodeJam.PerfTests.Metrics.MetricInfo.DisplayName
+  commentId: P:CodeJam.PerfTests.Metrics.MetricInfo.DisplayName
+  parent: CodeJam.PerfTests.Metrics.MetricInfo
+  isExternal: false
+  name: DisplayName
+  nameWithType: MetricInfo.DisplayName
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo.DisplayName
+- uid: CodeJam.PerfTests.Metrics.MetricInfo.AttributeType
+  commentId: P:CodeJam.PerfTests.Metrics.MetricInfo.AttributeType
+  parent: CodeJam.PerfTests.Metrics.MetricInfo
+  isExternal: false
+  name: AttributeType
+  nameWithType: MetricInfo.AttributeType
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo.AttributeType
+- uid: CodeJam.PerfTests.Metrics.MetricInfo.MetricUnits
+  commentId: P:CodeJam.PerfTests.Metrics.MetricInfo.MetricUnits
+  parent: CodeJam.PerfTests.Metrics.MetricInfo
+  isExternal: false
+  name: MetricUnits
+  nameWithType: MetricInfo.MetricUnits
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo.MetricUnits
+- uid: CodeJam.PerfTests.Metrics.MetricInfo.ValuesProvider
+  commentId: P:CodeJam.PerfTests.Metrics.MetricInfo.ValuesProvider
+  parent: CodeJam.PerfTests.Metrics.MetricInfo
+  isExternal: false
+  name: ValuesProvider
+  nameWithType: MetricInfo.ValuesProvider
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo.ValuesProvider
+- uid: CodeJam.PerfTests.Metrics.MetricInfo.IsPrimaryMetric
+  commentId: P:CodeJam.PerfTests.Metrics.MetricInfo.IsPrimaryMetric
+  parent: CodeJam.PerfTests.Metrics.MetricInfo
+  isExternal: false
+  name: IsPrimaryMetric
+  nameWithType: MetricInfo.IsPrimaryMetric
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo.IsPrimaryMetric
+- uid: CodeJam.PerfTests.Metrics.MetricInfo.IsRelative
+  commentId: P:CodeJam.PerfTests.Metrics.MetricInfo.IsRelative
+  parent: CodeJam.PerfTests.Metrics.MetricInfo
+  isExternal: false
+  name: IsRelative
+  nameWithType: MetricInfo.IsRelative
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo.IsRelative
+- uid: CodeJam.PerfTests.Metrics.MetricInfo.Category
+  commentId: P:CodeJam.PerfTests.Metrics.MetricInfo.Category
+  parent: CodeJam.PerfTests.Metrics.MetricInfo
+  isExternal: false
+  name: Category
+  nameWithType: MetricInfo.Category
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo.Category
+- uid: CodeJam.PerfTests.Metrics.MetricInfo.AnnotateInPlace
+  commentId: P:CodeJam.PerfTests.Metrics.MetricInfo.AnnotateInPlace
+  parent: CodeJam.PerfTests.Metrics.MetricInfo
+  isExternal: false
+  name: AnnotateInPlace
+  nameWithType: MetricInfo.AnnotateInPlace
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo.AnnotateInPlace
+- uid: CodeJam.PerfTests.Metrics.MetricInfo.SingleValueMode
+  commentId: P:CodeJam.PerfTests.Metrics.MetricInfo.SingleValueMode
+  parent: CodeJam.PerfTests.Metrics.MetricInfo
+  isExternal: false
+  name: SingleValueMode
+  nameWithType: MetricInfo.SingleValueMode
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo.SingleValueMode
+- uid: CodeJam.PerfTests.Metrics.MetricInfo.MetricColumns
+  commentId: P:CodeJam.PerfTests.Metrics.MetricInfo.MetricColumns
+  parent: CodeJam.PerfTests.Metrics.MetricInfo
+  isExternal: false
+  name: MetricColumns
+  nameWithType: MetricInfo.MetricColumns
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo.MetricColumns
+- uid: CodeJam.PerfTests.Metrics.MetricInfo.GetColumnProvider
+  commentId: M:CodeJam.PerfTests.Metrics.MetricInfo.GetColumnProvider
+  parent: CodeJam.PerfTests.Metrics.MetricInfo
+  isExternal: false
+  name: GetColumnProvider()
+  nameWithType: MetricInfo.GetColumnProvider()
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo.GetColumnProvider()
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo.GetColumnProvider
+    name: GetColumnProvider
+    nameWithType: MetricInfo.GetColumnProvider
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo.GetColumnProvider
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo.GetColumnProvider
+    name: GetColumnProvider
+    nameWithType: MetricInfo.GetColumnProvider
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo.GetColumnProvider
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.MetricInfo.GetColumnProvider(CodeJam.PerfTests.Metrics.MetricValueColumns)
+  commentId: M:CodeJam.PerfTests.Metrics.MetricInfo.GetColumnProvider(CodeJam.PerfTests.Metrics.MetricValueColumns)
+  parent: CodeJam.PerfTests.Metrics.MetricInfo
+  isExternal: false
+  name: GetColumnProvider(MetricValueColumns)
+  nameWithType: MetricInfo.GetColumnProvider(MetricValueColumns)
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo.GetColumnProvider(CodeJam.PerfTests.Metrics.MetricValueColumns)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo.GetColumnProvider(CodeJam.PerfTests.Metrics.MetricValueColumns)
+    name: GetColumnProvider
+    nameWithType: MetricInfo.GetColumnProvider
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo.GetColumnProvider
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Metrics.MetricValueColumns
+    name: MetricValueColumns
+    nameWithType: MetricValueColumns
+    fullName: CodeJam.PerfTests.Metrics.MetricValueColumns
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo.GetColumnProvider(CodeJam.PerfTests.Metrics.MetricValueColumns)
+    name: GetColumnProvider
+    nameWithType: MetricInfo.GetColumnProvider
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo.GetColumnProvider
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Metrics.MetricValueColumns
+    name: MetricValueColumns
+    nameWithType: MetricValueColumns
+    fullName: CodeJam.PerfTests.Metrics.MetricValueColumns
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.MetricInfo.GetDiagnosers
+  commentId: M:CodeJam.PerfTests.Metrics.MetricInfo.GetDiagnosers
+  parent: CodeJam.PerfTests.Metrics.MetricInfo
+  isExternal: false
+  name: GetDiagnosers()
+  nameWithType: MetricInfo.GetDiagnosers()
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo.GetDiagnosers()
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo.GetDiagnosers
+    name: GetDiagnosers
+    nameWithType: MetricInfo.GetDiagnosers
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo.GetDiagnosers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo.GetDiagnosers
+    name: GetDiagnosers
+    nameWithType: MetricInfo.GetDiagnosers
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo.GetDiagnosers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.MetricInfo.ToString
+  commentId: M:CodeJam.PerfTests.Metrics.MetricInfo.ToString
+  parent: CodeJam.PerfTests.Metrics.MetricInfo
+  isExternal: false
+  name: ToString()
+  nameWithType: MetricInfo.ToString()
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo.ToString()
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo.ToString
+    name: ToString
+    nameWithType: MetricInfo.ToString
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo.ToString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo.ToString
+    name: ToString
+    nameWithType: MetricInfo.ToString
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo.ToString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System

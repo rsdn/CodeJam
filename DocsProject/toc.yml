@@ -1,8 +1,11 @@
 - name: Welcome
   href: articles/
 - name: CodeJam.Main
-  href: api/Main/toc.yml
+  href: api/Main/
   topicHref: ~/api/Main/index.md
 - name: CodeJam.Blocks
-  href: api/Blocks/toc.yml
+  href: api/Blocks/
   topicHref: ~/api/Blocks/index.md
+- name: CodeJam.PerfTests
+  href: api/PerfTests/
+  topicHref: ~/api/PerfTests/index.md

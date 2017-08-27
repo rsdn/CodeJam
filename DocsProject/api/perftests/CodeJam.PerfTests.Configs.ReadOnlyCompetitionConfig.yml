@@ -1,0 +1,1821 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig
+  commentId: T:CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig
+  id: ReadOnlyCompetitionConfig
+  parent: CodeJam.PerfTests.Configs
+  children:
+  - CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.#ctor(CodeJam.PerfTests.Configs.ICompetitionConfig)
+  - CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.GetMetrics
+  - CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.Options
+  langs:
+  - csharp
+  - vb
+  name: ReadOnlyCompetitionConfig
+  nameWithType: ReadOnlyCompetitionConfig
+  fullName: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Configs/ReadOnlyCompetitionConfig.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ReadOnlyCompetitionConfig
+    path: ../PerfTests/src/[L4_Configuration]/Configs/ReadOnlyCompetitionConfig.cs
+    startLine: 14
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: Wrapper class for readonly competition config.
+  example: []
+  syntax:
+    content: 'public class ReadOnlyCompetitionConfig : ReadOnlyConfig, ICompetitionConfig, IConfig'
+    content.vb: >-
+      Public Class ReadOnlyCompetitionConfig
+          Inherits ReadOnlyConfig
+          Implements ICompetitionConfig, IConfig
+  seealso:
+  - linkId: BenchmarkDotNet.Configs.ReadOnlyConfig
+    commentId: T:BenchmarkDotNet.Configs.ReadOnlyConfig
+  - linkId: CodeJam.PerfTests.Configs.ICompetitionConfig
+    commentId: T:CodeJam.PerfTests.Configs.ICompetitionConfig
+  inheritance:
+  - System.Object
+  - BenchmarkDotNet.Configs.ReadOnlyConfig
+  implements:
+  - CodeJam.PerfTests.Configs.ICompetitionConfig
+  - BenchmarkDotNet.Configs.IConfig
+  inheritedMembers:
+  - BenchmarkDotNet.Configs.ReadOnlyConfig.GetColumnProviders
+  - BenchmarkDotNet.Configs.ReadOnlyConfig.GetExporters
+  - BenchmarkDotNet.Configs.ReadOnlyConfig.GetLoggers
+  - BenchmarkDotNet.Configs.ReadOnlyConfig.GetDiagnosers
+  - BenchmarkDotNet.Configs.ReadOnlyConfig.GetAnalysers
+  - BenchmarkDotNet.Configs.ReadOnlyConfig.GetJobs
+  - BenchmarkDotNet.Configs.ReadOnlyConfig.GetValidators
+  - BenchmarkDotNet.Configs.ReadOnlyConfig.GetHardwareCounters
+  - BenchmarkDotNet.Configs.ReadOnlyConfig.GetFilters
+  - BenchmarkDotNet.Configs.ReadOnlyConfig.GetOrderProvider
+  - BenchmarkDotNet.Configs.ReadOnlyConfig.GetSummaryStyle
+  - BenchmarkDotNet.Configs.ReadOnlyConfig.UnionRule
+  - BenchmarkDotNet.Configs.ReadOnlyConfig.KeepBenchmarkFiles
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - BenchmarkDotNet.Configs.IConfig.BenchmarkDotNet.Helpers.BenchmarkHelpers.AsReadOnly
+  - CodeJam.PerfTests.Configs.ICompetitionConfig.CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.CompetitionOptions)
+  - CodeJam.PerfTests.Configs.ICompetitionConfig.CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(BenchmarkDotNet.Jobs.Job)
+  - CodeJam.PerfTests.Configs.ICompetitionConfig.CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithAllowDebugBuilds(System.Boolean)
+  - CodeJam.PerfTests.Configs.ICompetitionConfig.CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithDetailedLogging(System.Boolean)
+  - CodeJam.PerfTests.Configs.ICompetitionConfig.CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithReportWarningsAsErrors(System.Boolean)
+  - CodeJam.PerfTests.Configs.ICompetitionConfig.CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithTooFastBenchmarkLimit(System.TimeSpan)
+  - CodeJam.PerfTests.Configs.ICompetitionConfig.CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithLongRunningBenchmarkLimit(System.TimeSpan)
+  - CodeJam.PerfTests.Configs.ICompetitionConfig.CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithPreviousRunLogUri(System.String)
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.#ctor(CodeJam.PerfTests.Configs.ICompetitionConfig)
+  commentId: M:CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.#ctor(CodeJam.PerfTests.Configs.ICompetitionConfig)
+  id: '#ctor(CodeJam.PerfTests.Configs.ICompetitionConfig)'
+  parent: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig
+  langs:
+  - csharp
+  - vb
+  name: ReadOnlyCompetitionConfig(ICompetitionConfig)
+  nameWithType: ReadOnlyCompetitionConfig.ReadOnlyCompetitionConfig(ICompetitionConfig)
+  fullName: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.ReadOnlyCompetitionConfig(CodeJam.PerfTests.Configs.ICompetitionConfig)
+  type: Constructor
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Configs/ReadOnlyCompetitionConfig.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../PerfTests/src/[L4_Configuration]/Configs/ReadOnlyCompetitionConfig.cs
+    startLine: 21
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: Initializes a new instance of the <xref href="CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public ReadOnlyCompetitionConfig(ICompetitionConfig config)
+    parameters:
+    - id: config
+      type: CodeJam.PerfTests.Configs.ICompetitionConfig
+      description: The config to wrap.
+    content.vb: Public Sub New(config As ICompetitionConfig)
+  overload: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.Options
+  commentId: P:CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.Options
+  id: Options
+  parent: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig
+  langs:
+  - csharp
+  - vb
+  name: Options
+  nameWithType: ReadOnlyCompetitionConfig.Options
+  fullName: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.Options
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Configs/ReadOnlyCompetitionConfig.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Options
+    path: ../PerfTests/src/[L4_Configuration]/Configs/ReadOnlyCompetitionConfig.cs
+    startLine: 31
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: Competition parameters.
+  example: []
+  syntax:
+    content: public CompetitionOptions Options { get; }
+    parameters: []
+    return:
+      type: CodeJam.PerfTests.Configs.CompetitionOptions
+      description: Competition parameters.
+    content.vb: Public ReadOnly Property Options As CompetitionOptions
+  overload: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.Options*
+  implements:
+  - CodeJam.PerfTests.Configs.ICompetitionConfig.Options
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.GetMetrics
+  commentId: M:CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.GetMetrics
+  id: GetMetrics
+  parent: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig
+  langs:
+  - csharp
+  - vb
+  name: GetMetrics()
+  nameWithType: ReadOnlyCompetitionConfig.GetMetrics()
+  fullName: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.GetMetrics()
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Configs/ReadOnlyCompetitionConfig.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetMetrics
+    path: ../PerfTests/src/[L4_Configuration]/Configs/ReadOnlyCompetitionConfig.cs
+    startLine: 35
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: Gets competition metrics.
+  example: []
+  syntax:
+    content: public IEnumerable<MetricInfo> GetMetrics()
+    return:
+      type: System.Collections.Generic.IEnumerable{CodeJam.PerfTests.Metrics.MetricInfo}
+      description: Competition metrics.
+    content.vb: Public Function GetMetrics As IEnumerable(Of MetricInfo)
+  overload: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.GetMetrics*
+  implements:
+  - CodeJam.PerfTests.Configs.ICompetitionConfig.GetMetrics
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: BenchmarkDotNet.Configs.ReadOnlyConfig
+  commentId: T:BenchmarkDotNet.Configs.ReadOnlyConfig
+  parent: BenchmarkDotNet.Configs
+  isExternal: false
+  name: ReadOnlyConfig
+  nameWithType: ReadOnlyConfig
+  fullName: BenchmarkDotNet.Configs.ReadOnlyConfig
+- uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+  commentId: T:CodeJam.PerfTests.Configs.ICompetitionConfig
+  parent: CodeJam.PerfTests.Configs
+  isExternal: false
+  name: ICompetitionConfig
+  nameWithType: ICompetitionConfig
+  fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+- uid: CodeJam.PerfTests.Configs
+  commentId: N:CodeJam.PerfTests.Configs
+  isExternal: false
+  name: CodeJam.PerfTests.Configs
+  nameWithType: CodeJam.PerfTests.Configs
+  fullName: CodeJam.PerfTests.Configs
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: BenchmarkDotNet.Configs.IConfig
+  commentId: T:BenchmarkDotNet.Configs.IConfig
+  parent: BenchmarkDotNet.Configs
+  isExternal: true
+  name: IConfig
+  nameWithType: IConfig
+  fullName: BenchmarkDotNet.Configs.IConfig
+- uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetColumnProviders
+  commentId: M:BenchmarkDotNet.Configs.ReadOnlyConfig.GetColumnProviders
+  parent: BenchmarkDotNet.Configs.ReadOnlyConfig
+  isExternal: false
+  name: GetColumnProviders()
+  nameWithType: ReadOnlyConfig.GetColumnProviders()
+  fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetColumnProviders()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetColumnProviders
+    name: GetColumnProviders
+    nameWithType: ReadOnlyConfig.GetColumnProviders
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetColumnProviders
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetColumnProviders
+    name: GetColumnProviders
+    nameWithType: ReadOnlyConfig.GetColumnProviders
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetColumnProviders
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetExporters
+  commentId: M:BenchmarkDotNet.Configs.ReadOnlyConfig.GetExporters
+  parent: BenchmarkDotNet.Configs.ReadOnlyConfig
+  isExternal: false
+  name: GetExporters()
+  nameWithType: ReadOnlyConfig.GetExporters()
+  fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetExporters()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetExporters
+    name: GetExporters
+    nameWithType: ReadOnlyConfig.GetExporters
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetExporters
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetExporters
+    name: GetExporters
+    nameWithType: ReadOnlyConfig.GetExporters
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetExporters
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetLoggers
+  commentId: M:BenchmarkDotNet.Configs.ReadOnlyConfig.GetLoggers
+  parent: BenchmarkDotNet.Configs.ReadOnlyConfig
+  isExternal: false
+  name: GetLoggers()
+  nameWithType: ReadOnlyConfig.GetLoggers()
+  fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetLoggers()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetLoggers
+    name: GetLoggers
+    nameWithType: ReadOnlyConfig.GetLoggers
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetLoggers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetLoggers
+    name: GetLoggers
+    nameWithType: ReadOnlyConfig.GetLoggers
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetLoggers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetDiagnosers
+  commentId: M:BenchmarkDotNet.Configs.ReadOnlyConfig.GetDiagnosers
+  parent: BenchmarkDotNet.Configs.ReadOnlyConfig
+  isExternal: false
+  name: GetDiagnosers()
+  nameWithType: ReadOnlyConfig.GetDiagnosers()
+  fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetDiagnosers()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetDiagnosers
+    name: GetDiagnosers
+    nameWithType: ReadOnlyConfig.GetDiagnosers
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetDiagnosers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetDiagnosers
+    name: GetDiagnosers
+    nameWithType: ReadOnlyConfig.GetDiagnosers
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetDiagnosers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetAnalysers
+  commentId: M:BenchmarkDotNet.Configs.ReadOnlyConfig.GetAnalysers
+  parent: BenchmarkDotNet.Configs.ReadOnlyConfig
+  isExternal: false
+  name: GetAnalysers()
+  nameWithType: ReadOnlyConfig.GetAnalysers()
+  fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetAnalysers()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetAnalysers
+    name: GetAnalysers
+    nameWithType: ReadOnlyConfig.GetAnalysers
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetAnalysers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetAnalysers
+    name: GetAnalysers
+    nameWithType: ReadOnlyConfig.GetAnalysers
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetAnalysers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetJobs
+  commentId: M:BenchmarkDotNet.Configs.ReadOnlyConfig.GetJobs
+  parent: BenchmarkDotNet.Configs.ReadOnlyConfig
+  isExternal: false
+  name: GetJobs()
+  nameWithType: ReadOnlyConfig.GetJobs()
+  fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetJobs()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetJobs
+    name: GetJobs
+    nameWithType: ReadOnlyConfig.GetJobs
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetJobs
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetJobs
+    name: GetJobs
+    nameWithType: ReadOnlyConfig.GetJobs
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetJobs
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetValidators
+  commentId: M:BenchmarkDotNet.Configs.ReadOnlyConfig.GetValidators
+  parent: BenchmarkDotNet.Configs.ReadOnlyConfig
+  isExternal: false
+  name: GetValidators()
+  nameWithType: ReadOnlyConfig.GetValidators()
+  fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetValidators()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetValidators
+    name: GetValidators
+    nameWithType: ReadOnlyConfig.GetValidators
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetValidators
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetValidators
+    name: GetValidators
+    nameWithType: ReadOnlyConfig.GetValidators
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetValidators
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetHardwareCounters
+  commentId: M:BenchmarkDotNet.Configs.ReadOnlyConfig.GetHardwareCounters
+  parent: BenchmarkDotNet.Configs.ReadOnlyConfig
+  isExternal: false
+  name: GetHardwareCounters()
+  nameWithType: ReadOnlyConfig.GetHardwareCounters()
+  fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetHardwareCounters()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetHardwareCounters
+    name: GetHardwareCounters
+    nameWithType: ReadOnlyConfig.GetHardwareCounters
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetHardwareCounters
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetHardwareCounters
+    name: GetHardwareCounters
+    nameWithType: ReadOnlyConfig.GetHardwareCounters
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetHardwareCounters
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetFilters
+  commentId: M:BenchmarkDotNet.Configs.ReadOnlyConfig.GetFilters
+  parent: BenchmarkDotNet.Configs.ReadOnlyConfig
+  isExternal: false
+  name: GetFilters()
+  nameWithType: ReadOnlyConfig.GetFilters()
+  fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetFilters()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetFilters
+    name: GetFilters
+    nameWithType: ReadOnlyConfig.GetFilters
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetFilters
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetFilters
+    name: GetFilters
+    nameWithType: ReadOnlyConfig.GetFilters
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetFilters
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetOrderProvider
+  commentId: M:BenchmarkDotNet.Configs.ReadOnlyConfig.GetOrderProvider
+  parent: BenchmarkDotNet.Configs.ReadOnlyConfig
+  isExternal: false
+  name: GetOrderProvider()
+  nameWithType: ReadOnlyConfig.GetOrderProvider()
+  fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetOrderProvider()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetOrderProvider
+    name: GetOrderProvider
+    nameWithType: ReadOnlyConfig.GetOrderProvider
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetOrderProvider
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetOrderProvider
+    name: GetOrderProvider
+    nameWithType: ReadOnlyConfig.GetOrderProvider
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetOrderProvider
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetSummaryStyle
+  commentId: M:BenchmarkDotNet.Configs.ReadOnlyConfig.GetSummaryStyle
+  parent: BenchmarkDotNet.Configs.ReadOnlyConfig
+  isExternal: false
+  name: GetSummaryStyle()
+  nameWithType: ReadOnlyConfig.GetSummaryStyle()
+  fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetSummaryStyle()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetSummaryStyle
+    name: GetSummaryStyle
+    nameWithType: ReadOnlyConfig.GetSummaryStyle
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetSummaryStyle
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig.GetSummaryStyle
+    name: GetSummaryStyle
+    nameWithType: ReadOnlyConfig.GetSummaryStyle
+    fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.GetSummaryStyle
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Configs.ReadOnlyConfig.UnionRule
+  commentId: P:BenchmarkDotNet.Configs.ReadOnlyConfig.UnionRule
+  parent: BenchmarkDotNet.Configs.ReadOnlyConfig
+  isExternal: false
+  name: UnionRule
+  nameWithType: ReadOnlyConfig.UnionRule
+  fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.UnionRule
+- uid: BenchmarkDotNet.Configs.ReadOnlyConfig.KeepBenchmarkFiles
+  commentId: P:BenchmarkDotNet.Configs.ReadOnlyConfig.KeepBenchmarkFiles
+  parent: BenchmarkDotNet.Configs.ReadOnlyConfig
+  isExternal: false
+  name: KeepBenchmarkFiles
+  nameWithType: ReadOnlyConfig.KeepBenchmarkFiles
+  fullName: BenchmarkDotNet.Configs.ReadOnlyConfig.KeepBenchmarkFiles
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Configs.IConfig.BenchmarkDotNet.Helpers.BenchmarkHelpers.AsReadOnly
+  commentId: M:BenchmarkDotNet.Helpers.BenchmarkHelpers.AsReadOnly(BenchmarkDotNet.Configs.IConfig)
+  parent: BenchmarkDotNet.Helpers.BenchmarkHelpers
+  definition: BenchmarkDotNet.Helpers.BenchmarkHelpers.AsReadOnly(BenchmarkDotNet.Configs.IConfig)
+  name: AsReadOnly()
+  nameWithType: BenchmarkHelpers.AsReadOnly()
+  fullName: BenchmarkDotNet.Helpers.BenchmarkHelpers.AsReadOnly()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Helpers.BenchmarkHelpers.AsReadOnly
+    name: AsReadOnly
+    nameWithType: BenchmarkHelpers.AsReadOnly
+    fullName: BenchmarkDotNet.Helpers.BenchmarkHelpers.AsReadOnly
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Helpers.BenchmarkHelpers.AsReadOnly
+    name: AsReadOnly
+    nameWithType: BenchmarkHelpers.AsReadOnly
+    fullName: BenchmarkDotNet.Helpers.BenchmarkHelpers.AsReadOnly
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs.ICompetitionConfig.CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.CompetitionOptions)
+  commentId: M:CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.ICompetitionConfig,CodeJam.PerfTests.Configs.CompetitionOptions)
+  parent: CodeJam.PerfTests.Configs.CompetitionConfigExtensions
+  definition: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.ICompetitionConfig,CodeJam.PerfTests.Configs.CompetitionOptions)
+  name: WithModifier(CompetitionOptions)
+  nameWithType: CompetitionConfigExtensions.WithModifier(CompetitionOptions)
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.CompetitionOptions)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.CompetitionOptions)
+    name: WithModifier
+    nameWithType: CompetitionConfigExtensions.WithModifier
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.CompetitionOptions
+    name: CompetitionOptions
+    nameWithType: CompetitionOptions
+    fullName: CodeJam.PerfTests.Configs.CompetitionOptions
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.CompetitionOptions)
+    name: WithModifier
+    nameWithType: CompetitionConfigExtensions.WithModifier
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.CompetitionOptions
+    name: CompetitionOptions
+    nameWithType: CompetitionOptions
+    fullName: CodeJam.PerfTests.Configs.CompetitionOptions
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs.ICompetitionConfig.CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(BenchmarkDotNet.Jobs.Job)
+  commentId: M:CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.ICompetitionConfig,BenchmarkDotNet.Jobs.Job)
+  parent: CodeJam.PerfTests.Configs.CompetitionConfigExtensions
+  definition: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.ICompetitionConfig,BenchmarkDotNet.Jobs.Job)
+  name: WithModifier(Job)
+  nameWithType: CompetitionConfigExtensions.WithModifier(Job)
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(BenchmarkDotNet.Jobs.Job)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(BenchmarkDotNet.Jobs.Job)
+    name: WithModifier
+    nameWithType: CompetitionConfigExtensions.WithModifier
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Jobs.Job
+    name: Job
+    nameWithType: Job
+    fullName: BenchmarkDotNet.Jobs.Job
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(BenchmarkDotNet.Jobs.Job)
+    name: WithModifier
+    nameWithType: CompetitionConfigExtensions.WithModifier
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Jobs.Job
+    name: Job
+    nameWithType: Job
+    fullName: BenchmarkDotNet.Jobs.Job
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs.ICompetitionConfig.CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithAllowDebugBuilds(System.Boolean)
+  commentId: M:CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithAllowDebugBuilds(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+  parent: CodeJam.PerfTests.Configs.CompetitionConfigExtensions
+  definition: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithAllowDebugBuilds(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+  name: WithAllowDebugBuilds(Boolean)
+  nameWithType: CompetitionConfigExtensions.WithAllowDebugBuilds(Boolean)
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithAllowDebugBuilds(System.Boolean)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithAllowDebugBuilds(System.Boolean)
+    name: WithAllowDebugBuilds
+    nameWithType: CompetitionConfigExtensions.WithAllowDebugBuilds
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithAllowDebugBuilds
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithAllowDebugBuilds(System.Boolean)
+    name: WithAllowDebugBuilds
+    nameWithType: CompetitionConfigExtensions.WithAllowDebugBuilds
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithAllowDebugBuilds
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs.ICompetitionConfig.CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithDetailedLogging(System.Boolean)
+  commentId: M:CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithDetailedLogging(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+  parent: CodeJam.PerfTests.Configs.CompetitionConfigExtensions
+  definition: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithDetailedLogging(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+  name: WithDetailedLogging(Boolean)
+  nameWithType: CompetitionConfigExtensions.WithDetailedLogging(Boolean)
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithDetailedLogging(System.Boolean)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithDetailedLogging(System.Boolean)
+    name: WithDetailedLogging
+    nameWithType: CompetitionConfigExtensions.WithDetailedLogging
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithDetailedLogging
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithDetailedLogging(System.Boolean)
+    name: WithDetailedLogging
+    nameWithType: CompetitionConfigExtensions.WithDetailedLogging
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithDetailedLogging
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs.ICompetitionConfig.CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithReportWarningsAsErrors(System.Boolean)
+  commentId: M:CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithReportWarningsAsErrors(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+  parent: CodeJam.PerfTests.Configs.CompetitionConfigExtensions
+  definition: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithReportWarningsAsErrors(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+  name: WithReportWarningsAsErrors(Boolean)
+  nameWithType: CompetitionConfigExtensions.WithReportWarningsAsErrors(Boolean)
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithReportWarningsAsErrors(System.Boolean)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithReportWarningsAsErrors(System.Boolean)
+    name: WithReportWarningsAsErrors
+    nameWithType: CompetitionConfigExtensions.WithReportWarningsAsErrors
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithReportWarningsAsErrors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithReportWarningsAsErrors(System.Boolean)
+    name: WithReportWarningsAsErrors
+    nameWithType: CompetitionConfigExtensions.WithReportWarningsAsErrors
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithReportWarningsAsErrors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs.ICompetitionConfig.CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithTooFastBenchmarkLimit(System.TimeSpan)
+  commentId: M:CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithTooFastBenchmarkLimit(CodeJam.PerfTests.Configs.ICompetitionConfig,System.TimeSpan)
+  parent: CodeJam.PerfTests.Configs.CompetitionConfigExtensions
+  definition: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithTooFastBenchmarkLimit(CodeJam.PerfTests.Configs.ICompetitionConfig,System.TimeSpan)
+  name: WithTooFastBenchmarkLimit(TimeSpan)
+  nameWithType: CompetitionConfigExtensions.WithTooFastBenchmarkLimit(TimeSpan)
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithTooFastBenchmarkLimit(System.TimeSpan)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithTooFastBenchmarkLimit(System.TimeSpan)
+    name: WithTooFastBenchmarkLimit
+    nameWithType: CompetitionConfigExtensions.WithTooFastBenchmarkLimit
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithTooFastBenchmarkLimit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithTooFastBenchmarkLimit(System.TimeSpan)
+    name: WithTooFastBenchmarkLimit
+    nameWithType: CompetitionConfigExtensions.WithTooFastBenchmarkLimit
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithTooFastBenchmarkLimit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs.ICompetitionConfig.CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithLongRunningBenchmarkLimit(System.TimeSpan)
+  commentId: M:CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithLongRunningBenchmarkLimit(CodeJam.PerfTests.Configs.ICompetitionConfig,System.TimeSpan)
+  parent: CodeJam.PerfTests.Configs.CompetitionConfigExtensions
+  definition: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithLongRunningBenchmarkLimit(CodeJam.PerfTests.Configs.ICompetitionConfig,System.TimeSpan)
+  name: WithLongRunningBenchmarkLimit(TimeSpan)
+  nameWithType: CompetitionConfigExtensions.WithLongRunningBenchmarkLimit(TimeSpan)
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithLongRunningBenchmarkLimit(System.TimeSpan)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithLongRunningBenchmarkLimit(System.TimeSpan)
+    name: WithLongRunningBenchmarkLimit
+    nameWithType: CompetitionConfigExtensions.WithLongRunningBenchmarkLimit
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithLongRunningBenchmarkLimit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithLongRunningBenchmarkLimit(System.TimeSpan)
+    name: WithLongRunningBenchmarkLimit
+    nameWithType: CompetitionConfigExtensions.WithLongRunningBenchmarkLimit
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithLongRunningBenchmarkLimit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs.ICompetitionConfig.CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithPreviousRunLogUri(System.String)
+  commentId: M:CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithPreviousRunLogUri(CodeJam.PerfTests.Configs.ICompetitionConfig,System.String)
+  parent: CodeJam.PerfTests.Configs.CompetitionConfigExtensions
+  definition: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithPreviousRunLogUri(CodeJam.PerfTests.Configs.ICompetitionConfig,System.String)
+  name: WithPreviousRunLogUri(String)
+  nameWithType: CompetitionConfigExtensions.WithPreviousRunLogUri(String)
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithPreviousRunLogUri(System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithPreviousRunLogUri(System.String)
+    name: WithPreviousRunLogUri
+    nameWithType: CompetitionConfigExtensions.WithPreviousRunLogUri
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithPreviousRunLogUri
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithPreviousRunLogUri(System.String)
+    name: WithPreviousRunLogUri
+    nameWithType: CompetitionConfigExtensions.WithPreviousRunLogUri
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithPreviousRunLogUri
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Configs
+  commentId: N:BenchmarkDotNet.Configs
+  isExternal: false
+  name: BenchmarkDotNet.Configs
+  nameWithType: BenchmarkDotNet.Configs
+  fullName: BenchmarkDotNet.Configs
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: BenchmarkDotNet.Helpers.BenchmarkHelpers.AsReadOnly(BenchmarkDotNet.Configs.IConfig)
+  commentId: M:BenchmarkDotNet.Helpers.BenchmarkHelpers.AsReadOnly(BenchmarkDotNet.Configs.IConfig)
+  isExternal: true
+  name: AsReadOnly(IConfig)
+  nameWithType: BenchmarkHelpers.AsReadOnly(IConfig)
+  fullName: BenchmarkDotNet.Helpers.BenchmarkHelpers.AsReadOnly(BenchmarkDotNet.Configs.IConfig)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Helpers.BenchmarkHelpers.AsReadOnly(BenchmarkDotNet.Configs.IConfig)
+    name: AsReadOnly
+    nameWithType: BenchmarkHelpers.AsReadOnly
+    fullName: BenchmarkDotNet.Helpers.BenchmarkHelpers.AsReadOnly
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Configs.IConfig
+    name: IConfig
+    nameWithType: IConfig
+    fullName: BenchmarkDotNet.Configs.IConfig
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Helpers.BenchmarkHelpers.AsReadOnly(BenchmarkDotNet.Configs.IConfig)
+    name: AsReadOnly
+    nameWithType: BenchmarkHelpers.AsReadOnly
+    fullName: BenchmarkDotNet.Helpers.BenchmarkHelpers.AsReadOnly
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Configs.IConfig
+    name: IConfig
+    nameWithType: IConfig
+    fullName: BenchmarkDotNet.Configs.IConfig
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Helpers.BenchmarkHelpers
+  commentId: T:BenchmarkDotNet.Helpers.BenchmarkHelpers
+  parent: BenchmarkDotNet.Helpers
+  isExternal: false
+  name: BenchmarkHelpers
+  nameWithType: BenchmarkHelpers
+  fullName: BenchmarkDotNet.Helpers.BenchmarkHelpers
+- uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.ICompetitionConfig,CodeJam.PerfTests.Configs.CompetitionOptions)
+  commentId: M:CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.ICompetitionConfig,CodeJam.PerfTests.Configs.CompetitionOptions)
+  isExternal: false
+  name: WithModifier(ICompetitionConfig, CompetitionOptions)
+  nameWithType: CompetitionConfigExtensions.WithModifier(ICompetitionConfig, CompetitionOptions)
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.ICompetitionConfig, CodeJam.PerfTests.Configs.CompetitionOptions)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.ICompetitionConfig,CodeJam.PerfTests.Configs.CompetitionOptions)
+    name: WithModifier
+    nameWithType: CompetitionConfigExtensions.WithModifier
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.CompetitionOptions
+    name: CompetitionOptions
+    nameWithType: CompetitionOptions
+    fullName: CodeJam.PerfTests.Configs.CompetitionOptions
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.ICompetitionConfig,CodeJam.PerfTests.Configs.CompetitionOptions)
+    name: WithModifier
+    nameWithType: CompetitionConfigExtensions.WithModifier
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.CompetitionOptions
+    name: CompetitionOptions
+    nameWithType: CompetitionOptions
+    fullName: CodeJam.PerfTests.Configs.CompetitionOptions
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions
+  commentId: T:CodeJam.PerfTests.Configs.CompetitionConfigExtensions
+  parent: CodeJam.PerfTests.Configs
+  isExternal: false
+  name: CompetitionConfigExtensions
+  nameWithType: CompetitionConfigExtensions
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions
+- uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.ICompetitionConfig,BenchmarkDotNet.Jobs.Job)
+  commentId: M:CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.ICompetitionConfig,BenchmarkDotNet.Jobs.Job)
+  isExternal: true
+  name: WithModifier(ICompetitionConfig, Job)
+  nameWithType: CompetitionConfigExtensions.WithModifier(ICompetitionConfig, Job)
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.ICompetitionConfig, BenchmarkDotNet.Jobs.Job)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.ICompetitionConfig,BenchmarkDotNet.Jobs.Job)
+    name: WithModifier
+    nameWithType: CompetitionConfigExtensions.WithModifier
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Jobs.Job
+    name: Job
+    nameWithType: Job
+    fullName: BenchmarkDotNet.Jobs.Job
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier(CodeJam.PerfTests.Configs.ICompetitionConfig,BenchmarkDotNet.Jobs.Job)
+    name: WithModifier
+    nameWithType: CompetitionConfigExtensions.WithModifier
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithModifier
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Jobs.Job
+    name: Job
+    nameWithType: Job
+    fullName: BenchmarkDotNet.Jobs.Job
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithAllowDebugBuilds(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+  commentId: M:CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithAllowDebugBuilds(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+  isExternal: true
+  name: WithAllowDebugBuilds(ICompetitionConfig, Boolean)
+  nameWithType: CompetitionConfigExtensions.WithAllowDebugBuilds(ICompetitionConfig, Boolean)
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithAllowDebugBuilds(CodeJam.PerfTests.Configs.ICompetitionConfig, System.Boolean)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithAllowDebugBuilds(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+    name: WithAllowDebugBuilds
+    nameWithType: CompetitionConfigExtensions.WithAllowDebugBuilds
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithAllowDebugBuilds
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithAllowDebugBuilds(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+    name: WithAllowDebugBuilds
+    nameWithType: CompetitionConfigExtensions.WithAllowDebugBuilds
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithAllowDebugBuilds
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithDetailedLogging(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+  commentId: M:CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithDetailedLogging(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+  isExternal: true
+  name: WithDetailedLogging(ICompetitionConfig, Boolean)
+  nameWithType: CompetitionConfigExtensions.WithDetailedLogging(ICompetitionConfig, Boolean)
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithDetailedLogging(CodeJam.PerfTests.Configs.ICompetitionConfig, System.Boolean)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithDetailedLogging(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+    name: WithDetailedLogging
+    nameWithType: CompetitionConfigExtensions.WithDetailedLogging
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithDetailedLogging
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithDetailedLogging(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+    name: WithDetailedLogging
+    nameWithType: CompetitionConfigExtensions.WithDetailedLogging
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithDetailedLogging
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithReportWarningsAsErrors(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+  commentId: M:CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithReportWarningsAsErrors(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+  isExternal: true
+  name: WithReportWarningsAsErrors(ICompetitionConfig, Boolean)
+  nameWithType: CompetitionConfigExtensions.WithReportWarningsAsErrors(ICompetitionConfig, Boolean)
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithReportWarningsAsErrors(CodeJam.PerfTests.Configs.ICompetitionConfig, System.Boolean)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithReportWarningsAsErrors(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+    name: WithReportWarningsAsErrors
+    nameWithType: CompetitionConfigExtensions.WithReportWarningsAsErrors
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithReportWarningsAsErrors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithReportWarningsAsErrors(CodeJam.PerfTests.Configs.ICompetitionConfig,System.Boolean)
+    name: WithReportWarningsAsErrors
+    nameWithType: CompetitionConfigExtensions.WithReportWarningsAsErrors
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithReportWarningsAsErrors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithTooFastBenchmarkLimit(CodeJam.PerfTests.Configs.ICompetitionConfig,System.TimeSpan)
+  commentId: M:CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithTooFastBenchmarkLimit(CodeJam.PerfTests.Configs.ICompetitionConfig,System.TimeSpan)
+  isExternal: true
+  name: WithTooFastBenchmarkLimit(ICompetitionConfig, TimeSpan)
+  nameWithType: CompetitionConfigExtensions.WithTooFastBenchmarkLimit(ICompetitionConfig, TimeSpan)
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithTooFastBenchmarkLimit(CodeJam.PerfTests.Configs.ICompetitionConfig, System.TimeSpan)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithTooFastBenchmarkLimit(CodeJam.PerfTests.Configs.ICompetitionConfig,System.TimeSpan)
+    name: WithTooFastBenchmarkLimit
+    nameWithType: CompetitionConfigExtensions.WithTooFastBenchmarkLimit
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithTooFastBenchmarkLimit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithTooFastBenchmarkLimit(CodeJam.PerfTests.Configs.ICompetitionConfig,System.TimeSpan)
+    name: WithTooFastBenchmarkLimit
+    nameWithType: CompetitionConfigExtensions.WithTooFastBenchmarkLimit
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithTooFastBenchmarkLimit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithLongRunningBenchmarkLimit(CodeJam.PerfTests.Configs.ICompetitionConfig,System.TimeSpan)
+  commentId: M:CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithLongRunningBenchmarkLimit(CodeJam.PerfTests.Configs.ICompetitionConfig,System.TimeSpan)
+  isExternal: true
+  name: WithLongRunningBenchmarkLimit(ICompetitionConfig, TimeSpan)
+  nameWithType: CompetitionConfigExtensions.WithLongRunningBenchmarkLimit(ICompetitionConfig, TimeSpan)
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithLongRunningBenchmarkLimit(CodeJam.PerfTests.Configs.ICompetitionConfig, System.TimeSpan)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithLongRunningBenchmarkLimit(CodeJam.PerfTests.Configs.ICompetitionConfig,System.TimeSpan)
+    name: WithLongRunningBenchmarkLimit
+    nameWithType: CompetitionConfigExtensions.WithLongRunningBenchmarkLimit
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithLongRunningBenchmarkLimit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithLongRunningBenchmarkLimit(CodeJam.PerfTests.Configs.ICompetitionConfig,System.TimeSpan)
+    name: WithLongRunningBenchmarkLimit
+    nameWithType: CompetitionConfigExtensions.WithLongRunningBenchmarkLimit
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithLongRunningBenchmarkLimit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithPreviousRunLogUri(CodeJam.PerfTests.Configs.ICompetitionConfig,System.String)
+  commentId: M:CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithPreviousRunLogUri(CodeJam.PerfTests.Configs.ICompetitionConfig,System.String)
+  isExternal: true
+  name: WithPreviousRunLogUri(ICompetitionConfig, String)
+  nameWithType: CompetitionConfigExtensions.WithPreviousRunLogUri(ICompetitionConfig, String)
+  fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithPreviousRunLogUri(CodeJam.PerfTests.Configs.ICompetitionConfig, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithPreviousRunLogUri(CodeJam.PerfTests.Configs.ICompetitionConfig,System.String)
+    name: WithPreviousRunLogUri
+    nameWithType: CompetitionConfigExtensions.WithPreviousRunLogUri
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithPreviousRunLogUri
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithPreviousRunLogUri(CodeJam.PerfTests.Configs.ICompetitionConfig,System.String)
+    name: WithPreviousRunLogUri
+    nameWithType: CompetitionConfigExtensions.WithPreviousRunLogUri
+    fullName: CodeJam.PerfTests.Configs.CompetitionConfigExtensions.WithPreviousRunLogUri
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Helpers
+  commentId: N:BenchmarkDotNet.Helpers
+  isExternal: false
+  name: BenchmarkDotNet.Helpers
+  nameWithType: BenchmarkDotNet.Helpers
+  fullName: BenchmarkDotNet.Helpers
+- uid: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig
+  commentId: T:CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig
+  isExternal: false
+  name: ReadOnlyCompetitionConfig
+  nameWithType: ReadOnlyCompetitionConfig
+  fullName: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig
+- uid: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.#ctor*
+  commentId: Overload:CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.#ctor
+  isExternal: false
+  name: ReadOnlyCompetitionConfig
+  nameWithType: ReadOnlyCompetitionConfig.ReadOnlyCompetitionConfig
+  fullName: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.ReadOnlyCompetitionConfig
+- uid: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.Options*
+  commentId: Overload:CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.Options
+  isExternal: false
+  name: Options
+  nameWithType: ReadOnlyCompetitionConfig.Options
+  fullName: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.Options
+- uid: CodeJam.PerfTests.Configs.ICompetitionConfig.Options
+  commentId: P:CodeJam.PerfTests.Configs.ICompetitionConfig.Options
+  parent: CodeJam.PerfTests.Configs.ICompetitionConfig
+  isExternal: false
+  name: Options
+  nameWithType: ICompetitionConfig.Options
+  fullName: CodeJam.PerfTests.Configs.ICompetitionConfig.Options
+- uid: CodeJam.PerfTests.Configs.CompetitionOptions
+  commentId: T:CodeJam.PerfTests.Configs.CompetitionOptions
+  parent: CodeJam.PerfTests.Configs
+  isExternal: false
+  name: CompetitionOptions
+  nameWithType: CompetitionOptions
+  fullName: CodeJam.PerfTests.Configs.CompetitionOptions
+- uid: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.GetMetrics*
+  commentId: Overload:CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.GetMetrics
+  isExternal: false
+  name: GetMetrics
+  nameWithType: ReadOnlyCompetitionConfig.GetMetrics
+  fullName: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.GetMetrics
+- uid: CodeJam.PerfTests.Configs.ICompetitionConfig.GetMetrics
+  commentId: M:CodeJam.PerfTests.Configs.ICompetitionConfig.GetMetrics
+  parent: CodeJam.PerfTests.Configs.ICompetitionConfig
+  isExternal: false
+  name: GetMetrics()
+  nameWithType: ICompetitionConfig.GetMetrics()
+  fullName: CodeJam.PerfTests.Configs.ICompetitionConfig.GetMetrics()
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig.GetMetrics
+    name: GetMetrics
+    nameWithType: ICompetitionConfig.GetMetrics
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig.GetMetrics
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig.GetMetrics
+    name: GetMetrics
+    nameWithType: ICompetitionConfig.GetMetrics
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig.GetMetrics
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{CodeJam.PerfTests.Metrics.MetricInfo}
+  commentId: T:System.Collections.Generic.IEnumerable{CodeJam.PerfTests.Metrics.MetricInfo}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<MetricInfo>
+  nameWithType: IEnumerable<MetricInfo>
+  fullName: System.Collections.Generic.IEnumerable<CodeJam.PerfTests.Metrics.MetricInfo>
+  nameWithType.vb: IEnumerable(Of MetricInfo)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of CodeJam.PerfTests.Metrics.MetricInfo)
+  name.vb: IEnumerable(Of MetricInfo)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic

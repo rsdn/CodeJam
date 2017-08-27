@@ -25,10 +25,12 @@ namespace CodeJam.PerfTests
 		[MetricUnit("GB", AppliesFrom = (long)Gigabyte * 0.75)]
 		Gigabyte = Megabyte * 1024,
 
+#if !DOCFX
 		/// <summary>Binary size in petabytes, PB.</summary>
 		[MetricUnit("PB", AppliesFrom = (long)Petabyte * 0.75)]
 		Petabyte = Gigabyte * 1024
 	}
+#endif
 
 	/// <summary>
 	/// Gc allocations metric attribute.

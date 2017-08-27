@@ -1,0 +1,722 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class FilteringLogger
+   | CodeJam </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class FilteringLogger
+   | CodeJam ">
+    <meta name="generator" content="docfx 2.23.1.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/CodeJam.Main.Icon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items"></div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger">
+  
+  
+  <h1 id="CodeJam_PerfTests_Loggers_FilteringLogger" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger" class="text-break">Class FilteringLogger
+  </h1>
+  <div class="markdown level0 summary"><p>Basic logger implementation that supports message filtering.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">FilteringLogger</span></div>
+  </div>
+      <div class="level2"><a class="xref" href="CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger.html">CompetitionRunnerBase.HostLogger</a></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CodeJam.PerfTests.Loggers.html">CodeJam.PerfTests.Loggers</a></h6>
+  <h6><strong>Assembly</strong>: CodeJam.PerfTests.dll</h6>
+  <h5 id="CodeJam_PerfTests_Loggers_FilteringLogger_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class FilteringLogger : IFlushableLogger, ILogger</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Loggers_FilteringLogger__ctor_BenchmarkDotNet_Loggers_ILogger_CodeJam_PerfTests_Loggers_LogFilter_.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Loggers.FilteringLogger.%23ctor(BenchmarkDotNet.Loggers.ILogger%2CCodeJam.PerfTests.Loggers.LogFilter)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Loggers/FilteringLogger.cs/#L87">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Loggers_FilteringLogger__ctor_" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.#ctor*"></a>
+  <h4 id="CodeJam_PerfTests_Loggers_FilteringLogger__ctor_BenchmarkDotNet_Loggers_ILogger_CodeJam_PerfTests_Loggers_LogFilter_" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.#ctor(BenchmarkDotNet.Loggers.ILogger,CodeJam.PerfTests.Loggers.LogFilter)">FilteringLogger(ILogger, LogFilter)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="CodeJam.PerfTests.Loggers.FilteringLogger.html">FilteringLogger</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FilteringLogger(ILogger wrappedLogger, LogFilter logFilter)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Loggers.ILogger</span></td>
+        <td><span class="parametername">wrappedLogger</span></td>
+        <td><p>The logger to redirect the output. Cannot be null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.PerfTests.Loggers.LogFilter.html">LogFilter</a></td>
+        <td><span class="parametername">logFilter</span></td>
+        <td><p>The log filtering mode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Loggers_FilteringLogger_LogImportantAreaEnd.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Loggers.FilteringLogger.LogImportantAreaEnd%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Loggers/FilteringLogger.cs/#L52">View Source</a>
+  </span>
+  <h4 id="CodeJam_PerfTests_Loggers_FilteringLogger_LogImportantAreaEnd" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.LogImportantAreaEnd">LogImportantAreaEnd</h4>
+  <div class="markdown level1 summary"><p>The end prefix for important log area.
+Lines between start and end prefixes will be written even if <a class="xref" href="CodeJam.PerfTests.Loggers.FilteringLogger.html#CodeJam_PerfTests_Loggers_FilteringLogger_LogFilter">LogFilter</a> filter applied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string LogImportantAreaEnd = &quot;// !--&gt;&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Loggers_FilteringLogger_LogImportantAreaStart.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Loggers.FilteringLogger.LogImportantAreaStart%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Loggers/FilteringLogger.cs/#L46">View Source</a>
+  </span>
+  <h4 id="CodeJam_PerfTests_Loggers_FilteringLogger_LogImportantAreaStart" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.LogImportantAreaStart">LogImportantAreaStart</h4>
+  <div class="markdown level1 summary"><p>The start prefix for important log area.
+Lines between start and end prefixes will be written even if <a class="xref" href="CodeJam.PerfTests.Loggers.FilteringLogger.html#CodeJam_PerfTests_Loggers_FilteringLogger_LogFilter">LogFilter</a> filter applied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string LogImportantAreaStart = &quot;// !&lt;--&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Loggers_FilteringLogger_LogImportantInfoPrefix.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Loggers.FilteringLogger.LogImportantInfoPrefix%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Loggers/FilteringLogger.cs/#L40">View Source</a>
+  </span>
+  <h4 id="CodeJam_PerfTests_Loggers_FilteringLogger_LogImportantInfoPrefix" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.LogImportantInfoPrefix">LogImportantInfoPrefix</h4>
+  <div class="markdown level1 summary"><p>The prefix for important log lines.
+Lines with this prefix will be written even if <a class="xref" href="CodeJam.PerfTests.Loggers.FilteringLogger.html#CodeJam_PerfTests_Loggers_FilteringLogger_LogFilter">LogFilter</a> filter applied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string LogImportantInfoPrefix = &quot;// !&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Loggers_FilteringLogger_LogInfoPrefix.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Loggers.FilteringLogger.LogInfoPrefix%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Loggers/FilteringLogger.cs/#L34">View Source</a>
+  </span>
+  <h4 id="CodeJam_PerfTests_Loggers_FilteringLogger_LogInfoPrefix" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.LogInfoPrefix">LogInfoPrefix</h4>
+  <div class="markdown level1 summary"><p>The prefix for informational log lines.
+Lines with this prefix will be written even if <a class="xref" href="CodeJam.PerfTests.Loggers.FilteringLogger.html#CodeJam_PerfTests_Loggers_FilteringLogger_LogFilter">LogFilter</a> filter applied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string LogInfoPrefix = &quot;// ?&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Loggers_FilteringLogger_LogVerbosePrefix.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Loggers.FilteringLogger.LogVerbosePrefix%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Loggers/FilteringLogger.cs/#L28">View Source</a>
+  </span>
+  <h4 id="CodeJam_PerfTests_Loggers_FilteringLogger_LogVerbosePrefix" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.LogVerbosePrefix">LogVerbosePrefix</h4>
+  <div class="markdown level1 summary"><p>The prefix for verbose log lines.
+Lines with this prefix will be written only if <a class="xref" href="CodeJam.PerfTests.Loggers.LogFilter.html#CodeJam_PerfTests_Loggers_LogFilter_AllMessages">AllMessages</a> mode set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string LogVerbosePrefix = &quot;//  &quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Loggers_FilteringLogger_LogFilter.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Loggers.FilteringLogger.LogFilter%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Loggers/FilteringLogger.cs/#L102">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Loggers_FilteringLogger_LogFilter_" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.LogFilter*"></a>
+  <h4 id="CodeJam_PerfTests_Loggers_FilteringLogger_LogFilter" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.LogFilter">LogFilter</h4>
+  <div class="markdown level1 summary"><p>Gets log filtering mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LogFilter LogFilter { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.PerfTests.Loggers.LogFilter.html">LogFilter</a></td>
+        <td><p>The log filtering mode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Loggers_FilteringLogger_WrappedLogger.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Loggers.FilteringLogger.WrappedLogger%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Loggers/FilteringLogger.cs/#L98">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Loggers_FilteringLogger_WrappedLogger_" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.WrappedLogger*"></a>
+  <h4 id="CodeJam_PerfTests_Loggers_FilteringLogger_WrappedLogger" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.WrappedLogger">WrappedLogger</h4>
+  <div class="markdown level1 summary"><p>Gets logger that consumes filtered text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ILogger WrappedLogger { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Loggers.ILogger</span></td>
+        <td><p>The logger that consumes filtered text.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Loggers_FilteringLogger_BeginLogImportant_BenchmarkDotNet_Configs_IConfig_.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Loggers.FilteringLogger.BeginLogImportant(BenchmarkDotNet.Configs.IConfig)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Loggers/FilteringLogger.cs/#L59">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Loggers_FilteringLogger_BeginLogImportant_" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.BeginLogImportant*"></a>
+  <h4 id="CodeJam_PerfTests_Loggers_FilteringLogger_BeginLogImportant_BenchmarkDotNet_Configs_IConfig_" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.BeginLogImportant(BenchmarkDotNet.Configs.IConfig)">BeginLogImportant(IConfig)</h4>
+  <div class="markdown level1 summary"><p>All messages within the scope will be passed to the log.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IDisposable BeginLogImportant(IConfig config)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Configs.IConfig</span></td>
+        <td><span class="parametername">config</span></td>
+        <td><p>Config with loggers.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IDisposable</span></td>
+        <td><p>Disposable to mark the scope completion.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Loggers_FilteringLogger_PreprocessLine_System_String_.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Loggers.FilteringLogger.PreprocessLine(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Loggers/FilteringLogger.cs/#L125">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Loggers_FilteringLogger_PreprocessLine_" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.PreprocessLine*"></a>
+  <h4 id="CodeJam_PerfTests_Loggers_FilteringLogger_PreprocessLine_System_String_" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.PreprocessLine(System.String)">PreprocessLine(String)</h4>
+  <div class="markdown level1 summary"><p>Handles well-known prefixes for the line.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool PreprocessLine(string text)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>The text of the log line.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the line should be written.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Loggers_FilteringLogger_ShouldWrite_BenchmarkDotNet_Loggers_LogKind_.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Loggers.FilteringLogger.ShouldWrite(BenchmarkDotNet.Loggers.LogKind)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Loggers/FilteringLogger.cs/#L117">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Loggers_FilteringLogger_ShouldWrite_" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.ShouldWrite*"></a>
+  <h4 id="CodeJam_PerfTests_Loggers_FilteringLogger_ShouldWrite_BenchmarkDotNet_Loggers_LogKind_" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.ShouldWrite(BenchmarkDotNet.Loggers.LogKind)">ShouldWrite(LogKind)</h4>
+  <div class="markdown level1 summary"><p>Checks if the line should be written.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool ShouldWrite(LogKind logKind)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Loggers.LogKind</span></td>
+        <td><span class="parametername">logKind</span></td>
+        <td><p>The kind of log message.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the line should be written.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Loggers_FilteringLogger_Write_BenchmarkDotNet_Loggers_LogKind_System_String_.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Loggers.FilteringLogger.Write(BenchmarkDotNet.Loggers.LogKind%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Loggers/FilteringLogger.cs/#L183">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Loggers_FilteringLogger_Write_" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.Write*"></a>
+  <h4 id="CodeJam_PerfTests_Loggers_FilteringLogger_Write_BenchmarkDotNet_Loggers_LogKind_System_String_" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.Write(BenchmarkDotNet.Loggers.LogKind,System.String)">Write(LogKind, String)</h4>
+  <div class="markdown level1 summary"><p>Writes text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Write(LogKind logKind, string text)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Loggers.LogKind</span></td>
+        <td><span class="parametername">logKind</span></td>
+        <td><p>Kind of text.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>The text to write.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">BenchmarkDotNet.Loggers.ILogger.Write(BenchmarkDotNet.Loggers.LogKind, System.String)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Loggers_FilteringLogger_WriteLine.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Loggers.FilteringLogger.WriteLine%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Loggers/FilteringLogger.cs/#L159">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Loggers_FilteringLogger_WriteLine_" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.WriteLine*"></a>
+  <h4 id="CodeJam_PerfTests_Loggers_FilteringLogger_WriteLine" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.WriteLine">WriteLine()</h4>
+  <div class="markdown level1 summary"><p>Write empty line.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void WriteLine()</code></pre>
+  </div>
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">BenchmarkDotNet.Loggers.ILogger.WriteLine()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Loggers_FilteringLogger_WriteLine_BenchmarkDotNet_Loggers_LogKind_System_String_.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Loggers.FilteringLogger.WriteLine(BenchmarkDotNet.Loggers.LogKind%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Loggers/FilteringLogger.cs/#L170">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Loggers_FilteringLogger_WriteLine_" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.WriteLine*"></a>
+  <h4 id="CodeJam_PerfTests_Loggers_FilteringLogger_WriteLine_BenchmarkDotNet_Loggers_LogKind_System_String_" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.WriteLine(BenchmarkDotNet.Loggers.LogKind,System.String)">WriteLine(LogKind, String)</h4>
+  <div class="markdown level1 summary"><p>Writes line.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void WriteLine(LogKind logKind, string text)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Loggers.LogKind</span></td>
+        <td><span class="parametername">logKind</span></td>
+        <td><p>Kind of text.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>The text to write.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">BenchmarkDotNet.Loggers.ILogger.WriteLine(BenchmarkDotNet.Loggers.LogKind, System.String)</span></div>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Loggers_FilteringLogger_BenchmarkDotNet_Loggers_IFlushableLogger_Flush.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Loggers.FilteringLogger.BenchmarkDotNet%23Loggers%23IFlushableLogger%23Flush%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Loggers/FilteringLogger.cs/#L192">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Loggers_FilteringLogger_BenchmarkDotNet_Loggers_IFlushableLogger_Flush_" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.BenchmarkDotNet#Loggers#IFlushableLogger#Flush*"></a>
+  <h4 id="CodeJam_PerfTests_Loggers_FilteringLogger_BenchmarkDotNet_Loggers_IFlushableLogger_Flush" data-uid="CodeJam.PerfTests.Loggers.FilteringLogger.BenchmarkDotNet#Loggers#IFlushableLogger#Flush">IFlushableLogger.Flush()</h4>
+  <div class="markdown level1 summary"><p>Flushes the log.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void IFlushableLogger.Flush()</code></pre>
+  </div>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="BenchmarkDotNet.Loggers.IFlushableLogger.html#BenchmarkDotNet_Loggers_IFlushableLogger_Flush">IFlushableLogger.Flush()</a></div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Loggers.LoggerHelpers.html#CodeJam_PerfTests_Loggers_LoggerHelpers_WriteSeparatorLine_BenchmarkDotNet_Loggers_ILogger_">LoggerHelpers.WriteSeparatorLine(ILogger)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Loggers.LoggerHelpers.html#CodeJam_PerfTests_Loggers_LoggerHelpers_WriteSeparatorLine_BenchmarkDotNet_Loggers_ILogger_System_String_">LoggerHelpers.WriteSeparatorLine(ILogger, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Loggers.LoggerHelpers.html#CodeJam_PerfTests_Loggers_LoggerHelpers_WriteSeparatorLine_BenchmarkDotNet_Loggers_ILogger_System_String_System_Boolean_">LoggerHelpers.WriteSeparatorLine(ILogger, String, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.html#CodeJam_PerfTests_Running_Core_CompetitionCoreHelpers_WriteVerboseHint_BenchmarkDotNet_Loggers_ILogger_System_String_">CompetitionCoreHelpers.WriteVerboseHint(ILogger, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.html#CodeJam_PerfTests_Running_Core_CompetitionCoreHelpers_WriteVerbose_BenchmarkDotNet_Loggers_ILogger_System_String_">CompetitionCoreHelpers.WriteVerbose(ILogger, String)</a>
+  </div>
+  <h3 id="seealso">See Also</h3>
+  <div class="seealso">
+      <div><span class="xref">BenchmarkDotNet.Loggers.ILogger</span></div>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Loggers_FilteringLogger.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Loggers.FilteringLogger%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Loggers/FilteringLogger.cs/#L17" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright � 2015-2017
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

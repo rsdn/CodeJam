@@ -1,0 +1,1451 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  commentId: T:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  id: CompetitionCoreHelpers
+  parent: CodeJam.PerfTests.Running.Core
+  children:
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsCriticalError(CodeJam.PerfTests.Running.Messages.MessageSeverity)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsTestErrorOrHigher(CodeJam.PerfTests.Running.Messages.MessageSeverity)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsWarningOrHigher(CodeJam.PerfTests.Running.Messages.MessageSeverity)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Core.CompetitionState,CodeJam.PerfTests.Running.Messages.MessageSource,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.Exception)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.String)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose(BenchmarkDotNet.Loggers.ILogger,System.String)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint(BenchmarkDotNet.Loggers.ILogger,System.String)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  langs:
+  - csharp
+  - vb
+  name: CompetitionCoreHelpers
+  nameWithType: CompetitionCoreHelpers
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CompetitionCoreHelpers
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 18
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: "\nHelpers to use during competition run\n"
+  example: []
+  syntax:
+    content: public static class CompetitionCoreHelpers
+    content.vb: Public Module CompetitionCoreHelpers
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsCriticalError(CodeJam.PerfTests.Running.Messages.MessageSeverity)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsCriticalError(CodeJam.PerfTests.Running.Messages.MessageSeverity)
+  id: IsCriticalError(CodeJam.PerfTests.Running.Messages.MessageSeverity)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: IsCriticalError(MessageSeverity)
+  nameWithType: CompetitionCoreHelpers.IsCriticalError(MessageSeverity)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsCriticalError(CodeJam.PerfTests.Running.Messages.MessageSeverity)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsCriticalError
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 24
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: The message severity is setup error or higher.
+  example: []
+  syntax:
+    content: public static bool IsCriticalError(this MessageSeverity severity)
+    parameters:
+    - id: severity
+      type: CodeJam.PerfTests.Running.Messages.MessageSeverity
+      description: The severity to check.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the severity is setup error or higher.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsCriticalError(severity As MessageSeverity) As Boolean
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsCriticalError*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsTestErrorOrHigher(CodeJam.PerfTests.Running.Messages.MessageSeverity)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsTestErrorOrHigher(CodeJam.PerfTests.Running.Messages.MessageSeverity)
+  id: IsTestErrorOrHigher(CodeJam.PerfTests.Running.Messages.MessageSeverity)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: IsTestErrorOrHigher(MessageSeverity)
+  nameWithType: CompetitionCoreHelpers.IsTestErrorOrHigher(MessageSeverity)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsTestErrorOrHigher(CodeJam.PerfTests.Running.Messages.MessageSeverity)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsTestErrorOrHigher
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 29
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: The message severity is test error or higher.
+  example: []
+  syntax:
+    content: public static bool IsTestErrorOrHigher(this MessageSeverity severity)
+    parameters:
+    - id: severity
+      type: CodeJam.PerfTests.Running.Messages.MessageSeverity
+      description: The severity to check.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the severity is test error or higher.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsTestErrorOrHigher(severity As MessageSeverity) As Boolean
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsTestErrorOrHigher*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsWarningOrHigher(CodeJam.PerfTests.Running.Messages.MessageSeverity)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsWarningOrHigher(CodeJam.PerfTests.Running.Messages.MessageSeverity)
+  id: IsWarningOrHigher(CodeJam.PerfTests.Running.Messages.MessageSeverity)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: IsWarningOrHigher(MessageSeverity)
+  nameWithType: CompetitionCoreHelpers.IsWarningOrHigher(MessageSeverity)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsWarningOrHigher(CodeJam.PerfTests.Running.Messages.MessageSeverity)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsWarningOrHigher
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 34
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: The message severity is warning or higher.
+  example: []
+  syntax:
+    content: public static bool IsWarningOrHigher(this MessageSeverity severity)
+    parameters:
+    - id: severity
+      type: CodeJam.PerfTests.Running.Messages.MessageSeverity
+      description: The severity to check.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the severity is warning or higher.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsWarningOrHigher(severity As MessageSeverity) As Boolean
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsWarningOrHigher*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Core.CompetitionState,CodeJam.PerfTests.Running.Messages.MessageSource,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Core.CompetitionState,CodeJam.PerfTests.Running.Messages.MessageSource,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+  id: WriteExceptionMessage(CodeJam.PerfTests.Running.Core.CompetitionState,CodeJam.PerfTests.Running.Messages.MessageSource,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteExceptionMessage(CompetitionState, MessageSource, MessageSeverity, String, Exception)
+  nameWithType: CompetitionCoreHelpers.WriteExceptionMessage(CompetitionState, MessageSource, MessageSeverity, String, Exception)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Core.CompetitionState, CodeJam.PerfTests.Running.Messages.MessageSource, CodeJam.PerfTests.Running.Messages.MessageSeverity, System.String, System.Exception)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteExceptionMessage
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 44
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Writes exception message.
+  example: []
+  syntax:
+    content: public static void WriteExceptionMessage(this CompetitionState competitionState, MessageSource messageSource, MessageSeverity messageSeverity, string message, Exception ex)
+    parameters:
+    - id: competitionState
+      type: CodeJam.PerfTests.Running.Core.CompetitionState
+      description: State of the run.
+    - id: messageSource
+      type: CodeJam.PerfTests.Running.Messages.MessageSource
+      description: Source of the message.
+    - id: messageSeverity
+      type: CodeJam.PerfTests.Running.Messages.MessageSeverity
+      description: Severity of the message.
+    - id: message
+      type: System.String
+      description: The explanation for the exception.
+    - id: ex
+      type: System.Exception
+      description: The exception to write.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WriteExceptionMessage(competitionState As CompetitionState, messageSource As MessageSource, messageSeverity As MessageSeverity, message As String, ex As Exception)
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint(BenchmarkDotNet.Loggers.ILogger,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint(BenchmarkDotNet.Loggers.ILogger,System.String)
+  id: WriteVerboseHint(BenchmarkDotNet.Loggers.ILogger,System.String)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteVerboseHint(ILogger, String)
+  nameWithType: CompetitionCoreHelpers.WriteVerboseHint(ILogger, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint(BenchmarkDotNet.Loggers.ILogger, System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteVerboseHint
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 63
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Writes the verbose hint message. Logged, but not reported to user.
+  example: []
+  syntax:
+    content: public static void WriteVerboseHint(this ILogger logger, string message)
+    parameters:
+    - id: logger
+      type: BenchmarkDotNet.Loggers.ILogger
+      description: The logger.
+    - id: message
+      type: System.String
+      description: Text of the message.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WriteVerboseHint(logger As ILogger, message As String)
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose(BenchmarkDotNet.Loggers.ILogger,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose(BenchmarkDotNet.Loggers.ILogger,System.String)
+  id: WriteVerbose(BenchmarkDotNet.Loggers.ILogger,System.String)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteVerbose(ILogger, String)
+  nameWithType: CompetitionCoreHelpers.WriteVerbose(ILogger, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose(BenchmarkDotNet.Loggers.ILogger, System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteVerbose
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 71
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Writes the verbose message.
+  example: []
+  syntax:
+    content: public static void WriteVerbose(this ILogger logger, string message)
+    parameters:
+    - id: logger
+      type: BenchmarkDotNet.Loggers.ILogger
+      description: The logger.
+    - id: message
+      type: System.String
+      description: Text of the message.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WriteVerbose(logger As ILogger, message As String)
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.String)
+  id: WriteMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.String)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteMessage(IMessageLogger, MessageSeverity, Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteMessage(IMessageLogger, MessageSeverity, Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, CodeJam.PerfTests.Running.Messages.MessageSeverity, BenchmarkDotNet.Running.Target, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteMessage
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 119
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Writes message.
+  example: []
+  syntax:
+    content: public static void WriteMessage(this IMessageLogger messageLogger, MessageSeverity messageSeverity, Target target, string message, string hint = null)
+    parameters:
+    - id: messageLogger
+      type: CodeJam.PerfTests.Running.Messages.IMessageLogger
+      description: The message logger.
+    - id: messageSeverity
+      type: CodeJam.PerfTests.Running.Messages.MessageSeverity
+      description: Severity of the message.
+    - id: target
+      type: BenchmarkDotNet.Running.Target
+      description: Target the message applies for.
+    - id: message
+      type: System.String
+      description: The explanation for the exception.
+    - id: hint
+      type: System.String
+      description: Hints for the message.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WriteMessage(messageLogger As IMessageLogger, messageSeverity As MessageSeverity, target As Target, message As String, hint As String = Nothing)
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+  id: WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteExceptionMessage(IMessageLogger, MessageSeverity, String, Exception)
+  nameWithType: CompetitionCoreHelpers.WriteExceptionMessage(IMessageLogger, MessageSeverity, String, Exception)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, CodeJam.PerfTests.Running.Messages.MessageSeverity, System.String, System.Exception)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteExceptionMessage
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 138
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Writes exception message.
+  example: []
+  syntax:
+    content: public static void WriteExceptionMessage(this IMessageLogger messageLogger, MessageSeverity messageSeverity, string message, Exception ex)
+    parameters:
+    - id: messageLogger
+      type: CodeJam.PerfTests.Running.Messages.IMessageLogger
+      description: The message logger.
+    - id: messageSeverity
+      type: CodeJam.PerfTests.Running.Messages.MessageSeverity
+      description: Severity of the message.
+    - id: message
+      type: System.String
+      description: The explanation for the exception.
+    - id: ex
+      type: System.Exception
+      description: The exception to write.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WriteExceptionMessage(messageLogger As IMessageLogger, messageSeverity As MessageSeverity, message As String, ex As Exception)
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.Exception)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.Exception)
+  id: WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.Exception)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteExceptionMessage(IMessageLogger, MessageSeverity, Target, String, Exception)
+  nameWithType: CompetitionCoreHelpers.WriteExceptionMessage(IMessageLogger, MessageSeverity, Target, String, Exception)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, CodeJam.PerfTests.Running.Messages.MessageSeverity, BenchmarkDotNet.Running.Target, System.String, System.Exception)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteExceptionMessage
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 159
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Writes exception message.
+  example: []
+  syntax:
+    content: public static void WriteExceptionMessage(this IMessageLogger messageLogger, MessageSeverity messageSeverity, Target target, string message, Exception ex)
+    parameters:
+    - id: messageLogger
+      type: CodeJam.PerfTests.Running.Messages.IMessageLogger
+      description: The message logger.
+    - id: messageSeverity
+      type: CodeJam.PerfTests.Running.Messages.MessageSeverity
+      description: Severity of the message.
+    - id: target
+      type: BenchmarkDotNet.Running.Target
+      description: Target the message applies for.
+    - id: message
+      type: System.String
+      description: The explanation for the exception.
+    - id: ex
+      type: System.Exception
+      description: The exception to write.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WriteExceptionMessage(messageLogger As IMessageLogger, messageSeverity As MessageSeverity, target As Target, message As String, ex As Exception)
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  id: WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteExecutionErrorMessage(IMessageLogger, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteExecutionErrorMessage(IMessageLogger, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteExecutionErrorMessage
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 179
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Adds test execution failure message.
+  example: []
+  syntax:
+    content: public static void WriteExecutionErrorMessage(this IMessageLogger messageLogger, string message, string hint = null)
+    parameters:
+    - id: messageLogger
+      type: CodeJam.PerfTests.Running.Messages.IMessageLogger
+      description: The message logger.
+    - id: message
+      type: System.String
+      description: Message text.
+    - id: hint
+      type: System.String
+      description: Hints for the message.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WriteExecutionErrorMessage(messageLogger As IMessageLogger, message As String, hint As String = Nothing)
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  id: WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteExecutionErrorMessage(IMessageLogger, Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteExecutionErrorMessage(IMessageLogger, Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, BenchmarkDotNet.Running.Target, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteExecutionErrorMessage
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 190
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Adds test execution failure message.
+  example: []
+  syntax:
+    content: public static void WriteExecutionErrorMessage(this IMessageLogger messageLogger, Target target, string message, string hint = null)
+    parameters:
+    - id: messageLogger
+      type: CodeJam.PerfTests.Running.Messages.IMessageLogger
+      description: The message logger.
+    - id: target
+      type: BenchmarkDotNet.Running.Target
+      description: Target the message applies for.
+    - id: message
+      type: System.String
+      description: Message text.
+    - id: hint
+      type: System.String
+      description: Hints for the message.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WriteExecutionErrorMessage(messageLogger As IMessageLogger, target As Target, message As String, hint As String = Nothing)
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  id: WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteSetupErrorMessage(IMessageLogger, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteSetupErrorMessage(IMessageLogger, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteSetupErrorMessage
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 201
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Adds test setup failure message.
+  example: []
+  syntax:
+    content: public static void WriteSetupErrorMessage(this IMessageLogger messageLogger, string message, string hint = null)
+    parameters:
+    - id: messageLogger
+      type: CodeJam.PerfTests.Running.Messages.IMessageLogger
+      description: The message logger.
+    - id: message
+      type: System.String
+      description: Message text.
+    - id: hint
+      type: System.String
+      description: Hints for the message.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WriteSetupErrorMessage(messageLogger As IMessageLogger, message As String, hint As String = Nothing)
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  id: WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteSetupErrorMessage(IMessageLogger, Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteSetupErrorMessage(IMessageLogger, Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, BenchmarkDotNet.Running.Target, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteSetupErrorMessage
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 212
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Adds test setup failure message.
+  example: []
+  syntax:
+    content: public static void WriteSetupErrorMessage(this IMessageLogger messageLogger, Target target, string message, string hint = null)
+    parameters:
+    - id: messageLogger
+      type: CodeJam.PerfTests.Running.Messages.IMessageLogger
+      description: The message logger.
+    - id: target
+      type: BenchmarkDotNet.Running.Target
+      description: Target the message applies for.
+    - id: message
+      type: System.String
+      description: Message text.
+    - id: hint
+      type: System.String
+      description: Hints for the message.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WriteSetupErrorMessage(messageLogger As IMessageLogger, target As Target, message As String, hint As String = Nothing)
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  id: WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteTestErrorMessage(IMessageLogger, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteTestErrorMessage(IMessageLogger, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteTestErrorMessage
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 223
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Adds test error message.
+  example: []
+  syntax:
+    content: public static void WriteTestErrorMessage(this IMessageLogger messageLogger, string message, string hint = null)
+    parameters:
+    - id: messageLogger
+      type: CodeJam.PerfTests.Running.Messages.IMessageLogger
+      description: The message logger.
+    - id: message
+      type: System.String
+      description: Message text.
+    - id: hint
+      type: System.String
+      description: Hints for the message.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WriteTestErrorMessage(messageLogger As IMessageLogger, message As String, hint As String = Nothing)
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  id: WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteTestErrorMessage(IMessageLogger, Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteTestErrorMessage(IMessageLogger, Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, BenchmarkDotNet.Running.Target, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteTestErrorMessage
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 234
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Adds test error message.
+  example: []
+  syntax:
+    content: public static void WriteTestErrorMessage(this IMessageLogger messageLogger, Target target, string message, string hint = null)
+    parameters:
+    - id: messageLogger
+      type: CodeJam.PerfTests.Running.Messages.IMessageLogger
+      description: The message logger.
+    - id: target
+      type: BenchmarkDotNet.Running.Target
+      description: Target the message applies for.
+    - id: message
+      type: System.String
+      description: Message text.
+    - id: hint
+      type: System.String
+      description: Hints for the message.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WriteTestErrorMessage(messageLogger As IMessageLogger, target As Target, message As String, hint As String = Nothing)
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  id: WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteWarningMessage(IMessageLogger, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteWarningMessage(IMessageLogger, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteWarningMessage
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 245
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Adds warning message.
+  example: []
+  syntax:
+    content: public static void WriteWarningMessage(this IMessageLogger messageLogger, string message, string hint = null)
+    parameters:
+    - id: messageLogger
+      type: CodeJam.PerfTests.Running.Messages.IMessageLogger
+      description: The message logger.
+    - id: message
+      type: System.String
+      description: Message text.
+    - id: hint
+      type: System.String
+      description: Hints for the message.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WriteWarningMessage(messageLogger As IMessageLogger, message As String, hint As String = Nothing)
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  id: WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteWarningMessage(IMessageLogger, Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteWarningMessage(IMessageLogger, Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, BenchmarkDotNet.Running.Target, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteWarningMessage
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 256
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Adds warning message.
+  example: []
+  syntax:
+    content: public static void WriteWarningMessage(this IMessageLogger messageLogger, Target target, string message, string hint = null)
+    parameters:
+    - id: messageLogger
+      type: CodeJam.PerfTests.Running.Messages.IMessageLogger
+      description: The message logger.
+    - id: target
+      type: BenchmarkDotNet.Running.Target
+      description: Target the message applies for.
+    - id: message
+      type: System.String
+      description: Message text.
+    - id: hint
+      type: System.String
+      description: Hints for the message.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WriteWarningMessage(messageLogger As IMessageLogger, target As Target, message As String, hint As String = Nothing)
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  id: WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteInfoMessage(IMessageLogger, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteInfoMessage(IMessageLogger, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteInfoMessage
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 267
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Adds an info message.
+  example: []
+  syntax:
+    content: public static void WriteInfoMessage(this IMessageLogger messageLogger, string message, string hint = null)
+    parameters:
+    - id: messageLogger
+      type: CodeJam.PerfTests.Running.Messages.IMessageLogger
+      description: The message logger.
+    - id: message
+      type: System.String
+      description: Message text.
+    - id: hint
+      type: System.String
+      description: Hints for the message.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WriteInfoMessage(messageLogger As IMessageLogger, message As String, hint As String = Nothing)
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  id: WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  langs:
+  - csharp
+  - vb
+  name: WriteInfoMessage(IMessageLogger, Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteInfoMessage(IMessageLogger, Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, BenchmarkDotNet.Running.Target, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteInfoMessage
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/CompetitionCoreHelpers.cs
+    startLine: 278
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Adds an info message.
+  example: []
+  syntax:
+    content: public static void WriteInfoMessage(this IMessageLogger messageLogger, Target target, string message, string hint = null)
+    parameters:
+    - id: messageLogger
+      type: CodeJam.PerfTests.Running.Messages.IMessageLogger
+      description: The message logger.
+    - id: target
+      type: BenchmarkDotNet.Running.Target
+      description: Target the message applies for.
+    - id: message
+      type: System.String
+      description: Message text.
+    - id: hint
+      type: System.String
+      description: Hints for the message.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WriteInfoMessage(messageLogger As IMessageLogger, target As Target, message As String, hint As String = Nothing)
+  overload: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: CodeJam.PerfTests.Running.Core
+  commentId: N:CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CodeJam.PerfTests.Running.Core
+  nameWithType: CodeJam.PerfTests.Running.Core
+  fullName: CodeJam.PerfTests.Running.Core
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsCriticalError*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsCriticalError
+  isExternal: false
+  name: IsCriticalError
+  nameWithType: CompetitionCoreHelpers.IsCriticalError
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsCriticalError
+- uid: CodeJam.PerfTests.Running.Messages.MessageSeverity
+  commentId: T:CodeJam.PerfTests.Running.Messages.MessageSeverity
+  parent: CodeJam.PerfTests.Running.Messages
+  isExternal: false
+  name: MessageSeverity
+  nameWithType: MessageSeverity
+  fullName: CodeJam.PerfTests.Running.Messages.MessageSeverity
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.PerfTests.Running.Messages
+  commentId: N:CodeJam.PerfTests.Running.Messages
+  isExternal: false
+  name: CodeJam.PerfTests.Running.Messages
+  nameWithType: CodeJam.PerfTests.Running.Messages
+  fullName: CodeJam.PerfTests.Running.Messages
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsTestErrorOrHigher*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsTestErrorOrHigher
+  isExternal: false
+  name: IsTestErrorOrHigher
+  nameWithType: CompetitionCoreHelpers.IsTestErrorOrHigher
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsTestErrorOrHigher
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsWarningOrHigher*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsWarningOrHigher
+  isExternal: false
+  name: IsWarningOrHigher
+  nameWithType: CompetitionCoreHelpers.IsWarningOrHigher
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.IsWarningOrHigher
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage
+  isExternal: false
+  name: WriteExceptionMessage
+  nameWithType: CompetitionCoreHelpers.WriteExceptionMessage
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage
+- uid: CodeJam.PerfTests.Running.Core.CompetitionState
+  commentId: T:CodeJam.PerfTests.Running.Core.CompetitionState
+  parent: CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CompetitionState
+  nameWithType: CompetitionState
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionState
+- uid: CodeJam.PerfTests.Running.Messages.MessageSource
+  commentId: T:CodeJam.PerfTests.Running.Messages.MessageSource
+  parent: CodeJam.PerfTests.Running.Messages
+  isExternal: false
+  name: MessageSource
+  nameWithType: MessageSource
+  fullName: CodeJam.PerfTests.Running.Messages.MessageSource
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Exception
+  commentId: T:System.Exception
+  parent: System
+  isExternal: true
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint
+  isExternal: false
+  name: WriteVerboseHint
+  nameWithType: CompetitionCoreHelpers.WriteVerboseHint
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint
+- uid: BenchmarkDotNet.Loggers.ILogger
+  commentId: T:BenchmarkDotNet.Loggers.ILogger
+  parent: BenchmarkDotNet.Loggers
+  isExternal: true
+  name: ILogger
+  nameWithType: ILogger
+  fullName: BenchmarkDotNet.Loggers.ILogger
+- uid: BenchmarkDotNet.Loggers
+  commentId: N:BenchmarkDotNet.Loggers
+  isExternal: false
+  name: BenchmarkDotNet.Loggers
+  nameWithType: BenchmarkDotNet.Loggers
+  fullName: BenchmarkDotNet.Loggers
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose
+  isExternal: false
+  name: WriteVerbose
+  nameWithType: CompetitionCoreHelpers.WriteVerbose
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage
+  isExternal: false
+  name: WriteMessage
+  nameWithType: CompetitionCoreHelpers.WriteMessage
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  commentId: T:CodeJam.PerfTests.Running.Messages.IMessageLogger
+  parent: CodeJam.PerfTests.Running.Messages
+  isExternal: false
+  name: IMessageLogger
+  nameWithType: IMessageLogger
+  fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+- uid: BenchmarkDotNet.Running.Target
+  commentId: T:BenchmarkDotNet.Running.Target
+  parent: BenchmarkDotNet.Running
+  isExternal: true
+  name: Target
+  nameWithType: Target
+  fullName: BenchmarkDotNet.Running.Target
+- uid: BenchmarkDotNet.Running
+  commentId: N:BenchmarkDotNet.Running
+  isExternal: false
+  name: BenchmarkDotNet.Running
+  nameWithType: BenchmarkDotNet.Running
+  fullName: BenchmarkDotNet.Running
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage
+  isExternal: false
+  name: WriteExecutionErrorMessage
+  nameWithType: CompetitionCoreHelpers.WriteExecutionErrorMessage
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage
+  isExternal: false
+  name: WriteSetupErrorMessage
+  nameWithType: CompetitionCoreHelpers.WriteSetupErrorMessage
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage
+  isExternal: false
+  name: WriteTestErrorMessage
+  nameWithType: CompetitionCoreHelpers.WriteTestErrorMessage
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage
+  isExternal: false
+  name: WriteWarningMessage
+  nameWithType: CompetitionCoreHelpers.WriteWarningMessage
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage
+  isExternal: false
+  name: WriteInfoMessage
+  nameWithType: CompetitionCoreHelpers.WriteInfoMessage
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage
