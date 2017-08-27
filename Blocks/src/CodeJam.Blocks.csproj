@@ -19,7 +19,7 @@
 		<Description>CodeJam is a set of handy reusable .NET components that can simplify your daily work and save your time when you copy and paste your favorite helper methods and classes from one project to another.</Description>
 		<PackageLicenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</PackageLicenseUrl>
 		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
-		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/Blocks/nuget/CodeJam.Blocks.Icon.png</PackageIconUrl>
+		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.Blocks.Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>mapper services csv</PackageTags>

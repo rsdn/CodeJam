@@ -1,4 +1,4 @@
-![CodeJam.Main.Icon](/Main/nuget/CodeJam.Main.Icon.png)
+![CodeJam.Main.Icon](/images/nuget/CodeJam.Main.Icon.png)
 
 ##  CodeJam
 

@@ -1,4 +1,4 @@
-# ![logo](nuget/CodeJam.PerfTests.Icon.png) CodeJam.PerfTests
+# ![logo](../images/nuget/CodeJam.PerfTests.Icon.png) CodeJam.PerfTests
 
 ## What is it? (short version)
 

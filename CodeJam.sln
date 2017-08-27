@@ -91,14 +91,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blocks", "Blocks", "{3C9AF2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.Blocks", "Blocks\src\CodeJam.Blocks.csproj", "{0DFF0859-2400-4487-83AD-0ED10203D6D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.Blocks-Tests", "Blocks\tests\CodeJam.Blocks-Tests.csproj", "{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{AC59E804-44EE-44FA-87EB-0EFF956F5DD7}"
-	ProjectSection(SolutionItems) = preProject
-		Blocks\nuget\CodeJam.Blocks.nuspec = Blocks\nuget\CodeJam.Blocks.nuspec
-		Blocks\nuget\Pack.bat = Blocks\nuget\Pack.bat
-		Blocks\nuget\Readme.txt = Blocks\nuget\Readme.txt
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.Blocks-Tests", "Blocks\tests\CodeJam.Blocks-Tests.csproj", "{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests.Etw", "PerfTests\src-Etw\CodeJam.PerfTests.Etw.csproj", "{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}"
 EndProject
@@ -243,7 +236,6 @@ Global
 		{4DEBB88D-97A4-4A23-AE53-A118DC5A2551} = {F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}
 		{0DFF0859-2400-4487-83AD-0ED10203D6D9} = {3C9AF2DF-1323-4471-B4DE-DE3D1A2A580C}
 		{2A52D7F6-AAFC-4AC4-9901-252C13D96E53} = {3C9AF2DF-1323-4471-B4DE-DE3D1A2A580C}
-		{AC59E804-44EE-44FA-87EB-0EFF956F5DD7} = {3C9AF2DF-1323-4471-B4DE-DE3D1A2A580C}
 		{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D} = {F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

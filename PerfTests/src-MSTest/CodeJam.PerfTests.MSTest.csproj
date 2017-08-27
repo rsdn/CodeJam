@@ -38,7 +38,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\..\CodeJam.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\..\Build\CodeJam.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Publish|AnyCPU'">
     <OutputPath>bin\Publish\</OutputPath>
@@ -87,7 +87,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="..\..\Jetbrains.Annotations.cs">
+    <Compile Include="..\..\Build\Jetbrains.Annotations.cs">
       <Link>Properties\Jetbrains.Annotations.cs</Link>
     </Compile>
     <Compile Include="Competition.cs" />

@@ -3,7 +3,7 @@ configuration: Release
 image: Visual Studio 2017
 
 environment:
-  packageVersion: 1.4.0
+  packageVersion: 1.4.1
 
 cache:
 - packages -> **\packages.config
@@ -21,12 +21,18 @@ assembly_info:
   assembly_file_version: '$(buildVersion)'
   assembly_informational_version: '$(nugetVersion)'
 
+dotnet_csproj:
+  patch: true
+  file: 'Build\CodeJam.Default.props'
+  version: '{buildVersion}'
+  package_version: '$(nugetVersion)'
+
 nuget:
   account_feed: false
   project_feed: false
 
 before_build:
-- cmd: nuget restore CodeJam.sln
+- cmd: dotnet restore CodeJam.sln
 
 build:
   project: CodeJam.sln
@@ -34,18 +40,18 @@ build:
   verbosity: minimal
 
 after_build:
-- cmd: cd Main\src
-- cmd: Compile.cmd
-- cmd: cd ..\..
-
-- cmd: cd Blocks\src
-- cmd: Compile.cmd
-- cmd: cd ..\..
+#- cmd: cd Main\src
+#- cmd: Compile.cmd
+#- cmd: cd ..\..
+#
+#- cmd: cd Blocks\src
+#- cmd: Compile.cmd
+#- cmd: cd ..\..
 
 - ps: $mainVer = (Get-Content Main\nuget\CodeJam.Main.nuspec).package.metadata.version
 - ps: "$mainVer"
-- ps: nuget pack Main\nuget\CodeJam.Main.nuspec -version "$env:nugetVersion"
-- ps: nuget pack Blocks\nuget\CodeJam.Blocks.nuspec -version "$env:nugetVersion"
+#- ps: nuget pack Main\nuget\CodeJam.Main.nuspec -version "$env:nugetVersion"
+#- ps: nuget pack Blocks\nuget\CodeJam.Blocks.nuspec -version "$env:nugetVersion"
 - ps: nuget pack Experimental\nuget\CodeJam.Experimental.nuspec -version "$env:nugetVersion"
 - ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.Core.nuspec -version "$env:nugetVersion"
 - ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.NUnit.nuspec -version "$env:nugetVersion"
