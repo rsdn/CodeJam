@@ -253,9 +253,7 @@ namespace CodeJam.Reflection
 
 		private object GetDefaultValue(Type type)
 		{
-			object value;
-
-			if (_defaultValues.TryGetValue(type, out value))
+			if (_defaultValues.TryGetValue(type, out var value))
 				return value;
 
 			if (!type.IsClass && !type.IsNullable())
@@ -277,9 +275,7 @@ namespace CodeJam.Reflection
 
 		private static T GetDefaultValue<T>()
 		{
-			object value;
-
-			if (_defaultValues.TryGetValue(typeof(T), out value))
+			if (_defaultValues.TryGetValue(typeof(T), out var value))
 				return (T)value;
 
 			_defaultValues[typeof(T)] = default(T);

@@ -125,9 +125,7 @@ namespace CodeJam.Mapping
 			if (FromMappingDictionary == null)
 				FromMappingDictionary = new Dictionary<Type,Dictionary<string,string>>();
 
-			Dictionary<string,string> dic;
-
-			if (!FromMappingDictionary.TryGetValue(type, out dic))
+			if (!FromMappingDictionary.TryGetValue(type, out var dic))
 				FromMappingDictionary[type] = dic = new Dictionary<string,string>();
 
 			dic[memberName] = mapName;
@@ -205,9 +203,7 @@ namespace CodeJam.Mapping
 			if (ToMappingDictionary == null)
 				ToMappingDictionary = new Dictionary<Type,Dictionary<string,string>>();
 
-			Dictionary<string,string> dic;
-
-			if (!ToMappingDictionary.TryGetValue(type, out dic))
+			if (!ToMappingDictionary.TryGetValue(type, out var dic))
 				ToMappingDictionary[type] = dic = new Dictionary<string,string>();
 
 			dic[memberName] = mapName;

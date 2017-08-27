@@ -41,21 +41,14 @@ namespace CodeJam.Mapping
 			Type to,
 			LambdaInfo expr)
 		{
-			ConcurrentDictionary<Type,LambdaInfo> dic;
-
-			if (!expressions.TryGetValue(from, out dic))
+			if (!expressions.TryGetValue(from, out var dic))
 				expressions[from] = dic = new ConcurrentDictionary<Type, LambdaInfo>();
 
 			dic[to] = expr;
 		}
 
-		public LambdaInfo Get(Type from, Type to)
-		{
-			ConcurrentDictionary<Type,LambdaInfo> dic;
-			LambdaInfo li;
-
-			return _expressions.TryGetValue(from, out dic) && dic.TryGetValue(to, out li) ? li : null;
-		}
+		public LambdaInfo Get(Type from, Type to) =>
+			_expressions.TryGetValue(from, out var dic) && dic.TryGetValue(to, out var li) ? li : null;
 
 		public LambdaInfo Create(MappingSchema mappingSchema, Type from, Type to)
 		{

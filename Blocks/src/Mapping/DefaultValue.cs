@@ -51,9 +51,7 @@ namespace CodeJam.Mapping
 
 			var ms = mappingSchema ?? MappingSchema.Default;
 
-			object value;
-
-			if (_defaultValues.TryGetValue(type, out value))
+			if (_defaultValues.TryGetValue(type, out var value))
 				return value;
 
 			if (type.IsEnum)
@@ -96,9 +94,7 @@ namespace CodeJam.Mapping
 		[Pure]
 		public static T GetValue<T>()
 		{
-			object value;
-
-			if (_defaultValues.TryGetValue(typeof(T), out value))
+			if (_defaultValues.TryGetValue(typeof(T), out var value))
 				return (T)value;
 
 			_defaultValues[typeof(T)] = default(T);

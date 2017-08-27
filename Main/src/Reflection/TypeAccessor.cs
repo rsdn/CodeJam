@@ -97,9 +97,7 @@ namespace CodeJam.Reflection
 		{
 			if (type == null) throw new ArgumentNullException(nameof(type));
 
-			TypeAccessor accessor;
-
-			if (_accessors.TryGetValue(type, out accessor))
+			if (_accessors.TryGetValue(type, out var accessor))
 				return accessor;
 
 			var accessorType = typeof(TypeAccessor<>).MakeGenericType(type);
@@ -118,9 +116,7 @@ namespace CodeJam.Reflection
 		/// <returns>Instance of <see cref="TypeAccessor"/>.</returns>
 		public static TypeAccessor<T> GetAccessor<T>()
 		{
-			TypeAccessor accessor;
-
-			if (_accessors.TryGetValue(typeof(T), out accessor))
+			if (_accessors.TryGetValue(typeof(T), out var accessor))
 				return (TypeAccessor<T>)accessor;
 
 			return (TypeAccessor<T>)(_accessors[typeof(T)] = new TypeAccessor<T>());
