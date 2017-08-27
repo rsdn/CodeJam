@@ -71,6 +71,10 @@ namespace CodeJam.Services
 		/// <returns>Disposable cookie to conceal published service</returns>
 		public IDisposable Publish(Type serviceType, object serviceInstance)
 		{
+			// Check for case someone is crazy enough to pass factory as object
+			if (serviceInstance is Func<IServicePublisher, object> instanceFactory)
+				return Publish(serviceType, instanceFactory);
+
 			if (!_services.TryAdd(serviceType, new InstanceBag(serviceInstance)))
 				throw new ArgumentException("Service with the same type already published.");
 			// All code below is always run in no more than one thread for specific type

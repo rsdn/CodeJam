@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !SUPPORTS_NET35
+using System;
 using System.Diagnostics;
 using System.Linq;
 
@@ -273,8 +274,11 @@ namespace CodeJam.Mapping
 			var map = new MapHelper<Source,Dest>().Map(useAction, m => m
 				.ToMapping      ("Field3", "Field2")
 				.ToMapping<Dest>("Field6", "Field7")
-				.FromMapping    (new Dictionary<string,string> { ["Field5"] = "Field4" }));
-
+#if SUPPORTS_NET40
+				.FromMapping(new DictionaryWithReadOnly<string,string> { ["Field5"] = "Field4" }));
+#else
+				.FromMapping(new Dictionary<string,string> { ["Field5"] = "Field4" }));
+#endif
 			Assert.That(map.To.Field1,             Is.EqualTo(1));
 			Assert.That(map.To.Field3,             Is.EqualTo(2));
 			Assert.That(map.To.Field4,             Is.EqualTo(map.From.Field5));
@@ -682,3 +686,4 @@ namespace CodeJam.Mapping
 		}
 	}
 }
+#endif

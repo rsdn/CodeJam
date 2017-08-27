@@ -211,6 +211,7 @@ namespace CodeJam.Ranges
 				var ranges = new List<Range<T, TKey>>();
 				if (!compositeRange.ContainingRange.Contains(value))
 					return Array<Range<T, TKey>>.Empty;
+
 				foreach (var range in compositeRange.SubRanges)
 				{
 					if (range.StartsAfter(value))

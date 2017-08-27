@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !SUPPORTS_NET35
+using System;
 
 using NUnit.Framework;
 
@@ -7,7 +8,7 @@ using NUnit.Framework;
 namespace CodeJam.Mapping.Examples
 {
 
-	#region Example
+#region Example
 	[TestFixture]
 	public class MapMemberTests
 	{
@@ -43,6 +44,7 @@ namespace CodeJam.Mapping.Examples
 			Assert.That(c2.Field1?.Day, Is.EqualTo(2));
 		}
 	}
-	#endregion
+#endregion
 
 }
+#endif

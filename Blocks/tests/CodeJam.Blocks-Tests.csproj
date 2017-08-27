@@ -1,77 +1,59 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CodeJam.Blocks_Tests</RootNamespace>
-    <AssemblyName>CodeJam.Blocks-Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\..\CodeJam.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="Mapping\ChangeTypeTests.cs" />
-    <Compile Include="Mapping\ConvertTests.cs" />
-    <Compile Include="Mapping\DefaultValueTests.cs" />
-    <Compile Include="Mapping\Examples\MapMemberTests.cs" />
-    <Compile Include="Mapping\Examples\MapTests.cs" />
-    <Compile Include="Mapping\MapperTests.cs" />
-    <Compile Include="Mapping\MappingSchemaTests.cs" />
-    <Compile Include="Metadata\AttributeReaderTests.cs" />
-    <Compile Include="Metadata\XmlReaderTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ServicesTests.cs" />
-    <Compile Include="TableData\TableDataTest.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj">
-      <Project>{2f2046cc-fb47-4318-b335-5a82b04b6c40}</Project>
-      <Name>CodeJam.Main</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\src\CodeJam.Blocks.csproj">
-      <Project>{0dff0859-2400-4487-83ad-0ed10203d6d9}</Project>
-      <Name>CodeJam.Blocks</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.7.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\Build\CodeJam.Default.props" />
+	<Import Project="..\..\Build\CodeJam.Targeting.props" />
+
+	<PropertyGroup>
+		<AssemblyName>CodeJam.Blocks-Tests</AssemblyName>
+		<RootNamespace>CodeJam</RootNamespace>
+		<ProjectGuid>{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}</ProjectGuid>
+		<OutputType>Library</OutputType>
+		<FileAlignment>512</FileAlignment>
+		<TargetFrameworks>net461</TargetFrameworks>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<TargetFrameworks>net461;netstandard2.0;net45;net40;net35</TargetFrameworks>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<LangVersion>latest</LangVersion>
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>bin\Debug\</OutputPath>
+		<DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<LangVersion>latest</LangVersion>
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\Release\</OutputPath>
+		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Publish|AnyCPU' ">
+		<LangVersion>latest</LangVersion>
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\Publish\</OutputPath>
+		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\src\CodeJam.Blocks.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="NUnit" Version="3.7.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+	</ItemGroup>
 </Project>

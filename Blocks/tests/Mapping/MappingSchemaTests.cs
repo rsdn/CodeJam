@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !SUPPORTS_NET35
+using System;
 using System.Globalization;
 using System.IO;
 using System.Text;
@@ -355,3 +356,4 @@ namespace CodeJam.Mapping
 		}
 	}
 }
+#endif

@@ -45,7 +45,7 @@ namespace CodeJam.Ranges
 		{
 			DebugCode.BugIf(
 				ranges.Any(r => !r.HasIntersection(intersectionRange)),
-				"Ranges should intersect groupingRange.");
+				"Ranges should intersect intersectionRange.");
 
 			IntersectionRange = intersectionRange;
 			_ranges = ranges.AsReadOnly();

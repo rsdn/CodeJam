@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !SUPPORTS_NET35
+using System;
 using System.IO;
 using System.Text;
 
@@ -105,3 +106,4 @@ namespace CodeJam.Metadata
 		}
 	}
 }
+#endif

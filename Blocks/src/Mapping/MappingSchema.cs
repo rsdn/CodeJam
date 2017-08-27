@@ -1,4 +1,4 @@
-﻿#if !FW35
+﻿#if !SUPPORTS_NET35
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -386,13 +386,7 @@ namespace CodeJam.Mapping
 
 			if (isFromGeneric || isToGeneric)
 			{
-				var empty =
-#if (!FW452)
-					Array.Empty<Type>()
-#else
-					Array<Type>.Empty
-#endif
-					;
+				var empty = Array<Type>.Empty;
 				var fromGenericArgs = isFromGeneric ? from.GetGenericArguments() : empty;
 				var toGenericArgs   = isToGeneric   ? to.  GetGenericArguments() : empty;
 

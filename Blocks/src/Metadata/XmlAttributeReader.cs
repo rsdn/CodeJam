@@ -1,4 +1,4 @@
-﻿#if !FW35
+﻿#if !SUPPORTS_NET35
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,7 +21,7 @@ namespace CodeJam.Metadata
 	[PublicAPI]
 	public class XmlAttributeReader : IMetadataReader
 	{
-		private readonly Dictionary<string,MetaTypeInfo> _types;
+		private readonly Dictionary<string, MetaTypeInfo> _types;
 
 		/// <summary>
 		/// Reads metadata from provided XML file or from calling assembly resource.
@@ -29,7 +29,7 @@ namespace CodeJam.Metadata
 		/// <param name="xmlFile">Metadata file name.</param>
 		public XmlAttributeReader(string xmlFile)
 			: this(xmlFile, Assembly.GetCallingAssembly())
-		{}
+		{ }
 
 		/// <summary>
 		/// Reads metadata from provided XML file or from provided assembly resource.
@@ -38,7 +38,7 @@ namespace CodeJam.Metadata
 		/// <param name="assembly">Assembly to get resource stream.</param>
 		public XmlAttributeReader([NotNull] string xmlFile, [NotNull] Assembly assembly)
 		{
-			if (xmlFile  == null) throw new ArgumentNullException(nameof(xmlFile));
+			if (xmlFile == null) throw new ArgumentNullException(nameof(xmlFile));
 			if (assembly == null) throw new ArgumentNullException(nameof(assembly));
 
 			StreamReader streamReader = null;
@@ -58,12 +58,12 @@ namespace CodeJam.Metadata
 				}
 
 				var embedded = streamReader == null;
-				var stream   = embedded ? assembly.GetManifestResourceStream(xmlFile) : streamReader.BaseStream;
+				var stream = embedded ? assembly.GetManifestResourceStream(xmlFile) : streamReader.BaseStream;
 
 				if (embedded && stream == null)
 				{
 					var names = assembly.GetManifestResourceNames();
-					var name  = names.FirstOrDefault(n => n.EndsWith("." + xmlFile));
+					var name = names.FirstOrDefault(n => n.EndsWith("." + xmlFile));
 
 					stream = name != null ? assembly.GetManifestResourceStream(name) : null;
 				}
@@ -102,12 +102,12 @@ namespace CodeJam.Metadata
 		{
 			var attrs = el.Elements().Where(e => e.Name.LocalName != exclude).Select(a =>
 			{
-				var aname  = a.Name.LocalName;
+				var aname = a.Name.LocalName;
 				var values = a.Elements().Select(e =>
 				{
-					var name  = e.Name.LocalName;
+					var name = e.Name.LocalName;
 					var value = e.Attribute("Value");
-					var type  = e.Attribute("Type");
+					var type = e.Attribute("Type");
 
 					if (value == null)
 						throw new MetadataException(
@@ -129,7 +129,7 @@ namespace CodeJam.Metadata
 			return attrs.ToArray();
 		}
 
-		private static Dictionary<string,MetaTypeInfo> LoadStream(Stream xmlDocStream, string fileName)
+		private static Dictionary<string, MetaTypeInfo> LoadStream(Stream xmlDocStream, string fileName)
 		{
 			var doc = XDocument.Load(new StreamReader(xmlDocStream));
 
@@ -179,15 +179,9 @@ namespace CodeJam.Metadata
 
 			Code.AssertState(type.FullName != null, "type.FullName != null");
 			if (_types.TryGetValue(type.FullName, out t) || _types.TryGetValue(type.Name, out t))
-				return t.GetAttribute(typeof(T)).Select(a => (T) a.MakeAttribute(typeof(T))).ToArray();
+				return t.GetAttribute(typeof(T)).Select(a => (T)a.MakeAttribute(typeof(T))).ToArray();
 
-			return
-#if (!FW452)
-						Array.Empty<T>()
-#else
-						Array<T>.Empty
-#endif
-				;
+			return Array<T>.Empty;
 		}
 
 		/// <summary>
@@ -218,13 +212,7 @@ namespace CodeJam.Metadata
 							.ToArray();
 			}
 
-			return
-#if (!FW452)
-						Array.Empty<T>()
-#else
-						Array<T>.Empty
-#endif
-				;
+			return Array<T>.Empty;
 		}
 	}
 }

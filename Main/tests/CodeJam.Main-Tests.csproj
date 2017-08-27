@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
 	<Import Project="..\..\Build\CodeJam.Default.props" />
 	<Import Project="..\..\Build\CodeJam.Targeting.props" />
 
@@ -10,7 +11,7 @@
 		<FileAlignment>512</FileAlignment>
 		<TargetFrameworks>net461</TargetFrameworks>
 	</PropertyGroup>
-	
+
 	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
 		<TargetFrameworks>net461;netstandard2.0;net45;net40;net35</TargetFrameworks>
 	</PropertyGroup>
@@ -41,7 +42,7 @@
 		<DebugType>pdbonly</DebugType>
 		<Optimize>true</Optimize>
 		<OutputPath>bin\Publish\</OutputPath>
-		<DefineConstants>$(DefineConstants);TRACE1</DefineConstants>
+		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>

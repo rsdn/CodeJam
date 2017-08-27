@@ -50,11 +50,7 @@ namespace CodeJam.TableData
 			if (line == null)
 				return null;
 			if (line.IsNullOrWhiteSpace())
-#if !FW452
-				return Array.Empty<string>();
-#else
 				return Array<string>.Empty;
-#endif
 
 			var pos = 0;
 			var result = new string[widths.Length];

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !SUPPORTS_NET35
+using System;
 
 using CodeJam.Expressions;
 using CodeJam.Strings;
@@ -10,7 +11,7 @@ using NUnit.Framework;
 namespace CodeJam.Mapping.Examples
 {
 
-	#region Example
+#region Example
 	[TestFixture]
 	public class MapTests
 	{
@@ -131,6 +132,7 @@ namespace CodeJam.Mapping.Examples
 					}".Remove(" ", "\t", "\r", "\n")));
 		}
 	}
-	#endregion
+#endregion
 
 }
+#endif

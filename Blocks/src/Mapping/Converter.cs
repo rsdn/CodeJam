@@ -1,4 +1,4 @@
-﻿#if !FW35
+﻿#if !SUPPORTS_NET35
 using System;
 using System.Collections.Concurrent;
 using System.Globalization;
@@ -17,25 +17,25 @@ namespace CodeJam.Mapping
 	[PublicAPI]
 	public static class Converter
 	{
-		private static readonly ConcurrentDictionary<object,LambdaExpression> _expressions =
-			new ConcurrentDictionary<object,LambdaExpression>();
+		private static readonly ConcurrentDictionary<object, LambdaExpression> _expressions =
+			new ConcurrentDictionary<object, LambdaExpression>();
 
 		static Converter()
 		{
-			SetConverter<string,         char>       (v => v.Length == 0 ? '\0' : v[0]);
-//			SetConverter<string,         Binary>     (v => new Binary(Convert.FromBase64String(v)));
-//			SetConverter<Binary,         string>     (v => Convert.ToBase64String(v.ToArray()));
-//			SetConverter<Binary,         byte[]>     (v => v.ToArray());
-			SetConverter<bool,           decimal>    (v => v ? 1m : 0m);
-			SetConverter<DateTimeOffset, DateTime>   (v => v.LocalDateTime);
-			SetConverter<string,         XmlDocument>(v => CreateXmlDocument(v));
-			SetConverter<string,         byte[]>     (v => Convert.FromBase64String(v));
-			SetConverter<byte[],         string>     (v => Convert.ToBase64String(v));
-			SetConverter<TimeSpan,       DateTime>   (v => DateTime.MinValue + v);
-			SetConverter<DateTime,       TimeSpan>   (v => v - DateTime.MinValue);
-			SetConverter<string,         DateTime>   (v => DateTime.Parse(v, null, DateTimeStyles.NoCurrentDateDefault));
-			SetConverter<char,           bool>       (v => ToBoolean(v));
-			SetConverter<string,         bool>       (v => v.Length == 1 ? ToBoolean(v[0]) : bool.Parse(v));
+			SetConverter<string, char>(v => v.Length == 0 ? '\0' : v[0]);
+			//			SetConverter<string,         Binary>     (v => new Binary(Convert.FromBase64String(v)));
+			//			SetConverter<Binary,         string>     (v => Convert.ToBase64String(v.ToArray()));
+			//			SetConverter<Binary,         byte[]>     (v => v.ToArray());
+			SetConverter<bool, decimal>(v => v ? 1m : 0m);
+			SetConverter<DateTimeOffset, DateTime>(v => v.LocalDateTime);
+			SetConverter<string, XmlDocument>(v => CreateXmlDocument(v));
+			SetConverter<string, byte[]>(v => Convert.FromBase64String(v));
+			SetConverter<byte[], string>(v => Convert.ToBase64String(v));
+			SetConverter<TimeSpan, DateTime>(v => DateTime.MinValue + v);
+			SetConverter<DateTime, TimeSpan>(v => v - DateTime.MinValue);
+			SetConverter<string, DateTime>(v => DateTime.Parse(v, null, DateTimeStyles.NoCurrentDateDefault));
+			SetConverter<char, bool>(v => ToBoolean(v));
+			SetConverter<string, bool>(v => v.Length == 1 ? ToBoolean(v[0]) : bool.Parse(v));
 		}
 
 		private static XmlDocument CreateXmlDocument(string str)
@@ -49,19 +49,19 @@ namespace CodeJam.Mapping
 		{
 			switch (ch)
 			{
-				case '\x0' : // Allow int <=> Char <=> Boolean
-				case   '0' :
-				case   'n' :
-				case   'N' :
-				case   'f' :
-				case   'F' : return false;
+				case '\x0': // Allow int <=> Char <=> Boolean
+				case '0':
+				case 'n':
+				case 'N':
+				case 'f':
+				case 'F': return false;
 
-				case '\x1' : // Allow int <=> Char <=> Boolean
-				case   '1' :
-				case   'y' :
-				case   'Y' :
-				case   't' :
-				case   'T' : return true;
+				case '\x1': // Allow int <=> Char <=> Boolean
+				case '1':
+				case 'y':
+				case 'Y':
+				case 't':
+				case 'T': return true;
 			}
 
 			throw new InvalidCastException("Invalid cast from System.String to System.Bool");
@@ -73,7 +73,7 @@ namespace CodeJam.Mapping
 		/// <typeparam name="TFrom">Type to convert from.</typeparam>
 		/// <typeparam name="TTo">Type to convert to.</typeparam>
 		/// <param name="expr">Convert expression.</param>
-		public static void SetConverter<TFrom,TTo>(Expression<Func<TFrom,TTo>> expr)
+		public static void SetConverter<TFrom, TTo>(Expression<Func<TFrom, TTo>> expr)
 			=> _expressions[new { from = typeof(TFrom), to = typeof(TTo) }] = expr;
 
 		internal static LambdaExpression GetConverter(Type from, Type to)
@@ -83,8 +83,8 @@ namespace CodeJam.Mapping
 			return l;
 		}
 
-		private static readonly ConcurrentDictionary<object,Func<object,object>> _converters =
-			new ConcurrentDictionary<object,Func<object,object>>();
+		private static readonly ConcurrentDictionary<object, Func<object, object>> _converters =
+			new ConcurrentDictionary<object, Func<object, object>>();
 
 		/// <summary>
 		/// Returns an object of a specified type whose value is equivalent to a specified object.
@@ -104,29 +104,29 @@ namespace CodeJam.Mapping
 				return value;
 
 			var from = value.GetType();
-			var to   = conversionType;
-			var key  = new { from, to };
+			var to = conversionType;
+			var key = new { from, to };
 
 			var converters = mappingSchema == null ? _converters : mappingSchema.Converters;
 
-			Func<object,object> l;
+			Func<object, object> l;
 
 			if (!converters.TryGetValue(key, out l))
 			{
 				var li =
-					ConvertInfo.Default.Get   (               value.GetType(), to) ??
+					ConvertInfo.Default.Get(value.GetType(), to) ??
 					ConvertInfo.Default.Create(mappingSchema, value.GetType(), to);
 
-				var b  = li.CheckNullLambda.Body;
+				var b = li.CheckNullLambda.Body;
 				var ps = li.CheckNullLambda.Parameters;
 
-				var p  = Expression.Parameter(typeof(object), "p");
-				var ex = Expression.Lambda<Func<object,object>>(
+				var p = Expression.Parameter(typeof(object), "p");
+				var ex = Expression.Lambda<Func<object, object>>(
 					Expression.Convert(
 						b.Transform(e =>
 							e == ps[0] ?
 								Expression.Convert(p, e.Type) :
-							IsDefaultValuePlaceHolder(e) ? 
+							IsDefaultValuePlaceHolder(e) ?
 								new DefaultValueExpression(mappingSchema, e.Type) :
 								e),
 						typeof(object)),
@@ -142,8 +142,8 @@ namespace CodeJam.Mapping
 
 		private static class ExprHolder<T>
 		{
-			public static readonly ConcurrentDictionary<Type,Func<object,T>> Converters =
-				new ConcurrentDictionary<Type,Func<object,T>>();
+			public static readonly ConcurrentDictionary<Type, Func<object, T>> Converters =
+				new ConcurrentDictionary<Type, Func<object, T>>();
 		}
 
 		/// <summary>
@@ -164,21 +164,21 @@ namespace CodeJam.Mapping
 				return (T)value;
 
 			var from = value.GetType();
-			var to   = typeof(T);
+			var to = typeof(T);
 
-			Func<object,T> l;
+			Func<object, T> l;
 
 			if (!ExprHolder<T>.Converters.TryGetValue(from, out l))
 			{
 				var li = ConvertInfo.Default.Get(from, to) ?? ConvertInfo.Default.Create(mappingSchema, from, to);
-				var b  = li.CheckNullLambda.Body;
+				var b = li.CheckNullLambda.Body;
 				var ps = li.CheckNullLambda.Parameters;
 
-				var p  = Expression.Parameter(typeof(object), "p");
-				var ex = Expression.Lambda<Func<object,T>>(
+				var p = Expression.Parameter(typeof(object), "p");
+				var ex = Expression.Lambda<Func<object, T>>(
 					b.Transform(e =>
 						e == ps[0] ?
-							Expression.Convert (p, e.Type) :
+							Expression.Convert(p, e.Type) :
 							IsDefaultValuePlaceHolder(e) ?
 								new DefaultValueExpression(mappingSchema, e.Type) :
 								e),
@@ -205,8 +205,8 @@ namespace CodeJam.Mapping
 			return expr is DefaultValueExpression;
 		}
 
-//		public static Type GetDefaultMappingFromEnumType(MappingSchema mappingSchema, Type enumType)
-//			=> ConvertBuilder.GetDefaultMappingFromEnumType(mappingSchema, enumType);
+		//		public static Type GetDefaultMappingFromEnumType(MappingSchema mappingSchema, Type enumType)
+		//			=> ConvertBuilder.GetDefaultMappingFromEnumType(mappingSchema, enumType);
 	}
 }
 #endif

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.Main", "Main\src\CodeJam.Main.csproj", "{2F2046CC-FB47-4318-B335-5A82B04B6C40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.Main-Tests", "Main\tests\CodeJam.Main-Tests.csproj", "{DD65E3F2-9658-4242-A8AA-056028473CB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.Main-Tests", "Main\tests\CodeJam.Main-Tests.csproj", "{DD65E3F2-9658-4242-A8AA-056028473CB1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.Experimental", "Experimental\src\CodeJam.Experimental.csproj", "{7BD77DA2-A731-400C-A88E-215FC592E6E3}"
 EndProject
@@ -49,12 +49,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests", "PerfTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests-Tests.NUnit", "PerfTests\tests-nUnit\CodeJam.PerfTests-Tests.NUnit.csproj", "{15F5BFE8-8B7C-4DF6-9E31-48A4BF9FED1C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{E4C85029-ED32-46B6-863C-5BF2E04D4AFB}"
-	ProjectSection(SolutionItems) = preProject
-		Main\nuget\CodeJam.Main.nuspec = Main\nuget\CodeJam.Main.nuspec
-		Main\nuget\Readme.txt = Main\nuget\Readme.txt
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{A33D991A-5E90-434F-BC8A-709ADD5DB0C2}"
 	ProjectSection(SolutionItems) = preProject
 		Experimental\nuget\CodeJam.Experimental.nuspec = Experimental\nuget\CodeJam.Experimental.nuspec
@@ -95,7 +89,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{4DEBB88D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blocks", "Blocks", "{3C9AF2DF-1323-4471-B4DE-DE3D1A2A580C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.Blocks", "Blocks\src\CodeJam.Blocks.csproj", "{0DFF0859-2400-4487-83AD-0ED10203D6D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.Blocks", "Blocks\src\CodeJam.Blocks.csproj", "{0DFF0859-2400-4487-83AD-0ED10203D6D9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.Blocks-Tests", "Blocks\tests\CodeJam.Blocks-Tests.csproj", "{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}"
 EndProject
@@ -209,14 +203,14 @@ Global
 		{08E84F45-2782-4D2E-85C0-FE86AF491C94}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0DFF0859-2400-4487-83AD-0ED10203D6D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0DFF0859-2400-4487-83AD-0ED10203D6D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0DFF0859-2400-4487-83AD-0ED10203D6D9}.Publish|Any CPU.ActiveCfg = Release|Any CPU
-		{0DFF0859-2400-4487-83AD-0ED10203D6D9}.Publish|Any CPU.Build.0 = Release|Any CPU
+		{0DFF0859-2400-4487-83AD-0ED10203D6D9}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{0DFF0859-2400-4487-83AD-0ED10203D6D9}.Publish|Any CPU.Build.0 = Publish|Any CPU
 		{0DFF0859-2400-4487-83AD-0ED10203D6D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DFF0859-2400-4487-83AD-0ED10203D6D9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}.Publish|Any CPU.ActiveCfg = Release|Any CPU
-		{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}.Publish|Any CPU.Build.0 = Release|Any CPU
+		{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}.Publish|Any CPU.Build.0 = Publish|Any CPU
 		{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -238,7 +232,6 @@ Global
 		{00E3881C-3D4D-4AE3-B1B4-CDCDC99F7E51} = {D56CF63D-0A29-4F5A-8E2C-0DAF338119EE}
 		{1D650545-A151-4211-8C29-C38A939403A6} = {F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}
 		{15F5BFE8-8B7C-4DF6-9E31-48A4BF9FED1C} = {F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}
-		{E4C85029-ED32-46B6-863C-5BF2E04D4AFB} = {C99F66F0-32AA-45EB-B112-D18498754A6B}
 		{A33D991A-5E90-434F-BC8A-709ADD5DB0C2} = {D56CF63D-0A29-4F5A-8E2C-0DAF338119EE}
 		{8ABF1A06-4643-49D6-A546-B7473DB10102} = {F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}
 		{92C6E5F8-FFEE-4269-92D7-BB9CFEB63D4B} = {F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}

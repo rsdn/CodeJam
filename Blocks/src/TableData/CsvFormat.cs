@@ -10,7 +10,7 @@ using CodeJam.Strings;
 using JetBrains.Annotations;
 
 using EnumerableClass =
-#if FW35
+#if SUPPORTS_NET35
 	CodeJam.Targeting.EnumerableTargeting
 #else
 	System.Linq.Enumerable
@@ -85,11 +85,7 @@ namespace CodeJam.TableData
 			if (curChar.IsEol)
 			{
 				lineNum++;
-#if !FW452
-				return Array.Empty<string>();
-#else
 				return Array<string>.Empty;
-#endif
 			}
 
 			var result = new List<string>();
@@ -213,11 +209,7 @@ namespace CodeJam.TableData
 			var parts = line.Split(separator);
 			// Special case - whitespace lines are ignored
 			if (parts.Length == 1 && parts[0].IsNullOrWhiteSpace())
-#if !FW452
-				return Array.Empty<string>();
-#else
 				return Array<string>.Empty;
-#endif
 			return parts;
 		}
 

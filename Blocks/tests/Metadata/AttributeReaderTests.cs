@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !SUPPORTS_NET35
+
+using System;
 
 using CodeJam.Mapping;
 
@@ -48,3 +50,4 @@ namespace CodeJam.Metadata
 		}
 	}
 }
+#endif
