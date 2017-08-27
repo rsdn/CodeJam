@@ -1,0 +1,2455 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Struct RangeBoundaryFrom&lt;T&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Struct RangeBoundaryFrom&lt;T&gt;
+   ">
+    <meta name="generator" content="docfx 2.23.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1">
+  
+  
+  <h1 id="CodeJam_Ranges_RangeBoundaryFrom_1" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1" class="text-break">Struct RangeBoundaryFrom&lt;T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>The From boundary of the range.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CodeJam.Ranges.html">CodeJam.Ranges</a></h6>
+  <h6><strong>Assembly</strong>: CodeJam.dll</h6>
+  <h5 id="CodeJam_Ranges_RangeBoundaryFrom_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct RangeBoundaryFrom&lt;T&gt; : IEquatable&lt;RangeBoundaryFrom&lt;T&gt;&gt;, IComparable&lt;RangeBoundaryFrom&lt;T&gt;&gt;, IComparable&lt;RangeBoundaryTo&lt;T&gt;&gt;, IComparable&lt;T&gt;, IComparable, IFormattable</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the value. Should implement <span class="xref">System.IComparable&lt;T&gt;</span> or <span class="xref">System.IComparable</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="CodeJam_Ranges_RangeBoundaryFrom_1_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Heavy tuned to be as fast as it is possible.
+The order of borders is the following: &apos;∅&apos; &lt; &apos;-∞&apos; &lt; &apos;a)&apos; &lt; &apos;[a&apos; == &apos;a]&apos; &lt; &apos;(a&apos; &lt; &apos;+∞&apos;.</p>
+</div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1__ctor__0_CodeJam_Ranges_RangeBoundaryFromKind_.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.%23ctor(%600%2CCodeJam.Ranges.RangeBoundaryFromKind)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L138">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1__ctor_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.#ctor*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1__ctor__0_CodeJam_Ranges_RangeBoundaryFromKind_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.#ctor(`0,CodeJam.Ranges.RangeBoundaryFromKind)">RangeBoundaryFrom(T, RangeBoundaryFromKind)</h4>
+  <div class="markdown level1 summary"><p>Creates a new range boundary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RangeBoundaryFrom(T value, RangeBoundaryFromKind boundaryKind)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value of the boundary.
+Infinite (or empty) boundaries should use default(T) or NegativeInfinity(T) (if the type has one) as the value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFromKind.html">RangeBoundaryFromKind</a></td>
+        <td><span class="parametername">boundaryKind</span></td>
+        <td><p>The kind of the boundary.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_Empty.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.Empty%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L114">View Source</a>
+  </span>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_Empty" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.Empty">Empty</h4>
+  <div class="markdown level1 summary"><p>Empty range boundary, ∅.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly RangeBoundaryFrom&lt;T&gt; Empty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_NegativeInfinity.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.NegativeInfinity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L117">View Source</a>
+  </span>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_NegativeInfinity" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.NegativeInfinity">NegativeInfinity</h4>
+  <div class="markdown level1 summary"><p>Negative infinity, -∞.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly RangeBoundaryFrom&lt;T&gt; NegativeInfinity</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_HasValue.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.HasValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L235">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_HasValue_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.HasValue*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_HasValue" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.HasValue">HasValue</h4>
+  <div class="markdown level1 summary"><p>The boundary has a value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasValue { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the boundary has a value; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_IsEmpty.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.IsEmpty%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L207">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_IsEmpty_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.IsEmpty*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_IsEmpty" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.IsEmpty">IsEmpty</h4>
+  <div class="markdown level1 summary"><p>The boundary == ∅.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsEmpty { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the boundary is empty; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_IsExclusiveBoundary.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.IsExclusiveBoundary%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L231">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_IsExclusiveBoundary_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.IsExclusiveBoundary*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_IsExclusiveBoundary" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.IsExclusiveBoundary">IsExclusiveBoundary</h4>
+  <div class="markdown level1 summary"><p>The boundary does not include the value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsExclusiveBoundary { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the boundary is exclusive boundary; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_IsInclusiveBoundary.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.IsInclusiveBoundary%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L225">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_IsInclusiveBoundary_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.IsInclusiveBoundary*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_IsInclusiveBoundary" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.IsInclusiveBoundary">IsInclusiveBoundary</h4>
+  <div class="markdown level1 summary"><p>The boundary includes the value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsInclusiveBoundary { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the boundary is inclusive boundary; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_IsNegativeInfinity.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.IsNegativeInfinity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L219">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_IsNegativeInfinity_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.IsNegativeInfinity*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_IsNegativeInfinity" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.IsNegativeInfinity">IsNegativeInfinity</h4>
+  <div class="markdown level1 summary"><p>The boundary == -∞.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsNegativeInfinity { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the boundary is negative infinity; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_IsNotEmpty.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.IsNotEmpty%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L213">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_IsNotEmpty_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.IsNotEmpty*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_IsNotEmpty" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.IsNotEmpty">IsNotEmpty</h4>
+  <div class="markdown level1 summary"><p>The boundary != ∅.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsNotEmpty { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the boundary is not empty; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_Kind.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.Kind%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L203">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_Kind_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.Kind*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_Kind" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.Kind">Kind</h4>
+  <div class="markdown level1 summary"><p>The kind of the boundary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RangeBoundaryFromKind Kind { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFromKind.html">RangeBoundaryFromKind</a></td>
+        <td><p>The kind of the boundary.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_Value.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L242">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_Value_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.Value*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_Value" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.Value">Value</h4>
+  <div class="markdown level1 summary"><p>The value of the boundary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Value { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The value of the boundary of <span class="xref">System.InvalidOperationException</span> if <a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html#CodeJam_Ranges_RangeBoundaryFrom_1_HasValue">HasValue</a> equals to <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown if <a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html#CodeJam_Ranges_RangeBoundaryFrom_1_HasValue">HasValue</a> equals to <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_CompareTo__0_.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.CompareTo(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L498">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_CompareTo_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.CompareTo*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_CompareTo__0_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.CompareTo(`0)">CompareTo(T)</h4>
+  <div class="markdown level1 summary"><p>Compares the current boundary with the value of another From boundary. Following order is used:
+&apos;∅&apos; &lt; &apos;-∞&apos; &lt; &apos;a)&apos; &lt; &apos;[a&apos; == &apos;a]&apos; &lt; &apos;(a&apos; &lt; &apos;+∞&apos;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CompareTo(T other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>Boundary value to compare with this.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>A value that indicates the relative order of the objects being compared.
+The return value has the following meanings:</p>
+<ul>
+<li>Less than zero This object is less than the <code data-dev-comment-type="paramref" class="paramref">other</code> parameter.</li>
+<li>Zero This object is equal to <code data-dev-comment-type="paramref" class="paramref">other</code>.</li>
+<li>Greater than zero This object is greater than <code data-dev-comment-type="paramref" class="paramref">other</code>.</li>
+</ul>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">System.IComparable&lt;T&gt;.CompareTo(T)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_CompareTo_CodeJam_Ranges_RangeBoundaryFrom__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.CompareTo(CodeJam.Ranges.RangeBoundaryFrom%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L419">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_CompareTo_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.CompareTo*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_CompareTo_CodeJam_Ranges_RangeBoundaryFrom__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.CompareTo(CodeJam.Ranges.RangeBoundaryFrom{`0})">CompareTo(RangeBoundaryFrom&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Compares the current boundary with another one. Following order is used:
+&apos;∅&apos; &lt; &apos;-∞&apos; &lt; &apos;a)&apos; &lt; &apos;[a&apos; == &apos;a]&apos; &lt; &apos;(a&apos; &lt; &apos;+∞&apos;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CompareTo(RangeBoundaryFrom&lt;T&gt; other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">other</span></td>
+        <td><p>Boundary to compare with this.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>A value that indicates the relative order of the objects being compared.
+The return value has the following meanings:</p>
+<ul>
+<li>Less than zero This object is less than the <code data-dev-comment-type="paramref" class="paramref">other</code> parameter.</li>
+<li>Zero This object is equal to <code data-dev-comment-type="paramref" class="paramref">other</code>.</li>
+<li>Greater than zero This object is greater than <code data-dev-comment-type="paramref" class="paramref">other</code>.</li>
+</ul>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">System.IComparable&lt;T&gt;.CompareTo(T)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_CompareTo_CodeJam_Ranges_RangeBoundaryTo__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.CompareTo(CodeJam.Ranges.RangeBoundaryTo%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L456">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_CompareTo_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.CompareTo*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_CompareTo_CodeJam_Ranges_RangeBoundaryTo__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.CompareTo(CodeJam.Ranges.RangeBoundaryTo{`0})">CompareTo(RangeBoundaryTo&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Compares the current boundary with another one. Following order is used:
+&apos;∅&apos; &lt; &apos;-∞&apos; &lt; &apos;a)&apos; &lt; &apos;[a&apos; == &apos;a]&apos; &lt; &apos;(a&apos; &lt; &apos;+∞&apos;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CompareTo(RangeBoundaryTo&lt;T&gt; other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryTo-1.html">RangeBoundaryTo</a>&lt;T&gt;</td>
+        <td><span class="parametername">other</span></td>
+        <td><p>Boundary to compare with this.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>A value that indicates the relative order of the objects being compared.
+The return value has the following meanings:</p>
+<ul>
+<li>Less than zero This object is less than the <code data-dev-comment-type="paramref" class="paramref">other</code> parameter.</li>
+<li>Zero This object is equal to <code data-dev-comment-type="paramref" class="paramref">other</code>.</li>
+<li>Greater than zero This object is greater than <code data-dev-comment-type="paramref" class="paramref">other</code>.</li>
+</ul>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">System.IComparable&lt;T&gt;.CompareTo(T)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_Equals_CodeJam_Ranges_RangeBoundaryFrom__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.Equals(CodeJam.Ranges.RangeBoundaryFrom%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L378">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_Equals_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.Equals*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_Equals_CodeJam_Ranges_RangeBoundaryFrom__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.Equals(CodeJam.Ranges.RangeBoundaryFrom{`0})">Equals(RangeBoundaryFrom&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Indicates whether the current boundary is equal to another.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(RangeBoundaryFrom&lt;T&gt; other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">other</span></td>
+        <td><p>The boundary to compare with this.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code> if the current boundary is equal to the <code data-dev-comment-type="paramref" class="paramref">other</code> parameter;
+otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">System.IEquatable&lt;T&gt;.Equals(T)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_Equals_System_Object_.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L388">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_Equals_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.Equals*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_Equals_System_Object_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.Equals(System.Object)">Equals(Object)</h4>
+  <div class="markdown level1 summary"><p>Indicates whether the current boundary and a specified object are equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>The object to compare with this. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code> if <code data-dev-comment-type="paramref" class="paramref">obj</code> and the current boundary are the same type
+and represent the same value; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.Equals(System.Object)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_GetComplementation.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.GetComplementation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L284">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_GetComplementation_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.GetComplementation*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_GetComplementation" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.GetComplementation">GetComplementation()</h4>
+  <div class="markdown level1 summary"><p>Returns complementation for the boundary. The conversions are:</p>
+<ul>
+<li>&apos;a]&apos; -&gt; &apos;(a&apos;</li>
+<li>&apos;[a&apos; -&gt; &apos;a)&apos;</li>
+<li>&apos;a)&apos; -&gt; &apos;[a&apos;</li>
+<li>&apos;(a&apos; -&gt; &apos;a]&apos;
+Empty or infinite boundaries will throw. Check the <a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html#CodeJam_Ranges_RangeBoundaryFrom_1_HasValue">HasValue</a>
+before calling the method.</li>
+</ul>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RangeBoundaryTo&lt;T&gt; GetComplementation()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryTo-1.html">RangeBoundaryTo</a>&lt;T&gt;</td>
+        <td><p>Complementation for the boundary.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_GetHashCode.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L393">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_GetHashCode_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.GetHashCode*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_GetHashCode" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"><p>Returns the hash code for the current boundary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>A 32-bit signed integer that is the hash code for this instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.GetHashCode()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_GetValueOrDefault.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.GetValueOrDefault%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L261">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_GetValueOrDefault_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.GetValueOrDefault*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_GetValueOrDefault" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.GetValueOrDefault">GetValueOrDefault()</h4>
+  <div class="markdown level1 summary"><p>The value of the boundary or the default(T) if <a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html#CodeJam_Ranges_RangeBoundaryFrom_1_HasValue">HasValue</a> property equals to <code>false</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetValueOrDefault()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>he value of the boundary or default(T).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_GetValueOrDefault__0_.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.GetValueOrDefault(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L269">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_GetValueOrDefault_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.GetValueOrDefault*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_GetValueOrDefault__0_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.GetValueOrDefault(`0)">GetValueOrDefault(T)</h4>
+  <div class="markdown level1 summary"><p>The value of the boundary or the <code data-dev-comment-type="paramref" class="paramref">defaultValue</code> if <a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html#CodeJam_Ranges_RangeBoundaryFrom_1_HasValue">HasValue</a> property equals to <code>false</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetValueOrDefault(T defaultValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>The default value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Value of the boundary or <code data-dev-comment-type="paramref" class="paramref">defaultValue</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_IsComplementationFor_CodeJam_Ranges_RangeBoundaryTo__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.IsComplementationFor(CodeJam.Ranges.RangeBoundaryTo%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L306">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_IsComplementationFor_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.IsComplementationFor*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_IsComplementationFor_CodeJam_Ranges_RangeBoundaryTo__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.IsComplementationFor(CodeJam.Ranges.RangeBoundaryTo{`0})">IsComplementationFor(RangeBoundaryTo&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Checks that the boundary is complementation for specified boundary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsComplementationFor(RangeBoundaryTo&lt;T&gt; other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryTo-1.html">RangeBoundaryTo</a>&lt;T&gt;</td>
+        <td><span class="parametername">other</span></td>
+        <td><p>Another boundary.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if the boundary is complementation for specified boundary.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_ToExclusive.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.ToExclusive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L357">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_ToExclusive_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.ToExclusive*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_ToExclusive" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.ToExclusive">ToExclusive()</h4>
+  <div class="markdown level1 summary"><p>Creates a new boundary with exclusive boundary kind if the current boundary has a value.
+The original boundary is returned otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RangeBoundaryFrom&lt;T&gt; ToExclusive()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><p>Range boundary with exclusive boundary kind or the original one if the boundary has no value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_ToInclusive.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.ToInclusive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L367">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_ToInclusive_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.ToInclusive*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_ToInclusive" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.ToInclusive">ToInclusive()</h4>
+  <div class="markdown level1 summary"><p>Creates a new boundary with inclusive boundary kind if the current boundary has a value.
+The original boundary is returned otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RangeBoundaryFrom&lt;T&gt; ToInclusive()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><p>Range boundary with inclusive boundary kind or the original one if the boundary has no value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_ToString.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L540">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_ToString_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.ToString*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_ToString" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Returns string representation of the boundary. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The string representation of the boundary. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.ToString()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_ToString_System_String_.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.ToString(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L574">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_ToString_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.ToString*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_ToString_System_String_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.ToString(System.String)">ToString(String)</h4>
+  <div class="markdown level1 summary"><p>Returns string representation of the boundary using the specified format string.
+If <code data-dev-comment-type="typeparamref" class="typeparamref">T</code> does not implement <span class="xref">System.IFormattable</span> the format string is ignored</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToString(string format)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">format</span></td>
+        <td><p>The format string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The string representation of the boundary. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_ToString_System_String_System_IFormatProvider_.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.ToString(System.String%2CSystem.IFormatProvider)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L584">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_ToString_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.ToString*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_ToString_System_String_System_IFormatProvider_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.ToString(System.String,System.IFormatProvider)">ToString(String, IFormatProvider)</h4>
+  <div class="markdown level1 summary"><p>Returns string representation of the boundary using the specified format string.
+If <code data-dev-comment-type="typeparamref" class="typeparamref">T</code> does not implement <span class="xref">System.IFormattable</span> the format string is ignored</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToString(string format, IFormatProvider formatProvider)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">format</span></td>
+        <td><p>The format string</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">formatProvider</span></td>
+        <td><p>The format provider</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The string representation of the boundary. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">System.IFormattable.ToString(System.String, System.IFormatProvider)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_WithValue_System_Func__0__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.WithValue(System.Func%7B%600%2C%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L315">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_WithValue_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.WithValue*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_WithValue_System_Func__0__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.WithValue(System.Func{`0,`0})">WithValue(Func&lt;T, T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a new boundary with updated value (if the current boundary has one).
+If the boundary has no value the method returns the boundary unchanged.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RangeBoundaryFrom&lt;T&gt; WithValue(Func&lt;T, T&gt; newValueSelector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, T&gt;</td>
+        <td><span class="parametername">newValueSelector</span></td>
+        <td><p>Callback to obtain a new value for the boundary. Used if the boundary has a value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><p>Range boundary with the same kind but with a new value (if the current boundary has one).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_WithValue__1_System_Func__0___0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.WithValue%60%601(System.Func%7B%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L335">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_WithValue_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.WithValue*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_WithValue__1_System_Func__0___0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.WithValue``1(System.Func{`0,``0})">WithValue&lt;T2&gt;(Func&lt;T, T2&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a new boundary with updated value (if the current boundary has one).
+If the boundary has no value the method returns the boundary unchanged.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RangeBoundaryFrom&lt;T2&gt; WithValue&lt;T2&gt;(Func&lt;T, T2&gt; newValueSelector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, T2&gt;</td>
+        <td><span class="parametername">newValueSelector</span></td>
+        <td><p>Callback to obtain a new value for the boundary. Used if the boundary has a value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T2&gt;</td>
+        <td><p>Range boundary with the same kind but with a new value (if the current boundary has one).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T2</span></td>
+        <td><p>The new type of the range value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_Equality_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryFrom__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_Equality(CodeJam.Ranges.RangeBoundaryFrom%7B%600%7D%2CCodeJam.Ranges.RangeBoundaryFrom%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L26">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_Equality_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_Equality*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_Equality_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryFrom__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_Equality(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryFrom{`0})">Equality(RangeBoundaryFrom&lt;T&gt;, RangeBoundaryFrom&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator ==.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(RangeBoundaryFrom&lt;T&gt; boundary1, RangeBoundaryFrom&lt;T&gt; boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 == boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThan__0_CodeJam_Ranges_RangeBoundaryFrom__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_GreaterThan(%600%2CCodeJam.Ranges.RangeBoundaryFrom%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L68">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThan_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_GreaterThan*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThan__0_CodeJam_Ranges_RangeBoundaryFrom__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_GreaterThan(`0,CodeJam.Ranges.RangeBoundaryFrom{`0})">GreaterThan(T, RangeBoundaryFrom&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator &gt;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator&gt;(T boundary1, RangeBoundaryFrom&lt;T&gt; boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The value of the boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 &gt; boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThan_CodeJam_Ranges_RangeBoundaryFrom__0___0_.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_GreaterThan(CodeJam.Ranges.RangeBoundaryFrom%7B%600%7D%2C%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L60">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThan_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_GreaterThan*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThan_CodeJam_Ranges_RangeBoundaryFrom__0___0_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_GreaterThan(CodeJam.Ranges.RangeBoundaryFrom{`0},`0)">GreaterThan(RangeBoundaryFrom&lt;T&gt;, T)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator &gt;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator&gt;(RangeBoundaryFrom&lt;T&gt; boundary1, T boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The value of the boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 &gt; boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThan_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryFrom__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_GreaterThan(CodeJam.Ranges.RangeBoundaryFrom%7B%600%7D%2CCodeJam.Ranges.RangeBoundaryFrom%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L44">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThan_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_GreaterThan*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThan_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryFrom__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_GreaterThan(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryFrom{`0})">GreaterThan(RangeBoundaryFrom&lt;T&gt;, RangeBoundaryFrom&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator &gt;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator&gt;(RangeBoundaryFrom&lt;T&gt; boundary1, RangeBoundaryFrom&lt;T&gt; boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 &gt; boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThan_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryTo__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_GreaterThan(CodeJam.Ranges.RangeBoundaryFrom%7B%600%7D%2CCodeJam.Ranges.RangeBoundaryTo%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L52">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThan_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_GreaterThan*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThan_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryTo__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_GreaterThan(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryTo{`0})">GreaterThan(RangeBoundaryFrom&lt;T&gt;, RangeBoundaryTo&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator &gt;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator&gt;(RangeBoundaryFrom&lt;T&gt; boundary1, RangeBoundaryTo&lt;T&gt; boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryTo-1.html">RangeBoundaryTo</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 &gt; boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThanOrEqual__0_CodeJam_Ranges_RangeBoundaryFrom__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_GreaterThanOrEqual(%600%2CCodeJam.Ranges.RangeBoundaryFrom%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L100">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThanOrEqual_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_GreaterThanOrEqual*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThanOrEqual__0_CodeJam_Ranges_RangeBoundaryFrom__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_GreaterThanOrEqual(`0,CodeJam.Ranges.RangeBoundaryFrom{`0})">GreaterThanOrEqual(T, RangeBoundaryFrom&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator &gt;=.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;=(T boundary1, RangeBoundaryFrom&lt;T&gt; boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The value of the boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 &gt;= boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThanOrEqual_CodeJam_Ranges_RangeBoundaryFrom__0___0_.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_GreaterThanOrEqual(CodeJam.Ranges.RangeBoundaryFrom%7B%600%7D%2C%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L92">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThanOrEqual_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_GreaterThanOrEqual*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThanOrEqual_CodeJam_Ranges_RangeBoundaryFrom__0___0_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_GreaterThanOrEqual(CodeJam.Ranges.RangeBoundaryFrom{`0},`0)">GreaterThanOrEqual(RangeBoundaryFrom&lt;T&gt;, T)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator &gt;=.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;=(RangeBoundaryFrom&lt;T&gt; boundary1, T boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The value of the boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 &gt;= boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThanOrEqual_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryFrom__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_GreaterThanOrEqual(CodeJam.Ranges.RangeBoundaryFrom%7B%600%7D%2CCodeJam.Ranges.RangeBoundaryFrom%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L76">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThanOrEqual_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_GreaterThanOrEqual*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThanOrEqual_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryFrom__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_GreaterThanOrEqual(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryFrom{`0})">GreaterThanOrEqual(RangeBoundaryFrom&lt;T&gt;, RangeBoundaryFrom&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator &gt;=.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;=(RangeBoundaryFrom&lt;T&gt; boundary1, RangeBoundaryFrom&lt;T&gt; boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 &gt;= boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThanOrEqual_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryTo__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_GreaterThanOrEqual(CodeJam.Ranges.RangeBoundaryFrom%7B%600%7D%2CCodeJam.Ranges.RangeBoundaryTo%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L84">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThanOrEqual_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_GreaterThanOrEqual*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_GreaterThanOrEqual_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryTo__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_GreaterThanOrEqual(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryTo{`0})">GreaterThanOrEqual(RangeBoundaryFrom&lt;T&gt;, RangeBoundaryTo&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator &gt;=.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;=(RangeBoundaryFrom&lt;T&gt; boundary1, RangeBoundaryTo&lt;T&gt; boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryTo-1.html">RangeBoundaryTo</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 &gt;= boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_Inequality_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryFrom__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_Inequality(CodeJam.Ranges.RangeBoundaryFrom%7B%600%7D%2CCodeJam.Ranges.RangeBoundaryFrom%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L34">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_Inequality_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_Inequality*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_Inequality_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryFrom__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_Inequality(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryFrom{`0})">Inequality(RangeBoundaryFrom&lt;T&gt;, RangeBoundaryFrom&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator !=.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(RangeBoundaryFrom&lt;T&gt; boundary1, RangeBoundaryFrom&lt;T&gt; boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 != boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThan__0_CodeJam_Ranges_RangeBoundaryFrom__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_LessThan(%600%2CCodeJam.Ranges.RangeBoundaryFrom%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L132">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThan_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_LessThan*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThan__0_CodeJam_Ranges_RangeBoundaryFrom__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_LessThan(`0,CodeJam.Ranges.RangeBoundaryFrom{`0})">LessThan(T, RangeBoundaryFrom&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator &lt;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;(T boundary1, RangeBoundaryFrom&lt;T&gt; boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The value of the boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 &lt; boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThan_CodeJam_Ranges_RangeBoundaryFrom__0___0_.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_LessThan(CodeJam.Ranges.RangeBoundaryFrom%7B%600%7D%2C%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L124">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThan_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_LessThan*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThan_CodeJam_Ranges_RangeBoundaryFrom__0___0_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_LessThan(CodeJam.Ranges.RangeBoundaryFrom{`0},`0)">LessThan(RangeBoundaryFrom&lt;T&gt;, T)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator &lt;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;(RangeBoundaryFrom&lt;T&gt; boundary1, T boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The value of the boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 &lt; boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThan_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryFrom__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_LessThan(CodeJam.Ranges.RangeBoundaryFrom%7B%600%7D%2CCodeJam.Ranges.RangeBoundaryFrom%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L108">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThan_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_LessThan*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThan_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryFrom__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_LessThan(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryFrom{`0})">LessThan(RangeBoundaryFrom&lt;T&gt;, RangeBoundaryFrom&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator &lt;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;(RangeBoundaryFrom&lt;T&gt; boundary1, RangeBoundaryFrom&lt;T&gt; boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 &lt; boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThan_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryTo__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_LessThan(CodeJam.Ranges.RangeBoundaryFrom%7B%600%7D%2CCodeJam.Ranges.RangeBoundaryTo%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L116">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThan_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_LessThan*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThan_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryTo__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_LessThan(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryTo{`0})">LessThan(RangeBoundaryFrom&lt;T&gt;, RangeBoundaryTo&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator &lt;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;(RangeBoundaryFrom&lt;T&gt; boundary1, RangeBoundaryTo&lt;T&gt; boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryTo-1.html">RangeBoundaryTo</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 &lt; boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThanOrEqual__0_CodeJam_Ranges_RangeBoundaryFrom__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_LessThanOrEqual(%600%2CCodeJam.Ranges.RangeBoundaryFrom%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L164">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThanOrEqual_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_LessThanOrEqual*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThanOrEqual__0_CodeJam_Ranges_RangeBoundaryFrom__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_LessThanOrEqual(`0,CodeJam.Ranges.RangeBoundaryFrom{`0})">LessThanOrEqual(T, RangeBoundaryFrom&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator &lt;=.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;=(T boundary1, RangeBoundaryFrom&lt;T&gt; boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The value of the boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 &lt;= boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThanOrEqual_CodeJam_Ranges_RangeBoundaryFrom__0___0_.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_LessThanOrEqual(CodeJam.Ranges.RangeBoundaryFrom%7B%600%7D%2C%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L156">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThanOrEqual_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_LessThanOrEqual*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThanOrEqual_CodeJam_Ranges_RangeBoundaryFrom__0___0_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_LessThanOrEqual(CodeJam.Ranges.RangeBoundaryFrom{`0},`0)">LessThanOrEqual(RangeBoundaryFrom&lt;T&gt;, T)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator &lt;=.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;=(RangeBoundaryFrom&lt;T&gt; boundary1, T boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The value of the boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 &lt;= boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThanOrEqual_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryFrom__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_LessThanOrEqual(CodeJam.Ranges.RangeBoundaryFrom%7B%600%7D%2CCodeJam.Ranges.RangeBoundaryFrom%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L140">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThanOrEqual_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_LessThanOrEqual*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThanOrEqual_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryFrom__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_LessThanOrEqual(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryFrom{`0})">LessThanOrEqual(RangeBoundaryFrom&lt;T&gt;, RangeBoundaryFrom&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator &lt;=.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;=(RangeBoundaryFrom&lt;T&gt; boundary1, RangeBoundaryFrom&lt;T&gt; boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 &lt;= boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThanOrEqual_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryTo__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.op_LessThanOrEqual(CodeJam.Ranges.RangeBoundaryFrom%7B%600%7D%2CCodeJam.Ranges.RangeBoundaryTo%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundary.Operators.generated.cs/#L148">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThanOrEqual_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_LessThanOrEqual*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_op_LessThanOrEqual_CodeJam_Ranges_RangeBoundaryFrom__0__CodeJam_Ranges_RangeBoundaryTo__0__" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.op_LessThanOrEqual(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryTo{`0})">LessThanOrEqual(RangeBoundaryFrom&lt;T&gt;, RangeBoundaryTo&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator &lt;=.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;=(RangeBoundaryFrom&lt;T&gt; boundary1, RangeBoundaryTo&lt;T&gt; boundary2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryFrom-1.html">RangeBoundaryFrom</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary1</span></td>
+        <td><p>The boundary1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.RangeBoundaryTo-1.html">RangeBoundaryTo</a>&lt;T&gt;</td>
+        <td><span class="parametername">boundary2</span></td>
+        <td><p>The boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if boundary1 &lt;= boundary2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1_System_IComparable_CompareTo_System_Object_.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601.System%23IComparable%23CompareTo(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L517">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_RangeBoundaryFrom_1_System_IComparable_CompareTo_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.System#IComparable#CompareTo*"></a>
+  <h4 id="CodeJam_Ranges_RangeBoundaryFrom_1_System_IComparable_CompareTo_System_Object_" data-uid="CodeJam.Ranges.RangeBoundaryFrom`1.System#IComparable#CompareTo(System.Object)">IComparable.CompareTo(Object)</h4>
+  <div class="markdown level1 summary"><p>Compares the current boundary with the boundary or with the value of another boundary of the same kind. Following order is used:
+&apos;∅&apos; &lt; &apos;-∞&apos; &lt; &apos;a)&apos; &lt; &apos;[a&apos; == &apos;a]&apos; &lt; &apos;(a&apos; &lt; &apos;+∞&apos;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int IComparable.CompareTo(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>An object to compare with this object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>A value that indicates the relative order of the objects being compared.
+The return value has the following meanings:</p>
+<ul>
+<li>Less than zero This object is less than the <code data-dev-comment-type="paramref" class="paramref">obj</code> parameter.</li>
+<li>Zero This object is equal to <code data-dev-comment-type="paramref" class="paramref">obj</code>.</li>
+<li>Greater than zero This object is greater than <code data-dev-comment-type="paramref" class="paramref">obj</code>.</li>
+</ul>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">System.IComparable.CompareTo(System.Object)</span></div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="CodeJam.NullableHelper.html#CodeJam_NullableHelper_AsNullable__1___0_">NullableHelper.AsNullable&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_Contains__2___1_CodeJam_Ranges_Range___0__">RangeExtensions.Contains&lt;T, TRange&gt;(TRange, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_StartsAfter__2___1_CodeJam_Ranges_Range___0__">RangeExtensions.StartsAfter&lt;T, TRange&gt;(TRange, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_EndsBefore__2___1_CodeJam_Ranges_Range___0__">RangeExtensions.EndsBefore&lt;T, TRange&gt;(TRange, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_Contains__3___2_CodeJam_Ranges_Range___0___1__">RangeExtensions.Contains&lt;T, TKey, TRange&gt;(TRange, Range&lt;T, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_StartsAfter__3___2_CodeJam_Ranges_Range___0___1__">RangeExtensions.StartsAfter&lt;T, TKey, TRange&gt;(TRange, Range&lt;T, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_EndsBefore__3___2_CodeJam_Ranges_Range___0___1__">RangeExtensions.EndsBefore&lt;T, TKey, TRange&gt;(TRange, Range&lt;T, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Strings.StringExtensions.html#CodeJam_Strings_StringExtensions_ToInvariantString__1___0_">StringExtensions.ToInvariantString&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Strings.StringExtensions.html#CodeJam_Strings_StringExtensions_ToInvariantString__1___0_System_String_">StringExtensions.ToInvariantString&lt;T&gt;(T, String)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_RangeBoundaryFrom_1.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.RangeBoundaryFrom%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Boundaries]/RangeBoundaryFrom`1.cs/#L26" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

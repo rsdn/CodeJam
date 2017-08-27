@@ -1,0 +1,1121 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Struct CompositeRange&lt;T&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Struct CompositeRange&lt;T&gt;
+   ">
+    <meta name="generator" content="docfx 2.23.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CodeJam.Ranges.CompositeRange`1">
+  
+  
+  <h1 id="CodeJam_Ranges_CompositeRange_1" data-uid="CodeJam.Ranges.CompositeRange`1" class="text-break">Struct CompositeRange&lt;T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>Describes a composite range that contains some subranges.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CodeJam.Ranges.html">CodeJam.Ranges</a></h6>
+  <h6><strong>Assembly</strong>: CodeJam.dll</h6>
+  <h5 id="CodeJam_Ranges_CompositeRange_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct CompositeRange&lt;T&gt; : IEquatable&lt;CompositeRange&lt;T&gt;&gt;, IFormattable, ICompositeRange&lt;T&gt;</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the value. Should implement <span class="xref">System.IComparable&lt;T&gt;</span> or <span class="xref">System.IComparable</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1__ctor_CodeJam_Ranges_Range__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.%23ctor(CodeJam.Ranges.Range%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.cs/#L164">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1__ctor_" data-uid="CodeJam.Ranges.CompositeRange`1.#ctor*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1__ctor_CodeJam_Ranges_Range__0__" data-uid="CodeJam.Ranges.CompositeRange`1.#ctor(CodeJam.Ranges.Range{`0})">CompositeRange(Range&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates instance of <a class="xref" href="CodeJam.Ranges.CompositeRange-1.html">CompositeRange&lt;T&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CompositeRange(Range&lt;T&gt; range)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.Range-1.html">Range</a>&lt;T&gt;</td>
+        <td><span class="parametername">range</span></td>
+        <td><p>Contained range.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1__ctor_System_Collections_Generic_IEnumerable_CodeJam_Ranges_Range__0___.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.%23ctor(System.Collections.Generic.IEnumerable%7BCodeJam.Ranges.Range%7B%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.cs/#L159">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1__ctor_" data-uid="CodeJam.Ranges.CompositeRange`1.#ctor*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1__ctor_System_Collections_Generic_IEnumerable_CodeJam_Ranges_Range__0___" data-uid="CodeJam.Ranges.CompositeRange`1.#ctor(System.Collections.Generic.IEnumerable{CodeJam.Ranges.Range{`0}})">CompositeRange(IEnumerable&lt;Range&lt;T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates instance of <a class="xref" href="CodeJam.Ranges.CompositeRange-1.html">CompositeRange&lt;T&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CompositeRange(IEnumerable&lt;Range&lt;T&gt;&gt; ranges)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="CodeJam.Ranges.Range-1.html">Range</a>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">ranges</span></td>
+        <td><p>Contained ranges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_Empty.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.Empty%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.cs/#L140">View Source</a>
+  </span>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_Empty" data-uid="CodeJam.Ranges.CompositeRange`1.Empty">Empty</h4>
+  <div class="markdown level1 summary"><p>Empty range, ∅</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly CompositeRange&lt;T&gt; Empty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.CompositeRange-1.html">CompositeRange</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_Infinite.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.Infinite%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.cs/#L143">View Source</a>
+  </span>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_Infinite" data-uid="CodeJam.Ranges.CompositeRange`1.Infinite">Infinite</h4>
+  <div class="markdown level1 summary"><p>Infinite range, (-∞..+∞)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly CompositeRange&lt;T&gt; Infinite</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.CompositeRange-1.html">CompositeRange</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_ContainingRange.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.ContainingRange%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.cs/#L243">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1_ContainingRange_" data-uid="CodeJam.Ranges.CompositeRange`1.ContainingRange*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_ContainingRange" data-uid="CodeJam.Ranges.CompositeRange`1.ContainingRange">ContainingRange</h4>
+  <div class="markdown level1 summary"><p>Range that contains all subranges.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Range&lt;T&gt; ContainingRange { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.Range-1.html">Range</a>&lt;T&gt;</td>
+        <td><p>The containing range.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CodeJam.Ranges.ICompositeRange-1.html#CodeJam_Ranges_ICompositeRange_1_ContainingRange">ICompositeRange&lt;T&gt;.ContainingRange</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_IsEmpty.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.IsEmpty%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.cs/#L229">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1_IsEmpty_" data-uid="CodeJam.Ranges.CompositeRange`1.IsEmpty*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_IsEmpty" data-uid="CodeJam.Ranges.CompositeRange`1.IsEmpty">IsEmpty</h4>
+  <div class="markdown level1 summary"><p>The composite range is empty, ∅.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsEmpty { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the range is empty; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CodeJam.Ranges.ICompositeRange-1.html#CodeJam_Ranges_ICompositeRange_1_IsEmpty">ICompositeRange&lt;T&gt;.IsEmpty</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_IsMerged.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.IsMerged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.cs/#L225">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1_IsMerged_" data-uid="CodeJam.Ranges.CompositeRange`1.IsMerged*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_IsMerged" data-uid="CodeJam.Ranges.CompositeRange`1.IsMerged">IsMerged</h4>
+  <div class="markdown level1 summary"><p>The composite range cannot be simplified anymore. Subranges do not intersect and start one exactly after another.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsMerged { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if all subranges are merged already; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_IsNotEmpty.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.IsNotEmpty%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.cs/#L233">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1_IsNotEmpty_" data-uid="CodeJam.Ranges.CompositeRange`1.IsNotEmpty*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_IsNotEmpty" data-uid="CodeJam.Ranges.CompositeRange`1.IsNotEmpty">IsNotEmpty</h4>
+  <div class="markdown level1 summary"><p>The composite range is NOT empty, ≠ ∅</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsNotEmpty { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the range is not empty; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CodeJam.Ranges.ICompositeRange-1.html#CodeJam_Ranges_ICompositeRange_1_IsNotEmpty">ICompositeRange&lt;T&gt;.IsNotEmpty</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_SubRanges.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.SubRanges%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.cs/#L237">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1_SubRanges_" data-uid="CodeJam.Ranges.CompositeRange`1.SubRanges*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_SubRanges" data-uid="CodeJam.Ranges.CompositeRange`1.SubRanges">SubRanges</h4>
+  <div class="markdown level1 summary"><p>Collection of subranges.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlyCollection&lt;Range&lt;T&gt;&gt; SubRanges { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.ObjectModel.ReadOnlyCollection</span>&lt;<a class="xref" href="CodeJam.Ranges.Range-1.html">Range</a>&lt;T&gt;&gt;</td>
+        <td><p>The collection of subranges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_Equals_CodeJam_Ranges_CompositeRange__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.Equals(CodeJam.Ranges.CompositeRange%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.NonGenerated.cs/#L82">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1_Equals_" data-uid="CodeJam.Ranges.CompositeRange`1.Equals*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_Equals_CodeJam_Ranges_CompositeRange__0__" data-uid="CodeJam.Ranges.CompositeRange`1.Equals(CodeJam.Ranges.CompositeRange{`0})">Equals(CompositeRange&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Indicates whether the current range is equal to another.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(CompositeRange&lt;T&gt; other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.CompositeRange-1.html">CompositeRange</a>&lt;T&gt;</td>
+        <td><span class="parametername">other</span></td>
+        <td><p>A range to compare with this.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code> if the current range is equal to the <code data-dev-comment-type="paramref" class="paramref">other</code> parameter;
+otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">System.IEquatable&lt;T&gt;.Equals(T)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_Equals_System_Object_.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.NonGenerated.cs/#L111">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1_Equals_" data-uid="CodeJam.Ranges.CompositeRange`1.Equals*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_Equals_System_Object_" data-uid="CodeJam.Ranges.CompositeRange`1.Equals(System.Object)">Equals(Object)</h4>
+  <div class="markdown level1 summary"><p>Indicates whether the current range and a specified object are equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>The object to compare with this. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code> if <code data-dev-comment-type="paramref" class="paramref">obj</code> and the current range are the same type
+and represent the same value; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.Equals(System.Object)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_GetHashCode.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.NonGenerated.cs/#L116">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1_GetHashCode_" data-uid="CodeJam.Ranges.CompositeRange`1.GetHashCode*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_GetHashCode" data-uid="CodeJam.Ranges.CompositeRange`1.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"><p>Returns a hash code for the current range.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>A 32-bit signed integer that is the hash code for this instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.GetHashCode()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_Merge.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.Merge%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.NonGenerated.cs/#L63">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1_Merge_" data-uid="CodeJam.Ranges.CompositeRange`1.Merge*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_Merge" data-uid="CodeJam.Ranges.CompositeRange`1.Merge">Merge()</h4>
+  <div class="markdown level1 summary"><p>Returns simplified composite range. Adjacent ranges with same keys will be merged.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CompositeRange&lt;T&gt; Merge()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.CompositeRange-1.html">CompositeRange</a>&lt;T&gt;</td>
+        <td><p>Simplified composite range.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_ToString.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.cs/#L251">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1_ToString_" data-uid="CodeJam.Ranges.CompositeRange`1.ToString*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_ToString" data-uid="CodeJam.Ranges.CompositeRange`1.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Returns string representation of the range.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The string representation of the range.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.ToString()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_ToString_System_IFormatProvider_.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.ToString(System.IFormatProvider)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.cs/#L284">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1_ToString_" data-uid="CodeJam.Ranges.CompositeRange`1.ToString*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_ToString_System_IFormatProvider_" data-uid="CodeJam.Ranges.CompositeRange`1.ToString(System.IFormatProvider)">ToString(IFormatProvider)</h4>
+  <div class="markdown level1 summary"><p>Returns string representation of the range using the specified format string.
+If <code data-dev-comment-type="typeparamref" class="typeparamref">T</code> does not implement <span class="xref">System.IFormattable</span> the format string is ignored.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToString(IFormatProvider formatProvider)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">formatProvider</span></td>
+        <td><p>The format provider.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The string representation of the range.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_ToString_System_String_.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.ToString(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.cs/#L275">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1_ToString_" data-uid="CodeJam.Ranges.CompositeRange`1.ToString*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_ToString_System_String_" data-uid="CodeJam.Ranges.CompositeRange`1.ToString(System.String)">ToString(String)</h4>
+  <div class="markdown level1 summary"><p>Returns string representation of the range using the specified format string.
+If <code data-dev-comment-type="typeparamref" class="typeparamref">T</code> does not implement <span class="xref">System.IFormattable</span> the format string is ignored.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToString(string format)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">format</span></td>
+        <td><p>The format string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The string representation of the range.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_ToString_System_String_System_IFormatProvider_.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.ToString(System.String%2CSystem.IFormatProvider)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.cs/#L294">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1_ToString_" data-uid="CodeJam.Ranges.CompositeRange`1.ToString*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_ToString_System_String_System_IFormatProvider_" data-uid="CodeJam.Ranges.CompositeRange`1.ToString(System.String,System.IFormatProvider)">ToString(String, IFormatProvider)</h4>
+  <div class="markdown level1 summary"><p>Returns string representation of the range using the specified format string.
+If <code data-dev-comment-type="typeparamref" class="typeparamref">T</code> does not implement <span class="xref">System.IFormattable</span> the format string is ignored.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToString(string format, IFormatProvider formatProvider)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">format</span></td>
+        <td><p>The format string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">formatProvider</span></td>
+        <td><p>The format provider.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The string representation of the range.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">System.IFormattable.ToString(System.String, System.IFormatProvider)</span></div>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_op_Equality_CodeJam_Ranges_CompositeRange__0__CodeJam_Ranges_CompositeRange__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.op_Equality(CodeJam.Ranges.CompositeRange%7B%600%7D%2CCodeJam.Ranges.CompositeRange%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.cs/#L69">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1_op_Equality_" data-uid="CodeJam.Ranges.CompositeRange`1.op_Equality*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_op_Equality_CodeJam_Ranges_CompositeRange__0__CodeJam_Ranges_CompositeRange__0__" data-uid="CodeJam.Ranges.CompositeRange`1.op_Equality(CodeJam.Ranges.CompositeRange{`0},CodeJam.Ranges.CompositeRange{`0})">Equality(CompositeRange&lt;T&gt;, CompositeRange&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator ==.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(CompositeRange&lt;T&gt; range1, CompositeRange&lt;T&gt; range2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.CompositeRange-1.html">CompositeRange</a>&lt;T&gt;</td>
+        <td><span class="parametername">range1</span></td>
+        <td><p>The range1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.CompositeRange-1.html">CompositeRange</a>&lt;T&gt;</td>
+        <td><span class="parametername">range2</span></td>
+        <td><p>The range2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if ranges are equal.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_op_Inequality_CodeJam_Ranges_CompositeRange__0__CodeJam_Ranges_CompositeRange__0__.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.op_Inequality(CodeJam.Ranges.CompositeRange%7B%600%7D%2CCodeJam.Ranges.CompositeRange%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.cs/#L76">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1_op_Inequality_" data-uid="CodeJam.Ranges.CompositeRange`1.op_Inequality*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_op_Inequality_CodeJam_Ranges_CompositeRange__0__CodeJam_Ranges_CompositeRange__0__" data-uid="CodeJam.Ranges.CompositeRange`1.op_Inequality(CodeJam.Ranges.CompositeRange{`0},CodeJam.Ranges.CompositeRange{`0})">Inequality(CompositeRange&lt;T&gt;, CompositeRange&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Implements the operator !=.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(CompositeRange&lt;T&gt; range1, CompositeRange&lt;T&gt; range2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.CompositeRange-1.html">CompositeRange</a>&lt;T&gt;</td>
+        <td><span class="parametername">range1</span></td>
+        <td><p>The range1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Ranges.CompositeRange-1.html">CompositeRange</a>&lt;T&gt;</td>
+        <td><span class="parametername">range2</span></td>
+        <td><p>The range2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>True</code>, if ranges are not equal.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1_CodeJam_Ranges_ICompositeRange_T__GetMergedRanges.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601.CodeJam%23Ranges%23ICompositeRange%7BT%7D%23GetMergedRanges%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.NonGenerated.cs/#L18">View Source</a>
+  </span>
+  <a id="CodeJam_Ranges_CompositeRange_1_CodeJam_Ranges_ICompositeRange_T__GetMergedRanges_" data-uid="CodeJam.Ranges.CompositeRange`1.CodeJam#Ranges#ICompositeRange{T}#GetMergedRanges*"></a>
+  <h4 id="CodeJam_Ranges_CompositeRange_1_CodeJam_Ranges_ICompositeRange_T__GetMergedRanges" data-uid="CodeJam.Ranges.CompositeRange`1.CodeJam#Ranges#ICompositeRange{T}#GetMergedRanges">ICompositeRange&lt;T&gt;.GetMergedRanges()</h4>
+  <div class="markdown level1 summary"><p>Returns a sequence of merged subranges. Should be used for operations over the ranges.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;Range&lt;T&gt;&gt; ICompositeRange&lt;T&gt;.GetMergedRanges()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="CodeJam.Ranges.Range-1.html">Range</a>&lt;T&gt;&gt;</td>
+        <td><p>A sequence of merged subranges</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CodeJam.Ranges.ICompositeRange-1.html#CodeJam_Ranges_ICompositeRange_1_GetMergedRanges">ICompositeRange&lt;T&gt;.GetMergedRanges()</a></div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="CodeJam.NullableHelper.html#CodeJam_NullableHelper_AsNullable__1___0_">NullableHelper.AsNullable&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_WithKeys__2_CodeJam_Ranges_CompositeRange___0____1_">CompositeRangeExtensions.WithKeys&lt;T, TKey2&gt;(CompositeRange&lt;T&gt;, TKey2)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_GetComplementation__1_CodeJam_Ranges_CompositeRange___0__">CompositeRangeExtensions.GetComplementation&lt;T&gt;(CompositeRange&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_MakeInclusive__1_CodeJam_Ranges_CompositeRange___0__System_Func___0___0__System_Func___0___0__">CompositeRangeExtensions.MakeInclusive&lt;T&gt;(CompositeRange&lt;T&gt;, Func&lt;T, T&gt;, Func&lt;T, T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_MakeExclusive__1_CodeJam_Ranges_CompositeRange___0__System_Func___0___0__System_Func___0___0__">CompositeRangeExtensions.MakeExclusive&lt;T&gt;(CompositeRange&lt;T&gt;, Func&lt;T, T&gt;, Func&lt;T, T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_WithValues__2_CodeJam_Ranges_CompositeRange___0__System_Func___0___1__">CompositeRangeExtensions.WithValues&lt;T, T2&gt;(CompositeRange&lt;T&gt;, Func&lt;T, T2&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_WithValues__2_CodeJam_Ranges_CompositeRange___0__System_Func___0___1__System_Func___0___1__">CompositeRangeExtensions.WithValues&lt;T, T2&gt;(CompositeRange&lt;T&gt;, Func&lt;T, T2&gt;, Func&lt;T, T2&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_GetIntersections__1_CodeJam_Ranges_CompositeRange___0__">CompositeRangeExtensions.GetIntersections&lt;T&gt;(CompositeRange&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_GetIntersection__1_CodeJam_Ranges_CompositeRange___0____0_">CompositeRangeExtensions.GetIntersection&lt;T&gt;(CompositeRange&lt;T&gt;, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_GetIntersection__1_CodeJam_Ranges_CompositeRange___0____0___0_">CompositeRangeExtensions.GetIntersection&lt;T&gt;(CompositeRange&lt;T&gt;, T, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_GetIntersection__1_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_Range___0__">CompositeRangeExtensions.GetIntersection&lt;T&gt;(CompositeRange&lt;T&gt;, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_GetIntersection__2_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_Range___0___1__">CompositeRangeExtensions.GetIntersection&lt;T, TKey2&gt;(CompositeRange&lt;T&gt;, Range&lt;T, TKey2&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Contains__1_CodeJam_Ranges_CompositeRange___0____0_">CompositeRangeExtensions.Contains&lt;T&gt;(CompositeRange&lt;T&gt;, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Contains__1_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_RangeBoundaryFrom___0__">CompositeRangeExtensions.Contains&lt;T&gt;(CompositeRange&lt;T&gt;, RangeBoundaryFrom&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Contains__1_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_RangeBoundaryTo___0__">CompositeRangeExtensions.Contains&lt;T&gt;(CompositeRange&lt;T&gt;, RangeBoundaryTo&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Contains__1_CodeJam_Ranges_CompositeRange___0____0___0_">CompositeRangeExtensions.Contains&lt;T&gt;(CompositeRange&lt;T&gt;, T, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Contains__1_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_Range___0__">CompositeRangeExtensions.Contains&lt;T&gt;(CompositeRange&lt;T&gt;, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Contains__2_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_Range___0___1__">CompositeRangeExtensions.Contains&lt;T, TKey2&gt;(CompositeRange&lt;T&gt;, Range&lt;T, TKey2&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Contains__2_CodeJam_Ranges_CompositeRange___0____1_">CompositeRangeExtensions.Contains&lt;T, TCompositeRange&gt;(CompositeRange&lt;T&gt;, TCompositeRange)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_HasIntersection__1_CodeJam_Ranges_CompositeRange___0____0___0_">CompositeRangeExtensions.HasIntersection&lt;T&gt;(CompositeRange&lt;T&gt;, T, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_HasIntersection__1_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_Range___0__">CompositeRangeExtensions.HasIntersection&lt;T&gt;(CompositeRange&lt;T&gt;, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_HasIntersection__2_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_Range___0___1__">CompositeRangeExtensions.HasIntersection&lt;T, TKey2&gt;(CompositeRange&lt;T&gt;, Range&lt;T, TKey2&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_HasIntersection__2_CodeJam_Ranges_CompositeRange___0____1_">CompositeRangeExtensions.HasIntersection&lt;T, TCompositeRange&gt;(CompositeRange&lt;T&gt;, TCompositeRange)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Union__1_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_Range___0__">CompositeRangeExtensions.Union&lt;T&gt;(CompositeRange&lt;T&gt;, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Union__1_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_CompositeRange___0__">CompositeRangeExtensions.Union&lt;T&gt;(CompositeRange&lt;T&gt;, CompositeRange&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_ExtendFrom__1_CodeJam_Ranges_CompositeRange___0____0_">CompositeRangeExtensions.ExtendFrom&lt;T&gt;(CompositeRange&lt;T&gt;, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_ExtendFrom__1_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_RangeBoundaryFrom___0__">CompositeRangeExtensions.ExtendFrom&lt;T&gt;(CompositeRange&lt;T&gt;, RangeBoundaryFrom&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_ExtendTo__1_CodeJam_Ranges_CompositeRange___0____0_">CompositeRangeExtensions.ExtendTo&lt;T&gt;(CompositeRange&lt;T&gt;, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_ExtendTo__1_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_RangeBoundaryTo___0__">CompositeRangeExtensions.ExtendTo&lt;T&gt;(CompositeRange&lt;T&gt;, RangeBoundaryTo&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Intersect__1_CodeJam_Ranges_CompositeRange___0____0___0_">CompositeRangeExtensions.Intersect&lt;T&gt;(CompositeRange&lt;T&gt;, T, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Intersect__1_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_Range___0__">CompositeRangeExtensions.Intersect&lt;T&gt;(CompositeRange&lt;T&gt;, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Intersect__2_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_Range___0___1__">CompositeRangeExtensions.Intersect&lt;T, TKey2&gt;(CompositeRange&lt;T&gt;, Range&lt;T, TKey2&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Intersect__2_CodeJam_Ranges_CompositeRange___0____1_">CompositeRangeExtensions.Intersect&lt;T, TCompositeRange&gt;(CompositeRange&lt;T&gt;, TCompositeRange)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_TrimFrom__1_CodeJam_Ranges_CompositeRange___0____0_">CompositeRangeExtensions.TrimFrom&lt;T&gt;(CompositeRange&lt;T&gt;, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_TrimFrom__1_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_RangeBoundaryFrom___0__">CompositeRangeExtensions.TrimFrom&lt;T&gt;(CompositeRange&lt;T&gt;, RangeBoundaryFrom&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_TrimTo__1_CodeJam_Ranges_CompositeRange___0____0_">CompositeRangeExtensions.TrimTo&lt;T&gt;(CompositeRange&lt;T&gt;, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_TrimTo__1_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_RangeBoundaryTo___0__">CompositeRangeExtensions.TrimTo&lt;T&gt;(CompositeRange&lt;T&gt;, RangeBoundaryTo&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Except__1_CodeJam_Ranges_CompositeRange___0____0___0_">CompositeRangeExtensions.Except&lt;T&gt;(CompositeRange&lt;T&gt;, T, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Except__1_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_Range___0__">CompositeRangeExtensions.Except&lt;T&gt;(CompositeRange&lt;T&gt;, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Except__2_CodeJam_Ranges_CompositeRange___0__CodeJam_Ranges_Range___0___1__">CompositeRangeExtensions.Except&lt;T, TKey2&gt;(CompositeRange&lt;T&gt;, Range&lt;T, TKey2&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_Except__2_CodeJam_Ranges_CompositeRange___0____1_">CompositeRangeExtensions.Except&lt;T, TCompositeRange&gt;(CompositeRange&lt;T&gt;, TCompositeRange)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_Contains__2___1_CodeJam_Ranges_Range___0__">RangeExtensions.Contains&lt;T, TRange&gt;(TRange, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_StartsAfter__2___1_CodeJam_Ranges_Range___0__">RangeExtensions.StartsAfter&lt;T, TRange&gt;(TRange, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_EndsBefore__2___1_CodeJam_Ranges_Range___0__">RangeExtensions.EndsBefore&lt;T, TRange&gt;(TRange, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_Contains__3___2_CodeJam_Ranges_Range___0___1__">RangeExtensions.Contains&lt;T, TKey, TRange&gt;(TRange, Range&lt;T, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_StartsAfter__3___2_CodeJam_Ranges_Range___0___1__">RangeExtensions.StartsAfter&lt;T, TKey, TRange&gt;(TRange, Range&lt;T, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_EndsBefore__3___2_CodeJam_Ranges_Range___0___1__">RangeExtensions.EndsBefore&lt;T, TKey, TRange&gt;(TRange, Range&lt;T, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Strings.StringExtensions.html#CodeJam_Strings_StringExtensions_ToInvariantString__1___0_">StringExtensions.ToInvariantString&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Strings.StringExtensions.html#CodeJam_Strings_StringExtensions_ToInvariantString__1___0_System_String_">StringExtensions.ToInvariantString&lt;T&gt;(T, String)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Ranges_CompositeRange_1.md&amp;value=---%0Auid%3A%20CodeJam.Ranges.CompositeRange%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Ranges/[Ranges]/CompositeRange`1.NonGenerated.cs/#L12" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

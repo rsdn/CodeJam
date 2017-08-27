@@ -1,0 +1,1869 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class EnumHelper
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class EnumHelper
+   ">
+    <meta name="generator" content="docfx 2.23.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CodeJam.EnumHelper">
+  
+  
+  <h1 id="CodeJam_EnumHelper" data-uid="CodeJam.EnumHelper" class="text-break">Class EnumHelper
+  </h1>
+  <div class="markdown level0 summary"><p>Extension methods for Enum types</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">EnumHelper</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CodeJam.html">CodeJam</a></h6>
+  <h6><strong>Assembly</strong>: CodeJam.dll</h6>
+  <h5 id="CodeJam_EnumHelper_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class EnumHelper</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_AreFlagsDefined__1___0_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.AreFlagsDefined%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L57">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_AreFlagsDefined_" data-uid="CodeJam.EnumHelper.AreFlagsDefined*"></a>
+  <h4 id="CodeJam_EnumHelper_AreFlagsDefined__1___0_" data-uid="CodeJam.EnumHelper.AreFlagsDefined``1(``0)">AreFlagsDefined&lt;TEnum&gt;(TEnum)</h4>
+  <div class="markdown level1 summary"><p>Determines whether all bits of the flags combination are defined.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool AreFlagsDefined&lt;TEnum&gt;(TEnum flags)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>The flags to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True, if enum defines all bits of the flags combination.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_ClearFlag__1___0___0_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.ClearFlag%60%601(%60%600%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L185">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_ClearFlag_" data-uid="CodeJam.EnumHelper.ClearFlag*"></a>
+  <h4 id="CodeJam_EnumHelper_ClearFlag__1___0___0_" data-uid="CodeJam.EnumHelper.ClearFlag``1(``0,``0)">ClearFlag&lt;TEnum&gt;(TEnum, TEnum)</h4>
+  <div class="markdown level1 summary"><p>Clears the flag.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TEnum ClearFlag&lt;TEnum&gt;(this TEnum value, TEnum flag)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">flag</span></td>
+        <td><p>The flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><p>The bits of the value excluding the ones from the flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_GetDescription__1___0_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.GetDescription%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L296">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_GetDescription_" data-uid="CodeJam.EnumHelper.GetDescription*"></a>
+  <h4 id="CodeJam_EnumHelper_GetDescription__1___0_" data-uid="CodeJam.EnumHelper.GetDescription``1(``0)">GetDescription&lt;TEnum&gt;(TEnum)</h4>
+  <div class="markdown level1 summary"><p>Returns description of enum value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetDescription&lt;TEnum&gt;(TEnum value)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Enum value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>Enum type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="CodeJam_EnumHelper_GetDescription__1___0__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Returns description of enum value specified by <span class="xref">System.ComponentModel.DataAnnotations.DisplayAttribute</span>, or <code>null</code> if no attribute
+specified.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_GetDisplayName__1___0_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.GetDisplayName%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L282">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_GetDisplayName_" data-uid="CodeJam.EnumHelper.GetDisplayName*"></a>
+  <h4 id="CodeJam_EnumHelper_GetDisplayName__1___0_" data-uid="CodeJam.EnumHelper.GetDisplayName``1(``0)">GetDisplayName&lt;TEnum&gt;(TEnum)</h4>
+  <div class="markdown level1 summary"><p>Returns description of enum value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetDisplayName&lt;TEnum&gt;(TEnum value)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Enum value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>Enum type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="CodeJam_EnumHelper_GetDisplayName__1___0__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Returns description of enum value specified by <span class="xref">System.ComponentModel.DataAnnotations.DisplayAttribute</span>, or <code>null</code> if no attribute
+specified.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_GetEnumValue__1___0_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.GetEnumValue%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L259">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_GetEnumValue_" data-uid="CodeJam.EnumHelper.GetEnumValue*"></a>
+  <h4 id="CodeJam_EnumHelper_GetEnumValue__1___0_" data-uid="CodeJam.EnumHelper.GetEnumValue``1(``0)">GetEnumValue&lt;TEnum&gt;(TEnum)</h4>
+  <div class="markdown level1 summary"><p>Gets metadata about enum value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static EnumValue GetEnumValue&lt;TEnum&gt;(TEnum value)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Enum value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.EnumValue.html">EnumValue</a></td>
+        <td><p>The enum values collection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>Enum type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_GetEnumValues_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.GetEnumValues(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L252">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_GetEnumValues_" data-uid="CodeJam.EnumHelper.GetEnumValues*"></a>
+  <h4 id="CodeJam_EnumHelper_GetEnumValues_System_Type_" data-uid="CodeJam.EnumHelper.GetEnumValues(System.Type)">GetEnumValues(Type)</h4>
+  <div class="markdown level1 summary"><p>Returns enum values collection that contains information about enum type and its values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static EnumValues GetEnumValues(Type enumType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">enumType</span></td>
+        <td><p>Type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.EnumValues.html">EnumValues</a></td>
+        <td><p>The enum values collection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_GetEnumValues__1.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.GetEnumValues%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L244">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_GetEnumValues_" data-uid="CodeJam.EnumHelper.GetEnumValues*"></a>
+  <h4 id="CodeJam_EnumHelper_GetEnumValues__1" data-uid="CodeJam.EnumHelper.GetEnumValues``1">GetEnumValues&lt;TEnum&gt;()</h4>
+  <div class="markdown level1 summary"><p>Gets enum values collection that contains information about enum type and its values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static EnumValues GetEnumValues&lt;TEnum&gt;()where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.EnumValues.html">EnumValues</a></td>
+        <td><p>The enum values collection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>Enum type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_GetField__1___0_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.GetField%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L309">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_GetField_" data-uid="CodeJam.EnumHelper.GetField*"></a>
+  <h4 id="CodeJam_EnumHelper_GetField__1___0_" data-uid="CodeJam.EnumHelper.GetField``1(``0)">GetField&lt;TEnum&gt;(TEnum)</h4>
+  <div class="markdown level1 summary"><p>Gets field info of enum value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FieldInfo GetField&lt;TEnum&gt;(TEnum value)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The enum value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.FieldInfo</span></td>
+        <td><p><span class="xref">System.Reflection.FieldInfo</span> corresponding to <code data-dev-comment-type="paramref" class="paramref">value</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_GetFlagsMask__1.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.GetFlagsMask%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L75">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_GetFlagsMask_" data-uid="CodeJam.EnumHelper.GetFlagsMask*"></a>
+  <h4 id="CodeJam_EnumHelper_GetFlagsMask__1" data-uid="CodeJam.EnumHelper.GetFlagsMask``1">GetFlagsMask&lt;TEnum&gt;()</h4>
+  <div class="markdown level1 summary"><p>Returns a combination of all flags declared in the enum.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TEnum GetFlagsMask&lt;TEnum&gt;()where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><p>A combination of all flags declared in the enum, or <code>default(TEnum)</code> if <a class="xref" href="CodeJam.EnumHelper.html#CodeJam_EnumHelper_IsFlagsEnum__1">IsFlagsEnum&lt;TEnum&gt;()</a> is false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_GetName__1___0_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.GetName%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L268">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_GetName_" data-uid="CodeJam.EnumHelper.GetName*"></a>
+  <h4 id="CodeJam_EnumHelper_GetName__1___0_" data-uid="CodeJam.EnumHelper.GetName``1(``0)">GetName&lt;TEnum&gt;(TEnum)</h4>
+  <div class="markdown level1 summary"><p>Returns name of the enum value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetName&lt;TEnum&gt;(TEnum value)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The enum value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The name of the enum value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>Enum type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_GetNames__1_System_Boolean_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.GetNames%60%601(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L224">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_GetNames_" data-uid="CodeJam.EnumHelper.GetNames*"></a>
+  <h4 id="CodeJam_EnumHelper_GetNames__1_System_Boolean_" data-uid="CodeJam.EnumHelper.GetNames``1(System.Boolean)">GetNames&lt;TEnum&gt;(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Retrieves an array of the names of the constants in a specified enumeration.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string[] GetNames&lt;TEnum&gt;(bool ignoreCase = false)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">ignoreCase</span></td>
+        <td><p>If set to <code>true</code> the case of the name will be ignored.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><p>A string array of the names of the constants in enumType.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_GetNameValues__1_System_Boolean_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.GetNameValues%60%601(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L213">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_GetNameValues_" data-uid="CodeJam.EnumHelper.GetNameValues*"></a>
+  <h4 id="CodeJam_EnumHelper_GetNameValues__1_System_Boolean_" data-uid="CodeJam.EnumHelper.GetNameValues``1(System.Boolean)">GetNameValues&lt;TEnum&gt;(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Returns a dictionary containing the enum names and their values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyDictionary&lt;string, TEnum&gt; GetNameValues&lt;TEnum&gt;(bool ignoreCase = false)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">ignoreCase</span></td>
+        <td><p>If set to <code>true</code> the case of the name will be ignored.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IReadOnlyDictionary</span>&lt;<span class="xref">System.String</span>, TEnum&gt;</td>
+        <td><p>Returns a dictionary containing the enum names and their values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_GetValues__1.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.GetValues%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L234">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_GetValues_" data-uid="CodeJam.EnumHelper.GetValues*"></a>
+  <h4 id="CodeJam_EnumHelper_GetValues__1" data-uid="CodeJam.EnumHelper.GetValues``1">GetValues&lt;TEnum&gt;()</h4>
+  <div class="markdown level1 summary"><p>Retrieves an array of the values of the constants in a specified enumeration.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TEnum[] GetValues&lt;TEnum&gt;()where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>TEnum[]</td>
+        <td><p>An array that contains the values of the constants in enumType.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_IsAnyFlagSet__1___0___0_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.IsAnyFlagSet%60%601(%60%600%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L153">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_IsAnyFlagSet_" data-uid="CodeJam.EnumHelper.IsAnyFlagSet*"></a>
+  <h4 id="CodeJam_EnumHelper_IsAnyFlagSet__1___0___0_" data-uid="CodeJam.EnumHelper.IsAnyFlagSet``1(``0,``0)">IsAnyFlagSet&lt;TEnum&gt;(TEnum, TEnum)</h4>
+  <div class="markdown level1 summary"><p>Determines whether any bit from specified flag is set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsAnyFlagSet&lt;TEnum&gt;(this TEnum value, TEnum flags)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>The bitwise combinations of the flags.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the value includes any bit of the flags or the flag is zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_IsAnyFlagUnset__1___0___0_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.IsAnyFlagUnset%60%601(%60%600%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L143">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_IsAnyFlagUnset_" data-uid="CodeJam.EnumHelper.IsAnyFlagUnset*"></a>
+  <h4 id="CodeJam_EnumHelper_IsAnyFlagUnset__1___0___0_" data-uid="CodeJam.EnumHelper.IsAnyFlagUnset``1(``0,``0)">IsAnyFlagUnset&lt;TEnum&gt;(TEnum, TEnum)</h4>
+  <div class="markdown level1 summary"><p>Determines whether any bit from specified flag is not set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsAnyFlagUnset&lt;TEnum&gt;(this TEnum value, TEnum flag)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">flag</span></td>
+        <td><p>The flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the value does not include all bits of the flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_IsDefined__1___0_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.IsDefined%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L39">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_IsDefined_" data-uid="CodeJam.EnumHelper.IsDefined*"></a>
+  <h4 id="CodeJam_EnumHelper_IsDefined__1___0_" data-uid="CodeJam.EnumHelper.IsDefined``1(``0)">IsDefined&lt;TEnum&gt;(TEnum)</h4>
+  <div class="markdown level1 summary"><p>Determines whether the specified value is defined.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsDefined&lt;TEnum&gt;(TEnum value)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True, if enum defines the value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_IsDefined__1_System_String_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.IsDefined%60%601(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L48">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_IsDefined_" data-uid="CodeJam.EnumHelper.IsDefined*"></a>
+  <h4 id="CodeJam_EnumHelper_IsDefined__1_System_String_" data-uid="CodeJam.EnumHelper.IsDefined``1(System.String)">IsDefined&lt;TEnum&gt;(String)</h4>
+  <div class="markdown level1 summary"><p>Determines whether the string representation of value is defined.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsDefined&lt;TEnum&gt;(string value)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>String representation of value to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True, if enum defines the value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_IsFlagsEnum__1.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.IsFlagsEnum%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L65">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_IsFlagsEnum_" data-uid="CodeJam.EnumHelper.IsFlagsEnum*"></a>
+  <h4 id="CodeJam_EnumHelper_IsFlagsEnum__1" data-uid="CodeJam.EnumHelper.IsFlagsEnum``1">IsFlagsEnum&lt;TEnum&gt;()</h4>
+  <div class="markdown level1 summary"><p>Determines whether the enum has flags modifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsFlagsEnum&lt;TEnum&gt;()where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True, if the enum is flags enum</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_IsFlagSet__1___0___0_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.IsFlagSet%60%601(%60%600%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L133">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_IsFlagSet_" data-uid="CodeJam.EnumHelper.IsFlagSet*"></a>
+  <h4 id="CodeJam_EnumHelper_IsFlagSet__1___0___0_" data-uid="CodeJam.EnumHelper.IsFlagSet``1(``0,``0)">IsFlagSet&lt;TEnum&gt;(TEnum, TEnum)</h4>
+  <div class="markdown level1 summary"><p>Determines whether the specified flag is set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsFlagSet&lt;TEnum&gt;(this TEnum value, TEnum flag)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">flag</span></td>
+        <td><p>The flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the value includes all bits of the flag or the flag is zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_IsFlagUnset__1___0___0_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.IsFlagUnset%60%601(%60%600%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L163">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_IsFlagUnset_" data-uid="CodeJam.EnumHelper.IsFlagUnset*"></a>
+  <h4 id="CodeJam_EnumHelper_IsFlagUnset__1___0___0_" data-uid="CodeJam.EnumHelper.IsFlagUnset``1(``0,``0)">IsFlagUnset&lt;TEnum&gt;(TEnum, TEnum)</h4>
+  <div class="markdown level1 summary"><p>Determines whether the specified flag is not set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsFlagUnset&lt;TEnum&gt;(this TEnum value, TEnum flags)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>The bitwise combinations of the flags.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the value does not include any bit of the flags.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_Parse__1_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.Parse%60%601(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L117">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_Parse_" data-uid="CodeJam.EnumHelper.Parse*"></a>
+  <h4 id="CodeJam_EnumHelper_Parse__1_System_String_System_Boolean_" data-uid="CodeJam.EnumHelper.Parse``1(System.String,System.Boolean)">Parse&lt;TEnum&gt;(String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Parse the enum value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TEnum Parse&lt;TEnum&gt;(string name, bool ignoreCase = false)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">ignoreCase</span></td>
+        <td><p>If set to <code>true</code> the case of the name will be ignored.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><p>Parsed value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_SetFlag__1___0___0_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.SetFlag%60%601(%60%600%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L175">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_SetFlag_" data-uid="CodeJam.EnumHelper.SetFlag*"></a>
+  <h4 id="CodeJam_EnumHelper_SetFlag__1___0___0_" data-uid="CodeJam.EnumHelper.SetFlag``1(``0,``0)">SetFlag&lt;TEnum&gt;(TEnum, TEnum)</h4>
+  <div class="markdown level1 summary"><p>Sets the flag.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TEnum SetFlag&lt;TEnum&gt;(this TEnum value, TEnum flag)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">flag</span></td>
+        <td><p>The flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><p>Bitwise combination of the flag and the value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_SetFlag__1___0___0_System_Boolean_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.SetFlag%60%601(%60%600%2C%60%600%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L199">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_SetFlag_" data-uid="CodeJam.EnumHelper.SetFlag*"></a>
+  <h4 id="CodeJam_EnumHelper_SetFlag__1___0___0_System_Boolean_" data-uid="CodeJam.EnumHelper.SetFlag``1(``0,``0,System.Boolean)">SetFlag&lt;TEnum&gt;(TEnum, TEnum, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Sets or clears the flag depending on <code data-dev-comment-type="paramref" class="paramref">enabled</code> value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TEnum SetFlag&lt;TEnum&gt;(this TEnum value, TEnum flag, bool enabled)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">flag</span></td>
+        <td><p>The flag.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">enabled</span></td>
+        <td><p>Determines whether the flag should be set or cleared.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><p>Bitwise combination of the flag and the value if the <code data-dev-comment-type="paramref" class="paramref">enabled</code> is <code>true</code>;
+otherwise, the result is the bits of the value excluding the ones from the flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_TryParse__1_System_String___0__.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.TryParse%60%601(System.String%2C%60%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L85">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_TryParse_" data-uid="CodeJam.EnumHelper.TryParse*"></a>
+  <h4 id="CodeJam_EnumHelper_TryParse__1_System_String___0__" data-uid="CodeJam.EnumHelper.TryParse``1(System.String,``0@)">TryParse&lt;TEnum&gt;(String, out TEnum)</h4>
+  <div class="markdown level1 summary"><p>Try to parse the enum value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryParse&lt;TEnum&gt;(string name, out TEnum result)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>The parsed value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code>, if parsing was successful; <code>false</code> otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_TryParse__1_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.TryParse%60%601(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L107">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_TryParse_" data-uid="CodeJam.EnumHelper.TryParse*"></a>
+  <h4 id="CodeJam_EnumHelper_TryParse__1_System_String_System_Boolean_" data-uid="CodeJam.EnumHelper.TryParse``1(System.String,System.Boolean)">TryParse&lt;TEnum&gt;(String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Try to parse the enum value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TEnum? TryParse&lt;TEnum&gt;(string name, bool ignoreCase = false)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">ignoreCase</span></td>
+        <td><p>If set to <code>true</code> the case of the name will be ignored.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;TEnum&gt;</td>
+        <td><p>Parsed value, if parsing was successful; <code>null</code> otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper_TryParse__1_System_String_System_Boolean___0__.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper.TryParse%60%601(System.String%2CSystem.Boolean%2C%60%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L96">View Source</a>
+  </span>
+  <a id="CodeJam_EnumHelper_TryParse_" data-uid="CodeJam.EnumHelper.TryParse*"></a>
+  <h4 id="CodeJam_EnumHelper_TryParse__1_System_String_System_Boolean___0__" data-uid="CodeJam.EnumHelper.TryParse``1(System.String,System.Boolean,``0@)">TryParse&lt;TEnum&gt;(String, Boolean, out TEnum)</h4>
+  <div class="markdown level1 summary"><p>Try to parse the enum value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryParse&lt;TEnum&gt;(string name, bool ignoreCase, out TEnum result)where TEnum : struct, IComparable, IFormattable, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">ignoreCase</span></td>
+        <td><p>If set to <code>true</code> the case of the name will be ignored.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TEnum</span></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>The parsed value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code>, if parsing was successful; <code>false</code> otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEnum</span></td>
+        <td><p>The type of the enum.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_EnumHelper.md&amp;value=---%0Auid%3A%20CodeJam.EnumHelper%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/EnumHelper.cs/#L31" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,934 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Sequence
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Sequence
+   ">
+    <meta name="generator" content="docfx 2.23.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CodeJam.Collections.Sequence">
+  
+  
+  <h1 id="CodeJam_Collections_Sequence" data-uid="CodeJam.Collections.Sequence" class="text-break">Class Sequence
+  </h1>
+  <div class="markdown level0 summary"><p>Contains methods for sequence creation.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">Sequence</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CodeJam.Collections.html">CodeJam.Collections</a></h6>
+  <h6><strong>Assembly</strong>: CodeJam.dll</h6>
+  <h5 id="CodeJam_Collections_Sequence_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class Sequence</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_Sequence_Create__1___0_System_Func___0___0__.md&amp;value=---%0Auid%3A%20CodeJam.Collections.Sequence.Create%60%601(%60%600%2CSystem.Func%7B%60%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/Sequence.cs/#L21">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_Sequence_Create_" data-uid="CodeJam.Collections.Sequence.Create*"></a>
+  <h4 id="CodeJam_Collections_Sequence_Create__1___0_System_Func___0___0__" data-uid="CodeJam.Collections.Sequence.Create``1(``0,System.Func{``0,``0})">Create&lt;T&gt;(T, Func&lt;T, T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a sequence from start value and next element factory.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;T&gt; Create&lt;T&gt;(T start, Func&lt;T, T&gt; next)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">start</span></td>
+        <td><p>Start value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, T&gt;</td>
+        <td><span class="parametername">next</span></td>
+        <td><p>Next element factory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;T&gt;</td>
+        <td><p>Generated sequence.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of element.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_Sequence_Create__1___0_System_Func___0_System_Boolean__System_Func___0___0__.md&amp;value=---%0Auid%3A%20CodeJam.Collections.Sequence.Create%60%601(%60%600%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%2CSystem.Func%7B%60%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/Sequence.cs/#L72">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_Sequence_Create_" data-uid="CodeJam.Collections.Sequence.Create*"></a>
+  <h4 id="CodeJam_Collections_Sequence_Create__1___0_System_Func___0_System_Boolean__System_Func___0___0__" data-uid="CodeJam.Collections.Sequence.Create``1(``0,System.Func{``0,System.Boolean},System.Func{``0,``0})">Create&lt;T&gt;(T, Func&lt;T, Boolean&gt;, Func&lt;T, T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a sequence from start value and next element factory.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;T&gt; Create&lt;T&gt;(T start, Func&lt;T, bool&gt; predicate, Func&lt;T, T&gt; next)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">start</span></td>
+        <td><p>Start value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>A function to test each element for a condition.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, T&gt;</td>
+        <td><span class="parametername">next</span></td>
+        <td><p>Next element factory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;T&gt;</td>
+        <td><p>Generated sequence.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of element.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_Sequence_Create__2___0_System_Func___0___0__System_Func___0___1__.md&amp;value=---%0Auid%3A%20CodeJam.Collections.Sequence.Create%60%602(%60%600%2CSystem.Func%7B%60%600%2C%60%600%7D%2CSystem.Func%7B%60%600%2C%60%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/Sequence.cs/#L45">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_Sequence_Create_" data-uid="CodeJam.Collections.Sequence.Create*"></a>
+  <h4 id="CodeJam_Collections_Sequence_Create__2___0_System_Func___0___0__System_Func___0___1__" data-uid="CodeJam.Collections.Sequence.Create``2(``0,System.Func{``0,``0},System.Func{``0,``1})">Create&lt;T, TResult&gt;(T, Func&lt;T, T&gt;, Func&lt;T, TResult&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a sequence from start value and next element factory.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;TResult&gt; Create&lt;T, TResult&gt;(T start, Func&lt;T, T&gt; next, Func&lt;T, TResult&gt; resultSelector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">start</span></td>
+        <td><p>Start value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, T&gt;</td>
+        <td><span class="parametername">next</span></td>
+        <td><p>Next element factory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, TResult&gt;</td>
+        <td><span class="parametername">resultSelector</span></td>
+        <td><p>A transform function to apply to each element.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;TResult&gt;</td>
+        <td><p>Generated sequence.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of source element.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td><p>The type of result element</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_Sequence_Create__2___0_System_Func___0_System_Boolean__System_Func___0___0__System_Func___0___1__.md&amp;value=---%0Auid%3A%20CodeJam.Collections.Sequence.Create%60%602(%60%600%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%2CSystem.Func%7B%60%600%2C%60%600%7D%2CSystem.Func%7B%60%600%2C%60%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/Sequence.cs/#L97">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_Sequence_Create_" data-uid="CodeJam.Collections.Sequence.Create*"></a>
+  <h4 id="CodeJam_Collections_Sequence_Create__2___0_System_Func___0_System_Boolean__System_Func___0___0__System_Func___0___1__" data-uid="CodeJam.Collections.Sequence.Create``2(``0,System.Func{``0,System.Boolean},System.Func{``0,``0},System.Func{``0,``1})">Create&lt;T, TResult&gt;(T, Func&lt;T, Boolean&gt;, Func&lt;T, T&gt;, Func&lt;T, TResult&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a sequence from start value and next element factory.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;TResult&gt; Create&lt;T, TResult&gt;(T start, Func&lt;T, bool&gt; predicate, Func&lt;T, T&gt; next, Func&lt;T, TResult&gt; resultSelector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">start</span></td>
+        <td><p>Start value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>A function to test each element for a condition.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, T&gt;</td>
+        <td><span class="parametername">next</span></td>
+        <td><p>Next element factory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, TResult&gt;</td>
+        <td><span class="parametername">resultSelector</span></td>
+        <td><p>A transform function to apply to each element.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;TResult&gt;</td>
+        <td><p>Generated sequence.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of source element.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td><p>The type of result element</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_Sequence_CreateSingle__1___0_.md&amp;value=---%0Auid%3A%20CodeJam.Collections.Sequence.CreateSingle%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/Sequence.cs/#L173">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_Sequence_CreateSingle_" data-uid="CodeJam.Collections.Sequence.CreateSingle*"></a>
+  <h4 id="CodeJam_Collections_Sequence_CreateSingle__1___0_" data-uid="CodeJam.Collections.Sequence.CreateSingle``1(``0)">CreateSingle&lt;T&gt;(T)</h4>
+  <div class="markdown level1 summary"><p>Creates a single element sequence.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;T&gt; CreateSingle&lt;T&gt;(T element)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">element</span></td>
+        <td><p>Element instance to create sequence from.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;T&gt;</td>
+        <td><p>Single element sequence</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of element.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_Sequence_CreateSingle__1_System_Func___0__.md&amp;value=---%0Auid%3A%20CodeJam.Collections.Sequence.CreateSingle%60%601(System.Func%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/Sequence.cs/#L186">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_Sequence_CreateSingle_" data-uid="CodeJam.Collections.Sequence.CreateSingle*"></a>
+  <h4 id="CodeJam_Collections_Sequence_CreateSingle__1_System_Func___0__" data-uid="CodeJam.Collections.Sequence.CreateSingle``1(System.Func{``0})">CreateSingle&lt;T&gt;(Func&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a single element sequence.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;T&gt; CreateSingle&lt;T&gt;(Func&lt;T&gt; elementFactory)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T&gt;</td>
+        <td><span class="parametername">elementFactory</span></td>
+        <td><p>Element factory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;T&gt;</td>
+        <td><p>Single element sequence</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of element.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_Sequence_CreateWhileNotNull__1___0_System_Func___0___0__.md&amp;value=---%0Auid%3A%20CodeJam.Collections.Sequence.CreateWhileNotNull%60%601(%60%600%2CSystem.Func%7B%60%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/Sequence.cs/#L124">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_Sequence_CreateWhileNotNull_" data-uid="CodeJam.Collections.Sequence.CreateWhileNotNull*"></a>
+  <h4 id="CodeJam_Collections_Sequence_CreateWhileNotNull__1___0_System_Func___0___0__" data-uid="CodeJam.Collections.Sequence.CreateWhileNotNull``1(``0,System.Func{``0,``0})">CreateWhileNotNull&lt;T&gt;(T, Func&lt;T, T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a sequence from start value and next element factory till factory returns null.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;T&gt; CreateWhileNotNull&lt;T&gt;(T start, Func&lt;T, T&gt; next)where T : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">start</span></td>
+        <td><p>Start value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, T&gt;</td>
+        <td><span class="parametername">next</span></td>
+        <td><p>Next element factory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;T&gt;</td>
+        <td><p>Generated sequence.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of element.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_Sequence_CreateWhileNotNull__2___0_System_Func___0___0__System_Func___0___1__.md&amp;value=---%0Auid%3A%20CodeJam.Collections.Sequence.CreateWhileNotNull%60%602(%60%600%2CSystem.Func%7B%60%600%2C%60%600%7D%2CSystem.Func%7B%60%600%2C%60%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/Sequence.cs/#L148">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_Sequence_CreateWhileNotNull_" data-uid="CodeJam.Collections.Sequence.CreateWhileNotNull*"></a>
+  <h4 id="CodeJam_Collections_Sequence_CreateWhileNotNull__2___0_System_Func___0___0__System_Func___0___1__" data-uid="CodeJam.Collections.Sequence.CreateWhileNotNull``2(``0,System.Func{``0,``0},System.Func{``0,``1})">CreateWhileNotNull&lt;T, TResult&gt;(T, Func&lt;T, T&gt;, Func&lt;T, TResult&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a sequence from start value and next element factory till factory returns null.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;TResult&gt; CreateWhileNotNull&lt;T, TResult&gt;(T start, Func&lt;T, T&gt; next, Func&lt;T, TResult&gt; resultSelector)where T : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">start</span></td>
+        <td><p>Start value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, T&gt;</td>
+        <td><span class="parametername">next</span></td>
+        <td><p>Next element factory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, TResult&gt;</td>
+        <td><span class="parametername">resultSelector</span></td>
+        <td><p>A transform function to apply to each element.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;TResult&gt;</td>
+        <td><p>Generated sequence.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of source element.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td><p>The type of result element</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_Sequence_Random_System_Int32_.md&amp;value=---%0Auid%3A%20CodeJam.Collections.Sequence.Random(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/Sequence.cs/#L240">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_Sequence_Random_" data-uid="CodeJam.Collections.Sequence.Random*"></a>
+  <h4 id="CodeJam_Collections_Sequence_Random_System_Int32_" data-uid="CodeJam.Collections.Sequence.Random(System.Int32)">Random(Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates infinite sequence of random int numbers;</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;int&gt; Random(int maxValue = 2147483647)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">maxValue</span></td>
+        <td><p>The exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><p>Infinite random sequence.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_Sequence_Random_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20CodeJam.Collections.Sequence.Random(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/Sequence.cs/#L223">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_Sequence_Random_" data-uid="CodeJam.Collections.Sequence.Random*"></a>
+  <h4 id="CodeJam_Collections_Sequence_Random_System_Int32_System_Int32_" data-uid="CodeJam.Collections.Sequence.Random(System.Int32,System.Int32)">Random(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates infinite sequence of random int numbers;</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;int&gt; Random(int minValue, int maxValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">minValue</span></td>
+        <td><p>The inclusive lower bound of the random number returned.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">maxValue</span></td>
+        <td><p>The exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><p>Infinite random sequence.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_Sequence_Random_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20CodeJam.Collections.Sequence.Random(System.Int32%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/Sequence.cs/#L205">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_Sequence_Random_" data-uid="CodeJam.Collections.Sequence.Random*"></a>
+  <h4 id="CodeJam_Collections_Sequence_Random_System_Int32_System_Int32_System_Int32_" data-uid="CodeJam.Collections.Sequence.Random(System.Int32,System.Int32,System.Int32)">Random(Int32, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates infinite sequence of random int numbers;</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;int&gt; Random(int minValue, int maxValue, int seed)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">minValue</span></td>
+        <td><p>The inclusive lower bound of the random number returned.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">maxValue</span></td>
+        <td><p>The exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">seed</span></td>
+        <td><p>A number used to calculate a starting value for the pseudo-random number sequence. If a negative number is
+specified, the absolute value of the number is used.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><p>Infinite random sequence.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_Sequence.md&amp;value=---%0Auid%3A%20CodeJam.Collections.Sequence%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/Sequence.cs/#L11" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

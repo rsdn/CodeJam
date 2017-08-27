@@ -1,0 +1,1528 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ReflectionExtensions
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ReflectionExtensions
+   ">
+    <meta name="generator" content="docfx 2.23.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CodeJam.Reflection.ReflectionExtensions">
+  
+  
+  <h1 id="CodeJam_Reflection_ReflectionExtensions" data-uid="CodeJam.Reflection.ReflectionExtensions" class="text-break">Class ReflectionExtensions
+  </h1>
+  <div class="markdown level0 summary"><p>Reflection extension methods.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">ReflectionExtensions</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CodeJam.Reflection.html">CodeJam.Reflection</a></h6>
+  <h6><strong>Assembly</strong>: CodeJam.dll</h6>
+  <h5 id="CodeJam_Reflection_ReflectionExtensions_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ReflectionExtensions</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_CreateInstance_System_Type_CodeJam_Reflection_ParamInfo___.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.CreateInstance(System.Type%2CCodeJam.Reflection.ParamInfo%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.CreateInstance.cs/#L55">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_CreateInstance_" data-uid="CodeJam.Reflection.ReflectionExtensions.CreateInstance*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_CreateInstance_System_Type_CodeJam_Reflection_ParamInfo___" data-uid="CodeJam.Reflection.ReflectionExtensions.CreateInstance(System.Type,CodeJam.Reflection.ParamInfo[])">CreateInstance(Type, ParamInfo[])</h4>
+  <div class="markdown level1 summary"><p>Creates instance of <code data-dev-comment-type="paramref" class="paramref">type</code> with specified <code data-dev-comment-type="paramref" class="paramref">parameters</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static object CreateInstance(this Type type, params ParamInfo[] parameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type to create instance.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Reflection.ParamInfo.html">ParamInfo</a>[]</td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>Constructor parameters</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><p>Instance of type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">type</code> is null</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>No suitable constructors found</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_GetDefaultConstructor_System_Type_System_Boolean_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.GetDefaultConstructor(System.Type%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L486">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_GetDefaultConstructor_" data-uid="CodeJam.Reflection.ReflectionExtensions.GetDefaultConstructor*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_GetDefaultConstructor_System_Type_System_Boolean_" data-uid="CodeJam.Reflection.ReflectionExtensions.GetDefaultConstructor(System.Type,System.Boolean)">GetDefaultConstructor(Type, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Returns default constructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ConstructorInfo GetDefaultConstructor(this Type type, bool exceptionIfNotExists = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>A <span class="xref">System.Type</span> instance. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">exceptionIfNotExists</span></td>
+        <td><p>if true, throws an exception if type does not exists default constructor.
+Otherwise returns null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.ConstructorInfo</span></td>
+        <td><p>Returns <span class="xref">System.Reflection.ConstructorInfo</span> or null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_GetDelegateParams_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.GetDelegateParams(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L361">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_GetDelegateParams_" data-uid="CodeJam.Reflection.ReflectionExtensions.GetDelegateParams*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_GetDelegateParams_System_Type_" data-uid="CodeJam.Reflection.ReflectionExtensions.GetDelegateParams(System.Type)">GetDelegateParams(Type)</h4>
+  <div class="markdown level1 summary"><p>Returns delegate parameter infos.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ParameterInfo[] GetDelegateParams(Type delegateType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">delegateType</span></td>
+        <td><p>Type of delegate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.ParameterInfo</span>[]</td>
+        <td><p>Array of <span class="xref">System.Reflection.ParameterInfo</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_GetItemType_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.GetItemType(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L512">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_GetItemType_" data-uid="CodeJam.Reflection.ReflectionExtensions.GetItemType*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_GetItemType_System_Type_" data-uid="CodeJam.Reflection.ReflectionExtensions.GetItemType(System.Type)">GetItemType(Type)</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the current <em>Type</em> encompasses or refers to another type;
+that is, whether the provided Type is an array, a pointer, or is passed by reference.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Type GetItemType(this Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type to get item type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><p>Returns item type or null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_GetMemberType_System_Reflection_MemberInfo_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.GetMemberType(System.Reflection.MemberInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L439">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_GetMemberType_" data-uid="CodeJam.Reflection.ReflectionExtensions.GetMemberType*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_GetMemberType_System_Reflection_MemberInfo_" data-uid="CodeJam.Reflection.ReflectionExtensions.GetMemberType(System.Reflection.MemberInfo)">GetMemberType(MemberInfo)</h4>
+  <div class="markdown level1 summary"><p>Gets the type of this member.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Type GetMemberType(this MemberInfo memberInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.MemberInfo</span></td>
+        <td><span class="parametername">memberInfo</span></td>
+        <td><p>A <span class="xref">System.Reflection.MemberInfo</span> instance. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_GetMetadataAttributes__1_System_Reflection_ICustomAttributeProvider_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes%60%601(System.Reflection.ICustomAttributeProvider)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs/#L105">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_GetMetadataAttributes_" data-uid="CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_GetMetadataAttributes__1_System_Reflection_ICustomAttributeProvider_" data-uid="CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes``1(System.Reflection.ICustomAttributeProvider)">GetMetadataAttributes&lt;TAttribute&gt;(ICustomAttributeProvider)</h4>
+  <div class="markdown level1 summary"><p>Performs search for metadata attributes.
+The search is performed in the following order:</p>
+<ul>
+<li>member attributes, base implementation attributes (if the <code data-dev-comment-type="paramref" class="paramref">attributeProvider</code> is member of the type)</li>
+<li>type attributes, base type attributes (if the <code data-dev-comment-type="paramref" class="paramref">attributeProvider</code> is type or member of the type)</li>
+<li>container type attributes (if the type is nested type)</li>
+<li>assembly attributes.</li>
+</ul>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;TAttribute&gt; GetMetadataAttributes&lt;TAttribute&gt;(this ICustomAttributeProvider attributeProvider)where TAttribute : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.ICustomAttributeProvider</span></td>
+        <td><span class="parametername">attributeProvider</span></td>
+        <td><p>Metadata attribute source.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;TAttribute&gt;</td>
+        <td><p>Metadata attributes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TAttribute</span></td>
+        <td><p>Type of the attribute or type of the interface implemented by the attributes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="CodeJam_Reflection_ReflectionExtensions_GetMetadataAttributes__1_System_Reflection_ICustomAttributeProvider__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Search logic for each level matches to the
+<span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type,System.Boolean)</span> method (inherit = <code>true</code>).
+including checks of <span class="xref">System.AttributeUsageAttribute</span>.
+Ordering of attributes at each level is undefined and depends on runtime implementation.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_GetMetadataAttributes__1_System_Reflection_ICustomAttributeProvider_System_Boolean_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes%60%601(System.Reflection.ICustomAttributeProvider%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs/#L129">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_GetMetadataAttributes_" data-uid="CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_GetMetadataAttributes__1_System_Reflection_ICustomAttributeProvider_System_Boolean_" data-uid="CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes``1(System.Reflection.ICustomAttributeProvider,System.Boolean)">GetMetadataAttributes&lt;TAttribute&gt;(ICustomAttributeProvider, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Performs search for metadata attributes.
+If the <code data-dev-comment-type="paramref" class="paramref">thisLevelOnly</code> is <code>true</code>, the search is performed in the following order:</p>
+<ul>
+<li>member attributes, base implementation attributes (if the <code data-dev-comment-type="paramref" class="paramref">attributeProvider</code> is member of the type)</li>
+<li>type attributes, base type attributes (if the <code data-dev-comment-type="paramref" class="paramref">attributeProvider</code> is type or member of the type)</li>
+<li>container type attributes (if the type is nested type)</li>
+<li>assembly attributes.</li>
+</ul>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;TAttribute&gt; GetMetadataAttributes&lt;TAttribute&gt;(this ICustomAttributeProvider attributeProvider, bool thisLevelOnly)where TAttribute : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.ICustomAttributeProvider</span></td>
+        <td><span class="parametername">attributeProvider</span></td>
+        <td><p>Metadata attribute source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">thisLevelOnly</span></td>
+        <td><p>Do not check containers for the attributes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;TAttribute&gt;</td>
+        <td><p>Metadata attributes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TAttribute</span></td>
+        <td><p>Type of the attribute or type of the interface implemented by the attributes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="CodeJam_Reflection_ReflectionExtensions_GetMetadataAttributes__1_System_Reflection_ICustomAttributeProvider_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Search logic for each level matches to the
+<span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type,System.Boolean)</span> method (inherit = <code>true</code>).
+including checks of <span class="xref">System.AttributeUsageAttribute</span>.
+Ordering of attributes at each level is undefined and depends on runtime implementation.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_GetModulePath_System_Reflection_Module_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.GetModulePath(System.Reflection.Module)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L25">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_GetModulePath_" data-uid="CodeJam.Reflection.ReflectionExtensions.GetModulePath*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_GetModulePath_System_Reflection_Module_" data-uid="CodeJam.Reflection.ReflectionExtensions.GetModulePath(System.Reflection.Module)">GetModulePath(Module)</h4>
+  <div class="markdown level1 summary"><p>Returns path to the <code data-dev-comment-type="paramref" class="paramref">module</code> file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetModulePath(this Module module)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.Module</span></td>
+        <td><span class="parametername">module</span></td>
+        <td><p>Assembly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Path to <code data-dev-comment-type="paramref" class="paramref">module</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_GetShortAssemblyQualifiedName_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.GetShortAssemblyQualifiedName(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L52">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_GetShortAssemblyQualifiedName_" data-uid="CodeJam.Reflection.ReflectionExtensions.GetShortAssemblyQualifiedName*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_GetShortAssemblyQualifiedName_System_Type_" data-uid="CodeJam.Reflection.ReflectionExtensions.GetShortAssemblyQualifiedName(System.Type)">GetShortAssemblyQualifiedName(Type)</h4>
+  <div class="markdown level1 summary"><p>Gets the short form of assembly qualified type name (without assembly version or assembly key).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetShortAssemblyQualifiedName(this Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The type to get the name for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The short form of assembly qualified type name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="CodeJam_Reflection_ReflectionExtensions_GetShortAssemblyQualifiedName_System_Type__examples">Examples</h5>
+  <pre><code>// result is &quot;CodeJam.Reflection.ReflectionExtensions, CodeJam&quot;;
+var shortNameWithAssembly = typeof(ReflectionExtensions).GetShortAssemblyQualifiedName();</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_IsAnonymous_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.IsAnonymous(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L466">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_IsAnonymous_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsAnonymous*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_IsAnonymous_System_Type_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsAnonymous(System.Type)">IsAnonymous(Type)</h4>
+  <div class="markdown level1 summary"><p>Checks if <code data-dev-comment-type="paramref" class="paramref">type</code> is an anonymous type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsAnonymous(this Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True, if <code data-dev-comment-type="paramref" class="paramref">type</code> is an anonymous type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_IsInstantiable_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.IsInstantiable(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L174">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_IsInstantiable_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsInstantiable*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_IsInstantiable_System_Type_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsInstantiable(System.Type)">IsInstantiable(Type)</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the <code data-dev-comment-type="paramref" class="paramref">type</code> can be instantiated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsInstantiable(this Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The <span class="xref">System.Type</span> to test.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>A value indicating whether the <code data-dev-comment-type="paramref" class="paramref">type</code> can be instantiated.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_IsInteger_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.IsInteger(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L248">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_IsInteger_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsInteger*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_IsInteger_System_Type_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsInteger(System.Type)">IsInteger(Type)</h4>
+  <div class="markdown level1 summary"><p>Checks if <code data-dev-comment-type="paramref" class="paramref">type</code> is integer type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsInteger(this Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True, if <code data-dev-comment-type="paramref" class="paramref">type</code> is integer type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_IsNullable_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.IsNullable(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L202">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_IsNullable_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsNullable*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_IsNullable_System_Type_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsNullable(System.Type)">IsNullable(Type)</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the <code data-dev-comment-type="paramref" class="paramref">type</code> is Nullable&lt;&gt; type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNullable(this Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The <span class="xref">System.Type</span> to test.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>A value indicating whether the <code data-dev-comment-type="paramref" class="paramref">type</code> is Nullable&lt;&gt;.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_IsNullableEnum_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.IsNullableEnum(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L303">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_IsNullableEnum_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsNullableEnum*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_IsNullableEnum_System_Type_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsNullableEnum(System.Type)">IsNullableEnum(Type)</h4>
+  <div class="markdown level1 summary"><p>Checks if <code data-dev-comment-type="paramref" class="paramref">type</code> is nullable enum type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNullableEnum(this Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True, if <code data-dev-comment-type="paramref" class="paramref">type</code> is nullable enum type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_IsNullableInteger_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.IsNullableInteger(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L291">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_IsNullableInteger_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsNullableInteger*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_IsNullableInteger_System_Type_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsNullableInteger(System.Type)">IsNullableInteger(Type)</h4>
+  <div class="markdown level1 summary"><p>Checks if <code data-dev-comment-type="paramref" class="paramref">type</code> is nullable integer type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNullableInteger(this Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True, if <code data-dev-comment-type="paramref" class="paramref">type</code> is nullable integer type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_IsNullableNumeric_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.IsNullableNumeric(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L279">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_IsNullableNumeric_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsNullableNumeric*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_IsNullableNumeric_System_Type_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsNullableNumeric(System.Type)">IsNullableNumeric(Type)</h4>
+  <div class="markdown level1 summary"><p>Checks if <code data-dev-comment-type="paramref" class="paramref">type</code> is nullable numeric type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNullableNumeric(this Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True, if <code data-dev-comment-type="paramref" class="paramref">type</code> is nullable numeric.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_IsNumeric_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.IsNumeric(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L214">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_IsNumeric_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsNumeric*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_IsNumeric_System_Type_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsNumeric(System.Type)">IsNumeric(Type)</h4>
+  <div class="markdown level1 summary"><p>Checks if <code data-dev-comment-type="paramref" class="paramref">type</code> is numeric type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNumeric(this Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True, if <code data-dev-comment-type="paramref" class="paramref">type</code> is numeric.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_IsStatic_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.IsStatic(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L188">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_IsStatic_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsStatic*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_IsStatic_System_Type_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsStatic(System.Type)">IsStatic(Type)</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the <code data-dev-comment-type="paramref" class="paramref">type</code> is declared static.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsStatic(this Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The <span class="xref">System.Type</span> to test.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>A value indicating whether the <code data-dev-comment-type="paramref" class="paramref">type</code> is declared static.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_IsSubClass_System_Type_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.IsSubClass(System.Type%2CSystem.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L321">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_IsSubClass_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsSubClass*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_IsSubClass_System_Type_System_Type_" data-uid="CodeJam.Reflection.ReflectionExtensions.IsSubClass(System.Type,System.Type)">IsSubClass(Type, Type)</h4>
+  <div class="markdown level1 summary"><p>Determines whether the <code data-dev-comment-type="paramref" class="paramref">type</code> derives from the specified <code data-dev-comment-type="paramref" class="paramref">check</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsSubClass(this Type type, Type check)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The type to test.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">check</span></td>
+        <td><p>The type to compare with. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>true if the <code data-dev-comment-type="paramref" class="paramref">type</code> derives from <code data-dev-comment-type="paramref" class="paramref">check</code>; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="CodeJam_Reflection_ReflectionExtensions_IsSubClass_System_Type_System_Type__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method also returns false if <code data-dev-comment-type="paramref" class="paramref">type</code> and the <code data-dev-comment-type="paramref" class="paramref">check</code> are equal.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_ToEnumUnderlying_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.ToEnumUnderlying(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L417">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_ToEnumUnderlying_" data-uid="CodeJam.Reflection.ReflectionExtensions.ToEnumUnderlying*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_ToEnumUnderlying_System_Type_" data-uid="CodeJam.Reflection.ReflectionExtensions.ToEnumUnderlying(System.Type)">ToEnumUnderlying(Type)</h4>
+  <div class="markdown level1 summary"><p>Returns the underlying type argument of the specified enum type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Type ToEnumUnderlying(this Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>A <span class="xref">System.Type</span> instance. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_ToNullableUnderlying_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.ToNullableUnderlying(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L399">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_ToNullableUnderlying_" data-uid="CodeJam.Reflection.ReflectionExtensions.ToNullableUnderlying*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_ToNullableUnderlying_System_Type_" data-uid="CodeJam.Reflection.ReflectionExtensions.ToNullableUnderlying(System.Type)">ToNullableUnderlying(Type)</h4>
+  <div class="markdown level1 summary"><p>Returns the underlying type argument of the specified nullable type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Type ToNullableUnderlying(this Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>A <span class="xref">System.Type</span> instance. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_ToUnderlying_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.ToUnderlying(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.cs/#L380">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_ToUnderlying_" data-uid="CodeJam.Reflection.ReflectionExtensions.ToUnderlying*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_ToUnderlying_System_Type_" data-uid="CodeJam.Reflection.ReflectionExtensions.ToUnderlying(System.Type)">ToUnderlying(Type)</h4>
+  <div class="markdown level1 summary"><p>Returns the underlying type argument of the specified type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Type ToUnderlying(this Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>A <span class="xref">System.Type</span> instance. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_TryGetMetadataAttribute__1_System_Reflection_ICustomAttributeProvider_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute%60%601(System.Reflection.ICustomAttributeProvider)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs/#L57">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_TryGetMetadataAttribute_" data-uid="CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_TryGetMetadataAttribute__1_System_Reflection_ICustomAttributeProvider_" data-uid="CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute``1(System.Reflection.ICustomAttributeProvider)">TryGetMetadataAttribute&lt;TAttribute&gt;(ICustomAttributeProvider)</h4>
+  <div class="markdown level1 summary"><p>Performs search for metadata attribute.
+The search is performed in the following order</p>
+<ul>
+<li>member attributes, base implementation attributes (if the <code data-dev-comment-type="paramref" class="paramref">attributeProvider</code> is member of the type)</li>
+<li>type attributes, base type attributes (if the <code data-dev-comment-type="paramref" class="paramref">attributeProvider</code> is type or member of the type)</li>
+<li>container type attributes (if the type is nested type)</li>
+<li>assembly attributes.</li>
+</ul>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TAttribute TryGetMetadataAttribute&lt;TAttribute&gt;(this ICustomAttributeProvider attributeProvider)where TAttribute : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.ICustomAttributeProvider</span></td>
+        <td><span class="parametername">attributeProvider</span></td>
+        <td><p>Metadata attribute source.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TAttribute</span></td>
+        <td><p>First attribute found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TAttribute</span></td>
+        <td><p>Type of the attribute or type of the interface implemented by the attributes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="CodeJam_Reflection_ReflectionExtensions_TryGetMetadataAttribute__1_System_Reflection_ICustomAttributeProvider__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Search logic for each level matches to the
+<span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type,System.Boolean)</span> method (inherit = <code>true</code>).
+including checks of <span class="xref">System.AttributeUsageAttribute</span>.
+Ordering of attributes at each level is undefined and depends on runtime implementation.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions_TryGetMetadataAttribute__1_System_Reflection_ICustomAttributeProvider_System_Boolean_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute%60%601(System.Reflection.ICustomAttributeProvider%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs/#L81">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_ReflectionExtensions_TryGetMetadataAttribute_" data-uid="CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute*"></a>
+  <h4 id="CodeJam_Reflection_ReflectionExtensions_TryGetMetadataAttribute__1_System_Reflection_ICustomAttributeProvider_System_Boolean_" data-uid="CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute``1(System.Reflection.ICustomAttributeProvider,System.Boolean)">TryGetMetadataAttribute&lt;TAttribute&gt;(ICustomAttributeProvider, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Performs search for metadata attribute.
+If the <code data-dev-comment-type="paramref" class="paramref">thisLevelOnly</code> is <code>true</code>, the search is performed in the following order:</p>
+<ul>
+<li>member attributes, base implementation attributes (if the <code data-dev-comment-type="paramref" class="paramref">attributeProvider</code> is member of the type)</li>
+<li>type attributes, base type attributes (if the <code data-dev-comment-type="paramref" class="paramref">attributeProvider</code> is type or member of the type)</li>
+<li>container type attributes (if the type is nested type)</li>
+<li>assembly attributes.</li>
+</ul>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TAttribute TryGetMetadataAttribute&lt;TAttribute&gt;(this ICustomAttributeProvider attributeProvider, bool thisLevelOnly)where TAttribute : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.ICustomAttributeProvider</span></td>
+        <td><span class="parametername">attributeProvider</span></td>
+        <td><p>Metadata attribute source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">thisLevelOnly</span></td>
+        <td><p>Do not check containers for the attributes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TAttribute</span></td>
+        <td><p>First attribute found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TAttribute</span></td>
+        <td><p>Type of the attribute or type of the interface implemented by the attributes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="CodeJam_Reflection_ReflectionExtensions_TryGetMetadataAttribute__1_System_Reflection_ICustomAttributeProvider_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Search logic for each level matches to the
+<span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type,System.Boolean)</span> method (inherit = <code>true</code>).
+including checks of <span class="xref">System.AttributeUsageAttribute</span>.
+Ordering of attributes at each level is undefined and depends on runtime implementation.</p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_ReflectionExtensions.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.ReflectionExtensions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/ReflectionExtensions.CreateInstance.cs/#L11" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1838 @@
+{
+  "homepages": [],
+  "source_base_path": "S:/Work/CodeJam/Main/src",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "YGraxLd4qR8NlKTX3amJ6Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "INueoO1u1RraQN4WIwAlAQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "MthxFYC+doDRUguh/vpudA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "YVeskO1V9JMPj1vgM0wMrA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Algorithms.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Algorithms.html",
+          "hash": "fnRUUQmadmGxIfsSl0E6NA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Arithmetic.Operators-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Arithmetic.Operators-1.html",
+          "hash": "a+XXrGoack35Y1Etzrg1IA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Arithmetic.OperatorsFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Arithmetic.OperatorsFactory.html",
+          "hash": "Jvj2BAtX8EHKjUqz0MTTPA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Arithmetic.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Arithmetic.html",
+          "hash": "1cv4R6IrRoM8G6ZZWCRNSg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Code.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Code.html",
+          "hash": "RjhlHtH6dxt8d5rQcPJ84w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.CodeExceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.CodeExceptions.html",
+          "hash": "Y2wT0Syw/fMIXtv0ATk1tQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.Array-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.Array-1.html",
+          "hash": "fe9qwMA7aRDVMQf+cBLqnA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.ArrayExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.ArrayExtensions.html",
+          "hash": "u8oFKRP0cdK0fnrIDbQ8fQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.CollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.CollectionExtensions.html",
+          "hash": "FiHgJpjQk7fsn37jHwn7iA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.ComparerBuilder-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.ComparerBuilder-1.html",
+          "hash": "eKkkn2J2XBTpKsYXk5lBZg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.DictionaryDuplicate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.DictionaryDuplicate.html",
+          "hash": "IM+NeDVvCsXd8Mmmi+hLOw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.DictionaryExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.DictionaryExtensions.html",
+          "hash": "5TdhmbpwIiBS5rLc6/yGMg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.EnumerableExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.EnumerableExtensions.html",
+          "hash": "KaOPQggnrYUvFADUHe6p2g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.ILazyDictionary-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.ILazyDictionary-2.html",
+          "hash": "S+iqS61Hmu417DxP9FKFzA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.IndexedItem-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.IndexedItem-1.html",
+          "hash": "9utj7waUJMQJXCbi1l2UnA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.KeyEqualityComparer-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.KeyEqualityComparer-2.html",
+          "hash": "Oz8mnDpc1q/6iA05UBB+TQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.KeyEqualityComparer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.KeyEqualityComparer.html",
+          "hash": "wmFtC3urPmsIH+VamEuC0g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.LazyDictionary-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.LazyDictionary-2.html",
+          "hash": "GBUbX9CvBeW64IV/Uwu1rQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.LazyDictionary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.LazyDictionary.html",
+          "hash": "eYdRvn3/ef1AjU07zCVwBA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.OwnedCollection-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.OwnedCollection-2.html",
+          "hash": "FpGb55XTs+SBv9BGLgWfeQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.OwnedCollection-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.OwnedCollection-3.html",
+          "hash": "ycgYlsMrJQm1t1wkeQ6/3w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.OwnedCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.OwnedCollection.html",
+          "hash": "8o9+eP4uLGqQzlsR7EAJVw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.OwnedCollectionBase-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.OwnedCollectionBase-2.html",
+          "hash": "a08sysV9OlrGdfO0F5dMOw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.OwnedCollectionBase-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.OwnedCollectionBase-3.html",
+          "hash": "XtwfYtABOrEC8a9suTb+sw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.QueryableExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.QueryableExtensions.html",
+          "hash": "a1qAwir+ktBfIEEaEkQlhw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.Sequence.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.Sequence.html",
+          "hash": "nr5UDLUd3zrj8gVOuwZyFg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.Suffix.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.Suffix.html",
+          "hash": "wxdFymzFDpUGHP9gMLXpmA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.SuffixTree.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.SuffixTree.html",
+          "hash": "H67Ewho3wpdEEJBz2YjItg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.SuffixTreeBase.Node.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.SuffixTreeBase.Node.html",
+          "hash": "TRJ8Ll1+OY2Ju22cyiI+Gw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.SuffixTreeBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.SuffixTreeBase.html",
+          "hash": "6+0nzNjcu1b3l8xsl1YuCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Collections.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Collections.html",
+          "hash": "MXTNOyH6CMV9BwMBeqk2DQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Dates.DateTimeExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Dates.DateTimeExtensions.html",
+          "hash": "4GJLWCqthwpKZh3kOB5tjA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Dates.DateTimeRangeExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Dates.DateTimeRangeExtensions.html",
+          "hash": "fhIZ3muinxFATAQrBjmdcA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Dates.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Dates.html",
+          "hash": "1SuOC9JIkeQAImkFbEfXWw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.DebugCode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.DebugCode.html",
+          "hash": "dD/wo+TTZZR5qvf6qyqspw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.DebugEnumCode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.DebugEnumCode.html",
+          "hash": "dbGEfaGPb1peDcE9MV2z/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.DebugUriCode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.DebugUriCode.html",
+          "hash": "2oYeStGXFHuh5Zo+yhfZKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Disposable.EmptyDisposable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Disposable.EmptyDisposable.html",
+          "hash": "MN4ke05UjUMiWuvJPYNy6A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Disposable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Disposable.html",
+          "hash": "JMEFVeOM52mbBHFs6fLpoA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.DisposableExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.DisposableExtensions.html",
+          "hash": "1TOSF45NTPlrQNXc2buwtQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.EnumCode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.EnumCode.html",
+          "hash": "Qx0V8gfZlBIhTNf1//jefw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.EnumCodeExceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.EnumCodeExceptions.html",
+          "hash": "yMcz4dWlDpfRkV9z3Q80Kg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.EnumHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.EnumHelper.html",
+          "hash": "7WFe23iRuXuIz0wGrKtAVA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.EnumValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.EnumValue.html",
+          "hash": "jqDrzeM2nLsAVWseRmPedw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.EnumValues.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.EnumValues.html",
+          "hash": "zenLrOnb0ntjGxKm801j+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.ExceptionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.ExceptionExtensions.html",
+          "hash": "jDT9DNX5QI+dng9afptFkQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Expressions.Expr.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Expressions.Expr.html",
+          "hash": "5Ci6ae6TFQlWjIQTDrG7+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Expressions.ExpressionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Expressions.ExpressionExtensions.html",
+          "hash": "6UjKz80bEwtH6voA+MyN4Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Expressions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Expressions.html",
+          "hash": "h7RIz5uqnBCzE+XdA+WIew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Fn-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Fn-1.html",
+          "hash": "HvLMEN3MS/mL0yElJGFI5w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Fn.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Fn.html",
+          "hash": "kxF3iGohrfYTsHiIzY5cQw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.HGlobal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.HGlobal.html",
+          "hash": "BWRy8DXbhtaGLqkJOuPQDg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.HGlobalScope-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.HGlobalScope-1.html",
+          "hash": "0FJElFXpNJkcQhKH/p2SVg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.HGlobalScope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.HGlobalScope.html",
+          "hash": "EBWr7wrzjmJr2CY5bAZVZQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.HashCode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.HashCode.html",
+          "hash": "Atx5km4QTz/i9QGqKQQIrg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IO.DebugIoCode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IO.DebugIoCode.html",
+          "hash": "OLcscVZNY9hAwz0v4rQIIg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IO.IoCode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IO.IoCode.html",
+          "hash": "cTXrvhnnHDhfZb5olxbSkg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IO.IoCodeExceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IO.IoCodeExceptions.html",
+          "hash": "gGtg8Jk9xIyGnm58R8QYUQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IO.PathHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IO.PathHelpers.html",
+          "hash": "yPhcgdjv/aVqsDJlpJH/Qg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IO.TempData.TempBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IO.TempData.TempBase.html",
+          "hash": "Exfjp2GtRL0vHklyMO2dnw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IO.TempData.TempDirectory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IO.TempData.TempDirectory.html",
+          "hash": "7sojhtYh2txmtk9NQDElyw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IO.TempData.TempFile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IO.TempData.TempFile.html",
+          "hash": "wgW+eEb7F+Xqzer2/5vXTg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IO.TempData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IO.TempData.html",
+          "hash": "Fv9YhEM54pezqCPToQ1EgA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IO.html",
+          "hash": "m0/XjEA//jVILa21TSQ2Dw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IOneOf-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IOneOf-2.html",
+          "hash": "oEDauioaopEMK6VBokNOTw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IOneOf-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IOneOf-3.html",
+          "hash": "wdwpxaRVHfyO2uew7gS9cA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IOneOf-4.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IOneOf-4.html",
+          "hash": "+k+Y6GiU0eL7JvjDxbn7JA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IOneOf-5.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IOneOf-5.html",
+          "hash": "S2jLmEQrqer0CtqmqTgKYQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IOneOf-6.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IOneOf-6.html",
+          "hash": "/p9Ow0XZbqTs/3QfLLC+OQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IOneOf-7.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IOneOf-7.html",
+          "hash": "AtFJJoahzds2fEb62rm6lQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IOneOf-8.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IOneOf-8.html",
+          "hash": "abl65YqrIN7TMCajmJVbsg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.IOption-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.IOption-1.html",
+          "hash": "sijSBccQAS3NfWysi4KJ5Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Lazy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Lazy.html",
+          "hash": "yDZhRjsACHhWn5cALcqDuA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Memory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Memory.html",
+          "hash": "/bwPMAdmki2NexHBiRtKFA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.NullableHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.NullableHelper.html",
+          "hash": "EIDlJTlz9mz9JqB8IwSSAw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.OneOf-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.OneOf-2.html",
+          "hash": "N5UtQV9HYvohP7GHmQXRgA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.OneOf-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.OneOf-3.html",
+          "hash": "r+oT8FjdTV+g93AGvdbzBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.OneOf-4.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.OneOf-4.html",
+          "hash": "9daohPHVWAZLLLntlSdcbA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.OneOf-5.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.OneOf-5.html",
+          "hash": "fwlFRngwgybUP8OBKmZnFA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.OneOf-6.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.OneOf-6.html",
+          "hash": "KUEB5v4BiVxM/FjLmnL/ig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.OneOf-7.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.OneOf-7.html",
+          "hash": "7eB34LGSEH1P9p+sV48aQA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.OneOf-8.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.OneOf-8.html",
+          "hash": "FOqO89BRwTe2CTNj6iUCqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Option-1.None.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Option-1.None.html",
+          "hash": "hJ6vYpw2m4GdjSiPPeqhVA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Option-1.Some.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Option-1.Some.html",
+          "hash": "MfCByr6qL9gA2/6N6IQb7A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Option-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Option-1.html",
+          "hash": "Rxem50uK/gm6HPyvCVvrCA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Option.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Option.html",
+          "hash": "KWIkapMEp4re1mc4JrlEcg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.CompositeRange-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.CompositeRange-1.html",
+          "hash": "kKPygc1GuXbAsBIbY7XUdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.CompositeRange-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.CompositeRange-2.html",
+          "hash": "94QrXbpUCcSMHNfwdFQiyA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.CompositeRange.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.CompositeRange.html",
+          "hash": "jBvb06yyvAmwmbacPlFSyA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.CompositeRangeExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.CompositeRangeExtensions.html",
+          "hash": "IPR2St6IW8QkApltzbqFjQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.ICompositeRange-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.ICompositeRange-1.html",
+          "hash": "fLK6J8yBD8MVgxygtANNNQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.IRange-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.IRange-1.html",
+          "hash": "8yR05XyTHyfpgF0O+H1jPA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.IRangeFactory-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.IRangeFactory-2.html",
+          "hash": "sTOubgtyaHUcuT6gcKTJkw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.Range-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.Range-1.html",
+          "hash": "whirS3n8oAvajwYz/Wb6Vg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.Range-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.Range-2.html",
+          "hash": "ilGiSsPIyIsz8h+z6NYD9g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.Range.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.Range.html",
+          "hash": "pRLkGUHe99p15VW0N/wR4Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.RangeBoundaryFrom-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.RangeBoundaryFrom-1.html",
+          "hash": "McE5ivDT2nsS3iqU45jw5w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.RangeBoundaryFromKind.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.RangeBoundaryFromKind.html",
+          "hash": "QRVzgRKX0j45l2nnSNLXZQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.RangeBoundaryTo-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.RangeBoundaryTo-1.html",
+          "hash": "BCyaOGkpcmEP9HfMi+6VKQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.RangeBoundaryToKind.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.RangeBoundaryToKind.html",
+          "hash": "LeEMH9dmx6rm2aQTi1Q8IA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.RangeExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.RangeExtensions.html",
+          "hash": "nKJqRgPYK+SQOOZRly6DJQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.RangeIntersection-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.RangeIntersection-1.html",
+          "hash": "Zq3Ux91l1CSbkNA+cxv85A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.RangeIntersection-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.RangeIntersection-2.html",
+          "hash": "KQQcxRNrSJwU6JLjtwSmng=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Ranges.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Ranges.html",
+          "hash": "c1eAQ+fwkzH6C88+oRrF+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Reflection.AssemblyExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Reflection.AssemblyExtensions.html",
+          "hash": "52fegWnJg+tNJp+qtSix4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Reflection.InfoOf-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Reflection.InfoOf-1.html",
+          "hash": "IHtjk++3BAe4f2VMjITxwA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Reflection.InfoOf.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Reflection.InfoOf.html",
+          "hash": "PUQk06JnoP1LXdWAg3leRA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Reflection.MemberAccessor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Reflection.MemberAccessor.html",
+          "hash": "OruDGvh/lyHjT3IVJSCpHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Reflection.ParamInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Reflection.ParamInfo.html",
+          "hash": "IQprAa/4Itx2vb8MAyFO6g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Reflection.ReflectionEnumHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Reflection.ReflectionEnumHelper.html",
+          "hash": "+MU1oS/MwKPEl8UflgUxwQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Reflection.ReflectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Reflection.ReflectionExtensions.html",
+          "hash": "V6L1KcYBaaPMauOz91kYjw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Reflection.TypeAccessor-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Reflection.TypeAccessor-1.html",
+          "hash": "rsBW3dOBWNhAUiMjBQwz/A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Reflection.TypeAccessor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Reflection.TypeAccessor.html",
+          "hash": "baF8PfTJHXv84GphDS4tKA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Reflection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Reflection.html",
+          "hash": "IgEKHoh2UdHK/HLT0scopA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Strings.CharExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Strings.CharExtensions.html",
+          "hash": "vbH8njof4GGKaHZqUcut+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Strings.NaturalOrderStringComparer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Strings.NaturalOrderStringComparer.html",
+          "hash": "GSwgHRUk54iRnDLpL8qFfg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Strings.StringExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Strings.StringExtensions.html",
+          "hash": "b+58lzhbmCMSHyeuwkKKpg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Strings.StringOrigin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Strings.StringOrigin.html",
+          "hash": "iToOx8yflebjqAeZWseIiQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Strings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Strings.html",
+          "hash": "Xh+MTMTRPN+fgo6xxDVCMw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Threading.AsyncLock.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Threading.AsyncLock.html",
+          "hash": "URpkzy3oEEoWVDI5GfT9mQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Threading.AsyncOperationHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Threading.AsyncOperationHelper.html",
+          "hash": "L7fZJi9+VtQpRgICFWYAcg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Threading.ConcurrentLazyDictionary-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Threading.ConcurrentLazyDictionary-2.html",
+          "hash": "i50pIZBiKwA+hYnXa6M3xA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Threading.ExecSyncConcurrentLazyDictionary-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Threading.ExecSyncConcurrentLazyDictionary-2.html",
+          "hash": "nQg3+M0sndOcTNh/1Kz5sg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Threading.InterlockedOperations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Threading.InterlockedOperations.html",
+          "hash": "93c9zl7T47psGYBWsfvYgA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Threading.ParallelExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Threading.ParallelExtensions.html",
+          "hash": "TH0aT/PhPbwYGjSgwXaCoQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Threading.ReaderWriterLockSlimExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Threading.ReaderWriterLockSlimExtensions.html",
+          "hash": "bwFQWIIh6hwsMDLKc8yC+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Threading.TaskHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Threading.TaskHelper.html",
+          "hash": "CSchQaV41QS6Mxm7S+Ma+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Threading.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Threading.html",
+          "hash": "oTwq2UIYN3dZknYlKCEgcg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.UriCode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.UriCode.html",
+          "hash": "hAkSETO3mh2QDWrFJPBgGQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.UriCodeExceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.UriCodeExceptions.html",
+          "hash": "fcfVmYSTmd1WSjex5URfDg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.UriHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.UriHelper.html",
+          "hash": "zxZQWMMUvgyePzjtzHGBiw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.ValueOneOf-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.ValueOneOf-2.html",
+          "hash": "T+bjpXTPAdmrDyAYYTAOew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.ValueOneOf-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.ValueOneOf-3.html",
+          "hash": "wRNNoXO+ZFgw5KAubz2zGw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.ValueOneOf-4.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.ValueOneOf-4.html",
+          "hash": "OtFO1k/MdMmhh0jL7CHruw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.ValueOneOf-5.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.ValueOneOf-5.html",
+          "hash": "O26CKuJX2TtHZxDJpQe7nQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.ValueOneOf-6.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.ValueOneOf-6.html",
+          "hash": "m346YHHKhpd++e8D4dZigw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.ValueOneOf-7.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.ValueOneOf-7.html",
+          "hash": "agyGdRlEv8KnZJ0uGnpMmQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.ValueOneOf-8.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.ValueOneOf-8.html",
+          "hash": "AxRvKmwduKO9Q7yYLSUxLQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.ValueOption-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.ValueOption-1.html",
+          "hash": "9jbiydpVkb/80RwGrUM5bA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.ValueOption.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.ValueOption.html",
+          "hash": "3maQbkg6RrxnIDNe++fyUw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Xml.XNodeExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Xml.XNodeExtensions.html",
+          "hash": "KYIEmUbQuASe1roG/burKw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.Xml.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.Xml.html",
+          "hash": "DzF99OSafMhgjmG7U9KlgA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CodeJam.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CodeJam.html",
+          "hash": "TsvA4y5v+zPrLdODtYj9gA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "obj/api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "+5nuzz6OwdihcPaL2ywJyg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "MDNrC7yOFN/ZIu8PpNhRJw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Disable incremental build by force rebuild option.",
+        "incrementalPhase": "build"
+      },
+      "processors": {
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "RestApiDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor RestApiDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build"
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build"
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: it's disabled.",
+        "incrementalPhase": "postProcessing"
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {}
+}
