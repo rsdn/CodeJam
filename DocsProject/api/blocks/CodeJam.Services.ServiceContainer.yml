@@ -1,0 +1,1572 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Services.ServiceContainer
+  commentId: T:CodeJam.Services.ServiceContainer
+  id: ServiceContainer
+  parent: CodeJam.Services
+  children:
+  - CodeJam.Services.ServiceContainer.#ctor(System.Boolean)
+  - CodeJam.Services.ServiceContainer.#ctor(System.IServiceProvider,System.Boolean)
+  - CodeJam.Services.ServiceContainer.Dispose
+  - CodeJam.Services.ServiceContainer.GetService(System.Type)
+  - CodeJam.Services.ServiceContainer.Publish(System.Type,System.Func{CodeJam.Services.IServicePublisher,System.Object})
+  - CodeJam.Services.ServiceContainer.Publish(System.Type,System.Object)
+  langs:
+  - csharp
+  - vb
+  name: ServiceContainer
+  nameWithType: ServiceContainer
+  fullName: CodeJam.Services.ServiceContainer
+  type: Class
+  source:
+    remote:
+      path: Blocks/src/Services/ServiceContainer.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ServiceContainer
+    path: ../Blocks/src/Services/ServiceContainer.cs
+    startLine: 13
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Services
+  summary: "\nService container.\n"
+  example: []
+  syntax:
+    content: 'public class ServiceContainer : IServicePublisher, IServiceProvider, IDisposable'
+    content.vb: >-
+      Public Class ServiceContainer
+          Implements IServicePublisher, IServiceProvider, IDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - CodeJam.Services.IServicePublisher
+  - System.IServiceProvider
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - CodeJam.Services.ServiceContainer.CodeJam.Mapping.Map.DeepCopy``1
+  - System.IServiceProvider.CodeJam.Services.ServiceProviderHelper.GetRequiredService(System.Type)
+  - System.IServiceProvider.CodeJam.Services.ServiceProviderHelper.GetService``1
+  - System.IServiceProvider.CodeJam.Services.ServiceProviderHelper.GetRequiredService``1
+  - CodeJam.Services.IServicePublisher.CodeJam.Services.ServiceProviderHelper.Publish``1({T})
+  - CodeJam.Services.IServicePublisher.CodeJam.Services.ServiceProviderHelper.Publish``1(System.Func{CodeJam.Services.IServicePublisher,{T}})
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: CodeJam.Services.ServiceContainer.#ctor(System.IServiceProvider,System.Boolean)
+  commentId: M:CodeJam.Services.ServiceContainer.#ctor(System.IServiceProvider,System.Boolean)
+  id: '#ctor(System.IServiceProvider,System.Boolean)'
+  parent: CodeJam.Services.ServiceContainer
+  langs:
+  - csharp
+  - vb
+  name: ServiceContainer(IServiceProvider, Boolean)
+  nameWithType: ServiceContainer.ServiceContainer(IServiceProvider, Boolean)
+  fullName: CodeJam.Services.ServiceContainer.ServiceContainer(System.IServiceProvider, System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: Blocks/src/Services/ServiceContainer.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../Blocks/src/Services/ServiceContainer.cs
+    startLine: 29
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Services
+  summary: "\nInitializes a new instance of the <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public ServiceContainer(IServiceProvider parentProvider, bool publishSelf = true)
+    parameters:
+    - id: parentProvider
+      type: System.IServiceProvider
+      description: The parent provider.
+    - id: publishSelf
+      type: System.Boolean
+      description: "\nif set to <code>true</code> container publish itself as <xref href=\"CodeJam.Services.IServicePublisher\" data-throw-if-not-resolved=\"false\"></xref> service.\n"
+    content.vb: Public Sub New(parentProvider As IServiceProvider, publishSelf As Boolean = True)
+  overload: CodeJam.Services.ServiceContainer.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Services.ServiceContainer.#ctor(System.Boolean)
+  commentId: M:CodeJam.Services.ServiceContainer.#ctor(System.Boolean)
+  id: '#ctor(System.Boolean)'
+  parent: CodeJam.Services.ServiceContainer
+  langs:
+  - csharp
+  - vb
+  name: ServiceContainer(Boolean)
+  nameWithType: ServiceContainer.ServiceContainer(Boolean)
+  fullName: CodeJam.Services.ServiceContainer.ServiceContainer(System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: Blocks/src/Services/ServiceContainer.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../Blocks/src/Services/ServiceContainer.cs
+    startLine: 40
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Services
+  summary: Initializes a new instance of the <xref href="System.Object" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public ServiceContainer(bool publishSelf = true)
+    parameters:
+    - id: publishSelf
+      type: System.Boolean
+      description: "\nif set to <code>true</code> container publish itself as <xref href=\"CodeJam.Services.IServicePublisher\" data-throw-if-not-resolved=\"false\"></xref> service.\n"
+    content.vb: Public Sub New(publishSelf As Boolean = True)
+  overload: CodeJam.Services.ServiceContainer.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Services.ServiceContainer.GetService(System.Type)
+  commentId: M:CodeJam.Services.ServiceContainer.GetService(System.Type)
+  id: GetService(System.Type)
+  parent: CodeJam.Services.ServiceContainer
+  langs:
+  - csharp
+  - vb
+  name: GetService(Type)
+  nameWithType: ServiceContainer.GetService(Type)
+  fullName: CodeJam.Services.ServiceContainer.GetService(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Services/ServiceContainer.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetService
+    path: ../Blocks/src/Services/ServiceContainer.cs
+    startLine: 52
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Services
+  summary: Gets the service object of the specified type.
+  example: []
+  syntax:
+    content: public object GetService(Type serviceType)
+    parameters:
+    - id: serviceType
+      type: System.Type
+      description: 'An object that specifies the type of service object to get. '
+    return:
+      type: System.Object
+      description: A service object of type <code data-dev-comment-type="paramref" class="paramref">serviceType</code>.-or- null if there is no service object of type <code data-dev-comment-type="paramref" class="paramref">serviceType</code>.
+    content.vb: Public Function GetService(serviceType As Type) As Object
+  overload: CodeJam.Services.ServiceContainer.GetService*
+  implements:
+  - System.IServiceProvider.GetService(System.Type)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Services.ServiceContainer.Publish(System.Type,System.Object)
+  commentId: M:CodeJam.Services.ServiceContainer.Publish(System.Type,System.Object)
+  id: Publish(System.Type,System.Object)
+  parent: CodeJam.Services.ServiceContainer
+  langs:
+  - csharp
+  - vb
+  name: Publish(Type, Object)
+  nameWithType: ServiceContainer.Publish(Type, Object)
+  fullName: CodeJam.Services.ServiceContainer.Publish(System.Type, System.Object)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Services/ServiceContainer.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Publish
+    path: ../Blocks/src/Services/ServiceContainer.cs
+    startLine: 70
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Services
+  summary: "\nPublish service.\n"
+  example: []
+  syntax:
+    content: public IDisposable Publish(Type serviceType, object serviceInstance)
+    parameters:
+    - id: serviceType
+      type: System.Type
+      description: Type of service object to publish.
+    - id: serviceInstance
+      type: System.Object
+      description: Instance of service of type <code data-dev-comment-type="paramref" class="paramref">serviceType</code>.
+    return:
+      type: System.IDisposable
+      description: Disposable cookie to conceal published service
+    content.vb: Public Function Publish(serviceType As Type, serviceInstance As Object) As IDisposable
+  overload: CodeJam.Services.ServiceContainer.Publish*
+  implements:
+  - CodeJam.Services.IServicePublisher.Publish(System.Type,System.Object)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Services.ServiceContainer.Publish(System.Type,System.Func{CodeJam.Services.IServicePublisher,System.Object})
+  commentId: M:CodeJam.Services.ServiceContainer.Publish(System.Type,System.Func{CodeJam.Services.IServicePublisher,System.Object})
+  id: Publish(System.Type,System.Func{CodeJam.Services.IServicePublisher,System.Object})
+  parent: CodeJam.Services.ServiceContainer
+  langs:
+  - csharp
+  - vb
+  name: Publish(Type, Func<IServicePublisher, Object>)
+  nameWithType: ServiceContainer.Publish(Type, Func<IServicePublisher, Object>)
+  fullName: CodeJam.Services.ServiceContainer.Publish(System.Type, System.Func<CodeJam.Services.IServicePublisher, System.Object>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Services/ServiceContainer.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Publish
+    path: ../Blocks/src/Services/ServiceContainer.cs
+    startLine: 94
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Services
+  summary: "\nPublish service.\n"
+  example: []
+  syntax:
+    content: public IDisposable Publish(Type serviceType, Func<IServicePublisher, object> instanceFactory)
+    parameters:
+    - id: serviceType
+      type: System.Type
+      description: Type of service object to publish.
+    - id: instanceFactory
+      type: System.Func{CodeJam.Services.IServicePublisher,System.Object}
+      description: Factory to create service instance
+    return:
+      type: System.IDisposable
+      description: Disposable cookie to conceal published service
+    content.vb: Public Function Publish(serviceType As Type, instanceFactory As Func(Of IServicePublisher, Object)) As IDisposable
+  overload: CodeJam.Services.ServiceContainer.Publish*
+  implements:
+  - CodeJam.Services.IServicePublisher.Publish(System.Type,System.Func{CodeJam.Services.IServicePublisher,System.Object})
+  nameWithType.vb: ServiceContainer.Publish(Type, Func(Of IServicePublisher, Object))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Services.ServiceContainer.Publish(System.Type, System.Func(Of CodeJam.Services.IServicePublisher, System.Object))
+  name.vb: Publish(Type, Func(Of IServicePublisher, Object))
+- uid: CodeJam.Services.ServiceContainer.Dispose
+  commentId: M:CodeJam.Services.ServiceContainer.Dispose
+  id: Dispose
+  parent: CodeJam.Services.ServiceContainer
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: ServiceContainer.Dispose()
+  fullName: CodeJam.Services.ServiceContainer.Dispose()
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Services/ServiceContainer.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Dispose
+    path: ../Blocks/src/Services/ServiceContainer.cs
+    startLine: 167
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Services
+  summary: "\nCalls <xref href=\"System.IDisposable.Dispose\" data-throw-if-not-resolved=\"false\"></xref> methods in all created service instances, that implements\n<xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose
+  overload: CodeJam.Services.ServiceContainer.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: CodeJam.Services
+  commentId: N:CodeJam.Services
+  isExternal: false
+  name: CodeJam.Services
+  nameWithType: CodeJam.Services
+  fullName: CodeJam.Services
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: CodeJam.Services.IServicePublisher
+  commentId: T:CodeJam.Services.IServicePublisher
+  parent: CodeJam.Services
+  isExternal: false
+  name: IServicePublisher
+  nameWithType: IServicePublisher
+  fullName: CodeJam.Services.IServicePublisher
+- uid: System.IServiceProvider
+  commentId: T:System.IServiceProvider
+  parent: System
+  isExternal: true
+  name: IServiceProvider
+  nameWithType: IServiceProvider
+  fullName: System.IServiceProvider
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Services.ServiceContainer.CodeJam.Mapping.Map.DeepCopy``1
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  parent: CodeJam.Mapping.Map
+  definition: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  name: DeepCopy<ServiceContainer>()
+  nameWithType: Map.DeepCopy<ServiceContainer>()
+  fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.Services.ServiceContainer>()
+  nameWithType.vb: Map.DeepCopy(Of ServiceContainer)()
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.Services.ServiceContainer)()
+  name.vb: DeepCopy(Of ServiceContainer)()
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy<ServiceContainer>
+    nameWithType: Map.DeepCopy<ServiceContainer>
+    fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.Services.ServiceContainer>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy(Of ServiceContainer)
+    nameWithType: Map.DeepCopy(Of ServiceContainer)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.Services.ServiceContainer)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IServiceProvider.CodeJam.Services.ServiceProviderHelper.GetRequiredService(System.Type)
+  commentId: M:CodeJam.Services.ServiceProviderHelper.GetRequiredService(System.IServiceProvider,System.Type)
+  parent: CodeJam.Services.ServiceProviderHelper
+  definition: CodeJam.Services.ServiceProviderHelper.GetRequiredService(System.IServiceProvider,System.Type)
+  name: GetRequiredService(Type)
+  nameWithType: ServiceProviderHelper.GetRequiredService(Type)
+  fullName: CodeJam.Services.ServiceProviderHelper.GetRequiredService(System.Type)
+  spec.csharp:
+  - uid: CodeJam.Services.ServiceProviderHelper.GetRequiredService(System.Type)
+    name: GetRequiredService
+    nameWithType: ServiceProviderHelper.GetRequiredService
+    fullName: CodeJam.Services.ServiceProviderHelper.GetRequiredService
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Services.ServiceProviderHelper.GetRequiredService(System.Type)
+    name: GetRequiredService
+    nameWithType: ServiceProviderHelper.GetRequiredService
+    fullName: CodeJam.Services.ServiceProviderHelper.GetRequiredService
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IServiceProvider.CodeJam.Services.ServiceProviderHelper.GetService``1
+  commentId: M:CodeJam.Services.ServiceProviderHelper.GetService``1(System.IServiceProvider)
+  parent: CodeJam.Services.ServiceProviderHelper
+  definition: CodeJam.Services.ServiceProviderHelper.GetService``1(System.IServiceProvider)
+  name: GetService<T>()
+  nameWithType: ServiceProviderHelper.GetService<T>()
+  fullName: CodeJam.Services.ServiceProviderHelper.GetService<T>()
+  nameWithType.vb: ServiceProviderHelper.GetService(Of T)()
+  fullName.vb: CodeJam.Services.ServiceProviderHelper.GetService(Of T)()
+  name.vb: GetService(Of T)()
+  spec.csharp:
+  - uid: CodeJam.Services.ServiceProviderHelper.GetService``1
+    name: GetService<T>
+    nameWithType: ServiceProviderHelper.GetService<T>
+    fullName: CodeJam.Services.ServiceProviderHelper.GetService<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Services.ServiceProviderHelper.GetService``1
+    name: GetService(Of T)
+    nameWithType: ServiceProviderHelper.GetService(Of T)
+    fullName: CodeJam.Services.ServiceProviderHelper.GetService(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IServiceProvider.CodeJam.Services.ServiceProviderHelper.GetRequiredService``1
+  commentId: M:CodeJam.Services.ServiceProviderHelper.GetRequiredService``1(System.IServiceProvider)
+  parent: CodeJam.Services.ServiceProviderHelper
+  definition: CodeJam.Services.ServiceProviderHelper.GetRequiredService``1(System.IServiceProvider)
+  name: GetRequiredService<T>()
+  nameWithType: ServiceProviderHelper.GetRequiredService<T>()
+  fullName: CodeJam.Services.ServiceProviderHelper.GetRequiredService<T>()
+  nameWithType.vb: ServiceProviderHelper.GetRequiredService(Of T)()
+  fullName.vb: CodeJam.Services.ServiceProviderHelper.GetRequiredService(Of T)()
+  name.vb: GetRequiredService(Of T)()
+  spec.csharp:
+  - uid: CodeJam.Services.ServiceProviderHelper.GetRequiredService``1
+    name: GetRequiredService<T>
+    nameWithType: ServiceProviderHelper.GetRequiredService<T>
+    fullName: CodeJam.Services.ServiceProviderHelper.GetRequiredService<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Services.ServiceProviderHelper.GetRequiredService``1
+    name: GetRequiredService(Of T)
+    nameWithType: ServiceProviderHelper.GetRequiredService(Of T)
+    fullName: CodeJam.Services.ServiceProviderHelper.GetRequiredService(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Services.IServicePublisher.CodeJam.Services.ServiceProviderHelper.Publish``1({T})
+  commentId: M:CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,``0)
+  parent: CodeJam.Services.ServiceProviderHelper
+  definition: CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,``0)
+  name: Publish<T>(T)
+  nameWithType: ServiceProviderHelper.Publish<T>(T)
+  fullName: CodeJam.Services.ServiceProviderHelper.Publish<T>(T)
+  nameWithType.vb: ServiceProviderHelper.Publish(Of T)(T)
+  fullName.vb: CodeJam.Services.ServiceProviderHelper.Publish(Of T)(T)
+  name.vb: Publish(Of T)(T)
+  spec.csharp:
+  - uid: CodeJam.Services.ServiceProviderHelper.Publish``1(``0)
+    name: Publish<T>
+    nameWithType: ServiceProviderHelper.Publish<T>
+    fullName: CodeJam.Services.ServiceProviderHelper.Publish<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Services.ServiceProviderHelper.Publish``1(``0)
+    name: Publish(Of T)
+    nameWithType: ServiceProviderHelper.Publish(Of T)
+    fullName: CodeJam.Services.ServiceProviderHelper.Publish(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Services.IServicePublisher.CodeJam.Services.ServiceProviderHelper.Publish``1(System.Func{CodeJam.Services.IServicePublisher,{T}})
+  commentId: M:CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,System.Func{CodeJam.Services.IServicePublisher,``0})
+  parent: CodeJam.Services.ServiceProviderHelper
+  definition: CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,System.Func{CodeJam.Services.IServicePublisher,``0})
+  name: Publish<T>(Func<IServicePublisher, T>)
+  nameWithType: ServiceProviderHelper.Publish<T>(Func<IServicePublisher, T>)
+  fullName: CodeJam.Services.ServiceProviderHelper.Publish<T>(System.Func<CodeJam.Services.IServicePublisher, T>)
+  nameWithType.vb: ServiceProviderHelper.Publish(Of T)(Func(Of IServicePublisher, T))
+  fullName.vb: CodeJam.Services.ServiceProviderHelper.Publish(Of T)(System.Func(Of CodeJam.Services.IServicePublisher, T))
+  name.vb: Publish(Of T)(Func(Of IServicePublisher, T))
+  spec.csharp:
+  - uid: CodeJam.Services.ServiceProviderHelper.Publish``1(System.Func{CodeJam.Services.IServicePublisher,``0})
+    name: Publish<T>
+    nameWithType: ServiceProviderHelper.Publish<T>
+    fullName: CodeJam.Services.ServiceProviderHelper.Publish<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.Services.IServicePublisher
+    name: IServicePublisher
+    nameWithType: IServicePublisher
+    fullName: CodeJam.Services.IServicePublisher
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Services.ServiceProviderHelper.Publish``1(System.Func{CodeJam.Services.IServicePublisher,``0})
+    name: Publish(Of T)
+    nameWithType: ServiceProviderHelper.Publish(Of T)
+    fullName: CodeJam.Services.ServiceProviderHelper.Publish(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.Services.IServicePublisher
+    name: IServicePublisher
+    nameWithType: IServicePublisher
+    fullName: CodeJam.Services.IServicePublisher
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  isExternal: false
+  name: DeepCopy<T>(T)
+  nameWithType: Map.DeepCopy<T>(T)
+  fullName: CodeJam.Mapping.Map.DeepCopy<T>(T)
+  nameWithType.vb: Map.DeepCopy(Of T)(T)
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of T)(T)
+  name.vb: DeepCopy(Of T)(T)
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy<T>
+    nameWithType: Map.DeepCopy<T>
+    fullName: CodeJam.Mapping.Map.DeepCopy<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy(Of T)
+    nameWithType: Map.DeepCopy(Of T)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.Map
+  commentId: T:CodeJam.Mapping.Map
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: Map
+  nameWithType: Map
+  fullName: CodeJam.Mapping.Map
+- uid: CodeJam.Services.ServiceProviderHelper.GetRequiredService(System.IServiceProvider,System.Type)
+  commentId: M:CodeJam.Services.ServiceProviderHelper.GetRequiredService(System.IServiceProvider,System.Type)
+  isExternal: true
+  name: GetRequiredService(IServiceProvider, Type)
+  nameWithType: ServiceProviderHelper.GetRequiredService(IServiceProvider, Type)
+  fullName: CodeJam.Services.ServiceProviderHelper.GetRequiredService(System.IServiceProvider, System.Type)
+  spec.csharp:
+  - uid: CodeJam.Services.ServiceProviderHelper.GetRequiredService(System.IServiceProvider,System.Type)
+    name: GetRequiredService
+    nameWithType: ServiceProviderHelper.GetRequiredService
+    fullName: CodeJam.Services.ServiceProviderHelper.GetRequiredService
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IServiceProvider
+    name: IServiceProvider
+    nameWithType: IServiceProvider
+    fullName: System.IServiceProvider
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Services.ServiceProviderHelper.GetRequiredService(System.IServiceProvider,System.Type)
+    name: GetRequiredService
+    nameWithType: ServiceProviderHelper.GetRequiredService
+    fullName: CodeJam.Services.ServiceProviderHelper.GetRequiredService
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IServiceProvider
+    name: IServiceProvider
+    nameWithType: IServiceProvider
+    fullName: System.IServiceProvider
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Services.ServiceProviderHelper
+  commentId: T:CodeJam.Services.ServiceProviderHelper
+  parent: CodeJam.Services
+  isExternal: false
+  name: ServiceProviderHelper
+  nameWithType: ServiceProviderHelper
+  fullName: CodeJam.Services.ServiceProviderHelper
+- uid: CodeJam.Services.ServiceProviderHelper.GetService``1(System.IServiceProvider)
+  commentId: M:CodeJam.Services.ServiceProviderHelper.GetService``1(System.IServiceProvider)
+  isExternal: true
+  name: GetService<T>(IServiceProvider)
+  nameWithType: ServiceProviderHelper.GetService<T>(IServiceProvider)
+  fullName: CodeJam.Services.ServiceProviderHelper.GetService<T>(System.IServiceProvider)
+  nameWithType.vb: ServiceProviderHelper.GetService(Of T)(IServiceProvider)
+  fullName.vb: CodeJam.Services.ServiceProviderHelper.GetService(Of T)(System.IServiceProvider)
+  name.vb: GetService(Of T)(IServiceProvider)
+  spec.csharp:
+  - uid: CodeJam.Services.ServiceProviderHelper.GetService``1(System.IServiceProvider)
+    name: GetService<T>
+    nameWithType: ServiceProviderHelper.GetService<T>
+    fullName: CodeJam.Services.ServiceProviderHelper.GetService<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IServiceProvider
+    name: IServiceProvider
+    nameWithType: IServiceProvider
+    fullName: System.IServiceProvider
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Services.ServiceProviderHelper.GetService``1(System.IServiceProvider)
+    name: GetService(Of T)
+    nameWithType: ServiceProviderHelper.GetService(Of T)
+    fullName: CodeJam.Services.ServiceProviderHelper.GetService(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IServiceProvider
+    name: IServiceProvider
+    nameWithType: IServiceProvider
+    fullName: System.IServiceProvider
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Services.ServiceProviderHelper.GetRequiredService``1(System.IServiceProvider)
+  commentId: M:CodeJam.Services.ServiceProviderHelper.GetRequiredService``1(System.IServiceProvider)
+  isExternal: true
+  name: GetRequiredService<T>(IServiceProvider)
+  nameWithType: ServiceProviderHelper.GetRequiredService<T>(IServiceProvider)
+  fullName: CodeJam.Services.ServiceProviderHelper.GetRequiredService<T>(System.IServiceProvider)
+  nameWithType.vb: ServiceProviderHelper.GetRequiredService(Of T)(IServiceProvider)
+  fullName.vb: CodeJam.Services.ServiceProviderHelper.GetRequiredService(Of T)(System.IServiceProvider)
+  name.vb: GetRequiredService(Of T)(IServiceProvider)
+  spec.csharp:
+  - uid: CodeJam.Services.ServiceProviderHelper.GetRequiredService``1(System.IServiceProvider)
+    name: GetRequiredService<T>
+    nameWithType: ServiceProviderHelper.GetRequiredService<T>
+    fullName: CodeJam.Services.ServiceProviderHelper.GetRequiredService<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IServiceProvider
+    name: IServiceProvider
+    nameWithType: IServiceProvider
+    fullName: System.IServiceProvider
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Services.ServiceProviderHelper.GetRequiredService``1(System.IServiceProvider)
+    name: GetRequiredService(Of T)
+    nameWithType: ServiceProviderHelper.GetRequiredService(Of T)
+    fullName: CodeJam.Services.ServiceProviderHelper.GetRequiredService(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IServiceProvider
+    name: IServiceProvider
+    nameWithType: IServiceProvider
+    fullName: System.IServiceProvider
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,``0)
+  commentId: M:CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,``0)
+  isExternal: false
+  name: Publish<T>(IServicePublisher, T)
+  nameWithType: ServiceProviderHelper.Publish<T>(IServicePublisher, T)
+  fullName: CodeJam.Services.ServiceProviderHelper.Publish<T>(CodeJam.Services.IServicePublisher, T)
+  nameWithType.vb: ServiceProviderHelper.Publish(Of T)(IServicePublisher, T)
+  fullName.vb: CodeJam.Services.ServiceProviderHelper.Publish(Of T)(CodeJam.Services.IServicePublisher, T)
+  name.vb: Publish(Of T)(IServicePublisher, T)
+  spec.csharp:
+  - uid: CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,``0)
+    name: Publish<T>
+    nameWithType: ServiceProviderHelper.Publish<T>
+    fullName: CodeJam.Services.ServiceProviderHelper.Publish<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Services.IServicePublisher
+    name: IServicePublisher
+    nameWithType: IServicePublisher
+    fullName: CodeJam.Services.IServicePublisher
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,``0)
+    name: Publish(Of T)
+    nameWithType: ServiceProviderHelper.Publish(Of T)
+    fullName: CodeJam.Services.ServiceProviderHelper.Publish(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Services.IServicePublisher
+    name: IServicePublisher
+    nameWithType: IServicePublisher
+    fullName: CodeJam.Services.IServicePublisher
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,System.Func{CodeJam.Services.IServicePublisher,``0})
+  commentId: M:CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,System.Func{CodeJam.Services.IServicePublisher,``0})
+  isExternal: true
+  name: Publish<T>(IServicePublisher, Func<IServicePublisher, T>)
+  nameWithType: ServiceProviderHelper.Publish<T>(IServicePublisher, Func<IServicePublisher, T>)
+  fullName: CodeJam.Services.ServiceProviderHelper.Publish<T>(CodeJam.Services.IServicePublisher, System.Func<CodeJam.Services.IServicePublisher, T>)
+  nameWithType.vb: ServiceProviderHelper.Publish(Of T)(IServicePublisher, Func(Of IServicePublisher, T))
+  fullName.vb: CodeJam.Services.ServiceProviderHelper.Publish(Of T)(CodeJam.Services.IServicePublisher, System.Func(Of CodeJam.Services.IServicePublisher, T))
+  name.vb: Publish(Of T)(IServicePublisher, Func(Of IServicePublisher, T))
+  spec.csharp:
+  - uid: CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,System.Func{CodeJam.Services.IServicePublisher,``0})
+    name: Publish<T>
+    nameWithType: ServiceProviderHelper.Publish<T>
+    fullName: CodeJam.Services.ServiceProviderHelper.Publish<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Services.IServicePublisher
+    name: IServicePublisher
+    nameWithType: IServicePublisher
+    fullName: CodeJam.Services.IServicePublisher
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.Services.IServicePublisher
+    name: IServicePublisher
+    nameWithType: IServicePublisher
+    fullName: CodeJam.Services.IServicePublisher
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,System.Func{CodeJam.Services.IServicePublisher,``0})
+    name: Publish(Of T)
+    nameWithType: ServiceProviderHelper.Publish(Of T)
+    fullName: CodeJam.Services.ServiceProviderHelper.Publish(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Services.IServicePublisher
+    name: IServicePublisher
+    nameWithType: IServicePublisher
+    fullName: CodeJam.Services.IServicePublisher
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.Services.IServicePublisher
+    name: IServicePublisher
+    nameWithType: IServicePublisher
+    fullName: CodeJam.Services.IServicePublisher
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping
+  commentId: N:CodeJam.Mapping
+  isExternal: false
+  name: CodeJam.Mapping
+  nameWithType: CodeJam.Mapping
+  fullName: CodeJam.Mapping
+- uid: CodeJam.Services.ServiceContainer.#ctor*
+  commentId: Overload:CodeJam.Services.ServiceContainer.#ctor
+  isExternal: false
+  name: ServiceContainer
+  nameWithType: ServiceContainer.ServiceContainer
+  fullName: CodeJam.Services.ServiceContainer.ServiceContainer
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.Services.ServiceContainer.GetService*
+  commentId: Overload:CodeJam.Services.ServiceContainer.GetService
+  isExternal: false
+  name: GetService
+  nameWithType: ServiceContainer.GetService
+  fullName: CodeJam.Services.ServiceContainer.GetService
+- uid: System.IServiceProvider.GetService(System.Type)
+  commentId: M:System.IServiceProvider.GetService(System.Type)
+  parent: System.IServiceProvider
+  isExternal: true
+  name: GetService(Type)
+  nameWithType: IServiceProvider.GetService(Type)
+  fullName: System.IServiceProvider.GetService(System.Type)
+  spec.csharp:
+  - uid: System.IServiceProvider.GetService(System.Type)
+    name: GetService
+    nameWithType: IServiceProvider.GetService
+    fullName: System.IServiceProvider.GetService
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IServiceProvider.GetService(System.Type)
+    name: GetService
+    nameWithType: IServiceProvider.GetService
+    fullName: System.IServiceProvider.GetService
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: CodeJam.Services.ServiceContainer.Publish*
+  commentId: Overload:CodeJam.Services.ServiceContainer.Publish
+  isExternal: false
+  name: Publish
+  nameWithType: ServiceContainer.Publish
+  fullName: CodeJam.Services.ServiceContainer.Publish
+- uid: CodeJam.Services.IServicePublisher.Publish(System.Type,System.Object)
+  commentId: M:CodeJam.Services.IServicePublisher.Publish(System.Type,System.Object)
+  parent: CodeJam.Services.IServicePublisher
+  isExternal: true
+  name: Publish(Type, Object)
+  nameWithType: IServicePublisher.Publish(Type, Object)
+  fullName: CodeJam.Services.IServicePublisher.Publish(System.Type, System.Object)
+  spec.csharp:
+  - uid: CodeJam.Services.IServicePublisher.Publish(System.Type,System.Object)
+    name: Publish
+    nameWithType: IServicePublisher.Publish
+    fullName: CodeJam.Services.IServicePublisher.Publish
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Services.IServicePublisher.Publish(System.Type,System.Object)
+    name: Publish
+    nameWithType: IServicePublisher.Publish
+    fullName: CodeJam.Services.IServicePublisher.Publish
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Services.IServicePublisher.Publish(System.Type,System.Func{CodeJam.Services.IServicePublisher,System.Object})
+  commentId: M:CodeJam.Services.IServicePublisher.Publish(System.Type,System.Func{CodeJam.Services.IServicePublisher,System.Object})
+  parent: CodeJam.Services.IServicePublisher
+  isExternal: true
+  name: Publish(Type, Func<IServicePublisher, Object>)
+  nameWithType: IServicePublisher.Publish(Type, Func<IServicePublisher, Object>)
+  fullName: CodeJam.Services.IServicePublisher.Publish(System.Type, System.Func<CodeJam.Services.IServicePublisher, System.Object>)
+  nameWithType.vb: IServicePublisher.Publish(Type, Func(Of IServicePublisher, Object))
+  fullName.vb: CodeJam.Services.IServicePublisher.Publish(System.Type, System.Func(Of CodeJam.Services.IServicePublisher, System.Object))
+  name.vb: Publish(Type, Func(Of IServicePublisher, Object))
+  spec.csharp:
+  - uid: CodeJam.Services.IServicePublisher.Publish(System.Type,System.Func{CodeJam.Services.IServicePublisher,System.Object})
+    name: Publish
+    nameWithType: IServicePublisher.Publish
+    fullName: CodeJam.Services.IServicePublisher.Publish
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.Services.IServicePublisher
+    name: IServicePublisher
+    nameWithType: IServicePublisher
+    fullName: CodeJam.Services.IServicePublisher
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Services.IServicePublisher.Publish(System.Type,System.Func{CodeJam.Services.IServicePublisher,System.Object})
+    name: Publish
+    nameWithType: IServicePublisher.Publish
+    fullName: CodeJam.Services.IServicePublisher.Publish
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.Services.IServicePublisher
+    name: IServicePublisher
+    nameWithType: IServicePublisher
+    fullName: CodeJam.Services.IServicePublisher
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{CodeJam.Services.IServicePublisher,System.Object}
+  commentId: T:System.Func{CodeJam.Services.IServicePublisher,System.Object}
+  parent: System
+  definition: System.Func`2
+  name: Func<IServicePublisher, Object>
+  nameWithType: Func<IServicePublisher, Object>
+  fullName: System.Func<CodeJam.Services.IServicePublisher, System.Object>
+  nameWithType.vb: Func(Of IServicePublisher, Object)
+  fullName.vb: System.Func(Of CodeJam.Services.IServicePublisher, System.Object)
+  name.vb: Func(Of IServicePublisher, Object)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.Services.IServicePublisher
+    name: IServicePublisher
+    nameWithType: IServicePublisher
+    fullName: CodeJam.Services.IServicePublisher
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.Services.IServicePublisher
+    name: IServicePublisher
+    nameWithType: IServicePublisher
+    fullName: CodeJam.Services.IServicePublisher
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Services.ServiceContainer.Dispose*
+  commentId: Overload:CodeJam.Services.ServiceContainer.Dispose
+  isExternal: false
+  name: Dispose
+  nameWithType: ServiceContainer.Dispose
+  fullName: CodeJam.Services.ServiceContainer.Dispose

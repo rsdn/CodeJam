@@ -1,0 +1,1287 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CodeExceptions
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CodeExceptions
+   ">
+    <meta name="generator" content="docfx 2.23.1.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CodeJam.CodeExceptions">
+  
+  
+  <h1 id="CodeJam_CodeExceptions" data-uid="CodeJam.CodeExceptions" class="text-break">Class CodeExceptions
+  </h1>
+  <div class="markdown level0 summary"><p>Exception factory class</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">CodeExceptions</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CodeJam.html">CodeJam</a></h6>
+  <h6><strong>Assembly</strong>: CodeJam.dll</h6>
+  <h5 id="CodeJam_CodeExceptions_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class CodeExceptions</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_BreakOnException.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.BreakOnException%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L24">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_BreakOnException_" data-uid="CodeJam.CodeExceptions.BreakOnException*"></a>
+  <h4 id="CodeJam_CodeExceptions_BreakOnException" data-uid="CodeJam.CodeExceptions.BreakOnException">BreakOnException</h4>
+  <div class="markdown level1 summary"><p>If true, breaks execution if debugger is attached and assertion is failed.
+Enabled by default.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool BreakOnException { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the execution will break on exception creation; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_CodeTraceSource.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.CodeTraceSource%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L57">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_CodeTraceSource_" data-uid="CodeJam.CodeExceptions.CodeTraceSource*"></a>
+  <h4 id="CodeJam_CodeExceptions_CodeTraceSource" data-uid="CodeJam.CodeExceptions.CodeTraceSource">CodeTraceSource</h4>
+  <div class="markdown level1 summary"><p>Returns trace source for code exceptions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TraceSource CodeTraceSource { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Diagnostics.TraceSource</span></td>
+        <td><p>The code trace source.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_Argument_System_String_System_String_System_Object___.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.Argument(System.String%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L250">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_Argument_" data-uid="CodeJam.CodeExceptions.Argument*"></a>
+  <h4 id="CodeJam_CodeExceptions_Argument_System_String_System_String_System_Object___" data-uid="CodeJam.CodeExceptions.Argument(System.String,System.String,System.Object[])">Argument(String, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">System.ArgumentException</span>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ArgumentException Argument(string argumentName, string messageFormat, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">argumentName</span></td>
+        <td><p>Name of the argument.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">messageFormat</span></td>
+        <td><p>The message format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>The arguments.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.ArgumentException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_ArgumentItemNull_System_String_.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.ArgumentItemNull(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L126">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_ArgumentItemNull_" data-uid="CodeJam.CodeExceptions.ArgumentItemNull*"></a>
+  <h4 id="CodeJam_CodeExceptions_ArgumentItemNull_System_String_" data-uid="CodeJam.CodeExceptions.ArgumentItemNull(System.String)">ArgumentItemNull(String)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">System.ArgumentNullException</span>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ArgumentException ArgumentItemNull(string argumentName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">argumentName</span></td>
+        <td><p>Name of the argument.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.ArgumentException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_ArgumentNull_System_String_.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.ArgumentNull(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L115">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_ArgumentNull_" data-uid="CodeJam.CodeExceptions.ArgumentNull*"></a>
+  <h4 id="CodeJam_CodeExceptions_ArgumentNull_System_String_" data-uid="CodeJam.CodeExceptions.ArgumentNull(System.String)">ArgumentNull(String)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">System.ArgumentNullException</span>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ArgumentNullException ArgumentNull(string argumentName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">argumentName</span></td>
+        <td><p>Name of the argument.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.ArgumentNullException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_ArgumentNullOrEmpty_System_String_.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.ArgumentNullOrEmpty(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L139">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_ArgumentNullOrEmpty_" data-uid="CodeJam.CodeExceptions.ArgumentNullOrEmpty*"></a>
+  <h4 id="CodeJam_CodeExceptions_ArgumentNullOrEmpty_System_String_" data-uid="CodeJam.CodeExceptions.ArgumentNullOrEmpty(System.String)">ArgumentNullOrEmpty(String)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">System.ArgumentException</span> for empty string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ArgumentException ArgumentNullOrEmpty(string argumentName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">argumentName</span></td>
+        <td><p>Name of the argument.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.ArgumentException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_ArgumentNullOrWhiteSpace_System_String_.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.ArgumentNullOrWhiteSpace(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L153">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_ArgumentNullOrWhiteSpace_" data-uid="CodeJam.CodeExceptions.ArgumentNullOrWhiteSpace*"></a>
+  <h4 id="CodeJam_CodeExceptions_ArgumentNullOrWhiteSpace_System_String_" data-uid="CodeJam.CodeExceptions.ArgumentNullOrWhiteSpace(System.String)">ArgumentNullOrWhiteSpace(String)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">System.ArgumentException</span> for empty (or whitespace) string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ArgumentException ArgumentNullOrWhiteSpace(string argumentName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">argumentName</span></td>
+        <td><p>Name of the argument.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.ArgumentException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_ArgumentOutOfRange_System_String_System_Double_System_Double_System_Double_.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.ArgumentOutOfRange(System.String%2CSystem.Double%2CSystem.Double%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L190">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_ArgumentOutOfRange_" data-uid="CodeJam.CodeExceptions.ArgumentOutOfRange*"></a>
+  <h4 id="CodeJam_CodeExceptions_ArgumentOutOfRange_System_String_System_Double_System_Double_System_Double_" data-uid="CodeJam.CodeExceptions.ArgumentOutOfRange(System.String,System.Double,System.Double,System.Double)">ArgumentOutOfRange(String, Double, Double, Double)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">System.ArgumentOutOfRangeException</span>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ArgumentOutOfRangeException ArgumentOutOfRange(string argumentName, double value, double fromValue, double toValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">argumentName</span></td>
+        <td><p>Name of the argument.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">fromValue</span></td>
+        <td><p>From value (inclusive).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">toValue</span></td>
+        <td><p>To value (inclusive).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.ArgumentOutOfRangeException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_ArgumentOutOfRange_System_String_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.ArgumentOutOfRange(System.String%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L170">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_ArgumentOutOfRange_" data-uid="CodeJam.CodeExceptions.ArgumentOutOfRange*"></a>
+  <h4 id="CodeJam_CodeExceptions_ArgumentOutOfRange_System_String_System_Int32_System_Int32_System_Int32_" data-uid="CodeJam.CodeExceptions.ArgumentOutOfRange(System.String,System.Int32,System.Int32,System.Int32)">ArgumentOutOfRange(String, Int32, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">System.ArgumentOutOfRangeException</span>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ArgumentOutOfRangeException ArgumentOutOfRange(string argumentName, int value, int fromValue, int toValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">argumentName</span></td>
+        <td><p>Name of the argument.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">fromValue</span></td>
+        <td><p>From value (inclusive).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">toValue</span></td>
+        <td><p>To value (inclusive).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.ArgumentOutOfRangeException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_ArgumentOutOfRange__1_System_String___0___0___0_.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.ArgumentOutOfRange%60%601(System.String%2C%60%600%2C%60%600%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L211">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_ArgumentOutOfRange_" data-uid="CodeJam.CodeExceptions.ArgumentOutOfRange*"></a>
+  <h4 id="CodeJam_CodeExceptions_ArgumentOutOfRange__1_System_String___0___0___0_" data-uid="CodeJam.CodeExceptions.ArgumentOutOfRange``1(System.String,``0,``0,``0)">ArgumentOutOfRange&lt;T&gt;(String, T, T, T)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">System.ArgumentOutOfRangeException</span>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ArgumentOutOfRangeException ArgumentOutOfRange&lt;T&gt;(string argumentName, T value, T fromValue, T toValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">argumentName</span></td>
+        <td><p>Name of the argument.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">fromValue</span></td>
+        <td><p>From value (inclusive).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">toValue</span></td>
+        <td><p>To value (inclusive).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.ArgumentOutOfRangeException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_BreakIfAttached.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.BreakIfAttached%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L27">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_BreakIfAttached_" data-uid="CodeJam.CodeExceptions.BreakIfAttached*"></a>
+  <h4 id="CodeJam_CodeExceptions_BreakIfAttached" data-uid="CodeJam.CodeExceptions.BreakIfAttached">BreakIfAttached()</h4>
+  <div class="markdown level1 summary"><p>BreaksExecution if debugger attached.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void BreakIfAttached()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_IndexOutOfRange_System_String_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.IndexOutOfRange(System.String%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L231">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_IndexOutOfRange_" data-uid="CodeJam.CodeExceptions.IndexOutOfRange*"></a>
+  <h4 id="CodeJam_CodeExceptions_IndexOutOfRange_System_String_System_Int32_System_Int32_System_Int32_" data-uid="CodeJam.CodeExceptions.IndexOutOfRange(System.String,System.Int32,System.Int32,System.Int32)">IndexOutOfRange(String, Int32, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">System.IndexOutOfRangeException</span>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IndexOutOfRangeException IndexOutOfRange(string argumentName, int value, int startIndex, int length)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">argumentName</span></td>
+        <td><p>Name of the argument.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>The start index.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>The length.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IndexOutOfRangeException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.IndexOutOfRangeException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_InvalidOperation_System_String_System_Object___.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.InvalidOperation(System.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L268">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_InvalidOperation_" data-uid="CodeJam.CodeExceptions.InvalidOperation*"></a>
+  <h4 id="CodeJam_CodeExceptions_InvalidOperation_System_String_System_Object___" data-uid="CodeJam.CodeExceptions.InvalidOperation(System.String,System.Object[])">InvalidOperation(String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">System.InvalidOperationException</span>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InvalidOperationException InvalidOperation(string messageFormat, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">messageFormat</span></td>
+        <td><p>The message format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>The arguments.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.InvalidOperationException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_ObjectDisposed_System_Type_.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.ObjectDisposed(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L370">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_ObjectDisposed_" data-uid="CodeJam.CodeExceptions.ObjectDisposed*"></a>
+  <h4 id="CodeJam_CodeExceptions_ObjectDisposed_System_Type_" data-uid="CodeJam.CodeExceptions.ObjectDisposed(System.Type)">ObjectDisposed(Type)</h4>
+  <div class="markdown level1 summary"><p>Throw this if the object is disposed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ObjectDisposedException ObjectDisposed(Type typeofDisposedObject)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">typeofDisposedObject</span></td>
+        <td><p>The typeof disposed object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.ObjectDisposedException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_ObjectDisposed_System_Type_System_String_System_Object___.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.ObjectDisposed(System.Type%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L385">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_ObjectDisposed_" data-uid="CodeJam.CodeExceptions.ObjectDisposed*"></a>
+  <h4 id="CodeJam_CodeExceptions_ObjectDisposed_System_Type_System_String_System_Object___" data-uid="CodeJam.CodeExceptions.ObjectDisposed(System.Type,System.String,System.Object[])">ObjectDisposed(Type, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Throw this if the object is disposed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ObjectDisposedException ObjectDisposed(Type typeofDisposedObject, string messageFormat, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">typeofDisposedObject</span></td>
+        <td><p>The typeof disposed object.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">messageFormat</span></td>
+        <td><p>The message format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>The arguments.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.ObjectDisposedException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_UnexpectedArgumentValue__1_System_String___0_.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.UnexpectedArgumentValue%60%601(System.String%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L291">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_UnexpectedArgumentValue_" data-uid="CodeJam.CodeExceptions.UnexpectedArgumentValue*"></a>
+  <h4 id="CodeJam_CodeExceptions_UnexpectedArgumentValue__1_System_String___0_" data-uid="CodeJam.CodeExceptions.UnexpectedArgumentValue``1(System.String,``0)">UnexpectedArgumentValue&lt;T&gt;(String, T)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">System.ArgumentOutOfRangeException</span>.
+Used to be thrown from the default: switch clause</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ArgumentOutOfRangeException UnexpectedArgumentValue&lt;T&gt;(string argumentName, T value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">argumentName</span></td>
+        <td><p>Name of the argument.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.ArgumentOutOfRangeException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the value. Auto-inferred.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_UnexpectedArgumentValue__1_System_String___0_System_String_System_Object___.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.UnexpectedArgumentValue%60%601(System.String%2C%60%600%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L314">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_UnexpectedArgumentValue_" data-uid="CodeJam.CodeExceptions.UnexpectedArgumentValue*"></a>
+  <h4 id="CodeJam_CodeExceptions_UnexpectedArgumentValue__1_System_String___0_System_String_System_Object___" data-uid="CodeJam.CodeExceptions.UnexpectedArgumentValue``1(System.String,``0,System.String,System.Object[])">UnexpectedArgumentValue&lt;T&gt;(String, T, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">System.ArgumentOutOfRangeException</span>.
+Used to be thrown from default: switch clause</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ArgumentOutOfRangeException UnexpectedArgumentValue&lt;T&gt;(string argumentName, T value, string messageFormat, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">argumentName</span></td>
+        <td><p>Name of the argument.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">messageFormat</span></td>
+        <td><p>The message format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>The arguments.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.ArgumentOutOfRangeException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the value. Auto-inferred.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_UnexpectedValue_System_String_System_Object___.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.UnexpectedValue(System.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L355">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_UnexpectedValue_" data-uid="CodeJam.CodeExceptions.UnexpectedValue*"></a>
+  <h4 id="CodeJam_CodeExceptions_UnexpectedValue_System_String_System_Object___" data-uid="CodeJam.CodeExceptions.UnexpectedValue(System.String,System.Object[])">UnexpectedValue(String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">System.InvalidOperationException</span>.
+Used to be thrown from default: switch clause</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InvalidOperationException UnexpectedValue(string messageFormat, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">messageFormat</span></td>
+        <td><p>The message format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>The arguments.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.InvalidOperationException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_UnexpectedValue__1___0_.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.UnexpectedValue%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L336">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_UnexpectedValue_" data-uid="CodeJam.CodeExceptions.UnexpectedValue*"></a>
+  <h4 id="CodeJam_CodeExceptions_UnexpectedValue__1___0_" data-uid="CodeJam.CodeExceptions.UnexpectedValue``1(``0)">UnexpectedValue&lt;T&gt;(T)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">System.InvalidOperationException</span>.
+Used to be thrown from the default: switch clause</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InvalidOperationException UnexpectedValue&lt;T&gt;(T value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.InvalidOperationException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the value. Auto-inferred.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions_Unreachable_System_String_System_Object___.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions.Unreachable(System.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L404">View Source</a>
+  </span>
+  <a id="CodeJam_CodeExceptions_Unreachable_" data-uid="CodeJam.CodeExceptions.Unreachable*"></a>
+  <h4 id="CodeJam_CodeExceptions_Unreachable_System_String_System_Object___" data-uid="CodeJam.CodeExceptions.Unreachable(System.String,System.Object[])">Unreachable(String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Used to be thrown in places expected to be unreachable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NotSupportedException Unreachable(string messageFormat, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">messageFormat</span></td>
+        <td><p>The message format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>The arguments.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Initialized instance of <span class="xref">System.NotSupportedException</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_CodeExceptions.md&amp;value=---%0Auid%3A%20CodeJam.CodeExceptions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Assertions/CodeExceptions.cs/#L15" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

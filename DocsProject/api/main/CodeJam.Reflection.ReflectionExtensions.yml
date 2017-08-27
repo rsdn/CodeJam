@@ -1,0 +1,1855 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Reflection.ReflectionExtensions
+  commentId: T:CodeJam.Reflection.ReflectionExtensions
+  id: ReflectionExtensions
+  parent: CodeJam.Reflection
+  children:
+  - CodeJam.Reflection.ReflectionExtensions.CreateInstance(System.Type,CodeJam.Reflection.ParamInfo[])
+  - CodeJam.Reflection.ReflectionExtensions.GetDefaultConstructor(System.Type,System.Boolean)
+  - CodeJam.Reflection.ReflectionExtensions.GetDelegateParams(System.Type)
+  - CodeJam.Reflection.ReflectionExtensions.GetItemType(System.Type)
+  - CodeJam.Reflection.ReflectionExtensions.GetMemberType(System.Reflection.MemberInfo)
+  - CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes``1(System.Reflection.ICustomAttributeProvider)
+  - CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes``1(System.Reflection.ICustomAttributeProvider,System.Boolean)
+  - CodeJam.Reflection.ReflectionExtensions.GetModulePath(System.Reflection.Module)
+  - CodeJam.Reflection.ReflectionExtensions.GetShortAssemblyQualifiedName(System.Type)
+  - CodeJam.Reflection.ReflectionExtensions.IsAnonymous(System.Type)
+  - CodeJam.Reflection.ReflectionExtensions.IsInstantiable(System.Type)
+  - CodeJam.Reflection.ReflectionExtensions.IsInteger(System.Type)
+  - CodeJam.Reflection.ReflectionExtensions.IsNullable(System.Type)
+  - CodeJam.Reflection.ReflectionExtensions.IsNullableEnum(System.Type)
+  - CodeJam.Reflection.ReflectionExtensions.IsNullableInteger(System.Type)
+  - CodeJam.Reflection.ReflectionExtensions.IsNullableNumeric(System.Type)
+  - CodeJam.Reflection.ReflectionExtensions.IsNumeric(System.Type)
+  - CodeJam.Reflection.ReflectionExtensions.IsStatic(System.Type)
+  - CodeJam.Reflection.ReflectionExtensions.IsSubClass(System.Type,System.Type)
+  - CodeJam.Reflection.ReflectionExtensions.ToEnumUnderlying(System.Type)
+  - CodeJam.Reflection.ReflectionExtensions.ToNullableUnderlying(System.Type)
+  - CodeJam.Reflection.ReflectionExtensions.ToUnderlying(System.Type)
+  - CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute``1(System.Reflection.ICustomAttributeProvider)
+  - CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute``1(System.Reflection.ICustomAttributeProvider,System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: ReflectionExtensions
+  nameWithType: ReflectionExtensions
+  fullName: CodeJam.Reflection.ReflectionExtensions
+  type: Class
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.CreateInstance.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ReflectionExtensions
+    path: ../Main/src/Reflection/ReflectionExtensions.CreateInstance.cs
+    startLine: 10
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nReflection extension methods.\n"
+  example: []
+  syntax:
+    content: public static class ReflectionExtensions
+    content.vb: Public Module ReflectionExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute``1(System.Reflection.ICustomAttributeProvider)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute``1(System.Reflection.ICustomAttributeProvider)
+  id: TryGetMetadataAttribute``1(System.Reflection.ICustomAttributeProvider)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: TryGetMetadataAttribute<TAttribute>(ICustomAttributeProvider)
+  nameWithType: ReflectionExtensions.TryGetMetadataAttribute<TAttribute>(ICustomAttributeProvider)
+  fullName: CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute<TAttribute>(System.Reflection.ICustomAttributeProvider)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetMetadataAttribute
+    path: ../Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs
+    startLine: 56
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nPerforms search for metadata attribute.\nThe search is performed in the following order\n* member attributes, base implementation attributes (if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">attributeProvider</code> is member of the type)\n* type attributes, base type attributes (if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">attributeProvider</code> is type or member of the type)\n* container type attributes (if the type is nested type)\n* assembly attributes.\n"
+  remarks: "\nSearch logic for each level matches to the\n<xref href=\"System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo%2cSystem.Type%2cSystem.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method (inherit = <code>true</code>).\nincluding checks of <xref href=\"System.AttributeUsageAttribute\" data-throw-if-not-resolved=\"false\"></xref>.\nOrdering of attributes at each level is undefined and depends on runtime implementation.\n"
+  example: []
+  syntax:
+    content: 'public static TAttribute TryGetMetadataAttribute<TAttribute>(this ICustomAttributeProvider attributeProvider)where TAttribute : class'
+    parameters:
+    - id: attributeProvider
+      type: System.Reflection.ICustomAttributeProvider
+      description: Metadata attribute source.
+    typeParameters:
+    - id: TAttribute
+      description: Type of the attribute or type of the interface implemented by the attributes.
+    return:
+      type: '{TAttribute}'
+      description: First attribute found.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function TryGetMetadataAttribute(Of TAttribute As Class)(attributeProvider As ICustomAttributeProvider) As TAttribute
+  overload: CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute*
+  nameWithType.vb: ReflectionExtensions.TryGetMetadataAttribute(Of TAttribute)(ICustomAttributeProvider)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute(Of TAttribute)(System.Reflection.ICustomAttributeProvider)
+  name.vb: TryGetMetadataAttribute(Of TAttribute)(ICustomAttributeProvider)
+- uid: CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute``1(System.Reflection.ICustomAttributeProvider,System.Boolean)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute``1(System.Reflection.ICustomAttributeProvider,System.Boolean)
+  id: TryGetMetadataAttribute``1(System.Reflection.ICustomAttributeProvider,System.Boolean)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: TryGetMetadataAttribute<TAttribute>(ICustomAttributeProvider, Boolean)
+  nameWithType: ReflectionExtensions.TryGetMetadataAttribute<TAttribute>(ICustomAttributeProvider, Boolean)
+  fullName: CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute<TAttribute>(System.Reflection.ICustomAttributeProvider, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetMetadataAttribute
+    path: ../Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs
+    startLine: 80
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nPerforms search for metadata attribute.\nIf the <code data-dev-comment-type=\"paramref\" class=\"paramref\">thisLevelOnly</code> is <code>true</code>, the search is performed in the following order:\n* member attributes, base implementation attributes (if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">attributeProvider</code> is member of the type)\n* type attributes, base type attributes (if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">attributeProvider</code> is type or member of the type)\n* container type attributes (if the type is nested type)\n* assembly attributes.\n"
+  remarks: "\nSearch logic for each level matches to the\n<xref href=\"System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo%2cSystem.Type%2cSystem.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method (inherit = <code>true</code>).\nincluding checks of <xref href=\"System.AttributeUsageAttribute\" data-throw-if-not-resolved=\"false\"></xref>.\nOrdering of attributes at each level is undefined and depends on runtime implementation.\n"
+  example: []
+  syntax:
+    content: 'public static TAttribute TryGetMetadataAttribute<TAttribute>(this ICustomAttributeProvider attributeProvider, bool thisLevelOnly)where TAttribute : class'
+    parameters:
+    - id: attributeProvider
+      type: System.Reflection.ICustomAttributeProvider
+      description: Metadata attribute source.
+    - id: thisLevelOnly
+      type: System.Boolean
+      description: Do not check containers for the attributes.
+    typeParameters:
+    - id: TAttribute
+      description: Type of the attribute or type of the interface implemented by the attributes.
+    return:
+      type: '{TAttribute}'
+      description: First attribute found.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function TryGetMetadataAttribute(Of TAttribute As Class)(attributeProvider As ICustomAttributeProvider, thisLevelOnly As Boolean) As TAttribute
+  overload: CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute*
+  nameWithType.vb: ReflectionExtensions.TryGetMetadataAttribute(Of TAttribute)(ICustomAttributeProvider, Boolean)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute(Of TAttribute)(System.Reflection.ICustomAttributeProvider, System.Boolean)
+  name.vb: TryGetMetadataAttribute(Of TAttribute)(ICustomAttributeProvider, Boolean)
+- uid: CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes``1(System.Reflection.ICustomAttributeProvider)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes``1(System.Reflection.ICustomAttributeProvider)
+  id: GetMetadataAttributes``1(System.Reflection.ICustomAttributeProvider)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetMetadataAttributes<TAttribute>(ICustomAttributeProvider)
+  nameWithType: ReflectionExtensions.GetMetadataAttributes<TAttribute>(ICustomAttributeProvider)
+  fullName: CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes<TAttribute>(System.Reflection.ICustomAttributeProvider)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetMetadataAttributes
+    path: ../Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs
+    startLine: 104
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nPerforms search for metadata attributes.\nThe search is performed in the following order:\n* member attributes, base implementation attributes (if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">attributeProvider</code> is member of the type)\n* type attributes, base type attributes (if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">attributeProvider</code> is type or member of the type)\n* container type attributes (if the type is nested type)\n* assembly attributes.\n"
+  remarks: "\nSearch logic for each level matches to the\n<xref href=\"System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo%2cSystem.Type%2cSystem.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method (inherit = <code>true</code>).\nincluding checks of <xref href=\"System.AttributeUsageAttribute\" data-throw-if-not-resolved=\"false\"></xref>.\nOrdering of attributes at each level is undefined and depends on runtime implementation.\n"
+  example: []
+  syntax:
+    content: 'public static IEnumerable<TAttribute> GetMetadataAttributes<TAttribute>(this ICustomAttributeProvider attributeProvider)where TAttribute : class'
+    parameters:
+    - id: attributeProvider
+      type: System.Reflection.ICustomAttributeProvider
+      description: Metadata attribute source.
+    typeParameters:
+    - id: TAttribute
+      description: Type of the attribute or type of the interface implemented by the attributes.
+    return:
+      type: System.Collections.Generic.IEnumerable{{TAttribute}}
+      description: Metadata attributes.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetMetadataAttributes(Of TAttribute As Class)(attributeProvider As ICustomAttributeProvider) As IEnumerable(Of TAttribute)
+  overload: CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes*
+  nameWithType.vb: ReflectionExtensions.GetMetadataAttributes(Of TAttribute)(ICustomAttributeProvider)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes(Of TAttribute)(System.Reflection.ICustomAttributeProvider)
+  name.vb: GetMetadataAttributes(Of TAttribute)(ICustomAttributeProvider)
+- uid: CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes``1(System.Reflection.ICustomAttributeProvider,System.Boolean)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes``1(System.Reflection.ICustomAttributeProvider,System.Boolean)
+  id: GetMetadataAttributes``1(System.Reflection.ICustomAttributeProvider,System.Boolean)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetMetadataAttributes<TAttribute>(ICustomAttributeProvider, Boolean)
+  nameWithType: ReflectionExtensions.GetMetadataAttributes<TAttribute>(ICustomAttributeProvider, Boolean)
+  fullName: CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes<TAttribute>(System.Reflection.ICustomAttributeProvider, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetMetadataAttributes
+    path: ../Main/src/Reflection/ReflectionExtensions.MetadataAttributes.cs
+    startLine: 128
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nPerforms search for metadata attributes.\nIf the <code data-dev-comment-type=\"paramref\" class=\"paramref\">thisLevelOnly</code> is <code>true</code>, the search is performed in the following order:\n* member attributes, base implementation attributes (if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">attributeProvider</code> is member of the type)\n* type attributes, base type attributes (if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">attributeProvider</code> is type or member of the type)\n* container type attributes (if the type is nested type)\n* assembly attributes.\n"
+  remarks: "\nSearch logic for each level matches to the\n<xref href=\"System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo%2cSystem.Type%2cSystem.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method (inherit = <code>true</code>).\nincluding checks of <xref href=\"System.AttributeUsageAttribute\" data-throw-if-not-resolved=\"false\"></xref>.\nOrdering of attributes at each level is undefined and depends on runtime implementation.\n"
+  example: []
+  syntax:
+    content: 'public static IEnumerable<TAttribute> GetMetadataAttributes<TAttribute>(this ICustomAttributeProvider attributeProvider, bool thisLevelOnly)where TAttribute : class'
+    parameters:
+    - id: attributeProvider
+      type: System.Reflection.ICustomAttributeProvider
+      description: Metadata attribute source.
+    - id: thisLevelOnly
+      type: System.Boolean
+      description: Do not check containers for the attributes.
+    typeParameters:
+    - id: TAttribute
+      description: Type of the attribute or type of the interface implemented by the attributes.
+    return:
+      type: System.Collections.Generic.IEnumerable{{TAttribute}}
+      description: Metadata attributes.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetMetadataAttributes(Of TAttribute As Class)(attributeProvider As ICustomAttributeProvider, thisLevelOnly As Boolean) As IEnumerable(Of TAttribute)
+  overload: CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes*
+  nameWithType.vb: ReflectionExtensions.GetMetadataAttributes(Of TAttribute)(ICustomAttributeProvider, Boolean)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes(Of TAttribute)(System.Reflection.ICustomAttributeProvider, System.Boolean)
+  name.vb: GetMetadataAttributes(Of TAttribute)(ICustomAttributeProvider, Boolean)
+- uid: CodeJam.Reflection.ReflectionExtensions.GetModulePath(System.Reflection.Module)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.GetModulePath(System.Reflection.Module)
+  id: GetModulePath(System.Reflection.Module)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetModulePath(Module)
+  nameWithType: ReflectionExtensions.GetModulePath(Module)
+  fullName: CodeJam.Reflection.ReflectionExtensions.GetModulePath(System.Reflection.Module)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetModulePath
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 24
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nReturns path to the <code data-dev-comment-type=\"paramref\" class=\"paramref\">module</code> file.\n"
+  example: []
+  syntax:
+    content: public static string GetModulePath(this Module module)
+    parameters:
+    - id: module
+      type: System.Reflection.Module
+      description: Assembly.
+    return:
+      type: System.String
+      description: Path to <code data-dev-comment-type="paramref" class="paramref">module</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetModulePath(module As  Module) As String
+  overload: CodeJam.Reflection.ReflectionExtensions.GetModulePath*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.GetShortAssemblyQualifiedName(System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.GetShortAssemblyQualifiedName(System.Type)
+  id: GetShortAssemblyQualifiedName(System.Type)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetShortAssemblyQualifiedName(Type)
+  nameWithType: ReflectionExtensions.GetShortAssemblyQualifiedName(Type)
+  fullName: CodeJam.Reflection.ReflectionExtensions.GetShortAssemblyQualifiedName(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetShortAssemblyQualifiedName
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 51
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nGets the short form of assembly qualified type name (without assembly version or assembly key).\n"
+  example:
+  - "\n<pre><code>// result is &quot;CodeJam.Reflection.ReflectionExtensions, CodeJam&quot;;\nvar shortNameWithAssembly = typeof(ReflectionExtensions).GetShortAssemblyQualifiedName();</code></pre>\n"
+  syntax:
+    content: public static string GetShortAssemblyQualifiedName(this Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: The type to get the name for.
+    return:
+      type: System.String
+      description: The short form of assembly qualified type name.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetShortAssemblyQualifiedName(type As Type) As String
+  overload: CodeJam.Reflection.ReflectionExtensions.GetShortAssemblyQualifiedName*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.IsInstantiable(System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.IsInstantiable(System.Type)
+  id: IsInstantiable(System.Type)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsInstantiable(Type)
+  nameWithType: ReflectionExtensions.IsInstantiable(Type)
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsInstantiable(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsInstantiable
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 173
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nGets a value indicating whether the <code data-dev-comment-type=\"paramref\" class=\"paramref\">type</code> can be instantiated.\n"
+  example: []
+  syntax:
+    content: public static bool IsInstantiable(this Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> to test.
+    return:
+      type: System.Boolean
+      description: "\nA value indicating whether the <code data-dev-comment-type=\"paramref\" class=\"paramref\">type</code> can be instantiated.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsInstantiable(type As Type) As Boolean
+  overload: CodeJam.Reflection.ReflectionExtensions.IsInstantiable*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.IsStatic(System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.IsStatic(System.Type)
+  id: IsStatic(System.Type)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsStatic(Type)
+  nameWithType: ReflectionExtensions.IsStatic(Type)
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsStatic(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsStatic
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 187
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nGets a value indicating whether the <code data-dev-comment-type=\"paramref\" class=\"paramref\">type</code> is declared static.\n"
+  example: []
+  syntax:
+    content: public static bool IsStatic(this Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> to test.
+    return:
+      type: System.Boolean
+      description: "\nA value indicating whether the <code data-dev-comment-type=\"paramref\" class=\"paramref\">type</code> is declared static.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsStatic(type As Type) As Boolean
+  overload: CodeJam.Reflection.ReflectionExtensions.IsStatic*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.IsNullable(System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.IsNullable(System.Type)
+  id: IsNullable(System.Type)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsNullable(Type)
+  nameWithType: ReflectionExtensions.IsNullable(Type)
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsNullable(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsNullable
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 201
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nGets a value indicating whether the <code data-dev-comment-type=\"paramref\" class=\"paramref\">type</code> is Nullable&lt;> type.\n"
+  example: []
+  syntax:
+    content: public static bool IsNullable(this Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> to test.
+    return:
+      type: System.Boolean
+      description: "\nA value indicating whether the <code data-dev-comment-type=\"paramref\" class=\"paramref\">type</code> is Nullable&lt;>.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsNullable(type As Type) As Boolean
+  overload: CodeJam.Reflection.ReflectionExtensions.IsNullable*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.IsNumeric(System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.IsNumeric(System.Type)
+  id: IsNumeric(System.Type)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsNumeric(Type)
+  nameWithType: ReflectionExtensions.IsNumeric(Type)
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsNumeric(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsNumeric
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 213
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nChecks if <code data-dev-comment-type=\"paramref\" class=\"paramref\">type</code> is numeric type.\n"
+  example: []
+  syntax:
+    content: public static bool IsNumeric(this Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to check.
+    return:
+      type: System.Boolean
+      description: True, if <code data-dev-comment-type="paramref" class="paramref">type</code> is numeric.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsNumeric(type As Type) As Boolean
+  overload: CodeJam.Reflection.ReflectionExtensions.IsNumeric*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.IsInteger(System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.IsInteger(System.Type)
+  id: IsInteger(System.Type)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsInteger(Type)
+  nameWithType: ReflectionExtensions.IsInteger(Type)
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsInteger(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsInteger
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 247
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nChecks if <code data-dev-comment-type=\"paramref\" class=\"paramref\">type</code> is integer type.\n"
+  example: []
+  syntax:
+    content: public static bool IsInteger(this Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to check.
+    return:
+      type: System.Boolean
+      description: True, if <code data-dev-comment-type="paramref" class="paramref">type</code> is integer type.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsInteger(type As Type) As Boolean
+  overload: CodeJam.Reflection.ReflectionExtensions.IsInteger*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.IsNullableNumeric(System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.IsNullableNumeric(System.Type)
+  id: IsNullableNumeric(System.Type)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsNullableNumeric(Type)
+  nameWithType: ReflectionExtensions.IsNullableNumeric(Type)
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsNullableNumeric(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsNullableNumeric
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 278
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nChecks if <code data-dev-comment-type=\"paramref\" class=\"paramref\">type</code> is nullable numeric type.\n"
+  example: []
+  syntax:
+    content: public static bool IsNullableNumeric(this Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to check.
+    return:
+      type: System.Boolean
+      description: True, if <code data-dev-comment-type="paramref" class="paramref">type</code> is nullable numeric.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsNullableNumeric(type As Type) As Boolean
+  overload: CodeJam.Reflection.ReflectionExtensions.IsNullableNumeric*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.IsNullableInteger(System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.IsNullableInteger(System.Type)
+  id: IsNullableInteger(System.Type)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsNullableInteger(Type)
+  nameWithType: ReflectionExtensions.IsNullableInteger(Type)
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsNullableInteger(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsNullableInteger
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 290
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nChecks if <code data-dev-comment-type=\"paramref\" class=\"paramref\">type</code> is nullable integer type.\n"
+  example: []
+  syntax:
+    content: public static bool IsNullableInteger(this Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to check.
+    return:
+      type: System.Boolean
+      description: True, if <code data-dev-comment-type="paramref" class="paramref">type</code> is nullable integer type.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsNullableInteger(type As Type) As Boolean
+  overload: CodeJam.Reflection.ReflectionExtensions.IsNullableInteger*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.IsNullableEnum(System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.IsNullableEnum(System.Type)
+  id: IsNullableEnum(System.Type)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsNullableEnum(Type)
+  nameWithType: ReflectionExtensions.IsNullableEnum(Type)
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsNullableEnum(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsNullableEnum
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 302
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nChecks if <code data-dev-comment-type=\"paramref\" class=\"paramref\">type</code> is nullable enum type.\n"
+  example: []
+  syntax:
+    content: public static bool IsNullableEnum(this Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to check.
+    return:
+      type: System.Boolean
+      description: True, if <code data-dev-comment-type="paramref" class="paramref">type</code> is nullable enum type.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsNullableEnum(type As Type) As Boolean
+  overload: CodeJam.Reflection.ReflectionExtensions.IsNullableEnum*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.IsSubClass(System.Type,System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.IsSubClass(System.Type,System.Type)
+  id: IsSubClass(System.Type,System.Type)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsSubClass(Type, Type)
+  nameWithType: ReflectionExtensions.IsSubClass(Type, Type)
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsSubClass(System.Type, System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsSubClass
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 320
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nDetermines whether the <code data-dev-comment-type=\"paramref\" class=\"paramref\">type</code> derives from the specified <code data-dev-comment-type=\"paramref\" class=\"paramref\">check</code>.\n"
+  remarks: "\nThis method also returns false if <code data-dev-comment-type=\"paramref\" class=\"paramref\">type</code> and the <code data-dev-comment-type=\"paramref\" class=\"paramref\">check</code> are equal.\n"
+  example: []
+  syntax:
+    content: public static bool IsSubClass(this Type type, Type check)
+    parameters:
+    - id: type
+      type: System.Type
+      description: The type to test.
+    - id: check
+      type: System.Type
+      description: 'The type to compare with. '
+    return:
+      type: System.Boolean
+      description: "\ntrue if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">type</code> derives from <code data-dev-comment-type=\"paramref\" class=\"paramref\">check</code>; otherwise, false.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsSubClass(type As Type, check As Type) As Boolean
+  overload: CodeJam.Reflection.ReflectionExtensions.IsSubClass*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.GetDelegateParams(System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.GetDelegateParams(System.Type)
+  id: GetDelegateParams(System.Type)
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetDelegateParams(Type)
+  nameWithType: ReflectionExtensions.GetDelegateParams(Type)
+  fullName: CodeJam.Reflection.ReflectionExtensions.GetDelegateParams(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetDelegateParams
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 360
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nReturns delegate parameter infos.\n"
+  example: []
+  syntax:
+    content: public static ParameterInfo[] GetDelegateParams(Type delegateType)
+    parameters:
+    - id: delegateType
+      type: System.Type
+      description: Type of delegate
+    return:
+      type: System.Reflection.ParameterInfo[]
+      description: Array of <xref href="System.Reflection.ParameterInfo" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function GetDelegateParams(delegateType As Type) As ParameterInfo()
+  overload: CodeJam.Reflection.ReflectionExtensions.GetDelegateParams*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.ToUnderlying(System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.ToUnderlying(System.Type)
+  id: ToUnderlying(System.Type)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToUnderlying(Type)
+  nameWithType: ReflectionExtensions.ToUnderlying(Type)
+  fullName: CodeJam.Reflection.ReflectionExtensions.ToUnderlying(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToUnderlying
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 379
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nReturns the underlying type argument of the specified type.\n"
+  example: []
+  syntax:
+    content: public static Type ToUnderlying(this Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: 'A <xref href="System.Type" data-throw-if-not-resolved="false"></xref> instance. '
+    return:
+      type: System.Type
+      description: "\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToUnderlying(type As Type) As Type
+  overload: CodeJam.Reflection.ReflectionExtensions.ToUnderlying*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.ToNullableUnderlying(System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.ToNullableUnderlying(System.Type)
+  id: ToNullableUnderlying(System.Type)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToNullableUnderlying(Type)
+  nameWithType: ReflectionExtensions.ToNullableUnderlying(Type)
+  fullName: CodeJam.Reflection.ReflectionExtensions.ToNullableUnderlying(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToNullableUnderlying
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 398
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nReturns the underlying type argument of the specified nullable type.\n"
+  example: []
+  syntax:
+    content: public static Type ToNullableUnderlying(this Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: 'A <xref href="System.Type" data-throw-if-not-resolved="false"></xref> instance. '
+    return:
+      type: System.Type
+      description: "\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToNullableUnderlying(type As Type) As Type
+  overload: CodeJam.Reflection.ReflectionExtensions.ToNullableUnderlying*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.ToEnumUnderlying(System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.ToEnumUnderlying(System.Type)
+  id: ToEnumUnderlying(System.Type)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToEnumUnderlying(Type)
+  nameWithType: ReflectionExtensions.ToEnumUnderlying(Type)
+  fullName: CodeJam.Reflection.ReflectionExtensions.ToEnumUnderlying(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToEnumUnderlying
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 416
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nReturns the underlying type argument of the specified enum type.\n"
+  example: []
+  syntax:
+    content: public static Type ToEnumUnderlying(this Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: 'A <xref href="System.Type" data-throw-if-not-resolved="false"></xref> instance. '
+    return:
+      type: System.Type
+      description: "\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToEnumUnderlying(type As Type) As Type
+  overload: CodeJam.Reflection.ReflectionExtensions.ToEnumUnderlying*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.GetMemberType(System.Reflection.MemberInfo)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.GetMemberType(System.Reflection.MemberInfo)
+  id: GetMemberType(System.Reflection.MemberInfo)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetMemberType(MemberInfo)
+  nameWithType: ReflectionExtensions.GetMemberType(MemberInfo)
+  fullName: CodeJam.Reflection.ReflectionExtensions.GetMemberType(System.Reflection.MemberInfo)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetMemberType
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 438
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nGets the type of this member.\n"
+  example: []
+  syntax:
+    content: public static Type GetMemberType(this MemberInfo memberInfo)
+    parameters:
+    - id: memberInfo
+      type: System.Reflection.MemberInfo
+      description: 'A <xref href="System.Reflection.MemberInfo" data-throw-if-not-resolved="false"></xref> instance. '
+    return:
+      type: System.Type
+      description: "\n\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetMemberType(memberInfo As MemberInfo) As Type
+  overload: CodeJam.Reflection.ReflectionExtensions.GetMemberType*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.IsAnonymous(System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.IsAnonymous(System.Type)
+  id: IsAnonymous(System.Type)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsAnonymous(Type)
+  nameWithType: ReflectionExtensions.IsAnonymous(Type)
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsAnonymous(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsAnonymous
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 465
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nChecks if <code data-dev-comment-type=\"paramref\" class=\"paramref\">type</code> is an anonymous type.\n"
+  example: []
+  syntax:
+    content: public static bool IsAnonymous(this Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to check.
+    return:
+      type: System.Boolean
+      description: True, if <code data-dev-comment-type="paramref" class="paramref">type</code> is an anonymous type.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsAnonymous(type As Type) As Boolean
+  overload: CodeJam.Reflection.ReflectionExtensions.IsAnonymous*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.GetDefaultConstructor(System.Type,System.Boolean)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.GetDefaultConstructor(System.Type,System.Boolean)
+  id: GetDefaultConstructor(System.Type,System.Boolean)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetDefaultConstructor(Type, Boolean)
+  nameWithType: ReflectionExtensions.GetDefaultConstructor(Type, Boolean)
+  fullName: CodeJam.Reflection.ReflectionExtensions.GetDefaultConstructor(System.Type, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetDefaultConstructor
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 485
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nReturns default constructor.\n"
+  example: []
+  syntax:
+    content: public static ConstructorInfo GetDefaultConstructor(this Type type, bool exceptionIfNotExists = false)
+    parameters:
+    - id: type
+      type: System.Type
+      description: 'A <xref href="System.Type" data-throw-if-not-resolved="false"></xref> instance. '
+    - id: exceptionIfNotExists
+      type: System.Boolean
+      description: >-
+        if true, throws an exception if type does not exists default constructor.
+
+        Otherwise returns null.
+    return:
+      type: System.Reflection.ConstructorInfo
+      description: Returns <xref href="System.Reflection.ConstructorInfo" data-throw-if-not-resolved="false"></xref> or null.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetDefaultConstructor(type As Type, exceptionIfNotExists As Boolean = False) As ConstructorInfo
+  overload: CodeJam.Reflection.ReflectionExtensions.GetDefaultConstructor*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.GetItemType(System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.GetItemType(System.Type)
+  id: GetItemType(System.Type)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetItemType(Type)
+  nameWithType: ReflectionExtensions.GetItemType(Type)
+  fullName: CodeJam.Reflection.ReflectionExtensions.GetItemType(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetItemType
+    path: ../Main/src/Reflection/ReflectionExtensions.cs
+    startLine: 511
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nGets a value indicating whether the current <em>Type</em> encompasses or refers to another type;\nthat is, whether the provided Type is an array, a pointer, or is passed by reference.\n"
+  example: []
+  syntax:
+    content: public static Type GetItemType(this Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to get item type.
+    return:
+      type: System.Type
+      description: Returns item type or null.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetItemType(type As Type) As Type
+  overload: CodeJam.Reflection.ReflectionExtensions.GetItemType*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.ReflectionExtensions.CreateInstance(System.Type,CodeJam.Reflection.ParamInfo[])
+  commentId: M:CodeJam.Reflection.ReflectionExtensions.CreateInstance(System.Type,CodeJam.Reflection.ParamInfo[])
+  id: CreateInstance(System.Type,CodeJam.Reflection.ParamInfo[])
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.ReflectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: CreateInstance(Type, ParamInfo[])
+  nameWithType: ReflectionExtensions.CreateInstance(Type, ParamInfo[])
+  fullName: CodeJam.Reflection.ReflectionExtensions.CreateInstance(System.Type, CodeJam.Reflection.ParamInfo[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionExtensions.CreateInstance.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateInstance
+    path: ../Main/src/Reflection/ReflectionExtensions.CreateInstance.cs
+    startLine: 54
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nCreates instance of <code data-dev-comment-type=\"paramref\" class=\"paramref\">type</code> with specified <code data-dev-comment-type=\"paramref\" class=\"paramref\">parameters</code>.\n"
+  example: []
+  syntax:
+    content: public static object CreateInstance(this Type type, params ParamInfo[] parameters)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to create instance.
+    - id: parameters
+      type: CodeJam.Reflection.ParamInfo[]
+      description: Constructor parameters
+    return:
+      type: System.Object
+      description: Instance of type
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function CreateInstance(type As Type, ParamArray parameters As ParamInfo()) As Object
+  overload: CodeJam.Reflection.ReflectionExtensions.CreateInstance*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: <code data-dev-comment-type="paramref" class="paramref">type</code> is null
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: No suitable constructors found
+  nameWithType.vb: ReflectionExtensions.CreateInstance(Type, ParamInfo())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Reflection.ReflectionExtensions.CreateInstance(System.Type, CodeJam.Reflection.ParamInfo())
+  name.vb: CreateInstance(Type, ParamInfo())
+references:
+- uid: CodeJam.Reflection
+  commentId: N:CodeJam.Reflection
+  isExternal: false
+  name: CodeJam.Reflection
+  nameWithType: CodeJam.Reflection
+  fullName: CodeJam.Reflection
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type,System.Boolean)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type,System.Boolean)
+- uid: System.AttributeUsageAttribute
+  commentId: T:System.AttributeUsageAttribute
+- uid: CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute
+  isExternal: false
+  name: TryGetMetadataAttribute
+  nameWithType: ReflectionExtensions.TryGetMetadataAttribute
+  fullName: CodeJam.Reflection.ReflectionExtensions.TryGetMetadataAttribute
+- uid: System.Reflection.ICustomAttributeProvider
+  commentId: T:System.Reflection.ICustomAttributeProvider
+  parent: System.Reflection
+  isExternal: true
+  name: ICustomAttributeProvider
+  nameWithType: ICustomAttributeProvider
+  fullName: System.Reflection.ICustomAttributeProvider
+- uid: '{TAttribute}'
+  commentId: '!:TAttribute'
+  definition: TAttribute
+  name: TAttribute
+  nameWithType: TAttribute
+  fullName: TAttribute
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: false
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+- uid: TAttribute
+  isExternal: false
+  name: TAttribute
+  nameWithType: TAttribute
+  fullName: TAttribute
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes
+  isExternal: false
+  name: GetMetadataAttributes
+  nameWithType: ReflectionExtensions.GetMetadataAttributes
+  fullName: CodeJam.Reflection.ReflectionExtensions.GetMetadataAttributes
+- uid: System.Collections.Generic.IEnumerable{{TAttribute}}
+  commentId: T:System.Collections.Generic.IEnumerable{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<TAttribute>
+  nameWithType: IEnumerable<TAttribute>
+  fullName: System.Collections.Generic.IEnumerable<TAttribute>
+  nameWithType.vb: IEnumerable(Of TAttribute)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of TAttribute)
+  name.vb: IEnumerable(Of TAttribute)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TAttribute
+    nameWithType: TAttribute
+    fullName: TAttribute
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TAttribute
+    nameWithType: TAttribute
+    fullName: TAttribute
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: CodeJam.Reflection.ReflectionExtensions.GetModulePath*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.GetModulePath
+  isExternal: false
+  name: GetModulePath
+  nameWithType: ReflectionExtensions.GetModulePath
+  fullName: CodeJam.Reflection.ReflectionExtensions.GetModulePath
+- uid: System.Reflection.Module
+  commentId: T:System.Reflection.Module
+  parent: System.Reflection
+  isExternal: true
+  name: Module
+  nameWithType: Module
+  fullName: System.Reflection.Module
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: CodeJam.Reflection.ReflectionExtensions.GetShortAssemblyQualifiedName*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.GetShortAssemblyQualifiedName
+  isExternal: false
+  name: GetShortAssemblyQualifiedName
+  nameWithType: ReflectionExtensions.GetShortAssemblyQualifiedName
+  fullName: CodeJam.Reflection.ReflectionExtensions.GetShortAssemblyQualifiedName
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: CodeJam.Reflection.ReflectionExtensions.IsInstantiable*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.IsInstantiable
+  isExternal: false
+  name: IsInstantiable
+  nameWithType: ReflectionExtensions.IsInstantiable
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsInstantiable
+- uid: CodeJam.Reflection.ReflectionExtensions.IsStatic*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.IsStatic
+  isExternal: false
+  name: IsStatic
+  nameWithType: ReflectionExtensions.IsStatic
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsStatic
+- uid: CodeJam.Reflection.ReflectionExtensions.IsNullable*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.IsNullable
+  isExternal: false
+  name: IsNullable
+  nameWithType: ReflectionExtensions.IsNullable
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsNullable
+- uid: CodeJam.Reflection.ReflectionExtensions.IsNumeric*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.IsNumeric
+  isExternal: false
+  name: IsNumeric
+  nameWithType: ReflectionExtensions.IsNumeric
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsNumeric
+- uid: CodeJam.Reflection.ReflectionExtensions.IsInteger*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.IsInteger
+  isExternal: false
+  name: IsInteger
+  nameWithType: ReflectionExtensions.IsInteger
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsInteger
+- uid: CodeJam.Reflection.ReflectionExtensions.IsNullableNumeric*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.IsNullableNumeric
+  isExternal: false
+  name: IsNullableNumeric
+  nameWithType: ReflectionExtensions.IsNullableNumeric
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsNullableNumeric
+- uid: CodeJam.Reflection.ReflectionExtensions.IsNullableInteger*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.IsNullableInteger
+  isExternal: false
+  name: IsNullableInteger
+  nameWithType: ReflectionExtensions.IsNullableInteger
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsNullableInteger
+- uid: CodeJam.Reflection.ReflectionExtensions.IsNullableEnum*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.IsNullableEnum
+  isExternal: false
+  name: IsNullableEnum
+  nameWithType: ReflectionExtensions.IsNullableEnum
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsNullableEnum
+- uid: CodeJam.Reflection.ReflectionExtensions.IsSubClass*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.IsSubClass
+  isExternal: false
+  name: IsSubClass
+  nameWithType: ReflectionExtensions.IsSubClass
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsSubClass
+- uid: System.Reflection.ParameterInfo
+  commentId: T:System.Reflection.ParameterInfo
+- uid: CodeJam.Reflection.ReflectionExtensions.GetDelegateParams*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.GetDelegateParams
+  isExternal: false
+  name: GetDelegateParams
+  nameWithType: ReflectionExtensions.GetDelegateParams
+  fullName: CodeJam.Reflection.ReflectionExtensions.GetDelegateParams
+- uid: System.Reflection.ParameterInfo[]
+  name: ParameterInfo[]
+  nameWithType: ParameterInfo[]
+  fullName: System.Reflection.ParameterInfo[]
+  nameWithType.vb: ParameterInfo()
+  fullName.vb: System.Reflection.ParameterInfo()
+  name.vb: ParameterInfo()
+  spec.csharp:
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: CodeJam.Reflection.ReflectionExtensions.ToUnderlying*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.ToUnderlying
+  isExternal: false
+  name: ToUnderlying
+  nameWithType: ReflectionExtensions.ToUnderlying
+  fullName: CodeJam.Reflection.ReflectionExtensions.ToUnderlying
+- uid: CodeJam.Reflection.ReflectionExtensions.ToNullableUnderlying*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.ToNullableUnderlying
+  isExternal: false
+  name: ToNullableUnderlying
+  nameWithType: ReflectionExtensions.ToNullableUnderlying
+  fullName: CodeJam.Reflection.ReflectionExtensions.ToNullableUnderlying
+- uid: CodeJam.Reflection.ReflectionExtensions.ToEnumUnderlying*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.ToEnumUnderlying
+  isExternal: false
+  name: ToEnumUnderlying
+  nameWithType: ReflectionExtensions.ToEnumUnderlying
+  fullName: CodeJam.Reflection.ReflectionExtensions.ToEnumUnderlying
+- uid: System.Reflection.MemberInfo
+  commentId: T:System.Reflection.MemberInfo
+  parent: System.Reflection
+  isExternal: true
+  name: MemberInfo
+  nameWithType: MemberInfo
+  fullName: System.Reflection.MemberInfo
+- uid: CodeJam.Reflection.ReflectionExtensions.GetMemberType*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.GetMemberType
+  isExternal: false
+  name: GetMemberType
+  nameWithType: ReflectionExtensions.GetMemberType
+  fullName: CodeJam.Reflection.ReflectionExtensions.GetMemberType
+- uid: CodeJam.Reflection.ReflectionExtensions.IsAnonymous*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.IsAnonymous
+  isExternal: false
+  name: IsAnonymous
+  nameWithType: ReflectionExtensions.IsAnonymous
+  fullName: CodeJam.Reflection.ReflectionExtensions.IsAnonymous
+- uid: System.Reflection.ConstructorInfo
+  commentId: T:System.Reflection.ConstructorInfo
+  parent: System.Reflection
+  isExternal: true
+  name: ConstructorInfo
+  nameWithType: ConstructorInfo
+  fullName: System.Reflection.ConstructorInfo
+- uid: CodeJam.Reflection.ReflectionExtensions.GetDefaultConstructor*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.GetDefaultConstructor
+  isExternal: false
+  name: GetDefaultConstructor
+  nameWithType: ReflectionExtensions.GetDefaultConstructor
+  fullName: CodeJam.Reflection.ReflectionExtensions.GetDefaultConstructor
+- uid: CodeJam.Reflection.ReflectionExtensions.GetItemType*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.GetItemType
+  isExternal: false
+  name: GetItemType
+  nameWithType: ReflectionExtensions.GetItemType
+  fullName: CodeJam.Reflection.ReflectionExtensions.GetItemType
+- uid: CodeJam.Reflection.ReflectionExtensions.CreateInstance*
+  commentId: Overload:CodeJam.Reflection.ReflectionExtensions.CreateInstance
+  isExternal: false
+  name: CreateInstance
+  nameWithType: ReflectionExtensions.CreateInstance
+  fullName: CodeJam.Reflection.ReflectionExtensions.CreateInstance
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  parent: System
+  isExternal: true
+  name: ArgumentNullException
+  nameWithType: ArgumentNullException
+  fullName: System.ArgumentNullException
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: CodeJam.Reflection.ParamInfo[]
+  name: ParamInfo[]
+  nameWithType: ParamInfo[]
+  fullName: CodeJam.Reflection.ParamInfo[]
+  nameWithType.vb: ParamInfo()
+  fullName.vb: CodeJam.Reflection.ParamInfo()
+  name.vb: ParamInfo()
+  spec.csharp:
+  - uid: CodeJam.Reflection.ParamInfo
+    name: ParamInfo
+    nameWithType: ParamInfo
+    fullName: CodeJam.Reflection.ParamInfo
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: CodeJam.Reflection.ParamInfo
+    name: ParamInfo
+    nameWithType: ParamInfo
+    fullName: CodeJam.Reflection.ParamInfo
+  - name: ()
+    nameWithType: ()
+    fullName: ()

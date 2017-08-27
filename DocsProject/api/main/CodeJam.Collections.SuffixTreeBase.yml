@@ -1,0 +1,2344 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Collections.SuffixTreeBase
+  commentId: T:CodeJam.Collections.SuffixTreeBase
+  id: SuffixTreeBase
+  parent: CodeJam.Collections
+  children:
+  - CodeJam.Collections.SuffixTreeBase.#ctor
+  - CodeJam.Collections.SuffixTreeBase.Add(System.String)
+  - CodeJam.Collections.SuffixTreeBase.AddNode(CodeJam.Collections.SuffixTreeBase.Node)
+  - CodeJam.Collections.SuffixTreeBase.All
+  - CodeJam.Collections.SuffixTreeBase.AppendNodeText(System.Text.StringBuilder,System.Int32)
+  - CodeJam.Collections.SuffixTreeBase.BuildFor(System.Int32,System.Int32)
+  - CodeJam.Collections.SuffixTreeBase.Contains(System.String)
+  - CodeJam.Collections.SuffixTreeBase.ContainsSuffix(System.String)
+  - CodeJam.Collections.SuffixTreeBase.EdgeComparer
+  - CodeJam.Collections.SuffixTreeBase.GetNode(System.Int32)
+  - CodeJam.Collections.SuffixTreeBase.InternalData
+  - CodeJam.Collections.SuffixTreeBase.NodesCount
+  - CodeJam.Collections.SuffixTreeBase.Print
+  - CodeJam.Collections.SuffixTreeBase.Root
+  - CodeJam.Collections.SuffixTreeBase.RootNodeIndex
+  - CodeJam.Collections.SuffixTreeBase.StartingWith(System.String)
+  - CodeJam.Collections.SuffixTreeBase.StringLocations
+  - CodeJam.Collections.SuffixTreeBase.UpdateNode(System.Int32,CodeJam.Collections.SuffixTreeBase.Node)
+  langs:
+  - csharp
+  - vb
+  name: SuffixTreeBase
+  nameWithType: SuffixTreeBase
+  fullName: CodeJam.Collections.SuffixTreeBase
+  type: Class
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SuffixTreeBase
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 12
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nBase class for suffix tree algorithm implementation.\n"
+  example: []
+  syntax:
+    content: public abstract class SuffixTreeBase
+    content.vb: Public MustInherit Class SuffixTreeBase
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - CodeJam.Collections.SuffixTree
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - CodeJam.Collections.SuffixTreeBase.CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.Collections.SuffixTreeBase.CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.Collections.SuffixTreeBase.CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.Collections.SuffixTreeBase.CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{{T},{TKey}})
+  - CodeJam.Collections.SuffixTreeBase.CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{{T},{TKey}})
+  - CodeJam.Collections.SuffixTreeBase.CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{{T},{TKey}})
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: CodeJam.Collections.SuffixTreeBase.RootNodeIndex
+  commentId: F:CodeJam.Collections.SuffixTreeBase.RootNodeIndex
+  id: RootNodeIndex
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: RootNodeIndex
+  nameWithType: SuffixTreeBase.RootNodeIndex
+  fullName: CodeJam.Collections.SuffixTreeBase.RootNodeIndex
+  type: Field
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: RootNodeIndex
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 19
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Root node index
+  example: []
+  syntax:
+    content: protected const int RootNodeIndex = 0
+    return:
+      type: System.Int32
+    content.vb: Protected Const RootNodeIndex As Integer = 0
+  modifiers.csharp:
+  - protected
+  - const
+  modifiers.vb:
+  - Protected
+  - Const
+- uid: CodeJam.Collections.SuffixTreeBase.Root
+  commentId: P:CodeJam.Collections.SuffixTreeBase.Root
+  id: Root
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: Root
+  nameWithType: SuffixTreeBase.Root
+  fullName: CodeJam.Collections.SuffixTreeBase.Root
+  type: Property
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Root
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 25
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: The root node
+  example: []
+  syntax:
+    content: protected SuffixTreeBase.Node Root { get; }
+    parameters: []
+    return:
+      type: CodeJam.Collections.SuffixTreeBase.Node
+    content.vb: Protected ReadOnly Property Root As SuffixTreeBase.Node
+  overload: CodeJam.Collections.SuffixTreeBase.Root*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: CodeJam.Collections.SuffixTreeBase.EdgeComparer
+  commentId: P:CodeJam.Collections.SuffixTreeBase.EdgeComparer
+  id: EdgeComparer
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: EdgeComparer
+  nameWithType: SuffixTreeBase.EdgeComparer
+  fullName: CodeJam.Collections.SuffixTreeBase.EdgeComparer
+  type: Property
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: EdgeComparer
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 27
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: The comparer to compare edges of a node against a char
+  example: []
+  syntax:
+    content: protected Func<int, char, int> EdgeComparer { get; }
+    parameters: []
+    return:
+      type: System.Func{System.Int32,System.Char,System.Int32}
+    content.vb: Protected ReadOnly Property EdgeComparer As Func(Of Integer, Char, Integer)
+  overload: CodeJam.Collections.SuffixTreeBase.EdgeComparer*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: CodeJam.Collections.SuffixTreeBase.AddNode(CodeJam.Collections.SuffixTreeBase.Node)
+  commentId: M:CodeJam.Collections.SuffixTreeBase.AddNode(CodeJam.Collections.SuffixTreeBase.Node)
+  id: AddNode(CodeJam.Collections.SuffixTreeBase.Node)
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: AddNode(SuffixTreeBase.Node)
+  nameWithType: SuffixTreeBase.AddNode(SuffixTreeBase.Node)
+  fullName: CodeJam.Collections.SuffixTreeBase.AddNode(CodeJam.Collections.SuffixTreeBase.Node)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AddNode
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 36
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Adds a new node
+  example: []
+  syntax:
+    content: protected int AddNode(SuffixTreeBase.Node node)
+    parameters:
+    - id: node
+      type: CodeJam.Collections.SuffixTreeBase.Node
+      description: A node to add
+    return:
+      type: System.Int32
+      description: Index of the node
+    content.vb: Protected Function AddNode(node As SuffixTreeBase.Node) As Integer
+  overload: CodeJam.Collections.SuffixTreeBase.AddNode*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: CodeJam.Collections.SuffixTreeBase.UpdateNode(System.Int32,CodeJam.Collections.SuffixTreeBase.Node)
+  commentId: M:CodeJam.Collections.SuffixTreeBase.UpdateNode(System.Int32,CodeJam.Collections.SuffixTreeBase.Node)
+  id: UpdateNode(System.Int32,CodeJam.Collections.SuffixTreeBase.Node)
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: UpdateNode(Int32, SuffixTreeBase.Node)
+  nameWithType: SuffixTreeBase.UpdateNode(Int32, SuffixTreeBase.Node)
+  fullName: CodeJam.Collections.SuffixTreeBase.UpdateNode(System.Int32, CodeJam.Collections.SuffixTreeBase.Node)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: UpdateNode
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 46
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Updates the node at the index
+  example: []
+  syntax:
+    content: protected void UpdateNode(int index, SuffixTreeBase.Node node)
+    parameters:
+    - id: index
+      type: System.Int32
+      description: The index to update
+    - id: node
+      type: CodeJam.Collections.SuffixTreeBase.Node
+      description: The new node value
+    content.vb: Protected Sub UpdateNode(index As Integer, node As SuffixTreeBase.Node)
+  overload: CodeJam.Collections.SuffixTreeBase.UpdateNode*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: CodeJam.Collections.SuffixTreeBase.GetNode(System.Int32)
+  commentId: M:CodeJam.Collections.SuffixTreeBase.GetNode(System.Int32)
+  id: GetNode(System.Int32)
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: GetNode(Int32)
+  nameWithType: SuffixTreeBase.GetNode(Int32)
+  fullName: CodeJam.Collections.SuffixTreeBase.GetNode(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetNode
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 51
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Gets a node at the index
+  example: []
+  syntax:
+    content: protected SuffixTreeBase.Node GetNode(int index)
+    parameters:
+    - id: index
+      type: System.Int32
+      description: The index of the node
+    return:
+      type: CodeJam.Collections.SuffixTreeBase.Node
+      description: The node
+    content.vb: Protected Function GetNode(index As Integer) As SuffixTreeBase.Node
+  overload: CodeJam.Collections.SuffixTreeBase.GetNode*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: CodeJam.Collections.SuffixTreeBase.NodesCount
+  commentId: P:CodeJam.Collections.SuffixTreeBase.NodesCount
+  id: NodesCount
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: NodesCount
+  nameWithType: SuffixTreeBase.NodesCount
+  fullName: CodeJam.Collections.SuffixTreeBase.NodesCount
+  type: Property
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: NodesCount
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 54
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Number of nodes
+  example: []
+  syntax:
+    content: protected int NodesCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Protected ReadOnly Property NodesCount As Integer
+  overload: CodeJam.Collections.SuffixTreeBase.NodesCount*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: CodeJam.Collections.SuffixTreeBase.InternalData
+  commentId: P:CodeJam.Collections.SuffixTreeBase.InternalData
+  id: InternalData
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: InternalData
+  nameWithType: SuffixTreeBase.InternalData
+  fullName: CodeJam.Collections.SuffixTreeBase.InternalData
+  type: Property
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: InternalData
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 57
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Concatenated input strings
+  example: []
+  syntax:
+    content: protected string InternalData { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property InternalData As String
+  overload: CodeJam.Collections.SuffixTreeBase.InternalData*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: CodeJam.Collections.SuffixTreeBase.StringLocations
+  commentId: P:CodeJam.Collections.SuffixTreeBase.StringLocations
+  id: StringLocations
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: StringLocations
+  nameWithType: SuffixTreeBase.StringLocations
+  fullName: CodeJam.Collections.SuffixTreeBase.StringLocations
+  type: Property
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: StringLocations
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 60
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: List of locatons of added strings inside the InternalData
+  example: []
+  syntax:
+    content: protected List<> StringLocations { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{System.}
+    content.vb: Protected ReadOnly Property StringLocations As List(Of )
+  overload: CodeJam.Collections.SuffixTreeBase.StringLocations*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: CodeJam.Collections.SuffixTreeBase.#ctor
+  commentId: M:CodeJam.Collections.SuffixTreeBase.#ctor
+  id: '#ctor'
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: SuffixTreeBase()
+  nameWithType: SuffixTreeBase.SuffixTreeBase()
+  fullName: CodeJam.Collections.SuffixTreeBase.SuffixTreeBase()
+  type: Constructor
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 63
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Constructs a base for a suffix tree
+  example: []
+  syntax:
+    content: protected SuffixTreeBase()
+    content.vb: Protected Sub New
+  overload: CodeJam.Collections.SuffixTreeBase.#ctor*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: CodeJam.Collections.SuffixTreeBase.Add(System.String)
+  commentId: M:CodeJam.Collections.SuffixTreeBase.Add(System.String)
+  id: Add(System.String)
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: Add(String)
+  nameWithType: SuffixTreeBase.Add(String)
+  fullName: CodeJam.Collections.SuffixTreeBase.Add(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Add
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 86
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Adds a new string to the tree
+  example: []
+  syntax:
+    content: public void Add(string data)
+    parameters:
+    - id: data
+      type: System.String
+      description: "\nThe string to add\n<remarks>The last string character should be unique among all added strings</remarks>\n"
+    content.vb: Public Sub Add(data As String)
+  overload: CodeJam.Collections.SuffixTreeBase.Add*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Collections.SuffixTreeBase.All
+  commentId: M:CodeJam.Collections.SuffixTreeBase.All
+  id: All
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: All()
+  nameWithType: SuffixTreeBase.All()
+  fullName: CodeJam.Collections.SuffixTreeBase.All()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: All
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 104
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Enumerates all suffixes in the suffix tree
+  remarks: "\nMay return suffixes with the same value of the they are present in different source strings\n"
+  example: []
+  syntax:
+    content: public IEnumerable<Suffix> All()
+    return:
+      type: System.Collections.Generic.IEnumerable{CodeJam.Collections.Suffix}
+      description: The enumeration of all suffixes in lexicographical order
+    content.vb: Public Function All As IEnumerable(Of Suffix)
+  overload: CodeJam.Collections.SuffixTreeBase.All*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Collections.SuffixTreeBase.Contains(System.String)
+  commentId: M:CodeJam.Collections.SuffixTreeBase.Contains(System.String)
+  id: Contains(System.String)
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: Contains(String)
+  nameWithType: SuffixTreeBase.Contains(String)
+  fullName: CodeJam.Collections.SuffixTreeBase.Contains(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Contains
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 110
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Checks wether the suffix tree contains the given substring or not
+  example: []
+  syntax:
+    content: public bool Contains(string substring)
+    parameters:
+    - id: substring
+      type: System.String
+      description: The substring to locate
+    return:
+      type: System.Boolean
+      description: true if found, false otherwise
+    content.vb: Public Function Contains(substring As String) As Boolean
+  overload: CodeJam.Collections.SuffixTreeBase.Contains*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Collections.SuffixTreeBase.ContainsSuffix(System.String)
+  commentId: M:CodeJam.Collections.SuffixTreeBase.ContainsSuffix(System.String)
+  id: ContainsSuffix(System.String)
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: ContainsSuffix(String)
+  nameWithType: SuffixTreeBase.ContainsSuffix(String)
+  fullName: CodeJam.Collections.SuffixTreeBase.ContainsSuffix(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ContainsSuffix
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 125
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Checks wether the suffix tree contains the given suffix or not
+  example: []
+  syntax:
+    content: public bool ContainsSuffix(string suffix)
+    parameters:
+    - id: suffix
+      type: System.String
+      description: The suffix to locate
+    return:
+      type: System.Boolean
+      description: true if found, false otherwise
+    content.vb: Public Function ContainsSuffix(suffix As String) As Boolean
+  overload: CodeJam.Collections.SuffixTreeBase.ContainsSuffix*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Collections.SuffixTreeBase.StartingWith(System.String)
+  commentId: M:CodeJam.Collections.SuffixTreeBase.StartingWith(System.String)
+  id: StartingWith(System.String)
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: StartingWith(String)
+  nameWithType: SuffixTreeBase.StartingWith(String)
+  fullName: CodeJam.Collections.SuffixTreeBase.StartingWith(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: StartingWith
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 154
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Enumerates all suffixes starting with the given prefix
+  example: []
+  syntax:
+    content: public IEnumerable<Suffix> StartingWith(string prefix)
+    parameters:
+    - id: prefix
+      type: System.String
+      description: The prefix to find
+    return:
+      type: System.Collections.Generic.IEnumerable{CodeJam.Collections.Suffix}
+      description: The enumeration of all suffixes with the given prefix in lexicographical order
+    content.vb: Public Function StartingWith(prefix As String) As IEnumerable(Of Suffix)
+  overload: CodeJam.Collections.SuffixTreeBase.StartingWith*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Collections.SuffixTreeBase.BuildFor(System.Int32,System.Int32)
+  commentId: M:CodeJam.Collections.SuffixTreeBase.BuildFor(System.Int32,System.Int32)
+  id: BuildFor(System.Int32,System.Int32)
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: BuildFor(Int32, Int32)
+  nameWithType: SuffixTreeBase.BuildFor(Int32, Int32)
+  fullName: CodeJam.Collections.SuffixTreeBase.BuildFor(System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: BuildFor
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 320
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Appends suffixes for the last added string
+  example: []
+  syntax:
+    content: protected abstract void BuildFor(int begin, int end)
+    parameters:
+    - id: begin
+      type: System.Int32
+    - id: end
+      type: System.Int32
+    content.vb: Protected MustOverride Sub BuildFor(begin As Integer, end As Integer)
+  overload: CodeJam.Collections.SuffixTreeBase.BuildFor*
+  modifiers.csharp:
+  - protected
+  - abstract
+  modifiers.vb:
+  - Protected
+  - MustOverride
+- uid: CodeJam.Collections.SuffixTreeBase.Print
+  commentId: M:CodeJam.Collections.SuffixTreeBase.Print
+  id: Print
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: Print()
+  nameWithType: SuffixTreeBase.Print()
+  fullName: CodeJam.Collections.SuffixTreeBase.Print()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Print
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 324
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Prints the tree structure to the string for the debugging purposes
+  example: []
+  syntax:
+    content: public string Print()
+    return:
+      type: System.String
+      description: The tree structure as a string
+    content.vb: Public Function Print As String
+  overload: CodeJam.Collections.SuffixTreeBase.Print*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Collections.SuffixTreeBase.AppendNodeText(System.Text.StringBuilder,System.Int32)
+  commentId: M:CodeJam.Collections.SuffixTreeBase.AppendNodeText(System.Text.StringBuilder,System.Int32)
+  id: AppendNodeText(System.Text.StringBuilder,System.Int32)
+  parent: CodeJam.Collections.SuffixTreeBase
+  langs:
+  - csharp
+  - vb
+  name: AppendNodeText(StringBuilder, Int32)
+  nameWithType: SuffixTreeBase.AppendNodeText(StringBuilder, Int32)
+  fullName: CodeJam.Collections.SuffixTreeBase.AppendNodeText(System.Text.StringBuilder, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AppendNodeText
+    path: ../Main/src/Collections/SuffixTree/SuffixTreeBase.cs
+    startLine: 400
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Prints a single node information
+  example: []
+  syntax:
+    content: protected virtual void AppendNodeText(StringBuilder sb, int nodeIndex)
+    parameters:
+    - id: sb
+      type: System.Text.StringBuilder
+      description: The builder to print to
+    - id: nodeIndex
+      type: System.Int32
+      description: The node index
+    content.vb: Protected Overridable Sub AppendNodeText(sb As StringBuilder, nodeIndex As Integer)
+  overload: CodeJam.Collections.SuffixTreeBase.AppendNodeText*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+references:
+- uid: CodeJam.Collections
+  commentId: N:CodeJam.Collections
+  isExternal: false
+  name: CodeJam.Collections
+  nameWithType: CodeJam.Collections
+  fullName: CodeJam.Collections
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.SuffixTreeBase.CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  name: Contains<T, SuffixTreeBase>(Range<T>)
+  nameWithType: RangeExtensions.Contains<T, SuffixTreeBase>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, CodeJam.Collections.SuffixTreeBase>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, SuffixTreeBase)(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, CodeJam.Collections.SuffixTreeBase)(CodeJam.Ranges.Range(Of T))
+  name.vb: Contains(Of T, SuffixTreeBase)(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{``0})
+    name: Contains<T, SuffixTreeBase>
+    nameWithType: RangeExtensions.Contains<T, SuffixTreeBase>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, CodeJam.Collections.SuffixTreeBase>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{``0})
+    name: Contains(Of T, SuffixTreeBase)
+    nameWithType: RangeExtensions.Contains(Of T, SuffixTreeBase)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, CodeJam.Collections.SuffixTreeBase)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.SuffixTreeBase.CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  name: StartsAfter<T, SuffixTreeBase>(Range<T>)
+  nameWithType: RangeExtensions.StartsAfter<T, SuffixTreeBase>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, CodeJam.Collections.SuffixTreeBase>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, SuffixTreeBase)(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, CodeJam.Collections.SuffixTreeBase)(CodeJam.Ranges.Range(Of T))
+  name.vb: StartsAfter(Of T, SuffixTreeBase)(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{``0})
+    name: StartsAfter<T, SuffixTreeBase>
+    nameWithType: RangeExtensions.StartsAfter<T, SuffixTreeBase>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, CodeJam.Collections.SuffixTreeBase>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{``0})
+    name: StartsAfter(Of T, SuffixTreeBase)
+    nameWithType: RangeExtensions.StartsAfter(Of T, SuffixTreeBase)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, CodeJam.Collections.SuffixTreeBase)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.SuffixTreeBase.CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  name: EndsBefore<T, SuffixTreeBase>(Range<T>)
+  nameWithType: RangeExtensions.EndsBefore<T, SuffixTreeBase>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, CodeJam.Collections.SuffixTreeBase>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, SuffixTreeBase)(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, CodeJam.Collections.SuffixTreeBase)(CodeJam.Ranges.Range(Of T))
+  name.vb: EndsBefore(Of T, SuffixTreeBase)(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{``0})
+    name: EndsBefore<T, SuffixTreeBase>
+    nameWithType: RangeExtensions.EndsBefore<T, SuffixTreeBase>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, CodeJam.Collections.SuffixTreeBase>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{``0})
+    name: EndsBefore(Of T, SuffixTreeBase)
+    nameWithType: RangeExtensions.EndsBefore(Of T, SuffixTreeBase)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, CodeJam.Collections.SuffixTreeBase)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.SuffixTreeBase.CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: Contains<T, TKey, SuffixTreeBase>(Range<T, TKey>)
+  nameWithType: RangeExtensions.Contains<T, TKey, SuffixTreeBase>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, CodeJam.Collections.SuffixTreeBase>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TKey, SuffixTreeBase)(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, CodeJam.Collections.SuffixTreeBase)(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: Contains(Of T, TKey, SuffixTreeBase)(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{``0,``1})
+    name: Contains<T, TKey, SuffixTreeBase>
+    nameWithType: RangeExtensions.Contains<T, TKey, SuffixTreeBase>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, CodeJam.Collections.SuffixTreeBase>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{``0,``1})
+    name: Contains(Of T, TKey, SuffixTreeBase)
+    nameWithType: RangeExtensions.Contains(Of T, TKey, SuffixTreeBase)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, CodeJam.Collections.SuffixTreeBase)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.SuffixTreeBase.CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: StartsAfter<T, TKey, SuffixTreeBase>(Range<T, TKey>)
+  nameWithType: RangeExtensions.StartsAfter<T, TKey, SuffixTreeBase>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, CodeJam.Collections.SuffixTreeBase>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TKey, SuffixTreeBase)(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, CodeJam.Collections.SuffixTreeBase)(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: StartsAfter(Of T, TKey, SuffixTreeBase)(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter<T, TKey, SuffixTreeBase>
+    nameWithType: RangeExtensions.StartsAfter<T, TKey, SuffixTreeBase>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, CodeJam.Collections.SuffixTreeBase>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter(Of T, TKey, SuffixTreeBase)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TKey, SuffixTreeBase)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, CodeJam.Collections.SuffixTreeBase)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.SuffixTreeBase.CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: EndsBefore<T, TKey, SuffixTreeBase>(Range<T, TKey>)
+  nameWithType: RangeExtensions.EndsBefore<T, TKey, SuffixTreeBase>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, CodeJam.Collections.SuffixTreeBase>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TKey, SuffixTreeBase)(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, CodeJam.Collections.SuffixTreeBase)(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: EndsBefore(Of T, TKey, SuffixTreeBase)(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore<T, TKey, SuffixTreeBase>
+    nameWithType: RangeExtensions.EndsBefore<T, TKey, SuffixTreeBase>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, CodeJam.Collections.SuffixTreeBase>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore(Of T, TKey, SuffixTreeBase)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TKey, SuffixTreeBase)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, CodeJam.Collections.SuffixTreeBase)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: Contains<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.Contains<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: Contains(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+    name: Contains<T, TRange>
+    nameWithType: RangeExtensions.Contains<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+    name: Contains(Of T, TRange)
+    nameWithType: RangeExtensions.Contains(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions
+  commentId: T:CodeJam.Ranges.RangeExtensions
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: RangeExtensions
+  nameWithType: RangeExtensions
+  fullName: CodeJam.Ranges.RangeExtensions
+- uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: StartsAfter<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.StartsAfter<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: StartsAfter(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+    name: StartsAfter<T, TRange>
+    nameWithType: RangeExtensions.StartsAfter<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+    name: StartsAfter(Of T, TRange)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: EndsBefore<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.EndsBefore<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: EndsBefore(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+    name: EndsBefore<T, TRange>
+    nameWithType: RangeExtensions.EndsBefore<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+    name: EndsBefore(Of T, TRange)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: Contains<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.Contains<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: Contains(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: Contains<T, TKey, TRange>
+    nameWithType: RangeExtensions.Contains<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: Contains(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.Contains(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: StartsAfter<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.StartsAfter<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: StartsAfter(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter<T, TKey, TRange>
+    nameWithType: RangeExtensions.StartsAfter<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: EndsBefore<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.EndsBefore<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: EndsBefore(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore<T, TKey, TRange>
+    nameWithType: RangeExtensions.EndsBefore<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges
+  commentId: N:CodeJam.Ranges
+  isExternal: false
+  name: CodeJam.Ranges
+  nameWithType: CodeJam.Ranges
+  fullName: CodeJam.Ranges
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: CodeJam.Collections.SuffixTreeBase.Root*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.Root
+  isExternal: false
+  name: Root
+  nameWithType: SuffixTreeBase.Root
+  fullName: CodeJam.Collections.SuffixTreeBase.Root
+- uid: CodeJam.Collections.SuffixTreeBase.Node
+  commentId: T:CodeJam.Collections.SuffixTreeBase.Node
+  parent: CodeJam.Collections
+  isExternal: false
+  name: SuffixTreeBase.Node
+  nameWithType: SuffixTreeBase.Node
+  fullName: CodeJam.Collections.SuffixTreeBase.Node
+- uid: CodeJam.Collections.SuffixTreeBase.EdgeComparer*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.EdgeComparer
+  isExternal: false
+  name: EdgeComparer
+  nameWithType: SuffixTreeBase.EdgeComparer
+  fullName: CodeJam.Collections.SuffixTreeBase.EdgeComparer
+- uid: System.Func{System.Int32,System.Char,System.Int32}
+  commentId: T:System.Func{System.Int32,System.Char,System.Int32}
+  parent: System
+  definition: System.Func`3
+  name: Func<Int32, Char, Int32>
+  nameWithType: Func<Int32, Char, Int32>
+  fullName: System.Func<System.Int32, System.Char, System.Int32>
+  nameWithType.vb: Func(Of Int32, Char, Int32)
+  fullName.vb: System.Func(Of System.Int32, System.Char, System.Int32)
+  name.vb: Func(Of Int32, Char, Int32)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`3
+  commentId: T:System.Func`3
+  isExternal: true
+  name: Func<T1, T2, TResult>
+  nameWithType: Func<T1, T2, TResult>
+  fullName: System.Func<T1, T2, TResult>
+  nameWithType.vb: Func(Of T1, T2, TResult)
+  fullName.vb: System.Func(Of T1, T2, TResult)
+  name.vb: Func(Of T1, T2, TResult)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.SuffixTreeBase.AddNode*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.AddNode
+  isExternal: false
+  name: AddNode
+  nameWithType: SuffixTreeBase.AddNode
+  fullName: CodeJam.Collections.SuffixTreeBase.AddNode
+- uid: CodeJam.Collections.SuffixTreeBase.UpdateNode*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.UpdateNode
+  isExternal: false
+  name: UpdateNode
+  nameWithType: SuffixTreeBase.UpdateNode
+  fullName: CodeJam.Collections.SuffixTreeBase.UpdateNode
+- uid: CodeJam.Collections.SuffixTreeBase.GetNode*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.GetNode
+  isExternal: false
+  name: GetNode
+  nameWithType: SuffixTreeBase.GetNode
+  fullName: CodeJam.Collections.SuffixTreeBase.GetNode
+- uid: CodeJam.Collections.SuffixTreeBase.NodesCount*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.NodesCount
+  isExternal: false
+  name: NodesCount
+  nameWithType: SuffixTreeBase.NodesCount
+  fullName: CodeJam.Collections.SuffixTreeBase.NodesCount
+- uid: CodeJam.Collections.SuffixTreeBase.InternalData*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.InternalData
+  isExternal: false
+  name: InternalData
+  nameWithType: SuffixTreeBase.InternalData
+  fullName: CodeJam.Collections.SuffixTreeBase.InternalData
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: CodeJam.Collections.SuffixTreeBase.StringLocations*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.StringLocations
+  isExternal: false
+  name: StringLocations
+  nameWithType: SuffixTreeBase.StringLocations
+  fullName: CodeJam.Collections.SuffixTreeBase.StringLocations
+- uid: System.Collections.Generic.List{System.}
+  commentId: T:System.Collections.Generic.List{System.}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<>
+  nameWithType: List<>
+  fullName: System.Collections.Generic.List<System.>
+  nameWithType.vb: List(Of )
+  fullName.vb: System.Collections.Generic.List(Of System.)
+  name.vb: List(Of )
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.
+    name: ''
+    nameWithType: ''
+    fullName: System.
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.
+    name: ''
+    nameWithType: ''
+    fullName: System.
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: CodeJam.Collections.SuffixTreeBase.#ctor*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.#ctor
+  isExternal: false
+  name: SuffixTreeBase
+  nameWithType: SuffixTreeBase.SuffixTreeBase
+  fullName: CodeJam.Collections.SuffixTreeBase.SuffixTreeBase
+- uid: CodeJam.Collections.SuffixTreeBase.Add*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.Add
+  isExternal: false
+  name: Add
+  nameWithType: SuffixTreeBase.Add
+  fullName: CodeJam.Collections.SuffixTreeBase.Add
+- uid: CodeJam.Collections.SuffixTreeBase.All*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.All
+  isExternal: false
+  name: All
+  nameWithType: SuffixTreeBase.All
+  fullName: CodeJam.Collections.SuffixTreeBase.All
+- uid: System.Collections.Generic.IEnumerable{CodeJam.Collections.Suffix}
+  commentId: T:System.Collections.Generic.IEnumerable{CodeJam.Collections.Suffix}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Suffix>
+  nameWithType: IEnumerable<Suffix>
+  fullName: System.Collections.Generic.IEnumerable<CodeJam.Collections.Suffix>
+  nameWithType.vb: IEnumerable(Of Suffix)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of CodeJam.Collections.Suffix)
+  name.vb: IEnumerable(Of Suffix)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.Collections.Suffix
+    name: Suffix
+    nameWithType: Suffix
+    fullName: CodeJam.Collections.Suffix
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.Collections.Suffix
+    name: Suffix
+    nameWithType: Suffix
+    fullName: CodeJam.Collections.Suffix
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.SuffixTreeBase.Contains*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.Contains
+  isExternal: false
+  name: Contains
+  nameWithType: SuffixTreeBase.Contains
+  fullName: CodeJam.Collections.SuffixTreeBase.Contains
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.Collections.SuffixTreeBase.ContainsSuffix*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.ContainsSuffix
+  isExternal: false
+  name: ContainsSuffix
+  nameWithType: SuffixTreeBase.ContainsSuffix
+  fullName: CodeJam.Collections.SuffixTreeBase.ContainsSuffix
+- uid: CodeJam.Collections.SuffixTreeBase.StartingWith*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.StartingWith
+  isExternal: false
+  name: StartingWith
+  nameWithType: SuffixTreeBase.StartingWith
+  fullName: CodeJam.Collections.SuffixTreeBase.StartingWith
+- uid: CodeJam.Collections.SuffixTreeBase.BuildFor*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.BuildFor
+  isExternal: false
+  name: BuildFor
+  nameWithType: SuffixTreeBase.BuildFor
+  fullName: CodeJam.Collections.SuffixTreeBase.BuildFor
+- uid: CodeJam.Collections.SuffixTreeBase.Print*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.Print
+  isExternal: false
+  name: Print
+  nameWithType: SuffixTreeBase.Print
+  fullName: CodeJam.Collections.SuffixTreeBase.Print
+- uid: CodeJam.Collections.SuffixTreeBase.AppendNodeText*
+  commentId: Overload:CodeJam.Collections.SuffixTreeBase.AppendNodeText
+  isExternal: false
+  name: AppendNodeText
+  nameWithType: SuffixTreeBase.AppendNodeText
+  fullName: CodeJam.Collections.SuffixTreeBase.AppendNodeText
+- uid: System.Text.StringBuilder
+  commentId: T:System.Text.StringBuilder
+  parent: System.Text
+  isExternal: true
+  name: StringBuilder
+  nameWithType: StringBuilder
+  fullName: System.Text.StringBuilder
+- uid: System.Text
+  commentId: N:System.Text
+  isExternal: false
+  name: System.Text
+  nameWithType: System.Text
+  fullName: System.Text

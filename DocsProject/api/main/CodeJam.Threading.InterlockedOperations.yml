@@ -1,0 +1,2191 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Threading.InterlockedOperations
+  commentId: T:CodeJam.Threading.InterlockedOperations
+  id: InterlockedOperations
+  parent: CodeJam.Threading
+  children:
+  - CodeJam.Threading.InterlockedOperations.Initialize(System.Double@,System.Double)
+  - CodeJam.Threading.InterlockedOperations.Initialize(System.Double@,System.Double,System.Double)
+  - CodeJam.Threading.InterlockedOperations.Initialize(System.Int32@,System.Int32)
+  - CodeJam.Threading.InterlockedOperations.Initialize(System.Int32@,System.Int32,System.Int32)
+  - CodeJam.Threading.InterlockedOperations.Initialize(System.Int64@,System.Int64)
+  - CodeJam.Threading.InterlockedOperations.Initialize(System.Int64@,System.Int64,System.Int64)
+  - CodeJam.Threading.InterlockedOperations.Initialize(System.Single@,System.Single)
+  - CodeJam.Threading.InterlockedOperations.Initialize(System.Single@,System.Single,System.Single)
+  - CodeJam.Threading.InterlockedOperations.Initialize``1(``0@,``0)
+  - CodeJam.Threading.InterlockedOperations.Initialize``1(``0@,``0,``0)
+  - CodeJam.Threading.InterlockedOperations.Update(System.Double@,System.Double,System.Func{System.Double,System.Double,System.Double})
+  - CodeJam.Threading.InterlockedOperations.Update(System.Double@,System.Func{System.Double,System.Double})
+  - CodeJam.Threading.InterlockedOperations.Update(System.Int32@,System.Func{System.Int32,System.Int32})
+  - CodeJam.Threading.InterlockedOperations.Update(System.Int32@,System.Int32,System.Func{System.Int32,System.Int32,System.Int32})
+  - CodeJam.Threading.InterlockedOperations.Update(System.Int64@,System.Func{System.Int64,System.Int64})
+  - CodeJam.Threading.InterlockedOperations.Update(System.Int64@,System.Int64,System.Func{System.Int64,System.Int64,System.Int64})
+  - CodeJam.Threading.InterlockedOperations.Update(System.Single@,System.Func{System.Single,System.Single})
+  - CodeJam.Threading.InterlockedOperations.Update(System.Single@,System.Single,System.Func{System.Single,System.Single,System.Single})
+  - CodeJam.Threading.InterlockedOperations.Update``1(``0@,``0,System.Func{``0,``0,``0})
+  - CodeJam.Threading.InterlockedOperations.Update``1(``0@,System.Func{``0,``0})
+  langs:
+  - csharp
+  - vb
+  name: InterlockedOperations
+  nameWithType: InterlockedOperations
+  fullName: CodeJam.Threading.InterlockedOperations
+  type: Class
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: InterlockedOperations
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 19
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nProvides a helper class for initializing a values in a thread-safe manner.\n"
+  example: []
+  syntax:
+    content: public static class InterlockedOperations
+    content.vb: Public Module InterlockedOperations
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Threading.InterlockedOperations.Initialize(System.Double@,System.Double)
+  commentId: M:CodeJam.Threading.InterlockedOperations.Initialize(System.Double@,System.Double)
+  id: Initialize(System.Double@,System.Double)
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Initialize(ref Double, Double)
+  nameWithType: InterlockedOperations.Initialize(ref Double, Double)
+  fullName: CodeJam.Threading.InterlockedOperations.Initialize(ref System.Double, System.Double)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Initialize
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 35
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nInitialize the value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> in a thread-safe manner.\nThe value is changed to <code data-dev-comment-type=\"paramref\" class=\"paramref\">value</code> only if the current value is default(double).\n"
+  example: []
+  syntax:
+    content: public static double Initialize(ref double target, double value)
+    parameters:
+    - id: target
+      type: System.Double
+      description: Reference to the target location.
+    - id: value
+      type: System.Double
+      description: The value to use if the target is equal to default(double).
+    return:
+      type: System.Double
+      description: "\nThe new value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\nNote that this is nearly always more useful than the usual\nreturn from <xref href=\"System.Threading.Interlocked.CompareExchange(System.Double%40%2cSystem.Double%2cSystem.Double)\" data-throw-if-not-resolved=\"false\"></xref>\nbecause it saves another read to <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\n"
+    content.vb: Public Shared Function Initialize(ByRef target As Double, value As Double) As Double
+  overload: CodeJam.Threading.InterlockedOperations.Initialize*
+  nameWithType.vb: InterlockedOperations.Initialize(ByRef Double, Double)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Initialize(ByRef System.Double, System.Double)
+  name.vb: Initialize(ByRef Double, Double)
+- uid: CodeJam.Threading.InterlockedOperations.Initialize(System.Double@,System.Double,System.Double)
+  commentId: M:CodeJam.Threading.InterlockedOperations.Initialize(System.Double@,System.Double,System.Double)
+  id: Initialize(System.Double@,System.Double,System.Double)
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Initialize(ref Double, Double, Double)
+  nameWithType: InterlockedOperations.Initialize(ref Double, Double, Double)
+  fullName: CodeJam.Threading.InterlockedOperations.Initialize(ref System.Double, System.Double, System.Double)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Initialize
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 52
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nInitialize the value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> in a thread-safe manner.\nThe value is changed to <code data-dev-comment-type=\"paramref\" class=\"paramref\">initializedValue</code> only if the current value\nis <code data-dev-comment-type=\"paramref\" class=\"paramref\">uninitializedValue</code>.\n"
+  example: []
+  syntax:
+    content: public static double Initialize(ref double target, double initializedValue, double uninitializedValue)
+    parameters:
+    - id: target
+      type: System.Double
+      description: Reference to the target location.
+    - id: initializedValue
+      type: System.Double
+      description: The value to use if the target is currently uninitialized.
+    - id: uninitializedValue
+      type: System.Double
+      description: The uninitialized value.
+    return:
+      type: System.Double
+      description: "\nThe new value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\nNote that this is nearly always more useful than the usual\nreturn from <xref href=\"System.Threading.Interlocked.CompareExchange(System.Double%40%2cSystem.Double%2cSystem.Double)\" data-throw-if-not-resolved=\"false\"></xref>\nbecause it saves another read to <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\n"
+    content.vb: Public Shared Function Initialize(ByRef target As Double, initializedValue As Double, uninitializedValue As Double) As Double
+  overload: CodeJam.Threading.InterlockedOperations.Initialize*
+  nameWithType.vb: InterlockedOperations.Initialize(ByRef Double, Double, Double)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Initialize(ByRef System.Double, System.Double, System.Double)
+  name.vb: Initialize(ByRef Double, Double, Double)
+- uid: CodeJam.Threading.InterlockedOperations.Update(System.Double@,System.Func{System.Double,System.Double})
+  commentId: M:CodeJam.Threading.InterlockedOperations.Update(System.Double@,System.Func{System.Double,System.Double})
+  id: Update(System.Double@,System.Func{System.Double,System.Double})
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Update(ref Double, Func<Double, Double>)
+  nameWithType: InterlockedOperations.Update(ref Double, Func<Double, Double>)
+  fullName: CodeJam.Threading.InterlockedOperations.Update(ref System.Double, System.Func<System.Double, System.Double>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Update
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 73
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nImplements lock-free update pattern implementation based on compare-and-swap loop\n"
+  remarks: "\nUses the same approach that used by c# compiler in event subscription methods\n"
+  example: []
+  syntax:
+    content: public static double Update(ref double value, Func<double, double> updateCallback)
+    parameters:
+    - id: value
+      type: System.Double
+      description: Value to change.
+    - id: updateCallback
+      type: System.Func{System.Double,System.Double}
+      description: Function to calculate new value.
+    return:
+      type: System.Double
+      description: New value.
+    content.vb: Public Shared Function Update(ByRef value As Double, updateCallback As Func(Of Double, Double)) As Double
+  overload: CodeJam.Threading.InterlockedOperations.Update*
+  nameWithType.vb: InterlockedOperations.Update(ByRef Double, Func(Of Double, Double))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Update(ByRef System.Double, System.Func(Of System.Double, System.Double))
+  name.vb: Update(ByRef Double, Func(Of Double, Double))
+- uid: CodeJam.Threading.InterlockedOperations.Update(System.Double@,System.Double,System.Func{System.Double,System.Double,System.Double})
+  commentId: M:CodeJam.Threading.InterlockedOperations.Update(System.Double@,System.Double,System.Func{System.Double,System.Double,System.Double})
+  id: Update(System.Double@,System.Double,System.Func{System.Double,System.Double,System.Double})
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Update(ref Double, Double, Func<Double, Double, Double>)
+  nameWithType: InterlockedOperations.Update(ref Double, Double, Func<Double, Double, Double>)
+  fullName: CodeJam.Threading.InterlockedOperations.Update(ref System.Double, System.Double, System.Func<System.Double, System.Double, System.Double>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Update
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 98
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nImplements lock-free update pattern implementation based on compare-and-swap loop\n"
+  remarks: "\nUses the same approach that used by c# compiler in event subscription methods\n"
+  example: []
+  syntax:
+    content: public static double Update(ref double value, double newValue, Func<double, double, double> updateCallback)
+    parameters:
+    - id: value
+      type: System.Double
+      description: Value to change.
+    - id: newValue
+      type: System.Double
+      description: Precalculated new value.
+    - id: updateCallback
+      type: System.Func{System.Double,System.Double,System.Double}
+      description: Function to calculate new value.
+    return:
+      type: System.Double
+      description: New value.
+    content.vb: Public Shared Function Update(ByRef value As Double, newValue As Double, updateCallback As Func(Of Double, Double, Double)) As Double
+  overload: CodeJam.Threading.InterlockedOperations.Update*
+  nameWithType.vb: InterlockedOperations.Update(ByRef Double, Double, Func(Of Double, Double, Double))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Update(ByRef System.Double, System.Double, System.Func(Of System.Double, System.Double, System.Double))
+  name.vb: Update(ByRef Double, Double, Func(Of Double, Double, Double))
+- uid: CodeJam.Threading.InterlockedOperations.Initialize(System.Single@,System.Single)
+  commentId: M:CodeJam.Threading.InterlockedOperations.Initialize(System.Single@,System.Single)
+  id: Initialize(System.Single@,System.Single)
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Initialize(ref Single, Single)
+  nameWithType: InterlockedOperations.Initialize(ref Single, Single)
+  fullName: CodeJam.Threading.InterlockedOperations.Initialize(ref System.Single, System.Single)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Initialize
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 126
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nInitialize the value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> in a thread-safe manner.\nThe value is changed to <code data-dev-comment-type=\"paramref\" class=\"paramref\">value</code> only if the current value is default(float).\n"
+  example: []
+  syntax:
+    content: public static float Initialize(ref float target, float value)
+    parameters:
+    - id: target
+      type: System.Single
+      description: Reference to the target location.
+    - id: value
+      type: System.Single
+      description: The value to use if the target is equal to default(float).
+    return:
+      type: System.Single
+      description: "\nThe new value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\nNote that this is nearly always more useful than the usual\nreturn from <xref href=\"System.Threading.Interlocked.CompareExchange(System.Single%40%2cSystem.Single%2cSystem.Single)\" data-throw-if-not-resolved=\"false\"></xref>\nbecause it saves another read to <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\n"
+    content.vb: Public Shared Function Initialize(ByRef target As Single, value As Single) As Single
+  overload: CodeJam.Threading.InterlockedOperations.Initialize*
+  nameWithType.vb: InterlockedOperations.Initialize(ByRef Single, Single)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Initialize(ByRef System.Single, System.Single)
+  name.vb: Initialize(ByRef Single, Single)
+- uid: CodeJam.Threading.InterlockedOperations.Initialize(System.Single@,System.Single,System.Single)
+  commentId: M:CodeJam.Threading.InterlockedOperations.Initialize(System.Single@,System.Single,System.Single)
+  id: Initialize(System.Single@,System.Single,System.Single)
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Initialize(ref Single, Single, Single)
+  nameWithType: InterlockedOperations.Initialize(ref Single, Single, Single)
+  fullName: CodeJam.Threading.InterlockedOperations.Initialize(ref System.Single, System.Single, System.Single)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Initialize
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 143
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nInitialize the value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> in a thread-safe manner.\nThe value is changed to <code data-dev-comment-type=\"paramref\" class=\"paramref\">initializedValue</code> only if the current value\nis <code data-dev-comment-type=\"paramref\" class=\"paramref\">uninitializedValue</code>.\n"
+  example: []
+  syntax:
+    content: public static float Initialize(ref float target, float initializedValue, float uninitializedValue)
+    parameters:
+    - id: target
+      type: System.Single
+      description: Reference to the target location.
+    - id: initializedValue
+      type: System.Single
+      description: The value to use if the target is currently uninitialized.
+    - id: uninitializedValue
+      type: System.Single
+      description: The uninitialized value.
+    return:
+      type: System.Single
+      description: "\nThe new value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\nNote that this is nearly always more useful than the usual\nreturn from <xref href=\"System.Threading.Interlocked.CompareExchange(System.Single%40%2cSystem.Single%2cSystem.Single)\" data-throw-if-not-resolved=\"false\"></xref>\nbecause it saves another read to <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\n"
+    content.vb: Public Shared Function Initialize(ByRef target As Single, initializedValue As Single, uninitializedValue As Single) As Single
+  overload: CodeJam.Threading.InterlockedOperations.Initialize*
+  nameWithType.vb: InterlockedOperations.Initialize(ByRef Single, Single, Single)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Initialize(ByRef System.Single, System.Single, System.Single)
+  name.vb: Initialize(ByRef Single, Single, Single)
+- uid: CodeJam.Threading.InterlockedOperations.Update(System.Single@,System.Func{System.Single,System.Single})
+  commentId: M:CodeJam.Threading.InterlockedOperations.Update(System.Single@,System.Func{System.Single,System.Single})
+  id: Update(System.Single@,System.Func{System.Single,System.Single})
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Update(ref Single, Func<Single, Single>)
+  nameWithType: InterlockedOperations.Update(ref Single, Func<Single, Single>)
+  fullName: CodeJam.Threading.InterlockedOperations.Update(ref System.Single, System.Func<System.Single, System.Single>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Update
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 164
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nImplements lock-free update pattern implementation based on compare-and-swap loop\n"
+  remarks: "\nUses the same approach that used by c# compiler in event subscription methods\n"
+  example: []
+  syntax:
+    content: public static float Update(ref float value, Func<float, float> updateCallback)
+    parameters:
+    - id: value
+      type: System.Single
+      description: Value to change.
+    - id: updateCallback
+      type: System.Func{System.Single,System.Single}
+      description: Function to calculate new value.
+    return:
+      type: System.Single
+      description: New value.
+    content.vb: Public Shared Function Update(ByRef value As Single, updateCallback As Func(Of Single, Single)) As Single
+  overload: CodeJam.Threading.InterlockedOperations.Update*
+  nameWithType.vb: InterlockedOperations.Update(ByRef Single, Func(Of Single, Single))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Update(ByRef System.Single, System.Func(Of System.Single, System.Single))
+  name.vb: Update(ByRef Single, Func(Of Single, Single))
+- uid: CodeJam.Threading.InterlockedOperations.Update(System.Single@,System.Single,System.Func{System.Single,System.Single,System.Single})
+  commentId: M:CodeJam.Threading.InterlockedOperations.Update(System.Single@,System.Single,System.Func{System.Single,System.Single,System.Single})
+  id: Update(System.Single@,System.Single,System.Func{System.Single,System.Single,System.Single})
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Update(ref Single, Single, Func<Single, Single, Single>)
+  nameWithType: InterlockedOperations.Update(ref Single, Single, Func<Single, Single, Single>)
+  fullName: CodeJam.Threading.InterlockedOperations.Update(ref System.Single, System.Single, System.Func<System.Single, System.Single, System.Single>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Update
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 189
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nImplements lock-free update pattern implementation based on compare-and-swap loop\n"
+  remarks: "\nUses the same approach that used by c# compiler in event subscription methods\n"
+  example: []
+  syntax:
+    content: public static float Update(ref float value, float newValue, Func<float, float, float> updateCallback)
+    parameters:
+    - id: value
+      type: System.Single
+      description: Value to change.
+    - id: newValue
+      type: System.Single
+      description: Precalculated new value.
+    - id: updateCallback
+      type: System.Func{System.Single,System.Single,System.Single}
+      description: Function to calculate new value.
+    return:
+      type: System.Single
+      description: New value.
+    content.vb: Public Shared Function Update(ByRef value As Single, newValue As Single, updateCallback As Func(Of Single, Single, Single)) As Single
+  overload: CodeJam.Threading.InterlockedOperations.Update*
+  nameWithType.vb: InterlockedOperations.Update(ByRef Single, Single, Func(Of Single, Single, Single))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Update(ByRef System.Single, System.Single, System.Func(Of System.Single, System.Single, System.Single))
+  name.vb: Update(ByRef Single, Single, Func(Of Single, Single, Single))
+- uid: CodeJam.Threading.InterlockedOperations.Initialize(System.Int32@,System.Int32)
+  commentId: M:CodeJam.Threading.InterlockedOperations.Initialize(System.Int32@,System.Int32)
+  id: Initialize(System.Int32@,System.Int32)
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Initialize(ref Int32, Int32)
+  nameWithType: InterlockedOperations.Initialize(ref Int32, Int32)
+  fullName: CodeJam.Threading.InterlockedOperations.Initialize(ref System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Initialize
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 217
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nInitialize the value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> in a thread-safe manner.\nThe value is changed to <code data-dev-comment-type=\"paramref\" class=\"paramref\">value</code> only if the current value is default(int).\n"
+  example: []
+  syntax:
+    content: public static int Initialize(ref int target, int value)
+    parameters:
+    - id: target
+      type: System.Int32
+      description: Reference to the target location.
+    - id: value
+      type: System.Int32
+      description: The value to use if the target is equal to default(int).
+    return:
+      type: System.Int32
+      description: "\nThe new value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\nNote that this is nearly always more useful than the usual\nreturn from <xref href=\"System.Threading.Interlocked.CompareExchange(System.Int32%40%2cSystem.Int32%2cSystem.Int32)\" data-throw-if-not-resolved=\"false\"></xref>\nbecause it saves another read to <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\n"
+    content.vb: Public Shared Function Initialize(ByRef target As Integer, value As Integer) As Integer
+  overload: CodeJam.Threading.InterlockedOperations.Initialize*
+  nameWithType.vb: InterlockedOperations.Initialize(ByRef Int32, Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Initialize(ByRef System.Int32, System.Int32)
+  name.vb: Initialize(ByRef Int32, Int32)
+- uid: CodeJam.Threading.InterlockedOperations.Initialize(System.Int32@,System.Int32,System.Int32)
+  commentId: M:CodeJam.Threading.InterlockedOperations.Initialize(System.Int32@,System.Int32,System.Int32)
+  id: Initialize(System.Int32@,System.Int32,System.Int32)
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Initialize(ref Int32, Int32, Int32)
+  nameWithType: InterlockedOperations.Initialize(ref Int32, Int32, Int32)
+  fullName: CodeJam.Threading.InterlockedOperations.Initialize(ref System.Int32, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Initialize
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 234
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nInitialize the value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> in a thread-safe manner.\nThe value is changed to <code data-dev-comment-type=\"paramref\" class=\"paramref\">initializedValue</code> only if the current value\nis <code data-dev-comment-type=\"paramref\" class=\"paramref\">uninitializedValue</code>.\n"
+  example: []
+  syntax:
+    content: public static int Initialize(ref int target, int initializedValue, int uninitializedValue)
+    parameters:
+    - id: target
+      type: System.Int32
+      description: Reference to the target location.
+    - id: initializedValue
+      type: System.Int32
+      description: The value to use if the target is currently uninitialized.
+    - id: uninitializedValue
+      type: System.Int32
+      description: The uninitialized value.
+    return:
+      type: System.Int32
+      description: "\nThe new value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\nNote that this is nearly always more useful than the usual\nreturn from <xref href=\"System.Threading.Interlocked.CompareExchange(System.Int32%40%2cSystem.Int32%2cSystem.Int32)\" data-throw-if-not-resolved=\"false\"></xref>\nbecause it saves another read to <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\n"
+    content.vb: Public Shared Function Initialize(ByRef target As Integer, initializedValue As Integer, uninitializedValue As Integer) As Integer
+  overload: CodeJam.Threading.InterlockedOperations.Initialize*
+  nameWithType.vb: InterlockedOperations.Initialize(ByRef Int32, Int32, Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Initialize(ByRef System.Int32, System.Int32, System.Int32)
+  name.vb: Initialize(ByRef Int32, Int32, Int32)
+- uid: CodeJam.Threading.InterlockedOperations.Update(System.Int32@,System.Func{System.Int32,System.Int32})
+  commentId: M:CodeJam.Threading.InterlockedOperations.Update(System.Int32@,System.Func{System.Int32,System.Int32})
+  id: Update(System.Int32@,System.Func{System.Int32,System.Int32})
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Update(ref Int32, Func<Int32, Int32>)
+  nameWithType: InterlockedOperations.Update(ref Int32, Func<Int32, Int32>)
+  fullName: CodeJam.Threading.InterlockedOperations.Update(ref System.Int32, System.Func<System.Int32, System.Int32>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Update
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 255
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nImplements lock-free update pattern implementation based on compare-and-swap loop\n"
+  remarks: "\nUses the same approach that used by c# compiler in event subscription methods\n"
+  example: []
+  syntax:
+    content: public static int Update(ref int value, Func<int, int> updateCallback)
+    parameters:
+    - id: value
+      type: System.Int32
+      description: Value to change.
+    - id: updateCallback
+      type: System.Func{System.Int32,System.Int32}
+      description: Function to calculate new value.
+    return:
+      type: System.Int32
+      description: New value.
+    content.vb: Public Shared Function Update(ByRef value As Integer, updateCallback As Func(Of Integer, Integer)) As Integer
+  overload: CodeJam.Threading.InterlockedOperations.Update*
+  nameWithType.vb: InterlockedOperations.Update(ByRef Int32, Func(Of Int32, Int32))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Update(ByRef System.Int32, System.Func(Of System.Int32, System.Int32))
+  name.vb: Update(ByRef Int32, Func(Of Int32, Int32))
+- uid: CodeJam.Threading.InterlockedOperations.Update(System.Int32@,System.Int32,System.Func{System.Int32,System.Int32,System.Int32})
+  commentId: M:CodeJam.Threading.InterlockedOperations.Update(System.Int32@,System.Int32,System.Func{System.Int32,System.Int32,System.Int32})
+  id: Update(System.Int32@,System.Int32,System.Func{System.Int32,System.Int32,System.Int32})
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Update(ref Int32, Int32, Func<Int32, Int32, Int32>)
+  nameWithType: InterlockedOperations.Update(ref Int32, Int32, Func<Int32, Int32, Int32>)
+  fullName: CodeJam.Threading.InterlockedOperations.Update(ref System.Int32, System.Int32, System.Func<System.Int32, System.Int32, System.Int32>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Update
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 280
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nImplements lock-free update pattern implementation based on compare-and-swap loop\n"
+  remarks: "\nUses the same approach that used by c# compiler in event subscription methods\n"
+  example: []
+  syntax:
+    content: public static int Update(ref int value, int newValue, Func<int, int, int> updateCallback)
+    parameters:
+    - id: value
+      type: System.Int32
+      description: Value to change.
+    - id: newValue
+      type: System.Int32
+      description: Precalculated new value.
+    - id: updateCallback
+      type: System.Func{System.Int32,System.Int32,System.Int32}
+      description: Function to calculate new value.
+    return:
+      type: System.Int32
+      description: New value.
+    content.vb: Public Shared Function Update(ByRef value As Integer, newValue As Integer, updateCallback As Func(Of Integer, Integer, Integer)) As Integer
+  overload: CodeJam.Threading.InterlockedOperations.Update*
+  nameWithType.vb: InterlockedOperations.Update(ByRef Int32, Int32, Func(Of Int32, Int32, Int32))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Update(ByRef System.Int32, System.Int32, System.Func(Of System.Int32, System.Int32, System.Int32))
+  name.vb: Update(ByRef Int32, Int32, Func(Of Int32, Int32, Int32))
+- uid: CodeJam.Threading.InterlockedOperations.Initialize(System.Int64@,System.Int64)
+  commentId: M:CodeJam.Threading.InterlockedOperations.Initialize(System.Int64@,System.Int64)
+  id: Initialize(System.Int64@,System.Int64)
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Initialize(ref Int64, Int64)
+  nameWithType: InterlockedOperations.Initialize(ref Int64, Int64)
+  fullName: CodeJam.Threading.InterlockedOperations.Initialize(ref System.Int64, System.Int64)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Initialize
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 308
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nInitialize the value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> in a thread-safe manner.\nThe value is changed to <code data-dev-comment-type=\"paramref\" class=\"paramref\">value</code> only if the current value is default(long).\n"
+  example: []
+  syntax:
+    content: public static long Initialize(ref long target, long value)
+    parameters:
+    - id: target
+      type: System.Int64
+      description: Reference to the target location.
+    - id: value
+      type: System.Int64
+      description: The value to use if the target is equal to default(long).
+    return:
+      type: System.Int64
+      description: "\nThe new value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\nNote that this is nearly always more useful than the usual\nreturn from <xref href=\"System.Threading.Interlocked.CompareExchange(System.Int64%40%2cSystem.Int64%2cSystem.Int64)\" data-throw-if-not-resolved=\"false\"></xref>\nbecause it saves another read to <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\n"
+    content.vb: Public Shared Function Initialize(ByRef target As Long, value As Long) As Long
+  overload: CodeJam.Threading.InterlockedOperations.Initialize*
+  nameWithType.vb: InterlockedOperations.Initialize(ByRef Int64, Int64)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Initialize(ByRef System.Int64, System.Int64)
+  name.vb: Initialize(ByRef Int64, Int64)
+- uid: CodeJam.Threading.InterlockedOperations.Initialize(System.Int64@,System.Int64,System.Int64)
+  commentId: M:CodeJam.Threading.InterlockedOperations.Initialize(System.Int64@,System.Int64,System.Int64)
+  id: Initialize(System.Int64@,System.Int64,System.Int64)
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Initialize(ref Int64, Int64, Int64)
+  nameWithType: InterlockedOperations.Initialize(ref Int64, Int64, Int64)
+  fullName: CodeJam.Threading.InterlockedOperations.Initialize(ref System.Int64, System.Int64, System.Int64)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Initialize
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 325
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nInitialize the value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> in a thread-safe manner.\nThe value is changed to <code data-dev-comment-type=\"paramref\" class=\"paramref\">initializedValue</code> only if the current value\nis <code data-dev-comment-type=\"paramref\" class=\"paramref\">uninitializedValue</code>.\n"
+  example: []
+  syntax:
+    content: public static long Initialize(ref long target, long initializedValue, long uninitializedValue)
+    parameters:
+    - id: target
+      type: System.Int64
+      description: Reference to the target location.
+    - id: initializedValue
+      type: System.Int64
+      description: The value to use if the target is currently uninitialized.
+    - id: uninitializedValue
+      type: System.Int64
+      description: The uninitialized value.
+    return:
+      type: System.Int64
+      description: "\nThe new value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\nNote that this is nearly always more useful than the usual\nreturn from <xref href=\"System.Threading.Interlocked.CompareExchange(System.Int64%40%2cSystem.Int64%2cSystem.Int64)\" data-throw-if-not-resolved=\"false\"></xref>\nbecause it saves another read to <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\n"
+    content.vb: Public Shared Function Initialize(ByRef target As Long, initializedValue As Long, uninitializedValue As Long) As Long
+  overload: CodeJam.Threading.InterlockedOperations.Initialize*
+  nameWithType.vb: InterlockedOperations.Initialize(ByRef Int64, Int64, Int64)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Initialize(ByRef System.Int64, System.Int64, System.Int64)
+  name.vb: Initialize(ByRef Int64, Int64, Int64)
+- uid: CodeJam.Threading.InterlockedOperations.Update(System.Int64@,System.Func{System.Int64,System.Int64})
+  commentId: M:CodeJam.Threading.InterlockedOperations.Update(System.Int64@,System.Func{System.Int64,System.Int64})
+  id: Update(System.Int64@,System.Func{System.Int64,System.Int64})
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Update(ref Int64, Func<Int64, Int64>)
+  nameWithType: InterlockedOperations.Update(ref Int64, Func<Int64, Int64>)
+  fullName: CodeJam.Threading.InterlockedOperations.Update(ref System.Int64, System.Func<System.Int64, System.Int64>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Update
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 346
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nImplements lock-free update pattern implementation based on compare-and-swap loop\n"
+  remarks: "\nUses the same approach that used by c# compiler in event subscription methods\n"
+  example: []
+  syntax:
+    content: public static long Update(ref long value, Func<long, long> updateCallback)
+    parameters:
+    - id: value
+      type: System.Int64
+      description: Value to change.
+    - id: updateCallback
+      type: System.Func{System.Int64,System.Int64}
+      description: Function to calculate new value.
+    return:
+      type: System.Int64
+      description: New value.
+    content.vb: Public Shared Function Update(ByRef value As Long, updateCallback As Func(Of Long, Long)) As Long
+  overload: CodeJam.Threading.InterlockedOperations.Update*
+  nameWithType.vb: InterlockedOperations.Update(ByRef Int64, Func(Of Int64, Int64))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Update(ByRef System.Int64, System.Func(Of System.Int64, System.Int64))
+  name.vb: Update(ByRef Int64, Func(Of Int64, Int64))
+- uid: CodeJam.Threading.InterlockedOperations.Update(System.Int64@,System.Int64,System.Func{System.Int64,System.Int64,System.Int64})
+  commentId: M:CodeJam.Threading.InterlockedOperations.Update(System.Int64@,System.Int64,System.Func{System.Int64,System.Int64,System.Int64})
+  id: Update(System.Int64@,System.Int64,System.Func{System.Int64,System.Int64,System.Int64})
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Update(ref Int64, Int64, Func<Int64, Int64, Int64>)
+  nameWithType: InterlockedOperations.Update(ref Int64, Int64, Func<Int64, Int64, Int64>)
+  fullName: CodeJam.Threading.InterlockedOperations.Update(ref System.Int64, System.Int64, System.Func<System.Int64, System.Int64, System.Int64>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Update
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 371
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nImplements lock-free update pattern implementation based on compare-and-swap loop\n"
+  remarks: "\nUses the same approach that used by c# compiler in event subscription methods\n"
+  example: []
+  syntax:
+    content: public static long Update(ref long value, long newValue, Func<long, long, long> updateCallback)
+    parameters:
+    - id: value
+      type: System.Int64
+      description: Value to change.
+    - id: newValue
+      type: System.Int64
+      description: Precalculated new value.
+    - id: updateCallback
+      type: System.Func{System.Int64,System.Int64,System.Int64}
+      description: Function to calculate new value.
+    return:
+      type: System.Int64
+      description: New value.
+    content.vb: Public Shared Function Update(ByRef value As Long, newValue As Long, updateCallback As Func(Of Long, Long, Long)) As Long
+  overload: CodeJam.Threading.InterlockedOperations.Update*
+  nameWithType.vb: InterlockedOperations.Update(ByRef Int64, Int64, Func(Of Int64, Int64, Int64))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Update(ByRef System.Int64, System.Int64, System.Func(Of System.Int64, System.Int64, System.Int64))
+  name.vb: Update(ByRef Int64, Int64, Func(Of Int64, Int64, Int64))
+- uid: CodeJam.Threading.InterlockedOperations.Initialize``1(``0@,``0)
+  commentId: M:CodeJam.Threading.InterlockedOperations.Initialize``1(``0@,``0)
+  id: Initialize``1(``0@,``0)
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Initialize<T>(ref T, T)
+  nameWithType: InterlockedOperations.Initialize<T>(ref T, T)
+  fullName: CodeJam.Threading.InterlockedOperations.Initialize<T>(ref T, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Initialize
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 400
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nInitialize the value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> in a thread-safe manner.\nThe value is changed to <code data-dev-comment-type=\"paramref\" class=\"paramref\">value</code> only if the current value is default(T).\n"
+  example: []
+  syntax:
+    content: 'public static T Initialize<T>(ref T target, T value)where T : class'
+    parameters:
+    - id: target
+      type: '{T}'
+      description: Reference to the target location.
+    - id: value
+      type: '{T}'
+      description: The value to use if the target is equal to default(T).
+    typeParameters:
+    - id: T
+      description: Type of value.
+    return:
+      type: '{T}'
+      description: "\nThe new value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\nNote that this is nearly always more useful than the usual\nreturn from <xref href=\"System.Threading.Interlocked.CompareExchange%60%601(%60%600%40%2c%60%600%2c%60%600)\" data-throw-if-not-resolved=\"false\"></xref>\nbecause it saves another read to <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\n"
+    content.vb: Public Shared Function Initialize(Of T As Class)(ByRef target As T, value As T) As T
+  overload: CodeJam.Threading.InterlockedOperations.Initialize*
+  nameWithType.vb: InterlockedOperations.Initialize(Of T)(ByRef T, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Initialize(Of T)(ByRef T, T)
+  name.vb: Initialize(Of T)(ByRef T, T)
+- uid: CodeJam.Threading.InterlockedOperations.Initialize``1(``0@,``0,``0)
+  commentId: M:CodeJam.Threading.InterlockedOperations.Initialize``1(``0@,``0,``0)
+  id: Initialize``1(``0@,``0,``0)
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Initialize<T>(ref T, T, T)
+  nameWithType: InterlockedOperations.Initialize<T>(ref T, T, T)
+  fullName: CodeJam.Threading.InterlockedOperations.Initialize<T>(ref T, T, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Initialize
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 419
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nInitialize the value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> in a thread-safe manner.\nThe value is changed to <code data-dev-comment-type=\"paramref\" class=\"paramref\">initializedValue</code> only if the current value\nis <code data-dev-comment-type=\"paramref\" class=\"paramref\">uninitializedValue</code>.\n"
+  example: []
+  syntax:
+    content: 'public static T Initialize<T>(ref T target, T initializedValue, T uninitializedValue)where T : class'
+    parameters:
+    - id: target
+      type: '{T}'
+      description: Reference to the target location.
+    - id: initializedValue
+      type: '{T}'
+      description: The value to use if the target is currently uninitialized.
+    - id: uninitializedValue
+      type: '{T}'
+      description: The uninitialized value.
+    typeParameters:
+    - id: T
+      description: Type of value.
+    return:
+      type: '{T}'
+      description: "\nThe new value referenced by <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\nNote that this is nearly always more useful than the usual\nreturn from <xref href=\"System.Threading.Interlocked.CompareExchange%60%601(%60%600%40%2c%60%600%2c%60%600)\" data-throw-if-not-resolved=\"false\"></xref>\nbecause it saves another read to <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\n"
+    content.vb: Public Shared Function Initialize(Of T As Class)(ByRef target As T, initializedValue As T, uninitializedValue As T) As T
+  overload: CodeJam.Threading.InterlockedOperations.Initialize*
+  nameWithType.vb: InterlockedOperations.Initialize(Of T)(ByRef T, T, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Initialize(Of T)(ByRef T, T, T)
+  name.vb: Initialize(Of T)(ByRef T, T, T)
+- uid: CodeJam.Threading.InterlockedOperations.Update``1(``0@,System.Func{``0,``0})
+  commentId: M:CodeJam.Threading.InterlockedOperations.Update``1(``0@,System.Func{``0,``0})
+  id: Update``1(``0@,System.Func{``0,``0})
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Update<T>(ref T, Func<T, T>)
+  nameWithType: InterlockedOperations.Update<T>(ref T, Func<T, T>)
+  fullName: CodeJam.Threading.InterlockedOperations.Update<T>(ref T, System.Func<T, T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Update
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 441
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nImplements lock-free update pattern implementation based on compare-and-swap loop\n"
+  remarks: "\nUses the same approach that used by c# compiler in event subscription methods\n"
+  example: []
+  syntax:
+    content: 'public static T Update<T>(ref T value, Func<T, T> updateCallback)where T : class'
+    parameters:
+    - id: value
+      type: '{T}'
+      description: Value to change.
+    - id: updateCallback
+      type: System.Func{{T},{T}}
+      description: Function to calculate new value.
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+      description: New value.
+    content.vb: Public Shared Function Update(Of T As Class)(ByRef value As T, updateCallback As Func(Of T, T)) As T
+  overload: CodeJam.Threading.InterlockedOperations.Update*
+  nameWithType.vb: InterlockedOperations.Update(Of T)(ByRef T, Func(Of T, T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Update(Of T)(ByRef T, System.Func(Of T, T))
+  name.vb: Update(Of T)(ByRef T, Func(Of T, T))
+- uid: CodeJam.Threading.InterlockedOperations.Update``1(``0@,``0,System.Func{``0,``0,``0})
+  commentId: M:CodeJam.Threading.InterlockedOperations.Update``1(``0@,``0,System.Func{``0,``0,``0})
+  id: Update``1(``0@,``0,System.Func{``0,``0,``0})
+  parent: CodeJam.Threading.InterlockedOperations
+  langs:
+  - csharp
+  - vb
+  name: Update<T>(ref T, T, Func<T, T, T>)
+  nameWithType: InterlockedOperations.Update<T>(ref T, T, Func<T, T, T>)
+  fullName: CodeJam.Threading.InterlockedOperations.Update<T>(ref T, T, System.Func<T, T, T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/InterlockedOperations.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Update
+    path: ../Main/src/Threading/InterlockedOperations.generated.cs
+    startLine: 467
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nImplements lock-free update pattern implementation based on compare-and-swap loop\n"
+  remarks: "\nUses the same approach that used by c# compiler in event subscription methods\n"
+  example: []
+  syntax:
+    content: 'public static T Update<T>(ref T value, T newValue, Func<T, T, T> updateCallback)where T : class'
+    parameters:
+    - id: value
+      type: '{T}'
+      description: Value to change.
+    - id: newValue
+      type: '{T}'
+      description: Precalculated new value.
+    - id: updateCallback
+      type: System.Func{{T},{T},{T}}
+      description: Function to calculate new value.
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+      description: New value.
+    content.vb: Public Shared Function Update(Of T As Class)(ByRef value As T, newValue As T, updateCallback As Func(Of T, T, T)) As T
+  overload: CodeJam.Threading.InterlockedOperations.Update*
+  nameWithType.vb: InterlockedOperations.Update(Of T)(ByRef T, T, Func(Of T, T, T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.InterlockedOperations.Update(Of T)(ByRef T, T, System.Func(Of T, T, T))
+  name.vb: Update(Of T)(ByRef T, T, Func(Of T, T, T))
+references:
+- uid: CodeJam.Threading
+  commentId: N:CodeJam.Threading
+  isExternal: false
+  name: CodeJam.Threading
+  nameWithType: CodeJam.Threading
+  fullName: CodeJam.Threading
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Threading.Interlocked.CompareExchange(System.Double@,System.Double,System.Double)
+  commentId: M:System.Threading.Interlocked.CompareExchange(System.Double@,System.Double,System.Double)
+- uid: CodeJam.Threading.InterlockedOperations.Initialize*
+  commentId: Overload:CodeJam.Threading.InterlockedOperations.Initialize
+  isExternal: false
+  name: Initialize
+  nameWithType: InterlockedOperations.Initialize
+  fullName: CodeJam.Threading.InterlockedOperations.Initialize
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  name: Double
+  nameWithType: Double
+  fullName: System.Double
+- uid: CodeJam.Threading.InterlockedOperations.Update*
+  commentId: Overload:CodeJam.Threading.InterlockedOperations.Update
+  isExternal: false
+  name: Update
+  nameWithType: InterlockedOperations.Update
+  fullName: CodeJam.Threading.InterlockedOperations.Update
+- uid: System.Func{System.Double,System.Double}
+  commentId: T:System.Func{System.Double,System.Double}
+  parent: System
+  definition: System.Func`2
+  name: Func<Double, Double>
+  nameWithType: Func<Double, Double>
+  fullName: System.Func<System.Double, System.Double>
+  nameWithType.vb: Func(Of Double, Double)
+  fullName.vb: System.Func(Of System.Double, System.Double)
+  name.vb: Func(Of Double, Double)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{System.Double,System.Double,System.Double}
+  commentId: T:System.Func{System.Double,System.Double,System.Double}
+  parent: System
+  definition: System.Func`3
+  name: Func<Double, Double, Double>
+  nameWithType: Func<Double, Double, Double>
+  fullName: System.Func<System.Double, System.Double, System.Double>
+  nameWithType.vb: Func(Of Double, Double, Double)
+  fullName.vb: System.Func(Of System.Double, System.Double, System.Double)
+  name.vb: Func(Of Double, Double, Double)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`3
+  commentId: T:System.Func`3
+  isExternal: true
+  name: Func<T1, T2, TResult>
+  nameWithType: Func<T1, T2, TResult>
+  fullName: System.Func<T1, T2, TResult>
+  nameWithType.vb: Func(Of T1, T2, TResult)
+  fullName.vb: System.Func(Of T1, T2, TResult)
+  name.vb: Func(Of T1, T2, TResult)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Interlocked.CompareExchange(System.Single@,System.Single,System.Single)
+  commentId: M:System.Threading.Interlocked.CompareExchange(System.Single@,System.Single,System.Single)
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: System.Func{System.Single,System.Single}
+  commentId: T:System.Func{System.Single,System.Single}
+  parent: System
+  definition: System.Func`2
+  name: Func<Single, Single>
+  nameWithType: Func<Single, Single>
+  fullName: System.Func<System.Single, System.Single>
+  nameWithType.vb: Func(Of Single, Single)
+  fullName.vb: System.Func(Of System.Single, System.Single)
+  name.vb: Func(Of Single, Single)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{System.Single,System.Single,System.Single}
+  commentId: T:System.Func{System.Single,System.Single,System.Single}
+  parent: System
+  definition: System.Func`3
+  name: Func<Single, Single, Single>
+  nameWithType: Func<Single, Single, Single>
+  fullName: System.Func<System.Single, System.Single, System.Single>
+  nameWithType.vb: Func(Of Single, Single, Single)
+  fullName.vb: System.Func(Of System.Single, System.Single, System.Single)
+  name.vb: Func(Of Single, Single, Single)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Interlocked.CompareExchange(System.Int32@,System.Int32,System.Int32)
+  commentId: M:System.Threading.Interlocked.CompareExchange(System.Int32@,System.Int32,System.Int32)
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Func{System.Int32,System.Int32}
+  commentId: T:System.Func{System.Int32,System.Int32}
+  parent: System
+  definition: System.Func`2
+  name: Func<Int32, Int32>
+  nameWithType: Func<Int32, Int32>
+  fullName: System.Func<System.Int32, System.Int32>
+  nameWithType.vb: Func(Of Int32, Int32)
+  fullName.vb: System.Func(Of System.Int32, System.Int32)
+  name.vb: Func(Of Int32, Int32)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{System.Int32,System.Int32,System.Int32}
+  commentId: T:System.Func{System.Int32,System.Int32,System.Int32}
+  parent: System
+  definition: System.Func`3
+  name: Func<Int32, Int32, Int32>
+  nameWithType: Func<Int32, Int32, Int32>
+  fullName: System.Func<System.Int32, System.Int32, System.Int32>
+  nameWithType.vb: Func(Of Int32, Int32, Int32)
+  fullName.vb: System.Func(Of System.Int32, System.Int32, System.Int32)
+  name.vb: Func(Of Int32, Int32, Int32)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Interlocked.CompareExchange(System.Int64@,System.Int64,System.Int64)
+  commentId: M:System.Threading.Interlocked.CompareExchange(System.Int64@,System.Int64,System.Int64)
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  name: Int64
+  nameWithType: Int64
+  fullName: System.Int64
+- uid: System.Func{System.Int64,System.Int64}
+  commentId: T:System.Func{System.Int64,System.Int64}
+  parent: System
+  definition: System.Func`2
+  name: Func<Int64, Int64>
+  nameWithType: Func<Int64, Int64>
+  fullName: System.Func<System.Int64, System.Int64>
+  nameWithType.vb: Func(Of Int64, Int64)
+  fullName.vb: System.Func(Of System.Int64, System.Int64)
+  name.vb: Func(Of Int64, Int64)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int64
+    name: Int64
+    nameWithType: Int64
+    fullName: System.Int64
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int64
+    name: Int64
+    nameWithType: Int64
+    fullName: System.Int64
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int64
+    name: Int64
+    nameWithType: Int64
+    fullName: System.Int64
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int64
+    name: Int64
+    nameWithType: Int64
+    fullName: System.Int64
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{System.Int64,System.Int64,System.Int64}
+  commentId: T:System.Func{System.Int64,System.Int64,System.Int64}
+  parent: System
+  definition: System.Func`3
+  name: Func<Int64, Int64, Int64>
+  nameWithType: Func<Int64, Int64, Int64>
+  fullName: System.Func<System.Int64, System.Int64, System.Int64>
+  nameWithType.vb: Func(Of Int64, Int64, Int64)
+  fullName.vb: System.Func(Of System.Int64, System.Int64, System.Int64)
+  name.vb: Func(Of Int64, Int64, Int64)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int64
+    name: Int64
+    nameWithType: Int64
+    fullName: System.Int64
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int64
+    name: Int64
+    nameWithType: Int64
+    fullName: System.Int64
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int64
+    name: Int64
+    nameWithType: Int64
+    fullName: System.Int64
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int64
+    name: Int64
+    nameWithType: Int64
+    fullName: System.Int64
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int64
+    name: Int64
+    nameWithType: Int64
+    fullName: System.Int64
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int64
+    name: Int64
+    nameWithType: Int64
+    fullName: System.Int64
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Interlocked.CompareExchange``1(``0@,``0,``0)
+  commentId: M:System.Threading.Interlocked.CompareExchange``1(``0@,``0,``0)
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Func{{T},{T}}
+  commentId: T:System.Func{`0,`0}
+  parent: System
+  definition: System.Func`2
+  name: Func<T, T>
+  nameWithType: Func<T, T>
+  fullName: System.Func<T, T>
+  nameWithType.vb: Func(Of T, T)
+  fullName.vb: System.Func(Of T, T)
+  name.vb: Func(Of T, T)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T},{T},{T}}
+  commentId: T:System.Func{`0,`0,`0}
+  parent: System
+  definition: System.Func`3
+  name: Func<T, T, T>
+  nameWithType: Func<T, T, T>
+  fullName: System.Func<T, T, T>
+  nameWithType.vb: Func(Of T, T, T)
+  fullName.vb: System.Func(Of T, T, T)
+  name.vb: Func(Of T, T, T)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )

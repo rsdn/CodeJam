@@ -1,0 +1,994 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Ranges.CompositeRange
+  commentId: T:CodeJam.Ranges.CompositeRange
+  id: CompositeRange
+  parent: CodeJam.Ranges
+  children:
+  - CodeJam.Ranges.CompositeRange.Create``1(CodeJam.Ranges.Range{``0})
+  - CodeJam.Ranges.CompositeRange.Create``1(CodeJam.Ranges.Range{``0}[])
+  - CodeJam.Ranges.CompositeRange.Create``2(CodeJam.Ranges.Range{``0,``1})
+  - CodeJam.Ranges.CompositeRange.Create``2(CodeJam.Ranges.Range{``0,``1}[])
+  langs:
+  - csharp
+  - vb
+  name: CompositeRange
+  nameWithType: CompositeRange
+  fullName: CodeJam.Ranges.CompositeRange
+  type: Class
+  source:
+    remote:
+      path: Main/src/Ranges/CompositeRange.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CompositeRange
+    path: ../Main/src/Ranges/CompositeRange.generated.cs
+    startLine: 16
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Helper methods for the <xref href="CodeJam.Ranges.CompositeRange%601" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static class CompositeRange
+    content.vb: Public Module CompositeRange
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Ranges.CompositeRange.Create``1(CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.CompositeRange.Create``1(CodeJam.Ranges.Range{``0})
+  id: Create``1(CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.CompositeRange
+  langs:
+  - csharp
+  - vb
+  name: Create<T>(Range<T>)
+  nameWithType: CompositeRange.Create<T>(Range<T>)
+  fullName: CodeJam.Ranges.CompositeRange.Create<T>(CodeJam.Ranges.Range<T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/CompositeRange.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Ranges/CompositeRange.cs
+    startLine: 13
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Creates the composite range.
+  example: []
+  syntax:
+    content: public static CompositeRange<T> Create<T>(Range<T> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{{T}}
+      description: The range.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    return:
+      type: CodeJam.Ranges.CompositeRange{{T}}
+      description: A new composite range.
+    content.vb: Public Shared Function Create(Of T)(range As Range(Of T)) As CompositeRange(Of T)
+  overload: CodeJam.Ranges.CompositeRange.Create*
+  nameWithType.vb: CompositeRange.Create(Of T)(Range(Of T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.CompositeRange.Create(Of T)(CodeJam.Ranges.Range(Of T))
+  name.vb: Create(Of T)(Range(Of T))
+- uid: CodeJam.Ranges.CompositeRange.Create``1(CodeJam.Ranges.Range{``0}[])
+  commentId: M:CodeJam.Ranges.CompositeRange.Create``1(CodeJam.Ranges.Range{``0}[])
+  id: Create``1(CodeJam.Ranges.Range{``0}[])
+  parent: CodeJam.Ranges.CompositeRange
+  langs:
+  - csharp
+  - vb
+  name: Create<T>(Range<T>[])
+  nameWithType: CompositeRange.Create<T>(Range<T>[])
+  fullName: CodeJam.Ranges.CompositeRange.Create<T>(CodeJam.Ranges.Range<T>[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/CompositeRange.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Ranges/CompositeRange.cs
+    startLine: 21
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Creates the composite range.
+  example: []
+  syntax:
+    content: public static CompositeRange<T> Create<T>(params Range<T>[] ranges)
+    parameters:
+    - id: ranges
+      type: CodeJam.Ranges.Range{{T}}[]
+      description: The ranges.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    return:
+      type: CodeJam.Ranges.CompositeRange{{T}}
+      description: A new composite range.
+    content.vb: Public Shared Function Create(Of T)(ParamArray ranges As Range(Of T)()) As CompositeRange(Of T)
+  overload: CodeJam.Ranges.CompositeRange.Create*
+  nameWithType.vb: CompositeRange.Create(Of T)(Range(Of T)())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.CompositeRange.Create(Of T)(CodeJam.Ranges.Range(Of T)())
+  name.vb: Create(Of T)(Range(Of T)())
+- uid: CodeJam.Ranges.CompositeRange.Create``2(CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.CompositeRange.Create``2(CodeJam.Ranges.Range{``0,``1})
+  id: Create``2(CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.CompositeRange
+  langs:
+  - csharp
+  - vb
+  name: Create<T, TKey>(Range<T, TKey>)
+  nameWithType: CompositeRange.Create<T, TKey>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.CompositeRange.Create<T, TKey>(CodeJam.Ranges.Range<T, TKey>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/CompositeRange.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Ranges/CompositeRange.generated.cs
+    startLine: 24
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Creates the composite range.
+  example: []
+  syntax:
+    content: public static CompositeRange<T, TKey> Create<T, TKey>(Range<T, TKey> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{{T},{TKey}}
+      description: The range.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    - id: TKey
+      description: The type of the range key
+    return:
+      type: CodeJam.Ranges.CompositeRange{{T},{TKey}}
+      description: A new composite range.
+    content.vb: Public Shared Function Create(Of T, TKey)(range As Range(Of T, TKey)) As CompositeRange(Of T, TKey)
+  overload: CodeJam.Ranges.CompositeRange.Create*
+  nameWithType.vb: CompositeRange.Create(Of T, TKey)(Range(Of T, TKey))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.CompositeRange.Create(Of T, TKey)(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: Create(Of T, TKey)(Range(Of T, TKey))
+- uid: CodeJam.Ranges.CompositeRange.Create``2(CodeJam.Ranges.Range{``0,``1}[])
+  commentId: M:CodeJam.Ranges.CompositeRange.Create``2(CodeJam.Ranges.Range{``0,``1}[])
+  id: Create``2(CodeJam.Ranges.Range{``0,``1}[])
+  parent: CodeJam.Ranges.CompositeRange
+  langs:
+  - csharp
+  - vb
+  name: Create<T, TKey>(Range<T, TKey>[])
+  nameWithType: CompositeRange.Create<T, TKey>(Range<T, TKey>[])
+  fullName: CodeJam.Ranges.CompositeRange.Create<T, TKey>(CodeJam.Ranges.Range<T, TKey>[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/CompositeRange.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Ranges/CompositeRange.generated.cs
+    startLine: 33
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Creates the composite range.
+  example: []
+  syntax:
+    content: public static CompositeRange<T, TKey> Create<T, TKey>(params Range<T, TKey>[] ranges)
+    parameters:
+    - id: ranges
+      type: CodeJam.Ranges.Range{{T},{TKey}}[]
+      description: The ranges.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    - id: TKey
+      description: The type of the range key
+    return:
+      type: CodeJam.Ranges.CompositeRange{{T},{TKey}}
+      description: A new composite range.
+    content.vb: Public Shared Function Create(Of T, TKey)(ParamArray ranges As Range(Of T, TKey)()) As CompositeRange(Of T, TKey)
+  overload: CodeJam.Ranges.CompositeRange.Create*
+  nameWithType.vb: CompositeRange.Create(Of T, TKey)(Range(Of T, TKey)())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.CompositeRange.Create(Of T, TKey)(CodeJam.Ranges.Range(Of T, TKey)())
+  name.vb: Create(Of T, TKey)(Range(Of T, TKey)())
+references:
+- uid: CodeJam.Ranges.CompositeRange`1
+  commentId: T:CodeJam.Ranges.CompositeRange`1
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: CompositeRange<T>
+  nameWithType: CompositeRange<T>
+  fullName: CodeJam.Ranges.CompositeRange<T>
+  nameWithType.vb: CompositeRange(Of T)
+  fullName.vb: CodeJam.Ranges.CompositeRange(Of T)
+  name.vb: CompositeRange(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.CompositeRange`1
+    name: CompositeRange
+    nameWithType: CompositeRange
+    fullName: CodeJam.Ranges.CompositeRange
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.CompositeRange`1
+    name: CompositeRange
+    nameWithType: CompositeRange
+    fullName: CodeJam.Ranges.CompositeRange
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges
+  commentId: N:CodeJam.Ranges
+  isExternal: false
+  name: CodeJam.Ranges
+  nameWithType: CodeJam.Ranges
+  fullName: CodeJam.Ranges
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Ranges.CompositeRange.Create*
+  commentId: Overload:CodeJam.Ranges.CompositeRange.Create
+  isExternal: false
+  name: Create
+  nameWithType: CompositeRange.Create
+  fullName: CodeJam.Ranges.CompositeRange.Create
+- uid: CodeJam.Ranges.Range{{T}}
+  commentId: T:CodeJam.Ranges.Range{``0}
+  parent: CodeJam.Ranges
+  definition: CodeJam.Ranges.Range`1
+  name: Range<T>
+  nameWithType: Range<T>
+  fullName: CodeJam.Ranges.Range<T>
+  nameWithType.vb: Range(Of T)
+  fullName.vb: CodeJam.Ranges.Range(Of T)
+  name.vb: Range(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.CompositeRange{{T}}
+  commentId: T:CodeJam.Ranges.CompositeRange{``0}
+  parent: CodeJam.Ranges
+  definition: CodeJam.Ranges.CompositeRange`1
+  name: CompositeRange<T>
+  nameWithType: CompositeRange<T>
+  fullName: CodeJam.Ranges.CompositeRange<T>
+  nameWithType.vb: CompositeRange(Of T)
+  fullName.vb: CodeJam.Ranges.CompositeRange(Of T)
+  name.vb: CompositeRange(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.CompositeRange`1
+    name: CompositeRange
+    nameWithType: CompositeRange
+    fullName: CodeJam.Ranges.CompositeRange
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.CompositeRange`1
+    name: CompositeRange
+    nameWithType: CompositeRange
+    fullName: CodeJam.Ranges.CompositeRange
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.Range`1
+  commentId: T:CodeJam.Ranges.Range`1
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: Range<T>
+  nameWithType: Range<T>
+  fullName: CodeJam.Ranges.Range<T>
+  nameWithType.vb: Range(Of T)
+  fullName.vb: CodeJam.Ranges.Range(Of T)
+  name.vb: Range(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.Range{{T}}[]
+  name: Range<T>[]
+  nameWithType: Range<T>[]
+  fullName: CodeJam.Ranges.Range<T>[]
+  nameWithType.vb: Range(Of T)()
+  fullName.vb: CodeJam.Ranges.Range(Of T)()
+  name.vb: Range(Of T)()
+  spec.csharp:
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: CodeJam.Ranges.Range{{T},{TKey}}
+  commentId: T:CodeJam.Ranges.Range{``0,``1}
+  parent: CodeJam.Ranges
+  definition: CodeJam.Ranges.Range`2
+  name: Range<T, TKey>
+  nameWithType: Range<T, TKey>
+  fullName: CodeJam.Ranges.Range<T, TKey>
+  nameWithType.vb: Range(Of T, TKey)
+  fullName.vb: CodeJam.Ranges.Range(Of T, TKey)
+  name.vb: Range(Of T, TKey)
+  spec.csharp:
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.CompositeRange{{T},{TKey}}
+  commentId: T:CodeJam.Ranges.CompositeRange{``0,``1}
+  parent: CodeJam.Ranges
+  definition: CodeJam.Ranges.CompositeRange`2
+  name: CompositeRange<T, TKey>
+  nameWithType: CompositeRange<T, TKey>
+  fullName: CodeJam.Ranges.CompositeRange<T, TKey>
+  nameWithType.vb: CompositeRange(Of T, TKey)
+  fullName.vb: CodeJam.Ranges.CompositeRange(Of T, TKey)
+  name.vb: CompositeRange(Of T, TKey)
+  spec.csharp:
+  - uid: CodeJam.Ranges.CompositeRange`2
+    name: CompositeRange
+    nameWithType: CompositeRange
+    fullName: CodeJam.Ranges.CompositeRange
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.CompositeRange`2
+    name: CompositeRange
+    nameWithType: CompositeRange
+    fullName: CodeJam.Ranges.CompositeRange
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.Range`2
+  commentId: T:CodeJam.Ranges.Range`2
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: Range<T, TKey>
+  nameWithType: Range<T, TKey>
+  fullName: CodeJam.Ranges.Range<T, TKey>
+  nameWithType.vb: Range(Of T, TKey)
+  fullName.vb: CodeJam.Ranges.Range(Of T, TKey)
+  name.vb: Range(Of T, TKey)
+  spec.csharp:
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.CompositeRange`2
+  commentId: T:CodeJam.Ranges.CompositeRange`2
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: CompositeRange<T, TKey>
+  nameWithType: CompositeRange<T, TKey>
+  fullName: CodeJam.Ranges.CompositeRange<T, TKey>
+  nameWithType.vb: CompositeRange(Of T, TKey)
+  fullName.vb: CodeJam.Ranges.CompositeRange(Of T, TKey)
+  name.vb: CompositeRange(Of T, TKey)
+  spec.csharp:
+  - uid: CodeJam.Ranges.CompositeRange`2
+    name: CompositeRange
+    nameWithType: CompositeRange
+    fullName: CodeJam.Ranges.CompositeRange
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.CompositeRange`2
+    name: CompositeRange
+    nameWithType: CompositeRange
+    fullName: CodeJam.Ranges.CompositeRange
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.Range{{T},{TKey}}[]
+  name: Range<T, TKey>[]
+  nameWithType: Range<T, TKey>[]
+  fullName: CodeJam.Ranges.Range<T, TKey>[]
+  nameWithType.vb: Range(Of T, TKey)()
+  fullName.vb: CodeJam.Ranges.Range(Of T, TKey)()
+  name.vb: Range(Of T, TKey)()
+  spec.csharp:
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ()
+    nameWithType: ()
+    fullName: ()

@@ -1,0 +1,601 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MemberAccessor
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MemberAccessor
+   ">
+    <meta name="generator" content="docfx 2.23.1.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CodeJam.Reflection.MemberAccessor">
+  
+  
+  <h1 id="CodeJam_Reflection_MemberAccessor" data-uid="CodeJam.Reflection.MemberAccessor" class="text-break">Class MemberAccessor
+  </h1>
+  <div class="markdown level0 summary"><p>Provides fast access to a type member.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">MemberAccessor</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CodeJam.Reflection.html">CodeJam.Reflection</a></h6>
+  <h6><strong>Assembly</strong>: CodeJam.dll</h6>
+  <h5 id="CodeJam_Reflection_MemberAccessor_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class MemberAccessor</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_MemberAccessor_Getter.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.MemberAccessor.Getter%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/MemberAccessor.cs/#L331">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_MemberAccessor_Getter_" data-uid="CodeJam.Reflection.MemberAccessor.Getter*"></a>
+  <h4 id="CodeJam_Reflection_MemberAccessor_Getter" data-uid="CodeJam.Reflection.MemberAccessor.Getter">Getter</h4>
+  <div class="markdown level1 summary"><p>Member getter function.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Func&lt;object, object&gt; Getter { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_MemberAccessor_GetterExpression.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.MemberAccessor.GetterExpression%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/MemberAccessor.cs/#L321">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_MemberAccessor_GetterExpression_" data-uid="CodeJam.Reflection.MemberAccessor.GetterExpression*"></a>
+  <h4 id="CodeJam_Reflection_MemberAccessor_GetterExpression" data-uid="CodeJam.Reflection.MemberAccessor.GetterExpression">GetterExpression</h4>
+  <div class="markdown level1 summary"><p>Getter expression of the member.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LambdaExpression GetterExpression { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.LambdaExpression</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_MemberAccessor_HasGetter.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.MemberAccessor.HasGetter%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/MemberAccessor.cs/#L301">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_MemberAccessor_HasGetter_" data-uid="CodeJam.Reflection.MemberAccessor.HasGetter*"></a>
+  <h4 id="CodeJam_Reflection_MemberAccessor_HasGetter" data-uid="CodeJam.Reflection.MemberAccessor.HasGetter">HasGetter</h4>
+  <div class="markdown level1 summary"><p>True, if the member has getter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasGetter { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_MemberAccessor_HasSetter.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.MemberAccessor.HasSetter%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/MemberAccessor.cs/#L306">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_MemberAccessor_HasSetter_" data-uid="CodeJam.Reflection.MemberAccessor.HasSetter*"></a>
+  <h4 id="CodeJam_Reflection_MemberAccessor_HasSetter" data-uid="CodeJam.Reflection.MemberAccessor.HasSetter">HasSetter</h4>
+  <div class="markdown level1 summary"><p>True, if the member has setter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasSetter { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_MemberAccessor_IsComplex.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.MemberAccessor.IsComplex%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/MemberAccessor.cs/#L316">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_MemberAccessor_IsComplex_" data-uid="CodeJam.Reflection.MemberAccessor.IsComplex*"></a>
+  <h4 id="CodeJam_Reflection_MemberAccessor_IsComplex" data-uid="CodeJam.Reflection.MemberAccessor.IsComplex">IsComplex</h4>
+  <div class="markdown level1 summary"><p>True, if the member is complex.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsComplex { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_MemberAccessor_MemberInfo.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.MemberAccessor.MemberInfo%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/MemberAccessor.cs/#L291">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_MemberAccessor_MemberInfo_" data-uid="CodeJam.Reflection.MemberAccessor.MemberInfo*"></a>
+  <h4 id="CodeJam_Reflection_MemberAccessor_MemberInfo" data-uid="CodeJam.Reflection.MemberAccessor.MemberInfo">MemberInfo</h4>
+  <div class="markdown level1 summary"><p>Member <a class="xref" href="CodeJam.Reflection.MemberAccessor.html#CodeJam_Reflection_MemberAccessor_MemberInfo">MemberInfo</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MemberInfo MemberInfo { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.MemberInfo</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_MemberAccessor_Name.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.MemberAccessor.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/MemberAccessor.cs/#L341">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_MemberAccessor_Name_" data-uid="CodeJam.Reflection.MemberAccessor.Name*"></a>
+  <h4 id="CodeJam_Reflection_MemberAccessor_Name" data-uid="CodeJam.Reflection.MemberAccessor.Name">Name</h4>
+  <div class="markdown level1 summary"><p>Member name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_MemberAccessor_Setter.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.MemberAccessor.Setter%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/MemberAccessor.cs/#L336">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_MemberAccessor_Setter_" data-uid="CodeJam.Reflection.MemberAccessor.Setter*"></a>
+  <h4 id="CodeJam_Reflection_MemberAccessor_Setter" data-uid="CodeJam.Reflection.MemberAccessor.Setter">Setter</h4>
+  <div class="markdown level1 summary"><p>Member setter action.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action&lt;object, object&gt; Setter { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_MemberAccessor_SetterExpression.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.MemberAccessor.SetterExpression%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/MemberAccessor.cs/#L326">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_MemberAccessor_SetterExpression_" data-uid="CodeJam.Reflection.MemberAccessor.SetterExpression*"></a>
+  <h4 id="CodeJam_Reflection_MemberAccessor_SetterExpression" data-uid="CodeJam.Reflection.MemberAccessor.SetterExpression">SetterExpression</h4>
+  <div class="markdown level1 summary"><p>Setter expression of the member.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LambdaExpression SetterExpression { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.LambdaExpression</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_MemberAccessor_Type.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.MemberAccessor.Type%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/MemberAccessor.cs/#L311">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_MemberAccessor_Type_" data-uid="CodeJam.Reflection.MemberAccessor.Type*"></a>
+  <h4 id="CodeJam_Reflection_MemberAccessor_Type" data-uid="CodeJam.Reflection.MemberAccessor.Type">Type</h4>
+  <div class="markdown level1 summary"><p>Member <a class="xref" href="CodeJam.Reflection.MemberAccessor.html#CodeJam_Reflection_MemberAccessor_Type">Type</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Type Type { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_MemberAccessor_TypeAccessor.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.MemberAccessor.TypeAccessor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/MemberAccessor.cs/#L296">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_MemberAccessor_TypeAccessor_" data-uid="CodeJam.Reflection.MemberAccessor.TypeAccessor*"></a>
+  <h4 id="CodeJam_Reflection_MemberAccessor_TypeAccessor" data-uid="CodeJam.Reflection.MemberAccessor.TypeAccessor">TypeAccessor</h4>
+  <div class="markdown level1 summary"><p>Parent <a class="xref" href="CodeJam.Reflection.MemberAccessor.html#CodeJam_Reflection_MemberAccessor_TypeAccessor">TypeAccessor</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TypeAccessor TypeAccessor { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Reflection.TypeAccessor.html">TypeAccessor</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_MemberAccessor_GetValue_System_Object_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.MemberAccessor.GetValue(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/MemberAccessor.cs/#L349">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_MemberAccessor_GetValue_" data-uid="CodeJam.Reflection.MemberAccessor.GetValue*"></a>
+  <h4 id="CodeJam_Reflection_MemberAccessor_GetValue_System_Object_" data-uid="CodeJam.Reflection.MemberAccessor.GetValue(System.Object)">GetValue(Object)</h4>
+  <div class="markdown level1 summary"><p>Gets member value for provided object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object GetValue(object o)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">o</span></td>
+        <td><p>Object to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><p>Member value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_MemberAccessor_SetValue_System_Object_System_Object_.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.MemberAccessor.SetValue(System.Object%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/MemberAccessor.cs/#L357">View Source</a>
+  </span>
+  <a id="CodeJam_Reflection_MemberAccessor_SetValue_" data-uid="CodeJam.Reflection.MemberAccessor.SetValue*"></a>
+  <h4 id="CodeJam_Reflection_MemberAccessor_SetValue_System_Object_System_Object_" data-uid="CodeJam.Reflection.MemberAccessor.SetValue(System.Object,System.Object)">SetValue(Object, Object)</h4>
+  <div class="markdown level1 summary"><p>Sets member value for provided object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetValue(object o, object value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">o</span></td>
+        <td><p>Object to access.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value to set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_Contains__2___1_CodeJam_Ranges_Range___0__">RangeExtensions.Contains&lt;T, TRange&gt;(TRange, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_StartsAfter__2___1_CodeJam_Ranges_Range___0__">RangeExtensions.StartsAfter&lt;T, TRange&gt;(TRange, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_EndsBefore__2___1_CodeJam_Ranges_Range___0__">RangeExtensions.EndsBefore&lt;T, TRange&gt;(TRange, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_Contains__3___2_CodeJam_Ranges_Range___0___1__">RangeExtensions.Contains&lt;T, TKey, TRange&gt;(TRange, Range&lt;T, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_StartsAfter__3___2_CodeJam_Ranges_Range___0___1__">RangeExtensions.StartsAfter&lt;T, TKey, TRange&gt;(TRange, Range&lt;T, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_EndsBefore__3___2_CodeJam_Ranges_Range___0___1__">RangeExtensions.EndsBefore&lt;T, TKey, TRange&gt;(TRange, Range&lt;T, TKey&gt;)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Reflection_MemberAccessor.md&amp;value=---%0Auid%3A%20CodeJam.Reflection.MemberAccessor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Reflection/MemberAccessor.cs/#L19" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

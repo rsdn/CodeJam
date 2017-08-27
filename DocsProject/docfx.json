@@ -1,0 +1,76 @@
+{
+	"metadata": [
+		{
+			"src": [
+				{
+					"src": "..",
+					"files": "Main/src/CodeJam.Main.csproj",
+					"exclude": [
+						"**/obj/**",
+						"**/bin/**"
+					]
+				}
+			],
+			"dest": "api/main"
+		},
+		{
+			"src": [
+				{
+					"src": "..",
+					"files": "Blocks/src/CodeJam.Blocks.csproj",
+					"exclude": [
+						"**/obj/**",
+						"**/bin/**"
+					]
+				}
+			],
+			"dest": "api/blocks"
+		}
+	],
+	"build": {
+		"content": [
+			{
+				"files": [
+					"api/**.yml",
+					"api/**/index.md"
+				]
+			},
+			{
+				"files": [
+					"articles/**.md",
+					"articles/**/toc.yml",
+					"toc.yml",
+					"*.md"
+				],
+				"exclude": [
+					"obj/**",
+					"bin/**"
+				]
+			}
+		],
+		"resource": [
+			{
+				"files": [
+					"images/**"
+				],
+				"exclude": [
+					"obj/**"
+				]
+			}
+		],
+		"overwrite": [
+			{
+				"files": [
+					"apidoc/**.md"
+				],
+				"exclude": [
+					"obj/**"
+				]
+			}
+		],
+		"dest": "../docs",
+		"template": [
+			"default"
+		]
+	}
+}

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.Main", "Main\src\CodeJam.Main.csproj", "{2F2046CC-FB47-4318-B335-5A82B04B6C40}"
 EndProject
@@ -108,6 +108,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{AC59E804
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests.Etw", "PerfTests\src-Etw\CodeJam.PerfTests.Etw.csproj", "{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsProject", "DocsProject\DocsProject.csproj", "{9161AF76-33DB-4A43-9AA1-3C35058DE33F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -182,6 +184,10 @@ Global
 		{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -209,5 +215,8 @@ Global
 		{2A52D7F6-AAFC-4AC4-9901-252C13D96E53} = {3C9AF2DF-1323-4471-B4DE-DE3D1A2A580C}
 		{AC59E804-44EE-44FA-87EB-0EFF956F5DD7} = {3C9AF2DF-1323-4471-B4DE-DE3D1A2A580C}
 		{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D} = {F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E7BBAF5-0DE0-4017-86AA-854EC6E7FF47}
 	EndGlobalSection
 EndGlobal

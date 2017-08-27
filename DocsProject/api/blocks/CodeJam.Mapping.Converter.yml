@@ -1,0 +1,654 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Mapping.Converter
+  commentId: T:CodeJam.Mapping.Converter
+  id: Converter
+  parent: CodeJam.Mapping
+  children:
+  - CodeJam.Mapping.Converter.ChangeType(System.Object,System.Type,CodeJam.Mapping.MappingSchema)
+  - CodeJam.Mapping.Converter.ChangeTypeTo``1(System.Object,CodeJam.Mapping.MappingSchema)
+  - CodeJam.Mapping.Converter.SetConverter``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  langs:
+  - csharp
+  - vb
+  name: Converter
+  nameWithType: Converter
+  fullName: CodeJam.Mapping.Converter
+  type: Class
+  source:
+    remote:
+      path: Blocks/src/Mapping/Converter.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Converter
+    path: ../Blocks/src/Mapping/Converter.cs
+    startLine: 16
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nProvides data convertion functionality.\n"
+  example: []
+  syntax:
+    content: public static class Converter
+    content.vb: Public Module Converter
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Mapping.Converter.SetConverter``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  commentId: M:CodeJam.Mapping.Converter.SetConverter``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  id: SetConverter``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  parent: CodeJam.Mapping.Converter
+  langs:
+  - csharp
+  - vb
+  name: SetConverter<TFrom, TTo>(Expression<Func<TFrom, TTo>>)
+  nameWithType: Converter.SetConverter<TFrom, TTo>(Expression<Func<TFrom, TTo>>)
+  fullName: CodeJam.Mapping.Converter.SetConverter<TFrom, TTo>(System.Linq.Expressions.Expression<System.Func<TFrom, TTo>>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/Converter.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SetConverter
+    path: ../Blocks/src/Mapping/Converter.cs
+    startLine: 75
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nAdds a custom converter from <em>TFrom</em> to <em>TTo</em> types.\n"
+  example: []
+  syntax:
+    content: public static void SetConverter<TFrom, TTo>(Expression<Func<TFrom, TTo>> expr)
+    parameters:
+    - id: expr
+      type: System.Linq.Expressions.Expression{System.Func{{TFrom},{TTo}}}
+      description: Convert expression.
+    typeParameters:
+    - id: TFrom
+      description: Type to convert from.
+    - id: TTo
+      description: Type to convert to.
+    content.vb: Public Shared Sub SetConverter(Of TFrom, TTo)(expr As Expression(Of Func(Of TFrom, TTo)))
+  overload: CodeJam.Mapping.Converter.SetConverter*
+  nameWithType.vb: Converter.SetConverter(Of TFrom, TTo)(Expression(Of Func(Of TFrom, TTo)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Mapping.Converter.SetConverter(Of TFrom, TTo)(System.Linq.Expressions.Expression(Of System.Func(Of TFrom, TTo)))
+  name.vb: SetConverter(Of TFrom, TTo)(Expression(Of Func(Of TFrom, TTo)))
+- uid: CodeJam.Mapping.Converter.ChangeType(System.Object,System.Type,CodeJam.Mapping.MappingSchema)
+  commentId: M:CodeJam.Mapping.Converter.ChangeType(System.Object,System.Type,CodeJam.Mapping.MappingSchema)
+  id: ChangeType(System.Object,System.Type,CodeJam.Mapping.MappingSchema)
+  parent: CodeJam.Mapping.Converter
+  langs:
+  - csharp
+  - vb
+  name: ChangeType(Object, Type, MappingSchema)
+  nameWithType: Converter.ChangeType(Object, Type, MappingSchema)
+  fullName: CodeJam.Mapping.Converter.ChangeType(System.Object, System.Type, CodeJam.Mapping.MappingSchema)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/Converter.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ChangeType
+    path: ../Blocks/src/Mapping/Converter.cs
+    startLine: 94
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns an object of a specified type whose value is equivalent to a specified object.\n"
+  example: []
+  syntax:
+    content: public static object ChangeType(object value, Type conversionType, MappingSchema mappingSchema = null)
+    parameters:
+    - id: value
+      type: System.Object
+      description: An object to convert.
+    - id: conversionType
+      type: System.Type
+      description: The type of object to return.
+    - id: mappingSchema
+      type: CodeJam.Mapping.MappingSchema
+      description: A mapping schema that defines custom converters.
+    return:
+      type: System.Object
+      description: An object whose type is <em>conversionType</em> and whose value is equivalent to <em>value</em>.
+    content.vb: Public Shared Function ChangeType(value As Object, conversionType As Type, mappingSchema As MappingSchema = Nothing) As Object
+  overload: CodeJam.Mapping.Converter.ChangeType*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Mapping.Converter.ChangeTypeTo``1(System.Object,CodeJam.Mapping.MappingSchema)
+  commentId: M:CodeJam.Mapping.Converter.ChangeTypeTo``1(System.Object,CodeJam.Mapping.MappingSchema)
+  id: ChangeTypeTo``1(System.Object,CodeJam.Mapping.MappingSchema)
+  parent: CodeJam.Mapping.Converter
+  langs:
+  - csharp
+  - vb
+  name: ChangeTypeTo<T>(Object, MappingSchema)
+  nameWithType: Converter.ChangeTypeTo<T>(Object, MappingSchema)
+  fullName: CodeJam.Mapping.Converter.ChangeTypeTo<T>(System.Object, CodeJam.Mapping.MappingSchema)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/Converter.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ChangeTypeTo
+    path: ../Blocks/src/Mapping/Converter.cs
+    startLine: 152
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns an object of a specified type whose value is equivalent to a specified object.\n"
+  example: []
+  syntax:
+    content: public static T ChangeTypeTo<T>(object value, MappingSchema mappingSchema = null)
+    parameters:
+    - id: value
+      type: System.Object
+      description: An object to convert.
+    - id: mappingSchema
+      type: CodeJam.Mapping.MappingSchema
+      description: A mapping schema that defines custom converters.
+    typeParameters:
+    - id: T
+      description: The type of object to return.
+    return:
+      type: '{T}'
+      description: An object whose type is <em>conversionType</em> and whose value is equivalent to <em>value</em>.
+    content.vb: Public Shared Function ChangeTypeTo(Of T)(value As Object, mappingSchema As MappingSchema = Nothing) As T
+  overload: CodeJam.Mapping.Converter.ChangeTypeTo*
+  nameWithType.vb: Converter.ChangeTypeTo(Of T)(Object, MappingSchema)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Mapping.Converter.ChangeTypeTo(Of T)(System.Object, CodeJam.Mapping.MappingSchema)
+  name.vb: ChangeTypeTo(Of T)(Object, MappingSchema)
+references:
+- uid: CodeJam.Mapping
+  commentId: N:CodeJam.Mapping
+  isExternal: false
+  name: CodeJam.Mapping
+  nameWithType: CodeJam.Mapping
+  fullName: CodeJam.Mapping
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Mapping.Converter.SetConverter*
+  commentId: Overload:CodeJam.Mapping.Converter.SetConverter
+  isExternal: false
+  name: SetConverter
+  nameWithType: Converter.SetConverter
+  fullName: CodeJam.Mapping.Converter.SetConverter
+- uid: System.Linq.Expressions.Expression{System.Func{{TFrom},{TTo}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{``0,``1}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<TFrom, TTo>>
+  nameWithType: Expression<Func<TFrom, TTo>>
+  fullName: System.Linq.Expressions.Expression<System.Func<TFrom, TTo>>
+  nameWithType.vb: Expression(Of Func(Of TFrom, TTo))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of TFrom, TTo))
+  name.vb: Expression(Of Func(Of TFrom, TTo))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression`1
+  commentId: T:System.Linq.Expressions.Expression`1
+  isExternal: true
+  name: Expression<TDelegate>
+  nameWithType: Expression<TDelegate>
+  fullName: System.Linq.Expressions.Expression<TDelegate>
+  nameWithType.vb: Expression(Of TDelegate)
+  fullName.vb: System.Linq.Expressions.Expression(Of TDelegate)
+  name.vb: Expression(Of TDelegate)
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TDelegate
+    nameWithType: TDelegate
+    fullName: TDelegate
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TDelegate
+    nameWithType: TDelegate
+    fullName: TDelegate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
+  isExternal: false
+  name: System.Linq.Expressions
+  nameWithType: System.Linq.Expressions
+  fullName: System.Linq.Expressions
+- uid: CodeJam.Mapping.Converter.ChangeType*
+  commentId: Overload:CodeJam.Mapping.Converter.ChangeType
+  isExternal: false
+  name: ChangeType
+  nameWithType: Converter.ChangeType
+  fullName: CodeJam.Mapping.Converter.ChangeType
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: CodeJam.Mapping.MappingSchema
+  commentId: T:CodeJam.Mapping.MappingSchema
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: MappingSchema
+  nameWithType: MappingSchema
+  fullName: CodeJam.Mapping.MappingSchema
+- uid: CodeJam.Mapping.Converter.ChangeTypeTo*
+  commentId: Overload:CodeJam.Mapping.Converter.ChangeTypeTo
+  isExternal: false
+  name: ChangeTypeTo
+  nameWithType: Converter.ChangeTypeTo
+  fullName: CodeJam.Mapping.Converter.ChangeTypeTo
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T

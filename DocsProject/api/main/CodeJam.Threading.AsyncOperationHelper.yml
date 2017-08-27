@@ -1,0 +1,888 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Threading.AsyncOperationHelper
+  commentId: T:CodeJam.Threading.AsyncOperationHelper
+  id: AsyncOperationHelper
+  parent: CodeJam.Threading
+  children:
+  - CodeJam.Threading.AsyncOperationHelper.CreateOperation
+  - CodeJam.Threading.AsyncOperationHelper.Post(System.ComponentModel.AsyncOperation,System.Action)
+  - CodeJam.Threading.AsyncOperationHelper.PostOperationCompleted(System.ComponentModel.AsyncOperation,System.Action)
+  - CodeJam.Threading.AsyncOperationHelper.RunAsync(System.Action{System.ComponentModel.AsyncOperation})
+  - CodeJam.Threading.AsyncOperationHelper.RunAsync(System.Action{System.ComponentModel.AsyncOperation},System.Action)
+  - CodeJam.Threading.AsyncOperationHelper.Send(System.ComponentModel.AsyncOperation,System.Action)
+  - CodeJam.Threading.AsyncOperationHelper.Send``1(System.ComponentModel.AsyncOperation,System.Func{``0})
+  langs:
+  - csharp
+  - vb
+  name: AsyncOperationHelper
+  nameWithType: AsyncOperationHelper
+  fullName: CodeJam.Threading.AsyncOperationHelper
+  type: Class
+  source:
+    remote:
+      path: Main/src/Threading/AsyncOperationHelper.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AsyncOperationHelper
+    path: ../Main/src/Threading/AsyncOperationHelper.cs
+    startLine: 11
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nExtension and utility methods for <xref href=\"System.ComponentModel.AsyncOperationManager\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.ComponentModel.AsyncOperation\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public static class AsyncOperationHelper
+    content.vb: Public Module AsyncOperationHelper
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Threading.AsyncOperationHelper.CreateOperation
+  commentId: M:CodeJam.Threading.AsyncOperationHelper.CreateOperation
+  id: CreateOperation
+  parent: CodeJam.Threading.AsyncOperationHelper
+  langs:
+  - csharp
+  - vb
+  name: CreateOperation()
+  nameWithType: AsyncOperationHelper.CreateOperation()
+  fullName: CodeJam.Threading.AsyncOperationHelper.CreateOperation()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/AsyncOperationHelper.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateOperation
+    path: ../Main/src/Threading/AsyncOperationHelper.cs
+    startLine: 20
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nReturns an <xref href=\"System.ComponentModel.AsyncOperation\" data-throw-if-not-resolved=\"false\"></xref> for tracking the duration of a particular asynchronous operation.\n"
+  example: []
+  syntax:
+    content: public static AsyncOperation CreateOperation()
+    return:
+      type: System.ComponentModel.AsyncOperation
+      description: "\nAn <xref href=\"System.ComponentModel.AsyncOperation\" data-throw-if-not-resolved=\"false\"></xref> that you can use to track the duration of an asynchronous method invocation.\n"
+    content.vb: Public Shared Function CreateOperation As AsyncOperation
+  overload: CodeJam.Threading.AsyncOperationHelper.CreateOperation*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Threading.AsyncOperationHelper.Post(System.ComponentModel.AsyncOperation,System.Action)
+  commentId: M:CodeJam.Threading.AsyncOperationHelper.Post(System.ComponentModel.AsyncOperation,System.Action)
+  id: Post(System.ComponentModel.AsyncOperation,System.Action)
+  isExtensionMethod: true
+  parent: CodeJam.Threading.AsyncOperationHelper
+  langs:
+  - csharp
+  - vb
+  name: Post(AsyncOperation, Action)
+  nameWithType: AsyncOperationHelper.Post(AsyncOperation, Action)
+  fullName: CodeJam.Threading.AsyncOperationHelper.Post(System.ComponentModel.AsyncOperation, System.Action)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/AsyncOperationHelper.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Post
+    path: ../Main/src/Threading/AsyncOperationHelper.cs
+    startLine: 31
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nInvokes a <code data-dev-comment-type=\"paramref\" class=\"paramref\">runner</code> on the thread or context appropriate for the application model.\n"
+  example: []
+  syntax:
+    content: public static void Post(this AsyncOperation asyncOp, Action runner)
+    parameters:
+    - id: asyncOp
+      type: System.ComponentModel.AsyncOperation
+      description: ''
+    - id: runner
+      type: System.Action
+      description: "\nA <xref href=\"System.Action\" data-throw-if-not-resolved=\"false\"></xref> that wraps the delegate to be called when the operation ends.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub Post(asyncOp As AsyncOperation, runner As Action)
+  overload: CodeJam.Threading.AsyncOperationHelper.Post*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Threading.AsyncOperationHelper.PostOperationCompleted(System.ComponentModel.AsyncOperation,System.Action)
+  commentId: M:CodeJam.Threading.AsyncOperationHelper.PostOperationCompleted(System.ComponentModel.AsyncOperation,System.Action)
+  id: PostOperationCompleted(System.ComponentModel.AsyncOperation,System.Action)
+  isExtensionMethod: true
+  parent: CodeJam.Threading.AsyncOperationHelper
+  langs:
+  - csharp
+  - vb
+  name: PostOperationCompleted(AsyncOperation, Action)
+  nameWithType: AsyncOperationHelper.PostOperationCompleted(AsyncOperation, Action)
+  fullName: CodeJam.Threading.AsyncOperationHelper.PostOperationCompleted(System.ComponentModel.AsyncOperation, System.Action)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/AsyncOperationHelper.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: PostOperationCompleted
+    path: ../Main/src/Threading/AsyncOperationHelper.cs
+    startLine: 43
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nEnds the lifetime of an asynchronous operation.\n"
+  example: []
+  syntax:
+    content: public static void PostOperationCompleted(this AsyncOperation asyncOp, Action runner)
+    parameters:
+    - id: asyncOp
+      type: System.ComponentModel.AsyncOperation
+      description: ''
+    - id: runner
+      type: System.Action
+      description: A <xref href="System.Action" data-throw-if-not-resolved="false"></xref> that wraps the delegate to be called when the operation ends.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub PostOperationCompleted(asyncOp As AsyncOperation, runner As Action)
+  overload: CodeJam.Threading.AsyncOperationHelper.PostOperationCompleted*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Threading.AsyncOperationHelper.Send(System.ComponentModel.AsyncOperation,System.Action)
+  commentId: M:CodeJam.Threading.AsyncOperationHelper.Send(System.ComponentModel.AsyncOperation,System.Action)
+  id: Send(System.ComponentModel.AsyncOperation,System.Action)
+  isExtensionMethod: true
+  parent: CodeJam.Threading.AsyncOperationHelper
+  langs:
+  - csharp
+  - vb
+  name: Send(AsyncOperation, Action)
+  nameWithType: AsyncOperationHelper.Send(AsyncOperation, Action)
+  fullName: CodeJam.Threading.AsyncOperationHelper.Send(System.ComponentModel.AsyncOperation, System.Action)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/AsyncOperationHelper.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Send
+    path: ../Main/src/Threading/AsyncOperationHelper.cs
+    startLine: 58
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nInvokes a <code data-dev-comment-type=\"paramref\" class=\"paramref\">runner</code> on the thread or context appropriate for the application model and waits for\nit completion.\n"
+  example: []
+  syntax:
+    content: public static void Send(this AsyncOperation asyncOp, Action runner)
+    parameters:
+    - id: asyncOp
+      type: System.ComponentModel.AsyncOperation
+      description: ''
+    - id: runner
+      type: System.Action
+      description: "\nA <xref href=\"System.Action\" data-throw-if-not-resolved=\"false\"></xref> that wraps the delegate to be called when the operation ends.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub Send(asyncOp As AsyncOperation, runner As Action)
+  overload: CodeJam.Threading.AsyncOperationHelper.Send*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Threading.AsyncOperationHelper.Send``1(System.ComponentModel.AsyncOperation,System.Func{``0})
+  commentId: M:CodeJam.Threading.AsyncOperationHelper.Send``1(System.ComponentModel.AsyncOperation,System.Func{``0})
+  id: Send``1(System.ComponentModel.AsyncOperation,System.Func{``0})
+  isExtensionMethod: true
+  parent: CodeJam.Threading.AsyncOperationHelper
+  langs:
+  - csharp
+  - vb
+  name: Send<T>(AsyncOperation, Func<T>)
+  nameWithType: AsyncOperationHelper.Send<T>(AsyncOperation, Func<T>)
+  fullName: CodeJam.Threading.AsyncOperationHelper.Send<T>(System.ComponentModel.AsyncOperation, System.Func<T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/AsyncOperationHelper.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Send
+    path: ../Main/src/Threading/AsyncOperationHelper.cs
+    startLine: 75
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nInvokes a <code data-dev-comment-type=\"paramref\" class=\"paramref\">runner</code> on the thread or context appropriate for the application model and returns\nresult.\n"
+  example: []
+  syntax:
+    content: public static T Send<T>(this AsyncOperation asyncOp, Func<T> runner)
+    parameters:
+    - id: asyncOp
+      type: System.ComponentModel.AsyncOperation
+      description: ''
+    - id: runner
+      type: System.Func{{T}}
+      description: "\nA <xref href=\"System.Func%601\" data-throw-if-not-resolved=\"false\"></xref> that wraps the delegate to be called when the operation ends.\n"
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+      description: Result of <code data-dev-comment-type="paramref" class="paramref">runner</code> execution.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function Send(Of T)(asyncOp As AsyncOperation, runner As Func(Of T)) As T
+  overload: CodeJam.Threading.AsyncOperationHelper.Send*
+  nameWithType.vb: AsyncOperationHelper.Send(Of T)(AsyncOperation, Func(Of T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.AsyncOperationHelper.Send(Of T)(System.ComponentModel.AsyncOperation, System.Func(Of T))
+  name.vb: Send(Of T)(AsyncOperation, Func(Of T))
+- uid: CodeJam.Threading.AsyncOperationHelper.RunAsync(System.Action{System.ComponentModel.AsyncOperation})
+  commentId: M:CodeJam.Threading.AsyncOperationHelper.RunAsync(System.Action{System.ComponentModel.AsyncOperation})
+  id: RunAsync(System.Action{System.ComponentModel.AsyncOperation})
+  parent: CodeJam.Threading.AsyncOperationHelper
+  langs:
+  - csharp
+  - vb
+  name: RunAsync(Action<AsyncOperation>)
+  nameWithType: AsyncOperationHelper.RunAsync(Action<AsyncOperation>)
+  fullName: CodeJam.Threading.AsyncOperationHelper.RunAsync(System.Action<System.ComponentModel.AsyncOperation>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/AsyncOperationHelper.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: RunAsync
+    path: ../Main/src/Threading/AsyncOperationHelper.cs
+    startLine: 89
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nGets thread from pool and run <code data-dev-comment-type=\"paramref\" class=\"paramref\">runner</code> inside it.\n"
+  example: []
+  syntax:
+    content: public static void RunAsync(Action<AsyncOperation> runner)
+    parameters:
+    - id: runner
+      type: System.Action{System.ComponentModel.AsyncOperation}
+      description: Action to run inside created thread.
+    content.vb: Public Shared Sub RunAsync(runner As Action(Of AsyncOperation))
+  overload: CodeJam.Threading.AsyncOperationHelper.RunAsync*
+  nameWithType.vb: AsyncOperationHelper.RunAsync(Action(Of AsyncOperation))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.AsyncOperationHelper.RunAsync(System.Action(Of System.ComponentModel.AsyncOperation))
+  name.vb: RunAsync(Action(Of AsyncOperation))
+- uid: CodeJam.Threading.AsyncOperationHelper.RunAsync(System.Action{System.ComponentModel.AsyncOperation},System.Action)
+  commentId: M:CodeJam.Threading.AsyncOperationHelper.RunAsync(System.Action{System.ComponentModel.AsyncOperation},System.Action)
+  id: RunAsync(System.Action{System.ComponentModel.AsyncOperation},System.Action)
+  parent: CodeJam.Threading.AsyncOperationHelper
+  langs:
+  - csharp
+  - vb
+  name: RunAsync(Action<AsyncOperation>, Action)
+  nameWithType: AsyncOperationHelper.RunAsync(Action<AsyncOperation>, Action)
+  fullName: CodeJam.Threading.AsyncOperationHelper.RunAsync(System.Action<System.ComponentModel.AsyncOperation>, System.Action)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/AsyncOperationHelper.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: RunAsync
+    path: ../Main/src/Threading/AsyncOperationHelper.cs
+    startLine: 104
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nGets thread from pool and run <code data-dev-comment-type=\"paramref\" class=\"paramref\">runner</code> inside it.\n"
+  example: []
+  syntax:
+    content: public static void RunAsync(Action<AsyncOperation> runner, Action completeHandler)
+    parameters:
+    - id: runner
+      type: System.Action{System.ComponentModel.AsyncOperation}
+      description: Action to run inside created thread.
+    - id: completeHandler
+      type: System.Action
+      description: "\nAction called after <code data-dev-comment-type=\"paramref\" class=\"paramref\">runner</code> complete execution. Synchronized with method calling thread.\n"
+    content.vb: Public Shared Sub RunAsync(runner As Action(Of AsyncOperation), completeHandler As Action)
+  overload: CodeJam.Threading.AsyncOperationHelper.RunAsync*
+  nameWithType.vb: AsyncOperationHelper.RunAsync(Action(Of AsyncOperation), Action)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.AsyncOperationHelper.RunAsync(System.Action(Of System.ComponentModel.AsyncOperation), System.Action)
+  name.vb: RunAsync(Action(Of AsyncOperation), Action)
+references:
+- uid: System.ComponentModel.AsyncOperationManager
+  commentId: T:System.ComponentModel.AsyncOperationManager
+- uid: System.ComponentModel.AsyncOperation
+  commentId: T:System.ComponentModel.AsyncOperation
+  parent: System.ComponentModel
+  isExternal: true
+  name: AsyncOperation
+  nameWithType: AsyncOperation
+  fullName: System.ComponentModel.AsyncOperation
+- uid: CodeJam.Threading
+  commentId: N:CodeJam.Threading
+  isExternal: false
+  name: CodeJam.Threading
+  nameWithType: CodeJam.Threading
+  fullName: CodeJam.Threading
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ComponentModel
+  commentId: N:System.ComponentModel
+  isExternal: false
+  name: System.ComponentModel
+  nameWithType: System.ComponentModel
+  fullName: System.ComponentModel
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Threading.AsyncOperationHelper.CreateOperation*
+  commentId: Overload:CodeJam.Threading.AsyncOperationHelper.CreateOperation
+  isExternal: false
+  name: CreateOperation
+  nameWithType: AsyncOperationHelper.CreateOperation
+  fullName: CodeJam.Threading.AsyncOperationHelper.CreateOperation
+- uid: System.Action
+  commentId: T:System.Action
+  parent: System
+  isExternal: true
+  name: Action
+  nameWithType: Action
+  fullName: System.Action
+- uid: CodeJam.Threading.AsyncOperationHelper.Post*
+  commentId: Overload:CodeJam.Threading.AsyncOperationHelper.Post
+  isExternal: false
+  name: Post
+  nameWithType: AsyncOperationHelper.Post
+  fullName: CodeJam.Threading.AsyncOperationHelper.Post
+- uid: CodeJam.Threading.AsyncOperationHelper.PostOperationCompleted*
+  commentId: Overload:CodeJam.Threading.AsyncOperationHelper.PostOperationCompleted
+  isExternal: false
+  name: PostOperationCompleted
+  nameWithType: AsyncOperationHelper.PostOperationCompleted
+  fullName: CodeJam.Threading.AsyncOperationHelper.PostOperationCompleted
+- uid: CodeJam.Threading.AsyncOperationHelper.Send*
+  commentId: Overload:CodeJam.Threading.AsyncOperationHelper.Send
+  isExternal: false
+  name: Send
+  nameWithType: AsyncOperationHelper.Send
+  fullName: CodeJam.Threading.AsyncOperationHelper.Send
+- uid: System.Func`1
+  commentId: T:System.Func`1
+  isExternal: true
+  name: Func<TResult>
+  nameWithType: Func<TResult>
+  fullName: System.Func<TResult>
+  nameWithType.vb: Func(Of TResult)
+  fullName.vb: System.Func(Of TResult)
+  name.vb: Func(Of TResult)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T}}
+  commentId: T:System.Func{``0}
+  parent: System
+  definition: System.Func`1
+  name: Func<T>
+  nameWithType: Func<T>
+  fullName: System.Func<T>
+  nameWithType.vb: Func(Of T)
+  fullName.vb: System.Func(Of T)
+  name.vb: Func(Of T)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: CodeJam.Threading.AsyncOperationHelper.RunAsync*
+  commentId: Overload:CodeJam.Threading.AsyncOperationHelper.RunAsync
+  isExternal: false
+  name: RunAsync
+  nameWithType: AsyncOperationHelper.RunAsync
+  fullName: CodeJam.Threading.AsyncOperationHelper.RunAsync
+- uid: System.Action{System.ComponentModel.AsyncOperation}
+  commentId: T:System.Action{System.ComponentModel.AsyncOperation}
+  parent: System
+  definition: System.Action`1
+  name: Action<AsyncOperation>
+  nameWithType: Action<AsyncOperation>
+  fullName: System.Action<System.ComponentModel.AsyncOperation>
+  nameWithType.vb: Action(Of AsyncOperation)
+  fullName.vb: System.Action(Of System.ComponentModel.AsyncOperation)
+  name.vb: Action(Of AsyncOperation)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ComponentModel.AsyncOperation
+    name: AsyncOperation
+    nameWithType: AsyncOperation
+    fullName: System.ComponentModel.AsyncOperation
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ComponentModel.AsyncOperation
+    name: AsyncOperation
+    nameWithType: AsyncOperation
+    fullName: System.ComponentModel.AsyncOperation
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )

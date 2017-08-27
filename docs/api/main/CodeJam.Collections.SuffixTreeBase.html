@@ -1,0 +1,846 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class SuffixTreeBase
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class SuffixTreeBase
+   ">
+    <meta name="generator" content="docfx 2.23.1.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CodeJam.Collections.SuffixTreeBase">
+  
+  
+  <h1 id="CodeJam_Collections_SuffixTreeBase" data-uid="CodeJam.Collections.SuffixTreeBase" class="text-break">Class SuffixTreeBase
+  </h1>
+  <div class="markdown level0 summary"><p>Base class for suffix tree algorithm implementation.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">SuffixTreeBase</span></div>
+  </div>
+      <div class="level2"><a class="xref" href="CodeJam.Collections.SuffixTree.html">SuffixTree</a></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CodeJam.Collections.html">CodeJam.Collections</a></h6>
+  <h6><strong>Assembly</strong>: CodeJam.dll</h6>
+  <h5 id="CodeJam_Collections_SuffixTreeBase_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class SuffixTreeBase</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase__ctor.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L64">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase__ctor_" data-uid="CodeJam.Collections.SuffixTreeBase.#ctor*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase__ctor" data-uid="CodeJam.Collections.SuffixTreeBase.#ctor">SuffixTreeBase()</h4>
+  <div class="markdown level1 summary"><p>Constructs a base for a suffix tree</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected SuffixTreeBase()</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_RootNodeIndex.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.RootNodeIndex%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L20">View Source</a>
+  </span>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_RootNodeIndex" data-uid="CodeJam.Collections.SuffixTreeBase.RootNodeIndex">RootNodeIndex</h4>
+  <div class="markdown level1 summary"><p>Root node index</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected const int RootNodeIndex = 0</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_EdgeComparer.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.EdgeComparer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L28">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase_EdgeComparer_" data-uid="CodeJam.Collections.SuffixTreeBase.EdgeComparer*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_EdgeComparer" data-uid="CodeJam.Collections.SuffixTreeBase.EdgeComparer">EdgeComparer</h4>
+  <div class="markdown level1 summary"><p>The comparer to compare edges of a node against a char</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Func&lt;int, char, int&gt; EdgeComparer { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Char</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_InternalData.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.InternalData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L58">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase_InternalData_" data-uid="CodeJam.Collections.SuffixTreeBase.InternalData*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_InternalData" data-uid="CodeJam.Collections.SuffixTreeBase.InternalData">InternalData</h4>
+  <div class="markdown level1 summary"><p>Concatenated input strings</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string InternalData { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_NodesCount.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.NodesCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L55">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase_NodesCount_" data-uid="CodeJam.Collections.SuffixTreeBase.NodesCount*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_NodesCount" data-uid="CodeJam.Collections.SuffixTreeBase.NodesCount">NodesCount</h4>
+  <div class="markdown level1 summary"><p>Number of nodes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int NodesCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_Root.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.Root%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L26">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase_Root_" data-uid="CodeJam.Collections.SuffixTreeBase.Root*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_Root" data-uid="CodeJam.Collections.SuffixTreeBase.Root">Root</h4>
+  <div class="markdown level1 summary"><p>The root node</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected SuffixTreeBase.Node Root { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Collections.SuffixTreeBase.Node.html">SuffixTreeBase.Node</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_StringLocations.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.StringLocations%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L61">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase_StringLocations_" data-uid="CodeJam.Collections.SuffixTreeBase.StringLocations*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_StringLocations" data-uid="CodeJam.Collections.SuffixTreeBase.StringLocations">StringLocations</h4>
+  <div class="markdown level1 summary"><p>List of locatons of added strings inside the InternalData</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected List&lt;&gt; StringLocations { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_Add_System_String_.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.Add(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L87">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase_Add_" data-uid="CodeJam.Collections.SuffixTreeBase.Add*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_Add_System_String_" data-uid="CodeJam.Collections.SuffixTreeBase.Add(System.String)">Add(String)</h4>
+  <div class="markdown level1 summary"><p>Adds a new string to the tree</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string data)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The string to add
+<remarks>The last string character should be unique among all added strings</remarks></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_AddNode_CodeJam_Collections_SuffixTreeBase_Node_.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.AddNode(CodeJam.Collections.SuffixTreeBase.Node)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L37">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase_AddNode_" data-uid="CodeJam.Collections.SuffixTreeBase.AddNode*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_AddNode_CodeJam_Collections_SuffixTreeBase_Node_" data-uid="CodeJam.Collections.SuffixTreeBase.AddNode(CodeJam.Collections.SuffixTreeBase.Node)">AddNode(SuffixTreeBase.Node)</h4>
+  <div class="markdown level1 summary"><p>Adds a new node</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int AddNode(SuffixTreeBase.Node node)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Collections.SuffixTreeBase.Node.html">SuffixTreeBase.Node</a></td>
+        <td><span class="parametername">node</span></td>
+        <td><p>A node to add</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Index of the node</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_All.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.All%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L105">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase_All_" data-uid="CodeJam.Collections.SuffixTreeBase.All*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_All" data-uid="CodeJam.Collections.SuffixTreeBase.All">All()</h4>
+  <div class="markdown level1 summary"><p>Enumerates all suffixes in the suffix tree</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Suffix&gt; All()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="CodeJam.Collections.Suffix.html">Suffix</a>&gt;</td>
+        <td><p>The enumeration of all suffixes in lexicographical order</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="CodeJam_Collections_SuffixTreeBase_All_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>May return suffixes with the same value of the they are present in different source strings</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_AppendNodeText_System_Text_StringBuilder_System_Int32_.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.AppendNodeText(System.Text.StringBuilder%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L401">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase_AppendNodeText_" data-uid="CodeJam.Collections.SuffixTreeBase.AppendNodeText*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_AppendNodeText_System_Text_StringBuilder_System_Int32_" data-uid="CodeJam.Collections.SuffixTreeBase.AppendNodeText(System.Text.StringBuilder,System.Int32)">AppendNodeText(StringBuilder, Int32)</h4>
+  <div class="markdown level1 summary"><p>Prints a single node information</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void AppendNodeText(StringBuilder sb, int nodeIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Text.StringBuilder</span></td>
+        <td><span class="parametername">sb</span></td>
+        <td><p>The builder to print to</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">nodeIndex</span></td>
+        <td><p>The node index</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_BuildFor_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.BuildFor(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L321">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase_BuildFor_" data-uid="CodeJam.Collections.SuffixTreeBase.BuildFor*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_BuildFor_System_Int32_System_Int32_" data-uid="CodeJam.Collections.SuffixTreeBase.BuildFor(System.Int32,System.Int32)">BuildFor(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Appends suffixes for the last added string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void BuildFor(int begin, int end)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">begin</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">end</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_Contains_System_String_.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.Contains(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L111">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase_Contains_" data-uid="CodeJam.Collections.SuffixTreeBase.Contains*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_Contains_System_String_" data-uid="CodeJam.Collections.SuffixTreeBase.Contains(System.String)">Contains(String)</h4>
+  <div class="markdown level1 summary"><p>Checks wether the suffix tree contains the given substring or not</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(string substring)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">substring</span></td>
+        <td><p>The substring to locate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>true if found, false otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_ContainsSuffix_System_String_.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.ContainsSuffix(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L126">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase_ContainsSuffix_" data-uid="CodeJam.Collections.SuffixTreeBase.ContainsSuffix*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_ContainsSuffix_System_String_" data-uid="CodeJam.Collections.SuffixTreeBase.ContainsSuffix(System.String)">ContainsSuffix(String)</h4>
+  <div class="markdown level1 summary"><p>Checks wether the suffix tree contains the given suffix or not</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ContainsSuffix(string suffix)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">suffix</span></td>
+        <td><p>The suffix to locate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>true if found, false otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_GetNode_System_Int32_.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.GetNode(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L52">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase_GetNode_" data-uid="CodeJam.Collections.SuffixTreeBase.GetNode*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_GetNode_System_Int32_" data-uid="CodeJam.Collections.SuffixTreeBase.GetNode(System.Int32)">GetNode(Int32)</h4>
+  <div class="markdown level1 summary"><p>Gets a node at the index</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected SuffixTreeBase.Node GetNode(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of the node</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.Collections.SuffixTreeBase.Node.html">SuffixTreeBase.Node</a></td>
+        <td><p>The node</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_Print.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.Print%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L325">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase_Print_" data-uid="CodeJam.Collections.SuffixTreeBase.Print*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_Print" data-uid="CodeJam.Collections.SuffixTreeBase.Print">Print()</h4>
+  <div class="markdown level1 summary"><p>Prints the tree structure to the string for the debugging purposes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Print()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The tree structure as a string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_StartingWith_System_String_.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.StartingWith(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L155">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase_StartingWith_" data-uid="CodeJam.Collections.SuffixTreeBase.StartingWith*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_StartingWith_System_String_" data-uid="CodeJam.Collections.SuffixTreeBase.StartingWith(System.String)">StartingWith(String)</h4>
+  <div class="markdown level1 summary"><p>Enumerates all suffixes starting with the given prefix</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Suffix&gt; StartingWith(string prefix)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">prefix</span></td>
+        <td><p>The prefix to find</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="CodeJam.Collections.Suffix.html">Suffix</a>&gt;</td>
+        <td><p>The enumeration of all suffixes with the given prefix in lexicographical order</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase_UpdateNode_System_Int32_CodeJam_Collections_SuffixTreeBase_Node_.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase.UpdateNode(System.Int32%2CCodeJam.Collections.SuffixTreeBase.Node)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L47">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_SuffixTreeBase_UpdateNode_" data-uid="CodeJam.Collections.SuffixTreeBase.UpdateNode*"></a>
+  <h4 id="CodeJam_Collections_SuffixTreeBase_UpdateNode_System_Int32_CodeJam_Collections_SuffixTreeBase_Node_" data-uid="CodeJam.Collections.SuffixTreeBase.UpdateNode(System.Int32,CodeJam.Collections.SuffixTreeBase.Node)">UpdateNode(Int32, SuffixTreeBase.Node)</h4>
+  <div class="markdown level1 summary"><p>Updates the node at the index</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void UpdateNode(int index, SuffixTreeBase.Node node)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index to update</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.Collections.SuffixTreeBase.Node.html">SuffixTreeBase.Node</a></td>
+        <td><span class="parametername">node</span></td>
+        <td><p>The new node value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_Contains__2___1_CodeJam_Ranges_Range___0__">RangeExtensions.Contains&lt;T, TRange&gt;(TRange, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_StartsAfter__2___1_CodeJam_Ranges_Range___0__">RangeExtensions.StartsAfter&lt;T, TRange&gt;(TRange, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_EndsBefore__2___1_CodeJam_Ranges_Range___0__">RangeExtensions.EndsBefore&lt;T, TRange&gt;(TRange, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_Contains__3___2_CodeJam_Ranges_Range___0___1__">RangeExtensions.Contains&lt;T, TKey, TRange&gt;(TRange, Range&lt;T, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_StartsAfter__3___2_CodeJam_Ranges_Range___0___1__">RangeExtensions.StartsAfter&lt;T, TKey, TRange&gt;(TRange, Range&lt;T, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_EndsBefore__3___2_CodeJam_Ranges_Range___0___1__">RangeExtensions.EndsBefore&lt;T, TKey, TRange&gt;(TRange, Range&lt;T, TKey&gt;)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_SuffixTreeBase.md&amp;value=---%0Auid%3A%20CodeJam.Collections.SuffixTreeBase%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/SuffixTree/SuffixTreeBase.cs/#L13" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

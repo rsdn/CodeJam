@@ -1,0 +1,1096 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Mapping.IMapperBuilder
+  commentId: T:CodeJam.Mapping.IMapperBuilder
+  id: IMapperBuilder
+  parent: CodeJam.Mapping
+  children:
+  - CodeJam.Mapping.IMapperBuilder.DeepCopy
+  - CodeJam.Mapping.IMapperBuilder.FromMappingDictionary
+  - CodeJam.Mapping.IMapperBuilder.FromType
+  - CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+  - CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+  - CodeJam.Mapping.IMapperBuilder.MappingSchema
+  - CodeJam.Mapping.IMapperBuilder.MemberFilter
+  - CodeJam.Mapping.IMapperBuilder.MemberMappers
+  - CodeJam.Mapping.IMapperBuilder.ProcessCrossReferences
+  - CodeJam.Mapping.IMapperBuilder.ToMappingDictionary
+  - CodeJam.Mapping.IMapperBuilder.ToType
+  langs:
+  - csharp
+  - vb
+  name: IMapperBuilder
+  nameWithType: IMapperBuilder
+  fullName: CodeJam.Mapping.IMapperBuilder
+  type: Interface
+  source:
+    remote:
+      path: Blocks/src/Mapping/IMapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IMapperBuilder
+    path: ../Blocks/src/Mapping/IMapperBuilder.cs
+    startLine: 14
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nBuilds a mapper that maps an object of <em>TFrom</em> type to an object of <em>TTo</em> type.\n"
+  example: []
+  syntax:
+    content: public interface IMapperBuilder
+    content.vb: Public Interface IMapperBuilder
+  extensionMethods:
+  - CodeJam.Mapping.IMapperBuilder.CodeJam.Mapping.Map.DeepCopy``1
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: CodeJam.Mapping.IMapperBuilder.MappingSchema
+  commentId: P:CodeJam.Mapping.IMapperBuilder.MappingSchema
+  id: MappingSchema
+  parent: CodeJam.Mapping.IMapperBuilder
+  langs:
+  - csharp
+  - vb
+  name: MappingSchema
+  nameWithType: IMapperBuilder.MappingSchema
+  fullName: CodeJam.Mapping.IMapperBuilder.MappingSchema
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/IMapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MappingSchema
+    path: ../Blocks/src/Mapping/IMapperBuilder.cs
+    startLine: 20
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nMapping schema.\n"
+  example: []
+  syntax:
+    content: MappingSchema MappingSchema { get; set; }
+    parameters: []
+    return:
+      type: CodeJam.Mapping.MappingSchema
+    content.vb: Property MappingSchema As MappingSchema
+  overload: CodeJam.Mapping.IMapperBuilder.MappingSchema*
+  modifiers.csharp:
+  - get
+  - set
+- uid: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+  commentId: M:CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+  id: GetMapperLambdaExpressionEx
+  parent: CodeJam.Mapping.IMapperBuilder
+  langs:
+  - csharp
+  - vb
+  name: GetMapperLambdaExpressionEx()
+  nameWithType: IMapperBuilder.GetMapperLambdaExpressionEx()
+  fullName: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx()
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/IMapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetMapperLambdaExpressionEx
+    path: ../Blocks/src/Mapping/IMapperBuilder.cs
+    startLine: 28
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns a mapper expression to map an object of <em>TFrom</em> type to an object of <em>TTo</em> type.\nReturned expression is compatible to IQueriable.\n"
+  example: []
+  syntax:
+    content: LambdaExpression GetMapperLambdaExpressionEx()
+    return:
+      type: System.Linq.Expressions.LambdaExpression
+      description: Mapping expression.
+    content.vb: Function GetMapperLambdaExpressionEx As LambdaExpression
+  overload: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx*
+- uid: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+  commentId: M:CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+  id: GetMapperLambdaExpression
+  parent: CodeJam.Mapping.IMapperBuilder
+  langs:
+  - csharp
+  - vb
+  name: GetMapperLambdaExpression()
+  nameWithType: IMapperBuilder.GetMapperLambdaExpression()
+  fullName: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression()
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/IMapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetMapperLambdaExpression
+    path: ../Blocks/src/Mapping/IMapperBuilder.cs
+    startLine: 35
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns a mapper expression to map an object of <em>TFrom</em> type to an object of <em>TTo</em> type.\n"
+  example: []
+  syntax:
+    content: LambdaExpression GetMapperLambdaExpression()
+    return:
+      type: System.Linq.Expressions.LambdaExpression
+      description: Mapping expression.
+    content.vb: Function GetMapperLambdaExpression As LambdaExpression
+  overload: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression*
+- uid: CodeJam.Mapping.IMapperBuilder.MemberFilter
+  commentId: P:CodeJam.Mapping.IMapperBuilder.MemberFilter
+  id: MemberFilter
+  parent: CodeJam.Mapping.IMapperBuilder
+  langs:
+  - csharp
+  - vb
+  name: MemberFilter
+  nameWithType: IMapperBuilder.MemberFilter
+  fullName: CodeJam.Mapping.IMapperBuilder.MemberFilter
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/IMapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MemberFilter
+    path: ../Blocks/src/Mapping/IMapperBuilder.cs
+    startLine: 41
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nFilters target members to map.\n"
+  example: []
+  syntax:
+    content: Func<MemberAccessor, bool> MemberFilter { get; set; }
+    parameters: []
+    return:
+      type: System.Func{CodeJam.Reflection.MemberAccessor,System.Boolean}
+    content.vb: Property MemberFilter As Func(Of MemberAccessor, Boolean)
+  overload: CodeJam.Mapping.IMapperBuilder.MemberFilter*
+  modifiers.csharp:
+  - get
+  - set
+- uid: CodeJam.Mapping.IMapperBuilder.FromMappingDictionary
+  commentId: P:CodeJam.Mapping.IMapperBuilder.FromMappingDictionary
+  id: FromMappingDictionary
+  parent: CodeJam.Mapping.IMapperBuilder
+  langs:
+  - csharp
+  - vb
+  name: FromMappingDictionary
+  nameWithType: IMapperBuilder.FromMappingDictionary
+  fullName: CodeJam.Mapping.IMapperBuilder.FromMappingDictionary
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/IMapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FromMappingDictionary
+    path: ../Blocks/src/Mapping/IMapperBuilder.cs
+    startLine: 46
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for source types.\n"
+  example: []
+  syntax:
+    content: Dictionary<Type, Dictionary<string, string>> FromMappingDictionary { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.Dictionary{System.String,System.String}}
+    content.vb: Property FromMappingDictionary As Dictionary(Of Type, Dictionary(Of String, String))
+  overload: CodeJam.Mapping.IMapperBuilder.FromMappingDictionary*
+  modifiers.csharp:
+  - get
+  - set
+- uid: CodeJam.Mapping.IMapperBuilder.ToMappingDictionary
+  commentId: P:CodeJam.Mapping.IMapperBuilder.ToMappingDictionary
+  id: ToMappingDictionary
+  parent: CodeJam.Mapping.IMapperBuilder
+  langs:
+  - csharp
+  - vb
+  name: ToMappingDictionary
+  nameWithType: IMapperBuilder.ToMappingDictionary
+  fullName: CodeJam.Mapping.IMapperBuilder.ToMappingDictionary
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/IMapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToMappingDictionary
+    path: ../Blocks/src/Mapping/IMapperBuilder.cs
+    startLine: 51
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for destination types.\n"
+  example: []
+  syntax:
+    content: Dictionary<Type, Dictionary<string, string>> ToMappingDictionary { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.Dictionary{System.String,System.String}}
+    content.vb: Property ToMappingDictionary As Dictionary(Of Type, Dictionary(Of String, String))
+  overload: CodeJam.Mapping.IMapperBuilder.ToMappingDictionary*
+  modifiers.csharp:
+  - get
+  - set
+- uid: CodeJam.Mapping.IMapperBuilder.MemberMappers
+  commentId: P:CodeJam.Mapping.IMapperBuilder.MemberMappers
+  id: MemberMappers
+  parent: CodeJam.Mapping.IMapperBuilder
+  langs:
+  - csharp
+  - vb
+  name: MemberMappers
+  nameWithType: IMapperBuilder.MemberMappers
+  fullName: CodeJam.Mapping.IMapperBuilder.MemberMappers
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/IMapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MemberMappers
+    path: ../Blocks/src/Mapping/IMapperBuilder.cs
+    startLine: 56
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nMember mappers.\n"
+  example: []
+  syntax:
+    content: List<> MemberMappers { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{System.}
+    content.vb: Property MemberMappers As List(Of )
+  overload: CodeJam.Mapping.IMapperBuilder.MemberMappers*
+  modifiers.csharp:
+  - get
+  - set
+- uid: CodeJam.Mapping.IMapperBuilder.ProcessCrossReferences
+  commentId: P:CodeJam.Mapping.IMapperBuilder.ProcessCrossReferences
+  id: ProcessCrossReferences
+  parent: CodeJam.Mapping.IMapperBuilder
+  langs:
+  - csharp
+  - vb
+  name: ProcessCrossReferences
+  nameWithType: IMapperBuilder.ProcessCrossReferences
+  fullName: CodeJam.Mapping.IMapperBuilder.ProcessCrossReferences
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/IMapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ProcessCrossReferences
+    path: ../Blocks/src/Mapping/IMapperBuilder.cs
+    startLine: 63
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nIf true, processes object cross references.\nif default (null), the <xref href=\"CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx\" data-throw-if-not-resolved=\"false\"></xref> method does not process cross references,\nhowever the <xref href=\"CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression\" data-throw-if-not-resolved=\"false\"></xref> method does.\n"
+  example: []
+  syntax:
+    content: bool ? ProcessCrossReferences { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: Property ProcessCrossReferences As Boolean?
+  overload: CodeJam.Mapping.IMapperBuilder.ProcessCrossReferences*
+  modifiers.csharp:
+  - get
+  - set
+- uid: CodeJam.Mapping.IMapperBuilder.DeepCopy
+  commentId: P:CodeJam.Mapping.IMapperBuilder.DeepCopy
+  id: DeepCopy
+  parent: CodeJam.Mapping.IMapperBuilder
+  langs:
+  - csharp
+  - vb
+  name: DeepCopy
+  nameWithType: IMapperBuilder.DeepCopy
+  fullName: CodeJam.Mapping.IMapperBuilder.DeepCopy
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/IMapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DeepCopy
+    path: ../Blocks/src/Mapping/IMapperBuilder.cs
+    startLine: 70
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nIf true, performs deep copy.\nif default (null), the <xref href=\"CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx\" data-throw-if-not-resolved=\"false\"></xref> method does not do deep copy,\nhowever the <xref href=\"CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression\" data-throw-if-not-resolved=\"false\"></xref> method does.\n"
+  example: []
+  syntax:
+    content: bool ? DeepCopy { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: Property DeepCopy As Boolean?
+  overload: CodeJam.Mapping.IMapperBuilder.DeepCopy*
+  modifiers.csharp:
+  - get
+  - set
+- uid: CodeJam.Mapping.IMapperBuilder.FromType
+  commentId: P:CodeJam.Mapping.IMapperBuilder.FromType
+  id: FromType
+  parent: CodeJam.Mapping.IMapperBuilder
+  langs:
+  - csharp
+  - vb
+  name: FromType
+  nameWithType: IMapperBuilder.FromType
+  fullName: CodeJam.Mapping.IMapperBuilder.FromType
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/IMapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FromType
+    path: ../Blocks/src/Mapping/IMapperBuilder.cs
+    startLine: 75
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nType to map from.\n"
+  example: []
+  syntax:
+    content: Type FromType { get; }
+    parameters: []
+    return:
+      type: System.Type
+    content.vb: ReadOnly Property FromType As Type
+  overload: CodeJam.Mapping.IMapperBuilder.FromType*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: CodeJam.Mapping.IMapperBuilder.ToType
+  commentId: P:CodeJam.Mapping.IMapperBuilder.ToType
+  id: ToType
+  parent: CodeJam.Mapping.IMapperBuilder
+  langs:
+  - csharp
+  - vb
+  name: ToType
+  nameWithType: IMapperBuilder.ToType
+  fullName: CodeJam.Mapping.IMapperBuilder.ToType
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/IMapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToType
+    path: ../Blocks/src/Mapping/IMapperBuilder.cs
+    startLine: 80
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nType to map to.\n"
+  example: []
+  syntax:
+    content: Type ToType { get; }
+    parameters: []
+    return:
+      type: System.Type
+    content.vb: ReadOnly Property ToType As Type
+  overload: CodeJam.Mapping.IMapperBuilder.ToType*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+references:
+- uid: CodeJam.Mapping
+  commentId: N:CodeJam.Mapping
+  isExternal: false
+  name: CodeJam.Mapping
+  nameWithType: CodeJam.Mapping
+  fullName: CodeJam.Mapping
+- uid: CodeJam.Mapping.IMapperBuilder.CodeJam.Mapping.Map.DeepCopy``1
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  parent: CodeJam.Mapping.Map
+  definition: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  name: DeepCopy<IMapperBuilder>()
+  nameWithType: Map.DeepCopy<IMapperBuilder>()
+  fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.Mapping.IMapperBuilder>()
+  nameWithType.vb: Map.DeepCopy(Of IMapperBuilder)()
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.Mapping.IMapperBuilder)()
+  name.vb: DeepCopy(Of IMapperBuilder)()
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy<IMapperBuilder>
+    nameWithType: Map.DeepCopy<IMapperBuilder>
+    fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.Mapping.IMapperBuilder>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy(Of IMapperBuilder)
+    nameWithType: Map.DeepCopy(Of IMapperBuilder)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.Mapping.IMapperBuilder)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  isExternal: false
+  name: DeepCopy<T>(T)
+  nameWithType: Map.DeepCopy<T>(T)
+  fullName: CodeJam.Mapping.Map.DeepCopy<T>(T)
+  nameWithType.vb: Map.DeepCopy(Of T)(T)
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of T)(T)
+  name.vb: DeepCopy(Of T)(T)
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy<T>
+    nameWithType: Map.DeepCopy<T>
+    fullName: CodeJam.Mapping.Map.DeepCopy<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy(Of T)
+    nameWithType: Map.DeepCopy(Of T)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.Map
+  commentId: T:CodeJam.Mapping.Map
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: Map
+  nameWithType: Map
+  fullName: CodeJam.Mapping.Map
+- uid: CodeJam.Mapping.IMapperBuilder.MappingSchema*
+  commentId: Overload:CodeJam.Mapping.IMapperBuilder.MappingSchema
+  isExternal: false
+  name: MappingSchema
+  nameWithType: IMapperBuilder.MappingSchema
+  fullName: CodeJam.Mapping.IMapperBuilder.MappingSchema
+- uid: CodeJam.Mapping.MappingSchema
+  commentId: T:CodeJam.Mapping.MappingSchema
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: MappingSchema
+  nameWithType: MappingSchema
+  fullName: CodeJam.Mapping.MappingSchema
+- uid: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx*
+  commentId: Overload:CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+  isExternal: false
+  name: GetMapperLambdaExpressionEx
+  nameWithType: IMapperBuilder.GetMapperLambdaExpressionEx
+  fullName: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+- uid: System.Linq.Expressions.LambdaExpression
+  commentId: T:System.Linq.Expressions.LambdaExpression
+  parent: System.Linq.Expressions
+  isExternal: true
+  name: LambdaExpression
+  nameWithType: LambdaExpression
+  fullName: System.Linq.Expressions.LambdaExpression
+- uid: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
+  isExternal: false
+  name: System.Linq.Expressions
+  nameWithType: System.Linq.Expressions
+  fullName: System.Linq.Expressions
+- uid: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression*
+  commentId: Overload:CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+  isExternal: false
+  name: GetMapperLambdaExpression
+  nameWithType: IMapperBuilder.GetMapperLambdaExpression
+  fullName: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+- uid: CodeJam.Mapping.IMapperBuilder.MemberFilter*
+  commentId: Overload:CodeJam.Mapping.IMapperBuilder.MemberFilter
+  isExternal: false
+  name: MemberFilter
+  nameWithType: IMapperBuilder.MemberFilter
+  fullName: CodeJam.Mapping.IMapperBuilder.MemberFilter
+- uid: System.Func{CodeJam.Reflection.MemberAccessor,System.Boolean}
+  commentId: T:System.Func{CodeJam.Reflection.MemberAccessor,System.Boolean}
+  parent: System
+  definition: System.Func`2
+  name: Func<MemberAccessor, Boolean>
+  nameWithType: Func<MemberAccessor, Boolean>
+  fullName: System.Func<CodeJam.Reflection.MemberAccessor, System.Boolean>
+  nameWithType.vb: Func(Of MemberAccessor, Boolean)
+  fullName.vb: System.Func(Of CodeJam.Reflection.MemberAccessor, System.Boolean)
+  name.vb: Func(Of MemberAccessor, Boolean)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.Reflection.MemberAccessor
+    name: MemberAccessor
+    nameWithType: MemberAccessor
+    fullName: CodeJam.Reflection.MemberAccessor
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.Reflection.MemberAccessor
+    name: MemberAccessor
+    nameWithType: MemberAccessor
+    fullName: CodeJam.Reflection.MemberAccessor
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Mapping.IMapperBuilder.FromMappingDictionary*
+  commentId: Overload:CodeJam.Mapping.IMapperBuilder.FromMappingDictionary
+  isExternal: false
+  name: FromMappingDictionary
+  nameWithType: IMapperBuilder.FromMappingDictionary
+  fullName: CodeJam.Mapping.IMapperBuilder.FromMappingDictionary
+- uid: System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.Dictionary{System.String,System.String}}
+  commentId: T:System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.Dictionary{System.String,System.String}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<Type, Dictionary<String, String>>
+  nameWithType: Dictionary<Type, Dictionary<String, String>>
+  fullName: System.Collections.Generic.Dictionary<System.Type, System.Collections.Generic.Dictionary<System.String, System.String>>
+  nameWithType.vb: Dictionary(Of Type, Dictionary(Of String, String))
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.Type, System.Collections.Generic.Dictionary(Of System.String, System.String))
+  name.vb: Dictionary(Of Type, Dictionary(Of String, String))
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: CodeJam.Mapping.IMapperBuilder.ToMappingDictionary*
+  commentId: Overload:CodeJam.Mapping.IMapperBuilder.ToMappingDictionary
+  isExternal: false
+  name: ToMappingDictionary
+  nameWithType: IMapperBuilder.ToMappingDictionary
+  fullName: CodeJam.Mapping.IMapperBuilder.ToMappingDictionary
+- uid: CodeJam.Mapping.IMapperBuilder.MemberMappers*
+  commentId: Overload:CodeJam.Mapping.IMapperBuilder.MemberMappers
+  isExternal: false
+  name: MemberMappers
+  nameWithType: IMapperBuilder.MemberMappers
+  fullName: CodeJam.Mapping.IMapperBuilder.MemberMappers
+- uid: System.Collections.Generic.List{System.}
+  commentId: T:System.Collections.Generic.List{System.}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<>
+  nameWithType: List<>
+  fullName: System.Collections.Generic.List<System.>
+  nameWithType.vb: List(Of )
+  fullName.vb: System.Collections.Generic.List(Of System.)
+  name.vb: List(Of )
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.
+    name: ''
+    nameWithType: ''
+    fullName: System.
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.
+    name: ''
+    nameWithType: ''
+    fullName: System.
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+  commentId: M:CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+  parent: CodeJam.Mapping.IMapperBuilder
+  isExternal: false
+  name: GetMapperLambdaExpressionEx()
+  nameWithType: IMapperBuilder.GetMapperLambdaExpressionEx()
+  fullName: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx()
+  spec.csharp:
+  - uid: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+    name: GetMapperLambdaExpressionEx
+    nameWithType: IMapperBuilder.GetMapperLambdaExpressionEx
+    fullName: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+    name: GetMapperLambdaExpressionEx
+    nameWithType: IMapperBuilder.GetMapperLambdaExpressionEx
+    fullName: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+  commentId: M:CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+  parent: CodeJam.Mapping.IMapperBuilder
+  isExternal: false
+  name: GetMapperLambdaExpression()
+  nameWithType: IMapperBuilder.GetMapperLambdaExpression()
+  fullName: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression()
+  spec.csharp:
+  - uid: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+    name: GetMapperLambdaExpression
+    nameWithType: IMapperBuilder.GetMapperLambdaExpression
+    fullName: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+    name: GetMapperLambdaExpression
+    nameWithType: IMapperBuilder.GetMapperLambdaExpression
+    fullName: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.IMapperBuilder.ProcessCrossReferences*
+  commentId: Overload:CodeJam.Mapping.IMapperBuilder.ProcessCrossReferences
+  isExternal: false
+  name: ProcessCrossReferences
+  nameWithType: IMapperBuilder.ProcessCrossReferences
+  fullName: CodeJam.Mapping.IMapperBuilder.ProcessCrossReferences
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Boolean>
+  nameWithType: Nullable<Boolean>
+  fullName: System.Nullable<System.Boolean>
+  nameWithType.vb: Nullable(Of Boolean)
+  fullName.vb: System.Nullable(Of System.Boolean)
+  name.vb: Nullable(Of Boolean)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.IMapperBuilder
+  commentId: T:CodeJam.Mapping.IMapperBuilder
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: IMapperBuilder
+  nameWithType: IMapperBuilder
+  fullName: CodeJam.Mapping.IMapperBuilder
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.IMapperBuilder.DeepCopy*
+  commentId: Overload:CodeJam.Mapping.IMapperBuilder.DeepCopy
+  isExternal: false
+  name: DeepCopy
+  nameWithType: IMapperBuilder.DeepCopy
+  fullName: CodeJam.Mapping.IMapperBuilder.DeepCopy
+- uid: CodeJam.Mapping.IMapperBuilder.FromType*
+  commentId: Overload:CodeJam.Mapping.IMapperBuilder.FromType
+  isExternal: false
+  name: FromType
+  nameWithType: IMapperBuilder.FromType
+  fullName: CodeJam.Mapping.IMapperBuilder.FromType
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: CodeJam.Mapping.IMapperBuilder.ToType*
+  commentId: Overload:CodeJam.Mapping.IMapperBuilder.ToType
+  isExternal: false
+  name: ToType
+  nameWithType: IMapperBuilder.ToType
+  fullName: CodeJam.Mapping.IMapperBuilder.ToType

@@ -1,0 +1,2296 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam
+  commentId: N:CodeJam
+  id: CodeJam
+  children:
+  - CodeJam.Algorithms
+  - CodeJam.Code
+  - CodeJam.CodeExceptions
+  - CodeJam.DebugCode
+  - CodeJam.DebugEnumCode
+  - CodeJam.DebugUriCode
+  - CodeJam.Disposable
+  - CodeJam.Disposable.EmptyDisposable
+  - CodeJam.DisposableExtensions
+  - CodeJam.EnumCode
+  - CodeJam.EnumCodeExceptions
+  - CodeJam.EnumHelper
+  - CodeJam.EnumValue
+  - CodeJam.EnumValues
+  - CodeJam.ExceptionExtensions
+  - CodeJam.Fn
+  - CodeJam.Fn`1
+  - CodeJam.HashCode
+  - CodeJam.HGlobal
+  - CodeJam.HGlobalScope
+  - CodeJam.HGlobalScope`1
+  - CodeJam.IOneOf`2
+  - CodeJam.IOneOf`3
+  - CodeJam.IOneOf`4
+  - CodeJam.IOneOf`5
+  - CodeJam.IOneOf`6
+  - CodeJam.IOneOf`7
+  - CodeJam.IOneOf`8
+  - CodeJam.IOption`1
+  - CodeJam.Lazy
+  - CodeJam.Memory
+  - CodeJam.NullableHelper
+  - CodeJam.OneOf`2
+  - CodeJam.OneOf`3
+  - CodeJam.OneOf`4
+  - CodeJam.OneOf`5
+  - CodeJam.OneOf`6
+  - CodeJam.OneOf`7
+  - CodeJam.OneOf`8
+  - CodeJam.Option
+  - CodeJam.Option`1
+  - CodeJam.Option`1.None
+  - CodeJam.Option`1.Some
+  - CodeJam.UriCode
+  - CodeJam.UriCodeExceptions
+  - CodeJam.UriHelper
+  - CodeJam.ValueOneOf`2
+  - CodeJam.ValueOneOf`3
+  - CodeJam.ValueOneOf`4
+  - CodeJam.ValueOneOf`5
+  - CodeJam.ValueOneOf`6
+  - CodeJam.ValueOneOf`7
+  - CodeJam.ValueOneOf`8
+  - CodeJam.ValueOption
+  - CodeJam.ValueOption`1
+  langs:
+  - csharp
+  - vb
+  name: CodeJam
+  nameWithType: CodeJam
+  fullName: CodeJam
+  type: Namespace
+  assemblies:
+  - CodeJam
+references:
+- uid: CodeJam.Algorithms
+  commentId: T:CodeJam.Algorithms
+  parent: CodeJam
+  isExternal: false
+  name: Algorithms
+  nameWithType: Algorithms
+  fullName: CodeJam.Algorithms
+- uid: CodeJam.HashCode
+  commentId: T:CodeJam.HashCode
+  isExternal: false
+  name: HashCode
+  nameWithType: HashCode
+  fullName: CodeJam.HashCode
+- uid: CodeJam.Code
+  commentId: T:CodeJam.Code
+  isExternal: false
+  name: Code
+  nameWithType: Code
+  fullName: CodeJam.Code
+- uid: CodeJam.DebugUriCode
+  commentId: T:CodeJam.DebugUriCode
+  isExternal: false
+  name: DebugUriCode
+  nameWithType: DebugUriCode
+  fullName: CodeJam.DebugUriCode
+- uid: CodeJam.DebugEnumCode
+  commentId: T:CodeJam.DebugEnumCode
+  isExternal: false
+  name: DebugEnumCode
+  nameWithType: DebugEnumCode
+  fullName: CodeJam.DebugEnumCode
+- uid: CodeJam.UriCodeExceptions
+  commentId: T:CodeJam.UriCodeExceptions
+  isExternal: false
+  name: UriCodeExceptions
+  nameWithType: UriCodeExceptions
+  fullName: CodeJam.UriCodeExceptions
+- uid: CodeJam.UriCode
+  commentId: T:CodeJam.UriCode
+  isExternal: false
+  name: UriCode
+  nameWithType: UriCode
+  fullName: CodeJam.UriCode
+- uid: CodeJam.EnumCodeExceptions
+  commentId: T:CodeJam.EnumCodeExceptions
+  isExternal: false
+  name: EnumCodeExceptions
+  nameWithType: EnumCodeExceptions
+  fullName: CodeJam.EnumCodeExceptions
+- uid: CodeJam.CodeExceptions
+  commentId: T:CodeJam.CodeExceptions
+  isExternal: false
+  name: CodeExceptions
+  nameWithType: CodeExceptions
+  fullName: CodeJam.CodeExceptions
+- uid: CodeJam.DebugCode
+  commentId: T:CodeJam.DebugCode
+  isExternal: false
+  name: DebugCode
+  nameWithType: DebugCode
+  fullName: CodeJam.DebugCode
+- uid: CodeJam.EnumCode
+  commentId: T:CodeJam.EnumCode
+  isExternal: false
+  name: EnumCode
+  nameWithType: EnumCode
+  fullName: CodeJam.EnumCode
+- uid: CodeJam.EnumValue
+  commentId: T:CodeJam.EnumValue
+  parent: CodeJam
+  isExternal: false
+  name: EnumValue
+  nameWithType: EnumValue
+  fullName: CodeJam.EnumValue
+- uid: CodeJam.EnumHelper
+  commentId: T:CodeJam.EnumHelper
+  parent: CodeJam
+  isExternal: false
+  name: EnumHelper
+  nameWithType: EnumHelper
+  fullName: CodeJam.EnumHelper
+- uid: CodeJam.EnumValues
+  commentId: T:CodeJam.EnumValues
+  parent: CodeJam
+  isExternal: false
+  name: EnumValues
+  nameWithType: EnumValues
+  fullName: CodeJam.EnumValues
+- uid: CodeJam.ExceptionExtensions
+  commentId: T:CodeJam.ExceptionExtensions
+  isExternal: false
+  name: ExceptionExtensions
+  nameWithType: ExceptionExtensions
+  fullName: CodeJam.ExceptionExtensions
+- uid: CodeJam.Fn
+  commentId: T:CodeJam.Fn
+  isExternal: false
+  name: Fn
+  nameWithType: Fn
+  fullName: CodeJam.Fn
+- uid: CodeJam.Lazy
+  commentId: T:CodeJam.Lazy
+  isExternal: false
+  name: Lazy
+  nameWithType: Lazy
+  fullName: CodeJam.Lazy
+- uid: CodeJam.NullableHelper
+  commentId: T:CodeJam.NullableHelper
+  parent: CodeJam
+  isExternal: false
+  name: NullableHelper
+  nameWithType: NullableHelper
+  fullName: CodeJam.NullableHelper
+- uid: CodeJam.IOneOf`2
+  commentId: T:CodeJam.IOneOf`2
+  isExternal: false
+  name: IOneOf<T1, T2>
+  nameWithType: IOneOf<T1, T2>
+  fullName: CodeJam.IOneOf<T1, T2>
+  nameWithType.vb: IOneOf(Of T1, T2)
+  fullName.vb: CodeJam.IOneOf(Of T1, T2)
+  name.vb: IOneOf(Of T1, T2)
+  spec.csharp:
+  - uid: CodeJam.IOneOf`2
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.IOneOf`2
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IOneOf`3
+  commentId: T:CodeJam.IOneOf`3
+  isExternal: false
+  name: IOneOf<T1, T2, T3>
+  nameWithType: IOneOf<T1, T2, T3>
+  fullName: CodeJam.IOneOf<T1, T2, T3>
+  nameWithType.vb: IOneOf(Of T1, T2, T3)
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3)
+  name.vb: IOneOf(Of T1, T2, T3)
+  spec.csharp:
+  - uid: CodeJam.IOneOf`3
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.IOneOf`3
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IOneOf`4
+  commentId: T:CodeJam.IOneOf`4
+  isExternal: false
+  name: IOneOf<T1, T2, T3, T4>
+  nameWithType: IOneOf<T1, T2, T3, T4>
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4>
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4)
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4)
+  name.vb: IOneOf(Of T1, T2, T3, T4)
+  spec.csharp:
+  - uid: CodeJam.IOneOf`4
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.IOneOf`4
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IOneOf`5
+  commentId: T:CodeJam.IOneOf`5
+  isExternal: false
+  name: IOneOf<T1, T2, T3, T4, T5>
+  nameWithType: IOneOf<T1, T2, T3, T4, T5>
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5>
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5)
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5)
+  name.vb: IOneOf(Of T1, T2, T3, T4, T5)
+  spec.csharp:
+  - uid: CodeJam.IOneOf`5
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.IOneOf`5
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IOneOf`6
+  commentId: T:CodeJam.IOneOf`6
+  isExternal: false
+  name: IOneOf<T1, T2, T3, T4, T5, T6>
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6>
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6>
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6)
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6)
+  name.vb: IOneOf(Of T1, T2, T3, T4, T5, T6)
+  spec.csharp:
+  - uid: CodeJam.IOneOf`6
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.IOneOf`6
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IOneOf`7
+  commentId: T:CodeJam.IOneOf`7
+  isExternal: false
+  name: IOneOf<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  name.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  spec.csharp:
+  - uid: CodeJam.IOneOf`7
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.IOneOf`7
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IOneOf`8
+  commentId: T:CodeJam.IOneOf`8
+  isExternal: false
+  name: IOneOf<T1, T2, T3, T4, T5, T6, T7, T8>
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7, T8>
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7, T8>
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7, T8)
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7, T8)
+  name.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7, T8)
+  spec.csharp:
+  - uid: CodeJam.IOneOf`8
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T8
+    nameWithType: T8
+    fullName: T8
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.IOneOf`8
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T8
+    nameWithType: T8
+    fullName: T8
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.OneOf`2
+  commentId: T:CodeJam.OneOf`2
+  parent: CodeJam
+  isExternal: false
+  name: OneOf<T1, T2>
+  nameWithType: OneOf<T1, T2>
+  fullName: CodeJam.OneOf<T1, T2>
+  nameWithType.vb: OneOf(Of T1, T2)
+  fullName.vb: CodeJam.OneOf(Of T1, T2)
+  name.vb: OneOf(Of T1, T2)
+  spec.csharp:
+  - uid: CodeJam.OneOf`2
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.OneOf`2
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.OneOf`3
+  commentId: T:CodeJam.OneOf`3
+  parent: CodeJam
+  isExternal: false
+  name: OneOf<T1, T2, T3>
+  nameWithType: OneOf<T1, T2, T3>
+  fullName: CodeJam.OneOf<T1, T2, T3>
+  nameWithType.vb: OneOf(Of T1, T2, T3)
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3)
+  name.vb: OneOf(Of T1, T2, T3)
+  spec.csharp:
+  - uid: CodeJam.OneOf`3
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.OneOf`3
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.OneOf`4
+  commentId: T:CodeJam.OneOf`4
+  parent: CodeJam
+  isExternal: false
+  name: OneOf<T1, T2, T3, T4>
+  nameWithType: OneOf<T1, T2, T3, T4>
+  fullName: CodeJam.OneOf<T1, T2, T3, T4>
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4)
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4)
+  name.vb: OneOf(Of T1, T2, T3, T4)
+  spec.csharp:
+  - uid: CodeJam.OneOf`4
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.OneOf`4
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.OneOf`5
+  commentId: T:CodeJam.OneOf`5
+  parent: CodeJam
+  isExternal: false
+  name: OneOf<T1, T2, T3, T4, T5>
+  nameWithType: OneOf<T1, T2, T3, T4, T5>
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5>
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5)
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5)
+  name.vb: OneOf(Of T1, T2, T3, T4, T5)
+  spec.csharp:
+  - uid: CodeJam.OneOf`5
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.OneOf`5
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.OneOf`6
+  commentId: T:CodeJam.OneOf`6
+  parent: CodeJam
+  isExternal: false
+  name: OneOf<T1, T2, T3, T4, T5, T6>
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6>
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6>
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6)
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6)
+  name.vb: OneOf(Of T1, T2, T3, T4, T5, T6)
+  spec.csharp:
+  - uid: CodeJam.OneOf`6
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.OneOf`6
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.OneOf`7
+  commentId: T:CodeJam.OneOf`7
+  parent: CodeJam
+  isExternal: false
+  name: OneOf<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  name.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  spec.csharp:
+  - uid: CodeJam.OneOf`7
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.OneOf`7
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.OneOf`8
+  commentId: T:CodeJam.OneOf`8
+  parent: CodeJam
+  isExternal: false
+  name: OneOf<T1, T2, T3, T4, T5, T6, T7, T8>
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7, T8>
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7, T8>
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7, T8)
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7, T8)
+  name.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7, T8)
+  spec.csharp:
+  - uid: CodeJam.OneOf`8
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T8
+    nameWithType: T8
+    fullName: T8
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.OneOf`8
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T8
+    nameWithType: T8
+    fullName: T8
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.ValueOneOf`2
+  commentId: T:CodeJam.ValueOneOf`2
+  parent: CodeJam
+  isExternal: false
+  name: ValueOneOf<T1, T2>
+  nameWithType: ValueOneOf<T1, T2>
+  fullName: CodeJam.ValueOneOf<T1, T2>
+  nameWithType.vb: ValueOneOf(Of T1, T2)
+  fullName.vb: CodeJam.ValueOneOf(Of T1, T2)
+  name.vb: ValueOneOf(Of T1, T2)
+  spec.csharp:
+  - uid: CodeJam.ValueOneOf`2
+    name: ValueOneOf
+    nameWithType: ValueOneOf
+    fullName: CodeJam.ValueOneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.ValueOneOf`2
+    name: ValueOneOf
+    nameWithType: ValueOneOf
+    fullName: CodeJam.ValueOneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.ValueOneOf`3
+  commentId: T:CodeJam.ValueOneOf`3
+  parent: CodeJam
+  isExternal: false
+  name: ValueOneOf<T1, T2, T3>
+  nameWithType: ValueOneOf<T1, T2, T3>
+  fullName: CodeJam.ValueOneOf<T1, T2, T3>
+  nameWithType.vb: ValueOneOf(Of T1, T2, T3)
+  fullName.vb: CodeJam.ValueOneOf(Of T1, T2, T3)
+  name.vb: ValueOneOf(Of T1, T2, T3)
+  spec.csharp:
+  - uid: CodeJam.ValueOneOf`3
+    name: ValueOneOf
+    nameWithType: ValueOneOf
+    fullName: CodeJam.ValueOneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.ValueOneOf`3
+    name: ValueOneOf
+    nameWithType: ValueOneOf
+    fullName: CodeJam.ValueOneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.ValueOneOf`4
+  commentId: T:CodeJam.ValueOneOf`4
+  parent: CodeJam
+  isExternal: false
+  name: ValueOneOf<T1, T2, T3, T4>
+  nameWithType: ValueOneOf<T1, T2, T3, T4>
+  fullName: CodeJam.ValueOneOf<T1, T2, T3, T4>
+  nameWithType.vb: ValueOneOf(Of T1, T2, T3, T4)
+  fullName.vb: CodeJam.ValueOneOf(Of T1, T2, T3, T4)
+  name.vb: ValueOneOf(Of T1, T2, T3, T4)
+  spec.csharp:
+  - uid: CodeJam.ValueOneOf`4
+    name: ValueOneOf
+    nameWithType: ValueOneOf
+    fullName: CodeJam.ValueOneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.ValueOneOf`4
+    name: ValueOneOf
+    nameWithType: ValueOneOf
+    fullName: CodeJam.ValueOneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.ValueOneOf`5
+  commentId: T:CodeJam.ValueOneOf`5
+  parent: CodeJam
+  isExternal: false
+  name: ValueOneOf<T1, T2, T3, T4, T5>
+  nameWithType: ValueOneOf<T1, T2, T3, T4, T5>
+  fullName: CodeJam.ValueOneOf<T1, T2, T3, T4, T5>
+  nameWithType.vb: ValueOneOf(Of T1, T2, T3, T4, T5)
+  fullName.vb: CodeJam.ValueOneOf(Of T1, T2, T3, T4, T5)
+  name.vb: ValueOneOf(Of T1, T2, T3, T4, T5)
+  spec.csharp:
+  - uid: CodeJam.ValueOneOf`5
+    name: ValueOneOf
+    nameWithType: ValueOneOf
+    fullName: CodeJam.ValueOneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.ValueOneOf`5
+    name: ValueOneOf
+    nameWithType: ValueOneOf
+    fullName: CodeJam.ValueOneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.ValueOneOf`6
+  commentId: T:CodeJam.ValueOneOf`6
+  parent: CodeJam
+  isExternal: false
+  name: ValueOneOf<T1, T2, T3, T4, T5, T6>
+  nameWithType: ValueOneOf<T1, T2, T3, T4, T5, T6>
+  fullName: CodeJam.ValueOneOf<T1, T2, T3, T4, T5, T6>
+  nameWithType.vb: ValueOneOf(Of T1, T2, T3, T4, T5, T6)
+  fullName.vb: CodeJam.ValueOneOf(Of T1, T2, T3, T4, T5, T6)
+  name.vb: ValueOneOf(Of T1, T2, T3, T4, T5, T6)
+  spec.csharp:
+  - uid: CodeJam.ValueOneOf`6
+    name: ValueOneOf
+    nameWithType: ValueOneOf
+    fullName: CodeJam.ValueOneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.ValueOneOf`6
+    name: ValueOneOf
+    nameWithType: ValueOneOf
+    fullName: CodeJam.ValueOneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.ValueOneOf`7
+  commentId: T:CodeJam.ValueOneOf`7
+  parent: CodeJam
+  isExternal: false
+  name: ValueOneOf<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType: ValueOneOf<T1, T2, T3, T4, T5, T6, T7>
+  fullName: CodeJam.ValueOneOf<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType.vb: ValueOneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  fullName.vb: CodeJam.ValueOneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  name.vb: ValueOneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  spec.csharp:
+  - uid: CodeJam.ValueOneOf`7
+    name: ValueOneOf
+    nameWithType: ValueOneOf
+    fullName: CodeJam.ValueOneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.ValueOneOf`7
+    name: ValueOneOf
+    nameWithType: ValueOneOf
+    fullName: CodeJam.ValueOneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.ValueOneOf`8
+  commentId: T:CodeJam.ValueOneOf`8
+  parent: CodeJam
+  isExternal: false
+  name: ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>
+  nameWithType: ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>
+  fullName: CodeJam.ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>
+  nameWithType.vb: ValueOneOf(Of T1, T2, T3, T4, T5, T6, T7, T8)
+  fullName.vb: CodeJam.ValueOneOf(Of T1, T2, T3, T4, T5, T6, T7, T8)
+  name.vb: ValueOneOf(Of T1, T2, T3, T4, T5, T6, T7, T8)
+  spec.csharp:
+  - uid: CodeJam.ValueOneOf`8
+    name: ValueOneOf
+    nameWithType: ValueOneOf
+    fullName: CodeJam.ValueOneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T8
+    nameWithType: T8
+    fullName: T8
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.ValueOneOf`8
+    name: ValueOneOf
+    nameWithType: ValueOneOf
+    fullName: CodeJam.ValueOneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T8
+    nameWithType: T8
+    fullName: T8
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IOption`1
+  commentId: T:CodeJam.IOption`1
+  isExternal: false
+  name: IOption<T>
+  nameWithType: IOption<T>
+  fullName: CodeJam.IOption<T>
+  nameWithType.vb: IOption(Of T)
+  fullName.vb: CodeJam.IOption(Of T)
+  name.vb: IOption(Of T)
+  spec.csharp:
+  - uid: CodeJam.IOption`1
+    name: IOption
+    nameWithType: IOption
+    fullName: CodeJam.IOption
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.IOption`1
+    name: IOption
+    nameWithType: IOption
+    fullName: CodeJam.IOption
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Option
+  commentId: T:CodeJam.Option
+  parent: CodeJam
+  isExternal: false
+  name: Option
+  nameWithType: Option
+  fullName: CodeJam.Option
+- uid: CodeJam.ValueOption
+  commentId: T:CodeJam.ValueOption
+  parent: CodeJam
+  isExternal: false
+  name: ValueOption
+  nameWithType: ValueOption
+  fullName: CodeJam.ValueOption
+- uid: CodeJam.Option`1
+  commentId: T:CodeJam.Option`1
+  parent: CodeJam
+  isExternal: false
+  name: Option<T>
+  nameWithType: Option<T>
+  fullName: CodeJam.Option<T>
+  nameWithType.vb: Option(Of T)
+  fullName.vb: CodeJam.Option(Of T)
+  name.vb: Option(Of T)
+  spec.csharp:
+  - uid: CodeJam.Option`1
+    name: Option
+    nameWithType: Option
+    fullName: CodeJam.Option
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Option`1
+    name: Option
+    nameWithType: Option
+    fullName: CodeJam.Option
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Option`1.Some
+  commentId: T:CodeJam.Option`1.Some
+  isExternal: false
+  name: Option.Some<>
+  nameWithType: Option.Some<>
+  fullName: CodeJam.Option.Some<>
+  nameWithType.vb: Option.Some(Of )
+  fullName.vb: CodeJam.Option.Some(Of )
+  name.vb: Option.Some(Of )
+  spec.csharp:
+  - uid: CodeJam.Option`1.Some
+    name: Option.Some
+    nameWithType: Option.Some
+    fullName: CodeJam.Option.Some
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Option`1.Some
+    name: Option.Some
+    nameWithType: Option.Some
+    fullName: CodeJam.Option.Some
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Option`1.None
+  commentId: T:CodeJam.Option`1.None
+  isExternal: false
+  name: Option.None<>
+  nameWithType: Option.None<>
+  fullName: CodeJam.Option.None<>
+  nameWithType.vb: Option.None(Of )
+  fullName.vb: CodeJam.Option.None(Of )
+  name.vb: Option.None(Of )
+  spec.csharp:
+  - uid: CodeJam.Option`1.None
+    name: Option.None
+    nameWithType: Option.None
+    fullName: CodeJam.Option.None
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Option`1.None
+    name: Option.None
+    nameWithType: Option.None
+    fullName: CodeJam.Option.None
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.DisposableExtensions
+  commentId: T:CodeJam.DisposableExtensions
+  isExternal: false
+  name: DisposableExtensions
+  nameWithType: DisposableExtensions
+  fullName: CodeJam.DisposableExtensions
+- uid: CodeJam.Disposable
+  commentId: T:CodeJam.Disposable
+  isExternal: false
+  name: Disposable
+  nameWithType: Disposable
+  fullName: CodeJam.Disposable
+- uid: CodeJam.Disposable.EmptyDisposable
+  commentId: T:CodeJam.Disposable.EmptyDisposable
+  parent: CodeJam
+  isExternal: false
+  name: Disposable.EmptyDisposable
+  nameWithType: Disposable.EmptyDisposable
+  fullName: CodeJam.Disposable.EmptyDisposable
+- uid: CodeJam.Fn`1
+  commentId: T:CodeJam.Fn`1
+  isExternal: false
+  name: Fn<T>
+  nameWithType: Fn<T>
+  fullName: CodeJam.Fn<T>
+  nameWithType.vb: Fn(Of T)
+  fullName.vb: CodeJam.Fn(Of T)
+  name.vb: Fn(Of T)
+  spec.csharp:
+  - uid: CodeJam.Fn`1
+    name: Fn
+    nameWithType: Fn
+    fullName: CodeJam.Fn
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Fn`1
+    name: Fn
+    nameWithType: Fn
+    fullName: CodeJam.Fn
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.ValueOption`1
+  commentId: T:CodeJam.ValueOption`1
+  parent: CodeJam
+  isExternal: false
+  name: ValueOption<T>
+  nameWithType: ValueOption<T>
+  fullName: CodeJam.ValueOption<T>
+  nameWithType.vb: ValueOption(Of T)
+  fullName.vb: CodeJam.ValueOption(Of T)
+  name.vb: ValueOption(Of T)
+  spec.csharp:
+  - uid: CodeJam.ValueOption`1
+    name: ValueOption
+    nameWithType: ValueOption
+    fullName: CodeJam.ValueOption
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.ValueOption`1
+    name: ValueOption
+    nameWithType: ValueOption
+    fullName: CodeJam.ValueOption
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.UriHelper
+  commentId: T:CodeJam.UriHelper
+  isExternal: false
+  name: UriHelper
+  nameWithType: UriHelper
+  fullName: CodeJam.UriHelper
+- uid: CodeJam.HGlobal
+  commentId: T:CodeJam.HGlobal
+  isExternal: false
+  name: HGlobal
+  nameWithType: HGlobal
+  fullName: CodeJam.HGlobal
+- uid: CodeJam.HGlobalScope
+  commentId: T:CodeJam.HGlobalScope
+  parent: CodeJam
+  isExternal: false
+  name: HGlobalScope
+  nameWithType: HGlobalScope
+  fullName: CodeJam.HGlobalScope
+- uid: CodeJam.HGlobalScope`1
+  commentId: T:CodeJam.HGlobalScope`1
+  isExternal: false
+  name: HGlobalScope<T>
+  nameWithType: HGlobalScope<T>
+  fullName: CodeJam.HGlobalScope<T>
+  nameWithType.vb: HGlobalScope(Of T)
+  fullName.vb: CodeJam.HGlobalScope(Of T)
+  name.vb: HGlobalScope(Of T)
+  spec.csharp:
+  - uid: CodeJam.HGlobalScope`1
+    name: HGlobalScope
+    nameWithType: HGlobalScope
+    fullName: CodeJam.HGlobalScope
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.HGlobalScope`1
+    name: HGlobalScope
+    nameWithType: HGlobalScope
+    fullName: CodeJam.HGlobalScope
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Memory
+  commentId: T:CodeJam.Memory
+  isExternal: false
+  name: Memory
+  nameWithType: Memory
+  fullName: CodeJam.Memory
+- uid: CodeJam
+  commentId: N:CodeJam
+  isExternal: false
+  name: CodeJam
+  nameWithType: CodeJam
+  fullName: CodeJam

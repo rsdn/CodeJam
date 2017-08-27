@@ -1,0 +1,1139 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.ValueOption
+  commentId: T:CodeJam.ValueOption
+  id: ValueOption
+  parent: CodeJam
+  children:
+  - CodeJam.ValueOption.None``1
+  - CodeJam.ValueOption.Some``1(``0)
+  - CodeJam.ValueOption.SomeHasValue``1(``0)
+  - CodeJam.ValueOption.SomeHasValue``1(System.Nullable{``0})
+  - CodeJam.ValueOption.With``2(CodeJam.ValueOption{``0},System.Func{``0,``1})
+  - CodeJam.ValueOption.With``2(CodeJam.ValueOption{``0},System.Func{``0,``1},``1)
+  - CodeJam.ValueOption.With``2(CodeJam.ValueOption{``0},System.Func{``0,``1},System.Func{``1})
+  langs:
+  - csharp
+  - vb
+  name: ValueOption
+  nameWithType: ValueOption
+  fullName: CodeJam.ValueOption
+  type: Class
+  source:
+    remote:
+      path: Main/src/Structures/Option/ValueOption.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ValueOption
+    path: ../Main/src/Structures/Option/ValueOption.cs
+    startLine: 9
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nMethods to work with <xref href=\"CodeJam.ValueOption\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public static class ValueOption
+    content.vb: Public Module ValueOption
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.ValueOption.Some``1(``0)
+  commentId: M:CodeJam.ValueOption.Some``1(``0)
+  id: Some``1(``0)
+  parent: CodeJam.ValueOption
+  langs:
+  - csharp
+  - vb
+  name: Some<T>(T)
+  nameWithType: ValueOption.Some<T>(T)
+  fullName: CodeJam.ValueOption.Some<T>(T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/Option/ValueOption.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Some
+    path: ../Main/src/Structures/Option/ValueOption.cs
+    startLine: 18
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCreates instance of <xref href=\"CodeJam.ValueOption\" data-throw-if-not-resolved=\"false\"></xref> with specified value.\n"
+  example: []
+  syntax:
+    content: public static ValueOption<T> Some<T>(T value)
+    parameters:
+    - id: value
+      type: '{T}'
+      description: Value
+    typeParameters:
+    - id: T
+      description: Type of value
+    return:
+      type: CodeJam.ValueOption{{T}}
+      description: Instance of <xref href="CodeJam.ValueOption" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function Some(Of T)(value As T) As ValueOption(Of T)
+  overload: CodeJam.ValueOption.Some*
+  nameWithType.vb: ValueOption.Some(Of T)(T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.ValueOption.Some(Of T)(T)
+  name.vb: Some(Of T)(T)
+- uid: CodeJam.ValueOption.SomeHasValue``1(``0)
+  commentId: M:CodeJam.ValueOption.SomeHasValue``1(``0)
+  id: SomeHasValue``1(``0)
+  parent: CodeJam.ValueOption
+  langs:
+  - csharp
+  - vb
+  name: SomeHasValue<T>(T)
+  nameWithType: ValueOption.SomeHasValue<T>(T)
+  fullName: CodeJam.ValueOption.SomeHasValue<T>(T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/Option/ValueOption.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SomeHasValue
+    path: ../Main/src/Structures/Option/ValueOption.cs
+    startLine: 30
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCreates instance of <xref href=\"CodeJam.ValueOption\" data-throw-if-not-resolved=\"false\"></xref> with specified value, if value not null.\n"
+  example: []
+  syntax:
+    content: 'public static ValueOption<T> SomeHasValue<T>(T value)where T : class'
+    parameters:
+    - id: value
+      type: '{T}'
+      description: Value
+    typeParameters:
+    - id: T
+      description: Type of value
+    return:
+      type: CodeJam.ValueOption{{T}}
+      description: "\nInstance of <xref href=\"CodeJam.ValueOption\" data-throw-if-not-resolved=\"false\"></xref> with <code data-dev-comment-type=\"paramref\" class=\"paramref\">value</code>, if <code data-dev-comment-type=\"paramref\" class=\"paramref\">value</code> not null,\nor instance without value.\n"
+    content.vb: Public Shared Function SomeHasValue(Of T As Class)(value As T) As ValueOption(Of T)
+  overload: CodeJam.ValueOption.SomeHasValue*
+  nameWithType.vb: ValueOption.SomeHasValue(Of T)(T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.ValueOption.SomeHasValue(Of T)(T)
+  name.vb: SomeHasValue(Of T)(T)
+- uid: CodeJam.ValueOption.SomeHasValue``1(System.Nullable{``0})
+  commentId: M:CodeJam.ValueOption.SomeHasValue``1(System.Nullable{``0})
+  id: SomeHasValue``1(System.Nullable{``0})
+  parent: CodeJam.ValueOption
+  langs:
+  - csharp
+  - vb
+  name: SomeHasValue<T>(Nullable<T>)
+  nameWithType: ValueOption.SomeHasValue<T>(Nullable<T>)
+  fullName: CodeJam.ValueOption.SomeHasValue<T>(System.Nullable<T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/Option/ValueOption.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SomeHasValue
+    path: ../Main/src/Structures/Option/ValueOption.cs
+    startLine: 43
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCreates instance of <xref href=\"CodeJam.ValueOption\" data-throw-if-not-resolved=\"false\"></xref> with specified value, if <code data-dev-comment-type=\"paramref\" class=\"paramref\">value</code> has value.\n"
+  example: []
+  syntax:
+    content: 'public static ValueOption<T> SomeHasValue<T>(T? value)where T : struct'
+    parameters:
+    - id: value
+      type: System.Nullable{{T}}
+      description: Value
+    typeParameters:
+    - id: T
+      description: Type of value
+    return:
+      type: CodeJam.ValueOption{{T}}
+      description: "\nInstance of <xref href=\"CodeJam.ValueOption\" data-throw-if-not-resolved=\"false\"></xref> with <code data-dev-comment-type=\"paramref\" class=\"paramref\">value</code>, if <code data-dev-comment-type=\"paramref\" class=\"paramref\">value</code> has value,\nor instance without value.\n"
+    content.vb: Public Shared Function SomeHasValue(Of T As Structure)(value As T?) As ValueOption(Of T)
+  overload: CodeJam.ValueOption.SomeHasValue*
+  nameWithType.vb: ValueOption.SomeHasValue(Of T)(Nullable(Of T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.ValueOption.SomeHasValue(Of T)(System.Nullable(Of T))
+  name.vb: SomeHasValue(Of T)(Nullable(Of T))
+- uid: CodeJam.ValueOption.None``1
+  commentId: M:CodeJam.ValueOption.None``1
+  id: None``1
+  parent: CodeJam.ValueOption
+  langs:
+  - csharp
+  - vb
+  name: None<T>()
+  nameWithType: ValueOption.None<T>()
+  fullName: CodeJam.ValueOption.None<T>()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/Option/ValueOption.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: None
+    path: ../Main/src/Structures/Option/ValueOption.cs
+    startLine: 52
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCreates instance of <xref href=\"CodeJam.ValueOption\" data-throw-if-not-resolved=\"false\"></xref> without value.\n"
+  example: []
+  syntax:
+    content: public static ValueOption<T> None<T>()
+    typeParameters:
+    - id: T
+      description: Type of value.
+    return:
+      type: CodeJam.ValueOption{{T}}
+      description: Instance without value.
+    content.vb: Public Shared Function None(Of T) As ValueOption(Of T)
+  overload: CodeJam.ValueOption.None*
+  nameWithType.vb: ValueOption.None(Of T)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.ValueOption.None(Of T)()
+  name.vb: None(Of T)()
+- uid: CodeJam.ValueOption.With``2(CodeJam.ValueOption{``0},System.Func{``0,``1})
+  commentId: M:CodeJam.ValueOption.With``2(CodeJam.ValueOption{``0},System.Func{``0,``1})
+  id: With``2(CodeJam.ValueOption{``0},System.Func{``0,``1})
+  isExtensionMethod: true
+  parent: CodeJam.ValueOption
+  langs:
+  - csharp
+  - vb
+  name: With<T, TResult>(ValueOption<T>, Func<T, TResult>)
+  nameWithType: ValueOption.With<T, TResult>(ValueOption<T>, Func<T, TResult>)
+  fullName: CodeJam.ValueOption.With<T, TResult>(CodeJam.ValueOption<T>, System.Func<T, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/Option/ValueOption.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: With
+    path: ../Main/src/Structures/Option/ValueOption.cs
+    startLine: 66
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nConverts <code data-dev-comment-type=\"paramref\" class=\"paramref\">option</code> value to another option with <code data-dev-comment-type=\"paramref\" class=\"paramref\">selectFunc</code>.\n"
+  example: []
+  syntax:
+    content: public static ValueOption<TResult> With<T, TResult>(this ValueOption<T> option, Func<T, TResult> selectFunc)
+    parameters:
+    - id: option
+      type: CodeJam.ValueOption{{T}}
+      description: <xref href="CodeJam.ValueOption" data-throw-if-not-resolved="false"></xref> instance to match.
+    - id: selectFunc
+      type: System.Func{{T},{TResult}}
+      description: Function to map value
+    typeParameters:
+    - id: T
+      description: Type of value
+    - id: TResult
+      description: Type of result
+    return:
+      type: CodeJam.ValueOption{{TResult}}
+      description: "\nConverted by <code data-dev-comment-type=\"paramref\" class=\"paramref\">selectFunc</code> value, or option with no value, if <code data-dev-comment-type=\"paramref\" class=\"paramref\">option</code>\nhas no value.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function With(Of T, TResult)(option As ValueOption(Of T), selectFunc As Func(Of T, TResult)) As ValueOption(Of TResult)
+  overload: CodeJam.ValueOption.With*
+  nameWithType.vb: ValueOption.With(Of T, TResult)(ValueOption(Of T), Func(Of T, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.ValueOption.With(Of T, TResult)(CodeJam.ValueOption(Of T), System.Func(Of T, TResult))
+  name.vb: With(Of T, TResult)(ValueOption(Of T), Func(Of T, TResult))
+- uid: CodeJam.ValueOption.With``2(CodeJam.ValueOption{``0},System.Func{``0,``1},``1)
+  commentId: M:CodeJam.ValueOption.With``2(CodeJam.ValueOption{``0},System.Func{``0,``1},``1)
+  id: With``2(CodeJam.ValueOption{``0},System.Func{``0,``1},``1)
+  isExtensionMethod: true
+  parent: CodeJam.ValueOption
+  langs:
+  - csharp
+  - vb
+  name: With<T, TResult>(ValueOption<T>, Func<T, TResult>, TResult)
+  nameWithType: ValueOption.With<T, TResult>(ValueOption<T>, Func<T, TResult>, TResult)
+  fullName: CodeJam.ValueOption.With<T, TResult>(CodeJam.ValueOption<T>, System.Func<T, TResult>, TResult)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/Option/ValueOption.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: With
+    path: ../Main/src/Structures/Option/ValueOption.cs
+    startLine: 88
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nConverts <code data-dev-comment-type=\"paramref\" class=\"paramref\">option</code> value to another option with <code data-dev-comment-type=\"paramref\" class=\"paramref\">selectFunc</code>.\n"
+  example: []
+  syntax:
+    content: public static ValueOption<TResult> With<T, TResult>(this ValueOption<T> option, Func<T, TResult> selectFunc, TResult defaultValue)
+    parameters:
+    - id: option
+      type: CodeJam.ValueOption{{T}}
+      description: <xref href="CodeJam.ValueOption" data-throw-if-not-resolved="false"></xref> instance to match.
+    - id: selectFunc
+      type: System.Func{{T},{TResult}}
+      description: Function to map value
+    - id: defaultValue
+      type: '{TResult}'
+      description: Default value.
+    typeParameters:
+    - id: T
+      description: Type of value
+    - id: TResult
+      description: Type of result
+    return:
+      type: CodeJam.ValueOption{{TResult}}
+      description: "\nConverted by <code data-dev-comment-type=\"paramref\" class=\"paramref\">selectFunc</code> value, or option with <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code>, if\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">option</code> has no value.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function With(Of T, TResult)(option As ValueOption(Of T), selectFunc As Func(Of T, TResult), defaultValue As TResult) As ValueOption(Of TResult)
+  overload: CodeJam.ValueOption.With*
+  nameWithType.vb: ValueOption.With(Of T, TResult)(ValueOption(Of T), Func(Of T, TResult), TResult)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.ValueOption.With(Of T, TResult)(CodeJam.ValueOption(Of T), System.Func(Of T, TResult), TResult)
+  name.vb: With(Of T, TResult)(ValueOption(Of T), Func(Of T, TResult), TResult)
+- uid: CodeJam.ValueOption.With``2(CodeJam.ValueOption{``0},System.Func{``0,``1},System.Func{``1})
+  commentId: M:CodeJam.ValueOption.With``2(CodeJam.ValueOption{``0},System.Func{``0,``1},System.Func{``1})
+  id: With``2(CodeJam.ValueOption{``0},System.Func{``0,``1},System.Func{``1})
+  isExtensionMethod: true
+  parent: CodeJam.ValueOption
+  langs:
+  - csharp
+  - vb
+  name: With<T, TResult>(ValueOption<T>, Func<T, TResult>, Func<TResult>)
+  nameWithType: ValueOption.With<T, TResult>(ValueOption<T>, Func<T, TResult>, Func<TResult>)
+  fullName: CodeJam.ValueOption.With<T, TResult>(CodeJam.ValueOption<T>, System.Func<T, TResult>, System.Func<TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/Option/ValueOption.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: With
+    path: ../Main/src/Structures/Option/ValueOption.cs
+    startLine: 111
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nConverts <code data-dev-comment-type=\"paramref\" class=\"paramref\">option</code> value to another option with <code data-dev-comment-type=\"paramref\" class=\"paramref\">selectFunc</code>.\n"
+  example: []
+  syntax:
+    content: public static ValueOption<TResult> With<T, TResult>(this ValueOption<T> option, Func<T, TResult> selectFunc, Func<TResult> defaultFunc)
+    parameters:
+    - id: option
+      type: CodeJam.ValueOption{{T}}
+      description: <xref href="CodeJam.ValueOption" data-throw-if-not-resolved="false"></xref> instance to match.
+    - id: selectFunc
+      type: System.Func{{T},{TResult}}
+      description: Function to map value
+    - id: defaultFunc
+      type: System.Func{{TResult}}
+      description: Function to return default value.
+    typeParameters:
+    - id: T
+      description: Type of value
+    - id: TResult
+      description: Type of result
+    return:
+      type: CodeJam.ValueOption{{TResult}}
+      description: "\nConverted by <code data-dev-comment-type=\"paramref\" class=\"paramref\">selectFunc</code> value, or option with value returned by\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultFunc</code>, if <code data-dev-comment-type=\"paramref\" class=\"paramref\">option</code> has no value.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function With(Of T, TResult)(option As ValueOption(Of T), selectFunc As Func(Of T, TResult), defaultFunc As Func(Of TResult)) As ValueOption(Of TResult)
+  overload: CodeJam.ValueOption.With*
+  nameWithType.vb: ValueOption.With(Of T, TResult)(ValueOption(Of T), Func(Of T, TResult), Func(Of TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.ValueOption.With(Of T, TResult)(CodeJam.ValueOption(Of T), System.Func(Of T, TResult), System.Func(Of TResult))
+  name.vb: With(Of T, TResult)(ValueOption(Of T), Func(Of T, TResult), Func(Of TResult))
+references:
+- uid: CodeJam.ValueOption
+  commentId: T:CodeJam.ValueOption
+  parent: CodeJam
+  isExternal: false
+  name: ValueOption
+  nameWithType: ValueOption
+  fullName: CodeJam.ValueOption
+- uid: CodeJam
+  commentId: N:CodeJam
+  isExternal: false
+  name: CodeJam
+  nameWithType: CodeJam
+  fullName: CodeJam
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.ValueOption.Some*
+  commentId: Overload:CodeJam.ValueOption.Some
+  isExternal: false
+  name: Some
+  nameWithType: ValueOption.Some
+  fullName: CodeJam.ValueOption.Some
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: CodeJam.ValueOption{{T}}
+  commentId: T:CodeJam.ValueOption{``0}
+  parent: CodeJam
+  definition: CodeJam.ValueOption`1
+  name: ValueOption<T>
+  nameWithType: ValueOption<T>
+  fullName: CodeJam.ValueOption<T>
+  nameWithType.vb: ValueOption(Of T)
+  fullName.vb: CodeJam.ValueOption(Of T)
+  name.vb: ValueOption(Of T)
+  spec.csharp:
+  - uid: CodeJam.ValueOption`1
+    name: ValueOption
+    nameWithType: ValueOption
+    fullName: CodeJam.ValueOption
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.ValueOption`1
+    name: ValueOption
+    nameWithType: ValueOption
+    fullName: CodeJam.ValueOption
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: CodeJam.ValueOption`1
+  commentId: T:CodeJam.ValueOption`1
+  parent: CodeJam
+  isExternal: false
+  name: ValueOption<T>
+  nameWithType: ValueOption<T>
+  fullName: CodeJam.ValueOption<T>
+  nameWithType.vb: ValueOption(Of T)
+  fullName.vb: CodeJam.ValueOption(Of T)
+  name.vb: ValueOption(Of T)
+  spec.csharp:
+  - uid: CodeJam.ValueOption`1
+    name: ValueOption
+    nameWithType: ValueOption
+    fullName: CodeJam.ValueOption
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.ValueOption`1
+    name: ValueOption
+    nameWithType: ValueOption
+    fullName: CodeJam.ValueOption
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.ValueOption.SomeHasValue*
+  commentId: Overload:CodeJam.ValueOption.SomeHasValue
+  isExternal: false
+  name: SomeHasValue
+  nameWithType: ValueOption.SomeHasValue
+  fullName: CodeJam.ValueOption.SomeHasValue
+- uid: System.Nullable{{T}}
+  commentId: T:System.Nullable{``0}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.ValueOption.None*
+  commentId: Overload:CodeJam.ValueOption.None
+  isExternal: false
+  name: None
+  nameWithType: ValueOption.None
+  fullName: CodeJam.ValueOption.None
+- uid: CodeJam.ValueOption.With*
+  commentId: Overload:CodeJam.ValueOption.With
+  isExternal: false
+  name: With
+  nameWithType: ValueOption.With
+  fullName: CodeJam.ValueOption.With
+- uid: System.Func{{T},{TResult}}
+  commentId: T:System.Func{``0,``1}
+  parent: System
+  definition: System.Func`2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.ValueOption{{TResult}}
+  commentId: T:CodeJam.ValueOption{``1}
+  parent: CodeJam
+  definition: CodeJam.ValueOption`1
+  name: ValueOption<TResult>
+  nameWithType: ValueOption<TResult>
+  fullName: CodeJam.ValueOption<TResult>
+  nameWithType.vb: ValueOption(Of TResult)
+  fullName.vb: CodeJam.ValueOption(Of TResult)
+  name.vb: ValueOption(Of TResult)
+  spec.csharp:
+  - uid: CodeJam.ValueOption`1
+    name: ValueOption
+    nameWithType: ValueOption
+    fullName: CodeJam.ValueOption
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.ValueOption`1
+    name: ValueOption
+    nameWithType: ValueOption
+    fullName: CodeJam.ValueOption
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: '{TResult}'
+  commentId: '!:TResult'
+  definition: TResult
+  name: TResult
+  nameWithType: TResult
+  fullName: TResult
+- uid: TResult
+  isExternal: false
+  name: TResult
+  nameWithType: TResult
+  fullName: TResult
+- uid: System.Func{{TResult}}
+  commentId: T:System.Func{``0}
+  parent: System
+  definition: System.Func`1
+  name: Func<TResult>
+  nameWithType: Func<TResult>
+  fullName: System.Func<TResult>
+  nameWithType.vb: Func(Of TResult)
+  fullName.vb: System.Func(Of TResult)
+  name.vb: Func(Of TResult)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`1
+  commentId: T:System.Func`1
+  isExternal: true
+  name: Func<TResult>
+  nameWithType: Func<TResult>
+  fullName: System.Func<TResult>
+  nameWithType.vb: Func(Of TResult)
+  fullName.vb: System.Func(Of TResult)
+  name.vb: Func(Of TResult)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )

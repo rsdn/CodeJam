@@ -1,0 +1,773 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface ILazyDictionary&lt;TKey, TValue&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface ILazyDictionary&lt;TKey, TValue&gt;
+   ">
+    <meta name="generator" content="docfx 2.23.1.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CodeJam.Collections.ILazyDictionary`2">
+  
+  
+  <h1 id="CodeJam_Collections_ILazyDictionary_2" data-uid="CodeJam.Collections.ILazyDictionary`2" class="text-break">Interface ILazyDictionary&lt;TKey, TValue&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>Dictionary with lazy values initialization.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Collections.Generic.IReadOnlyDictionary&lt;TKey, TValue&gt;.ContainsKey(TKey)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.IReadOnlyDictionary&lt;TKey, TValue&gt;.TryGetValue(TKey, TValue)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.IReadOnlyDictionary&lt;TKey, TValue&gt;.Item[TKey]</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.IReadOnlyDictionary&lt;TKey, TValue&gt;.Keys</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.IReadOnlyDictionary&lt;TKey, TValue&gt;.Values</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.IReadOnlyCollection&lt;System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;&gt;.Count</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;&gt;.GetEnumerator()</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.IEnumerable.GetEnumerator()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CodeJam.Collections.html">CodeJam.Collections</a></h6>
+  <h6><strong>Assembly</strong>: CodeJam.dll</h6>
+  <h5 id="CodeJam_Collections_ILazyDictionary_2_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ILazyDictionary&lt;TKey, TValue&gt; : IReadOnlyDictionary&lt;TKey, TValue&gt;, IReadOnlyCollection&lt;KeyValuePair&lt;TKey, TValue&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;TKey, TValue&gt;&gt;, IEnumerable</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TKey</span></td>
+        <td><p>Type of key</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TValue</span></td>
+        <td><p>Type of value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_ILazyDictionary_2_Clear.md&amp;value=---%0Auid%3A%20CodeJam.Collections.ILazyDictionary%602.Clear%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/Dictionary/ILazyDictionary.cs/#L19">View Source</a>
+  </span>
+  <a id="CodeJam_Collections_ILazyDictionary_2_Clear_" data-uid="CodeJam.Collections.ILazyDictionary`2.Clear*"></a>
+  <h4 id="CodeJam_Collections_ILazyDictionary_2_Clear" data-uid="CodeJam.Collections.ILazyDictionary`2.Clear">Clear()</h4>
+  <div class="markdown level1 summary"><p>Clears all created values</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Clear()</code></pre>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="CodeJam.Collections.DictionaryExtensions.html#CodeJam_Collections_DictionaryExtensions_GetValueOrDefault__2_System_Collections_Generic_IReadOnlyDictionary___0___1____0_">DictionaryExtensions.GetValueOrDefault&lt;TKey, TValue&gt;(IReadOnlyDictionary&lt;TKey, TValue&gt;, TKey)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.DictionaryExtensions.html#CodeJam_Collections_DictionaryExtensions_GetValueOrDefault__2_System_Collections_Generic_IReadOnlyDictionary___0___1____0___1_">DictionaryExtensions.GetValueOrDefault&lt;TKey, TValue&gt;(IReadOnlyDictionary&lt;TKey, TValue&gt;, TKey, TValue)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.DictionaryExtensions.html#CodeJam_Collections_DictionaryExtensions_GetValueOrDefault__3_System_Collections_Generic_IReadOnlyDictionary___0___1____0_System_Func___0___1___2__">DictionaryExtensions.GetValueOrDefault&lt;TKey, TValue, TResult&gt;(IReadOnlyDictionary&lt;TKey, TValue&gt;, TKey, Func&lt;TKey, TValue, TResult&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.DictionaryExtensions.html#CodeJam_Collections_DictionaryExtensions_GetValueOrDefault__3_System_Collections_Generic_IReadOnlyDictionary___0___1____0_System_Func___0___1___2____2_">DictionaryExtensions.GetValueOrDefault&lt;TKey, TValue, TResult&gt;(IReadOnlyDictionary&lt;TKey, TValue&gt;, TKey, Func&lt;TKey, TValue, TResult&gt;, TResult)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.DictionaryExtensions.html#CodeJam_Collections_DictionaryExtensions_GetValueOrDefault__2_System_Collections_Generic_IReadOnlyDictionary___0___1____0_System_Func___0___1__">DictionaryExtensions.GetValueOrDefault&lt;TKey, TValue&gt;(IReadOnlyDictionary&lt;TKey, TValue&gt;, TKey, Func&lt;TKey, TValue&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.DictionaryExtensions.html#CodeJam_Collections_DictionaryExtensions_GetValueOrDefault__3_System_Collections_Generic_IReadOnlyDictionary___0___1____0_System_Func___0___1___2__System_Func___0___2__">DictionaryExtensions.GetValueOrDefault&lt;TKey, TValue, TResult&gt;(IReadOnlyDictionary&lt;TKey, TValue&gt;, TKey, Func&lt;TKey, TValue, TResult&gt;, Func&lt;TKey, TResult&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_AggregateOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0___0___0____0_">EnumerableExtensions.AggregateOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TSource, TSource&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_AggregateOrDefault__2_System_Collections_Generic_IEnumerable___0____1_System_Func___1___0___1____1_">EnumerableExtensions.AggregateOrDefault&lt;TSource, TAccumulate&gt;(IEnumerable&lt;TSource&gt;, TAccumulate, Func&lt;TAccumulate, TSource, TAccumulate&gt;, TAccumulate)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_AggregateOrDefault__3_System_Collections_Generic_IEnumerable___0____1_System_Func___1___0___1__System_Func___1___2____2_">EnumerableExtensions.AggregateOrDefault&lt;TSource, TAccumulate, TResult&gt;(IEnumerable&lt;TSource&gt;, TAccumulate, Func&lt;TAccumulate, TSource, TAccumulate&gt;, Func&lt;TAccumulate, TResult&gt;, TResult)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_AggregateOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0___0___0__System_Func___0__">EnumerableExtensions.AggregateOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TSource, TSource&gt;, Func&lt;TSource&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_AggregateOrDefault__2_System_Collections_Generic_IEnumerable___0____1_System_Func___1___0___1__System_Func___1__">EnumerableExtensions.AggregateOrDefault&lt;TSource, TAccumulate&gt;(IEnumerable&lt;TSource&gt;, TAccumulate, Func&lt;TAccumulate, TSource, TAccumulate&gt;, Func&lt;TAccumulate&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_AggregateOrDefault__3_System_Collections_Generic_IEnumerable___0____1_System_Func___1___0___1__System_Func___1___2__System_Func___2__">EnumerableExtensions.AggregateOrDefault&lt;TSource, TAccumulate, TResult&gt;(IEnumerable&lt;TSource&gt;, TAccumulate, Func&lt;TAccumulate, TSource, TAccumulate&gt;, Func&lt;TAccumulate, TResult&gt;, Func&lt;TResult&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinOrDefault__1_System_Collections_Generic_IEnumerable___0__">EnumerableExtensions.MinOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinOrDefault__1_System_Collections_Generic_IEnumerable___0____0_">EnumerableExtensions.MinOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IComparer___0__">EnumerableExtensions.MinOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, IComparer&lt;TSource&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IComparer___0____0_">EnumerableExtensions.MinOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, IComparer&lt;TSource&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinOrDefault__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__">EnumerableExtensions.MinOrDefault&lt;TSource, T&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinOrDefault__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1____1_">EnumerableExtensions.MinOrDefault&lt;TSource, T&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, T&gt;, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinOrDefault__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Collections_Generic_IComparer___1__">EnumerableExtensions.MinOrDefault&lt;TSource, T&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, T&gt;, IComparer&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinOrDefault__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Collections_Generic_IComparer___1____1_">EnumerableExtensions.MinOrDefault&lt;TSource, T&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, T&gt;, IComparer&lt;T&gt;, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxOrDefault__1_System_Collections_Generic_IEnumerable___0__">EnumerableExtensions.MaxOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxOrDefault__1_System_Collections_Generic_IEnumerable___0____0_">EnumerableExtensions.MaxOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IComparer___0__">EnumerableExtensions.MaxOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, IComparer&lt;TSource&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IComparer___0____0_">EnumerableExtensions.MaxOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, IComparer&lt;TSource&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxOrDefault__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__">EnumerableExtensions.MaxOrDefault&lt;TSource, T&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxOrDefault__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1____1_">EnumerableExtensions.MaxOrDefault&lt;TSource, T&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, T&gt;, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxOrDefault__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Collections_Generic_IComparer___1__">EnumerableExtensions.MaxOrDefault&lt;TSource, T&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, T&gt;, IComparer&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxOrDefault__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Collections_Generic_IComparer___1____1_">EnumerableExtensions.MaxOrDefault&lt;TSource, T&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, T&gt;, IComparer&lt;T&gt;, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_ToDictionary__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__CodeJam_Collections_DictionaryDuplicate_">EnumerableExtensions.ToDictionary&lt;T, TKey&gt;(IEnumerable&lt;T&gt;, Func&lt;T, TKey&gt;, DictionaryDuplicate)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_ToDictionary__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Collections_Generic_IEqualityComparer___1__CodeJam_Collections_DictionaryDuplicate_">EnumerableExtensions.ToDictionary&lt;T, TKey&gt;(IEnumerable&lt;T&gt;, Func&lt;T, TKey&gt;, IEqualityComparer&lt;TKey&gt;, DictionaryDuplicate)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_ToDictionary__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0___2__CodeJam_Collections_DictionaryDuplicate_">EnumerableExtensions.ToDictionary&lt;T, TKey, TElement&gt;(IEnumerable&lt;T&gt;, Func&lt;T, TKey&gt;, Func&lt;T, TElement&gt;, DictionaryDuplicate)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_ToDictionary__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0___2__System_Collections_Generic_IEqualityComparer___1__CodeJam_Collections_DictionaryDuplicate_">EnumerableExtensions.ToDictionary&lt;T, TKey, TElement&gt;(IEnumerable&lt;T&gt;, Func&lt;T, TKey&gt;, Func&lt;T, TElement&gt;, IEqualityComparer&lt;TKey&gt;, DictionaryDuplicate)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_WithIndex__1_System_Collections_Generic_IEnumerable___0__">EnumerableExtensions.WithIndex&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_CombineWithPrevious__2_System_Collections_Generic_IEnumerable___0__System_Func___0___0___1__">EnumerableExtensions.CombineWithPrevious&lt;T, TResult&gt;(IEnumerable&lt;T&gt;, Func&lt;T, T, TResult&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_CombineWithPrevious__2_System_Collections_Generic_IEnumerable___0____0_System_Func___0___0___1__">EnumerableExtensions.CombineWithPrevious&lt;T, TResult&gt;(IEnumerable&lt;T&gt;, T, Func&lt;T, T, TResult&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_CombineWithNext__2_System_Collections_Generic_IEnumerable___0____0_System_Func___0___0___1__">EnumerableExtensions.CombineWithNext&lt;T, TResult&gt;(IEnumerable&lt;T&gt;, T, Func&lt;T, T, TResult&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_GroupWhileEquals__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__">EnumerableExtensions.GroupWhileEquals&lt;T, TKey&gt;(IEnumerable&lt;T&gt;, Func&lt;T, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_GroupWhileEquals__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Collections_Generic_IEqualityComparer___1__">EnumerableExtensions.GroupWhileEquals&lt;T, TKey&gt;(IEnumerable&lt;T&gt;, Func&lt;T, TKey&gt;, IEqualityComparer&lt;TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_GroupWhileEquals__3_System_Collections_Generic_IEnumerable___0__System_Func___0___2__System_Func___0___1__">EnumerableExtensions.GroupWhileEquals&lt;T, TItem, TKey&gt;(IEnumerable&lt;T&gt;, Func&lt;T, TKey&gt;, Func&lt;T, TItem&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_GroupWhileEquals__3_System_Collections_Generic_IEnumerable___0__System_Func___0___2__System_Func___0___1__System_Collections_Generic_IEqualityComparer___2__">EnumerableExtensions.GroupWhileEquals&lt;T, TItem, TKey&gt;(IEnumerable&lt;T&gt;, Func&lt;T, TKey&gt;, Func&lt;T, TItem&gt;, IEqualityComparer&lt;TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_GroupWhile__1_System_Collections_Generic_IEnumerable___0__System_Func___0___0_System_Boolean__">EnumerableExtensions.GroupWhile&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, T, Boolean&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_Page__1_System_Collections_Generic_IEnumerable___0__System_Int32_System_Int32_">EnumerableExtensions.Page&lt;T&gt;(IEnumerable&lt;T&gt;, Int32, Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_Slice__1_System_Collections_Generic_IEnumerable___0__System_Int32_System_Int32_">EnumerableExtensions.Slice&lt;T&gt;(IEnumerable&lt;T&gt;, Int32, Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_Flatten__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Collections_Generic_IEnumerable___0___">EnumerableExtensions.Flatten&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, IEnumerable&lt;T&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_TakeLast__1_System_Collections_Generic_IEnumerable___0__System_Int32_">EnumerableExtensions.TakeLast&lt;T&gt;(IEnumerable&lt;T&gt;, Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_Split__1_System_Collections_Generic_IEnumerable___0__System_Int32_">EnumerableExtensions.Split&lt;T&gt;(IEnumerable&lt;T&gt;, Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Byte__">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Byte&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Byte____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Byte&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Byte___">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Byte&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Byte_____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Byte&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_SByte__">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, SByte&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_SByte____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, SByte&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_SByte___">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;SByte&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_SByte_____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;SByte&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Int16__">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Int16&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Int16____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Int16&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Int16___">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Int16&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Int16_____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Int16&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_UInt16__">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, UInt16&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_UInt16____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, UInt16&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_UInt16___">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;UInt16&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_UInt16_____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;UInt16&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Int32__">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Int32&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Int32____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Int32&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Int32___">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Int32&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Int32_____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Int32&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_UInt32__">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, UInt32&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_UInt32____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, UInt32&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_UInt32___">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;UInt32&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_UInt32_____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;UInt32&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Int64__">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Int64&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Int64____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Int64&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Int64___">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Int64&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Int64_____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Int64&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_UInt64__">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, UInt64&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_UInt64____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, UInt64&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_UInt64___">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;UInt64&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_UInt64_____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;UInt64&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Single__">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Single&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Single____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Single&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Single___">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Single&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Single_____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Single&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Double__">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Double&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Double____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Double&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Double___">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Double&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Double_____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Double&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Decimal__">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Decimal&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Decimal____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Decimal&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Decimal___">EnumerableExtensions.MinBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Decimal&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Decimal_____0_">EnumerableExtensions.MinByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Decimal&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Byte__">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Byte&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Byte____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Byte&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Byte___">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Byte&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Byte_____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Byte&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_SByte__">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, SByte&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_SByte____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, SByte&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_SByte___">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;SByte&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_SByte_____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;SByte&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Int16__">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Int16&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Int16____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Int16&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Int16___">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Int16&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Int16_____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Int16&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_UInt16__">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, UInt16&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_UInt16____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, UInt16&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_UInt16___">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;UInt16&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_UInt16_____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;UInt16&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Int32__">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Int32&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Int32____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Int32&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Int32___">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Int32&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Int32_____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Int32&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_UInt32__">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, UInt32&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_UInt32____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, UInt32&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_UInt32___">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;UInt32&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_UInt32_____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;UInt32&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Int64__">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Int64&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Int64____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Int64&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Int64___">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Int64&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Int64_____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Int64&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_UInt64__">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, UInt64&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_UInt64____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, UInt64&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_UInt64___">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;UInt64&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_UInt64_____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;UInt64&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Single__">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Single&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Single____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Single&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Single___">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Single&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Single_____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Single&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Double__">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Double&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Double____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Double&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Double___">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Double&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Double_____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Double&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Decimal__">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Decimal&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Decimal____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Decimal&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Decimal___">EnumerableExtensions.MaxBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Decimal&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_System_Decimal_____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Nullable&lt;Decimal&gt;&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_TopoSort__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Collections_Generic_IEnumerable___0___">EnumerableExtensions.TopoSort&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, IEnumerable&lt;T&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_TopoSort__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Collections_Generic_IEnumerable___0___System_Func___0___1__">EnumerableExtensions.TopoSort&lt;T, TKey&gt;(IEnumerable&lt;T&gt;, Func&lt;T, IEnumerable&lt;T&gt;&gt;, Func&lt;T, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_TopoSort__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Collections_Generic_IEnumerable___0___System_Func___0___1__System_Collections_Generic_IEqualityComparer___1__">EnumerableExtensions.TopoSort&lt;T, TKey&gt;(IEnumerable&lt;T&gt;, Func&lt;T, IEnumerable&lt;T&gt;&gt;, Func&lt;T, TKey&gt;, IEqualityComparer&lt;TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_TopoSort__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Collections_Generic_IEnumerable___0___System_Collections_Generic_IEqualityComparer___0__">EnumerableExtensions.TopoSort&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, IEnumerable&lt;T&gt;&gt;, IEqualityComparer&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_GroupTopoSort__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Collections_Generic_IEnumerable___0___">EnumerableExtensions.GroupTopoSort&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, IEnumerable&lt;T&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_GroupTopoSort__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Collections_Generic_IEnumerable___0___System_Collections_Generic_IEqualityComparer___0__">EnumerableExtensions.GroupTopoSort&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, IEnumerable&lt;T&gt;&gt;, IEqualityComparer&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_Union__1_System_Collections_Generic_IEnumerable___0____0___">EnumerableExtensions.Union&lt;T&gt;(IEnumerable&lt;T&gt;, T[])</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_Concat__1_System_Collections_Generic_IEnumerable___0____0_">EnumerableExtensions.Concat&lt;T&gt;(IEnumerable&lt;T&gt;, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_Concat__1_System_Collections_Generic_IEnumerable___0____0___">EnumerableExtensions.Concat&lt;T&gt;(IEnumerable&lt;T&gt;, T[])</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_Prepend__1_System_Collections_Generic_IEnumerable___0____0_">EnumerableExtensions.Prepend&lt;T&gt;(IEnumerable&lt;T&gt;, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_Prepend__1_System_Collections_Generic_IEnumerable___0____0___">EnumerableExtensions.Prepend&lt;T&gt;(IEnumerable&lt;T&gt;, T[])</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_ToHashSet__1_System_Collections_Generic_IEnumerable___0__">EnumerableExtensions.ToHashSet&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_ToHashSet__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEqualityComparer___0__">EnumerableExtensions.ToHashSet&lt;T&gt;(IEnumerable&lt;T&gt;, IEqualityComparer&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_ToHashSet__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__">EnumerableExtensions.ToHashSet&lt;T, TKey&gt;(IEnumerable&lt;T&gt;, Func&lt;T, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_ToHashSet__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Collections_Generic_IEqualityComparer___1__">EnumerableExtensions.ToHashSet&lt;T, TKey&gt;(IEnumerable&lt;T&gt;, Func&lt;T, TKey&gt;, IEqualityComparer&lt;TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_OrderBy__1_System_Collections_Generic_IEnumerable___0__">EnumerableExtensions.OrderBy&lt;TSource&gt;(IEnumerable&lt;TSource&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_OrderByDescending__1_System_Collections_Generic_IEnumerable___0__">EnumerableExtensions.OrderByDescending&lt;TSource&gt;(IEnumerable&lt;TSource&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_DistinctBy__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__">EnumerableExtensions.DistinctBy&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_DistinctBy__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Collections_Generic_IEqualityComparer___1__">EnumerableExtensions.DistinctBy&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, IEqualityComparer&lt;TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_ExceptBy__2_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__System_Func___0___1__">EnumerableExtensions.ExceptBy&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_ExceptBy__2_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Collections_Generic_IEqualityComparer___1__">EnumerableExtensions.ExceptBy&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, IEqualityComparer&lt;TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_IntersectBy__2_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__System_Func___0___1__">EnumerableExtensions.IntersectBy&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_IntersectBy__2_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Collections_Generic_IEqualityComparer___1__">EnumerableExtensions.IntersectBy&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, IEqualityComparer&lt;TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_UnionBy__2_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__System_Func___0___1__">EnumerableExtensions.UnionBy&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_UnionBy__2_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Collections_Generic_IEqualityComparer___1__">EnumerableExtensions.UnionBy&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, IEqualityComparer&lt;TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_FirstOrDefault__1_System_Collections_Generic_IEnumerable___0____0_">EnumerableExtensions.FirstOrDefault&lt;T&gt;(IEnumerable&lt;T&gt;, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_FirstOrDefault__1_System_Collections_Generic_IEnumerable___0____0_System_Func___0_System_Boolean__">EnumerableExtensions.FirstOrDefault&lt;T&gt;(IEnumerable&lt;T&gt;, T, Func&lt;T, Boolean&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_AsList__1_System_Collections_Generic_IEnumerable___0__">EnumerableExtensions.AsList&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_AsArray__1_System_Collections_Generic_IEnumerable___0__">EnumerableExtensions.AsArray&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_ToStrings__1_System_Collections_Generic_IEnumerable___0__">EnumerableExtensions.ToStrings&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_IsFirst__1_System_Collections_Generic_IEnumerable___0____0_">EnumerableExtensions.IsFirst&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_IsFirst__1_System_Collections_Generic_IEnumerable___0____0_System_Collections_Generic_IEqualityComparer___0__">EnumerableExtensions.IsFirst&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, TSource, IEqualityComparer&lt;TSource&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_IsLast__1_System_Collections_Generic_IEnumerable___0____0_">EnumerableExtensions.IsLast&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_IsLast__1_System_Collections_Generic_IEnumerable___0____0_System_Collections_Generic_IEqualityComparer___0__">EnumerableExtensions.IsLast&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, TSource, IEqualityComparer&lt;TSource&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__">EnumerableExtensions.MinBy&lt;TSource, TValue&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TValue&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1____0_">EnumerableExtensions.MinByOrDefault&lt;TSource, TValue&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TValue&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinBy__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Collections_Generic_IComparer___1__">EnumerableExtensions.MinBy&lt;TSource, TValue&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TValue&gt;, IComparer&lt;TValue&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MinByOrDefault__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Collections_Generic_IComparer___1____0_">EnumerableExtensions.MinByOrDefault&lt;TSource, TValue&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TValue&gt;, IComparer&lt;TValue&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__">EnumerableExtensions.MaxBy&lt;TSource, TValue&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TValue&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource, TValue&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TValue&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxBy__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Collections_Generic_IComparer___1__">EnumerableExtensions.MaxBy&lt;TSource, TValue&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TValue&gt;, IComparer&lt;TValue&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Collections.EnumerableExtensions.html#CodeJam_Collections_EnumerableExtensions_MaxByOrDefault__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Collections_Generic_IComparer___1____0_">EnumerableExtensions.MaxByOrDefault&lt;TSource, TValue&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TValue&gt;, IComparer&lt;TValue&gt;, TSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_ToCompositeRange__2_System_Collections_Generic_IEnumerable___1__System_Func___1___0__System_Func___1___0__">CompositeRangeExtensions.ToCompositeRange&lt;T, TKey&gt;(IEnumerable&lt;TKey&gt;, Func&lt;TKey, T&gt;, Func&lt;TKey, T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_ToCompositeRange__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0___1__System_Func___0___2__">CompositeRangeExtensions.ToCompositeRange&lt;TSource, T, TKey&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, T&gt;, Func&lt;TSource, T&gt;, Func&lt;TSource, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_ToCompositeRangeFrom__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__">CompositeRangeExtensions.ToCompositeRangeFrom&lt;TSource, T&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_ToCompositeRangeFrom__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0___2__">CompositeRangeExtensions.ToCompositeRangeFrom&lt;TSource, T, TKey&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, T&gt;, Func&lt;TSource, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_ToCompositeRangeTo__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__">CompositeRangeExtensions.ToCompositeRangeTo&lt;TSource, T&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.CompositeRangeExtensions.html#CodeJam_Ranges_CompositeRangeExtensions_ToCompositeRangeTo__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0___2__">CompositeRangeExtensions.ToCompositeRangeTo&lt;TSource, T, TKey&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, T&gt;, Func&lt;TSource, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_Contains__2___1_CodeJam_Ranges_Range___0__">RangeExtensions.Contains&lt;T, TRange&gt;(TRange, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_StartsAfter__2___1_CodeJam_Ranges_Range___0__">RangeExtensions.StartsAfter&lt;T, TRange&gt;(TRange, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_EndsBefore__2___1_CodeJam_Ranges_Range___0__">RangeExtensions.EndsBefore&lt;T, TRange&gt;(TRange, Range&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_Contains__3___2_CodeJam_Ranges_Range___0___1__">RangeExtensions.Contains&lt;T, TKey, TRange&gt;(TRange, Range&lt;T, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_StartsAfter__3___2_CodeJam_Ranges_Range___0___1__">RangeExtensions.StartsAfter&lt;T, TKey, TRange&gt;(TRange, Range&lt;T, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Ranges.RangeExtensions.html#CodeJam_Ranges_RangeExtensions_EndsBefore__3___2_CodeJam_Ranges_Range___0___1__">RangeExtensions.EndsBefore&lt;T, TKey, TRange&gt;(TRange, Range&lt;T, TKey&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Strings.StringExtensions.html#CodeJam_Strings_StringExtensions_Join__1_System_Collections_Generic_IEnumerable___0__System_String_">StringExtensions.Join&lt;T&gt;(IEnumerable&lt;T&gt;, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Strings.StringExtensions.html#CodeJam_Strings_StringExtensions_Join__1_System_Collections_Generic_IEnumerable___0__">StringExtensions.Join&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Threading.ParallelExtensions.html#CodeJam_Threading_ParallelExtensions_RunInParallel__2_System_Collections_Generic_IEnumerable___0__System_Int32_System_Func___0___1__System_Int32_System_Action___1__System_String_">ParallelExtensions.RunInParallel&lt;TSource, TTarget&gt;(IEnumerable&lt;TSource&gt;, Int32, Func&lt;TSource, TTarget&gt;, Int32, Action&lt;TTarget&gt;, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Threading.ParallelExtensions.html#CodeJam_Threading_ParallelExtensions_RunInParallel__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Int32_System_Action___1__System_String_">ParallelExtensions.RunInParallel&lt;TSource, TTarget&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TTarget&gt;, Int32, Action&lt;TTarget&gt;, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Threading.ParallelExtensions.html#CodeJam_Threading_ParallelExtensions_RunInParallel__2_System_Collections_Generic_IEnumerable___0__System_Int32_System_Func___0___1__System_Action___1__System_String_">ParallelExtensions.RunInParallel&lt;TSource, TTarget&gt;(IEnumerable&lt;TSource&gt;, Int32, Func&lt;TSource, TTarget&gt;, Action&lt;TTarget&gt;, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Threading.ParallelExtensions.html#CodeJam_Threading_ParallelExtensions_RunInParallel__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Action___1__System_String_">ParallelExtensions.RunInParallel&lt;TSource, TTarget&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TTarget&gt;, Action&lt;TTarget&gt;, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Threading.ParallelExtensions.html#CodeJam_Threading_ParallelExtensions_RunInParallel__1_System_Collections_Generic_IEnumerable___0__System_Int32_System_Action___0__System_String_">ParallelExtensions.RunInParallel&lt;T&gt;(IEnumerable&lt;T&gt;, Int32, Action&lt;T&gt;, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.Threading.ParallelExtensions.html#CodeJam_Threading_ParallelExtensions_RunInParallel__1_System_Collections_Generic_IEnumerable___0__System_Action___0__System_String_">ParallelExtensions.RunInParallel&lt;T&gt;(IEnumerable&lt;T&gt;, Action&lt;T&gt;, String)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Collections_ILazyDictionary_2.md&amp;value=---%0Auid%3A%20CodeJam.Collections.ILazyDictionary%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Collections/Dictionary/ILazyDictionary.cs/#L13" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

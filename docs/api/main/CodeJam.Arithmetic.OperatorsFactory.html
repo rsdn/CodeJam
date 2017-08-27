@@ -1,0 +1,939 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class OperatorsFactory
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class OperatorsFactory
+   ">
+    <meta name="generator" content="docfx 2.23.1.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CodeJam.Arithmetic.OperatorsFactory">
+  
+  
+  <h1 id="CodeJam_Arithmetic_OperatorsFactory" data-uid="CodeJam.Arithmetic.OperatorsFactory" class="text-break">Class OperatorsFactory
+  </h1>
+  <div class="markdown level0 summary"><p>Helper class to emit operators logic</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">OperatorsFactory</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CodeJam.Arithmetic.html">CodeJam.Arithmetic</a></h6>
+  <h6><strong>Assembly</strong>: CodeJam.dll</h6>
+  <h5 id="CodeJam_Arithmetic_OperatorsFactory_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class OperatorsFactory</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Arithmetic_OperatorsFactory_BinaryOperator__1_System_Linq_Expressions_ExpressionType_.md&amp;value=---%0Auid%3A%20CodeJam.Arithmetic.OperatorsFactory.BinaryOperator%60%601(System.Linq.Expressions.ExpressionType)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Arithmetic/OperatorsFactory.cs/#L230">View Source</a>
+  </span>
+  <a id="CodeJam_Arithmetic_OperatorsFactory_BinaryOperator_" data-uid="CodeJam.Arithmetic.OperatorsFactory.BinaryOperator*"></a>
+  <h4 id="CodeJam_Arithmetic_OperatorsFactory_BinaryOperator__1_System_Linq_Expressions_ExpressionType_" data-uid="CodeJam.Arithmetic.OperatorsFactory.BinaryOperator``1(System.Linq.Expressions.ExpressionType)">BinaryOperator&lt;T&gt;(ExpressionType)</h4>
+  <div class="markdown level1 summary"><p>Binary operator factory method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Func&lt;T, T, T&gt; BinaryOperator&lt;T&gt;(ExpressionType operatorType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.ExpressionType</span></td>
+        <td><span class="parametername">operatorType</span></td>
+        <td><p>Type of the operator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, T, T&gt;</td>
+        <td><p>Callback for the operator</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the operands</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Arithmetic_OperatorsFactory_ClearFlagOperator__1.md&amp;value=---%0Auid%3A%20CodeJam.Arithmetic.OperatorsFactory.ClearFlagOperator%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Arithmetic/OperatorsFactory.cs/#L475">View Source</a>
+  </span>
+  <a id="CodeJam_Arithmetic_OperatorsFactory_ClearFlagOperator_" data-uid="CodeJam.Arithmetic.OperatorsFactory.ClearFlagOperator*"></a>
+  <h4 id="CodeJam_Arithmetic_OperatorsFactory_ClearFlagOperator__1" data-uid="CodeJam.Arithmetic.OperatorsFactory.ClearFlagOperator``1">ClearFlagOperator&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Emits code for (value &amp; ~flag) operator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Func&lt;T, T, T&gt; ClearFlagOperator&lt;T&gt;()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, T, T&gt;</td>
+        <td><p>Callback for (value &amp; ~flag) operator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the operands</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Arithmetic_OperatorsFactory_Comparison__1.md&amp;value=---%0Auid%3A%20CodeJam.Arithmetic.OperatorsFactory.Comparison%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Arithmetic/OperatorsFactory.cs/#L239">View Source</a>
+  </span>
+  <a id="CodeJam_Arithmetic_OperatorsFactory_Comparison_" data-uid="CodeJam.Arithmetic.OperatorsFactory.Comparison*"></a>
+  <h4 id="CodeJam_Arithmetic_OperatorsFactory_Comparison__1" data-uid="CodeJam.Arithmetic.OperatorsFactory.Comparison``1">Comparison&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Comparison factory method..</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Func&lt;T, T, int&gt; Comparison&lt;T&gt;()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, T, <span class="xref">System.Int32</span>&gt;</td>
+        <td><p>Callback for the comparison</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the operands</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Type does not implement IComparable nor IComparable{T} interface</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Arithmetic_OperatorsFactory_ComparisonOperator__1_System_Linq_Expressions_ExpressionType_.md&amp;value=---%0Auid%3A%20CodeJam.Arithmetic.OperatorsFactory.ComparisonOperator%60%601(System.Linq.Expressions.ExpressionType)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Arithmetic/OperatorsFactory.cs/#L370">View Source</a>
+  </span>
+  <a id="CodeJam_Arithmetic_OperatorsFactory_ComparisonOperator_" data-uid="CodeJam.Arithmetic.OperatorsFactory.ComparisonOperator*"></a>
+  <h4 id="CodeJam_Arithmetic_OperatorsFactory_ComparisonOperator__1_System_Linq_Expressions_ExpressionType_" data-uid="CodeJam.Arithmetic.OperatorsFactory.ComparisonOperator``1(System.Linq.Expressions.ExpressionType)">ComparisonOperator&lt;T&gt;(ExpressionType)</h4>
+  <div class="markdown level1 summary"><p>Compare operator factory method..</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Func&lt;T, T, bool&gt; ComparisonOperator&lt;T&gt;(ExpressionType comparisonType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.ExpressionType</span></td>
+        <td><span class="parametername">comparisonType</span></td>
+        <td><p>Type of the comparison operator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, T, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><p>Callback for the compare operator</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the operands</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Arithmetic_OperatorsFactory_GetNaN__1.md&amp;value=---%0Auid%3A%20CodeJam.Arithmetic.OperatorsFactory.GetNaN%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Arithmetic/OperatorsFactory.cs/#L155">View Source</a>
+  </span>
+  <a id="CodeJam_Arithmetic_OperatorsFactory_GetNaN_" data-uid="CodeJam.Arithmetic.OperatorsFactory.GetNaN*"></a>
+  <h4 id="CodeJam_Arithmetic_OperatorsFactory_GetNaN__1" data-uid="CodeJam.Arithmetic.OperatorsFactory.GetNaN``1">GetNaN&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Returns the NaN value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T GetNaN&lt;T&gt;()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The NaN value or <span class="xref">System.NotSupportedException</span> if the type has no corresponding value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type to get value for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown if the type has no corresponding value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Arithmetic_OperatorsFactory_GetNegativeInfinity__1.md&amp;value=---%0Auid%3A%20CodeJam.Arithmetic.OperatorsFactory.GetNegativeInfinity%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Arithmetic/OperatorsFactory.cs/#L181">View Source</a>
+  </span>
+  <a id="CodeJam_Arithmetic_OperatorsFactory_GetNegativeInfinity_" data-uid="CodeJam.Arithmetic.OperatorsFactory.GetNegativeInfinity*"></a>
+  <h4 id="CodeJam_Arithmetic_OperatorsFactory_GetNegativeInfinity__1" data-uid="CodeJam.Arithmetic.OperatorsFactory.GetNegativeInfinity``1">GetNegativeInfinity&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Returns the negative infinity value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T GetNegativeInfinity&lt;T&gt;()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The negative infinity value or <span class="xref">System.NotSupportedException</span> if the type has no corresponding value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type to get value for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown if the type has no corresponding value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Arithmetic_OperatorsFactory_GetPositiveInfinity__1.md&amp;value=---%0Auid%3A%20CodeJam.Arithmetic.OperatorsFactory.GetPositiveInfinity%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Arithmetic/OperatorsFactory.cs/#L207">View Source</a>
+  </span>
+  <a id="CodeJam_Arithmetic_OperatorsFactory_GetPositiveInfinity_" data-uid="CodeJam.Arithmetic.OperatorsFactory.GetPositiveInfinity*"></a>
+  <h4 id="CodeJam_Arithmetic_OperatorsFactory_GetPositiveInfinity__1" data-uid="CodeJam.Arithmetic.OperatorsFactory.GetPositiveInfinity``1">GetPositiveInfinity&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Returns the positive infinity value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T GetPositiveInfinity&lt;T&gt;()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The positive infinity value or <span class="xref">System.NotSupportedException</span> if the type has no corresponding value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type to get value for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown if the type has no corresponding value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Arithmetic_OperatorsFactory_HasNaN__1.md&amp;value=---%0Auid%3A%20CodeJam.Arithmetic.OperatorsFactory.HasNaN%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Arithmetic/OperatorsFactory.cs/#L142">View Source</a>
+  </span>
+  <a id="CodeJam_Arithmetic_OperatorsFactory_HasNaN_" data-uid="CodeJam.Arithmetic.OperatorsFactory.HasNaN*"></a>
+  <h4 id="CodeJam_Arithmetic_OperatorsFactory_HasNaN__1" data-uid="CodeJam.Arithmetic.OperatorsFactory.HasNaN``1">HasNaN&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Determines whether the type has NaN value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool HasNaN&lt;T&gt;()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the type has NaN.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Arithmetic_OperatorsFactory_HasNegativeInfinity__1.md&amp;value=---%0Auid%3A%20CodeJam.Arithmetic.OperatorsFactory.HasNegativeInfinity%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Arithmetic/OperatorsFactory.cs/#L168">View Source</a>
+  </span>
+  <a id="CodeJam_Arithmetic_OperatorsFactory_HasNegativeInfinity_" data-uid="CodeJam.Arithmetic.OperatorsFactory.HasNegativeInfinity*"></a>
+  <h4 id="CodeJam_Arithmetic_OperatorsFactory_HasNegativeInfinity__1" data-uid="CodeJam.Arithmetic.OperatorsFactory.HasNegativeInfinity``1">HasNegativeInfinity&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Determines whether the type has negative infinity value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool HasNegativeInfinity&lt;T&gt;()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the type has negative infinity value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Arithmetic_OperatorsFactory_HasPositiveInfinity__1.md&amp;value=---%0Auid%3A%20CodeJam.Arithmetic.OperatorsFactory.HasPositiveInfinity%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Arithmetic/OperatorsFactory.cs/#L194">View Source</a>
+  </span>
+  <a id="CodeJam_Arithmetic_OperatorsFactory_HasPositiveInfinity_" data-uid="CodeJam.Arithmetic.OperatorsFactory.HasPositiveInfinity*"></a>
+  <h4 id="CodeJam_Arithmetic_OperatorsFactory_HasPositiveInfinity__1" data-uid="CodeJam.Arithmetic.OperatorsFactory.HasPositiveInfinity``1">HasPositiveInfinity&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Determines whether the type has positive infinity value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool HasPositiveInfinity&lt;T&gt;()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the type has positive infinity value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Arithmetic_OperatorsFactory_IsAnyFlagSetOperator__1.md&amp;value=---%0Auid%3A%20CodeJam.Arithmetic.OperatorsFactory.IsAnyFlagSetOperator%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Arithmetic/OperatorsFactory.cs/#L444">View Source</a>
+  </span>
+  <a id="CodeJam_Arithmetic_OperatorsFactory_IsAnyFlagSetOperator_" data-uid="CodeJam.Arithmetic.OperatorsFactory.IsAnyFlagSetOperator*"></a>
+  <h4 id="CodeJam_Arithmetic_OperatorsFactory_IsAnyFlagSetOperator__1" data-uid="CodeJam.Arithmetic.OperatorsFactory.IsAnyFlagSetOperator``1">IsAnyFlagSetOperator&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Emits code for (flag == 0) || ((value &amp; flag) != 0) check.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Func&lt;T, T, bool&gt; IsAnyFlagSetOperator&lt;T&gt;()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, T, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><p>Callback for (flag == 0) || ((value &amp; flag) != 0) check</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the operands</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Arithmetic_OperatorsFactory_IsFlagSetOperator__1.md&amp;value=---%0Auid%3A%20CodeJam.Arithmetic.OperatorsFactory.IsFlagSetOperator%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Arithmetic/OperatorsFactory.cs/#L432">View Source</a>
+  </span>
+  <a id="CodeJam_Arithmetic_OperatorsFactory_IsFlagSetOperator_" data-uid="CodeJam.Arithmetic.OperatorsFactory.IsFlagSetOperator*"></a>
+  <h4 id="CodeJam_Arithmetic_OperatorsFactory_IsFlagSetOperator__1" data-uid="CodeJam.Arithmetic.OperatorsFactory.IsFlagSetOperator``1">IsFlagSetOperator&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Emits code for (value &amp; flag) == flag check.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Func&lt;T, T, bool&gt; IsFlagSetOperator&lt;T&gt;()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, T, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><p>Callback for (value &amp; flag) == flag check</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the operands</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Arithmetic_OperatorsFactory_SetFlagOperator__1.md&amp;value=---%0Auid%3A%20CodeJam.Arithmetic.OperatorsFactory.SetFlagOperator%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Arithmetic/OperatorsFactory.cs/#L463">View Source</a>
+  </span>
+  <a id="CodeJam_Arithmetic_OperatorsFactory_SetFlagOperator_" data-uid="CodeJam.Arithmetic.OperatorsFactory.SetFlagOperator*"></a>
+  <h4 id="CodeJam_Arithmetic_OperatorsFactory_SetFlagOperator__1" data-uid="CodeJam.Arithmetic.OperatorsFactory.SetFlagOperator``1">SetFlagOperator&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Emits code for (value | flag) operator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Func&lt;T, T, T&gt; SetFlagOperator&lt;T&gt;()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, T, T&gt;</td>
+        <td><p>Callback for (value | flag) operator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the operands</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Arithmetic_OperatorsFactory_UnaryOperator__1_System_Linq_Expressions_ExpressionType_.md&amp;value=---%0Auid%3A%20CodeJam.Arithmetic.OperatorsFactory.UnaryOperator%60%601(System.Linq.Expressions.ExpressionType)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Arithmetic/OperatorsFactory.cs/#L223">View Source</a>
+  </span>
+  <a id="CodeJam_Arithmetic_OperatorsFactory_UnaryOperator_" data-uid="CodeJam.Arithmetic.OperatorsFactory.UnaryOperator*"></a>
+  <h4 id="CodeJam_Arithmetic_OperatorsFactory_UnaryOperator__1_System_Linq_Expressions_ExpressionType_" data-uid="CodeJam.Arithmetic.OperatorsFactory.UnaryOperator``1(System.Linq.Expressions.ExpressionType)">UnaryOperator&lt;T&gt;(ExpressionType)</h4>
+  <div class="markdown level1 summary"><p>Unary operator factory method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Func&lt;T, T&gt; UnaryOperator&lt;T&gt;(ExpressionType operatorType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.ExpressionType</span></td>
+        <td><span class="parametername">operatorType</span></td>
+        <td><p>Type of the operator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, T&gt;</td>
+        <td><p>Callback for the operator</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the operand</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/new/feature/docfx/apiSpec/new?filename=CodeJam_Arithmetic_OperatorsFactory.md&amp;value=---%0Auid%3A%20CodeJam.Arithmetic.OperatorsFactory%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/blob/feature/docfx/Main/src/Arithmetic/OperatorsFactory.cs/#L17" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

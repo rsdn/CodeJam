@@ -1,0 +1,3484 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Mapping.MapperBuilder`2
+  commentId: T:CodeJam.Mapping.MapperBuilder`2
+  id: MapperBuilder`2
+  parent: CodeJam.Mapping
+  children:
+  - CodeJam.Mapping.MapperBuilder`2.CodeJam#Mapping#IMapperBuilder#GetMapperLambdaExpression
+  - CodeJam.Mapping.MapperBuilder`2.CodeJam#Mapping#IMapperBuilder#GetMapperLambdaExpressionEx
+  - CodeJam.Mapping.MapperBuilder`2.DeepCopy
+  - CodeJam.Mapping.MapperBuilder`2.FromMapping(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  - CodeJam.Mapping.MapperBuilder`2.FromMapping(System.String,System.String)
+  - CodeJam.Mapping.MapperBuilder`2.FromMapping(System.Type,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  - CodeJam.Mapping.MapperBuilder`2.FromMapping(System.Type,System.String,System.String)
+  - CodeJam.Mapping.MapperBuilder`2.FromMapping``1(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  - CodeJam.Mapping.MapperBuilder`2.FromMapping``1(System.String,System.String)
+  - CodeJam.Mapping.MapperBuilder`2.FromMappingDictionary
+  - CodeJam.Mapping.MapperBuilder`2.FromType
+  - CodeJam.Mapping.MapperBuilder`2.GetMapper
+  - CodeJam.Mapping.MapperBuilder`2.GetMapperExpression
+  - CodeJam.Mapping.MapperBuilder`2.GetMapperExpressionEx
+  - CodeJam.Mapping.MapperBuilder`2.MapMember``1(System.Linq.Expressions.Expression{System.Func{`1,``0}},System.Linq.Expressions.Expression{System.Func{`0,``0}})
+  - CodeJam.Mapping.MapperBuilder`2.Mapping(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  - CodeJam.Mapping.MapperBuilder`2.Mapping(System.String,System.String)
+  - CodeJam.Mapping.MapperBuilder`2.Mapping(System.Type,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  - CodeJam.Mapping.MapperBuilder`2.Mapping(System.Type,System.String,System.String)
+  - CodeJam.Mapping.MapperBuilder`2.Mapping``1(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  - CodeJam.Mapping.MapperBuilder`2.Mapping``1(System.String,System.String)
+  - CodeJam.Mapping.MapperBuilder`2.MappingSchema
+  - CodeJam.Mapping.MapperBuilder`2.MemberFilter
+  - CodeJam.Mapping.MapperBuilder`2.MemberMappers
+  - CodeJam.Mapping.MapperBuilder`2.ProcessCrossReferences
+  - CodeJam.Mapping.MapperBuilder`2.SetDeepCopy(System.Nullable{System.Boolean})
+  - CodeJam.Mapping.MapperBuilder`2.SetMappingSchema(CodeJam.Mapping.MappingSchema)
+  - CodeJam.Mapping.MapperBuilder`2.SetMemberFilter(System.Func{CodeJam.Reflection.MemberAccessor,System.Boolean})
+  - CodeJam.Mapping.MapperBuilder`2.SetProcessCrossReferences(System.Nullable{System.Boolean})
+  - CodeJam.Mapping.MapperBuilder`2.ToMapping(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  - CodeJam.Mapping.MapperBuilder`2.ToMapping(System.String,System.String)
+  - CodeJam.Mapping.MapperBuilder`2.ToMapping(System.Type,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  - CodeJam.Mapping.MapperBuilder`2.ToMapping(System.Type,System.String,System.String)
+  - CodeJam.Mapping.MapperBuilder`2.ToMapping``1(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  - CodeJam.Mapping.MapperBuilder`2.ToMapping``1(System.String,System.String)
+  - CodeJam.Mapping.MapperBuilder`2.ToMappingDictionary
+  - CodeJam.Mapping.MapperBuilder`2.ToType
+  langs:
+  - csharp
+  - vb
+  name: MapperBuilder<TFrom, TTo>
+  nameWithType: MapperBuilder<TFrom, TTo>
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>
+  type: Class
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MapperBuilder
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 18
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nBuilds a mapper that maps an object of <em>TFrom</em> type to an object of <em>TTo</em> type.\n"
+  example: []
+  syntax:
+    content: 'public class MapperBuilder<TFrom, TTo> : IMapperBuilder'
+    typeParameters:
+    - id: TFrom
+      description: Type to map from.
+    - id: TTo
+      description: Type to map to.
+    content.vb: >-
+      Public Class MapperBuilder(Of TFrom, TTo)
+          Implements IMapperBuilder
+  inheritance:
+  - System.Object
+  implements:
+  - CodeJam.Mapping.IMapperBuilder
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - CodeJam.Mapping.MapperBuilder`2.CodeJam.Mapping.Map.DeepCopy``1
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo)
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo)
+  name.vb: MapperBuilder(Of TFrom, TTo)
+- uid: CodeJam.Mapping.MapperBuilder`2.MappingSchema
+  commentId: P:CodeJam.Mapping.MapperBuilder`2.MappingSchema
+  id: MappingSchema
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: MappingSchema
+  nameWithType: MapperBuilder<TFrom, TTo>.MappingSchema
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.MappingSchema
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MappingSchema
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 26
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nMapping schema.\n"
+  example: []
+  syntax:
+    content: public MappingSchema MappingSchema { get; set; }
+    parameters: []
+    return:
+      type: CodeJam.Mapping.MappingSchema
+    content.vb: Public Property MappingSchema As MappingSchema
+  overload: CodeJam.Mapping.MapperBuilder`2.MappingSchema*
+  implements:
+  - CodeJam.Mapping.IMapperBuilder.MappingSchema
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).MappingSchema
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).MappingSchema
+- uid: CodeJam.Mapping.MapperBuilder`2.GetMapperExpressionEx
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.GetMapperExpressionEx
+  id: GetMapperExpressionEx
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: GetMapperExpressionEx()
+  nameWithType: MapperBuilder<TFrom, TTo>.GetMapperExpressionEx()
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.GetMapperExpressionEx()
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetMapperExpressionEx
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 39
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns a mapper expression to map an object of <em>TFrom</em> type to an object of <em>TTo</em> type.\nReturned expression is compatible to IQueriable.\n"
+  example: []
+  syntax:
+    content: public Expression<Func<TFrom, TTo>> GetMapperExpressionEx()
+    return:
+      type: System.Linq.Expressions.Expression{System.Func{{TFrom},{TTo}}}
+      description: Mapping expression.
+    content.vb: Public Function GetMapperExpressionEx As Expression(Of Func(Of TFrom, TTo))
+  overload: CodeJam.Mapping.MapperBuilder`2.GetMapperExpressionEx*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).GetMapperExpressionEx()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).GetMapperExpressionEx()
+- uid: CodeJam.Mapping.MapperBuilder`2.CodeJam#Mapping#IMapperBuilder#GetMapperLambdaExpressionEx
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.CodeJam#Mapping#IMapperBuilder#GetMapperLambdaExpressionEx
+  id: CodeJam#Mapping#IMapperBuilder#GetMapperLambdaExpressionEx
+  isEii: true
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: IMapperBuilder.GetMapperLambdaExpressionEx()
+  nameWithType: MapperBuilder<TFrom, TTo>.IMapperBuilder.GetMapperLambdaExpressionEx()
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx()
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 43
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  syntax:
+    content: LambdaExpression IMapperBuilder.GetMapperLambdaExpressionEx()
+    return:
+      type: System.Linq.Expressions.LambdaExpression
+    content.vb: Function CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx As LambdaExpression Implements IMapperBuilder.GetMapperLambdaExpressionEx
+  overload: CodeJam.Mapping.MapperBuilder`2.CodeJam#Mapping#IMapperBuilder#GetMapperLambdaExpressionEx*
+  implements:
+  - CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx()
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx()
+  name.vb: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx()
+- uid: CodeJam.Mapping.MapperBuilder`2.GetMapperExpression
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.GetMapperExpression
+  id: GetMapperExpression
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: GetMapperExpression()
+  nameWithType: MapperBuilder<TFrom, TTo>.GetMapperExpression()
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.GetMapperExpression()
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetMapperExpression
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 60
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns a mapper expression to map an object of <em>TFrom</em> type to an object of <em>TTo</em> type.\n"
+  example: []
+  syntax:
+    content: public Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>> GetMapperExpression()
+    return:
+      type: System.Linq.Expressions.Expression{System.Func{{TFrom},{TTo},System.Collections.Generic.IDictionary{System.Object,System.Object},{TTo}}}
+      description: Mapping expression.
+    content.vb: Public Function GetMapperExpression As Expression(Of Func(Of TFrom, TTo, IDictionary(Of Object, Object), TTo))
+  overload: CodeJam.Mapping.MapperBuilder`2.GetMapperExpression*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).GetMapperExpression()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).GetMapperExpression()
+- uid: CodeJam.Mapping.MapperBuilder`2.CodeJam#Mapping#IMapperBuilder#GetMapperLambdaExpression
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.CodeJam#Mapping#IMapperBuilder#GetMapperLambdaExpression
+  id: CodeJam#Mapping#IMapperBuilder#GetMapperLambdaExpression
+  isEii: true
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: IMapperBuilder.GetMapperLambdaExpression()
+  nameWithType: MapperBuilder<TFrom, TTo>.IMapperBuilder.GetMapperLambdaExpression()
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression()
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 64
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  syntax:
+    content: LambdaExpression IMapperBuilder.GetMapperLambdaExpression()
+    return:
+      type: System.Linq.Expressions.LambdaExpression
+    content.vb: Function CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression As LambdaExpression Implements IMapperBuilder.GetMapperLambdaExpression
+  overload: CodeJam.Mapping.MapperBuilder`2.CodeJam#Mapping#IMapperBuilder#GetMapperLambdaExpression*
+  implements:
+  - CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression()
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression()
+  name.vb: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression()
+- uid: CodeJam.Mapping.MapperBuilder`2.GetMapper
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.GetMapper
+  id: GetMapper
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: GetMapper()
+  nameWithType: MapperBuilder<TFrom, TTo>.GetMapper()
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.GetMapper()
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetMapper
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 71
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns a mapper to map an object of <em>TFrom</em> type to an object of <em>TTo</em> type.\n"
+  example: []
+  syntax:
+    content: public Mapper<TFrom, TTo> GetMapper()
+    return:
+      type: CodeJam.Mapping.Mapper{{TFrom},{TTo}}
+      description: Mapping expression.
+    content.vb: Public Function GetMapper As Mapper(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.GetMapper*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).GetMapper()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).GetMapper()
+- uid: CodeJam.Mapping.MapperBuilder`2.SetMappingSchema(CodeJam.Mapping.MappingSchema)
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.SetMappingSchema(CodeJam.Mapping.MappingSchema)
+  id: SetMappingSchema(CodeJam.Mapping.MappingSchema)
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: SetMappingSchema(MappingSchema)
+  nameWithType: MapperBuilder<TFrom, TTo>.SetMappingSchema(MappingSchema)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.SetMappingSchema(CodeJam.Mapping.MappingSchema)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SetMappingSchema
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 80
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nSets mapping schema.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> SetMappingSchema(MappingSchema schema)
+    parameters:
+    - id: schema
+      type: CodeJam.Mapping.MappingSchema
+      description: Mapping schema to set.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function SetMappingSchema(schema As MappingSchema) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.SetMappingSchema*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).SetMappingSchema(MappingSchema)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).SetMappingSchema(CodeJam.Mapping.MappingSchema)
+- uid: CodeJam.Mapping.MapperBuilder`2.MemberFilter
+  commentId: P:CodeJam.Mapping.MapperBuilder`2.MemberFilter
+  id: MemberFilter
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: MemberFilter
+  nameWithType: MapperBuilder<TFrom, TTo>.MemberFilter
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.MemberFilter
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MemberFilter
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 91
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nFilters target members to map.\n"
+  example: []
+  syntax:
+    content: public Func<MemberAccessor, bool> MemberFilter { get; set; }
+    parameters: []
+    return:
+      type: System.Func{CodeJam.Reflection.MemberAccessor,System.Boolean}
+    content.vb: Public Property MemberFilter As Func(Of MemberAccessor, Boolean)
+  overload: CodeJam.Mapping.MapperBuilder`2.MemberFilter*
+  implements:
+  - CodeJam.Mapping.IMapperBuilder.MemberFilter
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).MemberFilter
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).MemberFilter
+- uid: CodeJam.Mapping.MapperBuilder`2.SetMemberFilter(System.Func{CodeJam.Reflection.MemberAccessor,System.Boolean})
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.SetMemberFilter(System.Func{CodeJam.Reflection.MemberAccessor,System.Boolean})
+  id: SetMemberFilter(System.Func{CodeJam.Reflection.MemberAccessor,System.Boolean})
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: SetMemberFilter(Func<MemberAccessor, Boolean>)
+  nameWithType: MapperBuilder<TFrom, TTo>.SetMemberFilter(Func<MemberAccessor, Boolean>)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.SetMemberFilter(System.Func<CodeJam.Reflection.MemberAccessor, System.Boolean>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SetMemberFilter
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 98
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nAdds a predicate to filter target members to map.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> SetMemberFilter(Func<MemberAccessor, bool> predicate)
+    parameters:
+    - id: predicate
+      type: System.Func{CodeJam.Reflection.MemberAccessor,System.Boolean}
+      description: Predicate to filter members to map.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function SetMemberFilter(predicate As Func(Of MemberAccessor, Boolean)) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.SetMemberFilter*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).SetMemberFilter(Func(Of MemberAccessor, Boolean))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).SetMemberFilter(System.Func(Of CodeJam.Reflection.MemberAccessor, System.Boolean))
+  name.vb: SetMemberFilter(Func(Of MemberAccessor, Boolean))
+- uid: CodeJam.Mapping.MapperBuilder`2.FromMappingDictionary
+  commentId: P:CodeJam.Mapping.MapperBuilder`2.FromMappingDictionary
+  id: FromMappingDictionary
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: FromMappingDictionary
+  nameWithType: MapperBuilder<TFrom, TTo>.FromMappingDictionary
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.FromMappingDictionary
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FromMappingDictionary
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 109
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for source types.\n"
+  example: []
+  syntax:
+    content: public Dictionary<Type, Dictionary<string, string>> FromMappingDictionary { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.Dictionary{System.String,System.String}}
+    content.vb: Public Property FromMappingDictionary As Dictionary(Of Type, Dictionary(Of String, String))
+  overload: CodeJam.Mapping.MapperBuilder`2.FromMappingDictionary*
+  implements:
+  - CodeJam.Mapping.IMapperBuilder.FromMappingDictionary
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).FromMappingDictionary
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).FromMappingDictionary
+- uid: CodeJam.Mapping.MapperBuilder`2.FromMapping(System.Type,System.String,System.String)
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.FromMapping(System.Type,System.String,System.String)
+  id: FromMapping(System.Type,System.String,System.String)
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: FromMapping(Type, String, String)
+  nameWithType: MapperBuilder<TFrom, TTo>.FromMapping(Type, String, String)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.FromMapping(System.Type, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FromMapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 118
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for source types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> FromMapping(Type type, string memberName, string mapName)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to map.
+    - id: memberName
+      type: System.String
+      description: Type member name.
+    - id: mapName
+      type: System.String
+      description: Mapping name.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function FromMapping(type As Type, memberName As String, mapName As String) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.FromMapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).FromMapping(Type, String, String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).FromMapping(System.Type, System.String, System.String)
+- uid: CodeJam.Mapping.MapperBuilder`2.FromMapping``1(System.String,System.String)
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.FromMapping``1(System.String,System.String)
+  id: FromMapping``1(System.String,System.String)
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: FromMapping<T>(String, String)
+  nameWithType: MapperBuilder<TFrom, TTo>.FromMapping<T>(String, String)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.FromMapping<T>(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FromMapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 142
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for source types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> FromMapping<T>(string memberName, string mapName)
+    parameters:
+    - id: memberName
+      type: System.String
+      description: Type member name.
+    - id: mapName
+      type: System.String
+      description: Mapping name.
+    typeParameters:
+    - id: T
+      description: Type to map.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function FromMapping(Of T)(memberName As String, mapName As String) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.FromMapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).FromMapping(Of T)(String, String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).FromMapping(Of T)(System.String, System.String)
+  name.vb: FromMapping(Of T)(String, String)
+- uid: CodeJam.Mapping.MapperBuilder`2.FromMapping(System.String,System.String)
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.FromMapping(System.String,System.String)
+  id: FromMapping(System.String,System.String)
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: FromMapping(String, String)
+  nameWithType: MapperBuilder<TFrom, TTo>.FromMapping(String, String)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.FromMapping(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FromMapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 151
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for source types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> FromMapping(string memberName, string mapName)
+    parameters:
+    - id: memberName
+      type: System.String
+      description: Type member name.
+    - id: mapName
+      type: System.String
+      description: Mapping name.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function FromMapping(memberName As String, mapName As String) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.FromMapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).FromMapping(String, String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).FromMapping(System.String, System.String)
+- uid: CodeJam.Mapping.MapperBuilder`2.FromMapping(System.Type,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.FromMapping(System.Type,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  id: FromMapping(System.Type,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: FromMapping(Type, IReadOnlyDictionary<String, String>)
+  nameWithType: MapperBuilder<TFrom, TTo>.FromMapping(Type, IReadOnlyDictionary<String, String>)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.FromMapping(System.Type, System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FromMapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 160
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for source types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> FromMapping(Type type, IReadOnlyDictionary<string, string> mapping)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to map.
+    - id: mapping
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.String}
+      description: Mapping parameters.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function FromMapping(type As Type, mapping As IReadOnlyDictionary(Of String, String)) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.FromMapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).FromMapping(Type, IReadOnlyDictionary(Of String, String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).FromMapping(System.Type, System.Collections.Generic.IReadOnlyDictionary(Of System.String, System.String))
+  name.vb: FromMapping(Type, IReadOnlyDictionary(Of String, String))
+- uid: CodeJam.Mapping.MapperBuilder`2.FromMapping``1(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.FromMapping``1(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  id: FromMapping``1(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: FromMapping<T>(IReadOnlyDictionary<String, String>)
+  nameWithType: MapperBuilder<TFrom, TTo>.FromMapping<T>(IReadOnlyDictionary<String, String>)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.FromMapping<T>(System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FromMapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 177
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for source types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> FromMapping<T>(IReadOnlyDictionary<string, string> mapping)
+    parameters:
+    - id: mapping
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.String}
+      description: Mapping parameters.
+    typeParameters:
+    - id: T
+      description: Type to map.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function FromMapping(Of T)(mapping As IReadOnlyDictionary(Of String, String)) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.FromMapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).FromMapping(Of T)(IReadOnlyDictionary(Of String, String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).FromMapping(Of T)(System.Collections.Generic.IReadOnlyDictionary(Of System.String, System.String))
+  name.vb: FromMapping(Of T)(IReadOnlyDictionary(Of String, String))
+- uid: CodeJam.Mapping.MapperBuilder`2.FromMapping(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.FromMapping(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  id: FromMapping(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: FromMapping(IReadOnlyDictionary<String, String>)
+  nameWithType: MapperBuilder<TFrom, TTo>.FromMapping(IReadOnlyDictionary<String, String>)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.FromMapping(System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FromMapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 185
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for source types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> FromMapping(IReadOnlyDictionary<string, string> mapping)
+    parameters:
+    - id: mapping
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.String}
+      description: Mapping parameters.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function FromMapping(mapping As IReadOnlyDictionary(Of String, String)) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.FromMapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).FromMapping(IReadOnlyDictionary(Of String, String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).FromMapping(System.Collections.Generic.IReadOnlyDictionary(Of System.String, System.String))
+  name.vb: FromMapping(IReadOnlyDictionary(Of String, String))
+- uid: CodeJam.Mapping.MapperBuilder`2.ToMappingDictionary
+  commentId: P:CodeJam.Mapping.MapperBuilder`2.ToMappingDictionary
+  id: ToMappingDictionary
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: ToMappingDictionary
+  nameWithType: MapperBuilder<TFrom, TTo>.ToMappingDictionary
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.ToMappingDictionary
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToMappingDictionary
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 191
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for destination types.\n"
+  example: []
+  syntax:
+    content: public Dictionary<Type, Dictionary<string, string>> ToMappingDictionary { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.Dictionary{System.String,System.String}}
+    content.vb: Public Property ToMappingDictionary As Dictionary(Of Type, Dictionary(Of String, String))
+  overload: CodeJam.Mapping.MapperBuilder`2.ToMappingDictionary*
+  implements:
+  - CodeJam.Mapping.IMapperBuilder.ToMappingDictionary
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).ToMappingDictionary
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).ToMappingDictionary
+- uid: CodeJam.Mapping.MapperBuilder`2.ToMapping(System.Type,System.String,System.String)
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.ToMapping(System.Type,System.String,System.String)
+  id: ToMapping(System.Type,System.String,System.String)
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: ToMapping(Type, String, String)
+  nameWithType: MapperBuilder<TFrom, TTo>.ToMapping(Type, String, String)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.ToMapping(System.Type, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToMapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 200
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for destination types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> ToMapping(Type type, string memberName, string mapName)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to map.
+    - id: memberName
+      type: System.String
+      description: Type member name.
+    - id: mapName
+      type: System.String
+      description: Mapping name.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function ToMapping(type As Type, memberName As String, mapName As String) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.ToMapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).ToMapping(Type, String, String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).ToMapping(System.Type, System.String, System.String)
+- uid: CodeJam.Mapping.MapperBuilder`2.ToMapping``1(System.String,System.String)
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.ToMapping``1(System.String,System.String)
+  id: ToMapping``1(System.String,System.String)
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: ToMapping<T>(String, String)
+  nameWithType: MapperBuilder<TFrom, TTo>.ToMapping<T>(String, String)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.ToMapping<T>(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToMapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 220
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for destination types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> ToMapping<T>(string memberName, string mapName)
+    parameters:
+    - id: memberName
+      type: System.String
+      description: Type member name.
+    - id: mapName
+      type: System.String
+      description: Mapping name.
+    typeParameters:
+    - id: T
+      description: Type to map.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function ToMapping(Of T)(memberName As String, mapName As String) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.ToMapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).ToMapping(Of T)(String, String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).ToMapping(Of T)(System.String, System.String)
+  name.vb: ToMapping(Of T)(String, String)
+- uid: CodeJam.Mapping.MapperBuilder`2.ToMapping(System.String,System.String)
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.ToMapping(System.String,System.String)
+  id: ToMapping(System.String,System.String)
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: ToMapping(String, String)
+  nameWithType: MapperBuilder<TFrom, TTo>.ToMapping(String, String)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.ToMapping(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToMapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 229
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for destination types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> ToMapping(string memberName, string mapName)
+    parameters:
+    - id: memberName
+      type: System.String
+      description: Type member name.
+    - id: mapName
+      type: System.String
+      description: Mapping name.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function ToMapping(memberName As String, mapName As String) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.ToMapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).ToMapping(String, String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).ToMapping(System.String, System.String)
+- uid: CodeJam.Mapping.MapperBuilder`2.ToMapping(System.Type,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.ToMapping(System.Type,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  id: ToMapping(System.Type,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: ToMapping(Type, IReadOnlyDictionary<String, String>)
+  nameWithType: MapperBuilder<TFrom, TTo>.ToMapping(Type, IReadOnlyDictionary<String, String>)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.ToMapping(System.Type, System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToMapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 238
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for destination types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> ToMapping(Type type, IReadOnlyDictionary<string, string> mapping)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to map.
+    - id: mapping
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.String}
+      description: Mapping parameters.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function ToMapping(type As Type, mapping As IReadOnlyDictionary(Of String, String)) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.ToMapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).ToMapping(Type, IReadOnlyDictionary(Of String, String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).ToMapping(System.Type, System.Collections.Generic.IReadOnlyDictionary(Of System.String, System.String))
+  name.vb: ToMapping(Type, IReadOnlyDictionary(Of String, String))
+- uid: CodeJam.Mapping.MapperBuilder`2.ToMapping``1(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.ToMapping``1(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  id: ToMapping``1(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: ToMapping<T>(IReadOnlyDictionary<String, String>)
+  nameWithType: MapperBuilder<TFrom, TTo>.ToMapping<T>(IReadOnlyDictionary<String, String>)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.ToMapping<T>(System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToMapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 255
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for destination types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> ToMapping<T>(IReadOnlyDictionary<string, string> mapping)
+    parameters:
+    - id: mapping
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.String}
+      description: Mapping parameters.
+    typeParameters:
+    - id: T
+      description: Type to map.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function ToMapping(Of T)(mapping As IReadOnlyDictionary(Of String, String)) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.ToMapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).ToMapping(Of T)(IReadOnlyDictionary(Of String, String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).ToMapping(Of T)(System.Collections.Generic.IReadOnlyDictionary(Of System.String, System.String))
+  name.vb: ToMapping(Of T)(IReadOnlyDictionary(Of String, String))
+- uid: CodeJam.Mapping.MapperBuilder`2.ToMapping(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.ToMapping(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  id: ToMapping(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: ToMapping(IReadOnlyDictionary<String, String>)
+  nameWithType: MapperBuilder<TFrom, TTo>.ToMapping(IReadOnlyDictionary<String, String>)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.ToMapping(System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToMapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 263
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for destination types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> ToMapping(IReadOnlyDictionary<string, string> mapping)
+    parameters:
+    - id: mapping
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.String}
+      description: Mapping parameters.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function ToMapping(mapping As IReadOnlyDictionary(Of String, String)) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.ToMapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).ToMapping(IReadOnlyDictionary(Of String, String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).ToMapping(System.Collections.Generic.IReadOnlyDictionary(Of System.String, System.String))
+  name.vb: ToMapping(IReadOnlyDictionary(Of String, String))
+- uid: CodeJam.Mapping.MapperBuilder`2.Mapping(System.Type,System.String,System.String)
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.Mapping(System.Type,System.String,System.String)
+  id: Mapping(System.Type,System.String,System.String)
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: Mapping(Type, String, String)
+  nameWithType: MapperBuilder<TFrom, TTo>.Mapping(Type, String, String)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.Mapping(System.Type, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Mapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 273
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for source and destination types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> Mapping(Type type, string memberName, string mapName)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to map.
+    - id: memberName
+      type: System.String
+      description: Type member name.
+    - id: mapName
+      type: System.String
+      description: Mapping name.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function Mapping(type As Type, memberName As String, mapName As String) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.Mapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).Mapping(Type, String, String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).Mapping(System.Type, System.String, System.String)
+- uid: CodeJam.Mapping.MapperBuilder`2.Mapping``1(System.String,System.String)
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.Mapping``1(System.String,System.String)
+  id: Mapping``1(System.String,System.String)
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: Mapping<T>(String, String)
+  nameWithType: MapperBuilder<TFrom, TTo>.Mapping<T>(String, String)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.Mapping<T>(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Mapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 283
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for source and destination types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> Mapping<T>(string memberName, string mapName)
+    parameters:
+    - id: memberName
+      type: System.String
+      description: Type member name.
+    - id: mapName
+      type: System.String
+      description: Mapping name.
+    typeParameters:
+    - id: T
+      description: Type to map.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function Mapping(Of T)(memberName As String, mapName As String) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.Mapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).Mapping(Of T)(String, String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).Mapping(Of T)(System.String, System.String)
+  name.vb: Mapping(Of T)(String, String)
+- uid: CodeJam.Mapping.MapperBuilder`2.Mapping(System.String,System.String)
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.Mapping(System.String,System.String)
+  id: Mapping(System.String,System.String)
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: Mapping(String, String)
+  nameWithType: MapperBuilder<TFrom, TTo>.Mapping(String, String)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.Mapping(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Mapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 292
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for source and destination types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> Mapping(string memberName, string mapName)
+    parameters:
+    - id: memberName
+      type: System.String
+      description: Type member name.
+    - id: mapName
+      type: System.String
+      description: Mapping name.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function Mapping(memberName As String, mapName As String) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.Mapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).Mapping(String, String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).Mapping(System.String, System.String)
+- uid: CodeJam.Mapping.MapperBuilder`2.Mapping(System.Type,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.Mapping(System.Type,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  id: Mapping(System.Type,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: Mapping(Type, IReadOnlyDictionary<String, String>)
+  nameWithType: MapperBuilder<TFrom, TTo>.Mapping(Type, IReadOnlyDictionary<String, String>)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.Mapping(System.Type, System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Mapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 301
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for source and destination types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> Mapping(Type type, IReadOnlyDictionary<string, string> mapping)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to map.
+    - id: mapping
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.String}
+      description: Mapping parameters.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function Mapping(type As Type, mapping As IReadOnlyDictionary(Of String, String)) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.Mapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).Mapping(Type, IReadOnlyDictionary(Of String, String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).Mapping(System.Type, System.Collections.Generic.IReadOnlyDictionary(Of System.String, System.String))
+  name.vb: Mapping(Type, IReadOnlyDictionary(Of String, String))
+- uid: CodeJam.Mapping.MapperBuilder`2.Mapping``1(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.Mapping``1(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  id: Mapping``1(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: Mapping<T>(IReadOnlyDictionary<String, String>)
+  nameWithType: MapperBuilder<TFrom, TTo>.Mapping<T>(IReadOnlyDictionary<String, String>)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.Mapping<T>(System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Mapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 318
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for source and destination types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> Mapping<T>(IReadOnlyDictionary<string, string> mapping)
+    parameters:
+    - id: mapping
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.String}
+      description: Mapping parameters.
+    typeParameters:
+    - id: T
+      description: Type to map.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function Mapping(Of T)(mapping As IReadOnlyDictionary(Of String, String)) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.Mapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).Mapping(Of T)(IReadOnlyDictionary(Of String, String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).Mapping(Of T)(System.Collections.Generic.IReadOnlyDictionary(Of System.String, System.String))
+  name.vb: Mapping(Of T)(IReadOnlyDictionary(Of String, String))
+- uid: CodeJam.Mapping.MapperBuilder`2.Mapping(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.Mapping(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  id: Mapping(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: Mapping(IReadOnlyDictionary<String, String>)
+  nameWithType: MapperBuilder<TFrom, TTo>.Mapping(IReadOnlyDictionary<String, String>)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.Mapping(System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Mapping
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 326
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines member name mapping for source and destination types.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> Mapping(IReadOnlyDictionary<string, string> mapping)
+    parameters:
+    - id: mapping
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,System.String}
+      description: Mapping parameters.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function Mapping(mapping As IReadOnlyDictionary(Of String, String)) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.Mapping*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).Mapping(IReadOnlyDictionary(Of String, String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).Mapping(System.Collections.Generic.IReadOnlyDictionary(Of System.String, System.String))
+  name.vb: Mapping(IReadOnlyDictionary(Of String, String))
+- uid: CodeJam.Mapping.MapperBuilder`2.MemberMappers
+  commentId: P:CodeJam.Mapping.MapperBuilder`2.MemberMappers
+  id: MemberMappers
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: MemberMappers
+  nameWithType: MapperBuilder<TFrom, TTo>.MemberMappers
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.MemberMappers
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MemberMappers
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 332
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nMember mappers.\n"
+  example: []
+  syntax:
+    content: public List<> MemberMappers { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{System.}
+    content.vb: Public Property MemberMappers As List(Of )
+  overload: CodeJam.Mapping.MapperBuilder`2.MemberMappers*
+  implements:
+  - CodeJam.Mapping.IMapperBuilder.MemberMappers
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).MemberMappers
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).MemberMappers
+- uid: CodeJam.Mapping.MapperBuilder`2.MapMember``1(System.Linq.Expressions.Expression{System.Func{`1,``0}},System.Linq.Expressions.Expression{System.Func{`0,``0}})
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.MapMember``1(System.Linq.Expressions.Expression{System.Func{`1,``0}},System.Linq.Expressions.Expression{System.Func{`0,``0}})
+  id: MapMember``1(System.Linq.Expressions.Expression{System.Func{`1,``0}},System.Linq.Expressions.Expression{System.Func{`0,``0}})
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: MapMember<T>(Expression<Func<TTo, T>>, Expression<Func<TFrom, T>>)
+  nameWithType: MapperBuilder<TFrom, TTo>.MapMember<T>(Expression<Func<TTo, T>>, Expression<Func<TFrom, T>>)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.MapMember<T>(System.Linq.Expressions.Expression<System.Func<TTo, T>>, System.Linq.Expressions.Expression<System.Func<TFrom, T>>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MapMember
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 345
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nAdds member mapper.\n"
+  example:
+  - "\nThis example shows how to explicitly convert one value to another.\n<pre><code source=\"Blocks\\tests\\Mapping\\Examples\\MapMemberTests.cs\" region=\"Example\"></code></pre>\n"
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> MapMember<T>(Expression<Func<TTo, T>> toMember, Expression<Func<TFrom, T>> setter)
+    parameters:
+    - id: toMember
+      type: System.Linq.Expressions.Expression{System.Func{{TTo},{T}}}
+      description: Expression that returns a member to map.
+    - id: setter
+      type: System.Linq.Expressions.Expression{System.Func{{TFrom},{T}}}
+      description: Expression to set the member.
+    typeParameters:
+    - id: T
+      description: Type of the member to map.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function MapMember(Of T)(toMember As Expression(Of Func(Of TTo, T)), setter As Expression(Of Func(Of TFrom, T))) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.MapMember*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).MapMember(Of T)(Expression(Of Func(Of TTo, T)), Expression(Of Func(Of TFrom, T)))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).MapMember(Of T)(System.Linq.Expressions.Expression(Of System.Func(Of TTo, T)), System.Linq.Expressions.Expression(Of System.Func(Of TFrom, T)))
+  name.vb: MapMember(Of T)(Expression(Of Func(Of TTo, T)), Expression(Of Func(Of TFrom, T)))
+- uid: CodeJam.Mapping.MapperBuilder`2.ProcessCrossReferences
+  commentId: P:CodeJam.Mapping.MapperBuilder`2.ProcessCrossReferences
+  id: ProcessCrossReferences
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: ProcessCrossReferences
+  nameWithType: MapperBuilder<TFrom, TTo>.ProcessCrossReferences
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.ProcessCrossReferences
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ProcessCrossReferences
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 360
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nIf true, processes object cross references.\nif default (null), the <xref href=\"CodeJam.Mapping.MapperBuilder%602.GetMapperExpressionEx\" data-throw-if-not-resolved=\"false\"></xref> method does not process cross references,\nhowever the <xref href=\"CodeJam.Mapping.MapperBuilder%602.GetMapperExpression\" data-throw-if-not-resolved=\"false\"></xref> method does.\n"
+  example: []
+  syntax:
+    content: public bool ? ProcessCrossReferences { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: Public Property ProcessCrossReferences As Boolean?
+  overload: CodeJam.Mapping.MapperBuilder`2.ProcessCrossReferences*
+  implements:
+  - CodeJam.Mapping.IMapperBuilder.ProcessCrossReferences
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).ProcessCrossReferences
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).ProcessCrossReferences
+- uid: CodeJam.Mapping.MapperBuilder`2.SetProcessCrossReferences(System.Nullable{System.Boolean})
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.SetProcessCrossReferences(System.Nullable{System.Boolean})
+  id: SetProcessCrossReferences(System.Nullable{System.Boolean})
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: SetProcessCrossReferences(Nullable<Boolean>)
+  nameWithType: MapperBuilder<TFrom, TTo>.SetProcessCrossReferences(Nullable<Boolean>)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.SetProcessCrossReferences(System.Nullable<System.Boolean>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SetProcessCrossReferences
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 367
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nIf true, processes object cross references.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> SetProcessCrossReferences(bool ? doProcess)
+    parameters:
+    - id: doProcess
+      type: System.Nullable{System.Boolean}
+      description: If true, processes object cross references.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function SetProcessCrossReferences(doProcess As Boolean?) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.SetProcessCrossReferences*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).SetProcessCrossReferences(Nullable(Of Boolean))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).SetProcessCrossReferences(System.Nullable(Of System.Boolean))
+  name.vb: SetProcessCrossReferences(Nullable(Of Boolean))
+- uid: CodeJam.Mapping.MapperBuilder`2.DeepCopy
+  commentId: P:CodeJam.Mapping.MapperBuilder`2.DeepCopy
+  id: DeepCopy
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: DeepCopy
+  nameWithType: MapperBuilder<TFrom, TTo>.DeepCopy
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.DeepCopy
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DeepCopy
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 378
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nIf true, performs deep copy.\nif default (null), the <xref href=\"CodeJam.Mapping.MapperBuilder%602.GetMapperExpressionEx\" data-throw-if-not-resolved=\"false\"></xref> method does not do deep copy,\nhowever the <xref href=\"CodeJam.Mapping.MapperBuilder%602.GetMapperExpression\" data-throw-if-not-resolved=\"false\"></xref> method does.\n"
+  example: []
+  syntax:
+    content: public bool ? DeepCopy { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: Public Property DeepCopy As Boolean?
+  overload: CodeJam.Mapping.MapperBuilder`2.DeepCopy*
+  implements:
+  - CodeJam.Mapping.IMapperBuilder.DeepCopy
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).DeepCopy
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).DeepCopy
+- uid: CodeJam.Mapping.MapperBuilder`2.FromType
+  commentId: P:CodeJam.Mapping.MapperBuilder`2.FromType
+  id: FromType
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: FromType
+  nameWithType: MapperBuilder<TFrom, TTo>.FromType
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.FromType
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FromType
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 383
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nType to map from.\n"
+  example: []
+  syntax:
+    content: public Type FromType { get; }
+    parameters: []
+    return:
+      type: System.Type
+    content.vb: Public ReadOnly Property FromType As Type
+  overload: CodeJam.Mapping.MapperBuilder`2.FromType*
+  implements:
+  - CodeJam.Mapping.IMapperBuilder.FromType
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).FromType
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).FromType
+- uid: CodeJam.Mapping.MapperBuilder`2.ToType
+  commentId: P:CodeJam.Mapping.MapperBuilder`2.ToType
+  id: ToType
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: ToType
+  nameWithType: MapperBuilder<TFrom, TTo>.ToType
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.ToType
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToType
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 388
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nType to map to.\n"
+  example: []
+  syntax:
+    content: public Type ToType { get; }
+    parameters: []
+    return:
+      type: System.Type
+    content.vb: Public ReadOnly Property ToType As Type
+  overload: CodeJam.Mapping.MapperBuilder`2.ToType*
+  implements:
+  - CodeJam.Mapping.IMapperBuilder.ToType
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).ToType
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).ToType
+- uid: CodeJam.Mapping.MapperBuilder`2.SetDeepCopy(System.Nullable{System.Boolean})
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.SetDeepCopy(System.Nullable{System.Boolean})
+  id: SetDeepCopy(System.Nullable{System.Boolean})
+  parent: CodeJam.Mapping.MapperBuilder`2
+  langs:
+  - csharp
+  - vb
+  name: SetDeepCopy(Nullable<Boolean>)
+  nameWithType: MapperBuilder<TFrom, TTo>.SetDeepCopy(Nullable<Boolean>)
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.SetDeepCopy(System.Nullable<System.Boolean>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapperBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SetDeepCopy
+    path: ../Blocks/src/Mapping/MapperBuilder.cs
+    startLine: 395
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nIf true, performs deep copy.\n"
+  example: []
+  syntax:
+    content: public MapperBuilder<TFrom, TTo> SetDeepCopy(bool ? deepCopy)
+    parameters:
+    - id: deepCopy
+      type: System.Nullable{System.Boolean}
+      description: If true, performs deep copy.
+    return:
+      type: CodeJam.Mapping.MapperBuilder`2
+      description: Returns this mapper.
+    content.vb: Public Function SetDeepCopy(deepCopy As Boolean?) As MapperBuilder(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MapperBuilder`2.SetDeepCopy*
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).SetDeepCopy(Nullable(Of Boolean))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).SetDeepCopy(System.Nullable(Of System.Boolean))
+  name.vb: SetDeepCopy(Nullable(Of Boolean))
+references:
+- uid: CodeJam.Mapping
+  commentId: N:CodeJam.Mapping
+  isExternal: false
+  name: CodeJam.Mapping
+  nameWithType: CodeJam.Mapping
+  fullName: CodeJam.Mapping
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: CodeJam.Mapping.IMapperBuilder
+  commentId: T:CodeJam.Mapping.IMapperBuilder
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: IMapperBuilder
+  nameWithType: IMapperBuilder
+  fullName: CodeJam.Mapping.IMapperBuilder
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.MapperBuilder`2.CodeJam.Mapping.Map.DeepCopy``1
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  parent: CodeJam.Mapping.Map
+  definition: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  name: DeepCopy<MapperBuilder<TFrom, TTo>>()
+  nameWithType: Map.DeepCopy<MapperBuilder<TFrom, TTo>>()
+  fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.Mapping.MapperBuilder<TFrom, TTo>>()
+  nameWithType.vb: Map.DeepCopy(Of MapperBuilder(Of TFrom, TTo))()
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.Mapping.MapperBuilder(Of TFrom, TTo))()
+  name.vb: DeepCopy(Of MapperBuilder(Of TFrom, TTo))()
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy<MapperBuilder<TFrom, TTo>>
+    nameWithType: Map.DeepCopy<MapperBuilder<TFrom, TTo>>
+    fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.Mapping.MapperBuilder<TFrom, TTo>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy(Of MapperBuilder(Of TFrom, TTo))
+    nameWithType: Map.DeepCopy(Of MapperBuilder(Of TFrom, TTo))
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.Mapping.MapperBuilder(Of TFrom, TTo))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  isExternal: false
+  name: DeepCopy<T>(T)
+  nameWithType: Map.DeepCopy<T>(T)
+  fullName: CodeJam.Mapping.Map.DeepCopy<T>(T)
+  nameWithType.vb: Map.DeepCopy(Of T)(T)
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of T)(T)
+  name.vb: DeepCopy(Of T)(T)
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy<T>
+    nameWithType: Map.DeepCopy<T>
+    fullName: CodeJam.Mapping.Map.DeepCopy<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy(Of T)
+    nameWithType: Map.DeepCopy(Of T)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.Map
+  commentId: T:CodeJam.Mapping.Map
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: Map
+  nameWithType: Map
+  fullName: CodeJam.Mapping.Map
+- uid: CodeJam.Mapping.MapperBuilder`2.MappingSchema*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.MappingSchema
+  isExternal: false
+  name: MappingSchema
+  nameWithType: MapperBuilder<TFrom, TTo>.MappingSchema
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.MappingSchema
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).MappingSchema
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).MappingSchema
+- uid: CodeJam.Mapping.IMapperBuilder.MappingSchema
+  commentId: P:CodeJam.Mapping.IMapperBuilder.MappingSchema
+  parent: CodeJam.Mapping.IMapperBuilder
+  isExternal: false
+  name: MappingSchema
+  nameWithType: IMapperBuilder.MappingSchema
+  fullName: CodeJam.Mapping.IMapperBuilder.MappingSchema
+- uid: CodeJam.Mapping.MappingSchema
+  commentId: T:CodeJam.Mapping.MappingSchema
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: MappingSchema
+  nameWithType: MappingSchema
+  fullName: CodeJam.Mapping.MappingSchema
+- uid: CodeJam.Mapping.MapperBuilder`2.GetMapperExpressionEx*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.GetMapperExpressionEx
+  isExternal: false
+  name: GetMapperExpressionEx
+  nameWithType: MapperBuilder<TFrom, TTo>.GetMapperExpressionEx
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.GetMapperExpressionEx
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).GetMapperExpressionEx
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).GetMapperExpressionEx
+- uid: System.Linq.Expressions.Expression{System.Func{{TFrom},{TTo}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{``0,``1}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<TFrom, TTo>>
+  nameWithType: Expression<Func<TFrom, TTo>>
+  fullName: System.Linq.Expressions.Expression<System.Func<TFrom, TTo>>
+  nameWithType.vb: Expression(Of Func(Of TFrom, TTo))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of TFrom, TTo))
+  name.vb: Expression(Of Func(Of TFrom, TTo))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression`1
+  commentId: T:System.Linq.Expressions.Expression`1
+  isExternal: true
+  name: Expression<TDelegate>
+  nameWithType: Expression<TDelegate>
+  fullName: System.Linq.Expressions.Expression<TDelegate>
+  nameWithType.vb: Expression(Of TDelegate)
+  fullName.vb: System.Linq.Expressions.Expression(Of TDelegate)
+  name.vb: Expression(Of TDelegate)
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TDelegate
+    nameWithType: TDelegate
+    fullName: TDelegate
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TDelegate
+    nameWithType: TDelegate
+    fullName: TDelegate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
+  isExternal: false
+  name: System.Linq.Expressions
+  nameWithType: System.Linq.Expressions
+  fullName: System.Linq.Expressions
+- uid: CodeJam.Mapping.MapperBuilder`2.CodeJam#Mapping#IMapperBuilder#GetMapperLambdaExpressionEx*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.CodeJam#Mapping#IMapperBuilder#GetMapperLambdaExpressionEx
+  isExternal: false
+  name: IMapperBuilder.GetMapperLambdaExpressionEx
+  nameWithType: MapperBuilder<TFrom, TTo>.IMapperBuilder.GetMapperLambdaExpressionEx
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+  name.vb: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+- uid: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+  commentId: M:CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+  parent: CodeJam.Mapping.IMapperBuilder
+  isExternal: false
+  name: GetMapperLambdaExpressionEx()
+  nameWithType: IMapperBuilder.GetMapperLambdaExpressionEx()
+  fullName: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx()
+  spec.csharp:
+  - uid: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+    name: GetMapperLambdaExpressionEx
+    nameWithType: IMapperBuilder.GetMapperLambdaExpressionEx
+    fullName: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+    name: GetMapperLambdaExpressionEx
+    nameWithType: IMapperBuilder.GetMapperLambdaExpressionEx
+    fullName: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpressionEx
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.LambdaExpression
+  commentId: T:System.Linq.Expressions.LambdaExpression
+  parent: System.Linq.Expressions
+  isExternal: true
+  name: LambdaExpression
+  nameWithType: LambdaExpression
+  fullName: System.Linq.Expressions.LambdaExpression
+- uid: CodeJam.Mapping.MapperBuilder`2.GetMapperExpression*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.GetMapperExpression
+  isExternal: false
+  name: GetMapperExpression
+  nameWithType: MapperBuilder<TFrom, TTo>.GetMapperExpression
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.GetMapperExpression
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).GetMapperExpression
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).GetMapperExpression
+- uid: System.Linq.Expressions.Expression{System.Func{{TFrom},{TTo},System.Collections.Generic.IDictionary{System.Object,System.Object},{TTo}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,`1,System.Collections.Generic.IDictionary{System.Object,System.Object},`1}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<TFrom, TTo, IDictionary<Object, Object>, TTo>>
+  nameWithType: Expression<Func<TFrom, TTo, IDictionary<Object, Object>, TTo>>
+  fullName: System.Linq.Expressions.Expression<System.Func<TFrom, TTo, System.Collections.Generic.IDictionary<System.Object, System.Object>, TTo>>
+  nameWithType.vb: Expression(Of Func(Of TFrom, TTo, IDictionary(Of Object, Object), TTo))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of TFrom, TTo, System.Collections.Generic.IDictionary(Of System.Object, System.Object), TTo))
+  name.vb: Expression(Of Func(Of TFrom, TTo, IDictionary(Of Object, Object), TTo))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`4
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`4
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.MapperBuilder`2.CodeJam#Mapping#IMapperBuilder#GetMapperLambdaExpression*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.CodeJam#Mapping#IMapperBuilder#GetMapperLambdaExpression
+  isExternal: false
+  name: IMapperBuilder.GetMapperLambdaExpression
+  nameWithType: MapperBuilder<TFrom, TTo>.IMapperBuilder.GetMapperLambdaExpression
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+  name.vb: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+- uid: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+  commentId: M:CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+  parent: CodeJam.Mapping.IMapperBuilder
+  isExternal: false
+  name: GetMapperLambdaExpression()
+  nameWithType: IMapperBuilder.GetMapperLambdaExpression()
+  fullName: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression()
+  spec.csharp:
+  - uid: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+    name: GetMapperLambdaExpression
+    nameWithType: IMapperBuilder.GetMapperLambdaExpression
+    fullName: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+    name: GetMapperLambdaExpression
+    nameWithType: IMapperBuilder.GetMapperLambdaExpression
+    fullName: CodeJam.Mapping.IMapperBuilder.GetMapperLambdaExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.MapperBuilder`2.GetMapper*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.GetMapper
+  isExternal: false
+  name: GetMapper
+  nameWithType: MapperBuilder<TFrom, TTo>.GetMapper
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.GetMapper
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).GetMapper
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).GetMapper
+- uid: CodeJam.Mapping.Mapper{{TFrom},{TTo}}
+  commentId: T:CodeJam.Mapping.Mapper{``0,``1}
+  parent: CodeJam.Mapping
+  definition: CodeJam.Mapping.Mapper`2
+  name: Mapper<TFrom, TTo>
+  nameWithType: Mapper<TFrom, TTo>
+  fullName: CodeJam.Mapping.Mapper<TFrom, TTo>
+  nameWithType.vb: Mapper(Of TFrom, TTo)
+  fullName.vb: CodeJam.Mapping.Mapper(Of TFrom, TTo)
+  name.vb: Mapper(Of TFrom, TTo)
+  spec.csharp:
+  - uid: CodeJam.Mapping.Mapper`2
+    name: Mapper
+    nameWithType: Mapper
+    fullName: CodeJam.Mapping.Mapper
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Mapping.Mapper`2
+    name: Mapper
+    nameWithType: Mapper
+    fullName: CodeJam.Mapping.Mapper
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.Mapper`2
+  commentId: T:CodeJam.Mapping.Mapper`2
+  isExternal: false
+  name: Mapper<TFrom, TTo>
+  nameWithType: Mapper<TFrom, TTo>
+  fullName: CodeJam.Mapping.Mapper<TFrom, TTo>
+  nameWithType.vb: Mapper(Of TFrom, TTo)
+  fullName.vb: CodeJam.Mapping.Mapper(Of TFrom, TTo)
+  name.vb: Mapper(Of TFrom, TTo)
+  spec.csharp:
+  - uid: CodeJam.Mapping.Mapper`2
+    name: Mapper
+    nameWithType: Mapper
+    fullName: CodeJam.Mapping.Mapper
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Mapping.Mapper`2
+    name: Mapper
+    nameWithType: Mapper
+    fullName: CodeJam.Mapping.Mapper
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.MapperBuilder`2.SetMappingSchema*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.SetMappingSchema
+  isExternal: false
+  name: SetMappingSchema
+  nameWithType: MapperBuilder<TFrom, TTo>.SetMappingSchema
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.SetMappingSchema
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).SetMappingSchema
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).SetMappingSchema
+- uid: CodeJam.Mapping.MapperBuilder`2
+  commentId: T:CodeJam.Mapping.MapperBuilder`2
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: MapperBuilder<TFrom, TTo>
+  nameWithType: MapperBuilder<TFrom, TTo>
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo)
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo)
+  name.vb: MapperBuilder(Of TFrom, TTo)
+  spec.csharp:
+  - uid: CodeJam.Mapping.MapperBuilder`2
+    name: MapperBuilder
+    nameWithType: MapperBuilder
+    fullName: CodeJam.Mapping.MapperBuilder
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Mapping.MapperBuilder`2
+    name: MapperBuilder
+    nameWithType: MapperBuilder
+    fullName: CodeJam.Mapping.MapperBuilder
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.MapperBuilder`2.MemberFilter*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.MemberFilter
+  isExternal: false
+  name: MemberFilter
+  nameWithType: MapperBuilder<TFrom, TTo>.MemberFilter
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.MemberFilter
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).MemberFilter
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).MemberFilter
+- uid: CodeJam.Mapping.IMapperBuilder.MemberFilter
+  commentId: P:CodeJam.Mapping.IMapperBuilder.MemberFilter
+  parent: CodeJam.Mapping.IMapperBuilder
+  isExternal: false
+  name: MemberFilter
+  nameWithType: IMapperBuilder.MemberFilter
+  fullName: CodeJam.Mapping.IMapperBuilder.MemberFilter
+- uid: System.Func{CodeJam.Reflection.MemberAccessor,System.Boolean}
+  commentId: T:System.Func{CodeJam.Reflection.MemberAccessor,System.Boolean}
+  parent: System
+  definition: System.Func`2
+  name: Func<MemberAccessor, Boolean>
+  nameWithType: Func<MemberAccessor, Boolean>
+  fullName: System.Func<CodeJam.Reflection.MemberAccessor, System.Boolean>
+  nameWithType.vb: Func(Of MemberAccessor, Boolean)
+  fullName.vb: System.Func(Of CodeJam.Reflection.MemberAccessor, System.Boolean)
+  name.vb: Func(Of MemberAccessor, Boolean)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.Reflection.MemberAccessor
+    name: MemberAccessor
+    nameWithType: MemberAccessor
+    fullName: CodeJam.Reflection.MemberAccessor
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.Reflection.MemberAccessor
+    name: MemberAccessor
+    nameWithType: MemberAccessor
+    fullName: CodeJam.Reflection.MemberAccessor
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.MapperBuilder`2.SetMemberFilter*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.SetMemberFilter
+  isExternal: false
+  name: SetMemberFilter
+  nameWithType: MapperBuilder<TFrom, TTo>.SetMemberFilter
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.SetMemberFilter
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).SetMemberFilter
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).SetMemberFilter
+- uid: CodeJam.Mapping.MapperBuilder`2.FromMappingDictionary*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.FromMappingDictionary
+  isExternal: false
+  name: FromMappingDictionary
+  nameWithType: MapperBuilder<TFrom, TTo>.FromMappingDictionary
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.FromMappingDictionary
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).FromMappingDictionary
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).FromMappingDictionary
+- uid: CodeJam.Mapping.IMapperBuilder.FromMappingDictionary
+  commentId: P:CodeJam.Mapping.IMapperBuilder.FromMappingDictionary
+  parent: CodeJam.Mapping.IMapperBuilder
+  isExternal: false
+  name: FromMappingDictionary
+  nameWithType: IMapperBuilder.FromMappingDictionary
+  fullName: CodeJam.Mapping.IMapperBuilder.FromMappingDictionary
+- uid: System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.Dictionary{System.String,System.String}}
+  commentId: T:System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.Dictionary{System.String,System.String}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<Type, Dictionary<String, String>>
+  nameWithType: Dictionary<Type, Dictionary<String, String>>
+  fullName: System.Collections.Generic.Dictionary<System.Type, System.Collections.Generic.Dictionary<System.String, System.String>>
+  nameWithType.vb: Dictionary(Of Type, Dictionary(Of String, String))
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.Type, System.Collections.Generic.Dictionary(Of System.String, System.String))
+  name.vb: Dictionary(Of Type, Dictionary(Of String, String))
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: CodeJam.Mapping.MapperBuilder`2.FromMapping*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.FromMapping
+  isExternal: false
+  name: FromMapping
+  nameWithType: MapperBuilder<TFrom, TTo>.FromMapping
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.FromMapping
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).FromMapping
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).FromMapping
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Collections.Generic.IReadOnlyDictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyDictionary`2
+  name: IReadOnlyDictionary<String, String>
+  nameWithType: IReadOnlyDictionary<String, String>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>
+  nameWithType.vb: IReadOnlyDictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of System.String, System.String)
+  name.vb: IReadOnlyDictionary(Of String, String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    nameWithType: IReadOnlyDictionary
+    fullName: System.Collections.Generic.IReadOnlyDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    nameWithType: IReadOnlyDictionary
+    fullName: System.Collections.Generic.IReadOnlyDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IReadOnlyDictionary`2
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary`2
+  isExternal: true
+  name: IReadOnlyDictionary<TKey, TValue>
+  nameWithType: IReadOnlyDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>
+  nameWithType.vb: IReadOnlyDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue)
+  name.vb: IReadOnlyDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    nameWithType: IReadOnlyDictionary
+    fullName: System.Collections.Generic.IReadOnlyDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    nameWithType: IReadOnlyDictionary
+    fullName: System.Collections.Generic.IReadOnlyDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.MapperBuilder`2.ToMappingDictionary*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.ToMappingDictionary
+  isExternal: false
+  name: ToMappingDictionary
+  nameWithType: MapperBuilder<TFrom, TTo>.ToMappingDictionary
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.ToMappingDictionary
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).ToMappingDictionary
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).ToMappingDictionary
+- uid: CodeJam.Mapping.IMapperBuilder.ToMappingDictionary
+  commentId: P:CodeJam.Mapping.IMapperBuilder.ToMappingDictionary
+  parent: CodeJam.Mapping.IMapperBuilder
+  isExternal: false
+  name: ToMappingDictionary
+  nameWithType: IMapperBuilder.ToMappingDictionary
+  fullName: CodeJam.Mapping.IMapperBuilder.ToMappingDictionary
+- uid: CodeJam.Mapping.MapperBuilder`2.ToMapping*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.ToMapping
+  isExternal: false
+  name: ToMapping
+  nameWithType: MapperBuilder<TFrom, TTo>.ToMapping
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.ToMapping
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).ToMapping
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).ToMapping
+- uid: CodeJam.Mapping.MapperBuilder`2.Mapping*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.Mapping
+  isExternal: false
+  name: Mapping
+  nameWithType: MapperBuilder<TFrom, TTo>.Mapping
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.Mapping
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).Mapping
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).Mapping
+- uid: CodeJam.Mapping.MapperBuilder`2.MemberMappers*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.MemberMappers
+  isExternal: false
+  name: MemberMappers
+  nameWithType: MapperBuilder<TFrom, TTo>.MemberMappers
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.MemberMappers
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).MemberMappers
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).MemberMappers
+- uid: CodeJam.Mapping.IMapperBuilder.MemberMappers
+  commentId: P:CodeJam.Mapping.IMapperBuilder.MemberMappers
+  parent: CodeJam.Mapping.IMapperBuilder
+  isExternal: false
+  name: MemberMappers
+  nameWithType: IMapperBuilder.MemberMappers
+  fullName: CodeJam.Mapping.IMapperBuilder.MemberMappers
+- uid: System.Collections.Generic.List{System.}
+  commentId: T:System.Collections.Generic.List{System.}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<>
+  nameWithType: List<>
+  fullName: System.Collections.Generic.List<System.>
+  nameWithType.vb: List(Of )
+  fullName.vb: System.Collections.Generic.List(Of System.)
+  name.vb: List(Of )
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.
+    name: ''
+    nameWithType: ''
+    fullName: System.
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.
+    name: ''
+    nameWithType: ''
+    fullName: System.
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.MapperBuilder`2.MapMember*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.MapMember
+  isExternal: false
+  name: MapMember
+  nameWithType: MapperBuilder<TFrom, TTo>.MapMember
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.MapMember
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).MapMember
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).MapMember
+- uid: System.Linq.Expressions.Expression{System.Func{{TTo},{T}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`1,``0}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<TTo, T>>
+  nameWithType: Expression<Func<TTo, T>>
+  fullName: System.Linq.Expressions.Expression<System.Func<TTo, T>>
+  nameWithType.vb: Expression(Of Func(Of TTo, T))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of TTo, T))
+  name.vb: Expression(Of Func(Of TTo, T))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression{System.Func{{TFrom},{T}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,``0}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<TFrom, T>>
+  nameWithType: Expression<Func<TFrom, T>>
+  fullName: System.Linq.Expressions.Expression<System.Func<TFrom, T>>
+  nameWithType.vb: Expression(Of Func(Of TFrom, T))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of TFrom, T))
+  name.vb: Expression(Of Func(Of TFrom, T))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.MapperBuilder`2.GetMapperExpressionEx
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.GetMapperExpressionEx
+- uid: CodeJam.Mapping.MapperBuilder`2.GetMapperExpression
+  commentId: M:CodeJam.Mapping.MapperBuilder`2.GetMapperExpression
+- uid: CodeJam.Mapping.MapperBuilder`2.ProcessCrossReferences*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.ProcessCrossReferences
+  isExternal: false
+  name: ProcessCrossReferences
+  nameWithType: MapperBuilder<TFrom, TTo>.ProcessCrossReferences
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.ProcessCrossReferences
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).ProcessCrossReferences
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).ProcessCrossReferences
+- uid: CodeJam.Mapping.IMapperBuilder.ProcessCrossReferences
+  commentId: P:CodeJam.Mapping.IMapperBuilder.ProcessCrossReferences
+  parent: CodeJam.Mapping.IMapperBuilder
+  isExternal: false
+  name: ProcessCrossReferences
+  nameWithType: IMapperBuilder.ProcessCrossReferences
+  fullName: CodeJam.Mapping.IMapperBuilder.ProcessCrossReferences
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Boolean>
+  nameWithType: Nullable<Boolean>
+  fullName: System.Nullable<System.Boolean>
+  nameWithType.vb: Nullable(Of Boolean)
+  fullName.vb: System.Nullable(Of System.Boolean)
+  name.vb: Nullable(Of Boolean)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.MapperBuilder`2.SetProcessCrossReferences*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.SetProcessCrossReferences
+  isExternal: false
+  name: SetProcessCrossReferences
+  nameWithType: MapperBuilder<TFrom, TTo>.SetProcessCrossReferences
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.SetProcessCrossReferences
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).SetProcessCrossReferences
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).SetProcessCrossReferences
+- uid: CodeJam.Mapping.MapperBuilder`2.DeepCopy*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.DeepCopy
+  isExternal: false
+  name: DeepCopy
+  nameWithType: MapperBuilder<TFrom, TTo>.DeepCopy
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.DeepCopy
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).DeepCopy
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).DeepCopy
+- uid: CodeJam.Mapping.IMapperBuilder.DeepCopy
+  commentId: P:CodeJam.Mapping.IMapperBuilder.DeepCopy
+  parent: CodeJam.Mapping.IMapperBuilder
+  isExternal: false
+  name: DeepCopy
+  nameWithType: IMapperBuilder.DeepCopy
+  fullName: CodeJam.Mapping.IMapperBuilder.DeepCopy
+- uid: CodeJam.Mapping.MapperBuilder`2.FromType*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.FromType
+  isExternal: false
+  name: FromType
+  nameWithType: MapperBuilder<TFrom, TTo>.FromType
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.FromType
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).FromType
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).FromType
+- uid: CodeJam.Mapping.IMapperBuilder.FromType
+  commentId: P:CodeJam.Mapping.IMapperBuilder.FromType
+  parent: CodeJam.Mapping.IMapperBuilder
+  isExternal: false
+  name: FromType
+  nameWithType: IMapperBuilder.FromType
+  fullName: CodeJam.Mapping.IMapperBuilder.FromType
+- uid: CodeJam.Mapping.MapperBuilder`2.ToType*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.ToType
+  isExternal: false
+  name: ToType
+  nameWithType: MapperBuilder<TFrom, TTo>.ToType
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.ToType
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).ToType
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).ToType
+- uid: CodeJam.Mapping.IMapperBuilder.ToType
+  commentId: P:CodeJam.Mapping.IMapperBuilder.ToType
+  parent: CodeJam.Mapping.IMapperBuilder
+  isExternal: false
+  name: ToType
+  nameWithType: IMapperBuilder.ToType
+  fullName: CodeJam.Mapping.IMapperBuilder.ToType
+- uid: CodeJam.Mapping.MapperBuilder`2.SetDeepCopy*
+  commentId: Overload:CodeJam.Mapping.MapperBuilder`2.SetDeepCopy
+  isExternal: false
+  name: SetDeepCopy
+  nameWithType: MapperBuilder<TFrom, TTo>.SetDeepCopy
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>.SetDeepCopy
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo).SetDeepCopy
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo).SetDeepCopy

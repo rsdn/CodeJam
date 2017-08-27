@@ -1,0 +1,1478 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Arithmetic.OperatorsFactory
+  commentId: T:CodeJam.Arithmetic.OperatorsFactory
+  id: OperatorsFactory
+  parent: CodeJam.Arithmetic
+  children:
+  - CodeJam.Arithmetic.OperatorsFactory.BinaryOperator``1(System.Linq.Expressions.ExpressionType)
+  - CodeJam.Arithmetic.OperatorsFactory.ClearFlagOperator``1
+  - CodeJam.Arithmetic.OperatorsFactory.Comparison``1
+  - CodeJam.Arithmetic.OperatorsFactory.ComparisonOperator``1(System.Linq.Expressions.ExpressionType)
+  - CodeJam.Arithmetic.OperatorsFactory.GetNaN``1
+  - CodeJam.Arithmetic.OperatorsFactory.GetNegativeInfinity``1
+  - CodeJam.Arithmetic.OperatorsFactory.GetPositiveInfinity``1
+  - CodeJam.Arithmetic.OperatorsFactory.HasNaN``1
+  - CodeJam.Arithmetic.OperatorsFactory.HasNegativeInfinity``1
+  - CodeJam.Arithmetic.OperatorsFactory.HasPositiveInfinity``1
+  - CodeJam.Arithmetic.OperatorsFactory.IsAnyFlagSetOperator``1
+  - CodeJam.Arithmetic.OperatorsFactory.IsFlagSetOperator``1
+  - CodeJam.Arithmetic.OperatorsFactory.SetFlagOperator``1
+  - CodeJam.Arithmetic.OperatorsFactory.UnaryOperator``1(System.Linq.Expressions.ExpressionType)
+  langs:
+  - csharp
+  - vb
+  name: OperatorsFactory
+  nameWithType: OperatorsFactory
+  fullName: CodeJam.Arithmetic.OperatorsFactory
+  type: Class
+  source:
+    remote:
+      path: Main/src/Arithmetic/OperatorsFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: OperatorsFactory
+    path: ../Main/src/Arithmetic/OperatorsFactory.cs
+    startLine: 16
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Arithmetic
+  summary: Helper class to emit operators logic
+  example: []
+  syntax:
+    content: public static class OperatorsFactory
+    content.vb: Public Module OperatorsFactory
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Arithmetic.OperatorsFactory.HasNaN``1
+  commentId: M:CodeJam.Arithmetic.OperatorsFactory.HasNaN``1
+  id: HasNaN``1
+  parent: CodeJam.Arithmetic.OperatorsFactory
+  langs:
+  - csharp
+  - vb
+  name: HasNaN<T>()
+  nameWithType: OperatorsFactory.HasNaN<T>()
+  fullName: CodeJam.Arithmetic.OperatorsFactory.HasNaN<T>()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Arithmetic/OperatorsFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: HasNaN
+    path: ../Main/src/Arithmetic/OperatorsFactory.cs
+    startLine: 141
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Arithmetic
+  summary: Determines whether the type has NaN value.
+  example: []
+  syntax:
+    content: public static bool HasNaN<T>()
+    typeParameters:
+    - id: T
+      description: The type to check.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the type has NaN.
+    content.vb: Public Shared Function HasNaN(Of T) As Boolean
+  overload: CodeJam.Arithmetic.OperatorsFactory.HasNaN*
+  nameWithType.vb: OperatorsFactory.HasNaN(Of T)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Arithmetic.OperatorsFactory.HasNaN(Of T)()
+  name.vb: HasNaN(Of T)()
+- uid: CodeJam.Arithmetic.OperatorsFactory.GetNaN``1
+  commentId: M:CodeJam.Arithmetic.OperatorsFactory.GetNaN``1
+  id: GetNaN``1
+  parent: CodeJam.Arithmetic.OperatorsFactory
+  langs:
+  - csharp
+  - vb
+  name: GetNaN<T>()
+  nameWithType: OperatorsFactory.GetNaN<T>()
+  fullName: CodeJam.Arithmetic.OperatorsFactory.GetNaN<T>()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Arithmetic/OperatorsFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetNaN
+    path: ../Main/src/Arithmetic/OperatorsFactory.cs
+    startLine: 154
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Arithmetic
+  summary: Returns the NaN value.
+  example: []
+  syntax:
+    content: public static T GetNaN<T>()
+    typeParameters:
+    - id: T
+      description: The type to get value for.
+    return:
+      type: '{T}'
+      description: "\nThe NaN value or <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> if the type has no corresponding value.\n"
+    content.vb: Public Shared Function GetNaN(Of T) As T
+  overload: CodeJam.Arithmetic.OperatorsFactory.GetNaN*
+  exceptions:
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: Thrown if the type has no corresponding value.
+  nameWithType.vb: OperatorsFactory.GetNaN(Of T)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Arithmetic.OperatorsFactory.GetNaN(Of T)()
+  name.vb: GetNaN(Of T)()
+- uid: CodeJam.Arithmetic.OperatorsFactory.HasNegativeInfinity``1
+  commentId: M:CodeJam.Arithmetic.OperatorsFactory.HasNegativeInfinity``1
+  id: HasNegativeInfinity``1
+  parent: CodeJam.Arithmetic.OperatorsFactory
+  langs:
+  - csharp
+  - vb
+  name: HasNegativeInfinity<T>()
+  nameWithType: OperatorsFactory.HasNegativeInfinity<T>()
+  fullName: CodeJam.Arithmetic.OperatorsFactory.HasNegativeInfinity<T>()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Arithmetic/OperatorsFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: HasNegativeInfinity
+    path: ../Main/src/Arithmetic/OperatorsFactory.cs
+    startLine: 167
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Arithmetic
+  summary: Determines whether the type has negative infinity value.
+  example: []
+  syntax:
+    content: public static bool HasNegativeInfinity<T>()
+    typeParameters:
+    - id: T
+      description: The type to check.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the type has negative infinity value.
+    content.vb: Public Shared Function HasNegativeInfinity(Of T) As Boolean
+  overload: CodeJam.Arithmetic.OperatorsFactory.HasNegativeInfinity*
+  nameWithType.vb: OperatorsFactory.HasNegativeInfinity(Of T)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Arithmetic.OperatorsFactory.HasNegativeInfinity(Of T)()
+  name.vb: HasNegativeInfinity(Of T)()
+- uid: CodeJam.Arithmetic.OperatorsFactory.GetNegativeInfinity``1
+  commentId: M:CodeJam.Arithmetic.OperatorsFactory.GetNegativeInfinity``1
+  id: GetNegativeInfinity``1
+  parent: CodeJam.Arithmetic.OperatorsFactory
+  langs:
+  - csharp
+  - vb
+  name: GetNegativeInfinity<T>()
+  nameWithType: OperatorsFactory.GetNegativeInfinity<T>()
+  fullName: CodeJam.Arithmetic.OperatorsFactory.GetNegativeInfinity<T>()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Arithmetic/OperatorsFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetNegativeInfinity
+    path: ../Main/src/Arithmetic/OperatorsFactory.cs
+    startLine: 180
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Arithmetic
+  summary: Returns the negative infinity value.
+  example: []
+  syntax:
+    content: public static T GetNegativeInfinity<T>()
+    typeParameters:
+    - id: T
+      description: The type to get value for.
+    return:
+      type: '{T}'
+      description: "\nThe negative infinity value or <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> if the type has no corresponding value.\n"
+    content.vb: Public Shared Function GetNegativeInfinity(Of T) As T
+  overload: CodeJam.Arithmetic.OperatorsFactory.GetNegativeInfinity*
+  exceptions:
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: Thrown if the type has no corresponding value.
+  nameWithType.vb: OperatorsFactory.GetNegativeInfinity(Of T)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Arithmetic.OperatorsFactory.GetNegativeInfinity(Of T)()
+  name.vb: GetNegativeInfinity(Of T)()
+- uid: CodeJam.Arithmetic.OperatorsFactory.HasPositiveInfinity``1
+  commentId: M:CodeJam.Arithmetic.OperatorsFactory.HasPositiveInfinity``1
+  id: HasPositiveInfinity``1
+  parent: CodeJam.Arithmetic.OperatorsFactory
+  langs:
+  - csharp
+  - vb
+  name: HasPositiveInfinity<T>()
+  nameWithType: OperatorsFactory.HasPositiveInfinity<T>()
+  fullName: CodeJam.Arithmetic.OperatorsFactory.HasPositiveInfinity<T>()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Arithmetic/OperatorsFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: HasPositiveInfinity
+    path: ../Main/src/Arithmetic/OperatorsFactory.cs
+    startLine: 193
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Arithmetic
+  summary: Determines whether the type has positive infinity value.
+  example: []
+  syntax:
+    content: public static bool HasPositiveInfinity<T>()
+    typeParameters:
+    - id: T
+      description: The type to check.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the type has positive infinity value.
+    content.vb: Public Shared Function HasPositiveInfinity(Of T) As Boolean
+  overload: CodeJam.Arithmetic.OperatorsFactory.HasPositiveInfinity*
+  nameWithType.vb: OperatorsFactory.HasPositiveInfinity(Of T)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Arithmetic.OperatorsFactory.HasPositiveInfinity(Of T)()
+  name.vb: HasPositiveInfinity(Of T)()
+- uid: CodeJam.Arithmetic.OperatorsFactory.GetPositiveInfinity``1
+  commentId: M:CodeJam.Arithmetic.OperatorsFactory.GetPositiveInfinity``1
+  id: GetPositiveInfinity``1
+  parent: CodeJam.Arithmetic.OperatorsFactory
+  langs:
+  - csharp
+  - vb
+  name: GetPositiveInfinity<T>()
+  nameWithType: OperatorsFactory.GetPositiveInfinity<T>()
+  fullName: CodeJam.Arithmetic.OperatorsFactory.GetPositiveInfinity<T>()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Arithmetic/OperatorsFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetPositiveInfinity
+    path: ../Main/src/Arithmetic/OperatorsFactory.cs
+    startLine: 206
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Arithmetic
+  summary: Returns the positive infinity value.
+  example: []
+  syntax:
+    content: public static T GetPositiveInfinity<T>()
+    typeParameters:
+    - id: T
+      description: The type to get value for.
+    return:
+      type: '{T}'
+      description: "\nThe positive infinity value or <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> if the type has no corresponding value.\n"
+    content.vb: Public Shared Function GetPositiveInfinity(Of T) As T
+  overload: CodeJam.Arithmetic.OperatorsFactory.GetPositiveInfinity*
+  exceptions:
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: Thrown if the type has no corresponding value.
+  nameWithType.vb: OperatorsFactory.GetPositiveInfinity(Of T)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Arithmetic.OperatorsFactory.GetPositiveInfinity(Of T)()
+  name.vb: GetPositiveInfinity(Of T)()
+- uid: CodeJam.Arithmetic.OperatorsFactory.UnaryOperator``1(System.Linq.Expressions.ExpressionType)
+  commentId: M:CodeJam.Arithmetic.OperatorsFactory.UnaryOperator``1(System.Linq.Expressions.ExpressionType)
+  id: UnaryOperator``1(System.Linq.Expressions.ExpressionType)
+  parent: CodeJam.Arithmetic.OperatorsFactory
+  langs:
+  - csharp
+  - vb
+  name: UnaryOperator<T>(ExpressionType)
+  nameWithType: OperatorsFactory.UnaryOperator<T>(ExpressionType)
+  fullName: CodeJam.Arithmetic.OperatorsFactory.UnaryOperator<T>(System.Linq.Expressions.ExpressionType)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Arithmetic/OperatorsFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: UnaryOperator
+    path: ../Main/src/Arithmetic/OperatorsFactory.cs
+    startLine: 222
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Arithmetic
+  summary: Unary operator factory method.
+  example: []
+  syntax:
+    content: public static Func<T, T> UnaryOperator<T>(ExpressionType operatorType)
+    parameters:
+    - id: operatorType
+      type: System.Linq.Expressions.ExpressionType
+      description: Type of the operator.
+    typeParameters:
+    - id: T
+      description: The type of the operand
+    return:
+      type: System.Func{{T},{T}}
+      description: Callback for the operator
+    content.vb: Public Shared Function UnaryOperator(Of T)(operatorType As ExpressionType) As Func(Of T, T)
+  overload: CodeJam.Arithmetic.OperatorsFactory.UnaryOperator*
+  nameWithType.vb: OperatorsFactory.UnaryOperator(Of T)(ExpressionType)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Arithmetic.OperatorsFactory.UnaryOperator(Of T)(System.Linq.Expressions.ExpressionType)
+  name.vb: UnaryOperator(Of T)(ExpressionType)
+- uid: CodeJam.Arithmetic.OperatorsFactory.BinaryOperator``1(System.Linq.Expressions.ExpressionType)
+  commentId: M:CodeJam.Arithmetic.OperatorsFactory.BinaryOperator``1(System.Linq.Expressions.ExpressionType)
+  id: BinaryOperator``1(System.Linq.Expressions.ExpressionType)
+  parent: CodeJam.Arithmetic.OperatorsFactory
+  langs:
+  - csharp
+  - vb
+  name: BinaryOperator<T>(ExpressionType)
+  nameWithType: OperatorsFactory.BinaryOperator<T>(ExpressionType)
+  fullName: CodeJam.Arithmetic.OperatorsFactory.BinaryOperator<T>(System.Linq.Expressions.ExpressionType)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Arithmetic/OperatorsFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: BinaryOperator
+    path: ../Main/src/Arithmetic/OperatorsFactory.cs
+    startLine: 229
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Arithmetic
+  summary: Binary operator factory method.
+  example: []
+  syntax:
+    content: public static Func<T, T, T> BinaryOperator<T>(ExpressionType operatorType)
+    parameters:
+    - id: operatorType
+      type: System.Linq.Expressions.ExpressionType
+      description: Type of the operator.
+    typeParameters:
+    - id: T
+      description: The type of the operands
+    return:
+      type: System.Func{{T},{T},{T}}
+      description: Callback for the operator
+    content.vb: Public Shared Function BinaryOperator(Of T)(operatorType As ExpressionType) As Func(Of T, T, T)
+  overload: CodeJam.Arithmetic.OperatorsFactory.BinaryOperator*
+  nameWithType.vb: OperatorsFactory.BinaryOperator(Of T)(ExpressionType)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Arithmetic.OperatorsFactory.BinaryOperator(Of T)(System.Linq.Expressions.ExpressionType)
+  name.vb: BinaryOperator(Of T)(ExpressionType)
+- uid: CodeJam.Arithmetic.OperatorsFactory.Comparison``1
+  commentId: M:CodeJam.Arithmetic.OperatorsFactory.Comparison``1
+  id: Comparison``1
+  parent: CodeJam.Arithmetic.OperatorsFactory
+  langs:
+  - csharp
+  - vb
+  name: Comparison<T>()
+  nameWithType: OperatorsFactory.Comparison<T>()
+  fullName: CodeJam.Arithmetic.OperatorsFactory.Comparison<T>()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Arithmetic/OperatorsFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Comparison
+    path: ../Main/src/Arithmetic/OperatorsFactory.cs
+    startLine: 238
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Arithmetic
+  summary: Comparison factory method..
+  example: []
+  syntax:
+    content: public static Func<T, T, int> Comparison<T>()
+    typeParameters:
+    - id: T
+      description: The type of the operands
+    return:
+      type: System.Func{{T},{T},System.Int32}
+      description: Callback for the comparison
+    content.vb: Public Shared Function Comparison(Of T) As Func(Of T, T, Integer)
+  overload: CodeJam.Arithmetic.OperatorsFactory.Comparison*
+  exceptions:
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: Type does not implement IComparable nor IComparable{T} interface
+  nameWithType.vb: OperatorsFactory.Comparison(Of T)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Arithmetic.OperatorsFactory.Comparison(Of T)()
+  name.vb: Comparison(Of T)()
+- uid: CodeJam.Arithmetic.OperatorsFactory.ComparisonOperator``1(System.Linq.Expressions.ExpressionType)
+  commentId: M:CodeJam.Arithmetic.OperatorsFactory.ComparisonOperator``1(System.Linq.Expressions.ExpressionType)
+  id: ComparisonOperator``1(System.Linq.Expressions.ExpressionType)
+  parent: CodeJam.Arithmetic.OperatorsFactory
+  langs:
+  - csharp
+  - vb
+  name: ComparisonOperator<T>(ExpressionType)
+  nameWithType: OperatorsFactory.ComparisonOperator<T>(ExpressionType)
+  fullName: CodeJam.Arithmetic.OperatorsFactory.ComparisonOperator<T>(System.Linq.Expressions.ExpressionType)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Arithmetic/OperatorsFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ComparisonOperator
+    path: ../Main/src/Arithmetic/OperatorsFactory.cs
+    startLine: 369
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Arithmetic
+  summary: Compare operator factory method..
+  example: []
+  syntax:
+    content: public static Func<T, T, bool> ComparisonOperator<T>(ExpressionType comparisonType)
+    parameters:
+    - id: comparisonType
+      type: System.Linq.Expressions.ExpressionType
+      description: Type of the comparison operator.
+    typeParameters:
+    - id: T
+      description: The type of the operands
+    return:
+      type: System.Func{{T},{T},System.Boolean}
+      description: Callback for the compare operator
+    content.vb: Public Shared Function ComparisonOperator(Of T)(comparisonType As ExpressionType) As Func(Of T, T, Boolean)
+  overload: CodeJam.Arithmetic.OperatorsFactory.ComparisonOperator*
+  nameWithType.vb: OperatorsFactory.ComparisonOperator(Of T)(ExpressionType)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Arithmetic.OperatorsFactory.ComparisonOperator(Of T)(System.Linq.Expressions.ExpressionType)
+  name.vb: ComparisonOperator(Of T)(ExpressionType)
+- uid: CodeJam.Arithmetic.OperatorsFactory.IsFlagSetOperator``1
+  commentId: M:CodeJam.Arithmetic.OperatorsFactory.IsFlagSetOperator``1
+  id: IsFlagSetOperator``1
+  parent: CodeJam.Arithmetic.OperatorsFactory
+  langs:
+  - csharp
+  - vb
+  name: IsFlagSetOperator<T>()
+  nameWithType: OperatorsFactory.IsFlagSetOperator<T>()
+  fullName: CodeJam.Arithmetic.OperatorsFactory.IsFlagSetOperator<T>()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Arithmetic/OperatorsFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsFlagSetOperator
+    path: ../Main/src/Arithmetic/OperatorsFactory.cs
+    startLine: 431
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Arithmetic
+  summary: Emits code for (value &amp; flag) == flag check.
+  example: []
+  syntax:
+    content: public static Func<T, T, bool> IsFlagSetOperator<T>()
+    typeParameters:
+    - id: T
+      description: The type of the operands
+    return:
+      type: System.Func{{T},{T},System.Boolean}
+      description: Callback for (value &amp; flag) == flag check
+    content.vb: Public Shared Function IsFlagSetOperator(Of T) As Func(Of T, T, Boolean)
+  overload: CodeJam.Arithmetic.OperatorsFactory.IsFlagSetOperator*
+  nameWithType.vb: OperatorsFactory.IsFlagSetOperator(Of T)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Arithmetic.OperatorsFactory.IsFlagSetOperator(Of T)()
+  name.vb: IsFlagSetOperator(Of T)()
+- uid: CodeJam.Arithmetic.OperatorsFactory.IsAnyFlagSetOperator``1
+  commentId: M:CodeJam.Arithmetic.OperatorsFactory.IsAnyFlagSetOperator``1
+  id: IsAnyFlagSetOperator``1
+  parent: CodeJam.Arithmetic.OperatorsFactory
+  langs:
+  - csharp
+  - vb
+  name: IsAnyFlagSetOperator<T>()
+  nameWithType: OperatorsFactory.IsAnyFlagSetOperator<T>()
+  fullName: CodeJam.Arithmetic.OperatorsFactory.IsAnyFlagSetOperator<T>()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Arithmetic/OperatorsFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsAnyFlagSetOperator
+    path: ../Main/src/Arithmetic/OperatorsFactory.cs
+    startLine: 443
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Arithmetic
+  summary: Emits code for (flag == 0) || ((value &amp; flag) != 0) check.
+  example: []
+  syntax:
+    content: public static Func<T, T, bool> IsAnyFlagSetOperator<T>()
+    typeParameters:
+    - id: T
+      description: The type of the operands
+    return:
+      type: System.Func{{T},{T},System.Boolean}
+      description: Callback for (flag == 0) || ((value &amp; flag) != 0) check
+    content.vb: Public Shared Function IsAnyFlagSetOperator(Of T) As Func(Of T, T, Boolean)
+  overload: CodeJam.Arithmetic.OperatorsFactory.IsAnyFlagSetOperator*
+  nameWithType.vb: OperatorsFactory.IsAnyFlagSetOperator(Of T)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Arithmetic.OperatorsFactory.IsAnyFlagSetOperator(Of T)()
+  name.vb: IsAnyFlagSetOperator(Of T)()
+- uid: CodeJam.Arithmetic.OperatorsFactory.SetFlagOperator``1
+  commentId: M:CodeJam.Arithmetic.OperatorsFactory.SetFlagOperator``1
+  id: SetFlagOperator``1
+  parent: CodeJam.Arithmetic.OperatorsFactory
+  langs:
+  - csharp
+  - vb
+  name: SetFlagOperator<T>()
+  nameWithType: OperatorsFactory.SetFlagOperator<T>()
+  fullName: CodeJam.Arithmetic.OperatorsFactory.SetFlagOperator<T>()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Arithmetic/OperatorsFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SetFlagOperator
+    path: ../Main/src/Arithmetic/OperatorsFactory.cs
+    startLine: 462
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Arithmetic
+  summary: Emits code for (value | flag) operator.
+  example: []
+  syntax:
+    content: public static Func<T, T, T> SetFlagOperator<T>()
+    typeParameters:
+    - id: T
+      description: The type of the operands
+    return:
+      type: System.Func{{T},{T},{T}}
+      description: Callback for (value | flag) operator.
+    content.vb: Public Shared Function SetFlagOperator(Of T) As Func(Of T, T, T)
+  overload: CodeJam.Arithmetic.OperatorsFactory.SetFlagOperator*
+  nameWithType.vb: OperatorsFactory.SetFlagOperator(Of T)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Arithmetic.OperatorsFactory.SetFlagOperator(Of T)()
+  name.vb: SetFlagOperator(Of T)()
+- uid: CodeJam.Arithmetic.OperatorsFactory.ClearFlagOperator``1
+  commentId: M:CodeJam.Arithmetic.OperatorsFactory.ClearFlagOperator``1
+  id: ClearFlagOperator``1
+  parent: CodeJam.Arithmetic.OperatorsFactory
+  langs:
+  - csharp
+  - vb
+  name: ClearFlagOperator<T>()
+  nameWithType: OperatorsFactory.ClearFlagOperator<T>()
+  fullName: CodeJam.Arithmetic.OperatorsFactory.ClearFlagOperator<T>()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Arithmetic/OperatorsFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ClearFlagOperator
+    path: ../Main/src/Arithmetic/OperatorsFactory.cs
+    startLine: 474
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Arithmetic
+  summary: Emits code for (value &amp; ~flag) operator.
+  example: []
+  syntax:
+    content: public static Func<T, T, T> ClearFlagOperator<T>()
+    typeParameters:
+    - id: T
+      description: The type of the operands
+    return:
+      type: System.Func{{T},{T},{T}}
+      description: Callback for (value &amp; ~flag) operator.
+    content.vb: Public Shared Function ClearFlagOperator(Of T) As Func(Of T, T, T)
+  overload: CodeJam.Arithmetic.OperatorsFactory.ClearFlagOperator*
+  nameWithType.vb: OperatorsFactory.ClearFlagOperator(Of T)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Arithmetic.OperatorsFactory.ClearFlagOperator(Of T)()
+  name.vb: ClearFlagOperator(Of T)()
+references:
+- uid: CodeJam.Arithmetic
+  commentId: N:CodeJam.Arithmetic
+  isExternal: false
+  name: CodeJam.Arithmetic
+  nameWithType: CodeJam.Arithmetic
+  fullName: CodeJam.Arithmetic
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Arithmetic.OperatorsFactory.HasNaN*
+  commentId: Overload:CodeJam.Arithmetic.OperatorsFactory.HasNaN
+  isExternal: false
+  name: HasNaN
+  nameWithType: OperatorsFactory.HasNaN
+  fullName: CodeJam.Arithmetic.OperatorsFactory.HasNaN
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.NotSupportedException
+  commentId: T:System.NotSupportedException
+  parent: System
+  isExternal: true
+  name: NotSupportedException
+  nameWithType: NotSupportedException
+  fullName: System.NotSupportedException
+- uid: CodeJam.Arithmetic.OperatorsFactory.GetNaN*
+  commentId: Overload:CodeJam.Arithmetic.OperatorsFactory.GetNaN
+  isExternal: false
+  name: GetNaN
+  nameWithType: OperatorsFactory.GetNaN
+  fullName: CodeJam.Arithmetic.OperatorsFactory.GetNaN
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: CodeJam.Arithmetic.OperatorsFactory.HasNegativeInfinity*
+  commentId: Overload:CodeJam.Arithmetic.OperatorsFactory.HasNegativeInfinity
+  isExternal: false
+  name: HasNegativeInfinity
+  nameWithType: OperatorsFactory.HasNegativeInfinity
+  fullName: CodeJam.Arithmetic.OperatorsFactory.HasNegativeInfinity
+- uid: CodeJam.Arithmetic.OperatorsFactory.GetNegativeInfinity*
+  commentId: Overload:CodeJam.Arithmetic.OperatorsFactory.GetNegativeInfinity
+  isExternal: false
+  name: GetNegativeInfinity
+  nameWithType: OperatorsFactory.GetNegativeInfinity
+  fullName: CodeJam.Arithmetic.OperatorsFactory.GetNegativeInfinity
+- uid: CodeJam.Arithmetic.OperatorsFactory.HasPositiveInfinity*
+  commentId: Overload:CodeJam.Arithmetic.OperatorsFactory.HasPositiveInfinity
+  isExternal: false
+  name: HasPositiveInfinity
+  nameWithType: OperatorsFactory.HasPositiveInfinity
+  fullName: CodeJam.Arithmetic.OperatorsFactory.HasPositiveInfinity
+- uid: CodeJam.Arithmetic.OperatorsFactory.GetPositiveInfinity*
+  commentId: Overload:CodeJam.Arithmetic.OperatorsFactory.GetPositiveInfinity
+  isExternal: false
+  name: GetPositiveInfinity
+  nameWithType: OperatorsFactory.GetPositiveInfinity
+  fullName: CodeJam.Arithmetic.OperatorsFactory.GetPositiveInfinity
+- uid: CodeJam.Arithmetic.OperatorsFactory.UnaryOperator*
+  commentId: Overload:CodeJam.Arithmetic.OperatorsFactory.UnaryOperator
+  isExternal: false
+  name: UnaryOperator
+  nameWithType: OperatorsFactory.UnaryOperator
+  fullName: CodeJam.Arithmetic.OperatorsFactory.UnaryOperator
+- uid: System.Linq.Expressions.ExpressionType
+  commentId: T:System.Linq.Expressions.ExpressionType
+  parent: System.Linq.Expressions
+  isExternal: true
+  name: ExpressionType
+  nameWithType: ExpressionType
+  fullName: System.Linq.Expressions.ExpressionType
+- uid: System.Func{{T},{T}}
+  commentId: T:System.Func{`0,`0}
+  parent: System
+  definition: System.Func`2
+  name: Func<T, T>
+  nameWithType: Func<T, T>
+  fullName: System.Func<T, T>
+  nameWithType.vb: Func(Of T, T)
+  fullName.vb: System.Func(Of T, T)
+  name.vb: Func(Of T, T)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
+  isExternal: false
+  name: System.Linq.Expressions
+  nameWithType: System.Linq.Expressions
+  fullName: System.Linq.Expressions
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Arithmetic.OperatorsFactory.BinaryOperator*
+  commentId: Overload:CodeJam.Arithmetic.OperatorsFactory.BinaryOperator
+  isExternal: false
+  name: BinaryOperator
+  nameWithType: OperatorsFactory.BinaryOperator
+  fullName: CodeJam.Arithmetic.OperatorsFactory.BinaryOperator
+- uid: System.Func{{T},{T},{T}}
+  commentId: T:System.Func{`0,`0,`0}
+  parent: System
+  definition: System.Func`3
+  name: Func<T, T, T>
+  nameWithType: Func<T, T, T>
+  fullName: System.Func<T, T, T>
+  nameWithType.vb: Func(Of T, T, T)
+  fullName.vb: System.Func(Of T, T, T)
+  name.vb: Func(Of T, T, T)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`3
+  commentId: T:System.Func`3
+  isExternal: true
+  name: Func<T1, T2, TResult>
+  nameWithType: Func<T1, T2, TResult>
+  fullName: System.Func<T1, T2, TResult>
+  nameWithType.vb: Func(Of T1, T2, TResult)
+  fullName.vb: System.Func(Of T1, T2, TResult)
+  name.vb: Func(Of T1, T2, TResult)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Arithmetic.OperatorsFactory.Comparison*
+  commentId: Overload:CodeJam.Arithmetic.OperatorsFactory.Comparison
+  isExternal: false
+  name: Comparison
+  nameWithType: OperatorsFactory.Comparison
+  fullName: CodeJam.Arithmetic.OperatorsFactory.Comparison
+- uid: System.Func{{T},{T},System.Int32}
+  commentId: T:System.Func{`0,`0,System.Int32}
+  parent: System
+  definition: System.Func`3
+  name: Func<T, T, Int32>
+  nameWithType: Func<T, T, Int32>
+  fullName: System.Func<T, T, System.Int32>
+  nameWithType.vb: Func(Of T, T, Int32)
+  fullName.vb: System.Func(Of T, T, System.Int32)
+  name.vb: Func(Of T, T, Int32)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Arithmetic.OperatorsFactory.ComparisonOperator*
+  commentId: Overload:CodeJam.Arithmetic.OperatorsFactory.ComparisonOperator
+  isExternal: false
+  name: ComparisonOperator
+  nameWithType: OperatorsFactory.ComparisonOperator
+  fullName: CodeJam.Arithmetic.OperatorsFactory.ComparisonOperator
+- uid: System.Func{{T},{T},System.Boolean}
+  commentId: T:System.Func{`0,`0,System.Boolean}
+  parent: System
+  definition: System.Func`3
+  name: Func<T, T, Boolean>
+  nameWithType: Func<T, T, Boolean>
+  fullName: System.Func<T, T, System.Boolean>
+  nameWithType.vb: Func(Of T, T, Boolean)
+  fullName.vb: System.Func(Of T, T, System.Boolean)
+  name.vb: Func(Of T, T, Boolean)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Arithmetic.OperatorsFactory.IsFlagSetOperator*
+  commentId: Overload:CodeJam.Arithmetic.OperatorsFactory.IsFlagSetOperator
+  isExternal: false
+  name: IsFlagSetOperator
+  nameWithType: OperatorsFactory.IsFlagSetOperator
+  fullName: CodeJam.Arithmetic.OperatorsFactory.IsFlagSetOperator
+- uid: CodeJam.Arithmetic.OperatorsFactory.IsAnyFlagSetOperator*
+  commentId: Overload:CodeJam.Arithmetic.OperatorsFactory.IsAnyFlagSetOperator
+  isExternal: false
+  name: IsAnyFlagSetOperator
+  nameWithType: OperatorsFactory.IsAnyFlagSetOperator
+  fullName: CodeJam.Arithmetic.OperatorsFactory.IsAnyFlagSetOperator
+- uid: CodeJam.Arithmetic.OperatorsFactory.SetFlagOperator*
+  commentId: Overload:CodeJam.Arithmetic.OperatorsFactory.SetFlagOperator
+  isExternal: false
+  name: SetFlagOperator
+  nameWithType: OperatorsFactory.SetFlagOperator
+  fullName: CodeJam.Arithmetic.OperatorsFactory.SetFlagOperator
+- uid: CodeJam.Arithmetic.OperatorsFactory.ClearFlagOperator*
+  commentId: Overload:CodeJam.Arithmetic.OperatorsFactory.ClearFlagOperator
+  isExternal: false
+  name: ClearFlagOperator
+  nameWithType: OperatorsFactory.ClearFlagOperator
+  fullName: CodeJam.Arithmetic.OperatorsFactory.ClearFlagOperator

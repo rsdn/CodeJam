@@ -1,0 +1,8 @@
+- name: Welcome
+  href: articles/
+- name: CodeJam.Main
+  href: api/Main/toc.yml
+  topicHref: api/Main/index.md
+- name: CodeJam.Blocks
+  href: api/Blocks/toc.yml
+  topicHref: api/Blocks/index.md

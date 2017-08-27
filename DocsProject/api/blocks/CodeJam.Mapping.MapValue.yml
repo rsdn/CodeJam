@@ -1,0 +1,589 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Mapping.MapValue
+  commentId: T:CodeJam.Mapping.MapValue
+  id: MapValue
+  parent: CodeJam.Mapping
+  children:
+  - CodeJam.Mapping.MapValue.#ctor(System.Object,CodeJam.Mapping.MapValueAttribute[])
+  - CodeJam.Mapping.MapValue.MapValues
+  - CodeJam.Mapping.MapValue.OrigValue
+  langs:
+  - csharp
+  - vb
+  name: MapValue
+  nameWithType: MapValue
+  fullName: CodeJam.Mapping.MapValue
+  type: Class
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapValue.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MapValue
+    path: ../Blocks/src/Mapping/MapValue.cs
+    startLine: 10
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nMapping value.\n"
+  example: []
+  syntax:
+    content: public class MapValue
+    content.vb: Public Class MapValue
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - CodeJam.Mapping.MapValue.CodeJam.Mapping.Map.DeepCopy``1
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: CodeJam.Mapping.MapValue.#ctor(System.Object,CodeJam.Mapping.MapValueAttribute[])
+  commentId: M:CodeJam.Mapping.MapValue.#ctor(System.Object,CodeJam.Mapping.MapValueAttribute[])
+  id: '#ctor(System.Object,CodeJam.Mapping.MapValueAttribute[])'
+  parent: CodeJam.Mapping.MapValue
+  langs:
+  - csharp
+  - vb
+  name: MapValue(Object, MapValueAttribute[])
+  nameWithType: MapValue.MapValue(Object, MapValueAttribute[])
+  fullName: CodeJam.Mapping.MapValue.MapValue(System.Object, CodeJam.Mapping.MapValueAttribute[])
+  type: Constructor
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapValue.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../Blocks/src/Mapping/MapValue.cs
+    startLine: 17
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nCreates <xref href=\"CodeJam.Mapping.MapValue\" data-throw-if-not-resolved=\"false\"></xref> instance.\n"
+  example: []
+  syntax:
+    content: public MapValue(object origValue, params MapValueAttribute[] mapValues)
+    parameters:
+    - id: origValue
+      type: System.Object
+      description: Original value.
+    - id: mapValues
+      type: CodeJam.Mapping.MapValueAttribute[]
+      description: Mapping value.
+    content.vb: Public Sub New(origValue As Object, ParamArray mapValues As MapValueAttribute())
+  overload: CodeJam.Mapping.MapValue.#ctor*
+  nameWithType.vb: MapValue.MapValue(Object, MapValueAttribute())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MapValue.MapValue(System.Object, CodeJam.Mapping.MapValueAttribute())
+  name.vb: MapValue(Object, MapValueAttribute())
+- uid: CodeJam.Mapping.MapValue.OrigValue
+  commentId: P:CodeJam.Mapping.MapValue.OrigValue
+  id: OrigValue
+  parent: CodeJam.Mapping.MapValue
+  langs:
+  - csharp
+  - vb
+  name: OrigValue
+  nameWithType: MapValue.OrigValue
+  fullName: CodeJam.Mapping.MapValue.OrigValue
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapValue.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: OrigValue
+    path: ../Blocks/src/Mapping/MapValue.cs
+    startLine: 28
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nOriginal value.\n"
+  example: []
+  syntax:
+    content: public object OrigValue { get; }
+    parameters: []
+    return:
+      type: System.Object
+    content.vb: Public ReadOnly Property OrigValue As Object
+  overload: CodeJam.Mapping.MapValue.OrigValue*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.Mapping.MapValue.MapValues
+  commentId: P:CodeJam.Mapping.MapValue.MapValues
+  id: MapValues
+  parent: CodeJam.Mapping.MapValue
+  langs:
+  - csharp
+  - vb
+  name: MapValues
+  nameWithType: MapValue.MapValues
+  fullName: CodeJam.Mapping.MapValue.MapValues
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/MapValue.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MapValues
+    path: ../Blocks/src/Mapping/MapValue.cs
+    startLine: 33
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nMapping value.\n"
+  example: []
+  syntax:
+    content: public MapValueAttribute[] MapValues { get; }
+    parameters: []
+    return:
+      type: CodeJam.Mapping.MapValueAttribute[]
+    content.vb: Public ReadOnly Property MapValues As MapValueAttribute()
+  overload: CodeJam.Mapping.MapValue.MapValues*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+references:
+- uid: CodeJam.Mapping
+  commentId: N:CodeJam.Mapping
+  isExternal: false
+  name: CodeJam.Mapping
+  nameWithType: CodeJam.Mapping
+  fullName: CodeJam.Mapping
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.MapValue.CodeJam.Mapping.Map.DeepCopy``1
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  parent: CodeJam.Mapping.Map
+  definition: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  name: DeepCopy<MapValue>()
+  nameWithType: Map.DeepCopy<MapValue>()
+  fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.Mapping.MapValue>()
+  nameWithType.vb: Map.DeepCopy(Of MapValue)()
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.Mapping.MapValue)()
+  name.vb: DeepCopy(Of MapValue)()
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy<MapValue>
+    nameWithType: Map.DeepCopy<MapValue>
+    fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.Mapping.MapValue>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy(Of MapValue)
+    nameWithType: Map.DeepCopy(Of MapValue)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.Mapping.MapValue)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  isExternal: false
+  name: DeepCopy<T>(T)
+  nameWithType: Map.DeepCopy<T>(T)
+  fullName: CodeJam.Mapping.Map.DeepCopy<T>(T)
+  nameWithType.vb: Map.DeepCopy(Of T)(T)
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of T)(T)
+  name.vb: DeepCopy(Of T)(T)
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy<T>
+    nameWithType: Map.DeepCopy<T>
+    fullName: CodeJam.Mapping.Map.DeepCopy<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy(Of T)
+    nameWithType: Map.DeepCopy(Of T)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.Map
+  commentId: T:CodeJam.Mapping.Map
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: Map
+  nameWithType: Map
+  fullName: CodeJam.Mapping.Map
+- uid: CodeJam.Mapping.MapValue
+  commentId: T:CodeJam.Mapping.MapValue
+  isExternal: false
+  name: MapValue
+  nameWithType: MapValue
+  fullName: CodeJam.Mapping.MapValue
+- uid: CodeJam.Mapping.MapValue.#ctor*
+  commentId: Overload:CodeJam.Mapping.MapValue.#ctor
+  isExternal: false
+  name: MapValue
+  nameWithType: MapValue.MapValue
+  fullName: CodeJam.Mapping.MapValue.MapValue
+- uid: CodeJam.Mapping.MapValueAttribute[]
+  name: MapValueAttribute[]
+  nameWithType: MapValueAttribute[]
+  fullName: CodeJam.Mapping.MapValueAttribute[]
+  nameWithType.vb: MapValueAttribute()
+  fullName.vb: CodeJam.Mapping.MapValueAttribute()
+  name.vb: MapValueAttribute()
+  spec.csharp:
+  - uid: CodeJam.Mapping.MapValueAttribute
+    name: MapValueAttribute
+    nameWithType: MapValueAttribute
+    fullName: CodeJam.Mapping.MapValueAttribute
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: CodeJam.Mapping.MapValueAttribute
+    name: MapValueAttribute
+    nameWithType: MapValueAttribute
+    fullName: CodeJam.Mapping.MapValueAttribute
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: CodeJam.Mapping.MapValue.OrigValue*
+  commentId: Overload:CodeJam.Mapping.MapValue.OrigValue
+  isExternal: false
+  name: OrigValue
+  nameWithType: MapValue.OrigValue
+  fullName: CodeJam.Mapping.MapValue.OrigValue
+- uid: CodeJam.Mapping.MapValue.MapValues*
+  commentId: Overload:CodeJam.Mapping.MapValue.MapValues
+  isExternal: false
+  name: MapValues
+  nameWithType: MapValue.MapValues
+  fullName: CodeJam.Mapping.MapValue.MapValues

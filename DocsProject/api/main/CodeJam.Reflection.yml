@@ -1,0 +1,151 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Reflection
+  commentId: N:CodeJam.Reflection
+  id: CodeJam.Reflection
+  children:
+  - CodeJam.Reflection.AssemblyExtensions
+  - CodeJam.Reflection.InfoOf
+  - CodeJam.Reflection.InfoOf`1
+  - CodeJam.Reflection.MemberAccessor
+  - CodeJam.Reflection.ParamInfo
+  - CodeJam.Reflection.ReflectionEnumHelper
+  - CodeJam.Reflection.ReflectionExtensions
+  - CodeJam.Reflection.TypeAccessor
+  - CodeJam.Reflection.TypeAccessor`1
+  langs:
+  - csharp
+  - vb
+  name: CodeJam.Reflection
+  nameWithType: CodeJam.Reflection
+  fullName: CodeJam.Reflection
+  type: Namespace
+  assemblies:
+  - CodeJam
+references:
+- uid: CodeJam.Reflection.MemberAccessor
+  commentId: T:CodeJam.Reflection.MemberAccessor
+  parent: CodeJam.Reflection
+  isExternal: false
+  name: MemberAccessor
+  nameWithType: MemberAccessor
+  fullName: CodeJam.Reflection.MemberAccessor
+- uid: CodeJam.Reflection.ReflectionExtensions
+  commentId: T:CodeJam.Reflection.ReflectionExtensions
+  isExternal: false
+  name: ReflectionExtensions
+  nameWithType: ReflectionExtensions
+  fullName: CodeJam.Reflection.ReflectionExtensions
+- uid: CodeJam.Reflection.TypeAccessor
+  commentId: T:CodeJam.Reflection.TypeAccessor
+  parent: CodeJam.Reflection
+  isExternal: false
+  name: TypeAccessor
+  nameWithType: TypeAccessor
+  fullName: CodeJam.Reflection.TypeAccessor
+- uid: CodeJam.Reflection.TypeAccessor`1
+  commentId: T:CodeJam.Reflection.TypeAccessor`1
+  parent: CodeJam.Reflection
+  isExternal: false
+  name: TypeAccessor<T>
+  nameWithType: TypeAccessor<T>
+  fullName: CodeJam.Reflection.TypeAccessor<T>
+  nameWithType.vb: TypeAccessor(Of T)
+  fullName.vb: CodeJam.Reflection.TypeAccessor(Of T)
+  name.vb: TypeAccessor(Of T)
+  spec.csharp:
+  - uid: CodeJam.Reflection.TypeAccessor`1
+    name: TypeAccessor
+    nameWithType: TypeAccessor
+    fullName: CodeJam.Reflection.TypeAccessor
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Reflection.TypeAccessor`1
+    name: TypeAccessor
+    nameWithType: TypeAccessor
+    fullName: CodeJam.Reflection.TypeAccessor
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Reflection.InfoOf`1
+  commentId: T:CodeJam.Reflection.InfoOf`1
+  isExternal: false
+  name: InfoOf<T>
+  nameWithType: InfoOf<T>
+  fullName: CodeJam.Reflection.InfoOf<T>
+  nameWithType.vb: InfoOf(Of T)
+  fullName.vb: CodeJam.Reflection.InfoOf(Of T)
+  name.vb: InfoOf(Of T)
+  spec.csharp:
+  - uid: CodeJam.Reflection.InfoOf`1
+    name: InfoOf
+    nameWithType: InfoOf
+    fullName: CodeJam.Reflection.InfoOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Reflection.InfoOf`1
+    name: InfoOf
+    nameWithType: InfoOf
+    fullName: CodeJam.Reflection.InfoOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Reflection.ParamInfo
+  commentId: T:CodeJam.Reflection.ParamInfo
+  parent: CodeJam.Reflection
+  isExternal: false
+  name: ParamInfo
+  nameWithType: ParamInfo
+  fullName: CodeJam.Reflection.ParamInfo
+- uid: CodeJam.Reflection.AssemblyExtensions
+  commentId: T:CodeJam.Reflection.AssemblyExtensions
+  isExternal: false
+  name: AssemblyExtensions
+  nameWithType: AssemblyExtensions
+  fullName: CodeJam.Reflection.AssemblyExtensions
+- uid: CodeJam.Reflection.ReflectionEnumHelper
+  commentId: T:CodeJam.Reflection.ReflectionEnumHelper
+  isExternal: false
+  name: ReflectionEnumHelper
+  nameWithType: ReflectionEnumHelper
+  fullName: CodeJam.Reflection.ReflectionEnumHelper
+- uid: CodeJam.Reflection.InfoOf
+  commentId: T:CodeJam.Reflection.InfoOf
+  isExternal: false
+  name: InfoOf
+  nameWithType: InfoOf
+  fullName: CodeJam.Reflection.InfoOf
+- uid: CodeJam.Reflection
+  commentId: N:CodeJam.Reflection
+  isExternal: false
+  name: CodeJam.Reflection
+  nameWithType: CodeJam.Reflection
+  fullName: CodeJam.Reflection

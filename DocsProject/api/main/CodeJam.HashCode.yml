@@ -1,0 +1,943 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.HashCode
+  commentId: T:CodeJam.HashCode
+  id: HashCode
+  parent: CodeJam
+  children:
+  - CodeJam.HashCode.Combine(System.Int32,System.Int32)
+  - CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32)
+  - CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32,System.Int32)
+  - CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  - CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  - CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  - CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  - CodeJam.HashCode.CombineValues``1(``0[])
+  - CodeJam.HashCode.CombineValues``1(System.Collections.Generic.IEnumerable{``0})
+  langs:
+  - csharp
+  - vb
+  name: HashCode
+  nameWithType: HashCode
+  fullName: CodeJam.HashCode
+  type: Class
+  source:
+    remote:
+      path: Main/src/Algorithms/HashCode.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: HashCode
+    path: ../Main/src/Algorithms/HashCode.cs
+    startLine: 14
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nHash code helper methods.\n"
+  example: []
+  syntax:
+    content: public static class HashCode
+    content.vb: Public Module HashCode
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.HashCode.Combine(System.Int32,System.Int32)
+  commentId: M:CodeJam.HashCode.Combine(System.Int32,System.Int32)
+  id: Combine(System.Int32,System.Int32)
+  parent: CodeJam.HashCode
+  langs:
+  - csharp
+  - vb
+  name: Combine(Int32, Int32)
+  nameWithType: HashCode.Combine(Int32, Int32)
+  fullName: CodeJam.HashCode.Combine(System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Algorithms/HashCode.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Combine
+    path: ../Main/src/Algorithms/HashCode.cs
+    startLine: 23
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCombines hash codes.\n"
+  example: []
+  syntax:
+    content: public static int Combine(int h1, int h2)
+    parameters:
+    - id: h1
+      type: System.Int32
+      description: Hash code 1
+    - id: h2
+      type: System.Int32
+      description: Hash code 2
+    return:
+      type: System.Int32
+      description: Combined hash code
+    content.vb: Public Shared Function Combine(h1 As Integer, h2 As Integer) As Integer
+  overload: CodeJam.HashCode.Combine*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32)
+  commentId: M:CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32)
+  id: Combine(System.Int32,System.Int32,System.Int32)
+  parent: CodeJam.HashCode
+  langs:
+  - csharp
+  - vb
+  name: Combine(Int32, Int32, Int32)
+  nameWithType: HashCode.Combine(Int32, Int32, Int32)
+  fullName: CodeJam.HashCode.Combine(System.Int32, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Algorithms/HashCode.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Combine
+    path: ../Main/src/Algorithms/HashCode.cs
+    startLine: 39
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCombines hash codes.\n"
+  example: []
+  syntax:
+    content: public static int Combine(int h1, int h2, int h3)
+    parameters:
+    - id: h1
+      type: System.Int32
+      description: Hash code 1
+    - id: h2
+      type: System.Int32
+      description: Hash code 2
+    - id: h3
+      type: System.Int32
+      description: Hash code 3
+    return:
+      type: System.Int32
+      description: Combined hash code
+    content.vb: Public Shared Function Combine(h1 As Integer, h2 As Integer, h3 As Integer) As Integer
+  overload: CodeJam.HashCode.Combine*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32,System.Int32)
+  id: Combine(System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: CodeJam.HashCode
+  langs:
+  - csharp
+  - vb
+  name: Combine(Int32, Int32, Int32, Int32)
+  nameWithType: HashCode.Combine(Int32, Int32, Int32, Int32)
+  fullName: CodeJam.HashCode.Combine(System.Int32, System.Int32, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Algorithms/HashCode.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Combine
+    path: ../Main/src/Algorithms/HashCode.cs
+    startLine: 50
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCombines hash codes.\n"
+  example: []
+  syntax:
+    content: public static int Combine(int h1, int h2, int h3, int h4)
+    parameters:
+    - id: h1
+      type: System.Int32
+      description: Hash code 1
+    - id: h2
+      type: System.Int32
+      description: Hash code 2
+    - id: h3
+      type: System.Int32
+      description: Hash code 3
+    - id: h4
+      type: System.Int32
+      description: Hash code 4
+    return:
+      type: System.Int32
+      description: Combined hash code
+    content.vb: Public Shared Function Combine(h1 As Integer, h2 As Integer, h3 As Integer, h4 As Integer) As Integer
+  overload: CodeJam.HashCode.Combine*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: Combine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: CodeJam.HashCode
+  langs:
+  - csharp
+  - vb
+  name: Combine(Int32, Int32, Int32, Int32, Int32)
+  nameWithType: HashCode.Combine(Int32, Int32, Int32, Int32, Int32)
+  fullName: CodeJam.HashCode.Combine(System.Int32, System.Int32, System.Int32, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Algorithms/HashCode.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Combine
+    path: ../Main/src/Algorithms/HashCode.cs
+    startLine: 62
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCombines hash codes.\n"
+  example: []
+  syntax:
+    content: public static int Combine(int h1, int h2, int h3, int h4, int h5)
+    parameters:
+    - id: h1
+      type: System.Int32
+      description: Hash code 1
+    - id: h2
+      type: System.Int32
+      description: Hash code 2
+    - id: h3
+      type: System.Int32
+      description: Hash code 3
+    - id: h4
+      type: System.Int32
+      description: Hash code 4
+    - id: h5
+      type: System.Int32
+      description: Hash code 5
+    return:
+      type: System.Int32
+      description: Combined hash code
+    content.vb: Public Shared Function Combine(h1 As Integer, h2 As Integer, h3 As Integer, h4 As Integer, h5 As Integer) As Integer
+  overload: CodeJam.HashCode.Combine*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: Combine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: CodeJam.HashCode
+  langs:
+  - csharp
+  - vb
+  name: Combine(Int32, Int32, Int32, Int32, Int32, Int32)
+  nameWithType: HashCode.Combine(Int32, Int32, Int32, Int32, Int32, Int32)
+  fullName: CodeJam.HashCode.Combine(System.Int32, System.Int32, System.Int32, System.Int32, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Algorithms/HashCode.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Combine
+    path: ../Main/src/Algorithms/HashCode.cs
+    startLine: 75
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCombines hash codes.\n"
+  example: []
+  syntax:
+    content: public static int Combine(int h1, int h2, int h3, int h4, int h5, int h6)
+    parameters:
+    - id: h1
+      type: System.Int32
+      description: Hash code 1
+    - id: h2
+      type: System.Int32
+      description: Hash code 2
+    - id: h3
+      type: System.Int32
+      description: Hash code 3
+    - id: h4
+      type: System.Int32
+      description: Hash code 4
+    - id: h5
+      type: System.Int32
+      description: Hash code 5
+    - id: h6
+      type: System.Int32
+      description: Hash code 6
+    return:
+      type: System.Int32
+      description: Combined hash code
+    content.vb: Public Shared Function Combine(h1 As Integer, h2 As Integer, h3 As Integer, h4 As Integer, h5 As Integer, h6 As Integer) As Integer
+  overload: CodeJam.HashCode.Combine*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: Combine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: CodeJam.HashCode
+  langs:
+  - csharp
+  - vb
+  name: Combine(Int32, Int32, Int32, Int32, Int32, Int32, Int32)
+  nameWithType: HashCode.Combine(Int32, Int32, Int32, Int32, Int32, Int32, Int32)
+  fullName: CodeJam.HashCode.Combine(System.Int32, System.Int32, System.Int32, System.Int32, System.Int32, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Algorithms/HashCode.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Combine
+    path: ../Main/src/Algorithms/HashCode.cs
+    startLine: 90
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCombines hash codes.\n"
+  example: []
+  syntax:
+    content: public static int Combine(int h1, int h2, int h3, int h4, int h5, int h6, int h7)
+    parameters:
+    - id: h1
+      type: System.Int32
+      description: Hash code 1
+    - id: h2
+      type: System.Int32
+      description: Hash code 2
+    - id: h3
+      type: System.Int32
+      description: Hash code 3
+    - id: h4
+      type: System.Int32
+      description: Hash code 4
+    - id: h5
+      type: System.Int32
+      description: Hash code 5
+    - id: h6
+      type: System.Int32
+      description: Hash code 6
+    - id: h7
+      type: System.Int32
+      description: Hash code 7
+    return:
+      type: System.Int32
+      description: Combined hash code
+    content.vb: Public Shared Function Combine(h1 As Integer, h2 As Integer, h3 As Integer, h4 As Integer, h5 As Integer, h6 As Integer, h7 As Integer) As Integer
+  overload: CodeJam.HashCode.Combine*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:CodeJam.HashCode.Combine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: Combine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: CodeJam.HashCode
+  langs:
+  - csharp
+  - vb
+  name: Combine(Int32, Int32, Int32, Int32, Int32, Int32, Int32, Int32)
+  nameWithType: HashCode.Combine(Int32, Int32, Int32, Int32, Int32, Int32, Int32, Int32)
+  fullName: CodeJam.HashCode.Combine(System.Int32, System.Int32, System.Int32, System.Int32, System.Int32, System.Int32, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Algorithms/HashCode.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Combine
+    path: ../Main/src/Algorithms/HashCode.cs
+    startLine: 106
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCombines hash codes.\n"
+  example: []
+  syntax:
+    content: public static int Combine(int h1, int h2, int h3, int h4, int h5, int h6, int h7, int h8)
+    parameters:
+    - id: h1
+      type: System.Int32
+      description: Hash code 1
+    - id: h2
+      type: System.Int32
+      description: Hash code 2
+    - id: h3
+      type: System.Int32
+      description: Hash code 3
+    - id: h4
+      type: System.Int32
+      description: Hash code 4
+    - id: h5
+      type: System.Int32
+      description: Hash code 5
+    - id: h6
+      type: System.Int32
+      description: Hash code 6
+    - id: h7
+      type: System.Int32
+      description: Hash code 7
+    - id: h8
+      type: System.Int32
+      description: Hash code 8
+    return:
+      type: System.Int32
+      description: Combined hash code
+    content.vb: Public Shared Function Combine(h1 As Integer, h2 As Integer, h3 As Integer, h4 As Integer, h5 As Integer, h6 As Integer, h7 As Integer, h8 As Integer) As Integer
+  overload: CodeJam.HashCode.Combine*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.HashCode.CombineValues``1(``0[])
+  commentId: M:CodeJam.HashCode.CombineValues``1(``0[])
+  id: CombineValues``1(``0[])
+  parent: CodeJam.HashCode
+  langs:
+  - csharp
+  - vb
+  name: CombineValues<T>(T[])
+  nameWithType: HashCode.CombineValues<T>(T[])
+  fullName: CodeJam.HashCode.CombineValues<T>(T[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Algorithms/HashCode.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CombineValues
+    path: ../Main/src/Algorithms/HashCode.cs
+    startLine: 117
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCombines hash codes.\n"
+  example: []
+  syntax:
+    content: public static int CombineValues<T>(params T[] values)
+    parameters:
+    - id: values
+      type: '{T}[]'
+      description: The collection to combine hash codes.
+    typeParameters:
+    - id: T
+    return:
+      type: System.Int32
+      description: "\nCombined hash code.\n"
+    content.vb: Public Shared Function CombineValues(Of T)(ParamArray values As T()) As Integer
+  overload: CodeJam.HashCode.CombineValues*
+  nameWithType.vb: HashCode.CombineValues(Of T)(T())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.HashCode.CombineValues(Of T)(T())
+  name.vb: CombineValues(Of T)(T())
+- uid: CodeJam.HashCode.CombineValues``1(System.Collections.Generic.IEnumerable{``0})
+  commentId: M:CodeJam.HashCode.CombineValues``1(System.Collections.Generic.IEnumerable{``0})
+  id: CombineValues``1(System.Collections.Generic.IEnumerable{``0})
+  parent: CodeJam.HashCode
+  langs:
+  - csharp
+  - vb
+  name: CombineValues<T>(IEnumerable<T>)
+  nameWithType: HashCode.CombineValues<T>(IEnumerable<T>)
+  fullName: CodeJam.HashCode.CombineValues<T>(System.Collections.Generic.IEnumerable<T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Algorithms/HashCode.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CombineValues
+    path: ../Main/src/Algorithms/HashCode.cs
+    startLine: 138
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCombines hash codes.\n"
+  example: []
+  syntax:
+    content: public static int CombineValues<T>(IEnumerable<T> values)
+    parameters:
+    - id: values
+      type: System.Collections.Generic.IEnumerable{{T}}
+      description: The sequence to combine hash codes.
+    typeParameters:
+    - id: T
+    return:
+      type: System.Int32
+      description: "\nCombined hash code.\n"
+    content.vb: Public Shared Function CombineValues(Of T)(values As IEnumerable(Of T)) As Integer
+  overload: CodeJam.HashCode.CombineValues*
+  nameWithType.vb: HashCode.CombineValues(Of T)(IEnumerable(Of T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.HashCode.CombineValues(Of T)(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: CombineValues(Of T)(IEnumerable(Of T))
+references:
+- uid: CodeJam
+  commentId: N:CodeJam
+  isExternal: false
+  name: CodeJam
+  nameWithType: CodeJam
+  fullName: CodeJam
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.HashCode.Combine*
+  commentId: Overload:CodeJam.HashCode.Combine
+  isExternal: false
+  name: Combine
+  nameWithType: HashCode.Combine
+  fullName: CodeJam.HashCode.Combine
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: CodeJam.HashCode.CombineValues*
+  commentId: Overload:CodeJam.HashCode.CombineValues
+  isExternal: false
+  name: CombineValues
+  nameWithType: HashCode.CombineValues
+  fullName: CodeJam.HashCode.CombineValues
+- uid: '{T}[]'
+  name: T[]
+  nameWithType: T[]
+  fullName: T[]
+  nameWithType.vb: T()
+  fullName.vb: T()
+  name.vb: T()
+  spec.csharp:
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Collections.Generic.IEnumerable{{T}}
+  commentId: T:System.Collections.Generic.IEnumerable{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic

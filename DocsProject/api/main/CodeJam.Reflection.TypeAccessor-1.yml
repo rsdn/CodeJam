@@ -1,0 +1,1862 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Reflection.TypeAccessor`1
+  commentId: T:CodeJam.Reflection.TypeAccessor`1
+  id: TypeAccessor`1
+  parent: CodeJam.Reflection
+  children:
+  - CodeJam.Reflection.TypeAccessor`1.Create
+  - CodeJam.Reflection.TypeAccessor`1.CreateInstance
+  - CodeJam.Reflection.TypeAccessor`1.CreateInstanceExpression
+  - CodeJam.Reflection.TypeAccessor`1.GetAccessor
+  - CodeJam.Reflection.TypeAccessor`1.Type
+  langs:
+  - csharp
+  - vb
+  name: TypeAccessor<T>
+  nameWithType: TypeAccessor<T>
+  fullName: CodeJam.Reflection.TypeAccessor<T>
+  type: Class
+  source:
+    remote:
+      path: Main/src/Reflection/TypeAccessorT.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TypeAccessor
+    path: ../Main/src/Reflection/TypeAccessorT.cs
+    startLine: 12
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nProvides fast access to type and its members.\n"
+  example: []
+  syntax:
+    content: 'public class TypeAccessor<T> : TypeAccessor'
+    typeParameters:
+    - id: T
+    content.vb: >-
+      Public Class TypeAccessor(Of T)
+          Inherits TypeAccessor
+  inheritance:
+  - System.Object
+  - CodeJam.Reflection.TypeAccessor
+  inheritedMembers:
+  - CodeJam.Reflection.TypeAccessor.AddMember(CodeJam.Reflection.MemberAccessor)
+  - CodeJam.Reflection.TypeAccessor.Members
+  - CodeJam.Reflection.TypeAccessor.Item(System.String)
+  - CodeJam.Reflection.TypeAccessor.Item(System.Int32)
+  - CodeJam.Reflection.TypeAccessor.GetAccessor(System.Type)
+  - CodeJam.Reflection.TypeAccessor.GetAccessor``1
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - CodeJam.Reflection.TypeAccessor`1.CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.Reflection.TypeAccessor`1.CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.Reflection.TypeAccessor`1.CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.Reflection.TypeAccessor`1.CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{{T},{TKey}})
+  - CodeJam.Reflection.TypeAccessor`1.CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{{T},{TKey}})
+  - CodeJam.Reflection.TypeAccessor`1.CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{{T},{TKey}})
+  nameWithType.vb: TypeAccessor(Of T)
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+  fullName.vb: CodeJam.Reflection.TypeAccessor(Of T)
+  name.vb: TypeAccessor(Of T)
+- uid: CodeJam.Reflection.TypeAccessor`1.CreateInstanceExpression
+  commentId: P:CodeJam.Reflection.TypeAccessor`1.CreateInstanceExpression
+  id: CreateInstanceExpression
+  parent: CodeJam.Reflection.TypeAccessor`1
+  langs:
+  - csharp
+  - vb
+  name: CreateInstanceExpression
+  nameWithType: TypeAccessor<T>.CreateInstanceExpression
+  fullName: CodeJam.Reflection.TypeAccessor<T>.CreateInstanceExpression
+  type: Property
+  source:
+    remote:
+      path: Main/src/Reflection/TypeAccessorT.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateInstanceExpression
+    path: ../Main/src/Reflection/TypeAccessorT.cs
+    startLine: 102
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nReturns create instance expression.\n"
+  example: []
+  syntax:
+    content: public static Expression<Func<T>> CreateInstanceExpression { get; }
+    parameters: []
+    return:
+      type: System.Linq.Expressions.Expression{System.Func{{T}}}
+    content.vb: Public Shared ReadOnly Property CreateInstanceExpression As Expression(Of Func(Of T))
+  overload: CodeJam.Reflection.TypeAccessor`1.CreateInstanceExpression*
+  nameWithType.vb: TypeAccessor(Of T).CreateInstanceExpression
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  fullName.vb: CodeJam.Reflection.TypeAccessor(Of T).CreateInstanceExpression
+- uid: CodeJam.Reflection.TypeAccessor`1.CreateInstance
+  commentId: M:CodeJam.Reflection.TypeAccessor`1.CreateInstance
+  id: CreateInstance
+  parent: CodeJam.Reflection.TypeAccessor`1
+  langs:
+  - csharp
+  - vb
+  name: CreateInstance()
+  nameWithType: TypeAccessor<T>.CreateInstance()
+  fullName: CodeJam.Reflection.TypeAccessor<T>.CreateInstance()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/TypeAccessorT.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateInstance
+    path: ../Main/src/Reflection/TypeAccessorT.cs
+    startLine: 110
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nCreates an instance of <xref href=\"CodeJam.Reflection.TypeAccessor\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public override object CreateInstance()
+    return:
+      type: System.Object
+      description: Instance of <xref href="CodeJam.Reflection.TypeAccessor" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Overrides Function CreateInstance As Object
+  overridden: CodeJam.Reflection.TypeAccessor.CreateInstance
+  overload: CodeJam.Reflection.TypeAccessor`1.CreateInstance*
+  nameWithType.vb: TypeAccessor(Of T).CreateInstance()
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  fullName.vb: CodeJam.Reflection.TypeAccessor(Of T).CreateInstance()
+- uid: CodeJam.Reflection.TypeAccessor`1.Create
+  commentId: M:CodeJam.Reflection.TypeAccessor`1.Create
+  id: Create
+  parent: CodeJam.Reflection.TypeAccessor`1
+  langs:
+  - csharp
+  - vb
+  name: Create()
+  nameWithType: TypeAccessor<T>.Create()
+  fullName: CodeJam.Reflection.TypeAccessor<T>.Create()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/TypeAccessorT.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Reflection/TypeAccessorT.cs
+    startLine: 116
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nCreates an instance of <xref href=\"CodeJam.Reflection.TypeAccessor\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public T Create()
+    return:
+      type: '{T}'
+      description: Instance of <xref href="CodeJam.Reflection.TypeAccessor" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Function Create As T
+  overload: CodeJam.Reflection.TypeAccessor`1.Create*
+  nameWithType.vb: TypeAccessor(Of T).Create()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Reflection.TypeAccessor(Of T).Create()
+- uid: CodeJam.Reflection.TypeAccessor`1.Type
+  commentId: P:CodeJam.Reflection.TypeAccessor`1.Type
+  id: Type
+  parent: CodeJam.Reflection.TypeAccessor`1
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: TypeAccessor<T>.Type
+  fullName: CodeJam.Reflection.TypeAccessor<T>.Type
+  type: Property
+  source:
+    remote:
+      path: Main/src/Reflection/TypeAccessorT.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Type
+    path: ../Main/src/Reflection/TypeAccessorT.cs
+    startLine: 121
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nType to access.\n"
+  example: []
+  syntax:
+    content: public override Type Type { get; }
+    parameters: []
+    return:
+      type: System.Type
+    content.vb: Public Overrides ReadOnly Property Type As Type
+  overridden: CodeJam.Reflection.TypeAccessor.Type
+  overload: CodeJam.Reflection.TypeAccessor`1.Type*
+  nameWithType.vb: TypeAccessor(Of T).Type
+  modifiers.csharp:
+  - public
+  - override
+  - get
+  modifiers.vb:
+  - Public
+  - Overrides
+  - ReadOnly
+  fullName.vb: CodeJam.Reflection.TypeAccessor(Of T).Type
+- uid: CodeJam.Reflection.TypeAccessor`1.GetAccessor
+  commentId: M:CodeJam.Reflection.TypeAccessor`1.GetAccessor
+  id: GetAccessor
+  parent: CodeJam.Reflection.TypeAccessor`1
+  langs:
+  - csharp
+  - vb
+  name: GetAccessor()
+  nameWithType: TypeAccessor<T>.GetAccessor()
+  fullName: CodeJam.Reflection.TypeAccessor<T>.GetAccessor()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/TypeAccessorT.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetAccessor
+    path: ../Main/src/Reflection/TypeAccessorT.cs
+    startLine: 127
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nCreates an instance of <xref href=\"CodeJam.Reflection.TypeAccessor%601\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public static TypeAccessor<T> GetAccessor()
+    return:
+      type: CodeJam.Reflection.TypeAccessor`1
+      description: Instance of <xref href="CodeJam.Reflection.TypeAccessor%601" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function GetAccessor As TypeAccessor(Of T)
+  overload: CodeJam.Reflection.TypeAccessor`1.GetAccessor*
+  nameWithType.vb: TypeAccessor(Of T).GetAccessor()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Reflection.TypeAccessor(Of T).GetAccessor()
+references:
+- uid: CodeJam.Reflection
+  commentId: N:CodeJam.Reflection
+  isExternal: false
+  name: CodeJam.Reflection
+  nameWithType: CodeJam.Reflection
+  fullName: CodeJam.Reflection
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: CodeJam.Reflection.TypeAccessor
+  commentId: T:CodeJam.Reflection.TypeAccessor
+  parent: CodeJam.Reflection
+  isExternal: false
+  name: TypeAccessor
+  nameWithType: TypeAccessor
+  fullName: CodeJam.Reflection.TypeAccessor
+- uid: CodeJam.Reflection.TypeAccessor.AddMember(CodeJam.Reflection.MemberAccessor)
+  commentId: M:CodeJam.Reflection.TypeAccessor.AddMember(CodeJam.Reflection.MemberAccessor)
+  parent: CodeJam.Reflection.TypeAccessor
+  isExternal: false
+  name: AddMember(MemberAccessor)
+  nameWithType: TypeAccessor.AddMember(MemberAccessor)
+  fullName: CodeJam.Reflection.TypeAccessor.AddMember(CodeJam.Reflection.MemberAccessor)
+  spec.csharp:
+  - uid: CodeJam.Reflection.TypeAccessor.AddMember(CodeJam.Reflection.MemberAccessor)
+    name: AddMember
+    nameWithType: TypeAccessor.AddMember
+    fullName: CodeJam.Reflection.TypeAccessor.AddMember
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Reflection.MemberAccessor
+    name: MemberAccessor
+    nameWithType: MemberAccessor
+    fullName: CodeJam.Reflection.MemberAccessor
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Reflection.TypeAccessor.AddMember(CodeJam.Reflection.MemberAccessor)
+    name: AddMember
+    nameWithType: TypeAccessor.AddMember
+    fullName: CodeJam.Reflection.TypeAccessor.AddMember
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Reflection.MemberAccessor
+    name: MemberAccessor
+    nameWithType: MemberAccessor
+    fullName: CodeJam.Reflection.MemberAccessor
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Reflection.TypeAccessor.Members
+  commentId: P:CodeJam.Reflection.TypeAccessor.Members
+  parent: CodeJam.Reflection.TypeAccessor
+  isExternal: false
+  name: Members
+  nameWithType: TypeAccessor.Members
+  fullName: CodeJam.Reflection.TypeAccessor.Members
+- uid: CodeJam.Reflection.TypeAccessor.Item(System.String)
+  commentId: P:CodeJam.Reflection.TypeAccessor.Item(System.String)
+  parent: CodeJam.Reflection.TypeAccessor
+  isExternal: true
+  name: Item[String]
+  nameWithType: TypeAccessor.Item[String]
+  fullName: CodeJam.Reflection.TypeAccessor.Item[System.String]
+  nameWithType.vb: TypeAccessor.Item(String)
+  fullName.vb: CodeJam.Reflection.TypeAccessor.Item(System.String)
+  name.vb: Item(String)
+  spec.csharp:
+  - uid: CodeJam.Reflection.TypeAccessor.Item(System.String)
+    name: Item
+    nameWithType: TypeAccessor.Item
+    fullName: CodeJam.Reflection.TypeAccessor.Item
+  - name: '['
+    nameWithType: '['
+    fullName: '['
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ']'
+    nameWithType: ']'
+    fullName: ']'
+  spec.vb:
+  - uid: CodeJam.Reflection.TypeAccessor.Item(System.String)
+    name: Item
+    nameWithType: TypeAccessor.Item
+    fullName: CodeJam.Reflection.TypeAccessor.Item
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Reflection.TypeAccessor.Item(System.Int32)
+  commentId: P:CodeJam.Reflection.TypeAccessor.Item(System.Int32)
+  parent: CodeJam.Reflection.TypeAccessor
+  isExternal: true
+  name: Item[Int32]
+  nameWithType: TypeAccessor.Item[Int32]
+  fullName: CodeJam.Reflection.TypeAccessor.Item[System.Int32]
+  nameWithType.vb: TypeAccessor.Item(Int32)
+  fullName.vb: CodeJam.Reflection.TypeAccessor.Item(System.Int32)
+  name.vb: Item(Int32)
+  spec.csharp:
+  - uid: CodeJam.Reflection.TypeAccessor.Item(System.Int32)
+    name: Item
+    nameWithType: TypeAccessor.Item
+    fullName: CodeJam.Reflection.TypeAccessor.Item
+  - name: '['
+    nameWithType: '['
+    fullName: '['
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ']'
+    nameWithType: ']'
+    fullName: ']'
+  spec.vb:
+  - uid: CodeJam.Reflection.TypeAccessor.Item(System.Int32)
+    name: Item
+    nameWithType: TypeAccessor.Item
+    fullName: CodeJam.Reflection.TypeAccessor.Item
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Reflection.TypeAccessor.GetAccessor(System.Type)
+  commentId: M:CodeJam.Reflection.TypeAccessor.GetAccessor(System.Type)
+  parent: CodeJam.Reflection.TypeAccessor
+  isExternal: true
+  name: GetAccessor(Type)
+  nameWithType: TypeAccessor.GetAccessor(Type)
+  fullName: CodeJam.Reflection.TypeAccessor.GetAccessor(System.Type)
+  spec.csharp:
+  - uid: CodeJam.Reflection.TypeAccessor.GetAccessor(System.Type)
+    name: GetAccessor
+    nameWithType: TypeAccessor.GetAccessor
+    fullName: CodeJam.Reflection.TypeAccessor.GetAccessor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Reflection.TypeAccessor.GetAccessor(System.Type)
+    name: GetAccessor
+    nameWithType: TypeAccessor.GetAccessor
+    fullName: CodeJam.Reflection.TypeAccessor.GetAccessor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Reflection.TypeAccessor.GetAccessor``1
+  commentId: M:CodeJam.Reflection.TypeAccessor.GetAccessor``1
+  parent: CodeJam.Reflection.TypeAccessor
+  isExternal: false
+  name: GetAccessor<T>()
+  nameWithType: TypeAccessor.GetAccessor<T>()
+  fullName: CodeJam.Reflection.TypeAccessor.GetAccessor<T>()
+  nameWithType.vb: TypeAccessor.GetAccessor(Of T)()
+  fullName.vb: CodeJam.Reflection.TypeAccessor.GetAccessor(Of T)()
+  name.vb: GetAccessor(Of T)()
+  spec.csharp:
+  - uid: CodeJam.Reflection.TypeAccessor.GetAccessor``1
+    name: GetAccessor<T>
+    nameWithType: TypeAccessor.GetAccessor<T>
+    fullName: CodeJam.Reflection.TypeAccessor.GetAccessor<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Reflection.TypeAccessor.GetAccessor``1
+    name: GetAccessor(Of T)
+    nameWithType: TypeAccessor.GetAccessor(Of T)
+    fullName: CodeJam.Reflection.TypeAccessor.GetAccessor(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Reflection.TypeAccessor`1.CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  name: Contains<T, TypeAccessor<T>>(Range<T>)
+  nameWithType: RangeExtensions.Contains<T, TypeAccessor<T>>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, CodeJam.Reflection.TypeAccessor<T>>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TypeAccessor(Of T))(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, CodeJam.Reflection.TypeAccessor(Of T))(CodeJam.Ranges.Range(Of T))
+  name.vb: Contains(Of T, TypeAccessor(Of T))(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{``0})
+    name: Contains<T, TypeAccessor<T>>
+    nameWithType: RangeExtensions.Contains<T, TypeAccessor<T>>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, CodeJam.Reflection.TypeAccessor<T>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{``0})
+    name: Contains(Of T, TypeAccessor(Of T))
+    nameWithType: RangeExtensions.Contains(Of T, TypeAccessor(Of T))
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, CodeJam.Reflection.TypeAccessor(Of T))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Reflection.TypeAccessor`1.CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  name: StartsAfter<T, TypeAccessor<T>>(Range<T>)
+  nameWithType: RangeExtensions.StartsAfter<T, TypeAccessor<T>>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, CodeJam.Reflection.TypeAccessor<T>>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TypeAccessor(Of T))(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, CodeJam.Reflection.TypeAccessor(Of T))(CodeJam.Ranges.Range(Of T))
+  name.vb: StartsAfter(Of T, TypeAccessor(Of T))(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{``0})
+    name: StartsAfter<T, TypeAccessor<T>>
+    nameWithType: RangeExtensions.StartsAfter<T, TypeAccessor<T>>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, CodeJam.Reflection.TypeAccessor<T>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{``0})
+    name: StartsAfter(Of T, TypeAccessor(Of T))
+    nameWithType: RangeExtensions.StartsAfter(Of T, TypeAccessor(Of T))
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, CodeJam.Reflection.TypeAccessor(Of T))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Reflection.TypeAccessor`1.CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  name: EndsBefore<T, TypeAccessor<T>>(Range<T>)
+  nameWithType: RangeExtensions.EndsBefore<T, TypeAccessor<T>>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, CodeJam.Reflection.TypeAccessor<T>>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TypeAccessor(Of T))(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, CodeJam.Reflection.TypeAccessor(Of T))(CodeJam.Ranges.Range(Of T))
+  name.vb: EndsBefore(Of T, TypeAccessor(Of T))(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{``0})
+    name: EndsBefore<T, TypeAccessor<T>>
+    nameWithType: RangeExtensions.EndsBefore<T, TypeAccessor<T>>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, CodeJam.Reflection.TypeAccessor<T>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{``0})
+    name: EndsBefore(Of T, TypeAccessor(Of T))
+    nameWithType: RangeExtensions.EndsBefore(Of T, TypeAccessor(Of T))
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, CodeJam.Reflection.TypeAccessor(Of T))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Reflection.TypeAccessor`1.CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: Contains<T, TKey, TypeAccessor<T>>(Range<T, TKey>)
+  nameWithType: RangeExtensions.Contains<T, TKey, TypeAccessor<T>>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, CodeJam.Reflection.TypeAccessor<T>>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TKey, TypeAccessor(Of T))(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, CodeJam.Reflection.TypeAccessor(Of T))(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: Contains(Of T, TKey, TypeAccessor(Of T))(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{``0,``1})
+    name: Contains<T, TKey, TypeAccessor<T>>
+    nameWithType: RangeExtensions.Contains<T, TKey, TypeAccessor<T>>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, CodeJam.Reflection.TypeAccessor<T>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{``0,``1})
+    name: Contains(Of T, TKey, TypeAccessor(Of T))
+    nameWithType: RangeExtensions.Contains(Of T, TKey, TypeAccessor(Of T))
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, CodeJam.Reflection.TypeAccessor(Of T))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Reflection.TypeAccessor`1.CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: StartsAfter<T, TKey, TypeAccessor<T>>(Range<T, TKey>)
+  nameWithType: RangeExtensions.StartsAfter<T, TKey, TypeAccessor<T>>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, CodeJam.Reflection.TypeAccessor<T>>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TKey, TypeAccessor(Of T))(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, CodeJam.Reflection.TypeAccessor(Of T))(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: StartsAfter(Of T, TKey, TypeAccessor(Of T))(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter<T, TKey, TypeAccessor<T>>
+    nameWithType: RangeExtensions.StartsAfter<T, TKey, TypeAccessor<T>>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, CodeJam.Reflection.TypeAccessor<T>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter(Of T, TKey, TypeAccessor(Of T))
+    nameWithType: RangeExtensions.StartsAfter(Of T, TKey, TypeAccessor(Of T))
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, CodeJam.Reflection.TypeAccessor(Of T))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Reflection.TypeAccessor`1.CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: EndsBefore<T, TKey, TypeAccessor<T>>(Range<T, TKey>)
+  nameWithType: RangeExtensions.EndsBefore<T, TKey, TypeAccessor<T>>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, CodeJam.Reflection.TypeAccessor<T>>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TKey, TypeAccessor(Of T))(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, CodeJam.Reflection.TypeAccessor(Of T))(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: EndsBefore(Of T, TKey, TypeAccessor(Of T))(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore<T, TKey, TypeAccessor<T>>
+    nameWithType: RangeExtensions.EndsBefore<T, TKey, TypeAccessor<T>>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, CodeJam.Reflection.TypeAccessor<T>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore(Of T, TKey, TypeAccessor(Of T))
+    nameWithType: RangeExtensions.EndsBefore(Of T, TKey, TypeAccessor(Of T))
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, CodeJam.Reflection.TypeAccessor(Of T))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: Contains<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.Contains<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: Contains(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+    name: Contains<T, TRange>
+    nameWithType: RangeExtensions.Contains<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+    name: Contains(Of T, TRange)
+    nameWithType: RangeExtensions.Contains(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions
+  commentId: T:CodeJam.Ranges.RangeExtensions
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: RangeExtensions
+  nameWithType: RangeExtensions
+  fullName: CodeJam.Ranges.RangeExtensions
+- uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: StartsAfter<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.StartsAfter<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: StartsAfter(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+    name: StartsAfter<T, TRange>
+    nameWithType: RangeExtensions.StartsAfter<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+    name: StartsAfter(Of T, TRange)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: EndsBefore<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.EndsBefore<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: EndsBefore(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+    name: EndsBefore<T, TRange>
+    nameWithType: RangeExtensions.EndsBefore<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+    name: EndsBefore(Of T, TRange)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: Contains<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.Contains<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: Contains(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: Contains<T, TKey, TRange>
+    nameWithType: RangeExtensions.Contains<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: Contains(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.Contains(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: StartsAfter<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.StartsAfter<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: StartsAfter(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter<T, TKey, TRange>
+    nameWithType: RangeExtensions.StartsAfter<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: EndsBefore<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.EndsBefore<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: EndsBefore(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore<T, TKey, TRange>
+    nameWithType: RangeExtensions.EndsBefore<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges
+  commentId: N:CodeJam.Ranges
+  isExternal: false
+  name: CodeJam.Ranges
+  nameWithType: CodeJam.Ranges
+  fullName: CodeJam.Ranges
+- uid: CodeJam.Reflection.TypeAccessor`1.CreateInstanceExpression*
+  commentId: Overload:CodeJam.Reflection.TypeAccessor`1.CreateInstanceExpression
+  isExternal: false
+  name: CreateInstanceExpression
+  nameWithType: TypeAccessor<T>.CreateInstanceExpression
+  fullName: CodeJam.Reflection.TypeAccessor<T>.CreateInstanceExpression
+  nameWithType.vb: TypeAccessor(Of T).CreateInstanceExpression
+  fullName.vb: CodeJam.Reflection.TypeAccessor(Of T).CreateInstanceExpression
+- uid: System.Linq.Expressions.Expression{System.Func{{T}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T>>
+  nameWithType: Expression<Func<T>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T>>
+  nameWithType.vb: Expression(Of Func(Of T))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T))
+  name.vb: Expression(Of Func(Of T))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression`1
+  commentId: T:System.Linq.Expressions.Expression`1
+  isExternal: true
+  name: Expression<TDelegate>
+  nameWithType: Expression<TDelegate>
+  fullName: System.Linq.Expressions.Expression<TDelegate>
+  nameWithType.vb: Expression(Of TDelegate)
+  fullName.vb: System.Linq.Expressions.Expression(Of TDelegate)
+  name.vb: Expression(Of TDelegate)
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TDelegate
+    nameWithType: TDelegate
+    fullName: TDelegate
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TDelegate
+    nameWithType: TDelegate
+    fullName: TDelegate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
+  isExternal: false
+  name: System.Linq.Expressions
+  nameWithType: System.Linq.Expressions
+  fullName: System.Linq.Expressions
+- uid: CodeJam.Reflection.TypeAccessor.CreateInstance
+  commentId: M:CodeJam.Reflection.TypeAccessor.CreateInstance
+  parent: CodeJam.Reflection.TypeAccessor
+  isExternal: false
+  name: CreateInstance()
+  nameWithType: TypeAccessor.CreateInstance()
+  fullName: CodeJam.Reflection.TypeAccessor.CreateInstance()
+  spec.csharp:
+  - uid: CodeJam.Reflection.TypeAccessor.CreateInstance
+    name: CreateInstance
+    nameWithType: TypeAccessor.CreateInstance
+    fullName: CodeJam.Reflection.TypeAccessor.CreateInstance
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Reflection.TypeAccessor.CreateInstance
+    name: CreateInstance
+    nameWithType: TypeAccessor.CreateInstance
+    fullName: CodeJam.Reflection.TypeAccessor.CreateInstance
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Reflection.TypeAccessor`1.CreateInstance*
+  commentId: Overload:CodeJam.Reflection.TypeAccessor`1.CreateInstance
+  isExternal: false
+  name: CreateInstance
+  nameWithType: TypeAccessor<T>.CreateInstance
+  fullName: CodeJam.Reflection.TypeAccessor<T>.CreateInstance
+  nameWithType.vb: TypeAccessor(Of T).CreateInstance
+  fullName.vb: CodeJam.Reflection.TypeAccessor(Of T).CreateInstance
+- uid: CodeJam.Reflection.TypeAccessor`1.Create*
+  commentId: Overload:CodeJam.Reflection.TypeAccessor`1.Create
+  isExternal: false
+  name: Create
+  nameWithType: TypeAccessor<T>.Create
+  fullName: CodeJam.Reflection.TypeAccessor<T>.Create
+  nameWithType.vb: TypeAccessor(Of T).Create
+  fullName.vb: CodeJam.Reflection.TypeAccessor(Of T).Create
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: CodeJam.Reflection.TypeAccessor.Type
+  commentId: P:CodeJam.Reflection.TypeAccessor.Type
+  parent: CodeJam.Reflection.TypeAccessor
+  isExternal: false
+  name: Type
+  nameWithType: TypeAccessor.Type
+  fullName: CodeJam.Reflection.TypeAccessor.Type
+- uid: CodeJam.Reflection.TypeAccessor`1.Type*
+  commentId: Overload:CodeJam.Reflection.TypeAccessor`1.Type
+  isExternal: false
+  name: Type
+  nameWithType: TypeAccessor<T>.Type
+  fullName: CodeJam.Reflection.TypeAccessor<T>.Type
+  nameWithType.vb: TypeAccessor(Of T).Type
+  fullName.vb: CodeJam.Reflection.TypeAccessor(Of T).Type
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: CodeJam.Reflection.TypeAccessor`1
+  commentId: T:CodeJam.Reflection.TypeAccessor`1
+  parent: CodeJam.Reflection
+  isExternal: false
+  name: TypeAccessor<T>
+  nameWithType: TypeAccessor<T>
+  fullName: CodeJam.Reflection.TypeAccessor<T>
+  nameWithType.vb: TypeAccessor(Of T)
+  fullName.vb: CodeJam.Reflection.TypeAccessor(Of T)
+  name.vb: TypeAccessor(Of T)
+  spec.csharp:
+  - uid: CodeJam.Reflection.TypeAccessor`1
+    name: TypeAccessor
+    nameWithType: TypeAccessor
+    fullName: CodeJam.Reflection.TypeAccessor
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Reflection.TypeAccessor`1
+    name: TypeAccessor
+    nameWithType: TypeAccessor
+    fullName: CodeJam.Reflection.TypeAccessor
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Reflection.TypeAccessor`1.GetAccessor*
+  commentId: Overload:CodeJam.Reflection.TypeAccessor`1.GetAccessor
+  isExternal: false
+  name: GetAccessor
+  nameWithType: TypeAccessor<T>.GetAccessor
+  fullName: CodeJam.Reflection.TypeAccessor<T>.GetAccessor
+  nameWithType.vb: TypeAccessor(Of T).GetAccessor
+  fullName.vb: CodeJam.Reflection.TypeAccessor(Of T).GetAccessor
