@@ -43,9 +43,7 @@ namespace CodeJam
 				if (ex.StackTrace.NotNullNorEmpty())
 					stringBuilder.AppendLine(ex.StackTrace);
 
-				var notFoundException = ex as FileNotFoundException;
-
-				if (notFoundException != null)
+				if (ex is FileNotFoundException notFoundException)
 				{
 					var fex = notFoundException;
 
