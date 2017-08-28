@@ -50,6 +50,7 @@ namespace CodeJam
 		/// <summary>
 		/// Gets enum underlying field.
 		/// </summary>
+		[NotNull]
 		public FieldInfo UnderlyingField { get; }
 
 		/// <summary>
@@ -61,7 +62,7 @@ namespace CodeJam
 
 		/// <summary>Gets enum element display name or enum name if <see cref="DisplayName"/> is <c>null</c>.</summary>
 		/// <returns>Enum element display name or enum name if <see cref="DisplayName"/> is <c>null</c>.</returns>
-		[NotNull]
+		[Pure, NotNull]
 		public string GetDisplayName() => DisplayName ?? Name;
 
 		/// <summary>

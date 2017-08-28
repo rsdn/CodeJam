@@ -61,7 +61,7 @@ namespace CodeJam
 
 		/// <summary>Initializes a new instance of the <see cref="EnumValues" /> class.</summary>
 		/// <param name="enumType">Type of the enum.</param>
-		internal EnumValues(Type enumType)
+		internal EnumValues([NotNull] Type enumType)
 		{
 			Code.NotNull(enumType, nameof(enumType));
 			if (!enumType.IsEnum)
@@ -106,7 +106,8 @@ namespace CodeJam
 		/// <returns>
 		///   <c>true</c> if the specified enum name is defined; otherwise, <c>false</c>.
 		/// </returns>
-		public bool IsDefined(string name) => _valuesByName.ContainsKey(name);
+		[Pure]
+		public bool IsDefined([NotNull] string name) => _valuesByName.ContainsKey(name);
 
 		/// <summary>Determines whether the specified enum name is defined.</summary>
 		/// <param name="name">The name to check.</param>
@@ -114,7 +115,8 @@ namespace CodeJam
 		/// <returns>
 		///   <c>true</c> if the specified enum name is defined; otherwise, <c>false</c>.
 		/// </returns>
-		public bool IsDefined(string name, bool ignoreCase)
+		[Pure]
+		public bool IsDefined([NotNull] string name, bool ignoreCase)
 		{
 			var lookup = ignoreCase ? _valuesByNameIgnoreCase : _valuesByName;
 			return lookup.ContainsKey(name);
@@ -123,15 +125,15 @@ namespace CodeJam
 		/// <summary>Tries to get enum field by its name.</summary>
 		/// <param name="name">Name of the enum field.</param>
 		/// <returns>Enum field with matching name.</returns>
-		[NotNull]
-		public EnumValue GetByName(string name) => _valuesByName[name];
+		[Pure, NotNull]
+		public EnumValue GetByName([NotNull] string name) => _valuesByName[name];
 
 		/// <summary>Tries to get enum field by its name.</summary>
 		/// <param name="name">Name of the enum field.</param>
 		/// <param name="ignoreCase">if set to <c>true</c> the casing will be ignored.</param>
 		/// <returns>Enum field with matching name.</returns>
-		[NotNull]
-		public EnumValue GetByName(string name, bool ignoreCase)
+		[Pure, NotNull]
+		public EnumValue GetByName([NotNull] string name, bool ignoreCase)
 		{
 			var lookup = ignoreCase ? _valuesByNameIgnoreCase : _valuesByName;
 			return lookup[name];
@@ -140,14 +142,14 @@ namespace CodeJam
 		/// <summary>Tries to get enum field by its value.</summary>
 		/// <param name="value">Value of the enum field.</param>
 		/// <returns>Enum field with matching value.</returns>
-		[NotNull]
-		public EnumValue GetByValue(object value) => _valuesByValue[value];
+		[Pure, NotNull]
+		public EnumValue GetByValue([NotNull] object value) => _valuesByValue[value];
 
 		/// <summary>Gets enum field by its display name.</summary>
 		/// <param name="displayName">Name of the enum field.</param>
 		/// <returns>Enum field with matching display name.</returns>
-		[NotNull]
-		public EnumValue GetByDisplayName(string displayName) => _valuesByDisplayName[displayName];
+		[Pure, NotNull]
+		public EnumValue GetByDisplayName([NotNull] string displayName) => _valuesByDisplayName[displayName];
 
 		#region IReadOnlyCollection<EnumValue>
 		/// <summary>Gets the count.</summary>
