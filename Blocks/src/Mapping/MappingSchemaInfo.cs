@@ -25,8 +25,7 @@ namespace CodeJam.Mapping
 			if (_defaultValues == null)
 				return Option.None<object>();
 
-			object o;
-			return _defaultValues.TryGetValue(type, out o) ? Option.Some(o) : Option.None<object>();
+			return _defaultValues.TryGetValue(type, out var o) ? Option.Some(o) : Option.None<object>();
 		}
 
 		public void SetDefaultValue(Type type, object value)
@@ -113,8 +112,7 @@ namespace CodeJam.Mapping
 		{
 			if (_scalarTypes != null)
 			{
-				bool isScalarType;
-				if (_scalarTypes.TryGetValue(type, out isScalarType))
+				if (_scalarTypes.TryGetValue(type, out var isScalarType))
 					return Option.Some(isScalarType);
 			}
 

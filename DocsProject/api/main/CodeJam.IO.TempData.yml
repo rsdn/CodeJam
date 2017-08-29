@@ -1,0 +1,889 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.IO.TempData
+  commentId: T:CodeJam.IO.TempData
+  id: TempData
+  parent: CodeJam.IO
+  children:
+  - CodeJam.IO.TempData.CreateDirectory
+  - CodeJam.IO.TempData.CreateDirectory(System.String)
+  - CodeJam.IO.TempData.CreateDirectory(System.String,System.String)
+  - CodeJam.IO.TempData.CreateFile
+  - CodeJam.IO.TempData.CreateFile(System.String)
+  - CodeJam.IO.TempData.CreateFile(System.String,System.String)
+  - CodeJam.IO.TempData.CreateFileStream
+  - CodeJam.IO.TempData.CreateFileStream(System.IO.FileAccess)
+  - CodeJam.IO.TempData.CreateFileStream(System.String,System.String,System.IO.FileAccess)
+  - CodeJam.IO.TempData.GetTempName
+  - CodeJam.IO.TempData.GetTempName(System.String)
+  langs:
+  - csharp
+  - vb
+  name: TempData
+  nameWithType: TempData
+  fullName: CodeJam.IO.TempData
+  type: Class
+  source:
+    remote:
+      path: Main/src/IO/TempData.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TempData
+    path: ../Main/src/IO/TempData.cs
+    startLine: 11
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Methods to work with temporary data.
+  example: []
+  syntax:
+    content: public static class TempData
+    content.vb: Public Module TempData
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.IO.TempData.GetTempName
+  commentId: M:CodeJam.IO.TempData.GetTempName
+  id: GetTempName
+  parent: CodeJam.IO.TempData
+  langs:
+  - csharp
+  - vb
+  name: GetTempName()
+  nameWithType: TempData.GetTempName()
+  fullName: CodeJam.IO.TempData.GetTempName()
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/TempData.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetTempName
+    path: ../Main/src/IO/TempData.cs
+    startLine: 231
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Returns a random name for a temp file or directory.
+  remarks: The resulting name is a local name (does not include a base path)
+  example: []
+  syntax:
+    content: public static string GetTempName()
+    return:
+      type: System.String
+      description: A random name
+    content.vb: Public Shared Function GetTempName As String
+  overload: CodeJam.IO.TempData.GetTempName*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.TempData.GetTempName(System.String)
+  commentId: M:CodeJam.IO.TempData.GetTempName(System.String)
+  id: GetTempName(System.String)
+  parent: CodeJam.IO.TempData
+  langs:
+  - csharp
+  - vb
+  name: GetTempName(String)
+  nameWithType: TempData.GetTempName(String)
+  fullName: CodeJam.IO.TempData.GetTempName(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/TempData.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetTempName
+    path: ../Main/src/IO/TempData.cs
+    startLine: 237
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Returns a random name for a temp file or directory.
+  remarks: The resulting name is a local name (does not include a base path)
+  example: []
+  syntax:
+    content: public static string GetTempName(string extension)
+    parameters:
+    - id: extension
+      type: System.String
+      description: The extension for thew filename.
+    return:
+      type: System.String
+      description: A random name
+    content.vb: Public Shared Function GetTempName(extension As String) As String
+  overload: CodeJam.IO.TempData.GetTempName*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.TempData.CreateDirectory
+  commentId: M:CodeJam.IO.TempData.CreateDirectory
+  id: CreateDirectory
+  parent: CodeJam.IO.TempData
+  langs:
+  - csharp
+  - vb
+  name: CreateDirectory()
+  nameWithType: TempData.CreateDirectory()
+  fullName: CodeJam.IO.TempData.CreateDirectory()
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/TempData.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateDirectory
+    path: ../Main/src/IO/TempData.cs
+    startLine: 241
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Creates temp directory and returns <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> to free it.
+  example: []
+  syntax:
+    content: public static TempData.TempDirectory CreateDirectory()
+    return:
+      type: CodeJam.IO.TempData.TempDirectory
+      description: Temp directory to be freed on dispose.
+    content.vb: Public Shared Function CreateDirectory As TempData.TempDirectory
+  overload: CodeJam.IO.TempData.CreateDirectory*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.TempData.CreateDirectory(System.String)
+  commentId: M:CodeJam.IO.TempData.CreateDirectory(System.String)
+  id: CreateDirectory(System.String)
+  parent: CodeJam.IO.TempData
+  langs:
+  - csharp
+  - vb
+  name: CreateDirectory(String)
+  nameWithType: TempData.CreateDirectory(String)
+  fullName: CodeJam.IO.TempData.CreateDirectory(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/TempData.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateDirectory
+    path: ../Main/src/IO/TempData.cs
+    startLine: 246
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Creates temp directory and returns <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> to free it.
+  example: []
+  syntax:
+    content: public static TempData.TempDirectory CreateDirectory(string dirPath)
+    parameters:
+    - id: dirPath
+      type: System.String
+      description: The dir path.
+    return:
+      type: CodeJam.IO.TempData.TempDirectory
+      description: Temp directory to be freed on dispose.
+    content.vb: Public Shared Function CreateDirectory(dirPath As String) As TempData.TempDirectory
+  overload: CodeJam.IO.TempData.CreateDirectory*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.TempData.CreateDirectory(System.String,System.String)
+  commentId: M:CodeJam.IO.TempData.CreateDirectory(System.String,System.String)
+  id: CreateDirectory(System.String,System.String)
+  parent: CodeJam.IO.TempData
+  langs:
+  - csharp
+  - vb
+  name: CreateDirectory(String, String)
+  nameWithType: TempData.CreateDirectory(String, String)
+  fullName: CodeJam.IO.TempData.CreateDirectory(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/TempData.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateDirectory
+    path: ../Main/src/IO/TempData.cs
+    startLine: 252
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Creates temp directory and returns <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> to free it.
+  example: []
+  syntax:
+    content: public static TempData.TempDirectory CreateDirectory(string dirPath, string directoryName)
+    parameters:
+    - id: dirPath
+      type: System.String
+      description: The dir path.
+    - id: directoryName
+      type: System.String
+      description: Name of the temp directory.
+    return:
+      type: CodeJam.IO.TempData.TempDirectory
+      description: Temp directory to be freed on dispose.
+    content.vb: Public Shared Function CreateDirectory(dirPath As String, directoryName As String) As TempData.TempDirectory
+  overload: CodeJam.IO.TempData.CreateDirectory*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.TempData.CreateFile
+  commentId: M:CodeJam.IO.TempData.CreateFile
+  id: CreateFile
+  parent: CodeJam.IO.TempData
+  langs:
+  - csharp
+  - vb
+  name: CreateFile()
+  nameWithType: TempData.CreateFile()
+  fullName: CodeJam.IO.TempData.CreateFile()
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/TempData.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateFile
+    path: ../Main/src/IO/TempData.cs
+    startLine: 268
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Creates temp file and return disposable handle.
+  example: []
+  syntax:
+    content: public static TempData.TempFile CreateFile()
+    return:
+      type: CodeJam.IO.TempData.TempFile
+      description: Temp file to be freed on dispose.
+    content.vb: Public Shared Function CreateFile As TempData.TempFile
+  overload: CodeJam.IO.TempData.CreateFile*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.TempData.CreateFile(System.String)
+  commentId: M:CodeJam.IO.TempData.CreateFile(System.String)
+  id: CreateFile(System.String)
+  parent: CodeJam.IO.TempData
+  langs:
+  - csharp
+  - vb
+  name: CreateFile(String)
+  nameWithType: TempData.CreateFile(String)
+  fullName: CodeJam.IO.TempData.CreateFile(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/TempData.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateFile
+    path: ../Main/src/IO/TempData.cs
+    startLine: 273
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Creates temp file and return disposable handle.
+  example: []
+  syntax:
+    content: public static TempData.TempFile CreateFile(string dirPath)
+    parameters:
+    - id: dirPath
+      type: System.String
+      description: The dir path.
+    return:
+      type: CodeJam.IO.TempData.TempFile
+      description: Temp file to be freed on dispose.
+    content.vb: Public Shared Function CreateFile(dirPath As String) As TempData.TempFile
+  overload: CodeJam.IO.TempData.CreateFile*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.TempData.CreateFile(System.String,System.String)
+  commentId: M:CodeJam.IO.TempData.CreateFile(System.String,System.String)
+  id: CreateFile(System.String,System.String)
+  parent: CodeJam.IO.TempData
+  langs:
+  - csharp
+  - vb
+  name: CreateFile(String, String)
+  nameWithType: TempData.CreateFile(String, String)
+  fullName: CodeJam.IO.TempData.CreateFile(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/TempData.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateFile
+    path: ../Main/src/IO/TempData.cs
+    startLine: 280
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Creates temp file and return disposable handle.
+  example: []
+  syntax:
+    content: public static TempData.TempFile CreateFile(string dirPath, string fileName)
+    parameters:
+    - id: dirPath
+      type: System.String
+      description: The dir path.
+    - id: fileName
+      type: System.String
+      description: Name of the temp file.
+    return:
+      type: CodeJam.IO.TempData.TempFile
+      description: Temp file to be freed on dispose.
+    content.vb: Public Shared Function CreateFile(dirPath As String, fileName As String) As TempData.TempFile
+  overload: CodeJam.IO.TempData.CreateFile*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: <code data-dev-comment-type="paramref" class="paramref">dirPath</code> is null.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.TempData.CreateFileStream
+  commentId: M:CodeJam.IO.TempData.CreateFileStream
+  id: CreateFileStream
+  parent: CodeJam.IO.TempData
+  langs:
+  - csharp
+  - vb
+  name: CreateFileStream()
+  nameWithType: TempData.CreateFileStream()
+  fullName: CodeJam.IO.TempData.CreateFileStream()
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/TempData.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateFileStream
+    path: ../Main/src/IO/TempData.cs
+    startLine: 296
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Creates stream and returns disposable handler.
+  example: []
+  syntax:
+    content: public static FileStream CreateFileStream()
+    return:
+      type: System.IO.FileStream
+      description: Temp stream to be freed on dispose.
+    content.vb: Public Shared Function CreateFileStream As FileStream
+  overload: CodeJam.IO.TempData.CreateFileStream*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.TempData.CreateFileStream(System.IO.FileAccess)
+  commentId: M:CodeJam.IO.TempData.CreateFileStream(System.IO.FileAccess)
+  id: CreateFileStream(System.IO.FileAccess)
+  parent: CodeJam.IO.TempData
+  langs:
+  - csharp
+  - vb
+  name: CreateFileStream(FileAccess)
+  nameWithType: TempData.CreateFileStream(FileAccess)
+  fullName: CodeJam.IO.TempData.CreateFileStream(System.IO.FileAccess)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/TempData.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateFileStream
+    path: ../Main/src/IO/TempData.cs
+    startLine: 302
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Creates stream and returns disposable handler.
+  example: []
+  syntax:
+    content: public static FileStream CreateFileStream(FileAccess fileAccess)
+    parameters:
+    - id: fileAccess
+      type: System.IO.FileAccess
+      description: The file access.
+    return:
+      type: System.IO.FileStream
+      description: Temp stream to be freed on dispose.
+    content.vb: Public Shared Function CreateFileStream(fileAccess As FileAccess) As FileStream
+  overload: CodeJam.IO.TempData.CreateFileStream*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.TempData.CreateFileStream(System.String,System.String,System.IO.FileAccess)
+  commentId: M:CodeJam.IO.TempData.CreateFileStream(System.String,System.String,System.IO.FileAccess)
+  id: CreateFileStream(System.String,System.String,System.IO.FileAccess)
+  parent: CodeJam.IO.TempData
+  langs:
+  - csharp
+  - vb
+  name: CreateFileStream(String, String, FileAccess)
+  nameWithType: TempData.CreateFileStream(String, String, FileAccess)
+  fullName: CodeJam.IO.TempData.CreateFileStream(System.String, System.String, System.IO.FileAccess)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/TempData.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateFileStream
+    path: ../Main/src/IO/TempData.cs
+    startLine: 310
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Creates stream and returns disposable handler.
+  example: []
+  syntax:
+    content: public static FileStream CreateFileStream(string dirPath, string fileName = null, FileAccess fileAccess = FileAccess.Read | FileAccess.Write | FileAccess.ReadWrite)
+    parameters:
+    - id: dirPath
+      type: System.String
+      description: The dir path.
+    - id: fileName
+      type: System.String
+      description: Name of the temp file.
+    - id: fileAccess
+      type: System.IO.FileAccess
+      description: The file access.
+    return:
+      type: System.IO.FileStream
+      description: Temp stream to be freed on dispose.
+    content.vb: Public Shared Function CreateFileStream(dirPath As String, fileName As String = Nothing, fileAccess As FileAccess = FileAccess.Read Or FileAccess.Write Or FileAccess.ReadWrite) As FileStream
+  overload: CodeJam.IO.TempData.CreateFileStream*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: CodeJam.IO
+  commentId: N:CodeJam.IO
+  isExternal: false
+  name: CodeJam.IO
+  nameWithType: CodeJam.IO
+  fullName: CodeJam.IO
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.IO.TempData.GetTempName*
+  commentId: Overload:CodeJam.IO.TempData.GetTempName
+  isExternal: false
+  name: GetTempName
+  nameWithType: TempData.GetTempName
+  fullName: CodeJam.IO.TempData.GetTempName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: CodeJam.IO.TempData.CreateDirectory*
+  commentId: Overload:CodeJam.IO.TempData.CreateDirectory
+  isExternal: false
+  name: CreateDirectory
+  nameWithType: TempData.CreateDirectory
+  fullName: CodeJam.IO.TempData.CreateDirectory
+- uid: CodeJam.IO.TempData.TempDirectory
+  commentId: T:CodeJam.IO.TempData.TempDirectory
+  parent: CodeJam.IO
+  isExternal: false
+  name: TempData.TempDirectory
+  nameWithType: TempData.TempDirectory
+  fullName: CodeJam.IO.TempData.TempDirectory
+- uid: CodeJam.IO.TempData.CreateFile*
+  commentId: Overload:CodeJam.IO.TempData.CreateFile
+  isExternal: false
+  name: CreateFile
+  nameWithType: TempData.CreateFile
+  fullName: CodeJam.IO.TempData.CreateFile
+- uid: CodeJam.IO.TempData.TempFile
+  commentId: T:CodeJam.IO.TempData.TempFile
+  parent: CodeJam.IO
+  isExternal: false
+  name: TempData.TempFile
+  nameWithType: TempData.TempFile
+  fullName: CodeJam.IO.TempData.TempFile
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  parent: System
+  isExternal: true
+  name: ArgumentNullException
+  nameWithType: ArgumentNullException
+  fullName: System.ArgumentNullException
+- uid: CodeJam.IO.TempData.CreateFileStream*
+  commentId: Overload:CodeJam.IO.TempData.CreateFileStream
+  isExternal: false
+  name: CreateFileStream
+  nameWithType: TempData.CreateFileStream
+  fullName: CodeJam.IO.TempData.CreateFileStream
+- uid: System.IO.FileStream
+  commentId: T:System.IO.FileStream
+  parent: System.IO
+  isExternal: true
+  name: FileStream
+  nameWithType: FileStream
+  fullName: System.IO.FileStream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: false
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+- uid: System.IO.FileAccess
+  commentId: T:System.IO.FileAccess
+  parent: System.IO
+  isExternal: true
+  name: FileAccess
+  nameWithType: FileAccess
+  fullName: System.IO.FileAccess

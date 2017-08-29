@@ -1,0 +1,830 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Exporters.CsvTimingsExporter
+  commentId: T:CodeJam.PerfTests.Exporters.CsvTimingsExporter
+  id: CsvTimingsExporter
+  parent: CodeJam.PerfTests.Exporters
+  children:
+  - CodeJam.PerfTests.Exporters.CsvTimingsExporter.#ctor
+  - CodeJam.PerfTests.Exporters.CsvTimingsExporter.#ctor(BenchmarkDotNet.Exporters.Csv.CsvSeparator)
+  - CodeJam.PerfTests.Exporters.CsvTimingsExporter.Default
+  - CodeJam.PerfTests.Exporters.CsvTimingsExporter.ExportToLog(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Loggers.ILogger)
+  - CodeJam.PerfTests.Exporters.CsvTimingsExporter.FileCaption
+  - CodeJam.PerfTests.Exporters.CsvTimingsExporter.FileExtension
+  langs:
+  - csharp
+  - vb
+  name: CsvTimingsExporter
+  nameWithType: CsvTimingsExporter
+  fullName: CodeJam.PerfTests.Exporters.CsvTimingsExporter
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Exporters/CsvTimingsExporter.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CsvTimingsExporter
+    path: ../PerfTests/src/[L4_Configuration]/Exporters/CsvTimingsExporter.cs
+    startLine: 19
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Exporters
+  summary: Exporter that creates .csv files with timings for all runs in the competition.
+  example: []
+  syntax:
+    content: 'public class CsvTimingsExporter : ExporterBase, IExporter'
+    content.vb: >-
+      Public Class CsvTimingsExporter
+          Inherits ExporterBase
+          Implements IExporter
+  seealso:
+  - linkId: BenchmarkDotNet.Exporters.IExporter
+    commentId: T:BenchmarkDotNet.Exporters.IExporter
+  inheritance:
+  - System.Object
+  - BenchmarkDotNet.Exporters.ExporterBase
+  implements:
+  - BenchmarkDotNet.Exporters.IExporter
+  inheritedMembers:
+  - BenchmarkDotNet.Exporters.ExporterBase.ExportToFiles(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Loggers.ILogger)
+  - BenchmarkDotNet.Exporters.ExporterBase.Name
+  - BenchmarkDotNet.Exporters.ExporterBase.FileNameSuffix
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: CodeJam.PerfTests.Exporters.CsvTimingsExporter.Default
+  commentId: F:CodeJam.PerfTests.Exporters.CsvTimingsExporter.Default
+  id: Default
+  parent: CodeJam.PerfTests.Exporters.CsvTimingsExporter
+  langs:
+  - csharp
+  - vb
+  name: Default
+  nameWithType: CsvTimingsExporter.Default
+  fullName: CodeJam.PerfTests.Exporters.CsvTimingsExporter.Default
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Exporters/CsvTimingsExporter.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Default
+    path: ../PerfTests/src/[L4_Configuration]/Exporters/CsvTimingsExporter.cs
+    startLine: 23
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Exporters
+  summary: The default exporter instance
+  example: []
+  syntax:
+    content: public static readonly IExporter Default
+    return:
+      type: BenchmarkDotNet.Exporters.IExporter
+    content.vb: Public Shared ReadOnly Default As IExporter
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.Exporters.CsvTimingsExporter.#ctor
+  commentId: M:CodeJam.PerfTests.Exporters.CsvTimingsExporter.#ctor
+  id: '#ctor'
+  parent: CodeJam.PerfTests.Exporters.CsvTimingsExporter
+  langs:
+  - csharp
+  - vb
+  name: CsvTimingsExporter()
+  nameWithType: CsvTimingsExporter.CsvTimingsExporter()
+  fullName: CodeJam.PerfTests.Exporters.CsvTimingsExporter.CsvTimingsExporter()
+  type: Constructor
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Exporters/CsvTimingsExporter.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../PerfTests/src/[L4_Configuration]/Exporters/CsvTimingsExporter.cs
+    startLine: 28
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Exporters
+  summary: Initializes a new instance of the <xref href="CodeJam.PerfTests.Exporters.CsvTimingsExporter" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public CsvTimingsExporter()
+    content.vb: Public Sub New
+  overload: CodeJam.PerfTests.Exporters.CsvTimingsExporter.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Exporters.CsvTimingsExporter.#ctor(BenchmarkDotNet.Exporters.Csv.CsvSeparator)
+  commentId: M:CodeJam.PerfTests.Exporters.CsvTimingsExporter.#ctor(BenchmarkDotNet.Exporters.Csv.CsvSeparator)
+  id: '#ctor(BenchmarkDotNet.Exporters.Csv.CsvSeparator)'
+  parent: CodeJam.PerfTests.Exporters.CsvTimingsExporter
+  langs:
+  - csharp
+  - vb
+  name: CsvTimingsExporter(CsvSeparator)
+  nameWithType: CsvTimingsExporter.CsvTimingsExporter(CsvSeparator)
+  fullName: CodeJam.PerfTests.Exporters.CsvTimingsExporter.CsvTimingsExporter(BenchmarkDotNet.Exporters.Csv.CsvSeparator)
+  type: Constructor
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Exporters/CsvTimingsExporter.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../PerfTests/src/[L4_Configuration]/Exporters/CsvTimingsExporter.cs
+    startLine: 32
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Exporters
+  summary: Initializes a new instance of the <xref href="CodeJam.PerfTests.Exporters.CsvTimingsExporter" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public CsvTimingsExporter(CsvSeparator separator)
+    parameters:
+    - id: separator
+      type: BenchmarkDotNet.Exporters.Csv.CsvSeparator
+      description: The separator.
+    content.vb: Public Sub New(separator As CsvSeparator)
+  overload: CodeJam.PerfTests.Exporters.CsvTimingsExporter.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Exporters.CsvTimingsExporter.FileExtension
+  commentId: P:CodeJam.PerfTests.Exporters.CsvTimingsExporter.FileExtension
+  id: FileExtension
+  parent: CodeJam.PerfTests.Exporters.CsvTimingsExporter
+  langs:
+  - csharp
+  - vb
+  name: FileExtension
+  nameWithType: CsvTimingsExporter.FileExtension
+  fullName: CodeJam.PerfTests.Exporters.CsvTimingsExporter.FileExtension
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Exporters/CsvTimingsExporter.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FileExtension
+    path: ../PerfTests/src/[L4_Configuration]/Exporters/CsvTimingsExporter.cs
+    startLine: 39
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Exporters
+  summary: File extension.
+  example: []
+  syntax:
+    content: protected override string FileExtension { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The file extension.
+    content.vb: Protected Overrides ReadOnly Property FileExtension As String
+  overridden: BenchmarkDotNet.Exporters.ExporterBase.FileExtension
+  overload: CodeJam.PerfTests.Exporters.CsvTimingsExporter.FileExtension*
+  modifiers.csharp:
+  - protected
+  - override
+  - get
+  modifiers.vb:
+  - Protected
+  - Overrides
+  - ReadOnly
+- uid: CodeJam.PerfTests.Exporters.CsvTimingsExporter.FileCaption
+  commentId: P:CodeJam.PerfTests.Exporters.CsvTimingsExporter.FileCaption
+  id: FileCaption
+  parent: CodeJam.PerfTests.Exporters.CsvTimingsExporter
+  langs:
+  - csharp
+  - vb
+  name: FileCaption
+  nameWithType: CsvTimingsExporter.FileCaption
+  fullName: CodeJam.PerfTests.Exporters.CsvTimingsExporter.FileCaption
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Exporters/CsvTimingsExporter.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FileCaption
+    path: ../PerfTests/src/[L4_Configuration]/Exporters/CsvTimingsExporter.cs
+    startLine: 43
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Exporters
+  summary: File caption.
+  example: []
+  syntax:
+    content: protected override string FileCaption { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The file caption.
+    content.vb: Protected Overrides ReadOnly Property FileCaption As String
+  overridden: BenchmarkDotNet.Exporters.ExporterBase.FileCaption
+  overload: CodeJam.PerfTests.Exporters.CsvTimingsExporter.FileCaption*
+  modifiers.csharp:
+  - protected
+  - override
+  - get
+  modifiers.vb:
+  - Protected
+  - Overrides
+  - ReadOnly
+- uid: CodeJam.PerfTests.Exporters.CsvTimingsExporter.ExportToLog(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Loggers.ILogger)
+  commentId: M:CodeJam.PerfTests.Exporters.CsvTimingsExporter.ExportToLog(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Loggers.ILogger)
+  id: ExportToLog(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Loggers.ILogger)
+  parent: CodeJam.PerfTests.Exporters.CsvTimingsExporter
+  langs:
+  - csharp
+  - vb
+  name: ExportToLog(Summary, ILogger)
+  nameWithType: CsvTimingsExporter.ExportToLog(Summary, ILogger)
+  fullName: CodeJam.PerfTests.Exporters.CsvTimingsExporter.ExportToLog(BenchmarkDotNet.Reports.Summary, BenchmarkDotNet.Loggers.ILogger)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Exporters/CsvTimingsExporter.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ExportToLog
+    path: ../PerfTests/src/[L4_Configuration]/Exporters/CsvTimingsExporter.cs
+    startLine: 48
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Exporters
+  summary: Exports summary to log.
+  example: []
+  syntax:
+    content: public override void ExportToLog(Summary summary, ILogger logger)
+    parameters:
+    - id: summary
+      type: BenchmarkDotNet.Reports.Summary
+      description: Summary for the run.
+    - id: logger
+      type: BenchmarkDotNet.Loggers.ILogger
+      description: The logger.
+    content.vb: Public Overrides Sub ExportToLog(summary As Summary, logger As ILogger)
+  overridden: BenchmarkDotNet.Exporters.ExporterBase.ExportToLog(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Loggers.ILogger)
+  overload: CodeJam.PerfTests.Exporters.CsvTimingsExporter.ExportToLog*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: BenchmarkDotNet.Exporters.IExporter
+  commentId: T:BenchmarkDotNet.Exporters.IExporter
+  parent: BenchmarkDotNet.Exporters
+  isExternal: true
+  name: IExporter
+  nameWithType: IExporter
+  fullName: BenchmarkDotNet.Exporters.IExporter
+- uid: CodeJam.PerfTests.Exporters
+  commentId: N:CodeJam.PerfTests.Exporters
+  isExternal: false
+  name: CodeJam.PerfTests.Exporters
+  nameWithType: CodeJam.PerfTests.Exporters
+  fullName: CodeJam.PerfTests.Exporters
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: BenchmarkDotNet.Exporters.ExporterBase
+  commentId: T:BenchmarkDotNet.Exporters.ExporterBase
+  parent: BenchmarkDotNet.Exporters
+  isExternal: true
+  name: ExporterBase
+  nameWithType: ExporterBase
+  fullName: BenchmarkDotNet.Exporters.ExporterBase
+- uid: BenchmarkDotNet.Exporters.ExporterBase.ExportToFiles(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Loggers.ILogger)
+  commentId: M:BenchmarkDotNet.Exporters.ExporterBase.ExportToFiles(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Loggers.ILogger)
+  parent: BenchmarkDotNet.Exporters.ExporterBase
+  isExternal: true
+  name: ExportToFiles(Summary, ILogger)
+  nameWithType: ExporterBase.ExportToFiles(Summary, ILogger)
+  fullName: BenchmarkDotNet.Exporters.ExporterBase.ExportToFiles(BenchmarkDotNet.Reports.Summary, BenchmarkDotNet.Loggers.ILogger)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Exporters.ExporterBase.ExportToFiles(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Loggers.ILogger)
+    name: ExportToFiles
+    nameWithType: ExporterBase.ExportToFiles
+    fullName: BenchmarkDotNet.Exporters.ExporterBase.ExportToFiles
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Loggers.ILogger
+    name: ILogger
+    nameWithType: ILogger
+    fullName: BenchmarkDotNet.Loggers.ILogger
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Exporters.ExporterBase.ExportToFiles(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Loggers.ILogger)
+    name: ExportToFiles
+    nameWithType: ExporterBase.ExportToFiles
+    fullName: BenchmarkDotNet.Exporters.ExporterBase.ExportToFiles
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Loggers.ILogger
+    name: ILogger
+    nameWithType: ILogger
+    fullName: BenchmarkDotNet.Loggers.ILogger
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Exporters.ExporterBase.Name
+  commentId: P:BenchmarkDotNet.Exporters.ExporterBase.Name
+  parent: BenchmarkDotNet.Exporters.ExporterBase
+  isExternal: true
+  name: Name
+  nameWithType: ExporterBase.Name
+  fullName: BenchmarkDotNet.Exporters.ExporterBase.Name
+- uid: BenchmarkDotNet.Exporters.ExporterBase.FileNameSuffix
+  commentId: P:BenchmarkDotNet.Exporters.ExporterBase.FileNameSuffix
+  parent: BenchmarkDotNet.Exporters.ExporterBase
+  isExternal: true
+  name: FileNameSuffix
+  nameWithType: ExporterBase.FileNameSuffix
+  fullName: BenchmarkDotNet.Exporters.ExporterBase.FileNameSuffix
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Exporters
+  commentId: N:BenchmarkDotNet.Exporters
+  isExternal: false
+  name: BenchmarkDotNet.Exporters
+  nameWithType: BenchmarkDotNet.Exporters
+  fullName: BenchmarkDotNet.Exporters
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.PerfTests.Exporters.CsvTimingsExporter
+  commentId: T:CodeJam.PerfTests.Exporters.CsvTimingsExporter
+  isExternal: false
+  name: CsvTimingsExporter
+  nameWithType: CsvTimingsExporter
+  fullName: CodeJam.PerfTests.Exporters.CsvTimingsExporter
+- uid: CodeJam.PerfTests.Exporters.CsvTimingsExporter.#ctor*
+  commentId: Overload:CodeJam.PerfTests.Exporters.CsvTimingsExporter.#ctor
+  isExternal: false
+  name: CsvTimingsExporter
+  nameWithType: CsvTimingsExporter.CsvTimingsExporter
+  fullName: CodeJam.PerfTests.Exporters.CsvTimingsExporter.CsvTimingsExporter
+- uid: BenchmarkDotNet.Exporters.Csv.CsvSeparator
+  commentId: T:BenchmarkDotNet.Exporters.Csv.CsvSeparator
+  parent: BenchmarkDotNet.Exporters.Csv
+  isExternal: true
+  name: CsvSeparator
+  nameWithType: CsvSeparator
+  fullName: BenchmarkDotNet.Exporters.Csv.CsvSeparator
+- uid: BenchmarkDotNet.Exporters.Csv
+  commentId: N:BenchmarkDotNet.Exporters.Csv
+  isExternal: false
+  name: BenchmarkDotNet.Exporters.Csv
+  nameWithType: BenchmarkDotNet.Exporters.Csv
+  fullName: BenchmarkDotNet.Exporters.Csv
+- uid: BenchmarkDotNet.Exporters.ExporterBase.FileExtension
+  commentId: P:BenchmarkDotNet.Exporters.ExporterBase.FileExtension
+  parent: BenchmarkDotNet.Exporters.ExporterBase
+  isExternal: true
+  name: FileExtension
+  nameWithType: ExporterBase.FileExtension
+  fullName: BenchmarkDotNet.Exporters.ExporterBase.FileExtension
+- uid: CodeJam.PerfTests.Exporters.CsvTimingsExporter.FileExtension*
+  commentId: Overload:CodeJam.PerfTests.Exporters.CsvTimingsExporter.FileExtension
+  isExternal: false
+  name: FileExtension
+  nameWithType: CsvTimingsExporter.FileExtension
+  fullName: CodeJam.PerfTests.Exporters.CsvTimingsExporter.FileExtension
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: BenchmarkDotNet.Exporters.ExporterBase.FileCaption
+  commentId: P:BenchmarkDotNet.Exporters.ExporterBase.FileCaption
+  parent: BenchmarkDotNet.Exporters.ExporterBase
+  isExternal: true
+  name: FileCaption
+  nameWithType: ExporterBase.FileCaption
+  fullName: BenchmarkDotNet.Exporters.ExporterBase.FileCaption
+- uid: CodeJam.PerfTests.Exporters.CsvTimingsExporter.FileCaption*
+  commentId: Overload:CodeJam.PerfTests.Exporters.CsvTimingsExporter.FileCaption
+  isExternal: false
+  name: FileCaption
+  nameWithType: CsvTimingsExporter.FileCaption
+  fullName: CodeJam.PerfTests.Exporters.CsvTimingsExporter.FileCaption
+- uid: BenchmarkDotNet.Exporters.ExporterBase.ExportToLog(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Loggers.ILogger)
+  commentId: M:BenchmarkDotNet.Exporters.ExporterBase.ExportToLog(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Loggers.ILogger)
+  parent: BenchmarkDotNet.Exporters.ExporterBase
+  isExternal: true
+  name: ExportToLog(Summary, ILogger)
+  nameWithType: ExporterBase.ExportToLog(Summary, ILogger)
+  fullName: BenchmarkDotNet.Exporters.ExporterBase.ExportToLog(BenchmarkDotNet.Reports.Summary, BenchmarkDotNet.Loggers.ILogger)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Exporters.ExporterBase.ExportToLog(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Loggers.ILogger)
+    name: ExportToLog
+    nameWithType: ExporterBase.ExportToLog
+    fullName: BenchmarkDotNet.Exporters.ExporterBase.ExportToLog
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Loggers.ILogger
+    name: ILogger
+    nameWithType: ILogger
+    fullName: BenchmarkDotNet.Loggers.ILogger
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Exporters.ExporterBase.ExportToLog(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Loggers.ILogger)
+    name: ExportToLog
+    nameWithType: ExporterBase.ExportToLog
+    fullName: BenchmarkDotNet.Exporters.ExporterBase.ExportToLog
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Loggers.ILogger
+    name: ILogger
+    nameWithType: ILogger
+    fullName: BenchmarkDotNet.Loggers.ILogger
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Exporters.CsvTimingsExporter.ExportToLog*
+  commentId: Overload:CodeJam.PerfTests.Exporters.CsvTimingsExporter.ExportToLog
+  isExternal: false
+  name: ExportToLog
+  nameWithType: CsvTimingsExporter.ExportToLog
+  fullName: CodeJam.PerfTests.Exporters.CsvTimingsExporter.ExportToLog
+- uid: BenchmarkDotNet.Reports.Summary
+  commentId: T:BenchmarkDotNet.Reports.Summary
+  parent: BenchmarkDotNet.Reports
+  isExternal: true
+  name: Summary
+  nameWithType: Summary
+  fullName: BenchmarkDotNet.Reports.Summary
+- uid: BenchmarkDotNet.Loggers.ILogger
+  commentId: T:BenchmarkDotNet.Loggers.ILogger
+  parent: BenchmarkDotNet.Loggers
+  isExternal: true
+  name: ILogger
+  nameWithType: ILogger
+  fullName: BenchmarkDotNet.Loggers.ILogger
+- uid: BenchmarkDotNet.Reports
+  commentId: N:BenchmarkDotNet.Reports
+  isExternal: false
+  name: BenchmarkDotNet.Reports
+  nameWithType: BenchmarkDotNet.Reports
+  fullName: BenchmarkDotNet.Reports
+- uid: BenchmarkDotNet.Loggers
+  commentId: N:BenchmarkDotNet.Loggers
+  isExternal: false
+  name: BenchmarkDotNet.Loggers
+  nameWithType: BenchmarkDotNet.Loggers
+  fullName: BenchmarkDotNet.Loggers

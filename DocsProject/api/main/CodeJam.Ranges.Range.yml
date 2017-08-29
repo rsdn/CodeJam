@@ -1,0 +1,2689 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Ranges.Range
+  commentId: T:CodeJam.Ranges.Range
+  id: Range
+  parent: CodeJam.Ranges
+  children:
+  - CodeJam.Ranges.Range.BoundaryFrom``1(``0)
+  - CodeJam.Ranges.Range.BoundaryFromExclusive``1(``0)
+  - CodeJam.Ranges.Range.BoundaryFromInfinity``1
+  - CodeJam.Ranges.Range.BoundaryTo``1(``0)
+  - CodeJam.Ranges.Range.BoundaryToExclusive``1(``0)
+  - CodeJam.Ranges.Range.BoundaryToInfinity``1
+  - CodeJam.Ranges.Range.Create``1(``0,``0)
+  - CodeJam.Ranges.Range.Create``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  - CodeJam.Ranges.Range.Create``2(``0,``0,``1)
+  - CodeJam.Ranges.Range.Create``2(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0},``1)
+  - CodeJam.Ranges.Range.CreateExclusive``1(``0,``0)
+  - CodeJam.Ranges.Range.CreateExclusive``2(``0,``0,``1)
+  - CodeJam.Ranges.Range.CreateExclusiveFrom``1(``0,``0)
+  - CodeJam.Ranges.Range.CreateExclusiveFrom``2(``0,``0,``1)
+  - CodeJam.Ranges.Range.CreateExclusiveTo``1(``0,``0)
+  - CodeJam.Ranges.Range.CreateExclusiveTo``2(``0,``0,``1)
+  - CodeJam.Ranges.Range.IsValid``1(``0,``0)
+  - CodeJam.Ranges.Range.IsValid``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  - CodeJam.Ranges.Range.Max``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryFrom{``0})
+  - CodeJam.Ranges.Range.Max``1(CodeJam.Ranges.RangeBoundaryTo{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  - CodeJam.Ranges.Range.MaxFrom``1(``0,``0)
+  - CodeJam.Ranges.Range.MaxTo``1(``0,``0)
+  - CodeJam.Ranges.Range.Min``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryFrom{``0})
+  - CodeJam.Ranges.Range.Min``1(CodeJam.Ranges.RangeBoundaryTo{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  - CodeJam.Ranges.Range.MinFrom``1(``0,``0)
+  - CodeJam.Ranges.Range.MinTo``1(``0,``0)
+  - CodeJam.Ranges.Range.TryCreate``1(``0,``0)
+  - CodeJam.Ranges.Range.TryCreate``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  - CodeJam.Ranges.Range.TryCreate``2(``0,``0,``1)
+  - CodeJam.Ranges.Range.TryCreate``2(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0},``1)
+  - CodeJam.Ranges.Range.TryCreateExclusive``1(``0,``0)
+  - CodeJam.Ranges.Range.TryCreateExclusive``2(``0,``0,``1)
+  - CodeJam.Ranges.Range.TryCreateExclusiveFrom``1(``0,``0)
+  - CodeJam.Ranges.Range.TryCreateExclusiveFrom``2(``0,``0,``1)
+  - CodeJam.Ranges.Range.TryCreateExclusiveTo``1(``0,``0)
+  - CodeJam.Ranges.Range.TryCreateExclusiveTo``2(``0,``0,``1)
+  langs:
+  - csharp
+  - vb
+  name: Range
+  nameWithType: Range
+  fullName: CodeJam.Ranges.Range
+  type: Class
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Range
+    path: ../Main/src/Ranges/Range.FactoryMethods.generated.cs
+    startLine: 19
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Helper methods for the <xref href="CodeJam.Ranges.Range%601" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static class Range
+    content.vb: Public Module Range
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Ranges.Range.BoundaryFrom``1(``0)
+  commentId: M:CodeJam.Ranges.Range.BoundaryFrom``1(``0)
+  id: BoundaryFrom``1(``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: BoundaryFrom<T>(T)
+  nameWithType: Range.BoundaryFrom<T>(T)
+  fullName: CodeJam.Ranges.Range.BoundaryFrom<T>(T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: BoundaryFrom
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 33
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Inclusive boundary From factory method.
+  example: []
+  syntax:
+    content: public static RangeBoundaryFrom<T> BoundaryFrom<T>(T fromValue)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: From value.
+    typeParameters:
+    - id: T
+      description: The type of the boundary value.
+    return:
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: "\nNew inclusive boundary From,\nor negative infinity boundary if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">fromValue</code> is <code>null</code> or equals to NegativeInfinity static field of the <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T</code>.\nor empty boundary if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">fromValue</code> equals to NaN static field of the <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T</code>.\n"
+    content.vb: Public Shared Function BoundaryFrom(Of T)(fromValue As T) As RangeBoundaryFrom(Of T)
+  overload: CodeJam.Ranges.Range.BoundaryFrom*
+  nameWithType.vb: Range.BoundaryFrom(Of T)(T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.BoundaryFrom(Of T)(T)
+  name.vb: BoundaryFrom(Of T)(T)
+- uid: CodeJam.Ranges.Range.BoundaryFromExclusive``1(``0)
+  commentId: M:CodeJam.Ranges.Range.BoundaryFromExclusive``1(``0)
+  id: BoundaryFromExclusive``1(``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: BoundaryFromExclusive<T>(T)
+  nameWithType: Range.BoundaryFromExclusive<T>(T)
+  fullName: CodeJam.Ranges.Range.BoundaryFromExclusive<T>(T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: BoundaryFromExclusive
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 45
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Exclusive boundary From factory method.
+  example: []
+  syntax:
+    content: public static RangeBoundaryFrom<T> BoundaryFromExclusive<T>(T fromValue)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: From value.
+    typeParameters:
+    - id: T
+      description: The type of the boundary value.
+    return:
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: "\nNew exclusive boundary From,\nor negative infinity boundary if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">fromValue</code> is <code>null</code> or equals to NegativeInfinity static field of the <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T</code>.\nor empty boundary if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">fromValue</code> equals to NaN static field of the <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T</code>.\n"
+    content.vb: Public Shared Function BoundaryFromExclusive(Of T)(fromValue As T) As RangeBoundaryFrom(Of T)
+  overload: CodeJam.Ranges.Range.BoundaryFromExclusive*
+  nameWithType.vb: Range.BoundaryFromExclusive(Of T)(T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.BoundaryFromExclusive(Of T)(T)
+  name.vb: BoundaryFromExclusive(Of T)(T)
+- uid: CodeJam.Ranges.Range.BoundaryFromInfinity``1
+  commentId: M:CodeJam.Ranges.Range.BoundaryFromInfinity``1
+  id: BoundaryFromInfinity``1
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: BoundaryFromInfinity<T>()
+  nameWithType: Range.BoundaryFromInfinity<T>()
+  fullName: CodeJam.Ranges.Range.BoundaryFromInfinity<T>()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: BoundaryFromInfinity
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 52
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Negative infinity boundary (-∞) factory method.
+  example: []
+  syntax:
+    content: public static RangeBoundaryFrom<T> BoundaryFromInfinity<T>()
+    typeParameters:
+    - id: T
+      description: The type of the boundary value.
+    return:
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: The negative infinity boundary (-∞).
+    content.vb: Public Shared Function BoundaryFromInfinity(Of T) As RangeBoundaryFrom(Of T)
+  overload: CodeJam.Ranges.Range.BoundaryFromInfinity*
+  nameWithType.vb: Range.BoundaryFromInfinity(Of T)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.BoundaryFromInfinity(Of T)()
+  name.vb: BoundaryFromInfinity(Of T)()
+- uid: CodeJam.Ranges.Range.BoundaryTo``1(``0)
+  commentId: M:CodeJam.Ranges.Range.BoundaryTo``1(``0)
+  id: BoundaryTo``1(``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: BoundaryTo<T>(T)
+  nameWithType: Range.BoundaryTo<T>(T)
+  fullName: CodeJam.Ranges.Range.BoundaryTo<T>(T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: BoundaryTo
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 64
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Inclusive boundary To factory method.
+  example: []
+  syntax:
+    content: public static RangeBoundaryTo<T> BoundaryTo<T>(T toValue)
+    parameters:
+    - id: toValue
+      type: '{T}'
+      description: To value.
+    typeParameters:
+    - id: T
+      description: The type of the boundary value.
+    return:
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: "\nNew inclusive boundary To,\nor positive infinity boundary if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">toValue</code> is <code>null</code> or equals to PositiveInfinity static field of the <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T</code>.\nor empty boundary if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">toValue</code> equals to NaN static field of the <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T</code>.\n"
+    content.vb: Public Shared Function BoundaryTo(Of T)(toValue As T) As RangeBoundaryTo(Of T)
+  overload: CodeJam.Ranges.Range.BoundaryTo*
+  nameWithType.vb: Range.BoundaryTo(Of T)(T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.BoundaryTo(Of T)(T)
+  name.vb: BoundaryTo(Of T)(T)
+- uid: CodeJam.Ranges.Range.BoundaryToExclusive``1(``0)
+  commentId: M:CodeJam.Ranges.Range.BoundaryToExclusive``1(``0)
+  id: BoundaryToExclusive``1(``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: BoundaryToExclusive<T>(T)
+  nameWithType: Range.BoundaryToExclusive<T>(T)
+  fullName: CodeJam.Ranges.Range.BoundaryToExclusive<T>(T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: BoundaryToExclusive
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 76
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Exclusive boundary To factory method.
+  example: []
+  syntax:
+    content: public static RangeBoundaryTo<T> BoundaryToExclusive<T>(T toValue)
+    parameters:
+    - id: toValue
+      type: '{T}'
+      description: To value.
+    typeParameters:
+    - id: T
+      description: The type of the boundary value.
+    return:
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: "\nNew exclusive boundary To,\nor positive infinity boundary if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">toValue</code> is <code>null</code> or equals to PositiveInfinity static field of the <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T</code>.\nor empty boundary if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">toValue</code> equals to NaN static field of the <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T</code>.\n"
+    content.vb: Public Shared Function BoundaryToExclusive(Of T)(toValue As T) As RangeBoundaryTo(Of T)
+  overload: CodeJam.Ranges.Range.BoundaryToExclusive*
+  nameWithType.vb: Range.BoundaryToExclusive(Of T)(T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.BoundaryToExclusive(Of T)(T)
+  name.vb: BoundaryToExclusive(Of T)(T)
+- uid: CodeJam.Ranges.Range.BoundaryToInfinity``1
+  commentId: M:CodeJam.Ranges.Range.BoundaryToInfinity``1
+  id: BoundaryToInfinity``1
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: BoundaryToInfinity<T>()
+  nameWithType: Range.BoundaryToInfinity<T>()
+  fullName: CodeJam.Ranges.Range.BoundaryToInfinity<T>()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: BoundaryToInfinity
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 83
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Positive infinity boundary (+∞) factory method.
+  example: []
+  syntax:
+    content: public static RangeBoundaryTo<T> BoundaryToInfinity<T>()
+    typeParameters:
+    - id: T
+      description: The type of the boundary value.
+    return:
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: The positive infinity boundary (-∞).
+    content.vb: Public Shared Function BoundaryToInfinity(Of T) As RangeBoundaryTo(Of T)
+  overload: CodeJam.Ranges.Range.BoundaryToInfinity*
+  nameWithType.vb: Range.BoundaryToInfinity(Of T)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.BoundaryToInfinity(Of T)()
+  name.vb: BoundaryToInfinity(Of T)()
+- uid: CodeJam.Ranges.Range.Min``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryFrom{``0})
+  commentId: M:CodeJam.Ranges.Range.Min``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryFrom{``0})
+  id: Min``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryFrom{``0})
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: Min<T>(RangeBoundaryFrom<T>, RangeBoundaryFrom<T>)
+  nameWithType: Range.Min<T>(RangeBoundaryFrom<T>, RangeBoundaryFrom<T>)
+  fullName: CodeJam.Ranges.Range.Min<T>(CodeJam.Ranges.RangeBoundaryFrom<T>, CodeJam.Ranges.RangeBoundaryFrom<T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Min
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 94
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Returns the less one of the two boundaries.
+  example: []
+  syntax:
+    content: public static RangeBoundaryFrom<T> Min<T>(RangeBoundaryFrom<T> boundary1, RangeBoundaryFrom<T> boundary2)
+    parameters:
+    - id: boundary1
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: The boundary1.
+    - id: boundary2
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: The boundary2.
+    typeParameters:
+    - id: T
+      description: The type of the boundary value.
+    return:
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: The less one of the two boundaries.
+    content.vb: Public Shared Function Min(Of T)(boundary1 As RangeBoundaryFrom(Of T), boundary2 As RangeBoundaryFrom(Of T)) As RangeBoundaryFrom(Of T)
+  overload: CodeJam.Ranges.Range.Min*
+  nameWithType.vb: Range.Min(Of T)(RangeBoundaryFrom(Of T), RangeBoundaryFrom(Of T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.Min(Of T)(CodeJam.Ranges.RangeBoundaryFrom(Of T), CodeJam.Ranges.RangeBoundaryFrom(Of T))
+  name.vb: Min(Of T)(RangeBoundaryFrom(Of T), RangeBoundaryFrom(Of T))
+- uid: CodeJam.Ranges.Range.Min``1(CodeJam.Ranges.RangeBoundaryTo{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  commentId: M:CodeJam.Ranges.Range.Min``1(CodeJam.Ranges.RangeBoundaryTo{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  id: Min``1(CodeJam.Ranges.RangeBoundaryTo{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: Min<T>(RangeBoundaryTo<T>, RangeBoundaryTo<T>)
+  nameWithType: Range.Min<T>(RangeBoundaryTo<T>, RangeBoundaryTo<T>)
+  fullName: CodeJam.Ranges.Range.Min<T>(CodeJam.Ranges.RangeBoundaryTo<T>, CodeJam.Ranges.RangeBoundaryTo<T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Min
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 103
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Returns the less one of the two boundaries.
+  example: []
+  syntax:
+    content: public static RangeBoundaryTo<T> Min<T>(RangeBoundaryTo<T> boundary1, RangeBoundaryTo<T> boundary2)
+    parameters:
+    - id: boundary1
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: The boundary1.
+    - id: boundary2
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: The boundary2.
+    typeParameters:
+    - id: T
+      description: The type of the boundary value.
+    return:
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: The less one of the two boundaries.
+    content.vb: Public Shared Function Min(Of T)(boundary1 As RangeBoundaryTo(Of T), boundary2 As RangeBoundaryTo(Of T)) As RangeBoundaryTo(Of T)
+  overload: CodeJam.Ranges.Range.Min*
+  nameWithType.vb: Range.Min(Of T)(RangeBoundaryTo(Of T), RangeBoundaryTo(Of T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.Min(Of T)(CodeJam.Ranges.RangeBoundaryTo(Of T), CodeJam.Ranges.RangeBoundaryTo(Of T))
+  name.vb: Min(Of T)(RangeBoundaryTo(Of T), RangeBoundaryTo(Of T))
+- uid: CodeJam.Ranges.Range.Max``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryFrom{``0})
+  commentId: M:CodeJam.Ranges.Range.Max``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryFrom{``0})
+  id: Max``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryFrom{``0})
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: Max<T>(RangeBoundaryFrom<T>, RangeBoundaryFrom<T>)
+  nameWithType: Range.Max<T>(RangeBoundaryFrom<T>, RangeBoundaryFrom<T>)
+  fullName: CodeJam.Ranges.Range.Max<T>(CodeJam.Ranges.RangeBoundaryFrom<T>, CodeJam.Ranges.RangeBoundaryFrom<T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Max
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 112
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Returns the greater one of the two boundaries.
+  example: []
+  syntax:
+    content: public static RangeBoundaryFrom<T> Max<T>(RangeBoundaryFrom<T> boundary1, RangeBoundaryFrom<T> boundary2)
+    parameters:
+    - id: boundary1
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: The boundary1.
+    - id: boundary2
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: The boundary2.
+    typeParameters:
+    - id: T
+      description: The type of the boundary value.
+    return:
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: The greater one of the two boundaries.
+    content.vb: Public Shared Function Max(Of T)(boundary1 As RangeBoundaryFrom(Of T), boundary2 As RangeBoundaryFrom(Of T)) As RangeBoundaryFrom(Of T)
+  overload: CodeJam.Ranges.Range.Max*
+  nameWithType.vb: Range.Max(Of T)(RangeBoundaryFrom(Of T), RangeBoundaryFrom(Of T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.Max(Of T)(CodeJam.Ranges.RangeBoundaryFrom(Of T), CodeJam.Ranges.RangeBoundaryFrom(Of T))
+  name.vb: Max(Of T)(RangeBoundaryFrom(Of T), RangeBoundaryFrom(Of T))
+- uid: CodeJam.Ranges.Range.Max``1(CodeJam.Ranges.RangeBoundaryTo{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  commentId: M:CodeJam.Ranges.Range.Max``1(CodeJam.Ranges.RangeBoundaryTo{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  id: Max``1(CodeJam.Ranges.RangeBoundaryTo{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: Max<T>(RangeBoundaryTo<T>, RangeBoundaryTo<T>)
+  nameWithType: Range.Max<T>(RangeBoundaryTo<T>, RangeBoundaryTo<T>)
+  fullName: CodeJam.Ranges.Range.Max<T>(CodeJam.Ranges.RangeBoundaryTo<T>, CodeJam.Ranges.RangeBoundaryTo<T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Max
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 121
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Returns the greater one of the two boundaries.
+  example: []
+  syntax:
+    content: public static RangeBoundaryTo<T> Max<T>(RangeBoundaryTo<T> boundary1, RangeBoundaryTo<T> boundary2)
+    parameters:
+    - id: boundary1
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: The boundary1.
+    - id: boundary2
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: The boundary2.
+    typeParameters:
+    - id: T
+      description: The type of the boundary value.
+    return:
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: The greater one of the two boundaries.
+    content.vb: Public Shared Function Max(Of T)(boundary1 As RangeBoundaryTo(Of T), boundary2 As RangeBoundaryTo(Of T)) As RangeBoundaryTo(Of T)
+  overload: CodeJam.Ranges.Range.Max*
+  nameWithType.vb: Range.Max(Of T)(RangeBoundaryTo(Of T), RangeBoundaryTo(Of T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.Max(Of T)(CodeJam.Ranges.RangeBoundaryTo(Of T), CodeJam.Ranges.RangeBoundaryTo(Of T))
+  name.vb: Max(Of T)(RangeBoundaryTo(Of T), RangeBoundaryTo(Of T))
+- uid: CodeJam.Ranges.Range.MinFrom``1(``0,``0)
+  commentId: M:CodeJam.Ranges.Range.MinFrom``1(``0,``0)
+  id: MinFrom``1(``0,``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: MinFrom<T>(T, T)
+  nameWithType: Range.MinFrom<T>(T, T)
+  fullName: CodeJam.Ranges.Range.MinFrom<T>(T, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MinFrom
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 130
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Returns the less one of the two From boundaries.
+  example: []
+  syntax:
+    content: public static RangeBoundaryFrom<T> MinFrom<T>(T value1, T value2)
+    parameters:
+    - id: value1
+      type: '{T}'
+      description: The value of the boundary1.
+    - id: value2
+      type: '{T}'
+      description: The value of the boundary2.
+    typeParameters:
+    - id: T
+      description: The type of the boundary value.
+    return:
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: The less one of the two From boundaries.
+    content.vb: Public Shared Function MinFrom(Of T)(value1 As T, value2 As T) As RangeBoundaryFrom(Of T)
+  overload: CodeJam.Ranges.Range.MinFrom*
+  nameWithType.vb: Range.MinFrom(Of T)(T, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.MinFrom(Of T)(T, T)
+  name.vb: MinFrom(Of T)(T, T)
+- uid: CodeJam.Ranges.Range.MaxFrom``1(``0,``0)
+  commentId: M:CodeJam.Ranges.Range.MaxFrom``1(``0,``0)
+  id: MaxFrom``1(``0,``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: MaxFrom<T>(T, T)
+  nameWithType: Range.MaxFrom<T>(T, T)
+  fullName: CodeJam.Ranges.Range.MaxFrom<T>(T, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MaxFrom
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 139
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Returns the greater one of the two From boundaries.
+  example: []
+  syntax:
+    content: public static RangeBoundaryFrom<T> MaxFrom<T>(T value1, T value2)
+    parameters:
+    - id: value1
+      type: '{T}'
+      description: The value of the boundary1.
+    - id: value2
+      type: '{T}'
+      description: The value of the boundary2.
+    typeParameters:
+    - id: T
+      description: The type of the boundary value.
+    return:
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: The greater one of the two From boundaries.
+    content.vb: Public Shared Function MaxFrom(Of T)(value1 As T, value2 As T) As RangeBoundaryFrom(Of T)
+  overload: CodeJam.Ranges.Range.MaxFrom*
+  nameWithType.vb: Range.MaxFrom(Of T)(T, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.MaxFrom(Of T)(T, T)
+  name.vb: MaxFrom(Of T)(T, T)
+- uid: CodeJam.Ranges.Range.MinTo``1(``0,``0)
+  commentId: M:CodeJam.Ranges.Range.MinTo``1(``0,``0)
+  id: MinTo``1(``0,``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: MinTo<T>(T, T)
+  nameWithType: Range.MinTo<T>(T, T)
+  fullName: CodeJam.Ranges.Range.MinTo<T>(T, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MinTo
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 148
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Returns the less one of the two To boundaries.
+  example: []
+  syntax:
+    content: public static RangeBoundaryTo<T> MinTo<T>(T value1, T value2)
+    parameters:
+    - id: value1
+      type: '{T}'
+      description: The value of the boundary1.
+    - id: value2
+      type: '{T}'
+      description: The value of the boundary2.
+    typeParameters:
+    - id: T
+      description: The type of the boundary value.
+    return:
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: The less one of the two To boundaries.
+    content.vb: Public Shared Function MinTo(Of T)(value1 As T, value2 As T) As RangeBoundaryTo(Of T)
+  overload: CodeJam.Ranges.Range.MinTo*
+  nameWithType.vb: Range.MinTo(Of T)(T, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.MinTo(Of T)(T, T)
+  name.vb: MinTo(Of T)(T, T)
+- uid: CodeJam.Ranges.Range.MaxTo``1(``0,``0)
+  commentId: M:CodeJam.Ranges.Range.MaxTo``1(``0,``0)
+  id: MaxTo``1(``0,``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: MaxTo<T>(T, T)
+  nameWithType: Range.MaxTo<T>(T, T)
+  fullName: CodeJam.Ranges.Range.MaxTo<T>(T, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MaxTo
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 157
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Returns the greater one of the two To boundaries.
+  example: []
+  syntax:
+    content: public static RangeBoundaryTo<T> MaxTo<T>(T value1, T value2)
+    parameters:
+    - id: value1
+      type: '{T}'
+      description: The value of the boundary1.
+    - id: value2
+      type: '{T}'
+      description: The value of the boundary2.
+    typeParameters:
+    - id: T
+      description: The type of the boundary value.
+    return:
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: The greater one of the two To boundaries.
+    content.vb: Public Shared Function MaxTo(Of T)(value1 As T, value2 As T) As RangeBoundaryTo(Of T)
+  overload: CodeJam.Ranges.Range.MaxTo*
+  nameWithType.vb: Range.MaxTo(Of T)(T, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.MaxTo(Of T)(T, T)
+  name.vb: MaxTo(Of T)(T, T)
+- uid: CodeJam.Ranges.Range.IsValid``1(``0,``0)
+  commentId: M:CodeJam.Ranges.Range.IsValid``1(``0,``0)
+  id: IsValid``1(``0,``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: IsValid<T>(T, T)
+  nameWithType: Range.IsValid<T>(T, T)
+  fullName: CodeJam.Ranges.Range.IsValid<T>(T, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsValid
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 168
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Returns true if the boundaries can be used for valid range creation.
+  example: []
+  syntax:
+    content: public static bool IsValid<T>(T from, T to)
+    parameters:
+    - id: from
+      type: '{T}'
+      description: The value of the boundary From.
+    - id: to
+      type: '{T}'
+      description: The value of the boundary To.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    return:
+      type: System.Boolean
+      description: <code>true</code>, if the boundaries can be used for valid range creation.
+    content.vb: Public Shared Function IsValid(Of T)(from As T, to As T) As Boolean
+  overload: CodeJam.Ranges.Range.IsValid*
+  nameWithType.vb: Range.IsValid(Of T)(T, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.IsValid(Of T)(T, T)
+  name.vb: IsValid(Of T)(T, T)
+- uid: CodeJam.Ranges.Range.IsValid``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  commentId: M:CodeJam.Ranges.Range.IsValid``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  id: IsValid``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: IsValid<T>(RangeBoundaryFrom<T>, RangeBoundaryTo<T>)
+  nameWithType: Range.IsValid<T>(RangeBoundaryFrom<T>, RangeBoundaryTo<T>)
+  fullName: CodeJam.Ranges.Range.IsValid<T>(CodeJam.Ranges.RangeBoundaryFrom<T>, CodeJam.Ranges.RangeBoundaryTo<T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsValid
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 179
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Returns true if the boundaries can be used for valid range creation.
+  example: []
+  syntax:
+    content: public static bool IsValid<T>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to)
+    parameters:
+    - id: from
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: Boundary From.
+    - id: to
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: Boundary To.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    return:
+      type: System.Boolean
+      description: <code>true</code>, if the boundaries can be used for valid range creation.
+    content.vb: Public Shared Function IsValid(Of T)(from As RangeBoundaryFrom(Of T), to As RangeBoundaryTo(Of T)) As Boolean
+  overload: CodeJam.Ranges.Range.IsValid*
+  nameWithType.vb: Range.IsValid(Of T)(RangeBoundaryFrom(Of T), RangeBoundaryTo(Of T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.IsValid(Of T)(CodeJam.Ranges.RangeBoundaryFrom(Of T), CodeJam.Ranges.RangeBoundaryTo(Of T))
+  name.vb: IsValid(Of T)(RangeBoundaryFrom(Of T), RangeBoundaryTo(Of T))
+- uid: CodeJam.Ranges.Range.TryCreate``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  commentId: M:CodeJam.Ranges.Range.TryCreate``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  id: TryCreate``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: TryCreate<T>(RangeBoundaryFrom<T>, RangeBoundaryTo<T>)
+  nameWithType: Range.TryCreate<T>(RangeBoundaryFrom<T>, RangeBoundaryTo<T>)
+  fullName: CodeJam.Ranges.Range.TryCreate<T>(CodeJam.Ranges.RangeBoundaryFrom<T>, CodeJam.Ranges.RangeBoundaryTo<T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryCreate
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 190
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Tries to create the range. Returns empty range if failed.
+  example: []
+  syntax:
+    content: public static Range<T> TryCreate<T>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to)
+    parameters:
+    - id: from
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: Boundary From.
+    - id: to
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: Boundary To.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    return:
+      type: CodeJam.Ranges.Range{{T}}
+      description: A new range or empty range if the boundaries forms invalid range.
+    content.vb: Public Shared Function TryCreate(Of T)(from As RangeBoundaryFrom(Of T), to As RangeBoundaryTo(Of T)) As Range(Of T)
+  overload: CodeJam.Ranges.Range.TryCreate*
+  nameWithType.vb: Range.TryCreate(Of T)(RangeBoundaryFrom(Of T), RangeBoundaryTo(Of T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.TryCreate(Of T)(CodeJam.Ranges.RangeBoundaryFrom(Of T), CodeJam.Ranges.RangeBoundaryTo(Of T))
+  name.vb: TryCreate(Of T)(RangeBoundaryFrom(Of T), RangeBoundaryTo(Of T))
+- uid: CodeJam.Ranges.Range.TryCreate``2(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0},``1)
+  commentId: M:CodeJam.Ranges.Range.TryCreate``2(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0},``1)
+  id: TryCreate``2(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0},``1)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: TryCreate<T, TKey>(RangeBoundaryFrom<T>, RangeBoundaryTo<T>, TKey)
+  nameWithType: Range.TryCreate<T, TKey>(RangeBoundaryFrom<T>, RangeBoundaryTo<T>, TKey)
+  fullName: CodeJam.Ranges.Range.TryCreate<T, TKey>(CodeJam.Ranges.RangeBoundaryFrom<T>, CodeJam.Ranges.RangeBoundaryTo<T>, TKey)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryCreate
+    path: ../Main/src/Ranges/Range.cs
+    startLine: 215
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Tries to create the range. Returns empty range if failed.
+  example: []
+  syntax:
+    content: public static Range<T, TKey> TryCreate<T, TKey>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, TKey key)
+    parameters:
+    - id: from
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: Boundary From.
+    - id: to
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: Boundary To.
+    - id: key
+      type: '{TKey}'
+      description: The value of the range key
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    - id: TKey
+      description: The type of the range key
+    return:
+      type: CodeJam.Ranges.Range{{T},{TKey}}
+      description: A new range or empty range if the boundaries forms invalid range.
+    content.vb: Public Shared Function TryCreate(Of T, TKey)(from As RangeBoundaryFrom(Of T), to As RangeBoundaryTo(Of T), key As TKey) As Range(Of T, TKey)
+  overload: CodeJam.Ranges.Range.TryCreate*
+  nameWithType.vb: Range.TryCreate(Of T, TKey)(RangeBoundaryFrom(Of T), RangeBoundaryTo(Of T), TKey)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.TryCreate(Of T, TKey)(CodeJam.Ranges.RangeBoundaryFrom(Of T), CodeJam.Ranges.RangeBoundaryTo(Of T), TKey)
+  name.vb: TryCreate(Of T, TKey)(RangeBoundaryFrom(Of T), RangeBoundaryTo(Of T), TKey)
+- uid: CodeJam.Ranges.Range.Create``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  commentId: M:CodeJam.Ranges.Range.Create``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  id: Create``1(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0})
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: Create<T>(RangeBoundaryFrom<T>, RangeBoundaryTo<T>)
+  nameWithType: Range.Create<T>(RangeBoundaryFrom<T>, RangeBoundaryTo<T>)
+  fullName: CodeJam.Ranges.Range.Create<T>(CodeJam.Ranges.RangeBoundaryFrom<T>, CodeJam.Ranges.RangeBoundaryTo<T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Ranges/Range.FactoryMethods.cs
+    startLine: 18
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Creates the range.
+  example: []
+  syntax:
+    content: public static Range<T> Create<T>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to)
+    parameters:
+    - id: from
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: Boundary From.
+    - id: to
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: Boundary To.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    return:
+      type: CodeJam.Ranges.Range{{T}}
+      description: A new range.
+    content.vb: Public Shared Function Create(Of T)(from As RangeBoundaryFrom(Of T), to As RangeBoundaryTo(Of T)) As Range(Of T)
+  overload: CodeJam.Ranges.Range.Create*
+  nameWithType.vb: Range.Create(Of T)(RangeBoundaryFrom(Of T), RangeBoundaryTo(Of T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.Create(Of T)(CodeJam.Ranges.RangeBoundaryFrom(Of T), CodeJam.Ranges.RangeBoundaryTo(Of T))
+  name.vb: Create(Of T)(RangeBoundaryFrom(Of T), RangeBoundaryTo(Of T))
+- uid: CodeJam.Ranges.Range.Create``1(``0,``0)
+  commentId: M:CodeJam.Ranges.Range.Create``1(``0,``0)
+  id: Create``1(``0,``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: Create<T>(T, T)
+  nameWithType: Range.Create<T>(T, T)
+  fullName: CodeJam.Ranges.Range.Create<T>(T, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Ranges/Range.FactoryMethods.cs
+    startLine: 27
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Creates the range.
+  example: []
+  syntax:
+    content: public static Range<T> Create<T>(T fromValue, T toValue)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: The value of the boundary From inclusive.
+    - id: toValue
+      type: '{T}'
+      description: The value of the boundary To inclusive.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    return:
+      type: CodeJam.Ranges.Range{{T}}
+      description: A new range.
+    content.vb: Public Shared Function Create(Of T)(fromValue As T, toValue As T) As Range(Of T)
+  overload: CodeJam.Ranges.Range.Create*
+  nameWithType.vb: Range.Create(Of T)(T, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.Create(Of T)(T, T)
+  name.vb: Create(Of T)(T, T)
+- uid: CodeJam.Ranges.Range.CreateExclusive``1(``0,``0)
+  commentId: M:CodeJam.Ranges.Range.CreateExclusive``1(``0,``0)
+  id: CreateExclusive``1(``0,``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: CreateExclusive<T>(T, T)
+  nameWithType: Range.CreateExclusive<T>(T, T)
+  fullName: CodeJam.Ranges.Range.CreateExclusive<T>(T, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateExclusive
+    path: ../Main/src/Ranges/Range.FactoryMethods.cs
+    startLine: 36
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Creates the range.
+  example: []
+  syntax:
+    content: public static Range<T> CreateExclusive<T>(T fromValue, T toValue)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: The value of the boundary From exclusive.
+    - id: toValue
+      type: '{T}'
+      description: The value of the boundary To exclusive.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    return:
+      type: CodeJam.Ranges.Range{{T}}
+      description: A new range.
+    content.vb: Public Shared Function CreateExclusive(Of T)(fromValue As T, toValue As T) As Range(Of T)
+  overload: CodeJam.Ranges.Range.CreateExclusive*
+  nameWithType.vb: Range.CreateExclusive(Of T)(T, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.CreateExclusive(Of T)(T, T)
+  name.vb: CreateExclusive(Of T)(T, T)
+- uid: CodeJam.Ranges.Range.CreateExclusiveFrom``1(``0,``0)
+  commentId: M:CodeJam.Ranges.Range.CreateExclusiveFrom``1(``0,``0)
+  id: CreateExclusiveFrom``1(``0,``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: CreateExclusiveFrom<T>(T, T)
+  nameWithType: Range.CreateExclusiveFrom<T>(T, T)
+  fullName: CodeJam.Ranges.Range.CreateExclusiveFrom<T>(T, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateExclusiveFrom
+    path: ../Main/src/Ranges/Range.FactoryMethods.cs
+    startLine: 45
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Creates the range.
+  example: []
+  syntax:
+    content: public static Range<T> CreateExclusiveFrom<T>(T fromValue, T toValue)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: The value of the boundary From exclusive.
+    - id: toValue
+      type: '{T}'
+      description: The value of the boundary To inclusive.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    return:
+      type: CodeJam.Ranges.Range{{T}}
+      description: A new range.
+    content.vb: Public Shared Function CreateExclusiveFrom(Of T)(fromValue As T, toValue As T) As Range(Of T)
+  overload: CodeJam.Ranges.Range.CreateExclusiveFrom*
+  nameWithType.vb: Range.CreateExclusiveFrom(Of T)(T, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.CreateExclusiveFrom(Of T)(T, T)
+  name.vb: CreateExclusiveFrom(Of T)(T, T)
+- uid: CodeJam.Ranges.Range.CreateExclusiveTo``1(``0,``0)
+  commentId: M:CodeJam.Ranges.Range.CreateExclusiveTo``1(``0,``0)
+  id: CreateExclusiveTo``1(``0,``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: CreateExclusiveTo<T>(T, T)
+  nameWithType: Range.CreateExclusiveTo<T>(T, T)
+  fullName: CodeJam.Ranges.Range.CreateExclusiveTo<T>(T, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateExclusiveTo
+    path: ../Main/src/Ranges/Range.FactoryMethods.cs
+    startLine: 54
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Creates the range.
+  example: []
+  syntax:
+    content: public static Range<T> CreateExclusiveTo<T>(T fromValue, T toValue)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: The value of the boundary From inclusive.
+    - id: toValue
+      type: '{T}'
+      description: The value of the boundary To exclusive.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    return:
+      type: CodeJam.Ranges.Range{{T}}
+      description: A new range.
+    content.vb: Public Shared Function CreateExclusiveTo(Of T)(fromValue As T, toValue As T) As Range(Of T)
+  overload: CodeJam.Ranges.Range.CreateExclusiveTo*
+  nameWithType.vb: Range.CreateExclusiveTo(Of T)(T, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.CreateExclusiveTo(Of T)(T, T)
+  name.vb: CreateExclusiveTo(Of T)(T, T)
+- uid: CodeJam.Ranges.Range.TryCreate``1(``0,``0)
+  commentId: M:CodeJam.Ranges.Range.TryCreate``1(``0,``0)
+  id: TryCreate``1(``0,``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: TryCreate<T>(T, T)
+  nameWithType: Range.TryCreate<T>(T, T)
+  fullName: CodeJam.Ranges.Range.TryCreate<T>(T, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryCreate
+    path: ../Main/src/Ranges/Range.FactoryMethods.cs
+    startLine: 65
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Tries to create the range. Returns empty range if failed.
+  example: []
+  syntax:
+    content: public static Range<T> TryCreate<T>(T fromValue, T toValue)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: The value of the boundary From inclusive.
+    - id: toValue
+      type: '{T}'
+      description: The value of the boundary To inclusive.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    return:
+      type: CodeJam.Ranges.Range{{T}}
+      description: A new range or empty range if the boundaries forms invalid range.
+    content.vb: Public Shared Function TryCreate(Of T)(fromValue As T, toValue As T) As Range(Of T)
+  overload: CodeJam.Ranges.Range.TryCreate*
+  nameWithType.vb: Range.TryCreate(Of T)(T, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.TryCreate(Of T)(T, T)
+  name.vb: TryCreate(Of T)(T, T)
+- uid: CodeJam.Ranges.Range.TryCreateExclusive``1(``0,``0)
+  commentId: M:CodeJam.Ranges.Range.TryCreateExclusive``1(``0,``0)
+  id: TryCreateExclusive``1(``0,``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: TryCreateExclusive<T>(T, T)
+  nameWithType: Range.TryCreateExclusive<T>(T, T)
+  fullName: CodeJam.Ranges.Range.TryCreateExclusive<T>(T, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryCreateExclusive
+    path: ../Main/src/Ranges/Range.FactoryMethods.cs
+    startLine: 76
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Tries to create the range. Returnss empty range if failed.
+  example: []
+  syntax:
+    content: public static Range<T> TryCreateExclusive<T>(T fromValue, T toValue)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: The value of the boundary From exclusive.
+    - id: toValue
+      type: '{T}'
+      description: The value of the boundary To exclusive.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    return:
+      type: CodeJam.Ranges.Range{{T}}
+      description: A new range or empty range if the boundaries forms invalid range.
+    content.vb: Public Shared Function TryCreateExclusive(Of T)(fromValue As T, toValue As T) As Range(Of T)
+  overload: CodeJam.Ranges.Range.TryCreateExclusive*
+  nameWithType.vb: Range.TryCreateExclusive(Of T)(T, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.TryCreateExclusive(Of T)(T, T)
+  name.vb: TryCreateExclusive(Of T)(T, T)
+- uid: CodeJam.Ranges.Range.TryCreateExclusiveFrom``1(``0,``0)
+  commentId: M:CodeJam.Ranges.Range.TryCreateExclusiveFrom``1(``0,``0)
+  id: TryCreateExclusiveFrom``1(``0,``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: TryCreateExclusiveFrom<T>(T, T)
+  nameWithType: Range.TryCreateExclusiveFrom<T>(T, T)
+  fullName: CodeJam.Ranges.Range.TryCreateExclusiveFrom<T>(T, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryCreateExclusiveFrom
+    path: ../Main/src/Ranges/Range.FactoryMethods.cs
+    startLine: 87
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Tries to create the range. Returns empty range if failed.
+  example: []
+  syntax:
+    content: public static Range<T> TryCreateExclusiveFrom<T>(T fromValue, T toValue)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: The value of the boundary From exclusive.
+    - id: toValue
+      type: '{T}'
+      description: The value of the boundary To inclusive.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    return:
+      type: CodeJam.Ranges.Range{{T}}
+      description: A new range or empty range if the boundaries forms invalid range.
+    content.vb: Public Shared Function TryCreateExclusiveFrom(Of T)(fromValue As T, toValue As T) As Range(Of T)
+  overload: CodeJam.Ranges.Range.TryCreateExclusiveFrom*
+  nameWithType.vb: Range.TryCreateExclusiveFrom(Of T)(T, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.TryCreateExclusiveFrom(Of T)(T, T)
+  name.vb: TryCreateExclusiveFrom(Of T)(T, T)
+- uid: CodeJam.Ranges.Range.TryCreateExclusiveTo``1(``0,``0)
+  commentId: M:CodeJam.Ranges.Range.TryCreateExclusiveTo``1(``0,``0)
+  id: TryCreateExclusiveTo``1(``0,``0)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: TryCreateExclusiveTo<T>(T, T)
+  nameWithType: Range.TryCreateExclusiveTo<T>(T, T)
+  fullName: CodeJam.Ranges.Range.TryCreateExclusiveTo<T>(T, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryCreateExclusiveTo
+    path: ../Main/src/Ranges/Range.FactoryMethods.cs
+    startLine: 98
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Tries to create the range. Returns empty range if failed.
+  example: []
+  syntax:
+    content: public static Range<T> TryCreateExclusiveTo<T>(T fromValue, T toValue)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: The value of the boundary From inclusive.
+    - id: toValue
+      type: '{T}'
+      description: The value of the boundary To exclusive.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    return:
+      type: CodeJam.Ranges.Range{{T}}
+      description: A new range or empty range if the boundaries forms invalid range.
+    content.vb: Public Shared Function TryCreateExclusiveTo(Of T)(fromValue As T, toValue As T) As Range(Of T)
+  overload: CodeJam.Ranges.Range.TryCreateExclusiveTo*
+  nameWithType.vb: Range.TryCreateExclusiveTo(Of T)(T, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.TryCreateExclusiveTo(Of T)(T, T)
+  name.vb: TryCreateExclusiveTo(Of T)(T, T)
+- uid: CodeJam.Ranges.Range.Create``2(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0},``1)
+  commentId: M:CodeJam.Ranges.Range.Create``2(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0},``1)
+  id: Create``2(CodeJam.Ranges.RangeBoundaryFrom{``0},CodeJam.Ranges.RangeBoundaryTo{``0},``1)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: Create<T, TKey>(RangeBoundaryFrom<T>, RangeBoundaryTo<T>, TKey)
+  nameWithType: Range.Create<T, TKey>(RangeBoundaryFrom<T>, RangeBoundaryTo<T>, TKey)
+  fullName: CodeJam.Ranges.Range.Create<T, TKey>(CodeJam.Ranges.RangeBoundaryFrom<T>, CodeJam.Ranges.RangeBoundaryTo<T>, TKey)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Ranges/Range.FactoryMethods.generated.cs
+    startLine: 29
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Creates the range.
+  example: []
+  syntax:
+    content: public static Range<T, TKey> Create<T, TKey>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, TKey key)
+    parameters:
+    - id: from
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: Boundary From.
+    - id: to
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: Boundary To.
+    - id: key
+      type: '{TKey}'
+      description: The value of the range key.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    - id: TKey
+      description: The type of the range key
+    return:
+      type: CodeJam.Ranges.Range{{T},{TKey}}
+      description: A new range.
+    content.vb: Public Shared Function Create(Of T, TKey)(from As RangeBoundaryFrom(Of T), to As RangeBoundaryTo(Of T), key As TKey) As Range(Of T, TKey)
+  overload: CodeJam.Ranges.Range.Create*
+  nameWithType.vb: Range.Create(Of T, TKey)(RangeBoundaryFrom(Of T), RangeBoundaryTo(Of T), TKey)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.Create(Of T, TKey)(CodeJam.Ranges.RangeBoundaryFrom(Of T), CodeJam.Ranges.RangeBoundaryTo(Of T), TKey)
+  name.vb: Create(Of T, TKey)(RangeBoundaryFrom(Of T), RangeBoundaryTo(Of T), TKey)
+- uid: CodeJam.Ranges.Range.Create``2(``0,``0,``1)
+  commentId: M:CodeJam.Ranges.Range.Create``2(``0,``0,``1)
+  id: Create``2(``0,``0,``1)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: Create<T, TKey>(T, T, TKey)
+  nameWithType: Range.Create<T, TKey>(T, T, TKey)
+  fullName: CodeJam.Ranges.Range.Create<T, TKey>(T, T, TKey)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Ranges/Range.FactoryMethods.generated.cs
+    startLine: 40
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Creates the range.
+  example: []
+  syntax:
+    content: public static Range<T, TKey> Create<T, TKey>(T fromValue, T toValue, TKey key)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: The value of the boundary From inclusive.
+    - id: toValue
+      type: '{T}'
+      description: The value of the boundary To inclusive.
+    - id: key
+      type: '{TKey}'
+      description: The value of the range key.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    - id: TKey
+      description: The type of the range key
+    return:
+      type: CodeJam.Ranges.Range{{T},{TKey}}
+      description: A new range.
+    content.vb: Public Shared Function Create(Of T, TKey)(fromValue As T, toValue As T, key As TKey) As Range(Of T, TKey)
+  overload: CodeJam.Ranges.Range.Create*
+  nameWithType.vb: Range.Create(Of T, TKey)(T, T, TKey)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.Create(Of T, TKey)(T, T, TKey)
+  name.vb: Create(Of T, TKey)(T, T, TKey)
+- uid: CodeJam.Ranges.Range.CreateExclusive``2(``0,``0,``1)
+  commentId: M:CodeJam.Ranges.Range.CreateExclusive``2(``0,``0,``1)
+  id: CreateExclusive``2(``0,``0,``1)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: CreateExclusive<T, TKey>(T, T, TKey)
+  nameWithType: Range.CreateExclusive<T, TKey>(T, T, TKey)
+  fullName: CodeJam.Ranges.Range.CreateExclusive<T, TKey>(T, T, TKey)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateExclusive
+    path: ../Main/src/Ranges/Range.FactoryMethods.generated.cs
+    startLine: 51
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Creates the range.
+  example: []
+  syntax:
+    content: public static Range<T, TKey> CreateExclusive<T, TKey>(T fromValue, T toValue, TKey key)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: The value of the boundary From exclusive.
+    - id: toValue
+      type: '{T}'
+      description: The value of the boundary To exclusive.
+    - id: key
+      type: '{TKey}'
+      description: The value of the range key.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    - id: TKey
+      description: The type of the range key
+    return:
+      type: CodeJam.Ranges.Range{{T},{TKey}}
+      description: A new range.
+    content.vb: Public Shared Function CreateExclusive(Of T, TKey)(fromValue As T, toValue As T, key As TKey) As Range(Of T, TKey)
+  overload: CodeJam.Ranges.Range.CreateExclusive*
+  nameWithType.vb: Range.CreateExclusive(Of T, TKey)(T, T, TKey)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.CreateExclusive(Of T, TKey)(T, T, TKey)
+  name.vb: CreateExclusive(Of T, TKey)(T, T, TKey)
+- uid: CodeJam.Ranges.Range.CreateExclusiveFrom``2(``0,``0,``1)
+  commentId: M:CodeJam.Ranges.Range.CreateExclusiveFrom``2(``0,``0,``1)
+  id: CreateExclusiveFrom``2(``0,``0,``1)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: CreateExclusiveFrom<T, TKey>(T, T, TKey)
+  nameWithType: Range.CreateExclusiveFrom<T, TKey>(T, T, TKey)
+  fullName: CodeJam.Ranges.Range.CreateExclusiveFrom<T, TKey>(T, T, TKey)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateExclusiveFrom
+    path: ../Main/src/Ranges/Range.FactoryMethods.generated.cs
+    startLine: 62
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Creates the range.
+  example: []
+  syntax:
+    content: public static Range<T, TKey> CreateExclusiveFrom<T, TKey>(T fromValue, T toValue, TKey key)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: The value of the boundary From exclusive.
+    - id: toValue
+      type: '{T}'
+      description: The value of the boundary To inclusive.
+    - id: key
+      type: '{TKey}'
+      description: The value of the range key.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    - id: TKey
+      description: The type of the range key
+    return:
+      type: CodeJam.Ranges.Range{{T},{TKey}}
+      description: A new range.
+    content.vb: Public Shared Function CreateExclusiveFrom(Of T, TKey)(fromValue As T, toValue As T, key As TKey) As Range(Of T, TKey)
+  overload: CodeJam.Ranges.Range.CreateExclusiveFrom*
+  nameWithType.vb: Range.CreateExclusiveFrom(Of T, TKey)(T, T, TKey)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.CreateExclusiveFrom(Of T, TKey)(T, T, TKey)
+  name.vb: CreateExclusiveFrom(Of T, TKey)(T, T, TKey)
+- uid: CodeJam.Ranges.Range.CreateExclusiveTo``2(``0,``0,``1)
+  commentId: M:CodeJam.Ranges.Range.CreateExclusiveTo``2(``0,``0,``1)
+  id: CreateExclusiveTo``2(``0,``0,``1)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: CreateExclusiveTo<T, TKey>(T, T, TKey)
+  nameWithType: Range.CreateExclusiveTo<T, TKey>(T, T, TKey)
+  fullName: CodeJam.Ranges.Range.CreateExclusiveTo<T, TKey>(T, T, TKey)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateExclusiveTo
+    path: ../Main/src/Ranges/Range.FactoryMethods.generated.cs
+    startLine: 73
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Creates the range.
+  example: []
+  syntax:
+    content: public static Range<T, TKey> CreateExclusiveTo<T, TKey>(T fromValue, T toValue, TKey key)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: The value of the boundary From inclusive.
+    - id: toValue
+      type: '{T}'
+      description: The value of the boundary To exclusive.
+    - id: key
+      type: '{TKey}'
+      description: The value of the range key.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    - id: TKey
+      description: The type of the range key
+    return:
+      type: CodeJam.Ranges.Range{{T},{TKey}}
+      description: A new range.
+    content.vb: Public Shared Function CreateExclusiveTo(Of T, TKey)(fromValue As T, toValue As T, key As TKey) As Range(Of T, TKey)
+  overload: CodeJam.Ranges.Range.CreateExclusiveTo*
+  nameWithType.vb: Range.CreateExclusiveTo(Of T, TKey)(T, T, TKey)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.CreateExclusiveTo(Of T, TKey)(T, T, TKey)
+  name.vb: CreateExclusiveTo(Of T, TKey)(T, T, TKey)
+- uid: CodeJam.Ranges.Range.TryCreate``2(``0,``0,``1)
+  commentId: M:CodeJam.Ranges.Range.TryCreate``2(``0,``0,``1)
+  id: TryCreate``2(``0,``0,``1)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: TryCreate<T, TKey>(T, T, TKey)
+  nameWithType: Range.TryCreate<T, TKey>(T, T, TKey)
+  fullName: CodeJam.Ranges.Range.TryCreate<T, TKey>(T, T, TKey)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryCreate
+    path: ../Main/src/Ranges/Range.FactoryMethods.generated.cs
+    startLine: 86
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Tries to create the range. Returns empty range if failed.
+  example: []
+  syntax:
+    content: public static Range<T, TKey> TryCreate<T, TKey>(T fromValue, T toValue, TKey key)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: The value of the boundary From inclusive.
+    - id: toValue
+      type: '{T}'
+      description: The value of the boundary To inclusive.
+    - id: key
+      type: '{TKey}'
+      description: The value of the range key.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    - id: TKey
+      description: The type of the range key
+    return:
+      type: CodeJam.Ranges.Range{{T},{TKey}}
+      description: A new range or empty range if the boundaries forms invalid range.
+    content.vb: Public Shared Function TryCreate(Of T, TKey)(fromValue As T, toValue As T, key As TKey) As Range(Of T, TKey)
+  overload: CodeJam.Ranges.Range.TryCreate*
+  nameWithType.vb: Range.TryCreate(Of T, TKey)(T, T, TKey)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.TryCreate(Of T, TKey)(T, T, TKey)
+  name.vb: TryCreate(Of T, TKey)(T, T, TKey)
+- uid: CodeJam.Ranges.Range.TryCreateExclusive``2(``0,``0,``1)
+  commentId: M:CodeJam.Ranges.Range.TryCreateExclusive``2(``0,``0,``1)
+  id: TryCreateExclusive``2(``0,``0,``1)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: TryCreateExclusive<T, TKey>(T, T, TKey)
+  nameWithType: Range.TryCreateExclusive<T, TKey>(T, T, TKey)
+  fullName: CodeJam.Ranges.Range.TryCreateExclusive<T, TKey>(T, T, TKey)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryCreateExclusive
+    path: ../Main/src/Ranges/Range.FactoryMethods.generated.cs
+    startLine: 99
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Tries to create the range. Returnss empty range if failed.
+  example: []
+  syntax:
+    content: public static Range<T, TKey> TryCreateExclusive<T, TKey>(T fromValue, T toValue, TKey key)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: The value of the boundary From exclusive.
+    - id: toValue
+      type: '{T}'
+      description: The value of the boundary To exclusive.
+    - id: key
+      type: '{TKey}'
+      description: The value of the range key.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    - id: TKey
+      description: The type of the range key
+    return:
+      type: CodeJam.Ranges.Range{{T},{TKey}}
+      description: A new range or empty range if the boundaries forms invalid range.
+    content.vb: Public Shared Function TryCreateExclusive(Of T, TKey)(fromValue As T, toValue As T, key As TKey) As Range(Of T, TKey)
+  overload: CodeJam.Ranges.Range.TryCreateExclusive*
+  nameWithType.vb: Range.TryCreateExclusive(Of T, TKey)(T, T, TKey)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.TryCreateExclusive(Of T, TKey)(T, T, TKey)
+  name.vb: TryCreateExclusive(Of T, TKey)(T, T, TKey)
+- uid: CodeJam.Ranges.Range.TryCreateExclusiveFrom``2(``0,``0,``1)
+  commentId: M:CodeJam.Ranges.Range.TryCreateExclusiveFrom``2(``0,``0,``1)
+  id: TryCreateExclusiveFrom``2(``0,``0,``1)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: TryCreateExclusiveFrom<T, TKey>(T, T, TKey)
+  nameWithType: Range.TryCreateExclusiveFrom<T, TKey>(T, T, TKey)
+  fullName: CodeJam.Ranges.Range.TryCreateExclusiveFrom<T, TKey>(T, T, TKey)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryCreateExclusiveFrom
+    path: ../Main/src/Ranges/Range.FactoryMethods.generated.cs
+    startLine: 112
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Tries to create the range. Returns empty range if failed.
+  example: []
+  syntax:
+    content: public static Range<T, TKey> TryCreateExclusiveFrom<T, TKey>(T fromValue, T toValue, TKey key)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: The value of the boundary From exclusive.
+    - id: toValue
+      type: '{T}'
+      description: The value of the boundary To inclusive.
+    - id: key
+      type: '{TKey}'
+      description: The value of the range key.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    - id: TKey
+      description: The type of the range key
+    return:
+      type: CodeJam.Ranges.Range{{T},{TKey}}
+      description: A new range or empty range if the boundaries forms invalid range.
+    content.vb: Public Shared Function TryCreateExclusiveFrom(Of T, TKey)(fromValue As T, toValue As T, key As TKey) As Range(Of T, TKey)
+  overload: CodeJam.Ranges.Range.TryCreateExclusiveFrom*
+  nameWithType.vb: Range.TryCreateExclusiveFrom(Of T, TKey)(T, T, TKey)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.TryCreateExclusiveFrom(Of T, TKey)(T, T, TKey)
+  name.vb: TryCreateExclusiveFrom(Of T, TKey)(T, T, TKey)
+- uid: CodeJam.Ranges.Range.TryCreateExclusiveTo``2(``0,``0,``1)
+  commentId: M:CodeJam.Ranges.Range.TryCreateExclusiveTo``2(``0,``0,``1)
+  id: TryCreateExclusiveTo``2(``0,``0,``1)
+  parent: CodeJam.Ranges.Range
+  langs:
+  - csharp
+  - vb
+  name: TryCreateExclusiveTo<T, TKey>(T, T, TKey)
+  nameWithType: Range.TryCreateExclusiveTo<T, TKey>(T, T, TKey)
+  fullName: CodeJam.Ranges.Range.TryCreateExclusiveTo<T, TKey>(T, T, TKey)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/Range.FactoryMethods.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryCreateExclusiveTo
+    path: ../Main/src/Ranges/Range.FactoryMethods.generated.cs
+    startLine: 125
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Tries to create the range. Returns empty range if failed.
+  example: []
+  syntax:
+    content: public static Range<T, TKey> TryCreateExclusiveTo<T, TKey>(T fromValue, T toValue, TKey key)
+    parameters:
+    - id: fromValue
+      type: '{T}'
+      description: The value of the boundary From inclusive.
+    - id: toValue
+      type: '{T}'
+      description: The value of the boundary To exclusive.
+    - id: key
+      type: '{TKey}'
+      description: The value of the range key.
+    typeParameters:
+    - id: T
+      description: The type of the range values.
+    - id: TKey
+      description: The type of the range key
+    return:
+      type: CodeJam.Ranges.Range{{T},{TKey}}
+      description: A new range or empty range if the boundaries forms invalid range.
+    content.vb: Public Shared Function TryCreateExclusiveTo(Of T, TKey)(fromValue As T, toValue As T, key As TKey) As Range(Of T, TKey)
+  overload: CodeJam.Ranges.Range.TryCreateExclusiveTo*
+  nameWithType.vb: Range.TryCreateExclusiveTo(Of T, TKey)(T, T, TKey)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Ranges.Range.TryCreateExclusiveTo(Of T, TKey)(T, T, TKey)
+  name.vb: TryCreateExclusiveTo(Of T, TKey)(T, T, TKey)
+references:
+- uid: CodeJam.Ranges.Range`1
+  commentId: T:CodeJam.Ranges.Range`1
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: Range<T>
+  nameWithType: Range<T>
+  fullName: CodeJam.Ranges.Range<T>
+  nameWithType.vb: Range(Of T)
+  fullName.vb: CodeJam.Ranges.Range(Of T)
+  name.vb: Range(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges
+  commentId: N:CodeJam.Ranges
+  isExternal: false
+  name: CodeJam.Ranges
+  nameWithType: CodeJam.Ranges
+  fullName: CodeJam.Ranges
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Ranges.Range.BoundaryFrom*
+  commentId: Overload:CodeJam.Ranges.Range.BoundaryFrom
+  isExternal: false
+  name: BoundaryFrom
+  nameWithType: Range.BoundaryFrom
+  fullName: CodeJam.Ranges.Range.BoundaryFrom
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+  commentId: T:CodeJam.Ranges.RangeBoundaryFrom{``0}
+  parent: CodeJam.Ranges
+  definition: CodeJam.Ranges.RangeBoundaryFrom`1
+  name: RangeBoundaryFrom<T>
+  nameWithType: RangeBoundaryFrom<T>
+  fullName: CodeJam.Ranges.RangeBoundaryFrom<T>
+  nameWithType.vb: RangeBoundaryFrom(Of T)
+  fullName.vb: CodeJam.Ranges.RangeBoundaryFrom(Of T)
+  name.vb: RangeBoundaryFrom(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeBoundaryFrom`1
+    name: RangeBoundaryFrom
+    nameWithType: RangeBoundaryFrom
+    fullName: CodeJam.Ranges.RangeBoundaryFrom
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeBoundaryFrom`1
+    name: RangeBoundaryFrom
+    nameWithType: RangeBoundaryFrom
+    fullName: CodeJam.Ranges.RangeBoundaryFrom
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: CodeJam.Ranges.RangeBoundaryFrom`1
+  commentId: T:CodeJam.Ranges.RangeBoundaryFrom`1
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: RangeBoundaryFrom<T>
+  nameWithType: RangeBoundaryFrom<T>
+  fullName: CodeJam.Ranges.RangeBoundaryFrom<T>
+  nameWithType.vb: RangeBoundaryFrom(Of T)
+  fullName.vb: CodeJam.Ranges.RangeBoundaryFrom(Of T)
+  name.vb: RangeBoundaryFrom(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeBoundaryFrom`1
+    name: RangeBoundaryFrom
+    nameWithType: RangeBoundaryFrom
+    fullName: CodeJam.Ranges.RangeBoundaryFrom
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeBoundaryFrom`1
+    name: RangeBoundaryFrom
+    nameWithType: RangeBoundaryFrom
+    fullName: CodeJam.Ranges.RangeBoundaryFrom
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.Range.BoundaryFromExclusive*
+  commentId: Overload:CodeJam.Ranges.Range.BoundaryFromExclusive
+  isExternal: false
+  name: BoundaryFromExclusive
+  nameWithType: Range.BoundaryFromExclusive
+  fullName: CodeJam.Ranges.Range.BoundaryFromExclusive
+- uid: CodeJam.Ranges.Range.BoundaryFromInfinity*
+  commentId: Overload:CodeJam.Ranges.Range.BoundaryFromInfinity
+  isExternal: false
+  name: BoundaryFromInfinity
+  nameWithType: Range.BoundaryFromInfinity
+  fullName: CodeJam.Ranges.Range.BoundaryFromInfinity
+- uid: CodeJam.Ranges.Range.BoundaryTo*
+  commentId: Overload:CodeJam.Ranges.Range.BoundaryTo
+  isExternal: false
+  name: BoundaryTo
+  nameWithType: Range.BoundaryTo
+  fullName: CodeJam.Ranges.Range.BoundaryTo
+- uid: CodeJam.Ranges.RangeBoundaryTo{{T}}
+  commentId: T:CodeJam.Ranges.RangeBoundaryTo{``0}
+  parent: CodeJam.Ranges
+  definition: CodeJam.Ranges.RangeBoundaryTo`1
+  name: RangeBoundaryTo<T>
+  nameWithType: RangeBoundaryTo<T>
+  fullName: CodeJam.Ranges.RangeBoundaryTo<T>
+  nameWithType.vb: RangeBoundaryTo(Of T)
+  fullName.vb: CodeJam.Ranges.RangeBoundaryTo(Of T)
+  name.vb: RangeBoundaryTo(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeBoundaryTo`1
+    name: RangeBoundaryTo
+    nameWithType: RangeBoundaryTo
+    fullName: CodeJam.Ranges.RangeBoundaryTo
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeBoundaryTo`1
+    name: RangeBoundaryTo
+    nameWithType: RangeBoundaryTo
+    fullName: CodeJam.Ranges.RangeBoundaryTo
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeBoundaryTo`1
+  commentId: T:CodeJam.Ranges.RangeBoundaryTo`1
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: RangeBoundaryTo<T>
+  nameWithType: RangeBoundaryTo<T>
+  fullName: CodeJam.Ranges.RangeBoundaryTo<T>
+  nameWithType.vb: RangeBoundaryTo(Of T)
+  fullName.vb: CodeJam.Ranges.RangeBoundaryTo(Of T)
+  name.vb: RangeBoundaryTo(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeBoundaryTo`1
+    name: RangeBoundaryTo
+    nameWithType: RangeBoundaryTo
+    fullName: CodeJam.Ranges.RangeBoundaryTo
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeBoundaryTo`1
+    name: RangeBoundaryTo
+    nameWithType: RangeBoundaryTo
+    fullName: CodeJam.Ranges.RangeBoundaryTo
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.Range.BoundaryToExclusive*
+  commentId: Overload:CodeJam.Ranges.Range.BoundaryToExclusive
+  isExternal: false
+  name: BoundaryToExclusive
+  nameWithType: Range.BoundaryToExclusive
+  fullName: CodeJam.Ranges.Range.BoundaryToExclusive
+- uid: CodeJam.Ranges.Range.BoundaryToInfinity*
+  commentId: Overload:CodeJam.Ranges.Range.BoundaryToInfinity
+  isExternal: false
+  name: BoundaryToInfinity
+  nameWithType: Range.BoundaryToInfinity
+  fullName: CodeJam.Ranges.Range.BoundaryToInfinity
+- uid: CodeJam.Ranges.Range.Min*
+  commentId: Overload:CodeJam.Ranges.Range.Min
+  isExternal: false
+  name: Min
+  nameWithType: Range.Min
+  fullName: CodeJam.Ranges.Range.Min
+- uid: CodeJam.Ranges.Range.Max*
+  commentId: Overload:CodeJam.Ranges.Range.Max
+  isExternal: false
+  name: Max
+  nameWithType: Range.Max
+  fullName: CodeJam.Ranges.Range.Max
+- uid: CodeJam.Ranges.Range.MinFrom*
+  commentId: Overload:CodeJam.Ranges.Range.MinFrom
+  isExternal: false
+  name: MinFrom
+  nameWithType: Range.MinFrom
+  fullName: CodeJam.Ranges.Range.MinFrom
+- uid: CodeJam.Ranges.Range.MaxFrom*
+  commentId: Overload:CodeJam.Ranges.Range.MaxFrom
+  isExternal: false
+  name: MaxFrom
+  nameWithType: Range.MaxFrom
+  fullName: CodeJam.Ranges.Range.MaxFrom
+- uid: CodeJam.Ranges.Range.MinTo*
+  commentId: Overload:CodeJam.Ranges.Range.MinTo
+  isExternal: false
+  name: MinTo
+  nameWithType: Range.MinTo
+  fullName: CodeJam.Ranges.Range.MinTo
+- uid: CodeJam.Ranges.Range.MaxTo*
+  commentId: Overload:CodeJam.Ranges.Range.MaxTo
+  isExternal: false
+  name: MaxTo
+  nameWithType: Range.MaxTo
+  fullName: CodeJam.Ranges.Range.MaxTo
+- uid: CodeJam.Ranges.Range.IsValid*
+  commentId: Overload:CodeJam.Ranges.Range.IsValid
+  isExternal: false
+  name: IsValid
+  nameWithType: Range.IsValid
+  fullName: CodeJam.Ranges.Range.IsValid
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.Ranges.Range.TryCreate*
+  commentId: Overload:CodeJam.Ranges.Range.TryCreate
+  isExternal: false
+  name: TryCreate
+  nameWithType: Range.TryCreate
+  fullName: CodeJam.Ranges.Range.TryCreate
+- uid: CodeJam.Ranges.Range{{T}}
+  commentId: T:CodeJam.Ranges.Range{``0}
+  parent: CodeJam.Ranges
+  definition: CodeJam.Ranges.Range`1
+  name: Range<T>
+  nameWithType: Range<T>
+  fullName: CodeJam.Ranges.Range<T>
+  nameWithType.vb: Range(Of T)
+  fullName.vb: CodeJam.Ranges.Range(Of T)
+  name.vb: Range(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: '{TKey}'
+  commentId: '!:TKey'
+  definition: TKey
+  name: TKey
+  nameWithType: TKey
+  fullName: TKey
+- uid: CodeJam.Ranges.Range{{T},{TKey}}
+  commentId: T:CodeJam.Ranges.Range{``0,``1}
+  parent: CodeJam.Ranges
+  definition: CodeJam.Ranges.Range`2
+  name: Range<T, TKey>
+  nameWithType: Range<T, TKey>
+  fullName: CodeJam.Ranges.Range<T, TKey>
+  nameWithType.vb: Range(Of T, TKey)
+  fullName.vb: CodeJam.Ranges.Range(Of T, TKey)
+  name.vb: Range(Of T, TKey)
+  spec.csharp:
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: TKey
+  isExternal: false
+  name: TKey
+  nameWithType: TKey
+  fullName: TKey
+- uid: CodeJam.Ranges.Range`2
+  commentId: T:CodeJam.Ranges.Range`2
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: Range<T, TKey>
+  nameWithType: Range<T, TKey>
+  fullName: CodeJam.Ranges.Range<T, TKey>
+  nameWithType.vb: Range(Of T, TKey)
+  fullName.vb: CodeJam.Ranges.Range(Of T, TKey)
+  name.vb: Range(Of T, TKey)
+  spec.csharp:
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.Range.Create*
+  commentId: Overload:CodeJam.Ranges.Range.Create
+  isExternal: false
+  name: Create
+  nameWithType: Range.Create
+  fullName: CodeJam.Ranges.Range.Create
+- uid: CodeJam.Ranges.Range.CreateExclusive*
+  commentId: Overload:CodeJam.Ranges.Range.CreateExclusive
+  isExternal: false
+  name: CreateExclusive
+  nameWithType: Range.CreateExclusive
+  fullName: CodeJam.Ranges.Range.CreateExclusive
+- uid: CodeJam.Ranges.Range.CreateExclusiveFrom*
+  commentId: Overload:CodeJam.Ranges.Range.CreateExclusiveFrom
+  isExternal: false
+  name: CreateExclusiveFrom
+  nameWithType: Range.CreateExclusiveFrom
+  fullName: CodeJam.Ranges.Range.CreateExclusiveFrom
+- uid: CodeJam.Ranges.Range.CreateExclusiveTo*
+  commentId: Overload:CodeJam.Ranges.Range.CreateExclusiveTo
+  isExternal: false
+  name: CreateExclusiveTo
+  nameWithType: Range.CreateExclusiveTo
+  fullName: CodeJam.Ranges.Range.CreateExclusiveTo
+- uid: CodeJam.Ranges.Range.TryCreateExclusive*
+  commentId: Overload:CodeJam.Ranges.Range.TryCreateExclusive
+  isExternal: false
+  name: TryCreateExclusive
+  nameWithType: Range.TryCreateExclusive
+  fullName: CodeJam.Ranges.Range.TryCreateExclusive
+- uid: CodeJam.Ranges.Range.TryCreateExclusiveFrom*
+  commentId: Overload:CodeJam.Ranges.Range.TryCreateExclusiveFrom
+  isExternal: false
+  name: TryCreateExclusiveFrom
+  nameWithType: Range.TryCreateExclusiveFrom
+  fullName: CodeJam.Ranges.Range.TryCreateExclusiveFrom
+- uid: CodeJam.Ranges.Range.TryCreateExclusiveTo*
+  commentId: Overload:CodeJam.Ranges.Range.TryCreateExclusiveTo
+  isExternal: false
+  name: TryCreateExclusiveTo
+  nameWithType: Range.TryCreateExclusiveTo
+  fullName: CodeJam.Ranges.Range.TryCreateExclusiveTo

@@ -1,0 +1,628 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CompetitionRunMode
+   | CodeJam </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CompetitionRunMode
+   | CodeJam ">
+    <meta name="generator" content="docfx 2.23.1.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/CodeJam.Main.Icon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items"></div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode">
+  
+  
+  <h1 id="CodeJam_PerfTests_Configs_CompetitionRunMode" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode" class="text-break">Class CompetitionRunMode
+  </h1>
+  <div class="markdown level0 summary"><p>Competition run parameters class.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject</span></div>
+    <div class="level2"><span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject</span>&lt;<a class="xref" href="CodeJam.PerfTests.Configs.CompetitionRunMode.html">CompetitionRunMode</a>&gt;</div>
+    <div class="level3"><span class="xref">CompetitionRunMode</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject&lt;CodeJam.PerfTests.Configs.CompetitionRunMode&gt;.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject)</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject&lt;CodeJam.PerfTests.Configs.CompetitionRunMode&gt;.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject[])</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject&lt;CodeJam.PerfTests.Configs.CompetitionRunMode&gt;.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject)</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject&lt;CodeJam.PerfTests.Configs.CompetitionRunMode&gt;.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject[])</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject&lt;CodeJam.PerfTests.Configs.CompetitionRunMode&gt;.Freeze()</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject&lt;CodeJam.PerfTests.Configs.CompetitionRunMode&gt;.UnfreezeCopy()</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.IdCharacteristic</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveId(BenchmarkDotNet.Characteristics.CharacteristicObject, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.AssertNotFrozen()</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsRoot()</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsNonFrozenRoot()</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsAssignable(BenchmarkDotNet.Characteristics.Characteristic, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.GetCharacteristicsWithValues()</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.HasValue(BenchmarkDotNet.Characteristics.Characteristic)</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue&lt;T&gt;(BenchmarkDotNet.Characteristics.Characteristic&lt;T&gt;, BenchmarkDotNet.Characteristics.IResolver)</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(BenchmarkDotNet.Characteristics.Characteristic, BenchmarkDotNet.Characteristics.IResolver)</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue&lt;T&gt;(BenchmarkDotNet.Characteristics.Characteristic&lt;T&gt;, T)</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(BenchmarkDotNet.Characteristics.Characteristic, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable&lt;T&gt;(BenchmarkDotNet.Characteristics.Characteristic&lt;T&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.ApplyCore(BenchmarkDotNet.Characteristics.CharacteristicObject)</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.FreezeCore()</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.UnfreezeCopyCore()</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.Owner</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.OwnerOrSelf</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.IsPropertyBag</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.HasChanges</span>
+    </div>
+    <div>
+      <span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject.Id</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CodeJam.PerfTests.Configs.html">CodeJam.PerfTests.Configs</a></h6>
+  <h6><strong>Assembly</strong>: CodeJam.PerfTests.dll</h6>
+  <h5 id="CodeJam_PerfTests_Configs_CompetitionRunMode_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class CompetitionRunMode : CharacteristicObject&lt;CompetitionRunMode&gt;</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Configs_CompetitionRunMode_AllowDebugBuildsCharacteristic.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Configs.CompetitionRunMode.AllowDebugBuildsCharacteristic%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionRunMode.cs/#L15">View Source</a>
+  </span>
+  <h4 id="CodeJam_PerfTests_Configs_CompetitionRunMode_AllowDebugBuildsCharacteristic" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.AllowDebugBuildsCharacteristic">AllowDebugBuildsCharacteristic</h4>
+  <div class="markdown level1 summary"><p>Allow debug builds characteristic.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Characteristic&lt;bool&gt; AllowDebugBuildsCharacteristic</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Characteristics.Characteristic</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Configs_CompetitionRunMode_ConcurrentCharacteristic.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Configs.CompetitionRunMode.ConcurrentCharacteristic%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionRunMode.cs/#L27">View Source</a>
+  </span>
+  <h4 id="CodeJam_PerfTests_Configs_CompetitionRunMode_ConcurrentCharacteristic" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.ConcurrentCharacteristic">ConcurrentCharacteristic</h4>
+  <div class="markdown level1 summary"><p>Concurrent run behavior characteristic.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Characteristic&lt;ConcurrentRunBehavior&gt; ConcurrentCharacteristic</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Characteristics.Characteristic</span>&lt;<a class="xref" href="CodeJam.PerfTests.Configs.ConcurrentRunBehavior.html">ConcurrentRunBehavior</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Configs_CompetitionRunMode_ContinuousIntegrationModeCharacteristic.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Configs.CompetitionRunMode.ContinuousIntegrationModeCharacteristic%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionRunMode.cs/#L35">View Source</a>
+  </span>
+  <h4 id="CodeJam_PerfTests_Configs_CompetitionRunMode_ContinuousIntegrationModeCharacteristic" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.ContinuousIntegrationModeCharacteristic">ContinuousIntegrationModeCharacteristic</h4>
+  <div class="markdown level1 summary"><p>The code is being run on a CI server characteristic.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Characteristic&lt;bool&gt; ContinuousIntegrationModeCharacteristic</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Characteristics.Characteristic</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Configs_CompetitionRunMode_DetailedLoggingCharacteristic.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Configs.CompetitionRunMode.DetailedLoggingCharacteristic%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionRunMode.cs/#L19">View Source</a>
+  </span>
+  <h4 id="CodeJam_PerfTests_Configs_CompetitionRunMode_DetailedLoggingCharacteristic" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.DetailedLoggingCharacteristic">DetailedLoggingCharacteristic</h4>
+  <div class="markdown level1 summary"><p>Enable detailed logging characteristic.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Characteristic&lt;bool&gt; DetailedLoggingCharacteristic</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Characteristics.Characteristic</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Configs_CompetitionRunMode_MaxRunsAllowedCharacteristic.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Configs.CompetitionRunMode.MaxRunsAllowedCharacteristic%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionRunMode.cs/#L23">View Source</a>
+  </span>
+  <h4 id="CodeJam_PerfTests_Configs_CompetitionRunMode_MaxRunsAllowedCharacteristic" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.MaxRunsAllowedCharacteristic">MaxRunsAllowedCharacteristic</h4>
+  <div class="markdown level1 summary"><p>Maximum runs allowed characteristic. Default is 10.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Characteristic&lt;int&gt; MaxRunsAllowedCharacteristic</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Characteristics.Characteristic</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Configs_CompetitionRunMode_ReportWarningsAsErrorsCharacteristic.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Configs.CompetitionRunMode.ReportWarningsAsErrorsCharacteristic%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionRunMode.cs/#L31">View Source</a>
+  </span>
+  <h4 id="CodeJam_PerfTests_Configs_CompetitionRunMode_ReportWarningsAsErrorsCharacteristic" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.ReportWarningsAsErrorsCharacteristic">ReportWarningsAsErrorsCharacteristic</h4>
+  <div class="markdown level1 summary"><p>Report warnings as errors characteristic.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Characteristic&lt;bool&gt; ReportWarningsAsErrorsCharacteristic</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Characteristics.Characteristic</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Configs_CompetitionRunMode_AllowDebugBuilds.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Configs.CompetitionRunMode.AllowDebugBuilds%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionRunMode.cs/#L40">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Configs_CompetitionRunMode_AllowDebugBuilds_" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.AllowDebugBuilds*"></a>
+  <h4 id="CodeJam_PerfTests_Configs_CompetitionRunMode_AllowDebugBuilds" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.AllowDebugBuilds">AllowDebugBuilds</h4>
+  <div class="markdown level1 summary"><p>Allow debug builds to be used in competitions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AllowDebugBuilds { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if debug builds allowed; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Configs_CompetitionRunMode_Concurrent.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Configs.CompetitionRunMode.Concurrent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionRunMode.cs/#L68">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Configs_CompetitionRunMode_Concurrent_" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.Concurrent*"></a>
+  <h4 id="CodeJam_PerfTests_Configs_CompetitionRunMode_Concurrent" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.Concurrent">Concurrent</h4>
+  <div class="markdown level1 summary"><p>Behavior for concurrent competition runs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConcurrentRunBehavior Concurrent { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CodeJam.PerfTests.Configs.ConcurrentRunBehavior.html">ConcurrentRunBehavior</a></td>
+        <td><p>Behavior for concurrent competition runs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Configs_CompetitionRunMode_ContinuousIntegrationMode.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Configs.CompetitionRunMode.ContinuousIntegrationMode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionRunMode.cs/#L110">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Configs_CompetitionRunMode_ContinuousIntegrationMode_" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.ContinuousIntegrationMode*"></a>
+  <h4 id="CodeJam_PerfTests_Configs_CompetitionRunMode_ContinuousIntegrationMode" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.ContinuousIntegrationMode">ContinuousIntegrationMode</h4>
+  <div class="markdown level1 summary"><p>The code is being run on a CI server..</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ContinuousIntegrationMode { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if code is being run on a CI server..</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Configs_CompetitionRunMode_DetailedLogging.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Configs.CompetitionRunMode.DetailedLogging%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionRunMode.cs/#L54">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Configs_CompetitionRunMode_DetailedLogging_" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.DetailedLogging*"></a>
+  <h4 id="CodeJam_PerfTests_Configs_CompetitionRunMode_DetailedLogging" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.DetailedLogging">DetailedLogging</h4>
+  <div class="markdown level1 summary"><p>Enable detailed logging.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DetailedLogging { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if detailed logging enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Configs_CompetitionRunMode_MaxRunsAllowed.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Configs.CompetitionRunMode.MaxRunsAllowed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionRunMode.cs/#L82">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Configs_CompetitionRunMode_MaxRunsAllowed_" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.MaxRunsAllowed*"></a>
+  <h4 id="CodeJam_PerfTests_Configs_CompetitionRunMode_MaxRunsAllowed" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.MaxRunsAllowed">MaxRunsAllowed</h4>
+  <div class="markdown level1 summary"><p>Max limit for competition reruns. Default is 10.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MaxRunsAllowed { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Max count of runs allowed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Configs_CompetitionRunMode_ReportWarningsAsErrors.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Configs.CompetitionRunMode.ReportWarningsAsErrors%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionRunMode.cs/#L96">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Configs_CompetitionRunMode_ReportWarningsAsErrors_" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.ReportWarningsAsErrors*"></a>
+  <h4 id="CodeJam_PerfTests_Configs_CompetitionRunMode_ReportWarningsAsErrors" data-uid="CodeJam.PerfTests.Configs.CompetitionRunMode.ReportWarningsAsErrors">ReportWarningsAsErrors</h4>
+  <div class="markdown level1 summary"><p>Report warnings as errors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ReportWarningsAsErrors { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if competition warnings should be reported as errors; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="seealso">See Also</h3>
+  <div class="seealso">
+      <div><span class="xref">BenchmarkDotNet.Characteristics.CharacteristicObject</span>&lt;T&gt;</div>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Configs_CompetitionRunMode.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Configs.CompetitionRunMode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionRunMode.cs/#L11" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright � 2015-2017
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

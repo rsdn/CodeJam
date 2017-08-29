@@ -258,8 +258,7 @@ namespace CodeJam.Collections
 			var offset = 0;
 			for (;;)
 			{
-				Node edge;
-				var edgeIndex = FindEdge(currentNode, s[offset], out edge);
+				var edgeIndex = FindEdge(currentNode, s[offset], out var edge);
 				if (edgeIndex == -1)
 				{
 					return null;

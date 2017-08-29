@@ -1,0 +1,533 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.DebugUriCode
+  commentId: T:CodeJam.DebugUriCode
+  id: DebugUriCode
+  parent: CodeJam
+  children:
+  - CodeJam.DebugUriCode.IsWellFormedAbsoluteUri(System.String,System.String)
+  - CodeJam.DebugUriCode.IsWellFormedRelativeUri(System.String,System.String)
+  - CodeJam.DebugUriCode.IsWellFormedUri(System.String,System.String)
+  langs:
+  - csharp
+  - vb
+  name: DebugUriCode
+  nameWithType: DebugUriCode
+  fullName: CodeJam.DebugUriCode
+  type: Class
+  source:
+    remote:
+      path: Main/src/Assertions/DebugUriCode.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DebugUriCode
+    path: ../Main/src/Assertions/DebugUriCode.generated.cs
+    startLine: 22
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: URI assertions class.
+  example: []
+  syntax:
+    content: public static class DebugUriCode
+    content.vb: Public Module DebugUriCode
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.DebugUriCode.IsWellFormedUri(System.String,System.String)
+  commentId: M:CodeJam.DebugUriCode.IsWellFormedUri(System.String,System.String)
+  id: IsWellFormedUri(System.String,System.String)
+  parent: CodeJam.DebugUriCode
+  langs:
+  - csharp
+  - vb
+  name: IsWellFormedUri(String, String)
+  nameWithType: DebugUriCode.IsWellFormedUri(String, String)
+  fullName: CodeJam.DebugUriCode.IsWellFormedUri(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/DebugUriCode.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsWellFormedUri
+    path: ../Main/src/Assertions/DebugUriCode.generated.cs
+    startLine: 28
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that specified URI is well-formed absolute or relative URI.
+  example: []
+  syntax:
+    content: >-
+      [Conditional("DEBUG")]
+
+      public static void IsWellFormedUri(string uri, string argName)
+    parameters:
+    - id: uri
+      type: System.String
+      description: The URI.
+    - id: argName
+      type: System.String
+      description: Name of the argument.
+    content.vb: >-
+      <Conditional("DEBUG")>
+
+      Public Shared Sub IsWellFormedUri(uri As String, argName As String)
+  overload: CodeJam.DebugUriCode.IsWellFormedUri*
+  attributes:
+  - type: System.Diagnostics.ConditionalAttribute
+    ctor: System.Diagnostics.ConditionalAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: DEBUG
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.DebugUriCode.IsWellFormedAbsoluteUri(System.String,System.String)
+  commentId: M:CodeJam.DebugUriCode.IsWellFormedAbsoluteUri(System.String,System.String)
+  id: IsWellFormedAbsoluteUri(System.String,System.String)
+  parent: CodeJam.DebugUriCode
+  langs:
+  - csharp
+  - vb
+  name: IsWellFormedAbsoluteUri(String, String)
+  nameWithType: DebugUriCode.IsWellFormedAbsoluteUri(String, String)
+  fullName: CodeJam.DebugUriCode.IsWellFormedAbsoluteUri(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/DebugUriCode.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsWellFormedAbsoluteUri
+    path: ../Main/src/Assertions/DebugUriCode.generated.cs
+    startLine: 42
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that specified URI is well-formed absolute URI.
+  example: []
+  syntax:
+    content: >-
+      [Conditional("DEBUG")]
+
+      public static void IsWellFormedAbsoluteUri(string uri, string argName)
+    parameters:
+    - id: uri
+      type: System.String
+      description: The URI.
+    - id: argName
+      type: System.String
+      description: Name of the argument.
+    content.vb: >-
+      <Conditional("DEBUG")>
+
+      Public Shared Sub IsWellFormedAbsoluteUri(uri As String, argName As String)
+  overload: CodeJam.DebugUriCode.IsWellFormedAbsoluteUri*
+  attributes:
+  - type: System.Diagnostics.ConditionalAttribute
+    ctor: System.Diagnostics.ConditionalAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: DEBUG
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.DebugUriCode.IsWellFormedRelativeUri(System.String,System.String)
+  commentId: M:CodeJam.DebugUriCode.IsWellFormedRelativeUri(System.String,System.String)
+  id: IsWellFormedRelativeUri(System.String,System.String)
+  parent: CodeJam.DebugUriCode
+  langs:
+  - csharp
+  - vb
+  name: IsWellFormedRelativeUri(String, String)
+  nameWithType: DebugUriCode.IsWellFormedRelativeUri(String, String)
+  fullName: CodeJam.DebugUriCode.IsWellFormedRelativeUri(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/DebugUriCode.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsWellFormedRelativeUri
+    path: ../Main/src/Assertions/DebugUriCode.generated.cs
+    startLine: 56
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that specified URI is well-formed relative URI.
+  example: []
+  syntax:
+    content: >-
+      [Conditional("DEBUG")]
+
+      public static void IsWellFormedRelativeUri(string uri, string argName)
+    parameters:
+    - id: uri
+      type: System.String
+      description: The URI.
+    - id: argName
+      type: System.String
+      description: Name of the argument.
+    content.vb: >-
+      <Conditional("DEBUG")>
+
+      Public Shared Sub IsWellFormedRelativeUri(uri As String, argName As String)
+  overload: CodeJam.DebugUriCode.IsWellFormedRelativeUri*
+  attributes:
+  - type: System.Diagnostics.ConditionalAttribute
+    ctor: System.Diagnostics.ConditionalAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: DEBUG
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: CodeJam
+  commentId: N:CodeJam
+  isExternal: false
+  name: CodeJam
+  nameWithType: CodeJam
+  fullName: CodeJam
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.DebugUriCode.IsWellFormedUri*
+  commentId: Overload:CodeJam.DebugUriCode.IsWellFormedUri
+  isExternal: false
+  name: IsWellFormedUri
+  nameWithType: DebugUriCode.IsWellFormedUri
+  fullName: CodeJam.DebugUriCode.IsWellFormedUri
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: CodeJam.DebugUriCode.IsWellFormedAbsoluteUri*
+  commentId: Overload:CodeJam.DebugUriCode.IsWellFormedAbsoluteUri
+  isExternal: false
+  name: IsWellFormedAbsoluteUri
+  nameWithType: DebugUriCode.IsWellFormedAbsoluteUri
+  fullName: CodeJam.DebugUriCode.IsWellFormedAbsoluteUri
+- uid: CodeJam.DebugUriCode.IsWellFormedRelativeUri*
+  commentId: Overload:CodeJam.DebugUriCode.IsWellFormedRelativeUri
+  isExternal: false
+  name: IsWellFormedRelativeUri
+  nameWithType: DebugUriCode.IsWellFormedRelativeUri
+  fullName: CodeJam.DebugUriCode.IsWellFormedRelativeUri

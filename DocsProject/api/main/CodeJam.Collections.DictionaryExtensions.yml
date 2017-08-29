@@ -1,0 +1,3052 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Collections.DictionaryExtensions
+  commentId: T:CodeJam.Collections.DictionaryExtensions
+  id: DictionaryExtensions
+  parent: CodeJam.Collections
+  children:
+  - CodeJam.Collections.DictionaryExtensions.AddOrUpdate``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1})
+  - CodeJam.Collections.DictionaryExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1,System.Func{``0,``1,``1})
+  - CodeJam.Collections.DictionaryExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})
+  - CodeJam.Collections.DictionaryExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1},System.Func{``0,``1,``1})
+  - CodeJam.Collections.DictionaryExtensions.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0)
+  - CodeJam.Collections.DictionaryExtensions.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)
+  - CodeJam.Collections.DictionaryExtensions.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0)
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,``1)
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1})
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.Dictionary{``0,``1},``0)
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1)
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1})
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0)
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0)
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,``1)
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,System.Func{``0,``1})
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1,``2})
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1,``2},``2)
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1,``2},System.Func{``0,``2})
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1,``2})
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1,``2},``2)
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1,``2},System.Func{``0,``2})
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1,``2})
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1,``2},``2)
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1,``2},System.Func{``0,``2})
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,System.Func{``0,``1,``2})
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,System.Func{``0,``1,``2},``2)
+  - CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,System.Func{``0,``1,``2},System.Func{``0,``2})
+  langs:
+  - csharp
+  - vb
+  name: DictionaryExtensions
+  nameWithType: DictionaryExtensions
+  fullName: CodeJam.Collections.DictionaryExtensions
+  type: Class
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DictionaryExtensions
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.cs
+    startLine: 11
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nExtensions for <xref href=\"System.Collections.Generic.IDictionary%602\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public static class DictionaryExtensions
+    content.vb: Public Module DictionaryExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0)
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0)
+  id: GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue>(IDictionary<TKey, TValue>, TKey)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue>(IDictionary<TKey, TValue>, TKey)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue>(System.Collections.Generic.IDictionary<TKey, TValue>, TKey)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 32
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or default(TValue) if key does not exists in\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    return:
+      type: '{TValue}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or default value if <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code> does not exists\nin <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue)(dictionary As IDictionary(Of TKey, TValue), key As TKey) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(System.Collections.Generic.IDictionary(Of TKey, TValue), TKey)
+  name.vb: GetValueOrDefault(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey)
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)
+  id: GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue>(IDictionary<TKey, TValue>, TKey, TValue)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue>(IDictionary<TKey, TValue>, TKey, TValue)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue>(System.Collections.Generic.IDictionary<TKey, TValue>, TKey, TValue)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 49
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if key does not exists\nin <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: defaultValue
+      type: '{TValue}'
+      description: Default value.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    return:
+      type: '{TValue}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>\ndoes not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue)(dictionary As IDictionary(Of TKey, TValue), key As TKey, defaultValue As TValue) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey, TValue)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(System.Collections.Generic.IDictionary(Of TKey, TValue), TKey, TValue)
+  name.vb: GetValueOrDefault(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey, TValue)
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1,``2})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1,``2})
+  id: GetValueOrDefault``3(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1,``2})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue, TResult>(IDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(IDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(System.Collections.Generic.IDictionary<TKey, TValue>, TKey, System.Func<TKey, TValue, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 78
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or default value if key does not exists\nin <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TResult GetValueOrDefault<TKey, TValue, TResult>(this IDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue, TResult> resultSelector)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: resultSelector
+      type: System.Func{{TKey},{TValue},{TResult}}
+      description: Function to select result.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    - id: TResult
+      description: Result type.
+    return:
+      type: '{TResult}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or default value if <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>\ndoes not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue, TResult)(dictionary As IDictionary(Of TKey, TValue), key As TKey, resultSelector As Func(Of TKey, TValue, TResult)) As TResult
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(IDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(System.Collections.Generic.IDictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue, TResult))
+  name.vb: GetValueOrDefault(Of TKey, TValue, TResult)(IDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult))
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1,``2},``2)
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1,``2},``2)
+  id: GetValueOrDefault``3(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1,``2},``2)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue, TResult>(IDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>, TResult)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(IDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>, TResult)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(System.Collections.Generic.IDictionary<TKey, TValue>, TKey, System.Func<TKey, TValue, TResult>, TResult)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 100
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if key does not exists\nin <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TResult GetValueOrDefault<TKey, TValue, TResult>(this IDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue, TResult> resultSelector, TResult defaultValue)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: resultSelector
+      type: System.Func{{TKey},{TValue},{TResult}}
+      description: Function to select result.
+    - id: defaultValue
+      type: '{TResult}'
+      description: Default value.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    - id: TResult
+      description: Result type.
+    return:
+      type: '{TResult}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>\ndoes not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue, TResult)(dictionary As IDictionary(Of TKey, TValue), key As TKey, resultSelector As Func(Of TKey, TValue, TResult), defaultValue As TResult) As TResult
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(IDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult), TResult)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(System.Collections.Generic.IDictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue, TResult), TResult)
+  name.vb: GetValueOrDefault(Of TKey, TValue, TResult)(IDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult), TResult)
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})
+  id: GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue>(IDictionary<TKey, TValue>, TKey, Func<TKey, TValue>)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue>(IDictionary<TKey, TValue>, TKey, Func<TKey, TValue>)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue>(System.Collections.Generic.IDictionary<TKey, TValue>, TKey, System.Func<TKey, TValue>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 130
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or value returned by <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValueFactory</code>\nif key does not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue> defaultValueFactory)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: defaultValueFactory
+      type: System.Func{{TKey},{TValue}}
+      description: Function to return default value.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    return:
+      type: '{TValue}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or value returned by <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValueFactory</code>\nif <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code> does not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue)(dictionary As IDictionary(Of TKey, TValue), key As TKey, defaultValueFactory As Func(Of TKey, TValue)) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(System.Collections.Generic.IDictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue))
+  name.vb: GetValueOrDefault(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue))
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1,``2},System.Func{``0,``2})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1,``2},System.Func{``0,``2})
+  id: GetValueOrDefault``3(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1,``2},System.Func{``0,``2})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue, TResult>(IDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>, Func<TKey, TResult>)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(IDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>, Func<TKey, TResult>)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(System.Collections.Generic.IDictionary<TKey, TValue>, TKey, System.Func<TKey, TValue, TResult>, System.Func<TKey, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 161
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or value returned by <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValueFactory</code>\nif key does not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TResult GetValueOrDefault<TKey, TValue, TResult>(this IDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue, TResult> resultSelector, Func<TKey, TResult> defaultValueFactory)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: resultSelector
+      type: System.Func{{TKey},{TValue},{TResult}}
+      description: Function to select result.
+    - id: defaultValueFactory
+      type: System.Func{{TKey},{TResult}}
+      description: Function to return default value.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    - id: TResult
+      description: Result type.
+    return:
+      type: '{TResult}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or value returned by <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValueFactory</code>\nif <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code> does not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue, TResult)(dictionary As IDictionary(Of TKey, TValue), key As TKey, resultSelector As Func(Of TKey, TValue, TResult), defaultValueFactory As Func(Of TKey, TResult)) As TResult
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(IDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult), Func(Of TKey, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(System.Collections.Generic.IDictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue, TResult), System.Func(Of TKey, TResult))
+  name.vb: GetValueOrDefault(Of TKey, TValue, TResult)(IDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult), Func(Of TKey, TResult))
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0)
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0)
+  id: GetValueOrDefault``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue>(IReadOnlyDictionary<TKey, TValue>, TKey)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue>(IReadOnlyDictionary<TKey, TValue>, TKey)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue>(System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>, TKey)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 193
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or default(TValue) if key does not exists in\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TValue GetValueOrDefault<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> dictionary, TKey key)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IReadOnlyDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    return:
+      type: '{TValue}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or default value if <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code> does not exists\nin <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue)(dictionary As IReadOnlyDictionary(Of TKey, TValue), key As TKey) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(IReadOnlyDictionary(Of TKey, TValue), TKey)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue), TKey)
+  name.vb: GetValueOrDefault(Of TKey, TValue)(IReadOnlyDictionary(Of TKey, TValue), TKey)
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,``1)
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,``1)
+  id: GetValueOrDefault``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,``1)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue>(IReadOnlyDictionary<TKey, TValue>, TKey, TValue)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue>(IReadOnlyDictionary<TKey, TValue>, TKey, TValue)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue>(System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>, TKey, TValue)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 210
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if key does not exists\nin <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TValue GetValueOrDefault<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IReadOnlyDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: defaultValue
+      type: '{TValue}'
+      description: Default value.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    return:
+      type: '{TValue}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>\ndoes not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue)(dictionary As IReadOnlyDictionary(Of TKey, TValue), key As TKey, defaultValue As TValue) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(IReadOnlyDictionary(Of TKey, TValue), TKey, TValue)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue), TKey, TValue)
+  name.vb: GetValueOrDefault(Of TKey, TValue)(IReadOnlyDictionary(Of TKey, TValue), TKey, TValue)
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,System.Func{``0,``1,``2})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,System.Func{``0,``1,``2})
+  id: GetValueOrDefault``3(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,System.Func{``0,``1,``2})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue, TResult>(IReadOnlyDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(IReadOnlyDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>, TKey, System.Func<TKey, TValue, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 239
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or default value if key does not exists\nin <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TResult GetValueOrDefault<TKey, TValue, TResult>(this IReadOnlyDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue, TResult> resultSelector)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IReadOnlyDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: resultSelector
+      type: System.Func{{TKey},{TValue},{TResult}}
+      description: Function to select result.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    - id: TResult
+      description: Result type.
+    return:
+      type: '{TResult}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or default value if <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>\ndoes not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue, TResult)(dictionary As IReadOnlyDictionary(Of TKey, TValue), key As TKey, resultSelector As Func(Of TKey, TValue, TResult)) As TResult
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(IReadOnlyDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue, TResult))
+  name.vb: GetValueOrDefault(Of TKey, TValue, TResult)(IReadOnlyDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult))
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,System.Func{``0,``1,``2},``2)
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,System.Func{``0,``1,``2},``2)
+  id: GetValueOrDefault``3(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,System.Func{``0,``1,``2},``2)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue, TResult>(IReadOnlyDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>, TResult)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(IReadOnlyDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>, TResult)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>, TKey, System.Func<TKey, TValue, TResult>, TResult)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 261
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if key does not exists\nin <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TResult GetValueOrDefault<TKey, TValue, TResult>(this IReadOnlyDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue, TResult> resultSelector, TResult defaultValue)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IReadOnlyDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: resultSelector
+      type: System.Func{{TKey},{TValue},{TResult}}
+      description: Function to select result.
+    - id: defaultValue
+      type: '{TResult}'
+      description: Default value.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    - id: TResult
+      description: Result type.
+    return:
+      type: '{TResult}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>\ndoes not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue, TResult)(dictionary As IReadOnlyDictionary(Of TKey, TValue), key As TKey, resultSelector As Func(Of TKey, TValue, TResult), defaultValue As TResult) As TResult
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(IReadOnlyDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult), TResult)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue, TResult), TResult)
+  name.vb: GetValueOrDefault(Of TKey, TValue, TResult)(IReadOnlyDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult), TResult)
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,System.Func{``0,``1})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,System.Func{``0,``1})
+  id: GetValueOrDefault``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,System.Func{``0,``1})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue>(IReadOnlyDictionary<TKey, TValue>, TKey, Func<TKey, TValue>)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue>(IReadOnlyDictionary<TKey, TValue>, TKey, Func<TKey, TValue>)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue>(System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>, TKey, System.Func<TKey, TValue>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 291
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or value returned by <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValueFactory</code>\nif key does not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TValue GetValueOrDefault<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue> defaultValueFactory)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IReadOnlyDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: defaultValueFactory
+      type: System.Func{{TKey},{TValue}}
+      description: Function to return default value.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    return:
+      type: '{TValue}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or value returned by <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValueFactory</code>\nif <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code> does not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue)(dictionary As IReadOnlyDictionary(Of TKey, TValue), key As TKey, defaultValueFactory As Func(Of TKey, TValue)) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(IReadOnlyDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue))
+  name.vb: GetValueOrDefault(Of TKey, TValue)(IReadOnlyDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue))
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,System.Func{``0,``1,``2},System.Func{``0,``2})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,System.Func{``0,``1,``2},System.Func{``0,``2})
+  id: GetValueOrDefault``3(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,System.Func{``0,``1,``2},System.Func{``0,``2})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue, TResult>(IReadOnlyDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>, Func<TKey, TResult>)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(IReadOnlyDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>, Func<TKey, TResult>)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>, TKey, System.Func<TKey, TValue, TResult>, System.Func<TKey, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 322
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or value returned by <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValueFactory</code>\nif key does not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TResult GetValueOrDefault<TKey, TValue, TResult>(this IReadOnlyDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue, TResult> resultSelector, Func<TKey, TResult> defaultValueFactory)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IReadOnlyDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: resultSelector
+      type: System.Func{{TKey},{TValue},{TResult}}
+      description: Function to select result.
+    - id: defaultValueFactory
+      type: System.Func{{TKey},{TResult}}
+      description: Function to return default value.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    - id: TResult
+      description: Result type.
+    return:
+      type: '{TResult}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or value returned by <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValueFactory</code>\nif <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code> does not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue, TResult)(dictionary As IReadOnlyDictionary(Of TKey, TValue), key As TKey, resultSelector As Func(Of TKey, TValue, TResult), defaultValueFactory As Func(Of TKey, TResult)) As TResult
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(IReadOnlyDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult), Func(Of TKey, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue, TResult), System.Func(Of TKey, TResult))
+  name.vb: GetValueOrDefault(Of TKey, TValue, TResult)(IReadOnlyDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult), Func(Of TKey, TResult))
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.Dictionary{``0,``1},``0)
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.Dictionary{``0,``1},``0)
+  id: GetValueOrDefault``2(System.Collections.Generic.Dictionary{``0,``1},``0)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue>(Dictionary<TKey, TValue>, TKey)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue>(Dictionary<TKey, TValue>, TKey)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue>(System.Collections.Generic.Dictionary<TKey, TValue>, TKey)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 354
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or default(TValue) if key does not exists in\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TValue GetValueOrDefault<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.Dictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    return:
+      type: '{TValue}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or default value if <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code> does not exists\nin <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue)(dictionary As Dictionary(Of TKey, TValue), key As TKey) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(Dictionary(Of TKey, TValue), TKey)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(System.Collections.Generic.Dictionary(Of TKey, TValue), TKey)
+  name.vb: GetValueOrDefault(Of TKey, TValue)(Dictionary(Of TKey, TValue), TKey)
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1)
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1)
+  id: GetValueOrDefault``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue>(Dictionary<TKey, TValue>, TKey, TValue)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue>(Dictionary<TKey, TValue>, TKey, TValue)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue>(System.Collections.Generic.Dictionary<TKey, TValue>, TKey, TValue)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 371
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if key does not exists\nin <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TValue GetValueOrDefault<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.Dictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: defaultValue
+      type: '{TValue}'
+      description: Default value.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    return:
+      type: '{TValue}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>\ndoes not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue)(dictionary As Dictionary(Of TKey, TValue), key As TKey, defaultValue As TValue) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(Dictionary(Of TKey, TValue), TKey, TValue)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(System.Collections.Generic.Dictionary(Of TKey, TValue), TKey, TValue)
+  name.vb: GetValueOrDefault(Of TKey, TValue)(Dictionary(Of TKey, TValue), TKey, TValue)
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1,``2})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1,``2})
+  id: GetValueOrDefault``3(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1,``2})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue, TResult>(Dictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(Dictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(System.Collections.Generic.Dictionary<TKey, TValue>, TKey, System.Func<TKey, TValue, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 400
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or default value if key does not exists\nin <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TResult GetValueOrDefault<TKey, TValue, TResult>(this Dictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue, TResult> resultSelector)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.Dictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: resultSelector
+      type: System.Func{{TKey},{TValue},{TResult}}
+      description: Function to select result.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    - id: TResult
+      description: Result type.
+    return:
+      type: '{TResult}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or default value if <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>\ndoes not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue, TResult)(dictionary As Dictionary(Of TKey, TValue), key As TKey, resultSelector As Func(Of TKey, TValue, TResult)) As TResult
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(Dictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(System.Collections.Generic.Dictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue, TResult))
+  name.vb: GetValueOrDefault(Of TKey, TValue, TResult)(Dictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult))
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1,``2},``2)
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1,``2},``2)
+  id: GetValueOrDefault``3(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1,``2},``2)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue, TResult>(Dictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>, TResult)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(Dictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>, TResult)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(System.Collections.Generic.Dictionary<TKey, TValue>, TKey, System.Func<TKey, TValue, TResult>, TResult)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 422
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if key does not exists\nin <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TResult GetValueOrDefault<TKey, TValue, TResult>(this Dictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue, TResult> resultSelector, TResult defaultValue)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.Dictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: resultSelector
+      type: System.Func{{TKey},{TValue},{TResult}}
+      description: Function to select result.
+    - id: defaultValue
+      type: '{TResult}'
+      description: Default value.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    - id: TResult
+      description: Result type.
+    return:
+      type: '{TResult}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>\ndoes not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue, TResult)(dictionary As Dictionary(Of TKey, TValue), key As TKey, resultSelector As Func(Of TKey, TValue, TResult), defaultValue As TResult) As TResult
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(Dictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult), TResult)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(System.Collections.Generic.Dictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue, TResult), TResult)
+  name.vb: GetValueOrDefault(Of TKey, TValue, TResult)(Dictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult), TResult)
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1})
+  id: GetValueOrDefault``2(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue>(Dictionary<TKey, TValue>, TKey, Func<TKey, TValue>)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue>(Dictionary<TKey, TValue>, TKey, Func<TKey, TValue>)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue>(System.Collections.Generic.Dictionary<TKey, TValue>, TKey, System.Func<TKey, TValue>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 452
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or value returned by <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValueFactory</code>\nif key does not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TValue GetValueOrDefault<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue> defaultValueFactory)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.Dictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: defaultValueFactory
+      type: System.Func{{TKey},{TValue}}
+      description: Function to return default value.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    return:
+      type: '{TValue}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or value returned by <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValueFactory</code>\nif <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code> does not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue)(dictionary As Dictionary(Of TKey, TValue), key As TKey, defaultValueFactory As Func(Of TKey, TValue)) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(Dictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(System.Collections.Generic.Dictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue))
+  name.vb: GetValueOrDefault(Of TKey, TValue)(Dictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue))
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1,``2},System.Func{``0,``2})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1,``2},System.Func{``0,``2})
+  id: GetValueOrDefault``3(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1,``2},System.Func{``0,``2})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue, TResult>(Dictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>, Func<TKey, TResult>)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(Dictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>, Func<TKey, TResult>)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(System.Collections.Generic.Dictionary<TKey, TValue>, TKey, System.Func<TKey, TValue, TResult>, System.Func<TKey, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 483
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or value returned by <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValueFactory</code>\nif key does not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TResult GetValueOrDefault<TKey, TValue, TResult>(this Dictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue, TResult> resultSelector, Func<TKey, TResult> defaultValueFactory)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.Dictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: resultSelector
+      type: System.Func{{TKey},{TValue},{TResult}}
+      description: Function to select result.
+    - id: defaultValueFactory
+      type: System.Func{{TKey},{TResult}}
+      description: Function to return default value.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    - id: TResult
+      description: Result type.
+    return:
+      type: '{TResult}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or value returned by <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValueFactory</code>\nif <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code> does not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue, TResult)(dictionary As Dictionary(Of TKey, TValue), key As TKey, resultSelector As Func(Of TKey, TValue, TResult), defaultValueFactory As Func(Of TKey, TResult)) As TResult
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(Dictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult), Func(Of TKey, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(System.Collections.Generic.Dictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue, TResult), System.Func(Of TKey, TResult))
+  name.vb: GetValueOrDefault(Of TKey, TValue, TResult)(Dictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult), Func(Of TKey, TResult))
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0)
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0)
+  id: GetValueOrDefault``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue>(ConcurrentDictionary<TKey, TValue>, TKey)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue>(ConcurrentDictionary<TKey, TValue>, TKey)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue>(System.Collections.Concurrent.ConcurrentDictionary<TKey, TValue>, TKey)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 515
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or default(TValue) if key does not exists in\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TValue GetValueOrDefault<TKey, TValue>(this ConcurrentDictionary<TKey, TValue> dictionary, TKey key)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Concurrent.ConcurrentDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    return:
+      type: '{TValue}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or default value if <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code> does not exists\nin <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue)(dictionary As ConcurrentDictionary(Of TKey, TValue), key As TKey) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(ConcurrentDictionary(Of TKey, TValue), TKey)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(System.Collections.Concurrent.ConcurrentDictionary(Of TKey, TValue), TKey)
+  name.vb: GetValueOrDefault(Of TKey, TValue)(ConcurrentDictionary(Of TKey, TValue), TKey)
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,``1)
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,``1)
+  id: GetValueOrDefault``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,``1)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue>(ConcurrentDictionary<TKey, TValue>, TKey, TValue)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue>(ConcurrentDictionary<TKey, TValue>, TKey, TValue)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue>(System.Collections.Concurrent.ConcurrentDictionary<TKey, TValue>, TKey, TValue)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 532
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if key does not exists\nin <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TValue GetValueOrDefault<TKey, TValue>(this ConcurrentDictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Concurrent.ConcurrentDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: defaultValue
+      type: '{TValue}'
+      description: Default value.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    return:
+      type: '{TValue}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>\ndoes not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue)(dictionary As ConcurrentDictionary(Of TKey, TValue), key As TKey, defaultValue As TValue) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(ConcurrentDictionary(Of TKey, TValue), TKey, TValue)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(System.Collections.Concurrent.ConcurrentDictionary(Of TKey, TValue), TKey, TValue)
+  name.vb: GetValueOrDefault(Of TKey, TValue)(ConcurrentDictionary(Of TKey, TValue), TKey, TValue)
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1,``2})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1,``2})
+  id: GetValueOrDefault``3(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1,``2})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue, TResult>(ConcurrentDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(ConcurrentDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(System.Collections.Concurrent.ConcurrentDictionary<TKey, TValue>, TKey, System.Func<TKey, TValue, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 561
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or default value if key does not exists\nin <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TResult GetValueOrDefault<TKey, TValue, TResult>(this ConcurrentDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue, TResult> resultSelector)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Concurrent.ConcurrentDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: resultSelector
+      type: System.Func{{TKey},{TValue},{TResult}}
+      description: Function to select result.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    - id: TResult
+      description: Result type.
+    return:
+      type: '{TResult}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or default value if <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>\ndoes not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue, TResult)(dictionary As ConcurrentDictionary(Of TKey, TValue), key As TKey, resultSelector As Func(Of TKey, TValue, TResult)) As TResult
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(ConcurrentDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(System.Collections.Concurrent.ConcurrentDictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue, TResult))
+  name.vb: GetValueOrDefault(Of TKey, TValue, TResult)(ConcurrentDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult))
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1,``2},``2)
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1,``2},``2)
+  id: GetValueOrDefault``3(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1,``2},``2)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue, TResult>(ConcurrentDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>, TResult)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(ConcurrentDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>, TResult)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(System.Collections.Concurrent.ConcurrentDictionary<TKey, TValue>, TKey, System.Func<TKey, TValue, TResult>, TResult)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 583
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if key does not exists\nin <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TResult GetValueOrDefault<TKey, TValue, TResult>(this ConcurrentDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue, TResult> resultSelector, TResult defaultValue)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Concurrent.ConcurrentDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: resultSelector
+      type: System.Func{{TKey},{TValue},{TResult}}
+      description: Function to select result.
+    - id: defaultValue
+      type: '{TResult}'
+      description: Default value.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    - id: TResult
+      description: Result type.
+    return:
+      type: '{TResult}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>\ndoes not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue, TResult)(dictionary As ConcurrentDictionary(Of TKey, TValue), key As TKey, resultSelector As Func(Of TKey, TValue, TResult), defaultValue As TResult) As TResult
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(ConcurrentDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult), TResult)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(System.Collections.Concurrent.ConcurrentDictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue, TResult), TResult)
+  name.vb: GetValueOrDefault(Of TKey, TValue, TResult)(ConcurrentDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult), TResult)
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1})
+  id: GetValueOrDefault``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue>(ConcurrentDictionary<TKey, TValue>, TKey, Func<TKey, TValue>)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue>(ConcurrentDictionary<TKey, TValue>, TKey, Func<TKey, TValue>)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue>(System.Collections.Concurrent.ConcurrentDictionary<TKey, TValue>, TKey, System.Func<TKey, TValue>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 613
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or value returned by <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValueFactory</code>\nif key does not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TValue GetValueOrDefault<TKey, TValue>(this ConcurrentDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue> defaultValueFactory)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Concurrent.ConcurrentDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: defaultValueFactory
+      type: System.Func{{TKey},{TValue}}
+      description: Function to return default value.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    return:
+      type: '{TValue}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or value returned by <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValueFactory</code>\nif <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code> does not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue)(dictionary As ConcurrentDictionary(Of TKey, TValue), key As TKey, defaultValueFactory As Func(Of TKey, TValue)) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(ConcurrentDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue)(System.Collections.Concurrent.ConcurrentDictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue))
+  name.vb: GetValueOrDefault(Of TKey, TValue)(ConcurrentDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue))
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1,``2},System.Func{``0,``2})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault``3(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1,``2},System.Func{``0,``2})
+  id: GetValueOrDefault``3(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1,``2},System.Func{``0,``2})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetValueOrDefault<TKey, TValue, TResult>(ConcurrentDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>, Func<TKey, TResult>)
+  nameWithType: DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(ConcurrentDictionary<TKey, TValue>, TKey, Func<TKey, TValue, TResult>, Func<TKey, TResult>)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault<TKey, TValue, TResult>(System.Collections.Concurrent.ConcurrentDictionary<TKey, TValue>, TKey, System.Func<TKey, TValue, TResult>, System.Func<TKey, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValueOrDefault
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.GetValueOrDefault.generated.cs
+    startLine: 644
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns value associated with <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or value returned by <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValueFactory</code>\nif key does not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+  example: []
+  syntax:
+    content: public static TResult GetValueOrDefault<TKey, TValue, TResult>(this ConcurrentDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue, TResult> resultSelector, Func<TKey, TResult> defaultValueFactory)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Concurrent.ConcurrentDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key.
+    - id: resultSelector
+      type: System.Func{{TKey},{TValue},{TResult}}
+      description: Function to select result.
+    - id: defaultValueFactory
+      type: System.Func{{TKey},{TResult}}
+      description: Function to return default value.
+    typeParameters:
+    - id: TKey
+      description: The type of the key.
+    - id: TValue
+      description: The type of the value.
+    - id: TResult
+      description: Result type.
+    return:
+      type: '{TResult}'
+      description: "\nValue, associated with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code>, or value returned by <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValueFactory</code>\nif <code data-dev-comment-type=\"paramref\" class=\"paramref\">key</code> does not exists in <code data-dev-comment-type=\"paramref\" class=\"paramref\">dictionary</code>\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetValueOrDefault(Of TKey, TValue, TResult)(dictionary As ConcurrentDictionary(Of TKey, TValue), key As TKey, resultSelector As Func(Of TKey, TValue, TResult), defaultValueFactory As Func(Of TKey, TResult)) As TResult
+  overload: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  nameWithType.vb: DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(ConcurrentDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult), Func(Of TKey, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault(Of TKey, TValue, TResult)(System.Collections.Concurrent.ConcurrentDictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue, TResult), System.Func(Of TKey, TResult))
+  name.vb: GetValueOrDefault(Of TKey, TValue, TResult)(ConcurrentDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue, TResult), Func(Of TKey, TResult))
+- uid: CodeJam.Collections.DictionaryExtensions.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0)
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0)
+  id: GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetOrAdd<TKey, TValue>(IDictionary<TKey, TValue>, TKey)
+  nameWithType: DictionaryExtensions.GetOrAdd<TKey, TValue>(IDictionary<TKey, TValue>, TKey)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetOrAdd<TKey, TValue>(System.Collections.Generic.IDictionary<TKey, TValue>, TKey)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetOrAdd
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.cs
+    startLine: 24
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nAdds a key/value pair to the <xref href=\"System.Collections.Generic.IDictionary%602\" data-throw-if-not-resolved=\"false\"></xref> if the key does not already exist.\n"
+  example: []
+  syntax:
+    content: 'public static TValue GetOrAdd<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)where TValue : new ()'
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key of the element to add.
+    typeParameters:
+    - id: TKey
+    - id: TValue
+    return:
+      type: '{TValue}'
+      description: "\nThe value for the key. This will be either the existing value for the key if the key is already in the\ndictionary, or the new value if the key was not in the dictionary.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetOrAdd(Of TKey, TValue As New)(dictionary As IDictionary(Of TKey, TValue), key As TKey) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.GetOrAdd*
+  nameWithType.vb: DictionaryExtensions.GetOrAdd(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetOrAdd(Of TKey, TValue)(System.Collections.Generic.IDictionary(Of TKey, TValue), TKey)
+  name.vb: GetOrAdd(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey)
+- uid: CodeJam.Collections.DictionaryExtensions.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)
+  id: GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetOrAdd<TKey, TValue>(IDictionary<TKey, TValue>, TKey, TValue)
+  nameWithType: DictionaryExtensions.GetOrAdd<TKey, TValue>(IDictionary<TKey, TValue>, TKey, TValue)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetOrAdd<TKey, TValue>(System.Collections.Generic.IDictionary<TKey, TValue>, TKey, TValue)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetOrAdd
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.cs
+    startLine: 47
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nAdds a key/value pair to the <xref href=\"System.Collections.Generic.IDictionary%602\" data-throw-if-not-resolved=\"false\"></xref> if the key does not already exist.\n"
+  example: []
+  syntax:
+    content: public static TValue GetOrAdd<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue value)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key of the element to add.
+    - id: value
+      type: '{TValue}'
+      description: the value to be added, if the key does not already exist
+    typeParameters:
+    - id: TKey
+    - id: TValue
+    return:
+      type: '{TValue}'
+      description: "\nThe value for the key. This will be either the existing value for the key if the key is already in the\ndictionary, or the new value if the key was not in the dictionary.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetOrAdd(Of TKey, TValue)(dictionary As IDictionary(Of TKey, TValue), key As TKey, value As TValue) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.GetOrAdd*
+  nameWithType.vb: DictionaryExtensions.GetOrAdd(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey, TValue)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetOrAdd(Of TKey, TValue)(System.Collections.Generic.IDictionary(Of TKey, TValue), TKey, TValue)
+  name.vb: GetOrAdd(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey, TValue)
+- uid: CodeJam.Collections.DictionaryExtensions.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})
+  id: GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetOrAdd<TKey, TValue>(IDictionary<TKey, TValue>, TKey, Func<TKey, TValue>)
+  nameWithType: DictionaryExtensions.GetOrAdd<TKey, TValue>(IDictionary<TKey, TValue>, TKey, Func<TKey, TValue>)
+  fullName: CodeJam.Collections.DictionaryExtensions.GetOrAdd<TKey, TValue>(System.Collections.Generic.IDictionary<TKey, TValue>, TKey, System.Func<TKey, TValue>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetOrAdd
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.cs
+    startLine: 72
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nAdds a key/value pair to the <xref href=\"System.Collections.Generic.IDictionary%602\" data-throw-if-not-resolved=\"false\"></xref> if the key does not already exist.\n"
+  example: []
+  syntax:
+    content: public static TValue GetOrAdd<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue> valueFactory)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key of the element to add.
+    - id: valueFactory
+      type: System.Func{{TKey},{TValue}}
+      description: The function used to generate a value for the key
+    typeParameters:
+    - id: TKey
+    - id: TValue
+    return:
+      type: '{TValue}'
+      description: "\nThe value for the key. This will be either the existing value for the key if the key is already in the\ndictionary, or the new value if the key was not in the dictionary.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetOrAdd(Of TKey, TValue)(dictionary As IDictionary(Of TKey, TValue), key As TKey, valueFactory As Func(Of TKey, TValue)) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.GetOrAdd*
+  nameWithType.vb: DictionaryExtensions.GetOrAdd(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.GetOrAdd(Of TKey, TValue)(System.Collections.Generic.IDictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue))
+  name.vb: GetOrAdd(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue))
+- uid: CodeJam.Collections.DictionaryExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1,System.Func{``0,``1,``1})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1,System.Func{``0,``1,``1})
+  id: AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1,System.Func{``0,``1,``1})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: AddOrUpdate<TKey, TValue>(IDictionary<TKey, TValue>, TKey, TValue, Func<TKey, TValue, TValue>)
+  nameWithType: DictionaryExtensions.AddOrUpdate<TKey, TValue>(IDictionary<TKey, TValue>, TKey, TValue, Func<TKey, TValue, TValue>)
+  fullName: CodeJam.Collections.DictionaryExtensions.AddOrUpdate<TKey, TValue>(System.Collections.Generic.IDictionary<TKey, TValue>, TKey, TValue, System.Func<TKey, TValue, TValue>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AddOrUpdate
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.cs
+    startLine: 103
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nAdds a key/value pair to the <xref href=\"System.Collections.Generic.IDictionary%602\" data-throw-if-not-resolved=\"false\"></xref> if the key does not already exist,\nor updates a key/value pair <xref href=\"System.Collections.Generic.IDictionary%602\" data-throw-if-not-resolved=\"false\"></xref> by using the specified function\nif the key already exists.\n"
+  example: []
+  syntax:
+    content: public static TValue AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue addValue, Func<TKey, TValue, TValue> updateValueFactory)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key to be added or whose value should be updated
+    - id: addValue
+      type: '{TValue}'
+      description: The value to be added for an absent key
+    - id: updateValueFactory
+      type: System.Func{{TKey},{TValue},{TValue}}
+      description: "\nThe function used to generate a new value for an existing key based on the key&apos;s existing value\n"
+    typeParameters:
+    - id: TKey
+    - id: TValue
+    return:
+      type: '{TValue}'
+      description: "\nThe new value for the key. This will be either be addValue (if the key was absent) or the result of\nupdateValueFactory (if the key was present).\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function AddOrUpdate(Of TKey, TValue)(dictionary As IDictionary(Of TKey, TValue), key As TKey, addValue As TValue, updateValueFactory As Func(Of TKey, TValue, TValue)) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.AddOrUpdate*
+  nameWithType.vb: DictionaryExtensions.AddOrUpdate(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey, TValue, Func(Of TKey, TValue, TValue))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.AddOrUpdate(Of TKey, TValue)(System.Collections.Generic.IDictionary(Of TKey, TValue), TKey, TValue, System.Func(Of TKey, TValue, TValue))
+  name.vb: AddOrUpdate(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey, TValue, Func(Of TKey, TValue, TValue))
+- uid: CodeJam.Collections.DictionaryExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1},System.Func{``0,``1,``1})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1},System.Func{``0,``1,``1})
+  id: AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1},System.Func{``0,``1,``1})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: AddOrUpdate<TKey, TValue>(IDictionary<TKey, TValue>, TKey, Func<TKey, TValue>, Func<TKey, TValue, TValue>)
+  nameWithType: DictionaryExtensions.AddOrUpdate<TKey, TValue>(IDictionary<TKey, TValue>, TKey, Func<TKey, TValue>, Func<TKey, TValue, TValue>)
+  fullName: CodeJam.Collections.DictionaryExtensions.AddOrUpdate<TKey, TValue>(System.Collections.Generic.IDictionary<TKey, TValue>, TKey, System.Func<TKey, TValue>, System.Func<TKey, TValue, TValue>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AddOrUpdate
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.cs
+    startLine: 137
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nAdds a key/value pair to the <xref href=\"System.Collections.Generic.IDictionary%602\" data-throw-if-not-resolved=\"false\"></xref> if the key does not already exist,\nor updates a key/value pair <xref href=\"System.Collections.Generic.IDictionary%602\" data-throw-if-not-resolved=\"false\"></xref> by using the specified function\nif the key already exists.\n"
+  example: []
+  syntax:
+    content: public static TValue AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue> addValueFactory, Func<TKey, TValue, TValue> updateValueFactory)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key to be added or whose value should be updated
+    - id: addValueFactory
+      type: System.Func{{TKey},{TValue}}
+      description: The function used to generate a value for an absent key
+    - id: updateValueFactory
+      type: System.Func{{TKey},{TValue},{TValue}}
+      description: "\nThe function used to generate a new value for an existing key based on the key&apos;s existing value\n"
+    typeParameters:
+    - id: TKey
+    - id: TValue
+    return:
+      type: '{TValue}'
+      description: "\nThe new value for the key. This will be either be addValue (if the key was absent) or the result of\nupdateValueFactory (if the key was present).\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function AddOrUpdate(Of TKey, TValue)(dictionary As IDictionary(Of TKey, TValue), key As TKey, addValueFactory As Func(Of TKey, TValue), updateValueFactory As Func(Of TKey, TValue, TValue)) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.AddOrUpdate*
+  nameWithType.vb: DictionaryExtensions.AddOrUpdate(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue), Func(Of TKey, TValue, TValue))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.AddOrUpdate(Of TKey, TValue)(System.Collections.Generic.IDictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue), System.Func(Of TKey, TValue, TValue))
+  name.vb: AddOrUpdate(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue), Func(Of TKey, TValue, TValue))
+- uid: CodeJam.Collections.DictionaryExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})
+  id: AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: AddOrUpdate<TKey, TValue>(IDictionary<TKey, TValue>, TKey, Func<TKey, TValue>)
+  nameWithType: DictionaryExtensions.AddOrUpdate<TKey, TValue>(IDictionary<TKey, TValue>, TKey, Func<TKey, TValue>)
+  fullName: CodeJam.Collections.DictionaryExtensions.AddOrUpdate<TKey, TValue>(System.Collections.Generic.IDictionary<TKey, TValue>, TKey, System.Func<TKey, TValue>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AddOrUpdate
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.cs
+    startLine: 167
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nAdds a key/value pair to the <xref href=\"System.Collections.Generic.IDictionary%602\" data-throw-if-not-resolved=\"false\"></xref> if the key does not already exist,\nor updates a key/value pair <xref href=\"System.Collections.Generic.IDictionary%602\" data-throw-if-not-resolved=\"false\"></xref> by using the specified function\nif the key already exists.\n"
+  example: []
+  syntax:
+    content: public static TValue AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue> valueFactory)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Generic.IDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key to be added or whose value should be updated
+    - id: valueFactory
+      type: System.Func{{TKey},{TValue}}
+      description: The function used to generate a value.
+    typeParameters:
+    - id: TKey
+    - id: TValue
+    return:
+      type: '{TValue}'
+      description: The new value for the key.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function AddOrUpdate(Of TKey, TValue)(dictionary As IDictionary(Of TKey, TValue), key As TKey, valueFactory As Func(Of TKey, TValue)) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.AddOrUpdate*
+  nameWithType.vb: DictionaryExtensions.AddOrUpdate(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.AddOrUpdate(Of TKey, TValue)(System.Collections.Generic.IDictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue))
+  name.vb: AddOrUpdate(Of TKey, TValue)(IDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue))
+- uid: CodeJam.Collections.DictionaryExtensions.AddOrUpdate``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1})
+  commentId: M:CodeJam.Collections.DictionaryExtensions.AddOrUpdate``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1})
+  id: AddOrUpdate``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1})
+  isExtensionMethod: true
+  parent: CodeJam.Collections.DictionaryExtensions
+  langs:
+  - csharp
+  - vb
+  name: AddOrUpdate<TKey, TValue>(ConcurrentDictionary<TKey, TValue>, TKey, Func<TKey, TValue>)
+  nameWithType: DictionaryExtensions.AddOrUpdate<TKey, TValue>(ConcurrentDictionary<TKey, TValue>, TKey, Func<TKey, TValue>)
+  fullName: CodeJam.Collections.DictionaryExtensions.AddOrUpdate<TKey, TValue>(System.Collections.Concurrent.ConcurrentDictionary<TKey, TValue>, TKey, System.Func<TKey, TValue>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Dictionary/DictionaryExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AddOrUpdate
+    path: ../Main/src/Collections/Dictionary/DictionaryExtensions.cs
+    startLine: 195
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nAdds a key/value pair to the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary%602\" data-throw-if-not-resolved=\"false\"></xref> if the key does not already exist,\nor updates a key/value pair <xref href=\"System.Collections.Concurrent.ConcurrentDictionary%602\" data-throw-if-not-resolved=\"false\"></xref> by using the specified function\nif the key already exists.\n"
+  example: []
+  syntax:
+    content: public static TValue AddOrUpdate<TKey, TValue>(this ConcurrentDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue> valueFactory)
+    parameters:
+    - id: dictionary
+      type: System.Collections.Concurrent.ConcurrentDictionary{{TKey},{TValue}}
+      description: The dictionary.
+    - id: key
+      type: '{TKey}'
+      description: The key to be added or whose value should be updated
+    - id: valueFactory
+      type: System.Func{{TKey},{TValue}}
+      description: The function used to generate a value.
+    typeParameters:
+    - id: TKey
+    - id: TValue
+    return:
+      type: '{TValue}'
+      description: The new value for the key.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function AddOrUpdate(Of TKey, TValue)(dictionary As ConcurrentDictionary(Of TKey, TValue), key As TKey, valueFactory As Func(Of TKey, TValue)) As TValue
+  overload: CodeJam.Collections.DictionaryExtensions.AddOrUpdate*
+  nameWithType.vb: DictionaryExtensions.AddOrUpdate(Of TKey, TValue)(ConcurrentDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.DictionaryExtensions.AddOrUpdate(Of TKey, TValue)(System.Collections.Concurrent.ConcurrentDictionary(Of TKey, TValue), TKey, System.Func(Of TKey, TValue))
+  name.vb: AddOrUpdate(Of TKey, TValue)(ConcurrentDictionary(Of TKey, TValue), TKey, Func(Of TKey, TValue))
+references:
+- uid: System.Collections.Generic.IDictionary`2
+  commentId: T:System.Collections.Generic.IDictionary`2
+  isExternal: true
+  name: IDictionary<TKey, TValue>
+  nameWithType: IDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>
+  nameWithType.vb: IDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue)
+  name.vb: IDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections
+  commentId: N:CodeJam.Collections
+  isExternal: false
+  name: CodeJam.Collections
+  nameWithType: CodeJam.Collections
+  fullName: CodeJam.Collections
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault*
+  commentId: Overload:CodeJam.Collections.DictionaryExtensions.GetValueOrDefault
+  isExternal: false
+  name: GetValueOrDefault
+  nameWithType: DictionaryExtensions.GetValueOrDefault
+  fullName: CodeJam.Collections.DictionaryExtensions.GetValueOrDefault
+- uid: System.Collections.Generic.IDictionary{{TKey},{TValue}}
+  commentId: T:System.Collections.Generic.IDictionary{``0,``1}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IDictionary`2
+  name: IDictionary<TKey, TValue>
+  nameWithType: IDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>
+  nameWithType.vb: IDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue)
+  name.vb: IDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: '{TKey}'
+  commentId: '!:TKey'
+  definition: TKey
+  name: TKey
+  nameWithType: TKey
+  fullName: TKey
+- uid: '{TValue}'
+  commentId: '!:TValue'
+  definition: TValue
+  name: TValue
+  nameWithType: TValue
+  fullName: TValue
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: TKey
+  isExternal: false
+  name: TKey
+  nameWithType: TKey
+  fullName: TKey
+- uid: TValue
+  isExternal: false
+  name: TValue
+  nameWithType: TValue
+  fullName: TValue
+- uid: System.Func{{TKey},{TValue},{TResult}}
+  commentId: T:System.Func{``0,``1,``2}
+  parent: System
+  definition: System.Func`3
+  name: Func<TKey, TValue, TResult>
+  nameWithType: Func<TKey, TValue, TResult>
+  fullName: System.Func<TKey, TValue, TResult>
+  nameWithType.vb: Func(Of TKey, TValue, TResult)
+  fullName.vb: System.Func(Of TKey, TValue, TResult)
+  name.vb: Func(Of TKey, TValue, TResult)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: '{TResult}'
+  commentId: '!:TResult'
+  definition: TResult
+  name: TResult
+  nameWithType: TResult
+  fullName: TResult
+- uid: System.Func`3
+  commentId: T:System.Func`3
+  isExternal: true
+  name: Func<T1, T2, TResult>
+  nameWithType: Func<T1, T2, TResult>
+  fullName: System.Func<T1, T2, TResult>
+  nameWithType.vb: Func(Of T1, T2, TResult)
+  fullName.vb: System.Func(Of T1, T2, TResult)
+  name.vb: Func(Of T1, T2, TResult)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: TResult
+  isExternal: false
+  name: TResult
+  nameWithType: TResult
+  fullName: TResult
+- uid: System.Func{{TKey},{TValue}}
+  commentId: T:System.Func{``0,``1}
+  parent: System
+  definition: System.Func`2
+  name: Func<TKey, TValue>
+  nameWithType: Func<TKey, TValue>
+  fullName: System.Func<TKey, TValue>
+  nameWithType.vb: Func(Of TKey, TValue)
+  fullName.vb: System.Func(Of TKey, TValue)
+  name.vb: Func(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{TKey},{TResult}}
+  commentId: T:System.Func{``0,``2}
+  parent: System
+  definition: System.Func`2
+  name: Func<TKey, TResult>
+  nameWithType: Func<TKey, TResult>
+  fullName: System.Func<TKey, TResult>
+  nameWithType.vb: Func(Of TKey, TResult)
+  fullName.vb: System.Func(Of TKey, TResult)
+  name.vb: Func(Of TKey, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IReadOnlyDictionary{{TKey},{TValue}}
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary{``0,``1}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyDictionary`2
+  name: IReadOnlyDictionary<TKey, TValue>
+  nameWithType: IReadOnlyDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>
+  nameWithType.vb: IReadOnlyDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue)
+  name.vb: IReadOnlyDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    nameWithType: IReadOnlyDictionary
+    fullName: System.Collections.Generic.IReadOnlyDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    nameWithType: IReadOnlyDictionary
+    fullName: System.Collections.Generic.IReadOnlyDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IReadOnlyDictionary`2
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary`2
+  isExternal: true
+  name: IReadOnlyDictionary<TKey, TValue>
+  nameWithType: IReadOnlyDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>
+  nameWithType.vb: IReadOnlyDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue)
+  name.vb: IReadOnlyDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    nameWithType: IReadOnlyDictionary
+    fullName: System.Collections.Generic.IReadOnlyDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    nameWithType: IReadOnlyDictionary
+    fullName: System.Collections.Generic.IReadOnlyDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary{{TKey},{TValue}}
+  commentId: T:System.Collections.Generic.Dictionary{``0,``1}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Concurrent.ConcurrentDictionary{{TKey},{TValue}}
+  commentId: T:System.Collections.Concurrent.ConcurrentDictionary{``0,``1}
+  parent: System.Collections.Concurrent
+  definition: System.Collections.Concurrent.ConcurrentDictionary`2
+  name: ConcurrentDictionary<TKey, TValue>
+  nameWithType: ConcurrentDictionary<TKey, TValue>
+  fullName: System.Collections.Concurrent.ConcurrentDictionary<TKey, TValue>
+  nameWithType.vb: ConcurrentDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Concurrent.ConcurrentDictionary(Of TKey, TValue)
+  name.vb: ConcurrentDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Concurrent.ConcurrentDictionary`2
+    name: ConcurrentDictionary
+    nameWithType: ConcurrentDictionary
+    fullName: System.Collections.Concurrent.ConcurrentDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Concurrent.ConcurrentDictionary`2
+    name: ConcurrentDictionary
+    nameWithType: ConcurrentDictionary
+    fullName: System.Collections.Concurrent.ConcurrentDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Concurrent.ConcurrentDictionary`2
+  commentId: T:System.Collections.Concurrent.ConcurrentDictionary`2
+  isExternal: true
+  name: ConcurrentDictionary<TKey, TValue>
+  nameWithType: ConcurrentDictionary<TKey, TValue>
+  fullName: System.Collections.Concurrent.ConcurrentDictionary<TKey, TValue>
+  nameWithType.vb: ConcurrentDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Concurrent.ConcurrentDictionary(Of TKey, TValue)
+  name.vb: ConcurrentDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Concurrent.ConcurrentDictionary`2
+    name: ConcurrentDictionary
+    nameWithType: ConcurrentDictionary
+    fullName: System.Collections.Concurrent.ConcurrentDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Concurrent.ConcurrentDictionary`2
+    name: ConcurrentDictionary
+    nameWithType: ConcurrentDictionary
+    fullName: System.Collections.Concurrent.ConcurrentDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Concurrent
+  commentId: N:System.Collections.Concurrent
+  isExternal: false
+  name: System.Collections.Concurrent
+  nameWithType: System.Collections.Concurrent
+  fullName: System.Collections.Concurrent
+- uid: CodeJam.Collections.DictionaryExtensions.GetOrAdd*
+  commentId: Overload:CodeJam.Collections.DictionaryExtensions.GetOrAdd
+  isExternal: false
+  name: GetOrAdd
+  nameWithType: DictionaryExtensions.GetOrAdd
+  fullName: CodeJam.Collections.DictionaryExtensions.GetOrAdd
+- uid: CodeJam.Collections.DictionaryExtensions.AddOrUpdate*
+  commentId: Overload:CodeJam.Collections.DictionaryExtensions.AddOrUpdate
+  isExternal: false
+  name: AddOrUpdate
+  nameWithType: DictionaryExtensions.AddOrUpdate
+  fullName: CodeJam.Collections.DictionaryExtensions.AddOrUpdate
+- uid: System.Func{{TKey},{TValue},{TValue}}
+  commentId: T:System.Func{``0,``1,``1}
+  parent: System
+  definition: System.Func`3
+  name: Func<TKey, TValue, TValue>
+  nameWithType: Func<TKey, TValue, TValue>
+  fullName: System.Func<TKey, TValue, TValue>
+  nameWithType.vb: Func(Of TKey, TValue, TValue)
+  fullName.vb: System.Func(Of TKey, TValue, TValue)
+  name.vb: Func(Of TKey, TValue, TValue)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )

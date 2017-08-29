@@ -1,0 +1,379 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.TableData.Parser
+  commentId: T:CodeJam.TableData.Parser
+  id: Parser
+  parent: CodeJam.TableData
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: Parser
+  nameWithType: Parser
+  fullName: CodeJam.TableData.Parser
+  type: Delegate
+  source:
+    remote:
+      path: Blocks/src/TableData/TableDataParser.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Parser
+    path: ../Blocks/src/TableData/TableDataParser.cs
+    startLine: 68
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.TableData
+  summary: "\nReads single line from table data and parses it.\n"
+  example: []
+  syntax:
+    content: public delegate string[] Parser(TextReader reader, ref int lineNum);
+    parameters:
+    - id: reader
+      type: System.IO.TextReader
+      description: <xref href="System.IO.TextReader" data-throw-if-not-resolved="false"></xref> to read data from
+    - id: lineNum
+      type: System.Int32
+      description: current number of line
+    return:
+      type: System.String[]
+      description: "\nNull, if end of file reached, string[0] if line contains no valued, or array of values.\n"
+    content.vb: Public Delegate Function Parser(reader As TextReader, ByRef lineNum As Integer) As String()
+  extensionMethods:
+  - CodeJam.TableData.Parser.CodeJam.Mapping.Map.DeepCopy``1
+  - CodeJam.TableData.Parser.CodeJam.TableData.TableDataParser.Parse(System.String)
+  - CodeJam.TableData.Parser.CodeJam.TableData.TableDataParser.Parse(System.IO.TextReader)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: System.IO.TextReader
+  commentId: T:System.IO.TextReader
+  parent: System.IO
+  isExternal: true
+  name: TextReader
+  nameWithType: TextReader
+  fullName: System.IO.TextReader
+- uid: CodeJam.TableData
+  commentId: N:CodeJam.TableData
+  isExternal: false
+  name: CodeJam.TableData
+  nameWithType: CodeJam.TableData
+  fullName: CodeJam.TableData
+- uid: CodeJam.TableData.Parser.CodeJam.Mapping.Map.DeepCopy``1
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  parent: CodeJam.Mapping.Map
+  definition: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  name: DeepCopy<Parser>()
+  nameWithType: Map.DeepCopy<Parser>()
+  fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.TableData.Parser>()
+  nameWithType.vb: Map.DeepCopy(Of Parser)()
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.TableData.Parser)()
+  name.vb: DeepCopy(Of Parser)()
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy<Parser>
+    nameWithType: Map.DeepCopy<Parser>
+    fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.TableData.Parser>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy(Of Parser)
+    nameWithType: Map.DeepCopy(Of Parser)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.TableData.Parser)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.TableData.Parser.CodeJam.TableData.TableDataParser.Parse(System.String)
+  commentId: M:CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser,System.String)
+  parent: CodeJam.TableData.TableDataParser
+  definition: CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser,System.String)
+  name: Parse(String)
+  nameWithType: TableDataParser.Parse(String)
+  fullName: CodeJam.TableData.TableDataParser.Parse(System.String)
+  spec.csharp:
+  - uid: CodeJam.TableData.TableDataParser.Parse(System.String)
+    name: Parse
+    nameWithType: TableDataParser.Parse
+    fullName: CodeJam.TableData.TableDataParser.Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.TableData.TableDataParser.Parse(System.String)
+    name: Parse
+    nameWithType: TableDataParser.Parse
+    fullName: CodeJam.TableData.TableDataParser.Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.TableData.Parser.CodeJam.TableData.TableDataParser.Parse(System.IO.TextReader)
+  commentId: M:CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser,System.IO.TextReader)
+  parent: CodeJam.TableData.TableDataParser
+  definition: CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser,System.IO.TextReader)
+  name: Parse(TextReader)
+  nameWithType: TableDataParser.Parse(TextReader)
+  fullName: CodeJam.TableData.TableDataParser.Parse(System.IO.TextReader)
+  spec.csharp:
+  - uid: CodeJam.TableData.TableDataParser.Parse(System.IO.TextReader)
+    name: Parse
+    nameWithType: TableDataParser.Parse
+    fullName: CodeJam.TableData.TableDataParser.Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IO.TextReader
+    name: TextReader
+    nameWithType: TextReader
+    fullName: System.IO.TextReader
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.TableData.TableDataParser.Parse(System.IO.TextReader)
+    name: Parse
+    nameWithType: TableDataParser.Parse
+    fullName: CodeJam.TableData.TableDataParser.Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IO.TextReader
+    name: TextReader
+    nameWithType: TextReader
+    fullName: System.IO.TextReader
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.String[]
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: false
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+- uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  isExternal: false
+  name: DeepCopy<T>(T)
+  nameWithType: Map.DeepCopy<T>(T)
+  fullName: CodeJam.Mapping.Map.DeepCopy<T>(T)
+  nameWithType.vb: Map.DeepCopy(Of T)(T)
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of T)(T)
+  name.vb: DeepCopy(Of T)(T)
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy<T>
+    nameWithType: Map.DeepCopy<T>
+    fullName: CodeJam.Mapping.Map.DeepCopy<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy(Of T)
+    nameWithType: Map.DeepCopy(Of T)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.Map
+  commentId: T:CodeJam.Mapping.Map
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: Map
+  nameWithType: Map
+  fullName: CodeJam.Mapping.Map
+- uid: CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser,System.String)
+  commentId: M:CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser,System.String)
+  isExternal: true
+  name: Parse(Parser, String)
+  nameWithType: TableDataParser.Parse(Parser, String)
+  fullName: CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser, System.String)
+  spec.csharp:
+  - uid: CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser,System.String)
+    name: Parse
+    nameWithType: TableDataParser.Parse
+    fullName: CodeJam.TableData.TableDataParser.Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.TableData.Parser
+    name: Parser
+    nameWithType: Parser
+    fullName: CodeJam.TableData.Parser
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser,System.String)
+    name: Parse
+    nameWithType: TableDataParser.Parse
+    fullName: CodeJam.TableData.TableDataParser.Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.TableData.Parser
+    name: Parser
+    nameWithType: Parser
+    fullName: CodeJam.TableData.Parser
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.TableData.TableDataParser
+  commentId: T:CodeJam.TableData.TableDataParser
+  parent: CodeJam.TableData
+  isExternal: false
+  name: TableDataParser
+  nameWithType: TableDataParser
+  fullName: CodeJam.TableData.TableDataParser
+- uid: CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser,System.IO.TextReader)
+  commentId: M:CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser,System.IO.TextReader)
+  isExternal: true
+  name: Parse(Parser, TextReader)
+  nameWithType: TableDataParser.Parse(Parser, TextReader)
+  fullName: CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser, System.IO.TextReader)
+  spec.csharp:
+  - uid: CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser,System.IO.TextReader)
+    name: Parse
+    nameWithType: TableDataParser.Parse
+    fullName: CodeJam.TableData.TableDataParser.Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.TableData.Parser
+    name: Parser
+    nameWithType: Parser
+    fullName: CodeJam.TableData.Parser
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.TextReader
+    name: TextReader
+    nameWithType: TextReader
+    fullName: System.IO.TextReader
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser,System.IO.TextReader)
+    name: Parse
+    nameWithType: TableDataParser.Parse
+    fullName: CodeJam.TableData.TableDataParser.Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.TableData.Parser
+    name: Parser
+    nameWithType: Parser
+    fullName: CodeJam.TableData.Parser
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.TextReader
+    name: TextReader
+    nameWithType: TextReader
+    fullName: System.IO.TextReader
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Mapping
+  commentId: N:CodeJam.Mapping
+  isExternal: false
+  name: CodeJam.Mapping
+  nameWithType: CodeJam.Mapping
+  fullName: CodeJam.Mapping

@@ -1,0 +1,636 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ResultAnalysis
+   | CodeJam </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ResultAnalysis
+   | CodeJam ">
+    <meta name="generator" content="docfx 2.23.1.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/CodeJam.Main.Icon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items"></div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis">
+  
+  
+  <h1 id="CodeJam_PerfTests_Analysers_ResultAnalysis" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis" class="text-break">Class ResultAnalysis
+  </h1>
+  <div class="markdown level0 summary"><p>Helper class to store competition analysis results.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="CodeJam.PerfTests.Analysers.Analysis.html">Analysis</a></div>
+    <div class="level2"><span class="xref">ResultAnalysis</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Analysers.Analysis.html#CodeJam_PerfTests_Analysers_Analysis_MessageSource">Analysis.MessageSource</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Analysers.Analysis.html#CodeJam_PerfTests_Analysers_Analysis_RunState">Analysis.RunState</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Analysers.Analysis.html#CodeJam_PerfTests_Analysers_Analysis_Config">Analysis.Config</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Analysers.Analysis.html#CodeJam_PerfTests_Analysers_Analysis_Options">Analysis.Options</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Analysers.Analysis.html#CodeJam_PerfTests_Analysers_Analysis_SafeToContinue">Analysis.SafeToContinue</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Analysers.Analysis.html#CodeJam_PerfTests_Analysers_Analysis_Logger">Analysis.Logger</a>
+    </div>
+    <div>
+      <a class="xref" href="CodeJam.PerfTests.Analysers.Analysis.html#CodeJam_PerfTests_Analysers_Analysis_WriteMessage_CodeJam_PerfTests_Running_Messages_MessageSeverity_System_String_System_String_">Analysis.WriteMessage(MessageSeverity, String, String)</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CodeJam.PerfTests.Analysers.html">CodeJam.PerfTests.Analysers</a></h6>
+  <h6><strong>Assembly</strong>: CodeJam.PerfTests.dll</h6>
+  <h5 id="CodeJam_PerfTests_Analysers_ResultAnalysis_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ResultAnalysis : Analysis, IMessageLogger</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Analysers_ResultAnalysis__ctor_System_String_BenchmarkDotNet_Reports_Summary_.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Analysers.ResultAnalysis.%23ctor(System.String%2CBenchmarkDotNet.Reports.Summary)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Analysers/ResultAnalysis.cs/#L22">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Analysers_ResultAnalysis__ctor_" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.#ctor*"></a>
+  <h4 id="CodeJam_PerfTests_Analysers_ResultAnalysis__ctor_System_String_BenchmarkDotNet_Reports_Summary_" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.#ctor(System.String,BenchmarkDotNet.Reports.Summary)">ResultAnalysis(String, Summary)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="CodeJam.PerfTests.Analysers.Analysis.html">Analysis</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ResultAnalysis(string id, Summary summary)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The identifier.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Reports.Summary</span></td>
+        <td><span class="parametername">summary</span></td>
+        <td><p>The summary.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Analysers_ResultAnalysis__ctor_System_String_BenchmarkDotNet_Reports_Summary_CodeJam_PerfTests_Running_Messages_MessageSource_.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Analysers.ResultAnalysis.%23ctor(System.String%2CBenchmarkDotNet.Reports.Summary%2CCodeJam.PerfTests.Running.Messages.MessageSource)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Analysers/ResultAnalysis.cs/#L29">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Analysers_ResultAnalysis__ctor_" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.#ctor*"></a>
+  <h4 id="CodeJam_PerfTests_Analysers_ResultAnalysis__ctor_System_String_BenchmarkDotNet_Reports_Summary_CodeJam_PerfTests_Running_Messages_MessageSource_" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.#ctor(System.String,BenchmarkDotNet.Reports.Summary,CodeJam.PerfTests.Running.Messages.MessageSource)">ResultAnalysis(String, Summary, MessageSource)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="CodeJam.PerfTests.Analysers.Analysis.html">Analysis</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ResultAnalysis(string id, Summary summary, MessageSource messageSource)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The identifier.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Reports.Summary</span></td>
+        <td><span class="parametername">summary</span></td>
+        <td><p>The summary.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CodeJam.PerfTests.Running.Messages.MessageSource.html">MessageSource</a></td>
+        <td><span class="parametername">messageSource</span></td>
+        <td><p>Source for the messages.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Analysers_ResultAnalysis_Conclusions.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Analysers.ResultAnalysis.Conclusions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Analysers/ResultAnalysis.cs/#L51">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Analysers_ResultAnalysis_Conclusions_" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.Conclusions*"></a>
+  <h4 id="CodeJam_PerfTests_Analysers_ResultAnalysis_Conclusions" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.Conclusions">Conclusions</h4>
+  <div class="markdown level1 summary"><p>Analysis conclusions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyCollection&lt;Conclusion&gt; Conclusions { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IReadOnlyCollection</span>&lt;<span class="xref">BenchmarkDotNet.Analysers.Conclusion</span>&gt;</td>
+        <td><p>Analysis conclusions.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Analysers_ResultAnalysis_ConclusionsList.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Analysers.ResultAnalysis.ConclusionsList%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Analysers/ResultAnalysis.cs/#L56">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Analysers_ResultAnalysis_ConclusionsList_" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.ConclusionsList*"></a>
+  <h4 id="CodeJam_PerfTests_Analysers_ResultAnalysis_ConclusionsList" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.ConclusionsList">ConclusionsList</h4>
+  <div class="markdown level1 summary"><p>The conclusions list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected List&lt;Conclusion&gt; ConclusionsList { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">BenchmarkDotNet.Analysers.Conclusion</span>&gt;</td>
+        <td><p>The conclusions list.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Analysers_ResultAnalysis_Id.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Analysers.ResultAnalysis.Id%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Analysers/ResultAnalysis.cs/#L41">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Analysers_ResultAnalysis_Id_" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.Id*"></a>
+  <h4 id="CodeJam_PerfTests_Analysers_ResultAnalysis_Id" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.Id">Id</h4>
+  <div class="markdown level1 summary"><p>Gets the analysis identifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Id { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The analysis identifier.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Analysers_ResultAnalysis_Summary.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Analysers.ResultAnalysis.Summary%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Analysers/ResultAnalysis.cs/#L46">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Analysers_ResultAnalysis_Summary_" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.Summary*"></a>
+  <h4 id="CodeJam_PerfTests_Analysers_ResultAnalysis_Summary" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.Summary">Summary</h4>
+  <div class="markdown level1 summary"><p>The summary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Summary Summary { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Reports.Summary</span></td>
+        <td><p>The summary.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Analysers_ResultAnalysis_AddTestErrorConclusion_BenchmarkDotNet_Running_Target_System_String_BenchmarkDotNet_Reports_BenchmarkReport_.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Analysers.ResultAnalysis.AddTestErrorConclusion(BenchmarkDotNet.Running.Target%2CSystem.String%2CBenchmarkDotNet.Reports.BenchmarkReport)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Analysers/ResultAnalysis.cs/#L76">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Analysers_ResultAnalysis_AddTestErrorConclusion_" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.AddTestErrorConclusion*"></a>
+  <h4 id="CodeJam_PerfTests_Analysers_ResultAnalysis_AddTestErrorConclusion_BenchmarkDotNet_Running_Target_System_String_BenchmarkDotNet_Reports_BenchmarkReport_" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.AddTestErrorConclusion(BenchmarkDotNet.Running.Target,System.String,BenchmarkDotNet.Reports.BenchmarkReport)">AddTestErrorConclusion(Target, String, BenchmarkReport)</h4>
+  <div class="markdown level1 summary"><p>Reports test error conclusion.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void AddTestErrorConclusion(Target target, string message, BenchmarkReport report = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Running.Target</span></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target the message applies for.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Message text.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Reports.BenchmarkReport</span></td>
+        <td><span class="parametername">report</span></td>
+        <td><p>The report the message belongs to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="CodeJam.PerfTests.Analysers.Analysis.html#CodeJam_PerfTests_Analysers_Analysis_AddTestErrorConclusion_BenchmarkDotNet_Running_Target_System_String_BenchmarkDotNet_Reports_BenchmarkReport_">Analysis.AddTestErrorConclusion(Target, String, BenchmarkReport)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Analysers_ResultAnalysis_AddTestErrorConclusion_System_String_BenchmarkDotNet_Reports_BenchmarkReport_.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Analysers.ResultAnalysis.AddTestErrorConclusion(System.String%2CBenchmarkDotNet.Reports.BenchmarkReport)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Analysers/ResultAnalysis.cs/#L64">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Analysers_ResultAnalysis_AddTestErrorConclusion_" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.AddTestErrorConclusion*"></a>
+  <h4 id="CodeJam_PerfTests_Analysers_ResultAnalysis_AddTestErrorConclusion_System_String_BenchmarkDotNet_Reports_BenchmarkReport_" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.AddTestErrorConclusion(System.String,BenchmarkDotNet.Reports.BenchmarkReport)">AddTestErrorConclusion(String, BenchmarkReport)</h4>
+  <div class="markdown level1 summary"><p>Reports test error conclusion.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void AddTestErrorConclusion(string message, BenchmarkReport report = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Message text.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Reports.BenchmarkReport</span></td>
+        <td><span class="parametername">report</span></td>
+        <td><p>The report the message belongs to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="CodeJam.PerfTests.Analysers.Analysis.html#CodeJam_PerfTests_Analysers_Analysis_AddTestErrorConclusion_System_String_BenchmarkDotNet_Reports_BenchmarkReport_">Analysis.AddTestErrorConclusion(String, BenchmarkReport)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Analysers_ResultAnalysis_AddWarningConclusion_BenchmarkDotNet_Running_Target_System_String_System_String_BenchmarkDotNet_Reports_BenchmarkReport_.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Analysers.ResultAnalysis.AddWarningConclusion(BenchmarkDotNet.Running.Target%2CSystem.String%2CSystem.String%2CBenchmarkDotNet.Reports.BenchmarkReport)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Analysers/ResultAnalysis.cs/#L106">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Analysers_ResultAnalysis_AddWarningConclusion_" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.AddWarningConclusion*"></a>
+  <h4 id="CodeJam_PerfTests_Analysers_ResultAnalysis_AddWarningConclusion_BenchmarkDotNet_Running_Target_System_String_System_String_BenchmarkDotNet_Reports_BenchmarkReport_" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.AddWarningConclusion(BenchmarkDotNet.Running.Target,System.String,System.String,BenchmarkDotNet.Reports.BenchmarkReport)">AddWarningConclusion(Target, String, String, BenchmarkReport)</h4>
+  <div class="markdown level1 summary"><p>Reports analyser warning conclusion.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void AddWarningConclusion(Target target, string message, string hint, BenchmarkReport report = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Running.Target</span></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target the message applies for.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Message text.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">hint</span></td>
+        <td><p>Hint how to fix the warning.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Reports.BenchmarkReport</span></td>
+        <td><span class="parametername">report</span></td>
+        <td><p>The report the message belongs to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="CodeJam.PerfTests.Analysers.Analysis.html#CodeJam_PerfTests_Analysers_Analysis_AddWarningConclusion_BenchmarkDotNet_Running_Target_System_String_System_String_BenchmarkDotNet_Reports_BenchmarkReport_">Analysis.AddWarningConclusion(Target, String, String, BenchmarkReport)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Analysers_ResultAnalysis_AddWarningConclusion_System_String_System_String_BenchmarkDotNet_Reports_BenchmarkReport_.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Analysers.ResultAnalysis.AddWarningConclusion(System.String%2CSystem.String%2CBenchmarkDotNet.Reports.BenchmarkReport)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Analysers/ResultAnalysis.cs/#L92">View Source</a>
+  </span>
+  <a id="CodeJam_PerfTests_Analysers_ResultAnalysis_AddWarningConclusion_" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.AddWarningConclusion*"></a>
+  <h4 id="CodeJam_PerfTests_Analysers_ResultAnalysis_AddWarningConclusion_System_String_System_String_BenchmarkDotNet_Reports_BenchmarkReport_" data-uid="CodeJam.PerfTests.Analysers.ResultAnalysis.AddWarningConclusion(System.String,System.String,BenchmarkDotNet.Reports.BenchmarkReport)">AddWarningConclusion(String, String, BenchmarkReport)</h4>
+  <div class="markdown level1 summary"><p>Reports analyser warning conclusion.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void AddWarningConclusion(string message, string hint, BenchmarkReport report = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Message text.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">hint</span></td>
+        <td><p>Hint how to fix the warning.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">BenchmarkDotNet.Reports.BenchmarkReport</span></td>
+        <td><span class="parametername">report</span></td>
+        <td><p>The report the message belongs to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="CodeJam.PerfTests.Analysers.Analysis.html#CodeJam_PerfTests_Analysers_Analysis_AddWarningConclusion_System_String_System_String_BenchmarkDotNet_Reports_BenchmarkReport_">Analysis.AddWarningConclusion(String, String, BenchmarkReport)</a></div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.html#CodeJam_PerfTests_Running_Core_CompetitionCoreHelpers_WriteMessage_CodeJam_PerfTests_Running_Messages_IMessageLogger_CodeJam_PerfTests_Running_Messages_MessageSeverity_BenchmarkDotNet_Running_Target_System_String_System_String_">CompetitionCoreHelpers.WriteMessage(IMessageLogger, MessageSeverity, Target, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.html#CodeJam_PerfTests_Running_Core_CompetitionCoreHelpers_WriteExceptionMessage_CodeJam_PerfTests_Running_Messages_IMessageLogger_CodeJam_PerfTests_Running_Messages_MessageSeverity_System_String_System_Exception_">CompetitionCoreHelpers.WriteExceptionMessage(IMessageLogger, MessageSeverity, String, Exception)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.html#CodeJam_PerfTests_Running_Core_CompetitionCoreHelpers_WriteExceptionMessage_CodeJam_PerfTests_Running_Messages_IMessageLogger_CodeJam_PerfTests_Running_Messages_MessageSeverity_BenchmarkDotNet_Running_Target_System_String_System_Exception_">CompetitionCoreHelpers.WriteExceptionMessage(IMessageLogger, MessageSeverity, Target, String, Exception)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.html#CodeJam_PerfTests_Running_Core_CompetitionCoreHelpers_WriteExecutionErrorMessage_CodeJam_PerfTests_Running_Messages_IMessageLogger_System_String_System_String_">CompetitionCoreHelpers.WriteExecutionErrorMessage(IMessageLogger, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.html#CodeJam_PerfTests_Running_Core_CompetitionCoreHelpers_WriteExecutionErrorMessage_CodeJam_PerfTests_Running_Messages_IMessageLogger_BenchmarkDotNet_Running_Target_System_String_System_String_">CompetitionCoreHelpers.WriteExecutionErrorMessage(IMessageLogger, Target, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.html#CodeJam_PerfTests_Running_Core_CompetitionCoreHelpers_WriteSetupErrorMessage_CodeJam_PerfTests_Running_Messages_IMessageLogger_System_String_System_String_">CompetitionCoreHelpers.WriteSetupErrorMessage(IMessageLogger, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.html#CodeJam_PerfTests_Running_Core_CompetitionCoreHelpers_WriteSetupErrorMessage_CodeJam_PerfTests_Running_Messages_IMessageLogger_BenchmarkDotNet_Running_Target_System_String_System_String_">CompetitionCoreHelpers.WriteSetupErrorMessage(IMessageLogger, Target, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.html#CodeJam_PerfTests_Running_Core_CompetitionCoreHelpers_WriteTestErrorMessage_CodeJam_PerfTests_Running_Messages_IMessageLogger_System_String_System_String_">CompetitionCoreHelpers.WriteTestErrorMessage(IMessageLogger, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.html#CodeJam_PerfTests_Running_Core_CompetitionCoreHelpers_WriteTestErrorMessage_CodeJam_PerfTests_Running_Messages_IMessageLogger_BenchmarkDotNet_Running_Target_System_String_System_String_">CompetitionCoreHelpers.WriteTestErrorMessage(IMessageLogger, Target, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.html#CodeJam_PerfTests_Running_Core_CompetitionCoreHelpers_WriteWarningMessage_CodeJam_PerfTests_Running_Messages_IMessageLogger_System_String_System_String_">CompetitionCoreHelpers.WriteWarningMessage(IMessageLogger, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.html#CodeJam_PerfTests_Running_Core_CompetitionCoreHelpers_WriteWarningMessage_CodeJam_PerfTests_Running_Messages_IMessageLogger_BenchmarkDotNet_Running_Target_System_String_System_String_">CompetitionCoreHelpers.WriteWarningMessage(IMessageLogger, Target, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.html#CodeJam_PerfTests_Running_Core_CompetitionCoreHelpers_WriteInfoMessage_CodeJam_PerfTests_Running_Messages_IMessageLogger_System_String_System_String_">CompetitionCoreHelpers.WriteInfoMessage(IMessageLogger, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.html#CodeJam_PerfTests_Running_Core_CompetitionCoreHelpers_WriteInfoMessage_CodeJam_PerfTests_Running_Messages_IMessageLogger_BenchmarkDotNet_Running_Target_System_String_System_String_">CompetitionCoreHelpers.WriteInfoMessage(IMessageLogger, Target, String, String)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/new/master/apiSpec/new?filename=CodeJam_PerfTests_Analysers_ResultAnalysis.md&amp;value=---%0Auid%3A%20CodeJam.PerfTests.Analysers.ResultAnalysis%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/rsdn/CodeJam/blob/master/PerfTests/src/[L2_CompetitionCore]/Analysers/ResultAnalysis.cs/#L16" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright � 2015-2017
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

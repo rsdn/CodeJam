@@ -1,0 +1,5447 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.OneOf`7
+  commentId: T:CodeJam.OneOf`7
+  id: OneOf`7
+  parent: CodeJam
+  children:
+  - CodeJam.OneOf`7.Create(`0)
+  - CodeJam.OneOf`7.Create(`1)
+  - CodeJam.OneOf`7.Create(`2)
+  - CodeJam.OneOf`7.Create(`3)
+  - CodeJam.OneOf`7.Create(`4)
+  - CodeJam.OneOf`7.Create(`5)
+  - CodeJam.OneOf`7.Create(`6)
+  - CodeJam.OneOf`7.Do(System.Action{`0},System.Action{`1},System.Action{`2},System.Action{`3},System.Action{`4},System.Action{`5},System.Action{`6})
+  - CodeJam.OneOf`7.Equals(CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6})
+  - CodeJam.OneOf`7.Equals(System.Object)
+  - CodeJam.OneOf`7.GetHashCode
+  - CodeJam.OneOf`7.GetValue``1(System.Func{`0,``0},System.Func{`1,``0},System.Func{`2,``0},System.Func{`3,``0},System.Func{`4,``0},System.Func{`5,``0},System.Func{`6,``0})
+  - CodeJam.OneOf`7.IsCase1
+  - CodeJam.OneOf`7.IsCase2
+  - CodeJam.OneOf`7.IsCase3
+  - CodeJam.OneOf`7.IsCase4
+  - CodeJam.OneOf`7.IsCase5
+  - CodeJam.OneOf`7.IsCase6
+  - CodeJam.OneOf`7.IsCase7
+  - CodeJam.OneOf`7.op_Equality(CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6},CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6})
+  - CodeJam.OneOf`7.op_Implicit(`0)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  - CodeJam.OneOf`7.op_Implicit(`1)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  - CodeJam.OneOf`7.op_Implicit(`2)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  - CodeJam.OneOf`7.op_Implicit(`3)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  - CodeJam.OneOf`7.op_Implicit(`4)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  - CodeJam.OneOf`7.op_Implicit(`5)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  - CodeJam.OneOf`7.op_Implicit(`6)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  - CodeJam.OneOf`7.op_Inequality(CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6},CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6})
+  langs:
+  - csharp
+  - vb
+  name: OneOf<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>
+  type: Class
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: OneOf
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1185
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nTagged union for 7 types.\n"
+  example: []
+  syntax:
+    content: 'public abstract class OneOf<T1, T2, T3, T4, T5, T6, T7> : IOneOf<T1, T2, T3, T4, T5, T6, T7>, IEquatable<OneOf<T1, T2, T3, T4, T5, T6, T7>>'
+    typeParameters:
+    - id: T1
+      description: Type of case 1
+    - id: T2
+      description: Type of case 2
+    - id: T3
+      description: Type of case 3
+    - id: T4
+      description: Type of case 4
+    - id: T5
+      description: Type of case 5
+    - id: T6
+      description: Type of case 6
+    - id: T7
+      description: Type of case 7
+    content.vb: >-
+      Public MustInherit Class OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+          Implements IOneOf(Of T1, T2, T3, T4, T5, T6, T7), IEquatable(Of OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  inheritance:
+  - System.Object
+  implements:
+  - CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}
+  - System.IEquatable{CodeJam.OneOf`7}
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - CodeJam.OneOf`7.CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.OneOf`7.CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.OneOf`7.CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.OneOf`7.CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{{T},{TKey}})
+  - CodeJam.OneOf`7.CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{{T},{TKey}})
+  - CodeJam.OneOf`7.CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{{T},{TKey}})
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  name.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+- uid: CodeJam.OneOf`7.IsCase1
+  commentId: P:CodeJam.OneOf`7.IsCase1
+  id: IsCase1
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: IsCase1
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase1
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase1
+  type: Property
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsCase1
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1188
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  example: []
+  syntax:
+    content: public abstract bool IsCase1 { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public MustOverride ReadOnly Property IsCase1 As Boolean
+  overload: CodeJam.OneOf`7.IsCase1*
+  implements:
+  - CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.IsCase1
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase1
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase1
+- uid: CodeJam.OneOf`7.IsCase2
+  commentId: P:CodeJam.OneOf`7.IsCase2
+  id: IsCase2
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: IsCase2
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase2
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase2
+  type: Property
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsCase2
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1191
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  example: []
+  syntax:
+    content: public abstract bool IsCase2 { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public MustOverride ReadOnly Property IsCase2 As Boolean
+  overload: CodeJam.OneOf`7.IsCase2*
+  implements:
+  - CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.IsCase2
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase2
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase2
+- uid: CodeJam.OneOf`7.IsCase3
+  commentId: P:CodeJam.OneOf`7.IsCase3
+  id: IsCase3
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: IsCase3
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase3
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase3
+  type: Property
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsCase3
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1194
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  example: []
+  syntax:
+    content: public abstract bool IsCase3 { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public MustOverride ReadOnly Property IsCase3 As Boolean
+  overload: CodeJam.OneOf`7.IsCase3*
+  implements:
+  - CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.IsCase3
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase3
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase3
+- uid: CodeJam.OneOf`7.IsCase4
+  commentId: P:CodeJam.OneOf`7.IsCase4
+  id: IsCase4
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: IsCase4
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase4
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase4
+  type: Property
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsCase4
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1197
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  example: []
+  syntax:
+    content: public abstract bool IsCase4 { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public MustOverride ReadOnly Property IsCase4 As Boolean
+  overload: CodeJam.OneOf`7.IsCase4*
+  implements:
+  - CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.IsCase4
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase4
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase4
+- uid: CodeJam.OneOf`7.IsCase5
+  commentId: P:CodeJam.OneOf`7.IsCase5
+  id: IsCase5
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: IsCase5
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase5
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase5
+  type: Property
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsCase5
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1200
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  example: []
+  syntax:
+    content: public abstract bool IsCase5 { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public MustOverride ReadOnly Property IsCase5 As Boolean
+  overload: CodeJam.OneOf`7.IsCase5*
+  implements:
+  - CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.IsCase5
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase5
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase5
+- uid: CodeJam.OneOf`7.IsCase6
+  commentId: P:CodeJam.OneOf`7.IsCase6
+  id: IsCase6
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: IsCase6
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase6
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase6
+  type: Property
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsCase6
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1203
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  example: []
+  syntax:
+    content: public abstract bool IsCase6 { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public MustOverride ReadOnly Property IsCase6 As Boolean
+  overload: CodeJam.OneOf`7.IsCase6*
+  implements:
+  - CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.IsCase6
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase6
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase6
+- uid: CodeJam.OneOf`7.IsCase7
+  commentId: P:CodeJam.OneOf`7.IsCase7
+  id: IsCase7
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: IsCase7
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase7
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase7
+  type: Property
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsCase7
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1206
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  example: []
+  syntax:
+    content: public abstract bool IsCase7 { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public MustOverride ReadOnly Property IsCase7 As Boolean
+  overload: CodeJam.OneOf`7.IsCase7*
+  implements:
+  - CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.IsCase7
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase7
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase7
+- uid: CodeJam.OneOf`7.GetValue``1(System.Func{`0,``0},System.Func{`1,``0},System.Func{`2,``0},System.Func{`3,``0},System.Func{`4,``0},System.Func{`5,``0},System.Func{`6,``0})
+  commentId: M:CodeJam.OneOf`7.GetValue``1(System.Func{`0,``0},System.Func{`1,``0},System.Func{`2,``0},System.Func{`3,``0},System.Func{`4,``0},System.Func{`5,``0},System.Func{`6,``0})
+  id: GetValue``1(System.Func{`0,``0},System.Func{`1,``0},System.Func{`2,``0},System.Func{`3,``0},System.Func{`4,``0},System.Func{`5,``0},System.Func{`6,``0})
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: GetValue<TResult>(Func<T1, TResult>, Func<T2, TResult>, Func<T3, TResult>, Func<T4, TResult>, Func<T5, TResult>, Func<T6, TResult>, Func<T7, TResult>)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.GetValue<TResult>(Func<T1, TResult>, Func<T2, TResult>, Func<T3, TResult>, Func<T4, TResult>, Func<T5, TResult>, Func<T6, TResult>, Func<T7, TResult>)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.GetValue<TResult>(System.Func<T1, TResult>, System.Func<T2, TResult>, System.Func<T3, TResult>, System.Func<T4, TResult>, System.Func<T5, TResult>, System.Func<T6, TResult>, System.Func<T7, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValue
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1209
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  example: []
+  syntax:
+    content: public abstract TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector)
+    parameters:
+    - id: case1Selector
+      type: System.Func{{T1},{TResult}}
+    - id: case2Selector
+      type: System.Func{{T2},{TResult}}
+    - id: case3Selector
+      type: System.Func{{T3},{TResult}}
+    - id: case4Selector
+      type: System.Func{{T4},{TResult}}
+    - id: case5Selector
+      type: System.Func{{T5},{TResult}}
+    - id: case6Selector
+      type: System.Func{{T6},{TResult}}
+    - id: case7Selector
+      type: System.Func{{T7},{TResult}}
+    typeParameters:
+    - id: TResult
+    return:
+      type: '{TResult}'
+    content.vb: Public MustOverride Function GetValue(Of TResult)(case1Selector As Func(Of T1, TResult), case2Selector As Func(Of T2, TResult), case3Selector As Func(Of T3, TResult), case4Selector As Func(Of T4, TResult), case5Selector As Func(Of T5, TResult), case6Selector As Func(Of T6, TResult), case7Selector As Func(Of T7, TResult)) As TResult
+  overload: CodeJam.OneOf`7.GetValue*
+  implements:
+  - CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.GetValue``1(System.Func{{T1},{TResult}},System.Func{{T2},{TResult}},System.Func{{T3},{TResult}},System.Func{{T4},{TResult}},System.Func{{T5},{TResult}},System.Func{{T6},{TResult}},System.Func{{T7},{TResult}})
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).GetValue(Of TResult)(Func(Of T1, TResult), Func(Of T2, TResult), Func(Of T3, TResult), Func(Of T4, TResult), Func(Of T5, TResult), Func(Of T6, TResult), Func(Of T7, TResult))
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).GetValue(Of TResult)(System.Func(Of T1, TResult), System.Func(Of T2, TResult), System.Func(Of T3, TResult), System.Func(Of T4, TResult), System.Func(Of T5, TResult), System.Func(Of T6, TResult), System.Func(Of T7, TResult))
+  name.vb: GetValue(Of TResult)(Func(Of T1, TResult), Func(Of T2, TResult), Func(Of T3, TResult), Func(Of T4, TResult), Func(Of T5, TResult), Func(Of T6, TResult), Func(Of T7, TResult))
+- uid: CodeJam.OneOf`7.Do(System.Action{`0},System.Action{`1},System.Action{`2},System.Action{`3},System.Action{`4},System.Action{`5},System.Action{`6})
+  commentId: M:CodeJam.OneOf`7.Do(System.Action{`0},System.Action{`1},System.Action{`2},System.Action{`3},System.Action{`4},System.Action{`5},System.Action{`6})
+  id: Do(System.Action{`0},System.Action{`1},System.Action{`2},System.Action{`3},System.Action{`4},System.Action{`5},System.Action{`6})
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Do(Action<T1>, Action<T2>, Action<T3>, Action<T4>, Action<T5>, Action<T6>, Action<T7>)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Do(Action<T1>, Action<T2>, Action<T3>, Action<T4>, Action<T5>, Action<T6>, Action<T7>)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Do(System.Action<T1>, System.Action<T2>, System.Action<T3>, System.Action<T4>, System.Action<T5>, System.Action<T6>, System.Action<T7>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Do
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1212
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  example: []
+  syntax:
+    content: public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action)
+    parameters:
+    - id: case1Action
+      type: System.Action{{T1}}
+    - id: case2Action
+      type: System.Action{{T2}}
+    - id: case3Action
+      type: System.Action{{T3}}
+    - id: case4Action
+      type: System.Action{{T4}}
+    - id: case5Action
+      type: System.Action{{T5}}
+    - id: case6Action
+      type: System.Action{{T6}}
+    - id: case7Action
+      type: System.Action{{T7}}
+    content.vb: Public MustOverride Sub Do(case1Action As Action(Of T1), case2Action As Action(Of T2), case3Action As Action(Of T3), case4Action As Action(Of T4), case5Action As Action(Of T5), case6Action As Action(Of T6), case7Action As Action(Of T7))
+  overload: CodeJam.OneOf`7.Do*
+  implements:
+  - CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.Do(System.Action{{T1}},System.Action{{T2}},System.Action{{T3}},System.Action{{T4}},System.Action{{T5}},System.Action{{T6}},System.Action{{T7}})
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Do(Action(Of T1), Action(Of T2), Action(Of T3), Action(Of T4), Action(Of T5), Action(Of T6), Action(Of T7))
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Do(System.Action(Of T1), System.Action(Of T2), System.Action(Of T3), System.Action(Of T4), System.Action(Of T5), System.Action(Of T6), System.Action(Of T7))
+  name.vb: Do(Action(Of T1), Action(Of T2), Action(Of T3), Action(Of T4), Action(Of T5), Action(Of T6), Action(Of T7))
+- uid: CodeJam.OneOf`7.Equals(CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6})
+  commentId: M:CodeJam.OneOf`7.Equals(CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6})
+  id: Equals(CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6})
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Equals(CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Equals
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1215
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  example: []
+  syntax:
+    content: public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other)
+    parameters:
+    - id: other
+      type: CodeJam.OneOf`7
+    return:
+      type: System.Boolean
+    content.vb: Public MustOverride Function Equals(other As OneOf(Of T1, T2, T3, T4, T5, T6, T7)) As Boolean
+  overload: CodeJam.OneOf`7.Equals*
+  implements:
+  - System.IEquatable{CodeJam.OneOf`7}.Equals(CodeJam.OneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}})
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Equals(OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Equals(CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  name.vb: Equals(OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+- uid: CodeJam.OneOf`7.Equals(System.Object)
+  commentId: M:CodeJam.OneOf`7.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Equals(Object)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Equals(Object)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Equals(System.Object)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Equals
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1218
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  example: []
+  syntax:
+    content: public override bool Equals(object obj)
+    parameters:
+    - id: obj
+      type: System.Object
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.Object.Equals(System.Object)
+  overload: CodeJam.OneOf`7.Equals*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Equals(Object)
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Equals(System.Object)
+- uid: CodeJam.OneOf`7.GetHashCode
+  commentId: M:CodeJam.OneOf`7.GetHashCode
+  id: GetHashCode
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.GetHashCode()
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetHashCode
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1226
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+    content.vb: Public Overrides Function GetHashCode As Integer
+  overridden: System.Object.GetHashCode
+  overload: CodeJam.OneOf`7.GetHashCode*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).GetHashCode()
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).GetHashCode()
+- uid: CodeJam.OneOf`7.op_Equality(CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6},CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6})
+  commentId: M:CodeJam.OneOf`7.op_Equality(CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6},CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6})
+  id: op_Equality(CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6},CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6})
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Equality(OneOf<T1, T2, T3, T4, T5, T6, T7>, OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Equality(OneOf<T1, T2, T3, T4, T5, T6, T7>, OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Equality(CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>, CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  type: Operator
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: op_Equality
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1237
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nEquality operator.\n"
+  example: []
+  syntax:
+    content: public static bool operator ==(OneOf<T1, T2, T3, T4, T5, T6, T7> left, OneOf<T1, T2, T3, T4, T5, T6, T7> right)
+    parameters:
+    - id: left
+      type: CodeJam.OneOf`7
+      description: Left parameter.
+    - id: right
+      type: CodeJam.OneOf`7
+      description: Right parameter
+    return:
+      type: System.Boolean
+      description: <code>true</code> if <code data-dev-comment-type="paramref" class="paramref">left</code> equals to <code data-dev-comment-type="paramref" class="paramref">right</code>
+    content.vb: Public Shared Operator =(left As OneOf(Of T1, T2, T3, T4, T5, T6, T7), right As OneOf(Of T1, T2, T3, T4, T5, T6, T7)) As Boolean
+  overload: CodeJam.OneOf`7.op_Equality*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Equality(OneOf(Of T1, T2, T3, T4, T5, T6, T7), OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Equality(CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7), CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  name.vb: Equality(OneOf(Of T1, T2, T3, T4, T5, T6, T7), OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+- uid: CodeJam.OneOf`7.op_Inequality(CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6},CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6})
+  commentId: M:CodeJam.OneOf`7.op_Inequality(CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6},CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6})
+  id: op_Inequality(CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6},CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6})
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Inequality(OneOf<T1, T2, T3, T4, T5, T6, T7>, OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Inequality(OneOf<T1, T2, T3, T4, T5, T6, T7>, OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Inequality(CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>, CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  type: Operator
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: op_Inequality
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1245
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nUnequality operator.\n"
+  example: []
+  syntax:
+    content: public static bool operator !=(OneOf<T1, T2, T3, T4, T5, T6, T7> left, OneOf<T1, T2, T3, T4, T5, T6, T7> right)
+    parameters:
+    - id: left
+      type: CodeJam.OneOf`7
+      description: Left parameter.
+    - id: right
+      type: CodeJam.OneOf`7
+      description: Right parameter
+    return:
+      type: System.Boolean
+      description: <code>true</code> if <code data-dev-comment-type="paramref" class="paramref">left</code> not equals to <code data-dev-comment-type="paramref" class="paramref">right</code>
+    content.vb: Public Shared Operator <>(left As OneOf(Of T1, T2, T3, T4, T5, T6, T7), right As OneOf(Of T1, T2, T3, T4, T5, T6, T7)) As Boolean
+  overload: CodeJam.OneOf`7.op_Inequality*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Inequality(OneOf(Of T1, T2, T3, T4, T5, T6, T7), OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Inequality(CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7), CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  name.vb: Inequality(OneOf(Of T1, T2, T3, T4, T5, T6, T7), OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+- uid: CodeJam.OneOf`7.Create(`0)
+  commentId: M:CodeJam.OneOf`7.Create(`0)
+  id: Create(`0)
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Create(T1)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Create(T1)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Create(T1)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1278
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCreates instance of <xref href=\"CodeJam.OneOf%607\" data-throw-if-not-resolved=\"false\"></xref> for value of type <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T1</code>.\n"
+  example: []
+  syntax:
+    content: public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T1 value)
+    parameters:
+    - id: value
+      type: '{T1}'
+      description: Value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T1</code> to create instance from.
+    return:
+      type: CodeJam.OneOf`7
+      description: Value of <xref href="CodeJam.OneOf%607" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function Create(value As T1) As OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  overload: CodeJam.OneOf`7.Create*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Create(T1)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Create(T1)
+- uid: CodeJam.OneOf`7.op_Implicit(`0)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  commentId: M:CodeJam.OneOf`7.op_Implicit(`0)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  id: op_Implicit(`0)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Implicit(T1 to OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Implicit(T1 to OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Implicit(T1 to CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  type: Operator
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: op_Implicit
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1290
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nImplicit cast operator.\n"
+  example: []
+  syntax:
+    content: public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7>(T1 value)
+    parameters:
+    - id: value
+      type: '{T1}'
+      description: The parameter.
+    return:
+      type: CodeJam.OneOf`7
+      description: Instance of <xref href="CodeJam.OneOf%607" data-throw-if-not-resolved="false"></xref> for value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T1</code>.
+    content.vb: Public Shared Widening Operator CType(value As T1) As OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  overload: CodeJam.OneOf`7.op_Implicit*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Widening(T1 to OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Widening(T1 to CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  name.vb: Widening(T1 to OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+- uid: CodeJam.OneOf`7.Create(`1)
+  commentId: M:CodeJam.OneOf`7.Create(`1)
+  id: Create(`1)
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Create(T2)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Create(T2)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Create(T2)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1323
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCreates instance of <xref href=\"CodeJam.OneOf%607\" data-throw-if-not-resolved=\"false\"></xref> for value of type <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T2</code>.\n"
+  example: []
+  syntax:
+    content: public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T2 value)
+    parameters:
+    - id: value
+      type: '{T2}'
+      description: Value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T2</code> to create instance from.
+    return:
+      type: CodeJam.OneOf`7
+      description: Value of <xref href="CodeJam.OneOf%607" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function Create(value As T2) As OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  overload: CodeJam.OneOf`7.Create*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Create(T2)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Create(T2)
+- uid: CodeJam.OneOf`7.op_Implicit(`1)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  commentId: M:CodeJam.OneOf`7.op_Implicit(`1)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  id: op_Implicit(`1)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Implicit(T2 to OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Implicit(T2 to OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Implicit(T2 to CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  type: Operator
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: op_Implicit
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1335
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nImplicit cast operator.\n"
+  example: []
+  syntax:
+    content: public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7>(T2 value)
+    parameters:
+    - id: value
+      type: '{T2}'
+      description: The parameter.
+    return:
+      type: CodeJam.OneOf`7
+      description: Instance of <xref href="CodeJam.OneOf%607" data-throw-if-not-resolved="false"></xref> for value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T2</code>.
+    content.vb: Public Shared Widening Operator CType(value As T2) As OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  overload: CodeJam.OneOf`7.op_Implicit*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Widening(T2 to OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Widening(T2 to CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  name.vb: Widening(T2 to OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+- uid: CodeJam.OneOf`7.Create(`2)
+  commentId: M:CodeJam.OneOf`7.Create(`2)
+  id: Create(`2)
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Create(T3)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Create(T3)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Create(T3)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1368
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCreates instance of <xref href=\"CodeJam.OneOf%607\" data-throw-if-not-resolved=\"false\"></xref> for value of type <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T3</code>.\n"
+  example: []
+  syntax:
+    content: public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T3 value)
+    parameters:
+    - id: value
+      type: '{T3}'
+      description: Value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T3</code> to create instance from.
+    return:
+      type: CodeJam.OneOf`7
+      description: Value of <xref href="CodeJam.OneOf%607" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function Create(value As T3) As OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  overload: CodeJam.OneOf`7.Create*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Create(T3)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Create(T3)
+- uid: CodeJam.OneOf`7.op_Implicit(`2)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  commentId: M:CodeJam.OneOf`7.op_Implicit(`2)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  id: op_Implicit(`2)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Implicit(T3 to OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Implicit(T3 to OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Implicit(T3 to CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  type: Operator
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: op_Implicit
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1380
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nImplicit cast operator.\n"
+  example: []
+  syntax:
+    content: public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7>(T3 value)
+    parameters:
+    - id: value
+      type: '{T3}'
+      description: The parameter.
+    return:
+      type: CodeJam.OneOf`7
+      description: Instance of <xref href="CodeJam.OneOf%607" data-throw-if-not-resolved="false"></xref> for value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T3</code>.
+    content.vb: Public Shared Widening Operator CType(value As T3) As OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  overload: CodeJam.OneOf`7.op_Implicit*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Widening(T3 to OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Widening(T3 to CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  name.vb: Widening(T3 to OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+- uid: CodeJam.OneOf`7.Create(`3)
+  commentId: M:CodeJam.OneOf`7.Create(`3)
+  id: Create(`3)
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Create(T4)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Create(T4)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Create(T4)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1413
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCreates instance of <xref href=\"CodeJam.OneOf%607\" data-throw-if-not-resolved=\"false\"></xref> for value of type <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T4</code>.\n"
+  example: []
+  syntax:
+    content: public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T4 value)
+    parameters:
+    - id: value
+      type: '{T4}'
+      description: Value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T4</code> to create instance from.
+    return:
+      type: CodeJam.OneOf`7
+      description: Value of <xref href="CodeJam.OneOf%607" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function Create(value As T4) As OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  overload: CodeJam.OneOf`7.Create*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Create(T4)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Create(T4)
+- uid: CodeJam.OneOf`7.op_Implicit(`3)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  commentId: M:CodeJam.OneOf`7.op_Implicit(`3)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  id: op_Implicit(`3)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Implicit(T4 to OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Implicit(T4 to OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Implicit(T4 to CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  type: Operator
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: op_Implicit
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1425
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nImplicit cast operator.\n"
+  example: []
+  syntax:
+    content: public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7>(T4 value)
+    parameters:
+    - id: value
+      type: '{T4}'
+      description: The parameter.
+    return:
+      type: CodeJam.OneOf`7
+      description: Instance of <xref href="CodeJam.OneOf%607" data-throw-if-not-resolved="false"></xref> for value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T4</code>.
+    content.vb: Public Shared Widening Operator CType(value As T4) As OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  overload: CodeJam.OneOf`7.op_Implicit*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Widening(T4 to OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Widening(T4 to CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  name.vb: Widening(T4 to OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+- uid: CodeJam.OneOf`7.Create(`4)
+  commentId: M:CodeJam.OneOf`7.Create(`4)
+  id: Create(`4)
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Create(T5)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Create(T5)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Create(T5)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1458
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCreates instance of <xref href=\"CodeJam.OneOf%607\" data-throw-if-not-resolved=\"false\"></xref> for value of type <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T5</code>.\n"
+  example: []
+  syntax:
+    content: public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T5 value)
+    parameters:
+    - id: value
+      type: '{T5}'
+      description: Value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T5</code> to create instance from.
+    return:
+      type: CodeJam.OneOf`7
+      description: Value of <xref href="CodeJam.OneOf%607" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function Create(value As T5) As OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  overload: CodeJam.OneOf`7.Create*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Create(T5)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Create(T5)
+- uid: CodeJam.OneOf`7.op_Implicit(`4)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  commentId: M:CodeJam.OneOf`7.op_Implicit(`4)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  id: op_Implicit(`4)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Implicit(T5 to OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Implicit(T5 to OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Implicit(T5 to CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  type: Operator
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: op_Implicit
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1470
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nImplicit cast operator.\n"
+  example: []
+  syntax:
+    content: public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7>(T5 value)
+    parameters:
+    - id: value
+      type: '{T5}'
+      description: The parameter.
+    return:
+      type: CodeJam.OneOf`7
+      description: Instance of <xref href="CodeJam.OneOf%607" data-throw-if-not-resolved="false"></xref> for value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T5</code>.
+    content.vb: Public Shared Widening Operator CType(value As T5) As OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  overload: CodeJam.OneOf`7.op_Implicit*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Widening(T5 to OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Widening(T5 to CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  name.vb: Widening(T5 to OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+- uid: CodeJam.OneOf`7.Create(`5)
+  commentId: M:CodeJam.OneOf`7.Create(`5)
+  id: Create(`5)
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Create(T6)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Create(T6)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Create(T6)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1503
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCreates instance of <xref href=\"CodeJam.OneOf%607\" data-throw-if-not-resolved=\"false\"></xref> for value of type <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T6</code>.\n"
+  example: []
+  syntax:
+    content: public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T6 value)
+    parameters:
+    - id: value
+      type: '{T6}'
+      description: Value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T6</code> to create instance from.
+    return:
+      type: CodeJam.OneOf`7
+      description: Value of <xref href="CodeJam.OneOf%607" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function Create(value As T6) As OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  overload: CodeJam.OneOf`7.Create*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Create(T6)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Create(T6)
+- uid: CodeJam.OneOf`7.op_Implicit(`5)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  commentId: M:CodeJam.OneOf`7.op_Implicit(`5)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  id: op_Implicit(`5)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Implicit(T6 to OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Implicit(T6 to OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Implicit(T6 to CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  type: Operator
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: op_Implicit
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1515
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nImplicit cast operator.\n"
+  example: []
+  syntax:
+    content: public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7>(T6 value)
+    parameters:
+    - id: value
+      type: '{T6}'
+      description: The parameter.
+    return:
+      type: CodeJam.OneOf`7
+      description: Instance of <xref href="CodeJam.OneOf%607" data-throw-if-not-resolved="false"></xref> for value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T6</code>.
+    content.vb: Public Shared Widening Operator CType(value As T6) As OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  overload: CodeJam.OneOf`7.op_Implicit*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Widening(T6 to OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Widening(T6 to CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  name.vb: Widening(T6 to OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+- uid: CodeJam.OneOf`7.Create(`6)
+  commentId: M:CodeJam.OneOf`7.Create(`6)
+  id: Create(`6)
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Create(T7)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Create(T7)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Create(T7)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1548
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCreates instance of <xref href=\"CodeJam.OneOf%607\" data-throw-if-not-resolved=\"false\"></xref> for value of type <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T7</code>.\n"
+  example: []
+  syntax:
+    content: public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T7 value)
+    parameters:
+    - id: value
+      type: '{T7}'
+      description: Value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T7</code> to create instance from.
+    return:
+      type: CodeJam.OneOf`7
+      description: Value of <xref href="CodeJam.OneOf%607" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function Create(value As T7) As OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  overload: CodeJam.OneOf`7.Create*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Create(T7)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Create(T7)
+- uid: CodeJam.OneOf`7.op_Implicit(`6)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  commentId: M:CodeJam.OneOf`7.op_Implicit(`6)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  id: op_Implicit(`6)~CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6}
+  parent: CodeJam.OneOf`7
+  langs:
+  - csharp
+  - vb
+  name: Implicit(T7 to OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Implicit(T7 to OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Implicit(T7 to CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  type: Operator
+  source:
+    remote:
+      path: Main/src/Structures/OneOf/OneOf.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: op_Implicit
+    path: ../Main/src/Structures/OneOf/OneOf.generated.cs
+    startLine: 1560
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nImplicit cast operator.\n"
+  example: []
+  syntax:
+    content: public static implicit operator OneOf<T1, T2, T3, T4, T5, T6, T7>(T7 value)
+    parameters:
+    - id: value
+      type: '{T7}'
+      description: The parameter.
+    return:
+      type: CodeJam.OneOf`7
+      description: Instance of <xref href="CodeJam.OneOf%607" data-throw-if-not-resolved="false"></xref> for value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T7</code>.
+    content.vb: Public Shared Widening Operator CType(value As T7) As OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  overload: CodeJam.OneOf`7.op_Implicit*
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Widening(T7 to OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Widening(T7 to CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  name.vb: Widening(T7 to OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+references:
+- uid: CodeJam
+  commentId: N:CodeJam
+  isExternal: false
+  name: CodeJam
+  nameWithType: CodeJam
+  fullName: CodeJam
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}
+  commentId: T:CodeJam.IOneOf{`0,`1,`2,`3,`4,`5,`6}
+  parent: CodeJam
+  definition: CodeJam.IOneOf`7
+  name: IOneOf<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  name.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  spec.csharp:
+  - uid: CodeJam.IOneOf`7
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.IOneOf`7
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable{CodeJam.OneOf`7}
+  commentId: T:System.IEquatable{CodeJam.OneOf`7}
+  parent: System
+  definition: System.IEquatable`1
+  name: IEquatable<OneOf<T1, T2, T3, T4, T5, T6, T7>>
+  nameWithType: IEquatable<OneOf<T1, T2, T3, T4, T5, T6, T7>>
+  fullName: System.IEquatable<CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>>
+  nameWithType.vb: IEquatable(Of OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  fullName.vb: System.IEquatable(Of CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  name.vb: IEquatable(Of OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.OneOf`7
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.OneOf`7
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.OneOf`7.CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  name: Contains<T, OneOf<T1, T2, T3, T4, T5, T6, T7>>(Range<T>)
+  nameWithType: RangeExtensions.Contains<T, OneOf<T1, T2, T3, T4, T5, T6, T7>>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, OneOf(Of T1, T2, T3, T4, T5, T6, T7))(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))(CodeJam.Ranges.Range(Of T))
+  name.vb: Contains(Of T, OneOf(Of T1, T2, T3, T4, T5, T6, T7))(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{``0})
+    name: Contains<T, OneOf<T1, T2, T3, T4, T5, T6, T7>>
+    nameWithType: RangeExtensions.Contains<T, OneOf<T1, T2, T3, T4, T5, T6, T7>>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{``0})
+    name: Contains(Of T, OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+    nameWithType: RangeExtensions.Contains(Of T, OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.OneOf`7.CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  name: StartsAfter<T, OneOf<T1, T2, T3, T4, T5, T6, T7>>(Range<T>)
+  nameWithType: RangeExtensions.StartsAfter<T, OneOf<T1, T2, T3, T4, T5, T6, T7>>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, OneOf(Of T1, T2, T3, T4, T5, T6, T7))(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))(CodeJam.Ranges.Range(Of T))
+  name.vb: StartsAfter(Of T, OneOf(Of T1, T2, T3, T4, T5, T6, T7))(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{``0})
+    name: StartsAfter<T, OneOf<T1, T2, T3, T4, T5, T6, T7>>
+    nameWithType: RangeExtensions.StartsAfter<T, OneOf<T1, T2, T3, T4, T5, T6, T7>>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{``0})
+    name: StartsAfter(Of T, OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+    nameWithType: RangeExtensions.StartsAfter(Of T, OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.OneOf`7.CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  name: EndsBefore<T, OneOf<T1, T2, T3, T4, T5, T6, T7>>(Range<T>)
+  nameWithType: RangeExtensions.EndsBefore<T, OneOf<T1, T2, T3, T4, T5, T6, T7>>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, OneOf(Of T1, T2, T3, T4, T5, T6, T7))(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))(CodeJam.Ranges.Range(Of T))
+  name.vb: EndsBefore(Of T, OneOf(Of T1, T2, T3, T4, T5, T6, T7))(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{``0})
+    name: EndsBefore<T, OneOf<T1, T2, T3, T4, T5, T6, T7>>
+    nameWithType: RangeExtensions.EndsBefore<T, OneOf<T1, T2, T3, T4, T5, T6, T7>>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{``0})
+    name: EndsBefore(Of T, OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+    nameWithType: RangeExtensions.EndsBefore(Of T, OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.OneOf`7.CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: Contains<T, TKey, OneOf<T1, T2, T3, T4, T5, T6, T7>>(Range<T, TKey>)
+  nameWithType: RangeExtensions.Contains<T, TKey, OneOf<T1, T2, T3, T4, T5, T6, T7>>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TKey, OneOf(Of T1, T2, T3, T4, T5, T6, T7))(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: Contains(Of T, TKey, OneOf(Of T1, T2, T3, T4, T5, T6, T7))(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{``0,``1})
+    name: Contains<T, TKey, OneOf<T1, T2, T3, T4, T5, T6, T7>>
+    nameWithType: RangeExtensions.Contains<T, TKey, OneOf<T1, T2, T3, T4, T5, T6, T7>>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{``0,``1})
+    name: Contains(Of T, TKey, OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+    nameWithType: RangeExtensions.Contains(Of T, TKey, OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.OneOf`7.CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: StartsAfter<T, TKey, OneOf<T1, T2, T3, T4, T5, T6, T7>>(Range<T, TKey>)
+  nameWithType: RangeExtensions.StartsAfter<T, TKey, OneOf<T1, T2, T3, T4, T5, T6, T7>>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TKey, OneOf(Of T1, T2, T3, T4, T5, T6, T7))(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: StartsAfter(Of T, TKey, OneOf(Of T1, T2, T3, T4, T5, T6, T7))(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter<T, TKey, OneOf<T1, T2, T3, T4, T5, T6, T7>>
+    nameWithType: RangeExtensions.StartsAfter<T, TKey, OneOf<T1, T2, T3, T4, T5, T6, T7>>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter(Of T, TKey, OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+    nameWithType: RangeExtensions.StartsAfter(Of T, TKey, OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.OneOf`7.CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: EndsBefore<T, TKey, OneOf<T1, T2, T3, T4, T5, T6, T7>>(Range<T, TKey>)
+  nameWithType: RangeExtensions.EndsBefore<T, TKey, OneOf<T1, T2, T3, T4, T5, T6, T7>>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TKey, OneOf(Of T1, T2, T3, T4, T5, T6, T7))(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: EndsBefore(Of T, TKey, OneOf(Of T1, T2, T3, T4, T5, T6, T7))(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore<T, TKey, OneOf<T1, T2, T3, T4, T5, T6, T7>>
+    nameWithType: RangeExtensions.EndsBefore<T, TKey, OneOf<T1, T2, T3, T4, T5, T6, T7>>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore(Of T, TKey, OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+    nameWithType: RangeExtensions.EndsBefore(Of T, TKey, OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.IOneOf`7
+  commentId: T:CodeJam.IOneOf`7
+  isExternal: false
+  name: IOneOf<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  name.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  spec.csharp:
+  - uid: CodeJam.IOneOf`7
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.IOneOf`7
+    name: IOneOf
+    nameWithType: IOneOf
+    fullName: CodeJam.IOneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: Contains<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.Contains<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: Contains(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+    name: Contains<T, TRange>
+    nameWithType: RangeExtensions.Contains<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+    name: Contains(Of T, TRange)
+    nameWithType: RangeExtensions.Contains(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions
+  commentId: T:CodeJam.Ranges.RangeExtensions
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: RangeExtensions
+  nameWithType: RangeExtensions
+  fullName: CodeJam.Ranges.RangeExtensions
+- uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: StartsAfter<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.StartsAfter<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: StartsAfter(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+    name: StartsAfter<T, TRange>
+    nameWithType: RangeExtensions.StartsAfter<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+    name: StartsAfter(Of T, TRange)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: EndsBefore<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.EndsBefore<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: EndsBefore(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+    name: EndsBefore<T, TRange>
+    nameWithType: RangeExtensions.EndsBefore<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+    name: EndsBefore(Of T, TRange)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: Contains<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.Contains<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: Contains(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: Contains<T, TKey, TRange>
+    nameWithType: RangeExtensions.Contains<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: Contains(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.Contains(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: StartsAfter<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.StartsAfter<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: StartsAfter(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter<T, TKey, TRange>
+    nameWithType: RangeExtensions.StartsAfter<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: EndsBefore<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.EndsBefore<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: EndsBefore(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore<T, TKey, TRange>
+    nameWithType: RangeExtensions.EndsBefore<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges
+  commentId: N:CodeJam.Ranges
+  isExternal: false
+  name: CodeJam.Ranges
+  nameWithType: CodeJam.Ranges
+  fullName: CodeJam.Ranges
+- uid: CodeJam.OneOf`7.IsCase1*
+  commentId: Overload:CodeJam.OneOf`7.IsCase1
+  isExternal: false
+  name: IsCase1
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase1
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase1
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase1
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase1
+- uid: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.IsCase1
+  commentId: P:CodeJam.IOneOf{`0,`1,`2,`3,`4,`5,`6}.IsCase1
+  parent: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}
+  definition: CodeJam.IOneOf`7.IsCase1
+  name: IsCase1
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase1
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase1
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase1
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase1
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.IOneOf`7.IsCase1
+  commentId: P:CodeJam.IOneOf`7.IsCase1
+  isExternal: false
+  name: IsCase1
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase1
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase1
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase1
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase1
+- uid: CodeJam.OneOf`7.IsCase2*
+  commentId: Overload:CodeJam.OneOf`7.IsCase2
+  isExternal: false
+  name: IsCase2
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase2
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase2
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase2
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase2
+- uid: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.IsCase2
+  commentId: P:CodeJam.IOneOf{`0,`1,`2,`3,`4,`5,`6}.IsCase2
+  parent: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}
+  definition: CodeJam.IOneOf`7.IsCase2
+  name: IsCase2
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase2
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase2
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase2
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase2
+- uid: CodeJam.IOneOf`7.IsCase2
+  commentId: P:CodeJam.IOneOf`7.IsCase2
+  isExternal: false
+  name: IsCase2
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase2
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase2
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase2
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase2
+- uid: CodeJam.OneOf`7.IsCase3*
+  commentId: Overload:CodeJam.OneOf`7.IsCase3
+  isExternal: false
+  name: IsCase3
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase3
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase3
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase3
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase3
+- uid: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.IsCase3
+  commentId: P:CodeJam.IOneOf{`0,`1,`2,`3,`4,`5,`6}.IsCase3
+  parent: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}
+  definition: CodeJam.IOneOf`7.IsCase3
+  name: IsCase3
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase3
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase3
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase3
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase3
+- uid: CodeJam.IOneOf`7.IsCase3
+  commentId: P:CodeJam.IOneOf`7.IsCase3
+  isExternal: false
+  name: IsCase3
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase3
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase3
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase3
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase3
+- uid: CodeJam.OneOf`7.IsCase4*
+  commentId: Overload:CodeJam.OneOf`7.IsCase4
+  isExternal: false
+  name: IsCase4
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase4
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase4
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase4
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase4
+- uid: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.IsCase4
+  commentId: P:CodeJam.IOneOf{`0,`1,`2,`3,`4,`5,`6}.IsCase4
+  parent: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}
+  definition: CodeJam.IOneOf`7.IsCase4
+  name: IsCase4
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase4
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase4
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase4
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase4
+- uid: CodeJam.IOneOf`7.IsCase4
+  commentId: P:CodeJam.IOneOf`7.IsCase4
+  isExternal: false
+  name: IsCase4
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase4
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase4
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase4
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase4
+- uid: CodeJam.OneOf`7.IsCase5*
+  commentId: Overload:CodeJam.OneOf`7.IsCase5
+  isExternal: false
+  name: IsCase5
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase5
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase5
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase5
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase5
+- uid: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.IsCase5
+  commentId: P:CodeJam.IOneOf{`0,`1,`2,`3,`4,`5,`6}.IsCase5
+  parent: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}
+  definition: CodeJam.IOneOf`7.IsCase5
+  name: IsCase5
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase5
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase5
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase5
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase5
+- uid: CodeJam.IOneOf`7.IsCase5
+  commentId: P:CodeJam.IOneOf`7.IsCase5
+  isExternal: false
+  name: IsCase5
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase5
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase5
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase5
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase5
+- uid: CodeJam.OneOf`7.IsCase6*
+  commentId: Overload:CodeJam.OneOf`7.IsCase6
+  isExternal: false
+  name: IsCase6
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase6
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase6
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase6
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase6
+- uid: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.IsCase6
+  commentId: P:CodeJam.IOneOf{`0,`1,`2,`3,`4,`5,`6}.IsCase6
+  parent: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}
+  definition: CodeJam.IOneOf`7.IsCase6
+  name: IsCase6
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase6
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase6
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase6
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase6
+- uid: CodeJam.IOneOf`7.IsCase6
+  commentId: P:CodeJam.IOneOf`7.IsCase6
+  isExternal: false
+  name: IsCase6
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase6
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase6
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase6
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase6
+- uid: CodeJam.OneOf`7.IsCase7*
+  commentId: Overload:CodeJam.OneOf`7.IsCase7
+  isExternal: false
+  name: IsCase7
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase7
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase7
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase7
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase7
+- uid: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.IsCase7
+  commentId: P:CodeJam.IOneOf{`0,`1,`2,`3,`4,`5,`6}.IsCase7
+  parent: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}
+  definition: CodeJam.IOneOf`7.IsCase7
+  name: IsCase7
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase7
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase7
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase7
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase7
+- uid: CodeJam.IOneOf`7.IsCase7
+  commentId: P:CodeJam.IOneOf`7.IsCase7
+  isExternal: false
+  name: IsCase7
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase7
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.IsCase7
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase7
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).IsCase7
+- uid: CodeJam.OneOf`7.GetValue*
+  commentId: Overload:CodeJam.OneOf`7.GetValue
+  isExternal: false
+  name: GetValue
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.GetValue
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.GetValue
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).GetValue
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).GetValue
+- uid: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.GetValue``1(System.Func{{T1},{TResult}},System.Func{{T2},{TResult}},System.Func{{T3},{TResult}},System.Func{{T4},{TResult}},System.Func{{T5},{TResult}},System.Func{{T6},{TResult}},System.Func{{T7},{TResult}})
+  commentId: M:CodeJam.IOneOf{`0,`1,`2,`3,`4,`5,`6}.GetValue``1(System.Func{`0,``0},System.Func{`1,``0},System.Func{`2,``0},System.Func{`3,``0},System.Func{`4,``0},System.Func{`5,``0},System.Func{`6,``0})
+  parent: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}
+  definition: CodeJam.IOneOf`7.GetValue``1(System.Func{`0,``0},System.Func{`1,``0},System.Func{`2,``0},System.Func{`3,``0},System.Func{`4,``0},System.Func{`5,``0},System.Func{`6,``0})
+  name: GetValue<TResult>(Func<T1, TResult>, Func<T2, TResult>, Func<T3, TResult>, Func<T4, TResult>, Func<T5, TResult>, Func<T6, TResult>, Func<T7, TResult>)
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.GetValue<TResult>(Func<T1, TResult>, Func<T2, TResult>, Func<T3, TResult>, Func<T4, TResult>, Func<T5, TResult>, Func<T6, TResult>, Func<T7, TResult>)
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.GetValue<TResult>(System.Func<T1, TResult>, System.Func<T2, TResult>, System.Func<T3, TResult>, System.Func<T4, TResult>, System.Func<T5, TResult>, System.Func<T6, TResult>, System.Func<T7, TResult>)
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).GetValue(Of TResult)(Func(Of T1, TResult), Func(Of T2, TResult), Func(Of T3, TResult), Func(Of T4, TResult), Func(Of T5, TResult), Func(Of T6, TResult), Func(Of T7, TResult))
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).GetValue(Of TResult)(System.Func(Of T1, TResult), System.Func(Of T2, TResult), System.Func(Of T3, TResult), System.Func(Of T4, TResult), System.Func(Of T5, TResult), System.Func(Of T6, TResult), System.Func(Of T7, TResult))
+  name.vb: GetValue(Of TResult)(Func(Of T1, TResult), Func(Of T2, TResult), Func(Of T3, TResult), Func(Of T4, TResult), Func(Of T5, TResult), Func(Of T6, TResult), Func(Of T7, TResult))
+  spec.csharp:
+  - uid: CodeJam.IOneOf`7.GetValue``1(System.Func{`0,``0},System.Func{`1,``0},System.Func{`2,``0},System.Func{`3,``0},System.Func{`4,``0},System.Func{`5,``0},System.Func{`6,``0})
+    name: GetValue<TResult>
+    nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.GetValue<TResult>
+    fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.GetValue<TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.IOneOf`7.GetValue``1(System.Func{`0,``0},System.Func{`1,``0},System.Func{`2,``0},System.Func{`3,``0},System.Func{`4,``0},System.Func{`5,``0},System.Func{`6,``0})
+    name: GetValue(Of TResult)
+    nameWithType: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).GetValue(Of TResult)
+    fullName: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).GetValue(Of TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T1},{TResult}}
+  commentId: T:System.Func{``0,``1}
+  parent: System
+  definition: System.Func`2
+  name: Func<T1, TResult>
+  nameWithType: Func<T1, TResult>
+  fullName: System.Func<T1, TResult>
+  nameWithType.vb: Func(Of T1, TResult)
+  fullName.vb: System.Func(Of T1, TResult)
+  name.vb: Func(Of T1, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T2},{TResult}}
+  commentId: T:System.Func{`1,``0}
+  parent: System
+  definition: System.Func`2
+  name: Func<T2, TResult>
+  nameWithType: Func<T2, TResult>
+  fullName: System.Func<T2, TResult>
+  nameWithType.vb: Func(Of T2, TResult)
+  fullName.vb: System.Func(Of T2, TResult)
+  name.vb: Func(Of T2, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T3},{TResult}}
+  commentId: T:System.Func{`2,``0}
+  parent: System
+  definition: System.Func`2
+  name: Func<T3, TResult>
+  nameWithType: Func<T3, TResult>
+  fullName: System.Func<T3, TResult>
+  nameWithType.vb: Func(Of T3, TResult)
+  fullName.vb: System.Func(Of T3, TResult)
+  name.vb: Func(Of T3, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T4},{TResult}}
+  commentId: T:System.Func{`3,``0}
+  parent: System
+  definition: System.Func`2
+  name: Func<T4, TResult>
+  nameWithType: Func<T4, TResult>
+  fullName: System.Func<T4, TResult>
+  nameWithType.vb: Func(Of T4, TResult)
+  fullName.vb: System.Func(Of T4, TResult)
+  name.vb: Func(Of T4, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T5},{TResult}}
+  commentId: T:System.Func{`4,``0}
+  parent: System
+  definition: System.Func`2
+  name: Func<T5, TResult>
+  nameWithType: Func<T5, TResult>
+  fullName: System.Func<T5, TResult>
+  nameWithType.vb: Func(Of T5, TResult)
+  fullName.vb: System.Func(Of T5, TResult)
+  name.vb: Func(Of T5, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T6},{TResult}}
+  commentId: T:System.Func{`5,``0}
+  parent: System
+  definition: System.Func`2
+  name: Func<T6, TResult>
+  nameWithType: Func<T6, TResult>
+  fullName: System.Func<T6, TResult>
+  nameWithType.vb: Func(Of T6, TResult)
+  fullName.vb: System.Func(Of T6, TResult)
+  name.vb: Func(Of T6, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T7},{TResult}}
+  commentId: T:System.Func{`6,``0}
+  parent: System
+  definition: System.Func`2
+  name: Func<T7, TResult>
+  nameWithType: Func<T7, TResult>
+  fullName: System.Func<T7, TResult>
+  nameWithType.vb: Func(Of T7, TResult)
+  fullName.vb: System.Func(Of T7, TResult)
+  name.vb: Func(Of T7, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: '{TResult}'
+  commentId: '!:TResult'
+  definition: TResult
+  name: TResult
+  nameWithType: TResult
+  fullName: TResult
+- uid: CodeJam.IOneOf`7.GetValue``1(System.Func{`0,``0},System.Func{`1,``0},System.Func{`2,``0},System.Func{`3,``0},System.Func{`4,``0},System.Func{`5,``0},System.Func{`6,``0})
+  commentId: M:CodeJam.IOneOf`7.GetValue``1(System.Func{`0,``0},System.Func{`1,``0},System.Func{`2,``0},System.Func{`3,``0},System.Func{`4,``0},System.Func{`5,``0},System.Func{`6,``0})
+  isExternal: true
+  name: GetValue<TResult>(Func<T1, TResult>, Func<T2, TResult>, Func<T3, TResult>, Func<T4, TResult>, Func<T5, TResult>, Func<T6, TResult>, Func<T7, TResult>)
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.GetValue<TResult>(Func<T1, TResult>, Func<T2, TResult>, Func<T3, TResult>, Func<T4, TResult>, Func<T5, TResult>, Func<T6, TResult>, Func<T7, TResult>)
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.GetValue<TResult>(System.Func<T1, TResult>, System.Func<T2, TResult>, System.Func<T3, TResult>, System.Func<T4, TResult>, System.Func<T5, TResult>, System.Func<T6, TResult>, System.Func<T7, TResult>)
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).GetValue(Of TResult)(Func(Of T1, TResult), Func(Of T2, TResult), Func(Of T3, TResult), Func(Of T4, TResult), Func(Of T5, TResult), Func(Of T6, TResult), Func(Of T7, TResult))
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).GetValue(Of TResult)(System.Func(Of T1, TResult), System.Func(Of T2, TResult), System.Func(Of T3, TResult), System.Func(Of T4, TResult), System.Func(Of T5, TResult), System.Func(Of T6, TResult), System.Func(Of T7, TResult))
+  name.vb: GetValue(Of TResult)(Func(Of T1, TResult), Func(Of T2, TResult), Func(Of T3, TResult), Func(Of T4, TResult), Func(Of T5, TResult), Func(Of T6, TResult), Func(Of T7, TResult))
+  spec.csharp:
+  - uid: CodeJam.IOneOf`7.GetValue``1(System.Func{`0,``0},System.Func{`1,``0},System.Func{`2,``0},System.Func{`3,``0},System.Func{`4,``0},System.Func{`5,``0},System.Func{`6,``0})
+    name: GetValue<TResult>
+    nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.GetValue<TResult>
+    fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.GetValue<TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.IOneOf`7.GetValue``1(System.Func{`0,``0},System.Func{`1,``0},System.Func{`2,``0},System.Func{`3,``0},System.Func{`4,``0},System.Func{`5,``0},System.Func{`6,``0})
+    name: GetValue(Of TResult)
+    nameWithType: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).GetValue(Of TResult)
+    fullName: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).GetValue(Of TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: TResult
+  isExternal: false
+  name: TResult
+  nameWithType: TResult
+  fullName: TResult
+- uid: CodeJam.OneOf`7.Do*
+  commentId: Overload:CodeJam.OneOf`7.Do
+  isExternal: false
+  name: Do
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Do
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Do
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Do
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Do
+- uid: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}.Do(System.Action{{T1}},System.Action{{T2}},System.Action{{T3}},System.Action{{T4}},System.Action{{T5}},System.Action{{T6}},System.Action{{T7}})
+  commentId: M:CodeJam.IOneOf{`0,`1,`2,`3,`4,`5,`6}.Do(System.Action{`0},System.Action{`1},System.Action{`2},System.Action{`3},System.Action{`4},System.Action{`5},System.Action{`6})
+  parent: CodeJam.IOneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}
+  definition: CodeJam.IOneOf`7.Do(System.Action{`0},System.Action{`1},System.Action{`2},System.Action{`3},System.Action{`4},System.Action{`5},System.Action{`6})
+  name: Do(Action<T1>, Action<T2>, Action<T3>, Action<T4>, Action<T5>, Action<T6>, Action<T7>)
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.Do(Action<T1>, Action<T2>, Action<T3>, Action<T4>, Action<T5>, Action<T6>, Action<T7>)
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.Do(System.Action<T1>, System.Action<T2>, System.Action<T3>, System.Action<T4>, System.Action<T5>, System.Action<T6>, System.Action<T7>)
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).Do(Action(Of T1), Action(Of T2), Action(Of T3), Action(Of T4), Action(Of T5), Action(Of T6), Action(Of T7))
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).Do(System.Action(Of T1), System.Action(Of T2), System.Action(Of T3), System.Action(Of T4), System.Action(Of T5), System.Action(Of T6), System.Action(Of T7))
+  name.vb: Do(Action(Of T1), Action(Of T2), Action(Of T3), Action(Of T4), Action(Of T5), Action(Of T6), Action(Of T7))
+  spec.csharp:
+  - uid: CodeJam.IOneOf`7.Do(System.Action{`0},System.Action{`1},System.Action{`2},System.Action{`3},System.Action{`4},System.Action{`5},System.Action{`6})
+    name: Do
+    nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.Do
+    fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.Do
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.IOneOf`7.Do(System.Action{`0},System.Action{`1},System.Action{`2},System.Action{`3},System.Action{`4},System.Action{`5},System.Action{`6})
+    name: Do
+    nameWithType: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).Do
+    fullName: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).Do
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{{T1}}
+  commentId: T:System.Action{``0}
+  parent: System
+  definition: System.Action`1
+  name: Action<T1>
+  nameWithType: Action<T1>
+  fullName: System.Action<T1>
+  nameWithType.vb: Action(Of T1)
+  fullName.vb: System.Action(Of T1)
+  name.vb: Action(Of T1)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{{T2}}
+  commentId: T:System.Action{`1}
+  parent: System
+  definition: System.Action`1
+  name: Action<T2>
+  nameWithType: Action<T2>
+  fullName: System.Action<T2>
+  nameWithType.vb: Action(Of T2)
+  fullName.vb: System.Action(Of T2)
+  name.vb: Action(Of T2)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{{T3}}
+  commentId: T:System.Action{`2}
+  parent: System
+  definition: System.Action`1
+  name: Action<T3>
+  nameWithType: Action<T3>
+  fullName: System.Action<T3>
+  nameWithType.vb: Action(Of T3)
+  fullName.vb: System.Action(Of T3)
+  name.vb: Action(Of T3)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{{T4}}
+  commentId: T:System.Action{`3}
+  parent: System
+  definition: System.Action`1
+  name: Action<T4>
+  nameWithType: Action<T4>
+  fullName: System.Action<T4>
+  nameWithType.vb: Action(Of T4)
+  fullName.vb: System.Action(Of T4)
+  name.vb: Action(Of T4)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{{T5}}
+  commentId: T:System.Action{`4}
+  parent: System
+  definition: System.Action`1
+  name: Action<T5>
+  nameWithType: Action<T5>
+  fullName: System.Action<T5>
+  nameWithType.vb: Action(Of T5)
+  fullName.vb: System.Action(Of T5)
+  name.vb: Action(Of T5)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{{T6}}
+  commentId: T:System.Action{`5}
+  parent: System
+  definition: System.Action`1
+  name: Action<T6>
+  nameWithType: Action<T6>
+  fullName: System.Action<T6>
+  nameWithType.vb: Action(Of T6)
+  fullName.vb: System.Action(Of T6)
+  name.vb: Action(Of T6)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{{T7}}
+  commentId: T:System.Action{`6}
+  parent: System
+  definition: System.Action`1
+  name: Action<T7>
+  nameWithType: Action<T7>
+  fullName: System.Action<T7>
+  nameWithType.vb: Action(Of T7)
+  fullName.vb: System.Action(Of T7)
+  name.vb: Action(Of T7)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IOneOf`7.Do(System.Action{`0},System.Action{`1},System.Action{`2},System.Action{`3},System.Action{`4},System.Action{`5},System.Action{`6})
+  commentId: M:CodeJam.IOneOf`7.Do(System.Action{`0},System.Action{`1},System.Action{`2},System.Action{`3},System.Action{`4},System.Action{`5},System.Action{`6})
+  isExternal: true
+  name: Do(Action<T1>, Action<T2>, Action<T3>, Action<T4>, Action<T5>, Action<T6>, Action<T7>)
+  nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.Do(Action<T1>, Action<T2>, Action<T3>, Action<T4>, Action<T5>, Action<T6>, Action<T7>)
+  fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.Do(System.Action<T1>, System.Action<T2>, System.Action<T3>, System.Action<T4>, System.Action<T5>, System.Action<T6>, System.Action<T7>)
+  nameWithType.vb: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).Do(Action(Of T1), Action(Of T2), Action(Of T3), Action(Of T4), Action(Of T5), Action(Of T6), Action(Of T7))
+  fullName.vb: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).Do(System.Action(Of T1), System.Action(Of T2), System.Action(Of T3), System.Action(Of T4), System.Action(Of T5), System.Action(Of T6), System.Action(Of T7))
+  name.vb: Do(Action(Of T1), Action(Of T2), Action(Of T3), Action(Of T4), Action(Of T5), Action(Of T6), Action(Of T7))
+  spec.csharp:
+  - uid: CodeJam.IOneOf`7.Do(System.Action{`0},System.Action{`1},System.Action{`2},System.Action{`3},System.Action{`4},System.Action{`5},System.Action{`6})
+    name: Do
+    nameWithType: IOneOf<T1, T2, T3, T4, T5, T6, T7>.Do
+    fullName: CodeJam.IOneOf<T1, T2, T3, T4, T5, T6, T7>.Do
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.IOneOf`7.Do(System.Action{`0},System.Action{`1},System.Action{`2},System.Action{`3},System.Action{`4},System.Action{`5},System.Action{`6})
+    name: Do
+    nameWithType: IOneOf(Of T1, T2, T3, T4, T5, T6, T7).Do
+    fullName: CodeJam.IOneOf(Of T1, T2, T3, T4, T5, T6, T7).Do
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.OneOf`7.Equals*
+  commentId: Overload:CodeJam.OneOf`7.Equals
+  isExternal: false
+  name: Equals
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Equals
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Equals
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Equals
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Equals
+- uid: System.IEquatable{CodeJam.OneOf`7}.Equals(CodeJam.OneOf{{T1},{T2},{T3},{T4},{T5},{T6},{T7}})
+  commentId: M:System.IEquatable{CodeJam.OneOf`7}.Equals(CodeJam.OneOf{`0,`1,`2,`3,`4,`5,`6})
+  parent: System.IEquatable{CodeJam.OneOf`7}
+  definition: System.IEquatable`1.Equals(`0)
+  name: Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  nameWithType: IEquatable<OneOf<T1, T2, T3, T4, T5, T6, T7>>.Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  fullName: System.IEquatable<CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>>.Equals(CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>)
+  nameWithType.vb: IEquatable(Of OneOf(Of T1, T2, T3, T4, T5, T6, T7)).Equals(OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  fullName.vb: System.IEquatable(Of CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7)).Equals(CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  name.vb: Equals(OneOf(Of T1, T2, T3, T4, T5, T6, T7))
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<OneOf<T1, T2, T3, T4, T5, T6, T7>>.Equals
+    fullName: System.IEquatable<CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.OneOf`7
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of OneOf(Of T1, T2, T3, T4, T5, T6, T7)).Equals
+    fullName: System.IEquatable(Of CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7)).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.OneOf`7
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.OneOf`7
+  commentId: T:CodeJam.OneOf`7
+  parent: CodeJam
+  isExternal: false
+  name: OneOf<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  name.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7)
+  spec.csharp:
+  - uid: CodeJam.OneOf`7
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.OneOf`7
+    name: OneOf
+    nameWithType: OneOf
+    fullName: CodeJam.OneOf
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<T>.Equals
+    fullName: System.IEquatable<T>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of T).Equals
+    fullName: System.IEquatable(Of T).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.OneOf`7.GetHashCode*
+  commentId: Overload:CodeJam.OneOf`7.GetHashCode
+  isExternal: false
+  name: GetHashCode
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.GetHashCode
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.GetHashCode
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).GetHashCode
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).GetHashCode
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: CodeJam.OneOf`7.op_Equality*
+  commentId: Overload:CodeJam.OneOf`7.op_Equality
+  isExternal: false
+  name: Equality
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Equality
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Equality
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Equality
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Equality
+- uid: CodeJam.OneOf`7.op_Inequality*
+  commentId: Overload:CodeJam.OneOf`7.op_Inequality
+  isExternal: false
+  name: Inequality
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Inequality
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Inequality
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Inequality
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Inequality
+- uid: CodeJam.OneOf`7.Create*
+  commentId: Overload:CodeJam.OneOf`7.Create
+  isExternal: false
+  name: Create
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Create
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Create
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Create
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Create
+- uid: '{T1}'
+  commentId: '!:T1'
+  definition: T1
+  name: T1
+  nameWithType: T1
+  fullName: T1
+- uid: T1
+  isExternal: false
+  name: T1
+  nameWithType: T1
+  fullName: T1
+- uid: CodeJam.OneOf`7.op_Implicit*
+  commentId: Overload:CodeJam.OneOf`7.op_Implicit
+  isExternal: false
+  name: Implicit
+  nameWithType: OneOf<T1, T2, T3, T4, T5, T6, T7>.Implicit
+  fullName: CodeJam.OneOf<T1, T2, T3, T4, T5, T6, T7>.Implicit
+  nameWithType.vb: OneOf(Of T1, T2, T3, T4, T5, T6, T7).Widening
+  fullName.vb: CodeJam.OneOf(Of T1, T2, T3, T4, T5, T6, T7).Widening
+  name.vb: Widening
+- uid: '{T2}'
+  commentId: '!:T2'
+  definition: T2
+  name: T2
+  nameWithType: T2
+  fullName: T2
+- uid: T2
+  isExternal: false
+  name: T2
+  nameWithType: T2
+  fullName: T2
+- uid: '{T3}'
+  commentId: '!:T3'
+  definition: T3
+  name: T3
+  nameWithType: T3
+  fullName: T3
+- uid: T3
+  isExternal: false
+  name: T3
+  nameWithType: T3
+  fullName: T3
+- uid: '{T4}'
+  commentId: '!:T4'
+  definition: T4
+  name: T4
+  nameWithType: T4
+  fullName: T4
+- uid: T4
+  isExternal: false
+  name: T4
+  nameWithType: T4
+  fullName: T4
+- uid: '{T5}'
+  commentId: '!:T5'
+  definition: T5
+  name: T5
+  nameWithType: T5
+  fullName: T5
+- uid: T5
+  isExternal: false
+  name: T5
+  nameWithType: T5
+  fullName: T5
+- uid: '{T6}'
+  commentId: '!:T6'
+  definition: T6
+  name: T6
+  nameWithType: T6
+  fullName: T6
+- uid: T6
+  isExternal: false
+  name: T6
+  nameWithType: T6
+  fullName: T6
+- uid: '{T7}'
+  commentId: '!:T7'
+  definition: T7
+  name: T7
+  nameWithType: T7
+  fullName: T7
+- uid: T7
+  isExternal: false
+  name: T7
+  nameWithType: T7
+  fullName: T7

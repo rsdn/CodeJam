@@ -27,8 +27,7 @@ namespace CodeJam.Collections
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 
-			TValue result;
-			if (!dictionary.TryGetValue(key, out result))
+			if (!dictionary.TryGetValue(key, out var result))
 			{
 				result = new TValue();
 				dictionary.Add(key, result);
@@ -53,8 +52,7 @@ namespace CodeJam.Collections
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 
-			TValue result;
-			if (!dictionary.TryGetValue(key, out result))
+			if (!dictionary.TryGetValue(key, out var result))
 			{
 				result = value;
 				dictionary.Add(key, result);
@@ -80,8 +78,7 @@ namespace CodeJam.Collections
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(valueFactory, nameof(valueFactory));
 
-			TValue result;
-			if (!dictionary.TryGetValue(key, out result))
+			if (!dictionary.TryGetValue(key, out var result))
 			{
 				result = valueFactory(key);
 				dictionary.Add(key, result);
@@ -113,8 +110,7 @@ namespace CodeJam.Collections
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(updateValueFactory, nameof(updateValueFactory));
 
-			TValue result;
-			if (dictionary.TryGetValue(key, out result))
+			if (dictionary.TryGetValue(key, out var result))
 			{
 				var newValue = updateValueFactory(key, result);
 				dictionary[key] = newValue;
@@ -149,8 +145,7 @@ namespace CodeJam.Collections
 			Code.NotNull(addValueFactory, nameof(addValueFactory));
 			Code.NotNull(updateValueFactory, nameof(updateValueFactory));
 
-			TValue result;
-			if (dictionary.TryGetValue(key, out result))
+			if (dictionary.TryGetValue(key, out var result))
 			{
 				var newValue = updateValueFactory(key, result);
 				dictionary[key] = newValue;

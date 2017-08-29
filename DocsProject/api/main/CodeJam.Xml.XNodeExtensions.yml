@@ -1,0 +1,1283 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Xml.XNodeExtensions
+  commentId: T:CodeJam.Xml.XNodeExtensions
+  id: XNodeExtensions
+  parent: CodeJam.Xml
+  children:
+  - CodeJam.Xml.XNodeExtensions.AttributeValueOrDefault(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.String)
+  - CodeJam.Xml.XNodeExtensions.AttributeValueOrDefault``1(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.Func{System.String,``0},``0)
+  - CodeJam.Xml.XNodeExtensions.ElementAltValueOrDefault``1(System.Xml.Linq.XElement,System.Func{System.Xml.Linq.XElement,``0},``0,System.Xml.Linq.XName[])
+  - CodeJam.Xml.XNodeExtensions.ElementValueOrDefault(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.String)
+  - CodeJam.Xml.XNodeExtensions.ElementValueOrDefault``1(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.Func{System.String,``0},``0)
+  - CodeJam.Xml.XNodeExtensions.ElementValueOrDefault``1(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.Func{System.Xml.Linq.XElement,``0},``0)
+  - CodeJam.Xml.XNodeExtensions.RequiredAttribute(System.Xml.Linq.XElement,System.Xml.Linq.XName)
+  - CodeJam.Xml.XNodeExtensions.RequiredElement(System.Xml.Linq.XElement,System.Xml.Linq.XName)
+  - CodeJam.Xml.XNodeExtensions.RequiredElement(System.Xml.Linq.XElement,System.Xml.Linq.XName[])
+  - CodeJam.Xml.XNodeExtensions.RequiredRoot(System.Xml.Linq.XDocument)
+  - CodeJam.Xml.XNodeExtensions.RequiredRoot(System.Xml.Linq.XDocument,System.Xml.Linq.XName)
+  langs:
+  - csharp
+  - vb
+  name: XNodeExtensions
+  nameWithType: XNodeExtensions
+  fullName: CodeJam.Xml.XNodeExtensions
+  type: Class
+  source:
+    remote:
+      path: Main/src/Xml/XNodeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: XNodeExtensions
+    path: ../Main/src/Xml/XNodeExtensions.cs
+    startLine: 15
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Xml
+  summary: "\nExtensions for XLinq.\n"
+  example: []
+  syntax:
+    content: public static class XNodeExtensions
+    content.vb: Public Module XNodeExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Xml.XNodeExtensions.RequiredRoot(System.Xml.Linq.XDocument)
+  commentId: M:CodeJam.Xml.XNodeExtensions.RequiredRoot(System.Xml.Linq.XDocument)
+  id: RequiredRoot(System.Xml.Linq.XDocument)
+  isExtensionMethod: true
+  parent: CodeJam.Xml.XNodeExtensions
+  langs:
+  - csharp
+  - vb
+  name: RequiredRoot(XDocument)
+  nameWithType: XNodeExtensions.RequiredRoot(XDocument)
+  fullName: CodeJam.Xml.XNodeExtensions.RequiredRoot(System.Xml.Linq.XDocument)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Xml/XNodeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: RequiredRoot
+    path: ../Main/src/Xml/XNodeExtensions.cs
+    startLine: 25
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Xml
+  summary: "\nReturns <code data-dev-comment-type=\"paramref\" class=\"paramref\">document</code> root, or throw an exception, if root is null.\n"
+  example: []
+  syntax:
+    content: public static XElement RequiredRoot(this XDocument document)
+    parameters:
+    - id: document
+      type: System.Xml.Linq.XDocument
+      description: The document.
+    return:
+      type: System.Xml.Linq.XElement
+      description: Document root
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function RequiredRoot(document As XDocument) As XElement
+  overload: CodeJam.Xml.XNodeExtensions.RequiredRoot*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: <code data-dev-comment-type="paramref" class="paramref">document</code> is null
+  - type: System.Xml.XmlException
+    commentId: T:System.Xml.XmlException
+    description: Document has no root.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Xml.XNodeExtensions.RequiredRoot(System.Xml.Linq.XDocument,System.Xml.Linq.XName)
+  commentId: M:CodeJam.Xml.XNodeExtensions.RequiredRoot(System.Xml.Linq.XDocument,System.Xml.Linq.XName)
+  id: RequiredRoot(System.Xml.Linq.XDocument,System.Xml.Linq.XName)
+  isExtensionMethod: true
+  parent: CodeJam.Xml.XNodeExtensions
+  langs:
+  - csharp
+  - vb
+  name: RequiredRoot(XDocument, XName)
+  nameWithType: XNodeExtensions.RequiredRoot(XDocument, XName)
+  fullName: CodeJam.Xml.XNodeExtensions.RequiredRoot(System.Xml.Linq.XDocument, System.Xml.Linq.XName)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Xml/XNodeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: RequiredRoot
+    path: ../Main/src/Xml/XNodeExtensions.cs
+    startLine: 44
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Xml
+  summary: "\nReturns <code data-dev-comment-type=\"paramref\" class=\"paramref\">document</code> root, or throws an exception, if root is null or has another name.\n"
+  example: []
+  syntax:
+    content: public static XElement RequiredRoot(this XDocument document, XName rootName)
+    parameters:
+    - id: document
+      type: System.Xml.Linq.XDocument
+      description: The document.
+    - id: rootName
+      type: System.Xml.Linq.XName
+      description: Name of the root tag
+    return:
+      type: System.Xml.Linq.XElement
+      description: Document root
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function RequiredRoot(document As XDocument, rootName As XName) As XElement
+  overload: CodeJam.Xml.XNodeExtensions.RequiredRoot*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: <code data-dev-comment-type="paramref" class="paramref">document</code> is null
+  - type: System.Xml.XmlException
+    commentId: T:System.Xml.XmlException
+    description: Document has no root with specified name.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Xml.XNodeExtensions.RequiredElement(System.Xml.Linq.XElement,System.Xml.Linq.XName)
+  commentId: M:CodeJam.Xml.XNodeExtensions.RequiredElement(System.Xml.Linq.XElement,System.Xml.Linq.XName)
+  id: RequiredElement(System.Xml.Linq.XElement,System.Xml.Linq.XName)
+  isExtensionMethod: true
+  parent: CodeJam.Xml.XNodeExtensions
+  langs:
+  - csharp
+  - vb
+  name: RequiredElement(XElement, XName)
+  nameWithType: XNodeExtensions.RequiredElement(XElement, XName)
+  fullName: CodeJam.Xml.XNodeExtensions.RequiredElement(System.Xml.Linq.XElement, System.Xml.Linq.XName)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Xml/XNodeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: RequiredElement
+    path: ../Main/src/Xml/XNodeExtensions.cs
+    startLine: 64
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Xml
+  summary: "\nReturns child element with name <code data-dev-comment-type=\"paramref\" class=\"paramref\">name</code>, or throws an exception if element does not exists.\n"
+  example: []
+  syntax:
+    content: public static XElement RequiredElement(this XElement parent, XName name)
+    parameters:
+    - id: parent
+      type: System.Xml.Linq.XElement
+      description: Parent element.
+    - id: name
+      type: System.Xml.Linq.XName
+      description: Name of the element.
+    return:
+      type: System.Xml.Linq.XElement
+      description: First element with specified name.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function RequiredElement(parent As XElement, name As XName) As XElement
+  overload: CodeJam.Xml.XNodeExtensions.RequiredElement*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: <code data-dev-comment-type="paramref" class="paramref">parent</code> or <code data-dev-comment-type="paramref" class="paramref">name</code> is null.
+  - type: System.Xml.XmlException
+    commentId: T:System.Xml.XmlException
+    description: Element with specified name does not exists.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Xml.XNodeExtensions.RequiredElement(System.Xml.Linq.XElement,System.Xml.Linq.XName[])
+  commentId: M:CodeJam.Xml.XNodeExtensions.RequiredElement(System.Xml.Linq.XElement,System.Xml.Linq.XName[])
+  id: RequiredElement(System.Xml.Linq.XElement,System.Xml.Linq.XName[])
+  isExtensionMethod: true
+  parent: CodeJam.Xml.XNodeExtensions
+  langs:
+  - csharp
+  - vb
+  name: RequiredElement(XElement, XName[])
+  nameWithType: XNodeExtensions.RequiredElement(XElement, XName[])
+  fullName: CodeJam.Xml.XNodeExtensions.RequiredElement(System.Xml.Linq.XElement, System.Xml.Linq.XName[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Xml/XNodeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: RequiredElement
+    path: ../Main/src/Xml/XNodeExtensions.cs
+    startLine: 88
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Xml
+  summary: "\nReturns child element with one of names in <code data-dev-comment-type=\"paramref\" class=\"paramref\">names</code>,\nor throws an exception if element does not exists.\n"
+  example: []
+  syntax:
+    content: public static XElement RequiredElement(this XElement parent, params XName[] names)
+    parameters:
+    - id: parent
+      type: System.Xml.Linq.XElement
+      description: Parent element.
+    - id: names
+      type: System.Xml.Linq.XName[]
+      description: Possible names of the element.
+    return:
+      type: System.Xml.Linq.XElement
+      description: First element that match one of specified names.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function RequiredElement(parent As XElement, ParamArray names As XName()) As XElement
+  overload: CodeJam.Xml.XNodeExtensions.RequiredElement*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">parent</code> or <code data-dev-comment-type=\"paramref\" class=\"paramref\">names</code> is null.\n"
+  - type: System.Xml.XmlException
+    commentId: T:System.Xml.XmlException
+    description: Element with one of specified names does not exists.
+  nameWithType.vb: XNodeExtensions.RequiredElement(XElement, XName())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Xml.XNodeExtensions.RequiredElement(System.Xml.Linq.XElement, System.Xml.Linq.XName())
+  name.vb: RequiredElement(XElement, XName())
+- uid: CodeJam.Xml.XNodeExtensions.RequiredAttribute(System.Xml.Linq.XElement,System.Xml.Linq.XName)
+  commentId: M:CodeJam.Xml.XNodeExtensions.RequiredAttribute(System.Xml.Linq.XElement,System.Xml.Linq.XName)
+  id: RequiredAttribute(System.Xml.Linq.XElement,System.Xml.Linq.XName)
+  isExtensionMethod: true
+  parent: CodeJam.Xml.XNodeExtensions
+  langs:
+  - csharp
+  - vb
+  name: RequiredAttribute(XElement, XName)
+  nameWithType: XNodeExtensions.RequiredAttribute(XElement, XName)
+  fullName: CodeJam.Xml.XNodeExtensions.RequiredAttribute(System.Xml.Linq.XElement, System.Xml.Linq.XName)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Xml/XNodeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: RequiredAttribute
+    path: ../Main/src/Xml/XNodeExtensions.cs
+    startLine: 112
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Xml
+  summary: "\nReturns attribute with name <code data-dev-comment-type=\"paramref\" class=\"paramref\">name</code>, or throws an exception if attribute does not exists.\n"
+  example: []
+  syntax:
+    content: public static XAttribute RequiredAttribute(this XElement element, XName name)
+    parameters:
+    - id: element
+      type: System.Xml.Linq.XElement
+      description: The <xref href="System.Xml.Linq.XElement" data-throw-if-not-resolved="false"></xref>.
+    - id: name
+      type: System.Xml.Linq.XName
+      description: Name of the attribute.
+    return:
+      type: System.Xml.Linq.XAttribute
+      description: Attribute with specified name.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function RequiredAttribute(element As XElement, name As XName) As XAttribute
+  overload: CodeJam.Xml.XNodeExtensions.RequiredAttribute*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">element</code> or <code data-dev-comment-type=\"paramref\" class=\"paramref\">name</code> is null.\n"
+  - type: System.Xml.XmlException
+    commentId: T:System.Xml.XmlException
+    description: Attribute with specified name not found.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Xml.XNodeExtensions.AttributeValueOrDefault``1(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.Func{System.String,``0},``0)
+  commentId: M:CodeJam.Xml.XNodeExtensions.AttributeValueOrDefault``1(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.Func{System.String,``0},``0)
+  id: AttributeValueOrDefault``1(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.Func{System.String,``0},``0)
+  isExtensionMethod: true
+  parent: CodeJam.Xml.XNodeExtensions
+  langs:
+  - csharp
+  - vb
+  name: AttributeValueOrDefault<T>(XElement, XName, Func<String, T>, T)
+  nameWithType: XNodeExtensions.AttributeValueOrDefault<T>(XElement, XName, Func<String, T>, T)
+  fullName: CodeJam.Xml.XNodeExtensions.AttributeValueOrDefault<T>(System.Xml.Linq.XElement, System.Xml.Linq.XName, System.Func<System.String, T>, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Xml/XNodeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AttributeValueOrDefault
+    path: ../Main/src/Xml/XNodeExtensions.cs
+    startLine: 137
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Xml
+  summary: "\nReturns value of optional attribute.\n"
+  example: []
+  syntax:
+    content: public static T AttributeValueOrDefault<T>(this XElement element, XName attrName, Func<string, T> parser, T defaultValue)
+    parameters:
+    - id: element
+      type: System.Xml.Linq.XElement
+      description: Element with attribute
+    - id: attrName
+      type: System.Xml.Linq.XName
+      description: Attribute name.
+    - id: parser
+      type: System.Func{System.String,{T}}
+      description: Value parser
+    - id: defaultValue
+      type: '{T}'
+      description: Default value.
+    typeParameters:
+    - id: T
+      description: Type of value
+    return:
+      type: '{T}'
+      description: Parsed value or <code data-dev-comment-type="paramref" class="paramref">defaultValue</code> if attribute not exists.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function AttributeValueOrDefault(Of T)(element As XElement, attrName As XName, parser As Func(Of String, T), defaultValue As T) As T
+  overload: CodeJam.Xml.XNodeExtensions.AttributeValueOrDefault*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">element</code> or <code data-dev-comment-type=\"paramref\" class=\"paramref\">attrName</code> or <code data-dev-comment-type=\"paramref\" class=\"paramref\">parser</code> is null.\n"
+  nameWithType.vb: XNodeExtensions.AttributeValueOrDefault(Of T)(XElement, XName, Func(Of String, T), T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Xml.XNodeExtensions.AttributeValueOrDefault(Of T)(System.Xml.Linq.XElement, System.Xml.Linq.XName, System.Func(Of System.String, T), T)
+  name.vb: AttributeValueOrDefault(Of T)(XElement, XName, Func(Of String, T), T)
+- uid: CodeJam.Xml.XNodeExtensions.AttributeValueOrDefault(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.String)
+  commentId: M:CodeJam.Xml.XNodeExtensions.AttributeValueOrDefault(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.String)
+  id: AttributeValueOrDefault(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.String)
+  isExtensionMethod: true
+  parent: CodeJam.Xml.XNodeExtensions
+  langs:
+  - csharp
+  - vb
+  name: AttributeValueOrDefault(XElement, XName, String)
+  nameWithType: XNodeExtensions.AttributeValueOrDefault(XElement, XName, String)
+  fullName: CodeJam.Xml.XNodeExtensions.AttributeValueOrDefault(System.Xml.Linq.XElement, System.Xml.Linq.XName, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Xml/XNodeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AttributeValueOrDefault
+    path: ../Main/src/Xml/XNodeExtensions.cs
+    startLine: 162
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Xml
+  summary: "\nReturns string value of optional attribute.\n"
+  example: []
+  syntax:
+    content: public static string AttributeValueOrDefault(this XElement element, XName attrName, string defaultValue)
+    parameters:
+    - id: element
+      type: System.Xml.Linq.XElement
+      description: Element with attribute
+    - id: attrName
+      type: System.Xml.Linq.XName
+      description: Attribute name.
+    - id: defaultValue
+      type: System.String
+      description: Default value.
+    return:
+      type: System.String
+      description: Parsed value or <code data-dev-comment-type="paramref" class="paramref">defaultValue</code> if attribute does not exist.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function AttributeValueOrDefault(element As XElement, attrName As XName, defaultValue As String) As String
+  overload: CodeJam.Xml.XNodeExtensions.AttributeValueOrDefault*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">element</code> or <code data-dev-comment-type=\"paramref\" class=\"paramref\">attrName</code> is null.\n"
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Xml.XNodeExtensions.ElementAltValueOrDefault``1(System.Xml.Linq.XElement,System.Func{System.Xml.Linq.XElement,``0},``0,System.Xml.Linq.XName[])
+  commentId: M:CodeJam.Xml.XNodeExtensions.ElementAltValueOrDefault``1(System.Xml.Linq.XElement,System.Func{System.Xml.Linq.XElement,``0},``0,System.Xml.Linq.XName[])
+  id: ElementAltValueOrDefault``1(System.Xml.Linq.XElement,System.Func{System.Xml.Linq.XElement,``0},``0,System.Xml.Linq.XName[])
+  isExtensionMethod: true
+  parent: CodeJam.Xml.XNodeExtensions
+  langs:
+  - csharp
+  - vb
+  name: ElementAltValueOrDefault<T>(XElement, Func<XElement, T>, T, XName[])
+  nameWithType: XNodeExtensions.ElementAltValueOrDefault<T>(XElement, Func<XElement, T>, T, XName[])
+  fullName: CodeJam.Xml.XNodeExtensions.ElementAltValueOrDefault<T>(System.Xml.Linq.XElement, System.Func<System.Xml.Linq.XElement, T>, T, System.Xml.Linq.XName[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Xml/XNodeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ElementAltValueOrDefault
+    path: ../Main/src/Xml/XNodeExtensions.cs
+    startLine: 186
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Xml
+  summary: "\nReturns value of optional element.\n"
+  example: []
+  syntax:
+    content: public static T ElementAltValueOrDefault<T>(this XElement parent, Func<XElement, T> valueSelector, T defaultValue, params XName[] names)
+    parameters:
+    - id: parent
+      type: System.Xml.Linq.XElement
+      description: Parent element.
+    - id: valueSelector
+      type: System.Func{System.Xml.Linq.XElement,{T}}
+      description: Function to select element value
+    - id: defaultValue
+      type: '{T}'
+      description: Default value.
+    - id: names
+      type: System.Xml.Linq.XName[]
+      description: Array of possible element names.
+    typeParameters:
+    - id: T
+      description: Type of value
+    return:
+      type: '{T}'
+      description: Selected element value or <code data-dev-comment-type="paramref" class="paramref">defaultValue</code> if element does not exist.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ElementAltValueOrDefault(Of T)(parent As XElement, valueSelector As Func(Of XElement, T), defaultValue As T, ParamArray names As XName()) As T
+  overload: CodeJam.Xml.XNodeExtensions.ElementAltValueOrDefault*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">parent</code> or <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueSelector</code> or <code data-dev-comment-type=\"paramref\" class=\"paramref\">names</code> is null.\n"
+  nameWithType.vb: XNodeExtensions.ElementAltValueOrDefault(Of T)(XElement, Func(Of XElement, T), T, XName())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Xml.XNodeExtensions.ElementAltValueOrDefault(Of T)(System.Xml.Linq.XElement, System.Func(Of System.Xml.Linq.XElement, T), T, System.Xml.Linq.XName())
+  name.vb: ElementAltValueOrDefault(Of T)(XElement, Func(Of XElement, T), T, XName())
+- uid: CodeJam.Xml.XNodeExtensions.ElementValueOrDefault``1(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.Func{System.Xml.Linq.XElement,``0},``0)
+  commentId: M:CodeJam.Xml.XNodeExtensions.ElementValueOrDefault``1(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.Func{System.Xml.Linq.XElement,``0},``0)
+  id: ElementValueOrDefault``1(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.Func{System.Xml.Linq.XElement,``0},``0)
+  isExtensionMethod: true
+  parent: CodeJam.Xml.XNodeExtensions
+  langs:
+  - csharp
+  - vb
+  name: ElementValueOrDefault<T>(XElement, XName, Func<XElement, T>, T)
+  nameWithType: XNodeExtensions.ElementValueOrDefault<T>(XElement, XName, Func<XElement, T>, T)
+  fullName: CodeJam.Xml.XNodeExtensions.ElementValueOrDefault<T>(System.Xml.Linq.XElement, System.Xml.Linq.XName, System.Func<System.Xml.Linq.XElement, T>, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Xml/XNodeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ElementValueOrDefault
+    path: ../Main/src/Xml/XNodeExtensions.cs
+    startLine: 213
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Xml
+  summary: "\nReturns value of optional element.\n"
+  example: []
+  syntax:
+    content: public static T ElementValueOrDefault<T>(this XElement parent, XName name, Func<XElement, T> valueSelector, T defaultValue)
+    parameters:
+    - id: parent
+      type: System.Xml.Linq.XElement
+      description: Parent element.
+    - id: name
+      type: System.Xml.Linq.XName
+      description: Element name.
+    - id: valueSelector
+      type: System.Func{System.Xml.Linq.XElement,{T}}
+      description: Function to select element value
+    - id: defaultValue
+      type: '{T}'
+      description: Default value.
+    typeParameters:
+    - id: T
+      description: Type of value
+    return:
+      type: '{T}'
+      description: Selected element value or <code data-dev-comment-type="paramref" class="paramref">defaultValue</code> if element does not exist
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ElementValueOrDefault(Of T)(parent As XElement, name As XName, valueSelector As Func(Of XElement, T), defaultValue As T) As T
+  overload: CodeJam.Xml.XNodeExtensions.ElementValueOrDefault*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">parent</code> or <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueSelector</code> is null.\n"
+  nameWithType.vb: XNodeExtensions.ElementValueOrDefault(Of T)(XElement, XName, Func(Of XElement, T), T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Xml.XNodeExtensions.ElementValueOrDefault(Of T)(System.Xml.Linq.XElement, System.Xml.Linq.XName, System.Func(Of System.Xml.Linq.XElement, T), T)
+  name.vb: ElementValueOrDefault(Of T)(XElement, XName, Func(Of XElement, T), T)
+- uid: CodeJam.Xml.XNodeExtensions.ElementValueOrDefault``1(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.Func{System.String,``0},``0)
+  commentId: M:CodeJam.Xml.XNodeExtensions.ElementValueOrDefault``1(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.Func{System.String,``0},``0)
+  id: ElementValueOrDefault``1(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.Func{System.String,``0},``0)
+  isExtensionMethod: true
+  parent: CodeJam.Xml.XNodeExtensions
+  langs:
+  - csharp
+  - vb
+  name: ElementValueOrDefault<T>(XElement, XName, Func<String, T>, T)
+  nameWithType: XNodeExtensions.ElementValueOrDefault<T>(XElement, XName, Func<String, T>, T)
+  fullName: CodeJam.Xml.XNodeExtensions.ElementValueOrDefault<T>(System.Xml.Linq.XElement, System.Xml.Linq.XName, System.Func<System.String, T>, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Xml/XNodeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ElementValueOrDefault
+    path: ../Main/src/Xml/XNodeExtensions.cs
+    startLine: 237
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Xml
+  summary: "\nReturns value of optional element.\n"
+  example: []
+  syntax:
+    content: public static T ElementValueOrDefault<T>(this XElement parent, XName name, Func<string, T> valueSelector, T defaultValue)
+    parameters:
+    - id: parent
+      type: System.Xml.Linq.XElement
+      description: Parent element.
+    - id: name
+      type: System.Xml.Linq.XName
+      description: Element name.
+    - id: valueSelector
+      type: System.Func{System.String,{T}}
+      description: Function to parse element value
+    - id: defaultValue
+      type: '{T}'
+      description: Default value.
+    typeParameters:
+    - id: T
+      description: ''
+    return:
+      type: '{T}'
+      description: Selected element value or <code data-dev-comment-type="paramref" class="paramref">defaultValue</code> if element does not exist
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ElementValueOrDefault(Of T)(parent As XElement, name As XName, valueSelector As Func(Of String, T), defaultValue As T) As T
+  overload: CodeJam.Xml.XNodeExtensions.ElementValueOrDefault*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">parent</code> or <code data-dev-comment-type=\"paramref\" class=\"paramref\">name</code> or <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueSelector</code> is null.\n"
+  nameWithType.vb: XNodeExtensions.ElementValueOrDefault(Of T)(XElement, XName, Func(Of String, T), T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Xml.XNodeExtensions.ElementValueOrDefault(Of T)(System.Xml.Linq.XElement, System.Xml.Linq.XName, System.Func(Of System.String, T), T)
+  name.vb: ElementValueOrDefault(Of T)(XElement, XName, Func(Of String, T), T)
+- uid: CodeJam.Xml.XNodeExtensions.ElementValueOrDefault(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.String)
+  commentId: M:CodeJam.Xml.XNodeExtensions.ElementValueOrDefault(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.String)
+  id: ElementValueOrDefault(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.String)
+  isExtensionMethod: true
+  parent: CodeJam.Xml.XNodeExtensions
+  langs:
+  - csharp
+  - vb
+  name: ElementValueOrDefault(XElement, XName, String)
+  nameWithType: XNodeExtensions.ElementValueOrDefault(XElement, XName, String)
+  fullName: CodeJam.Xml.XNodeExtensions.ElementValueOrDefault(System.Xml.Linq.XElement, System.Xml.Linq.XName, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Xml/XNodeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ElementValueOrDefault
+    path: ../Main/src/Xml/XNodeExtensions.cs
+    startLine: 259
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Xml
+  summary: "\nReturns string value of optional element.\n"
+  example: []
+  syntax:
+    content: public static string ElementValueOrDefault(this XElement parent, XName name, string defaultValue)
+    parameters:
+    - id: parent
+      type: System.Xml.Linq.XElement
+      description: Parent element.
+    - id: name
+      type: System.Xml.Linq.XName
+      description: Element name.
+    - id: defaultValue
+      type: System.String
+      description: Default value.
+    return:
+      type: System.String
+      description: Selected element value or <code data-dev-comment-type="paramref" class="paramref">defaultValue</code> if element does not exist
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ElementValueOrDefault(parent As XElement, name As XName, defaultValue As String) As String
+  overload: CodeJam.Xml.XNodeExtensions.ElementValueOrDefault*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">parent</code> or <code data-dev-comment-type=\"paramref\" class=\"paramref\">name</code> is null.\n"
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: CodeJam.Xml
+  commentId: N:CodeJam.Xml
+  isExternal: false
+  name: CodeJam.Xml
+  nameWithType: CodeJam.Xml
+  fullName: CodeJam.Xml
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Xml.XNodeExtensions.RequiredRoot*
+  commentId: Overload:CodeJam.Xml.XNodeExtensions.RequiredRoot
+  isExternal: false
+  name: RequiredRoot
+  nameWithType: XNodeExtensions.RequiredRoot
+  fullName: CodeJam.Xml.XNodeExtensions.RequiredRoot
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  parent: System
+  isExternal: true
+  name: ArgumentNullException
+  nameWithType: ArgumentNullException
+  fullName: System.ArgumentNullException
+- uid: System.Xml.XmlException
+  commentId: T:System.Xml.XmlException
+- uid: System.Xml.Linq.XDocument
+  commentId: T:System.Xml.Linq.XDocument
+  parent: System.Xml.Linq
+  isExternal: true
+  name: XDocument
+  nameWithType: XDocument
+  fullName: System.Xml.Linq.XDocument
+- uid: System.Xml.Linq.XElement
+  commentId: T:System.Xml.Linq.XElement
+  parent: System.Xml.Linq
+  isExternal: true
+  name: XElement
+  nameWithType: XElement
+  fullName: System.Xml.Linq.XElement
+- uid: System.Xml.Linq
+  commentId: N:System.Xml.Linq
+  isExternal: false
+  name: System.Xml.Linq
+  nameWithType: System.Xml.Linq
+  fullName: System.Xml.Linq
+- uid: System.Xml.Linq.XName
+  commentId: T:System.Xml.Linq.XName
+  parent: System.Xml.Linq
+  isExternal: true
+  name: XName
+  nameWithType: XName
+  fullName: System.Xml.Linq.XName
+- uid: CodeJam.Xml.XNodeExtensions.RequiredElement*
+  commentId: Overload:CodeJam.Xml.XNodeExtensions.RequiredElement
+  isExternal: false
+  name: RequiredElement
+  nameWithType: XNodeExtensions.RequiredElement
+  fullName: CodeJam.Xml.XNodeExtensions.RequiredElement
+- uid: System.Xml.Linq.XName[]
+  name: XName[]
+  nameWithType: XName[]
+  fullName: System.Xml.Linq.XName[]
+  nameWithType.vb: XName()
+  fullName.vb: System.Xml.Linq.XName()
+  name.vb: XName()
+  spec.csharp:
+  - uid: System.Xml.Linq.XName
+    name: XName
+    nameWithType: XName
+    fullName: System.Xml.Linq.XName
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Xml.Linq.XName
+    name: XName
+    nameWithType: XName
+    fullName: System.Xml.Linq.XName
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: CodeJam.Xml.XNodeExtensions.RequiredAttribute*
+  commentId: Overload:CodeJam.Xml.XNodeExtensions.RequiredAttribute
+  isExternal: false
+  name: RequiredAttribute
+  nameWithType: XNodeExtensions.RequiredAttribute
+  fullName: CodeJam.Xml.XNodeExtensions.RequiredAttribute
+- uid: System.Xml.Linq.XAttribute
+  commentId: T:System.Xml.Linq.XAttribute
+  parent: System.Xml.Linq
+  isExternal: true
+  name: XAttribute
+  nameWithType: XAttribute
+  fullName: System.Xml.Linq.XAttribute
+- uid: CodeJam.Xml.XNodeExtensions.AttributeValueOrDefault*
+  commentId: Overload:CodeJam.Xml.XNodeExtensions.AttributeValueOrDefault
+  isExternal: false
+  name: AttributeValueOrDefault
+  nameWithType: XNodeExtensions.AttributeValueOrDefault
+  fullName: CodeJam.Xml.XNodeExtensions.AttributeValueOrDefault
+- uid: System.Func{System.String,{T}}
+  commentId: T:System.Func{System.String,``0}
+  parent: System
+  definition: System.Func`2
+  name: Func<String, T>
+  nameWithType: Func<String, T>
+  fullName: System.Func<System.String, T>
+  nameWithType.vb: Func(Of String, T)
+  fullName.vb: System.Func(Of System.String, T)
+  name.vb: Func(Of String, T)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: CodeJam.Xml.XNodeExtensions.ElementAltValueOrDefault*
+  commentId: Overload:CodeJam.Xml.XNodeExtensions.ElementAltValueOrDefault
+  isExternal: false
+  name: ElementAltValueOrDefault
+  nameWithType: XNodeExtensions.ElementAltValueOrDefault
+  fullName: CodeJam.Xml.XNodeExtensions.ElementAltValueOrDefault
+- uid: System.Func{System.Xml.Linq.XElement,{T}}
+  commentId: T:System.Func{System.Xml.Linq.XElement,``0}
+  parent: System
+  definition: System.Func`2
+  name: Func<XElement, T>
+  nameWithType: Func<XElement, T>
+  fullName: System.Func<System.Xml.Linq.XElement, T>
+  nameWithType.vb: Func(Of XElement, T)
+  fullName.vb: System.Func(Of System.Xml.Linq.XElement, T)
+  name.vb: Func(Of XElement, T)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Xml.Linq.XElement
+    name: XElement
+    nameWithType: XElement
+    fullName: System.Xml.Linq.XElement
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Xml.Linq.XElement
+    name: XElement
+    nameWithType: XElement
+    fullName: System.Xml.Linq.XElement
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Xml.XNodeExtensions.ElementValueOrDefault*
+  commentId: Overload:CodeJam.Xml.XNodeExtensions.ElementValueOrDefault
+  isExternal: false
+  name: ElementValueOrDefault
+  nameWithType: XNodeExtensions.ElementValueOrDefault
+  fullName: CodeJam.Xml.XNodeExtensions.ElementValueOrDefault

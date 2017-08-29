@@ -1,0 +1,59 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.TableData
+  commentId: N:CodeJam.TableData
+  id: CodeJam.TableData
+  children:
+  - CodeJam.TableData.CsvFormat
+  - CodeJam.TableData.DataLine
+  - CodeJam.TableData.FixedWidthFormat
+  - CodeJam.TableData.Parser
+  - CodeJam.TableData.TableDataParser
+  langs:
+  - csharp
+  - vb
+  name: CodeJam.TableData
+  nameWithType: CodeJam.TableData
+  fullName: CodeJam.TableData
+  type: Namespace
+  assemblies:
+  - CodeJam.Blocks
+references:
+- uid: CodeJam.TableData.CsvFormat
+  commentId: T:CodeJam.TableData.CsvFormat
+  isExternal: false
+  name: CsvFormat
+  nameWithType: CsvFormat
+  fullName: CodeJam.TableData.CsvFormat
+- uid: CodeJam.TableData.DataLine
+  commentId: T:CodeJam.TableData.DataLine
+  isExternal: false
+  name: DataLine
+  nameWithType: DataLine
+  fullName: CodeJam.TableData.DataLine
+- uid: CodeJam.TableData.FixedWidthFormat
+  commentId: T:CodeJam.TableData.FixedWidthFormat
+  isExternal: false
+  name: FixedWidthFormat
+  nameWithType: FixedWidthFormat
+  fullName: CodeJam.TableData.FixedWidthFormat
+- uid: CodeJam.TableData.TableDataParser
+  commentId: T:CodeJam.TableData.TableDataParser
+  parent: CodeJam.TableData
+  isExternal: false
+  name: TableDataParser
+  nameWithType: TableDataParser
+  fullName: CodeJam.TableData.TableDataParser
+- uid: CodeJam.TableData.Parser
+  commentId: T:CodeJam.TableData.Parser
+  parent: CodeJam.TableData
+  isExternal: false
+  name: Parser
+  nameWithType: Parser
+  fullName: CodeJam.TableData.Parser
+- uid: CodeJam.TableData
+  commentId: N:CodeJam.TableData
+  isExternal: false
+  name: CodeJam.TableData
+  nameWithType: CodeJam.TableData
+  fullName: CodeJam.TableData

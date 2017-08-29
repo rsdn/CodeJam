@@ -1,0 +1,885 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  commentId: T:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  id: ResourceKey
+  parent: CodeJam.PerfTests.Running.SourceAnnotations
+  children:
+  - CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.#ctor(System.Reflection.Assembly,System.String)
+  - CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Assembly
+  - CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Equals(CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey)
+  - CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Equals(System.Object)
+  - CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.GetHashCode
+  - CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.IsEmpty
+  - CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ResourceName
+  - CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ToString
+  langs:
+  - csharp
+  - vb
+  name: ResourceKey
+  nameWithType: ResourceKey
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  type: Struct
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ResourceKey
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+    startLine: 12
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.SourceAnnotations
+  summary: "\nKey for assembly resources. Can be persisted in the current appdomain only.\n"
+  example: []
+  syntax:
+    content: 'public struct ResourceKey : IEquatable<ResourceKey>'
+    content.vb: >-
+      Public Structure ResourceKey
+          Implements IEquatable(Of ResourceKey)
+  seealso:
+  - linkId: System.IEquatable`1
+    commentId: T:System.IEquatable`1
+  implements:
+  - System.IEquatable{CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetType
+  modifiers.csharp:
+  - public
+  - struct
+  modifiers.vb:
+  - Public
+  - Structure
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.#ctor(System.Reflection.Assembly,System.String)
+  commentId: M:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.#ctor(System.Reflection.Assembly,System.String)
+  id: '#ctor(System.Reflection.Assembly,System.String)'
+  parent: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  langs:
+  - csharp
+  - vb
+  name: ResourceKey(Assembly, String)
+  nameWithType: ResourceKey.ResourceKey(Assembly, String)
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ResourceKey(System.Reflection.Assembly, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+    startLine: 17
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.SourceAnnotations
+  summary: Initializes a new instance of the <xref href="CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey" data-throw-if-not-resolved="false"></xref> struct.
+  example: []
+  syntax:
+    content: public ResourceKey(Assembly assembly, string resourceName)
+    parameters:
+    - id: assembly
+      type: System.Reflection.Assembly
+      description: The assembly that contains resource.
+    - id: resourceName
+      type: System.String
+      description: The name of the resource.
+    content.vb: Public Sub New(assembly As Assembly, resourceName As String)
+  overload: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.IsEmpty
+  commentId: P:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.IsEmpty
+  id: IsEmpty
+  parent: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  langs:
+  - csharp
+  - vb
+  name: IsEmpty
+  nameWithType: ResourceKey.IsEmpty
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.IsEmpty
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsEmpty
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+    startLine: 28
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.SourceAnnotations
+  summary: Gets a value indicating whether this instance is empty.
+  example: []
+  syntax:
+    content: public bool IsEmpty { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: <code>true</code> if this instance is empty; otherwise, <code>false</code>.
+    content.vb: Public ReadOnly Property IsEmpty As Boolean
+  overload: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.IsEmpty*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Assembly
+  commentId: P:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Assembly
+  id: Assembly
+  parent: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  langs:
+  - csharp
+  - vb
+  name: Assembly
+  nameWithType: ResourceKey.Assembly
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Assembly
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Assembly
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+    startLine: 32
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.SourceAnnotations
+  summary: Gets the assembly that contains resource.
+  example: []
+  syntax:
+    content: public Assembly Assembly { get; }
+    parameters: []
+    return:
+      type: System.Reflection.Assembly
+      description: The assembly that contains resource.
+    content.vb: Public ReadOnly Property Assembly As Assembly
+  overload: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Assembly*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ResourceName
+  commentId: P:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ResourceName
+  id: ResourceName
+  parent: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  langs:
+  - csharp
+  - vb
+  name: ResourceName
+  nameWithType: ResourceKey.ResourceName
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ResourceName
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ResourceName
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+    startLine: 37
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.SourceAnnotations
+  summary: Gets the name of the resource.
+  example: []
+  syntax:
+    content: public string ResourceName { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The name of the resource.
+    content.vb: Public ReadOnly Property ResourceName As String
+  overload: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ResourceName*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Equals(CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey)
+  commentId: M:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Equals(CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey)
+  id: Equals(CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey)
+  parent: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  langs:
+  - csharp
+  - vb
+  name: Equals(ResourceKey)
+  nameWithType: ResourceKey.Equals(ResourceKey)
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Equals(CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Equals
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+    startLine: 44
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.SourceAnnotations
+  summary: Indicates whether the current object is equal to another object of the same type.
+  example: []
+  syntax:
+    content: public bool Equals(ResourceKey other)
+    parameters:
+    - id: other
+      type: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+      description: An object to compare with this object.
+    return:
+      type: System.Boolean
+      description: true if the current object is equal to the <code data-dev-comment-type="paramref" class="paramref">other</code> parameter; otherwise, false.
+    content.vb: Public Function Equals(other As ResourceKey) As Boolean
+  overload: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Equals*
+  implements:
+  - System.IEquatable{CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey}.Equals(CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Equals(System.Object)
+  commentId: M:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  langs:
+  - csharp
+  - vb
+  name: Equals(Object)
+  nameWithType: ResourceKey.Equals(Object)
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Equals(System.Object)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Equals
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+    startLine: 52
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.SourceAnnotations
+  summary: Determines whether the <code data-dev-comment-type="paramref" class="paramref">obj</code> is equal to this instance.
+  example: []
+  syntax:
+    content: public override bool Equals(object obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The <xref href="System.Object" data-throw-if-not-resolved="false"></xref> to compare with this instance.
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">obj</code> is equal to this instance; otherwise, <code>false</code>.\n"
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Equals*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.GetHashCode
+  commentId: M:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.GetHashCode
+  id: GetHashCode
+  parent: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: ResourceKey.GetHashCode()
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetHashCode
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+    startLine: 58
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.SourceAnnotations
+  summary: Returns a hash code for this instance.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: "\nA hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.\n"
+    content.vb: Public Overrides Function GetHashCode As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.GetHashCode*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ToString
+  commentId: M:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ToString
+  id: ToString
+  parent: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: ResourceKey.ToString()
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ToString()
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToString
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Running.SourceAnnotations/ResourceKey.cs
+    startLine: 65
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.SourceAnnotations
+  summary: Returns a <xref href="System.String" data-throw-if-not-resolved="false"></xref> that represents this instance.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> that represents this instance.
+    content.vb: Public Overrides Function ToString As String
+  overridden: System.ValueType.ToString
+  overload: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.SourceAnnotations
+  commentId: N:CodeJam.PerfTests.Running.SourceAnnotations
+  isExternal: false
+  name: CodeJam.PerfTests.Running.SourceAnnotations
+  nameWithType: CodeJam.PerfTests.Running.SourceAnnotations
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations
+- uid: System.IEquatable{CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey}
+  commentId: T:System.IEquatable{CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey}
+  parent: System
+  definition: System.IEquatable`1
+  name: IEquatable<ResourceKey>
+  nameWithType: IEquatable<ResourceKey>
+  fullName: System.IEquatable<CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey>
+  nameWithType.vb: IEquatable(Of ResourceKey)
+  fullName.vb: System.IEquatable(Of CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey)
+  name.vb: IEquatable(Of ResourceKey)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+    name: ResourceKey
+    nameWithType: ResourceKey
+    fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+    name: ResourceKey
+    nameWithType: ResourceKey
+    fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  commentId: T:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  parent: CodeJam.PerfTests.Running.SourceAnnotations
+  isExternal: false
+  name: ResourceKey
+  nameWithType: ResourceKey
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.#ctor*
+  commentId: Overload:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.#ctor
+  isExternal: false
+  name: ResourceKey
+  nameWithType: ResourceKey.ResourceKey
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ResourceKey
+- uid: System.Reflection.Assembly
+  commentId: T:System.Reflection.Assembly
+  parent: System.Reflection
+  isExternal: true
+  name: Assembly
+  nameWithType: Assembly
+  fullName: System.Reflection.Assembly
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: false
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.IsEmpty*
+  commentId: Overload:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.IsEmpty
+  isExternal: false
+  name: IsEmpty
+  nameWithType: ResourceKey.IsEmpty
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.IsEmpty
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Assembly*
+  commentId: Overload:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Assembly
+  isExternal: false
+  name: Assembly
+  nameWithType: ResourceKey.Assembly
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Assembly
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ResourceName*
+  commentId: Overload:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ResourceName
+  isExternal: false
+  name: ResourceName
+  nameWithType: ResourceKey.ResourceName
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ResourceName
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Equals*
+  commentId: Overload:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Equals
+  isExternal: false
+  name: Equals
+  nameWithType: ResourceKey.Equals
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.Equals
+- uid: System.IEquatable{CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey}.Equals(CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey)
+  commentId: M:System.IEquatable{CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey}.Equals(CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey)
+  parent: System.IEquatable{CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey}
+  definition: System.IEquatable`1.Equals(`0)
+  name: Equals(ResourceKey)
+  nameWithType: IEquatable<ResourceKey>.Equals(ResourceKey)
+  fullName: System.IEquatable<CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey>.Equals(CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey)
+  nameWithType.vb: IEquatable(Of ResourceKey).Equals(ResourceKey)
+  fullName.vb: System.IEquatable(Of CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey).Equals(CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<ResourceKey>.Equals
+    fullName: System.IEquatable<CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+    name: ResourceKey
+    nameWithType: ResourceKey
+    fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of ResourceKey).Equals
+    fullName: System.IEquatable(Of CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+    name: ResourceKey
+    nameWithType: ResourceKey
+    fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<T>.Equals
+    fullName: System.IEquatable<T>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of T).Equals
+    fullName: System.IEquatable(Of T).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: ValueType.Equals(Object)
+  fullName: System.ValueType.Equals(System.Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    nameWithType: ValueType.Equals
+    fullName: System.ValueType.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    nameWithType: ValueType.Equals
+    fullName: System.ValueType.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    nameWithType: ValueType.GetHashCode
+    fullName: System.ValueType.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    nameWithType: ValueType.GetHashCode
+    fullName: System.ValueType.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.GetHashCode*
+  commentId: Overload:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.GetHashCode
+  isExternal: false
+  name: GetHashCode
+  nameWithType: ResourceKey.GetHashCode
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.GetHashCode
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    nameWithType: ValueType.ToString
+    fullName: System.ValueType.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    nameWithType: ValueType.ToString
+    fullName: System.ValueType.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ToString*
+  commentId: Overload:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ToString
+  isExternal: false
+  name: ToString
+  nameWithType: ResourceKey.ToString
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.ToString

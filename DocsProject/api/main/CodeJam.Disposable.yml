@@ -1,0 +1,698 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Disposable
+  commentId: T:CodeJam.Disposable
+  id: Disposable
+  parent: CodeJam
+  children:
+  - CodeJam.Disposable.Create(System.Action)
+  - CodeJam.Disposable.Empty
+  - CodeJam.Disposable.Merge(System.Collections.Generic.IEnumerable{System.IDisposable})
+  - CodeJam.Disposable.Merge(System.IDisposable[])
+  langs:
+  - csharp
+  - vb
+  name: Disposable
+  nameWithType: Disposable
+  fullName: CodeJam.Disposable
+  type: Class
+  source:
+    remote:
+      path: Main/src/Disposable.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Disposable
+    path: ../Main/src/Disposable.cs
+    startLine: 9
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper methods for <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public static class Disposable
+    content.vb: Public Module Disposable
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Disposable.Empty
+  commentId: F:CodeJam.Disposable.Empty
+  id: Empty
+  parent: CodeJam.Disposable
+  langs:
+  - csharp
+  - vb
+  name: Empty
+  nameWithType: Disposable.Empty
+  fullName: CodeJam.Disposable.Empty
+  type: Field
+  source:
+    remote:
+      path: Main/src/Disposable.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Empty
+    path: ../Main/src/Disposable.cs
+    startLine: 60
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> instance without any code in <xref href="System.IDisposable.Dispose" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static readonly Disposable.EmptyDisposable Empty
+    return:
+      type: CodeJam.Disposable.EmptyDisposable
+    content.vb: Public Shared ReadOnly Empty As Disposable.EmptyDisposable
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.Disposable.Create(System.Action)
+  commentId: M:CodeJam.Disposable.Create(System.Action)
+  id: Create(System.Action)
+  parent: CodeJam.Disposable
+  langs:
+  - csharp
+  - vb
+  name: Create(Action)
+  nameWithType: Disposable.Create(Action)
+  fullName: CodeJam.Disposable.Create(System.Action)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Disposable.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Disposable.cs
+    startLine: 69
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCreates <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> instance that calls <code data-dev-comment-type=\"paramref\" class=\"paramref\">disposeAction</code> on disposing.\n"
+  example: []
+  syntax:
+    content: public static IDisposable Create(Action disposeAction)
+    parameters:
+    - id: disposeAction
+      type: System.Action
+      description: The dispose action.
+    return:
+      type: System.IDisposable
+      description: "\nInstance of <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> that calls <code data-dev-comment-type=\"paramref\" class=\"paramref\">disposeAction</code> on disposing.\n"
+    content.vb: Public Shared Function Create(disposeAction As Action) As IDisposable
+  overload: CodeJam.Disposable.Create*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Disposable.Merge(System.IDisposable[])
+  commentId: M:CodeJam.Disposable.Merge(System.IDisposable[])
+  id: Merge(System.IDisposable[])
+  parent: CodeJam.Disposable
+  langs:
+  - csharp
+  - vb
+  name: Merge(IDisposable[])
+  nameWithType: Disposable.Merge(IDisposable[])
+  fullName: CodeJam.Disposable.Merge(System.IDisposable[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Disposable.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Merge
+    path: ../Main/src/Disposable.cs
+    startLine: 75
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Combine multiple <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> instances into single one.
+  example: []
+  syntax:
+    content: public static IDisposable Merge(params IDisposable[] disposables)
+    parameters:
+    - id: disposables
+      type: System.IDisposable[]
+      description: The disposables.
+    return:
+      type: System.IDisposable
+      description: Instance of <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> that will dispose the specified disposables.
+    content.vb: Public Shared Function Merge(ParamArray disposables As IDisposable()) As IDisposable
+  overload: CodeJam.Disposable.Merge*
+  nameWithType.vb: Disposable.Merge(IDisposable())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Disposable.Merge(System.IDisposable())
+  name.vb: Merge(IDisposable())
+- uid: CodeJam.Disposable.Merge(System.Collections.Generic.IEnumerable{System.IDisposable})
+  commentId: M:CodeJam.Disposable.Merge(System.Collections.Generic.IEnumerable{System.IDisposable})
+  id: Merge(System.Collections.Generic.IEnumerable{System.IDisposable})
+  isExtensionMethod: true
+  parent: CodeJam.Disposable
+  langs:
+  - csharp
+  - vb
+  name: Merge(IEnumerable<IDisposable>)
+  nameWithType: Disposable.Merge(IEnumerable<IDisposable>)
+  fullName: CodeJam.Disposable.Merge(System.Collections.Generic.IEnumerable<System.IDisposable>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Disposable.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Merge
+    path: ../Main/src/Disposable.cs
+    startLine: 81
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Combine multiple <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> instances into single one.
+  example: []
+  syntax:
+    content: public static IDisposable Merge(this IEnumerable<IDisposable> disposables)
+    parameters:
+    - id: disposables
+      type: System.Collections.Generic.IEnumerable{System.IDisposable}
+      description: The disposables.
+    return:
+      type: System.IDisposable
+      description: Instance of <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> that will dispose the specified disposables.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function Merge(disposables As IEnumerable(Of IDisposable)) As IDisposable
+  overload: CodeJam.Disposable.Merge*
+  nameWithType.vb: Disposable.Merge(IEnumerable(Of IDisposable))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Disposable.Merge(System.Collections.Generic.IEnumerable(Of System.IDisposable))
+  name.vb: Merge(IEnumerable(Of IDisposable))
+references:
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: CodeJam
+  commentId: N:CodeJam
+  isExternal: false
+  name: CodeJam
+  nameWithType: CodeJam
+  fullName: CodeJam
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Disposable.EmptyDisposable
+  commentId: T:CodeJam.Disposable.EmptyDisposable
+  parent: CodeJam
+  isExternal: false
+  name: Disposable.EmptyDisposable
+  nameWithType: Disposable.EmptyDisposable
+  fullName: CodeJam.Disposable.EmptyDisposable
+- uid: CodeJam.Disposable.Create*
+  commentId: Overload:CodeJam.Disposable.Create
+  isExternal: false
+  name: Create
+  nameWithType: Disposable.Create
+  fullName: CodeJam.Disposable.Create
+- uid: System.Action
+  commentId: T:System.Action
+  parent: System
+  isExternal: true
+  name: Action
+  nameWithType: Action
+  fullName: System.Action
+- uid: CodeJam.Disposable.Merge*
+  commentId: Overload:CodeJam.Disposable.Merge
+  isExternal: false
+  name: Merge
+  nameWithType: Disposable.Merge
+  fullName: CodeJam.Disposable.Merge
+- uid: System.IDisposable[]
+  name: IDisposable[]
+  nameWithType: IDisposable[]
+  fullName: System.IDisposable[]
+  nameWithType.vb: IDisposable()
+  fullName.vb: System.IDisposable()
+  name.vb: IDisposable()
+  spec.csharp:
+  - uid: System.IDisposable
+    name: IDisposable
+    nameWithType: IDisposable
+    fullName: System.IDisposable
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.IDisposable
+    name: IDisposable
+    nameWithType: IDisposable
+    fullName: System.IDisposable
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Collections.Generic.IEnumerable{System.IDisposable}
+  commentId: T:System.Collections.Generic.IEnumerable{System.IDisposable}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<IDisposable>
+  nameWithType: IEnumerable<IDisposable>
+  fullName: System.Collections.Generic.IEnumerable<System.IDisposable>
+  nameWithType.vb: IEnumerable(Of IDisposable)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.IDisposable)
+  name.vb: IEnumerable(Of IDisposable)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.IDisposable
+    name: IDisposable
+    nameWithType: IDisposable
+    fullName: System.IDisposable
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.IDisposable
+    name: IDisposable
+    nameWithType: IDisposable
+    fullName: System.IDisposable
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic

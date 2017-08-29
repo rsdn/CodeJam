@@ -50,13 +50,10 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static DateTime? ToDateTime(
-			[CanBeNull] this string str,
-			DateTimeStyles dateStyle = DateTimeStyles.None,
-			[CanBeNull] IFormatProvider provider = null)
-		{
-			DateTime result;
-			return DateTime.TryParse(str, provider, dateStyle, out result) ? (DateTime?)result : null;
-		}
+				[CanBeNull] this string str,
+				DateTimeStyles dateStyle = DateTimeStyles.None,
+				[CanBeNull] IFormatProvider provider = null) =>
+			DateTime.TryParse(str, provider, dateStyle, out var result) ? (DateTime?)result : null;
 
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-invariant format to its
@@ -78,12 +75,9 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static DateTime? ToDateTimeInvariant(
-			[CanBeNull] this string str,
-			DateTimeStyles dateStyle = DateTimeStyles.None)
-		{
-			DateTime result;
-			return DateTime.TryParse(str, CultureInfo.InvariantCulture, dateStyle, out result) ? (DateTime?)result : null;
-		}
+				[CanBeNull] this string str,
+				DateTimeStyles dateStyle = DateTimeStyles.None) =>
+			DateTime.TryParse(str, CultureInfo.InvariantCulture, dateStyle, out var result) ? (DateTime?)result : null;
 		#endregion
 	}
 }

@@ -165,20 +165,16 @@ namespace CodeJam.Mapping
 						continue;
 				}
 
-				Dictionary<string,string> mapDic;
-				string toName;
-
 				if (_mapperBuilder.ToMappingDictionary == null ||
-					!_mapperBuilder.ToMappingDictionary.TryGetValue(toType, out mapDic) ||
-					!mapDic.TryGetValue(toMember.Name, out toName))
+					!_mapperBuilder.ToMappingDictionary.TryGetValue(toType, out var mapDic) ||
+					!mapDic.TryGetValue(toMember.Name, out var toName))
 					toName = toMember.Name;
 
 				var fromMember = fromAccessor.Members.FirstOrDefault(mi =>
 				{
-					string fromName;
 					if (_mapperBuilder.FromMappingDictionary == null ||
 						!_mapperBuilder.FromMappingDictionary.TryGetValue(fromExpression.Type, out mapDic) ||
-						!mapDic.TryGetValue(mi.Name, out fromName))
+						!mapDic.TryGetValue(mi.Name, out var fromName))
 						fromName = mi.Name;
 					return fromName == toName;
 				});
@@ -453,20 +449,16 @@ namespace CodeJam.Mapping
 							continue;
 					}
 
-					Dictionary<string,string> mapDic;
-					string toName;
-
 					if (_builder._mapperBuilder.ToMappingDictionary == null ||
-						!_builder._mapperBuilder.ToMappingDictionary.TryGetValue(_toExpression.Type, out mapDic) ||
-						!mapDic.TryGetValue(toMember.Name, out toName))
+						!_builder._mapperBuilder.ToMappingDictionary.TryGetValue(_toExpression.Type, out var mapDic) ||
+						!mapDic.TryGetValue(toMember.Name, out var toName))
 						toName = toMember.Name;
 
 					var fromMember = _fromAccessor.Members.FirstOrDefault(mi =>
 					{
-						string fromName;
 						if (_builder._mapperBuilder.FromMappingDictionary == null ||
 							!_builder._mapperBuilder.FromMappingDictionary.TryGetValue(_fromExpression.Type, out mapDic) ||
-							!mapDic.TryGetValue(mi.Name, out fromName))
+							!mapDic.TryGetValue(mi.Name, out var fromName))
 							fromName = mi.Name;
 						return fromName == toName;
 					});
@@ -639,11 +631,8 @@ namespace CodeJam.Mapping
 
 		#endregion
 
-		private static object GetValue(IDictionary<object,object> dic, object key)
-		{
-			object result;
-			return dic != null && dic.TryGetValue(key, out result) ? result : null;
-		}
+		private static object GetValue(IDictionary<object,object> dic, object key) =>
+			dic != null && dic.TryGetValue(key, out var result) ? result : null;
 
 		private static void Add(IDictionary<object,object> dic, object key, object value)
 		{

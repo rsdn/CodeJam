@@ -69,22 +69,22 @@ namespace CodeJam
 			EnumType = enumType;
 			_values = GetValues(enumType);
 			_valuesByName = _values
-				.ToLookupDictionary(
+				.ToDictionary(
 					f => f.Name,
 					StringComparer.InvariantCulture,
 					DictionaryDuplicate.FirstWins);
 			_valuesByNameIgnoreCase = _values
-				.ToLookupDictionary(
+				.ToDictionary(
 					f => f.Name,
 					StringComparer.InvariantCultureIgnoreCase,
 					DictionaryDuplicate.FirstWins);
 			_valuesByValue = _values
-				.ToLookupDictionary(
+				.ToDictionary(
 					f => f.Value,
 					DictionaryDuplicate.FirstWins);
 			_valuesByDisplayName = _values
 				.Where(f => f.DisplayName != null)
-				.ToLookupDictionary(
+				.ToDictionary(
 					f => f.DisplayName,
 					StringComparer.InvariantCulture,
 					DictionaryDuplicate.FirstWins);

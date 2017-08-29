@@ -82,8 +82,7 @@ namespace CodeJam.Threading
 		/// <paramref name="key" /> is null.</exception>
 		public bool TryGetValue(TKey key, out TValue value)
 		{
-			Lazy<TValue> lv;
-			var res = _map.TryGetValue(key, out lv);
+			var res = _map.TryGetValue(key, out var lv);
 			value = res ? lv.Value : default(TValue);
 			return res;
 		}

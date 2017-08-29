@@ -1,0 +1,620 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Reflection.AssemblyExtensions
+  commentId: T:CodeJam.Reflection.AssemblyExtensions
+  id: AssemblyExtensions
+  parent: CodeJam.Reflection
+  children:
+  - CodeJam.Reflection.AssemblyExtensions.GetAssemblyDirectory(System.Reflection.Assembly)
+  - CodeJam.Reflection.AssemblyExtensions.GetAssemblyPath(System.Reflection.Assembly)
+  - CodeJam.Reflection.AssemblyExtensions.GetRequiredResourceStream(System.Reflection.Assembly,System.String)
+  - CodeJam.Reflection.AssemblyExtensions.IsDebugAssembly(System.Reflection.Assembly)
+  langs:
+  - csharp
+  - vb
+  name: AssemblyExtensions
+  nameWithType: AssemblyExtensions
+  fullName: CodeJam.Reflection.AssemblyExtensions
+  type: Class
+  source:
+    remote:
+      path: Main/src/Reflection/AssemblyExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AssemblyExtensions
+    path: ../Main/src/Reflection/AssemblyExtensions.cs
+    startLine: 14
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nThe <xref href=\"System.Reflection.Assembly\" data-throw-if-not-resolved=\"false\"></xref> extensions.\n"
+  example: []
+  syntax:
+    content: public static class AssemblyExtensions
+    content.vb: Public Module AssemblyExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Reflection.AssemblyExtensions.IsDebugAssembly(System.Reflection.Assembly)
+  commentId: M:CodeJam.Reflection.AssemblyExtensions.IsDebugAssembly(System.Reflection.Assembly)
+  id: IsDebugAssembly(System.Reflection.Assembly)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.AssemblyExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsDebugAssembly(Assembly)
+  nameWithType: AssemblyExtensions.IsDebugAssembly(Assembly)
+  fullName: CodeJam.Reflection.AssemblyExtensions.IsDebugAssembly(System.Reflection.Assembly)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/AssemblyExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsDebugAssembly
+    path: ../Main/src/Reflection/AssemblyExtensions.cs
+    startLine: 23
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nChecks that the assembly is build with <xref href=\"System.Diagnostics.DebuggableAttribute.IsJITOptimizerDisabled\" data-throw-if-not-resolved=\"false\"></xref>\nset to <code>false</code>.\n"
+  example: []
+  syntax:
+    content: public static bool IsDebugAssembly(this Assembly assembly)
+    parameters:
+    - id: assembly
+      type: System.Reflection.Assembly
+      description: The assembly to check.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the assembly was build with optimizations disabled.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsDebugAssembly(assembly As Assembly) As Boolean
+  overload: CodeJam.Reflection.AssemblyExtensions.IsDebugAssembly*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.AssemblyExtensions.GetRequiredResourceStream(System.Reflection.Assembly,System.String)
+  commentId: M:CodeJam.Reflection.AssemblyExtensions.GetRequiredResourceStream(System.Reflection.Assembly,System.String)
+  id: GetRequiredResourceStream(System.Reflection.Assembly,System.String)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.AssemblyExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetRequiredResourceStream(Assembly, String)
+  nameWithType: AssemblyExtensions.GetRequiredResourceStream(Assembly, String)
+  fullName: CodeJam.Reflection.AssemblyExtensions.GetRequiredResourceStream(System.Reflection.Assembly, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/AssemblyExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetRequiredResourceStream
+    path: ../Main/src/Reflection/AssemblyExtensions.cs
+    startLine: 38
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nLoads the specified manifest resource from this assembly, and checks if it exists.\n"
+  example: []
+  syntax:
+    content: public static Stream GetRequiredResourceStream(this Assembly assembly, string name)
+    parameters:
+    - id: assembly
+      type: System.Reflection.Assembly
+      description: Resource assembly.
+    - id: name
+      type: System.String
+      description: The case-sensitive name of the manifest resource being requested.
+    return:
+      type: System.IO.Stream
+      description: The manifest resource.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetRequiredResourceStream(assembly As Assembly, name As String) As Stream
+  overload: CodeJam.Reflection.AssemblyExtensions.GetRequiredResourceStream*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: The name parameter is null.
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Resource with specified name not found
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.AssemblyExtensions.GetAssemblyPath(System.Reflection.Assembly)
+  commentId: M:CodeJam.Reflection.AssemblyExtensions.GetAssemblyPath(System.Reflection.Assembly)
+  id: GetAssemblyPath(System.Reflection.Assembly)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.AssemblyExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetAssemblyPath(Assembly)
+  nameWithType: AssemblyExtensions.GetAssemblyPath(Assembly)
+  fullName: CodeJam.Reflection.AssemblyExtensions.GetAssemblyPath(System.Reflection.Assembly)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/AssemblyExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetAssemblyPath
+    path: ../Main/src/Reflection/AssemblyExtensions.cs
+    startLine: 56
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nReturns path to the <code data-dev-comment-type=\"paramref\" class=\"paramref\">assembly</code> file.\n"
+  example: []
+  syntax:
+    content: public static string GetAssemblyPath(this Assembly assembly)
+    parameters:
+    - id: assembly
+      type: System.Reflection.Assembly
+      description: Assembly.
+    return:
+      type: System.String
+      description: Path to <code data-dev-comment-type="paramref" class="paramref">assembly</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetAssemblyPath(assembly As Assembly) As String
+  overload: CodeJam.Reflection.AssemblyExtensions.GetAssemblyPath*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Reflection.AssemblyExtensions.GetAssemblyDirectory(System.Reflection.Assembly)
+  commentId: M:CodeJam.Reflection.AssemblyExtensions.GetAssemblyDirectory(System.Reflection.Assembly)
+  id: GetAssemblyDirectory(System.Reflection.Assembly)
+  isExtensionMethod: true
+  parent: CodeJam.Reflection.AssemblyExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetAssemblyDirectory(Assembly)
+  nameWithType: AssemblyExtensions.GetAssemblyDirectory(Assembly)
+  fullName: CodeJam.Reflection.AssemblyExtensions.GetAssemblyDirectory(System.Reflection.Assembly)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/AssemblyExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetAssemblyDirectory
+    path: ../Main/src/Reflection/AssemblyExtensions.cs
+    startLine: 82
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nReturns directory part of path to assembly <code data-dev-comment-type=\"paramref\" class=\"paramref\">assembly</code> file.\n"
+  example: []
+  syntax:
+    content: public static string GetAssemblyDirectory(this Assembly assembly)
+    parameters:
+    - id: assembly
+      type: System.Reflection.Assembly
+      description: Assembly.
+    return:
+      type: System.String
+      description: Folder part of path to <code data-dev-comment-type="paramref" class="paramref">assembly</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetAssemblyDirectory(assembly As Assembly) As String
+  overload: CodeJam.Reflection.AssemblyExtensions.GetAssemblyDirectory*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: System.Reflection.Assembly
+  commentId: T:System.Reflection.Assembly
+  parent: System.Reflection
+  isExternal: true
+  name: Assembly
+  nameWithType: Assembly
+  fullName: System.Reflection.Assembly
+- uid: CodeJam.Reflection
+  commentId: N:CodeJam.Reflection
+  isExternal: false
+  name: CodeJam.Reflection
+  nameWithType: CodeJam.Reflection
+  fullName: CodeJam.Reflection
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: false
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Diagnostics.DebuggableAttribute.IsJITOptimizerDisabled
+  commentId: P:System.Diagnostics.DebuggableAttribute.IsJITOptimizerDisabled
+- uid: CodeJam.Reflection.AssemblyExtensions.IsDebugAssembly*
+  commentId: Overload:CodeJam.Reflection.AssemblyExtensions.IsDebugAssembly
+  isExternal: false
+  name: IsDebugAssembly
+  nameWithType: AssemblyExtensions.IsDebugAssembly
+  fullName: CodeJam.Reflection.AssemblyExtensions.IsDebugAssembly
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.Reflection.AssemblyExtensions.GetRequiredResourceStream*
+  commentId: Overload:CodeJam.Reflection.AssemblyExtensions.GetRequiredResourceStream
+  isExternal: false
+  name: GetRequiredResourceStream
+  nameWithType: AssemblyExtensions.GetRequiredResourceStream
+  fullName: CodeJam.Reflection.AssemblyExtensions.GetRequiredResourceStream
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  parent: System
+  isExternal: true
+  name: ArgumentNullException
+  nameWithType: ArgumentNullException
+  fullName: System.ArgumentNullException
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: false
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+- uid: CodeJam.Reflection.AssemblyExtensions.GetAssemblyPath*
+  commentId: Overload:CodeJam.Reflection.AssemblyExtensions.GetAssemblyPath
+  isExternal: false
+  name: GetAssemblyPath
+  nameWithType: AssemblyExtensions.GetAssemblyPath
+  fullName: CodeJam.Reflection.AssemblyExtensions.GetAssemblyPath
+- uid: CodeJam.Reflection.AssemblyExtensions.GetAssemblyDirectory*
+  commentId: Overload:CodeJam.Reflection.AssemblyExtensions.GetAssemblyDirectory
+  isExternal: false
+  name: GetAssemblyDirectory
+  nameWithType: AssemblyExtensions.GetAssemblyDirectory
+  fullName: CodeJam.Reflection.AssemblyExtensions.GetAssemblyDirectory

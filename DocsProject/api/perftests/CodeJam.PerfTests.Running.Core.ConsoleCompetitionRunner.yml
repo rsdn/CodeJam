@@ -1,0 +1,1675 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner
+  commentId: T:CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner
+  id: ConsoleCompetitionRunner
+  parent: CodeJam.PerfTests.Running.Core
+  children:
+  - CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.CreateHostLogger(CodeJam.PerfTests.Loggers.LogFilter)
+  - CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.InitCompetitionConfigOverride(CodeJam.PerfTests.Configs.ManualCompetitionConfig)
+  - CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportAssertionsFailed(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  - CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportExecutionErrors(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  - CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportHostLogger(CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger,BenchmarkDotNet.Reports.Summary)
+  - CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportWarnings(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  langs:
+  - csharp
+  - vb
+  name: ConsoleCompetitionRunner
+  nameWithType: ConsoleCompetitionRunner
+  fullName: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/Running.Core/ConsoleCompetitionRunner.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ConsoleCompetitionRunner
+    path: ../PerfTests/src/[L5_AllTogether]/Running.Core/ConsoleCompetitionRunner.cs
+    startLine: 14
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Console competition runner.
+  example: []
+  syntax:
+    content: 'public class ConsoleCompetitionRunner : CompetitionRunnerBase'
+    content.vb: >-
+      Public Class ConsoleCompetitionRunner
+          Inherits CompetitionRunnerBase
+  seealso:
+  - linkId: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+    commentId: T:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  inheritance:
+  - System.Object
+  - CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  inheritedMembers:
+  - CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(CodeJam.PerfTests.Configs.CompetitionFeatures)
+  - CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1({T},CodeJam.PerfTests.Configs.CompetitionFeatures)
+  - CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  - CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(CodeJam.PerfTests.Configs.ICompetitionConfig)
+  - CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1({T},CodeJam.PerfTests.Configs.ICompetitionConfig)
+  - CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type,CodeJam.PerfTests.Configs.ICompetitionConfig)
+  - CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Reflection.Assembly,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  - CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type[],CodeJam.PerfTests.Configs.CompetitionFeatures)
+  - CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Reflection.Assembly,CodeJam.PerfTests.Configs.ICompetitionConfig)
+  - CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type[],CodeJam.PerfTests.Configs.ICompetitionConfig)
+  - CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.GetOutputDirectory(System.Reflection.Assembly)
+  - CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.DumpSummaryToHostLogger
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.CreateHostLogger(CodeJam.PerfTests.Loggers.LogFilter)
+  commentId: M:CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.CreateHostLogger(CodeJam.PerfTests.Loggers.LogFilter)
+  id: CreateHostLogger(CodeJam.PerfTests.Loggers.LogFilter)
+  parent: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner
+  langs:
+  - csharp
+  - vb
+  name: CreateHostLogger(LogFilter)
+  nameWithType: ConsoleCompetitionRunner.CreateHostLogger(LogFilter)
+  fullName: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.CreateHostLogger(CodeJam.PerfTests.Loggers.LogFilter)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/Running.Core/ConsoleCompetitionRunner.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateHostLogger
+    path: ../PerfTests/src/[L5_AllTogether]/Running.Core/ConsoleCompetitionRunner.cs
+    startLine: 28
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Creates a host logger.
+  example: []
+  syntax:
+    content: protected override CompetitionRunnerBase.HostLogger CreateHostLogger(LogFilter hostLogMode)
+    parameters:
+    - id: hostLogMode
+      type: CodeJam.PerfTests.Loggers.LogFilter
+      description: The host log mode.
+    return:
+      type: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger
+      description: An instance of <xref href="CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger" data-throw-if-not-resolved="false"></xref>
+    content.vb: Protected Overrides Function CreateHostLogger(hostLogMode As LogFilter) As CompetitionRunnerBase.HostLogger
+  overridden: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.CreateHostLogger(CodeJam.PerfTests.Loggers.LogFilter)
+  overload: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.CreateHostLogger*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportExecutionErrors(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  commentId: M:CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportExecutionErrors(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  id: ReportExecutionErrors(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  parent: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner
+  langs:
+  - csharp
+  - vb
+  name: ReportExecutionErrors(String, CompetitionState)
+  nameWithType: ConsoleCompetitionRunner.ReportExecutionErrors(String, CompetitionState)
+  fullName: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportExecutionErrors(System.String, CodeJam.PerfTests.Running.Core.CompetitionState)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/Running.Core/ConsoleCompetitionRunner.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ReportExecutionErrors
+    path: ../PerfTests/src/[L5_AllTogether]/Running.Core/ConsoleCompetitionRunner.cs
+    startLine: 34
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Reports the execution errors to user.
+  example: []
+  syntax:
+    content: protected override void ReportExecutionErrors(string messages, CompetitionState competitionState)
+    parameters:
+    - id: messages
+      type: System.String
+      description: The messages to report.
+    - id: competitionState
+      type: CodeJam.PerfTests.Running.Core.CompetitionState
+      description: State of the run.
+    content.vb: Protected Overrides Sub ReportExecutionErrors(messages As String, competitionState As CompetitionState)
+  overridden: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportExecutionErrors(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  overload: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportExecutionErrors*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportAssertionsFailed(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  commentId: M:CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportAssertionsFailed(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  id: ReportAssertionsFailed(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  parent: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner
+  langs:
+  - csharp
+  - vb
+  name: ReportAssertionsFailed(String, CompetitionState)
+  nameWithType: ConsoleCompetitionRunner.ReportAssertionsFailed(String, CompetitionState)
+  fullName: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportAssertionsFailed(System.String, CodeJam.PerfTests.Running.Core.CompetitionState)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/Running.Core/ConsoleCompetitionRunner.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ReportAssertionsFailed
+    path: ../PerfTests/src/[L5_AllTogether]/Running.Core/ConsoleCompetitionRunner.cs
+    startLine: 46
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Reports failed assertions to user.
+  example: []
+  syntax:
+    content: protected override void ReportAssertionsFailed(string messages, CompetitionState competitionState)
+    parameters:
+    - id: messages
+      type: System.String
+      description: The messages to report.
+    - id: competitionState
+      type: CodeJam.PerfTests.Running.Core.CompetitionState
+      description: State of the run.
+    content.vb: Protected Overrides Sub ReportAssertionsFailed(messages As String, competitionState As CompetitionState)
+  overridden: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportAssertionsFailed(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  overload: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportAssertionsFailed*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportWarnings(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  commentId: M:CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportWarnings(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  id: ReportWarnings(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  parent: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner
+  langs:
+  - csharp
+  - vb
+  name: ReportWarnings(String, CompetitionState)
+  nameWithType: ConsoleCompetitionRunner.ReportWarnings(String, CompetitionState)
+  fullName: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportWarnings(System.String, CodeJam.PerfTests.Running.Core.CompetitionState)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/Running.Core/ConsoleCompetitionRunner.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ReportWarnings
+    path: ../PerfTests/src/[L5_AllTogether]/Running.Core/ConsoleCompetitionRunner.cs
+    startLine: 58
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Reports warnings to user.
+  example: []
+  syntax:
+    content: protected override void ReportWarnings(string messages, CompetitionState competitionState)
+    parameters:
+    - id: messages
+      type: System.String
+      description: The messages to report.
+    - id: competitionState
+      type: CodeJam.PerfTests.Running.Core.CompetitionState
+      description: State of the run.
+    content.vb: Protected Overrides Sub ReportWarnings(messages As String, competitionState As CompetitionState)
+  overridden: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportWarnings(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  overload: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportWarnings*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportHostLogger(CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger,BenchmarkDotNet.Reports.Summary)
+  commentId: M:CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportHostLogger(CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger,BenchmarkDotNet.Reports.Summary)
+  id: ReportHostLogger(CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger,BenchmarkDotNet.Reports.Summary)
+  parent: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner
+  langs:
+  - csharp
+  - vb
+  name: ReportHostLogger(CompetitionRunnerBase.HostLogger, Summary)
+  nameWithType: ConsoleCompetitionRunner.ReportHostLogger(CompetitionRunnerBase.HostLogger, Summary)
+  fullName: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportHostLogger(CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger, BenchmarkDotNet.Reports.Summary)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/Running.Core/ConsoleCompetitionRunner.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ReportHostLogger
+    path: ../PerfTests/src/[L5_AllTogether]/Running.Core/ConsoleCompetitionRunner.cs
+    startLine: 70
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Reports content of the host logger to user.
+  example: []
+  syntax:
+    content: protected override void ReportHostLogger(CompetitionRunnerBase.HostLogger logger, Summary summary)
+    parameters:
+    - id: logger
+      type: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger
+      description: The host logger.
+    - id: summary
+      type: BenchmarkDotNet.Reports.Summary
+      description: The summary to report.
+    content.vb: Protected Overrides Sub ReportHostLogger(logger As CompetitionRunnerBase.HostLogger, summary As Summary)
+  overridden: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportHostLogger(CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger,BenchmarkDotNet.Reports.Summary)
+  overload: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportHostLogger*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.InitCompetitionConfigOverride(CodeJam.PerfTests.Configs.ManualCompetitionConfig)
+  commentId: M:CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.InitCompetitionConfigOverride(CodeJam.PerfTests.Configs.ManualCompetitionConfig)
+  id: InitCompetitionConfigOverride(CodeJam.PerfTests.Configs.ManualCompetitionConfig)
+  parent: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner
+  langs:
+  - csharp
+  - vb
+  name: InitCompetitionConfigOverride(ManualCompetitionConfig)
+  nameWithType: ConsoleCompetitionRunner.InitCompetitionConfigOverride(ManualCompetitionConfig)
+  fullName: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.InitCompetitionConfigOverride(CodeJam.PerfTests.Configs.ManualCompetitionConfig)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/Running.Core/ConsoleCompetitionRunner.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: InitCompetitionConfigOverride
+    path: ../PerfTests/src/[L5_AllTogether]/Running.Core/ConsoleCompetitionRunner.cs
+    startLine: 79
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Customize competition config.
+  example: []
+  syntax:
+    content: protected override void InitCompetitionConfigOverride(ManualCompetitionConfig competitionConfig)
+    parameters:
+    - id: competitionConfig
+      type: CodeJam.PerfTests.Configs.ManualCompetitionConfig
+      description: The competition configuration.
+    content.vb: Protected Overrides Sub InitCompetitionConfigOverride(competitionConfig As ManualCompetitionConfig)
+  overridden: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.InitCompetitionConfigOverride(CodeJam.PerfTests.Configs.ManualCompetitionConfig)
+  overload: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.InitCompetitionConfigOverride*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+references:
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  commentId: T:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  parent: CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CompetitionRunnerBase
+  nameWithType: CompetitionRunnerBase
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+- uid: CodeJam.PerfTests.Running.Core
+  commentId: N:CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CodeJam.PerfTests.Running.Core
+  nameWithType: CodeJam.PerfTests.Running.Core
+  fullName: CodeJam.PerfTests.Running.Core
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(CodeJam.PerfTests.Configs.CompetitionFeatures)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(CodeJam.PerfTests.Configs.CompetitionFeatures)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  isExternal: false
+  name: Run<T>(CompetitionFeatures)
+  nameWithType: CompetitionRunnerBase.Run<T>(CompetitionFeatures)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run<T>(CodeJam.PerfTests.Configs.CompetitionFeatures)
+  nameWithType.vb: CompetitionRunnerBase.Run(Of T)(CompetitionFeatures)
+  fullName.vb: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(Of T)(CodeJam.PerfTests.Configs.CompetitionFeatures)
+  name.vb: Run(Of T)(CompetitionFeatures)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(CodeJam.PerfTests.Configs.CompetitionFeatures)
+    name: Run<T>
+    nameWithType: CompetitionRunnerBase.Run<T>
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.CompetitionFeatures
+    name: CompetitionFeatures
+    nameWithType: CompetitionFeatures
+    fullName: CodeJam.PerfTests.Configs.CompetitionFeatures
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(CodeJam.PerfTests.Configs.CompetitionFeatures)
+    name: Run(Of T)
+    nameWithType: CompetitionRunnerBase.Run(Of T)
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.CompetitionFeatures
+    name: CompetitionFeatures
+    nameWithType: CompetitionFeatures
+    fullName: CodeJam.PerfTests.Configs.CompetitionFeatures
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1({T},CodeJam.PerfTests.Configs.CompetitionFeatures)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(``0,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  definition: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(``0,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  name: Run<T>(T, CompetitionFeatures)
+  nameWithType: CompetitionRunnerBase.Run<T>(T, CompetitionFeatures)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run<T>(T, CodeJam.PerfTests.Configs.CompetitionFeatures)
+  nameWithType.vb: CompetitionRunnerBase.Run(Of T)(T, CompetitionFeatures)
+  fullName.vb: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(Of T)(T, CodeJam.PerfTests.Configs.CompetitionFeatures)
+  name.vb: Run(Of T)(T, CompetitionFeatures)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(``0,CodeJam.PerfTests.Configs.CompetitionFeatures)
+    name: Run<T>
+    nameWithType: CompetitionRunnerBase.Run<T>
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.CompetitionFeatures
+    name: CompetitionFeatures
+    nameWithType: CompetitionFeatures
+    fullName: CodeJam.PerfTests.Configs.CompetitionFeatures
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(``0,CodeJam.PerfTests.Configs.CompetitionFeatures)
+    name: Run(Of T)
+    nameWithType: CompetitionRunnerBase.Run(Of T)
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.CompetitionFeatures
+    name: CompetitionFeatures
+    nameWithType: CompetitionFeatures
+    fullName: CodeJam.PerfTests.Configs.CompetitionFeatures
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  isExternal: true
+  name: Run(Type, CompetitionFeatures)
+  nameWithType: CompetitionRunnerBase.Run(Type, CompetitionFeatures)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type, CodeJam.PerfTests.Configs.CompetitionFeatures)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type,CodeJam.PerfTests.Configs.CompetitionFeatures)
+    name: Run
+    nameWithType: CompetitionRunnerBase.Run
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.CompetitionFeatures
+    name: CompetitionFeatures
+    nameWithType: CompetitionFeatures
+    fullName: CodeJam.PerfTests.Configs.CompetitionFeatures
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type,CodeJam.PerfTests.Configs.CompetitionFeatures)
+    name: Run
+    nameWithType: CompetitionRunnerBase.Run
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.CompetitionFeatures
+    name: CompetitionFeatures
+    nameWithType: CompetitionFeatures
+    fullName: CodeJam.PerfTests.Configs.CompetitionFeatures
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(CodeJam.PerfTests.Configs.ICompetitionConfig)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(CodeJam.PerfTests.Configs.ICompetitionConfig)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  isExternal: false
+  name: Run<T>(ICompetitionConfig)
+  nameWithType: CompetitionRunnerBase.Run<T>(ICompetitionConfig)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run<T>(CodeJam.PerfTests.Configs.ICompetitionConfig)
+  nameWithType.vb: CompetitionRunnerBase.Run(Of T)(ICompetitionConfig)
+  fullName.vb: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(Of T)(CodeJam.PerfTests.Configs.ICompetitionConfig)
+  name.vb: Run(Of T)(ICompetitionConfig)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(CodeJam.PerfTests.Configs.ICompetitionConfig)
+    name: Run<T>
+    nameWithType: CompetitionRunnerBase.Run<T>
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(CodeJam.PerfTests.Configs.ICompetitionConfig)
+    name: Run(Of T)
+    nameWithType: CompetitionRunnerBase.Run(Of T)
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1({T},CodeJam.PerfTests.Configs.ICompetitionConfig)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(``0,CodeJam.PerfTests.Configs.ICompetitionConfig)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  definition: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(``0,CodeJam.PerfTests.Configs.ICompetitionConfig)
+  name: Run<T>(T, ICompetitionConfig)
+  nameWithType: CompetitionRunnerBase.Run<T>(T, ICompetitionConfig)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run<T>(T, CodeJam.PerfTests.Configs.ICompetitionConfig)
+  nameWithType.vb: CompetitionRunnerBase.Run(Of T)(T, ICompetitionConfig)
+  fullName.vb: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(Of T)(T, CodeJam.PerfTests.Configs.ICompetitionConfig)
+  name.vb: Run(Of T)(T, ICompetitionConfig)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(``0,CodeJam.PerfTests.Configs.ICompetitionConfig)
+    name: Run<T>
+    nameWithType: CompetitionRunnerBase.Run<T>
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(``0,CodeJam.PerfTests.Configs.ICompetitionConfig)
+    name: Run(Of T)
+    nameWithType: CompetitionRunnerBase.Run(Of T)
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type,CodeJam.PerfTests.Configs.ICompetitionConfig)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type,CodeJam.PerfTests.Configs.ICompetitionConfig)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  isExternal: true
+  name: Run(Type, ICompetitionConfig)
+  nameWithType: CompetitionRunnerBase.Run(Type, ICompetitionConfig)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type, CodeJam.PerfTests.Configs.ICompetitionConfig)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type,CodeJam.PerfTests.Configs.ICompetitionConfig)
+    name: Run
+    nameWithType: CompetitionRunnerBase.Run
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type,CodeJam.PerfTests.Configs.ICompetitionConfig)
+    name: Run
+    nameWithType: CompetitionRunnerBase.Run
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Reflection.Assembly,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Reflection.Assembly,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  isExternal: true
+  name: Run(Assembly, CompetitionFeatures)
+  nameWithType: CompetitionRunnerBase.Run(Assembly, CompetitionFeatures)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Reflection.Assembly, CodeJam.PerfTests.Configs.CompetitionFeatures)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Reflection.Assembly,CodeJam.PerfTests.Configs.CompetitionFeatures)
+    name: Run
+    nameWithType: CompetitionRunnerBase.Run
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.CompetitionFeatures
+    name: CompetitionFeatures
+    nameWithType: CompetitionFeatures
+    fullName: CodeJam.PerfTests.Configs.CompetitionFeatures
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Reflection.Assembly,CodeJam.PerfTests.Configs.CompetitionFeatures)
+    name: Run
+    nameWithType: CompetitionRunnerBase.Run
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.CompetitionFeatures
+    name: CompetitionFeatures
+    nameWithType: CompetitionFeatures
+    fullName: CodeJam.PerfTests.Configs.CompetitionFeatures
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type[],CodeJam.PerfTests.Configs.CompetitionFeatures)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type[],CodeJam.PerfTests.Configs.CompetitionFeatures)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  isExternal: true
+  name: Run(Type[], CompetitionFeatures)
+  nameWithType: CompetitionRunnerBase.Run(Type[], CompetitionFeatures)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type[], CodeJam.PerfTests.Configs.CompetitionFeatures)
+  nameWithType.vb: CompetitionRunnerBase.Run(Type(), CompetitionFeatures)
+  fullName.vb: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type(), CodeJam.PerfTests.Configs.CompetitionFeatures)
+  name.vb: Run(Type(), CompetitionFeatures)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type[],CodeJam.PerfTests.Configs.CompetitionFeatures)
+    name: Run
+    nameWithType: CompetitionRunnerBase.Run
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.CompetitionFeatures
+    name: CompetitionFeatures
+    nameWithType: CompetitionFeatures
+    fullName: CodeJam.PerfTests.Configs.CompetitionFeatures
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type[],CodeJam.PerfTests.Configs.CompetitionFeatures)
+    name: Run
+    nameWithType: CompetitionRunnerBase.Run
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.CompetitionFeatures
+    name: CompetitionFeatures
+    nameWithType: CompetitionFeatures
+    fullName: CodeJam.PerfTests.Configs.CompetitionFeatures
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Reflection.Assembly,CodeJam.PerfTests.Configs.ICompetitionConfig)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Reflection.Assembly,CodeJam.PerfTests.Configs.ICompetitionConfig)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  isExternal: true
+  name: Run(Assembly, ICompetitionConfig)
+  nameWithType: CompetitionRunnerBase.Run(Assembly, ICompetitionConfig)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Reflection.Assembly, CodeJam.PerfTests.Configs.ICompetitionConfig)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Reflection.Assembly,CodeJam.PerfTests.Configs.ICompetitionConfig)
+    name: Run
+    nameWithType: CompetitionRunnerBase.Run
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Reflection.Assembly,CodeJam.PerfTests.Configs.ICompetitionConfig)
+    name: Run
+    nameWithType: CompetitionRunnerBase.Run
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type[],CodeJam.PerfTests.Configs.ICompetitionConfig)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type[],CodeJam.PerfTests.Configs.ICompetitionConfig)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  isExternal: true
+  name: Run(Type[], ICompetitionConfig)
+  nameWithType: CompetitionRunnerBase.Run(Type[], ICompetitionConfig)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type[], CodeJam.PerfTests.Configs.ICompetitionConfig)
+  nameWithType.vb: CompetitionRunnerBase.Run(Type(), ICompetitionConfig)
+  fullName.vb: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type(), CodeJam.PerfTests.Configs.ICompetitionConfig)
+  name.vb: Run(Type(), ICompetitionConfig)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type[],CodeJam.PerfTests.Configs.ICompetitionConfig)
+    name: Run
+    nameWithType: CompetitionRunnerBase.Run
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(System.Type[],CodeJam.PerfTests.Configs.ICompetitionConfig)
+    name: Run
+    nameWithType: CompetitionRunnerBase.Run
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.GetOutputDirectory(System.Reflection.Assembly)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.GetOutputDirectory(System.Reflection.Assembly)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  isExternal: true
+  name: GetOutputDirectory(Assembly)
+  nameWithType: CompetitionRunnerBase.GetOutputDirectory(Assembly)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.GetOutputDirectory(System.Reflection.Assembly)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.GetOutputDirectory(System.Reflection.Assembly)
+    name: GetOutputDirectory
+    nameWithType: CompetitionRunnerBase.GetOutputDirectory
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.GetOutputDirectory
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.GetOutputDirectory(System.Reflection.Assembly)
+    name: GetOutputDirectory
+    nameWithType: CompetitionRunnerBase.GetOutputDirectory
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.GetOutputDirectory
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.DumpSummaryToHostLogger
+  commentId: P:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.DumpSummaryToHostLogger
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  isExternal: false
+  name: DumpSummaryToHostLogger
+  nameWithType: CompetitionRunnerBase.DumpSummaryToHostLogger
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.DumpSummaryToHostLogger
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(``0,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(``0,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  isExternal: false
+  name: Run<T>(T, CompetitionFeatures)
+  nameWithType: CompetitionRunnerBase.Run<T>(T, CompetitionFeatures)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run<T>(T, CodeJam.PerfTests.Configs.CompetitionFeatures)
+  nameWithType.vb: CompetitionRunnerBase.Run(Of T)(T, CompetitionFeatures)
+  fullName.vb: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(Of T)(T, CodeJam.PerfTests.Configs.CompetitionFeatures)
+  name.vb: Run(Of T)(T, CompetitionFeatures)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(``0,CodeJam.PerfTests.Configs.CompetitionFeatures)
+    name: Run<T>
+    nameWithType: CompetitionRunnerBase.Run<T>
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.CompetitionFeatures
+    name: CompetitionFeatures
+    nameWithType: CompetitionFeatures
+    fullName: CodeJam.PerfTests.Configs.CompetitionFeatures
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(``0,CodeJam.PerfTests.Configs.CompetitionFeatures)
+    name: Run(Of T)
+    nameWithType: CompetitionRunnerBase.Run(Of T)
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.CompetitionFeatures
+    name: CompetitionFeatures
+    nameWithType: CompetitionFeatures
+    fullName: CodeJam.PerfTests.Configs.CompetitionFeatures
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(``0,CodeJam.PerfTests.Configs.ICompetitionConfig)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(``0,CodeJam.PerfTests.Configs.ICompetitionConfig)
+  isExternal: false
+  name: Run<T>(T, ICompetitionConfig)
+  nameWithType: CompetitionRunnerBase.Run<T>(T, ICompetitionConfig)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run<T>(T, CodeJam.PerfTests.Configs.ICompetitionConfig)
+  nameWithType.vb: CompetitionRunnerBase.Run(Of T)(T, ICompetitionConfig)
+  fullName.vb: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(Of T)(T, CodeJam.PerfTests.Configs.ICompetitionConfig)
+  name.vb: Run(Of T)(T, ICompetitionConfig)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(``0,CodeJam.PerfTests.Configs.ICompetitionConfig)
+    name: Run<T>
+    nameWithType: CompetitionRunnerBase.Run<T>
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run``1(``0,CodeJam.PerfTests.Configs.ICompetitionConfig)
+    name: Run(Of T)
+    nameWithType: CompetitionRunnerBase.Run(Of T)
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.Run(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+    nameWithType: ICompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger
+  commentId: T:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger
+  parent: CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CompetitionRunnerBase.HostLogger
+  nameWithType: CompetitionRunnerBase.HostLogger
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.CreateHostLogger(CodeJam.PerfTests.Loggers.LogFilter)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.CreateHostLogger(CodeJam.PerfTests.Loggers.LogFilter)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  isExternal: false
+  name: CreateHostLogger(LogFilter)
+  nameWithType: CompetitionRunnerBase.CreateHostLogger(LogFilter)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.CreateHostLogger(CodeJam.PerfTests.Loggers.LogFilter)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.CreateHostLogger(CodeJam.PerfTests.Loggers.LogFilter)
+    name: CreateHostLogger
+    nameWithType: CompetitionRunnerBase.CreateHostLogger
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.CreateHostLogger
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Loggers.LogFilter
+    name: LogFilter
+    nameWithType: LogFilter
+    fullName: CodeJam.PerfTests.Loggers.LogFilter
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.CreateHostLogger(CodeJam.PerfTests.Loggers.LogFilter)
+    name: CreateHostLogger
+    nameWithType: CompetitionRunnerBase.CreateHostLogger
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.CreateHostLogger
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Loggers.LogFilter
+    name: LogFilter
+    nameWithType: LogFilter
+    fullName: CodeJam.PerfTests.Loggers.LogFilter
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.CreateHostLogger*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.CreateHostLogger
+  isExternal: false
+  name: CreateHostLogger
+  nameWithType: ConsoleCompetitionRunner.CreateHostLogger
+  fullName: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.CreateHostLogger
+- uid: CodeJam.PerfTests.Loggers.LogFilter
+  commentId: T:CodeJam.PerfTests.Loggers.LogFilter
+  parent: CodeJam.PerfTests.Loggers
+  isExternal: false
+  name: LogFilter
+  nameWithType: LogFilter
+  fullName: CodeJam.PerfTests.Loggers.LogFilter
+- uid: CodeJam.PerfTests.Loggers
+  commentId: N:CodeJam.PerfTests.Loggers
+  isExternal: false
+  name: CodeJam.PerfTests.Loggers
+  nameWithType: CodeJam.PerfTests.Loggers
+  fullName: CodeJam.PerfTests.Loggers
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportExecutionErrors(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportExecutionErrors(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  isExternal: true
+  name: ReportExecutionErrors(String, CompetitionState)
+  nameWithType: CompetitionRunnerBase.ReportExecutionErrors(String, CompetitionState)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportExecutionErrors(System.String, CodeJam.PerfTests.Running.Core.CompetitionState)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportExecutionErrors(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+    name: ReportExecutionErrors
+    nameWithType: CompetitionRunnerBase.ReportExecutionErrors
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportExecutionErrors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionState
+    name: CompetitionState
+    nameWithType: CompetitionState
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionState
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportExecutionErrors(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+    name: ReportExecutionErrors
+    nameWithType: CompetitionRunnerBase.ReportExecutionErrors
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportExecutionErrors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionState
+    name: CompetitionState
+    nameWithType: CompetitionState
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionState
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportExecutionErrors*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportExecutionErrors
+  isExternal: false
+  name: ReportExecutionErrors
+  nameWithType: ConsoleCompetitionRunner.ReportExecutionErrors
+  fullName: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportExecutionErrors
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: CodeJam.PerfTests.Running.Core.CompetitionState
+  commentId: T:CodeJam.PerfTests.Running.Core.CompetitionState
+  parent: CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CompetitionState
+  nameWithType: CompetitionState
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionState
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportAssertionsFailed(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportAssertionsFailed(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  isExternal: true
+  name: ReportAssertionsFailed(String, CompetitionState)
+  nameWithType: CompetitionRunnerBase.ReportAssertionsFailed(String, CompetitionState)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportAssertionsFailed(System.String, CodeJam.PerfTests.Running.Core.CompetitionState)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportAssertionsFailed(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+    name: ReportAssertionsFailed
+    nameWithType: CompetitionRunnerBase.ReportAssertionsFailed
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportAssertionsFailed
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionState
+    name: CompetitionState
+    nameWithType: CompetitionState
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionState
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportAssertionsFailed(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+    name: ReportAssertionsFailed
+    nameWithType: CompetitionRunnerBase.ReportAssertionsFailed
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportAssertionsFailed
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionState
+    name: CompetitionState
+    nameWithType: CompetitionState
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionState
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportAssertionsFailed*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportAssertionsFailed
+  isExternal: false
+  name: ReportAssertionsFailed
+  nameWithType: ConsoleCompetitionRunner.ReportAssertionsFailed
+  fullName: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportAssertionsFailed
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportWarnings(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportWarnings(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  isExternal: true
+  name: ReportWarnings(String, CompetitionState)
+  nameWithType: CompetitionRunnerBase.ReportWarnings(String, CompetitionState)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportWarnings(System.String, CodeJam.PerfTests.Running.Core.CompetitionState)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportWarnings(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+    name: ReportWarnings
+    nameWithType: CompetitionRunnerBase.ReportWarnings
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportWarnings
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionState
+    name: CompetitionState
+    nameWithType: CompetitionState
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionState
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportWarnings(System.String,CodeJam.PerfTests.Running.Core.CompetitionState)
+    name: ReportWarnings
+    nameWithType: CompetitionRunnerBase.ReportWarnings
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportWarnings
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionState
+    name: CompetitionState
+    nameWithType: CompetitionState
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionState
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportWarnings*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportWarnings
+  isExternal: false
+  name: ReportWarnings
+  nameWithType: ConsoleCompetitionRunner.ReportWarnings
+  fullName: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportWarnings
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportHostLogger(CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger,BenchmarkDotNet.Reports.Summary)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportHostLogger(CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger,BenchmarkDotNet.Reports.Summary)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  isExternal: true
+  name: ReportHostLogger(CompetitionRunnerBase.HostLogger, Summary)
+  nameWithType: CompetitionRunnerBase.ReportHostLogger(CompetitionRunnerBase.HostLogger, Summary)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportHostLogger(CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger, BenchmarkDotNet.Reports.Summary)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportHostLogger(CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger,BenchmarkDotNet.Reports.Summary)
+    name: ReportHostLogger
+    nameWithType: CompetitionRunnerBase.ReportHostLogger
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportHostLogger
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger
+    name: CompetitionRunnerBase.HostLogger
+    nameWithType: CompetitionRunnerBase.HostLogger
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportHostLogger(CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger,BenchmarkDotNet.Reports.Summary)
+    name: ReportHostLogger
+    nameWithType: CompetitionRunnerBase.ReportHostLogger
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.ReportHostLogger
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger
+    name: CompetitionRunnerBase.HostLogger
+    nameWithType: CompetitionRunnerBase.HostLogger
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportHostLogger*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportHostLogger
+  isExternal: false
+  name: ReportHostLogger
+  nameWithType: ConsoleCompetitionRunner.ReportHostLogger
+  fullName: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ReportHostLogger
+- uid: BenchmarkDotNet.Reports.Summary
+  commentId: T:BenchmarkDotNet.Reports.Summary
+  parent: BenchmarkDotNet.Reports
+  isExternal: true
+  name: Summary
+  nameWithType: Summary
+  fullName: BenchmarkDotNet.Reports.Summary
+- uid: BenchmarkDotNet.Reports
+  commentId: N:BenchmarkDotNet.Reports
+  isExternal: false
+  name: BenchmarkDotNet.Reports
+  nameWithType: BenchmarkDotNet.Reports
+  fullName: BenchmarkDotNet.Reports
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.InitCompetitionConfigOverride(CodeJam.PerfTests.Configs.ManualCompetitionConfig)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.InitCompetitionConfigOverride(CodeJam.PerfTests.Configs.ManualCompetitionConfig)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  isExternal: false
+  name: InitCompetitionConfigOverride(ManualCompetitionConfig)
+  nameWithType: CompetitionRunnerBase.InitCompetitionConfigOverride(ManualCompetitionConfig)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.InitCompetitionConfigOverride(CodeJam.PerfTests.Configs.ManualCompetitionConfig)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.InitCompetitionConfigOverride(CodeJam.PerfTests.Configs.ManualCompetitionConfig)
+    name: InitCompetitionConfigOverride
+    nameWithType: CompetitionRunnerBase.InitCompetitionConfigOverride
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.InitCompetitionConfigOverride
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ManualCompetitionConfig
+    name: ManualCompetitionConfig
+    nameWithType: ManualCompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ManualCompetitionConfig
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.InitCompetitionConfigOverride(CodeJam.PerfTests.Configs.ManualCompetitionConfig)
+    name: InitCompetitionConfigOverride
+    nameWithType: CompetitionRunnerBase.InitCompetitionConfigOverride
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.InitCompetitionConfigOverride
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Configs.ManualCompetitionConfig
+    name: ManualCompetitionConfig
+    nameWithType: ManualCompetitionConfig
+    fullName: CodeJam.PerfTests.Configs.ManualCompetitionConfig
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.InitCompetitionConfigOverride*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.InitCompetitionConfigOverride
+  isExternal: false
+  name: InitCompetitionConfigOverride
+  nameWithType: ConsoleCompetitionRunner.InitCompetitionConfigOverride
+  fullName: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.InitCompetitionConfigOverride
+- uid: CodeJam.PerfTests.Configs.ManualCompetitionConfig
+  commentId: T:CodeJam.PerfTests.Configs.ManualCompetitionConfig
+  parent: CodeJam.PerfTests.Configs
+  isExternal: false
+  name: ManualCompetitionConfig
+  nameWithType: ManualCompetitionConfig
+  fullName: CodeJam.PerfTests.Configs.ManualCompetitionConfig
+- uid: CodeJam.PerfTests.Configs
+  commentId: N:CodeJam.PerfTests.Configs
+  isExternal: false
+  name: CodeJam.PerfTests.Configs
+  nameWithType: CodeJam.PerfTests.Configs
+  fullName: CodeJam.PerfTests.Configs

@@ -1,0 +1,548 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Reflection.ReflectionEnumHelper
+  commentId: T:CodeJam.Reflection.ReflectionEnumHelper
+  id: ReflectionEnumHelper
+  parent: CodeJam.Reflection
+  children:
+  - CodeJam.Reflection.ReflectionEnumHelper.GetField``1(``0)
+  - CodeJam.Reflection.ReflectionEnumHelper.GetFields(System.Type)
+  - CodeJam.Reflection.ReflectionEnumHelper.GetFields``1
+  langs:
+  - csharp
+  - vb
+  name: ReflectionEnumHelper
+  nameWithType: ReflectionEnumHelper
+  fullName: CodeJam.Reflection.ReflectionEnumHelper
+  type: Class
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionEnumHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ReflectionEnumHelper
+    path: ../Main/src/Reflection/ReflectionEnumHelper.cs
+    startLine: 11
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nReflection helper methods for enumeration.\n"
+  example: []
+  syntax:
+    content: public static class ReflectionEnumHelper
+    content.vb: Public Module ReflectionEnumHelper
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Reflection.ReflectionEnumHelper.GetField``1(``0)
+  commentId: M:CodeJam.Reflection.ReflectionEnumHelper.GetField``1(``0)
+  id: GetField``1(``0)
+  parent: CodeJam.Reflection.ReflectionEnumHelper
+  langs:
+  - csharp
+  - vb
+  name: GetField<TEnum>(TEnum)
+  nameWithType: ReflectionEnumHelper.GetField<TEnum>(TEnum)
+  fullName: CodeJam.Reflection.ReflectionEnumHelper.GetField<TEnum>(TEnum)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionEnumHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetField
+    path: ../Main/src/Reflection/ReflectionEnumHelper.cs
+    startLine: 23
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: "\nSearches for the public field with the specified enumeration value.\n"
+  example: []
+  syntax:
+    content: 'public static FieldInfo GetField<TEnum>(TEnum value)where TEnum : struct'
+    parameters:
+    - id: value
+      type: '{TEnum}'
+      description: An enumeration value.
+    typeParameters:
+    - id: TEnum
+      description: An enumeration type.
+    return:
+      type: System.Reflection.FieldInfo
+      description: "\nAn object representing the public field with the specified enumeration value, if found;\notherwise, null.\n"
+    content.vb: Public Shared Function GetField(Of TEnum As Structure)(value As TEnum) As FieldInfo
+  overload: CodeJam.Reflection.ReflectionEnumHelper.GetField*
+  nameWithType.vb: ReflectionEnumHelper.GetField(Of TEnum)(TEnum)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Reflection.ReflectionEnumHelper.GetField(Of TEnum)(TEnum)
+  name.vb: GetField(Of TEnum)(TEnum)
+- uid: CodeJam.Reflection.ReflectionEnumHelper.GetFields``1
+  commentId: M:CodeJam.Reflection.ReflectionEnumHelper.GetFields``1
+  id: GetFields``1
+  parent: CodeJam.Reflection.ReflectionEnumHelper
+  langs:
+  - csharp
+  - vb
+  name: GetFields<TEnum>()
+  nameWithType: ReflectionEnumHelper.GetFields<TEnum>()
+  fullName: CodeJam.Reflection.ReflectionEnumHelper.GetFields<TEnum>()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionEnumHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetFields
+    path: ../Main/src/Reflection/ReflectionEnumHelper.cs
+    startLine: 39
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: Returns enum fields for enum type.
+  example: []
+  syntax:
+    content: 'public static FieldInfo[] GetFields<TEnum>()where TEnum : struct'
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum.
+    return:
+      type: System.Reflection.FieldInfo[]
+      description: List of enum fields.
+    content.vb: Public Shared Function GetFields(Of TEnum As Structure) As FieldInfo()
+  overload: CodeJam.Reflection.ReflectionEnumHelper.GetFields*
+  nameWithType.vb: ReflectionEnumHelper.GetFields(Of TEnum)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Reflection.ReflectionEnumHelper.GetFields(Of TEnum)()
+  name.vb: GetFields(Of TEnum)()
+- uid: CodeJam.Reflection.ReflectionEnumHelper.GetFields(System.Type)
+  commentId: M:CodeJam.Reflection.ReflectionEnumHelper.GetFields(System.Type)
+  id: GetFields(System.Type)
+  parent: CodeJam.Reflection.ReflectionEnumHelper
+  langs:
+  - csharp
+  - vb
+  name: GetFields(Type)
+  nameWithType: ReflectionEnumHelper.GetFields(Type)
+  fullName: CodeJam.Reflection.ReflectionEnumHelper.GetFields(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Reflection/ReflectionEnumHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetFields
+    path: ../Main/src/Reflection/ReflectionEnumHelper.cs
+    startLine: 46
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Reflection
+  summary: Returns enum fields for enum type.
+  example: []
+  syntax:
+    content: public static FieldInfo[] GetFields(Type enumType)
+    parameters:
+    - id: enumType
+      type: System.Type
+      description: Type of the enum.
+    return:
+      type: System.Reflection.FieldInfo[]
+      description: List of enum fields.
+    content.vb: Public Shared Function GetFields(enumType As Type) As FieldInfo()
+  overload: CodeJam.Reflection.ReflectionEnumHelper.GetFields*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: CodeJam.Reflection
+  commentId: N:CodeJam.Reflection
+  isExternal: false
+  name: CodeJam.Reflection
+  nameWithType: CodeJam.Reflection
+  fullName: CodeJam.Reflection
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Reflection.ReflectionEnumHelper.GetField*
+  commentId: Overload:CodeJam.Reflection.ReflectionEnumHelper.GetField
+  isExternal: false
+  name: GetField
+  nameWithType: ReflectionEnumHelper.GetField
+  fullName: CodeJam.Reflection.ReflectionEnumHelper.GetField
+- uid: '{TEnum}'
+  commentId: '!:TEnum'
+  definition: TEnum
+  name: TEnum
+  nameWithType: TEnum
+  fullName: TEnum
+- uid: System.Reflection.FieldInfo
+  commentId: T:System.Reflection.FieldInfo
+  parent: System.Reflection
+  isExternal: true
+  name: FieldInfo
+  nameWithType: FieldInfo
+  fullName: System.Reflection.FieldInfo
+- uid: TEnum
+  isExternal: false
+  name: TEnum
+  nameWithType: TEnum
+  fullName: TEnum
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: false
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+- uid: CodeJam.Reflection.ReflectionEnumHelper.GetFields*
+  commentId: Overload:CodeJam.Reflection.ReflectionEnumHelper.GetFields
+  isExternal: false
+  name: GetFields
+  nameWithType: ReflectionEnumHelper.GetFields
+  fullName: CodeJam.Reflection.ReflectionEnumHelper.GetFields
+- uid: System.Reflection.FieldInfo[]
+  name: FieldInfo[]
+  nameWithType: FieldInfo[]
+  fullName: System.Reflection.FieldInfo[]
+  nameWithType.vb: FieldInfo()
+  fullName.vb: System.Reflection.FieldInfo()
+  name.vb: FieldInfo()
+  spec.csharp:
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    nameWithType: FieldInfo
+    fullName: System.Reflection.FieldInfo
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    nameWithType: FieldInfo
+    fullName: System.Reflection.FieldInfo
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type

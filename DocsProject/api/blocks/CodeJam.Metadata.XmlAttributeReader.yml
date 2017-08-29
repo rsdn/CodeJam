@@ -1,0 +1,864 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Metadata.XmlAttributeReader
+  commentId: T:CodeJam.Metadata.XmlAttributeReader
+  id: XmlAttributeReader
+  parent: CodeJam.Metadata
+  children:
+  - CodeJam.Metadata.XmlAttributeReader.#ctor(System.IO.Stream)
+  - CodeJam.Metadata.XmlAttributeReader.#ctor(System.String)
+  - CodeJam.Metadata.XmlAttributeReader.#ctor(System.String,System.Reflection.Assembly)
+  - CodeJam.Metadata.XmlAttributeReader.GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+  - CodeJam.Metadata.XmlAttributeReader.GetAttributes``1(System.Type,System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: XmlAttributeReader
+  nameWithType: XmlAttributeReader
+  fullName: CodeJam.Metadata.XmlAttributeReader
+  type: Class
+  source:
+    remote:
+      path: Blocks/src/Metadata/XmlAttributeReader.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: XmlAttributeReader
+    path: ../Blocks/src/Metadata/XmlAttributeReader.cs
+    startLine: 20
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Metadata
+  summary: "\nReads type metadata such as type and members attributes from XML.\n"
+  example: []
+  syntax:
+    content: 'public class XmlAttributeReader : IMetadataReader'
+    content.vb: >-
+      Public Class XmlAttributeReader
+          Implements IMetadataReader
+  inheritance:
+  - System.Object
+  implements:
+  - CodeJam.Metadata.IMetadataReader
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - CodeJam.Metadata.XmlAttributeReader.CodeJam.Mapping.Map.DeepCopy``1
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: CodeJam.Metadata.XmlAttributeReader.#ctor(System.String)
+  commentId: M:CodeJam.Metadata.XmlAttributeReader.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: CodeJam.Metadata.XmlAttributeReader
+  langs:
+  - csharp
+  - vb
+  name: XmlAttributeReader(String)
+  nameWithType: XmlAttributeReader.XmlAttributeReader(String)
+  fullName: CodeJam.Metadata.XmlAttributeReader.XmlAttributeReader(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: Blocks/src/Metadata/XmlAttributeReader.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../Blocks/src/Metadata/XmlAttributeReader.cs
+    startLine: 29
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Metadata
+  summary: "\nReads metadata from provided XML file or from calling assembly resource.\n"
+  example: []
+  syntax:
+    content: public XmlAttributeReader(string xmlFile)
+    parameters:
+    - id: xmlFile
+      type: System.String
+      description: Metadata file name.
+    content.vb: Public Sub New(xmlFile As String)
+  overload: CodeJam.Metadata.XmlAttributeReader.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Metadata.XmlAttributeReader.#ctor(System.String,System.Reflection.Assembly)
+  commentId: M:CodeJam.Metadata.XmlAttributeReader.#ctor(System.String,System.Reflection.Assembly)
+  id: '#ctor(System.String,System.Reflection.Assembly)'
+  parent: CodeJam.Metadata.XmlAttributeReader
+  langs:
+  - csharp
+  - vb
+  name: XmlAttributeReader(String, Assembly)
+  nameWithType: XmlAttributeReader.XmlAttributeReader(String, Assembly)
+  fullName: CodeJam.Metadata.XmlAttributeReader.XmlAttributeReader(System.String, System.Reflection.Assembly)
+  type: Constructor
+  source:
+    remote:
+      path: Blocks/src/Metadata/XmlAttributeReader.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../Blocks/src/Metadata/XmlAttributeReader.cs
+    startLine: 38
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Metadata
+  summary: "\nReads metadata from provided XML file or from provided assembly resource.\n"
+  example: []
+  syntax:
+    content: public XmlAttributeReader(string xmlFile, Assembly assembly)
+    parameters:
+    - id: xmlFile
+      type: System.String
+      description: Metadata file name.
+    - id: assembly
+      type: System.Reflection.Assembly
+      description: Assembly to get resource stream.
+    content.vb: Public Sub New(xmlFile As String, assembly As Assembly)
+  overload: CodeJam.Metadata.XmlAttributeReader.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Metadata.XmlAttributeReader.#ctor(System.IO.Stream)
+  commentId: M:CodeJam.Metadata.XmlAttributeReader.#ctor(System.IO.Stream)
+  id: '#ctor(System.IO.Stream)'
+  parent: CodeJam.Metadata.XmlAttributeReader
+  langs:
+  - csharp
+  - vb
+  name: XmlAttributeReader(Stream)
+  nameWithType: XmlAttributeReader.XmlAttributeReader(Stream)
+  fullName: CodeJam.Metadata.XmlAttributeReader.XmlAttributeReader(System.IO.Stream)
+  type: Constructor
+  source:
+    remote:
+      path: Blocks/src/Metadata/XmlAttributeReader.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../Blocks/src/Metadata/XmlAttributeReader.cs
+    startLine: 87
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Metadata
+  summary: "\nReads metadata from provided XML file or from provided stream.\n"
+  example: []
+  syntax:
+    content: public XmlAttributeReader(Stream xmlDocStream)
+    parameters:
+    - id: xmlDocStream
+      type: System.IO.Stream
+      description: Stream to read metadata.
+    content.vb: Public Sub New(xmlDocStream As Stream)
+  overload: CodeJam.Metadata.XmlAttributeReader.#ctor*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Metadata.XmlAttributeReader.GetAttributes``1(System.Type,System.Boolean)
+  commentId: M:CodeJam.Metadata.XmlAttributeReader.GetAttributes``1(System.Type,System.Boolean)
+  id: GetAttributes``1(System.Type,System.Boolean)
+  parent: CodeJam.Metadata.XmlAttributeReader
+  langs:
+  - csharp
+  - vb
+  name: GetAttributes<T>(Type, Boolean)
+  nameWithType: XmlAttributeReader.GetAttributes<T>(Type, Boolean)
+  fullName: CodeJam.Metadata.XmlAttributeReader.GetAttributes<T>(System.Type, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Metadata/XmlAttributeReader.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetAttributes
+    path: ../Blocks/src/Metadata/XmlAttributeReader.cs
+    startLine: 174
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Metadata
+  summary: "\nReturns custom attributes applied to provided type.\n"
+  example: []
+  syntax:
+    content: 'public T[] GetAttributes<T>(Type type, bool inherit = true)where T : Attribute'
+    parameters:
+    - id: type
+      type: System.Type
+      description: Object type
+    - id: inherit
+      type: System.Boolean
+      description: <strong>true</strong> to search this member&apos;s inheritance chain to find the attributes; otherwise, <strong>false</strong>.
+    typeParameters:
+    - id: T
+      description: The type of attribute to search for. Only attributes that are assignable to this type are returned.
+    return:
+      type: '{T}[]'
+      description: Array of custom attributes.
+    content.vb: Public Function GetAttributes(Of T As Attribute)(type As Type, inherit As Boolean = True) As T()
+  overload: CodeJam.Metadata.XmlAttributeReader.GetAttributes*
+  implements:
+  - CodeJam.Metadata.IMetadataReader.GetAttributes``1(System.Type,System.Boolean)
+  nameWithType.vb: XmlAttributeReader.GetAttributes(Of T)(Type, Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Metadata.XmlAttributeReader.GetAttributes(Of T)(System.Type, System.Boolean)
+  name.vb: GetAttributes(Of T)(Type, Boolean)
+- uid: CodeJam.Metadata.XmlAttributeReader.GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+  commentId: M:CodeJam.Metadata.XmlAttributeReader.GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+  id: GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+  parent: CodeJam.Metadata.XmlAttributeReader
+  langs:
+  - csharp
+  - vb
+  name: GetAttributes<T>(MemberInfo, Boolean)
+  nameWithType: XmlAttributeReader.GetAttributes<T>(MemberInfo, Boolean)
+  fullName: CodeJam.Metadata.XmlAttributeReader.GetAttributes<T>(System.Reflection.MemberInfo, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Metadata/XmlAttributeReader.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetAttributes
+    path: ../Blocks/src/Metadata/XmlAttributeReader.cs
+    startLine: 197
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Metadata
+  summary: "\nReturns custom attributes applied to provided type member.\n"
+  example: []
+  syntax:
+    content: 'public T[] GetAttributes<T>(MemberInfo memberInfo, bool inherit = true)where T : Attribute'
+    parameters:
+    - id: memberInfo
+      type: System.Reflection.MemberInfo
+      description: Type member.
+    - id: inherit
+      type: System.Boolean
+      description: <strong>true</strong> to search this member&apos;s inheritance chain to find the attributes; otherwise, <strong>false</strong>.
+    typeParameters:
+    - id: T
+      description: The type of attribute to search for. Only attributes that are assignable to this member are returned.
+    return:
+      type: '{T}[]'
+      description: Array of custom attributes.
+    content.vb: Public Function GetAttributes(Of T As Attribute)(memberInfo As MemberInfo, inherit As Boolean = True) As T()
+  overload: CodeJam.Metadata.XmlAttributeReader.GetAttributes*
+  implements:
+  - CodeJam.Metadata.IMetadataReader.GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+  nameWithType.vb: XmlAttributeReader.GetAttributes(Of T)(MemberInfo, Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Metadata.XmlAttributeReader.GetAttributes(Of T)(System.Reflection.MemberInfo, System.Boolean)
+  name.vb: GetAttributes(Of T)(MemberInfo, Boolean)
+references:
+- uid: CodeJam.Metadata
+  commentId: N:CodeJam.Metadata
+  isExternal: false
+  name: CodeJam.Metadata
+  nameWithType: CodeJam.Metadata
+  fullName: CodeJam.Metadata
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: CodeJam.Metadata.IMetadataReader
+  commentId: T:CodeJam.Metadata.IMetadataReader
+  parent: CodeJam.Metadata
+  isExternal: false
+  name: IMetadataReader
+  nameWithType: IMetadataReader
+  fullName: CodeJam.Metadata.IMetadataReader
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Metadata.XmlAttributeReader.CodeJam.Mapping.Map.DeepCopy``1
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  parent: CodeJam.Mapping.Map
+  definition: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  name: DeepCopy<XmlAttributeReader>()
+  nameWithType: Map.DeepCopy<XmlAttributeReader>()
+  fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.Metadata.XmlAttributeReader>()
+  nameWithType.vb: Map.DeepCopy(Of XmlAttributeReader)()
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.Metadata.XmlAttributeReader)()
+  name.vb: DeepCopy(Of XmlAttributeReader)()
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy<XmlAttributeReader>
+    nameWithType: Map.DeepCopy<XmlAttributeReader>
+    fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.Metadata.XmlAttributeReader>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy(Of XmlAttributeReader)
+    nameWithType: Map.DeepCopy(Of XmlAttributeReader)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.Metadata.XmlAttributeReader)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  isExternal: false
+  name: DeepCopy<T>(T)
+  nameWithType: Map.DeepCopy<T>(T)
+  fullName: CodeJam.Mapping.Map.DeepCopy<T>(T)
+  nameWithType.vb: Map.DeepCopy(Of T)(T)
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of T)(T)
+  name.vb: DeepCopy(Of T)(T)
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy<T>
+    nameWithType: Map.DeepCopy<T>
+    fullName: CodeJam.Mapping.Map.DeepCopy<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy(Of T)
+    nameWithType: Map.DeepCopy(Of T)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.Map
+  commentId: T:CodeJam.Mapping.Map
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: Map
+  nameWithType: Map
+  fullName: CodeJam.Mapping.Map
+- uid: CodeJam.Mapping
+  commentId: N:CodeJam.Mapping
+  isExternal: false
+  name: CodeJam.Mapping
+  nameWithType: CodeJam.Mapping
+  fullName: CodeJam.Mapping
+- uid: CodeJam.Metadata.XmlAttributeReader.#ctor*
+  commentId: Overload:CodeJam.Metadata.XmlAttributeReader.#ctor
+  isExternal: false
+  name: XmlAttributeReader
+  nameWithType: XmlAttributeReader.XmlAttributeReader
+  fullName: CodeJam.Metadata.XmlAttributeReader.XmlAttributeReader
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Reflection.Assembly
+  commentId: T:System.Reflection.Assembly
+  parent: System.Reflection
+  isExternal: true
+  name: Assembly
+  nameWithType: Assembly
+  fullName: System.Reflection.Assembly
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: false
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: false
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+- uid: CodeJam.Metadata.XmlAttributeReader.GetAttributes*
+  commentId: Overload:CodeJam.Metadata.XmlAttributeReader.GetAttributes
+  isExternal: false
+  name: GetAttributes
+  nameWithType: XmlAttributeReader.GetAttributes
+  fullName: CodeJam.Metadata.XmlAttributeReader.GetAttributes
+- uid: CodeJam.Metadata.IMetadataReader.GetAttributes``1(System.Type,System.Boolean)
+  commentId: M:CodeJam.Metadata.IMetadataReader.GetAttributes``1(System.Type,System.Boolean)
+  parent: CodeJam.Metadata.IMetadataReader
+  isExternal: true
+  name: GetAttributes<T>(Type, Boolean)
+  nameWithType: IMetadataReader.GetAttributes<T>(Type, Boolean)
+  fullName: CodeJam.Metadata.IMetadataReader.GetAttributes<T>(System.Type, System.Boolean)
+  nameWithType.vb: IMetadataReader.GetAttributes(Of T)(Type, Boolean)
+  fullName.vb: CodeJam.Metadata.IMetadataReader.GetAttributes(Of T)(System.Type, System.Boolean)
+  name.vb: GetAttributes(Of T)(Type, Boolean)
+  spec.csharp:
+  - uid: CodeJam.Metadata.IMetadataReader.GetAttributes``1(System.Type,System.Boolean)
+    name: GetAttributes<T>
+    nameWithType: IMetadataReader.GetAttributes<T>
+    fullName: CodeJam.Metadata.IMetadataReader.GetAttributes<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Metadata.IMetadataReader.GetAttributes``1(System.Type,System.Boolean)
+    name: GetAttributes(Of T)
+    nameWithType: IMetadataReader.GetAttributes(Of T)
+    fullName: CodeJam.Metadata.IMetadataReader.GetAttributes(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: '{T}[]'
+  name: T[]
+  nameWithType: T[]
+  fullName: T[]
+  nameWithType.vb: T()
+  fullName.vb: T()
+  name.vb: T()
+  spec.csharp:
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: CodeJam.Metadata.IMetadataReader.GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+  commentId: M:CodeJam.Metadata.IMetadataReader.GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+  parent: CodeJam.Metadata.IMetadataReader
+  isExternal: true
+  name: GetAttributes<T>(MemberInfo, Boolean)
+  nameWithType: IMetadataReader.GetAttributes<T>(MemberInfo, Boolean)
+  fullName: CodeJam.Metadata.IMetadataReader.GetAttributes<T>(System.Reflection.MemberInfo, System.Boolean)
+  nameWithType.vb: IMetadataReader.GetAttributes(Of T)(MemberInfo, Boolean)
+  fullName.vb: CodeJam.Metadata.IMetadataReader.GetAttributes(Of T)(System.Reflection.MemberInfo, System.Boolean)
+  name.vb: GetAttributes(Of T)(MemberInfo, Boolean)
+  spec.csharp:
+  - uid: CodeJam.Metadata.IMetadataReader.GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+    name: GetAttributes<T>
+    nameWithType: IMetadataReader.GetAttributes<T>
+    fullName: CodeJam.Metadata.IMetadataReader.GetAttributes<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Metadata.IMetadataReader.GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+    name: GetAttributes(Of T)
+    nameWithType: IMetadataReader.GetAttributes(Of T)
+    fullName: CodeJam.Metadata.IMetadataReader.GetAttributes(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Reflection.MemberInfo
+  commentId: T:System.Reflection.MemberInfo
+  parent: System.Reflection
+  isExternal: true
+  name: MemberInfo
+  nameWithType: MemberInfo
+  fullName: System.Reflection.MemberInfo

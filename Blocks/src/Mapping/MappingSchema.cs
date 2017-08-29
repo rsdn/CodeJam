@@ -888,9 +888,7 @@ namespace CodeJam.Mapping
 			if (_mapValues == null)
 				_mapValues = new ConcurrentDictionary<Type,MapValue[]>();
 
-			MapValue[] mapValues;
-
-			if (_mapValues.TryGetValue(type, out mapValues))
+			if (_mapValues.TryGetValue(type, out var mapValues))
 				return mapValues;
 
 			var underlyingType = type.ToNullableUnderlying();

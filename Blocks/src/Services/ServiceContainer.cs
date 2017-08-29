@@ -42,8 +42,7 @@ namespace CodeJam.Services
 
 		private void ConcealService(Type serviceType)
 		{
-			IServiceBag bag;
-			if (!_services.TryRemove(serviceType, out bag))
+			if (!_services.TryRemove(serviceType, out var bag))
 				throw new ArgumentException($"Service with type '{serviceType}' not registered.");
 			bag.Dispose();
 		}
@@ -177,8 +176,7 @@ namespace CodeJam.Services
 				var type = _services.Keys.FirstOrDefault();
 				if (type != null)
 				{
-					IServiceBag bag;
-					if (_services.TryRemove(type, out bag))
+					if (_services.TryRemove(type, out var bag))
 						bag.Dispose();
 				}
 			}

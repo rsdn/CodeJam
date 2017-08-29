@@ -1,0 +1,746 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.IO.PathHelpers
+  commentId: T:CodeJam.IO.PathHelpers
+  id: PathHelpers
+  parent: CodeJam.IO
+  children:
+  - CodeJam.IO.PathHelpers.EnsureContainerPath(System.String)
+  - CodeJam.IO.PathHelpers.IsContainerPath(System.String)
+  - CodeJam.IO.PathHelpers.IsSimpleName(System.String)
+  - CodeJam.IO.PathHelpers.IsWellFormedAbsolutePath(System.String)
+  - CodeJam.IO.PathHelpers.IsWellFormedContainerPath(System.String)
+  - CodeJam.IO.PathHelpers.IsWellFormedPath(System.String)
+  - CodeJam.IO.PathHelpers.IsWellFormedRelativePath(System.String)
+  - CodeJam.IO.PathHelpers.IsWellFormedSimpleName(System.String)
+  langs:
+  - csharp
+  - vb
+  name: PathHelpers
+  nameWithType: PathHelpers
+  fullName: CodeJam.IO.PathHelpers
+  type: Class
+  source:
+    remote:
+      path: Main/src/IO/PathHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: PathHelpers
+    path: ../Main/src/IO/PathHelpers.cs
+    startLine: 11
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: "\nHelpers for <xref href=\"System.IO.Path\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public static class PathHelpers
+    content.vb: Public Module PathHelpers
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.IO.PathHelpers.IsWellFormedPath(System.String)
+  commentId: M:CodeJam.IO.PathHelpers.IsWellFormedPath(System.String)
+  id: IsWellFormedPath(System.String)
+  parent: CodeJam.IO.PathHelpers
+  langs:
+  - csharp
+  - vb
+  name: IsWellFormedPath(String)
+  nameWithType: PathHelpers.IsWellFormedPath(String)
+  fullName: CodeJam.IO.PathHelpers.IsWellFormedPath(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/PathHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsWellFormedPath
+    path: ../Main/src/IO/PathHelpers.cs
+    startLine: 29
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: "\nDetermines whether the path is either absolute or relative not rooted path.\n"
+  example: []
+  syntax:
+    content: public static bool IsWellFormedPath(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the path is either absolute or relative not rooted path, <code>false</code>.
+    content.vb: Public Shared Function IsWellFormedPath(path As String) As Boolean
+  overload: CodeJam.IO.PathHelpers.IsWellFormedPath*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.PathHelpers.IsWellFormedAbsolutePath(System.String)
+  commentId: M:CodeJam.IO.PathHelpers.IsWellFormedAbsolutePath(System.String)
+  id: IsWellFormedAbsolutePath(System.String)
+  parent: CodeJam.IO.PathHelpers
+  langs:
+  - csharp
+  - vb
+  name: IsWellFormedAbsolutePath(String)
+  nameWithType: PathHelpers.IsWellFormedAbsolutePath(String)
+  fullName: CodeJam.IO.PathHelpers.IsWellFormedAbsolutePath(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/PathHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsWellFormedAbsolutePath
+    path: ../Main/src/IO/PathHelpers.cs
+    startLine: 48
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: "\nDetermines whether the path is well-formed absolute path.\n"
+  example: []
+  syntax:
+    content: public static bool IsWellFormedAbsolutePath(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the path is well-formed absolute path; otherwise, <code>false</code>.
+    content.vb: Public Shared Function IsWellFormedAbsolutePath(path As String) As Boolean
+  overload: CodeJam.IO.PathHelpers.IsWellFormedAbsolutePath*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.PathHelpers.IsWellFormedRelativePath(System.String)
+  commentId: M:CodeJam.IO.PathHelpers.IsWellFormedRelativePath(System.String)
+  id: IsWellFormedRelativePath(System.String)
+  parent: CodeJam.IO.PathHelpers
+  langs:
+  - csharp
+  - vb
+  name: IsWellFormedRelativePath(String)
+  nameWithType: PathHelpers.IsWellFormedRelativePath(String)
+  fullName: CodeJam.IO.PathHelpers.IsWellFormedRelativePath(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/PathHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsWellFormedRelativePath
+    path: ../Main/src/IO/PathHelpers.cs
+    startLine: 66
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: "\nDetermines whether the path is not rooted well-formed relative path.\n"
+  example: []
+  syntax:
+    content: public static bool IsWellFormedRelativePath(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the path is not rooted well-formed relative path; otherwise, <code>false</code>.
+    content.vb: Public Shared Function IsWellFormedRelativePath(path As String) As Boolean
+  overload: CodeJam.IO.PathHelpers.IsWellFormedRelativePath*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.PathHelpers.IsWellFormedContainerPath(System.String)
+  commentId: M:CodeJam.IO.PathHelpers.IsWellFormedContainerPath(System.String)
+  id: IsWellFormedContainerPath(System.String)
+  parent: CodeJam.IO.PathHelpers
+  langs:
+  - csharp
+  - vb
+  name: IsWellFormedContainerPath(String)
+  nameWithType: PathHelpers.IsWellFormedContainerPath(String)
+  fullName: CodeJam.IO.PathHelpers.IsWellFormedContainerPath(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/PathHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsWellFormedContainerPath
+    path: ../Main/src/IO/PathHelpers.cs
+    startLine: 87
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: "\nChecks if the path ends with directory or volume separator chars.\n"
+  example: []
+  syntax:
+    content: public static bool IsWellFormedContainerPath(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the path ends with separator char; otherwise, <code>false</code>.
+    content.vb: Public Shared Function IsWellFormedContainerPath(path As String) As Boolean
+  overload: CodeJam.IO.PathHelpers.IsWellFormedContainerPath*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.PathHelpers.IsWellFormedSimpleName(System.String)
+  commentId: M:CodeJam.IO.PathHelpers.IsWellFormedSimpleName(System.String)
+  id: IsWellFormedSimpleName(System.String)
+  parent: CodeJam.IO.PathHelpers
+  langs:
+  - csharp
+  - vb
+  name: IsWellFormedSimpleName(String)
+  nameWithType: PathHelpers.IsWellFormedSimpleName(String)
+  fullName: CodeJam.IO.PathHelpers.IsWellFormedSimpleName(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/PathHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsWellFormedSimpleName
+    path: ../Main/src/IO/PathHelpers.cs
+    startLine: 96
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: "\nChecks if the path ends with directory or volume separator chars.\n"
+  example: []
+  syntax:
+    content: public static bool IsWellFormedSimpleName(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the path ends with separator char; otherwise, <code>false</code>.
+    content.vb: Public Shared Function IsWellFormedSimpleName(path As String) As Boolean
+  overload: CodeJam.IO.PathHelpers.IsWellFormedSimpleName*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.PathHelpers.IsSimpleName(System.String)
+  commentId: M:CodeJam.IO.PathHelpers.IsSimpleName(System.String)
+  id: IsSimpleName(System.String)
+  parent: CodeJam.IO.PathHelpers
+  langs:
+  - csharp
+  - vb
+  name: IsSimpleName(String)
+  nameWithType: PathHelpers.IsSimpleName(String)
+  fullName: CodeJam.IO.PathHelpers.IsSimpleName(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/PathHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsSimpleName
+    path: ../Main/src/IO/PathHelpers.cs
+    startLine: 105
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: "\nDetermines whether the path is a simple file or directory name.\n"
+  example: []
+  syntax:
+    content: public static bool IsSimpleName(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the path isa simple file or directory name; otherwise, <code>false</code>.
+    content.vb: Public Shared Function IsSimpleName(path As String) As Boolean
+  overload: CodeJam.IO.PathHelpers.IsSimpleName*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.PathHelpers.IsContainerPath(System.String)
+  commentId: M:CodeJam.IO.PathHelpers.IsContainerPath(System.String)
+  id: IsContainerPath(System.String)
+  parent: CodeJam.IO.PathHelpers
+  langs:
+  - csharp
+  - vb
+  name: IsContainerPath(String)
+  nameWithType: PathHelpers.IsContainerPath(String)
+  fullName: CodeJam.IO.PathHelpers.IsContainerPath(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/PathHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsContainerPath
+    path: ../Main/src/IO/PathHelpers.cs
+    startLine: 118
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: "\nChecks if the path ends with directory or volume separator chars.\n"
+  example: []
+  syntax:
+    content: public static bool IsContainerPath(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the path ends with separator char; otherwise, <code>false</code>.
+    content.vb: Public Shared Function IsContainerPath(path As String) As Boolean
+  overload: CodeJam.IO.PathHelpers.IsContainerPath*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.PathHelpers.EnsureContainerPath(System.String)
+  commentId: M:CodeJam.IO.PathHelpers.EnsureContainerPath(System.String)
+  id: EnsureContainerPath(System.String)
+  parent: CodeJam.IO.PathHelpers
+  langs:
+  - csharp
+  - vb
+  name: EnsureContainerPath(String)
+  nameWithType: PathHelpers.EnsureContainerPath(String)
+  fullName: CodeJam.IO.PathHelpers.EnsureContainerPath(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/PathHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: EnsureContainerPath
+    path: ../Main/src/IO/PathHelpers.cs
+    startLine: 133
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: "\nAppends directory separator char if the path is not a volume or directory path.\n"
+  example: []
+  syntax:
+    content: public static string EnsureContainerPath(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    return:
+      type: System.String
+      description: Path that ends with one of path separator chars.
+    content.vb: Public Shared Function EnsureContainerPath(path As String) As String
+  overload: CodeJam.IO.PathHelpers.EnsureContainerPath*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: System.IO.Path
+  commentId: T:System.IO.Path
+- uid: CodeJam.IO
+  commentId: N:CodeJam.IO
+  isExternal: false
+  name: CodeJam.IO
+  nameWithType: CodeJam.IO
+  fullName: CodeJam.IO
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.IO.PathHelpers.IsWellFormedPath*
+  commentId: Overload:CodeJam.IO.PathHelpers.IsWellFormedPath
+  isExternal: false
+  name: IsWellFormedPath
+  nameWithType: PathHelpers.IsWellFormedPath
+  fullName: CodeJam.IO.PathHelpers.IsWellFormedPath
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.IO.PathHelpers.IsWellFormedAbsolutePath*
+  commentId: Overload:CodeJam.IO.PathHelpers.IsWellFormedAbsolutePath
+  isExternal: false
+  name: IsWellFormedAbsolutePath
+  nameWithType: PathHelpers.IsWellFormedAbsolutePath
+  fullName: CodeJam.IO.PathHelpers.IsWellFormedAbsolutePath
+- uid: CodeJam.IO.PathHelpers.IsWellFormedRelativePath*
+  commentId: Overload:CodeJam.IO.PathHelpers.IsWellFormedRelativePath
+  isExternal: false
+  name: IsWellFormedRelativePath
+  nameWithType: PathHelpers.IsWellFormedRelativePath
+  fullName: CodeJam.IO.PathHelpers.IsWellFormedRelativePath
+- uid: CodeJam.IO.PathHelpers.IsWellFormedContainerPath*
+  commentId: Overload:CodeJam.IO.PathHelpers.IsWellFormedContainerPath
+  isExternal: false
+  name: IsWellFormedContainerPath
+  nameWithType: PathHelpers.IsWellFormedContainerPath
+  fullName: CodeJam.IO.PathHelpers.IsWellFormedContainerPath
+- uid: CodeJam.IO.PathHelpers.IsWellFormedSimpleName*
+  commentId: Overload:CodeJam.IO.PathHelpers.IsWellFormedSimpleName
+  isExternal: false
+  name: IsWellFormedSimpleName
+  nameWithType: PathHelpers.IsWellFormedSimpleName
+  fullName: CodeJam.IO.PathHelpers.IsWellFormedSimpleName
+- uid: CodeJam.IO.PathHelpers.IsSimpleName*
+  commentId: Overload:CodeJam.IO.PathHelpers.IsSimpleName
+  isExternal: false
+  name: IsSimpleName
+  nameWithType: PathHelpers.IsSimpleName
+  fullName: CodeJam.IO.PathHelpers.IsSimpleName
+- uid: CodeJam.IO.PathHelpers.IsContainerPath*
+  commentId: Overload:CodeJam.IO.PathHelpers.IsContainerPath
+  isExternal: false
+  name: IsContainerPath
+  nameWithType: PathHelpers.IsContainerPath
+  fullName: CodeJam.IO.PathHelpers.IsContainerPath
+- uid: CodeJam.IO.PathHelpers.EnsureContainerPath*
+  commentId: Overload:CodeJam.IO.PathHelpers.EnsureContainerPath
+  isExternal: false
+  name: EnsureContainerPath
+  nameWithType: PathHelpers.EnsureContainerPath
+  fullName: CodeJam.IO.PathHelpers.EnsureContainerPath

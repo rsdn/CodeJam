@@ -1,0 +1,2292 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Dates.DateTimeRangeExtensions
+  commentId: T:CodeJam.Dates.DateTimeRangeExtensions
+  id: DateTimeRangeExtensions
+  parent: CodeJam.Dates
+  children:
+  - CodeJam.Dates.DateTimeRangeExtensions.CountOfDays(CodeJam.Ranges.Range{System.DateTime})
+  - CodeJam.Dates.DateTimeRangeExtensions.CountOfDays(CodeJam.Ranges.Range{System.DateTimeOffset})
+  - CodeJam.Dates.DateTimeRangeExtensions.CountOfMonths(CodeJam.Ranges.Range{System.DateTime})
+  - CodeJam.Dates.DateTimeRangeExtensions.CountOfMonths(CodeJam.Ranges.Range{System.DateTimeOffset})
+  - CodeJam.Dates.DateTimeRangeExtensions.DaysBetween(CodeJam.Ranges.Range{System.DateTime})
+  - CodeJam.Dates.DateTimeRangeExtensions.DaysBetween(CodeJam.Ranges.Range{System.DateTimeOffset})
+  - CodeJam.Dates.DateTimeRangeExtensions.DifferenceInDays(CodeJam.Ranges.Range{System.DateTime})
+  - CodeJam.Dates.DateTimeRangeExtensions.DifferenceInDays(CodeJam.Ranges.Range{System.DateTimeOffset})
+  - CodeJam.Dates.DateTimeRangeExtensions.DifferenceInMonths(CodeJam.Ranges.Range{System.DateTime})
+  - CodeJam.Dates.DateTimeRangeExtensions.DifferenceInMonths(CodeJam.Ranges.Range{System.DateTimeOffset})
+  - CodeJam.Dates.DateTimeRangeExtensions.GetFromStartOfYearRange(System.DateTime)
+  - CodeJam.Dates.DateTimeRangeExtensions.GetFromStartOfYearRange(System.DateTimeOffset)
+  - CodeJam.Dates.DateTimeRangeExtensions.GetMonthRange(System.DateTime)
+  - CodeJam.Dates.DateTimeRangeExtensions.GetMonthRange(System.DateTimeOffset)
+  - CodeJam.Dates.DateTimeRangeExtensions.GetToEndOfYearRange(System.DateTime)
+  - CodeJam.Dates.DateTimeRangeExtensions.GetToEndOfYearRange(System.DateTimeOffset)
+  - CodeJam.Dates.DateTimeRangeExtensions.GetYearRange(System.DateTime)
+  - CodeJam.Dates.DateTimeRangeExtensions.GetYearRange(System.DateTimeOffset)
+  - CodeJam.Dates.DateTimeRangeExtensions.MakeExclusive(CodeJam.Ranges.Range{System.DateTime})
+  - CodeJam.Dates.DateTimeRangeExtensions.MakeExclusive(CodeJam.Ranges.Range{System.DateTimeOffset})
+  - CodeJam.Dates.DateTimeRangeExtensions.MakeInclusive(CodeJam.Ranges.Range{System.DateTime})
+  - CodeJam.Dates.DateTimeRangeExtensions.MakeInclusive(CodeJam.Ranges.Range{System.DateTimeOffset})
+  - CodeJam.Dates.DateTimeRangeExtensions.MonthsBetween(CodeJam.Ranges.Range{System.DateTime})
+  - CodeJam.Dates.DateTimeRangeExtensions.MonthsBetween(CodeJam.Ranges.Range{System.DateTimeOffset})
+  - CodeJam.Dates.DateTimeRangeExtensions.SplitByMonths(CodeJam.Ranges.Range{System.DateTime})
+  - CodeJam.Dates.DateTimeRangeExtensions.SplitByMonths(CodeJam.Ranges.Range{System.DateTimeOffset})
+  - CodeJam.Dates.DateTimeRangeExtensions.SplitByYears(CodeJam.Ranges.Range{System.DateTime})
+  - CodeJam.Dates.DateTimeRangeExtensions.SplitByYears(CodeJam.Ranges.Range{System.DateTimeOffset})
+  - CodeJam.Dates.DateTimeRangeExtensions.YearsBetween(CodeJam.Ranges.Range{System.DateTime})
+  - CodeJam.Dates.DateTimeRangeExtensions.YearsBetween(CodeJam.Ranges.Range{System.DateTimeOffset})
+  langs:
+  - csharp
+  - vb
+  name: DateTimeRangeExtensions
+  nameWithType: DateTimeRangeExtensions
+  fullName: CodeJam.Dates.DateTimeRangeExtensions
+  type: Class
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DateTimeRangeExtensions
+    path: ../Main/src/Dates/DateTimeRangeExtensions.cs
+    startLine: 12
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: "\nHelper methods for date manipulations\n"
+  example: []
+  syntax:
+    content: public static class DateTimeRangeExtensions
+    content.vb: Public Module DateTimeRangeExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Dates.DateTimeRangeExtensions.GetMonthRange(System.DateTimeOffset)
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.GetMonthRange(System.DateTimeOffset)
+  id: GetMonthRange(System.DateTimeOffset)
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetMonthRange(DateTimeOffset)
+  nameWithType: DateTimeRangeExtensions.GetMonthRange(DateTimeOffset)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.GetMonthRange(System.DateTimeOffset)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetMonthRange
+    path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
+    startLine: 27
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns date range for month.
+  example: []
+  syntax:
+    content: public static Range<DateTimeOffset> GetMonthRange(this DateTimeOffset date)
+    parameters:
+    - id: date
+      type: System.DateTimeOffset
+      description: The date.
+    return:
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: Date range for month
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetMonthRange(date As DateTimeOffset) As Range(Of DateTimeOffset)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.GetMonthRange*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Dates.DateTimeRangeExtensions.GetYearRange(System.DateTimeOffset)
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.GetYearRange(System.DateTimeOffset)
+  id: GetYearRange(System.DateTimeOffset)
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetYearRange(DateTimeOffset)
+  nameWithType: DateTimeRangeExtensions.GetYearRange(DateTimeOffset)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.GetYearRange(System.DateTimeOffset)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetYearRange
+    path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
+    startLine: 33
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns date range for year.
+  example: []
+  syntax:
+    content: public static Range<DateTimeOffset> GetYearRange(this DateTimeOffset date)
+    parameters:
+    - id: date
+      type: System.DateTimeOffset
+      description: The date.
+    return:
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: Date range for year
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetYearRange(date As DateTimeOffset) As Range(Of DateTimeOffset)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.GetYearRange*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Dates.DateTimeRangeExtensions.GetFromStartOfYearRange(System.DateTimeOffset)
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.GetFromStartOfYearRange(System.DateTimeOffset)
+  id: GetFromStartOfYearRange(System.DateTimeOffset)
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetFromStartOfYearRange(DateTimeOffset)
+  nameWithType: DateTimeRangeExtensions.GetFromStartOfYearRange(DateTimeOffset)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.GetFromStartOfYearRange(System.DateTimeOffset)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetFromStartOfYearRange
+    path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
+    startLine: 39
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Gets date range from start of the year to the current date.
+  example: []
+  syntax:
+    content: public static Range<DateTimeOffset> GetFromStartOfYearRange(this DateTimeOffset date)
+    parameters:
+    - id: date
+      type: System.DateTimeOffset
+      description: The date.
+    return:
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: Date range.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetFromStartOfYearRange(date As DateTimeOffset) As Range(Of DateTimeOffset)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.GetFromStartOfYearRange*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Dates.DateTimeRangeExtensions.GetToEndOfYearRange(System.DateTimeOffset)
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.GetToEndOfYearRange(System.DateTimeOffset)
+  id: GetToEndOfYearRange(System.DateTimeOffset)
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetToEndOfYearRange(DateTimeOffset)
+  nameWithType: DateTimeRangeExtensions.GetToEndOfYearRange(DateTimeOffset)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.GetToEndOfYearRange(System.DateTimeOffset)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetToEndOfYearRange
+    path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
+    startLine: 45
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Gets date range from start of the year to the current date.
+  example: []
+  syntax:
+    content: public static Range<DateTimeOffset> GetToEndOfYearRange(this DateTimeOffset date)
+    parameters:
+    - id: date
+      type: System.DateTimeOffset
+      description: The date.
+    return:
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: Date range.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetToEndOfYearRange(date As DateTimeOffset) As Range(Of DateTimeOffset)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.GetToEndOfYearRange*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Dates.DateTimeRangeExtensions.MakeInclusive(CodeJam.Ranges.Range{System.DateTimeOffset})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.MakeInclusive(CodeJam.Ranges.Range{System.DateTimeOffset})
+  id: MakeInclusive(CodeJam.Ranges.Range{System.DateTimeOffset})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: MakeInclusive(Range<DateTimeOffset>)
+  nameWithType: DateTimeRangeExtensions.MakeInclusive(Range<DateTimeOffset>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.MakeInclusive(CodeJam.Ranges.Range<System.DateTimeOffset>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MakeInclusive
+    path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
+    startLine: 53
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Replaces exclusive boundaries with inclusive ones.
+  example: []
+  syntax:
+    content: public static Range<DateTimeOffset> MakeInclusive(this Range<DateTimeOffset> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: The date range.
+    return:
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: A range with inclusive boundaries.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function MakeInclusive(range As Range(Of DateTimeOffset)) As Range(Of DateTimeOffset)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.MakeInclusive*
+  nameWithType.vb: DateTimeRangeExtensions.MakeInclusive(Range(Of DateTimeOffset))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.MakeInclusive(CodeJam.Ranges.Range(Of System.DateTimeOffset))
+  name.vb: MakeInclusive(Range(Of DateTimeOffset))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.MakeExclusive(CodeJam.Ranges.Range{System.DateTimeOffset})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.MakeExclusive(CodeJam.Ranges.Range{System.DateTimeOffset})
+  id: MakeExclusive(CodeJam.Ranges.Range{System.DateTimeOffset})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: MakeExclusive(Range<DateTimeOffset>)
+  nameWithType: DateTimeRangeExtensions.MakeExclusive(Range<DateTimeOffset>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.MakeExclusive(CodeJam.Ranges.Range<System.DateTimeOffset>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MakeExclusive
+    path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
+    startLine: 59
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Replaces inclusive boundaries with exclusive ones.
+  example: []
+  syntax:
+    content: public static Range<DateTimeOffset> MakeExclusive(this Range<DateTimeOffset> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: The date range.
+    return:
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: A range with inclusive boundaries.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function MakeExclusive(range As Range(Of DateTimeOffset)) As Range(Of DateTimeOffset)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.MakeExclusive*
+  nameWithType.vb: DateTimeRangeExtensions.MakeExclusive(Range(Of DateTimeOffset))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.MakeExclusive(CodeJam.Ranges.Range(Of System.DateTimeOffset))
+  name.vb: MakeExclusive(Range(Of DateTimeOffset))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInDays(CodeJam.Ranges.Range{System.DateTimeOffset})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.DifferenceInDays(CodeJam.Ranges.Range{System.DateTimeOffset})
+  id: DifferenceInDays(CodeJam.Ranges.Range{System.DateTimeOffset})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: DifferenceInDays(Range<DateTimeOffset>)
+  nameWithType: DateTimeRangeExtensions.DifferenceInDays(Range<DateTimeOffset>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInDays(CodeJam.Ranges.Range<System.DateTimeOffset>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DifferenceInDays
+    path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
+    startLine: 69
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns delta between two dates measured in days.
+  example: []
+  syntax:
+    content: public static int DifferenceInDays(this Range<DateTimeOffset> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: The date range.
+    return:
+      type: System.Int32
+      description: Delta between two dates measured in days.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function DifferenceInDays(range As Range(Of DateTimeOffset)) As Integer
+  overload: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInDays*
+  nameWithType.vb: DateTimeRangeExtensions.DifferenceInDays(Range(Of DateTimeOffset))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInDays(CodeJam.Ranges.Range(Of System.DateTimeOffset))
+  name.vb: DifferenceInDays(Range(Of DateTimeOffset))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.CountOfDays(CodeJam.Ranges.Range{System.DateTimeOffset})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.CountOfDays(CodeJam.Ranges.Range{System.DateTimeOffset})
+  id: CountOfDays(CodeJam.Ranges.Range{System.DateTimeOffset})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: CountOfDays(Range<DateTimeOffset>)
+  nameWithType: DateTimeRangeExtensions.CountOfDays(Range<DateTimeOffset>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.CountOfDays(CodeJam.Ranges.Range<System.DateTimeOffset>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CountOfDays
+    path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
+    startLine: 83
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns count of days between two dates.
+  example: []
+  syntax:
+    content: public static int CountOfDays(this Range<DateTimeOffset> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: The date range.
+    return:
+      type: System.Int32
+      description: Count of days between two dates.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function CountOfDays(range As Range(Of DateTimeOffset)) As Integer
+  overload: CodeJam.Dates.DateTimeRangeExtensions.CountOfDays*
+  nameWithType.vb: DateTimeRangeExtensions.CountOfDays(Range(Of DateTimeOffset))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.CountOfDays(CodeJam.Ranges.Range(Of System.DateTimeOffset))
+  name.vb: CountOfDays(Range(Of DateTimeOffset))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInMonths(CodeJam.Ranges.Range{System.DateTimeOffset})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.DifferenceInMonths(CodeJam.Ranges.Range{System.DateTimeOffset})
+  id: DifferenceInMonths(CodeJam.Ranges.Range{System.DateTimeOffset})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: DifferenceInMonths(Range<DateTimeOffset>)
+  nameWithType: DateTimeRangeExtensions.DifferenceInMonths(Range<DateTimeOffset>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInMonths(CodeJam.Ranges.Range<System.DateTimeOffset>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DifferenceInMonths
+    path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
+    startLine: 88
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns delta between two dates measured in months.
+  example: []
+  syntax:
+    content: public static int DifferenceInMonths(this Range<DateTimeOffset> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: The date range.
+    return:
+      type: System.Int32
+      description: Delta between two dates measured in months.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function DifferenceInMonths(range As Range(Of DateTimeOffset)) As Integer
+  overload: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInMonths*
+  nameWithType.vb: DateTimeRangeExtensions.DifferenceInMonths(Range(Of DateTimeOffset))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInMonths(CodeJam.Ranges.Range(Of System.DateTimeOffset))
+  name.vb: DifferenceInMonths(Range(Of DateTimeOffset))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.CountOfMonths(CodeJam.Ranges.Range{System.DateTimeOffset})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.CountOfMonths(CodeJam.Ranges.Range{System.DateTimeOffset})
+  id: CountOfMonths(CodeJam.Ranges.Range{System.DateTimeOffset})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: CountOfMonths(Range<DateTimeOffset>)
+  nameWithType: DateTimeRangeExtensions.CountOfMonths(Range<DateTimeOffset>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.CountOfMonths(CodeJam.Ranges.Range<System.DateTimeOffset>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CountOfMonths
+    path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
+    startLine: 97
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns count of month between two dates.
+  example: []
+  syntax:
+    content: public static int CountOfMonths(this Range<DateTimeOffset> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: The date range.
+    return:
+      type: System.Int32
+      description: Count of month between two dates.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function CountOfMonths(range As Range(Of DateTimeOffset)) As Integer
+  overload: CodeJam.Dates.DateTimeRangeExtensions.CountOfMonths*
+  nameWithType.vb: DateTimeRangeExtensions.CountOfMonths(Range(Of DateTimeOffset))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.CountOfMonths(CodeJam.Ranges.Range(Of System.DateTimeOffset))
+  name.vb: CountOfMonths(Range(Of DateTimeOffset))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.DaysBetween(CodeJam.Ranges.Range{System.DateTimeOffset})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.DaysBetween(CodeJam.Ranges.Range{System.DateTimeOffset})
+  id: DaysBetween(CodeJam.Ranges.Range{System.DateTimeOffset})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: DaysBetween(Range<DateTimeOffset>)
+  nameWithType: DateTimeRangeExtensions.DaysBetween(Range<DateTimeOffset>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.DaysBetween(CodeJam.Ranges.Range<System.DateTimeOffset>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DaysBetween
+    path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
+    startLine: 104
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns first days in range.
+  example: []
+  syntax:
+    content: public static IEnumerable<DateTimeOffset> DaysBetween(this Range<DateTimeOffset> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: The date range.
+    return:
+      type: System.Collections.Generic.IEnumerable{System.DateTimeOffset}
+      description: First days of months in range
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function DaysBetween(range As Range(Of DateTimeOffset)) As IEnumerable(Of DateTimeOffset)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.DaysBetween*
+  nameWithType.vb: DateTimeRangeExtensions.DaysBetween(Range(Of DateTimeOffset))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.DaysBetween(CodeJam.Ranges.Range(Of System.DateTimeOffset))
+  name.vb: DaysBetween(Range(Of DateTimeOffset))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.MonthsBetween(CodeJam.Ranges.Range{System.DateTimeOffset})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.MonthsBetween(CodeJam.Ranges.Range{System.DateTimeOffset})
+  id: MonthsBetween(CodeJam.Ranges.Range{System.DateTimeOffset})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: MonthsBetween(Range<DateTimeOffset>)
+  nameWithType: DateTimeRangeExtensions.MonthsBetween(Range<DateTimeOffset>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.MonthsBetween(CodeJam.Ranges.Range<System.DateTimeOffset>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MonthsBetween
+    path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
+    startLine: 124
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns first days of months in range.
+  example: []
+  syntax:
+    content: public static IEnumerable<DateTimeOffset> MonthsBetween(this Range<DateTimeOffset> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: The date range.
+    return:
+      type: System.Collections.Generic.IEnumerable{System.DateTimeOffset}
+      description: First days of months in range
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function MonthsBetween(range As Range(Of DateTimeOffset)) As IEnumerable(Of DateTimeOffset)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.MonthsBetween*
+  nameWithType.vb: DateTimeRangeExtensions.MonthsBetween(Range(Of DateTimeOffset))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.MonthsBetween(CodeJam.Ranges.Range(Of System.DateTimeOffset))
+  name.vb: MonthsBetween(Range(Of DateTimeOffset))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.YearsBetween(CodeJam.Ranges.Range{System.DateTimeOffset})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.YearsBetween(CodeJam.Ranges.Range{System.DateTimeOffset})
+  id: YearsBetween(CodeJam.Ranges.Range{System.DateTimeOffset})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: YearsBetween(Range<DateTimeOffset>)
+  nameWithType: DateTimeRangeExtensions.YearsBetween(Range<DateTimeOffset>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.YearsBetween(CodeJam.Ranges.Range<System.DateTimeOffset>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: YearsBetween
+    path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
+    startLine: 147
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns first days of years in range.
+  example: []
+  syntax:
+    content: public static IEnumerable<DateTimeOffset> YearsBetween(this Range<DateTimeOffset> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: The date range.
+    return:
+      type: System.Collections.Generic.IEnumerable{System.DateTimeOffset}
+      description: First days of years in range
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function YearsBetween(range As Range(Of DateTimeOffset)) As IEnumerable(Of DateTimeOffset)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.YearsBetween*
+  nameWithType.vb: DateTimeRangeExtensions.YearsBetween(Range(Of DateTimeOffset))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.YearsBetween(CodeJam.Ranges.Range(Of System.DateTimeOffset))
+  name.vb: YearsBetween(Range(Of DateTimeOffset))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.SplitByMonths(CodeJam.Ranges.Range{System.DateTimeOffset})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.SplitByMonths(CodeJam.Ranges.Range{System.DateTimeOffset})
+  id: SplitByMonths(CodeJam.Ranges.Range{System.DateTimeOffset})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: SplitByMonths(Range<DateTimeOffset>)
+  nameWithType: DateTimeRangeExtensions.SplitByMonths(Range<DateTimeOffset>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.SplitByMonths(CodeJam.Ranges.Range<System.DateTimeOffset>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SplitByMonths
+    path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
+    startLine: 170
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Splits the range by months.
+  example: []
+  syntax:
+    content: public static IEnumerable<Range<DateTimeOffset>> SplitByMonths(this Range<DateTimeOffset> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: The date range.
+    return:
+      type: System.Collections.Generic.IEnumerable{CodeJam.Ranges.Range{System.DateTimeOffset}}
+      description: Ranges splitted by first day of months in range.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function SplitByMonths(range As Range(Of DateTimeOffset)) As IEnumerable(Of Range(Of DateTimeOffset))
+  overload: CodeJam.Dates.DateTimeRangeExtensions.SplitByMonths*
+  nameWithType.vb: DateTimeRangeExtensions.SplitByMonths(Range(Of DateTimeOffset))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.SplitByMonths(CodeJam.Ranges.Range(Of System.DateTimeOffset))
+  name.vb: SplitByMonths(Range(Of DateTimeOffset))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.SplitByYears(CodeJam.Ranges.Range{System.DateTimeOffset})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.SplitByYears(CodeJam.Ranges.Range{System.DateTimeOffset})
+  id: SplitByYears(CodeJam.Ranges.Range{System.DateTimeOffset})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: SplitByYears(Range<DateTimeOffset>)
+  nameWithType: DateTimeRangeExtensions.SplitByYears(Range<DateTimeOffset>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.SplitByYears(CodeJam.Ranges.Range<System.DateTimeOffset>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SplitByYears
+    path: ../Main/src/Dates/DateTimeRangeExtensions.generated.cs
+    startLine: 192
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Splits the range by years.
+  example: []
+  syntax:
+    content: public static IEnumerable<Range<DateTimeOffset>> SplitByYears(this Range<DateTimeOffset> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTimeOffset}
+      description: The date range.
+    return:
+      type: System.Collections.Generic.IEnumerable{CodeJam.Ranges.Range{System.DateTimeOffset}}
+      description: Ranges splitted by first day of years in range.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function SplitByYears(range As Range(Of DateTimeOffset)) As IEnumerable(Of Range(Of DateTimeOffset))
+  overload: CodeJam.Dates.DateTimeRangeExtensions.SplitByYears*
+  nameWithType.vb: DateTimeRangeExtensions.SplitByYears(Range(Of DateTimeOffset))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.SplitByYears(CodeJam.Ranges.Range(Of System.DateTimeOffset))
+  name.vb: SplitByYears(Range(Of DateTimeOffset))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.GetMonthRange(System.DateTime)
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.GetMonthRange(System.DateTime)
+  id: GetMonthRange(System.DateTime)
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetMonthRange(DateTime)
+  nameWithType: DateTimeRangeExtensions.GetMonthRange(DateTime)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.GetMonthRange(System.DateTime)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetMonthRange
+    path: ../Main/src/Dates/DateTimeRangeExtensions.cs
+    startLine: 18
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns date range for month.
+  example: []
+  syntax:
+    content: public static Range<DateTime> GetMonthRange(this DateTime date)
+    parameters:
+    - id: date
+      type: System.DateTime
+      description: The date.
+    return:
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: Date range for month
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetMonthRange(date As Date) As Range(Of Date)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.GetMonthRange*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Dates.DateTimeRangeExtensions.GetYearRange(System.DateTime)
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.GetYearRange(System.DateTime)
+  id: GetYearRange(System.DateTime)
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetYearRange(DateTime)
+  nameWithType: DateTimeRangeExtensions.GetYearRange(DateTime)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.GetYearRange(System.DateTime)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetYearRange
+    path: ../Main/src/Dates/DateTimeRangeExtensions.cs
+    startLine: 24
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns date range for year.
+  example: []
+  syntax:
+    content: public static Range<DateTime> GetYearRange(this DateTime date)
+    parameters:
+    - id: date
+      type: System.DateTime
+      description: The date.
+    return:
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: Date range for year
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetYearRange(date As Date) As Range(Of Date)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.GetYearRange*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Dates.DateTimeRangeExtensions.GetFromStartOfYearRange(System.DateTime)
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.GetFromStartOfYearRange(System.DateTime)
+  id: GetFromStartOfYearRange(System.DateTime)
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetFromStartOfYearRange(DateTime)
+  nameWithType: DateTimeRangeExtensions.GetFromStartOfYearRange(DateTime)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.GetFromStartOfYearRange(System.DateTime)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetFromStartOfYearRange
+    path: ../Main/src/Dates/DateTimeRangeExtensions.cs
+    startLine: 30
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Gets date range from start of the year to the current date.
+  example: []
+  syntax:
+    content: public static Range<DateTime> GetFromStartOfYearRange(this DateTime date)
+    parameters:
+    - id: date
+      type: System.DateTime
+      description: The date.
+    return:
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: Date range.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetFromStartOfYearRange(date As Date) As Range(Of Date)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.GetFromStartOfYearRange*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Dates.DateTimeRangeExtensions.GetToEndOfYearRange(System.DateTime)
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.GetToEndOfYearRange(System.DateTime)
+  id: GetToEndOfYearRange(System.DateTime)
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetToEndOfYearRange(DateTime)
+  nameWithType: DateTimeRangeExtensions.GetToEndOfYearRange(DateTime)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.GetToEndOfYearRange(System.DateTime)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetToEndOfYearRange
+    path: ../Main/src/Dates/DateTimeRangeExtensions.cs
+    startLine: 36
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Gets date range from start of the year to the current date.
+  example: []
+  syntax:
+    content: public static Range<DateTime> GetToEndOfYearRange(this DateTime date)
+    parameters:
+    - id: date
+      type: System.DateTime
+      description: The date.
+    return:
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: Date range.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetToEndOfYearRange(date As Date) As Range(Of Date)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.GetToEndOfYearRange*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Dates.DateTimeRangeExtensions.MakeInclusive(CodeJam.Ranges.Range{System.DateTime})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.MakeInclusive(CodeJam.Ranges.Range{System.DateTime})
+  id: MakeInclusive(CodeJam.Ranges.Range{System.DateTime})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: MakeInclusive(Range<DateTime>)
+  nameWithType: DateTimeRangeExtensions.MakeInclusive(Range<DateTime>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.MakeInclusive(CodeJam.Ranges.Range<System.DateTime>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MakeInclusive
+    path: ../Main/src/Dates/DateTimeRangeExtensions.cs
+    startLine: 44
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Replaces exclusive boundaries with inclusive ones.
+  example: []
+  syntax:
+    content: public static Range<DateTime> MakeInclusive(this Range<DateTime> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: The date range.
+    return:
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: A range with inclusive boundaries.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function MakeInclusive(range As Range(Of Date)) As Range(Of Date)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.MakeInclusive*
+  nameWithType.vb: DateTimeRangeExtensions.MakeInclusive(Range(Of DateTime))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.MakeInclusive(CodeJam.Ranges.Range(Of System.DateTime))
+  name.vb: MakeInclusive(Range(Of DateTime))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.MakeExclusive(CodeJam.Ranges.Range{System.DateTime})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.MakeExclusive(CodeJam.Ranges.Range{System.DateTime})
+  id: MakeExclusive(CodeJam.Ranges.Range{System.DateTime})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: MakeExclusive(Range<DateTime>)
+  nameWithType: DateTimeRangeExtensions.MakeExclusive(Range<DateTime>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.MakeExclusive(CodeJam.Ranges.Range<System.DateTime>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MakeExclusive
+    path: ../Main/src/Dates/DateTimeRangeExtensions.cs
+    startLine: 50
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Replaces inclusive boundaries with exclusive ones.
+  example: []
+  syntax:
+    content: public static Range<DateTime> MakeExclusive(this Range<DateTime> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: The date range.
+    return:
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: A range with inclusive boundaries.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function MakeExclusive(range As Range(Of Date)) As Range(Of Date)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.MakeExclusive*
+  nameWithType.vb: DateTimeRangeExtensions.MakeExclusive(Range(Of DateTime))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.MakeExclusive(CodeJam.Ranges.Range(Of System.DateTime))
+  name.vb: MakeExclusive(Range(Of DateTime))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInDays(CodeJam.Ranges.Range{System.DateTime})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.DifferenceInDays(CodeJam.Ranges.Range{System.DateTime})
+  id: DifferenceInDays(CodeJam.Ranges.Range{System.DateTime})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: DifferenceInDays(Range<DateTime>)
+  nameWithType: DateTimeRangeExtensions.DifferenceInDays(Range<DateTime>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInDays(CodeJam.Ranges.Range<System.DateTime>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DifferenceInDays
+    path: ../Main/src/Dates/DateTimeRangeExtensions.cs
+    startLine: 60
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns delta between two dates measured in days.
+  example: []
+  syntax:
+    content: public static int DifferenceInDays(this Range<DateTime> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: The date range.
+    return:
+      type: System.Int32
+      description: Delta between two dates measured in days.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function DifferenceInDays(range As Range(Of Date)) As Integer
+  overload: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInDays*
+  nameWithType.vb: DateTimeRangeExtensions.DifferenceInDays(Range(Of DateTime))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInDays(CodeJam.Ranges.Range(Of System.DateTime))
+  name.vb: DifferenceInDays(Range(Of DateTime))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.CountOfDays(CodeJam.Ranges.Range{System.DateTime})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.CountOfDays(CodeJam.Ranges.Range{System.DateTime})
+  id: CountOfDays(CodeJam.Ranges.Range{System.DateTime})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: CountOfDays(Range<DateTime>)
+  nameWithType: DateTimeRangeExtensions.CountOfDays(Range<DateTime>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.CountOfDays(CodeJam.Ranges.Range<System.DateTime>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CountOfDays
+    path: ../Main/src/Dates/DateTimeRangeExtensions.cs
+    startLine: 74
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns count of days between two dates.
+  example: []
+  syntax:
+    content: public static int CountOfDays(this Range<DateTime> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: The date range.
+    return:
+      type: System.Int32
+      description: Count of days between two dates.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function CountOfDays(range As Range(Of Date)) As Integer
+  overload: CodeJam.Dates.DateTimeRangeExtensions.CountOfDays*
+  nameWithType.vb: DateTimeRangeExtensions.CountOfDays(Range(Of DateTime))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.CountOfDays(CodeJam.Ranges.Range(Of System.DateTime))
+  name.vb: CountOfDays(Range(Of DateTime))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInMonths(CodeJam.Ranges.Range{System.DateTime})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.DifferenceInMonths(CodeJam.Ranges.Range{System.DateTime})
+  id: DifferenceInMonths(CodeJam.Ranges.Range{System.DateTime})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: DifferenceInMonths(Range<DateTime>)
+  nameWithType: DateTimeRangeExtensions.DifferenceInMonths(Range<DateTime>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInMonths(CodeJam.Ranges.Range<System.DateTime>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DifferenceInMonths
+    path: ../Main/src/Dates/DateTimeRangeExtensions.cs
+    startLine: 79
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns delta between two dates measured in months.
+  example: []
+  syntax:
+    content: public static int DifferenceInMonths(this Range<DateTime> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: The date range.
+    return:
+      type: System.Int32
+      description: Delta between two dates measured in months.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function DifferenceInMonths(range As Range(Of Date)) As Integer
+  overload: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInMonths*
+  nameWithType.vb: DateTimeRangeExtensions.DifferenceInMonths(Range(Of DateTime))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInMonths(CodeJam.Ranges.Range(Of System.DateTime))
+  name.vb: DifferenceInMonths(Range(Of DateTime))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.CountOfMonths(CodeJam.Ranges.Range{System.DateTime})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.CountOfMonths(CodeJam.Ranges.Range{System.DateTime})
+  id: CountOfMonths(CodeJam.Ranges.Range{System.DateTime})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: CountOfMonths(Range<DateTime>)
+  nameWithType: DateTimeRangeExtensions.CountOfMonths(Range<DateTime>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.CountOfMonths(CodeJam.Ranges.Range<System.DateTime>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CountOfMonths
+    path: ../Main/src/Dates/DateTimeRangeExtensions.cs
+    startLine: 88
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns count of month between two dates.
+  example: []
+  syntax:
+    content: public static int CountOfMonths(this Range<DateTime> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: The date range.
+    return:
+      type: System.Int32
+      description: Count of month between two dates.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function CountOfMonths(range As Range(Of Date)) As Integer
+  overload: CodeJam.Dates.DateTimeRangeExtensions.CountOfMonths*
+  nameWithType.vb: DateTimeRangeExtensions.CountOfMonths(Range(Of DateTime))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.CountOfMonths(CodeJam.Ranges.Range(Of System.DateTime))
+  name.vb: CountOfMonths(Range(Of DateTime))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.DaysBetween(CodeJam.Ranges.Range{System.DateTime})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.DaysBetween(CodeJam.Ranges.Range{System.DateTime})
+  id: DaysBetween(CodeJam.Ranges.Range{System.DateTime})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: DaysBetween(Range<DateTime>)
+  nameWithType: DateTimeRangeExtensions.DaysBetween(Range<DateTime>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.DaysBetween(CodeJam.Ranges.Range<System.DateTime>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DaysBetween
+    path: ../Main/src/Dates/DateTimeRangeExtensions.cs
+    startLine: 95
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns first days in range.
+  example: []
+  syntax:
+    content: public static IEnumerable<DateTime> DaysBetween(this Range<DateTime> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: The date range.
+    return:
+      type: System.Collections.Generic.IEnumerable{System.DateTime}
+      description: First days of months in range
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function DaysBetween(range As Range(Of Date)) As IEnumerable(Of Date)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.DaysBetween*
+  nameWithType.vb: DateTimeRangeExtensions.DaysBetween(Range(Of DateTime))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.DaysBetween(CodeJam.Ranges.Range(Of System.DateTime))
+  name.vb: DaysBetween(Range(Of DateTime))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.MonthsBetween(CodeJam.Ranges.Range{System.DateTime})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.MonthsBetween(CodeJam.Ranges.Range{System.DateTime})
+  id: MonthsBetween(CodeJam.Ranges.Range{System.DateTime})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: MonthsBetween(Range<DateTime>)
+  nameWithType: DateTimeRangeExtensions.MonthsBetween(Range<DateTime>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.MonthsBetween(CodeJam.Ranges.Range<System.DateTime>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MonthsBetween
+    path: ../Main/src/Dates/DateTimeRangeExtensions.cs
+    startLine: 115
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns first days of months in range.
+  example: []
+  syntax:
+    content: public static IEnumerable<DateTime> MonthsBetween(this Range<DateTime> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: The date range.
+    return:
+      type: System.Collections.Generic.IEnumerable{System.DateTime}
+      description: First days of months in range
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function MonthsBetween(range As Range(Of Date)) As IEnumerable(Of Date)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.MonthsBetween*
+  nameWithType.vb: DateTimeRangeExtensions.MonthsBetween(Range(Of DateTime))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.MonthsBetween(CodeJam.Ranges.Range(Of System.DateTime))
+  name.vb: MonthsBetween(Range(Of DateTime))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.YearsBetween(CodeJam.Ranges.Range{System.DateTime})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.YearsBetween(CodeJam.Ranges.Range{System.DateTime})
+  id: YearsBetween(CodeJam.Ranges.Range{System.DateTime})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: YearsBetween(Range<DateTime>)
+  nameWithType: DateTimeRangeExtensions.YearsBetween(Range<DateTime>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.YearsBetween(CodeJam.Ranges.Range<System.DateTime>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: YearsBetween
+    path: ../Main/src/Dates/DateTimeRangeExtensions.cs
+    startLine: 138
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Returns first days of years in range.
+  example: []
+  syntax:
+    content: public static IEnumerable<DateTime> YearsBetween(this Range<DateTime> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: The date range.
+    return:
+      type: System.Collections.Generic.IEnumerable{System.DateTime}
+      description: First days of years in range
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function YearsBetween(range As Range(Of Date)) As IEnumerable(Of Date)
+  overload: CodeJam.Dates.DateTimeRangeExtensions.YearsBetween*
+  nameWithType.vb: DateTimeRangeExtensions.YearsBetween(Range(Of DateTime))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.YearsBetween(CodeJam.Ranges.Range(Of System.DateTime))
+  name.vb: YearsBetween(Range(Of DateTime))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.SplitByMonths(CodeJam.Ranges.Range{System.DateTime})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.SplitByMonths(CodeJam.Ranges.Range{System.DateTime})
+  id: SplitByMonths(CodeJam.Ranges.Range{System.DateTime})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: SplitByMonths(Range<DateTime>)
+  nameWithType: DateTimeRangeExtensions.SplitByMonths(Range<DateTime>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.SplitByMonths(CodeJam.Ranges.Range<System.DateTime>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SplitByMonths
+    path: ../Main/src/Dates/DateTimeRangeExtensions.cs
+    startLine: 161
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Splits the range by months.
+  example: []
+  syntax:
+    content: public static IEnumerable<Range<DateTime>> SplitByMonths(this Range<DateTime> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: The date range.
+    return:
+      type: System.Collections.Generic.IEnumerable{CodeJam.Ranges.Range{System.DateTime}}
+      description: Ranges splitted by first day of months in range.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function SplitByMonths(range As Range(Of Date)) As IEnumerable(Of Range(Of Date))
+  overload: CodeJam.Dates.DateTimeRangeExtensions.SplitByMonths*
+  nameWithType.vb: DateTimeRangeExtensions.SplitByMonths(Range(Of DateTime))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.SplitByMonths(CodeJam.Ranges.Range(Of System.DateTime))
+  name.vb: SplitByMonths(Range(Of DateTime))
+- uid: CodeJam.Dates.DateTimeRangeExtensions.SplitByYears(CodeJam.Ranges.Range{System.DateTime})
+  commentId: M:CodeJam.Dates.DateTimeRangeExtensions.SplitByYears(CodeJam.Ranges.Range{System.DateTime})
+  id: SplitByYears(CodeJam.Ranges.Range{System.DateTime})
+  isExtensionMethod: true
+  parent: CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: SplitByYears(Range<DateTime>)
+  nameWithType: DateTimeRangeExtensions.SplitByYears(Range<DateTime>)
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.SplitByYears(CodeJam.Ranges.Range<System.DateTime>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Dates/DateTimeRangeExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SplitByYears
+    path: ../Main/src/Dates/DateTimeRangeExtensions.cs
+    startLine: 183
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Dates
+  summary: Splits the range by years.
+  example: []
+  syntax:
+    content: public static IEnumerable<Range<DateTime>> SplitByYears(this Range<DateTime> range)
+    parameters:
+    - id: range
+      type: CodeJam.Ranges.Range{System.DateTime}
+      description: The date range.
+    return:
+      type: System.Collections.Generic.IEnumerable{CodeJam.Ranges.Range{System.DateTime}}
+      description: Ranges splitted by first day of years in range.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function SplitByYears(range As Range(Of Date)) As IEnumerable(Of Range(Of Date))
+  overload: CodeJam.Dates.DateTimeRangeExtensions.SplitByYears*
+  nameWithType.vb: DateTimeRangeExtensions.SplitByYears(Range(Of DateTime))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Dates.DateTimeRangeExtensions.SplitByYears(CodeJam.Ranges.Range(Of System.DateTime))
+  name.vb: SplitByYears(Range(Of DateTime))
+references:
+- uid: CodeJam.Dates
+  commentId: N:CodeJam.Dates
+  isExternal: false
+  name: CodeJam.Dates
+  nameWithType: CodeJam.Dates
+  fullName: CodeJam.Dates
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Dates.DateTimeRangeExtensions.GetMonthRange*
+  commentId: Overload:CodeJam.Dates.DateTimeRangeExtensions.GetMonthRange
+  isExternal: false
+  name: GetMonthRange
+  nameWithType: DateTimeRangeExtensions.GetMonthRange
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.GetMonthRange
+- uid: System.DateTimeOffset
+  commentId: T:System.DateTimeOffset
+  parent: System
+  isExternal: true
+  name: DateTimeOffset
+  nameWithType: DateTimeOffset
+  fullName: System.DateTimeOffset
+- uid: CodeJam.Ranges.Range{System.DateTimeOffset}
+  commentId: T:CodeJam.Ranges.Range{System.DateTimeOffset}
+  parent: CodeJam.Ranges
+  definition: CodeJam.Ranges.Range`1
+  name: Range<DateTimeOffset>
+  nameWithType: Range<DateTimeOffset>
+  fullName: CodeJam.Ranges.Range<System.DateTimeOffset>
+  nameWithType.vb: Range(Of DateTimeOffset)
+  fullName.vb: CodeJam.Ranges.Range(Of System.DateTimeOffset)
+  name.vb: Range(Of DateTimeOffset)
+  spec.csharp:
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.Range`1
+  commentId: T:CodeJam.Ranges.Range`1
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: Range<T>
+  nameWithType: Range<T>
+  fullName: CodeJam.Ranges.Range<T>
+  nameWithType.vb: Range(Of T)
+  fullName.vb: CodeJam.Ranges.Range(Of T)
+  name.vb: Range(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges
+  commentId: N:CodeJam.Ranges
+  isExternal: false
+  name: CodeJam.Ranges
+  nameWithType: CodeJam.Ranges
+  fullName: CodeJam.Ranges
+- uid: CodeJam.Dates.DateTimeRangeExtensions.GetYearRange*
+  commentId: Overload:CodeJam.Dates.DateTimeRangeExtensions.GetYearRange
+  isExternal: false
+  name: GetYearRange
+  nameWithType: DateTimeRangeExtensions.GetYearRange
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.GetYearRange
+- uid: CodeJam.Dates.DateTimeRangeExtensions.GetFromStartOfYearRange*
+  commentId: Overload:CodeJam.Dates.DateTimeRangeExtensions.GetFromStartOfYearRange
+  isExternal: false
+  name: GetFromStartOfYearRange
+  nameWithType: DateTimeRangeExtensions.GetFromStartOfYearRange
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.GetFromStartOfYearRange
+- uid: CodeJam.Dates.DateTimeRangeExtensions.GetToEndOfYearRange*
+  commentId: Overload:CodeJam.Dates.DateTimeRangeExtensions.GetToEndOfYearRange
+  isExternal: false
+  name: GetToEndOfYearRange
+  nameWithType: DateTimeRangeExtensions.GetToEndOfYearRange
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.GetToEndOfYearRange
+- uid: CodeJam.Dates.DateTimeRangeExtensions.MakeInclusive*
+  commentId: Overload:CodeJam.Dates.DateTimeRangeExtensions.MakeInclusive
+  isExternal: false
+  name: MakeInclusive
+  nameWithType: DateTimeRangeExtensions.MakeInclusive
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.MakeInclusive
+- uid: CodeJam.Dates.DateTimeRangeExtensions.MakeExclusive*
+  commentId: Overload:CodeJam.Dates.DateTimeRangeExtensions.MakeExclusive
+  isExternal: false
+  name: MakeExclusive
+  nameWithType: DateTimeRangeExtensions.MakeExclusive
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.MakeExclusive
+- uid: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInDays*
+  commentId: Overload:CodeJam.Dates.DateTimeRangeExtensions.DifferenceInDays
+  isExternal: false
+  name: DifferenceInDays
+  nameWithType: DateTimeRangeExtensions.DifferenceInDays
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInDays
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: CodeJam.Dates.DateTimeRangeExtensions.CountOfDays*
+  commentId: Overload:CodeJam.Dates.DateTimeRangeExtensions.CountOfDays
+  isExternal: false
+  name: CountOfDays
+  nameWithType: DateTimeRangeExtensions.CountOfDays
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.CountOfDays
+- uid: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInMonths*
+  commentId: Overload:CodeJam.Dates.DateTimeRangeExtensions.DifferenceInMonths
+  isExternal: false
+  name: DifferenceInMonths
+  nameWithType: DateTimeRangeExtensions.DifferenceInMonths
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.DifferenceInMonths
+- uid: CodeJam.Dates.DateTimeRangeExtensions.CountOfMonths*
+  commentId: Overload:CodeJam.Dates.DateTimeRangeExtensions.CountOfMonths
+  isExternal: false
+  name: CountOfMonths
+  nameWithType: DateTimeRangeExtensions.CountOfMonths
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.CountOfMonths
+- uid: CodeJam.Dates.DateTimeRangeExtensions.DaysBetween*
+  commentId: Overload:CodeJam.Dates.DateTimeRangeExtensions.DaysBetween
+  isExternal: false
+  name: DaysBetween
+  nameWithType: DateTimeRangeExtensions.DaysBetween
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.DaysBetween
+- uid: System.Collections.Generic.IEnumerable{System.DateTimeOffset}
+  commentId: T:System.Collections.Generic.IEnumerable{System.DateTimeOffset}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<DateTimeOffset>
+  nameWithType: IEnumerable<DateTimeOffset>
+  fullName: System.Collections.Generic.IEnumerable<System.DateTimeOffset>
+  nameWithType.vb: IEnumerable(Of DateTimeOffset)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.DateTimeOffset)
+  name.vb: IEnumerable(Of DateTimeOffset)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: CodeJam.Dates.DateTimeRangeExtensions.MonthsBetween*
+  commentId: Overload:CodeJam.Dates.DateTimeRangeExtensions.MonthsBetween
+  isExternal: false
+  name: MonthsBetween
+  nameWithType: DateTimeRangeExtensions.MonthsBetween
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.MonthsBetween
+- uid: CodeJam.Dates.DateTimeRangeExtensions.YearsBetween*
+  commentId: Overload:CodeJam.Dates.DateTimeRangeExtensions.YearsBetween
+  isExternal: false
+  name: YearsBetween
+  nameWithType: DateTimeRangeExtensions.YearsBetween
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.YearsBetween
+- uid: CodeJam.Dates.DateTimeRangeExtensions.SplitByMonths*
+  commentId: Overload:CodeJam.Dates.DateTimeRangeExtensions.SplitByMonths
+  isExternal: false
+  name: SplitByMonths
+  nameWithType: DateTimeRangeExtensions.SplitByMonths
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.SplitByMonths
+- uid: System.Collections.Generic.IEnumerable{CodeJam.Ranges.Range{System.DateTimeOffset}}
+  commentId: T:System.Collections.Generic.IEnumerable{CodeJam.Ranges.Range{System.DateTimeOffset}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Range<DateTimeOffset>>
+  nameWithType: IEnumerable<Range<DateTimeOffset>>
+  fullName: System.Collections.Generic.IEnumerable<CodeJam.Ranges.Range<System.DateTimeOffset>>
+  nameWithType.vb: IEnumerable(Of Range(Of DateTimeOffset))
+  fullName.vb: System.Collections.Generic.IEnumerable(Of CodeJam.Ranges.Range(Of System.DateTimeOffset))
+  name.vb: IEnumerable(Of Range(Of DateTimeOffset))
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Dates.DateTimeRangeExtensions.SplitByYears*
+  commentId: Overload:CodeJam.Dates.DateTimeRangeExtensions.SplitByYears
+  isExternal: false
+  name: SplitByYears
+  nameWithType: DateTimeRangeExtensions.SplitByYears
+  fullName: CodeJam.Dates.DateTimeRangeExtensions.SplitByYears
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+- uid: CodeJam.Ranges.Range{System.DateTime}
+  commentId: T:CodeJam.Ranges.Range{System.DateTime}
+  parent: CodeJam.Ranges
+  definition: CodeJam.Ranges.Range`1
+  name: Range<DateTime>
+  nameWithType: Range<DateTime>
+  fullName: CodeJam.Ranges.Range<System.DateTime>
+  nameWithType.vb: Range(Of DateTime)
+  fullName.vb: CodeJam.Ranges.Range(Of System.DateTime)
+  name.vb: Range(Of DateTime)
+  spec.csharp:
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.DateTime
+    name: DateTime
+    nameWithType: DateTime
+    fullName: System.DateTime
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.DateTime
+    name: DateTime
+    nameWithType: DateTime
+    fullName: System.DateTime
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{System.DateTime}
+  commentId: T:System.Collections.Generic.IEnumerable{System.DateTime}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<DateTime>
+  nameWithType: IEnumerable<DateTime>
+  fullName: System.Collections.Generic.IEnumerable<System.DateTime>
+  nameWithType.vb: IEnumerable(Of DateTime)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.DateTime)
+  name.vb: IEnumerable(Of DateTime)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.DateTime
+    name: DateTime
+    nameWithType: DateTime
+    fullName: System.DateTime
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.DateTime
+    name: DateTime
+    nameWithType: DateTime
+    fullName: System.DateTime
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{CodeJam.Ranges.Range{System.DateTime}}
+  commentId: T:System.Collections.Generic.IEnumerable{CodeJam.Ranges.Range{System.DateTime}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Range<DateTime>>
+  nameWithType: IEnumerable<Range<DateTime>>
+  fullName: System.Collections.Generic.IEnumerable<CodeJam.Ranges.Range<System.DateTime>>
+  nameWithType.vb: IEnumerable(Of Range(Of DateTime))
+  fullName.vb: System.Collections.Generic.IEnumerable(Of CodeJam.Ranges.Range(Of System.DateTime))
+  name.vb: IEnumerable(Of Range(Of DateTime))
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.DateTime
+    name: DateTime
+    nameWithType: DateTime
+    fullName: System.DateTime
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.DateTime
+    name: DateTime
+    nameWithType: DateTime
+    fullName: System.DateTime
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )

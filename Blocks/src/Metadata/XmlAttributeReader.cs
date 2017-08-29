@@ -175,10 +175,8 @@ namespace CodeJam.Metadata
 		public T[] GetAttributes<T>(Type type, bool inherit = true)
 			where T : Attribute
 		{
-			MetaTypeInfo t;
-
 			Code.AssertState(type.FullName != null, "type.FullName != null");
-			if (_types.TryGetValue(type.FullName, out t) || _types.TryGetValue(type.Name, out t))
+			if (_types.TryGetValue(type.FullName, out var t) || _types.TryGetValue(type.Name, out t))
 				return t.GetAttribute(typeof(T)).Select(a => (T)a.MakeAttribute(typeof(T))).ToArray();
 
 			return Array<T>.Empty;
@@ -196,15 +194,11 @@ namespace CodeJam.Metadata
 		{
 			var type = memberInfo.DeclaringType;
 
-			MetaTypeInfo t;
-
 			DebugCode.AssertState(type != null, "type != null");
 			DebugCode.AssertState(type.FullName != null, "type.FullName != null");
-			if (_types.TryGetValue(type.FullName, out t) || _types.TryGetValue(type.Name, out t))
+			if (_types.TryGetValue(type.FullName, out var t) || _types.TryGetValue(type.Name, out t))
 			{
-				MetaMemberInfo m;
-
-				if (t.Members.TryGetValue(memberInfo.Name, out m))
+				if (t.Members.TryGetValue(memberInfo.Name, out var m))
 					return
 						m
 							.GetAttribute(typeof(T))

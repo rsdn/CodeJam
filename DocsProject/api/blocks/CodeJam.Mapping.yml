@@ -1,0 +1,322 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Mapping
+  commentId: N:CodeJam.Mapping
+  id: CodeJam.Mapping
+  children:
+  - CodeJam.Mapping.CodeJamConvertException
+  - CodeJam.Mapping.CodeJamMappingException
+  - CodeJam.Mapping.Convert`2
+  - CodeJam.Mapping.Converter
+  - CodeJam.Mapping.ConvertTo`1
+  - CodeJam.Mapping.DefaultValue
+  - CodeJam.Mapping.DefaultValue`1
+  - CodeJam.Mapping.IMapperBuilder
+  - CodeJam.Mapping.Map
+  - CodeJam.Mapping.Mapper`2
+  - CodeJam.Mapping.MapperBuilder`2
+  - CodeJam.Mapping.MappingSchema
+  - CodeJam.Mapping.MapValue
+  - CodeJam.Mapping.MapValueAttribute
+  - CodeJam.Mapping.ScalarTypeAttribute
+  langs:
+  - csharp
+  - vb
+  name: CodeJam.Mapping
+  nameWithType: CodeJam.Mapping
+  fullName: CodeJam.Mapping
+  type: Namespace
+  assemblies:
+  - CodeJam.Blocks
+references:
+- uid: CodeJam.Mapping.CodeJamConvertException
+  commentId: T:CodeJam.Mapping.CodeJamConvertException
+  isExternal: false
+  name: CodeJamConvertException
+  nameWithType: CodeJamConvertException
+  fullName: CodeJam.Mapping.CodeJamConvertException
+- uid: CodeJam.Mapping.CodeJamMappingException
+  commentId: T:CodeJam.Mapping.CodeJamMappingException
+  isExternal: false
+  name: CodeJamMappingException
+  nameWithType: CodeJamMappingException
+  fullName: CodeJam.Mapping.CodeJamMappingException
+- uid: CodeJam.Mapping.Converter
+  commentId: T:CodeJam.Mapping.Converter
+  isExternal: false
+  name: Converter
+  nameWithType: Converter
+  fullName: CodeJam.Mapping.Converter
+- uid: CodeJam.Mapping.Convert`2
+  commentId: T:CodeJam.Mapping.Convert`2
+  isExternal: false
+  name: Convert<TFrom, TTo>
+  nameWithType: Convert<TFrom, TTo>
+  fullName: CodeJam.Mapping.Convert<TFrom, TTo>
+  nameWithType.vb: Convert(Of TFrom, TTo)
+  fullName.vb: CodeJam.Mapping.Convert(Of TFrom, TTo)
+  name.vb: Convert(Of TFrom, TTo)
+  spec.csharp:
+  - uid: CodeJam.Mapping.Convert`2
+    name: Convert
+    nameWithType: Convert
+    fullName: CodeJam.Mapping.Convert
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Mapping.Convert`2
+    name: Convert
+    nameWithType: Convert
+    fullName: CodeJam.Mapping.Convert
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.ConvertTo`1
+  commentId: T:CodeJam.Mapping.ConvertTo`1
+  isExternal: false
+  name: ConvertTo<TTo>
+  nameWithType: ConvertTo<TTo>
+  fullName: CodeJam.Mapping.ConvertTo<TTo>
+  nameWithType.vb: ConvertTo(Of TTo)
+  fullName.vb: CodeJam.Mapping.ConvertTo(Of TTo)
+  name.vb: ConvertTo(Of TTo)
+  spec.csharp:
+  - uid: CodeJam.Mapping.ConvertTo`1
+    name: ConvertTo
+    nameWithType: ConvertTo
+    fullName: CodeJam.Mapping.ConvertTo
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Mapping.ConvertTo`1
+    name: ConvertTo
+    nameWithType: ConvertTo
+    fullName: CodeJam.Mapping.ConvertTo
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.DefaultValue
+  commentId: T:CodeJam.Mapping.DefaultValue
+  isExternal: false
+  name: DefaultValue
+  nameWithType: DefaultValue
+  fullName: CodeJam.Mapping.DefaultValue
+- uid: CodeJam.Mapping.DefaultValue`1
+  commentId: T:CodeJam.Mapping.DefaultValue`1
+  isExternal: false
+  name: DefaultValue<T>
+  nameWithType: DefaultValue<T>
+  fullName: CodeJam.Mapping.DefaultValue<T>
+  nameWithType.vb: DefaultValue(Of T)
+  fullName.vb: CodeJam.Mapping.DefaultValue(Of T)
+  name.vb: DefaultValue(Of T)
+  spec.csharp:
+  - uid: CodeJam.Mapping.DefaultValue`1
+    name: DefaultValue
+    nameWithType: DefaultValue
+    fullName: CodeJam.Mapping.DefaultValue
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Mapping.DefaultValue`1
+    name: DefaultValue
+    nameWithType: DefaultValue
+    fullName: CodeJam.Mapping.DefaultValue
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.IMapperBuilder
+  commentId: T:CodeJam.Mapping.IMapperBuilder
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: IMapperBuilder
+  nameWithType: IMapperBuilder
+  fullName: CodeJam.Mapping.IMapperBuilder
+- uid: CodeJam.Mapping.Map
+  commentId: T:CodeJam.Mapping.Map
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: Map
+  nameWithType: Map
+  fullName: CodeJam.Mapping.Map
+- uid: CodeJam.Mapping.Mapper`2
+  commentId: T:CodeJam.Mapping.Mapper`2
+  isExternal: false
+  name: Mapper<TFrom, TTo>
+  nameWithType: Mapper<TFrom, TTo>
+  fullName: CodeJam.Mapping.Mapper<TFrom, TTo>
+  nameWithType.vb: Mapper(Of TFrom, TTo)
+  fullName.vb: CodeJam.Mapping.Mapper(Of TFrom, TTo)
+  name.vb: Mapper(Of TFrom, TTo)
+  spec.csharp:
+  - uid: CodeJam.Mapping.Mapper`2
+    name: Mapper
+    nameWithType: Mapper
+    fullName: CodeJam.Mapping.Mapper
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Mapping.Mapper`2
+    name: Mapper
+    nameWithType: Mapper
+    fullName: CodeJam.Mapping.Mapper
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.MapperBuilder`2
+  commentId: T:CodeJam.Mapping.MapperBuilder`2
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: MapperBuilder<TFrom, TTo>
+  nameWithType: MapperBuilder<TFrom, TTo>
+  fullName: CodeJam.Mapping.MapperBuilder<TFrom, TTo>
+  nameWithType.vb: MapperBuilder(Of TFrom, TTo)
+  fullName.vb: CodeJam.Mapping.MapperBuilder(Of TFrom, TTo)
+  name.vb: MapperBuilder(Of TFrom, TTo)
+  spec.csharp:
+  - uid: CodeJam.Mapping.MapperBuilder`2
+    name: MapperBuilder
+    nameWithType: MapperBuilder
+    fullName: CodeJam.Mapping.MapperBuilder
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Mapping.MapperBuilder`2
+    name: MapperBuilder
+    nameWithType: MapperBuilder
+    fullName: CodeJam.Mapping.MapperBuilder
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.MappingSchema
+  commentId: T:CodeJam.Mapping.MappingSchema
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: MappingSchema
+  nameWithType: MappingSchema
+  fullName: CodeJam.Mapping.MappingSchema
+- uid: CodeJam.Mapping.MapValue
+  commentId: T:CodeJam.Mapping.MapValue
+  isExternal: false
+  name: MapValue
+  nameWithType: MapValue
+  fullName: CodeJam.Mapping.MapValue
+- uid: CodeJam.Mapping.MapValueAttribute
+  commentId: T:CodeJam.Mapping.MapValueAttribute
+  isExternal: false
+  name: MapValueAttribute
+  nameWithType: MapValueAttribute
+  fullName: CodeJam.Mapping.MapValueAttribute
+- uid: CodeJam.Mapping.ScalarTypeAttribute
+  commentId: T:CodeJam.Mapping.ScalarTypeAttribute
+  isExternal: false
+  name: ScalarTypeAttribute
+  nameWithType: ScalarTypeAttribute
+  fullName: CodeJam.Mapping.ScalarTypeAttribute
+- uid: CodeJam.Mapping
+  commentId: N:CodeJam.Mapping
+  isExternal: false
+  name: CodeJam.Mapping
+  nameWithType: CodeJam.Mapping
+  fullName: CodeJam.Mapping

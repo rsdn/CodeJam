@@ -1,0 +1,3710 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Fn
+  commentId: T:CodeJam.Fn
+  id: Fn
+  parent: CodeJam
+  children:
+  - CodeJam.Fn.Action(System.Action)
+  - CodeJam.Fn.Action``1(System.Action{``0})
+  - CodeJam.Fn.Action``2(System.Action{``0,``1})
+  - CodeJam.Fn.Action``3(System.Action{``0,``1,``2})
+  - CodeJam.Fn.Action``4(System.Action{``0,``1,``2,``3})
+  - CodeJam.Fn.Action``5(System.Action{``0,``1,``2,``3,``4})
+  - CodeJam.Fn.Action``6(System.Action{``0,``1,``2,``3,``4,``5})
+  - CodeJam.Fn.Action``7(System.Action{``0,``1,``2,``3,``4,``5,``6})
+  - CodeJam.Fn.False
+  - CodeJam.Fn.Func``1(System.Func{``0})
+  - CodeJam.Fn.Func``2(System.Func{``0,``1})
+  - CodeJam.Fn.Func``3(System.Func{``0,``1,``2})
+  - CodeJam.Fn.Func``4(System.Func{``0,``1,``2,``3})
+  - CodeJam.Fn.Func``5(System.Func{``0,``1,``2,``3,``4})
+  - CodeJam.Fn.Func``6(System.Func{``0,``1,``2,``3,``4,``5})
+  - CodeJam.Fn.Func``7(System.Func{``0,``1,``2,``3,``4,``5,``6})
+  - CodeJam.Fn.Func``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7})
+  - CodeJam.Fn.True
+  langs:
+  - csharp
+  - vb
+  name: Fn
+  nameWithType: Fn
+  fullName: CodeJam.Fn
+  type: Class
+  source:
+    remote:
+      path: Main/src/Fn.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Fn
+    path: ../Main/src/Fn.cs
+    startLine: 9
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nHelper methods for <xref href=\"CodeJam.Fn.Func%60%601(System.Func%7b%60%600%7d)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"CodeJam.Fn.Action(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> delegates.\n"
+  example: []
+  syntax:
+    content: public static class Fn
+    content.vb: Public Module Fn
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Fn.Action(System.Action)
+  commentId: M:CodeJam.Fn.Action(System.Action)
+  id: Action(System.Action)
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: Action(Action)
+  nameWithType: Fn.Action(Action)
+  fullName: CodeJam.Fn.Action(System.Action)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Fn.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Action
+    path: ../Main/src/Fn.generated.cs
+    startLine: 24
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper for type inference from the lambda callback.
+  example: []
+  syntax:
+    content: public static Action Action(Action action)
+    parameters:
+    - id: action
+      type: System.Action
+      description: The lambda callback.
+    return:
+      type: System.Action
+      description: The lambda callback passed.
+    content.vb: Public Shared Function Action(action As Action) As Action
+  overload: CodeJam.Fn.Action*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Fn.Action``1(System.Action{``0})
+  commentId: M:CodeJam.Fn.Action``1(System.Action{``0})
+  id: Action``1(System.Action{``0})
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: Action<T1>(Action<T1>)
+  nameWithType: Fn.Action<T1>(Action<T1>)
+  fullName: CodeJam.Fn.Action<T1>(System.Action<T1>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Fn.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Action
+    path: ../Main/src/Fn.generated.cs
+    startLine: 36
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper for type inference from the lambda callback.
+  example: []
+  syntax:
+    content: public static Action<T1> Action<T1>(Action<T1> action)
+    parameters:
+    - id: action
+      type: System.Action{{T1}}
+      description: The lambda callback.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    return:
+      type: System.Action{{T1}}
+      description: The lambda callback passed.
+    content.vb: Public Shared Function Action(Of T1)(action As Action(Of T1)) As Action(Of T1)
+  overload: CodeJam.Fn.Action*
+  nameWithType.vb: Fn.Action(Of T1)(Action(Of T1))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Fn.Action(Of T1)(System.Action(Of T1))
+  name.vb: Action(Of T1)(Action(Of T1))
+- uid: CodeJam.Fn.Action``2(System.Action{``0,``1})
+  commentId: M:CodeJam.Fn.Action``2(System.Action{``0,``1})
+  id: Action``2(System.Action{``0,``1})
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: Action<T1, T2>(Action<T1, T2>)
+  nameWithType: Fn.Action<T1, T2>(Action<T1, T2>)
+  fullName: CodeJam.Fn.Action<T1, T2>(System.Action<T1, T2>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Fn.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Action
+    path: ../Main/src/Fn.generated.cs
+    startLine: 49
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper for type inference from the lambda callback.
+  example: []
+  syntax:
+    content: public static Action<T1, T2> Action<T1, T2>(Action<T1, T2> action)
+    parameters:
+    - id: action
+      type: System.Action{{T1},{T2}}
+      description: The lambda callback.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    return:
+      type: System.Action{{T1},{T2}}
+      description: The lambda callback passed.
+    content.vb: Public Shared Function Action(Of T1, T2)(action As Action(Of T1, T2)) As Action(Of T1, T2)
+  overload: CodeJam.Fn.Action*
+  nameWithType.vb: Fn.Action(Of T1, T2)(Action(Of T1, T2))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Fn.Action(Of T1, T2)(System.Action(Of T1, T2))
+  name.vb: Action(Of T1, T2)(Action(Of T1, T2))
+- uid: CodeJam.Fn.Action``3(System.Action{``0,``1,``2})
+  commentId: M:CodeJam.Fn.Action``3(System.Action{``0,``1,``2})
+  id: Action``3(System.Action{``0,``1,``2})
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: Action<T1, T2, T3>(Action<T1, T2, T3>)
+  nameWithType: Fn.Action<T1, T2, T3>(Action<T1, T2, T3>)
+  fullName: CodeJam.Fn.Action<T1, T2, T3>(System.Action<T1, T2, T3>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Fn.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Action
+    path: ../Main/src/Fn.generated.cs
+    startLine: 63
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper for type inference from the lambda callback.
+  example: []
+  syntax:
+    content: public static Action<T1, T2, T3> Action<T1, T2, T3>(Action<T1, T2, T3> action)
+    parameters:
+    - id: action
+      type: System.Action{{T1},{T2},{T3}}
+      description: The lambda callback.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    return:
+      type: System.Action{{T1},{T2},{T3}}
+      description: The lambda callback passed.
+    content.vb: Public Shared Function Action(Of T1, T2, T3)(action As Action(Of T1, T2, T3)) As Action(Of T1, T2, T3)
+  overload: CodeJam.Fn.Action*
+  nameWithType.vb: Fn.Action(Of T1, T2, T3)(Action(Of T1, T2, T3))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Fn.Action(Of T1, T2, T3)(System.Action(Of T1, T2, T3))
+  name.vb: Action(Of T1, T2, T3)(Action(Of T1, T2, T3))
+- uid: CodeJam.Fn.Action``4(System.Action{``0,``1,``2,``3})
+  commentId: M:CodeJam.Fn.Action``4(System.Action{``0,``1,``2,``3})
+  id: Action``4(System.Action{``0,``1,``2,``3})
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: Action<T1, T2, T3, T4>(Action<T1, T2, T3, T4>)
+  nameWithType: Fn.Action<T1, T2, T3, T4>(Action<T1, T2, T3, T4>)
+  fullName: CodeJam.Fn.Action<T1, T2, T3, T4>(System.Action<T1, T2, T3, T4>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Fn.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Action
+    path: ../Main/src/Fn.generated.cs
+    startLine: 78
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper for type inference from the lambda callback.
+  example: []
+  syntax:
+    content: public static Action<T1, T2, T3, T4> Action<T1, T2, T3, T4>(Action<T1, T2, T3, T4> action)
+    parameters:
+    - id: action
+      type: System.Action{{T1},{T2},{T3},{T4}}
+      description: The lambda callback.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: T4
+      description: 'The type of argument #4.'
+    return:
+      type: System.Action{{T1},{T2},{T3},{T4}}
+      description: The lambda callback passed.
+    content.vb: Public Shared Function Action(Of T1, T2, T3, T4)(action As Action(Of T1, T2, T3, T4)) As Action(Of T1, T2, T3, T4)
+  overload: CodeJam.Fn.Action*
+  nameWithType.vb: Fn.Action(Of T1, T2, T3, T4)(Action(Of T1, T2, T3, T4))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Fn.Action(Of T1, T2, T3, T4)(System.Action(Of T1, T2, T3, T4))
+  name.vb: Action(Of T1, T2, T3, T4)(Action(Of T1, T2, T3, T4))
+- uid: CodeJam.Fn.Action``5(System.Action{``0,``1,``2,``3,``4})
+  commentId: M:CodeJam.Fn.Action``5(System.Action{``0,``1,``2,``3,``4})
+  id: Action``5(System.Action{``0,``1,``2,``3,``4})
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: Action<T1, T2, T3, T4, T5>(Action<T1, T2, T3, T4, T5>)
+  nameWithType: Fn.Action<T1, T2, T3, T4, T5>(Action<T1, T2, T3, T4, T5>)
+  fullName: CodeJam.Fn.Action<T1, T2, T3, T4, T5>(System.Action<T1, T2, T3, T4, T5>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Fn.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Action
+    path: ../Main/src/Fn.generated.cs
+    startLine: 94
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper for type inference from the lambda callback.
+  example: []
+  syntax:
+    content: public static Action<T1, T2, T3, T4, T5> Action<T1, T2, T3, T4, T5>(Action<T1, T2, T3, T4, T5> action)
+    parameters:
+    - id: action
+      type: System.Action{{T1},{T2},{T3},{T4},{T5}}
+      description: The lambda callback.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: T4
+      description: 'The type of argument #4.'
+    - id: T5
+      description: 'The type of argument #5.'
+    return:
+      type: System.Action{{T1},{T2},{T3},{T4},{T5}}
+      description: The lambda callback passed.
+    content.vb: Public Shared Function Action(Of T1, T2, T3, T4, T5)(action As Action(Of T1, T2, T3, T4, T5)) As Action(Of T1, T2, T3, T4, T5)
+  overload: CodeJam.Fn.Action*
+  nameWithType.vb: Fn.Action(Of T1, T2, T3, T4, T5)(Action(Of T1, T2, T3, T4, T5))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Fn.Action(Of T1, T2, T3, T4, T5)(System.Action(Of T1, T2, T3, T4, T5))
+  name.vb: Action(Of T1, T2, T3, T4, T5)(Action(Of T1, T2, T3, T4, T5))
+- uid: CodeJam.Fn.Action``6(System.Action{``0,``1,``2,``3,``4,``5})
+  commentId: M:CodeJam.Fn.Action``6(System.Action{``0,``1,``2,``3,``4,``5})
+  id: Action``6(System.Action{``0,``1,``2,``3,``4,``5})
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: Action<T1, T2, T3, T4, T5, T6>(Action<T1, T2, T3, T4, T5, T6>)
+  nameWithType: Fn.Action<T1, T2, T3, T4, T5, T6>(Action<T1, T2, T3, T4, T5, T6>)
+  fullName: CodeJam.Fn.Action<T1, T2, T3, T4, T5, T6>(System.Action<T1, T2, T3, T4, T5, T6>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Fn.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Action
+    path: ../Main/src/Fn.generated.cs
+    startLine: 111
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper for type inference from the lambda callback.
+  example: []
+  syntax:
+    content: public static Action<T1, T2, T3, T4, T5, T6> Action<T1, T2, T3, T4, T5, T6>(Action<T1, T2, T3, T4, T5, T6> action)
+    parameters:
+    - id: action
+      type: System.Action{{T1},{T2},{T3},{T4},{T5},{T6}}
+      description: The lambda callback.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: T4
+      description: 'The type of argument #4.'
+    - id: T5
+      description: 'The type of argument #5.'
+    - id: T6
+      description: 'The type of argument #6.'
+    return:
+      type: System.Action{{T1},{T2},{T3},{T4},{T5},{T6}}
+      description: The lambda callback passed.
+    content.vb: Public Shared Function Action(Of T1, T2, T3, T4, T5, T6)(action As Action(Of T1, T2, T3, T4, T5, T6)) As Action(Of T1, T2, T3, T4, T5, T6)
+  overload: CodeJam.Fn.Action*
+  nameWithType.vb: Fn.Action(Of T1, T2, T3, T4, T5, T6)(Action(Of T1, T2, T3, T4, T5, T6))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Fn.Action(Of T1, T2, T3, T4, T5, T6)(System.Action(Of T1, T2, T3, T4, T5, T6))
+  name.vb: Action(Of T1, T2, T3, T4, T5, T6)(Action(Of T1, T2, T3, T4, T5, T6))
+- uid: CodeJam.Fn.Action``7(System.Action{``0,``1,``2,``3,``4,``5,``6})
+  commentId: M:CodeJam.Fn.Action``7(System.Action{``0,``1,``2,``3,``4,``5,``6})
+  id: Action``7(System.Action{``0,``1,``2,``3,``4,``5,``6})
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: Action<T1, T2, T3, T4, T5, T6, T7>(Action<T1, T2, T3, T4, T5, T6, T7>)
+  nameWithType: Fn.Action<T1, T2, T3, T4, T5, T6, T7>(Action<T1, T2, T3, T4, T5, T6, T7>)
+  fullName: CodeJam.Fn.Action<T1, T2, T3, T4, T5, T6, T7>(System.Action<T1, T2, T3, T4, T5, T6, T7>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Fn.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Action
+    path: ../Main/src/Fn.generated.cs
+    startLine: 129
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper for type inference from the lambda callback.
+  example: []
+  syntax:
+    content: public static Action<T1, T2, T3, T4, T5, T6, T7> Action<T1, T2, T3, T4, T5, T6, T7>(Action<T1, T2, T3, T4, T5, T6, T7> action)
+    parameters:
+    - id: action
+      type: System.Action{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}
+      description: The lambda callback.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: T4
+      description: 'The type of argument #4.'
+    - id: T5
+      description: 'The type of argument #5.'
+    - id: T6
+      description: 'The type of argument #6.'
+    - id: T7
+      description: 'The type of argument #7.'
+    return:
+      type: System.Action{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}
+      description: The lambda callback passed.
+    content.vb: Public Shared Function Action(Of T1, T2, T3, T4, T5, T6, T7)(action As Action(Of T1, T2, T3, T4, T5, T6, T7)) As Action(Of T1, T2, T3, T4, T5, T6, T7)
+  overload: CodeJam.Fn.Action*
+  nameWithType.vb: Fn.Action(Of T1, T2, T3, T4, T5, T6, T7)(Action(Of T1, T2, T3, T4, T5, T6, T7))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Fn.Action(Of T1, T2, T3, T4, T5, T6, T7)(System.Action(Of T1, T2, T3, T4, T5, T6, T7))
+  name.vb: Action(Of T1, T2, T3, T4, T5, T6, T7)(Action(Of T1, T2, T3, T4, T5, T6, T7))
+- uid: CodeJam.Fn.Func``1(System.Func{``0})
+  commentId: M:CodeJam.Fn.Func``1(System.Func{``0})
+  id: Func``1(System.Func{``0})
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: Func<TResult>(Func<TResult>)
+  nameWithType: Fn.Func<TResult>(Func<TResult>)
+  fullName: CodeJam.Fn.Func<TResult>(System.Func<TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Fn.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Func
+    path: ../Main/src/Fn.generated.cs
+    startLine: 143
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper for type inference from the lambda callback.
+  example: []
+  syntax:
+    content: public static Func<TResult> Func<TResult>(Func<TResult> func)
+    parameters:
+    - id: func
+      type: System.Func{{TResult}}
+      description: The lambda callback.
+    typeParameters:
+    - id: TResult
+      description: The result type.
+    return:
+      type: System.Func{{TResult}}
+      description: The lambda callback passed.
+    content.vb: Public Shared Function Func(Of TResult)(func As Func(Of TResult)) As Func(Of TResult)
+  overload: CodeJam.Fn.Func*
+  nameWithType.vb: Fn.Func(Of TResult)(Func(Of TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Fn.Func(Of TResult)(System.Func(Of TResult))
+  name.vb: Func(Of TResult)(Func(Of TResult))
+- uid: CodeJam.Fn.Func``2(System.Func{``0,``1})
+  commentId: M:CodeJam.Fn.Func``2(System.Func{``0,``1})
+  id: Func``2(System.Func{``0,``1})
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: Func<T1, TResult>(Func<T1, TResult>)
+  nameWithType: Fn.Func<T1, TResult>(Func<T1, TResult>)
+  fullName: CodeJam.Fn.Func<T1, TResult>(System.Func<T1, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Fn.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Func
+    path: ../Main/src/Fn.generated.cs
+    startLine: 156
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper for type inference from the lambda callback.
+  example: []
+  syntax:
+    content: public static Func<T1, TResult> Func<T1, TResult>(Func<T1, TResult> func)
+    parameters:
+    - id: func
+      type: System.Func{{T1},{TResult}}
+      description: The lambda callback.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: TResult
+      description: The result type.
+    return:
+      type: System.Func{{T1},{TResult}}
+      description: The lambda callback passed.
+    content.vb: Public Shared Function Func(Of T1, TResult)(func As Func(Of T1, TResult)) As Func(Of T1, TResult)
+  overload: CodeJam.Fn.Func*
+  nameWithType.vb: Fn.Func(Of T1, TResult)(Func(Of T1, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Fn.Func(Of T1, TResult)(System.Func(Of T1, TResult))
+  name.vb: Func(Of T1, TResult)(Func(Of T1, TResult))
+- uid: CodeJam.Fn.Func``3(System.Func{``0,``1,``2})
+  commentId: M:CodeJam.Fn.Func``3(System.Func{``0,``1,``2})
+  id: Func``3(System.Func{``0,``1,``2})
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: Func<T1, T2, TResult>(Func<T1, T2, TResult>)
+  nameWithType: Fn.Func<T1, T2, TResult>(Func<T1, T2, TResult>)
+  fullName: CodeJam.Fn.Func<T1, T2, TResult>(System.Func<T1, T2, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Fn.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Func
+    path: ../Main/src/Fn.generated.cs
+    startLine: 170
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper for type inference from the lambda callback.
+  example: []
+  syntax:
+    content: public static Func<T1, T2, TResult> Func<T1, T2, TResult>(Func<T1, T2, TResult> func)
+    parameters:
+    - id: func
+      type: System.Func{{T1},{T2},{TResult}}
+      description: The lambda callback.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: TResult
+      description: The result type.
+    return:
+      type: System.Func{{T1},{T2},{TResult}}
+      description: The lambda callback passed.
+    content.vb: Public Shared Function Func(Of T1, T2, TResult)(func As Func(Of T1, T2, TResult)) As Func(Of T1, T2, TResult)
+  overload: CodeJam.Fn.Func*
+  nameWithType.vb: Fn.Func(Of T1, T2, TResult)(Func(Of T1, T2, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Fn.Func(Of T1, T2, TResult)(System.Func(Of T1, T2, TResult))
+  name.vb: Func(Of T1, T2, TResult)(Func(Of T1, T2, TResult))
+- uid: CodeJam.Fn.Func``4(System.Func{``0,``1,``2,``3})
+  commentId: M:CodeJam.Fn.Func``4(System.Func{``0,``1,``2,``3})
+  id: Func``4(System.Func{``0,``1,``2,``3})
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: Func<T1, T2, T3, TResult>(Func<T1, T2, T3, TResult>)
+  nameWithType: Fn.Func<T1, T2, T3, TResult>(Func<T1, T2, T3, TResult>)
+  fullName: CodeJam.Fn.Func<T1, T2, T3, TResult>(System.Func<T1, T2, T3, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Fn.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Func
+    path: ../Main/src/Fn.generated.cs
+    startLine: 185
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper for type inference from the lambda callback.
+  example: []
+  syntax:
+    content: public static Func<T1, T2, T3, TResult> Func<T1, T2, T3, TResult>(Func<T1, T2, T3, TResult> func)
+    parameters:
+    - id: func
+      type: System.Func{{T1},{T2},{T3},{TResult}}
+      description: The lambda callback.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: TResult
+      description: The result type.
+    return:
+      type: System.Func{{T1},{T2},{T3},{TResult}}
+      description: The lambda callback passed.
+    content.vb: Public Shared Function Func(Of T1, T2, T3, TResult)(func As Func(Of T1, T2, T3, TResult)) As Func(Of T1, T2, T3, TResult)
+  overload: CodeJam.Fn.Func*
+  nameWithType.vb: Fn.Func(Of T1, T2, T3, TResult)(Func(Of T1, T2, T3, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Fn.Func(Of T1, T2, T3, TResult)(System.Func(Of T1, T2, T3, TResult))
+  name.vb: Func(Of T1, T2, T3, TResult)(Func(Of T1, T2, T3, TResult))
+- uid: CodeJam.Fn.Func``5(System.Func{``0,``1,``2,``3,``4})
+  commentId: M:CodeJam.Fn.Func``5(System.Func{``0,``1,``2,``3,``4})
+  id: Func``5(System.Func{``0,``1,``2,``3,``4})
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: Func<T1, T2, T3, T4, TResult>(Func<T1, T2, T3, T4, TResult>)
+  nameWithType: Fn.Func<T1, T2, T3, T4, TResult>(Func<T1, T2, T3, T4, TResult>)
+  fullName: CodeJam.Fn.Func<T1, T2, T3, T4, TResult>(System.Func<T1, T2, T3, T4, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Fn.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Func
+    path: ../Main/src/Fn.generated.cs
+    startLine: 201
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper for type inference from the lambda callback.
+  example: []
+  syntax:
+    content: public static Func<T1, T2, T3, T4, TResult> Func<T1, T2, T3, T4, TResult>(Func<T1, T2, T3, T4, TResult> func)
+    parameters:
+    - id: func
+      type: System.Func{{T1},{T2},{T3},{T4},{TResult}}
+      description: The lambda callback.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: T4
+      description: 'The type of argument #4.'
+    - id: TResult
+      description: The result type.
+    return:
+      type: System.Func{{T1},{T2},{T3},{T4},{TResult}}
+      description: The lambda callback passed.
+    content.vb: Public Shared Function Func(Of T1, T2, T3, T4, TResult)(func As Func(Of T1, T2, T3, T4, TResult)) As Func(Of T1, T2, T3, T4, TResult)
+  overload: CodeJam.Fn.Func*
+  nameWithType.vb: Fn.Func(Of T1, T2, T3, T4, TResult)(Func(Of T1, T2, T3, T4, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Fn.Func(Of T1, T2, T3, T4, TResult)(System.Func(Of T1, T2, T3, T4, TResult))
+  name.vb: Func(Of T1, T2, T3, T4, TResult)(Func(Of T1, T2, T3, T4, TResult))
+- uid: CodeJam.Fn.Func``6(System.Func{``0,``1,``2,``3,``4,``5})
+  commentId: M:CodeJam.Fn.Func``6(System.Func{``0,``1,``2,``3,``4,``5})
+  id: Func``6(System.Func{``0,``1,``2,``3,``4,``5})
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: Func<T1, T2, T3, T4, T5, TResult>(Func<T1, T2, T3, T4, T5, TResult>)
+  nameWithType: Fn.Func<T1, T2, T3, T4, T5, TResult>(Func<T1, T2, T3, T4, T5, TResult>)
+  fullName: CodeJam.Fn.Func<T1, T2, T3, T4, T5, TResult>(System.Func<T1, T2, T3, T4, T5, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Fn.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Func
+    path: ../Main/src/Fn.generated.cs
+    startLine: 218
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper for type inference from the lambda callback.
+  example: []
+  syntax:
+    content: public static Func<T1, T2, T3, T4, T5, TResult> Func<T1, T2, T3, T4, T5, TResult>(Func<T1, T2, T3, T4, T5, TResult> func)
+    parameters:
+    - id: func
+      type: System.Func{{T1},{T2},{T3},{T4},{T5},{TResult}}
+      description: The lambda callback.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: T4
+      description: 'The type of argument #4.'
+    - id: T5
+      description: 'The type of argument #5.'
+    - id: TResult
+      description: The result type.
+    return:
+      type: System.Func{{T1},{T2},{T3},{T4},{T5},{TResult}}
+      description: The lambda callback passed.
+    content.vb: Public Shared Function Func(Of T1, T2, T3, T4, T5, TResult)(func As Func(Of T1, T2, T3, T4, T5, TResult)) As Func(Of T1, T2, T3, T4, T5, TResult)
+  overload: CodeJam.Fn.Func*
+  nameWithType.vb: Fn.Func(Of T1, T2, T3, T4, T5, TResult)(Func(Of T1, T2, T3, T4, T5, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Fn.Func(Of T1, T2, T3, T4, T5, TResult)(System.Func(Of T1, T2, T3, T4, T5, TResult))
+  name.vb: Func(Of T1, T2, T3, T4, T5, TResult)(Func(Of T1, T2, T3, T4, T5, TResult))
+- uid: CodeJam.Fn.Func``7(System.Func{``0,``1,``2,``3,``4,``5,``6})
+  commentId: M:CodeJam.Fn.Func``7(System.Func{``0,``1,``2,``3,``4,``5,``6})
+  id: Func``7(System.Func{``0,``1,``2,``3,``4,``5,``6})
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: Func<T1, T2, T3, T4, T5, T6, TResult>(Func<T1, T2, T3, T4, T5, T6, TResult>)
+  nameWithType: Fn.Func<T1, T2, T3, T4, T5, T6, TResult>(Func<T1, T2, T3, T4, T5, T6, TResult>)
+  fullName: CodeJam.Fn.Func<T1, T2, T3, T4, T5, T6, TResult>(System.Func<T1, T2, T3, T4, T5, T6, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Fn.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Func
+    path: ../Main/src/Fn.generated.cs
+    startLine: 236
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper for type inference from the lambda callback.
+  example: []
+  syntax:
+    content: public static Func<T1, T2, T3, T4, T5, T6, TResult> Func<T1, T2, T3, T4, T5, T6, TResult>(Func<T1, T2, T3, T4, T5, T6, TResult> func)
+    parameters:
+    - id: func
+      type: System.Func{{T1},{T2},{T3},{T4},{T5},{T6},{TResult}}
+      description: The lambda callback.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: T4
+      description: 'The type of argument #4.'
+    - id: T5
+      description: 'The type of argument #5.'
+    - id: T6
+      description: 'The type of argument #6.'
+    - id: TResult
+      description: The result type.
+    return:
+      type: System.Func{{T1},{T2},{T3},{T4},{T5},{T6},{TResult}}
+      description: The lambda callback passed.
+    content.vb: Public Shared Function Func(Of T1, T2, T3, T4, T5, T6, TResult)(func As Func(Of T1, T2, T3, T4, T5, T6, TResult)) As Func(Of T1, T2, T3, T4, T5, T6, TResult)
+  overload: CodeJam.Fn.Func*
+  nameWithType.vb: Fn.Func(Of T1, T2, T3, T4, T5, T6, TResult)(Func(Of T1, T2, T3, T4, T5, T6, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Fn.Func(Of T1, T2, T3, T4, T5, T6, TResult)(System.Func(Of T1, T2, T3, T4, T5, T6, TResult))
+  name.vb: Func(Of T1, T2, T3, T4, T5, T6, TResult)(Func(Of T1, T2, T3, T4, T5, T6, TResult))
+- uid: CodeJam.Fn.Func``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7})
+  commentId: M:CodeJam.Fn.Func``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7})
+  id: Func``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7})
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: Func<T1, T2, T3, T4, T5, T6, T7, TResult>(Func<T1, T2, T3, T4, T5, T6, T7, TResult>)
+  nameWithType: Fn.Func<T1, T2, T3, T4, T5, T6, T7, TResult>(Func<T1, T2, T3, T4, T5, T6, T7, TResult>)
+  fullName: CodeJam.Fn.Func<T1, T2, T3, T4, T5, T6, T7, TResult>(System.Func<T1, T2, T3, T4, T5, T6, T7, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Fn.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Func
+    path: ../Main/src/Fn.generated.cs
+    startLine: 255
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Helper for type inference from the lambda callback.
+  example: []
+  syntax:
+    content: public static Func<T1, T2, T3, T4, T5, T6, T7, TResult> Func<T1, T2, T3, T4, T5, T6, T7, TResult>(Func<T1, T2, T3, T4, T5, T6, T7, TResult> func)
+    parameters:
+    - id: func
+      type: System.Func{{T1},{T2},{T3},{T4},{T5},{T6},{T7},{TResult}}
+      description: The lambda callback.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: T4
+      description: 'The type of argument #4.'
+    - id: T5
+      description: 'The type of argument #5.'
+    - id: T6
+      description: 'The type of argument #6.'
+    - id: T7
+      description: 'The type of argument #7.'
+    - id: TResult
+      description: The result type.
+    return:
+      type: System.Func{{T1},{T2},{T3},{T4},{T5},{T6},{T7},{TResult}}
+      description: The lambda callback passed.
+    content.vb: Public Shared Function Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)(func As Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)) As Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)
+  overload: CodeJam.Fn.Func*
+  nameWithType.vb: Fn.Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)(Func(Of T1, T2, T3, T4, T5, T6, T7, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Fn.Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)(System.Func(Of T1, T2, T3, T4, T5, T6, T7, TResult))
+  name.vb: Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)(Func(Of T1, T2, T3, T4, T5, T6, T7, TResult))
+- uid: CodeJam.Fn.True
+  commentId: F:CodeJam.Fn.True
+  id: "True"
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: "True"
+  nameWithType: Fn.True
+  fullName: CodeJam.Fn.True
+  type: Field
+  source:
+    remote:
+      path: Main/src/Fn.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: "True"
+    path: ../Main/src/Fn.cs
+    startLine: 15
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nGets the function that always returns true.\n"
+  example: []
+  syntax:
+    content: public static readonly Func<bool> True
+    return:
+      type: System.Func{System.Boolean}
+    content.vb: Public Shared ReadOnly True As Func(Of Boolean)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.Fn.False
+  commentId: F:CodeJam.Fn.False
+  id: "False"
+  parent: CodeJam.Fn
+  langs:
+  - csharp
+  - vb
+  name: "False"
+  nameWithType: Fn.False
+  fullName: CodeJam.Fn.False
+  type: Field
+  source:
+    remote:
+      path: Main/src/Fn.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: "False"
+    path: ../Main/src/Fn.cs
+    startLine: 20
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nGets the function that always returns false.\n"
+  example: []
+  syntax:
+    content: public static readonly Func<bool> False
+    return:
+      type: System.Func{System.Boolean}
+    content.vb: Public Shared ReadOnly False As Func(Of Boolean)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+references:
+- uid: CodeJam.Fn.Func``1(System.Func{``0})
+  commentId: M:CodeJam.Fn.Func``1(System.Func{``0})
+- uid: CodeJam.Fn.Action(System.Action)
+  commentId: M:CodeJam.Fn.Action(System.Action)
+- uid: CodeJam
+  commentId: N:CodeJam
+  isExternal: false
+  name: CodeJam
+  nameWithType: CodeJam
+  fullName: CodeJam
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Fn.Action*
+  commentId: Overload:CodeJam.Fn.Action
+  isExternal: false
+  name: Action
+  nameWithType: Fn.Action
+  fullName: CodeJam.Fn.Action
+- uid: System.Action
+  commentId: T:System.Action
+  parent: System
+  isExternal: true
+  name: Action
+  nameWithType: Action
+  fullName: System.Action
+- uid: System.Action{{T1}}
+  commentId: T:System.Action{``0}
+  parent: System
+  definition: System.Action`1
+  name: Action<T1>
+  nameWithType: Action<T1>
+  fullName: System.Action<T1>
+  nameWithType.vb: Action(Of T1)
+  fullName.vb: System.Action(Of T1)
+  name.vb: Action(Of T1)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{{T1},{T2}}
+  commentId: T:System.Action{``0,``1}
+  parent: System
+  definition: System.Action`2
+  name: Action<T1, T2>
+  nameWithType: Action<T1, T2>
+  fullName: System.Action<T1, T2>
+  nameWithType.vb: Action(Of T1, T2)
+  fullName.vb: System.Action(Of T1, T2)
+  name.vb: Action(Of T1, T2)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`2
+  commentId: T:System.Action`2
+  isExternal: true
+  name: Action<T1, T2>
+  nameWithType: Action<T1, T2>
+  fullName: System.Action<T1, T2>
+  nameWithType.vb: Action(Of T1, T2)
+  fullName.vb: System.Action(Of T1, T2)
+  name.vb: Action(Of T1, T2)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{{T1},{T2},{T3}}
+  commentId: T:System.Action{``0,``1,``2}
+  parent: System
+  definition: System.Action`3
+  name: Action<T1, T2, T3>
+  nameWithType: Action<T1, T2, T3>
+  fullName: System.Action<T1, T2, T3>
+  nameWithType.vb: Action(Of T1, T2, T3)
+  fullName.vb: System.Action(Of T1, T2, T3)
+  name.vb: Action(Of T1, T2, T3)
+  spec.csharp:
+  - uid: System.Action`3
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`3
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`3
+  commentId: T:System.Action`3
+  isExternal: true
+  name: Action<T1, T2, T3>
+  nameWithType: Action<T1, T2, T3>
+  fullName: System.Action<T1, T2, T3>
+  nameWithType.vb: Action(Of T1, T2, T3)
+  fullName.vb: System.Action(Of T1, T2, T3)
+  name.vb: Action(Of T1, T2, T3)
+  spec.csharp:
+  - uid: System.Action`3
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`3
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{{T1},{T2},{T3},{T4}}
+  commentId: T:System.Action{``0,``1,``2,``3}
+  parent: System
+  definition: System.Action`4
+  name: Action<T1, T2, T3, T4>
+  nameWithType: Action<T1, T2, T3, T4>
+  fullName: System.Action<T1, T2, T3, T4>
+  nameWithType.vb: Action(Of T1, T2, T3, T4)
+  fullName.vb: System.Action(Of T1, T2, T3, T4)
+  name.vb: Action(Of T1, T2, T3, T4)
+  spec.csharp:
+  - uid: System.Action`4
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`4
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`4
+  commentId: T:System.Action`4
+  isExternal: true
+  name: Action<T1, T2, T3, T4>
+  nameWithType: Action<T1, T2, T3, T4>
+  fullName: System.Action<T1, T2, T3, T4>
+  nameWithType.vb: Action(Of T1, T2, T3, T4)
+  fullName.vb: System.Action(Of T1, T2, T3, T4)
+  name.vb: Action(Of T1, T2, T3, T4)
+  spec.csharp:
+  - uid: System.Action`4
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`4
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{{T1},{T2},{T3},{T4},{T5}}
+  commentId: T:System.Action{``0,``1,``2,``3,``4}
+  parent: System
+  definition: System.Action`5
+  name: Action<T1, T2, T3, T4, T5>
+  nameWithType: Action<T1, T2, T3, T4, T5>
+  fullName: System.Action<T1, T2, T3, T4, T5>
+  nameWithType.vb: Action(Of T1, T2, T3, T4, T5)
+  fullName.vb: System.Action(Of T1, T2, T3, T4, T5)
+  name.vb: Action(Of T1, T2, T3, T4, T5)
+  spec.csharp:
+  - uid: System.Action`5
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`5
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`5
+  commentId: T:System.Action`5
+  isExternal: true
+  name: Action<T1, T2, T3, T4, T5>
+  nameWithType: Action<T1, T2, T3, T4, T5>
+  fullName: System.Action<T1, T2, T3, T4, T5>
+  nameWithType.vb: Action(Of T1, T2, T3, T4, T5)
+  fullName.vb: System.Action(Of T1, T2, T3, T4, T5)
+  name.vb: Action(Of T1, T2, T3, T4, T5)
+  spec.csharp:
+  - uid: System.Action`5
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`5
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{{T1},{T2},{T3},{T4},{T5},{T6}}
+  commentId: T:System.Action{``0,``1,``2,``3,``4,``5}
+  parent: System
+  definition: System.Action`6
+  name: Action<T1, T2, T3, T4, T5, T6>
+  nameWithType: Action<T1, T2, T3, T4, T5, T6>
+  fullName: System.Action<T1, T2, T3, T4, T5, T6>
+  nameWithType.vb: Action(Of T1, T2, T3, T4, T5, T6)
+  fullName.vb: System.Action(Of T1, T2, T3, T4, T5, T6)
+  name.vb: Action(Of T1, T2, T3, T4, T5, T6)
+  spec.csharp:
+  - uid: System.Action`6
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`6
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`6
+  commentId: T:System.Action`6
+  isExternal: true
+  name: Action<T1, T2, T3, T4, T5, T6>
+  nameWithType: Action<T1, T2, T3, T4, T5, T6>
+  fullName: System.Action<T1, T2, T3, T4, T5, T6>
+  nameWithType.vb: Action(Of T1, T2, T3, T4, T5, T6)
+  fullName.vb: System.Action(Of T1, T2, T3, T4, T5, T6)
+  name.vb: Action(Of T1, T2, T3, T4, T5, T6)
+  spec.csharp:
+  - uid: System.Action`6
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`6
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}
+  commentId: T:System.Action{``0,``1,``2,``3,``4,``5,``6}
+  parent: System
+  definition: System.Action`7
+  name: Action<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType: Action<T1, T2, T3, T4, T5, T6, T7>
+  fullName: System.Action<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType.vb: Action(Of T1, T2, T3, T4, T5, T6, T7)
+  fullName.vb: System.Action(Of T1, T2, T3, T4, T5, T6, T7)
+  name.vb: Action(Of T1, T2, T3, T4, T5, T6, T7)
+  spec.csharp:
+  - uid: System.Action`7
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`7
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`7
+  commentId: T:System.Action`7
+  isExternal: true
+  name: Action<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType: Action<T1, T2, T3, T4, T5, T6, T7>
+  fullName: System.Action<T1, T2, T3, T4, T5, T6, T7>
+  nameWithType.vb: Action(Of T1, T2, T3, T4, T5, T6, T7)
+  fullName.vb: System.Action(Of T1, T2, T3, T4, T5, T6, T7)
+  name.vb: Action(Of T1, T2, T3, T4, T5, T6, T7)
+  spec.csharp:
+  - uid: System.Action`7
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`7
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Fn.Func*
+  commentId: Overload:CodeJam.Fn.Func
+  isExternal: false
+  name: Func
+  nameWithType: Fn.Func
+  fullName: CodeJam.Fn.Func
+- uid: System.Func{{TResult}}
+  commentId: T:System.Func{``0}
+  parent: System
+  definition: System.Func`1
+  name: Func<TResult>
+  nameWithType: Func<TResult>
+  fullName: System.Func<TResult>
+  nameWithType.vb: Func(Of TResult)
+  fullName.vb: System.Func(Of TResult)
+  name.vb: Func(Of TResult)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`1
+  commentId: T:System.Func`1
+  isExternal: true
+  name: Func<TResult>
+  nameWithType: Func<TResult>
+  fullName: System.Func<TResult>
+  nameWithType.vb: Func(Of TResult)
+  fullName.vb: System.Func(Of TResult)
+  name.vb: Func(Of TResult)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T1},{TResult}}
+  commentId: T:System.Func{``0,``1}
+  parent: System
+  definition: System.Func`2
+  name: Func<T1, TResult>
+  nameWithType: Func<T1, TResult>
+  fullName: System.Func<T1, TResult>
+  nameWithType.vb: Func(Of T1, TResult)
+  fullName.vb: System.Func(Of T1, TResult)
+  name.vb: Func(Of T1, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T1},{T2},{TResult}}
+  commentId: T:System.Func{``0,``1,``2}
+  parent: System
+  definition: System.Func`3
+  name: Func<T1, T2, TResult>
+  nameWithType: Func<T1, T2, TResult>
+  fullName: System.Func<T1, T2, TResult>
+  nameWithType.vb: Func(Of T1, T2, TResult)
+  fullName.vb: System.Func(Of T1, T2, TResult)
+  name.vb: Func(Of T1, T2, TResult)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`3
+  commentId: T:System.Func`3
+  isExternal: true
+  name: Func<T1, T2, TResult>
+  nameWithType: Func<T1, T2, TResult>
+  fullName: System.Func<T1, T2, TResult>
+  nameWithType.vb: Func(Of T1, T2, TResult)
+  fullName.vb: System.Func(Of T1, T2, TResult)
+  name.vb: Func(Of T1, T2, TResult)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T1},{T2},{T3},{TResult}}
+  commentId: T:System.Func{``0,``1,``2,``3}
+  parent: System
+  definition: System.Func`4
+  name: Func<T1, T2, T3, TResult>
+  nameWithType: Func<T1, T2, T3, TResult>
+  fullName: System.Func<T1, T2, T3, TResult>
+  nameWithType.vb: Func(Of T1, T2, T3, TResult)
+  fullName.vb: System.Func(Of T1, T2, T3, TResult)
+  name.vb: Func(Of T1, T2, T3, TResult)
+  spec.csharp:
+  - uid: System.Func`4
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`4
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`4
+  commentId: T:System.Func`4
+  isExternal: true
+  name: Func<T1, T2, T3, TResult>
+  nameWithType: Func<T1, T2, T3, TResult>
+  fullName: System.Func<T1, T2, T3, TResult>
+  nameWithType.vb: Func(Of T1, T2, T3, TResult)
+  fullName.vb: System.Func(Of T1, T2, T3, TResult)
+  name.vb: Func(Of T1, T2, T3, TResult)
+  spec.csharp:
+  - uid: System.Func`4
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`4
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T1},{T2},{T3},{T4},{TResult}}
+  commentId: T:System.Func{``0,``1,``2,``3,``4}
+  parent: System
+  definition: System.Func`5
+  name: Func<T1, T2, T3, T4, TResult>
+  nameWithType: Func<T1, T2, T3, T4, TResult>
+  fullName: System.Func<T1, T2, T3, T4, TResult>
+  nameWithType.vb: Func(Of T1, T2, T3, T4, TResult)
+  fullName.vb: System.Func(Of T1, T2, T3, T4, TResult)
+  name.vb: Func(Of T1, T2, T3, T4, TResult)
+  spec.csharp:
+  - uid: System.Func`5
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`5
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`5
+  commentId: T:System.Func`5
+  isExternal: true
+  name: Func<T1, T2, T3, T4, TResult>
+  nameWithType: Func<T1, T2, T3, T4, TResult>
+  fullName: System.Func<T1, T2, T3, T4, TResult>
+  nameWithType.vb: Func(Of T1, T2, T3, T4, TResult)
+  fullName.vb: System.Func(Of T1, T2, T3, T4, TResult)
+  name.vb: Func(Of T1, T2, T3, T4, TResult)
+  spec.csharp:
+  - uid: System.Func`5
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`5
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T1},{T2},{T3},{T4},{T5},{TResult}}
+  commentId: T:System.Func{``0,``1,``2,``3,``4,``5}
+  parent: System
+  definition: System.Func`6
+  name: Func<T1, T2, T3, T4, T5, TResult>
+  nameWithType: Func<T1, T2, T3, T4, T5, TResult>
+  fullName: System.Func<T1, T2, T3, T4, T5, TResult>
+  nameWithType.vb: Func(Of T1, T2, T3, T4, T5, TResult)
+  fullName.vb: System.Func(Of T1, T2, T3, T4, T5, TResult)
+  name.vb: Func(Of T1, T2, T3, T4, T5, TResult)
+  spec.csharp:
+  - uid: System.Func`6
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`6
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`6
+  commentId: T:System.Func`6
+  isExternal: true
+  name: Func<T1, T2, T3, T4, T5, TResult>
+  nameWithType: Func<T1, T2, T3, T4, T5, TResult>
+  fullName: System.Func<T1, T2, T3, T4, T5, TResult>
+  nameWithType.vb: Func(Of T1, T2, T3, T4, T5, TResult)
+  fullName.vb: System.Func(Of T1, T2, T3, T4, T5, TResult)
+  name.vb: Func(Of T1, T2, T3, T4, T5, TResult)
+  spec.csharp:
+  - uid: System.Func`6
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`6
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T1},{T2},{T3},{T4},{T5},{T6},{TResult}}
+  commentId: T:System.Func{``0,``1,``2,``3,``4,``5,``6}
+  parent: System
+  definition: System.Func`7
+  name: Func<T1, T2, T3, T4, T5, T6, TResult>
+  nameWithType: Func<T1, T2, T3, T4, T5, T6, TResult>
+  fullName: System.Func<T1, T2, T3, T4, T5, T6, TResult>
+  nameWithType.vb: Func(Of T1, T2, T3, T4, T5, T6, TResult)
+  fullName.vb: System.Func(Of T1, T2, T3, T4, T5, T6, TResult)
+  name.vb: Func(Of T1, T2, T3, T4, T5, T6, TResult)
+  spec.csharp:
+  - uid: System.Func`7
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`7
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`7
+  commentId: T:System.Func`7
+  isExternal: true
+  name: Func<T1, T2, T3, T4, T5, T6, TResult>
+  nameWithType: Func<T1, T2, T3, T4, T5, T6, TResult>
+  fullName: System.Func<T1, T2, T3, T4, T5, T6, TResult>
+  nameWithType.vb: Func(Of T1, T2, T3, T4, T5, T6, TResult)
+  fullName.vb: System.Func(Of T1, T2, T3, T4, T5, T6, TResult)
+  name.vb: Func(Of T1, T2, T3, T4, T5, T6, TResult)
+  spec.csharp:
+  - uid: System.Func`7
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`7
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T1},{T2},{T3},{T4},{T5},{T6},{T7},{TResult}}
+  commentId: T:System.Func{``0,``1,``2,``3,``4,``5,``6,``7}
+  parent: System
+  definition: System.Func`8
+  name: Func<T1, T2, T3, T4, T5, T6, T7, TResult>
+  nameWithType: Func<T1, T2, T3, T4, T5, T6, T7, TResult>
+  fullName: System.Func<T1, T2, T3, T4, T5, T6, T7, TResult>
+  nameWithType.vb: Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)
+  fullName.vb: System.Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)
+  name.vb: Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)
+  spec.csharp:
+  - uid: System.Func`8
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`8
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`8
+  commentId: T:System.Func`8
+  isExternal: true
+  name: Func<T1, T2, T3, T4, T5, T6, T7, TResult>
+  nameWithType: Func<T1, T2, T3, T4, T5, T6, T7, TResult>
+  fullName: System.Func<T1, T2, T3, T4, T5, T6, T7, TResult>
+  nameWithType.vb: Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)
+  fullName.vb: System.Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)
+  name.vb: Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)
+  spec.csharp:
+  - uid: System.Func`8
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`8
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{System.Boolean}
+  commentId: T:System.Func{System.Boolean}
+  parent: System
+  definition: System.Func`1
+  name: Func<Boolean>
+  nameWithType: Func<Boolean>
+  fullName: System.Func<System.Boolean>
+  nameWithType.vb: Func(Of Boolean)
+  fullName.vb: System.Func(Of System.Boolean)
+  name.vb: Func(Of Boolean)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )

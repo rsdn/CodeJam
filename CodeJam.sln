@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.8
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.Main", "Main\src\CodeJam.Main.csproj", "{2F2046CC-FB47-4318-B335-5A82B04B6C40}"
 EndProject
@@ -102,6 +102,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{52A32895
 		Build\CodeJam.Targeting.props = Build\CodeJam.Targeting.props
 		Build\Jetbrains.Annotations.cs = Build\Jetbrains.Annotations.cs
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsProject", "DocsProject\DocsProject.csproj", "{9161AF76-33DB-4A43-9AA1-3C35058DE33F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -212,6 +214,12 @@ Global
 		{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}.Publish|Any CPU.Build.0 = Publish|Any CPU
 		{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Publish|Any CPU.Build.0 = Publish|Any CPU
+		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

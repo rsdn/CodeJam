@@ -1,0 +1,1845 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Threading.TaskHelper
+  commentId: T:CodeJam.Threading.TaskHelper
+  id: TaskHelper
+  parent: CodeJam.Threading
+  children:
+  - CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
+  - CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.Int32)
+  - CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)
+  - CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.Threading.CancellationToken)
+  - CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.TimeSpan)
+  - CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.TimeSpan,System.Threading.CancellationToken)
+  - CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[])
+  - CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[],System.Int32)
+  - CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[],System.Int32,System.Threading.CancellationToken)
+  - CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[],System.Threading.CancellationToken)
+  - CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[],System.TimeSpan)
+  - CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[],System.TimeSpan,System.Threading.CancellationToken)
+  - CodeJam.Threading.TaskHelper.WhenAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
+  - CodeJam.Threading.TaskHelper.WhenAll(System.Threading.Tasks.Task[])
+  - CodeJam.Threading.TaskHelper.WhenAll``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
+  - CodeJam.Threading.TaskHelper.WhenAll``1(System.Threading.Tasks.Task{``0}[])
+  - CodeJam.Threading.TaskHelper.WhenAny(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
+  - CodeJam.Threading.TaskHelper.WhenAny(System.Threading.Tasks.Task[])
+  - CodeJam.Threading.TaskHelper.WhenAny``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
+  - CodeJam.Threading.TaskHelper.WhenAny``1(System.Threading.Tasks.Task{``0}[])
+  langs:
+  - csharp
+  - vb
+  name: TaskHelper
+  nameWithType: TaskHelper
+  fullName: CodeJam.Threading.TaskHelper
+  type: Class
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TaskHelper
+    path: ../Main/src/Threading/TaskHelper.cs
+    startLine: 10
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nHelper methods for <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Threading.Tasks.Task%601\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public static class TaskHelper
+    content.vb: Public Module TaskHelper
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[],System.Int32,System.Threading.CancellationToken)
+  commentId: M:CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[],System.Int32,System.Threading.CancellationToken)
+  id: WaitAll(System.Threading.Tasks.Task[],System.Int32,System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WaitAll(Task[], Int32, CancellationToken)
+  nameWithType: TaskHelper.WaitAll(Task[], Int32, CancellationToken)
+  fullName: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[], System.Int32, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WaitAll
+    path: ../Main/src/Threading/TaskHelper.generated.cs
+    startLine: 37
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nWaits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified number of\nmilliseconds or until the wait is cancelled.\n"
+  example: []
+  syntax:
+    content: public static bool WaitAll(this Task[] tasks, int timeout, CancellationToken cancellation)
+    parameters:
+    - id: tasks
+      type: System.Threading.Tasks.Task[]
+      description: <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> instances on which to wait.
+    - id: timeout
+      type: System.Int32
+      description: "\nThe number of milliseconds to wait, or <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref> (-1) to wait indefinitely.\n"
+    - id: cancellation
+      type: System.Threading.CancellationToken
+      description: "\nA <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> to observe while waiting for the tasks to complete.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> if all of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instances completed execution within the allotted time; otherwise,\n<code>false</code>.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WaitAll(tasks As Task(), timeout As Integer, cancellation As CancellationToken) As Boolean
+  overload: CodeJam.Threading.TaskHelper.WaitAll*
+  nameWithType.vb: TaskHelper.WaitAll(Task(), Int32, CancellationToken)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task(), System.Int32, System.Threading.CancellationToken)
+  name.vb: WaitAll(Task(), Int32, CancellationToken)
+- uid: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[],System.TimeSpan,System.Threading.CancellationToken)
+  commentId: M:CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[],System.TimeSpan,System.Threading.CancellationToken)
+  id: WaitAll(System.Threading.Tasks.Task[],System.TimeSpan,System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WaitAll(Task[], TimeSpan, CancellationToken)
+  nameWithType: TaskHelper.WaitAll(Task[], TimeSpan, CancellationToken)
+  fullName: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[], System.TimeSpan, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WaitAll
+    path: ../Main/src/Threading/TaskHelper.generated.cs
+    startLine: 55
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nWaits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified\n<xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> or until the wait is cancelled.\n"
+  example: []
+  syntax:
+    content: public static bool WaitAll(this Task[] tasks, TimeSpan timeout, CancellationToken cancellation)
+    parameters:
+    - id: tasks
+      type: System.Threading.Tasks.Task[]
+      description: <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> instances on which to wait.
+    - id: timeout
+      type: System.TimeSpan
+      description: "\nA <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> to wait, or <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> that represents -1 milliseconds to wait indefinitely.\n"
+    - id: cancellation
+      type: System.Threading.CancellationToken
+      description: "\nA <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> to observe while waiting for the tasks to complete.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> if all of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instances completed execution within the allotted time; otherwise,\n<code>false</code>.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WaitAll(tasks As Task(), timeout As TimeSpan, cancellation As CancellationToken) As Boolean
+  overload: CodeJam.Threading.TaskHelper.WaitAll*
+  nameWithType.vb: TaskHelper.WaitAll(Task(), TimeSpan, CancellationToken)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task(), System.TimeSpan, System.Threading.CancellationToken)
+  name.vb: WaitAll(Task(), TimeSpan, CancellationToken)
+- uid: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[],System.Threading.CancellationToken)
+  commentId: M:CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[],System.Threading.CancellationToken)
+  id: WaitAll(System.Threading.Tasks.Task[],System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WaitAll(Task[], CancellationToken)
+  nameWithType: TaskHelper.WaitAll(Task[], CancellationToken)
+  fullName: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[], System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WaitAll
+    path: ../Main/src/Threading/TaskHelper.generated.cs
+    startLine: 70
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nWaits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified number of\nmilliseconds or until the wait is cancelled.\n"
+  example: []
+  syntax:
+    content: public static void WaitAll(this Task[] tasks, CancellationToken cancellation)
+    parameters:
+    - id: tasks
+      type: System.Threading.Tasks.Task[]
+      description: <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> instances on which to wait.
+    - id: cancellation
+      type: System.Threading.CancellationToken
+      description: "\nA <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> to observe while waiting for the tasks to complete.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WaitAll(tasks As Task(), cancellation As CancellationToken)
+  overload: CodeJam.Threading.TaskHelper.WaitAll*
+  nameWithType.vb: TaskHelper.WaitAll(Task(), CancellationToken)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task(), System.Threading.CancellationToken)
+  name.vb: WaitAll(Task(), CancellationToken)
+- uid: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[],System.Int32)
+  commentId: M:CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[],System.Int32)
+  id: WaitAll(System.Threading.Tasks.Task[],System.Int32)
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WaitAll(Task[], Int32)
+  nameWithType: TaskHelper.WaitAll(Task[], Int32)
+  fullName: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[], System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WaitAll
+    path: ../Main/src/Threading/TaskHelper.generated.cs
+    startLine: 85
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nWaits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified number of\nmilliseconds or until the wait is cancelled.\n"
+  example: []
+  syntax:
+    content: public static bool WaitAll(this Task[] tasks, int timeout)
+    parameters:
+    - id: tasks
+      type: System.Threading.Tasks.Task[]
+      description: <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> instances on which to wait.
+    - id: timeout
+      type: System.Int32
+      description: "\nThe number of milliseconds to wait, or <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref> (-1) to wait indefinitely.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> if all of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instances completed execution within the allotted time; otherwise,\n<code>false</code>.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WaitAll(tasks As Task(), timeout As Integer) As Boolean
+  overload: CodeJam.Threading.TaskHelper.WaitAll*
+  nameWithType.vb: TaskHelper.WaitAll(Task(), Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task(), System.Int32)
+  name.vb: WaitAll(Task(), Int32)
+- uid: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[],System.TimeSpan)
+  commentId: M:CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[],System.TimeSpan)
+  id: WaitAll(System.Threading.Tasks.Task[],System.TimeSpan)
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WaitAll(Task[], TimeSpan)
+  nameWithType: TaskHelper.WaitAll(Task[], TimeSpan)
+  fullName: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[], System.TimeSpan)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WaitAll
+    path: ../Main/src/Threading/TaskHelper.generated.cs
+    startLine: 100
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nWaits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified\n<xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> or until the wait is cancelled.\n"
+  example: []
+  syntax:
+    content: public static bool WaitAll(this Task[] tasks, TimeSpan timeout)
+    parameters:
+    - id: tasks
+      type: System.Threading.Tasks.Task[]
+      description: <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> instances on which to wait.
+    - id: timeout
+      type: System.TimeSpan
+      description: "\nA <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> to wait, or <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> that represents -1 milliseconds to wait indefinitely.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> if all of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instances completed execution within the allotted time; otherwise,\n<code>false</code>.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WaitAll(tasks As Task(), timeout As TimeSpan) As Boolean
+  overload: CodeJam.Threading.TaskHelper.WaitAll*
+  nameWithType.vb: TaskHelper.WaitAll(Task(), TimeSpan)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task(), System.TimeSpan)
+  name.vb: WaitAll(Task(), TimeSpan)
+- uid: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[])
+  commentId: M:CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[])
+  id: WaitAll(System.Threading.Tasks.Task[])
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WaitAll(Task[])
+  nameWithType: TaskHelper.WaitAll(Task[])
+  fullName: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WaitAll
+    path: ../Main/src/Threading/TaskHelper.generated.cs
+    startLine: 110
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nWaits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution.\n"
+  example: []
+  syntax:
+    content: public static void WaitAll(this Task[] tasks)
+    parameters:
+    - id: tasks
+      type: System.Threading.Tasks.Task[]
+      description: <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> instances on which to wait.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WaitAll(tasks As Task())
+  overload: CodeJam.Threading.TaskHelper.WaitAll*
+  nameWithType.vb: TaskHelper.WaitAll(Task())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WaitAll(System.Threading.Tasks.Task())
+  name.vb: WaitAll(Task())
+- uid: CodeJam.Threading.TaskHelper.WhenAll(System.Threading.Tasks.Task[])
+  commentId: M:CodeJam.Threading.TaskHelper.WhenAll(System.Threading.Tasks.Task[])
+  id: WhenAll(System.Threading.Tasks.Task[])
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WhenAll(Task[])
+  nameWithType: TaskHelper.WhenAll(Task[])
+  fullName: CodeJam.Threading.TaskHelper.WhenAll(System.Threading.Tasks.Task[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WhenAll
+    path: ../Main/src/Threading/TaskHelper.generated.cs
+    startLine: 121
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nCreates a task that will complete when all of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects in an enumerable collection\nhave completed.\n"
+  example: []
+  syntax:
+    content: public static Task WhenAll(this Task[] tasks)
+    parameters:
+    - id: tasks
+      type: System.Threading.Tasks.Task[]
+      description: The tasks to wait on for completion.
+    return:
+      type: System.Threading.Tasks.Task
+      description: A task that represents the completion of all of the supplied tasks.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WhenAll(tasks As Task()) As Task
+  overload: CodeJam.Threading.TaskHelper.WhenAll*
+  nameWithType.vb: TaskHelper.WhenAll(Task())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WhenAll(System.Threading.Tasks.Task())
+  name.vb: WhenAll(Task())
+- uid: CodeJam.Threading.TaskHelper.WhenAll``1(System.Threading.Tasks.Task{``0}[])
+  commentId: M:CodeJam.Threading.TaskHelper.WhenAll``1(System.Threading.Tasks.Task{``0}[])
+  id: WhenAll``1(System.Threading.Tasks.Task{``0}[])
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WhenAll<TResult>(Task<TResult>[])
+  nameWithType: TaskHelper.WhenAll<TResult>(Task<TResult>[])
+  fullName: CodeJam.Threading.TaskHelper.WhenAll<TResult>(System.Threading.Tasks.Task<TResult>[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WhenAll
+    path: ../Main/src/Threading/TaskHelper.generated.cs
+    startLine: 131
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nCreates a task that will complete when all of the <xref href=\"System.Threading.Tasks.Task%601\" data-throw-if-not-resolved=\"false\"></xref> objects in an enumerable collection\nhave completed.\n"
+  example: []
+  syntax:
+    content: public static Task<TResult[]> WhenAll<TResult>(this Task<TResult>[] tasks)
+    parameters:
+    - id: tasks
+      type: System.Threading.Tasks.Task{{TResult}}[]
+      description: The tasks to wait on for completion.
+    typeParameters:
+    - id: TResult
+      description: The type of the completed task.
+    return:
+      type: System.Threading.Tasks.Task{{TResult}[]}
+      description: A task that represents the completion of all of the supplied tasks.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WhenAll(Of TResult)(tasks As Task(Of TResult)()) As Task(Of TResult())
+  overload: CodeJam.Threading.TaskHelper.WhenAll*
+  nameWithType.vb: TaskHelper.WhenAll(Of TResult)(Task(Of TResult)())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WhenAll(Of TResult)(System.Threading.Tasks.Task(Of TResult)())
+  name.vb: WhenAll(Of TResult)(Task(Of TResult)())
+- uid: CodeJam.Threading.TaskHelper.WhenAny``1(System.Threading.Tasks.Task{``0}[])
+  commentId: M:CodeJam.Threading.TaskHelper.WhenAny``1(System.Threading.Tasks.Task{``0}[])
+  id: WhenAny``1(System.Threading.Tasks.Task{``0}[])
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WhenAny<TResult>(Task<TResult>[])
+  nameWithType: TaskHelper.WhenAny<TResult>(Task<TResult>[])
+  fullName: CodeJam.Threading.TaskHelper.WhenAny<TResult>(System.Threading.Tasks.Task<TResult>[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WhenAny
+    path: ../Main/src/Threading/TaskHelper.generated.cs
+    startLine: 146
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nCreates a task that will complete when any of the supplied tasks have completed.\n"
+  example: []
+  syntax:
+    content: public static Task<Task<TResult>> WhenAny<TResult>(this Task<TResult>[] tasks)
+    parameters:
+    - id: tasks
+      type: System.Threading.Tasks.Task{{TResult}}[]
+      description: The tasks to wait on for completion.
+    typeParameters:
+    - id: TResult
+      description: The type of the completed task.
+    return:
+      type: System.Threading.Tasks.Task{System.Threading.Tasks.Task{{TResult}}}
+      description: "\nA task that represents the completion of one of the supplied tasks. The return task&apos;s Result is the task that\ncompleted.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WhenAny(Of TResult)(tasks As Task(Of TResult)()) As Task(Of Task(Of TResult))
+  overload: CodeJam.Threading.TaskHelper.WhenAny*
+  nameWithType.vb: TaskHelper.WhenAny(Of TResult)(Task(Of TResult)())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WhenAny(Of TResult)(System.Threading.Tasks.Task(Of TResult)())
+  name.vb: WhenAny(Of TResult)(Task(Of TResult)())
+- uid: CodeJam.Threading.TaskHelper.WhenAny(System.Threading.Tasks.Task[])
+  commentId: M:CodeJam.Threading.TaskHelper.WhenAny(System.Threading.Tasks.Task[])
+  id: WhenAny(System.Threading.Tasks.Task[])
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WhenAny(Task[])
+  nameWithType: TaskHelper.WhenAny(Task[])
+  fullName: CodeJam.Threading.TaskHelper.WhenAny(System.Threading.Tasks.Task[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.generated.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WhenAny
+    path: ../Main/src/Threading/TaskHelper.generated.cs
+    startLine: 158
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nCreates a task that will complete when any of the supplied tasks have completed.\n"
+  example: []
+  syntax:
+    content: public static Task<Task> WhenAny(this Task[] tasks)
+    parameters:
+    - id: tasks
+      type: System.Threading.Tasks.Task[]
+      description: The tasks to wait on for completion.
+    return:
+      type: System.Threading.Tasks.Task{System.Threading.Tasks.Task}
+      description: "\nA task that represents the completion of one of the supplied tasks. The return task&apos;s Result is the task that\ncompleted.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WhenAny(tasks As Task()) As Task(Of Task)
+  overload: CodeJam.Threading.TaskHelper.WhenAny*
+  nameWithType.vb: TaskHelper.WhenAny(Task())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WhenAny(System.Threading.Tasks.Task())
+  name.vb: WhenAny(Task())
+- uid: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)
+  commentId: M:CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)
+  id: WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WaitAll(IEnumerable<Task>, Int32, CancellationToken)
+  nameWithType: TaskHelper.WaitAll(IEnumerable<Task>, Int32, CancellationToken)
+  fullName: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task>, System.Int32, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WaitAll
+    path: ../Main/src/Threading/TaskHelper.cs
+    startLine: 28
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nWaits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified number of\nmilliseconds or until the wait is cancelled.\n"
+  example: []
+  syntax:
+    content: public static bool WaitAll(this IEnumerable<Task> tasks, int timeout, CancellationToken cancellation)
+    parameters:
+    - id: tasks
+      type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
+      description: <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> instances on which to wait.
+    - id: timeout
+      type: System.Int32
+      description: "\nThe number of milliseconds to wait, or <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref> (-1) to wait indefinitely.\n"
+    - id: cancellation
+      type: System.Threading.CancellationToken
+      description: "\nA <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> to observe while waiting for the tasks to complete.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> if all of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instances completed execution within the allotted time; otherwise,\n<code>false</code>.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WaitAll(tasks As IEnumerable(Of Task), timeout As Integer, cancellation As CancellationToken) As Boolean
+  overload: CodeJam.Threading.TaskHelper.WaitAll*
+  nameWithType.vb: TaskHelper.WaitAll(IEnumerable(Of Task), Int32, CancellationToken)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task), System.Int32, System.Threading.CancellationToken)
+  name.vb: WaitAll(IEnumerable(Of Task), Int32, CancellationToken)
+- uid: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.TimeSpan,System.Threading.CancellationToken)
+  commentId: M:CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.TimeSpan,System.Threading.CancellationToken)
+  id: WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.TimeSpan,System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WaitAll(IEnumerable<Task>, TimeSpan, CancellationToken)
+  nameWithType: TaskHelper.WaitAll(IEnumerable<Task>, TimeSpan, CancellationToken)
+  fullName: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task>, System.TimeSpan, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WaitAll
+    path: ../Main/src/Threading/TaskHelper.cs
+    startLine: 46
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nWaits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified\n<xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> or until the wait is cancelled.\n"
+  example: []
+  syntax:
+    content: public static bool WaitAll(this IEnumerable<Task> tasks, TimeSpan timeout, CancellationToken cancellation)
+    parameters:
+    - id: tasks
+      type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
+      description: <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> instances on which to wait.
+    - id: timeout
+      type: System.TimeSpan
+      description: "\nA <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> to wait, or <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> that represents -1 milliseconds to wait indefinitely.\n"
+    - id: cancellation
+      type: System.Threading.CancellationToken
+      description: "\nA <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> to observe while waiting for the tasks to complete.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> if all of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instances completed execution within the allotted time; otherwise,\n<code>false</code>.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WaitAll(tasks As IEnumerable(Of Task), timeout As TimeSpan, cancellation As CancellationToken) As Boolean
+  overload: CodeJam.Threading.TaskHelper.WaitAll*
+  nameWithType.vb: TaskHelper.WaitAll(IEnumerable(Of Task), TimeSpan, CancellationToken)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task), System.TimeSpan, System.Threading.CancellationToken)
+  name.vb: WaitAll(IEnumerable(Of Task), TimeSpan, CancellationToken)
+- uid: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.Threading.CancellationToken)
+  commentId: M:CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.Threading.CancellationToken)
+  id: WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WaitAll(IEnumerable<Task>, CancellationToken)
+  nameWithType: TaskHelper.WaitAll(IEnumerable<Task>, CancellationToken)
+  fullName: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task>, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WaitAll
+    path: ../Main/src/Threading/TaskHelper.cs
+    startLine: 61
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nWaits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified number of\nmilliseconds or until the wait is cancelled.\n"
+  example: []
+  syntax:
+    content: public static void WaitAll(this IEnumerable<Task> tasks, CancellationToken cancellation)
+    parameters:
+    - id: tasks
+      type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
+      description: <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> instances on which to wait.
+    - id: cancellation
+      type: System.Threading.CancellationToken
+      description: "\nA <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> to observe while waiting for the tasks to complete.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WaitAll(tasks As IEnumerable(Of Task), cancellation As CancellationToken)
+  overload: CodeJam.Threading.TaskHelper.WaitAll*
+  nameWithType.vb: TaskHelper.WaitAll(IEnumerable(Of Task), CancellationToken)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task), System.Threading.CancellationToken)
+  name.vb: WaitAll(IEnumerable(Of Task), CancellationToken)
+- uid: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.Int32)
+  commentId: M:CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.Int32)
+  id: WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.Int32)
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WaitAll(IEnumerable<Task>, Int32)
+  nameWithType: TaskHelper.WaitAll(IEnumerable<Task>, Int32)
+  fullName: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task>, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WaitAll
+    path: ../Main/src/Threading/TaskHelper.cs
+    startLine: 76
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nWaits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified number of\nmilliseconds or until the wait is cancelled.\n"
+  example: []
+  syntax:
+    content: public static bool WaitAll(this IEnumerable<Task> tasks, int timeout)
+    parameters:
+    - id: tasks
+      type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
+      description: <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> instances on which to wait.
+    - id: timeout
+      type: System.Int32
+      description: "\nThe number of milliseconds to wait, or <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref> (-1) to wait indefinitely.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> if all of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instances completed execution within the allotted time; otherwise,\n<code>false</code>.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WaitAll(tasks As IEnumerable(Of Task), timeout As Integer) As Boolean
+  overload: CodeJam.Threading.TaskHelper.WaitAll*
+  nameWithType.vb: TaskHelper.WaitAll(IEnumerable(Of Task), Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task), System.Int32)
+  name.vb: WaitAll(IEnumerable(Of Task), Int32)
+- uid: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.TimeSpan)
+  commentId: M:CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.TimeSpan)
+  id: WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task},System.TimeSpan)
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WaitAll(IEnumerable<Task>, TimeSpan)
+  nameWithType: TaskHelper.WaitAll(IEnumerable<Task>, TimeSpan)
+  fullName: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task>, System.TimeSpan)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WaitAll
+    path: ../Main/src/Threading/TaskHelper.cs
+    startLine: 91
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nWaits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified\n<xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> or until the wait is cancelled.\n"
+  example: []
+  syntax:
+    content: public static bool WaitAll(this IEnumerable<Task> tasks, TimeSpan timeout)
+    parameters:
+    - id: tasks
+      type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
+      description: <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> instances on which to wait.
+    - id: timeout
+      type: System.TimeSpan
+      description: "\nA <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> to wait, or <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> that represents -1 milliseconds to wait indefinitely.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> if all of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instances completed execution within the allotted time; otherwise,\n<code>false</code>.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WaitAll(tasks As IEnumerable(Of Task), timeout As TimeSpan) As Boolean
+  overload: CodeJam.Threading.TaskHelper.WaitAll*
+  nameWithType.vb: TaskHelper.WaitAll(IEnumerable(Of Task), TimeSpan)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task), System.TimeSpan)
+  name.vb: WaitAll(IEnumerable(Of Task), TimeSpan)
+- uid: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
+  commentId: M:CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
+  id: WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WaitAll(IEnumerable<Task>)
+  nameWithType: TaskHelper.WaitAll(IEnumerable<Task>)
+  fullName: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WaitAll
+    path: ../Main/src/Threading/TaskHelper.cs
+    startLine: 101
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nWaits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution.\n"
+  example: []
+  syntax:
+    content: public static void WaitAll(this IEnumerable<Task> tasks)
+    parameters:
+    - id: tasks
+      type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
+      description: <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> instances on which to wait.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub WaitAll(tasks As IEnumerable(Of Task))
+  overload: CodeJam.Threading.TaskHelper.WaitAll*
+  nameWithType.vb: TaskHelper.WaitAll(IEnumerable(Of Task))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WaitAll(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task))
+  name.vb: WaitAll(IEnumerable(Of Task))
+- uid: CodeJam.Threading.TaskHelper.WhenAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
+  commentId: M:CodeJam.Threading.TaskHelper.WhenAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
+  id: WhenAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WhenAll(IEnumerable<Task>)
+  nameWithType: TaskHelper.WhenAll(IEnumerable<Task>)
+  fullName: CodeJam.Threading.TaskHelper.WhenAll(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WhenAll
+    path: ../Main/src/Threading/TaskHelper.cs
+    startLine: 112
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nCreates a task that will complete when all of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects in an enumerable collection\nhave completed.\n"
+  example: []
+  syntax:
+    content: public static Task WhenAll(this IEnumerable<Task> tasks)
+    parameters:
+    - id: tasks
+      type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
+      description: The tasks to wait on for completion.
+    return:
+      type: System.Threading.Tasks.Task
+      description: A task that represents the completion of all of the supplied tasks.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WhenAll(tasks As IEnumerable(Of Task)) As Task
+  overload: CodeJam.Threading.TaskHelper.WhenAll*
+  nameWithType.vb: TaskHelper.WhenAll(IEnumerable(Of Task))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WhenAll(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task))
+  name.vb: WhenAll(IEnumerable(Of Task))
+- uid: CodeJam.Threading.TaskHelper.WhenAll``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
+  commentId: M:CodeJam.Threading.TaskHelper.WhenAll``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
+  id: WhenAll``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WhenAll<TResult>(IEnumerable<Task<TResult>>)
+  nameWithType: TaskHelper.WhenAll<TResult>(IEnumerable<Task<TResult>>)
+  fullName: CodeJam.Threading.TaskHelper.WhenAll<TResult>(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task<TResult>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WhenAll
+    path: ../Main/src/Threading/TaskHelper.cs
+    startLine: 122
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nCreates a task that will complete when all of the <xref href=\"System.Threading.Tasks.Task%601\" data-throw-if-not-resolved=\"false\"></xref> objects in an enumerable collection\nhave completed.\n"
+  example: []
+  syntax:
+    content: public static Task<TResult[]> WhenAll<TResult>(this IEnumerable<Task<TResult>> tasks)
+    parameters:
+    - id: tasks
+      type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{{TResult}}}
+      description: The tasks to wait on for completion.
+    typeParameters:
+    - id: TResult
+      description: The type of the completed task.
+    return:
+      type: System.Threading.Tasks.Task{{TResult}[]}
+      description: A task that represents the completion of all of the supplied tasks.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WhenAll(Of TResult)(tasks As IEnumerable(Of Task(Of TResult))) As Task(Of TResult())
+  overload: CodeJam.Threading.TaskHelper.WhenAll*
+  nameWithType.vb: TaskHelper.WhenAll(Of TResult)(IEnumerable(Of Task(Of TResult)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WhenAll(Of TResult)(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task(Of TResult)))
+  name.vb: WhenAll(Of TResult)(IEnumerable(Of Task(Of TResult)))
+- uid: CodeJam.Threading.TaskHelper.WhenAny``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
+  commentId: M:CodeJam.Threading.TaskHelper.WhenAny``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
+  id: WhenAny``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WhenAny<TResult>(IEnumerable<Task<TResult>>)
+  nameWithType: TaskHelper.WhenAny<TResult>(IEnumerable<Task<TResult>>)
+  fullName: CodeJam.Threading.TaskHelper.WhenAny<TResult>(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task<TResult>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WhenAny
+    path: ../Main/src/Threading/TaskHelper.cs
+    startLine: 137
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nCreates a task that will complete when any of the supplied tasks have completed.\n"
+  example: []
+  syntax:
+    content: public static Task<Task<TResult>> WhenAny<TResult>(this IEnumerable<Task<TResult>> tasks)
+    parameters:
+    - id: tasks
+      type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{{TResult}}}
+      description: The tasks to wait on for completion.
+    typeParameters:
+    - id: TResult
+      description: The type of the completed task.
+    return:
+      type: System.Threading.Tasks.Task{System.Threading.Tasks.Task{{TResult}}}
+      description: "\nA task that represents the completion of one of the supplied tasks. The return task&apos;s Result is the task that\ncompleted.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WhenAny(Of TResult)(tasks As IEnumerable(Of Task(Of TResult))) As Task(Of Task(Of TResult))
+  overload: CodeJam.Threading.TaskHelper.WhenAny*
+  nameWithType.vb: TaskHelper.WhenAny(Of TResult)(IEnumerable(Of Task(Of TResult)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WhenAny(Of TResult)(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task(Of TResult)))
+  name.vb: WhenAny(Of TResult)(IEnumerable(Of Task(Of TResult)))
+- uid: CodeJam.Threading.TaskHelper.WhenAny(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
+  commentId: M:CodeJam.Threading.TaskHelper.WhenAny(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
+  id: WhenAny(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
+  isExtensionMethod: true
+  parent: CodeJam.Threading.TaskHelper
+  langs:
+  - csharp
+  - vb
+  name: WhenAny(IEnumerable<Task>)
+  nameWithType: TaskHelper.WhenAny(IEnumerable<Task>)
+  fullName: CodeJam.Threading.TaskHelper.WhenAny(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/TaskHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WhenAny
+    path: ../Main/src/Threading/TaskHelper.cs
+    startLine: 149
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nCreates a task that will complete when any of the supplied tasks have completed.\n"
+  example: []
+  syntax:
+    content: public static Task<Task> WhenAny(this IEnumerable<Task> tasks)
+    parameters:
+    - id: tasks
+      type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
+      description: The tasks to wait on for completion.
+    return:
+      type: System.Threading.Tasks.Task{System.Threading.Tasks.Task}
+      description: "\nA task that represents the completion of one of the supplied tasks. The return task&apos;s Result is the task that\ncompleted.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WhenAny(tasks As IEnumerable(Of Task)) As Task(Of Task)
+  overload: CodeJam.Threading.TaskHelper.WhenAny*
+  nameWithType.vb: TaskHelper.WhenAny(IEnumerable(Of Task))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Threading.TaskHelper.WhenAny(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task))
+  name.vb: WhenAny(IEnumerable(Of Task))
+references:
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Threading
+  commentId: N:CodeJam.Threading
+  isExternal: false
+  name: CodeJam.Threading
+  nameWithType: CodeJam.Threading
+  fullName: CodeJam.Threading
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: false
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Threading.Timeout.Infinite
+  commentId: F:System.Threading.Timeout.Infinite
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: CodeJam.Threading.TaskHelper.WaitAll*
+  commentId: Overload:CodeJam.Threading.TaskHelper.WaitAll
+  isExternal: false
+  name: WaitAll
+  nameWithType: TaskHelper.WaitAll
+  fullName: CodeJam.Threading.TaskHelper.WaitAll
+- uid: System.Threading.Tasks.Task[]
+  name: Task[]
+  nameWithType: Task[]
+  fullName: System.Threading.Tasks.Task[]
+  nameWithType.vb: Task()
+  fullName.vb: System.Threading.Tasks.Task()
+  name.vb: Task()
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: false
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: CodeJam.Threading.TaskHelper.WhenAll*
+  commentId: Overload:CodeJam.Threading.TaskHelper.WhenAll
+  isExternal: false
+  name: WhenAll
+  nameWithType: TaskHelper.WhenAll
+  fullName: CodeJam.Threading.TaskHelper.WhenAll
+- uid: System.Threading.Tasks.Task{{TResult}}[]
+  name: Task<TResult>[]
+  nameWithType: Task<TResult>[]
+  fullName: System.Threading.Tasks.Task<TResult>[]
+  nameWithType.vb: Task(Of TResult)()
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)()
+  name.vb: Task(Of TResult)()
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Threading.Tasks.Task{{TResult}[]}
+  commentId: T:System.Threading.Tasks.Task{``0[]}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  name: Task<TResult[]>
+  nameWithType: Task<TResult[]>
+  fullName: System.Threading.Tasks.Task<TResult[]>
+  nameWithType.vb: Task(Of TResult())
+  fullName.vb: System.Threading.Tasks.Task(Of TResult())
+  name.vb: Task(Of TResult())
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Threading.TaskHelper.WhenAny*
+  commentId: Overload:CodeJam.Threading.TaskHelper.WhenAny
+  isExternal: false
+  name: WhenAny
+  nameWithType: TaskHelper.WhenAny
+  fullName: CodeJam.Threading.TaskHelper.WhenAny
+- uid: System.Threading.Tasks.Task{System.Threading.Tasks.Task{{TResult}}}
+  commentId: T:System.Threading.Tasks.Task{System.Threading.Tasks.Task{``0}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  name: Task<Task<TResult>>
+  nameWithType: Task<Task<TResult>>
+  fullName: System.Threading.Tasks.Task<System.Threading.Tasks.Task<TResult>>
+  nameWithType.vb: Task(Of Task(Of TResult))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Threading.Tasks.Task(Of TResult))
+  name.vb: Task(Of Task(Of TResult))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Tasks.Task{System.Threading.Tasks.Task}
+  commentId: T:System.Threading.Tasks.Task{System.Threading.Tasks.Task}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  name: Task<Task>
+  nameWithType: Task<Task>
+  fullName: System.Threading.Tasks.Task<System.Threading.Tasks.Task>
+  nameWithType.vb: Task(Of Task)
+  fullName.vb: System.Threading.Tasks.Task(Of System.Threading.Tasks.Task)
+  name.vb: Task(Of Task)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Task>
+  nameWithType: IEnumerable<Task>
+  fullName: System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task>
+  nameWithType.vb: IEnumerable(Of Task)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task)
+  name.vb: IEnumerable(Of Task)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{{TResult}}}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Task<TResult>>
+  nameWithType: IEnumerable<Task<TResult>>
+  fullName: System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task<TResult>>
+  nameWithType.vb: IEnumerable(Of Task(Of TResult))
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task(Of TResult))
+  name.vb: IEnumerable(Of Task(Of TResult))
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
