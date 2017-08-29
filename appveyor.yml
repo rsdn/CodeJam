@@ -1,4 +1,3 @@
-version: 1.0.{build}
 configuration: Release
 image: Visual Studio 2017
 
@@ -6,6 +5,7 @@ environment:
   packageVersion: 1.4.1
 
 cache:
+# todo: reset packages on csproj change
 - packages -> **\packages.config
 
 init:
@@ -21,11 +21,11 @@ assembly_info:
   assembly_file_version: '$(buildVersion)'
   assembly_informational_version: '$(nugetVersion)'
 
-dotnet_csproj:
-  patch: true
-  file: 'Build\CodeJam.Default.props'
-  version: '{buildVersion}'
-  package_version: '$(nugetVersion)'
+#dotnet_csproj:
+#  patch: true
+#  file: 'Build\CodeJam.Default.props'
+#  version: '{buildVersion}'
+#  package_version: '$(nugetVersion)'
 
 nuget:
   account_feed: false
@@ -35,6 +35,7 @@ before_build:
 # Force install System.ValueTuple 4.3.1 for FWs 4.0-4.6 build, because 4.4.0 is incompatible with older BCLs
 - cmd: nuget install System.ValueTuple -Version 4.3.1 -OutputDirectory packages
 - cmd: nuget restore CodeJam.sln
+- ps: &".\Build\Appveyor.BeforeBuild.ps1" -buildVersion "$env:buildVersion" -nugetVersion "$env:nugetVersion"
 
 build:
   project: CodeJam.sln

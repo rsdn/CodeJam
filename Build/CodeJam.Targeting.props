@@ -1,4 +1,4 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project>
 	<PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
 		<DefineConstants>$(DefineConstants);SUPPORTS_NET35;SUPPORTS_NET40;SUPPORTS_NET45;SUPPORTS_NET46;SUPPORTS_NET461;SUPPORTS_NET47;SUPPORTS_NET471;LESSTHAN_NET40;LESSTHAN_NET45;LESSTHAN_NET46;LESSTHAN_NET461;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
 	</PropertyGroup>
