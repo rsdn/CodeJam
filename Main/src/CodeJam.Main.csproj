@@ -216,7 +216,7 @@
 		<Compile Include="Collections\Enumerable\EnumerableExtensions.Slice.cs" />
 		<Compile Include="Collections\Enumerable\EnumerableExtensions.Split.cs" />
 		<Compile Include="Collections\Enumerable\EnumerableExtensions.TakeLast.cs" />
-		<Compile Include="Collections\Enumerable\EnumerableExtensions.ToLookupDictionary.cs" />
+		<Compile Include="Collections\Enumerable\EnumerableExtensions.ToDictionary.cs" />
 		<Compile Include="Collections\Enumerable\EnumerableExtensions.TopoSort.cs" />
 		<Compile Include="Collections\Enumerable\EnumerableExtensions.With.cs" />
 		<Compile Include="Collections\Enumerable\IndexedItem.cs" />
@@ -486,6 +486,16 @@
 		<Compile Include="Threading\ParallelQueue.cs" />
 		<Compile Include="Threading\ReaderWriterLockSlimExtensions.cs" />
 		<Compile Include="Threading\TaskHelper.cs" />
+		<Compile Include="Threading\TaskHelper.generated.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>TaskHelper.tt</DependentUpon>
+		</Compile>
+		<Compile Include="Threading\TaskHelper.Marker.cs" />
+		<None Include="Threading\TaskHelper.tt">
+		  <Generator>TextTemplatingFileGenerator</Generator>
+		  <LastGenOutput>TaskHelper.generated.cs</LastGenOutput>
+		</None>
 		<Compile Include="UriHelper.cs" />
 		<Compile Include="Utilities\HGlobal.cs" />
 		<Compile Include="Utilities\HGlobalScope.cs" />
