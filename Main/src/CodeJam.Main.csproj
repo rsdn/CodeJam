@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\..\Build\CodeJam.Default.props" />
-	<Import Project="..\..\Build\CodeJam.PerfTests.Default.props" />
 	<Import Project="..\..\Build\CodeJam.Targeting.props" />
 
 	<PropertyGroup>
@@ -78,7 +77,7 @@
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net45'">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
-		<PackageReference Include="System.ValueTuple" Version="4.3.0" />
+		<PackageReference Include="System.ValueTuple" Version="4.4.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net40'">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
@@ -516,14 +515,13 @@
 		<Compile Include="Threading\ReaderWriterLockSlimExtensions.cs" />
 		<Compile Include="Threading\TaskHelper.cs" />
 		<Compile Include="Threading\TaskHelper.generated.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>TaskHelper.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>TaskHelper.tt</DependentUpon>
 		</Compile>
 		<Compile Include="Threading\TaskHelper.Marker.cs" />
 		<None Include="Threading\TaskHelper.tt">
-		  <Generator>TextTemplatingFileGenerator</Generator>
-		  <LastGenOutput>TaskHelper.generated.cs</LastGenOutput>
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>TaskHelper.generated.cs</LastGenOutput>
 		</None>
 		<Compile Include="UriHelper.cs" />
 		<Compile Include="Utilities\HGlobal.cs" />
@@ -536,9 +534,6 @@
 			<Pack>true</Pack>
 			<PackagePath>Readme.txt</PackagePath>
 		</Content>
-	</ItemGroup>
-	<ItemGroup>
-		<Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
 	</ItemGroup>
 	<!--<Target Name="TestMessage" BeforeTargets="Build">
 		<Message Text="Hi!" Importance="high" />

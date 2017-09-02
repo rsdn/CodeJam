@@ -52,7 +52,8 @@
 		<ProjectReference Include="..\src\CodeJam.Main.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="NUnit" Version="3.7.1" />
+		<PackageReference Include="NUnit" Version="3.8.1" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.8.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
@@ -63,37 +64,29 @@
 	
 	<ItemGroup>
 		<Compile Update="Arithmetic\OperatorsTests.generated.cs">
-			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>OperatorsTests.tt</DependentUpon>
 		</Compile>
 		<Compile Update="Collections\Enumerable\MinMaxByTests.generated.cs">
-			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>MinMaxByTests.tt</DependentUpon>
 		</Compile>
 		<Compile Update="Ranges\RangeBoundaryToTests.generated.cs">
-			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>RangeBoundaryToTests.tt</DependentUpon>
 		</Compile>
 		<Compile Update="Ranges\RangeTests.WithKey.generated.cs">
-			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>RangeTests.WithKey.tt</DependentUpon>
 		</Compile>
 		<Compile Update="Structures\OneOfTests.generated.cs">
-			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>OneOfTests.tt</DependentUpon>
 		</Compile>
 		<Compile Update="Threading\InterlockedOperationsTests.generated.cs">
-			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>InterlockedOperationsTests.tt</DependentUpon>
 		</Compile>
-	</ItemGroup>
-	<ItemGroup>
 		<None Update="Arithmetic\OperatorsTests.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>OperatorsTests.generated.cs</LastGenOutput>
@@ -133,9 +126,5 @@
 		<EmbeddedResource Include="Strings\Data\Versions.txt" />
 		<EmbeddedResource Include="Strings\Data\Words.Expected.txt" />
 		<EmbeddedResource Include="Strings\Data\Words.txt" />
-	</ItemGroup>
-	<ItemGroup>
-		<Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-		<Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
 	</ItemGroup>
 </Project>

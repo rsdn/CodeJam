@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\..\Build\CodeJam.Default.props" />
+	<Import Project="..\..\Build\CodeJam.PerfTests.Default.props" />
 	<Import Project="..\..\Build\CodeJam.Targeting.props" />
 
 	<PropertyGroup>
@@ -42,7 +43,6 @@
 		<DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\$(ProjectName).xml</DocumentationFile>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -53,7 +53,6 @@
 		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\$(ProjectName).xml</DocumentationFile>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Publish|AnyCPU' ">
@@ -64,7 +63,6 @@
 		<DefineConstants>$(DefineConstants);TRACE1</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\$(ProjectName).xml</DocumentationFile>
 	</PropertyGroup>
 
@@ -224,8 +222,5 @@
 			<Pack>true</Pack>
 			<PackagePath>Readme.txt</PackagePath>
 		</Content>
-	</ItemGroup>
-	<ItemGroup>
-		<Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
 	</ItemGroup>
 </Project>

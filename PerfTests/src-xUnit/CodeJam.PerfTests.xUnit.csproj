@@ -43,7 +43,6 @@
 		<DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\$(ProjectName).xml</DocumentationFile>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -54,7 +53,6 @@
 		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\$(ProjectName).xml</DocumentationFile>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Publish|AnyCPU' ">
@@ -65,7 +63,6 @@
 		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\$(ProjectName).xml</DocumentationFile>
 	</PropertyGroup>
 
@@ -91,8 +88,5 @@
 		<Compile Include="Running.Core.Xunit\SkipTestException.cs" />
 		<Compile Include="Running.Core\NamespaceDoc.cs" />
 		<Compile Include="Running.Core\XunitCompetitionRunner.cs" />
-	</ItemGroup>
-	<ItemGroup>
-		<Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
 	</ItemGroup>
 </Project>

@@ -1,20 +1,15 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Linq;
-using System.Threading;
 
 using BenchmarkDotNet.Attributes;
 
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Metrics;
-using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
 
 using NUnit.Framework;
-
-using static CodeJam.PerfTests.SelfTestHelpers;
 
 namespace CodeJam.PerfTests.IntegrationTests
 {
@@ -117,7 +112,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 					string s = null;
 					return s.Length;
 				}
-				catch (Exception e)
+				catch (NullReferenceException)
 				{
 				}
 				return 0;

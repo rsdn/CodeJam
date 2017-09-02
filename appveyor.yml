@@ -64,7 +64,7 @@ after_build:
 #- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.NUnit.nuspec -version "$env:nugetVersion"
 #- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.xUnit.nuspec -version "$env:nugetVersion"
 #- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.MSTest.nuspec -version "$env:nugetVersion"
-  - ps: Get-ChildItem *.nupkg -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+  - ps: Get-ChildItem _Results\*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
 # artifacts for perftests
 on_finish:
